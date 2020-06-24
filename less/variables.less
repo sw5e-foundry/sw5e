@@ -1,0 +1,65 @@
+
+/* Deprecated vars */
+@borderLight: #CCC;
+@borderDark: #666;
+
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+
+@font-face {
+  font-family: "Nodesto";
+  src: url("fonts/NodestoCapsCondensed.otf");
+}
+.nodesto {
+  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
+  font-size: 20px;
+}
+
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+
+@colorDark: #191813;
+@colorFaint: #c9c7b8;
+@colorBeige: #b5b3a4;
+@colorTan: #7a7971;
+@colorOlive: #4b4a44;
+@colorCrimson: #44191A;
+@borderGroove: 2px groove #eeede0;
+@sheetBackground: url("ui/parchment.jpg") repeat;
+
+/* ----------------------------------------- */
+/*  Flexbox                                  */
+/* ----------------------------------------- */
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  > * {
+    flex: 1;
+  }
+
+  .flex1 { flex: 1; }
+  .flex2 { flex: 2; }
+  .flex3 { flex: 3; }
+  .flex4 { flex: 4; }
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  > * {
+    flex: 1;
+  }
+
+  .flex1 { flex: 1; }
+  .flex2 { flex: 2; }
+  .flex3 { flex: 3; }
+  .flex4 { flex: 4; }
+}

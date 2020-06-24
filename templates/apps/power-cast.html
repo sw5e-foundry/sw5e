@@ -1,0 +1,34 @@
+<form id="power-config-form">
+    <p>{{ localize "SW5E.PowerCastHint" }} <strong>{{item.name}}</strong> {{ localize "SW5E.power" }}.</p>
+
+    {{#unless canCast}}
+    <p class="notification error">{{ localize "SW5E.PowerCastNoSlots" }}</p>
+    {{/unless}}
+
+    <div class="form-group">
+        <label>{{ localize "SW5E.PowerCastUpcast" }}</label>
+        <div class="form-fields">
+            <select name="level">
+                {{#select item.data.level}}
+                {{#each powerLevels as |l|}}
+                <option value="{{l.level}}" {{#unless l.canCast}}disabled{{/unless}}>{{l.label}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{#if canUpcast}}
+        <label class="checkbox">{{ localize "SW5E.PowerCastConsume" }} <input type="checkbox" name="consume" {{checked canCast}}/></label>
+        {{/if}}
+
+        {{#if hasPlaceableTemplate}}
+        <div class="form-group">
+            <label class="checkbox">{{ localize "SW5E.PlaceTemplate" }}
+                <input type="checkbox" name="placeTemplate" checked/>
+            </label>
+        </div>
+        {{/if}}
+    </div>
+</form>

@@ -1,0 +1,237 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}"/>
+            </h1>
+
+            <div class="charlevel">
+                <div class="level {{#if disableExperience}}noxp{{/if}}">
+                    <label>{{ localize "SW5E.Level" }} {{data.details.level}}</label>
+                </div>
+                {{#unless disableExperience}}
+                <div class="experience">
+                    <input name="data.details.xp.value" type="text" value="{{data.details.xp.value}}"
+                           data-dtype="Number" placeholder="0"/>
+                    <span class="max"> / {{data.details.xp.max}}</span>
+                </div>
+                <div class="xpbar">
+                    <span class="bar" style="width: {{data.details.xp.pct}}%"></span>
+                </div>
+                {{/unless}}
+            </div>
+
+            {{!-- Character Summary --}}
+            <ul class="summary">
+                <li>
+                    <input type="text" name="data.details.race" value="{{data.details.race}}" placeholder="{{ localize 'SW5E.Race' }}"/>
+                </li>
+                <li>
+                    <input type="text" name="data.details.background" value="{{data.details.background}}" placeholder="{{ localize 'SW5E.Background' }}"/>
+                </li>
+                <li>
+                    <input type="text" name="data.details.alignment" value="{{data.details.alignment}}" placeholder="{{ localize 'SW5E.Alignment' }}"/>
+                </li>
+            </ul>
+
+            {{!-- Header Attributes --}}
+            <ul class="attributes flexrow">
+                <li class="attribute health">
+                    <h4 class="attribute-name box-title">{{ localize "SW5E.Health" }}</h4>
+                    <div class="attribute-value multiple">
+                        <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
+                               data-dtype="Number" placeholder="10"/>
+                        <span class="sep"> / </span>
+                        <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
+                               data-dtype="Number" placeholder="10"/>
+                    </div>
+                    <footer class="attribute-footer">
+                        <input name="data.attributes.hp.temp" type="text" class="temphp" placeholder="+{{ localize 'SW5E.Temp' }}"
+                               value="{{data.attributes.hp.temp}}" data-dtype="{{data.attributes.hp.type}}"/>
+                        <input name="data.attributes.hp.tempmax" type="text" class="temphp" placeholder="+{{ localize 'SW5E.Max' }}"
+                               value="{{data.attributes.hp.tempmax}}" data-dtype="{{data.attributes.hp.type}}"/>
+                    </footer>
+                </li>
+
+                <li class="attribute">
+                    <h4 class="attribute-name box-title">{{ localize "SW5E.ArmorClass" }}</h4>
+                    <div class="attribute-value">
+                        <input name="data.attributes.ac.value" type="text" value="{{data.attributes.ac.value}}"
+                               data-dtype="Number" placeholder="10"/>
+                    </div>
+                    <footer class="attribute-footer">
+                        <span>{{ localize "SW5E.Proficiency" }}</span>
+                        <span>{{numberFormat data.attributes.prof decimals=0 sign=true}}</span>
+                    </footer>
+                </li>
+
+                <li class="attribute">
+                    <h4 class="attribute-name box-title">{{ localize "SW5E.Speed" }}</h4>
+                    <div class="attribute-value">
+                        <input name="data.attributes.speed.value" type="text"
+                               value="{{data.attributes.speed.value}}" placeholder="0"/>
+                    </div>
+                    <footer class="attribute-footer">
+                        <input type="text" class="speed" name="data.attributes.speed.special"
+                               value="{{data.attributes.speed.special}}" placeholder="{{ localize 'SW5E.SpeedSpecial' }}"/>
+                    </footer>
+                </li>
+
+                <li class="attribute">
+                    <h4 class="attribute-name box-title">{{ localize "SW5E.HitDice" }}</h4>
+                    <div class="attribute-value multiple">
+                        <label class="hit-dice">{{data.attributes.hd}} / {{data.details.level}}</label>
+                    </div>
+                    <footer class="attribute-footer">
+                        <a class="rest short-rest">{{ localize "SW5E.RestS" }}</a>
+                        <a class="rest long-rest">{{ localize "SW5E.RestL" }}</a>
+                    </footer>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- NPC Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</a>
+        <a class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</a>
+        <a class="item" data-tab="features">{{ localize "SW5E.Features" }}</a>
+        <a class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</a>
+        <a class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</a>
+    </nav>
+
+    {{!-- NPC Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab attributes flexrow" data-group="primary" data-tab="attributes">
+
+            {{!-- Ability Scores --}}
+            <ul class="ability-scores flexrow">
+            {{#each data.abilities as |ability id|}}
+                <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
+                    <h4 class="ability-name box-title rollable">{{ability.label}}</h4>
+                    <input class="ability-score" name="data.abilities.{{id}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10"/>
+                    <div class="ability-modifiers flexrow">
+                        <span class="ability-mod" title="Modifier">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                        <input type="hidden" name="data.abilities.{{id}}.proficient" value="{{ability.proficient}}" data-dtype="Number"/>
+                        <a class="proficiency-toggle ability-proficiency" title="Proficiency">{{{ability.icon}}}</a>
+                        <span class="ability-save" title="Saving Throw">{{numberFormat ability.save decimals=0 sign=true}}</span>
+                    </div>
+                </li>
+            {{/each}}
+            </ul>
+
+            {{!-- Skills --}}
+            <ul class="skills-list">
+            {{#each data.skills as |skill s|}}
+                <li class="skill flexrow {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
+                    <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.value}}" data-dtype="Number"/>
+                    <a class="proficiency-toggle skill-proficiency" title="{{skill.hover}}">{{{skill.icon}}}</a>
+                    <h4 class="skill-name rollable">{{skill.label}}</h4>
+                    <span class="skill-ability">{{skill.ability}}</span>
+                    <span class="skill-mod">{{numberFormat skill.mod decimals=0 sign=true}}</span>
+                    <span class="skill-passive">({{skill.passive}})</span>
+                </li>
+            {{/each}}
+            </ul>
+
+            <section class="center-pane">
+
+                {{!-- Body Attributes --}}
+                <ul class="attributes flexrow">
+                    {{#each resources as |res|}}
+                    <li class="attribute resource">
+                        <h4 class="attribute-name box-title">
+                            <input name="data.resources.{{res.name}}.label" type="text" value="{{res.label}}"
+                                   placeholder="{{res.placeholder}}" />
+                        </h4>
+                        <div class="attribute-value multiple">
+                            <input name="data.resources.{{res.name}}.value" type="text" value="{{res.value}}"
+                                   data-dtype="Number" placeholder="0"/>
+                            <span class="sep"> / </span>
+                           <input name="data.resources.{{res.name}}.max" type="text" value="{{res.max}}"
+                                  data-dtype="Number" placeholder="0"/>
+                        </div>
+                        <footer class="attribute-footer">
+                            <label class="checkbox">
+                                {{ localize "SW5E.AbbreviationSR" }} <input name="data.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}}/>
+                            </label>
+                            <label class="checkbox">
+                                {{ localize "SW5E.AbbreviationLR" }} <input name="data.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}}/>
+                            </label>
+                        </footer>
+                    </li>
+                    {{/each}}
+
+                    <li class="attribute initiative">
+                        <h4 class="attribute-name box-title">{{ localize "SW5E.Initiative" }}</h4>
+                        <div class="attribute-value">
+                            <span>{{numberFormat data.attributes.init.total decimals=0 sign=true}}</span>
+                        </div>
+                        <footer class="attribute-footer">
+                            <span>{{ localize "SW5E.Modifier" }}</span>
+                            <input name="data.attributes.init.value" type="text" placeholder="0" data-dtype="Number"
+                                   value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}"/>
+                        </footer>
+                    </li>
+                </ul>
+
+                {{!-- Counters --}}
+                <div class="counters flexrow">
+                    <div class="counter flexrow death-saves">
+                        <h4 class="death-save rollable">{{ localize "SW5E.DeathSave" }}</h4>
+                        <div class="counter-value">
+                            <i class="fas fa-check"></i>
+                            <input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
+                                   value="{{data.attributes.death.success}}"/>
+                            <i class="fas fa-times"></i>
+                            <input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
+                                   value="{{data.attributes.death.failure}}"/>
+                        </div>
+                    </div>
+                    <div class="counter flexrow">
+                        <h4>{{ localize "SW5E.Exhaustion" }}</h4>
+                        <div class="counter-value">
+                            <input type="text" name="data.attributes.exhaustion" data-dtype="Number" placeholder="0"
+                                   value="{{data.attributes.exhaustion}}" />
+                        </div>
+                    </div>
+                    <div class="counter flexrow">
+                        <h4>{{ localize "SW5E.Inspiration" }}</h4>
+                        <div class="counter-value">
+                            <input type="checkbox" name="data.attributes.inspiration" data-dtype="Boolean"
+                                   {{checked data.attributes.inspiration}}/>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Traits --}}
+                {{> "systems/sw5e/templates/actors/parts/actor-traits.html"}}
+            </section>
+        </div>
+
+        {{!-- Inventory Tab --}}
+        <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
+            {{> "systems/sw5e/templates/actors/parts/actor-inventory.html" sections=inventory}}
+        </div>
+
+        {{!-- Features Tab --}}
+        <div class="tab features flexcol" data-group="primary" data-tab="features">
+            {{> "systems/sw5e/templates/actors/parts/actor-features.html" sections=features}}
+        </div>
+
+        {{!-- Powerbook Tab --}}
+        <div class="tab powerbook flexcol" data-group="primary" data-tab="powerbook">
+            {{> "systems/sw5e/templates/actors/parts/actor-powerbook.html"}}
+        </div>
+
+        {{!-- Biography Tab --}}
+        <div class="tab biography flexcol" data-group="primary" data-tab="biography">
+            {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+        </div>
+    </section>
+</form>

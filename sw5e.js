@@ -75,7 +75,7 @@ Hooks.once("setup", function() {
     "abilities", "alignments", "conditionTypes", "consumableTypes", "currencies", "damageTypes", "distanceUnits", "equipmentTypes",
     "healingTypes", "itemActionTypes", "limitedUsePeriods", "senses", "skills", "powerComponents", "powerLevels", "powerPreparationModes",
     "powerSchools", "powerScalingModes", "targetTypes", "timePeriods", "weaponProperties", "weaponTypes", "languages", "polymorphSettings",
-    "armorProficiencies", "weaponProficiencies", "toolProficiencies", "abilityActivationTypes", "actorSizes", "proficiencyLevels"
+    "armorProficiencies", "weaponProficiencies", "toolProficiencies", "abilityActivationTypes", "actorSizes", "proficiencyLevels", "armorpropertiesTypes"
   ];
   for ( let o of toLocalize ) {
     CONFIG.SW5E[o] = Object.entries(CONFIG.SW5E[o]).reduce((obj, e) => {

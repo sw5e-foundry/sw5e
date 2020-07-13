@@ -238,7 +238,40 @@ SW5E.damageTypes = {
   "necrotic": "SW5E.DamageNecrotic",
   "poison": "SW5E.DamagePoison",
   "psychic": "SW5E.DamagePsychic",
-  "Sonic": "SW5E.DamageSonic",
+  "Sonic": "SW5E.DamageSonic"
+};
+
+/* -------------------------------------------- */
+
+// armor Types
+SW5E.armorpropertiesTypes = {
+"Absorptive": "SW5E.ArmorProperAbsorptive",
+"Agile": "SW5E.ArmorProperAgile",
+"Anchor": "SW5E.ArmorProperAnchor",
+"Avoidant": "SW5E.ArmorProperAvoidant",
+"Barbed": "SW5E.ArmorProperBarbed",
+"Charging": "SW5E.ArmorProperCharging",
+"Concealing": "SW5E.ArmorProperConcealing",
+"Cumbersome": "SW5E.ArmorProperCumbersome",
+"Gauntleted": "SW5E.ArmorProperGauntleted",
+"Imbalanced": "SW5E.ArmorProperImbalanced",
+"Impermeable": "SW5E.ArmorProperImpermeable",
+"Insulated": "SW5E.ArmorProperInsulated",
+"Interlocking": "SW5E.ArmorProperInterlocking",
+"Lambent": "SW5E.ArmorProperLambent",
+"Lightweight": "SW5E.ArmorProperLightweight",
+"Magnetic": "SW5E.ArmorProperMagnetic",
+"Obscured": "SW5E.ArmorProperObscured",
+"Powered": "SW5E.ArmorProperPowered",
+"Reactive": "SW5E.ArmorProperReactive",
+"Regulated": "SW5E.ArmorProperRegulated",
+"Reinforced": "SW5E.ArmorProperReinforced",
+"Responsive": "SW5E.ArmorProperResponsive",
+"Rigid": "SW5E.ArmorProperRigid",
+"Silent": "SW5E.ArmorProperSilent",
+"Spiked": "SW5E.ArmorProperSpiked",
+"Steadfast": "SW5E.ArmorProperSteadfast",
+"Versatile": "SW5E.ArmorProperVersatile"
 };
 
 /* -------------------------------------------- */
@@ -597,7 +630,7 @@ SW5E.languages = {
   "sith": "SW5E.LanguagesSith",
   "togruti": "SW5E.LanguagesTogruti",
   "dosh": "SW5E.LanguagesDosh",
-  "twi'leki": "SW5E.LanguagesTwi'leki",
+  "twi'leki": "SW5E.LanguagesTwileki",
   "tusken": "SW5E.LanguagesTusken",
   "shyriiwook": "SW5E.LanguagesShyriiwook",
   "zabraki": "SW5E.LanguagesZabraki",

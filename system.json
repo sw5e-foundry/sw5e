@@ -8,53 +8,47 @@
   "esmodules": ["sw5e.js"],
   "styles": ["sw5e.css"],
   "packs": [
+   "packs": [
     {
-      "name": "heroes",
-      "label": "Starter Heroes",
-      "system": "dnd5e",
-      "path": "./packs/heroes.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "beasts",
-      "label": "Beasts",
-      "system": "sw5e",
-      "path": "./packs/beasts.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "items",
-      "label": "Items",
-      "system": "sw5e",
-      "path": "./packs/items.db",
+      "name": "weapons",
+      "label": "Weapons",
+      "path": "/packs/weapons.db",
       "entity": "Item"
     },
     {
-      "name": "tradegoods",
-      "label": "Trade Goods (SRD)",
-      "system": "sw5e",
-      "path": "./packs/tradegoods.db",
+      "name": "adventuringgear",
+      "label": "Adventuring Gear",
+      "path": "/packs/adventuringgear.db",
       "entity": "Item"
     },
     {
-      "name": "powers",
-      "label": "Casting",
-      "system": "sw5e",
-      "path": "./packs/powers.db",
+      "name": "armor",
+      "label": "Armor",
+      "path": "/packs/armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "enhanceditems",
+      "label": "Enhanced Items",
+      "path": "/packs/enhanceditems.db",
+      "entity": "Item"
+    },
+    {
+      "name": "gamingset",
+      "label": "Gaming Sets",
+      "path": "/packs/gamingset.db",
       "entity": "Item"
     },
     {
       "name": "classes",
       "label": "Classes",
-      "system": "sw5e",
-      "path": "./packs/classes.db",
+      "path": "/packs/classes.db",
       "entity": "Item"
     },
     {
-      "name": "classfeatures",
-      "label": "Class Features (SRD)",
-      "system": "sw5e",
-      "path": "./packs/classfeatures.db",
+      "name": "species",
+      "label": "Species",
+      "path": "/packs/species.db",
       "entity": "Item"
     }
   ],

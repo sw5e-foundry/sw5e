@@ -319,7 +319,8 @@ SW5E.targetTypes = {
   "square": "SW5E.TargetSquare",
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
-  "wall": "SW5E.TargetWall"
+  "wall": "SW5E.TargetWall",
+  "droid": "SW5E.TargetDroid"
 };
 
 

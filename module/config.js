@@ -308,6 +308,7 @@ SW5E.targetTypes = {
   "none": "SW5E.None",
   "self": "SW5E.TargetSelf",
   "creature": "SW5E.TargetCreature",
+  "droid": "SW5E.TargetDroid",
   "ally": "SW5E.TargetAlly",
   "enemy": "SW5E.TargetEnemy",
   "object": "SW5E.TargetObject",
@@ -320,7 +321,6 @@ SW5E.targetTypes = {
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
   "wall": "SW5E.TargetWall",
-  "droid": "SW5E.TargetDroid"
 };
 
 

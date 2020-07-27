@@ -68,57 +68,13 @@
                 </select>
             </div>
 
-            {{!-- Power Components --}}
-            <div class="power-components form-group stacked">
-                <label>{{ localize "SW5E.PowerComponents" }}</label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.components.vocal" {{checked data.components.vocal}}/> {{ localize "SW5E.ComponentVerbal" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.components.somatic" {{checked data.components.somatic}}/> {{ localize "SW5E.ComponentSomatic" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.components.material" {{checked data.components.material}}/> {{ localize "SW5E.ComponentMaterial" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.components.concentration" {{checked data.components.concentration}}/> {{ localize "SW5E.Concentration" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.components.ritual" {{checked data.components.ritual}}/> {{ localize "SW5E.Ritual" }}
-                </label>
-            </div>
-
-            {{!-- Material Components --}}
-            <div class="form-group stacked">
-                <label>{{ localize "SW5E.PowerMaterials" }}</label>
-                <input class="materials" type="text" name="data.materials.value" value="{{data.materials.value}}"/>
-                {{#if data.materials.value}}
-                <div class="power-materials flexrow">
-                    <label>{{ localize "SW5E.Supply" }}</label>
-                    <input type="text" name="data.materials.supply" value="{{data.materials.supply}}" data-dtype="Number" Placeholder="0"/>
-                    <label>{{ localize "SW5E.CostGP" }}</label>
-                    <input type="text" name="data.materials.cost" value="{{data.materials.cost}}" data-dtype="Number" Placeholder="-"/>
-                    <label>{{ localize "SW5E.Consumed" }}</label>
-                    <input type="checkbox" name="data.materials.consumed" {{checked data.materials.consumed}}/>
-                </div>
-                {{/if}}
-            </div>
-
-            {{!-- Preparation Mode --}}
+            {{!-- Concentration Mode --}}
             <div class="form-group input-select">
-                <label>{{ localize "SW5E.PowerPreparationMode" }}</label>
+                <label>{{ localize "SW5E.PowerConcentrationMode" }}</label>
                 <div class="form-fields">
                     <label class="checkbox prepared">
                         {{ localize "SW5E.PowerPrepared" }} <input type="checkbox" name="data.preparation.prepared" {{checked data.preparation.prepared}}/>
                     </label>
-                    <select name="data.preparation.mode">
-                        {{#select data.preparation.mode}}
-                        <option value=""></option>
-                        {{#each config.powerPreparationModes as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
                 </div>
             </div>
 

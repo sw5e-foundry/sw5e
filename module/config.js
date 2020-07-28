@@ -50,7 +50,21 @@ SW5E.weaponProficiencies = {
 };
 
 SW5E.toolProficiencies = {
-  "art": "SW5E.ToolArtisans",
+  "armor": "SW5E.ToolArmormech",
+  "arms": "SW5E.ToolArmstech",
+  "arti": "SW5E.ToolArtificer",
+  "art": "SW5E.ToolArtist",
+  "astro": "SW5E.ToolAstrotech",
+  "bio": "SW5E.ToolBiotech",
+  "con": "SW5E.ToolConstructor",
+  "cyb": "SW5E.ToolCybertech",
+  "jew": "SW5E.ToolJeweler",
+  "sur": "SW5E.ToolSurveyor",
+  "syn": "SW5E.ToolSynthweaver",
+  "tin": "SW5E.ToolTinker",
+  "ant": "SW5E.ToolAntitoxkit",
+  "arc": "SW5E.ToolArchaeologistKit",
+  "aud": ""
   "disg": "SW5E.ToolDisguiseKit",
   "forg": "SW5E.ToolForgeryKit",
   "game": "SW5E.ToolGamingSet",

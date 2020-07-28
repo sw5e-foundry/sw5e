@@ -64,15 +64,21 @@ SW5E.toolProficiencies = {
   "tin": "SW5E.ToolTinker",
   "ant": "SW5E.ToolAntitoxkit",
   "arc": "SW5E.ToolArchaeologistKit",
-  "aud": ""
+  "aud": "SW5E.ToolAudiotechKit",
+  "bioa": "SW5E.ToolBioanalysisKit",
+  "brew": "SW5E.ToolBrewerKit",
+  "chef": "SW5E.ToolChefKit",
+  "demo": "SW5E.ToolDemolitionKit",
   "disg": "SW5E.ToolDisguiseKit",
   "forg": "SW5E.ToolForgeryKit",
+  "mech": "SW5E.ToolMechanicKit",
   "game": "SW5E.ToolGamingSet",
-  "herb": "SW5E.ToolHerbalismKit",
+  "poi": "SW5E.ToolPoisonKit",
+  "scav": "SW5E.ToolScavengingKit",
+  "secur": "SW5E.ToolSecurityKit",
+  "slic": "SW5E.ToolSlicerKit",
+  "spice": "SW5E.ToolSpiceKit",
   "music": "SW5E.ToolMusicalInstrument",
-  "navg": "SW5E.ToolNavigators",
-  "pois": "SW5E.ToolPoisonersKit",
-  "thief": "SW5E.ToolThieves",
   "vehicle": "SW5E.ToolVehicle"
 };
 

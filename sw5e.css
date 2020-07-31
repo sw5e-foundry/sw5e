@@ -2,13 +2,27 @@
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
+
+/* russo-one-regular - latin */
 @font-face {
-  font-family: "Nodesto";
-  src: url("fonts/NodestoCapsCondensed.otf");
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/RussoOne.ttf');
 }
-.nodesto {
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+/* bungee-inline-regular - latin */
+@font-face {
+  font-family: 'Bungee Inline';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/BungeeInline.ttf');
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/OpenSans-Regular.ttf');
 }
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
@@ -72,7 +86,7 @@
   font-size: 13px;
   color: #191813;
 }
-.sw5e input[type="text"],
+.sw5e input[type="text"]
 .sw5e select {
   height: calc(100% - 2px);
   border: 1px solid #7a7971;
@@ -107,7 +121,7 @@
   flex: auto;
   margin: 0;
   line-height: 20px;
-  font-size: 11px;
+  font-size: 10px;
   text-align: right;
 }
 .sw5e label.checkbox input[type="checkbox"] {
@@ -159,9 +173,9 @@
 .sw5e .form-header {
   margin: 0 0 0.25em 0;
   padding: 0 2px;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
-  font-size: 24px;
+  font-family: "Russo One";
+  font-size: 8px;
+  font-size: 12px;
   border-top: 2px groove #eeede0;
   border-bottom: 2px groove #eeede0;
 }
@@ -246,8 +260,8 @@
 .sw5e.sheet .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 14px;
   /* Character Name */
   /* Profile Image */
   /* Header Summary Details */
@@ -261,7 +275,8 @@
 }
 .sw5e.sheet .sheet-header h1 input {
   height: 50px;
-  font-size: 36px;
+  font-size: 1.75vw;
+  text-transform: uppercase;
 }
 .sw5e.sheet .sheet-header img.profile {
   flex: 0 0 100px;
@@ -296,8 +311,8 @@
 .sw5e.sheet .sheet-navigation {
   flex: 0 0 30px;
   margin-bottom: 5px;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 12px;
 }
 .sw5e.sheet .sheet-navigation .item {
   height: 30px;
@@ -311,6 +326,17 @@
 .sw5e.sheet .sheet-body {
   flex: 1;
   overflow: hidden;
+  font-family: "Open Sans";
+}
+.sw5e.sheet .sheet-body h2 {
+  font-family: "Russo One";
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #c40f0f;
+}
+.sw5e.sheet .sheet-body th {
+  font-family: "Russo One";
+  text-transform: uppercase;
 }
 .sw5e.sheet .filter-list {
   list-style: none;
@@ -403,18 +429,18 @@
 .sw5e.sheet.actor .sheet-header .charlevel .level {
   width: 100%;
   height: 30px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 30px;
 }
 .sw5e.sheet.actor .sheet-header .charlevel .level label {
   display: inline;
-  font-size: 24px;
+  font-size: 18px;
   text-align: right;
 }
 .sw5e.sheet.actor .sheet-header .charlevel .level input {
   display: inline;
   width: 36px;
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
 }
 .sw5e.sheet.actor .sheet-header .charlevel .level.noxp {
@@ -424,7 +450,7 @@
   font-size: 32px;
 }
 .sw5e.sheet.actor .sheet-header .charlevel .level.noxp > input {
-  font-size: 32px;
+  font-size: 18px;
   flex: 0 0 40px;
   height: 44px;
 }
@@ -441,7 +467,7 @@
 .sw5e.sheet.actor h4.box-title {
   line-height: 16px;
   margin: 4px 8px 2px;
-  font-size: 18px;
+  font-size: 14px;
   border-bottom: 1px solid #b5b3a4;
 }
 .sw5e.sheet.actor ul.attributes {
@@ -454,8 +480,8 @@
   margin: 0 5px;
   border: 2px groove #eeede0;
   border-radius: 4px;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 12px;
   text-align: center;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-name {
@@ -470,7 +496,7 @@
   max-width: 80%;
   height: 28px;
   margin: 0;
-  font-size: 24px;
+  font-size: 14px;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value span.sep {
   display: inline;
@@ -494,8 +520,8 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 8px;
 }
 .sw5e.sheet.actor .ability-scores .ability {
   height: 70px;
@@ -510,7 +536,7 @@
   width: 50px;
   margin: 0 auto;
   line-height: 32px;
-  font-size: 24px;
+  font-size: 16px;
 }
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers {
   height: 24px;
@@ -591,9 +617,9 @@
 .sw5e.sheet.actor .counters .counter h4 {
   flex: auto;
   margin: 0;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
   font-size: 14px;
+  font-size: 10px;
 }
 .sw5e.sheet.actor .counters .counter .counter-value {
   flex: 0 0 50px;
@@ -665,10 +691,10 @@
 }
 .sw5e.sheet.actor .inventory-filters h3,
 .sw5e.sheet.actor .inventory-filters .filter-title {
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 10px;
   color: #4b4a44;
-  font-size: 18px;
+  font-size: 12px;
   margin: 0;
 }
 .sw5e.sheet.actor .inventory-filters.powerbook-filters {
@@ -923,7 +949,7 @@
   color: #7a7971;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle .item-type {
-  font-size: 24px;
+  font-size: 16px;
   line-height: 26px;
   margin: 0;
 }
@@ -935,10 +961,15 @@
   margin-bottom: 5px;
 }
 .sw5e.sheet.item .sheet-navigation .item {
-  font-size: 18px;
+  font-size: 14px;
 }
 .sw5e.sheet.item .sheet-body {
   overflow: hidden;
+  font-family: "Open Sans";
+}
+.sw5e.sheet.item .sheet-body h2 {
+  font-family: "Russo One";
+  font-size: 18px;
 }
 .sw5e.sheet.item .sheet-body .tab {
   padding: 0 5px;
@@ -1152,8 +1183,8 @@
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
-  font-size: 20px;
+  font-family: "Russo One";
+  font-size: 10px;
   color: #4b4a44;
 }
 .sw5e.chat-card .card-header h3:hover {
@@ -1304,7 +1335,7 @@
   margin: 0 6px;
 }
 .sw5e.sheet.actor.character .sheet-header .attributes .hit-dice {
-  font-size: 24px;
+  font-size: 16px;
 }
 .sw5e.sheet.actor.character .attributes .resource .attribute-name {
   margin: 0 8px;

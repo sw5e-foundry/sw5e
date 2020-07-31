@@ -104,6 +104,10 @@ export class ItemSheet5e extends ItemSheet {
     else if ( item.type === "feat" ) {
       props.push(labels.featType);
     }
+	
+    else if ( item.type === "species" ) {
+
+    }
 
     // Action type
     if ( item.data.actionType ) {

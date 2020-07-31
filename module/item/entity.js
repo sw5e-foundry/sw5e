@@ -160,6 +160,10 @@ export class Item5e extends Item {
       else labels.featType = "Passive";
     }
 
+	// Species Items
+	else if ( itemData.type === "species" ) {
+
+	}				 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {
       labels.armor = data.armor.value ? `${data.armor.value} AC` : "";

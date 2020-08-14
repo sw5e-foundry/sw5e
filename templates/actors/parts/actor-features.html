@@ -1,11 +1,12 @@
-<div class="inventory-filters">
+{{#unless isVehicle}}
+<div class="inventory-filters flexrow">
     <ul class="filter-list flexrow" data-filter="features">
-        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
     </ul>
 </div>
+{{/unless}}
 
 <ol class="inventory-list">
 {{#each sections as |section sid|}}
@@ -15,6 +16,12 @@
         {{#if section.hasActions}}
         <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+        {{/if}}
+
+        {{#if section.columns}}
+            {{#each section.columns}}
+                <div class="item-detail {{css}}">{{label}}</div>
+            {{/each}}
         {{/if}}
 
         {{#if ../owner}}
@@ -56,13 +63,34 @@
             <div class="item-detail player-class">
                 {{item.data.subclass}}
             </div>
-            <div class="item-detail">
+            <div class="item-detail item-action">
                 Level {{item.data.levels}}
             </div>
             {{/if}}
 
+            {{#if section.columns}}
+                {{#each section.columns}}
+                    <div class="item-detail {{css}}">
+                        {{#with (getProperty item property)}}
+                            {{#if ../editable}}
+                                <input type="text" value="{{this}}" placeholder="&mdash;"
+                                       data-dtype="{{../editable}}">
+                            {{else}}
+                                {{this}}
+                            {{/if}}
+                        {{/with}}
+                    </div>
+                {{/each}}
+            {{/if}}
+
             {{#if ../../owner}}
             <div class="item-controls">
+                {{#if section.crewable}}
+                <a class="item-control item-toggle {{item.toggleClass}}"
+                   title="{{item.toggleTitle}}">
+                    <i class="fas fa-sun"></i>
+                </a>
+                {{/if}}
                 <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
             </div>

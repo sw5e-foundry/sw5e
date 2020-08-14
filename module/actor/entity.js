@@ -1,14 +1,14 @@
-import { Dice5e } from "../dice.js";
-import { ShortRestDialog } from "../apps/short-rest.js";
-import { PowerCastDialog } from "../apps/power-cast-dialog.js";
-import { AbilityTemplate } from "../pixi/ability-template.js";
+import { d20Roll, damageRoll } from "../dice.js";
+import ShortRestDialog from "../apps/short-rest.js";
+import LongRestDialog from "../apps/long-rest.js";
+import PowerCastDialog from "../apps/power-cast-dialog.js";
+import AbilityTemplate from "../pixi/ability-template.js";
 import {SW5E} from '../config.js';
 
-
 /**
- * Extend the base Actor class to implement additional logic specialized for D&D5e.
+ * Extend the base Actor class to implement additional system-specific logic.
  */
-export class Actor5e extends Actor {
+export default class Actor5e extends Actor {
 
   /**
    * Is this Actor currently polymorphed into some other creature?
@@ -30,48 +30,55 @@ export class Actor5e extends Actor {
     const actorData = this.data;
     const data = actorData.data;
     const flags = actorData.flags.sw5e || {};
+    const bonuses = getProperty(data, "bonuses.abilities") || {};
 
     // Prepare Character data
     if ( actorData.type === "character" ) this._prepareCharacterData(actorData);
     else if ( actorData.type === "npc" ) this._prepareNPCData(actorData);
 
+    let originalSaves = null;
+    let originalSkills = null;
+
+    // If we are a polymorphed actor, retrieve the skills and saves data from
+    // the original actor for later merging.
+    if (this.isPolymorphed) {
+      const transformOptions = this.getFlag('sw5e', 'transformOptions');
+      const original = game.actors?.get(this.getFlag('sw5e', 'originalActor'));
+
+      if (original) {
+        if (transformOptions.mergeSaves) {
+          originalSaves = original.data.data.abilities;
+        }
+
+        if (transformOptions.mergeSkills) {
+          originalSkills = original.data.data.skills;
+        }
+      }
+    }
+
     // Ability modifiers and saves
     // Character All Ability Check" and All Ability Save bonuses added when rolled since not a fixed value.
-    const saveBonus = parseInt(getProperty(data, "bonuses.abilities.save")) || 0;
-    for (let abl of Object.values(data.abilities)) {
+    const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
+    const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
+    for (let [id, abl] of Object.entries(data.abilities)) {
       abl.mod = Math.floor((abl.value - 10) / 2);
       abl.prof = (abl.proficient || 0) * data.attributes.prof;
-      abl.save = abl.mod + abl.prof + saveBonus;
-    }
+      abl.saveBonus = saveBonus;
+      abl.checkBonus = checkBonus;
+      abl.save = abl.mod + abl.prof + abl.saveBonus;
 
-    // Skill modifiers
-    const feats = SW5E.characterFlags;
-    const athlete = flags.remarkableAthlete;
-    const joat = flags.jackOfAllTrades;
-    const observant = flags.observantFeat;
-    let round = Math.floor;
-    for (let [id, skl] of Object.entries(data.skills)) {
-      skl.value = parseFloat(skl.value || 0);
-      skl.bonus = parseInt(skl.bonus || 0);
-
-      // Apply Remarkable Athlete or Jack of all Trades
-      let multi = skl.value;
-      if ( athlete && (skl.value === 0) && feats.remarkableAthlete.abilities.includes(skl.ability) ) {
-        multi = 0.5;
-        round = Math.ceil;
+      // If we merged saves when transforming, take the highest bonus here.
+      if (originalSaves && abl.proficient) {
+        abl.save = Math.max(abl.save, originalSaves[id].save);
       }
-      if ( joat && (skl.value === 0 ) ) multi = 0.5;
-
-      // Compute modifier
-      skl.mod = data.abilities[skl.ability].mod + skl.bonus + round(multi * data.attributes.prof);
-
-      // Compute passive bonus
-      const passive = observant && (feats.observantFeat.skills.includes(id)) ? 5 : 0;
-      skl.passive = 10 + skl.mod + passive;
     }
+
+    this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
+    const athlete = flags.remarkableAthlete;
+    const joat = flags.jackOfAllTrades;
     init.mod = data.abilities.dex.mod;
     if ( joat ) init.prof = Math.floor(0.5 * data.attributes.prof);
     else if ( athlete ) init.prof = Math.ceil(0.5 * data.attributes.prof);
@@ -134,8 +141,57 @@ export class Actor5e extends Actor {
     data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
 
     // Powercaster Level
-    if ( data.attributes.powercasting && !data.details.powerLevel ) {
+    if ( data.attributes.powercasting && !Number.isNumeric(data.details.powerLevel) ) {
       data.details.powerLevel = Math.max(data.details.cr, 1);
+    }
+  }
+
+  /**
+   * Prepare skill checks.
+   * @param actorData
+   * @param bonuses Global bonus data.
+   * @param checkBonus Ability check specific bonus.
+   * @param originalSkills A transformed actor's original actor's skills.
+   * @private
+   */
+  _prepareSkills(actorData, bonuses, checkBonus, originalSkills) {
+    if (actorData.type === 'vehicle') return;
+
+    const data = actorData.data;
+    const flags = actorData.flags.sw5e || {};
+
+    // Skill modifiers
+    const feats = SW5E.characterFlags;
+    const athlete = flags.remarkableAthlete;
+    const joat = flags.jackOfAllTrades;
+    const observant = flags.observantFeat;
+    const skillBonus = Number.isNumeric(bonuses.skill) ? parseInt(bonuses.skill) :  0;
+    let round = Math.floor;
+    for (let [id, skl] of Object.entries(data.skills)) {
+      skl.value = parseFloat(skl.value || 0);
+
+      // Apply Remarkable Athlete or Jack of all Trades
+      let multi = skl.value;
+      if ( athlete && (skl.value === 0) && feats.remarkableAthlete.abilities.includes(skl.ability) ) {
+        multi = 0.5;
+        round = Math.ceil;
+      }
+      if ( joat && (skl.value === 0 ) ) multi = 0.5;
+
+      // Compute modifier
+      skl.bonus = checkBonus + skillBonus;
+      skl.mod = data.abilities[skl.ability].mod;
+      skl.prof = round(multi * data.attributes.prof);
+      skl.total = skl.mod + skl.prof + skl.bonus;
+
+      // If we merged skills when transforming, take the highest bonus here.
+      if (originalSkills && skl.value > 0.5) {
+        skl.total = Math.max(skl.total, originalSkills[id].total);
+      }
+
+      // Compute passive bonus
+      const passive = observant && (feats.observantFeat.skills.includes(id)) ? 5 : 0;
+      skl.passive = 10 + skl.total + passive;
     }
   }
 
@@ -146,6 +202,8 @@ export class Actor5e extends Actor {
    * @private
    */
   _computePowercastingProgression (actorData) {
+    if (actorData.type === 'vehicle') return;
+
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 
@@ -204,14 +262,20 @@ export class Actor5e extends Actor {
       lvl.value = Math.min(parseInt(lvl.value), lvl.max);
     }
 
+    // Determine the Actor's pact magic level (if any)
+    let pl = Math.clamped(progression.pact, 0, 20);
+    powers.pact = powers.pact || {};
+    if ( (pl === 0) && isNPC && Number.isNumeric(powers.pact.override) ) pl = actorData.data.details.powerLevel;
+
     // Determine the number of Warlock pact slots per level
-    const pl = Math.clamped(progression.pact, 0, 20);
     if ( pl > 0) {
-      powers.pact = powers.pact || {};
       powers.pact.level = Math.ceil(Math.min(10, pl) / 2);
       if ( Number.isNumeric(powers.pact.override) ) powers.pact.max = Math.max(parseInt(powers.pact.override), 1);
       else powers.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
       powers.pact.value = Math.min(powers.pact.value, powers.pact.max);
+    } else {
+      powers.pact.level = 0;
+      powers.pact.max = 0;
     }
   }
 
@@ -248,7 +312,8 @@ export class Actor5e extends Actor {
    */
   getPowerDC(ability) {
     const actorData = this.data.data;
-    const bonus = parseInt(getProperty(actorData, "bonuses.power.dc")) || 0;
+    let bonus = getProperty(actorData, "bonuses.power.dc");
+    bonus = Number.isNumeric(bonus) ? parseInt(bonus) : 0;
     ability = actorData.abilities[ability];
     const prof = actorData.attributes.prof;
     return 8 + (ability ? ability.mod : 0) + prof + bonus;
@@ -346,7 +411,34 @@ export class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
-  /*  Rolls                                       */
+  /*  Gameplay Mechanics                          */
+  /* -------------------------------------------- */
+
+  /**
+   * Apply a certain amount of damage or healing to the health pool for Actor
+   * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
+   * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
+   * @return {Promise<Actor>}     A Promise which resolves once the damage has been applied
+   */
+  async applyDamage(amount=0, multiplier=1) {
+    amount = Math.floor(parseInt(amount) * multiplier);
+    const hp = this.data.data.attributes.hp;
+
+    // Deduct damage from temp HP first
+    const tmp = parseInt(hp.temp) || 0;
+    const dt = amount > 0 ? Math.min(tmp, amount) : 0;
+
+    // Remaining goes to health
+    const tmpMax = parseInt(hp.tempmax) || 0;
+    const dh = Math.clamped(hp.value - (amount - dt), 0, hp.max + tmpMax);
+
+    // Update the Actor
+    return this.update({
+      "data.attributes.hp.temp": tmp - dt,
+      "data.attributes.hp.value": dh
+    });
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -356,18 +448,17 @@ export class Actor5e extends Actor {
    */
   async usePower(item, {configureDialog=true}={}) {
     if ( item.data.type !== "power" ) throw new Error("Wrong Item type");
+    const itemData = item.data.data;
 
-    // Determine if the power uses slots
-    let lvl = item.data.data.level;
-    const usesSlots = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(item.data.data.preparation.mode);
-    if ( !usesSlots ) return item.roll();
-
-    // Configure the casting level and whether to consume a power slot
+    // Configure powercasting data
+    let lvl = itemData.level;
+    const usesSlots = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
+    const limitedUses = !!itemData.uses.per;
     let consume = `power${lvl}`;
     let placeTemplate = false;
 
     // Configure power slot consumption and measured template placement from the form
-    if ( configureDialog ) {
+    if ( configureDialog && (usesSlots || item.hasAreaTarget || limitedUses) ) {
       const powerFormData = await PowerCastDialog.create(this, item);
       const isPact = powerFormData.get('level') === 'pact';
       const lvl = isPact ? this.data.data.powers.pact.level : parseInt(powerFormData.get("level"));
@@ -385,14 +476,25 @@ export class Actor5e extends Actor {
     }
 
     // Update Actor data
-    if ( consume && (lvl > 0) ) {
+    if ( usesSlots && consume && (lvl > 0) ) {
+      const slots = parseInt(this.data.data.powers[consume].value);
+      if ( slots === 0 || Number.isNaN(slots) ) {
+        return ui.notifications.error(game.i18n.localize("SW5E.PowerCastNoSlots"));
+      }
       await this.update({
         [`data.powers.${consume}.value`]: Math.max(parseInt(this.data.data.powers[consume].value) - 1, 0)
       });
     }
 
+    // Update Item data
+    if ( limitedUses ) {
+      const uses = parseInt(itemData.uses.value || 0);
+      if ( uses <= 0 ) ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", {name: item.name}));
+      await item.update({"data.uses.value": Math.max(parseInt(item.data.data.uses.value || 0) - 1, 0)})
+    }
+
     // Initiate ability template placement workflow if selected
-    if (item.hasAreaTarget && placeTemplate) {
+    if ( placeTemplate && item.hasAreaTarget ) {
       const template = AbilityTemplate.fromItem(item);
       if ( template ) template.drawPreview(event);
       if ( this.sheet.rendered ) this.sheet.minimize();
@@ -409,28 +511,46 @@ export class Actor5e extends Actor {
    * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
    * @param {string} skillId      The skill id (e.g. "ins")
    * @param {Object} options      Options which configure how the skill check is rolled
-   * @return {Promise.<Roll>}   A Promise which resolves to the created Roll instance
+   * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
    */
   rollSkill(skillId, options={}) {
     const skl = this.data.data.skills[skillId];
-    const parts = ["@mod"];
-    const data = {mod: skl.mod};
+    const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
 
-    // Include a global actor skill bonus
-    const actorBonus = getProperty(this.data.data.bonuses, "abilities.skill");
-    if ( !!actorBonus ) {
-      parts.push("@skillBonus");
-      data.skillBonus = actorBonus;
+    // Compose roll parts and data
+    const parts = ["@mod"];
+    const data = {mod: skl.mod + skl.prof};
+
+    // Ability test bonus
+    if ( bonuses.check ) {
+      data["checkBonus"] = bonuses.check;
+      parts.push("@checkBonus");
     }
 
+    // Skill check bonus
+    if ( bonuses.skill ) {
+      data["skillBonus"] = bonuses.skill;
+      parts.push("@skillBonus");
+    }
+
+    // Add provided extra roll parts now because they will get clobbered by mergeObject below
+    if (options.parts?.length > 0) {
+      parts.push(...options.parts);
+    }
+
+    // Reliable Talent applies to any skill check we have full or better proficiency in
+    const reliableTalent = (skl.value >= 1 && this.getFlag("sw5e", "reliableTalent"));
+
     // Roll and return
-    return Dice5e.d20Roll(mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: `${CONFIG.SW5E.skills[skillId]} Skill Check`,
-      speaker: ChatMessage.getSpeaker({actor: this}),
-      halflingLucky: this.getFlag("sw5e", "halflingLucky")
-    }));
+      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId]}),
+      halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+      reliableTalent: reliableTalent
+    });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
+    return d20Roll(rollData);
   }
 
   /* -------------------------------------------- */
@@ -444,15 +564,15 @@ export class Actor5e extends Actor {
   rollAbility(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId];
     new Dialog({
-      title: `${label} Ability Check`,
-      content: `<p>What type of ${label} check?</p>`,
+      title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
+      content: `<p>${game.i18n.format("SW5E.AbilityPromptText", {ability: label})}</p>`,
       buttons: {
         test: {
-          label: "Ability Test",
+          label: game.i18n.localize("SW5E.ActionAbil"),
           callback: () => this.rollAbilityTest(abilityId, options)
         },
         save: {
-          label: "Saving Throw",
+          label: game.i18n.localize("SW5E.ActionSave"),
           callback: () => this.rollAbilitySave(abilityId, options)
         }
       }
@@ -471,11 +591,13 @@ export class Actor5e extends Actor {
   rollAbilityTest(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId];
     const abl = this.data.data.abilities[abilityId];
+
+    // Construct parts
     const parts = ["@mod"];
     const data = {mod: abl.mod};
-    const feats = this.data.flags.sw5e || {};
 
     // Add feat-related proficiency bonuses
+    const feats = this.data.flags.sw5e || {};
     if ( feats.remarkableAthlete && SW5E.characterFlags.remarkableAthlete.abilities.includes(abilityId) ) {
       parts.push("@proficiency");
       data.proficiency = Math.ceil(0.5 * this.data.data.attributes.prof);
@@ -486,20 +608,26 @@ export class Actor5e extends Actor {
     }
 
     // Add global actor bonus
-    let actorBonus = getProperty(this.data.data.bonuses, "abilities.check");
-    if ( !!actorBonus ) {
+    const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
+    if ( bonuses.check ) {
       parts.push("@checkBonus");
-      data.checkBonus = actorBonus;
+      data.checkBonus = bonuses.check;
+    }
+
+    // Add provided extra roll parts now because they will get clobbered by mergeObject below
+    if (options.parts?.length > 0) {
+      parts.push(...options.parts);
     }
 
     // Roll and return
-    return Dice5e.d20Roll(mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: `${label} Ability Test`,
-      speaker: ChatMessage.getSpeaker({actor: this}),
+      title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
       halflingLucky: feats.halflingLucky
-    }));
+    });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
+    return d20Roll(rollData);
   }
 
   /* -------------------------------------------- */
@@ -514,6 +642,8 @@ export class Actor5e extends Actor {
   rollAbilitySave(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId];
     const abl = this.data.data.abilities[abilityId];
+
+    // Construct parts
     const parts = ["@mod"];
     const data = {mod: abl.mod};
 
@@ -524,20 +654,26 @@ export class Actor5e extends Actor {
     }
 
     // Include a global actor ability save bonus
-    const actorBonus = getProperty(this.data.data.bonuses, "abilities.save");
-    if ( !!actorBonus ) {
+    const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
+    if ( bonuses.save ) {
       parts.push("@saveBonus");
-      data.saveBonus = actorBonus;
+      data.saveBonus = bonuses.save;
+    }
+
+    // Add provided extra roll parts now because they will get clobbered by mergeObject below
+    if (options.parts?.length > 0) {
+      parts.push(...options.parts);
     }
 
     // Roll and return
-    return Dice5e.d20Roll(mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: `${label} Saving Throw`,
-      speaker: ChatMessage.getSpeaker({actor: this}),
+      title: game.i18n.format("SW5E.SavePromptTitle", {ability: label}),
       halflingLucky: this.getFlag("sw5e", "halflingLucky")
-    }));
+    });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
+    return d20Roll(rollData);
   }
 
   /* -------------------------------------------- */
@@ -550,24 +686,28 @@ export class Actor5e extends Actor {
   async rollDeathSave(options={}) {
 
     // Evaluate a global saving throw bonus
-    const speaker = ChatMessage.getSpeaker({actor: this});
     const parts = [];
     const data = {};
-    const bonus = getProperty(this.data.data.bonuses, "abilities.save");
-    if ( bonus ) {
+    const speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
+
+    // Include a global actor ability save bonus
+    const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
+    if ( bonuses.save ) {
       parts.push("@saveBonus");
-      data["saveBonus"] = bonus;
+      data.saveBonus = bonuses.save;
     }
 
     // Evaluate the roll
-    const roll = await Dice5e.d20Roll(mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: `Death Saving Throw`,
+      title: game.i18n.localize("SW5E.DeathSavingThrow"),
       speaker: speaker,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       targetValue: 10
-    }));
+    });
+    rollData.speaker = speaker;
+    const roll = await d20Roll(rollData);
     if ( !roll ) return null;
 
     // Take action depending on the result
@@ -576,25 +716,46 @@ export class Actor5e extends Actor {
 
     // Save success
     if ( success ) {
-      let successes = (death.success || 0) + (roll.total === 20 ? 2 : 1);
-      if ( successes === 3 ) {      // Survival
+      let successes = (death.success || 0) + 1;
+
+      // Critical Success = revive with 1hp
+      if ( roll.total === 20 ) {
         await this.update({
           "data.attributes.death.success": 0,
           "data.attributes.death.failure": 0,
           "data.attributes.hp.value": 1
         });
-        await ChatMessage.create({content: `${this.name} has survived with 3 death save successes!`, speaker});
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveCriticalSuccess", {name: this.name}), speaker});
       }
+
+      // 3 Successes = survive and reset checks
+      else if ( successes === 3 ) {
+        await this.update({
+          "data.attributes.death.success": 0,
+          "data.attributes.death.failure": 0
+        });
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveSuccess", {name: this.name}), speaker});
+      }
+
+      // Increment successes
       else await this.update({"data.attributes.death.success": Math.clamped(successes, 0, 3)});
     }
 
     // Save failure
     else {
       let failures = (death.failure || 0) + (roll.total === 1 ? 2 : 1);
-      await this.update({"data.attributes.death.failure": Math.clamped(failures, 0, 3)});
-      if ( failures === 3 ) {       // Death
-        await ChatMessage.create({content: `${this.name} has died with 3 death save failures!`, speaker});
+
+      // 3 Failures = death
+      if ( failures >= 3 ) {
+        await this.update({
+          "data.attributes.death.success": 0,
+          "data.attributes.death.failure": 0
+        });
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveFailure", {name: this.name}), speaker});
       }
+
+      // Increment failures
+      else await this.update({"data.attributes.death.failure": Math.clamped(failures, 0, 3)});
     }
 
     // Return the rolled result
@@ -605,28 +766,28 @@ export class Actor5e extends Actor {
 
   /**
    * Roll a hit die of the appropriate type, gaining hit points equal to the die roll plus your CON modifier
-   * @param {string} formula    The hit die type to roll. Example "d8"
+   * @param {string} denomination    The hit denomination of hit die to roll. Example "d8"
    */
-  async rollHitDie(formula) {
+  async rollHitDie(denomination) {
 
     // Find a class (if any) which has an available hit die of the requested denomination
     const cls = this.items.find(i => {
       const d = i.data.data;
-      return (d.hitDice === formula) && ((d.levels || 1) - (d.hitDiceUsed || 0) > 0);
+      return (d.hitDice === denomination) && ((d.levels || 1) - (d.hitDiceUsed || 0) > 0);
     });
 
     // If no class is available, display an error notification
     if ( !cls ) {
-      return ui.notifications.error(`${this.name} has no available ${formula} Hit Dice remaining!`);
+      return ui.notifications.error(game.i18n.format("SW5E.HitDiceWarn", {name: this.name, formula: formula}));
     }
 
     // Prepare roll data
-    const parts = [formula, "@abilities.con.mod"];
-    const title = `Roll Hit Die`;
+    const parts = [`1${denomination}`, "@abilities.con.mod"];
+    const title = game.i18n.localize("SW5E.HitDiceRoll");
     const rollData = duplicate(this.data.data);
 
     // Call the roll helper utility
-    const roll = await Dice5e.damageRoll({
+    const roll = await damageRoll({
       event: new Event("hitDie"),
       parts: parts,
       data: rollData,
@@ -661,9 +822,13 @@ export class Actor5e extends Actor {
     const hp0 = data.attributes.hp.value;
 
     // Display a Dialog for rolling hit dice
+    let newDay = false;
     if ( dialog ) {
-      const rested = await ShortRestDialog.shortRestDialog({actor: this, canRoll: hd0 > 0});
-      if ( !rested ) return;
+      try {
+        newDay = await ShortRestDialog.shortRestDialog({actor: this, canRoll: hd0 > 0});
+      } catch(err) {
+        return;
+      }
     }
 
     // Note the change in HP and HD which occurred
@@ -684,23 +849,30 @@ export class Actor5e extends Actor {
     await this.update(updateData);
 
     // Recover item uses
-    const items = this.items.filter(item => item.data.data.uses && (item.data.data.uses.per === "sr"));
+    const recovery = newDay ? ["sr", "day"] : ["sr"];
+    const items = this.items.filter(item => item.data.data.uses && recovery.includes(item.data.data.uses.per));
     const updateItems = items.map(item => {
       return {
         _id: item._id,
         "data.uses.value": item.data.data.uses.max
       };
     });
-    await this.updateManyEmbeddedEntities("OwnedItem", updateItems);
+    await this.updateEmbeddedEntity("OwnedItem", updateItems);
 
     // Display a Chat Message summarizing the rest effects
+    let restFlavor;
+    switch (game.settings.get("sw5e", "restVariant")) {
+      case 'normal': restFlavor = game.i18n.localize("SW5E.ShortRestNormal"); break;
+      case 'gritty': restFlavor = game.i18n.localize(newDay ? "SW5E.ShortRestOvernight" : "SW5E.ShortRestGritty"); break;
+      case 'epic':  restFlavor = game.i18n.localize("SW5E.ShortRestEpic"); break;
+    }
+
     if ( chat ) {
-      let msg = `${this.name} takes a short rest spending ${-dhd} Hit Dice to recover ${dhp} Hit Points.`;
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
-        content: msg,
-        type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        flavor: restFlavor,
+        content: game.i18n.format("SW5E.ShortRestResult", {name: this.name, dice: -dhd, health: dhp})
       });
     }
 
@@ -709,7 +881,8 @@ export class Actor5e extends Actor {
       dhd: dhd,
       dhp: dhp,
       updateData: updateData,
-      updateItems: updateItems
+      updateItems: updateItems,
+      newDay: newDay
     }
   }
 
@@ -725,9 +898,10 @@ export class Actor5e extends Actor {
     const data = this.data.data;
 
     // Maybe present a confirmation dialog
+    let newDay = false;
     if ( dialog ) {
       try {
-        await ShortRestDialog.longRestDialog(this);
+        newDay = await LongRestDialog.longRestDialog(this);
       } catch(err) {
         return;
       }
@@ -779,9 +953,10 @@ export class Actor5e extends Actor {
     }, []);
 
     // Iterate over owned items, restoring uses per day and recovering Hit Dice
+    const recovery = newDay ? ["sr", "lr", "day"] : ["sr", "lr"];
     for ( let item of this.items ) {
       const d = item.data.data;
-      if ( d.uses && ["sr", "lr"].includes(d.uses.per) ) {
+      if ( d.uses && recovery.includes(d.uses.per) ) {
         updateItems.push({_id: item.id, "data.uses.value": d.uses.max});
       }
       else if ( d.recharge && d.recharge.value ) {
@@ -791,14 +966,22 @@ export class Actor5e extends Actor {
 
     // Perform the updates
     await this.update(updateData);
-    if ( updateItems.length ) await this.updateManyEmbeddedEntities("OwnedItem", updateItems);
+    if ( updateItems.length ) await this.updateEmbeddedEntity("OwnedItem", updateItems);
 
     // Display a Chat Message summarizing the rest effects
+    let restFlavor;
+    switch (game.settings.get("sw5e", "restVariant")) {
+      case 'normal': restFlavor = game.i18n.localize(newDay ? "SW5E.LongRestOvernight" : "SW5E.LongRestNormal"); break;
+      case 'gritty': restFlavor = game.i18n.localize("SW5E.LongRestGritty"); break;
+      case 'epic':  restFlavor = game.i18n.localize("SW5E.LongRestEpic"); break;
+    }
+
     if ( chat ) {
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
-        content: `${this.name} takes a long rest and recovers ${dhp} Hit Points and ${dhd} Hit Dice.`
+        flavor: restFlavor,
+        content: game.i18n.format("SW5E.LongRestResult", {name: this.name, health: dhp, dice: dhd})
       });
     }
 
@@ -807,10 +990,10 @@ export class Actor5e extends Actor {
       dhd: dhd,
       dhp: dhp,
       updateData: updateData,
-      updateItems: updateItems
+      updateItems: updateItems,
+      newDay: newDay
     }
   }
-
 
   /* -------------------------------------------- */
 
@@ -862,12 +1045,13 @@ export class Actor5e extends Actor {
     // Ensure the player is allowed to polymorph
     const allowed = game.settings.get("sw5e", "allowPolymorphing");
     if ( !allowed && !game.user.isGM ) {
-      return ui.notifications.warn(`You are not allowed to polymorph this actor!`);
+      return ui.notifications.warn(game.i18n.localize("SW5E.PolymorphWarn"));
     }
 
     // Get the original Actor data and the new source data
     const o = duplicate(this.data);
     o.flags.sw5e = o.flags.sw5e || {};
+    o.flags.sw5e.transformOptions = {mergeSkills, mergeSaves};
     const source = duplicate(target.data);
 
     // Prepare new data to merge from the source
@@ -893,6 +1077,7 @@ export class Actor5e extends Actor {
     d.data.details.alignment = o.data.details.alignment; // Don't change alignment
     d.data.attributes.exhaustion = o.data.attributes.exhaustion; // Keep your prior exhaustion level
     d.data.attributes.inspiration = o.data.attributes.inspiration; // Keep inspiration
+    d.data.powers = o.data.powers; // Keep power slots
 
     // Handle wildcard
     if ( source.token.randomImg ) {
@@ -913,28 +1098,37 @@ export class Actor5e extends Actor {
     const abilities = d.data.abilities;
     for ( let k of Object.keys(abilities) ) {
       const oa = o.data.abilities[k];
+      const prof = abilities[k].proficient;
       if ( keepPhysical && ["str", "dex", "con"].includes(k) ) abilities[k] = oa;
       else if ( keepMental && ["int", "wis", "cha"].includes(k) ) abilities[k] = oa;
       if ( keepSaves ) abilities[k].proficient = oa.proficient;
-      else if ( mergeSaves ) abilities[k].proficient = Math.max(abilities[k].proficient, oa.proficient)
+      else if ( mergeSaves ) abilities[k].proficient = Math.max(prof, oa.proficient);
     }
 
     // Transfer skills
-    const skills = d.data.skills;
     if ( keepSkills ) d.data.skills = o.data.skills;
     else if ( mergeSkills ) {
-      for ( let [k, s] of Object.entries(skills) ) {
-        s.value = Math.max(s.proficient, o.data.skills[k].value);
+      for ( let [k, s] of Object.entries(d.data.skills) ) {
+        s.value = Math.max(s.value, o.data.skills[k].value);
       }
     }
 
     // Keep specific items from the original data
     d.items = d.items.concat(o.items.filter(i => {
-      if ( i.type === "class" ) return true; // Always keep class levels
+      if ( i.type === "class" ) return keepClass;
       else if ( i.type === "feat" ) return keepFeats;
       else if ( i.type === "power" ) return keepPowers;
       else return keepItems;
     }));
+
+    // Transfer classes for NPCs
+    if (!keepClass && d.data.details.cr) {
+      d.items.push({
+        type: 'class',
+        name: game.i18n.localize('SW5E.PolymorphTmpClass'),
+        data: { levels: d.data.details.cr }
+      });
+    }
 
     // Keep biography
     if (keepBio) d.data.details.biography = o.data.details.biography;
@@ -956,6 +1150,10 @@ export class Actor5e extends Actor {
 
     // Update regular Actors by creating a new Actor with the Polymorphed data
     await this.sheet.close();
+    Hooks.callAll('sw5e.transformActor', this, target, d, {
+      keepPhysical, keepMental, keepSaves, keepSkills, mergeSaves, mergeSkills,
+      keepClass, keepFeats, keepPowers, keepItems, keepBio, keepVision, transformTokens
+    });
     const newActor = await this.constructor.create(d, {renderSheet: true});
 
     // Update placed Token instances
@@ -968,7 +1166,7 @@ export class Actor5e extends Actor {
       newTokenData.actorId = newActor.id;
       return newTokenData;
     });
-    return canvas.scene.updateManyEmbeddedEntities("Token", updates);
+    return canvas.scene.updateEmbeddedEntity("Token", updates);
   }
 
   /* -------------------------------------------- */
@@ -981,7 +1179,7 @@ export class Actor5e extends Actor {
   async revertOriginalForm() {
     if ( !this.isPolymorphed ) return;
     if ( !this.owner ) {
-      return ui.notifications.warn(`You do not have permission to revert this Actor's polymorphed state.`);
+      return ui.notifications.warn(game.i18n.localize("SW5E.PolymorphRevertWarn"));
     }
 
     // If we are reverting an unlinked token, simply replace it with the base actor prototype
@@ -1004,7 +1202,7 @@ export class Actor5e extends Actor {
       tokenData.actorId = original.id;
       return tokenData;
     });
-    canvas.scene.updateManyEmbeddedEntities("Token", tokenUpdates);
+    canvas.scene.updateEmbeddedEntity("Token", tokenUpdates);
 
     // Delete the polymorphed Actor and maybe re-render the original sheet
     const isRendered = this.sheet.rendered;
@@ -1016,33 +1214,7 @@ export class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Apply rolled dice damage to the token or tokens which are currently controlled.
-   * This allows for damage to be scaled by a multiplier to account for healing, critical hits, or resistance
-   *
-   * @param {HTMLElement} roll    The chat entry which contains the roll data
-   * @param {Number} multiplier   A damage multiplier to apply to the rolled damage.
-   * @return {Promise}
-   */
-  static async applyDamage(roll, multiplier) {
-    let value = Math.floor(parseFloat(roll.find('.dice-total').text()) * multiplier);
-    const promises = [];
-    for ( let t of canvas.tokens.controlled ) {
-      let a = t.actor,
-          hp = a.data.data.attributes.hp,
-          tmp = parseInt(hp.temp) || 0,
-          dt = value > 0 ? Math.min(tmp, value) : 0;
-      promises.push(t.actor.update({
-        "data.attributes.hp.temp": tmp - dt,
-        "data.attributes.hp.value": Math.clamped(hp.value - (value - dt), 0, hp.max)
-      }));
-    }
-    return Promise.all(promises);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Add additional system-specific sidebar directory context menu options for D&D5e Actor entities
+   * Add additional system-specific sidebar directory context menu options for Actor entities
    * @param {jQuery} html         The sidebar HTML
    * @param {Array} entryOptions  The default array of context menu options
    */

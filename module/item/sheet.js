@@ -1,11 +1,20 @@
-import { TraitSelector } from "../apps/trait-selector.js";
-
+import TraitSelector from "../apps/trait-selector.js";
 
 /**
- * Override and extend the core ItemSheet implementation to handle D&D5E specific item types
- * @type {ItemSheet}
+ * Override and extend the core ItemSheet implementation to handle specific item types
+ * @extends {ItemSheet}
  */
-export class ItemSheet5e extends ItemSheet {
+export default class ItemSheet5e extends ItemSheet {
+  constructor(...args) {
+    super(...args);
+    if ( this.object.data.type === "class" ) {
+      this.options.resizable = true;
+      this.options.width =  600;
+      this.options.height = 640;
+    }
+  }
+
+  /* -------------------------------------------- */
 
   /** @override */
 	static get defaultOptions() {
@@ -13,7 +22,7 @@ export class ItemSheet5e extends ItemSheet {
       width: 560,
       height: 420,
       classes: ["sw5e", "sheet", "item"],
-      resizable: false,
+      resizable: true,
       scrollY: [".tab.details"],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
@@ -43,12 +52,78 @@ export class ItemSheet5e extends ItemSheet {
     data.itemProperties = this._getItemProperties(data.item);
     data.isPhysical = data.item.data.hasOwnProperty("quantity");
 
+    // Potential consumption targets
+    data.abilityConsumptionTargets = this._getItemConsumptionTargets(data.item);
+
     // Action Details
     data.hasAttackRoll = this.item.hasAttack;
     data.isHealing = data.item.data.actionType === "heal";
     data.isFlatDC = getProperty(data.item.data, "save.scaling") === "flat";
-	data.isWeapon = data.item.type === "weapon";
+    data.isWeapon = data.item.type === "weapon";
+
+    // Vehicles
+    data.isCrewed = data.item.data.activation?.type === 'crew';
+    data.isMountable = this._isItemMountable(data.item);
     return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Get the valid item consumption targets which exist on the actor
+   * @param {Object} item         Item data for the item being displayed
+   * @return {{string: string}}   An object of potential consumption targets
+   * @private
+   */
+  _getItemConsumptionTargets(item) {
+    const consume = item.data.consume || {};
+    if ( !consume.type ) return [];
+    const actor = this.item.actor;
+    if ( !actor ) return {};
+
+    // Ammunition
+    if ( consume.type === "ammo" ) {
+      return actor.itemTypes.consumable.reduce((ammo, i) =>  {
+        if ( i.data.data.consumableType === "ammo" ) {
+          ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
+        }
+        return ammo;
+      }, {});
+    }
+
+    // Attributes
+    else if ( consume.type === "attribute" ) {
+      const attributes = Object.values(CombatTrackerConfig.prototype.getAttributeChoices())[0]; // Bit of a hack
+      return attributes.reduce((obj, a) => {
+        obj[a] = a;
+        return obj;
+      }, {});
+    }
+
+    // Materials
+    else if ( consume.type === "material" ) {
+      return actor.items.reduce((obj, i) => {
+        if ( ["consumable", "loot"].includes(i.data.type) && !i.data.data.activation ) {
+          obj[i.id] = `${i.name} (${i.data.data.quantity})`;
+        }
+        return obj;
+      }, {});
+    }
+
+    // Charges
+    else if ( consume.type === "charges" ) {
+      return actor.items.reduce((obj, i) => {
+        const uses = i.data.data.uses || {};
+        if ( uses.per && uses.max ) {
+          const label = uses.per === "charges" ?
+            ` (${game.i18n.format("SW5E.AbilityUseChargesLabel", {value: uses.value})})` :
+            ` (${game.i18n.format("SW5E.AbilityUseConsumableLabel", {max: uses.max, per: uses.per})})`;
+          obj[i.id] = i.name + label;
+        }
+        return obj;
+      }, {})
+    }
+    else return {};
   }
 
   /* -------------------------------------------- */
@@ -63,10 +138,10 @@ export class ItemSheet5e extends ItemSheet {
       return CONFIG.SW5E.powerPreparationModes[item.data.preparation];
     }
     else if ( ["weapon", "equipment"].includes(item.type) ) {
-      return item.data.equipped ? "Equipped" : "Unequipped";
+      return game.i18n.localize(item.data.equipped ? "SW5E.Equipped" : "SW5E.Unequipped");
     }
     else if ( item.type === "tool" ) {
-      return item.data.proficient ? "Proficient" : "Not Proficient";
+      return game.i18n.localize(item.data.proficient ? "SW5E.Proficient" : "SW5E.NotProficient");
     }
   }
 
@@ -91,8 +166,8 @@ export class ItemSheet5e extends ItemSheet {
       props.push(
         labels.components,
         labels.materials,
-        item.data.components.concentration ? "Concentration" : null,
-        item.data.components.ritual ? "Ritual" : null
+        item.data.components.concentration ? game.i18n.localize("SW5E.Concentration") : null,
+        item.data.components.ritual ? game.i18n.localize("SW5E.Ritual") : null
       )
     }
 
@@ -104,7 +179,8 @@ export class ItemSheet5e extends ItemSheet {
     else if ( item.type === "feat" ) {
       props.push(labels.featType);
     }
-	
+
+
     else if ( item.type === "species" ) {
 
     }
@@ -124,6 +200,22 @@ export class ItemSheet5e extends ItemSheet {
       )
     }
     return props.filter(p => !!p);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this item a separate large object like a siege engine or vehicle
+   * component that is usually mounted on fixtures rather than equipped, and
+   * has its own AC and HP.
+   * @param item
+   * @returns {boolean}
+   * @private
+   */
+  _isItemMountable(item) {
+    const data = item.data;
+    return (item.type === 'weapon' && data.weaponType === 'siege')
+      || (item.type === 'equipment' && data.armor.type === 'vehicle');
   }
 
   /* -------------------------------------------- */
@@ -150,23 +242,23 @@ export class ItemSheet5e extends ItemSheet {
       return arr;
     }, []);
 
-// Handle armorproperties Array
-    let armorproperties = Object.entries(formData).filter(e => e[0].startsWith("data.armorproperties.parts"));
-    formData["data.armorproperties.parts"] = armorproperties.reduce((arr, entry) => {
-      let [i, j] = entry[0].split(".").slice(3);
-      if ( !arr[i] ) arr[i] = [];
-      arr[i][j] = entry[1];
-      return arr;
-    }, []);
-	
-	// Handle weaponproperties Array
-	let weaponproperties = Object.entries(formData).filter(e => e[0].startsWith("data.weaponproperties.parts"));
-    formData["data.weaponproperties.parts"] = weaponproperties.reduce((arr, entry) => {
-      let [i, j] = entry[0].split(".").slice(3);
-      if ( !arr[i] ) arr[i] = [];
-      arr[i][j] = entry[1];
-      return arr;
-    }, []);
+    // Handle armorproperties Array
+        let armorproperties = Object.entries(formData).filter(e => e[0].startsWith("data.armorproperties.parts"));
+        formData["data.armorproperties.parts"] = armorproperties.reduce((arr, entry) => {
+          let [i, j] = entry[0].split(".").slice(3);
+          if ( !arr[i] ) arr[i] = [];
+          arr[i][j] = entry[1];
+          return arr;
+        }, []);
+
+    	// Handle weaponproperties Array
+    	let weaponproperties = Object.entries(formData).filter(e => e[0].startsWith("data.weaponproperties.parts"));
+        formData["data.weaponproperties.parts"] = weaponproperties.reduce((arr, entry) => {
+          let [i, j] = entry[0].split(".").slice(3);
+          if ( !arr[i] ) arr[i] = [];
+          arr[i][j] = entry[1];
+          return arr;
+        }, []);
 
 
     // Update the Item
@@ -179,16 +271,9 @@ export class ItemSheet5e extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".damage-control").click(this._onDamageControl.bind(this));
-
-    // Activate any Trait Selectors
     html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
-	
-	// Armor properties
-	html.find(".armorproperties-control").click(this._onarmorpropertiesControl.bind(this));
-	
-	// Weapon properties
-	html.find(".weaponproperties-control").click(this._onweaponpropertiesControl.bind(this));
-	
+    html.find(".armorproperties-control").click(this._onarmorpropertiesControl.bind(this));
+    html.find(".weaponproperties-control").click(this._onweaponpropertiesControl.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -220,7 +305,7 @@ export class ItemSheet5e extends ItemSheet {
     }
   }
 
-  /* -------------------------------------------- */
+/* -------------------------------------------- */
 
 /**
    * Add or remove a armorproperties part from the armorproperties formula
@@ -248,9 +333,9 @@ export class ItemSheet5e extends ItemSheet {
       return this.item.update({"data.armorproperties.parts": armorproperties.parts});
     }
   }
-  
+
   /* -------------------------------------------- */
-  
+
   /**
    * Add or remove a weaponproperties part from the weaponproperties formula
    * @param {Event} event     The original click event
@@ -277,7 +362,7 @@ export class ItemSheet5e extends ItemSheet {
       return this.item.update({"data.weaponproperties.parts": weaponproperties.parts});
     }
   }
-  
+
   /* -------------------------------------------- */
 
   /**

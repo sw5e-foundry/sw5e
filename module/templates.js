@@ -17,7 +17,8 @@ export const preloadHandlebarsTemplates = async function() {
     // Item Sheet Partials
     "systems/sw5e/templates/items/parts/item-action.html",
     "systems/sw5e/templates/items/parts/item-activation.html",
-    "systems/sw5e/templates/items/parts/item-description.html"
+    "systems/sw5e/templates/items/parts/item-description.html",
+    "systems/sw5e/templates/items/parts/item-mountable.html"
   ];
 
   // Load the template parts

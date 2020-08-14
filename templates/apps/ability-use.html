@@ -1,26 +1,12 @@
 <form id="ability-use-form">
-    <p>{{ localize "SW5E.AbilityUseHint" }} <strong>{{item.name}}</strong> {{ localize "SW5E.Ability" }}.</p>
-
-    <p type="note">
-    {{#if recharges}}
-    {{ localize "SW5E.AbilityUseRechargeHint" }} <strong>{{#if isCharged}}{{ localize "SW5E.AbilityUseCharged" }}{{else}}{{ localize "SW5E.AbilityUseDepleted" }}{{/if}}</strong>.</p>
-    {{else}}
-    {{ localize "SW5E.AbilityUseWarnStart" }} <strong>{{uses.value}} {{ localize "SW5E.of" }} {{uses.max}}</strong> {{ localize "SW5E.AbilityUseWarnEnd" }} {{perLabel}}.
-    {{/if}}
-    {{#unless canUse}}
-    {{ localize "SW5E.AbilityUseCantUse" }}
-    {{/unless}}
-    </p>
-
+    <p>{{ title }}</p>
+    <p class="notes">{{note}}</p>
     <div class="form-group">
-        <label class="checkbox">{{ localize "SW5E.AbilityUseConsume" }} <input type="checkbox" name="consume" {{checked consume}}/></label>
-
+        <label class="checkbox">{{ localize "SW5E.AbilityUseConsume" }} <input type="checkbox" name="consume" checked/></label>
         {{#if hasPlaceableTemplate}}
-        <div class="form-group">
-            <label class="checkbox">{{ localize "SW5E.PlaceTemplate" }}
-                <input type="checkbox" name="placeTemplate" checked/>
-            </label>
-        </div>
+        <label class="checkbox">{{ localize "SW5E.PlaceTemplate" }}
+            <input type="checkbox" name="placeTemplate" checked/>
+        </label>
         {{/if}}
     </div>
 </form>

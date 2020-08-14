@@ -1,8 +1,8 @@
 /**
  * A specialized Dialog subclass for casting a power item at a certain level
- * @type {Dialog}
+ * @extends {Dialog}
  */
-export class PowerCastDialog extends Dialog {
+export default class PowerCastDialog extends Dialog {
   constructor(actor, item, dialogData={}, options={}) {
     super(dialogData, options);
     this.options.classes = ["sw5e", "dialog"];
@@ -69,7 +69,6 @@ export class PowerCastDialog extends Dialog {
         hasSlots: pact.value > 0
       });
     }
-
     const canCast = powerLevels.some(l => l.hasSlots);
 
     // Render the Power casting template

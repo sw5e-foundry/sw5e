@@ -1,11 +1,11 @@
-import { ActorSheet5e } from "./base.js";
+import ActorSheet5e from "./base.js";
 
 /**
- * An Actor sheet for player character type actors in the D&D5E system.
+ * An Actor sheet for player character type actors.
  * Extends the base ActorSheet5e class.
  * @type {ActorSheet5e}
  */
-export class ActorSheet5eCharacter extends ActorSheet5e {
+export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /**
    * Define default rendering options for the NPC sheet
@@ -14,22 +14,9 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "character"],
-      width: 672,
-      height: 736
+      width: 720,
+      height: 680
     });
-  }
-
-  /* -------------------------------------------- */
-  /*  Rendering                                   */
-  /* -------------------------------------------- */
-
-  /**
-   * Get the correct HTML template path to use for rendering this particular sheet
-   * @type {String}
-   */
-  get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/limited-sheet.html";
-    return "systems/sw5e/templates/actors/character-sheet.html";
   }
 
   /* -------------------------------------------- */
@@ -57,6 +44,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Experience Tracking
     sheetData["disableExperience"] = game.settings.get("sw5e", "disableExperienceTracking");
+    sheetData["classLabels"] = this.actor.itemTypes.class.map(c => c.name).join(", ");
 
     // Return data for rendering
     return sheetData;
@@ -85,7 +73,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
-      item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+      item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
 
       // Item usage
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
@@ -180,7 +168,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
    *
    * @param {Number} totalWeight    The cumulative item weight from inventory items
    * @param {Object} actorData      The data object for the Actor being rendered
-   * @return {Object}               An object describing the character's encumbrance level
+   * @returns {{max: number, value: number, pct: number}}  An object describing the character's encumbrance level
    * @private
    */
   _computeEncumbrance(totalWeight, actorData) {

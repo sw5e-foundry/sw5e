@@ -14,7 +14,7 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
+            <ul class="summary flexrow">
                 <li>
                     {{lookup config.weaponTypes data.weaponType }}
                 </li>
@@ -56,24 +56,28 @@
                 </select>
             </div>
 
+            {{#unless isMountable}}
             {{!-- Weapon Status --}}
             <div class="form-group stacked">
                 <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "SW5E.Proficient" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "SW5E.Equipped" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "SW5E.Identified" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.attuned" {{checked data.attuned}}/> {{ localize "SW5E.Attuned" }}
-                </label>
+                <div class="form-fields">
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "SW5E.Proficient" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "SW5E.Equipped" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "SW5E.Identified" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.attuned" {{checked data.attuned}}/> {{ localize "SW5E.Attuned" }}
+                    </label>
+                </div>
             </div>
+            {{/unless}}
 
-			{{#if sss}}
+                    {{#if sss}}
             {{!-- Weapon Properties --}}
             <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
@@ -83,35 +87,47 @@
                 </label>
                 {{/each}}
             </div>
-			{{/if}}
+                    {{/if}}
 
-{{#if isWeapon }}			
-<div class="form-group stacked weapon-properties">			
-{{!-- weaponproperties Formula --}}
-<h4 class="weaponproperties-header">
-    {{#unless isWeapon }}{{ localize "SW5E.ArmorProperties" }}{{ else }}{{ localize "SW5E.ItemWeaponProperties" }}{{/unless}}
-    <a class="weaponproperties-control add-weaponproperties"><i class="fas fa-plus"></i></a>
-</h4>
-<ol class="weaponproperties-parts form-group">
-    {{#each data.weaponproperties.parts as |part i| }}
-    <li class="weaponproperties-part flexrow" data-weaponproperties-part="{{i}}">
-        
-        <select name="data.weaponproperties.parts.{{i}}.1">
-            {{#select (lookup this "1") }}
-            <option value="">{{ localize "SW5E.None" }}</option>
-            {{#each ../config.weaponProperties as |name type|}}
-            <option value="{{type}}">{{name}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
-		<input type="text" name="data.weaponproperties.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-        <a class="weaponproperties-control delete-weaponproperties"><i class="fas fa-minus"></i></a>
-    </li>
-    {{/each}}
-</ol>
-{{/if}}
+            {{#if isWeapon }}
+            <div class="form-group stacked weapon-properties">
+                {{!-- weaponproperties Formula --}}
+                <h4 class="weaponproperties-header">
+                    {{#unless isWeapon }}{{ localize "SW5E.ArmorProperties" }}{{ else }}{{ localize "SW5E.ItemWeaponProperties" }}{{/unless}}
+                    <a class="weaponproperties-control add-weaponproperties"><i class="fas fa-plus"></i></a>
+                </h4>
+                <ol class="weaponproperties-parts form-group">
+                    {{#each data.weaponproperties.parts as |part i| }}
+                    <li class="weaponproperties-part flexrow" data-weaponproperties-part="{{i}}">
 
-</div>
+                        <select name="data.weaponproperties.parts.{{i}}.1">
+                            {{#select (lookup this "1") }}
+                            <option value="">{{ localize "SW5E.None" }}</option>
+                            {{#each ../config.weaponProperties as |name type|}}
+                            <option value="{{type}}">{{name}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                        <input type="text" name="data.weaponproperties.parts.{{i}}.0" value="{{lookup this "0"}}"/>
+                        <a class="weaponproperties-control delete-weaponproperties"><i class="fas fa-minus"></i></a>
+                    </li>
+                    {{/each}}
+                </ol>
+                {{/if}}
+
+            </div>
+
+            {{#if isMountable}}
+            <div class="form-group">
+                <label>{{localize 'SW5E.ArmorClass'}}</label>
+                <div class="form-fields">
+                    <input type="text" name="data.armor.value" value="{{data.armor.value}}"
+                           data-dtype="Number">
+                </div>
+            </div>
+
+            {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
+            {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponUsage" }}</h3>
 

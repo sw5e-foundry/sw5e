@@ -3,7 +3,7 @@
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function() {
-  ui.notifications.info(`Applying SW5E System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
+  ui.notifications.info(`Applying DnD5E System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
 
   // Migrate World Actors
   for ( let a of game.actors.entities ) {
@@ -54,7 +54,7 @@ export const migrateWorld = async function() {
 
   // Set the migration as complete
   game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
-  ui.notifications.info(`SW5E System Migration to version ${game.system.data.version} completed!`, {permanent: true});
+  ui.notifications.info(`DnD5E System Migration to version ${game.system.data.version} completed!`, {permanent: true});
 };
 
 /* -------------------------------------------- */
@@ -135,6 +135,34 @@ export const migrateActorData = function(actor) {
   if ( hasItemUpdates ) updateData.items = items;
   return updateData;
 };
+
+/* -------------------------------------------- */
+
+
+/**
+ * Scrub an Actor's system data, removing all keys which are not explicitly defined in the system template
+ * @param {Object} actorData    The data object for an Actor
+ * @return {Object}             The scrubbed Actor data
+ */
+function cleanActorData(actorData) {
+
+  // Scrub system data
+  const model = game.system.model.Actor[actorData.type];
+  actorData.data = filterObject(actorData.data, model);
+
+  // Scrub system flags
+  const allowedFlags = CONFIG.SW5E.allowedActorFlags.reduce((obj, f) => {
+    obj[f] = null;
+    return obj;
+  }, {});
+  if ( actorData.flags.sw5e ) {
+    actorData.flags.sw5e = filterObject(actorData.flags.sw5e, allowedFlags);
+  }
+
+  // Return the scrubbed data
+  return actorData;
+}
+
 
 /* -------------------------------------------- */
 

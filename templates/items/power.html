@@ -14,7 +14,7 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
+            <ul class="summary flexrow">
                 <li>
                     {{labels.level}}
                 </li>
@@ -68,14 +68,12 @@
                 </select>
             </div>
 
-            {{!-- Concentration Mode --}}
-            <div class="form-group input-select">
-                <label>{{ localize "SW5E.PowerConcentrationMode" }}</label>
-                <div class="form-fields">
-                    <label class="checkbox prepared">
-                        {{ localize "SW5E.Concentrated" }} <input type="checkbox" name="data.preparation.prepared" {{checked data.preparation.prepared}}/>
-                    </label>
-                </div>
+            {{!-- Power Components --}}
+            <div class="power-components form-group stacked">
+                <label>{{ localize "SW5E.PowerComponents" }}</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="data.components.concentration" {{checked data.components.concentration}}/> {{ localize "SW5E.Concentration" }}
+                </label>
             </div>
 
             <h3 class="form-header">{{ localize "SW5E.PowerCastingHeader" }}</h3>

@@ -1,4 +1,4 @@
-# Foundry Virtual Tabletop - DnD5e Game System
+# Foundry Virtual Tabletop - SW5e Game System
 
 This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides character sheet and game system 
 support for the SW5E roleplaying game.

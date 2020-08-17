@@ -148,87 +148,95 @@ export default class ActorSheet5e extends ActorSheet {
     const levels = data.data.powers;
     const powerbook = {};
 
-    // Define some mappings
     const sections = {
-      "atwill": -20,
-      "innate": -10,
-      "pact": 0.5
-    };
+		  "atwill": -20,
+		  "innate": -10,
+		  "pact": 0.5
+		};
 
-    // Label power slot uses headers
-    const useLabels = {
-      "-20": "-",
-      "-10": "-",
-      "0": "&infin;"
-    };
+		// Label power slot uses headers
+		const useLabels = {
+		  "-20": "-",
+		  "-10": "-",
+		  "0": "&infin;"
+		};
 
-    // Format a powerbook entry for a certain indexed level
-    const registerSection = (sl, i, label, level={}) => {
-      powerbook[i] = {
-        order: i,
-        label: label,
-        usesSlots: i > 0,
-        canCreate: owner && (i >= 1),
-        canPrepare: (data.actor.type === "character") && (i >= 1),
-        powers: [],
-        uses: useLabels[i] || level.value || 0,
-        slots: useLabels[i] || level.max || 0,
-        override: level.override || 0,
-        dataset: {"type": "power", "level": i},
-        prop: sl
-      };
-    };
+		// Format a powerbook entry for a certain indexed level
+		const registerSection = (sl, i, label, level={}) => {
+		  powerbook[i] = {
+			order: i,
+			label: label,
+			usesSlots: i > 0,
+			canCreate: owner && (i >= 1),
+			canPrepare: (data.actor.type === "character") && (i >= 1),
+			powers: [],
+			uses: useLabels[i] || level.value || 0,
+			slots: useLabels[i] || level.max || 0,
+			override: level.override || 0,
+			dataset: {"type": "power", "level": i},
+			prop: sl
+		  };
+		};
 
-    // Determine the maximum power level which has a slot
-    const maxLevel = Array.fromRange(10).reduce((max, i) => {
-      if ( i === 0 ) return max;
-      const level = levels[`power${i}`];
-      if ( (level.max || level.override ) && ( i > max ) ) max = i;
-      return max;
-    }, 0);
 
-    // Structure the powerbook for every level up to the maximum which has a slot
-    if ( maxLevel > 0 ) {
-      registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      for (let lvl = 1; lvl <= maxLevel; lvl++) {
-        const sl = `power${lvl}`;
-        registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
-      }
-    }
-    if ( levels.pact && levels.pact.max ) {
-      registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      registerSection("pact", sections.pact, CONFIG.SW5E.powerPreparationModes.pact, levels.pact);
-    }
+		
+		// Determine the maximum power level which has a slot
+		let maxLevel = Array.fromRange(10).reduce((max, i) => {
+		  if ( i === 0 ) return max;
+		  const level = levels[`power${i}`];
+		  if ( (level.max || level.override ) && ( i > max ) ) max = i;
+		  return max;
+		}, 0);
 
-    // Iterate over every power item, adding powers to the powerbook by section
-    powers.forEach(power => {
-      const mode = power.data.preparation.mode || "prepared";
-      let s = power.data.level || 0;
-      const sl = `power${s}`;
+		// Structure the powerbook for every level up to the maximum which has a slot
+		if ( maxLevel > 0 ) {
+		  registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+		  for (let lvl = 1; lvl <= maxLevel; lvl++) {
+			const sl = `power${lvl}`;
+			registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
+		  }
+		}
+		if ( levels.pact && levels.pact.max ) {
+		  registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+		  registerSection("pact", sections.pact, CONFIG.SW5E.powerPreparationModes.pact, levels.pact);
+		}
 
-      // Powercasting mode specific headings
-      if ( mode in sections ) {
-        s = sections[mode];
-        if ( !powerbook[s] ){
-          registerSection(mode, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
-        }
-      }
+		// Iterate over every power item, adding powers to the powerbook by section
+		powers.forEach(power => {
+		  const mode = power.data.preparation.mode || "prepared";
+		  let s = power.data.level || 0;
+		  const sl = `power${s}`;
 
-      // Higher-level power headings
-      else if ( !powerbook[s] ) {
-        registerSection(sl, s, CONFIG.SW5E.powerLevels[s], levels[sl]);
-      }
+		  // Powercasting mode specific headings
+		  if ( mode in sections ) {
+			s = sections[mode];
+			if ( !powerbook[s] ){
+			  registerSection(mode, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
+			}
+		  }
 
-      // Add the power to the relevant heading
-      powerbook[s].powers.push(power);
-    });
+		  // Higher-level power headings
+		  else if ( !powerbook[s] ) {
+			registerSection(sl, s, CONFIG.SW5E.powerLevels[s], levels[sl]);
+		  }
+
+		  // Add the power to the relevant heading
+		  powerbook[s].powers.push(power);
+		});
+	  
+	}
+
+	catch(error){
+	  //Code to handle error comes here
+	}
+
+   
 
     // Sort the powerbook by section level
     const sorted = Object.values(powerbook);
     sorted.sort((a, b) => a.order - b.order);
     return sorted;
   }
-
   /* -------------------------------------------- */
 
   /**

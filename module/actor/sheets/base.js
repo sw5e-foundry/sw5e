@@ -228,7 +228,6 @@ export default class ActorSheet5e extends ActorSheet {
 
 	catch(error){
 	  //Code to handle error comes here
-	}
 
    
 

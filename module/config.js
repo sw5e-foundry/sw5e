@@ -342,7 +342,7 @@ SW5E.targetTypes = {
   "self": "SW5E.TargetSelf",
   "creature": "SW5E.TargetCreature",
   "humanoid": "SW5E.TargetHumanoid",
-  "droid": "SW5E.TargetDroid"
+  "droid": "SW5E.TargetDroid",
   "ally": "SW5E.TargetAlly",
   "enemy": "SW5E.TargetEnemy",
   "object": "SW5E.TargetObject",

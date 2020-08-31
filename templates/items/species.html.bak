@@ -1,0 +1,120 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary">
+                <li>
+                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="species-traits">{{ localize "SW5E.SpeciesTraits" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+		
+		<div class="tab description flexcol" data-group="primary" data-tab="description">
+		
+		<table style="background-color: #c2e0f4; border-color: #3598db; border-style: solid; height: 217px; width: 520px; word-wrap: break-word;" border="1">
+			<tbody>
+				<tr style="height: 17px; background-color: #ced4d9;">
+					<th style="text-align: left; height: 17px; width: 350px;" colspan="4">VISUAL CHARACTERISTICS</th>
+				</tr>
+				<tr style="height: 17px; border-style: none;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Skin Color</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.skinColorOptions.value" type="text" value="{{data.skinColorOptions.value}}" placeholder="{{ localize SW5E.skinColorOptions }}"/></td>
+					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+				</tr>
+				<tr style="border-style: none; height: 17px; background-color: #ced4d9;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Hair Color</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.hairColorOptions.value" type="text" value="{{data.hairColorOptions.value}}" placeholder="{{ localize SW5E.hairColorOptions }}"/></td>
+					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+				</tr>
+				<tr style="height: 17px;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Eye Color</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.eyeColorOptions.value" type="text" value="{{data.eyeColorOptions.value}}" placeholder="{{ localize SW5E.eyeColorOptions }}"/></td>
+					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+				</tr>
+				<tr style="border-style: none; height: 17px; background-color: #ced4d9; text-wrap: normal;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Distinctions</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; text-wrap: normal; width: 154px; height: 17px;" colspan="2"><input text-wrap="break-word" name="data.distinctions.value" type="text" value="{{data.distinctions.value}}" placeholder="{{ localize SW5E.distinctions }}"/></td>
+				</tr>
+				<tr style="background-color: #ced4d9;">
+					<th style="text-align: left; height: 17px; width: 519px;" colspan="4">PHYSICAL CHARACTERISTICS</th>
+				</tr>
+				<tr style="height: 17px;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Height</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="text-align: center; border-style: none; width: 155px; height: 17px;"><input name="data.heightAverage.value" type="text" value="{{data.heightAverage.value}}" placeholder="5'2&rdquo;"/></td>
+					<td style="text-align: center; border-style: none; height: 17px; width: 151px;"><input name="data.heightRollMod.value" type="text" value="{{data.heightRollMod.value}}" placeholder="+1d4&rdquo;"/></td>
+				</tr>
+				<tr style="background-color: #ced4d9;">
+					<td style="border-style: none; height: 17px; width: 148px; background-color: #ced4d9;"><em>Weight</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="text-align: center; border-style: none; width: 155px; height: 17px;"><input name="data.weightAverage.value" type="text" value="{{data.weightAverage.value}}" placeholder="100 lb."/></td>
+					<td style="text-align: center; border-style: none; height: 17px; width: 151px;"><input name="data.weightRollMod.value" type="text" value="{{data.weightRollMod.value}}" placeholder="x(1d4) lb."/></td>
+				</tr>
+				<tr style="background-color: #ced4d9;">
+					<th style="text-align: left; height: 17px; width: 519px;" colspan="4">SOCIOCULTURAL CHARACTERISTICS</th>
+				</tr>
+				<tr style="height: 17px;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Homeworld</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; width: 154px; height: 17px;" colspan="2"><input name="data.homeworld.value" type="text" value="{{data.homeworld.value}}" placeholder="{{ localize SW5E.homeworld }}"/></td>
+				</tr>
+				<tr style="background-color: #ced4d9;">
+					<td style="border-style: none; height: 17px; width: 148px;"><em>Language</em></td>
+					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
+					<td style="border-style: none; width: 154px; height: 17px;" colspan="2"><input name="data.slanguage.value" type="text" value="{{data.slanguage.value}}" placeholder="{{ localize SW5E.slanguage }}"/></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="species-description"> 
+		<p>
+		<!--Species Description-->
+		{{editor content=data.description.value target="data.description.value" fontsize=12px button=true editable=editable}}
+		</p>
+		</div>
+		</div>
+		
+        {{!-- Traits Tab --}}
+		
+		<div class="tab species-traits flexcol" data-group="primary" data-tab="species-traits">
+		<span id="Traits"><h2>{{item.name}} Traits</h2>
+		<p>As a/an {{item.name}}, you have the following special traits.<br>
+        <ul style="list-style-type:none;">
+        {{#each data.traits as | d t |}}
+        <li><em><strong>{{t}}</strong></em>. {{{desc}}}</li>
+        {{/each}}
+        </ul>
+		</span>
+		</div>
+		
+	</section>
+
+
+</form>

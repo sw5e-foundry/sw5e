@@ -82,7 +82,7 @@
   /* Tags */
 }
 .sw5e .window-content {
-  background: url("ui/parchment.jpg") repeat;
+  background: url("ui/parchment.webp") repeat;
   font-size: 13px;
   color: #191813;
 }
@@ -218,7 +218,7 @@
 .sw5e.sheet .window-content {
   overflow-y: hidden;
   padding: 5px;
-  background: url("ui/parchment.jpg") repeat;
+  background: url("ui/parchment.webp") repeat;
   font-size: 13px;
   color: #191813;
 }
@@ -337,7 +337,14 @@
 .sw5e.sheet .sheet-body th {
   font-family: "Russo One";
   text-transform: uppercase;
+  color: #c40f0f;
 }
+.sw5e.sheet .sheet-body tr:nth-child(odd) {
+  background-color: #c9d6db;	
+}
+.sw5e.sheet .sheet-body tr:nth-child(even) {
+  background-color: #bdc8cc;	
+}  
 .sw5e.sheet .filter-list {
   list-style: none;
   margin: 0;
@@ -970,6 +977,12 @@
 .sw5e.sheet.item .sheet-body h2 {
   font-family: "Russo One";
   font-size: 18px;
+  border-bottom: 2px solid #0d99cc;
+}
+.sw5e.sheet.item .sheet-body h3 {
+  font-family: "Russo One";
+  color: #c40f0f;
+  text-transform: uppercase;
 }
 .sw5e.sheet.item .sheet-body .tab {
   padding: 0 5px;
@@ -1464,3 +1477,156 @@
   min-width: 600px;
   min-height: 658px;
 }
+/* ----------------------------------------- */
+/*  Journal Entry
+/* ----------------------------------------- */
+.journal-sheet .window-content {
+  padding: 0;
+  background: url("ui/parchment.webp") repeat;
+}
+.journal-sheet form {
+  overflow: hidden;
+  padding: 5px;
+  font-family: "Open Sans";
+  background: url("ui/parchment.webp") repeat;
+}
+.journal-sheet form h2 {
+  font-family: "Russo One";
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #c40f0f;
+}
+
+.journal-sheet form input[name="name"] {
+  height: 36px;
+  font-family: "Russo One";
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #c40f0f;
+  line-height: 36px;
+}
+.journal-sheet form select {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+}
+.journal-sheet form .editor {
+  height: calc(100% - 115px);
+}
+.journal-sheet form button[type="submit"] {
+  margin-top: 5px;
+}
+.journal-sheet form img {
+  border: none
+}
+.journal-sheet form table {
+  border: none;
+  background-color: none;
+}
+/* ---------------------------------------- */
+/* Roll Table Sheet                         */
+/* ---------------------------------------- */
+.roll-table-config .window-content {
+  background: url("ui/parchment.webp") repeat;
+}
+.roll-table-config form {
+  background: url("ui/parchment.webp") repeat;
+}
+.roll-table-config h1.name input {
+  width: 100%;
+  height: 36px;
+  margin: 0 0 5px;
+  font-family: "Russo One";
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #c40f0f;
+}
+.roll-table-config textarea {
+  resize: none;
+  min-height: 44px;
+  font-family: "Open Sans";
+  background: url("ui/parchment.webp") repeat;
+}
+.roll-table-config ol.table-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.roll-table-config ol.table-results .table-result {
+  padding: 2px 0;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.roll-table-config ol.table-results .table-result input[type="text"] {
+  width: 100%;
+  height: 28px;
+}
+.roll-table-config ol.table-results .table-result > div {
+  line-height: 36px;
+  margin-right: 5px;
+}
+.roll-table-config ol.table-results .table-result .result-image {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  margin: 0;
+}
+.roll-table-config ol.table-results .table-result .result-image img {
+  border: none;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.roll-table-config ol.table-results .table-result .result-type {
+  flex: 0 0 110px;
+}
+.roll-table-config ol.table-results .table-result .result-details {
+  flex: 1;
+}
+.roll-table-config ol.table-results .table-result .result-details select {
+  width: 40%;
+}
+.roll-table-config ol.table-results .table-result .result-details .result-target {
+  width: 58%;
+  margin-left: 3px;
+}
+.roll-table-config ol.table-results .table-result .result-weight {
+  flex: 0 0 50px;
+  text-align: center;
+}
+.roll-table-config ol.table-results .table-result .result-range {
+  flex: 0 0 92px;
+  text-align: center;
+}
+.roll-table-config ol.table-results .table-result .result-range input {
+  width: 36px;
+}
+.roll-table-config ol.table-results .table-result .result-controls {
+  flex: 0 0 40px;
+  margin: 0;
+  text-align: center;
+}
+.roll-table-config ol.table-results .table-result .result-controls a {
+  width: 20px;
+}
+.roll-table-config ol.table-results .table-result .result-controls .lock-result {
+  color: #b5b3a4;
+}
+.roll-table-config ol.table-results .table-result.roulette {
+  background: url("ui/parchment.webp") repeat;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.roll-table-config ol.table-results .table-result.drawn {
+  background: rgba(0, 0, 0, 0.15);
+}
+.roll-table-config ol.table-results .table-result.drawn .lock-result {
+  color: #111;
+}
+.roll-table-config ol.table-results .table-header {
+  background: url("ui/parchment.webp") repeat;
+  border: 1px solid #7a7971;
+  line-height: 24px;
+  font-weight: bold;

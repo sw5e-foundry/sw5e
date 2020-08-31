@@ -79,9 +79,10 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       backpack: { label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"} },
       loot: { label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"} }
     };
+	  
 
     // Partition items by category
-    let [items, powers, feats, classes] = data.items.reduce((arr, item) => {
+    let [items, powers, feats, classes, species] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -100,9 +101,10 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       if ( item.type === "power" ) arr[1].push(item);
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
+	  else if ( item.type === "species" ) arr[4].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], []]);
+    }, [[], [], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -129,6 +131,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
+	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };
@@ -138,6 +141,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
     }
     classes.sort((a, b) => b.levels - a.levels);
     features.classes.items = classes;
+	features.species.items = species;
 
     // Assign and return
     data.inventory = Object.values(inventory);

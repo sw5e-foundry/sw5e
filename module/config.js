@@ -482,7 +482,7 @@ SW5E.weaponProperties = {
   "bur": "SW5E.WeaponPropertiesBur",
   "def": "SW5E.WeaponPropertiesDef",
   "dex": "SW5E.WeaponPropertiesDex",
-  "drm": "SW5E.WeaponPropertiesDrm",
+  "drm": "SW5E.WeaponPropertiesBur",
   "dgd": "SW5E.WeaponPropertiesDgd",
   "dis": "SW5E.WeaponPropertiesDis",
   "dpt": "SW5E.WeaponPropertiesDpt",

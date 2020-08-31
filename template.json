@@ -56,7 +56,7 @@
             "value": "",
             "public": ""
           },
-          "race": ""
+          "species": ""
         },
         "skills": {
           "acr": {
@@ -325,7 +325,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "backpack"],
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack"],
     "templates": {
       "itemDescription": {
         "description": {
@@ -335,6 +335,15 @@
         },
         "source": ""
       },
+	  "speciesDescription": {
+		"data": "$characteristics-table",
+	    "description": {
+		  "value": "",
+		  "chat": "",
+		  "unidentified": ""
+		},
+		"traits": ""
+	  },
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
@@ -445,6 +454,10 @@
     "loot": {
       "templates": ["itemDescription", "physicalItem"]
     },
+    "species": {
+      "templates": ["speciesDescription"]
+	  
+	},
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",

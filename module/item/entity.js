@@ -162,8 +162,9 @@ export class Item5e extends Item {
 
 	// Species Items
 	else if ( itemData.type === "species" ) {
+	  labels.species = C.species[data.species];
+	}
 
-	}				 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {
       labels.armor = data.armor.value ? `${data.armor.value} AC` : "";
@@ -345,6 +346,7 @@ export class Item5e extends Item {
 
     // Rich text description
     data.description.value = TextEditor.enrichHTML(data.description.value, htmlOptions);
+
 
     // Item type specific properties
     const props = [];

@@ -341,6 +341,7 @@ SW5E.targetTypes = {
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
   "wall": "SW5E.TargetWall",
+  "weapon": "SW5E.TargetWeapon"   
 };
 
 
@@ -482,7 +483,7 @@ SW5E.weaponProperties = {
   "bur": "SW5E.WeaponPropertiesBur",
   "def": "SW5E.WeaponPropertiesDef",
   "dex": "SW5E.WeaponPropertiesDex",
-  "drm": "SW5E.WeaponPropertiesBur",
+  "drm": "SW5E.WeaponPropertiesDrm",
   "dgd": "SW5E.WeaponPropertiesDgd",
   "dis": "SW5E.WeaponPropertiesDis",
   "dpt": "SW5E.WeaponPropertiesDpt",

@@ -46,7 +46,7 @@ SW5E.alignments = {
 
 SW5E.weaponProficiencies = {
   "sim": "SW5E.WeaponSimpleProficiency",
-  "bla": "SW5E.WeaponBlasterProficiency"
+  "mar": "SW5E.WeaponMartialProficiency"
 };
 
 SW5E.toolProficiencies = {

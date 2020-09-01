@@ -4,7 +4,7 @@ This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides 
 support for the SW5E roleplaying game.
 
 This system provides character sheet support for Actors and Items, mechanical support for dice and rules necessary to
-play games of 5th Edition, and compendium content for Monsters, Heroes, Items, Powers, Class Features, Monster 
+play games of SW5E, and compendium content for Monsters, Heroes, Items, Powers, Class Features, Monster 
 Features, and more!
 
 The software component of this system is distributed under the GNUv3 license.

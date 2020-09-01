@@ -48,7 +48,7 @@ SW5E.weaponProficiencies = {
   "sim": "SW5E.WeaponSimpleProficiency",
   "simvw": "SW5E.WeaponSimpleVW",
   "simb": "SW5E.WeaponSimpleB",
-  "simlw": "SW5E.WeaponSimpleLW"
+  "simlw": "SW5E.WeaponSimpleLW",
   "mar": "SW5E.WeaponMartialProficiency",
   "marvw": "SW5E.WeaponMartialVW",
   "marb": "SW5E.WeaponMartialB",

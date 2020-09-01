@@ -553,9 +553,9 @@ export class Item5e extends Item {
     const parts = itemData.damage.parts.map(d => d[0]);
     if ( versatile && itemData.damage.versatile ) parts[0] = itemData.damage.versatile;
     if ( (this.data.type === "power") ) {
-      if ( (itemData.scaling.mode === "cantrip") ) {
+      if ( (itemData.scaling.mode === "atwill") ) {
         const lvl = this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
-        this._scaleCantripDamage(parts, lvl, itemData.scaling.formula );
+        this._scaleAtWillDamage(parts, lvl, itemData.scaling.formula );
       } else if ( powerLevel && (itemData.scaling.mode === "level") && itemData.scaling.formula ) {
         this._scalePowerDamage(parts, itemData.level, powerLevel, itemData.scaling.formula );
       }
@@ -590,10 +590,10 @@ export class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Adjust a cantrip damage formula to scale it for higher level characters and monsters
+   * Adjust an at-will damage formula to scale it for higher level characters and monsters
    * @private
    */
-  _scaleCantripDamage(parts, level, scale) {
+  _scaleAtWillDamage(parts, level, scale) {
     const add = Math.floor((level + 1) / 6);
     if ( add === 0 ) return;
     if ( scale && (scale !== parts[0]) ) {

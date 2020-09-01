@@ -3,17 +3,11 @@
   "title": "Star Wars 5th Edition",
   "description": "A comprehensive game system for running games of Star wars 5th Edition in the Foundry VTT environment.",
   "version": 0.89,
-  "author": "Kakeman89",
+  "author": "Dev Team",
   "scripts": [],
   "esmodules": ["sw5e.js"],
   "styles": ["sw5e.css"],
   "packs": [
-    {
-      "name": "weapons",
-      "label": "Weapons",
-      "path": "./packs/packs/weapons.db",
-      "entity": "Item"
-    },
     {
       "name": "adventuringgear",
       "label": "Adventuring Gear",
@@ -27,11 +21,29 @@
       "entity": "Item"
     },
     {
+      "name": "classes",
+      "label": "Classes",
+      "path": "./packs/packs/classes.db",
+      "entity": "Item"
+    },	  
+    {
       "name": "enhanceditems",
       "label": "Enhanced Items",
       "path": "./packs/packs/enhanceditems.db",
       "entity": "Item"
     },
+    {
+      "name": "feats",
+      "label": "Feats",
+      "path": "./packs/packs/featss.db",
+      "entity": "Item"
+    },	  
+    {
+      "name": "forcepowers",
+      "label": "Force Powers",
+      "path": "./packs/packs/forcepowers.db",
+      "entity": "Item"
+    },	  
     {
       "name": "gamingset",
       "label": "Gaming Sets",
@@ -39,11 +51,17 @@
       "entity": "Item"
     },
     {
-      "name": "classes",
-      "label": "Classes",
-      "path": "./packs/packs/classes.db",
-      "entity": "Item"
-    },
+      "name": "journal",
+      "label": "Journal Entries",
+      "path": "./packs/packs/journal.db",
+      "entity": "JournalEntry"
+    },	  
+    {
+      "name": "monsters",
+      "label": "Monsters",
+      "path": "./packs/packs/monsters.db",
+      "entity": "Actor"
+    },	  
     {
       "name": "species",
       "label": "Species",
@@ -57,29 +75,17 @@
       "entity": "Item"
     },
     {
-      "name": "forcepowers",
-      "label": "Force Powers",
-      "path": "./packs/packs/forcepowers.db",
+      "name": "tables",
+      "label": "Tables",
+      "path": "./packs/packs/tables.db",
+      "entity": "RollTable"
+     },
+     {
+      "name": "weapons",
+      "label": "Weapons",
+      "path": "./packs/packs/weapons.db",
       "entity": "Item"
-    },
-    {
-      "name": "monsters",
-      "label": "Monsters",
-      "path": "./packs/packs/monsters.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "journal",
-      "label": "Journal Entries",
-      "path": "./packs/packs/journal.db",
-      "entity": "JournalEntry"
-    },
-	{
-	  "name": "tables",
-	  "label": "Tables",
-	  "path": "./packs/packs/tables.db",
-	  "entity": "RollTable"
-	}
+    }
   ],
   "languages": [
     {

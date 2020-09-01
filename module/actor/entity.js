@@ -6,7 +6,7 @@ import {SW5E} from '../config.js';
 
 
 /**
- * Extend the base Actor class to implement additional logic specialized for D&D5e.
+ * Extend the base Actor class to implement additional logic specialized for SW5e.
  */
 export class Actor5e extends Actor {
 
@@ -1042,7 +1042,7 @@ export class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Add additional system-specific sidebar directory context menu options for D&D5e Actor entities
+   * Add additional system-specific sidebar directory context menu options for SW5e Actor entities
    * @param {jQuery} html         The sidebar HTML
    * @param {Array} entryOptions  The default array of context menu options
    */

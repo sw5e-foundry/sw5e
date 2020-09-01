@@ -3,7 +3,7 @@ import {ActorSheetFlags} from "../../apps/actor-flags.js";
 import {SW5E} from '../../config.js';
 
 /**
- * Extend the basic ActorSheet class to do all the D&D5e things!
+ * Extend the basic ActorSheet class to do all the SW5e things!
  * This sheet is an Abstract layer which is not used.
  *
  * @type {ActorSheet}

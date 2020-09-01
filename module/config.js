@@ -1,4 +1,4 @@
-// Namespace D&D5e Configuration Values
+// Namespace SW5e Configuration Values
 export const SW5E = {};
 
 // ASCII Artwork
@@ -86,7 +86,7 @@ SW5E.toolProficiencies = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the various lengths of time which can occur in D&D5e
+ * This Object defines the various lengths of time which can occur in SW5e
  * @type {Object}
  */
 SW5E.timePeriods = {
@@ -258,7 +258,7 @@ SW5E.damageTypes = {
   "necrotic": "SW5E.DamageNecrotic",
   "poison": "SW5E.DamagePoison",
   "psychic": "SW5E.DamagePsychic",
-  "Sonic": "SW5E.DamageSonic"
+  "sonic": "SW5E.DamageSonic"
 };
 
 /* -------------------------------------------- */
@@ -321,7 +321,7 @@ SW5E.encumbrance = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the types of single or area targets which can be applied in D&D5e
+ * This Object defines the types of single or area targets which can be applied in SW5e
  * @type {Object}
  */
 SW5E.targetTypes = {
@@ -378,7 +378,7 @@ SW5E.healingTypes = {
 
 
 /**
- * Enumerate the denominations of hit dice which can apply to classes in the D&D5E system
+ * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
  * @type {Array.<string>}
  */
 SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
@@ -401,7 +401,7 @@ SW5E.senses = {
 /* -------------------------------------------- */
 
 /**
- * The set of skill which can be trained in D&D5e
+ * The set of skill which can be trained in SW5e
  * @type {Object}
  */
 SW5E.skills = {
@@ -422,7 +422,7 @@ SW5E.skills = {
   "slt": "SW5E.SkillSlt",
   "ste": "SW5E.SkillSte",
   "sur": "SW5E.SkillSur",
-  "tec": "SW5E.SkillTec",
+  "tec": "SW5E.SkillTec"
 };
 
 

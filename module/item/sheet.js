@@ -2,7 +2,7 @@ import { TraitSelector } from "../apps/trait-selector.js";
 
 
 /**
- * Override and extend the core ItemSheet implementation to handle D&D5E specific item types
+ * Override and extend the core ItemSheet implementation to handle SW5E specific item types
  * @type {ItemSheet}
  */
 export class ItemSheet5e extends ItemSheet {

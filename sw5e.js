@@ -42,6 +42,10 @@ Hooks.once("init", function() {
   CONFIG.SW5E = SW5E;
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
+  
+  // Add DND5e namespace for module compatability
+  game.dnd5e = game.sw5e;
+  CONFIG.DND5E = CONFIG.SW5E;
 
   // Register System Settings
   registerSystemSettings();

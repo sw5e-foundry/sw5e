@@ -1,6 +1,12 @@
-<div class="inventory-filters powerbook-filters">
+<div class="inventory-filters powerbook-filters flexrow">
     <div class="form-group powercasting-ability">
-        <h3>{{localize "SW5E.PowerAbility"}}</h3>
+        {{#unless isNPC}}
+        <label>{{localize "SW5E.PowerAbility"}}</label>
+        {{else}}
+        <label>{{localize "SW5E.Level"}}</label>
+        <input class="powercasting-level" type="text" name="data.details.powerLevel"
+               value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0"/>
+        {{/unless}}
         <select name="data.attributes.powercasting" data-type="String">
             {{#select data.attributes.powercasting}}
             <option value="">{{localize "SW5E.None"}}</option>
@@ -9,21 +15,15 @@
             {{/each}}
             {{/select}}
         </select>
-        {{#if isNPC}}
-        <h3>{{localize "SW5E.PowercasterLevel"}}</h3>
-        <input class="powercasting-level" type="text" name="data.details.powerLevel"
-               value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0"/>
-        {{/if}}
-        <h3 class="power-dc">{{localize "SW5E.PowerDC"}} {{data.attributes.powerdc}}</h3>
     </div>
 
     <ul class="filter-list flexrow" data-filter="powerbook">
-        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
         <li class="filter-item" data-filter="concentration">{{localize "SW5E.AbbreviationConc"}}</li>
         <li class="filter-item" data-filter="ritual">{{localize "SW5E.Ritual"}}</li>
+        <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}} ({{preparedPowers}}){{/if}}</li>
     </ul>
 </div>
 
@@ -47,7 +47,7 @@
                 </a>
                 {{/if}}
             {{ else }}
-            <span class="power-slots">{{{section.uses}}}</span>
+            <span>{{{section.uses}}}</span>
             <span class="sep"> / </span>
             <span class="power-max">{{{section.slots}}}</span>
             {{/if}}
@@ -72,7 +72,7 @@
             <div class="item-name flexrow rollable">
                 <div class="item-image" style="background-image: url({{item.img}})"></div>
                 <h4>{{item.name}}</h4>
-                {{#if item.data.uses.value }}
+                {{#if item.data.uses.per }}
                 <div class="item-detail power-uses">Uses {{item.data.uses.value}} / {{item.data.uses.max}}</div>
                 {{/if}}
             </div>

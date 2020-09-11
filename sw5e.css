@@ -10,12 +10,22 @@
   font-weight: 400;
   src: url('./fonts/RussoOne.ttf');
 }
+.russoOne {
+  font-family: 'Russo One';
+  font-size: 20px;
+  font-weight: 400;
+}
 /* bungee-inline-regular - latin */
 @font-face {
   font-family: 'Bungee Inline';
   font-style: normal;
   font-weight: 400;
   src: url('./fonts/BungeeInline.ttf');
+}
+.bungeeInline {
+  font-family: 'Bungee Inline';
+  font-size: 20px;
+  font-weight: 400;
 }
 /* open-sans-regular - latin */
 @font-face {
@@ -24,6 +34,13 @@
   font-weight: 400;
   src: url('./fonts/OpenSans-Regular.ttf');
 }
+.openSans {
+  font-family: 'Open Sans';
+  font-size: 20px;
+  font-weight: 400;
+}
+
+
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
@@ -86,7 +103,7 @@
   font-size: 13px;
   color: #191813;
 }
-.sw5e input[type="text"]
+.sw5e input[type="text"],
 .sw5e select {
   height: calc(100% - 2px);
   border: 1px solid #7a7971;
@@ -119,16 +136,21 @@
 }
 .sw5e label.checkbox {
   flex: auto;
+  padding: 0;
   margin: 0;
-  line-height: 20px;
-  font-size: 10px;
-  text-align: right;
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
 }
-.sw5e label.checkbox input[type="checkbox"] {
-  height: auto;
-  margin: 0 5px 0;
+.sw5e label.checkbox > input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0 2px 0 0;
   position: relative;
-  top: 3px;
+  top: 4px;
+}
+.sw5e label.checkbox.right > input[type="checkbox"] {
+  margin: 0 0 0 2px;
 }
 .sw5e .form-group label {
   flex: 2;
@@ -250,6 +272,14 @@
   text-shadow: 0 0 10px red;
   cursor: pointer;
 }
+.sw5e.sheet span.sep {
+  flex: none;
+  margin: 0 1px;
+  display: inline;
+  position: relative;
+  color: #7a7971;
+  font-weight: normal;
+}
 .sw5e.sheet .editor {
   height: 100%;
 }
@@ -267,22 +297,24 @@
   /* Header Summary Details */
 }
 .sw5e.sheet .sheet-header h1 {
-  flex: 2;
+  flex: 2;  //changed
   border-bottom: none;
   height: 60px;
   margin: 0;
   padding: 5px;
 }
 .sw5e.sheet .sheet-header h1 input {
+  display: block;
   height: 50px;
-  font-size: 22px;
-  text-transform: uppercase;
+  font-size: 22px;  //changed
+  margin: 0;
+  text-transform: uppercase;  //changed
 }
 .sw5e.sheet .sheet-header img.profile {
   flex: 0 0 100px;
   max-width: 100px;
   height: 100px;
-  object-fit: cover;
+  object-fit: contain;
   border: none;
   border-right: 2px groove #eeede0;
 }
@@ -296,11 +328,10 @@
   border-bottom: none;
 }
 .sw5e.sheet .sheet-header .summary li {
-  width: 33.33%;
+  height: calc(100% - 6px);
   float: left;
-  height: 34px;
   margin: 2px 0;
-  padding: 0 3px;
+  padding: 0;
   border-right: 2px groove #eeede0;
   line-height: 34px;
   color: #4b4a44;
@@ -328,7 +359,7 @@
   overflow: hidden;
   font-family: "Open Sans";
 }
-.sw5e.sheet .sheet-body h2 {
+.sw5e.sheet .sheet-body h2 {  //changed
   font-family: "Russo One";
   font-size: 18px;
   text-transform: uppercase;
@@ -350,16 +381,22 @@
   margin: 0;
   padding: 0;
   line-height: 16px;
+  max-width: 70%;
 }
-.sw5e.sheet .filter-list .filter-title {
-  flex: 3;
+.sw5e.sheet .filter-list .filter-icon {
+  flex: none;
+  font-size: 14px;
+  color: #7a7971;
 }
 .sw5e.sheet .filter-list .filter-item {
   text-align: center;
   font-size: 12px;
-  margin: 0 6px;
+  margin: 0 6px 0 0;
   border-bottom: 3px solid #b5b3a4;
   white-space: nowrap;
+}
+.sw5e.sheet .filter-list .filter-item:last-child {
+  margin: 0;
 }
 .sw5e.sheet .filter-list .filter-item:hover {
   text-shadow: 0 0 4px red;
@@ -368,18 +405,21 @@
 .sw5e.sheet .filter-list .filter-item.active {
   border-bottom: 3px solid #44191A;
 }
-.sw5e.sheet .trait-selector {
+.sw5e.sheet .traits {
+  margin: 5px 0 0;
+}
+.sw5e.sheet .traits .trait-selector {
   flex: 0 0 16px;
   padding: 2px 0;
   color: #999;
   font-size: 10px;
 }
-.sw5e.sheet .traits-list {
+.sw5e.sheet .traits .traits-list {
+  flex: 0 0 100%;
   line-height: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: right;
 }
 /* ----------------------------------------- */
 /* Trait Selector
@@ -419,6 +459,7 @@
   /*  Inventory Lists                          */
   /* ----------------------------------------- */
   /* Inventory List Filters */
+  /* Encumbrance Bar */
   /* ----------------------------------------- */
   /*  Powerbook                                */
   /* ----------------------------------------- */
@@ -426,84 +467,100 @@
   /*  TinyMCE                                  */
   /* ----------------------------------------- */
 }
-.sw5e.sheet.actor .sheet-header .charlevel {
+.sw5e.sheet.actor .sheet-header img.profile {
   flex: 0 0 160px;
+  max-width: 160px;
+  height: 160px;
+}
+.sw5e.sheet.actor .sheet-header h1.charname {
+  flex: 1;
   height: 60px;
-  margin: 0;
-  padding: 5px;
+  padding: 0;
+}
+.sw5e.sheet.actor .sheet-header h1.charname input {
+  height: 40px;
+  margin: 10px 0;
+}
+.sw5e.sheet.actor .sheet-header .header-exp {
+  flex: 0 0 150px;
+  margin-right: 3px;
+  height: 60px;
+  justify-content: flex-end;
   text-align: right;
 }
-.sw5e.sheet.actor .sheet-header .charlevel .level {
-  width: 100%;
+.sw5e.sheet.actor .sheet-header .summary {
   height: 30px;
-  font-size: 18px;
+  border-bottom: 2px groove #eeede0;
+  font-size: 14px;
+}
+.sw5e.sheet.actor .sheet-header .summary input,
+.sw5e.sheet.actor .sheet-header .summary span {
+  display: block;
+  height: 24px;
+  line-height: 24px;
+}
+.sw5e.sheet.actor .sheet-header .attributes {
+  flex: 0 0 100%;
+  margin: 0;
+}
+.sw5e.sheet.actor .sheet-header .attributes .attribute {
+  height: 70px;
+  margin: 0;
+  border: none;
+  border-right: 2px groove #eeede0;
+  border-radius: 0;
+}
+.sw5e.sheet.actor .sheet-header .attributes .attribute:last-child {
+  border-right: none;
+}
+.sw5e.sheet.actor .sheet-header .attributes .attribute .attribute-value {
+  height: 30px;
   line-height: 30px;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .level label {
-  display: inline;
-  font-size: 18px;
-  text-align: right;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .level input {
-  display: inline;
-  width: 36px;
-  font-size: 18px;
-  text-align: center;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .level.noxp {
-  margin-top: 10px;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .level.noxp > label {
-  font-size: 32px;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .level.noxp > input {
-  font-size: 18px;
-  flex: 0 0 40px;
-  height: 44px;
-}
-.sw5e.sheet.actor .sheet-header .charlevel .experience {
-  width: 100%;
-  height: 20px;
-  padding-right: 5px;
-  font-size: 16px;
-  color: #4b4a44;
 }
 .sw5e.sheet.actor .attributes input.temphp {
   width: 48%;
 }
 .sw5e.sheet.actor h4.box-title {
+  height: 18px;
   line-height: 16px;
   margin: 4px 8px 2px;
-  font-size: 14px;
+  font-size: 14px;  //changed
   border-bottom: 1px solid #b5b3a4;
 }
+.sw5e.sheet.actor .tab.attributes {
+  overflow: hidden;
+}
 .sw5e.sheet.actor ul.attributes {
+  flex: 0 0 60px;
   list-style: none;
-  margin: 5px 0 0;
+  margin: 0;
   padding: 0;
 }
 .sw5e.sheet.actor ul.attributes li.attribute {
-  height: 70px;
-  margin: 0 5px;
+  height: 60px;
+  margin: 0 5px 0 0;
   border: 2px groove #eeede0;
   border-radius: 4px;
   font-family: "Russo One";
   font-size: 12px;
   text-align: center;
 }
-.sw5e.sheet.actor ul.attributes li.attribute .attribute-name {
-  flex: 0 0 18px;
+.sw5e.sheet.actor ul.attributes li.attribute:last-child {
+  margin: 0;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 28px;
   line-height: 28px;
 }
-.sw5e.sheet.actor ul.attributes li.attribute .attribute-value input {
+.sw5e.sheet.actor ul.attributes li.attribute .attribute-value > * {
   display: inline;
   max-width: 80%;
   height: 28px;
   margin: 0;
-  font-size: 14px;
+  font-size: 14px;  //changed
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value span.sep {
   display: inline;
@@ -513,7 +570,7 @@
   color: #7a7971;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
-  max-width: 33%;
+  flex: 0 0 33%;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-footer {
   flex: 0 0 18px;
@@ -523,7 +580,8 @@
   font-size: 12px;
 }
 .sw5e.sheet.actor .ability-scores {
-  flex: 0 0 100%;
+  flex: 0 0 100px;
+  height: 440px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -532,27 +590,31 @@
 }
 .sw5e.sheet.actor .ability-scores .ability {
   height: 70px;
-  margin: 0 5px;
   text-align: center;
-  border: 2px groove #eeede0;
-  border-radius: 3px;
+  border-bottom: 2px groove #eeede0;
   /* Hide modifier box on hover */
+}
+.sw5e.sheet.actor .ability-scores .ability:last-child {
+  border-bottom: none;
+  margin-bottom: -3px;
 }
 .sw5e.sheet.actor .ability-scores .ability input.ability-score {
   height: 30px;
-  width: 50px;
+  width: 36px;
   margin: 0 auto;
   line-height: 32px;
-  font-size: 16px;
+  font-size: 16px;  //changed
 }
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers {
   height: 24px;
-  margin: -10px 0 0;
+  margin: -8px 0 0;
 }
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod,
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
   flex: 0 0 24px;
-  height: 24px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 16px;
   border-top: 2px groove #eeede0;
 }
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod {
@@ -580,16 +642,20 @@
   cursor: default;
 }
 .sw5e.sheet.actor ul.skills-list {
-  flex: 0 0 192px;
+  flex: 0 0 180px;
+  height: 440px;
   list-style: none;
-  margin: 5px 5px 0;
-  padding: 2px 2px 0;
+  margin: 0 5px 0;
+  padding: 3px 0 2px;
   border: 2px groove #eeede0;
   border-radius: 3px;
 }
 .sw5e.sheet.actor ul.skills-list li.skill {
-  height: 22px;
-  padding: 3px 0;
+  height: 24px;
+  padding: 3px 2px;
+}
+.sw5e.sheet.actor ul.skills-list li.skill:nth-child(even) {
+  background: rgba(0, 0, 0, 0.05);
 }
 .sw5e.sheet.actor ul.skills-list li.skill h4 {
   flex: 1px;
@@ -603,6 +669,7 @@
 }
 .sw5e.sheet.actor ul.skills-list li.skill .skill-ability {
   flex: 0 0 26px;
+  text-transform: capitalize;
 }
 .sw5e.sheet.actor ul.skills-list li.skill .skill-mod {
   flex: 0 0 20px;
@@ -613,23 +680,24 @@
   color: #7a7971;
 }
 .sw5e.sheet.actor .counters {
-  flex: 0 0 100%;
+  flex: none;
+  padding: 5px 0;
+  margin: 0;
   border-bottom: 2px groove #eeede0;
-  margin-bottom: 5px;
 }
 .sw5e.sheet.actor .counters .counter {
-  padding: 0 3px;
-  line-height: 32px;
+  height: 20px;
+  line-height: 20px;
 }
 .sw5e.sheet.actor .counters .counter h4 {
   flex: auto;
   margin: 0;
   font-family: "Russo One";
   font-size: 14px;
-  font-size: 10px;
+  font-size: 10px;  //changed
 }
 .sw5e.sheet.actor .counters .counter .counter-value {
-  flex: 0 0 50px;
+  flex: none;
   text-align: right;
 }
 .sw5e.sheet.actor .counters .counter .counter-value > * {
@@ -644,32 +712,36 @@
 }
 .sw5e.sheet.actor .counters .counter input[type="checkbox"] {
   position: relative;
+  width: 16px;
+  height: 16px;
   margin: 0;
-  top: 6px;
+  top: 4px;
 }
 .sw5e.sheet.actor .counters .counter span.sep {
-  margin: 0 -2px;
   font-size: 12px;
 }
-.sw5e.sheet.actor .traits {
-  margin: 0 5px;
+.sw5e.sheet.actor .center-pane {
+  height: 100%;
+  padding: 0 5px 0 3px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 .sw5e.sheet.actor .traits .form-group,
 .sw5e.sheet.actor .traits .form-group-stacked {
-  margin: 0 0 4px 0;
+  margin: 0 0 3px 0;
   justify-content: space-between;
 }
 .sw5e.sheet.actor .traits .configure-flags {
   flex: 1;
 }
-.sw5e.sheet.actor .traits .actor-size {
-  flex: 0 0 150px;
-}
 .sw5e.sheet.actor .traits label {
-  flex: 0 0 150px;
+  flex: none;
   line-height: 20px;
   font-weight: bold;
-  margin: 0;
+  margin: 0 10px 0 0;
+}
+.sw5e.sheet.actor .traits select {
+  max-width: 200px;
 }
 .sw5e.sheet.actor .traits input {
   text-align: right;
@@ -695,19 +767,21 @@
 .sw5e.sheet.actor .inventory-filters {
   margin: 0 8px;
   flex: 0 0 20px;
+  justify-content: flex-end;
 }
 .sw5e.sheet.actor .inventory-filters h3,
 .sw5e.sheet.actor .inventory-filters .filter-title {
   font-family: "Russo One";
-  font-size: 10px;
+  font-size: 10px;  //changed
   color: #4b4a44;
-  font-size: 12px;
+  font-size: 12px;  //changed
   margin: 0;
 }
 .sw5e.sheet.actor .inventory-filters.powerbook-filters {
   flex: 0 0 40px;
 }
 .sw5e.sheet.actor .inventory-filters .currency {
+  flex: 0 0 100%;
   list-style: none;
   margin: 4px 0 8px;
   padding: 0;
@@ -731,6 +805,7 @@
   margin: 0;
   padding: 0 5px;
   overflow-y: auto;
+  scrollbar-width: thin;
 }
 .sw5e.sheet.actor .inventory-list .item {
   line-height: 30px;
@@ -755,11 +830,11 @@
   white-space: nowrap;
   overflow-x: hidden;
 }
-.sw5e.sheet.actor .inventory-list .item .item-name.rollable .item-image:hover {
-  background-image: url("/icons/svg/d20-black.svg") !important;
-}
 .sw5e.sheet.actor .inventory-list .item .item-name.rollable:hover .item-image {
   background-image: url("/icons/svg/d20-grey.svg") !important;
+}
+.sw5e.sheet.actor .inventory-list .item .item-name.rollable .item-image:hover {
+  background-image: url("/icons/svg/d20-black.svg") !important;
 }
 .sw5e.sheet.actor .inventory-list .item .item-name i.attuned {
   color: #7a7971;
@@ -776,6 +851,7 @@
   text-align: right;
   font-size: 11px;
   color: #7a7971;
+  white-space: nowrap;
 }
 .sw5e.sheet.actor .inventory-list .inventory-header {
   margin: 2px 0;
@@ -800,6 +876,9 @@
   color: #7a7971;
   text-align: center;
   border-right: 1px solid #c9c7b8;
+  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .sw5e.sheet.actor .inventory-list .item-detail:last-child {
   border-right: none;
@@ -853,45 +932,100 @@
   padding: 0.25em 0.5em;
   border-top: 1px solid #c9c7b8;
 }
-.sw5e.sheet.actor .powercasting-ability h3,
-.sw5e.sheet.actor .pact-slots h3 {
-  flex: none;
-  margin-right: 5px;
+.sw5e.sheet.actor .encumbrance {
+  flex: 0 0 12px;
+  background: #7a7971;
+  margin: 1px 15px 0 1px;
+  border: 1px solid #191813;
+  border-radius: 3px;
+  position: relative;
+}
+.sw5e.sheet.actor .encumbrance .encumbrance-bar {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: #6c8aa5;
+  height: 8px;
+  border: 1px solid #cde4ff;
+  border-radius: 2px;
+}
+.sw5e.sheet.actor .encumbrance .encumbrance-label {
+  height: 10px;
+  padding: 0 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 13px;
+  line-height: 12px;
+  text-align: right;
+  color: #EEE;
+  text-shadow: 0 0 5px #000;
+}
+.sw5e.sheet.actor .encumbrance .encumbrance-breakpoint {
+  display: block;
+  position: absolute;
+}
+.sw5e.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-33 {
+  left: 33%;
+}
+.sw5e.sheet.actor .encumbrance .encumbrance-breakpoint.encumbrance-66 {
+  left: 66%;
+}
+.sw5e.sheet.actor .encumbrance .arrow-up {
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #666;
+}
+.sw5e.sheet.actor .encumbrance .arrow-down {
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #666;
+}
+.sw5e.sheet.actor .encumbrance.encumbered .arrow-up {
+  border-bottom: 4px solid #000;
+}
+.sw5e.sheet.actor .encumbrance.encumbered .arrow-down {
+  border-top: 4px solid #000;
+}
+.sw5e.sheet.actor .powercasting-ability {
+  flex: 0 0 240px;
+  margin: 0;
 }
 .sw5e.sheet.actor .powercasting-ability input,
-.sw5e.sheet.actor .pact-slots input,
-.sw5e.sheet.actor .powercasting-ability span,
-.sw5e.sheet.actor .pact-slots span {
+.sw5e.sheet.actor .powercasting-ability span {
   flex: 0 0 32px;
   text-align: center;
 }
-.sw5e.sheet.actor .powercasting-ability select,
-.sw5e.sheet.actor .pact-slots select {
+.sw5e.sheet.actor .powercasting-ability select {
   margin: 0 5px;
   flex: 0 0 150px;
 }
-.sw5e.sheet.actor .powercasting-ability h3.power-dc,
-.sw5e.sheet.actor .pact-slots h3.power-dc {
+.sw5e.sheet.actor .powercasting-ability h3.power-dc {
   flex: 1;
   text-align: right;
 }
-.sw5e.sheet.actor .pact-slots {
-  align-items: center;
-}
 .sw5e.sheet.actor .power-slots,
 .sw5e.sheet.actor .power-comps {
-  flex: 0 0 72px;
+  flex: 0 0 75px;
   padding-right: 5px;
   text-align: right;
   font-size: 12px;
   color: #7a7971;
   border-right: 1px solid #c9c7b8;
 }
-.sw5e.sheet.actor .power-slots input,
-.sw5e.sheet.actor .power-slots span.sep {
+.sw5e.sheet.actor .power-slots input {
   display: inline;
   max-width: 20px;
-  text-align: center;
+}
+.sw5e.sheet.actor .power-slots .sep {
+  font-size: 13px;
+  font-weight: normal;
 }
 .sw5e.sheet.actor .power-uses {
   padding-right: 8px;
@@ -927,8 +1061,8 @@
   padding: 0 8px;
 }
 .sw5e.sheet.item {
-  min-height: 520px;
-  min-width: 700px;
+  min-height: 520px;  //changed
+  min-width: 700px;  //changed
   /* ----------------------------------------- */
   /*  Sheet Header                             */
   /* ----------------------------------------- */
@@ -949,7 +1083,7 @@
   border: 2px solid #000;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle {
-  flex: 1 0 80px;
+  flex: 1 0 80px;  //changed
   height: 60px;
   margin: 0;
   padding: 5px;
@@ -957,7 +1091,7 @@
   color: #7a7971;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle .item-type {
-  font-size: 16px;
+  font-size: 16px;  //changed
   line-height: 26px;
   margin: 0;
 }
@@ -969,18 +1103,18 @@
   margin-bottom: 5px;
 }
 .sw5e.sheet.item .sheet-navigation .item {
-  font-size: 14px;
+  font-size: 14px;  //changed
 }
 .sw5e.sheet.item .sheet-body {
   overflow: hidden;
   font-family: "Open Sans";
 }
-.sw5e.sheet.item .sheet-body h2 {
+.sw5e.sheet.item .sheet-body h2 {  //changed
   font-family: "Russo One";
   font-size: 18px;
   border-bottom: 2px solid #0d99cc;
 }
-.sw5e.sheet.item .sheet-body h3 {
+.sw5e.sheet.item .sheet-body h3 {  //changed
   font-family: "Russo One";
   color: #c40f0f;
   text-transform: uppercase;
@@ -1098,31 +1232,46 @@
   text-align: right;
   color: #7a7971;
 }
-
-.sw5e.sheet.item h4.armorproperties-header {
+.sw5e.sheet.item .recharge.form-group span {
+  text-align: right;
+  padding-right: 3px;
+}
+.sw5e.sheet.item .recharge.form-group input[type="text"] {
+  flex: 0 0 32px;
+  text-align: center;
+}
+.sw5e.sheet.item .recharge.form-group label.checkbox {
+  flex: none;
+}
+.sw5e.sheet.item .recharge.form-group label.checkbox input {
+  width: 16px;
+  height: 16px;
+  top: 4px;
+}
+.sw5e.sheet.item h4.armorproperties-header {  //changed
   margin: 0;
   padding: 0;
   font-weight: bold;
   line-height: 24px;
   color: #4b4a44;
 }
-.sw5e.sheet.item .armorproperties-parts {
+.sw5e.sheet.item .armorproperties-parts {  //changed
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part {
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part {  //changed
   flex: 0 0 100%;
   padding: 0;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part input {
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part input {  //changed
   flex: 3;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part select {
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part select {  //changed
   margin-left: 5px;
   flex: 1;
 }
-.sw5e.sheet.item .armorproperties-control {
+.sw5e.sheet.item .armorproperties-control {  //changed
   width: 18px;
   flex: 0 0 18px;
   line-height: 24px;
@@ -1132,44 +1281,36 @@
   
 }
 
-.sw5e.sheet.item h4.weaponproperties-header {
+.sw5e.sheet.item h4.weaponproperties-header {  //changed
   margin: 0;
   padding: 0;
   font-weight: bold;
   line-height: 24px;
   color: #4b4a44;
 }
-.sw5e.sheet.item .weaponproperties-parts {
+.sw5e.sheet.item .weaponproperties-parts {  //changed
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part {
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part {  //changed
   flex: 0 0 100%;
   padding: 0;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part input {
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part input {  //changed
   flex: 3;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part select {
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part select {  //changed
   margin-left: 5px;
   flex: 1;
 }
-.sw5e.sheet.item .weaponproperties-control {
+.sw5e.sheet.item .weaponproperties-control {  //changed
   width: 18px;
   flex: 0 0 18px;
   line-height: 24px;
   float: right;
   text-align: right;
   color: #7a7971;
-}
-
-.sw5e.sheet.item .recharge span {
-  flex: 0 0 80px;
-}
-.sw5e.sheet.item .recharge label.checkbox {
-  flex: 0 0 80px;
-  text-align: right;
 }
 .sw5e.sheet.item .weapon-properties label.checkbox {
   flex: 0 0 98px;
@@ -1198,7 +1339,7 @@
   margin: 0;
   line-height: 36px;
   font-family: "Russo One";
-  font-size: 10px;
+  font-size: 10px;  //changed
   color: #4b4a44;
 }
 .sw5e.chat-card .card-header h3:hover {
@@ -1267,7 +1408,7 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .sw5e.sheet.actor.character {
-  min-width: 680px;
+  min-width: 680px;  //changed
   min-height: 736px;
   /* ----------------------------------------- */
   /*  Sheet Header                             */
@@ -1276,36 +1417,41 @@
   /*  Sheet Body                               */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
-  /*  Inventory                                */
-  /* ----------------------------------------- */
-  /* Encumbrance Bar */
-  /* ----------------------------------------- */
   /*  Item Controls                            */
   /* ----------------------------------------- */
 }
 .sw5e.sheet.actor.character .sheet-header img.profile {
-  flex: 0 0 180px;
-  max-width: 180px;
-  height: 180px;
+  flex: 0 0 160px;
+  max-width: 160px;
+  height: 160px;
 }
 .sw5e.sheet.actor.character .sheet-header .charlevel {
-  flex: 0 0 180px;
-  padding: 0 5px 2px;
+  flex: 0 0 20px;
+  height: 20px;
+  font-size: 18px;
+  color: #7a7971;
+  white-space: nowrap;
 }
-.sw5e.sheet.actor.character .sheet-header .charlevel .level {
-  height: 28px;
+.sw5e.sheet.actor.character .sheet-header .experience {
+  flex: 0 0 32px;
+  margin-bottom: -5px;
+  align-items: center;
+  font-size: 18px;
 }
-.sw5e.sheet.actor.character .sheet-header .charlevel .experience input[type="text"] {
-  width: 100px;
+.sw5e.sheet.actor.character .sheet-header .experience span.max {
+  color: #7a7971;
+  flex: none;
+  margin-left: 3px;
 }
-.sw5e.sheet.actor.character .sheet-header .charlevel .xpbar {
-  width: 100%;
+.sw5e.sheet.actor.character .sheet-header .xpbar {
   flex: 0 0 8px;
-  background: #666;
+  width: 100%;
+  margin-bottom: 5px;
+  background: #7a7971;
   border: 1px solid #000;
   border-radius: 3px;
 }
-.sw5e.sheet.actor.character .sheet-header .charlevel .xpbar .bar {
+.sw5e.sheet.actor.character .sheet-header .xpbar .bar {
   height: 4px;
   margin: 1px;
   display: block;
@@ -1313,60 +1459,39 @@
   border: 1px solid #000;
   border-radius: 2px;
 }
-.sw5e.sheet.actor.character .sheet-header .summary {
-  border-bottom: 2px groove #eeede0;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes {
-  height: 80px;
-  margin: 0;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .attribute {
-  height: 80px;
-  margin: 0;
-  border: none;
-  border-right: 2px groove #eeede0;
-  border-radius: 0;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .attribute:last-child {
-  border-right: none;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .attribute .attribute-value {
-  margin: 5px 0 0;
-  height: 32px;
-  line-height: 32px;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .attribute .attribute-name {
-  margin-top: 6px;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .attribute .attribute-footer {
-  margin-bottom: 2px;
-}
 .sw5e.sheet.actor.character .sheet-header .attributes a.rest {
   border: 1px solid #b5b3a4;
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.05);
-  padding: 1px 3px;
-  margin: 0 6px;
-}
-.sw5e.sheet.actor.character .sheet-header .attributes .hit-dice {
-  font-size: 16px;
-}
-.sw5e.sheet.actor.character .attributes .resource .attribute-name {
-  margin: 0 8px;
-}
-.sw5e.sheet.actor.character .attributes .resource .attribute-name input[type="text"] {
-  height: 20px;
-  margin: 2px 0 -2px;
-  line-height: 24px;
-}
-.sw5e.sheet.actor.character .attributes .resource label.checkbox {
+  padding: 0 3px;
   margin: 0 3px;
 }
-.sw5e.sheet.actor.character .attributes .resource label.checkbox input[type="checkbox"] {
-  transform: scale(1.2);
+.sw5e.sheet.actor.character .sheet-header .attributes .hit-dice {
+  font-size: 16px;  //changed
 }
-.sw5e.sheet.actor.character .attributes .initiative .attribute-footer input {
+.sw5e.sheet.actor.character .sheet-header .attributes .initiative .attribute-footer input {
   width: 32px;
+}
+.sw5e.sheet.actor.character .sheet-header .summary .proficiency {
+  text-align: right;
+  padding-right: 5px;
+}
+.sw5e.sheet.actor.character .resource .attribute-value input {
+  flex: 0 0 25%;
+}
+.sw5e.sheet.actor.character .resource .attribute-value label.recharge {
+  height: 32px;
+  position: relative;
+  font-family: "Signika", sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color: #4b4a44;
+}
+.sw5e.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
+  height: 14px;
+  width: 14px;
+  margin: 0;
+  top: -6px;
 }
 .sw5e.sheet.actor.character ul.skills-list {
   flex: 0 0 212px;
@@ -1379,77 +1504,10 @@
   margin: 0;
   font-size: 13px;
 }
-.sw5e.sheet.actor.character .counters .death-saves {
-  flex: 2;
-}
-.sw5e.sheet.actor.character .counters .death-saves .counter-value {
-  flex: 0 0 90px;
-}
 .sw5e.sheet.actor.character .item-detail.player-class {
   flex: 0 0 180px;
   text-align: right;
   padding-right: 10px;
-}
-.sw5e.sheet.actor.character .encumbrance {
-  flex: 0 0 12px;
-  background: #7a7971;
-  margin: 1px 15px 0 1px;
-  border: 1px solid #191813;
-  border-radius: 3px;
-  position: relative;
-}
-.sw5e.sheet.actor.character .encumbrance .encumbrance-bar {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  background: #6c8aa5;
-  height: 8px;
-  border: 1px solid #cde4ff;
-  border-radius: 2px;
-}
-.sw5e.sheet.actor.character .encumbrance .encumbrance-label {
-  height: 10px;
-  padding: 0 5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 13px;
-  line-height: 12px;
-  text-align: right;
-  color: #EEE;
-  text-shadow: 0 0 5px #000;
-}
-.sw5e.sheet.actor.character .encumbrance .encumbrance-breakpoint {
-  display: block;
-  position: absolute;
-}
-.sw5e.sheet.actor.character .encumbrance .encumbrance-breakpoint.encumbrance-33 {
-  left: 33%;
-}
-.sw5e.sheet.actor.character .encumbrance .encumbrance-breakpoint.encumbrance-66 {
-  left: 66%;
-}
-.sw5e.sheet.actor.character .encumbrance .arrow-up {
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid #666;
-}
-.sw5e.sheet.actor.character .encumbrance .arrow-down {
-  top: 0;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #666;
-}
-.sw5e.sheet.actor.character .encumbrance.encumbered .arrow-up {
-  border-bottom: 4px solid #000;
-}
-.sw5e.sheet.actor.character .encumbrance.encumbered .arrow-down {
-  border-top: 4px solid #000;
 }
 .sw5e.sheet.actor.character .inventory .item-controls,
 .sw5e.sheet.actor.character .powerbook .item-controls {
@@ -1475,10 +1533,56 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .sw5e.sheet.actor.npc {
-  min-width: 800px;
+  min-width: 800px;  //changed
   min-height: 658px;
 }
-/* ----------------------------------------- */
+.sw5e.sheet.actor.npc .header-exp {
+  flex: 0 0 80px;
+  justify-content: center;
+}
+.sw5e.sheet.actor.npc .header-exp .cr {
+  flex: 0 0 32px;
+  line-height: 28px;
+  margin-bottom: -5px;
+  font-size: 24px;
+}
+.sw5e.sheet.actor.npc .header-exp .cr input {
+  width: 32px;
+  padding: 0;
+  text-align: center;
+}
+.sw5e.sheet.actor.npc .header-exp .experience {
+  flex: 0 0 18px;
+  color: #7a7971;
+  font-size: 16px;
+}
+.sw5e.sheet.actor.npc .summary {
+  font-size: 18px;
+}
+.sw5e.sheet.actor.npc .powercasting-ability label {
+  flex: none;
+}
+.sw5e.sheet.actor.vehicle .features .item-controls {
+  flex: 0 0 68px;
+}
+.sw5e.sheet.actor.vehicle .features .item-controls .item-toggle {
+  color: #b5b3a4;
+}
+.sw5e.sheet.actor.vehicle .features .item-controls .item-toggle.active {
+  color: #4b4a44;
+}
+.sw5e.sheet.actor.vehicle .counters .counter.creature-cap .counter-value {
+  flex: 1;
+}
+.sw5e.sheet.actor.vehicle .counters .counter.creature-cap input {
+  max-width: none;
+  text-align: right;
+}
+.sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
+  max-width: 40px;
+  text-align: right;
+}
+/* ----------------------------------------- */  //changed
 /*  Journal Entry
 /* ----------------------------------------- */
 .journal-sheet .window-content {
@@ -1524,7 +1628,7 @@
   border: none;
   background-color: none;
 }
-/* ---------------------------------------- */
+/* ---------------------------------------- */  //changed
 /* Roll Table Sheet                         */
 /* ---------------------------------------- */
 .roll-table-config .window-content {
@@ -1631,3 +1735,4 @@
   border: 1px solid #7a7971;
   line-height: 24px;
   font-weight: bold;
+}

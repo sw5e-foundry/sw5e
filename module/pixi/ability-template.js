@@ -4,7 +4,7 @@ import { SW5E } from "../config.js";
  * A helper class for building MeasuredTemplates for 5e powers and abilities
  * @extends {MeasuredTemplate}
  */
-export class AbilityTemplate extends MeasuredTemplate {
+export default class AbilityTemplate extends MeasuredTemplate {
 
   /**
    * A factory method to create an AbilityTemplate instance using provided data from an Item5e instance
@@ -37,8 +37,8 @@ export class AbilityTemplate extends MeasuredTemplate {
         templateData.width = target.value;
         templateData.direction = 45;
         break;
-      case "ray": // 5e rays are most commonly 5ft wide
-        templateData.width = 5;
+        case "ray": // 5e rays are most commonly 1 square (5 ft) in width
+        templateData.width = canvas.dimensions.distance;
         break;
       default:
         break;

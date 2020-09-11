@@ -11,6 +11,23 @@ export const registerSystemSettings = function() {
     default: 0
   });
 
+    /**
+   * Register resting variants
+   */
+  game.settings.register("sw5e", "restVariant", {
+    name: "SETTINGS.5eRestN",
+    hint: "SETTINGS.5eRestL",
+    scope: "world",
+    config: true,
+    default: "normal",
+    type: String,
+    choices: {
+      "normal": "SETTINGS.5eRestPHB",
+      "gritty": "SETTINGS.5eRestGritty",
+      "epic": "SETTINGS.5eRestEpic",
+    }
+  });
+
   /**
    * Register diagonal movement rule setting
    */
@@ -23,7 +40,8 @@ export const registerSystemSettings = function() {
     type: String,
     choices: {
       "555": "SETTINGS.5eDiagPHB",
-      "5105": "SETTINGS.5eDiagDMG"
+      "5105": "SETTINGS.5eDiagDMG",
+      "EUCL": "SETTINGS.5eDiagEuclidean",
     },
     onChange: rule => canvas.grid.diagonalRule = rule
   });
@@ -31,21 +49,14 @@ export const registerSystemSettings = function() {
   /**
    * Register Initiative formula setting
    */
-  function _set5eInitiative(tiebreaker) {
-    CONFIG.Combat.initiative.tiebreaker = tiebreaker;
-    CONFIG.Combat.initiative.decimals = tiebreaker ? 2 : 0;
-    if ( ui.combat && ui.combat._rendered ) ui.combat.render();
-  }
   game.settings.register("sw5e", "initiativeDexTiebreaker", {
     name: "SETTINGS.5eInitTBN",
     hint: "SETTINGS.5eInitTBL",
     scope: "world",
     config: true,
     default: false,
-    type: Boolean,
-    onChange: enable => _set5eInitiative(enable)
+    type: Boolean
   });
-  _set5eInitiative(game.settings.get("sw5e", "initiativeDexTiebreaker"));
 
   /**
    * Require Currency Carrying Weight

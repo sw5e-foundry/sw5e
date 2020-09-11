@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "npc", "vehicle"],
     "templates": {
       "common": {
         "abilities": {
@@ -31,7 +31,7 @@
         },
         "attributes": {
           "ac": {
-            "min": 0
+            "value": 10
           },
           "hp": {
             "value": 10,
@@ -43,19 +43,47 @@
           "init": {
             "value": 0,
             "bonus": 0
-          },
-          "speed": {
-            "value": "30 ft",
-            "special": ""
-          },
-          "powercasting": "int"
+          }
         },
         "details": {
-          "alignment": "",
           "biography": {
             "value": "",
             "public": ""
+          }
+        },
+        "traits": {
+          "size": "med",
+          "di": {
+            "value": [],
+            "custom": ""
           },
+          "dr": {
+            "value": [],
+            "custom": ""
+          },
+          "dv": {
+            "value": [],
+            "custom": ""
+          },
+          "ci": {
+            "value": [],
+            "custom": ""
+          }
+        },
+        "currency": {
+          "gc": 0
+        }
+      },
+      "creature": {
+        "attributes": {
+          "powercasting": "int",
+          "speed": {
+            "value": "30 ft",
+            "special": ""
+          }
+        },
+        "details": {
+          "alignment": "",
           "species": ""
         },
         "skills": {
@@ -133,31 +161,11 @@
           }
         },
         "traits": {
-          "size": "med",
           "senses": "",
           "languages": {
             "value": [],
             "custom": ""
-          },
-          "di": {
-            "value": [],
-            "custom": ""
-          },
-          "dr": {
-            "value": [],
-            "custom": ""
-          },
-          "dv": {
-            "value": [],
-            "custom": ""
-          },
-          "ci": {
-            "value": [],
-            "custom": ""
           }
-        },
-        "currency": {
-          "gc": 0
         },
         "powers": {
           "power1": {
@@ -240,11 +248,15 @@
       }
     },
     "character": {
-      "templates": ["common"],
+      "templates": ["common", "creature"],
       "attributes": {
         "death": {
           "success": 0,
           "failure": 0
+        },
+        "encumbrance": {
+          "value": null,
+          "max": null
         },
         "exhaustion": 0,
         "inspiration": 0
@@ -297,7 +309,7 @@
       }
     },
     "npc": {
-      "templates": ["common"],
+      "templates": ["common", "creature"],
       "details": {
         "type": "",
         "environment": "",
@@ -322,6 +334,61 @@
           "initiative": 0
         }
       }
+    },
+    "vehicle": {
+      "templates": ["common"],
+      "abilities": {
+        "int": {
+          "value": 0
+        },
+        "wis": {
+          "value": 0
+        },
+        "cha": {
+          "value": 0
+        }
+      },
+      "attributes": {
+        "ac": {
+          "value": null,
+          "motionless": ""
+        },
+        "actions": {
+          "stations": false,
+          "value": 0,
+          "thresholds": {
+            "2": null,
+            "1": null,
+            "0": null
+          }
+        },
+        "hp": {
+          "value": null,
+          "max": null,
+          "dt": null,
+          "mt": null
+        },
+        "capacity": {
+          "creature": "",
+          "cargo": 0
+        },
+        "speed": ""
+      },
+      "traits": {
+        "size": "lg",
+        "dimensions": "",
+        "di": {
+          "value": ["poison", "psychic"]
+        },
+        "ci": {
+          "value": ["blinded", "charmed", "deafened", "frightened", "paralyzed", "petrified", "poisoned", "stunned",
+            "unconscious"]
+        }
+      },
+      "cargo": {
+        "crew": [],
+        "passengers": []
+      }
     }
   },
   "Item": {
@@ -335,15 +402,15 @@
         },
         "source": ""
       },
-	  "speciesDescription": {
-		"data": "$characteristics-table",
-	    "description": {
-		  "value": "",
-		  "chat": "",
-		  "unidentified": ""
-		},
-		"traits": ""
-	  },
+      "speciesDescription": {
+        "data": "$characteristics-table",
+        "description": {
+          "value": "",
+          "chat": "",
+          "unidentified": ""
+        },
+       "traits": ""
+      },
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
@@ -377,6 +444,11 @@
           "value": 0,
           "max": 0,
           "per": null
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
         }
       },
       "action": {
@@ -394,6 +466,17 @@
           "ability": "",
           "dc": null,
           "scaling": "power"
+        }
+      },
+      "mountable": {
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
         }
       }
     },
@@ -425,19 +508,19 @@
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",
       "uses": {
-        "value": 0,
-        "max": 0,
-        "per": null,
-        "autoUse": true,
-        "autoDestroy": true
+        "autoDestroy": false
       }
     },
     "equipment": {
-      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
       "armor": {
         "type": "light",
         "value": 10,
         "dex": null
+      },
+      "speed": {
+        "value": null,
+        "conditions": ""
       },
       "strength": 0,
       "stealth": false,
@@ -456,8 +539,7 @@
     },
     "species": {
       "templates": ["speciesDescription"]
-	  
-	},
+	  },
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",
@@ -487,13 +569,13 @@
         "prepared": false
       },
       "scaling": {
-        "mode": null,
+        "mode": "none",
         "formula": null
       }
     },
     "weapon": {
-      "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action"],
-      "weaponType": "simpleM",
+      "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action", "mountable"],
+      "weaponType": "simpleVW",
       "properties": {},
       "proficient": true
     }

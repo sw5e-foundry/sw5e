@@ -1,14 +1,14 @@
-import {TraitSelector} from "../../apps/trait-selector.js";
-import {ActorSheetFlags} from "../../apps/actor-flags.js";
+import Item5e from "../../item/entity.js";
+import TraitSelector from "../../apps/trait-selector.js";
+import ActorSheetFlags from "../../apps/actor-flags.js";
 import {SW5E} from '../../config.js';
 
 /**
  * Extend the basic ActorSheet class to do all the SW5e things!
  * This sheet is an Abstract layer which is not used.
- *
- * @type {ActorSheet}
+ * @extends {ActorSheet}
  */
-export class ActorSheet5e extends ActorSheet {
+export default class ActorSheet5e extends ActorSheet {
   constructor(...args) {
     super(...args);
 
@@ -37,6 +37,13 @@ export class ActorSheet5e extends ActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
+
+  /** @override */
+  get template() {
+    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/limited-sheet.html";
+    return `systems/sw5e/templates/actors/${this.actor.data.type}-sheet.html`;
+  }
 
   /* -------------------------------------------- */
 
@@ -53,6 +60,7 @@ export class ActorSheet5e extends ActorSheet {
       cssClass: isOwner ? "editable" : "locked",
       isCharacter: this.entity.data.type === "character",
       isNPC: this.entity.data.type === "npc",
+      isVehicle: this.entity.data.type === 'vehicle',
       config: CONFIG.SW5E,
     };
 
@@ -75,11 +83,13 @@ export class ActorSheet5e extends ActorSheet {
     }
 
     // Update skill labels
-    for ( let [s, skl] of Object.entries(data.actor.data.skills)) {
-      skl.ability = data.actor.data.abilities[skl.ability].label.substring(0, 3);
-      skl.icon = this._getProficiencyIcon(skl.value);
-      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
-      skl.label = CONFIG.SW5E.skills[s];
+    if (data.actor.data.skills) {
+      for ( let [s, skl] of Object.entries(data.actor.data.skills)) {
+        skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
+        skl.icon = this._getProficiencyIcon(skl.value);
+        skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
+        skl.label = CONFIG.SW5E.skills[s];
+      }
     }
 
     // Update traits
@@ -96,9 +106,9 @@ export class ActorSheet5e extends ActorSheet {
 
   _prepareTraits(traits) {
     const map = {
-      "dr": CONFIG.SW5E.damageTypes,
-      "di": CONFIG.SW5E.damageTypes,
-      "dv": CONFIG.SW5E.damageTypes,
+      "dr": CONFIG.SW5E.damageResistanceTypes,
+      "di": CONFIG.SW5E.damageResistanceTypes,
+      "dv": CONFIG.SW5E.damageResistanceTypes,
       "ci": CONFIG.SW5E.conditionTypes,
       "languages": CONFIG.SW5E.languages,
       "armorProf": CONFIG.SW5E.armorProficiencies,
@@ -200,7 +210,7 @@ export class ActorSheet5e extends ActorSheet {
       if ( mode in sections ) {
         s = sections[mode];
         if ( !powerbook[s] ){
-          registerSection(sl, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
+          registerSection(mode, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
         }
       }
 
@@ -252,7 +262,7 @@ export class ActorSheet5e extends ActorSheet {
 
       // Equipment-specific filters
       if ( filters.has("equipped") ) {
-        if (data.equipped && data.equipped !== true) return false;
+        if ( data.equipped !== true ) return false;
       }
       return true;
     });
@@ -295,8 +305,10 @@ export class ActorSheet5e extends ActorSheet {
     // Editable Only Listeners
     if ( this.isEditable ) {
 
-      // Relative updates for numeric fields
-      html.find('input[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
+      // Input focus and update
+      const inputs = html.find("input");
+      inputs.focus(ev => ev.currentTarget.select());
+      inputs.addBack().find('[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
       // Ability Proficiency
       html.find('.ability-proficiency').click(this._onToggleAbilityProficiency.bind(this));
@@ -327,14 +339,6 @@ export class ActorSheet5e extends ActorSheet {
 
       // Roll Skill Checks
       html.find('.skill-name').click(this._onRollSkillCheck.bind(this));
-
-      // Item Dragging
-      let handler = ev => this._onDragItemStart(ev);
-      html.find('li.item').each((i, li) => {
-        if ( li.classList.contains("inventory-header") ) return;
-        li.setAttribute("draggable", true);
-        li.addEventListener("dragstart", handler, false);
-      });
 
       // Item Rolling
       html.find('.item .item-image').click(event => this._onItemRoll(event));
@@ -424,37 +428,9 @@ export class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  async _onDrop (event) {
-    event.preventDefault();
-
-    // Get dropped data
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData('text/plain'));
-    } catch (err) {
-      return false;
-    }
-
-    // Handle a polymorph
-    if (data && (data.type === "Actor")) {
-      if (game.user.isGM || (game.settings.get('sw5e', 'allowPolymorphing') && this.actor.owner)) {
-        return this._onDropPolymorph(event, data);
-      }
-    }
-
-    // Call parent on drop logic
-    return super._onDrop(event);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle dropping an Actor on the sheet to trigger a Polymorph workflow
-   * @param {DragEvent} event   The drop event
-   * @param {Object} data       The data transfer
-   * @private
-   */
-  async _onDropPolymorph(event, data) {
+  async _onDropActor(event, data) {
+    const canPolymorph = game.user.isGM || (this.actor.owner && game.settings.get('sw5e', 'allowPolymorphing'));
+    if ( !canPolymorph ) return false;
 
     // Get the target actor
     let sourceActor = null;
@@ -519,6 +495,30 @@ export class ActorSheet5e extends ActorSheet {
       width: 600,
       template: 'systems/sw5e/templates/apps/polymorph-prompt.html'
     }).render(true);
+  }
+
+  /* -------------------------------------------- */
+  
+  /** @override */
+  async _onDropItemCreate(itemData) {
+
+    // Create a Consumable power scroll on the Inventory tab
+    if ( (itemData.type === "power") && (this._tabs[0].active === "inventory") ) {
+      const scroll = await Item5e.createScrollFromPower(itemData);
+      itemData = scroll.data;
+    }
+
+    // Upgrade the number of class levels a character has
+    if ( (itemData.type === "class") && ( this.actor.itemTypes.class.find(c => c.name === itemData.name)) ) {
+      const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
+      const lvl = cls.data.data.levels;
+      return cls.update({"data.levels": Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level)})
+    }
+
+    // Create the owned item as normal
+    // TODO remove conditional logic in 0.7.x
+    if (isNewerVersion(game.data.version, "0.6.9")) return super._onDropItemCreate(itemData);
+    else return this.actor.createEmbeddedEntity("OwnedItem", itemData);
   }
 
   /* -------------------------------------------- */
@@ -634,7 +634,7 @@ export class ActorSheet5e extends ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const itemData = {
-      name: `New ${type.capitalize()}`,
+      name: game.i18n.format("SW5E.ItemNew", {type: type.capitalize()}),
       type: type,
       data: duplicate(header.dataset)
     };
@@ -736,11 +736,8 @@ export class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const a = event.currentTarget;
     const label = a.parentElement.querySelector("label");
-    const options = {
-      name: label.getAttribute("for"),
-      title: label.innerText,
-      choices: CONFIG.SW5E[a.dataset.options]
-    };
+    const choices = CONFIG.SW5E[a.dataset.options];
+    const options = { name: a.dataset.target, title: label.innerText, choices };
     new TraitSelector(this.actor, options).render(true)
   }
 
@@ -759,5 +756,91 @@ export class ActorSheet5e extends ActorSheet {
       onclick: ev => this.actor.revertOriginalForm()
     });
     return buttons;
+  }
+  
+  /* -------------------------------------------- */
+  /*  DEPRECATED                                  */
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Remove once 0.7.x is release
+   * @deprecated since 0.7.0
+   */
+  async _onDrop (event) {
+    event.preventDefault();
+
+    // Get dropped data
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData('text/plain'));
+    } catch (err) {
+      return false;
+    }
+    if ( !data ) return false;
+
+    // Handle the drop with a Hooked function
+    const allowed = Hooks.call("dropActorSheetData", this.actor, this, data);
+    if ( allowed === false ) return;
+
+    // Case 1 - Dropped Item
+    if ( data.type === "Item" ) {
+      return this._onDropItem(event, data);
+    }
+
+    // Case 2 - Dropped Actor
+    if ( data.type === "Actor" ) {
+      return this._onDropActor(event, data);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Remove once 0.7.x is release
+   * @deprecated since 0.7.0
+   */
+  async _onDropItem(event, data) {
+    if ( !this.actor.owner ) return false;
+    let itemData = await this._getItemDropData(event, data);
+
+    // Handle item sorting within the same Actor
+    const actor = this.actor;
+    let sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
+    if (sameActor) return this._onSortItem(event, itemData);
+
+    // Create a new item
+    this._onDropItemCreate(itemData);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Remove once 0.7.x is release
+   * @deprecated since 0.7.0
+   */
+  async _getItemDropData(event, data) {
+    let itemData = null;
+
+    // Case 1 - Import from a Compendium pack
+    if (data.pack) {
+      const pack = game.packs.get(data.pack);
+      if (pack.metadata.entity !== "Item") return;
+      itemData = await pack.getEntry(data.id);
+    }
+
+    // Case 2 - Data explicitly provided
+    else if (data.data) {
+      itemData = data.data;
+    }
+
+    // Case 3 - Import from World entity
+    else {
+      let item = game.items.get(data.id);
+      if (!item) return;
+      itemData = item.data;
+    }
+
+    // Return a copy of the extracted data
+    return duplicate(itemData);
   }
 }

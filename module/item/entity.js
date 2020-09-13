@@ -183,7 +183,7 @@ export default class Item5e extends Item {
 
 	// Species Items
 	else if ( itemData.type === "species" ) {
-	  labels.species = C.species[data.species];
+	  //labels.species = C.species[data.species];
 	}
 
     // Equipment Items

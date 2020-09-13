@@ -481,7 +481,7 @@ export default class Item5e extends Item {
     // Ability activation properties
     if ( data.hasOwnProperty("activation") ) {
       props.push(
-        labels.activation + (data.activation.condition ? (${data.activation.condition}) : ""),
+        labels.activation + (data.activation.condition ? `(${data.activation.condition})` : ""),
         labels.target,
         labels.range,
         labels.duration

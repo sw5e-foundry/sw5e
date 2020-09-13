@@ -297,7 +297,7 @@
   /* Header Summary Details */
 }
 .sw5e.sheet .sheet-header h1 {
-  flex: 2;  //changed
+  flex: 2;  /*changed*/
   border-bottom: none;
   height: 60px;
   margin: 0;
@@ -306,9 +306,9 @@
 .sw5e.sheet .sheet-header h1 input {
   display: block;
   height: 50px;
-  font-size: 22px;  //changed
+  font-size: 22px;  /*changed*/
   margin: 0;
-  text-transform: uppercase;  //changed
+  text-transform: uppercase;  /*changed*/
 }
 .sw5e.sheet .sheet-header img.profile {
   flex: 0 0 100px;
@@ -359,7 +359,7 @@
   overflow: hidden;
   font-family: "Open Sans";
 }
-.sw5e.sheet .sheet-body h2 {  //changed
+.sw5e.sheet .sheet-body h2 {  /*changed*/
   font-family: "Russo One";
   font-size: 18px;
   text-transform: uppercase;
@@ -524,7 +524,7 @@
   height: 18px;
   line-height: 16px;
   margin: 4px 8px 2px;
-  font-size: 14px;  //changed
+  font-size: 14px;  /*changed*/
   border-bottom: 1px solid #b5b3a4;
 }
 .sw5e.sheet.actor .tab.attributes {
@@ -560,7 +560,7 @@
   max-width: 80%;
   height: 28px;
   margin: 0;
-  font-size: 14px;  //changed
+  font-size: 14px;  /*changed*/
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value span.sep {
   display: inline;
@@ -603,7 +603,7 @@
   width: 36px;
   margin: 0 auto;
   line-height: 32px;
-  font-size: 16px;  //changed
+  font-size: 16px;  /*changed*/
 }
 .sw5e.sheet.actor .ability-scores .ability .ability-modifiers {
   height: 24px;
@@ -642,7 +642,7 @@
   cursor: default;
 }
 .sw5e.sheet.actor ul.skills-list {
-  flex: 0 0 180px;
+  flex: 0 0 190px; /*changed*/
   height: 440px;
   list-style: none;
   margin: 0 5px 0;
@@ -694,7 +694,7 @@
   margin: 0;
   font-family: "Russo One";
   font-size: 14px;
-  font-size: 10px;  //changed
+  font-size: 10px;  /*changed*/
 }
 .sw5e.sheet.actor .counters .counter .counter-value {
   flex: none;
@@ -772,9 +772,9 @@
 .sw5e.sheet.actor .inventory-filters h3,
 .sw5e.sheet.actor .inventory-filters .filter-title {
   font-family: "Russo One";
-  font-size: 10px;  //changed
+  font-size: 10px;  /*changed*/
   color: #4b4a44;
-  font-size: 12px;  //changed
+  font-size: 12px;  /*changed*/
   margin: 0;
 }
 .sw5e.sheet.actor .inventory-filters.powerbook-filters {
@@ -1061,8 +1061,8 @@
   padding: 0 8px;
 }
 .sw5e.sheet.item {
-  min-height: 520px;  //changed
-  min-width: 700px;  //changed
+  min-height: 520px;  /*changed*/
+  min-width: 700px;  /*changed*/
   /* ----------------------------------------- */
   /*  Sheet Header                             */
   /* ----------------------------------------- */
@@ -1083,7 +1083,7 @@
   border: 2px solid #000;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle {
-  flex: 1 0 80px;  //changed
+  flex: 1 0 80px;  /*changed*/
   height: 60px;
   margin: 0;
   padding: 5px;
@@ -1091,7 +1091,7 @@
   color: #7a7971;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle .item-type {
-  font-size: 16px;  //changed
+  font-size: 16px;  /*changed*/
   line-height: 26px;
   margin: 0;
 }
@@ -1103,18 +1103,18 @@
   margin-bottom: 5px;
 }
 .sw5e.sheet.item .sheet-navigation .item {
-  font-size: 14px;  //changed
+  font-size: 14px;  /*changed*/
 }
 .sw5e.sheet.item .sheet-body {
   overflow: hidden;
   font-family: "Open Sans";
 }
-.sw5e.sheet.item .sheet-body h2 {  //changed
+.sw5e.sheet.item .sheet-body h2 {  /*changed*/
   font-family: "Russo One";
   font-size: 18px;
   border-bottom: 2px solid #0d99cc;
 }
-.sw5e.sheet.item .sheet-body h3 {  //changed
+.sw5e.sheet.item .sheet-body h3 {  /*changed*/
   font-family: "Russo One";
   color: #c40f0f;
   text-transform: uppercase;
@@ -1248,30 +1248,30 @@
   height: 16px;
   top: 4px;
 }
-.sw5e.sheet.item h4.armorproperties-header {  //changed
+.sw5e.sheet.item h4.armorproperties-header {  /*changed*/
   margin: 0;
   padding: 0;
   font-weight: bold;
   line-height: 24px;
   color: #4b4a44;
 }
-.sw5e.sheet.item .armorproperties-parts {  //changed
+.sw5e.sheet.item .armorproperties-parts {  /*changed*/
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part {  //changed
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part {  /*changed*/
   flex: 0 0 100%;
   padding: 0;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part input {  //changed
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part input {  /*changed*/
   flex: 3;
 }
-.sw5e.sheet.item .armorproperties-parts .armorproperties-part select {  //changed
+.sw5e.sheet.item .armorproperties-parts .armorproperties-part select {  /*changed*/
   margin-left: 5px;
   flex: 1;
 }
-.sw5e.sheet.item .armorproperties-control {  //changed
+.sw5e.sheet.item .armorproperties-control {  /*changed*/
   width: 18px;
   flex: 0 0 18px;
   line-height: 24px;
@@ -1281,30 +1281,30 @@
   
 }
 
-.sw5e.sheet.item h4.weaponproperties-header {  //changed
+.sw5e.sheet.item h4.weaponproperties-header {  /*changed*/
   margin: 0;
   padding: 0;
   font-weight: bold;
   line-height: 24px;
   color: #4b4a44;
 }
-.sw5e.sheet.item .weaponproperties-parts {  //changed
+.sw5e.sheet.item .weaponproperties-parts {  /*changed*/
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part {  //changed
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part {  /*changed*/
   flex: 0 0 100%;
   padding: 0;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part input {  //changed
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part input {  /*changed*/
   flex: 3;
 }
-.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part select {  //changed
+.sw5e.sheet.item .weaponproperties-parts .weaponproperties-part select {  /*changed*/
   margin-left: 5px;
   flex: 1;
 }
-.sw5e.sheet.item .weaponproperties-control {  //changed
+.sw5e.sheet.item .weaponproperties-control {  /*changed*/
   width: 18px;
   flex: 0 0 18px;
   line-height: 24px;
@@ -1339,7 +1339,7 @@
   margin: 0;
   line-height: 36px;
   font-family: "Russo One";
-  font-size: 10px;  //changed
+  font-size: 10px;  /*changed*/
   color: #4b4a44;
 }
 .sw5e.chat-card .card-header h3:hover {
@@ -1408,8 +1408,8 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .sw5e.sheet.actor.character {
-  min-width: 680px;  //changed
-  min-height: 736px;
+  min-width: 700px;  /*changed*/
+  min-height: 680px; /*changed*/
   /* ----------------------------------------- */
   /*  Sheet Header                             */
   /* ----------------------------------------- */
@@ -1467,7 +1467,7 @@
   margin: 0 3px;
 }
 .sw5e.sheet.actor.character .sheet-header .attributes .hit-dice {
-  font-size: 16px;  //changed
+  font-size: 16px;  /*changed*/
 }
 .sw5e.sheet.actor.character .sheet-header .attributes .initiative .attribute-footer input {
   width: 32px;
@@ -1533,7 +1533,7 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .sw5e.sheet.actor.npc {
-  min-width: 800px;  //changed
+  min-width: 800px;  /*changed*/
   min-height: 658px;
 }
 .sw5e.sheet.actor.npc .header-exp {
@@ -1582,7 +1582,7 @@
   max-width: 40px;
   text-align: right;
 }
-/* ----------------------------------------- */  //changed
+/* ----------------------------------------- */  /*changed*/
 /*  Journal Entry
 /* ----------------------------------------- */
 .journal-sheet .window-content {
@@ -1628,7 +1628,7 @@
   border: none;
   background-color: none;
 }
-/* ---------------------------------------- */  //changed
+/* ---------------------------------------- */  /*changed*/
 /* Roll Table Sheet                         */
 /* ---------------------------------------- */
 .roll-table-config .window-content {

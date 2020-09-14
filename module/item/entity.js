@@ -621,7 +621,11 @@ export default class Item5e extends Item {
         delete this._ammo;
         const consume = itemData.consume;
         if ( consume?.type === "ammo" ) {
-          const ammo = this.actor.items.get(consume.target);
+          if ( !consume.target ) {
+            ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoResource", {name: this.name}));
+            return false;
+          }
+	  const ammo = this.actor.items.get(consume.target);
           const q = ammo.data.data.quantity;
           if ( q && (q - consume.amount >= 0) ) {
             let ammoBonus = ammo.data.data.attackBonus;

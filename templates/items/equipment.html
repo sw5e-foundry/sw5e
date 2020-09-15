@@ -76,32 +76,15 @@
             </div>
             {{/unless}}
 
-            {{#unless isWeapon }}
-            {{!-- ArmorProperties Formula --}}
-            <div class="form-group stacked weapon-properties">
-            <h4 class="armorproperties-header">
-                {{#unless isWeapon }}{{ localize "SW5E.ArmorProperties" }}{{ else }}{{ localize "SW5E.ItemWeaponProperties" }}{{/unless}}
-                <a class="armorproperties-control add-armorproperties"><i class="fas fa-plus"></i></a>
-            </h4>
-            <ol class="armorproperties-parts form-group">
-                {{#each data.armorproperties.parts as |part i| }}
-                <li class="armorproperties-part flexrow" data-armorproperties-part="{{i}}">
-                    
-                    <select name="data.armorproperties.parts.{{i}}.1">
-                        {{#select (lookup this "1") }}
-                        <option value="">{{ localize "SW5E.None" }}</option>
-                        {{#each ../config.armorpropertiesTypes as |name type|}}
-                        <option value="{{type}}">{{name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <input type="text" name="data.armorproperties.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-                    <a class="armorproperties-control delete-armorproperties"><i class="fas fa-minus"></i></a>
-                </li>
+            {{!-- Armor Properties --}}
+            <div class="form-group stacked armor-properties">
+                <label>{{ localize "SW5E.ArmorProperties" }}</label>
+                {{#each config.armorPropertiesTypes as |name prop|}}
+                <label class="checkbox">
+                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
+                </label>
                 {{/each}}
-            </ol>
             </div>
-            {{/unless}}
 
             {{!-- Armor Class --}}
             <div class="form-group">

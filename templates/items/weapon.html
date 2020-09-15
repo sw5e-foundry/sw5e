@@ -77,7 +77,6 @@
             </div>
             {{/unless}}
 
-			{{#if sss}}
             {{!-- Weapon Properties --}}
             <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
@@ -87,34 +86,6 @@
                 </label>
                 {{/each}}
             </div>
-			{{/if}}
-
-            {{#if isWeapon }}			
-            <div class="form-group stacked weapon-properties">			
-            {{!-- weaponproperties Formula --}}
-            <h4 class="weaponproperties-header">
-                {{#unless isWeapon }}{{ localize "SW5E.ArmorProperties" }}{{ else }}{{ localize "SW5E.ItemWeaponProperties" }}{{/unless}}
-                <a class="weaponproperties-control add-weaponproperties"><i class="fas fa-plus"></i></a>
-            </h4>
-            <ol class="weaponproperties-parts form-group">
-                {{#each data.weaponproperties.parts as |part i| }}
-                <li class="weaponproperties-part flexrow" data-weaponproperties-part="{{i}}">
-                    
-                    <select name="data.weaponproperties.parts.{{i}}.1">
-                        {{#select (lookup this "1") }}
-                        <option value="">{{ localize "SW5E.None" }}</option>
-                        {{#each ../config.weaponProperties as |name type|}}
-                        <option value="{{type}}">{{name}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                    <input type="text" name="data.weaponproperties.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-                    <a class="weaponproperties-control delete-weaponproperties"><i class="fas fa-minus"></i></a>
-                </li>
-                {{/each}}
-            </ol>
-            </div>
-            {{/if}}
 
             {{#if isMountable}}
             <div class="form-group">

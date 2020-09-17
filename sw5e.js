@@ -133,6 +133,8 @@ Hooks.once("setup", function() {
       return obj;
     }, {});
   }
+  // add DND5E translation for module compatability
+  game.i18n.translations.DND5E = game.i18n.translations.SW5E;
 });
 
 /* -------------------------------------------- */

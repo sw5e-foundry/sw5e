@@ -506,9 +506,11 @@ SW5E.weaponTypes = {
  */
 SW5E.weaponProperties = {
   "amm": "SW5E.WeaponPropertiesAmm",
+  "aut": "SW5E.WeaponPropertiesAut",
   "bur": "SW5E.WeaponPropertiesBur",
   "def": "SW5E.WeaponPropertiesDef",
   "dex": "SW5E.WeaponPropertiesDex",
+  "dir": "SW5E.WeaponPropertiesDir",
   "drm": "SW5E.WeaponPropertiesDrm",
   "dgd": "SW5E.WeaponPropertiesDgd",
   "dis": "SW5E.WeaponPropertiesDis",
@@ -528,6 +530,7 @@ SW5E.weaponProperties = {
   "rel": "SW5E.WeaponPropertiesRel",
   "ret": "SW5E.WeaponPropertiesRet",
   "shk": "SW5E.WeaponPropertiesShk",
+  "sil": "SW5E.WeaponPropertiesSil",
   "spc": "SW5E.WeaponPropertiesSpc",
   "str": "SW5E.WeaponPropertiesStr",
   "thr": "SW5E.WeaponPropertiesThr",

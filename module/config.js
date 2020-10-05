@@ -282,10 +282,6 @@ SW5E.damageTypes = {
   "sonic": "SW5E.DamageSonic"
 };
 
-// Damage Resistance Types
-SW5E.damageResistanceTypes = mergeObject(duplicate(SW5E.damageTypes), {
-  "physical": "SW5E.DamagePhysical"
-});
 /* -------------------------------------------- */
 
 // armor Types

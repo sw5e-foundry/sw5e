@@ -407,7 +407,7 @@ SW5E.healingTypes = {
  * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
  * @type {Array.<string>}
  */
-SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
+SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
 
 
 /* -------------------------------------------- */

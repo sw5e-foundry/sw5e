@@ -714,9 +714,9 @@ export default class Item5e extends Item {
 
     // Scale damage from up-casting powers
     if ( (this.data.type === "power") ) {
-      if ( (itemData.scaling.mode === "cantrip") ) {
+      if ( (itemData.scaling.mode === "atwill") ) {
         const level = this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
-        this._scaleCantripDamage(parts, itemData.scaling.formula, level, rollData);
+        this._scaleAtWillDamage(parts, itemData.scaling.formula, level, rollData);
       }
       else if ( powerLevel && (itemData.scaling.mode === "level") && itemData.scaling.formula ) {
         const scaling = itemData.scaling.formula;

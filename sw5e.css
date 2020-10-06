@@ -300,6 +300,8 @@
   /* Profile Image */
   /* Header Summary Details */
 }
+.sw5e.sheet .sheet-header .header-details {
+}
 .sw5e.sheet .sheet-header h1 {
   flex: 2;  /*changed*/
   border-bottom: none;
@@ -565,6 +567,7 @@
   height: 28px;
   margin: 0;
   font-size: 14px;  /*changed*/
+  text-align: center;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value span.sep {
   display: inline;
@@ -575,6 +578,7 @@
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
   flex: 0 0 33%;
+  max-width: 2em;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-footer {
   flex: 0 0 18px;
@@ -605,6 +609,7 @@
 .sw5e.sheet.actor .ability-scores .ability input.ability-score {
   height: 30px;
   width: 36px;
+  text-align: center;
   margin: 0 auto;
   line-height: 32px;
   font-size: 16px;  /*changed*/
@@ -1004,6 +1009,7 @@
 .sw5e.sheet.actor .powercasting-ability input,
 .sw5e.sheet.actor .powercasting-ability span {
   flex: 0 0 32px;
+  height: 24px;
   text-align: center;
 }
 .sw5e.sheet.actor .powercasting-ability select {
@@ -1426,6 +1432,9 @@
   /* ----------------------------------------- */
   /*  Item Controls                            */
   /* ----------------------------------------- */
+    /* ----------------------------------------- */
+  /*  Biography                                */
+  /* ----------------------------------------- */
 }
 .sw5e.sheet.actor.character .sheet-header img.profile {
   flex: 0 0 160px;
@@ -1485,6 +1494,7 @@
 }
 .sw5e.sheet.actor.character .resource .attribute-value input {
   flex: 0 0 25%;
+  width: 2em;
 }
 .sw5e.sheet.actor.character .resource .attribute-value label.recharge {
   height: 32px;
@@ -1535,6 +1545,26 @@
 .sw5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
 .sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.fixed:hover {
   text-shadow: none;
+}
+.sw5e.sheet.actor.character .characteristics {
+  flex: 0 0 180px;
+  height: 100%;
+  padding: 0 3px 3px;
+}
+.sw5e.sheet.actor.character .characteristics label {
+  flex: 0 0 20px;
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+}
+.sw5e.sheet.actor.character .characteristics textarea {
+  font-family: "Signika", serif;
+  border: 1px solid #c9c7b8;
+  resize: none;
 }
 /* ----------------------------------------- */
 /*  Basic Structure                          */

@@ -1,3 +1,5 @@
+import {ClassFeatures} from "./classFeatures.js"
+
 // Namespace SW5e Configuration Values
 export const SW5E = {};
 
@@ -282,6 +284,9 @@ SW5E.damageTypes = {
   "sonic": "SW5E.DamageSonic"
 };
 
+// Damage Resistance Types
+SW5E.damageResistanceTypes = duplicate(SW5E.damageTypes);
+
 /* -------------------------------------------- */
 
 // armor Types
@@ -291,6 +296,7 @@ SW5E.armorPropertiesTypes = {
 "Anchor": "SW5E.ArmorProperAnchor",
 "Avoidant": "SW5E.ArmorProperAvoidant",
 "Barbed": "SW5E.ArmorProperBarbed",
+"Bulky": "SW5E.ArmorProperBulky",
 "Charging": "SW5E.ArmorProperCharging",
 "Concealing": "SW5E.ArmorProperConcealing",
 "Cumbersome": "SW5E.ArmorProperCumbersome",
@@ -303,6 +309,7 @@ SW5E.armorPropertiesTypes = {
 "Lightweight": "SW5E.ArmorProperLightweight",
 "Magnetic": "SW5E.ArmorProperMagnetic",
 "Obscured": "SW5E.ArmorProperObscured",
+"Obtrusive": "SW5E.ArmorProperObtrusive",
 "Powered": "SW5E.ArmorProperPowered",
 "Reactive": "SW5E.ArmorProperReactive",
 "Regulated": "SW5E.ArmorProperRegulated",
@@ -311,6 +318,7 @@ SW5E.armorPropertiesTypes = {
 "Rigid": "SW5E.ArmorProperRigid",
 "Silent": "SW5E.ArmorProperSilent",
 "Spiked": "SW5E.ArmorProperSpiked",
+"Strength": "SW5E.ArmorProperStrength",
 "Steadfast": "SW5E.ArmorProperSteadfast",
 "Versatile": "SW5E.ArmorProperVersatile"
 };
@@ -490,7 +498,9 @@ SW5E.weaponTypes = {
   "martialLW": "SW5E.WeaponMartialLW",
   "natural": "SW5E.WeaponNatural",
   "improv": "SW5E.WeaponImprov",
-  "ammo": "SW5E.WeaponAmmo"
+  "ammo": "SW5E.WeaponAmmo",
+  "siege": "SW5E.WeaponSiege"
+
 };
 
 
@@ -512,14 +522,15 @@ SW5E.weaponProperties = {
   "dis": "SW5E.WeaponPropertiesDis",
   "dpt": "SW5E.WeaponPropertiesDpt",
   "dou": "SW5E.WeaponPropertiesDou",
-  "hvy": "SW5E.WeaponPropertiesHvy",
-  "hid": "SW5E.WeaponPropertiesHid",
   "fin": "SW5E.WeaponPropertiesFin",
   "fix": "SW5E.WeaponPropertiesFix",
   "foc": "SW5E.WeaponPropertiesFoc",
+  "hvy": "SW5E.WeaponPropertiesHvy",
+  "hid": "SW5E.WeaponPropertiesHid",
   "ken": "SW5E.WeaponPropertiesKen",
   "lgt": "SW5E.WeaponPropertiesLgt",
   "lum": "SW5E.WeaponPropertiesLum",
+  "mig": "SW5E.WeaponPropertiesMig",
   "pic": "SW5E.WeaponPropertiesPic",
   "rap": "SW5E.WeaponPropertiesRap",
   "rch": "SW5E.WeaponPropertiesRch",
@@ -551,7 +562,6 @@ SW5E.powerSchools = {
   "tec": "SW5E.SchoolTec",
   "enh": "SW5E.SchoolEnh"
 };
-
 
 // Power Levels
 SW5E.powerLevels = {
@@ -639,7 +649,6 @@ SW5E.cover = {
   .5: 'SW5E.CoverHalf',
   .75: 'SW5E.CoverThreeQuarters',
   1: 'SW5E.CoverTotal'
-
 };
 
 /* -------------------------------------------- */
@@ -662,6 +671,7 @@ SW5E.conditionTypes = {
   "prone": "SW5E.ConProne",
   "restrained": "SW5E.ConRestrained",
   "shocked": "SW5E.ConShocked",
+  "slowed": "SW5E.ConSlowed",
   "stunned": "SW5E.ConStunned",
   "unconscious": "SW5E.ConUnconscious"
 };
@@ -782,6 +792,9 @@ SW5E.CR_EXP_LEVELS = [
   20000, 22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
 ];
 
+// Character Features Per Class And Level
+SW5E.classFeatures = ClassFeatures;
+
 // Configure Optional Character Flags
 SW5E.characterFlags = {
   "detailOriented": {
@@ -863,7 +876,13 @@ SW5E.characterFlags = {
     section: "Feats",
     type: Boolean
   },
-  "remarkableAthlete": {
+  "reliableTalent": {
+    name: "SW5E.FlagsReliableTalent",
+    hint: "SW5E.FlagsReliableTalentHint",
+    section: "Feats",
+    type: Boolean
+  },
+    "remarkableAthlete": {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],
@@ -878,3 +897,8 @@ SW5E.characterFlags = {
     placeholder: 20
   }
 };
+
+// Configure allowed status flags
+SW5E.allowedActorFlags = [
+  "isPolymorphed", "originalActor"
+].concat(Object.keys(SW5E.characterFlags));

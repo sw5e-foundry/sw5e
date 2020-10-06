@@ -72,6 +72,7 @@ Hooks.once("init", function() {
   CONFIG.SW5E = SW5E;
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
+  //CONFIG.time.roundTime = 6;
   
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
@@ -86,11 +87,26 @@ Hooks.once("init", function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("sw5e", ActorSheet5eCharacter, { types: ["character"], makeDefault: true });
-  Actors.registerSheet("sw5e", ActorSheet5eNPC, { types: ["npc"], makeDefault: true });
-  Actors.registerSheet('sw5e', ActorSheet5eVehicle, {types: ['vehicle'], makeDefault: true});
+  Actors.registerSheet("sw5e", ActorSheet5eCharacter, {
+    types: ["character"],
+    makeDefault: true,
+    label: "SW5E.SheetClassCharacter"
+   });
+  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
+    types: ["npc"],
+    makeDefault: true,
+    label: "SW5E.SheetClassNPC"
+  });
+  Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
+    types: ['vehicle'],
+    makeDefault: true,
+    label: "SW5E.SheetClassVehicle"
+  });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("sw5e", ItemSheet5e, {makeDefault: true});
+  Items.registerSheet("sw5e", ItemSheet5e, {
+    makeDefault: true,
+    label: "SW5E.SheetClassItem"
+  });
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
@@ -194,8 +210,10 @@ Hooks.on("renderChatMessage", (app, html, data) => {
 });
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
+Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
 
+// TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);
 });

@@ -163,18 +163,18 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     // Format a powerbook entry for a certain indexed level
-    const registerSection = (sl, i, label, level={}) => {
+    const registerSection = (sl, i, label, {prepMode="prepared", value, max, override}={}) => {
       powerbook[i] = {
         order: i,
         label: label,
         usesSlots: i > 0,
-        canCreate: owner && (i >= 1),
+        canCreate: owner,
         canPrepare: (data.actor.type === "character") && (i >= 1),
         powers: [],
-        uses: useLabels[i] || level.value || 0,
-        slots: useLabels[i] || level.max || 0,
-        override: level.override || 0,
-        dataset: {"type": "power", "level": i},
+        uses: useLabels[i] || value || 0,
+        slots: useLabels[i] || max || 0,
+        override: override || 0,
+        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode},
         prop: sl
       };
     };
@@ -187,7 +187,7 @@ export default class ActorSheet5e extends ActorSheet {
       return max;
     }, 0);
 
-    // Structure the powerbook for every level up to the maximum which has a slot
+    // Level-based powercasters have cantrips and leveled slots
     if ( maxLevel > 0 ) {
       registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
       for (let lvl = 1; lvl <= maxLevel; lvl++) {
@@ -195,9 +195,18 @@ export default class ActorSheet5e extends ActorSheet {
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
     }
+    
+    // Pact magic users have cantrips and a pact magic section
     if ( levels.pact && levels.pact.max ) {
-      registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      registerSection("pact", sections.pact, CONFIG.SW5E.powerPreparationModes.pact, levels.pact);
+      if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+      const l = levels.pact;
+      const config = CONFIG.SW5E.powerPreparationModes.pact;
+      registerSection("pact", sections.pact, config, {
+        prepMode: "pact",
+        value: l.value,
+        max: l.max,
+        override: l.override
+      });
     }
 
     // Iterate over every power item, adding powers to the powerbook by section
@@ -206,17 +215,24 @@ export default class ActorSheet5e extends ActorSheet {
       let s = power.data.level || 0;
       const sl = `power${s}`;
 
-      // Powercasting mode specific headings
+      // Specialized powercasting modes (if they exist)
       if ( mode in sections ) {
         s = sections[mode];
         if ( !powerbook[s] ){
-          registerSection(mode, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
+          const l = levels[mode] || {};
+          const config = CONFIG.SW5E.powerPreparationModes[mode];
+          registerSection(mode, s, config, {
+            prepMode: mode,
+            value: l.value,
+            max: l.max,
+            override: l.override
+          });
         }
       }
 
-      // Higher-level power headings
+      // Sections for higher-level powers which the caster "should not" have, but power items exist for
       else if ( !powerbook[s] ) {
-        registerSection(sl, s, CONFIG.SW5E.powerLevels[s], levels[sl]);
+        registerSection(sl, s, CONFIG.SW5E.powerLevels[s], {levels: levels[sl]});
       }
 
       // Add the power to the relevant heading
@@ -506,13 +522,6 @@ export default class ActorSheet5e extends ActorSheet {
     if ( (itemData.type === "power") && (this._tabs[0].active === "inventory") ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       itemData = scroll.data;
-    }
-
-    // Upgrade the number of class levels a character has
-    if ( (itemData.type === "class") && ( this.actor.itemTypes.class.find(c => c.name === itemData.name)) ) {
-      const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
-      const lvl = cls.data.data.levels;
-      return cls.update({"data.levels": Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level)})
     }
 
     // Create the owned item as normal

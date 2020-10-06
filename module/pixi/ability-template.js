@@ -52,9 +52,8 @@ export default class AbilityTemplate extends MeasuredTemplate {
 
   /**
    * Creates a preview of the power template
-   * @param {Event} event   The initiating click event
    */
-  drawPreview(event) {
+  drawPreview() {
     const initialLayer = canvas.activeLayer;
     this.draw();
     this.layer.activate();

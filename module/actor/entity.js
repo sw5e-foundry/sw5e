@@ -100,7 +100,7 @@ export default class Actor5e extends Actor {
     }
 
     // Ability modifiers and saves
-    const dcBonus = Number.isNumeric(data.bonuses.power.dc) ? parseInt(data.bonuses.power.dc) : 0;
+    const dcBonus = Number.isNumeric(data.bonuses.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
     const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
     const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
     for (let [id, abl] of Object.entries(data.abilities)) {
@@ -109,7 +109,7 @@ export default class Actor5e extends Actor {
       abl.saveBonus = saveBonus;
       abl.checkBonus = checkBonus;
       abl.save = abl.mod + abl.prof + abl.saveBonus;
-      abl.dc = 8 + abl.mod + abl.prof + dcBonus;
+      abl.dc = 8 + abl.mod + data.attributes.prof + dcBonus;
 
       // If we merged saves when transforming, take the highest bonus here.
       if (originalSaves && abl.proficient) {
@@ -126,7 +126,7 @@ export default class Actor5e extends Actor {
     if ( joat ) init.prof = Math.floor(0.5 * data.attributes.prof);
     else if ( athlete ) init.prof = Math.ceil(0.5 * data.attributes.prof);
     else init.prof = 0;
-    init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
+    init.bonus = Number(init.value + (flags.initiativeAlert ? 5 : 0));
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data

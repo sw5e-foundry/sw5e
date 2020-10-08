@@ -59,6 +59,21 @@
                 {{/if}}
             </div>
 
+            {{else if section.isSpecies}}
+            <div class="item-detail player-species">
+
+            </div>
+			
+			{{else if section.isArchetype}}
+			<div class="item-detail player-archetype">
+			    {{item.data.name}}
+			</div>
+			
+			{{else if section.isClassfeatures}}
+			<div class="item-detail player-classfeatures">
+			    {{item.data.name}}
+			</div>
+			
             {{else if section.isClass}}
             <div class="item-detail player-class">
                 {{item.data.subclass}}

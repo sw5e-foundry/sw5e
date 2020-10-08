@@ -72,7 +72,7 @@ Hooks.once("init", function() {
   CONFIG.SW5E = SW5E;
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
-  //CONFIG.time.roundTime = 6;
+  if ( CONFIG.time ) CONFIG.time.roundTime = 6; // TODO remove conditional after 0.7.x
   
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;

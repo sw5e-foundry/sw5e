@@ -393,8 +393,13 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack"],
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "archetype", "classfeature", "backpack"],
     "templates": {
+      "archetypeDescription": {
+        "className": "",
+	    "description": "",
+        "source": ""
+      },
       "itemDescription": {
         "description": {
           "value": "",
@@ -504,6 +509,15 @@
         "value": []
       },
       "powercasting": "none"
+    },
+    "archetype": {
+      "templates": ["archetypeDescription"],
+      "className": "",
+      "description": ""
+    },
+    "classfeature": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "className": ""
     },
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],

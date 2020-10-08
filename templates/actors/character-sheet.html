@@ -17,8 +17,7 @@
 
                 {{#unless disableExperience}}
                 <div class="experience flexrow">
-                    <input name="data.details.xp.value" type="text" value="{{data.details.xp.value}}"
-                           data-dtype="Number" placeholder="0"/>
+                    <input name="data.details.xp.value" type="text" value="{{data.details.xp.value}}" placeholder="0" data-dtype="Number"/>
                     <span class="sep">/</span>
                     <span class="max">{{data.details.xp.max}}</span>
                 </div>
@@ -49,17 +48,15 @@
                 <li class="attribute health">
                     <h4 class="attribute-name box-title">{{ localize "SW5E.Health" }}</h4>
                     <div class="attribute-value multiple">
-                        <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
-                               data-dtype="Number" placeholder="10"/>
+                        <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}" placeholder="10" data-dtype="Number"/>
                         <span class="sep"> / </span>
-                        <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
-                               data-dtype="Number" placeholder="10"/>
+                        <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}" placeholder="10" data-dtype="Number"/>
                     </div>
                     <footer class="attribute-footer">
                         <input name="data.attributes.hp.temp" type="text" class="temphp" placeholder="+{{ localize 'SW5E.Temp' }}"
-                               value="{{data.attributes.hp.temp}}" data-dtype="{{data.attributes.hp.type}}"/>
+                               value="{{data.attributes.hp.temp}}" data-dtype="Number"/>
                         <input name="data.attributes.hp.tempmax" type="text" class="temphp" placeholder="+{{ localize 'SW5E.Max' }}"
-                               value="{{data.attributes.hp.tempmax}}" data-dtype="{{data.attributes.hp.type}}"/>
+                               value="{{data.attributes.hp.tempmax}}" data-dtype="Number"/>
                     </footer>
                 </li>
 
@@ -77,8 +74,7 @@
                 <li class="attribute">
                     <h4 class="attribute-name box-title">{{ localize "SW5E.ArmorClass" }}</h4>
                     <div class="attribute-value">
-                        <input name="data.attributes.ac.value" type="text" value="{{data.attributes.ac.value}}"
-                               data-dtype="Number" placeholder="10"/>
+                        <input name="data.attributes.ac.value" type="number" value="{{data.attributes.ac.value}}" placeholder="10"/>
                     </div>
                     <footer class="attribute-footer">
                         <span class="power-dc">{{localize "SW5E.PowerDC"}} {{data.attributes.powerdc}}</span>
@@ -104,7 +100,7 @@
                     </div>
                     <footer class="attribute-footer">
                         <span>{{ localize "SW5E.Modifier" }}</span>
-                        <input name="data.attributes.init.value" type="text" placeholder="0" data-dtype="Number"
+                        <input name="data.attributes.init.value" type="number" placeholder="0"
                                value="{{numberFormat data.attributes.init.value decimals=0 sign=true}}"/>
                     </footer>
                 </li>
@@ -131,7 +127,7 @@
             {{#each data.abilities as |ability id|}}
                 <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
                     <h4 class="ability-name box-title rollable">{{ability.label}}</h4>
-                    <input class="ability-score" name="data.abilities.{{id}}.value" type="text" value="{{ability.value}}" data-dtype="Number" placeholder="10"/>
+                    <input class="ability-score" name="data.abilities.{{id}}.value" type="number" value="{{ability.value}}" placeholder="10"/>
                     <div class="ability-modifiers flexrow">
                         <span class="ability-mod" title="Modifier">{{numberFormat ability.mod decimals=0 sign=true}}</span>
                         <input type="hidden" name="data.abilities.{{id}}.proficient" value="{{ability.proficient}}" data-dtype="Number"/>
@@ -171,11 +167,9 @@
                                 {{ localize "SW5E.AbbreviationSR" }} <input name="data.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}}/>
                             </label>
 
-                            <input name="data.resources.{{res.name}}.value" type="text" value="{{res.value}}"
-                                   data-dtype="Number" placeholder="0"/>
+                            <input name="data.resources.{{res.name}}.value" type="number" value="{{res.value}}" placeholder="0"/>
                             <span class="sep"> / </span>
-                            <input name="data.resources.{{res.name}}.max" type="text" value="{{res.max}}"
-                                  data-dtype="Number" placeholder="0"/>
+                            <input name="data.resources.{{res.name}}.max" type="number" value="{{res.max}}" placeholder="0"/>
 
                             <label class="recharge checkbox">
                                 {{ localize "SW5E.AbbreviationLR" }} <input name="data.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}}/>
@@ -191,17 +185,17 @@
                         <h4 class="death-save rollable">{{ localize "SW5E.DeathSave" }}</h4>
                         <div class="counter-value">
                             <i class="fas fa-check"></i>
-                            <input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
+                            <input name="data.attributes.death.success" type="number" placeholder="0"
                                    value="{{data.attributes.death.success}}"/>
                             <i class="fas fa-times"></i>
-                            <input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
+                            <input name="data.attributes.death.failure" type="number" placeholder="0"
                                    value="{{data.attributes.death.failure}}"/>
                         </div>
                     </div>
                     <div class="counter flexrow exhaustion">
                         <h4>{{ localize "SW5E.Exhaustion" }}</h4>
                         <div class="counter-value">
-                            <input type="text" name="data.attributes.exhaustion" data-dtype="Number" placeholder="0"
+                            <input name="data.attributes.exhaustion" type="number" placeholder="0"
                                    value="{{data.attributes.exhaustion}}" />
                         </div>
                     </div>
@@ -237,15 +231,15 @@
         {{!-- Biography Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="biography">
             <div class="characteristics flexcol">
-                <label>Appearance</label>
+                <label>{{ localize "SW5E.Appearance" }}</label>
                 <textarea name="data.details.appearance">{{data.details.appearance}}</textarea>
-                <label>Personality Traits</label>
+                <label>{{ localize "SW5E.PersonalityTraits" }}</label>
                 <textarea name="data.details.trait">{{data.details.trait}}</textarea>
-                <label>Ideals</label>
+                <label>{{ localize "SW5E.Ideals" }}</label>
                 <textarea name="data.details.ideal">{{data.details.ideal}}</textarea>
-                <label>Bonds</label>
+                <label>{{ localize "SW5E.Bonds" }}</label>
                 <textarea name="data.details.bond">{{data.details.bond}}</textarea>
-                <label>Flaws</label>
+                <label>{{ localize "SW5E.Flaws" }}</label>
                 <textarea name="data.details.flaw">{{data.details.flaw}}</textarea>
             </div>
             <div class="biography">

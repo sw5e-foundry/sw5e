@@ -180,7 +180,14 @@ export default class ItemSheet5e extends ItemSheet {
     else if ( item.type === "species" ) {
 
     }
-
+    else if ( item.type === "archetype" ) {
+		
+    }
+	
+  	else if ( item.type === "classfeature" ) {
+	
+	  }
+	
     // Action type
     if ( item.data.actionType ) {
       props.push(CONFIG.SW5E.itemActionTypes[item.data.actionType]);

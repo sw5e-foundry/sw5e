@@ -182,8 +182,16 @@ export default class Item5e extends Item {
 
 	// Species Items
 	else if ( itemData.type === "species" ) {
-	  //labels.species = C.species[data.species];
-	}
+	  //  labels.species = C.species[data.species];
+  }
+  // Archetype Items
+  else if ( itemData.type === "archetype" ) {
+    //  labels.archetype = C.archetype[data.archetype];
+  }
+  // Class Feature Items
+  else if ( itemData.type === "classfeature" ) {
+
+  }
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {

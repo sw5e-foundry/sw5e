@@ -252,7 +252,9 @@ SW5E.consumableTypes = {
   "medpac": "SW5E.ConsumableMedpac",
   "technology": "SW5E.ConsumableTechnology",
   "ammunition": "SW5E.ConsumableAmmunition",
-  "trinket": "SW5E.ConsumableTrinket"
+  "trinket": "SW5E.ConsumableTrinket",
+  "force": "SW5E.ConsumableForce",
+  "tech": "SW5E.ConsumableTech"
 };
 
 /* -------------------------------------------- */
@@ -488,7 +490,11 @@ SW5E.powerScalingModes = {
 
 /* -------------------------------------------- */
 
-// Weapon Types
+
+/**
+ * Define the set of types which a weapon item can take
+ * @type {Object}
+ */
 SW5E.weaponTypes = {
   "simpleVW": "SW5E.WeaponSimpleVW",
   "simpleB": "SW5E.WeaponSimpleB",
@@ -500,7 +506,6 @@ SW5E.weaponTypes = {
   "improv": "SW5E.WeaponImprov",
   "ammo": "SW5E.WeaponAmmo",
   "siege": "SW5E.WeaponSiege"
-
 };
 
 

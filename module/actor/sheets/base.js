@@ -19,7 +19,8 @@ export default class ActorSheet5e extends ActorSheet {
     this._filters = {
       inventory: new Set(),
       powerbook: new Set(),
-      features: new Set()
+      features: new Set(),
+      effects: new Set()
     };
   }
 
@@ -31,7 +32,8 @@ export default class ActorSheet5e extends ActorSheet {
       scrollY: [
         ".inventory .inventory-list",
         ".features .inventory-list",
-        ".powerbook .inventory-list"
+        ".powerbook .inventory-list",
+        ".effects .inventory-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
@@ -82,7 +84,7 @@ export default class ActorSheet5e extends ActorSheet {
       abl.label = CONFIG.SW5E.abilities[a];
     }
 
-    // Update skill labels
+    // Skills
     if (data.actor.data.skills) {
       for ( let [s, skl] of Object.entries(data.actor.data.skills)) {
         skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
@@ -98,12 +100,21 @@ export default class ActorSheet5e extends ActorSheet {
     // Prepare owned items
     this._prepareItems(data);
 
+    // Prepare active effects
+    // TODO Disabled until 0.7.5 release
+    // this._prepareEffects(data);
+
     // Return data to the sheet
     return data
   }
 
   /* -------------------------------------------- */
 
+  /**
+   * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies
+   * @param {object} traits   The raw traits data object from the actor data
+   * @private
+   */
   _prepareTraits(traits) {
     const map = {
       "dr": CONFIG.SW5E.damageResistanceTypes,
@@ -133,6 +144,43 @@ export default class ActorSheet5e extends ActorSheet {
       }
       trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare the data structure for Active Effects which are currently applied to the Actor.
+   * @param {object} data       The object of rendering data which is being prepared
+   * @private
+   */
+  _prepareEffects(data) {
+
+    // Define effect header categories
+    const categories = {
+      temporary: {
+        label: "Temporary Effects",
+        effects: []
+      },
+      passive: {
+        label: "Passive Effects",
+        effects: []
+      },
+      inactive: {
+        label: "Inactive Effects",
+        effects: []
+      }
+    };
+
+    // Iterate over active effects, classifying them into categories
+    for ( let e of this.actor.effects ) {
+      e._getSourceName(); // Trigger a lookup for the source name
+      if ( e.data.disabled ) categories.inactive.effects.push(e);
+      else if ( e.isTemporary ) categories.temporary.effects.push(e);
+      else categories.inactive.push(e);
+    }
+
+    // Add the prepared categories of effects to the rendering data
+    return data.effects = categories;
   }
 
   /* -------------------------------------------- */
@@ -344,6 +392,10 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.item-delete').click(this._onItemDelete.bind(this));
       html.find('.item-uses input').click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
       html.find('.slot-max-override').click(this._onPowerSlotOverride.bind(this));
+
+      // Active Effect management
+      html.find(".effect-control").click(this._onManageActiveEffect.bind(this));
+
     }
 
     // Owner Only Listeners
@@ -676,6 +728,28 @@ export default class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest(".item");
     this.actor.deleteOwnedItem(li.dataset.itemId);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Manage Active Effect instances through the Actor Sheet via effect control buttons.
+   * @param {MouseEvent} event     The left-click event on the effect control
+   * @private
+   */
+  _onManageActiveEffect(event) {
+    event.preventDefault();
+    const a = event.currentTarget;
+    const li = a.closest(".effect");
+    const effect = this.actor.effects.get(li.dataset.effectId);
+    switch ( a.dataset.action ) {
+      case "edit":
+        return new ActiveEffectConfig(effect).render(true);
+      case "delete":
+        return effect.delete();
+      case "toggle":
+        return effect.update({disabled: !effect.data.disabled});
+    }
   }
 
   /* -------------------------------------------- */

@@ -8,9 +8,7 @@ export default class ItemSheet5e extends ItemSheet {
   constructor(...args) {
     super(...args);
     if ( this.object.data.type === "class" ) {
-      this.options.resizable = true;
       this.options.width =  600;
-      this.options.height = 640;
     }
   }
 
@@ -20,7 +18,7 @@ export default class ItemSheet5e extends ItemSheet {
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
       width: 560,
-      height: 420,
+      height: "auto",
       classes: ["sw5e", "sheet", "item"],
       resizable: true,
       scrollY: [".tab.details"],
@@ -182,7 +180,14 @@ export default class ItemSheet5e extends ItemSheet {
     else if ( item.type === "species" ) {
 
     }
-
+    else if ( item.type === "archetype" ) {
+		
+    }
+	
+  	else if ( item.type === "classfeature" ) {
+	
+	  }
+	
     // Action type
     if ( item.data.actionType ) {
       props.push(CONFIG.SW5E.itemActionTypes[item.data.actionType]);
@@ -220,7 +225,9 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @override */
   setPosition(position={}) {
-    position.height = this._tabs[0].active === "details" ? "auto" : this.options.height;
+    if ( !this._minimized ) {
+      position.height = this._tabs[0].active === "details" ? "auto" : this.options.height;
+    }
     return super.setPosition(position);
   }
 
@@ -249,13 +256,6 @@ export default class ItemSheet5e extends ItemSheet {
     super.activateListeners(html);
     html.find(".damage-control").click(this._onDamageControl.bind(this));
     html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
-    
-    // Armor properties
-//    html.find(".armorproperties-control").click(this._onarmorpropertiesControl.bind(this));
-    
-    // Weapon properties
-//    html.find(".weaponproperties-control").click(this._onweaponpropertiesControl.bind(this));
-    
   }
 
   /* -------------------------------------------- */

@@ -1,4 +1,5 @@
 import ActorSheet5e from "./base.js";
+import Actor5e from "../entity.js";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
@@ -69,7 +70,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     };
 	  
     // Partition items by category
-    let [items, powers, feats, classes, species] = data.items.reduce((arr, item) => {
+    let [items, powers, feats, classes, species, archetypes, classfeatures] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -88,10 +89,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if ( item.type === "power" ) arr[1].push(item);
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
-	    else if ( item.type === "species" ) arr[4].push(item);
+      else if ( item.type === "species" ) arr[4].push(item);
+      else if ( item.type === "archetype" ) arr[5].push(item);
+      else if ( item.type === "classfeature" ) arr[6].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], [], []]);
+    }, [[], [], [], [], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -115,6 +118,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
+      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true},
+      archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
 	    species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
@@ -125,6 +130,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }
     classes.sort((a, b) => b.levels - a.levels);
     features.classes.items = classes;
+    features.classfeatures.items = classfeatures;
+    features.archetype.items = archetypes;
 	  features.species.items = species;
 
     // Assign and return
@@ -252,5 +259,42 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
       yes: () => this.actor.convertCurrency()
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onDropItemCreate(itemData) {
+
+    // Upgrade the number of class levels a character has
+    // and add features
+    if ( itemData.type === "class" ) {
+      const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
+      const classWasAlreadyPresent = !!cls;
+
+      // Add new features for class level
+      if ( !classWasAlreadyPresent ) {
+        Actor5e.getClassFeatures(itemData).then(features => {
+          this.actor.createEmbeddedEntity("OwnedItem", features);
+        });
+      }
+
+      // If the actor already has the class, increment the level instead of creating a new item
+      // then add new features as long as level increases
+      if ( classWasAlreadyPresent ) {
+        const lvl = cls.data.data.levels;
+        const newLvl = Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level);
+        if ( !(lvl === newLvl) ) {
+          cls.update({"data.levels": newLvl});
+          itemData.data.levels = newLvl;
+          Actor5e.getClassFeatures(itemData).then(features => {
+            this.actor.createEmbeddedEntity("OwnedItem", features);
+          });
+        }
+        return
+      }
+    }
+
+    super._onDropItemCreate(itemData);
   }
 }

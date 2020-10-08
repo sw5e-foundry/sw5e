@@ -19,7 +19,8 @@ export default class ActorSheet5e extends ActorSheet {
     this._filters = {
       inventory: new Set(),
       powerbook: new Set(),
-      features: new Set()
+      features: new Set(),
+      effects: new Set()
     };
   }
 
@@ -31,7 +32,8 @@ export default class ActorSheet5e extends ActorSheet {
       scrollY: [
         ".inventory .inventory-list",
         ".features .inventory-list",
-        ".powerbook .inventory-list"
+        ".powerbook .inventory-list",
+        ".effects .inventory-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
@@ -82,7 +84,7 @@ export default class ActorSheet5e extends ActorSheet {
       abl.label = CONFIG.SW5E.abilities[a];
     }
 
-    // Update skill labels
+    // Skills
     if (data.actor.data.skills) {
       for ( let [s, skl] of Object.entries(data.actor.data.skills)) {
         skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
@@ -98,12 +100,21 @@ export default class ActorSheet5e extends ActorSheet {
     // Prepare owned items
     this._prepareItems(data);
 
+    // Prepare active effects
+    // TODO Disabled until 0.7.5 release
+    // this._prepareEffects(data);
+
     // Return data to the sheet
     return data
   }
 
   /* -------------------------------------------- */
 
+  /**
+   * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies
+   * @param {object} traits   The raw traits data object from the actor data
+   * @private
+   */
   _prepareTraits(traits) {
     const map = {
       "dr": CONFIG.SW5E.damageResistanceTypes,
@@ -138,6 +149,43 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
+   * Prepare the data structure for Active Effects which are currently applied to the Actor.
+   * @param {object} data       The object of rendering data which is being prepared
+   * @private
+   */
+  _prepareEffects(data) {
+
+    // Define effect header categories
+    const categories = {
+      temporary: {
+        label: "Temporary Effects",
+        effects: []
+      },
+      passive: {
+        label: "Passive Effects",
+        effects: []
+      },
+      inactive: {
+        label: "Inactive Effects",
+        effects: []
+      }
+    };
+
+    // Iterate over active effects, classifying them into categories
+    for ( let e of this.actor.effects ) {
+      e._getSourceName(); // Trigger a lookup for the source name
+      if ( e.data.disabled ) categories.inactive.effects.push(e);
+      else if ( e.isTemporary ) categories.temporary.effects.push(e);
+      else categories.inactive.push(e);
+    }
+
+    // Add the prepared categories of effects to the rendering data
+    return data.effects = categories;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Insert a power into the powerbook object when rendering the character sheet
    * @param {Object} data     The Actor data being prepared
    * @param {Array} powers    The power data being prepared
@@ -163,18 +211,18 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     // Format a powerbook entry for a certain indexed level
-    const registerSection = (sl, i, label, level={}) => {
+    const registerSection = (sl, i, label, {prepMode="prepared", value, max, override}={}) => {
       powerbook[i] = {
         order: i,
         label: label,
         usesSlots: i > 0,
-        canCreate: owner && (i >= 1),
+        canCreate: owner,
         canPrepare: (data.actor.type === "character") && (i >= 1),
         powers: [],
-        uses: useLabels[i] || level.value || 0,
-        slots: useLabels[i] || level.max || 0,
-        override: level.override || 0,
-        dataset: {"type": "power", "level": i},
+        uses: useLabels[i] || value || 0,
+        slots: useLabels[i] || max || 0,
+        override: override || 0,
+        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode},
         prop: sl
       };
     };
@@ -187,7 +235,7 @@ export default class ActorSheet5e extends ActorSheet {
       return max;
     }, 0);
 
-    // Structure the powerbook for every level up to the maximum which has a slot
+    // Level-based powercasters have cantrips and leveled slots
     if ( maxLevel > 0 ) {
       registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
       for (let lvl = 1; lvl <= maxLevel; lvl++) {
@@ -195,9 +243,18 @@ export default class ActorSheet5e extends ActorSheet {
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
     }
+    
+    // Pact magic users have cantrips and a pact magic section
     if ( levels.pact && levels.pact.max ) {
-      registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      registerSection("pact", sections.pact, CONFIG.SW5E.powerPreparationModes.pact, levels.pact);
+      if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+      const l = levels.pact;
+      const config = CONFIG.SW5E.powerPreparationModes.pact;
+      registerSection("pact", sections.pact, config, {
+        prepMode: "pact",
+        value: l.value,
+        max: l.max,
+        override: l.override
+      });
     }
 
     // Iterate over every power item, adding powers to the powerbook by section
@@ -206,17 +263,24 @@ export default class ActorSheet5e extends ActorSheet {
       let s = power.data.level || 0;
       const sl = `power${s}`;
 
-      // Powercasting mode specific headings
+      // Specialized powercasting modes (if they exist)
       if ( mode in sections ) {
         s = sections[mode];
         if ( !powerbook[s] ){
-          registerSection(mode, s, CONFIG.SW5E.powerPreparationModes[mode], levels[mode]);
+          const l = levels[mode] || {};
+          const config = CONFIG.SW5E.powerPreparationModes[mode];
+          registerSection(mode, s, config, {
+            prepMode: mode,
+            value: l.value,
+            max: l.max,
+            override: l.override
+          });
         }
       }
 
-      // Higher-level power headings
+      // Sections for higher-level powers which the caster "should not" have, but power items exist for
       else if ( !powerbook[s] ) {
-        registerSection(sl, s, CONFIG.SW5E.powerLevels[s], levels[sl]);
+        registerSection(sl, s, CONFIG.SW5E.powerLevels[s], {levels: levels[sl]});
       }
 
       // Add the power to the relevant heading
@@ -328,6 +392,10 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.item-delete').click(this._onItemDelete.bind(this));
       html.find('.item-uses input').click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
       html.find('.slot-max-override').click(this._onPowerSlotOverride.bind(this));
+
+      // Active Effect management
+      html.find(".effect-control").click(this._onManageActiveEffect.bind(this));
+
     }
 
     // Owner Only Listeners
@@ -508,13 +576,6 @@ export default class ActorSheet5e extends ActorSheet {
       itemData = scroll.data;
     }
 
-    // Upgrade the number of class levels a character has
-    if ( (itemData.type === "class") && ( this.actor.itemTypes.class.find(c => c.name === itemData.name)) ) {
-      const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
-      const lvl = cls.data.data.levels;
-      return cls.update({"data.levels": Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level)})
-    }
-
     // Create the owned item as normal
     // TODO remove conditional logic in 0.7.x
     if (isNewerVersion(game.data.version, "0.6.9")) return super._onDropItemCreate(itemData);
@@ -667,6 +728,28 @@ export default class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget.closest(".item");
     this.actor.deleteOwnedItem(li.dataset.itemId);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Manage Active Effect instances through the Actor Sheet via effect control buttons.
+   * @param {MouseEvent} event     The left-click event on the effect control
+   * @private
+   */
+  _onManageActiveEffect(event) {
+    event.preventDefault();
+    const a = event.currentTarget;
+    const li = a.closest(".effect");
+    const effect = this.actor.effects.get(li.dataset.effectId);
+    switch ( a.dataset.action ) {
+      case "edit":
+        return new ActiveEffectConfig(effect).render(true);
+      case "delete":
+        return effect.delete();
+      case "toggle":
+        return effect.update({disabled: !effect.data.disabled});
+    }
   }
 
   /* -------------------------------------------- */

@@ -51,8 +51,8 @@ export default class AbilityUseDialog extends Dialog {
     const html = await renderTemplate("systems/sw5e/templates/apps/ability-use.html", data);
 
     // Create the Dialog and return as a Promise
-    const icon = data.hasPowerSlots ? "fa-magic" : "fa-fist-raised";
-    const label = game.i18n.localize("SW5E.AbilityUse" + (data.hasPowerSlots ? "Cast" : "Use"));
+    const icon = data.isPower ? "fa-magic" : "fa-fist-raised";
+    const label = game.i18n.localize("SW5E.AbilityUse" + (data.isPower ? "Cast" : "Use"));
     return new Promise((resolve) => {
       const dlg = new this(item, {
         title: `${item.name}: Usage Configuration`,
@@ -85,6 +85,12 @@ export default class AbilityUseDialog extends Dialog {
     const lvl = itemData.level;
     const canUpcast = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
 
+    // If can't upcast, return early and don't bother calculating available power slots
+    if (!canUpcast) {
+      data = mergeObject(data, { isPower: true, canUpcast });
+      return;
+    }
+
     // Determine the levels which are feasible
     let lmax = 0;
     const powerLevels = Array.fromRange(10).reduce((arr, i) => {
@@ -97,7 +103,7 @@ export default class AbilityUseDialog extends Dialog {
       arr.push({
         level: i,
         label: i > 0 ? game.i18n.format('SW5E.PowerLevelSlot', {level: label, n: slots}) : label,
-        canCast: canUpcast && (max > 0),
+        canCast: max > 0,
         hasSlots: slots > 0
       });
       return arr;
@@ -109,14 +115,14 @@ export default class AbilityUseDialog extends Dialog {
       powerLevels.push({
         level: 'pact',
         label: `${game.i18n.format('SW5E.PowerLevelPact', {level: pact.level, n: pact.value})}`,
-        canCast: canUpcast,
+        canCast: true,
         hasSlots: pact.value > 0
       });
     }
     const canCast = powerLevels.some(l => l.hasSlots);
 
     // Return merged data
-    data = mergeObject(data, { hasPowerSlots: true, canUpcast, powerLevels });
+    data = mergeObject(data, { isPower: true, canUpcast, powerLevels });
     if ( !canCast ) data.errors.push("SW5E.PowerCastNoSlots");
   }
 

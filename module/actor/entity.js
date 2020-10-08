@@ -64,13 +64,6 @@ export default class Actor5e extends Actor {
 
   /** @override */
   prepareBaseData() {
-
-    // Compute initial ability score modifiers in base data since these may be referenced
-    for (let abl of Object.values(this.data.data.abilities)) {
-      abl.mod = Math.floor((abl.value - 10) / 2);
-    }
-
-    // Type-specific base data preparation
     switch ( this.data.type ) {
       case "character":
         return this._prepareCharacterData(this.data);
@@ -107,6 +100,7 @@ export default class Actor5e extends Actor {
     }
 
     // Ability modifiers and saves
+    const dcBonus = Number.isNumeric(data.bonuses.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
     const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
     const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
     for (let [id, abl] of Object.entries(data.abilities)) {
@@ -115,6 +109,7 @@ export default class Actor5e extends Actor {
       abl.saveBonus = saveBonus;
       abl.checkBonus = checkBonus;
       abl.save = abl.mod + abl.prof + abl.saveBonus;
+      abl.dc = 8 + abl.mod + data.attributes.prof + dcBonus;
 
       // If we merged saves when transforming, take the highest bonus here.
       if (originalSaves && abl.proficient) {
@@ -131,11 +126,11 @@ export default class Actor5e extends Actor {
     if ( joat ) init.prof = Math.floor(0.5 * data.attributes.prof);
     else if ( athlete ) init.prof = Math.ceil(0.5 * data.attributes.prof);
     else init.prof = 0;
-    init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
+    init.bonus = Number(init.value + (flags.initiativeAlert ? 5 : 0));
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    data.attributes.powerdc = this.getPowerDC(data.attributes.powercasting);
+    this._computePowercastingDC(this.data);
     this._computePowercastingProgression(this.data);
   }
 
@@ -165,22 +160,6 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
-  /**
-   * Return the power DC for this actor using a certain ability score
-   * @param {string} ability    The ability score, i.e. "str"
-   * @return {number}           The power DC
-   */
-  getPowerDC(ability) {
-    const actorData = this.data.data;
-    let bonus = getProperty(actorData, "bonuses.power.dc");
-    bonus = Number.isNumeric(bonus) ? parseInt(bonus) : 0;
-    ability = actorData.abilities[ability];
-    const prof = actorData.attributes.prof;
-    return 8 + (ability ? ability.mod : 0) + prof + bonus;
-  }
-
-  /* -------------------------------------------- */
-
   /** @override */
   getRollData() {
     const data = super.getRollData();
@@ -192,6 +171,101 @@ export default class Actor5e extends Actor {
     }, {});
     data.prof = this.data.data.attributes.prof;
     return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Return the features which a character is awarded for each class level
+   * @param cls {Object}    Data object for class, equivalent to Item5e.data or raw compendium entry
+   * @return {Promise<Item5e[]>}     Array of Item5e entities
+   */
+  static async getClassFeatures(cls) {
+    const level = cls.data.levels;
+    const className = cls.name.toLowerCase();
+
+    // Get the configuration of features which may be added
+    const clsConfig = CONFIG.SW5E.classFeatures[className];
+    let featureIDs = clsConfig["features"][level] || [];
+    const subclassName = cls.data.subclass.toLowerCase().slugify();
+
+    // Identify subclass features
+    if ( subclassName !== "" ) {
+      const subclassConfig = clsConfig["subclasses"][subclassName];
+      if ( subclassConfig !== undefined ) {
+        const subclassFeatureIDs = subclassConfig["features"][level];
+        if ( subclassFeatureIDs ) {
+          featureIDs = featureIDs.concat(subclassFeatureIDs);
+        }
+      }
+      else console.warn("Invalid subclass: " + subclassName);
+    }
+
+    // Load item data for all identified features
+    const features = await Promise.all(featureIDs.map(id => fromUuid(id)));
+
+    // Class powers should always be prepared
+    for ( const feature of features ) {
+      if ( feature.type === "power" ) {
+        const preparation = feature.data.data.preparation;
+        preparation.mode = "always";
+        preparation.prepared = true;
+      }
+    }
+    return features;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async updateEmbeddedEntity(embeddedName, data, options={}) {
+    const createItems = embeddedName === "OwnedItem" ? await this._createClassFeatures(data) : [];
+    let updated = await super.updateEmbeddedEntity(embeddedName, data, options);
+    if ( createItems.length ) await this.createEmbeddedEntity("OwnedItem", createItems);
+    return updated;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create additional class features in the Actor when a class item is updated.
+   * @private
+   */
+  async _createClassFeatures(updated) {
+    let toCreate = [];
+    for (let u of updated instanceof Array ? updated : [updated]) {
+      const item = this.items.get(u._id);
+      if (!item || (item.data.type !== "class")) continue;
+      const classData = duplicate(item.data);
+      let changed = false;
+
+      // Get and create features for an increased class level
+      const newLevels = getProperty(u, "data.levels");
+      if (newLevels && (newLevels > item.data.data.levels)) {
+        classData.data.levels = newLevels;
+        changed = true;
+      }
+
+      // Get features for a newly changed subclass
+      const newSubclass = getProperty(u, "data.subclass");
+      if (newSubclass && (newSubclass !== item.data.data.subclass)) {
+        classData.data.subclass = newSubclass;
+        changed = true;
+      }
+
+      // Get the new features
+      if ( changed ) {
+        const features = await Actor5e.getClassFeatures(classData);
+        if ( features.length ) toCreate.push(...features);
+      }
+    }
+
+    // De-dupe created items with ones that already exist (by name)
+    if ( toCreate.length ) {
+      const existing = new Set(this.items.map(i => i.name));
+      toCreate = toCreate.filter(c => !existing.has(c.name));
+    }
+    return toCreate
   }
 
   /* -------------------------------------------- */
@@ -314,6 +388,31 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
+   * Compute the powercasting DC for all item abilities which use power DC scaling
+   * @param {object} actorData    The actor data being prepared
+   * @private
+   */
+  _computePowercastingDC(actorData) {
+
+    // Compute the powercasting DC
+    const data = actorData.data;
+    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
+
+    // Apply powercasting DC to any power items which use it
+    for ( let i of this.items ) {
+      const save = i.data.data.save;
+      if ( save?.ability ) {
+        if ( save.scaling === "power" ) save.dc = data.attributes.powerdc;
+        else if ( save.scaling !== "flat" ) save.dc = data.abilities[save.scaling]?.dc ?? 10;
+        const ability = CONFIG.SW5E.abilities[save.ability];
+        i.labels.save = game.i18n.format("SW5E.SaveDC", {dc: save.dc || "", ability});
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Prepare data related to the power-casting capabilities of the Actor
    * @private
    */
@@ -419,7 +518,7 @@ export default class Actor5e extends Actor {
     // [Optional] add Currency Weight
     if ( game.settings.get("sw5e", "currencyWeight") ) {
       const currency = actorData.data.currency;
-      const numCoins = Object.values(currency).reduce((val, denom) => val += denom, 0);
+      const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
       weight += Math.round((numCoins * 10) / CONFIG.SW5E.encumbrance.currencyPerWeight) / 10;
     }
 
@@ -591,12 +690,12 @@ export default class Actor5e extends Actor {
 
     // Update Actor data
     if ( usesSlots && consumeSlot && (lvl > 0) ) {
-      const slots = parseInt(this.data.data.powers[consumeSlot].value);
+      const slots = parseInt(this.data.data.powers[consumeSlot]?.value);
       if ( slots === 0 || Number.isNaN(slots) ) {
         return ui.notifications.error(game.i18n.localize("SW5E.PowerCastNoSlots"));
       }
       await this.update({
-        [`data.powers.${consumeSlot}.value`]: Math.max(parseInt(this.data.data.powers[consumeSlot].value) - 1, 0)
+        [`data.powers.${consumeSlot}.value`]: Math.max(slots - 1, 0)
       });
     }
 
@@ -610,7 +709,7 @@ export default class Actor5e extends Actor {
     // Initiate ability template placement workflow if selected
     if ( placeTemplate && item.hasAreaTarget ) {
       const template = AbilityTemplate.fromItem(item);
-      if ( template ) template.drawPreview(event);
+      if ( template ) template.drawPreview();
       if ( this.sheet.rendered ) this.sheet.minimize();
     }
 
@@ -1004,19 +1103,26 @@ export default class Actor5e extends Actor {
     await this.updateEmbeddedEntity("OwnedItem", updateItems);
 
     // Display a Chat Message summarizing the rest effects
-    let restFlavor;
-    switch (game.settings.get("sw5e", "restVariant")) {
-      case 'normal': restFlavor = game.i18n.localize("SW5E.ShortRestNormal"); break;
-      case 'gritty': restFlavor = game.i18n.localize(newDay ? "SW5E.ShortRestOvernight" : "SW5E.ShortRestGritty"); break;
-      case 'epic':  restFlavor = game.i18n.localize("SW5E.ShortRestEpic"); break;
-    }
-
     if ( chat ) {
+
+      // Summarize the rest duration
+      let restFlavor;
+      switch (game.settings.get("sw5e", "restVariant")) {
+        case 'normal': restFlavor = game.i18n.localize("SW5E.ShortRestNormal"); break;
+        case 'gritty': restFlavor = game.i18n.localize(newDay ? "SW5E.ShortRestOvernight" : "SW5E.ShortRestGritty"); break;
+        case 'epic':  restFlavor = game.i18n.localize("SW5E.ShortRestEpic"); break;
+      }
+
+      // Summarize the health effects
+      let srMessage = "SW5E.ShortRestResultShort";
+      if ((dhd !== 0) && (dhp !== 0)) srMessage = "SW5E.ShortRestResult";
+
+      // Create a chat message
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format("SW5E.ShortRestResult", {name: this.name, dice: -dhd, health: dhp})
+        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp})
       });
     }
 
@@ -1036,13 +1142,13 @@ export default class Actor5e extends Actor {
    * Take a long rest, recovering HP, HD, resources, and power slots
    * @param {boolean} dialog  Present a confirmation dialog window whether or not to take a long rest
    * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
+   * @param {boolean} newDay  Whether the long rest carries over to a new day
    * @return {Promise}        A Promise which resolves once the long rest workflow has completed
    */
-  async longRest({dialog=true, chat=true}={}) {
+  async longRest({dialog=true, chat=true, newDay=true}={}) {
     const data = this.data.data;
 
     // Maybe present a confirmation dialog
-    let newDay = false;
     if ( dialog ) {
       try {
         newDay = await LongRestDialog.longRestDialog({actor: this});
@@ -1120,12 +1226,17 @@ export default class Actor5e extends Actor {
       case 'epic':  restFlavor = game.i18n.localize("SW5E.LongRestEpic"); break;
     }
 
+    // Determine the chat message to display
     if ( chat ) {
+      let lrMessage = "SW5E.LongRestResultShort";
+      if((dhp !== 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResult";
+      else if ((dhp !== 0) && (dhd === 0)) lrMessage = "SW5E.LongRestResultHitPoints";
+      else if ((dhp === 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResultHitDice";
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format("SW5E.LongRestResult", {name: this.name, health: dhp, dice: dhd})
+        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, dice: dhd})
       });
     }
 
@@ -1355,5 +1466,17 @@ export default class Actor5e extends Actor {
         return actor && actor.isPolymorphed;
       }
     });
+  }
+
+  /* -------------------------------------------- */
+  /*  DEPRECATED METHODS                          */
+  /* -------------------------------------------- */
+
+  /**
+   * @deprecated since sw5e 0.97
+   */
+  getPowerDC(ability) {
+    console.warn(`The Actor5e#getPowerDC(ability) method has been deprecated in favor of Actor5e#data.data.abilities[ability].dc`);
+    return this.data.data.abilities[ability]?.dc;
   }
 }

@@ -100,7 +100,7 @@ export default class Actor5e extends Actor {
     }
 
     // Ability modifiers and saves
-    const dcBonus = Number.isNumeric(data.bonuses.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
+    const dcBonus = Number.isNumeric(data.bonuses?.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
     const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
     const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
     for (let [id, abl] of Object.entries(data.abilities)) {
@@ -186,6 +186,7 @@ export default class Actor5e extends Actor {
 
     // Get the configuration of features which may be added
     const clsConfig = CONFIG.SW5E.classFeatures[className];
+	if (!clsConfig) return [];
     let featureIDs = clsConfig["features"][level] || [];
     const subclassName = cls.data.subclass.toLowerCase().slugify();
 

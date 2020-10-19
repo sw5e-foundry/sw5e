@@ -114,6 +114,7 @@
         <a class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</a>
         <a class="item" data-tab="features">{{ localize "SW5E.Features" }}</a>
         <a class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</a>
+		<a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
         <a class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</a>
     </nav>
 
@@ -227,7 +228,12 @@
         <div class="tab powerbook flexcol" data-group="primary" data-tab="powerbook">
             {{> "systems/sw5e/templates/actors/parts/actor-powerbook.html"}}
         </div>
-
+		
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/actor-effects.html"}}
+        </div>
+		
         {{!-- Biography Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="biography">
             <div class="characteristics flexcol">

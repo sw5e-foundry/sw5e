@@ -40,8 +40,6 @@ export default class ItemSheet5e extends ItemSheet {
   getData() {
     const data = super.getData();
     data.labels = this.item.labels;
-
-    // Include CONFIG values
     data.config = CONFIG.SW5E;
 
     // Item Type, Status, and Details
@@ -57,6 +55,7 @@ export default class ItemSheet5e extends ItemSheet {
     data.hasAttackRoll = this.item.hasAttack;
     data.isHealing = data.item.data.actionType === "heal";
     data.isFlatDC = getProperty(data.item.data, "save.scaling") === "flat";
+	data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
 
     // Vehicles
     data.isCrewed = data.item.data.activation?.type === 'crew';

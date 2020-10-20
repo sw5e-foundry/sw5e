@@ -48,10 +48,6 @@ export default class ItemSheet5e extends ItemSheet {
     data.itemProperties = this._getItemProperties(data.item);
     data.isPhysical = data.item.data.hasOwnProperty("quantity");
 	
-	// Item Area Target
-    data.isLine = ["line", "wall"].includes(data.item.data.target.type);
-
-
     // Potential consumption targets
     data.abilityConsumptionTargets = this._getItemConsumptionTargets(data.item);
 
@@ -59,7 +55,7 @@ export default class ItemSheet5e extends ItemSheet {
     data.hasAttackRoll = this.item.hasAttack;
     data.isHealing = data.item.data.actionType === "heal";
     data.isFlatDC = getProperty(data.item.data, "save.scaling") === "flat";
-	data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
+	  data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
 
     // Vehicles
     data.isCrewed = data.item.data.activation?.type === 'crew';

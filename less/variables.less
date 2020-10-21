@@ -14,9 +14,9 @@
   font-weight: 400;
   src: url('./fonts/RussoOne.ttf');
 }
-.russoOne {
+.russoOne(@font-size: 20px) {
   font-family: 'Russo One';
-  font-size: 20px;
+  font-size: @font-size;
   font-weight: 400;
 }
 /* bungee-inline-regular - latin */
@@ -55,7 +55,23 @@
 @colorOlive: #4b4a44;
 @colorCrimson: #44191A;
 @borderGroove: 2px groove #eeede0;
-@sheetBackground: url("ui/parchment.jpg") repeat;
+//@sheetBackground: url("ui/parchment.jpg") repeat;
+
+
+//SW5e Colors
+@colorBlack: #1C1C1C;
+@colorDarkGray: #363636;
+@colorGray: #4f4f4f;
+@colorLightGray: #828282;
+@colorPaleGray: #D6D6D6;
+@colorRed: #c40f0f; 
+@colorPaleRed: #FBF4F4;
+@colorLightRed: #F6E1E1;
+@colorBlue: #0d99cc;
+@colorLightBlue: #7ed6f7;
+@colorPaleBlue: #afc6d6;
+
+@sheetBackground: linear-gradient(90deg, @colorPaleBlue 0%, @colorPaleGray 30%, @colorPaleGray 70%, @colorPaleBlue); //url("ui/parchment.webp") repeat;
 
 /* ----------------------------------------- */
 /*  Flexbox                                  */

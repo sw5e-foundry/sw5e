@@ -1,5 +1,9 @@
-export class ActorSheetFlags extends BaseEntitySheet {
-  static get defaultOptions() {
+/**
+ * An application class which provides advanced configuration for special character flags which modify an Actor
+ * @extends {BaseEntitySheet}
+ */
+export default class ActorSheetFlags extends BaseEntitySheet {
+    static get defaultOptions() {
     const options = super.defaultOptions;
     return mergeObject(options, {
       id: "actor-flags",
@@ -68,10 +72,10 @@ export class ActorSheetFlags extends BaseEntitySheet {
       {name: "data.bonuses.mwak.damage", label: "SW5E.BonusMWDamage"},
       {name: "data.bonuses.rwak.attack", label: "SW5E.BonusRWAttack"},
       {name: "data.bonuses.rwak.damage", label: "SW5E.BonusRWDamage"},
-      {name: "data.bonuses.msak.attack", label: "SW5E.BonusMSAttack"},
-      {name: "data.bonuses.msak.damage", label: "SW5E.BonusMSDamage"},
-      {name: "data.bonuses.rsak.attack", label: "SW5E.BonusRSAttack"},
-      {name: "data.bonuses.rsak.damage", label: "SW5E.BonusRSDamage"},
+      {name: "data.bonuses.mpak.attack", label: "SW5E.BonusMPAttack"},
+      {name: "data.bonuses.mpak.damage", label: "SW5E.BonusMPDamage"},
+      {name: "data.bonuses.rpak.attack", label: "SW5E.BonusRPAttack"},
+      {name: "data.bonuses.rpak.damage", label: "SW5E.BonusRPDamage"},
       {name: "data.bonuses.abilities.check", label: "SW5E.BonusAbilityCheck"},
       {name: "data.bonuses.abilities.save", label: "SW5E.BonusAbilitySave"},
       {name: "data.bonuses.abilities.skill", label: "SW5E.BonusAbilitySkill"},
@@ -91,7 +95,7 @@ export class ActorSheetFlags extends BaseEntitySheet {
    */
   async _updateObject(event, formData) {
     const actor = this.object;
-    const updateData = expandObject(formData);
+    let updateData = expandObject(formData);
 
     // Unset any flags which are "false"
     let unset = false;
@@ -106,7 +110,18 @@ export class ActorSheetFlags extends BaseEntitySheet {
       }
     }
 
-    // Apply the changes
+    // Clear any bonuses which are whitespace only
+    for ( let b of Object.values(updateData.data.bonuses ) ) {
+      for ( let [k, v] of Object.entries(b) ) {
+        b[k] = v.trim();
+      }
+    }
+
+    // Diff the data against any applied overrides and apply
+    // TODO: Remove this logical gate once 0.7.x is release channel
+    if ( !isNewerVersion("0.7.1", game.data.version) ){
+      updateData = diffObject(this.object.data, updateData);
+    }
     await actor.update(updateData, {diff: false});
   }
 }

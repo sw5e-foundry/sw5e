@@ -23,6 +23,21 @@
     </div>
 </div>
 
+{{#if isCrewed}}
+<div class="form-group">
+    <label>{{localize 'SW5E.Cover'}}</label>
+    <div class="form-fields">
+        <select name="data.cover" data-dtype="Number">
+            {{#select data.cover}}
+                <option value="">&mdash;</option>
+                {{#each config.cover as |v k|}}
+                    <option value="{{k}}">{{v}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+</div>
+{{/if}}
 
 {{!-- Ability Target --}}
 <div class="form-group input-select-select">
@@ -47,6 +62,16 @@
         </select>
     </div>
 </div>
+
+{{!-- Ability Target Width --}}
+{{#if isLine}}
+<div class="form-group input-select-select">
+    <label>{{ localize "SW5E.TargetWidth" }}</label>
+    <div class="form-fields">
+        <input type="text" name="data.target.width" value="{{data.target.width}}" data-dtype="Number" placeholder="-"/>
+    </div>
+</div>
+{{/if}}
 
 {{!-- Ability Range --}}
 <div class="form-group input-select">
@@ -97,6 +122,30 @@
             {{/each}}
             {{/select}}
         </select>
+    </div>
+</div>
+
+{{!-- Consumption --}}
+<div class="form-group uses-per">
+    <label>{{ localize "SW5E.ConsumeTitle" }}</label>
+    <div class="form-fields">
+        <select name="data.consume.type">
+            {{#select data.consume.type}}
+            <option value=""></option>
+            {{#each config.abilityConsumptionTypes as |name key|}}
+            <option value="{{key}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <select name="data.consume.target">
+            {{#select data.consume.target}}
+            <option value=""></option>
+            {{#each abilityConsumptionTargets as |name key|}}
+            <option value="{{key}}">{{name}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <input type="text" name="data.consume.amount" value="{{data.consume.amount}}" data-dtype="Number"/>
     </div>
 </div>
 {{/if}}

@@ -14,7 +14,7 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
+            <ul class="summary flexrow">
                 <li>
                     {{labels.level}}
                 </li>
@@ -68,12 +68,29 @@
                 </select>
             </div>
 
+            {{!-- Preparation Mode --}}
+            <div class="form-group input-select">
+                <label>{{ localize "SW5E.PowerPreparationMode" }}</label>
+                <div class="form-fields">
+                    <label class="checkbox prepared">
+                        {{ localize "SW5E.PowerPrepared" }} <input type="checkbox" name="data.preparation.prepared" {{checked data.preparation.prepared}}/>
+                    </label>
+                    <select name="data.preparation.mode">
+                        {{#select data.preparation.mode}}
+                        <option value=""></option>
+                        {{#each config.powerPreparationModes as |name key|}}
+                        <option value="{{key}}">{{name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
             {{!-- Concentration Mode --}}
             <div class="form-group input-select">
                 <label>{{ localize "SW5E.PowerConcentrationMode" }}</label>
                 <div class="form-fields">
-                    <label class="checkbox prepared">
-                        {{ localize "SW5E.Concentrated" }} <input type="checkbox" name="data.preparation.prepared" {{checked data.preparation.prepared}}/>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.components.concentration" {{checked data.components.concentration}}/> {{ localize "SW5E.Concentrated" }}
                     </label>
                 </div>
             </div>

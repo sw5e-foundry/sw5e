@@ -138,6 +138,34 @@ export const migrateActorData = function(actor) {
 
 /* -------------------------------------------- */
 
+
+/**
+ * Scrub an Actor's system data, removing all keys which are not explicitly defined in the system template
+ * @param {Object} actorData    The data object for an Actor
+ * @return {Object}             The scrubbed Actor data
+ */
+function cleanActorData(actorData) {
+
+  // Scrub system data
+  const model = game.system.model.Actor[actorData.type];
+  actorData.data = filterObject(actorData.data, model);
+
+  // Scrub system flags
+  const allowedFlags = CONFIG.SW5E.allowedActorFlags.reduce((obj, f) => {
+    obj[f] = null;
+    return obj;
+  }, {});
+  if ( actorData.flags.sw5e ) {
+    actorData.flags.sw5e = filterObject(actorData.flags.sw5e, allowedFlags);
+  }
+
+  // Return the scrubbed data
+  return actorData;
+}
+
+
+/* -------------------------------------------- */
+
 /**
  * Migrate a single Item entity to incorporate latest data model changes
  * @param item
@@ -222,3 +250,33 @@ const _migrateRemoveDeprecated = function(ent, updateData) {
     updateData[`data.${parts.join(".")}`] = null;
   }
 };
+
+
+/* -------------------------------------------- */
+
+
+/**
+ * A general tool to purge flags from all entities in a Compendium pack.
+ * @param {Compendium} pack   The compendium pack to clean
+ * @private
+ */
+export async function purgeFlags(pack) {
+  const cleanFlags = (flags) => {
+    const flags5e = flags.sw5e || null;
+    return flags5e ? {sw5e: flags5e} : {};
+  };
+  await pack.configure({locked: false});
+  const content = await pack.getContent();
+  for ( let entity of content ) {
+    const update = {_id: entity.id, flags: cleanFlags(entity.data.flags)};
+    if ( pack.entity === "Actor" ) {
+      update.items = entity.data.items.map(i => {
+        i.flags = cleanFlags(i.flags);
+        return i;
+      })
+    }
+    await pack.updateEntity(update, {recursive: false});
+    console.log(`Purged flags from ${entity.name}`);
+  }
+  await pack.configure({locked: true});
+}

@@ -13,11 +13,13 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/sw5e/templates/actors/parts/actor-inventory.html",
     "systems/sw5e/templates/actors/parts/actor-features.html",
     "systems/sw5e/templates/actors/parts/actor-powerbook.html",
+    "systems/sw5e/templates/actors/parts/actor-effects.html",
 
     // Item Sheet Partials
     "systems/sw5e/templates/items/parts/item-action.html",
     "systems/sw5e/templates/items/parts/item-activation.html",
-    "systems/sw5e/templates/items/parts/item-description.html"
+    "systems/sw5e/templates/items/parts/item-description.html",
+    "systems/sw5e/templates/items/parts/item-mountable.html"
   ];
 
   // Load the template parts

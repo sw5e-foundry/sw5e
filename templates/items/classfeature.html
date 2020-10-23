@@ -14,9 +14,12 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary flexrow">
+            <ul class="summary">
                 <li>
-                    <input type="text" name="data.rarity" value="{{data.rarity}}" placeholder="{{ localize 'SW5E.Rarity' }}"/>
+                    {{labels.featType}}
+                </li>
+                <li>
+                    <input type="text" name="data.requirements" value="{{data.requirements}}" placeholder="{{ localize 'SW5E.Requirements' }}"/>
                 </li>
                 <li>
                     <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
@@ -40,35 +43,31 @@
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
 
-            {{!-- Tool Proficiency --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemToolProficiency" }}</label>
-                 <select name="data.proficient" data-dtype="Number">
-                     {{#select data.proficient}}
-                     {{#each config.proficiencyLevels as |label p|}}
-                     <option value="{{p}}">{{label}}</option>
-                     {{/each}}
-                     {{/select}}
-                 </select>
-            </div>
+            <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
-            {{!-- Ability Check --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.DefaultAbilityCheck" }}</label>
-                <select name="data.ability">
-                    {{#select data.ability}}
-                    {{#each config.abilities as |name a|}}
-                    <option value="{{a}}">{{name}}</option>
-                    {{/each}}
-                    {{/select}}
-                </select>
-            </div>
+            {{!-- Item Activation Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
 
-            {{!-- Chat Message Flavor --}}
-            <div class="form-group stacked">
-                <label>{{ localize "SW5E.ChatFlavor" }}</label>
-                <input type="text" name="data.chatFlavor" value="{{data.chatFlavor}}"/>
+            {{!-- Recharge Requirement --}}
+            {{#if data.activation.type}}
+            <div class="form-group recharge">
+                <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
+                <div class="form-fields">
+                    <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
+                    <input type="text" name="data.recharge.value" value="{{data.recharge.value}}"
+                           data-dtype="Number" placeholder="{{ localize 'SW5E.FeatureRechargeResult' }}"/>
+                    <label class="checkbox">
+                        {{ localize "SW5E.Charged" }}
+                        <input type="checkbox" name="data.recharge.charged" {{checked data.recharge.charged}}/>
+                    </label>
+                </div>
             </div>
+            {{/if}}
+
+            <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
     </section>
 </form>

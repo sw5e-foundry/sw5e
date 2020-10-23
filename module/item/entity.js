@@ -162,7 +162,23 @@ export class Item5e extends Item {
 
 	// Species Items
 	else if ( itemData.type === "species" ) {
+<<<<<<< Updated upstream
 	  labels.species = C.species[data.species];
+=======
+	//  labels.species = C.species[data.species];
+	}
+	// Archetype Items
+	else if ( itemData.type === "archetype" ) {
+    //  labels.archetype = C.archetype[data.archetype];
+    }
+	// Background Items
+	else if ( itemData.type === "background" ) {
+		
+	}
+	// Class Feature Items
+    else if ( itemData.type === "classfeature" ) {
+	
+>>>>>>> Stashed changes
 	}
 
     // Equipment Items

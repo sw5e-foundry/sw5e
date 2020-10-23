@@ -82,7 +82,11 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 	  
 
     // Partition items by category
+<<<<<<< Updated upstream
     let [items, powers, feats, classes, species] = data.items.reduce((arr, item) => {
+=======
+    let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds] = data.items.reduce((arr, item) => {
+>>>>>>> Stashed changes
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -102,9 +106,18 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
 	  else if ( item.type === "species" ) arr[4].push(item);
+<<<<<<< Updated upstream
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
     }, [[], [], [], [], []]);
+=======
+	  else if ( item.type === "archetype" ) arr[5].push(item);
+	  else if ( item.type === "classfeature" ) arr[6].push(item);
+	  else if ( item.type === "background" ) arr[7].push(item);
+      else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
+      return arr;
+    }, [[], [], [], [], [], [], [], []]);
+>>>>>>> Stashed changes
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -131,7 +144,14 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
+<<<<<<< Updated upstream
 	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
+=======
+      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true},
+	  archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
+	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
+	  background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true},
+>>>>>>> Stashed changes
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };
@@ -141,7 +161,14 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
     }
     classes.sort((a, b) => b.levels - a.levels);
     features.classes.items = classes;
+<<<<<<< Updated upstream
 	features.species.items = species;
+=======
+	features.classfeatures.items = classfeatures;
+	features.archetype.items = archetypes;
+	features.species.items = species;
+	features.background.items = backgrounds;
+>>>>>>> Stashed changes
 
     // Assign and return
     data.inventory = Object.values(inventory);

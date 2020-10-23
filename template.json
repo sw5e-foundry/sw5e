@@ -325,8 +325,71 @@
     }
   },
   "Item": {
+<<<<<<< Updated upstream
     "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack"],
     "templates": {
+=======
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack", "archetype", "classfeature", "background"],
+    "templates": {
+      "archetypeDescription": {
+        "className": "",
+	    "description": "",
+        "source": ""
+      },
+	  "backgroundDescription": {
+	    "flavorText": {
+		  "value": ""
+		},
+	    "flavorName": {
+          "value": ""
+        },
+        "flavorDescription": {
+          "value": ""
+        },
+        "flavorOptions": {
+          "value": ""
+        },
+        "skillProficiencies": {
+          "value": ""
+        },
+        "toolProficiencies": {
+          "value": ""
+        },
+        "languages": {
+          "value": ""
+        },
+        "equipment": {
+          "value": ""
+        },
+        "suggestedCharacteristics": {
+          "value": ""
+        },
+        "featureName": {
+          "value": ""
+        },
+        "featureText": {
+          "value": ""
+        },
+        "featOptions": {
+          "value": ""
+        },
+        "personalityTraitOptions": {
+          "value": ""
+        },
+        "idealOptions": {
+          "value": ""
+        },
+        "flawOptions": {
+          "value": ""
+        },
+        "bondOptions": {
+          "value": ""
+        },
+        "source": {
+          "value": ""
+        }
+      },		
+>>>>>>> Stashed changes
       "itemDescription": {
         "description": {
           "value": "",
@@ -335,6 +398,18 @@
         },
         "source": ""
       },
+<<<<<<< Updated upstream
+=======
+	  "classDescription": {
+		"className": "",
+	    "description": {
+		  "value": ""
+		},
+		"classFeatures": {
+		  "value": ""
+		}
+	  },	  
+>>>>>>> Stashed changes
 	  "speciesDescription": {
 		"data": "$characteristics-table",
 	    "description": {
@@ -397,6 +472,14 @@
         }
       }
     },
+	"archetype": {
+	  "templates": ["archetypeDescription"],
+	  "className": "",
+	  "description": ""
+	},
+	"background": {
+	  "templates": ["backgroundDescription"]
+	},
     "backpack": {
       "templates": ["itemDescription", "physicalItem"],
       "capacity": {
@@ -409,7 +492,8 @@
       }
     },
     "class": {
-      "templates": ["itemDescription"],
+      "templates": ["classDescription"],
+	  "className": "",
       "levels": 1,
       "subclass": "",
       "hitDice": "d6",
@@ -421,6 +505,13 @@
       },
       "powercasting": "none"
     },
+<<<<<<< Updated upstream
+=======
+	"classfeature": {
+	  "templates": ["itemDescription", "activatedEffect", "action"],
+	  "className": ""
+	},
+>>>>>>> Stashed changes
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",
@@ -456,7 +547,10 @@
     },
     "species": {
       "templates": ["speciesDescription"]
+<<<<<<< Updated upstream
 	  
+=======
+>>>>>>> Stashed changes
 	},
     "tool": {
       "templates": ["itemDescription", "physicalItem"],

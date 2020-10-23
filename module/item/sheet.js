@@ -106,9 +106,24 @@ export class ItemSheet5e extends ItemSheet {
     }
 	
     else if ( item.type === "species" ) {
-
+		
     }
+<<<<<<< Updated upstream
 
+=======
+    else if ( item.type === "archetype" ) {
+		
+    }
+	
+	else if ( item.type === "background" ) {
+	
+	}
+	
+	else if ( item.type === "classfeature" ) {
+	
+	}
+	
+>>>>>>> Stashed changes
     // Action type
     if ( item.data.actionType ) {
       props.push(CONFIG.SW5E.itemActionTypes[item.data.actionType]);

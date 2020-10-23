@@ -54,7 +54,15 @@ Hooks.once("init", function() {
   Actors.registerSheet("sw5e", ActorSheet5eCharacter, { types: ["character"], makeDefault: true });
   Actors.registerSheet("sw5e", ActorSheet5eNPC, { types: ["npc"], makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
+<<<<<<< Updated upstream
   Items.registerSheet("sw5e", ItemSheet5e, {makeDefault: true});
+=======
+  Items.registerSheet("sw5e", ItemSheet5e, {
+	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background'],
+    makeDefault: true,
+    label: "SW5E.SheetClassItem"
+  });
+>>>>>>> Stashed changes
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();

@@ -1,0 +1,99 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+            </div>
+
+            <ul class="summary">
+                <li>
+                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <!-- <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a> -->
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
+<div class="background">{{editor content=data.flavorText.value target="data.flavorText.value" button=true editable=editable}}</div>
+<div class="background"><p><strong>Skill Proficiencies:</strong> {{{data.skillProficiencies.value}}}</p></div>
+<div class="background"><p><strong>Tool Proficiencies:</strong> {{{data.toolProficiencies.value}}}</p></div>
+<div class="background"><p><strong>Languages:</strong> {{{data.languages.value}}}</p></div>
+<div class="background"><p><strong>Equipment:</strong> {{{data.equipment.value}}}</p></div>
+<div class="background"><h3>{{{data.flavorName.value}}}</h3></div>
+<div class="background"><p>{{{data.flavorDescription.value}}}</p></div>
+<div class="smalltable"><p>{{{data.flavorOptions.value}}}</p></div>
+<div class="background"><h2>Feature: {{{data.featureName.value}}}</h2></div>
+<div class="background"><p>{{{data.featureText.value}}}</p></div>
+<h2>Background Feat</h2>
+<p>As a further embodiment of the experience and training of your background, you can choose from the following feats:</p>
+<div class="smalltable"><p>{{{data.featOptions.value}}}</p></div>
+<h3>Suggested Characteristics</h3>
+<div class="background"><p>{{{data.suggestedCharacteristics.value}}}</p></div>
+<div class="medtable"><p>{{{data.personalityTraitOptions.value}}}</p></div><p>&nbsp;</p>
+<div class="medtable"><p>{{{data.idealOptions.value}}}</p></div><p>&nbsp;</p>
+<div class="medtable"><p>{{{data.flawOptions.value}}}</p></div><p>&nbsp;</p>
+<div class="medtable"><p>{{{data.bondOptions.value}}}</p></div>
+
+<script>
+let nullField = document.querySelectorAll('.background > div');
+
+nullField.forEach(function(element) {
+
+  if (element.value === null) {
+    element.previousElementSibling.style.display = 'none';
+    element.style.display = 'none';
+  }
+});
+</script>        
+        </div>    
+ <!--    {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+
+            <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
+
+            {{!-- Item Activation Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+
+            {{!-- Recharge Requirement --}}
+            {{#if data.activation.type}}
+            <div class="form-group recharge">
+                <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
+                <div class="form-fields">
+                    <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
+                    <input type="text" name="data.recharge.value" value="{{data.recharge.value}}"
+                           data-dtype="Number" placeholder="{{ localize 'SW5E.FeatureRechargeResult' }}"/>
+                    <label class="checkbox">
+                        {{ localize "SW5E.Charged" }}
+                        <input type="checkbox" name="data.recharge.charged" {{checked data.recharge.charged}}/>
+                    </label>
+                </div>
+            </div>
+            {{/if}}
+
+            <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+        </div> -->
+    </section>
+</form>

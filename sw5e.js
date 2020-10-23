@@ -2,7 +2,7 @@
  * The Star Wars 5th Edition game system for Foundry Virtual Tabletop
  * Author: Kakeman89
  * Software License: GNU GPLv3
- * Content License: https://media.wizards.com/2016/downloads/SW5ERD-OGL_V5.1.pdf
+ * Content License: https://media.wizards.com/2016/downloads/SW5E/SRD-OGL_V5.1.pdf
  * Repository: https://gitlab.com/foundrynet/sw5e
  * Issue Tracker: https://gitlab.com/foundrynet/sw5e/issues
  */
@@ -12,14 +12,27 @@ import { SW5E } from "./module/config.js";
 import { registerSystemSettings } from "./module/settings.js";
 import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { _getInitiativeFormula } from "./module/combat.js";
-import { measureDistance, getBarAttribute } from "./module/canvas.js";
-import { Actor5e } from "./module/actor/entity.js";
-import { ActorSheet5eCharacter } from "./module/actor/sheets/character.js";
-import { Item5e } from "./module/item/entity.js";
-import { ItemSheet5e } from "./module/item/sheet.js";
-import { ActorSheet5eNPC } from "./module/actor/sheets/npc.js";
-import { Dice5e } from "./module/dice.js";
+import { measureDistances, getBarAttribute } from "./module/canvas.js";
+
+// Import Entities
+import Actor5e from "./module/actor/entity.js";
+import Item5e from "./module/item/entity.js";
+
+// Import Applications
+import AbilityTemplate from "./module/pixi/ability-template.js";
+import AbilityUseDialog from "./module/apps/ability-use-dialog.js";
+import ActorSheetFlags from "./module/apps/actor-flags.js";
+import ActorSheet5eCharacter from "./module/actor/sheets/character.js";
+import ActorSheet5eNPC from "./module/actor/sheets/npc.js";
+import ActorSheet5eVehicle from "./module/actor/sheets/vehicle.js";
+import ItemSheet5e from "./module/item/sheet.js";
+import ShortRestDialog from "./module/apps/short-rest.js";
+import TraitSelector from "./module/apps/trait-selector.js";
+
+// Import Helpers
 import * as chat from "./module/chat.js";
+import * as dice from "./module/dice.js";
+import * as macros from "./module/macros.js";
 import * as migrations from "./module/migration.js";
 
 /* -------------------------------------------- */
@@ -31,38 +44,70 @@ Hooks.once("init", function() {
 
   // Create a SW5E namespace within the game global
   game.sw5e = {
-    Actor5e,
-    Dice5e,
-    Item5e,
-    migrations,
-    rollItemMacro
+    applications: {
+      AbilityUseDialog,
+      ActorSheetFlags,
+      ActorSheet5eCharacter,
+      ActorSheet5eNPC,
+      ActorSheet5eVehicle,
+      ItemSheet5e,
+      ShortRestDialog,
+      TraitSelector
+    },
+    canvas: {
+      AbilityTemplate
+    },
+    config: SW5E,
+    dice: dice,
+    entities: {
+      Actor5e,
+      Item5e,
+    },
+    macros: macros,
+    migrations: migrations,
+    rollItemMacro: macros.rollItemMacro
   };
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
+  if ( CONFIG.time ) CONFIG.time.roundTime = 6; // TODO remove conditional after 0.7.x
+  
+  // Add DND5e namespace for module compatability
+  game.dnd5e = game.sw5e;
+  CONFIG.DND5E = CONFIG.SW5E;
 
   // Register System Settings
   registerSystemSettings();
 
   // Patch Core Functions
+  CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus";
   Combat.prototype._getInitiativeFormula = _getInitiativeFormula;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("sw5e", ActorSheet5eCharacter, { types: ["character"], makeDefault: true });
-  Actors.registerSheet("sw5e", ActorSheet5eNPC, { types: ["npc"], makeDefault: true });
+  Actors.registerSheet("sw5e", ActorSheet5eCharacter, {
+    types: ["character"],
+    makeDefault: true,
+    label: "SW5E.SheetClassCharacter"
+   });
+  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
+    types: ["npc"],
+    makeDefault: true,
+    label: "SW5E.SheetClassNPC"
+  });
+  Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
+    types: ['vehicle'],
+    makeDefault: true,
+    label: "SW5E.SheetClassVehicle"
+  });
   Items.unregisterSheet("core", ItemSheet);
-<<<<<<< Updated upstream
-  Items.registerSheet("sw5e", ItemSheet5e, {makeDefault: true});
-=======
   Items.registerSheet("sw5e", ItemSheet5e, {
 	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background'],
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });
->>>>>>> Stashed changes
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
@@ -80,17 +125,33 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "abilities", "alignments", "conditionTypes", "consumableTypes", "currencies", "damageTypes", "distanceUnits", "equipmentTypes",
-    "healingTypes", "itemActionTypes", "limitedUsePeriods", "senses", "skills", "powerComponents", "powerLevels", "powerPreparationModes",
-    "powerSchools", "powerScalingModes", "targetTypes", "timePeriods", "weaponProperties", "weaponTypes", "languages", "polymorphSettings",
-    "armorProficiencies", "weaponProficiencies", "toolProficiencies", "abilityActivationTypes", "actorSizes", "proficiencyLevels", "armorpropertiesTypes"
+    "abilities", "abilityAbbreviations", "alignments", "conditionTypes", "consumableTypes", "currencies",
+    "damageTypes", "damageResistanceTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes",
+    "limitedUsePeriods", "senses", "skills", "powerComponents", "powerLevels", "powerPreparationModes", "powerSchools",
+    "powerScalingModes", "targetTypes", "timePeriods", "weaponProperties", "weaponTypes", "languages",
+    "polymorphSettings", "armorProficiencies", "weaponProficiencies", "toolProficiencies", "abilityActivationTypes",
+    "abilityConsumptionTypes", "actorSizes", "proficiencyLevels", "armorPropertiesTypes", "cover"
   ];
+
+  // Exclude some from sorting where the default order matters
+  const noSort = [
+    "abilities", "alignments", "currencies", "distanceUnits", "itemActionTypes", "proficiencyLevels",
+    "limitedUsePeriods", "powerComponents", "powerLevels", "weaponTypes"
+  ];
+
+  // Localize and sort CONFIG objects
   for ( let o of toLocalize ) {
-    CONFIG.SW5E[o] = Object.entries(CONFIG.SW5E[o]).reduce((obj, e) => {
-      obj[e[0]] = game.i18n.localize(e[1]);
+    const localized = Object.entries(CONFIG.SW5E[o]).map(e => {
+      return [e[0], game.i18n.localize(e[1])];
+    });
+    if ( !noSort.includes(o) ) localized.sort((a, b) => a[1].localeCompare(b[1]));
+    CONFIG.SW5E[o] = localized.reduce((obj, e) => {
+      obj[e[0]] = e[1];
       return obj;
     }, {});
   }
+  // add DND5E translation for module compatability
+  game.i18n.translations.DND5E = game.i18n.translations.SW5E;
 });
 
 /* -------------------------------------------- */
@@ -105,7 +166,6 @@ Hooks.once("ready", function() {
   const NEEDS_MIGRATION_VERSION = 0.84;
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
-  const canMigrate = currentVersion >= COMPATIBLE_MIGRATION_VERSION;
 
   // Perform the migration
   if ( needMigration && game.user.isGM ) {
@@ -116,7 +176,7 @@ Hooks.once("ready", function() {
   }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => create5eMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => macros.create5eMacro(data, slot));
 });
 
 /* -------------------------------------------- */
@@ -127,7 +187,7 @@ Hooks.on("canvasInit", function() {
 
   // Extend Diagonal Measurement
   canvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
-  SquareGrid.prototype.measureDistance = measureDistance;
+  SquareGrid.prototype.measureDistances = measureDistances;
 
   // Extend Token Resource Bars
   Token.prototype.getBarAttribute = getBarAttribute;
@@ -151,65 +211,10 @@ Hooks.on("renderChatMessage", (app, html, data) => {
 });
 Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
+Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
 
-
-/* -------------------------------------------- */
-/*  Hotbar Macros                               */
-/* -------------------------------------------- */
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
- * @returns {Promise}
- */
-async function create5eMacro(data, slot) {
-  if ( data.type !== "Item" ) return;
-  if (!( "data" in data ) ) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.data;
-
-  // Create the macro command
-  const command = `game.sw5e.rollItemMacro("${item.name}");`;
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
-  if ( !macro ) {
-    macro = await Macro.create({
-      name: item.name,
-      type: "script",
-      img: item.img,
-      command: command,
-      flags: {"sw5e.itemMacro": true}
-    });
-  }
-  game.user.assignHotbarMacro(macro, slot);
-  return false;
-}
-
-/* -------------------------------------------- */
-
-/**
- * Create a Macro from an Item drop.
- * Get an existing item macro if one exists, otherwise create a new one.
- * @param {string} itemName
- * @return {Promise}
- */
-function rollItemMacro(itemName) {
-  const speaker = ChatMessage.getSpeaker();
-  let actor;
-  if ( speaker.token ) actor = game.actors.tokens[speaker.token];
-  if ( !actor ) actor = game.actors.get(speaker.actor);
-
-  // Get matching items
-  const items = actor ? actor.items.filter(i => i.name === itemName) : [];
-  if ( items.length > 1 ) {
-    ui.notifications.warn(`Your controlled Actor ${actor.name} has more than one Item with name ${itemName}. The first matched item will be chosen.`);
-  } else if ( items.length === 0 ) {
-    return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
-  }
-  const item = items[0];
-
-  // Trigger the item roll
-  if ( item.data.type === "power" ) return actor.usePower(item);
-  return item.roll();
-}
+// TODO I should remove this
+Handlebars.registerHelper('getProperty', function (data, property) {
+  return getProperty(data, property);
+});

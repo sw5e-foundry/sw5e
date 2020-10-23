@@ -14,7 +14,7 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
+            <ul class="summary flexrow">
                 <li>
                     <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
@@ -119,13 +119,6 @@
                     </ul>
                 </div>
             </div>
-<<<<<<< Updated upstream
-
-            {{!-- Granted Abilities (TODO) --}}
-            <h3 class="form-header">{{ localize "SW5E.GrantedAbilities" }}</h3>
-            <p class="notification warning">This is still to-do</p>
-        </div>
-=======
 -->
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="archetypes">
@@ -133,6 +126,5 @@
             {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner editable=editable}} 
         
 		</div>
->>>>>>> Stashed changes
     </section>
 </form>

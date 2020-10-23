@@ -1,11 +1,12 @@
-import { ActorSheet5e } from "./base.js";
+import ActorSheet5e from "./base.js";
+import Actor5e from "../entity.js";
 
 /**
- * An Actor sheet for player character type actors in the D&D5E system.
+ * An Actor sheet for player character type actors in the SW5E system.
  * Extends the base ActorSheet5e class.
  * @type {ActorSheet5e}
  */
-export class ActorSheet5eCharacter extends ActorSheet5e {
+export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /**
    * Define default rendering options for the NPC sheet
@@ -14,22 +15,9 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "character"],
-      width: 672,
+      width: 720,
       height: 736
     });
-  }
-
-  /* -------------------------------------------- */
-  /*  Rendering                                   */
-  /* -------------------------------------------- */
-
-  /**
-   * Get the correct HTML template path to use for rendering this particular sheet
-   * @type {String}
-   */
-  get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/limited-sheet.html";
-    return "systems/sw5e/templates/actors/character-sheet.html";
   }
 
   /* -------------------------------------------- */
@@ -57,6 +45,7 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Experience Tracking
     sheetData["disableExperience"] = game.settings.get("sw5e", "disableExperienceTracking");
+    sheetData["classLabels"] = this.actor.itemTypes.class.map(c => c.name).join(", ");
 
     // Return data for rendering
     return sheetData;
@@ -80,17 +69,12 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       loot: { label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"} }
     };
 	  
-
     // Partition items by category
-<<<<<<< Updated upstream
-    let [items, powers, feats, classes, species] = data.items.reduce((arr, item) => {
-=======
     let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds] = data.items.reduce((arr, item) => {
->>>>>>> Stashed changes
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
-      item.isStack = item.data.quantity ? item.data.quantity > 1 : false;
+      item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
 
       // Item usage
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
@@ -106,23 +90,25 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
 	  else if ( item.type === "species" ) arr[4].push(item);
-<<<<<<< Updated upstream
-      else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
-      return arr;
-    }, [[], [], [], [], []]);
-=======
 	  else if ( item.type === "archetype" ) arr[5].push(item);
 	  else if ( item.type === "classfeature" ) arr[6].push(item);
 	  else if ( item.type === "background" ) arr[7].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
     }, [[], [], [], [], [], [], [], []]);
->>>>>>> Stashed changes
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
     powers = this._filterItems(powers, this._filters.powerbook);
     feats = this._filterItems(feats, this._filters.features);
+
+    // Organize items
+    for ( let i of items ) {
+      i.data.quantity = i.data.quantity || 0;
+      i.data.weight = i.data.weight || 0;
+      i.totalWeight = Math.round(i.data.quantity * i.data.weight * 10) / 10;
+      inventory[i.type].items.push(i);
+    }
 
     // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
     const powerbook = this._preparePowerbook(data, powers);
@@ -130,28 +116,13 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       return (s.data.level > 0) && (s.data.preparation.mode === "prepared") && s.data.preparation.prepared;
     }).length;
 
-    // Organize Inventory
-    let totalWeight = 0;
-    for ( let i of items ) {
-      i.data.quantity = i.data.quantity || 0;
-      i.data.weight = i.data.weight || 0;
-      i.totalWeight = Math.round(i.data.quantity * i.data.weight * 10) / 10;
-      inventory[i.type].items.push(i);
-      totalWeight += i.totalWeight;
-    }
-    data.data.attributes.encumbrance = this._computeEncumbrance(totalWeight, data);
-
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
-<<<<<<< Updated upstream
-	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
-=======
       classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true},
 	  archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
 	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
 	  background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true},
->>>>>>> Stashed changes
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };
@@ -161,14 +132,10 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
     }
     classes.sort((a, b) => b.levels - a.levels);
     features.classes.items = classes;
-<<<<<<< Updated upstream
-	features.species.items = species;
-=======
 	features.classfeatures.items = classfeatures;
 	features.archetype.items = archetypes;
 	features.species.items = species;
 	features.background.items = backgrounds;
->>>>>>> Stashed changes
 
     // Assign and return
     data.inventory = Object.values(inventory);
@@ -199,51 +166,6 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       item.toggleClass = isActive ? "active" : "";
       item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Equipped" : "SW5E.Unequipped");
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Compute the level and percentage of encumbrance for an Actor.
-   *
-   * Optionally include the weight of carried currency across all denominations by applying the standard rule
-   * from the PHB pg. 143
-   *
-   * @param {Number} totalWeight    The cumulative item weight from inventory items
-   * @param {Object} actorData      The data object for the Actor being rendered
-   * @return {Object}               An object describing the character's encumbrance level
-   * @private
-   */
-  _computeEncumbrance(totalWeight, actorData) {
-
-    // Encumbrance classes
-    let mod = {
-      tiny: 0.5,
-      sm: 1,
-      med: 1,
-      lg: 2,
-      huge: 4,
-      grg: 8
-    }[actorData.data.traits.size] || 1;
-
-    // Apply Powerful Build feat
-    if ( this.actor.getFlag("sw5e", "powerfulBuild") ) mod = Math.min(mod * 2, 8);
-
-    // Add Currency Weight
-    if ( game.settings.get("sw5e", "currencyWeight") ) {
-      const currency = actorData.data.currency;
-      const numCoins = Object.values(currency).reduce((val, denom) => val += denom, 0);
-      totalWeight += numCoins / CONFIG.SW5E.encumbrance.currencyPerWeight;
-    }
-
-    // Compute Encumbrance percentage
-    const enc = {
-      max: actorData.data.abilities.str.value * CONFIG.SW5E.encumbrance.strMultiplier * mod,
-      value: Math.round(totalWeight * 10) / 10,
-    };
-    enc.pct = Math.min(enc.value * 100 / enc.max, 99);
-    enc.encumbered = enc.pct > (2/3);
-    return enc;
   }
 
   /* -------------------------------------------- */
@@ -340,5 +262,41 @@ export class ActorSheet5eCharacter extends ActorSheet5e {
       content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
       yes: () => this.actor.convertCurrency()
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onDropItemCreate(itemData) {
+
+    // Upgrade the number of class levels a character has and add features
+    if ( itemData.type === "class" ) {
+      const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
+      const classWasAlreadyPresent = !!cls;
+
+      // Add new features for class level
+      if ( !classWasAlreadyPresent ) {
+        Actor5e.getClassFeatures(itemData).then(features => {
+          this.actor.createEmbeddedEntity("OwnedItem", features);
+        });
+      }
+
+      // If the actor already has the class, increment the level instead of creating a new item
+      // then add new features as long as level increases
+      if ( classWasAlreadyPresent ) {
+        const lvl = cls.data.data.levels;
+        const newLvl = Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level);
+        if ( !(lvl === newLvl) ) {
+          cls.update({"data.levels": newLvl});
+          itemData.data.levels = newLvl;
+          Actor5e.getClassFeatures(itemData).then(features => {
+            this.actor.createEmbeddedEntity("OwnedItem", features);
+          });
+        }
+        return
+      }
+    }
+
+    super._onDropItemCreate(itemData);
   }
 }

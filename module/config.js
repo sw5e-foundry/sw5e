@@ -1,15 +1,17 @@
-// Namespace D&D5e Configuration Values
+import {ClassFeatures} from "./classFeatures.js"
+
+// Namespace SW5e Configuration Values
 export const SW5E = {};
 
 // ASCII Artwork
-SW5E.ASCII = `_______________________________
+SW5E.ASCII = `__________________________________________
      _
     | |
  ___| |_ __ _ _ ____      ____ _ _ __ ___
 / __| __/ _\ | |__\ \ /\ / / _\ | |__/ __|
 \__ \ || (_) | |   \ V  V / (_) | |  \__ \
 |___/\__\__/_|_|    \_/\_/ \__/_|_|  |___/
-_______________________________`;
+__________________________________________`;
 
 
 /**
@@ -23,6 +25,15 @@ SW5E.abilities = {
   "int": "SW5E.AbilityInt",
   "wis": "SW5E.AbilityWis",
   "cha": "SW5E.AbilityCha"
+};
+
+SW5E.abilityAbbreviations = {
+  "str": "SW5E.AbilityStrAbbr",
+  "dex": "SW5E.AbilityDexAbbr",
+  "con": "SW5E.AbilityConAbbr",
+  "int": "SW5E.AbilityIntAbbr",
+  "wis": "SW5E.AbilityWisAbbr",
+  "cha": "SW5E.AbilityChaAbbr"
 };
 
 /* -------------------------------------------- */
@@ -46,7 +57,7 @@ SW5E.alignments = {
 
 SW5E.weaponProficiencies = {
   "sim": "SW5E.WeaponSimpleProficiency",
-  "bla": "SW5E.WeaponBlasterProficiency"
+  "mar": "SW5E.WeaponMartialProficiency"
 };
 
 SW5E.toolProficiencies = {
@@ -86,7 +97,7 @@ SW5E.toolProficiencies = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the various lengths of time which can occur in D&D5e
+ * This Object defines the various lengths of time which can occur in SW5e
  * @type {Object}
  */
 SW5E.timePeriods = {
@@ -119,8 +130,20 @@ SW5E.abilityActivationTypes = {
   "day": SW5E.timePeriods.day,
   "special": SW5E.timePeriods.spec,
   "legendary": "SW5E.LegAct",
-  "lair": "SW5E.LairAct"
+  "lair": "SW5E.LairAct",
+  "crew": "SW5E.VehicleCrewAction"
 };
+
+/* -------------------------------------------- */
+
+
+SW5E.abilityConsumptionTypes = {
+  "ammo": "SW5E.ConsumeAmmunition",
+  "attribute": "SW5E.ConsumeAttribute",
+  "material": "SW5E.ConsumeMaterial",
+  "charges": "SW5E.ConsumeCharges"
+};
+
 
 /* -------------------------------------------- */
 
@@ -196,7 +219,8 @@ SW5E.equipmentTypes = {
   "natural": "SW5E.EquipmentNatural",
   "shield": "SW5E.EquipmentShield",
   "clothing": "SW5E.EquipmentClothing",
-  "trinket": "SW5E.EquipmentTrinket"
+  "trinket": "SW5E.EquipmentTrinket",
+  "vehicle": "SW5E.EquipmentVehicle"
 };
 
 
@@ -228,9 +252,10 @@ SW5E.consumableTypes = {
   "medpac": "SW5E.ConsumableMedpac",
   "technology": "SW5E.ConsumableTechnology",
   "ammunition": "SW5E.ConsumableAmmunition",
-  "trinket": "SW5E.ConsumableTrinket"
+  "trinket": "SW5E.ConsumableTrinket",
+  "force": "SW5E.ConsumableForce",
+  "tech": "SW5E.ConsumableTech"
 };
-
 
 /* -------------------------------------------- */
 
@@ -258,18 +283,22 @@ SW5E.damageTypes = {
   "necrotic": "SW5E.DamageNecrotic",
   "poison": "SW5E.DamagePoison",
   "psychic": "SW5E.DamagePsychic",
-  "Sonic": "SW5E.DamageSonic"
+  "sonic": "SW5E.DamageSonic"
 };
+
+// Damage Resistance Types
+SW5E.damageResistanceTypes = duplicate(SW5E.damageTypes);
 
 /* -------------------------------------------- */
 
 // armor Types
-SW5E.armorpropertiesTypes = {
+SW5E.armorPropertiesTypes = {
 "Absorptive": "SW5E.ArmorProperAbsorptive",
 "Agile": "SW5E.ArmorProperAgile",
 "Anchor": "SW5E.ArmorProperAnchor",
 "Avoidant": "SW5E.ArmorProperAvoidant",
 "Barbed": "SW5E.ArmorProperBarbed",
+"Bulky": "SW5E.ArmorProperBulky",
 "Charging": "SW5E.ArmorProperCharging",
 "Concealing": "SW5E.ArmorProperConcealing",
 "Cumbersome": "SW5E.ArmorProperCumbersome",
@@ -282,6 +311,7 @@ SW5E.armorpropertiesTypes = {
 "Lightweight": "SW5E.ArmorProperLightweight",
 "Magnetic": "SW5E.ArmorProperMagnetic",
 "Obscured": "SW5E.ArmorProperObscured",
+"Obtrusive": "SW5E.ArmorProperObtrusive",
 "Powered": "SW5E.ArmorProperPowered",
 "Reactive": "SW5E.ArmorProperReactive",
 "Regulated": "SW5E.ArmorProperRegulated",
@@ -290,6 +320,7 @@ SW5E.armorpropertiesTypes = {
 "Rigid": "SW5E.ArmorProperRigid",
 "Silent": "SW5E.ArmorProperSilent",
 "Spiked": "SW5E.ArmorProperSpiked",
+"Strength": "SW5E.ArmorProperStrength",
 "Steadfast": "SW5E.ArmorProperSteadfast",
 "Versatile": "SW5E.ArmorProperVersatile"
 };
@@ -315,13 +346,14 @@ SW5E.distanceUnits = {
  */
 SW5E.encumbrance = {
   currencyPerWeight: 50,
-  strMultiplier: 15
+  strMultiplier: 15,
+  vehicleWeightMultiplier: 2000 // 2000 lbs in a ton
 };
 
 /* -------------------------------------------- */
 
 /**
- * This Object defines the types of single or area targets which can be applied in D&D5e
+ * This Object defines the types of single or area targets which can be applied in SW5e
  * @type {Object}
  */
 SW5E.targetTypes = {
@@ -341,6 +373,7 @@ SW5E.targetTypes = {
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
   "wall": "SW5E.TargetWall",
+  "weapon": "SW5E.TargetWeapon"   
 };
 
 
@@ -377,10 +410,10 @@ SW5E.healingTypes = {
 
 
 /**
- * Enumerate the denominations of hit dice which can apply to classes in the D&D5E system
+ * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
  * @type {Array.<string>}
  */
-SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
+SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
 
 
 /* -------------------------------------------- */
@@ -400,7 +433,7 @@ SW5E.senses = {
 /* -------------------------------------------- */
 
 /**
- * The set of skill which can be trained in D&D5e
+ * The set of skill which can be trained in SW5e
  * @type {Object}
  */
 SW5E.skills = {
@@ -421,7 +454,7 @@ SW5E.skills = {
   "slt": "SW5E.SkillSlt",
   "ste": "SW5E.SkillSte",
   "sur": "SW5E.SkillSur",
-  "tec": "SW5E.SkillTec",
+  "tec": "SW5E.SkillTec"
 };
 
 
@@ -434,7 +467,7 @@ SW5E.powerPreparationModes = {
   "prepared": "SW5E.PowerPrepPrepared"
 };
 
-SW5E.powerUpcastModes = ["always"];
+SW5E.powerUpcastModes = ["always", "pact", "prepared"];
 
 
 SW5E.powerProgression = {
@@ -457,7 +490,11 @@ SW5E.powerScalingModes = {
 
 /* -------------------------------------------- */
 
-// Weapon Types
+
+/**
+ * Define the set of types which a weapon item can take
+ * @type {Object}
+ */
 SW5E.weaponTypes = {
   "simpleVW": "SW5E.WeaponSimpleVW",
   "simpleB": "SW5E.WeaponSimpleB",
@@ -467,7 +504,8 @@ SW5E.weaponTypes = {
   "martialLW": "SW5E.WeaponMartialLW",
   "natural": "SW5E.WeaponNatural",
   "improv": "SW5E.WeaponImprov",
-  "ammo": "SW5E.WeaponAmmo"
+  "ammo": "SW5E.WeaponAmmo",
+  "siege": "SW5E.WeaponSiege"
 };
 
 
@@ -479,28 +517,32 @@ SW5E.weaponTypes = {
  */
 SW5E.weaponProperties = {
   "amm": "SW5E.WeaponPropertiesAmm",
+  "aut": "SW5E.WeaponPropertiesAut",
   "bur": "SW5E.WeaponPropertiesBur",
   "def": "SW5E.WeaponPropertiesDef",
   "dex": "SW5E.WeaponPropertiesDex",
-  "drm": "SW5E.WeaponPropertiesBur",
+  "dir": "SW5E.WeaponPropertiesDir",
+  "drm": "SW5E.WeaponPropertiesDrm",
   "dgd": "SW5E.WeaponPropertiesDgd",
   "dis": "SW5E.WeaponPropertiesDis",
   "dpt": "SW5E.WeaponPropertiesDpt",
   "dou": "SW5E.WeaponPropertiesDou",
-  "hvy": "SW5E.WeaponPropertiesHvy",
-  "hid": "SW5E.WeaponPropertiesHid",
   "fin": "SW5E.WeaponPropertiesFin",
   "fix": "SW5E.WeaponPropertiesFix",
   "foc": "SW5E.WeaponPropertiesFoc",
+  "hvy": "SW5E.WeaponPropertiesHvy",
+  "hid": "SW5E.WeaponPropertiesHid",
   "ken": "SW5E.WeaponPropertiesKen",
   "lgt": "SW5E.WeaponPropertiesLgt",
   "lum": "SW5E.WeaponPropertiesLum",
+  "mig": "SW5E.WeaponPropertiesMig",
   "pic": "SW5E.WeaponPropertiesPic",
   "rap": "SW5E.WeaponPropertiesRap",
   "rch": "SW5E.WeaponPropertiesRch",
   "rel": "SW5E.WeaponPropertiesRel",
   "ret": "SW5E.WeaponPropertiesRet",
   "shk": "SW5E.WeaponPropertiesShk",
+  "sil": "SW5E.WeaponPropertiesSil",
   "spc": "SW5E.WeaponPropertiesSpc",
   "str": "SW5E.WeaponPropertiesStr",
   "thr": "SW5E.WeaponPropertiesThr",
@@ -525,7 +567,6 @@ SW5E.powerSchools = {
   "tec": "SW5E.SchoolTec",
   "enh": "SW5E.SchoolEnh"
 };
-
 
 // Power Levels
 SW5E.powerLevels = {
@@ -603,12 +644,27 @@ SW5E.proficiencyLevels = {
 
 /* -------------------------------------------- */
 
+/**
+ * The amount of cover provided by an object.
+ * In cases where multiple pieces of cover are
+ * in play, we take the highest value.
+ */
+SW5E.cover = {
+  0: 'SW5E.None',
+  .5: 'SW5E.CoverHalf',
+  .75: 'SW5E.CoverThreeQuarters',
+  1: 'SW5E.CoverTotal'
+};
+
+/* -------------------------------------------- */
+
 
 // Condition Types
 SW5E.conditionTypes = {
   "blinded": "SW5E.ConBlinded",
   "charmed": "SW5E.ConCharmed",
   "deafened": "SW5E.ConDeafened",
+  "diseased": "SW5E.ConDiseased",
   "exhaustion": "SW5E.ConExhaustion",
   "frightened": "SW5E.ConFrightened",
   "grappled": "SW5E.ConGrappled",
@@ -620,6 +676,7 @@ SW5E.conditionTypes = {
   "prone": "SW5E.ConProne",
   "restrained": "SW5E.ConRestrained",
   "shocked": "SW5E.ConShocked",
+  "slowed": "SW5E.ConSlowed",
   "stunned": "SW5E.ConStunned",
   "unconscious": "SW5E.ConUnconscious"
 };
@@ -636,16 +693,12 @@ SW5E.languages = {
   "balosur": "SW5E.LanguagesBalosur",
   "barabel": "SW5E.LanguagesBarabel",
   "basic": "SW5E.LanguagesBasic",
-<<<<<<< Updated upstream
-"besalisk": "SW5E.LanguagesBesalisk",									   
-=======
   "besalisk": "SW5E.LanguagesBesalisk",
->>>>>>> Stashed changes
   "binary": "SW5E.LanguagesBinary",
   "bith": "SW5E.LanguagesBith",
   "bocce": "SW5E.LanguagesBocce",
   "bothese": "SW5E.LanguagesBothese",
-  "catharese": "SW5E.LanguagesCartharese",
+  "catharese": "SW5E.LanguagesCatharese",
   "cerean": "SW5E.LanguagesCerean",
   "chadra-fan": "SW5E.LanguagesChadra-Fan",
   "chagri": "SW5E.LanguagesChagri",
@@ -749,6 +802,9 @@ SW5E.CR_EXP_LEVELS = [
   20000, 22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
 ];
 
+// Character Features Per Class And Level
+SW5E.classFeatures = ClassFeatures;
+
 // Configure Optional Character Flags
 SW5E.characterFlags = {
   "detailOriented": {
@@ -776,8 +832,8 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "powerfulBuild": {
-    name: "Powerful Build",
-    hint: "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+    name: "SW5E.FlagsPowerfulBuild",
+    hint: "SW5E.FlagsPowerfulBuildHint",
     section: "Racial Traits",
     type: Boolean
   },
@@ -806,42 +862,53 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "initiativeAdv": {
-    name: "Advantage on Initiative",
-    hint: "Provided by feats or magical items.",
+    name: "SW5E.FlagsInitiativeAdv",
+    hint: "SW5E.FlagsInitiativeAdvHint",
     section: "Feats",
     type: Boolean
   },
   "initiativeAlert": {
-    name: "Alert Feat",
-    hint: "Provides +5 to Initiative.",
+    name: "SW5E.FlagsAlert",
+    hint: "SW5E.FlagsAlertHint",
     section: "Feats",
     type: Boolean
   },
   "jackOfAllTrades": {
-    name: "Jack of All Trades",
-    hint: "Half-Proficiency to Ability Checks in which you are not already Proficient.",
+    name: "SW5E.FlagsJOAT",
+    hint: "SW5E.FlagsJOATHint",
     section: "Feats",
     type: Boolean
   },
   "observantFeat": {
-    name: "Observant Feat",
-    hint: "Provides a +5 to passive Perception and Investigation.",
+    name: "SW5E.FlagsObservant",
+    hint: "SW5E.FlagsObservantHint",
     skills: ['prc','inv'],
     section: "Feats",
     type: Boolean
   },
-  "remarkableAthlete": {
-    name: "Remarkable Athlete.",
-    hint: "Half-Proficiency (rounded-up) to physical Ability Checks and Initiative.",
+  "reliableTalent": {
+    name: "SW5E.FlagsReliableTalent",
+    hint: "SW5E.FlagsReliableTalentHint",
+    section: "Feats",
+    type: Boolean
+  },
+    "remarkableAthlete": {
+    name: "SW5E.FlagsRemarkableAthlete",
+    hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],
     section: "Feats",
     type: Boolean
   },
   "weaponCriticalThreshold": {
-    name: "Critical Hit Threshold",
-    hint: "Allow for expanded critical range; for example Improved or Superior Critical",
+    name: "SW5E.FlagsCritThreshold",
+    hint: "SW5E.FlagsCritThresholdHint",
     section: "Feats",
     type: Number,
     placeholder: 20
   }
 };
+
+// Configure allowed status flags
+SW5E.allowedActorFlags = [
+  "isPolymorphed", "originalActor"
+].concat(Object.keys(SW5E.characterFlags));

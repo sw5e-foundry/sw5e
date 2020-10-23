@@ -2,18 +2,12 @@
   "name": "sw5e",
   "title": "Star Wars 5th Edition",
   "description": "A comprehensive game system for running games of Star wars 5th Edition in the Foundry VTT environment.",
-  "version": 0.89,
-  "author": "Kakeman89",
+  "version": 0.98,
+  "author": "Dev Team",
   "scripts": [],
   "esmodules": ["sw5e.js"],
   "styles": ["sw5e.css"],
   "packs": [
-    {
-      "name": "weapons",
-      "label": "Weapons",
-      "path": "./packs/packs/weapons.db",
-      "entity": "Item"
-    },
     {
       "name": "adventuringgear",
       "label": "Adventuring Gear",
@@ -39,8 +33,6 @@
 	  "entity": "Item"
 	},
     {
-<<<<<<< Updated upstream
-=======
       "name": "classes",
       "label": "Classes",
       "path": "./packs/packs/classes.db",
@@ -53,15 +45,12 @@
 	  "entity": "Item"
 	},    	
     {
->>>>>>> Stashed changes
       "name": "enhanceditems",
       "label": "Enhanced Items",
       "path": "./packs/packs/enhanceditems.db",
       "entity": "Item"
     },
     {
-<<<<<<< Updated upstream
-=======
       "name": "feats",
       "label": "Feats",
       "path": "./packs/packs/feats.db",
@@ -74,19 +63,12 @@
       "entity": "Item"
     },    
     {
->>>>>>> Stashed changes
       "name": "gamingset",
       "label": "Gaming Sets",
       "path": "./packs/packs/gamingset.db",
       "entity": "Item"
     },
     {
-<<<<<<< Updated upstream
-      "name": "classes",
-      "label": "Classes",
-      "path": "./packs/packs/classes.db",
-      "entity": "Item"
-=======
       "name": "journal",
       "label": "Journal Entries",
       "path": "./packs/packs/journal.db",
@@ -97,7 +79,6 @@
       "label": "Monsters",
       "path": "./packs/packs/monsters.db",
       "entity": "Actor"
->>>>>>> Stashed changes
     },
     {
       "name": "species",
@@ -111,12 +92,6 @@
       "path": "./packs/packs/speciestraits.db",
       "entity": "Item"
     },
-<<<<<<< Updated upstream
-    {
-      "name": "forcepowers",
-      "label": "Force Powers",
-      "path": "./packs/packs/forcepowers.db",
-=======
 	{
 	  "name": "tables",
 	  "label": "Tables",
@@ -133,27 +108,8 @@
       "name": "weapons",
       "label": "Weapons",
       "path": "./packs/packs/weapons.db",
->>>>>>> Stashed changes
       "entity": "Item"
-    },
-    {
-      "name": "monsters",
-      "label": "Monsters",
-      "path": "./packs/packs/monsters.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "journal",
-      "label": "Journal Entries",
-      "path": "./packs/packs/journal.db",
-      "entity": "JournalEntry"
-    },
-	{
-	  "name": "tables",
-	  "label": "Tables",
-	  "path": "./packs/packs/tables.db",
-	  "entity": "RollTable"
-	}
+    }
   ],
   "languages": [
     {
@@ -163,13 +119,12 @@
     }
   ],
   "socket": true,
-  "initiative": "1d20 + @abilities.dex.mod + @attributes.init.value + (@abilities.dex.value / 100)",
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
   "secondaryTokenAttribute": null,
-  "minimumCoreVersion": "0.5.2",
-  "compatibleCoreVersion": "0.6.8",
+  "minimumCoreVersion": "0.5.6",
+  "compatibleCoreVersion": "0.7.5",
   "url": "https://github.com/unrealkakeman89/sw5e",
   "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
   "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"

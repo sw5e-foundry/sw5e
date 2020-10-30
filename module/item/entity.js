@@ -182,16 +182,24 @@ export default class Item5e extends Item {
 
 	// Species Items
 	else if ( itemData.type === "species" ) {
-	  //  labels.species = C.species[data.species];
-  }
-  // Archetype Items
-  else if ( itemData.type === "archetype" ) {
+	//  labels.species = C.species[data.species];
+	}
+	// Archetype Items
+	else if ( itemData.type === "archetype" ) {
     //  labels.archetype = C.archetype[data.archetype];
-  }
-  // Class Feature Items
-  else if ( itemData.type === "classfeature" ) {
-
-  }
+    }
+	// Background Items
+	else if ( itemData.type === "background" ) {
+		
+	}
+	// Class Feature Items
+    else if ( itemData.type === "classfeature" ) {
+	
+	}
+	// Lightsaber Form Items
+	else if ( itemData.type === "lightsaberform" ) {
+	
+	}
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {

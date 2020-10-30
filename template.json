@@ -383,13 +383,66 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "archetype", "classfeature", "backpack"],
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack", "archetype", "classfeature", "background", "lightsaberform"],
     "templates": {
       "archetypeDescription": {
         "className": "",
 	    "description": "",
         "source": ""
       },
+	  "backgroundDescription": {
+	    "flavorText": {
+		  "value": ""
+		},
+	    "flavorName": {
+          "value": ""
+        },
+        "flavorDescription": {
+          "value": ""
+        },
+        "flavorOptions": {
+          "value": ""
+        },
+        "skillProficiencies": {
+          "value": ""
+        },
+        "toolProficiencies": {
+          "value": ""
+        },
+        "languages": {
+          "value": ""
+        },
+        "equipment": {
+          "value": ""
+        },
+        "suggestedCharacteristics": {
+          "value": ""
+        },
+        "featureName": {
+          "value": ""
+        },
+        "featureText": {
+          "value": ""
+        },
+        "featOptions": {
+          "value": ""
+        },
+        "personalityTraitOptions": {
+          "value": ""
+        },
+        "idealOptions": {
+          "value": ""
+        },
+        "flawOptions": {
+          "value": ""
+        },
+        "bondOptions": {
+          "value": ""
+        },
+        "source": {
+          "value": ""
+        }
+      },		
       "itemDescription": {
         "description": {
           "value": "",
@@ -398,15 +451,32 @@
         },
         "source": ""
       },
-      "speciesDescription": {
-        "data": "$characteristics-table",
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-       "traits": ""
-      },
+	  "classDescription": {
+		"className": "",
+	    "description": {
+		  "value": ""
+		},
+		"classFeatures": {
+		  "value": ""
+		}
+	  },
+      "lightsaberformDescription": {
+	    "description":{
+		  "value": ""
+		  },
+		"source": {
+		  "value": ""
+		  }
+      },	  
+	  "speciesDescription": {
+		"data": "$characteristics-table",
+	    "description": {
+		  "value": "",
+		  "chat": "",
+		  "unidentified": ""
+		},
+		"traits": ""
+	  },
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
@@ -477,6 +547,14 @@
         }
       }
     },
+	"archetype": {
+	  "templates": ["archetypeDescription"],
+	  "className": "",
+	  "description": ""
+	},
+	"background": {
+	  "templates": ["backgroundDescription"]
+	},
     "backpack": {
       "templates": ["itemDescription", "physicalItem"],
       "capacity": {
@@ -489,7 +567,8 @@
       }
     },
     "class": {
-      "templates": ["itemDescription"],
+      "templates": ["classDescription"],
+	  "className": "",
       "levels": 1,
       "subclass": "",
       "hitDice": "d6",
@@ -501,15 +580,13 @@
       },
       "powercasting": "none"
     },
-    "archetype": {
-      "templates": ["archetypeDescription"],
-      "className": "",
-      "description": ""
-    },
-    "classfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "className": ""
-    },
+	"classfeature": {
+	  "templates": ["itemDescription", "activatedEffect", "action"],
+	  "className": ""
+	},
+	"lightsaberform": {
+	  "templates": ["lightsaberformDescription"]
+	},
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",
@@ -545,7 +622,7 @@
     },
     "species": {
       "templates": ["speciesDescription"]
-	  },
+	},
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",

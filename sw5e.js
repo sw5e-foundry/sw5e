@@ -104,6 +104,7 @@ Hooks.once("init", function() {
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("sw5e", ItemSheet5e, {
+	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background'],
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });

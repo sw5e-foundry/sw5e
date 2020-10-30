@@ -177,15 +177,23 @@ export default class ItemSheet5e extends ItemSheet {
     }
 	
     else if ( item.type === "species" ) {
-
+		
     }
     else if ( item.type === "archetype" ) {
 		
     }
 	
-  	else if ( item.type === "classfeature" ) {
+	else if ( item.type === "background" ) {
 	
-	  }
+	}
+	
+	else if ( item.type === "classfeature" ) {
+	
+	}
+	
+	else if ( item.type === "lightsaberform" ) {
+		
+	}
 	
     // Action type
     if ( item.data.actionType ) {

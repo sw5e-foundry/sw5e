@@ -683,6 +683,7 @@ SW5E.conditionTypes = {
 
 // Languages
 SW5E.languages = {
+  "abyssin": "SW5E.LanguagesAbyssin",	
   "aleena": "SW5E.LanguagesAleena",
   "antarian": "SW5E.LanguagesAntarian",  
   "anzellan": "SW5E.LanguagesAnzellan",

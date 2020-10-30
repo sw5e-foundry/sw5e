@@ -191,6 +191,10 @@ export default class ItemSheet5e extends ItemSheet {
 	
 	}
 	
+	else if ( item.type === "lightsaberform" ) {
+		
+	}
+	
     // Action type
     if ( item.data.actionType ) {
       props.push(CONFIG.SW5E.itemActionTypes[item.data.actionType]);

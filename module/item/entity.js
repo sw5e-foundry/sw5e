@@ -196,6 +196,10 @@ export default class Item5e extends Item {
     else if ( itemData.type === "classfeature" ) {
 	
 	}
+	// Lightsaber Form Items
+	else if ( itemData.type === "lightsaberform" ) {
+	
+	}
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {

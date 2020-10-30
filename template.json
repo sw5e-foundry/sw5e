@@ -383,7 +383,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack", "archetype", "classfeature", "background"],
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack", "archetype", "classfeature", "background", "lightsaberform"],
     "templates": {
       "archetypeDescription": {
         "className": "",
@@ -459,7 +459,15 @@
 		"classFeatures": {
 		  "value": ""
 		}
-	  },	  
+	  },
+      "lightsaberformDescription": {
+	    "description":{
+		  "value": ""
+		  },
+		"source": {
+		  "value": ""
+		  }
+      },	  
 	  "speciesDescription": {
 		"data": "$characteristics-table",
 	    "description": {
@@ -575,6 +583,9 @@
 	"classfeature": {
 	  "templates": ["itemDescription", "activatedEffect", "action"],
 	  "className": ""
+	},
+	"lightsaberform": {
+	  "templates": ["lightsaberformDescription"]
 	},
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],

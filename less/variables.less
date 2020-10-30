@@ -7,13 +7,41 @@
 /*  Fonts                                    */
 /* ----------------------------------------- */
 
+/* russo-one-regular - latin */
 @font-face {
-  font-family: "Nodesto";
-  src: url("fonts/NodestoCapsCondensed.otf");
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/RussoOne.ttf');
 }
-.nodesto {
-  font-family: "Nodesto", "Signika", "Palatino Linotype", serif;
+.russoOne(@font-size: 20px) {
+  font-family: 'Russo One';
+  font-size: @font-size;
+  font-weight: 400;
+}
+/* bungee-inline-regular - latin */
+@font-face {
+  font-family: 'Bungee Inline';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/BungeeInline.ttf');
+}
+.bungeeInline {
+  font-family: 'Bungee Inline';
   font-size: 20px;
+  font-weight: 400;
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/OpenSans-Regular.ttf');
+}
+.openSans {
+  font-family: 'Open Sans';
+  font-size: 20px;
+  font-weight: 400;
 }
 
 /* ----------------------------------------- */
@@ -27,7 +55,23 @@
 @colorOlive: #4b4a44;
 @colorCrimson: #44191A;
 @borderGroove: 2px groove #eeede0;
-@sheetBackground: url("ui/parchment.jpg") repeat;
+//@sheetBackground: url("ui/parchment.jpg") repeat;
+
+
+//SW5e Colors
+@colorBlack: #1C1C1C;
+@colorDarkGray: #363636;
+@colorGray: #4f4f4f;
+@colorLightGray: #828282;
+@colorPaleGray: #D6D6D6;
+@colorRed: #c40f0f; 
+@colorPaleRed: #FBF4F4;
+@colorLightRed: #F6E1E1;
+@colorBlue: #0d99cc;
+@colorLightBlue: #7ed6f7;
+@colorPaleBlue: #afc6d6;
+
+@sheetBackground: linear-gradient(90deg, @colorPaleBlue 0%, @colorPaleGray 30%, @colorPaleGray 70%, @colorPaleBlue); //url("ui/parchment.webp") repeat;
 
 /* ----------------------------------------- */
 /*  Flexbox                                  */

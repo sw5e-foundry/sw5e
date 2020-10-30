@@ -14,7 +14,7 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
+            <ul class="summary flexrow">
                 <li>
                     {{lookup config.consumableTypes data.consumableType }}
                 </li>
@@ -73,14 +73,8 @@
 
             {{!-- Item Activation Template --}}
             {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
-
-            {{!-- Consumable Usage --}}
             {{#if data.activation.type}}
             <div class="form-group">
-                <label>{{ localize "SW5E.ItemConsumableUsage" }}</label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.uses.autoUse" {{checked data.uses.autoUse}}/> {{ localize "SW5E.ItemConsumeOnUse" }}
-                </label>
                 <label class="checkbox">
                     <input type="checkbox" name="data.uses.autoDestroy" {{checked data.uses.autoDestroy}}/> {{ localize "SW5E.ItemDestroyEmpty" }}
                 </label>

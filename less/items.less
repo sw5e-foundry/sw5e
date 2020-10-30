@@ -88,7 +88,9 @@
   .details {
 
     // Item Sheet form fields
-    input[type="text"], select {
+    input[type="text"],
+    input[type="number"],
+    select {
       height: 24px;
       border: 1px solid @colorTan;
       background: rgba(0, 0, 0, 0.05);
@@ -192,87 +194,26 @@
     text-align: right;
     color: @colorTan;
   }
-  
-  h4.armorproperties-header {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    line-height: 24px;
-    color: @colorOlive;
-  }
-
-  .armorproperties-parts {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .armorproperties-part {
-      flex: 0 0 100%;
-      padding: 0;
-      input {
-        flex: 3;
-      }
-      select {
-        margin-left: 5px;
-        flex: 1;
-      }
-    }
-  }
-
-  .armorproperties-control {
-    width: 18px;
-    flex: 0 0 18px;
-    line-height: 24px;
-    float: right;
-    text-align: right;
-    color: @colorTan;
-  }
-  
-  h4.weaponproperties-header {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    line-height: 24px;
-    color: @colorOlive;
-  }
-
-  .weaponproperties-parts {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .weaponproperties-part {
-      flex: 0 0 100%;
-      padding: 0;
-      input {
-        flex: 3;
-      }
-      select {
-        margin-left: 5px;
-        flex: 1;
-      }
-    }
-  }
-
-  .weaponproperties-control {
-    width: 18px;
-    flex: 0 0 18px;
-    line-height: 24px;
-    float: right;
-    text-align: right;
-    color: @colorTan;
-  }
-
-  .recharge {
+ 
+  .recharge.form-group {
     span {
-      flex: 0 0 80px;
+      text-align: right;
+      padding-right: 3px;
+    }
+    input[type="text"] {
+      flex: 0 0 32px;
+      text-align: center;
     }
     label.checkbox {
-      flex: 0 0 80px;
-      text-align: right;
+      flex: none;
+      input {
+        width: 16px;
+        height: 16px;
+        top: 4px;
+      }
     }
   }
-
+ 
   /* ----------------------------------------- */
   /*  Item Actions                             */
   /* ----------------------------------------- */

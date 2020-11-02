@@ -5,13 +5,18 @@ const less = require('gulp-less');
 /*  Compile LESS
 /* ----------------------------------------- */
 
-const SW5E_LESS = ["less/*.less"];
+const SW5E_LESS = ["less/**/*.less"];
 function compileLESS() {
-  return gulp.src("less/sw5e.less")
+  return gulp.src("less/original/sw5e.less")
     .pipe(less())
     .pipe(gulp.dest("./"))
 }
-const css = gulp.series(compileLESS);
+function compileMORE() {
+  return gulp.src("less/update/sw5e-update.less")
+    .pipe(less())
+    .pipe(gulp.dest("./"))
+}
+const css = gulp.series(compileLESS, compileMORE);
 
 /* ----------------------------------------- */
 /*  Watch Updates

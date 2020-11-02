@@ -22,9 +22,10 @@ import Item5e from "./module/item/entity.js";
 import AbilityTemplate from "./module/pixi/ability-template.js";
 import AbilityUseDialog from "./module/apps/ability-use-dialog.js";
 import ActorSheetFlags from "./module/apps/actor-flags.js";
-import ActorSheet5eCharacter from "./module/actor/sheets/character.js";
-import ActorSheet5eNPC from "./module/actor/sheets/npc.js";
-import ActorSheet5eVehicle from "./module/actor/sheets/vehicle.js";
+import ActorSheet5eCharacter from "./module/actor/sheets/oldSheets/character.js";
+import ActorSheet5eNPC from "./module/actor/sheets/oldSheets/npc.js";
+import ActorSheet5eVehicle from "./module/actor/sheets/oldSheets/vehicle.js";
+import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
@@ -48,6 +49,7 @@ Hooks.once("init", function() {
       AbilityUseDialog,
       ActorSheetFlags,
       ActorSheet5eCharacter,
+      ActorSheet5eCharacterNew,
       ActorSheet5eNPC,
       ActorSheet5eVehicle,
       ItemSheet5e,
@@ -87,10 +89,15 @@ Hooks.once("init", function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("sw5e", ActorSheet5eCharacter, {
+  Actors.registerSheet("sw5e", ActorSheet5eCharacterNew, {
     types: ["character"],
     makeDefault: true,
     label: "SW5E.SheetClassCharacter"
+   });
+  Actors.registerSheet("sw5e", ActorSheet5eCharacter, {
+    types: ["character"],
+    makeDefault: false,
+    label: "SW5E.SheetClassCharacterOld"
    });
   Actors.registerSheet("sw5e", ActorSheet5eNPC, {
     types: ["npc"],
@@ -213,8 +220,33 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
-
+Hooks.on("renderSceneDirectory", (app, html, data)=> {
+  //console.log(html.find("header.folder-header"));
+  setFolderBackground(html);
+});
+Hooks.on("renderActorDirectory", (app, html, data)=> {
+  setFolderBackground(html);
+});
+Hooks.on("renderItemDirectory",  (app, html, data)=> {
+  setFolderBackground(html);
+});
+Hooks.on("renderJournalDirectory",  (app, html, data)=> {
+  setFolderBackground(html);
+});
+Hooks.on("renderRollTableDirectory",  (app, html, data)=> {
+  setFolderBackground(html);
+});
 // TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);
 });
+
+
+function setFolderBackground(html) {
+  html.find("header.folder-header").each(function() {
+    let bgColor = $(this).css("background-color");
+    if(bgColor == undefined)
+      bgColor = "rgb(255,255,255)";
+    $(this).closest('li').css("background-color", bgColor);
+   })
+}

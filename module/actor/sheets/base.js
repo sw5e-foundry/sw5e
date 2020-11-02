@@ -43,8 +43,8 @@ export default class ActorSheet5e extends ActorSheet {
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/limited-sheet.html";
-    return `systems/sw5e/templates/actors/${this.actor.data.type}-sheet.html`;
+    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/oldActor/limited-sheet.html";
+    return `systems/sw5e/templates/actors/oldActor/${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */

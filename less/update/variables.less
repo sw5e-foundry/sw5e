@@ -1,0 +1,110 @@
+
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+
+/* russo-one-regular - latin */
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/RussoOne.ttf');
+}
+.russoOne(@size: 20px) {
+  font-family: 'Russo One';
+  font-size: @size;
+  font-weight: 400;
+}
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./fonts/OpenSans-Italic.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('./fonts/OpenSans-BoldItalic.ttf');
+}
+.openSans(@size: 13px, @weight: 400) {
+  font-family: 'Open Sans';
+  font-size: @size;
+  font-weight: @weight;
+}
+.fontAwesome() {
+  font-family: "Font Awesome 5 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-weight: 900;
+}
+
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+
+@colorDark: #191813;
+@colorFaint: #c9c7b8;
+@colorBeige: #b5b3a4;
+@colorTan: #7a7971;
+@colorOlive: #4b4a44;
+@colorCrimson: #44191A;
+@borderGroove: 2px groove #eeede0;
+//@sheetBackground: url("ui/parchment.jpg") repeat;
+
+
+//SW5e Colors
+@colorBlack: #1C1C1C;
+@colorDarkGray: #363636;
+@colorGray: #4f4f4f;
+@colorLightGray: #828282;
+@colorPaleGray: #D6D6D6;
+@colorRed: #c40f0f; 
+@colorPaleRed: #FBF4F4;
+@colorLightRed: #F6E1E1;
+@colorBlue: #0d99cc;
+@colorLightBlue: #7ed6f7;
+@colorPaleBlue: #afc6d6;
+@colorGreen: #0dce0d;
+@colorPaleGreen: #bcdcbe;
+
+@sheetBackground: linear-gradient(90deg, @colorPaleBlue 0%, @colorPaleGray 30%, @colorPaleGray 70%, @colorPaleBlue);
+
+
+.dropShadow1(){
+  box-shadow:  0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.dropShadow2() {
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+}
+.dropShadow3() {
+  box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+}

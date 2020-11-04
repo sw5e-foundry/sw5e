@@ -11,12 +11,22 @@ function compileLESS() {
     .pipe(less())
     .pipe(gulp.dest("./"))
 }
-function compileMORE() {
-  return gulp.src("less/update/sw5e-update.less")
+function compileGlobalLess() {
+  return gulp.src("less/update/sw5e-global.less")
     .pipe(less())
     .pipe(gulp.dest("./"))
 }
-const css = gulp.series(compileLESS, compileMORE);
+function compileLightLess() {
+  return gulp.src("less/update/sw5e-light.less")
+    .pipe(less())
+    .pipe(gulp.dest("./"))
+}
+function compileDarkLess() {
+  return gulp.src("less/update/sw5e-dark.less")
+    .pipe(less())
+    .pipe(gulp.dest("./"))
+}
+const css = gulp.series(compileLESS, compileGlobalLess, compileLightLess, compileDarkLess);
 
 /* ----------------------------------------- */
 /*  Watch Updates

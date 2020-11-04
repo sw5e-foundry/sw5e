@@ -1,14 +1,10 @@
 input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea {
-  border: 1px solid  @colorLightGray;
   border-radius: 4px;
-  color: @colorBlack;
   transition: all 0.3s;
   &:hover {
-    border-color: @colorGray;
     box-shadow: none;
   }
   &:focus {
-    border-color: @colorRed;
     box-shadow: none;
   }
 }
@@ -16,7 +12,6 @@ input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
   width: 100%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
-
 }
 
 input[type=range]::-webkit-slider-thumb{
@@ -91,10 +86,8 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 
-button {
+button, input[type="button"], input[type="submit"], input[type="reset"] {
   .openSans(13px, 700);
-  background: @colorRed;
-  color: white;
   text-align: center;
   border: none;
   border-radius: 4px;
@@ -102,6 +95,11 @@ button {
   transition: all 0.3s;
   &:hover, &:focus {
     box-shadow: none;
-    background: lighten(@colorRed, 5);
   }
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  
+  }
+  
 }

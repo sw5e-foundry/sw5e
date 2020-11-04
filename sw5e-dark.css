@@ -1,0 +1,365 @@
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+body.dark-theme {
+  /*-----------
+** Chat Tab
+-----------*/
+  /*-----------
+** Combat Tab
+-----------*/
+  /*
+** Folders
+*/
+}
+body.dark-theme .app {
+  background: linear-gradient(90deg, #626262 0, #4d4d4d 30%, #4d4d4d 70%, #626262);
+}
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6 {
+  color: #E81111;
+}
+body.dark-theme h3 {
+  border-bottom: 2px solid #0d99cc;
+}
+body.dark-theme a {
+  color: #E81111;
+  text-decoration: none;
+}
+body.dark-theme a:hover,
+body.dark-theme a:active {
+  text-shadow: none;
+  text-decoration: underline;
+}
+body.dark-theme blockquote {
+  padding: 4px 8px;
+  background-color: #FBF4F4;
+  border: 1px solid #E81111;
+  box-shadow: 0 0 20px rgba(232, 17, 17, 0.8);
+}
+body.dark-theme hr {
+  border-width: 0 0 1px 0;
+  border-bottom: 1px solid #0d99cc;
+}
+body.dark-theme input[type="text"],
+body.dark-theme input[type="number"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="time"],
+body.dark-theme select,
+body.dark-theme textarea {
+  border: 1px solid #828282;
+  color: white;
+}
+body.dark-theme input[type="text"]:hover,
+body.dark-theme input[type="number"]:hover,
+body.dark-theme input[type="password"]:hover,
+body.dark-theme input[type="date"]:hover,
+body.dark-theme input[type="time"]:hover,
+body.dark-theme select:hover,
+body.dark-theme textarea:hover {
+  border-color: #4f4f4f;
+}
+body.dark-theme input[type="text"]:focus,
+body.dark-theme input[type="number"]:focus,
+body.dark-theme input[type="password"]:focus,
+body.dark-theme input[type="date"]:focus,
+body.dark-theme input[type="time"]:focus,
+body.dark-theme select:focus,
+body.dark-theme textarea:focus {
+  border-color: #E81111;
+}
+body.dark-theme button,
+body.dark-theme input[type="button"],
+body.dark-theme input[type="submit"],
+body.dark-theme input[type="reset"] {
+  background: #E81111;
+  color: white;
+}
+body.dark-theme button:hover,
+body.dark-theme input[type="button"]:hover,
+body.dark-theme input[type="submit"]:hover,
+body.dark-theme input[type="reset"]:hover,
+body.dark-theme button:focus,
+body.dark-theme input[type="button"]:focus,
+body.dark-theme input[type="submit"]:focus,
+body.dark-theme input[type="reset"]:focus {
+  background: #ef2424;
+}
+body.dark-theme button:disabled:hover,
+body.dark-theme input[type="button"]:disabled:hover,
+body.dark-theme input[type="submit"]:disabled:hover,
+body.dark-theme input[type="reset"]:disabled:hover,
+body.dark-theme button:disabled:focus,
+body.dark-theme input[type="button"]:disabled:focus,
+body.dark-theme input[type="submit"]:disabled:focus,
+body.dark-theme input[type="reset"]:disabled:focus {
+  background: #E81111;
+}
+body.dark-theme input[type="reset"],
+body.dark-theme button.secondary,
+body.dark-theme button[type="reset"],
+body.dark-theme input[type="button"].secondary,
+body.dark-theme input[type="submit"].secondary {
+  background: #828282;
+  color: white;
+}
+body.dark-theme input[type="reset"]:hover,
+body.dark-theme button.secondary:hover,
+body.dark-theme button[type="reset"]:hover,
+body.dark-theme input[type="button"].secondary:hover,
+body.dark-theme input[type="submit"].secondary:hover {
+  background: #8f8f8f;
+}
+body.dark-theme input[type="reset"]:disabled:hover,
+body.dark-theme button.secondary:disabled:hover,
+body.dark-theme button[type="reset"]:disabled:hover,
+body.dark-theme input[type="button"].secondary:disabled:hover,
+body.dark-theme input[type="submit"].secondary:disabled:hover,
+body.dark-theme input[type="reset"]:disabled:focus,
+body.dark-theme button.secondary:disabled:focus,
+body.dark-theme button[type="reset"]:disabled:focus,
+body.dark-theme input[type="button"].secondary:disabled:focus,
+body.dark-theme input[type="submit"].secondary:disabled:focus {
+  background: #828282;
+}
+body.dark-theme #sidebar-tabs {
+  background: #2b2b2b;
+}
+body.dark-theme #sidebar-tabs > .collapse {
+  color: #E81111;
+}
+body.dark-theme #sidebar-tabs .item.active {
+  color: #E81111;
+  border-bottom: 3px solid #E81111;
+}
+body.dark-theme #chat-log .chat-message {
+  background: #363636;
+  color: white;
+}
+body.dark-theme #chat-log .chat-message > header {
+  color: #E81111;
+  border-bottom: 2px solid #0d99cc;
+}
+body.dark-theme #chat-log .chat-message > header span {
+  color: white;
+}
+body.dark-theme .notification-pip {
+  color: #0d99cc;
+}
+body.dark-theme .sw5e.chat-card .card-header h3 {
+  color: white;
+}
+body.dark-theme .sw5e.chat-card .card-header h3:hover {
+  color: white;
+}
+body.dark-theme .sw5e.chat-card .card-buttons span {
+  border: 1px solid #828282;
+}
+body.dark-theme .sw5e.chat-card .card-footer {
+  border-top: 1px solid #7ed6f7;
+}
+body.dark-theme .sw5e.chat-card .card-footer span {
+  border-right: 1px solid #D6D6D6;
+}
+body.dark-theme .sw5e.chat-card .card-footer span:last-child {
+  border-right: none;
+}
+body.dark-theme .dice-roll .dice-formula {
+  background: #4f4f4f;
+  color: white;
+  box-shadow: none;
+  border-radius: 4px;
+}
+body.dark-theme .dice-roll .dice-total {
+  background: #FBF4F4;
+  border: 1px solid #E81111;
+  box-shadow: 0 0 12px rgba(232, 17, 17, 0.8);
+}
+body.dark-theme .dice-roll .dice-total.success {
+  color: #0dce0d;
+}
+body.dark-theme .dice-roll .dice-total.failure {
+  color: #E81111;
+}
+body.dark-theme .dice-roll .dice-total.critical {
+  color: #0dce0d;
+  background: #bcdcbe;
+  box-shadow: 0 0 12px rgba(13, 206, 13, 0.5);
+}
+body.dark-theme .dice-roll .dice-total.fumble {
+  color: #E81111;
+  background: #FBF4F4;
+  box-shadow: 0 0 12px rgba(232, 17, 17, 0.5);
+}
+body.dark-theme #chat-controls .roll-type-select {
+  background: #363636;
+}
+body.dark-theme #chat-controls label {
+  color: white;
+}
+body.dark-theme #chat-form textarea {
+  background: #363636;
+}
+body.dark-theme #combat #combat-round {
+  color: #E81111;
+  border-bottom: 2px solid #E81111;
+}
+body.dark-theme #combat #combat-round .encounters h4 {
+  color: #E81111;
+}
+body.dark-theme #combat #combat-round .encounters a {
+  color: #D6D6D6;
+}
+body.dark-theme #combat #combat-round .encounters a:hover {
+  color: #E81111;
+}
+body.dark-theme #combat #combat-tracker li.combatant {
+  color: white;
+}
+body.dark-theme #combat #combat-tracker li.combatant:nth-child(even) {
+  background: rgba(79, 79, 79, 0.5);
+}
+body.dark-theme #combat #combat-tracker li.combatant h4 {
+  color: white;
+}
+body.dark-theme #combat #combat-tracker li.combatant .roll {
+  color: #D6D6D6;
+}
+body.dark-theme #combat #combat-tracker li.combatant .roll:hover {
+  color: #E81111;
+}
+body.dark-theme #combat #combat-tracker li.combatant .combatant-control {
+  color: #D6D6D6;
+}
+body.dark-theme #combat #combat-tracker li.combatant .combatant-control.active {
+  color: #E81111;
+}
+body.dark-theme #combat #combat-tracker li.combatant .token-resource {
+  color: white;
+  border-right: 1px solid #828282;
+}
+body.dark-theme #combat #combat-tracker li.combatant.active {
+  color: #0d99cc;
+}
+body.dark-theme #combat #combat-tracker li.combatant.active .initiative,
+body.dark-theme #combat #combat-tracker li.combatant.active h4 {
+  color: #0d99cc;
+}
+body.dark-theme #combat #combat-tracker li.combatant.hidden {
+  color: white;
+}
+body.dark-theme #combat #combat-controls {
+  border-top: 1px solid #0d99cc;
+}
+body.dark-theme .sidebar-tab .directory-header .header-search i.fa-search {
+  color: #0d99cc;
+}
+body.dark-theme .sidebar-tab .directory-header .header-search input {
+  background: #363636;
+}
+body.dark-theme .sidebar-tab .subdirectory {
+  background: #2b2b2b;
+}
+body.dark-theme .sidebar-tab .subdirectory .folder {
+  border-left: 2px solid rgba(130, 130, 130, 0.4);
+}
+body.dark-theme .sidebar-tab .directory-list li + li {
+  border-top: 1px solid #0d99cc;
+}
+body.dark-theme .sidebar-tab .directory-list .folder > .folder-header {
+  background: #2b2b2b;
+}
+body.dark-theme .sidebar-tab .directory-list .folder > .folder-header h3 {
+  background: #2b2b2b;
+  color: white;
+}
+body.dark-theme .sidebar-tab .directory-list .folder > .folder-header h3 > i {
+  color: #0d99cc;
+}
+body.dark-theme .sidebar-tab .directory-list .folder > .folder-header a {
+  color: #D6D6D6;
+}
+body.dark-theme .sidebar-tab .directory-list .folder > .folder-header a:hover {
+  color: #E81111;
+}
+body.dark-theme .sidebar-tab .directory-list .folder.collapsed > .folder-header {
+  background: #2b2b2b;
+}
+body.dark-theme .sidebar-tab .directory-list .folder + .entity {
+  border-top: 1px solid #0d99cc;
+}
+body.dark-theme .sidebar-tab .directory-list .actor,
+body.dark-theme .sidebar-tab .directory-list .item,
+body.dark-theme .sidebar-tab .directory-list .journal,
+body.dark-theme .sidebar-tab .directory-list .table {
+  background: #2b2b2b;
+}
+body.dark-theme .sidebar-tab .directory-list .actor .entity-name,
+body.dark-theme .sidebar-tab .directory-list .item .entity-name,
+body.dark-theme .sidebar-tab .directory-list .journal .entity-name,
+body.dark-theme .sidebar-tab .directory-list .table .entity-name {
+  color: #1C1C1C;
+}
+body.dark-theme .sidebar-tab .directory-list .actor:nth-child(even),
+body.dark-theme .sidebar-tab .directory-list .item:nth-child(even),
+body.dark-theme .sidebar-tab .directory-list .journal:nth-child(even),
+body.dark-theme .sidebar-tab .directory-list .table:nth-child(even) {
+  background: rgba(79, 79, 79, 0.3);
+}
+body.dark-theme #scenes .scene {
+  border-top: 1px solid #0d99cc;
+  border-left: 4px solid #0d99cc;
+}
+body.dark-theme #scenes .scene::after {
+  box-shadow: 0 0 20px #0d99cc inset;
+}
+body.dark-theme #scenes .scene h3 {
+  background: #2b2b2b;
+}
+body.dark-theme #playlists .directory-list li.playlist {
+  background: #2b2b2b;
+}
+body.dark-theme #playlists .directory-list li.playlist .playlist-header {
+  background: #2b2b2b;
+  color: #E81111;
+  border-bottom: 2px solid #0d99cc;
+}
+body.dark-theme #playlists .directory-list li.playlist li.sound {
+  color: #1C1C1C;
+}
+body.dark-theme #playlists .directory-list li.playlist a.sound-control {
+  color: #E81111;
+}
+body.dark-theme #compendium .compendium-entity {
+  background: #2b2b2b !important;
+}
+body.dark-theme #compendium .compendium-entity h3 {
+  border-bottom: 2px solid #0d99cc;
+}
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
+  background: rgba(79, 79, 79, 0.3);
+}
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+  color: #828282;
+}
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
+  color: white;
+}
+body.dark-theme #settings h2 {
+  color: #E81111;
+  border-bottom: 2px solid #0d99cc;
+}
+body.dark-theme #settings #game-details,
+body.dark-theme #settings #settings-game,
+body.dark-theme #settings #settings-documentation,
+body.dark-theme #settings #settings-access {
+  color: white;
+}

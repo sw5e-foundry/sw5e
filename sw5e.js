@@ -159,6 +159,9 @@ Hooks.once("setup", function() {
   }
   // add DND5E translation for module compatability
   game.i18n.translations.DND5E = game.i18n.translations.SW5E;
+  // console.log(game.settings.get("sw5e", "colorTheme"));
+  let theme = game.settings.get("sw5e", "colorTheme") + '-theme';
+  document.body.classList.add(theme);
 });
 
 /* -------------------------------------------- */

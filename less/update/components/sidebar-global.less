@@ -5,18 +5,12 @@
 #sidebar-tabs {
   border: none;
   box-shadow: none;
-  background: white;
   .dropShadow1();
-  & > .collapse {
-    color: @colorRed;
-  }
   .item {
     font-size: 16px;
   }
   .item.active {
-    color: @colorRed;
     border: none;
-    border-bottom: 3px solid @colorRed;
     box-shadow: none;
     background: none;
     text-shadow: none;
@@ -29,7 +23,6 @@
 
 #chat-log {
   .chat-message {
-    background: white;
     border: none;
     border-radius: 4px;
     margin-bottom: 8px;
@@ -47,17 +40,12 @@
 }
 .notification-pip {
   color: @colorBlue;
-  text-shadow: none;
-
 }
 
 .sw5e.chat-card {
-  font-size: 13px;
-
   .card-header {
     padding: 0;
     border: none;
-
     img {
       flex: 0 0 36px;
       margin-right: 4px;
@@ -68,9 +56,8 @@
       margin: 0;
       line-height: 36px;
       .russoOne(17px);
-      color: @colorBlack;
+      border-bottom: none;
       &:hover {
-        color: @colorBlack;
         text-shadow: none;
       }
     }
@@ -100,7 +87,6 @@
       display: block;
       line-height: 28px;
       text-align: center;
-      border: 1px solid @colorLightGray;
     }
 
     button {
@@ -109,11 +95,9 @@
       height: auto;
       line-height: 1.6;
       margin: 4px 0;
-      background: @colorRed;
       border: none;
       border-radius: 4px;
       &:hover, &:focus {
-        background-color: lighten(@colorRed, 5);
         box-shadow: none;
       }
     }
@@ -121,10 +105,8 @@
 
   .card-footer {
     padding: 4px 0 0;
-    border-top: 1px solid @colorLightBlue;
 
     span {
-      border-right: 2px groove #FFF;
       padding: 0 4px 0 0;
       font-size: 10px;
 
@@ -136,46 +118,20 @@
   }
 }
 .dice-roll {
-
-.dice-formula {
-  background: none;
-  border: none;
-}
-.dice-total {
-  background: @colorPaleBlue;
-  border: 1px solid @colorBlue;
-  border-radius: 0;
-  padding: 4px 0;
-  box-shadow: 0 0 12px rgba(@colorBlue,.5);
-  &.success {
-    color: inherit;
-    background: #c7d0c0;
-    border: 1px solid #006c00;
+  .dice-formula {
+    border: none;
+    box-shadow: none;
+    border-radius: 4px;
   }
-  &.failure {
-    color: inherit;
-    background: #ffdddd;
-    border: 1px solid #6e0000;
+  .dice-total {
+    border-radius: 0;
+    padding: 4px 0;
   }
-  &.critical {
-    color: @colorGreen;
-    background: @colorPaleGreen;
-    box-shadow: 0 0 12px rgba(@colorGreen,.5);
-  }
-  &.fumble {
-    color: red;
-  }
-}
 }
 #chat-controls {
   padding-top: 4px;
-  label {
-    color: @colorBlack;
-  }
- 
 }
 #chat-form  textarea {
-  background: white;
   &:focus {
     box-shadow: none;
     outline: none;
@@ -186,77 +142,44 @@
 ** Combat Tab
 -----------*/
 #combat {
-#combat-round {
-  color: @colorRed;
-  border-bottom: 2px solid @colorBlue;
-  .encounters {
-      h4 {
-      color: @colorRed;
-    }
-    a {
-      color: @colorGray;
-      &:hover {
-        color: @colorRed;
-      }
-    }
+  h3 {
+    border: none;
   }
-}
-  #combat-tracker {
-    //padding-top: 4px;
-    li.combatant {
-      padding: 4px 0;
-      color: @colorBlack;
-      background: none;
-      &:nth-child(even) {
-        background: rgba(@colorPaleBlue, 0.5);
-      }
-      h4 {
-        color: @colorBlack;
-        text-shadow: none;
-      }
-      .roll {
+
+    #combat-tracker {
+      li.combatant {
+        padding: 4px 0;
         background: none;
-        color: @colorGray;
-        &::before {
-          content: "\f6cf";
-          .fontAwesome();
-          font-size: 28px;
+        .token-name {
+          text-shadow: none;
         }
-        &:hover {
-          color: @colorRed;
+        h4 {
+          color: @colorBlack;
         }
-      }
-      .combatant-control {
-        color: @colorLightGray;
-        text-shadow: none;
-        &.active {
-          color: @colorDarkGray;
+        .roll {
+          background: none;
+          &::before {
+            content: "\f6cf";
+            .fontAwesome();
+            font-size: 28px;
+          }
+          
         }
-      }
-      .token-resource {
-        color: @colorGray;
-        border-right: 1px solid @colorLightGray;
-      }
-      .initiative {
-        text-shadow: none;
-      }
-      &.active {
-        color: @colorBlue;
-        .initiative, h4 {
-          color: @colorBlue;
+        
+        
+        .initiative {
+          text-shadow: none;
         }
-      }
-      &.hidden {
-        opacity: 0.5;
-        color: @colorBlack;
+        
+        &.hidden {
+          opacity: 0.5;
+        }
       }
     }
+    #combat-controls {
+      padding-top: 0;
+    }
   }
-  #combat-controls {
-    padding-top: 0;
-    border-top: 1px solid @colorBlue;
-  }
-}
 
 /*
 ** Folders
@@ -269,12 +192,10 @@
     i.fa-search {
       position: absolute;
       left: 8px;
-      color: @colorBlue;
     }
     input {
       text-align: left;
       padding-left: 22px;
-      background: white;
       &:focus {
         box-shadow: none;
       }
@@ -284,33 +205,23 @@
 .subdirectory {
   border: none;
   margin-left: 8px;
-  background: white;
   min-height: 8px;
-  .folder {
-    border-left: 2px solid rgba(@colorBlack, 0.4);
-  }
+
 }
 .directory-list {
   padding-bottom: 4px;
-  li + li {
-    border-top: 1px solid @colorBlue;
-  }
   .folder {
     & > .folder-header {
       line-height: default;
       padding: 0 0 0 8px;
       position: relative;
       border: none;
-      background: white;
       h3 {
         padding: 8px 4px;
-        background: white;
-        color: @colorBlack;
         .openSans(13px, 700);
         line-height: 1.6;
         & > i {
           margin-right: 4px;
-          color: @colorBlue;
         }
       }
       a {
@@ -319,10 +230,6 @@
         right: 4px;
         height: 100%;
         padding: 0 4px;
-        color: @colorLightGray;
-        &:hover {
-          color: @colorRed;
-        }
         i {
           margin-top: 12px;
         }
@@ -332,12 +239,6 @@
         }
       }
     }
-    &.collapsed > .folder-header {
-      background: white;
-    }
-    & + .entity {
-      border-top: 1px solid @colorBlue;
-    }
   }
   .directory-item img {
     flex: 0 0 32px;
@@ -346,15 +247,11 @@
     align-self: center;
   }
   .actor, .item, .journal, .table {
-    background: white;
     border: none;
     .entity-name {
       .openSans(13px, 700);
-      color: @colorBlack;
     }
-    &:nth-child(even) {
-      background: rgba(@colorPaleBlue, 0.3);
-    }
+
   }
 }
 }
@@ -364,12 +261,9 @@
   }
   .scene {
     border: none;
-    border-top: 1px solid @colorBlue;
-    border-left: 4px solid @colorBlue;
     box-shadow: none;
     position: relative;
     height: 128px;
-    //margin-bottom: 4px;
     & + .scene {
       margin-top: 4px;
     }
@@ -381,14 +275,12 @@
       position: absolute;
       top: 28px;
       left: 0;
-      box-shadow: 0 0 20px @colorBlue inset;
     }
     h3 {
       .openSans(13px, 700);
       text-align: left;
       text-shadow: none;
       padding: 4px 4px 4px 12px;
-      background: white;
       line-height: 1.6;
       position: absolute;
       top: 0;
@@ -404,26 +296,18 @@
     li.playlist {
       padding: 8px;
       border-radius: 4px;
-      background: white;
       margin-bottom: 8px;
       border-top: inherit;
       .dropShadow1();
       .playlist-header {
-        background: white;
-        color: @colorRed;
         text-decoration: none;
-        border-bottom: 2px solid @colorBlue;
       }
       li.sound {
         border: none;
-        color: @colorBlack;
         h4 {
           .openSans(13px, 400);
         }
         
-      }
-      a.sound-control {
-        color: @colorRed;
       }
     }
   }
@@ -433,7 +317,6 @@
   .compendium-entity {
     margin: 0 4px;
     padding: 8px;
-    background: white !important;
     .dropShadow1();
     border-radius: 4px;
     border: none;
@@ -441,9 +324,8 @@
       margin-top: 4px;
     }
     h3 {
+      background: none;
       border: none;
-      color: @colorRed;
-      border-bottom: 2px solid @colorBlue;
       .russoOne(17px);
       padding: 0;
       margin-bottom: 4px;
@@ -453,9 +335,6 @@
         margin: 0;
         padding: 4px;
         border: none;
-        &:nth-child(even) {
-          background: rgba(@colorPaleBlue, 0.3);
-        }
         .pack-title {
           margin: 0;
           position: relative;
@@ -467,13 +346,10 @@
           }
           .status-icons {
             top: 4px;
-            color: @colorLightGray;
             font-size: 13px;
           }
         }
-        footer.compendium-footer {
-          color: @colorBlack;
-        }
+
       }
     }
   }
@@ -481,15 +357,13 @@
 
 #settings {
   h2 {
-    color: @colorRed;
     border: none;
-    border-bottom: 2px solid @colorBlue;
     margin: 0 8px;
     padding: 0;
+    background: none;
   }
   #game-details, #settings-game, #settings-documentation, #settings-access {
     padding: 0 8px;
     margin: 0 0 8px;
-    color: @colorBlack;
   }
 }

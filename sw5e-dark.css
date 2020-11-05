@@ -76,6 +76,27 @@ body.dark-theme select:focus,
 body.dark-theme textarea:focus {
   border-color: #E81111;
 }
+body.dark-theme input[type="text"]::placeholder,
+body.dark-theme input[type="number"]::placeholder,
+body.dark-theme input[type="password"]::placeholder,
+body.dark-theme input[type="date"]::placeholder,
+body.dark-theme input[type="time"]::placeholder,
+body.dark-theme select::placeholder,
+body.dark-theme textarea::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+body.dark-theme input[type="text"] ::-ms-input-placeholder,
+body.dark-theme input[type="number"] ::-ms-input-placeholder,
+body.dark-theme input[type="password"] ::-ms-input-placeholder,
+body.dark-theme input[type="date"] ::-ms-input-placeholder,
+body.dark-theme input[type="time"] ::-ms-input-placeholder,
+body.dark-theme select ::-ms-input-placeholder,
+body.dark-theme textarea ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+  opacity: 0.5;
+}
 body.dark-theme button,
 body.dark-theme input[type="button"],
 body.dark-theme input[type="submit"],
@@ -129,6 +150,13 @@ body.dark-theme button[type="reset"]:disabled:focus,
 body.dark-theme input[type="button"].secondary:disabled:focus,
 body.dark-theme input[type="submit"].secondary:disabled:focus {
   background: #828282;
+}
+body.dark-theme form button {
+  border: none;
+}
+body.dark-theme form .notes,
+body.dark-theme form .hint {
+  color: rgba(255, 255, 255, 0.8);
 }
 body.dark-theme #sidebar-tabs {
   background: #2b2b2b;
@@ -362,4 +390,123 @@ body.dark-theme #settings #settings-game,
 body.dark-theme #settings #settings-documentation,
 body.dark-theme #settings #settings-access {
   color: white;
+}
+body.dark-theme #navigation #nav-toggle {
+  background: rgba(126, 214, 247, 0.4);
+  color: white;
+}
+body.dark-theme #navigation #nav-toggle .nav-item {
+  transform: rotate(-90deg);
+}
+body.dark-theme #navigation .nav-item {
+  border: 1px solid #0d99cc;
+}
+body.dark-theme #navigation #scene-list .scene {
+  border: 1px solid #0d99cc;
+  background: rgba(126, 214, 247, 0.4);
+}
+body.dark-theme #navigation #scene-list .scene a {
+  color: white;
+}
+body.dark-theme #navigation #scene-list .scene.gm {
+  border: 1px solid #afc6d6;
+  background: rgba(13, 153, 204, 0.4);
+}
+body.dark-theme #navigation #scene-list .scene.view,
+body.dark-theme #navigation #scene-list .scene.context {
+  box-shadow: 0 0 8px #07516c;
+  border-color: #0d99cc;
+}
+body.dark-theme #navigation #scene-list .scene.active {
+  border-color: #f46b6b;
+  background: rgba(232, 17, 17, 0.6);
+  box-shadow: 0 0 8px #890a0a;
+}
+body.dark-theme #controls .scene-control,
+body.dark-theme #controls .control-tool {
+  background: rgba(126, 214, 247, 0.4);
+  color: white;
+  border: 1px solid #0d99cc;
+  box-shadow: none;
+}
+body.dark-theme #controls .scene-control:hover,
+body.dark-theme #controls .control-tool:hover {
+  box-shadow: 0 0 8px #07516c;
+}
+body.dark-theme #controls .scene-control.active,
+body.dark-theme #controls .control-tool.active {
+  border-color: #f46b6b;
+  background: rgba(232, 17, 17, 0.6);
+  box-shadow: 0 0 8px #890a0a;
+}
+body.dark-theme #players {
+  border: none;
+  border-radius: 4px;
+}
+body.dark-theme #players h3 {
+  background: #2b2b2b;
+  border: none;
+  margin: 0;
+  padding: 8px;
+  font-size: 17px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px 4px 0 0;
+}
+body.dark-theme #players h3 .players-mode {
+  color: #828282;
+}
+body.dark-theme #players ol {
+  margin: 4px 0;
+}
+body.dark-theme #players ol .player-name.self {
+  color: inherit;
+  font-weight: 700;
+}
+body.dark-theme #players ol .player {
+  color: white;
+}
+body.dark-theme #players ol .player-active {
+  margin-top: 7px;
+}
+body.dark-theme #players ol .player-active.active {
+  box-shadow: none;
+}
+body.dark-theme .window-app {
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+body.dark-theme .window-app header {
+  background: #2b2b2b;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 4px;
+}
+body.dark-theme .window-app .window-content {
+  background: linear-gradient(90deg, #626262 0, #4d4d4d 30%, #4d4d4d 70%, #626262);
+  color: white;
+}
+body.dark-theme .window-app .window-content footer {
+  margin-top: 8px;
+}
+body.dark-theme #client-settings nav.tabs {
+  border: none;
+  font-size: 17px;
+  line-height: 1.6;
+}
+body.dark-theme #client-settings nav.tabs a.item {
+  border-bottom: 3px solid transparent;
+  color: white;
+}
+body.dark-theme #client-settings nav.tabs a.item:hover {
+  text-decoration: none;
+}
+body.dark-theme #client-settings nav.tabs a.item.active {
+  text-shadow: none;
+  border-bottom-color: #E81111;
+}
+body.dark-theme #client-settings section.content {
+  border: none;
+  margin-top: 4px;
 }

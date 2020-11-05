@@ -42,6 +42,12 @@
   font-weight: 700;
   src: url('./fonts/RussoOne.ttf');
 }
+@font-face {
+  font-family: 'Aurebesh';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Aurebesh.ttf');
+}
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
@@ -79,27 +85,32 @@ h1 {
   font-family: 'Russo One';
   font-size: 34px;
   font-weight: 400;
+  letter-spacing: 0.5px;
 }
 h2 {
   font-family: 'Russo One';
   font-size: 27px;
   font-weight: 400;
+  letter-spacing: 0.5px;
 }
 h3 {
   font-family: 'Russo One';
   font-size: 21px;
   font-weight: 400;
+  letter-spacing: 0.5px;
 }
 h4 {
   font-family: 'Russo One';
   font-size: 17px;
   font-weight: 400;
+  letter-spacing: 0.5px;
 }
 h5,
 h6 {
   font-family: 'Russo One';
   font-size: 13px;
   font-weight: 400;
+  letter-spacing: 0.5px;
 }
 a {
   text-decoration: none;
@@ -113,8 +124,71 @@ a:active {
   border: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
+#pause {
+  background: none;
+  height: 128px;
+}
+#pause img {
+  display: none;
+}
+#pause::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  margin-left: -64px;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  background: url("ui/pause-inner.svg") no-repeat 50% 50%;
+  animation-name: pause-spin;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+#pause::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  margin-left: -64px;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  background: url("ui/pause-outer.svg") no-repeat 50% 50%;
+  animation-name: pause-spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: reverse;
+}
 #pause h3 {
   border-bottom: 0;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 256px;
+  margin-left: -128px;
+  margin-top: -13px;
+  text-shadow: 0 0 24px #0d99cc;
+}
+#pause h3::before,
+#pause h3::after {
+  position: absolute;
+  font-family: "Aurebesh", sans-serif;
+  font-size: 13px;
+  color: #1C1C1C;
+  animation: none;
+  opacity: 0.7;
+}
+#pause h3::before {
+  content: "GAME";
+  top: -13px;
+  left: 42px;
+}
+#pause h3::after {
+  content: "PAUSED";
+  bottom: -13px;
+  right: 42px;
 }
 input[type="text"],
 input[type="number"],
@@ -303,6 +377,7 @@ input[type="reset"]:disabled {
   font-family: 'Russo One';
   font-size: 17px;
   font-weight: 400;
+  letter-spacing: 0.5px;
   border-bottom: none;
 }
 .sw5e.chat-card .card-header h3:hover {
@@ -559,6 +634,7 @@ input[type="reset"]:disabled {
   font-family: 'Russo One';
   font-size: 17px;
   font-weight: 400;
+  letter-spacing: 0.5px;
   padding: 0;
   margin-bottom: 4px;
 }
@@ -595,4 +671,12 @@ input[type="reset"]:disabled {
 #settings #settings-access {
   padding: 0 8px;
   margin: 0 0 8px;
+}
+@keyframes pause-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

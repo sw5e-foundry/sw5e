@@ -7,6 +7,14 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   &:focus {
     border-color: @inputBorderFocus;
   }
+  &::placeholder {
+    color: @inputTextColor;
+    opacity: 0.5;
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: @inputTextColor;
+    opacity: 0.5;
+  }
 }
 
 button, input[type="button"], input[type="submit"], input[type="reset"] {
@@ -32,5 +40,14 @@ input[type="reset"], button.secondary, button[type="reset"], input[type="button"
     &:hover, &:focus {
       background: @buttonSecondaryBackground;
     }
+  }
+}
+
+form {
+  button {
+    border: none;
+  }
+  .notes, .hint {
+    color: rgba(@bodyFontColor, 0.8);
   }
 }

@@ -34,10 +34,13 @@
 @tableRowHoverBackground: lighten(@colorPaleGray, 10);
 @tableRowBorderColor: @colorPaleGray;
 
+//universalColors
+@windowHeaderBackground: white;
+@windowHeaderLinkColor: @colorRed;
 
 //Sidebar
-@sidebarTabBackground: white;
-@sidebarTabLinkColor: @colorRed;
+@sidebarTabBackground: @windowHeaderBackground;
+@sidebarTabLinkColor: @windowHeaderLinkColor;
 @sidebarTabLinkUnderline: @colorRed;
 
 @chatBackground: white;
@@ -91,3 +94,17 @@
 
 @compendiumEntityBackground: white;
 @compendiumStatusIcon: @colorLightGray;
+
+@foundryNavBgColor: rgba(@colorLightBlue, 0.4);
+@foundryNavTextColor: white;
+@foundryNavBorderColor: @colorBlue;
+@foundryNavBgColorGM: @colorBlue;
+@foundryNavBorderColorGM: @colorPaleBlue;
+@foundryNavSceneLinkColor: white;
+@foundryNavActiveBgColor: rgba(@colorRed, 0.6);
+@foundryNavActiveBorderColor: lighten(@colorRed, 20);
+@foundryNavActiveGlow: darken(@colorRed, 20);
+@foundryNavContextShadow: darken(@colorBlue, 20);
+@foundryNavContextBorderColor: @colorBlue;
+
+@foundryPlayersArrowColor: @colorLightGray;

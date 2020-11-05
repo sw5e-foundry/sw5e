@@ -76,6 +76,27 @@ body.light-theme select:focus,
 body.light-theme textarea:focus {
   border-color: #c40f0f;
 }
+body.light-theme input[type="text"]::placeholder,
+body.light-theme input[type="number"]::placeholder,
+body.light-theme input[type="password"]::placeholder,
+body.light-theme input[type="date"]::placeholder,
+body.light-theme input[type="time"]::placeholder,
+body.light-theme select::placeholder,
+body.light-theme textarea::placeholder {
+  color: #1C1C1C;
+  opacity: 0.5;
+}
+body.light-theme input[type="text"] ::-ms-input-placeholder,
+body.light-theme input[type="number"] ::-ms-input-placeholder,
+body.light-theme input[type="password"] ::-ms-input-placeholder,
+body.light-theme input[type="date"] ::-ms-input-placeholder,
+body.light-theme input[type="time"] ::-ms-input-placeholder,
+body.light-theme select ::-ms-input-placeholder,
+body.light-theme textarea ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #1C1C1C;
+  opacity: 0.5;
+}
 body.light-theme button,
 body.light-theme input[type="button"],
 body.light-theme input[type="submit"],
@@ -129,6 +150,13 @@ body.light-theme button[type="reset"]:disabled:focus,
 body.light-theme input[type="button"].secondary:disabled:focus,
 body.light-theme input[type="submit"].secondary:disabled:focus {
   background: #D6D6D6;
+}
+body.light-theme form button {
+  border: none;
+}
+body.light-theme form .notes,
+body.light-theme form .hint {
+  color: rgba(28, 28, 28, 0.8);
 }
 body.light-theme #sidebar-tabs {
   background: white;
@@ -362,4 +390,123 @@ body.light-theme #settings #settings-game,
 body.light-theme #settings #settings-documentation,
 body.light-theme #settings #settings-access {
   color: #1C1C1C;
+}
+body.light-theme #navigation #nav-toggle {
+  background: rgba(126, 214, 247, 0.4);
+  color: white;
+}
+body.light-theme #navigation #nav-toggle .nav-item {
+  transform: rotate(-90deg);
+}
+body.light-theme #navigation .nav-item {
+  border: 1px solid #0d99cc;
+}
+body.light-theme #navigation #scene-list .scene {
+  border: 1px solid #0d99cc;
+  background: rgba(126, 214, 247, 0.4);
+}
+body.light-theme #navigation #scene-list .scene a {
+  color: white;
+}
+body.light-theme #navigation #scene-list .scene.gm {
+  border: 1px solid #afc6d6;
+  background: rgba(13, 153, 204, 0.4);
+}
+body.light-theme #navigation #scene-list .scene.view,
+body.light-theme #navigation #scene-list .scene.context {
+  box-shadow: 0 0 8px #07516c;
+  border-color: #0d99cc;
+}
+body.light-theme #navigation #scene-list .scene.active {
+  border-color: #f14848;
+  background: rgba(196, 15, 15, 0.6);
+  box-shadow: 0 0 8px #650808;
+}
+body.light-theme #controls .scene-control,
+body.light-theme #controls .control-tool {
+  background: rgba(126, 214, 247, 0.4);
+  color: white;
+  border: 1px solid #0d99cc;
+  box-shadow: none;
+}
+body.light-theme #controls .scene-control:hover,
+body.light-theme #controls .control-tool:hover {
+  box-shadow: 0 0 8px #07516c;
+}
+body.light-theme #controls .scene-control.active,
+body.light-theme #controls .control-tool.active {
+  border-color: #f14848;
+  background: rgba(196, 15, 15, 0.6);
+  box-shadow: 0 0 8px #650808;
+}
+body.light-theme #players {
+  border: none;
+  border-radius: 4px;
+}
+body.light-theme #players h3 {
+  background: white;
+  border: none;
+  margin: 0;
+  padding: 8px;
+  font-size: 17px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px 4px 0 0;
+}
+body.light-theme #players h3 .players-mode {
+  color: #828282;
+}
+body.light-theme #players ol {
+  margin: 4px 0;
+}
+body.light-theme #players ol .player-name.self {
+  color: inherit;
+  font-weight: 700;
+}
+body.light-theme #players ol .player {
+  color: #1C1C1C;
+}
+body.light-theme #players ol .player-active {
+  margin-top: 7px;
+}
+body.light-theme #players ol .player-active.active {
+  box-shadow: none;
+}
+body.light-theme .window-app {
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+body.light-theme .window-app header {
+  background: white;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 4px;
+}
+body.light-theme .window-app .window-content {
+  background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
+  color: #1C1C1C;
+}
+body.light-theme .window-app .window-content footer {
+  margin-top: 8px;
+}
+body.light-theme #client-settings nav.tabs {
+  border: none;
+  font-size: 17px;
+  line-height: 1.6;
+}
+body.light-theme #client-settings nav.tabs a.item {
+  border-bottom: 3px solid transparent;
+  color: #1C1C1C;
+}
+body.light-theme #client-settings nav.tabs a.item:hover {
+  text-decoration: none;
+}
+body.light-theme #client-settings nav.tabs a.item.active {
+  text-shadow: none;
+  border-bottom-color: #c40f0f;
+}
+body.light-theme #client-settings section.content {
+  border: none;
+  margin-top: 4px;
 }

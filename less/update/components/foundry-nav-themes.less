@@ -1,0 +1,82 @@
+#navigation {
+  #nav-toggle {
+    background: @foundryNavBgColor;
+    color: @foundryNavTextColor;
+    .nav-item {
+       transform: rotate(-90deg);
+    }
+  }
+  .nav-item {
+    border: 1px solid @foundryNavBorderColor;
+  }
+  #scene-list {
+    .scene {
+      border: 1px solid @foundryNavBorderColor;
+      background: rgba(@foundryNavBgColor, 0.4);
+      a {
+        color: @foundryNavSceneLinkColor;
+      }
+      &.gm {
+        border: 1px solid @foundryNavBorderColorGM;
+        background: rgba(@foundryNavBgColorGM, 0.4);
+      }
+      &.view, &.context {
+        box-shadow: 0 0 8px @foundryNavContextShadow;
+        border-color: @foundryNavContextBorderColor;
+      }
+      &.active {
+        border-color: @foundryNavActiveBorderColor;
+        background: @foundryNavActiveBgColor;
+        box-shadow: 0 0 8px @foundryNavActiveGlow;
+      }
+    }
+  }
+}
+#controls {
+  .scene-control, .control-tool {
+    background: @foundryNavBgColor;
+    color: @foundryNavTextColor; 
+    border: 1px solid @foundryNavBorderColor;
+    box-shadow: none;
+    &:hover {
+      box-shadow: 0 0 8px @foundryNavContextShadow;
+    }
+    &.active {
+      border-color: @foundryNavActiveBorderColor;
+        background: @foundryNavActiveBgColor;
+        box-shadow: 0 0 8px @foundryNavActiveGlow;
+    }
+  }
+}
+#players {
+  border: none;
+  border-radius: 4px;
+  h3 {
+    background: @sidebarTabBackground;
+    border: none;
+    margin: 0;
+    padding: 8px;
+    font-size: 17px;
+    .dropShadow1();
+    border-radius: 4px 4px 0 0;
+    .players-mode {
+      color: @foundryPlayersArrowColor;
+    }
+  }
+  ol {
+    margin: 4px 0;
+    .player-name.self {
+      color: inherit;
+      font-weight: 700;
+    }
+    .player {
+      color: @bodyFontColor;
+    }
+    .player-active {
+      margin-top: 7px;
+      &.active {
+        box-shadow: none;
+      }
+    }
+  }
+}

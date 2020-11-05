@@ -78,6 +78,21 @@
 			<div class="item-detail player-classfeatures">
 			    {{item.data.name}}
 			</div>
+
+			{{else if section.isFightingstyles}}
+			<div class="item-detail player-fightingstyles">
+			    {{item.data.name}}
+			</div>			
+
+			{{else if section.isFightingmasteries}}
+			<div class="item-detail player-fightingmasteries">
+			    {{item.data.name}}
+			</div>
+			
+			{{else if section.isLightsaberform}}
+			<div class="item-detail player-lightsaberforms">
+			    {{item.data.name}}
+			</div>
 			
             {{else if section.isClass}}
             <div class="item-detail player-class">

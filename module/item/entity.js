@@ -180,26 +180,34 @@ export default class Item5e extends Item {
       else labels.featType = game.i18n.localize("SW5E.Passive");
     }
 
-	// Species Items
-	else if ( itemData.type === "species" ) {
-	//  labels.species = C.species[data.species];
-	}
-	// Archetype Items
-	else if ( itemData.type === "archetype" ) {
+	  // Species Items
+	  else if ( itemData.type === "species" ) {
+	  //  labels.species = C.species[data.species];
+	  }
+	  // Archetype Items
+	  else if ( itemData.type === "archetype" ) {
     //  labels.archetype = C.archetype[data.archetype];
     }
-	// Background Items
-	else if ( itemData.type === "background" ) {
+	  // Background Items
+	  else if ( itemData.type === "background" ) {
 		
-	}
-	// Class Feature Items
+	  }
+	  // Class Feature Items
     else if ( itemData.type === "classfeature" ) {
 	
-	}
-	// Lightsaber Form Items
-	else if ( itemData.type === "lightsaberform" ) {
+	  }
+	  // Fighting Style Items
+	  else if ( itemData.type === "fightingstyle" ) {
 	
-	}
+	  }
+	  // Fighting Mastery Items
+	  else if ( itemData.type === "fightingmastery" ) {
+	
+	  }
+	  // Lightsaber Form Items
+	  else if ( itemData.type === "lightsaberform" ) {
+	
+	  }
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {

@@ -70,7 +70,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     };
 	  
     // Partition items by category
-    let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds, lightsaberforms] = data.items.reduce((arr, item) => {
+    let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -93,10 +93,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 	  else if ( item.type === "archetype" ) arr[5].push(item);
 	  else if ( item.type === "classfeature" ) arr[6].push(item);
 	  else if ( item.type === "background" ) arr[7].push(item);
-	  else if ( item.type === "lightsaberform" ) arr[8].push(item);
+	  else if ( item.type === "fightingstyle" ) arr[8].push(item);
+	  else if ( item.type === "fightingmastery" ) arr[9].push(item);
+	  else if ( item.type === "lightsaberform" ) arr[10].push(item);	  
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], [], [], [], [], [], []]);
+    }, [[], [], [], [], [], [], [], [], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -124,7 +126,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 	  archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
 	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
 	  background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
-	  lightsaberform: { label: "SW5E.ItemTypeLightsaberForm", items: [], hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true },
+	  fightingstyles: { label: "SW5E.ItemTypeFightingStylePl", items: [], hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyle: true },
+	  fightingmasteries: { label: "SW5E.ItemTypeFightingMasteryPl", items: [], hasActions: false, dataset: {type: "fightingmastery"}, isFightingmastery: true },
+	  lightsaberforms: { label: "SW5E.ItemTypeLightsaberFormPl", items: [], hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true },
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };
@@ -138,7 +142,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 	features.archetype.items = archetypes;
 	features.species.items = species;
 	features.background.items = backgrounds;
-	features.lightsaberform.items = lightsaberforms;
+	features.fightingstyles.items = fightingstyles;
+	features.fightingmasteries.items = fightingmasteries;
+	features.lightsaberforms.items = lightsaberforms;
 
     // Assign and return
     data.inventory = Object.values(inventory);

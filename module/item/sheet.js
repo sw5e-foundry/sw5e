@@ -190,6 +190,14 @@ export default class ItemSheet5e extends ItemSheet {
 	else if ( item.type === "classfeature" ) {
 	
 	}
+
+	else if ( item.type === "fightingmastery" ) {
+	
+	}
+
+	else if ( item.type === "fightingstyle" ) {
+	
+	}
 	
 	else if ( item.type === "lightsaberform" ) {
 		

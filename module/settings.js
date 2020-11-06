@@ -142,4 +142,16 @@ export const registerSystemSettings = function() {
       transformTokens: true
     }
   });
+  game.settings.register("sw5e", "colorTheme", {
+    name: "SETTINGS.SWColorN",
+    hint: "SETTINGS.SWColorL",
+    scope: "world",
+    config: true,
+    default: "light",
+    type: String,
+    choices: {
+      "light": "SETTINGS.SWColorLight",
+      "dark": "SETTINGS.SWColorDark"
+    }
+  });
 };

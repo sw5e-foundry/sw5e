@@ -1,5 +1,5 @@
-import ActorSheet5e from "./base.js";
-import Actor5e from "../entity.js";
+import ActorSheet5e from "../base.js";
+import Actor5e from "../../entity.js";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.

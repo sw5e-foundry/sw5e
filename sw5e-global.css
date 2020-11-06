@@ -1,0 +1,1567 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/OpenSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./fonts/OpenSans-Italic.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('./fonts/OpenSans-BoldItalic.ttf');
+}
+/* russo-one-regular - latin */
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Russo One';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/RussoOne.ttf');
+}
+@font-face {
+  font-family: 'Aurebesh';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Aurebesh.ttf');
+}
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+::-webkit-scrollbar-track {
+  border: 1px solid #0d99cc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  outline: none;
+  border-radius: 4px;
+  background: #0d99cc;
+  border: none;
+}
+:root {
+  scrollbar-width: thin;
+  scrollbar-color: #0d99cc #afc6d6;
+}
+body {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 400;
+}
+h1 {
+  font-family: 'Russo One';
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+h2 {
+  font-family: 'Russo One';
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+h3 {
+  font-family: 'Russo One';
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+h4 {
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+h5,
+h6 {
+  font-family: 'Russo One';
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+a {
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  text-shadow: none;
+  text-decoration: underline;
+}
+.app {
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+#pause {
+  background: none;
+  height: 128px;
+}
+#pause img {
+  display: none;
+}
+#pause::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  margin-left: -64px;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  background: url("ui/pause-inner.svg") no-repeat 50% 50%;
+  animation-name: pause-spin;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+#pause::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  margin-left: -64px;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  background: url("ui/pause-outer.svg") no-repeat 50% 50%;
+  animation-name: pause-spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: reverse;
+}
+#pause h3 {
+  border-bottom: 0;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 256px;
+  margin-left: -128px;
+  margin-top: -13px;
+  text-shadow: 0 0 24px #0d99cc;
+}
+#pause h3::before,
+#pause h3::after {
+  position: absolute;
+  font-family: "Aurebesh", sans-serif;
+  font-size: 13px;
+  color: #4f4f4f;
+  animation: none;
+  opacity: 0.8;
+  text-shadow: 0 0 8px #0d99cc;
+}
+#pause h3::before {
+  content: "GAME";
+  top: -13px;
+  left: 42px;
+}
+#pause h3::after {
+  content: "PAUSED";
+  bottom: -13px;
+  right: 42px;
+}
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="password"]:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+select:hover,
+textarea:hover {
+  box-shadow: none;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+  box-shadow: none;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+  background: transparent;
+  /* Otherwise white in Chrome */
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #c40f0f;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  background: #c40f0f;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  background: #c40f0f;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #7ed6f7;
+  border-radius: 4px;
+  border: 1px solid #0d99cc;
+  box-shadow: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #0d99cc;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #7ed6f7;
+  border-radius: 4px;
+  border: 1px solid #0d99cc;
+  box-shadow: none;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #7ed6f7;
+  border-radius: 4px;
+  border: 1px solid #0d99cc;
+  box-shadow: none;
+}
+input[type=range]:focus {
+  outline: none;
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus {
+  box-shadow: none;
+}
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+#sidebar {
+  border: none;
+}
+#sidebar.collapsed #sidebar-tabs {
+  min-height: 370px;
+  justify-content: center;
+}
+#sidebar.collapsed #sidebar-tabs > .item.active {
+  border: none;
+}
+#sidebar-tabs {
+  border: none;
+  box-shadow: none;
+  justify-content: space-between;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+#sidebar-tabs .item {
+  font-size: 16px;
+}
+#sidebar-tabs .item.active {
+  border: none;
+  box-shadow: none;
+  background: none;
+  text-shadow: none;
+}
+/*-----------
+** Chat Tab
+-----------*/
+#chat-log .chat-message {
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+#chat-log .chat-message > header {
+  color: #c40f0f;
+  border-bottom: 2px solid #0d99cc;
+  margin-bottom: 4px;
+}
+#chat-log .chat-message > header span {
+  color: #1C1C1C;
+}
+.notification-pip {
+  color: #0d99cc;
+}
+.sw5e.chat-card .card-header {
+  padding: 0;
+  border: none;
+}
+.sw5e.chat-card .card-header img {
+  flex: 0 0 36px;
+  margin-right: 4px;
+}
+.sw5e.chat-card .card-header h3 {
+  flex: 1;
+  margin: 0;
+  line-height: 36px;
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+}
+.sw5e.chat-card .card-header h3:hover {
+  text-shadow: none;
+}
+.sw5e.chat-card .card-content {
+  margin: 4px 0;
+}
+.sw5e.chat-card .card-content h3 {
+  font-size: 12px;
+  margin: 0;
+  font-weight: bold;
+}
+.sw5e.chat-card .card-content > * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+.sw5e.chat-card .card-buttons {
+  margin: 4px 0;
+}
+.sw5e.chat-card .card-buttons span {
+  display: block;
+  line-height: 28px;
+  text-align: center;
+}
+.sw5e.chat-card .card-buttons button {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 0;
+  height: auto;
+  line-height: 1.6;
+  margin: 4px 0;
+  border: none;
+  border-radius: 4px;
+}
+.sw5e.chat-card .card-buttons button:hover,
+.sw5e.chat-card .card-buttons button:focus {
+  box-shadow: none;
+}
+.sw5e.chat-card .card-footer {
+  padding: 4px 0 0;
+}
+.sw5e.chat-card .card-footer span {
+  padding: 0 4px 0 0;
+  font-size: 10px;
+}
+.sw5e.chat-card .card-footer span:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.dice-roll .dice-formula {
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.dice-roll .dice-total {
+  border-radius: 0;
+  padding: 4px 0;
+}
+#chat-controls {
+  padding-top: 4px;
+}
+#chat-form textarea:focus {
+  box-shadow: none;
+  outline: none;
+}
+/*-----------
+** Combat Tab
+-----------*/
+#combat h3 {
+  border: none;
+}
+#combat #combat-tracker li.combatant {
+  padding: 4px 0;
+  background: none;
+}
+#combat #combat-tracker li.combatant .token-name {
+  text-shadow: none;
+}
+#combat #combat-tracker li.combatant h4 {
+  color: #1C1C1C;
+}
+#combat #combat-tracker li.combatant .roll {
+  background: none;
+}
+#combat #combat-tracker li.combatant .roll::before {
+  content: "\f6cf";
+  font-family: "Font Awesome 5 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-weight: 900;
+  font-size: 28px;
+}
+#combat #combat-tracker li.combatant .initiative {
+  text-shadow: none;
+}
+#combat #combat-tracker li.combatant.hidden {
+  opacity: 0.5;
+}
+#combat #combat-controls {
+  padding-top: 0;
+}
+/*
+** Folders
+*/
+.sidebar-tab .directory-header {
+  margin-bottom: 4px;
+}
+.sidebar-tab .directory-header .header-search {
+  position: relative;
+}
+.sidebar-tab .directory-header .header-search i.fa-search {
+  position: absolute;
+  left: 8px;
+}
+.sidebar-tab .directory-header .header-search input {
+  text-align: left;
+  padding-left: 22px;
+}
+.sidebar-tab .directory-header .header-search input:focus {
+  box-shadow: none;
+}
+.sidebar-tab .subdirectory {
+  border: none;
+  margin-left: 8px;
+  min-height: 8px;
+}
+.sidebar-tab .directory-list {
+  padding-bottom: 4px;
+}
+.sidebar-tab .directory-list .folder > .folder-header {
+  line-height: default;
+  padding: 0 0 0 8px;
+  position: relative;
+  border: none;
+}
+.sidebar-tab .directory-list .folder > .folder-header h3 {
+  padding: 8px 4px;
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.sidebar-tab .directory-list .folder > .folder-header h3 > i {
+  margin-right: 4px;
+}
+.sidebar-tab .directory-list .folder > .folder-header a {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  height: 100%;
+  padding: 0 4px;
+}
+.sidebar-tab .directory-list .folder > .folder-header a i {
+  margin-top: 12px;
+}
+.sidebar-tab .directory-list .folder > .folder-header a.create-folder {
+  right: 28px;
+}
+.sidebar-tab .directory-list .directory-item img {
+  flex: 0 0 32px;
+  height: 32px;
+  width: 32px;
+  align-self: center;
+}
+.sidebar-tab .directory-list .actor,
+.sidebar-tab .directory-list .item,
+.sidebar-tab .directory-list .journal,
+.sidebar-tab .directory-list .table {
+  border: none;
+}
+.sidebar-tab .directory-list .actor .entity-name,
+.sidebar-tab .directory-list .item .entity-name,
+.sidebar-tab .directory-list .journal .entity-name,
+.sidebar-tab .directory-list .table .entity-name {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+}
+#scenes .subdirectory {
+  border-left: none;
+}
+#scenes .scene {
+  border: none;
+  box-shadow: none;
+  position: relative;
+  height: 128px;
+}
+#scenes .scene + .scene {
+  margin-top: 4px;
+}
+#scenes .scene::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 99px;
+  position: absolute;
+  top: 28px;
+  left: 0;
+}
+#scenes .scene h3 {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  text-shadow: none;
+  padding: 4px 4px 4px 12px;
+  line-height: 1.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#playlists .directory-list {
+  padding: 0 8px;
+}
+#playlists .directory-list li.playlist {
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border-top: inherit;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+#playlists .directory-list li.playlist .playlist-header {
+  text-decoration: none;
+}
+#playlists .directory-list li.playlist li.sound {
+  border: none;
+}
+#playlists .directory-list li.playlist li.sound h4 {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 400;
+}
+#compendium .compendium-entity {
+  margin: 0 4px;
+  padding: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border: none;
+}
+#compendium .compendium-entity + .compendium-entity {
+  margin-top: 4px;
+}
+#compendium .compendium-entity h3 {
+  background: none;
+  border: none;
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 0;
+  margin-bottom: 4px;
+}
+#compendium .compendium-entity ol.compendium-list li.compendium-pack {
+  margin: 0;
+  padding: 4px;
+  border: none;
+}
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title {
+  margin: 0;
+  position: relative;
+}
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+}
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i {
+  display: none;
+}
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+  top: 4px;
+  font-size: 13px;
+}
+#settings h2 {
+  border: none;
+  margin: 0 8px;
+  padding: 0;
+  background: none;
+}
+#settings #game-details,
+#settings #settings-game,
+#settings #settings-documentation,
+#settings #settings-access {
+  padding: 0 8px;
+  margin: 0 0 8px;
+}
+.panel {
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.sw5e.sheet.actor.character {
+  min-width: 780px;
+  min-height: 720px;
+}
+.sw5e.sheet .window-content {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  font-weight: 400;
+}
+.sw5e.sheet .window-content input,
+.sw5e.sheet .window-content select {
+  height: 24px;
+  line-height: 20px;
+  padding: 1px 4px;
+}
+.sw5e.sheet .window-content input:hover,
+.sw5e.sheet .window-content select:hover {
+  box-shadow: none;
+}
+.sw5e.sheet .window-content input:focus,
+.sw5e.sheet .window-content select:focus {
+  box-shadow: none;
+}
+.sw5e.sheet .window-content button {
+  cursor: pointer;
+}
+.sw5e.sheet .window-content button:hover,
+.sw5e.sheet .window-content button:focus {
+  box-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet {
+  display: grid;
+  grid-template-rows: 182px 40px auto;
+}
+.sw5e.sheet.actor .swalt-sheet section > h1 {
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet header {
+  display: grid;
+  grid-template-rows: 1fr 26px auto;
+  grid-template-columns: 128px 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet header img {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+.sw5e.sheet.actor .swalt-sheet header h1.character-name {
+  grid-row: 1;
+  grid-column: 2;
+  margin: 0;
+  border: none;
+  align-self: center;
+  font-family: 'Russo One';
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  height: auto;
+}
+.sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"] {
+  font-family: 'Russo One';
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  height: auto;
+}
+.sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"]:focus {
+  text-transform: none;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience {
+  grid-row: 1;
+  grid-column: 3;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience .charlevel {
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience .experience {
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: right;
+  line-height: 26px;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience .experience input {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar {
+  height: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .bar {
+  display: block;
+  height: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet header .summary {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-column-end: 4;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+}
+.sw5e.sheet.actor .swalt-sheet header .summary input,
+.sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
+  display: inline;
+  height: auto;
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+.sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
+  line-height: 26px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes {
+  grid-column-start: 2;
+  grid-row-start: 3;
+  grid-column-end: 4;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes h1 {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
+  font-family: 'Russo One';
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value.multiple {
+  display: grid;
+  grid-template-columns: auto 14px auto;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value.multiple input {
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
+  display: inline-block;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .value-number {
+  display: inline-block;
+  text-align: right;
+  padding: 0px 3px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .value-number:last-child {
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value span.value-number {
+  padding: 1px 4px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .initiative {
+  padding: 1px 4px;
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer button {
+  background: none;
+  padding: 1px 3px;
+  font-size: inherit;
+  line-height: inherit;
+  display: inline-block;
+  width: auto;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer button:hover {
+  font-weight: 400;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  margin-top: 0;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points input,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice input,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative input,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points button,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice button,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative button {
+  width: 100%;
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points button,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice button,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative button {
+  font-weight: 400;
+  margin-top: 2px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points span,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice span,
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative span {
+  display: block;
+  padding: 3px 4px;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.speed {
+  margin-top: 0;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes footer.speed input {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 16px;
+  margin: 4px 0;
+}
+.sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 0 8px;
+  line-height: 1.6;
+  font-family: 'Russo One';
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.sw5e.sheet.actor .swalt-sheet .editor {
+  position: static;
+  min-height: 32px;
+  padding: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .editor .editor-edit {
+  display: block;
+  font-size: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  top: 0;
+  right: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .editor .editor-edit:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .editor .tox.tox-tinymce {
+  height: 250px !important;
+}
+.sw5e.sheet.actor .swalt-sheet .tab {
+  display: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.active {
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-title {
+  display: none;
+  font-weight: bold;
+  width: 50px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item {
+  width: 100px;
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item + .filter-item {
+  margin-left: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-header {
+  display: grid;
+  padding-right: 6px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-title h3 {
+  font-family: 'Russo One';
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 4px 0 0;
+  padding: 0 4px;
+  display: inline;
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-title .item-create {
+  font-size: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-title .item-create i {
+  font-size: 10px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-title .item-create:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list-header .item-detail,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list .item-detail {
+  text-align: left;
+  padding: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list {
+  height: 100%;
+  overflow-y: scroll;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list > li:first-child {
+  padding-top: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list .item-uses input,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol .item-uses input {
+  display: inline-block;
+  width: 32px;
+  margin-right: 0;
+  text-align: right;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list .item-uses span,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol .item-uses span {
+  padding-left: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list .item-uses .slot-max-override,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol .item-uses .slot-max-override {
+  margin-left: 5px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list .item-uses .slot-max-override:hover,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol .item-uses .slot-max-override:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item {
+  display: grid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-detail,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-detail {
+  padding: 4px;
+  line-height: 30px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name {
+  display: flex;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  background-size: contain;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f6cf';
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 2px;
+  font-size: 26px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name h4,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name h4 {
+  line-height: 30px;
+  display: inline-block;
+  height: 30px;
+  padding-left: 8px;
+  margin: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image {
+  background-image: none !important;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image::before,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image::before {
+  opacity: 1;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover {
+  background-image: none !important;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover::before,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover::before {
+  opacity: 1;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-summary,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-summary {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  padding: 4px 4px 4px 38px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-controls,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control:hover,
+.sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-inventory {
+  grid-template-columns: auto 60px 100px 100px 100px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-inventory.group-list-title .item-controls {
+  grid-column-start: 5;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-features {
+  grid-template-columns: auto 100px 100px 100px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-features.group-list-title {
+  display: grid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-features .item-controls {
+  grid-column-start: 4;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-powers {
+  grid-template-columns: auto repeat(5, 100px);
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-powers.group-list-title {
+  display: grid;
+  align-items: end;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-powers.group-list-title .item-detail {
+  padding: 0 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items {
+  grid-template-columns: auto 60px 30px 30px 50px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items.group-list-title {
+  display: grid;
+  align-items: end;
+}
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items.group-list-title .item-detail {
+  padding: 0 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab > .panel {
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes {
+  grid-template-columns: 350px auto;
+  grid-template-rows: auto;
+  column-gap: 16px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes.active {
+  display: grid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities {
+  display: grid;
+  grid-template-columns: 128px auto;
+  grid-template-rows: auto;
+  column-gap: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li {
+  border-radius: 0;
+  padding: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li + li {
+  border-top: 0 !important;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li:last-child {
+  border-bottom-width: 1px;
+  border-radius: 0 0 4px 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li h2 {
+  font-family: 'Russo One';
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border: none;
+  text-align: center;
+  margin: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li h2:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-score {
+  font-family: 'Russo One';
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: 48px;
+  margin: 0 auto;
+  height: 24px;
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers {
+  margin: 0 -4px -4px;
+  display: grid;
+  grid-template-columns: 28px auto 28px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-mod,
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-save {
+  padding: 2px 4px;
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  border-style: solid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-mod {
+  border-width: 1px 1px 0 0;
+  border-radius: 0 4px 0 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-save {
+  border-width: 1px 0 0 1px;
+  border-radius: 4px 0 0 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .proficiency-toggle {
+  border: none;
+  background: none;
+  line-height: 1;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li {
+  display: grid;
+  grid-template-columns: 28px auto 18px 28px;
+  align-items: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .proficiency-toggle {
+  border: none;
+  background: none;
+  height: 23px;
+  line-height: 23px;
+  padding: 0 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .skill-name:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .skill-ability {
+  text-transform: capitalize;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .skill-mod {
+  text-align: right;
+  padding-right: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources {
+  grid-template-rows: 32px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav {
+  margin-bottom: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button {
+  display: inline-block;
+  width: auto;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 4px;
+  line-height: 1.6;
+  font-family: 'Russo One';
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button + button {
+  margin-left: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  row-gap: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits input,
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits select {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits label {
+  font-size: 13px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector {
+  background: none;
+  border: none;
+  display: inline;
+  width: auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas {
+  float: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages {
+  grid-column-end: span 2;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages label:hover {
+  cursor: pointer;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .traits-list li {
+  display: inline;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .traits-list li::after {
+  content: ',';
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .traits-list li:last-child::after {
+  content: '';
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits ul.passives {
+  grid-column-end: span 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
+  row-gap: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits ul.passives strong {
+  font-size: 13px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource h1 {
+  border: none;
+  margin: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource h1 input {
+  font-family: 'Russo One';
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+  border-radius: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value input {
+  font-family: 'Russo One';
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value {
+  display: grid;
+  grid-template-columns: auto 14px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value input {
+  display: block;
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value .value-number {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 0px 3px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value .value-number:last-child {
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value span.value-number {
+  padding: 1px 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-footer label {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters {
+  border: none;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter {
+  height: auto;
+  border: none;
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter h4 {
+  font-size: 13px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter h4.rollable:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .counter-value {
+  display: inline;
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter input[type="text"] {
+  display: inline-block;
+  width: 10px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter input[type="checkbox"] {
+  display: inline-block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .death-success,
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .death-fail {
+  display: inline-block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .death-success {
+  margin-right: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory > .panel {
+  grid-template-rows: 32px 32px 24px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .currency-encumbrance {
+  display: grid;
+  grid-template-columns: 200px auto;
+  margin-bottom: 8px;
+  align-items: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
+  font-family: 'Russo One';
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .currency input {
+  display: inline-block;
+  width: 128px;
+  font-family: 'Open Sans';
+  font-size: 13px;
+  font-weight: 400;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper {
+  display: grid;
+  grid-template-columns: 400px 100px;
+  width: 500px;
+  justify-self: end;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance-label {
+  font-size: 12px;
+  line-height: 14px;
+  width: 100%;
+  text-shadow: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  text-align: center;
+  margin-left: -2px;
+  border-radius: 0 4px 4px 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance {
+  position: relative;
+  border-radius: 4px;
+  height: 16px;
+  margin: 0;
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance .encumbrance-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.features > .panel {
+  grid-template-rows: 24px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook > .panel {
+  grid-template-rows: 32px 24px 24px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability label,
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability h3 {
+  font-family: 'Russo One';
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability .power-dc {
+  grid-column-start: 3;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.biography {
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 100%;
+  column-gap: 16px;
+  padding-bottom: 8px;
+  max-width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.biography.active {
+  display: grid;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.biography > .panel {
+  display: block;
+  overflow-y: auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.biography section {
+  position: relative;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.notes > .panel {
+  display: block;
+  overflow-y: auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.notes section {
+  position: relative;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
+  font-family: 'Russo One';
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin-bottom: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.notes section .editor .editor-edit {
+  top: 3px;
+}
+.sw5e.sheet.actor .swalt-sheet.limited {
+  grid-template-rows: 144px auto;
+  row-gap: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet.limited header {
+  grid-template-rows: 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet.limited .tab.biography {
+  grid-template-columns: 100%;
+}
+@keyframes pause-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

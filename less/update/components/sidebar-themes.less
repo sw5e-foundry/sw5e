@@ -1,0 +1,295 @@
+#sidebar-tabs {
+  background: @sidebarTabBackground;
+  & > .collapse {
+    color: @sidebarTabLinkColor;
+  }
+  .item.active {
+    color: @sidebarTabLinkColor;
+    border-bottom: 3px solid @sidebarTabLinkUnderline;
+  }
+}
+
+/*-----------
+** Chat Tab
+-----------*/
+
+#chat-log {
+  .chat-message {
+    background: @chatBackground;
+    color: @bodyFontColor;
+    & > header {
+      color: @chatHeaderColor;
+      border-bottom: 2px solid @chatHeaderBottomBorderColor;
+      span {
+        color: @bodyFontColor;
+      }
+    }
+
+  }
+}
+.notification-pip {
+  color: @chatNotificationColor;
+}
+
+.sw5e.chat-card {
+
+  .card-header {
+    h3 {
+      color: @bodyFontColor;
+      &:hover {
+        color: @bodyFontColor;
+      }
+    }
+  }
+
+
+  .card-buttons {
+    span {
+      border: 1px solid @cardButtonBorder;
+    }
+
+  }
+
+  .card-footer {
+    border-top: 1px solid @cardFooterBorder;
+
+    span {
+      border-right: 1px solid @cardFooterSeparator;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+.dice-roll {
+
+  .dice-formula {
+    background: @diceFormulaBackground;
+    color: @diceFormualColor;
+    box-shadow: none;
+    border-radius: 4px;
+  }
+
+.dice-total {
+  background: @diceTotalBackground;
+  border: 1px solid @diceTotalBorder;
+  box-shadow: 0 0 12px rgba(@diceTotalShadow,.8);
+  &.success {
+    color: @diceSuccessColor;
+  }
+  &.failure {
+    color: @diceFailureColor;
+  }
+  &.critical {
+    color: @diceCriticalColor;
+    background: @diceCriticalBackground;
+    box-shadow: 0 0 12px rgba(@diceCriticalColor,.5);
+  }
+  &.fumble {
+    color: @diceFumbleColor;
+    background: @diceFumbleBackground;
+    box-shadow: 0 0 12px rgba(@diceFumbleColor,.5);
+  }
+}
+}
+#chat-controls {
+  .roll-type-select {
+    background: @inputBackgroundColor;
+  }
+  label {
+    color: @bodyFontColor;
+  }
+ 
+}
+#chat-form  textarea {
+  background: @inputBackgroundColor;
+
+}
+
+/*-----------
+** Combat Tab
+-----------*/
+#combat {
+#combat-round {
+  color: @combatRoundColor;
+  border-bottom: 2px solid @combatRoundColor;
+  .encounters {
+      h4 {
+      color: @combatRoundColor;
+    }
+    a {
+      color: @linkSecondaryColor;
+      &:hover {
+        color: @linkColor;
+      }
+    }
+  }
+}
+  #combat-tracker {
+    //padding-top: 4px;
+    li.combatant {
+      color: @bodyFontColor;
+      &:nth-child(even) {
+        background: rgba(@altRowBackground, 0.5);
+      }
+      h4 {
+        color: @bodyFontColor
+      }
+      .roll {
+        color: @linkSecondaryColor;
+        &:hover {
+          color: @linkColor;
+        }
+      }
+      .combatant-control {
+        color: @combatCombatantControlColor;
+        &.active {
+          color: @combatCombatantControlColorActive;
+        }
+      }
+      .token-resource {
+        color: @combatTokenResourceColor;
+        border-right: 1px solid @combatTokenResouceBorder;
+      }
+      &.active {
+        color: @combatActiveCombatantColor;
+        .initiative, h4 {
+          color: @combatActiveCombatantColor;
+        }
+      }
+      &.hidden {
+        color: @bodyFontColor;
+      }
+    }
+  }
+  #combat-controls {
+    border-top: 1px solid @combatControlsBorder;
+  }
+}
+
+/*
+** Folders
+*/
+.sidebar-tab {
+.directory-header {
+  .header-search {
+    i.fa-search {
+      color: @folderSearchIconColor;
+    }
+    input {
+      background: @inputBackgroundColor;
+    }
+  }
+}
+.subdirectory {
+  background: @folderSubdirectoryBackground;
+  .folder {
+    border-left: 2px solid rgba(@folderSubdirectoryBorder, 0.4);
+  }
+}
+.directory-list {
+  li + li {
+    border-top: 1px solid @directoryListItemBorder;
+  }
+  .folder {
+    & > .folder-header {
+      background: @folderHeaderBackground;
+      h3 {
+        background: @folderHeaderBackground;
+        color: @folderHeaderColor;
+        & > i {
+          color: @folderIconColor;
+        }
+      }
+      a {
+        color: @linkSecondaryColor;
+        &:hover {
+          color: @linkColor;
+        }
+      }
+    }
+    &.collapsed > .folder-header {
+      background: @folderHeaderBackground;
+    }
+    & + .entity {
+      border-top: 1px solid @directoryListItemBorder;
+    }
+  }
+  
+  .actor, .item, .journal, .table {
+    background: @entityBackgroundColor;
+    .entity-name {
+      color: @entityNameColor;
+    }
+    &:nth-child(even) {
+      background: rgba(@altRowBackground, 0.3);
+    }
+  }
+}
+}
+#scenes {
+  .scene {
+    border-top: 1px solid @sceneBorderColor;
+    border-left: 4px solid @sceneBorderColor;
+    &::after {
+      box-shadow: 0 0 20px @sceneBorderColor inset;
+    }
+    h3 {
+      background: @sceneBackgroundColor;
+    }
+  }
+}
+
+#playlists {
+  .directory-list {
+    li.playlist {
+      background: @playlistBackgroundColor;
+      .playlist-header {
+        background: @playlistBackgroundColor;
+        color: @colorRed;
+        border-bottom: 2px solid @playlistHeaderBorder;
+      }
+      li.sound {
+        color: @playlistSoundColor;
+        
+      }
+      a.sound-control {
+        color: @linkColor;
+      }
+    }
+  }
+  
+}
+#compendium {
+  .compendium-entity {
+    background: @compendiumEntityBackground !important;
+    h3 {
+      border-bottom: 2px solid @headerBorderColor;
+    }
+    ol.compendium-list {
+      li.compendium-pack {
+        &:nth-child(even) {
+          background: rgba(@altRowBackground, 0.3);
+        }
+        .pack-title {
+          .status-icons {
+            color: @compendiumStatusIcon;
+          }
+        }
+        footer.compendium-footer {
+          color: @bodyFontColor;
+        }
+      }
+    }
+  }
+}
+
+#settings {
+  h2 {
+    color: @headingColor;
+    border-bottom: 2px solid @headerBorderColor;
+  }
+  #game-details, #settings-game, #settings-documentation, #settings-access {
+    color: @bodyFontColor;
+  }
+}

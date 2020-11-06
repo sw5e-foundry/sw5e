@@ -1,0 +1,61 @@
+@import "variables.less";
+
+
+
+a {
+  color: @colorRed;
+  text-decoration: none;
+  &:hover, &:active {
+    text-shadow: none;
+    text-decoration: underline;
+  }
+}
+
+.app {
+  background: @sheetBackground;
+  border: none;// 1px solid @colorBlue;
+  .dropShadow1();
+}
+
+#context-menu {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: @colorBlack;
+  padding: 0 8px;
+  ol.context-items {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid @colorLightGray;
+    .dropShadow2();
+    li.context-item {
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      &:last-child {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+      i {
+        color: @colorBlue;
+      }
+      &:hover {
+        background: @colorRed;
+        color: white;
+        text-shadow: none;
+        cursor: pointer;
+        i {
+          color: white;
+        }
+      }
+      & + li {
+        border-top: 1px solid @colorPaleGray;
+      }
+    }
+  }
+  
+
+}
+@import "components/forms.less";
+@import "components/sidebar.less";

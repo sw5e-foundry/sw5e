@@ -2,9 +2,9 @@
   #nav-toggle {
     background: @foundryNavBgColor;
     color: @foundryNavTextColor;
-    .nav-item {
+  
        transform: rotate(-90deg);
-    }
+  
   }
   .nav-item {
     border: 1px solid @foundryNavBorderColor;
@@ -39,6 +39,7 @@
     border: 1px solid @foundryNavBorderColor;
     box-shadow: none;
     &:hover {
+      background: @foundryNavBgColor;
       box-shadow: 0 0 8px @foundryNavContextShadow;
     }
     &.active {
@@ -55,8 +56,9 @@
     background: @sidebarTabBackground;
     border: none;
     margin: 0;
-    padding: 8px;
+    padding: 0 8px;
     font-size: 17px;
+    line-height: 30px;
     .dropShadow1();
     border-radius: 4px 4px 0 0;
     .players-mode {

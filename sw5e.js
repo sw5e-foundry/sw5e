@@ -239,6 +239,9 @@ Hooks.on("renderJournalDirectory",  (app, html, data)=> {
 Hooks.on("renderRollTableDirectory",  (app, html, data)=> {
   setFolderBackground(html);
 });
+Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
+  console.log("renderSwaltSheet");
+});
 // TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);

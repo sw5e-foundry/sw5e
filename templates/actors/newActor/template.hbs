@@ -11,7 +11,7 @@
 
 		<ol class="item-list">
 			{{#each favItems as |item id|}}
-			{{> "systems/sw5e/templates/actors/newActor/parts/item.hbs" item=item}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=item}}
 			{{/each}}
 		</ol>
 	</li>
@@ -27,7 +27,7 @@
 
 		<ol class="item-list">
 			{{#each favFeats as |feat lvl|}}
-			{{> "systems/sw5e/templates/actors/newActor/parts/item.hbs" item=feat}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=feat}}
 			{{/each}}
 		</ol>
 	</li>
@@ -56,7 +56,7 @@
 		</div>
 		<ol class="item-list">
 			{{#each section.powers as |power id|}}
-			{{> "systems/sw5e/templates/actors/newActor/parts/item.hbs" item=power}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=power}}
 			{{/each}}
 		</ol>
 	</li>

@@ -394,8 +394,6 @@ body.light-theme #settings #settings-access {
 body.light-theme #navigation #nav-toggle {
   background: rgba(126, 214, 247, 0.4);
   color: white;
-}
-body.light-theme #navigation #nav-toggle .nav-item {
   transform: rotate(-90deg);
 }
 body.light-theme #navigation .nav-item {
@@ -431,6 +429,7 @@ body.light-theme #controls .control-tool {
 }
 body.light-theme #controls .scene-control:hover,
 body.light-theme #controls .control-tool:hover {
+  background: rgba(126, 214, 247, 0.4);
   box-shadow: 0 0 8px #07516c;
 }
 body.light-theme #controls .scene-control.active,
@@ -447,8 +446,9 @@ body.light-theme #players h3 {
   background: white;
   border: none;
   margin: 0;
-  padding: 8px;
+  padding: 0 8px;
   font-size: 17px;
+  line-height: 30px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px 4px 0 0;
 }
@@ -476,7 +476,7 @@ body.light-theme .window-app {
   border: none;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
-body.light-theme .window-app header {
+body.light-theme .window-app > header {
   background: white;
   border-radius: 4px 4px 0 0;
   border: none;
@@ -489,6 +489,12 @@ body.light-theme .window-app .window-content {
 }
 body.light-theme .window-app .window-content footer {
   margin-top: 8px;
+}
+body.light-theme .window-app.minimized > header,
+body.light-theme .window-app.minimized > .window-header {
+  border: none;
+  border-radius: 4px;
+  margin: 0;
 }
 body.light-theme #client-settings nav.tabs {
   border: none;
@@ -509,4 +515,219 @@ body.light-theme #client-settings nav.tabs a.item.active {
 body.light-theme #client-settings section.content {
   border: none;
   margin-top: 4px;
+}
+body.light-theme .panel {
+  background: white;
+}
+body.light-theme .sw5e.sheet .window-content {
+  color: #1C1C1C;
+  background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
+}
+body.light-theme .sw5e.sheet .window-content input,
+body.light-theme .sw5e.sheet .window-content select {
+  color: #1C1C1C;
+}
+body.light-theme .sw5e.sheet .window-content input:hover,
+body.light-theme .sw5e.sheet .window-content select:hover {
+  border-color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet .window-content input:focus,
+body.light-theme .sw5e.sheet .window-content select:focus {
+  border-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet .window-content button:hover,
+body.light-theme .sw5e.sheet .window-content button:focus {
+  border-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor {
+  color: #1C1C1C;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet section > h1 {
+  border-bottom: 2px solid #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"] {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar {
+  border: 1px solid #4f4f4f;
+  background-color: #afc6d6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .bar {
+  background-color: #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .summary input,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .value-separator {
+  color: #828282;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer button {
+  border: 1px solid #D6D6D6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer button:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points button,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice button,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative button {
+  border: 1px solid #D6D6D6;
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-points button:hover,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.hit-dice button:hover,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.initiative button:hover {
+  border-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active {
+  color: #c40f0f;
+  border-bottom-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active:hover {
+  background: rgba(79, 79, 79, 0.1);
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item:hover {
+  background: rgba(79, 79, 79, 0.1);
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item {
+  border-bottom: 2px solid #828282;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item.active {
+  color: #c40f0f;
+  border-bottom-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-header {
+  background: #f0f0f0;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-title {
+  border-bottom: 1px solid #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-header .item-detail,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list .item-detail {
+  border-left: 1px solid #D6D6D6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item:nth-child(even),
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item:nth-child(even) {
+  background-color: #f0f0f0;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
+  color: #1C1C1C;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover::before,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover::before {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control:hover,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control:hover {
+  color: #c40f0f !important;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control.item-toggle,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control.item-toggle {
+  color: #828282;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control.item-toggle.active,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control.item-toggle.active {
+  color: #1C1C1C;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li {
+  border: 1px solid #D6D6D6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li h2:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-score {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-mod,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-save {
+  border-color: #D6D6D6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li:nth-child(even) {
+  background-color: #f0f0f0;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .skill-name:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button.active {
+  color: #c40f0f;
+  border-bottom-color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button.active:hover {
+  background: rgba(196, 15, 15, 0.1);
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button:hover {
+  background: rgba(79, 79, 79, 0.1);
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages label:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource h1 input {
+  color: #c40f0f;
+  border-bottom: 2px solid #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value input {
+  color: #4f4f4f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value .value-separator {
+  color: #828282;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter h4.rollable:hover {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .death-success i {
+  color: #0dce0d;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter .death-fail i {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance-label {
+  background: #D6D6D6;
+  color: #1C1C1C;
+  border: 1px solid #1C1C1C;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance {
+  background: #afc6d6;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance .encumbrance-bar {
+  background: #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability label,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability h3 {
+  color: #c40f0f;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability label span,
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability h3 span {
+  color: #1C1C1C;
+}
+body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
+  color: #c40f0f;
+  border-bottom: 2px solid #0d99cc;
 }

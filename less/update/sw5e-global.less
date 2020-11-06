@@ -154,9 +154,10 @@ a {
       position: absolute;
       font-family: "Aurebesh", sans-serif;
       font-size: 13px;
-      color: @colorBlack;
+      color: @colorGray;
       animation: none;
-      opacity: 0.7;
+      opacity: 0.8;
+      text-shadow: 0 0 8px @colorBlue;
     }
     &::before {
       content: "GAME";
@@ -172,6 +173,7 @@ a {
 }
 @import "components/forms-global.less";
 @import "components/sidebar-global.less";
+@import "components/actor-global.less";
 
 @keyframes pause-spin {
   from {

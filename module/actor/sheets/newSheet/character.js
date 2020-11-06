@@ -624,3 +624,8 @@ async function addSubTabs(app, html, data) {
 
 
 }
+
+Hooks.on("renderActorSheet5eCharacterNew", (app, html, data) => {
+  addFavorites(app, html, data);
+  addSubTabs(app, html, data);
+});

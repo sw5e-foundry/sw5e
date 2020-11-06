@@ -1,11 +1,22 @@
 #sidebar {
   border: none; //1px solid @colorBlue;
+  &.collapsed {
+    #sidebar-tabs {
+      min-height: 370px;
+      justify-content: center;
+      & > .item.active {
+        border: none;
+      }
+    }
+  }
 }
 
 #sidebar-tabs {
   border: none;
   box-shadow: none;
+  justify-content: space-between;
   .dropShadow1();
+
   .item {
     font-size: 16px;
   }
@@ -15,6 +26,7 @@
     background: none;
     text-shadow: none;
   }
+  
 }
 
 /*-----------

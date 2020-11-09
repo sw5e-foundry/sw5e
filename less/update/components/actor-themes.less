@@ -28,13 +28,21 @@
 
 .sw5e.sheet.actor {
     color: @colorBlack;
+    input, select, textarea {
+        &:hover {
+            border-color: @inputBorderFocus;
+        }
+        &:focus {
+            border-color: @inputBorderFocus;
+        }
+    }
     .swalt-sheet {
         section>h1 {
             border-bottom: 2px solid @colorBlue;
         }
 
         header {
-
+            
             h1.character-name {
                 color: @actorNameColor;
 
@@ -247,7 +255,9 @@
                         &:nth-child(even) {
                             background-color: @actorSkillsAltRowColor;
                         }
-
+                        .proficiency-toggle {
+                            color: @colorBlack;
+                        }
 
                         .skill-name {
                             &:hover {

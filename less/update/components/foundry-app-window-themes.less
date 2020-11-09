@@ -47,3 +47,30 @@
     margin-top: 4px;
   }
 }
+
+.dialog-buttons {
+  margin-top: 8px;
+  button:last-child {
+      margin-right: 0;
+    }
+  button:not(.default) {
+    border: 1px solid @buttonBackground;
+    margin-right: 4px;
+    background: @buttonSecondaryBackground;
+    color: @buttonSecondaryTextColor;
+    &:hover {
+      background: @buttonSecondaryHoverBackground;
+    }
+    
+  }
+  button.normal.default {
+    border: none;
+    background: @buttonBackground;
+    color: @buttonTextColor;
+    &:hover {
+      background: @buttonHoverBackground;
+    }
+  }
+
+
+}

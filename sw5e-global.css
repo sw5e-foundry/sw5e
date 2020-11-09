@@ -716,9 +716,15 @@ input[type="reset"]:disabled {
 .sw5e.sheet .window-content button:focus {
   box-shadow: none;
 }
+.sw5e.sheet.actor input,
+.sw5e.sheet.actor select,
+.sw5e.sheet.actor textarea {
+  border-color: transparent;
+  background: none;
+}
 .sw5e.sheet.actor .swalt-sheet {
   display: grid;
-  grid-template-rows: 182px 40px auto;
+  grid-template-rows: 182px 36px auto;
 }
 .sw5e.sheet.actor .swalt-sheet section > h1 {
   font-family: 'Russo One';
@@ -760,6 +766,8 @@ input[type="reset"]:disabled {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   height: auto;
+  border: none;
+  background: none;
 }
 .sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"]:focus {
   text-transform: none;
@@ -919,8 +927,8 @@ input[type="reset"]:disabled {
   border-bottom: 3px solid transparent;
   border-radius: 0;
   margin: 0;
-  padding: 0 0 8px;
-  line-height: 1.6;
+  padding: 3px 0 0;
+  line-height: 1;
   font-family: 'Russo One';
   font-size: 16px;
   font-weight: 400;
@@ -1395,6 +1403,7 @@ input[type="reset"]:disabled {
   padding: 1px 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-footer {
+  margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -1414,6 +1423,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter h4 {
   font-size: 13px;
+  margin: 0;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .counters .counter h4.rollable:hover {
   text-shadow: none;

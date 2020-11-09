@@ -516,6 +516,29 @@ body.dark-theme #client-settings section.content {
   border: none;
   margin-top: 4px;
 }
+body.dark-theme .dialog-buttons {
+  margin-top: 8px;
+}
+body.dark-theme .dialog-buttons button:last-child {
+  margin-right: 0;
+}
+body.dark-theme .dialog-buttons button:not(.default) {
+  border: 1px solid #E81111;
+  margin-right: 4px;
+  background: #828282;
+  color: white;
+}
+body.dark-theme .dialog-buttons button:not(.default):hover {
+  background: #8f8f8f;
+}
+body.dark-theme .dialog-buttons button.normal.default {
+  border: none;
+  background: #E81111;
+  color: white;
+}
+body.dark-theme .dialog-buttons button.normal.default:hover {
+  background: #ef2424;
+}
 body.dark-theme .panel {
   background: white;
 }
@@ -541,6 +564,16 @@ body.dark-theme .sw5e.sheet .window-content button:focus {
 }
 body.dark-theme .sw5e.sheet.actor {
   color: #1C1C1C;
+}
+body.dark-theme .sw5e.sheet.actor input:hover,
+body.dark-theme .sw5e.sheet.actor select:hover,
+body.dark-theme .sw5e.sheet.actor textarea:hover {
+  border-color: #E81111;
+}
+body.dark-theme .sw5e.sheet.actor input:focus,
+body.dark-theme .sw5e.sheet.actor select:focus,
+body.dark-theme .sw5e.sheet.actor textarea:focus {
+  border-color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet section > h1 {
   border-bottom: 2px solid #0d99cc;
@@ -662,6 +695,9 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .score
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li:nth-child(even) {
   background-color: #f0f0f0;
+}
+body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .proficiency-toggle {
+  color: #1C1C1C;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skills li .skill-name:hover {
   color: #E81111;

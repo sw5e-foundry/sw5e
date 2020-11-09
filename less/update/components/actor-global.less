@@ -34,10 +34,14 @@
 }
 
 .sw5e.sheet.actor {
-
+    input, select, textarea {
+        border-color: transparent;
+        background: none;
+        
+    }
     .swalt-sheet {
         display: grid;
-        grid-template-rows: 182px 40px auto;
+        grid-template-rows: 182px 36px auto;
         
         section>h1 {
             .russoOne(17px);
@@ -51,7 +55,7 @@
             grid-template-columns: 128px 1fr;
             column-gap: 8px;
             row-gap: 8px;
-
+            
             img {
                 grid-column-start: 1;
                 grid-row-start: 1;
@@ -74,7 +78,8 @@
                     .russoOne(32px);
                     text-transform: uppercase;
                     height: auto;
-
+                    border: none;
+                    background: none;
                     &:focus {
                         text-transform: none;
                     }
@@ -189,7 +194,7 @@
                 }
 
                 footer {
-
+                    
 
                     button {
                         background: none;
@@ -253,8 +258,8 @@
                 border-bottom: 3px solid transparent;
                 border-radius: 0;
                 margin: 0;
-                padding: 0 0 8px;
-                line-height: 1.6;
+                padding: 3px 0 0;
+                line-height: 1;
                 .russoOne(16px);
             }
         }
@@ -794,6 +799,7 @@
                             }
 
                             .attribute-footer {
+                                margin: 0;
                                 display: grid;
                                 grid-template-columns: 1fr 1fr;
 
@@ -818,7 +824,7 @@
 
                             h4 {
                                 font-size: 13px;
-
+                                margin: 0;
                                 //display: inline;
                                 &.rollable {
                                     &:hover {

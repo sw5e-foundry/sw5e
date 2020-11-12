@@ -29,6 +29,7 @@ import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.j
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
+import MovementConfig from "./module/apps/movement-config.js";
 
 // Import Helpers
 import * as chat from "./module/chat.js";
@@ -54,7 +55,8 @@ Hooks.once("init", function() {
       ActorSheet5eVehicle,
       ItemSheet5e,
       ShortRestDialog,
-      TraitSelector
+      TraitSelector,
+      MovementConfig
     },
     canvas: {
       AbilityTemplate
@@ -74,7 +76,7 @@ Hooks.once("init", function() {
   CONFIG.SW5E = SW5E;
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
-  if ( CONFIG.time ) CONFIG.time.roundTime = 6; // TODO remove conditional after 0.7.x
+  CONFIG.time.roundTime = 6;
   
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
@@ -132,18 +134,18 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "abilities", "abilityAbbreviations", "alignments", "conditionTypes", "consumableTypes", "currencies",
-    "damageTypes", "damageResistanceTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes",
-    "limitedUsePeriods", "senses", "skills", "powerComponents", "powerLevels", "powerPreparationModes", "powerSchools",
-    "powerScalingModes", "targetTypes", "timePeriods", "weaponProperties", "weaponTypes", "languages",
-    "polymorphSettings", "armorProficiencies", "weaponProficiencies", "toolProficiencies", "abilityActivationTypes",
-    "abilityConsumptionTypes", "actorSizes", "proficiencyLevels", "armorPropertiesTypes", "cover"
+    "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments", 
+    "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
+    "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
+    "limitedUsePeriods", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
+    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes", 
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes" 
   ];
 
   // Exclude some from sorting where the default order matters
   const noSort = [
-    "abilities", "alignments", "currencies", "distanceUnits", "itemActionTypes", "proficiencyLevels",
-    "limitedUsePeriods", "powerComponents", "powerLevels", "weaponTypes"
+    "abilities", "alignments", "currencies", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
+    "limitedUsePeriods", "powerComponents", "powerLevels", "powerPreparationModes", "weaponTypes"
   ];
 
   // Localize and sort CONFIG objects
@@ -171,22 +173,23 @@ Hooks.once("setup", function() {
  */
 Hooks.once("ready", function() {
 
-  // Determine whether a system migration is required and feasible
-  const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = 0.84;
-  const COMPATIBLE_MIGRATION_VERSION = 0.80;
-  let needMigration = (currentVersion < NEEDS_MIGRATION_VERSION) || (currentVersion === null);
-
-  // Perform the migration
-  if ( needMigration && game.user.isGM ) {
-    if ( currentVersion && (currentVersion < COMPATIBLE_MIGRATION_VERSION) ) {
-      ui.notifications.error(`Your SW5E system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`, {permanent: true});
-    }
-    migrations.migrateWorld();
-  }
-
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => macros.create5eMacro(data, slot));
+
+  // Determine whether a system migration is required and feasible
+  if ( !game.user.isGM ) return;
+  const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
+  const NEEDS_MIGRATION_VERSION = "1.1.0";
+  const COMPATIBLE_MIGRATION_VERSION = 0.80;
+  const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
+  if ( !needsMigration ) return;
+
+  // Perform the migration
+  if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
+    const warning = `Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    ui.notifications.error(warning, {permanent: true});
+  }
+  migrations.migrateWorld();
 });
 
 /* -------------------------------------------- */

@@ -4,7 +4,6 @@
     <ol class="currency flexrow">
         <h3>
             {{localize "SW5E.Currency"}}
-            <a class="currency-convert" title="Convert Currency"><i class="fas fa-coins"></i></a>
         </h3>
         {{#each data.currency as |v k|}}
         <label class="denomination {{k}}">{{ lookup ../config.currencies k }}</label>
@@ -23,9 +22,9 @@
     {{/unless}}
 </div>
 
-<ol class="inventory-list">
+<ol class="items-list inventory-list">
 {{#each sections as |section sid|}}
-    <li class="inventory-header flexrow">
+    <li class="items-header flexrow">
         <h3 class="item-name flexrow">{{localize section.label}}</h3>
 
         {{#if section.columns}}
@@ -33,18 +32,18 @@
                 <div class="item-detail {{css}}">{{label}}</div>
             {{/each}}
         {{else}}
-        {{#if ../isCharacter}}
-        <div class="item-detail item-weight">{{localize "SW5E.Weight"}}</div>
-        {{/if}}
+            {{#if ../isCharacter}}
+                <div class="item-detail item-weight">{{localize "SW5E.Weight"}}</div>
+            {{/if}}
 
-        <div class="item-detail item-uses">{{localize "SW5E.Charges"}}</div>
-        <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+            <div class="item-detail item-uses">{{localize "SW5E.Charges"}}</div>
+            <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
         {{/if}}
 
         {{#if ../owner}}
-        <div class="item-controls">
+        <div class="item-controls flexrow">
             <a class="item-control item-create" title='{{localize "SW5E.ItemCreate"}}'
-                {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+               {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
                 <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
             </a>
         </div>
@@ -53,13 +52,13 @@
 
     <ol class="item-list">
     {{#each section.items as |item iid|}}
-    <li class="item flexrow {{section.css}}"
-    data-item-id="{{#if section.editableName}}{{iid}}{{else}}{{item._id}}{{/if}}">
-    <div class="item-name flexrow rollable">
-        {{#if section.editableName}}
-        <input type="text" value="{{item.name}}">
-        {{else}}
-        <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+        <li class="item flexrow {{section.css}}"
+            data-item-id="{{#if section.editableName}}{{iid}}{{else}}{{item._id}}{{/if}}">
+            <div class="item-name flexrow rollable">
+                {{#if section.editableName}}
+                <input type="text" value="{{item.name}}">
+                {{else}}
+                <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                 <h4>
                     {{item.name~}}
                     {{~#if item.isStack}} ({{item.data.quantity}}){{/if}}
@@ -82,32 +81,32 @@
                     </div>
                 {{/each}}
             {{else}}
-            {{#if ../../isCharacter}}
-            <div class="item-detail item-weight">
-                {{#if item.totalWeight}}
-                <div class="item-detail">
-                    {{ item.totalWeight }} {{localize "SW5E.AbbreviationLbs"}}
+                {{#if ../../isCharacter}}
+                    <div class="item-detail item-weight">
+                        {{#if item.totalWeight}}
+                            <div class="item-detail">
+                                {{ item.totalWeight }} {{localize "SW5E.AbbreviationLbs"}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/if}}
+
+                <div class="item-detail item-uses">
+                    {{#if item.hasUses }}
+                        <input type="text" value="{{item.data.uses.value}}" placeholder="0"/>
+                        / {{item.data.uses.max}}
+                    {{/if}}
                 </div>
-                {{/if}}
-            </div>
-            {{/if}}
 
-            <div class="item-detail item-uses">
-                {{#if item.hasUses }}
-                    <input type="text" value="{{item.data.uses.value}}" placeholder="0"/>
-                    / {{item.data.uses.max}}
-                {{/if}}
-            </div>
-
-            <div class="item-detail item-action">
-                {{#if item.data.activation.type }}
-                {{item.labels.activation}}
-                {{/if}}
-            </div>
+                <div class="item-detail item-action">
+                    {{#if item.data.activation.type }}
+                        {{item.labels.activation}}
+                    {{/if}}
+                </div>
             {{/if}}
 
             {{#if ../../owner}}
-            <div class="item-controls">
+            <div class="item-controls flexrow">
                 {{#unless @root.isVehicle}}
                 <a class="item-control item-toggle {{item.toggleClass}}" title='{{item.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                 {{/unless}}

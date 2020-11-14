@@ -42,8 +42,6 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
-  console.log("Enabling Hooks debug");
-  CONFIG.debug.hooks = true;
   console.log(`SW5e | Initializing Star Wars 5th Edition System\n${SW5E.ASCII}`);
 
   // Create a SW5E namespace within the game global
@@ -217,7 +215,7 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
-Hooks.on("renderActorDirectory", CharacterImporter.addImportButton());
+Hooks.on("renderActorDirectory", (app, html, data) => CharacterImporter.addImportButton(html));
 
 // TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {

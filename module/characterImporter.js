@@ -1,4 +1,4 @@
-export default class CharacterImporter{
+export default class CharacterImporter {
 
     // import JSON from sw5e.com
     import(){
@@ -1279,6 +1279,22 @@ export default class CharacterImporter{
         };        
 
         Actor.create(targetCharacter);
+    }
+
+    static addImportButton(){
+        console.log("Starting to add Import Character button...");
+        const header = $("#actors").find("header.directory-header");
+        const search = $("#actors").children().find("div.header-search");
+        const newImportButtonDiv = $("#actors").children().find("div.header-actions").clone();
+        const newSearch = search.clone();
+
+        search.remove();
+        newImportButtonDiv.attr('id', 'character-sheet-import');
+        header.append(newImportButtonDiv);
+        newImportButtonDiv.children("button").remove();
+        newImportButtonDiv.append("<button class='create-entity'><i class='fas fa-upload'></i> Import Character</button>");
+        newSearch.appendTo(header);
+        console.log("Finished adding new button!");
     }
 
     

@@ -14,9 +14,11 @@ import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { _getInitiativeFormula } from "./module/combat.js";
 import { measureDistances, getBarAttribute } from "./module/canvas.js";
 
+
 // Import Entities
 import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
+import CharacterImporter from "./module/characterImporter.js";
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -40,6 +42,8 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
+  console.log("Enabling Hooks debug");
+  CONFIG.debug.hooks = true;
   console.log(`SW5e | Initializing Star Wars 5th Edition System\n${SW5E.ASCII}`);
 
   // Create a SW5E namespace within the game global
@@ -213,6 +217,7 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
+Hooks.on("renderActorDirectory", CharacterImporter.addImportButton());
 
 // TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {

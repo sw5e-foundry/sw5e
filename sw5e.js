@@ -40,8 +40,6 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
-  console.log("Enabling Hooks debug.");
-  CONFIG.debug.hooks = true;
   console.log(`SW5e | Initializing Star Wars 5th Edition System\n${SW5E.ASCII}`);
 
   // Create a SW5E namespace within the game global

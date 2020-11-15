@@ -1281,6 +1281,7 @@ export default class CharacterImporter {
         Actor.create(targetCharacter);
     }
 
+    /** */
     static addImportButton(html){
         const header = $("#actors").find("header.directory-header");
         const search = $("#actors").children().find("div.header-search");
@@ -1290,8 +1291,27 @@ export default class CharacterImporter {
         newImportButtonDiv.attr('id', 'character-sheet-import');
         header.append(newImportButtonDiv);
         newImportButtonDiv.children("button").remove();
-        newImportButtonDiv.append("<button class='create-entity'><i class='fas fa-upload'></i> Import Character</button>");
+        newImportButtonDiv.append("<button class='create-entity' id='cs-import-button'><i class='fas fa-upload'></i> Import Character</button>");
         newSearch.appendTo(header);
+
+        let characterImportButton = $("#cs-import-button");
+        characterImportButton.click(e => { 
+            let file;
+            let content = '<h1>Saved Character JSONImport</h1> '
+                + '<input class="file-picker" type="file" id="sw5e-character-json" accept=".json" multiple name="sw5e-character-json">'
+                + '<hr>'
+                + '<div class="sw5e-file-import"></div>';
+            let importDialog = new Dialog({
+                title: "Import Character from SW5e.com",
+                content: "HTML Content",
+                buttons: "The buttons which are disapled as action chjoices for teh dialog",
+                render: "A callback function invoed when teh dialog is rendered",
+                close: "Common callback operations to perform when the dialog is closed"
+            }
+
+        });
+
+
     }
 
     

@@ -1,9 +1,9 @@
-  /**
-   * A standardized helper function for managing core 5e "d20 rolls"
-   *
-   * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
-   * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
-   *
+/**
+ * A standardized helper function for managing core 5e "d20 rolls"
+ *
+ * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
+ * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
+ *
  * @param {Array} parts             The dice roll component parts, excluding the initial d20
  * @param {Object} data             Actor or item data against which to parse the roll
  * @param {Event|object} event      The triggering event which initiated the roll
@@ -27,72 +27,72 @@
  * @param {object} messageData      Additional data which is applied to the created Chat Message, if any
  *
  * @return {Promise}                A Promise which resolves once the roll workflow has completed
-   */
-  export async function d20Roll({parts=[], data={}, event={}, rollMode=null, template=null, title=null, speaker=null,
-    flavor=null, fastForward=null, dialogOptions,
-    advantage=null, disadvantage=null, critical=20, fumble=1, targetValue=null,
-    elvenAccuracy=false, halflingLucky=false, reliableTalent=false,
-    chatMessage=true, messageData={}}={}) {
-  
-    // Prepare Message Data
-    messageData.flavor = flavor || title;
-    messageData.speaker = speaker || ChatMessage.getSpeaker();
-    const messageOptions = {rollMode: rollMode || game.settings.get("core", "rollMode")};
-    parts = parts.concat(["@bonus"]);
-  
-    // Handle fast-forward events
-    let adv = 0;
-    fastForward = fastForward ?? (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-    if (fastForward) {
-      if ( advantage || event.altKey ) adv = 1;
-      else if ( disadvantage || event.ctrlKey || event.metaKey ) adv = -1;
+ */
+export async function d20Roll({parts=[], data={}, event={}, rollMode=null, template=null, title=null, speaker=null,
+  flavor=null, fastForward=null, dialogOptions,
+  advantage=null, disadvantage=null, critical=20, fumble=1, targetValue=null,
+  elvenAccuracy=false, halflingLucky=false, reliableTalent=false,
+  chatMessage=true, messageData={}}={}) {
+
+  // Prepare Message Data
+  messageData.flavor = flavor || title;
+  messageData.speaker = speaker || ChatMessage.getSpeaker();
+  const messageOptions = {rollMode: rollMode || game.settings.get("core", "rollMode")};
+  parts = parts.concat(["@bonus"]);
+
+  // Handle fast-forward events
+  let adv = 0;
+  fastForward = fastForward ?? (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+  if (fastForward) {
+    if ( advantage || event.altKey ) adv = 1;
+    else if ( disadvantage || event.ctrlKey || event.metaKey ) adv = -1;
+  }
+
+  // Define the inner roll function
+  const _roll = (parts, adv, form) => {
+
+    // Determine the d20 roll and modifiers
+    let nd = 1;
+    let mods = halflingLucky ? "r=1" : "";
+
+    // Handle advantage
+    if (adv === 1) {
+      nd = elvenAccuracy ? 3 : 2;
+      messageData.flavor += ` (${game.i18n.localize("SW5E.Advantage")})`;
+      if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].advantage = true;
+      mods += "kh";
     }
-  
-    // Define the inner roll function
-    const _roll = (parts, adv, form) => {
-  
-        // Determine the d20 roll and modifiers
-      let nd = 1;
-      let mods = halflingLucky ? "r=1" : "";
 
-      // Handle advantage
-      if (adv === 1) {
-        nd = elvenAccuracy ? 3 : 2;
-        messageData.flavor += ` (${game.i18n.localize("SW5E.Advantage")})`;
-        if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].advantage = true;
-          mods += "kh";
-      }
-
-      // Handle disadvantage
-      else if (adv === -1) {
-        nd = 2;
-        messageData.flavor += ` (${game.i18n.localize("SW5E.Disadvantage")})`;
-        if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].disadvantage = true;
-          mods += "kl";
-      }
+    // Handle disadvantage
+    else if (adv === -1) {
+      nd = 2;
+      messageData.flavor += ` (${game.i18n.localize("SW5E.Disadvantage")})`;
+      if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].disadvantage = true;
+      mods += "kl";
+    }
 
     // Prepend the d20 roll
     let formula = `${nd}d20${mods}`;
     if (reliableTalent) formula = `{${nd}d20${mods},10}kh`;
     parts.unshift(formula);
 
-      // Optionally include a situational bonus
-      if ( form ) {
-        data['bonus'] = form.bonus.value;
-        messageOptions.rollMode = form.rollMode.value;
+    // Optionally include a situational bonus
+    if ( form ) {
+      data['bonus'] = form.bonus.value;
+      messageOptions.rollMode = form.rollMode.value;
+    }
+    if (!data["bonus"]) parts.pop();
+
+    // Optionally include an ability score selection (used for tool checks)
+    const ability = form ? form.ability : null;
+    if (ability && ability.value) {
+      data.ability = ability.value;
+      const abl = data.abilities[data.ability];
+      if (abl) {
+        data.mod = abl.mod;
+        messageData.flavor += ` (${CONFIG.SW5E.abilities[data.ability]})`;
       }
-      if (!data["bonus"]) parts.pop();
-  
-      // Optionally include an ability score selection (used for tool checks)
-      const ability = form ? form.ability : null;
-      if (ability && ability.value) {
-        data.ability = ability.value;
-        const abl = data.abilities[data.ability];
-        if (abl) {
-            data.mod = abl.mod;
-            messageData.flavor += ` (${CONFIG.SW5E.abilities[data.ability]})`;
-          }
-      }
+    }
 
     // Execute the roll
     let roll = new Roll(parts.join(" + "), data);
@@ -139,73 +139,76 @@
  */
 async function _d20RollDialog({template, title, parts, data, rollMode, dialogOptions, roll}={}) {
 
-    // Render modal dialog
-    template = template || "systems/sw5e/templates/chat/roll-dialog.html";
-    let dialogData = {
-      formula: parts.join(" + "),
-      data: data,
-      rollMode: rollMode,
-      rollModes: CONFIG.Dice.rollModes,
-      config: CONFIG.SW5E
-    };
-    const html = await renderTemplate(template, dialogData);
+  // Render modal dialog
+  template = template || "systems/sw5e/templates/chat/roll-dialog.html";
+  let dialogData = {
+    formula: parts.join(" + "),
+    data: data,
+    rollMode: rollMode,
+    rollModes: CONFIG.Dice.rollModes,
+    config: CONFIG.SW5E
+  };
+  const html = await renderTemplate(template, dialogData);
 
-    // Create the Dialog window
-    return new Promise(resolve => {
-      new Dialog({
-        title: title,
-        content: html,
-        buttons: {
-          advantage: {
-            label: game.i18n.localize("SW5E.Advantage"),
-            callback: html => resolve(roll(parts, 1, html[0].querySelector("form")))
-          },
-          normal: {
-            label: game.i18n.localize("SW5E.Normal"),
-            callback: html => resolve(roll(parts, 0, html[0].querySelector("form")))
-          },
-          disadvantage: {
-            label: game.i18n.localize("SW5E.Disadvantage"),
-            callback: html => resolve(roll(parts, -1, html[0].querySelector("form")))
-          }
+  // Create the Dialog window
+  return new Promise(resolve => {
+    new Dialog({
+      title: title,
+      content: html,
+      buttons: {
+        advantage: {
+          label: game.i18n.localize("SW5E.Advantage"),
+          callback: html => resolve(roll(parts, 1, html[0].querySelector("form")))
         },
-        default: "normal",
-        close: () => resolve(null)
-      }, dialogOptions).render(true);
-    });
-  }
+        normal: {
+          label: game.i18n.localize("SW5E.Normal"),
+          callback: html => resolve(roll(parts, 0, html[0].querySelector("form")))
+        },
+        disadvantage: {
+          label: game.i18n.localize("SW5E.Disadvantage"),
+          callback: html => resolve(roll(parts, -1, html[0].querySelector("form")))
+        }
+      },
+      default: "normal",
+      close: () => resolve(null)
+    }, dialogOptions).render(true);
+  });
+}
 
 
-  /* -------------------------------------------- */
+/* -------------------------------------------- */
 
-  /**
-   * A standardized helper function for managing core 5e "d20 rolls"
-   *
-   * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
-   * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
-   *
-   * @param {Array} parts           The dice roll component parts, excluding the initial d20
-   * @param {Actor} actor           The Actor making the damage roll
-   * @param {Object} data           Actor or item data against which to parse the roll
-   * @param {Event|object}[event    The triggering event which initiated the roll
-   * @param {string} rollMode       A specific roll mode to apply as the default for the resulting roll
-   * @param {String} template       The HTML template used to render the roll dialog
-   * @param {String} title          The dice roll UI window title
-   * @param {Object} speaker        The ChatMessage speaker to pass when creating the chat
-   * @param {string} flavor         Flavor text to use in the posted chat message
-   * @param {boolean} allowCritical Allow the opportunity for a critical hit to be rolled
-   * @param {Boolean} critical      Flag this roll as a critical hit for the purposes of fast-forward rolls
-   * @param {Boolean} fastForward   Allow fast-forward advantage selection
-   * @param {Function} onClose      Callback for actions to take when the dialog form is closed
-   * @param {Object} dialogOptions  Modal dialog options
-   * @param {boolean} chatMessage     Automatically create a Chat Message for the result of this roll
-   * @param {object} messageData      Additional data which is applied to the created Chat Message, if any
-   *
-   * @return {Promise}              A Promise which resolves once the roll workflow has completed
-   */
-  export async function damageRoll({parts, actor, data, event={}, rollMode=null, template, title, speaker, flavor,
-    allowCritical=true, critical=false, fastForward=null, dialogOptions, chatMessage=true, messageData={}}={}) {
-  
+/**
+ * A standardized helper function for managing core 5e "d20 rolls"
+ *
+ * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
+ * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
+ *
+ * @param {Array} parts           The dice roll component parts, excluding the initial d20
+ * @param {Actor} actor           The Actor making the damage roll
+ * @param {Object} data           Actor or item data against which to parse the roll
+ * @param {Event|object}[event    The triggering event which initiated the roll
+ * @param {string} rollMode       A specific roll mode to apply as the default for the resulting roll
+ * @param {String} template       The HTML template used to render the roll dialog
+ * @param {String} title          The dice roll UI window title
+ * @param {Object} speaker        The ChatMessage speaker to pass when creating the chat
+ * @param {string} flavor         Flavor text to use in the posted chat message
+ * @param {boolean} allowCritical Allow the opportunity for a critical hit to be rolled
+ * @param {Boolean} critical      Flag this roll as a critical hit for the purposes of fast-forward rolls
+ * @param {number} criticalBonusDice    A number of bonus damage dice that are added for critical hits
+ * @param {number} criticalMultiplier   A critical hit multiplier which is applied to critical hits
+ * @param {Boolean} fastForward   Allow fast-forward advantage selection
+ * @param {Function} onClose      Callback for actions to take when the dialog form is closed
+ * @param {Object} dialogOptions  Modal dialog options
+ * @param {boolean} chatMessage     Automatically create a Chat Message for the result of this roll
+ * @param {object} messageData      Additional data which is applied to the created Chat Message, if any
+ *
+ * @return {Promise}              A Promise which resolves once the roll workflow has completed
+ */
+export async function damageRoll({parts, actor, data, event={}, rollMode=null, template, title, speaker, flavor,
+  allowCritical=true, critical=false, criticalBonusDice=0, criticalMultiplier=2, fastForward=null,
+  dialogOptions={}, chatMessage=true, messageData={}}={}) {
+
   // Prepare Message Data
   messageData.flavor = flavor || title;
   messageData.speaker = speaker || ChatMessage.getSpeaker();
@@ -213,8 +216,8 @@ async function _d20RollDialog({template, title, parts, data, rollMode, dialogOpt
   parts = parts.concat(["@bonus"]);
   fastForward = fastForward ?? (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
 
-    // Define inner roll function
-    const _roll = function(parts, crit, form) {
+  // Define inner roll function
+  const _roll = function(parts, crit, form) {
 
     // Optionally include a situational bonus
     if ( form ) {
@@ -224,17 +227,17 @@ async function _d20RollDialog({template, title, parts, data, rollMode, dialogOpt
     if (!data["bonus"]) parts.pop();
 
     // Create the damage roll
-      let roll = new Roll(parts.join("+"), data);
+    let roll = new Roll(parts.join("+"), data);
 
     // Modify the damage formula for critical hits
     if ( crit === true ) {
-      let add = (actor && actor.getFlag("sw5e", "savageAttacks")) ? 1 : 0;
-      let mult = 2;
-    // TODO Backwards compatibility - REMOVE LATER
-    if (isNewerVersion(game.data.version, "0.6.9")) roll.alter(mult, add);
-    else roll.alter(add, mult);
-    messageData.flavor += ` (${game.i18n.localize("SW5E.Critical")})`;
-    if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].critical = true;
+      roll.alter(criticalMultiplier, 0);      // Multiply all dice
+      if ( roll.terms[0] instanceof Die ) {   // Add bonus dice for only the main dice term
+        roll.terms[0].alter(1, criticalBonusDice);
+        roll._formula = roll.formula;
+      }
+      messageData.flavor += ` (${game.i18n.localize("SW5E.Critical")})`;
+      if ( "flags.sw5e.roll" in messageData ) messageData["flags.sw5e.roll"].critical = true;
     }
 
     // Execute the roll

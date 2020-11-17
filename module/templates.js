@@ -4,17 +4,16 @@
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function() {
+  return loadTemplates([
 
-  // Define template paths to load
-  const templatePaths = [
+    // Shared Partials
+    "systems/sw5e/templates/actors/parts/active-effects.html",
 
     // Actor Sheet Partials
     "systems/sw5e/templates/actors/oldActor/parts/actor-traits.html",
     "systems/sw5e/templates/actors/oldActor/parts/actor-inventory.html",
     "systems/sw5e/templates/actors/oldActor/parts/actor-features.html",
     "systems/sw5e/templates/actors/oldActor/parts/actor-powerbook.html",
-    "systems/sw5e/templates/actors/oldActor/parts/actor-effects.html",
-
 
     "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html",
     "systems/sw5e/templates/actors/newActor/parts/swalt-core.html",
@@ -30,8 +29,5 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/sw5e/templates/items/parts/item-activation.html",
     "systems/sw5e/templates/items/parts/item-description.html",
     "systems/sw5e/templates/items/parts/item-mountable.html"
-  ];
-
-  // Load the template parts
-  return loadTemplates(templatePaths);
+  ]);
 };

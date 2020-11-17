@@ -76,10 +76,18 @@
       },
       "creature": {
         "attributes": {
+          "movement": {
+            "burrow": 0,
+            "climb": 0,
+            "fly": 0,
+            "swim": 0,
+            "walk": 30,
+            "units": "ft",
+            "hover": false
+          },
           "powercasting": "int",
           "speed": {
-            "value": "30 ft",
-            "special": ""
+            "_deprecated": true
           }
         },
         "details": {
@@ -481,14 +489,14 @@
 		      "value": ""
 		    }
       },	  
-	  "speciesDescription": {
-		"data": "$characteristics-table",
-	    "description": {
-		  "value": "",
-		  "chat": "",
-		  "unidentified": ""
-		  },
-		"traits": ""
+	    "speciesDescription": {
+		    "data": "$characteristics-table",
+        "description": {
+          "value": "",
+          "chat": "",
+          "unidentified": ""
+        },
+		    "traits": ""
 	    },
       "physicalItem": {
         "quantity": 1,
@@ -560,14 +568,14 @@
         }
       }
     },
-	"archetype": {
-	  "templates": ["archetypeDescription"],
-	  "className": "",
-	  "description": ""
-	},
-	"background": {
-	  "templates": ["backgroundDescription"]
-	},
+    "archetype": {
+      "templates": ["archetypeDescription"],
+      "className": "",
+      "description": ""
+    },
+    "background": {
+      "templates": ["backgroundDescription"]
+    },
     "backpack": {
       "templates": ["itemDescription", "physicalItem"],
       "capacity": {
@@ -593,19 +601,19 @@
       },
       "powercasting": "none"
     },
-	"classfeature": {
-	  "templates": ["itemDescription", "activatedEffect", "action"],
-	  "className": ""
-	},
-	"fightingmastery": {
-	  "templates": ["fightingmasteryDescription"]
-	},
-	"fightingstyle": {
-	  "templates": ["fightingstyleDescription"]
-	},	
-	"lightsaberform": {
-	  "templates": ["lightsaberformDescription"]
-	},
+    "classfeature": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "className": ""
+    },
+    "fightingmastery": {
+      "templates": ["fightingmasteryDescription"]
+    },
+    "fightingstyle": {
+      "templates": ["fightingstyleDescription"]
+    },	
+    "lightsaberform": {
+      "templates": ["lightsaberformDescription"]
+    },
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",
@@ -641,7 +649,7 @@
     },
     "species": {
       "templates": ["speciesDescription"]
-	},
+	  },
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",

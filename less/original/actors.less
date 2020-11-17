@@ -90,6 +90,7 @@
     .russoOne(14px);
     color: @colorOlive;
     border-bottom: 1px solid @colorFaint;
+    white-space: nowrap;
   }
 
   /* ----------------------------------------- */
@@ -142,6 +143,7 @@
         font-family: "Signika", sans-serif;
         font-size: 12px;
         font-weight: 400;
+        white-space: nowrap;
       }
     }
   }
@@ -413,46 +415,18 @@
     }
   }
 
+  // Inventory item lists
   .inventory-list {
-    list-style: none;
-    margin: 0;
     padding: 0 5px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    color: @colorTan;
-
-    // Inventory Item
     .item {
-      line-height: 30px;
-      padding: 0 2px; // to align with the header border
-      border-bottom: 1px solid @colorFaint;
-      &:last-child { border-bottom: none; }
-
-      // Item Header Name
       .item-name {
         cursor: pointer;
-        max-height: 30px;
-        overflow: hidden;
-
-        .item-image {
-          flex: 0 0 30px;
-          background-size: 30px;
-          margin-right: 5px;
-        }
-
-        h4 {
-          margin: 0;
-          white-space: nowrap;
-          overflow-x: hidden;
-        }
-
         &.rollable:hover .item-image {
           background-image: url("../../icons/svg/d20-grey.svg") !important;
         }
         &.rollable .item-image:hover {
           background-image: url("../../icons/svg/d20-black.svg") !important;
         }
-
         i.attuned {
           color: @colorTan;
         }
@@ -474,49 +448,26 @@
         flex: 0 0 80px;
         text-align: right;
         font-size: 11px;
-        color: @colorTan;
         white-space: nowrap;
       }
     }
 
     // Inventory Header
     .inventory-header {
-      margin: 2px 0;
-      padding: 0;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.05);
-      border: @borderGroove;
-      font-weight: bold;
-      line-height: 24px;
-
-      h3 {
-        margin: 0 -5px 0 0;
-        padding-left: 5px;
-        .russoOne();
-        font-size: 16px;
-      }
-
       .item-controls a.item-create {
         flex: 0 0 100%;
       }
-    }
-
-    // Item names
-    .item-name {
-      color: @colorDark;
     }
 
     // Item Detail Sections
     .item-detail {
       flex: 0 0 70px;
       font-size: 12px;
-      color: @colorTan;
       text-align: center;
       border-right: 1px solid @colorFaint;
       word-break: break-word;
       white-space: nowrap;
       overflow: hidden;
-
       &:last-child { border-right: none; }
       &.item-action {flex: 0 0 100px}
     }
@@ -527,24 +478,9 @@
       border-right: 1px solid @colorFaint;
     }
 
-    .item-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
     // Item Control Buttons
     .item-controls {
       flex: 0 0 44px;
-      .flexrow();
-      justify-content: flex-end;
-
-      a {
-        flex: 0 0 22px;
-        font-size: 12px;
-        text-align: center;
-        color: @colorTan;
-      }
     }
 
     // Item Dropdown Summary
@@ -553,6 +489,7 @@
       font-size: 12px;
       line-height: 16px;
       padding: 0.25em 0.5em;
+      color: @colorDark;
       border-top: 1px solid @colorFaint;
     }
   }
@@ -694,48 +631,25 @@
   .powerbook-empty .item-controls { flex: 1; }
 
   /* ----------------------------------------- */
-  /*  Active Effects                           */
-  /* ----------------------------------------- */
-
-  .effects {
-    .effect-name{
-      flex: 2;
-      align-items: center;
-      color: @colorDark;
-      h4 { margin: 0; }
-    }
-
-    .effect-icon {
-      flex: 0 0 30px;
-      height: 30px;
-      margin-right: 5px;
-      border: none;
-    }
-
-    .effect-source,
-    .effect-duration {
-      text-align: center;
-      border-left: 1px solid @colorFaint;
-      border-right: 1px solid @colorFaint;
-    }
-
-    .effect-controls {
-      flex: 0 0 60px;
-      text-align: right;
-    }
-
-    .effect {
-      align-items: center;
-      border-bottom: 1px solid @colorFaint;
-      &:last-child { border-bottom: none; }
-    }
-  }
-
-  /* ----------------------------------------- */
   /*  TinyMCE                                  */
   /* ----------------------------------------- */
 
   .editor {
     padding: 0 8px;
+  }
+}
+
+#actor-flags {
+  .window-content {
+    overflow-y: hidden;
+  }
+  form {
+    height: 100%;
+  }
+  .form-body {
+    height: calc(100% - 40px);
+    padding-right: 8px;
+    margin-bottom: 4px;
+    overflow-y: auto;
   }
 }

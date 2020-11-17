@@ -11,6 +11,11 @@
     </div>
 
     {{#unless isVehicle}}
+    <div class="form-group ">
+        <label>{{localize "SW5E.MovementConfig"}}</label>
+        <a class="configure-movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
+    </div>
+
     <div class="form-group {{#unless data.traits.senses}}inactive{{/unless}}">
         <label>{{localize "SW5E.Senses"}}</label>
         <input type="text" name="data.traits.senses" value="{{data.traits.senses}}" placeholder="{{ localize 'SW5E.None' }}"/>

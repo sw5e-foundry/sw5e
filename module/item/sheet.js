@@ -1,4 +1,5 @@
 import TraitSelector from "../apps/trait-selector.js";
+import {onManageActiveEffect, prepareActiveEffectCategories} from "../effects.js";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types
@@ -7,8 +8,11 @@ import TraitSelector from "../apps/trait-selector.js";
 export default class ItemSheet5e extends ItemSheet {
   constructor(...args) {
     super(...args);
+
+    // Expand the default size of the class sheet
     if ( this.object.data.type === "class" ) {
-      this.options.width =  600;
+      this.options.width = this.position.width =  600;
+      this.options.height = this.position.height = 680;
     }
   }
 
@@ -18,7 +22,7 @@ export default class ItemSheet5e extends ItemSheet {
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
       width: 560,
-      height: "auto",
+      height: 400,
       classes: ["sw5e", "sheet", "item"],
       resizable: true,
       scrollY: [".tab.details"],
@@ -37,17 +41,17 @@ export default class ItemSheet5e extends ItemSheet {
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
+  async getData(options) {
+    const data = super.getData(options);
     data.labels = this.item.labels;
     data.config = CONFIG.SW5E;
 
     // Item Type, Status, and Details
-    data.itemType = data.item.type.titleCase();
+    data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
     data.itemStatus = this._getItemStatus(data.item);
     data.itemProperties = this._getItemProperties(data.item);
     data.isPhysical = data.item.data.hasOwnProperty("quantity");
-	
+
     // Potential consumption targets
     data.abilityConsumptionTargets = this._getItemConsumptionTargets(data.item);
 
@@ -55,17 +59,20 @@ export default class ItemSheet5e extends ItemSheet {
     data.hasAttackRoll = this.item.hasAttack;
     data.isHealing = data.item.data.actionType === "heal";
     data.isFlatDC = getProperty(data.item.data, "save.scaling") === "flat";
-	  data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
+    data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
 
     // Vehicles
     data.isCrewed = data.item.data.activation?.type === 'crew';
     data.isMountable = this._isItemMountable(data.item);
+
+    // Prepare Active Effects
+    data.effects = prepareActiveEffectCategories(this.entity.effects);
     return data;
   }
 
   /* -------------------------------------------- */
 
-    /**
+  /**
    * Get the valid item consumption targets which exist on the actor
    * @param {Object} item         Item data for the item being displayed
    * @return {{string: string}}   An object of potential consumption targets
@@ -109,6 +116,8 @@ export default class ItemSheet5e extends ItemSheet {
     // Charges
     else if ( consume.type === "charges" ) {
       return actor.items.reduce((obj, i) => {
+
+        // Limited-use items
         const uses = i.data.data.uses || {};
         if ( uses.per && uses.max ) {
           const label = uses.per === "charges" ?
@@ -116,6 +125,10 @@ export default class ItemSheet5e extends ItemSheet {
             ` (${game.i18n.format("SW5E.AbilityUseConsumableLabel", {max: uses.max, per: uses.per})})`;
           obj[i.id] = i.name + label;
         }
+
+        // Recharging items
+        const recharge = i.data.data.recharge || {};
+        if ( recharge.value ) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
         return obj;
       }, {})
     }
@@ -177,23 +190,26 @@ export default class ItemSheet5e extends ItemSheet {
     }
 	
     else if ( item.type === "species" ) {
-		
+      //props.push(labels.species);
     }
     else if ( item.type === "archetype" ) {
-		
+      //props.push(labels.archetype);		
     }
-	
-	else if ( item.type === "background" ) {
-	
-	}
-	
-	else if ( item.type === "classfeature" ) {
-	
-	}
-	
-	else if ( item.type === "lightsaberform" ) {
-		
-	}
+	  else if ( item.type === "background" ) {
+      //props.push(labels.background);	
+    }
+  	else if ( item.type === "classfeature" ) {
+      //props.push(labels.classfeature);	
+	  }
+    else if ( item.type === "fightingmastery" ) {
+      //props.push(labels.fightingmastery);	
+    }
+    else if ( item.type === "fightingstyle" ) {
+      //props.push(labels.fightingstyle);	
+    }
+    else if ( item.type === "lightsaberform" ) {
+      //props.push(labels.lightsaberform);		
+    }
 	
     // Action type
     if ( item.data.actionType ) {
@@ -232,8 +248,8 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @override */
   setPosition(position={}) {
-    if ( !this._minimized ) {
-      position.height = this._tabs[0].active === "details" ? "auto" : this.options.height;
+    if ( !(this._minimized  || position.height) ) {
+      position.height = (this._tabs[0].active === "details") ? "auto" : this.options.height;
     }
     return super.setPosition(position);
   }
@@ -243,17 +259,20 @@ export default class ItemSheet5e extends ItemSheet {
 	/* -------------------------------------------- */
 
   /** @override */
-  _updateObject(event, formData) {
+  _getSubmitData(updateData={}) {
 
-    // TODO: This can be removed once 0.7.x is release channel
-    if ( !formData.data ) formData = expandObject(formData);
+    // Create the expanded update data object
+    const fd = new FormDataExtended(this.form, {editors: this.editors});
+    let data = fd.toObject();
+    if ( updateData ) data = mergeObject(data, updateData);
+    else data = expandObject(data);
 
-    // Handle Damage Array
-    const damage = formData.data?.damage;
+    // Handle Damage array
+    const damage = data.data?.damage;
     if ( damage ) damage.parts = Object.values(damage?.parts || {}).map(d => [d[0] || "", d[1] || ""]);
 
-    // Update the Item
-    super._updateObject(event, formData);
+    // Return the flattened submission data
+    return flattenObject(data);
   }
 
   /* -------------------------------------------- */
@@ -261,8 +280,14 @@ export default class ItemSheet5e extends ItemSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-    html.find(".damage-control").click(this._onDamageControl.bind(this));
-    html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
+    if ( this.isEditable ) {
+      html.find(".damage-control").click(this._onDamageControl.bind(this));
+      html.find('.trait-selector.class-skills').click(this._onConfigureClassSkills.bind(this));
+      html.find(".effect-control").click(ev => {
+        if ( this.item.isOwned ) return ui.notifications.warn("Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update.")
+        onManageActiveEffect(ev, this.item)
+      });
+    }
   }
 
   /* -------------------------------------------- */
@@ -319,5 +344,13 @@ export default class ItemSheet5e extends ItemSheet {
       minimum: skills.number,
       maximum: skills.number
     }).render(true)
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onSubmit(...args) {
+    if ( this._tabs[0].active === "details" ) this.position.height = "auto";
+    await super._onSubmit(...args);
   }
 }

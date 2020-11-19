@@ -26,6 +26,7 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">Description</a>
         <a class="item" data-tab="species-traits">Species Traits</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
@@ -34,66 +35,141 @@
         {{!-- Description Tab --}}
 		
 		<div class="tab description flexcol" data-group="primary" data-tab="description">
-
-		<table id="characteristics-table" style="background-color: #c2e0f4; border-color: #3598db; border-style: solid; height: 217px; width: 630px; word-wrap: break-word;" border="1">
+		<div class="speciestable">
+		<blockquote class="block">
+		<br />
+		<h3 style="font-style: normal; font-size: 20px;">{{item.name}}</h3>
+		{{#if data.manufacturer}}
+		<table id="droid-visualchar">
+			<thead>
+				<tr>
+					<th colspan="4"><h3>Visual Characteristics</h3></th>
+				</tr>
+			</thead>	
 			<tbody>
-				<tr style="height: 17px; background-color: #ced4d9;">
-					<th style="text-align: left; height: 17px; width: 350px;" colspan="4">VISUAL CHARACTERISTICS</th>
+				<tr>
+					<td>Color Scheme</td>
+					<td><input name="data.colorScheme.value" type="text" value="{{data.colorScheme.value}}" placeholder="{{ localize SW5E.colorScheme }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
-				<tr class="nondroidtr" style="height: 17px; border-style: none;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Skin Color</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.skinColorOptions.value" type="text" value="{{data.skinColorOptions.value}}" placeholder="{{ localize SW5E.skinColorOptions }}"/></td>
-					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+				<tr>
+					<td>Distinctions</td>
+					<td><input name="data.droidDistinctions.value" type="text" value="{{data.droidDistinctions.value}}" placeholder="{{ localize SW5E.distinctions }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
-				<tr class="nondroidtr" style="border-style: none; height: 17px; background-color: #ced4d9;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Hair Color</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.hairColorOptions.value" type="text" value="{{data.hairColorOptions.value}}" placeholder="{{ localize SW5E.hairColorOptions }}"/></td>
-					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+			</tbody>	
+		</table>		
+		<table id="physicalchar">
+			<thead>
+				<tr>
+					<th colspan="3"><h3>Physical Characteristics</h3></th>
 				</tr>
-				<tr class="nondroidtr" style="height: 17px;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Eye Color</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;"><input name="data.eyeColorOptions.value" type="text" value="{{data.eyeColorOptions.value}}" placeholder="{{ localize SW5E.eyeColorOptions }}"/></td>
-					<td style="border-style: none; height: 17px; width: 150px;">&nbsp;</td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Height</td>
+					<td><input name="data.heightAverage.value" type="text" value="{{data.heightAverage.value}}" placeholder="5'2&rdquo;"/></td>
+					<td><input name="data.heightRollMod.value" type="text" value="{{data.heightRollMod.value}}" placeholder="+1d4&rdquo;"/></td>
 				</tr>
-				<tr style="border-style: none; height: 17px; background-color: #ced4d9;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Distinctions</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;" colspan="2"><input name="data.distinctions.value" type="text" value="{{data.distinctions.value}}" placeholder="{{ localize SW5E.distinctions }}"/></td>
+				<tr>
+					<td>Weight</td>
+					<td><input name="data.weightAverage.value" type="text" value="{{data.weightAverage.value}}" placeholder="100 lb."/></td>
+					<td><input name="data.weightRollMod.value" type="text" value="{{data.weightRollMod.value}}" placeholder="x(1d4) lb."/></td>
 				</tr>
-				<tr style="background-color: #ced4d9;">
-					<th style="text-align: left; height: 17px; width: 519px;" colspan="4">PHYSICAL CHARACTERISTICS</th>
+			</tbody>
+		</table>
+		<table id="droid-sociocultchar">
+			<thead>
+				<tr>
+					<th colspan="2"><h3>Sociocultural Characteristics</h3></th>
 				</tr>
-				<tr style="height: 17px;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Height</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="text-align: center; border-style: none; width: 155px; height: 17px;"><input name="data.heightAverage.value" type="text" value="{{data.heightAverage.value}}" placeholder="5'2&rdquo;"/></td>
-					<td style="text-align: center; border-style: none; height: 17px; width: 151px;"><input name="data.heightRollMod.value" type="text" value="{{data.heightRollMod.value}}" placeholder="+1d4&rdquo;"/></td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Manufacturer</td>					
+					<td><input name="data.manufacturer.value" type="text" value="{{data.manufacturer.value}}" placeholder="{{ localize SW5E.manufacturer }}"/></td>
 				</tr>
-				<tr style="background-color: #ced4d9;">
-					<td style="border-style: none; height: 17px; width: 148px; background-color: #ced4d9;"><em><strong>Weight</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="text-align: center; border-style: none; width: 155px; height: 17px;"><input name="data.weightAverage.value" type="text" value="{{data.weightAverage.value}}" placeholder="100 lb."/></td>
-					<td style="text-align: center; border-style: none; height: 17px; width: 151px;"><input name="data.weightRollMod.value" type="text" value="{{data.weightRollMod.value}}" placeholder="x(1d4) lb."/></td>
-				</tr>
-				<tr class="nondroidtr" style="background-color: #ced4d9;">
-					<th style="text-align: left; height: 17px; width: 519px;" colspan="4">SOCIOCULTURAL CHARACTERISTICS</th>
-				</tr>                
-				<tr class="nondroidtr" style="height: 17px;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Homeworld</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;" colspan="2"><input name="data.homeworld.value" type="text" value="{{data.homeworld.value}}" placeholder="{{ localize SW5E.homeworld }}"/></td>
-				</tr>
-				<tr class="nondroidtr" style="background-color: #ced4d9;">
-					<td style="border-style: none; height: 17px; width: 148px;"><em><strong>Language</strong></em></td>
-					<td style="border-style: none; height: 17px; width: 20px;">&nbsp;</td>
-					<td style="border-style: none; width: 154px; height: 17px;" colspan="2"><input name="data.slanguage.value" type="text" value="{{data.slanguage.value}}" placeholder="{{ localize SW5E.slanguage }}"/></td>
+				<tr>
+					<td>Language</td>					
+					<td><input name="data.droidLanguage.value" type="text" value="{{data.droidLanguage.value}}" placeholder="{{ localize SW5E.slanguage }}"/></td>
 				</tr>                
 			</tbody>
 		</table>
-
+		{{else if data.skinColorOptions}}
+		<table id="visualchar">
+			<thead>
+				<tr>
+					<th colspan="4"><h3>Visual Characteristics</h3></th>
+				</tr>
+			</thead>	
+			<tbody>
+				<tr>
+					<td>Skin Color</td>
+					<td><input name="data.skinColorOptions.value" type="text" value="{{data.skinColorOptions.value}}" placeholder="{{ localize SW5E.skinColorOptions }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Hair Color</td>
+					<td><input name="data.hairColorOptions.value" type="text" value="{{data.hairColorOptions.value}}" placeholder="{{ localize SW5E.hairColorOptions }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Eye Color</td>
+					<td><input name="data.eyeColorOptions.value" type="text" value="{{data.eyeColorOptions.value}}" placeholder="{{ localize SW5E.eyeColorOptions }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>Distinctions</td>
+					<td><input name="data.distinctions.value" type="text" value="{{data.distinctions.value}}" placeholder="{{ localize SW5E.distinctions }}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>	
+		</table>
+		<table id="physicalchar">
+			<thead>
+				<tr>
+					<th colspan="3"><h3>Physical Characteristics</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Height</td>
+					<td><input name="data.heightAverage.value" type="text" value="{{data.heightAverage.value}}" placeholder="5'2&rdquo;"/></td>
+					<td><input name="data.heightRollMod.value" type="text" value="{{data.heightRollMod.value}}" placeholder="+1d4&rdquo;"/></td>
+				</tr>
+				<tr>
+					<td>Weight</td>
+					<td><input name="data.weightAverage.value" type="text" value="{{data.weightAverage.value}}" placeholder="100 lb."/></td>
+					<td><input name="data.weightRollMod.value" type="text" value="{{data.weightRollMod.value}}" placeholder="x(1d4) lb."/></td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="sociocultchar">
+			<thead>
+				<tr>
+					<th colspan="2"><h3>Sociocultural Characteristics</h3></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Homeworld</td>					
+					<td><input name="data.homeworld.value" type="text" value="{{data.homeworld.value}}" placeholder="{{ localize SW5E.homeworld }}"/></td>
+				</tr>
+				<tr>
+					<td>Language</td>					
+					<td><input name="data.slanguage.value" type="text" value="{{data.slanguage.value}}" placeholder="{{ localize SW5E.slanguage }}"/></td>
+				</tr>                
+			</tbody>
+		</table>
+		{{/if}}
+        </blockquote>
+		</div>
 		<div id="species-description"> 
 		<p>
 		<!--Species Description-->
@@ -110,8 +186,11 @@
 		{{editor content=data.traits.value target="data.traits.value" button=true editable=editable}}
 		</span>
 		</div>
-		
+        
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+        </div>
+
 	</section>
-
-
 </form>

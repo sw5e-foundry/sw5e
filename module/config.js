@@ -325,17 +325,31 @@ SW5E.armorPropertiesTypes = {
 "Versatile": "SW5E.ArmorProperVersatile"
 };
 
-/* -------------------------------------------- */
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default this uses the imperial units of feet and miles.
+ * @type {Object<string,string>}
+ */
+SW5E.movementUnits = {
+  "ft": "SW5E.DistFt",
+  "mi": "SW5E.DistMi"
+}
 
+/**
+ * The valid units of measure for the range of an action or effect.
+ * This object automatically includes the movement units from SW5E.movementUnits
+ * @type {Object<string,string>}
+ */
 SW5E.distanceUnits = {
   "none": "SW5E.None",
   "self": "SW5E.DistSelf",
   "touch": "SW5E.DistTouch",
-  "ft": "SW5E.DistFt",
-  "mi": "SW5E.DistMi",
   "spec": "SW5E.Special",
   "any": "SW5E.DistAny"
 };
+for ( let [k, v] of Object.entries(SW5E.movementUnits) ) {
+  SW5E.distanceUnits[k] = v;
+}
 
 /* -------------------------------------------- */
 
@@ -413,7 +427,7 @@ SW5E.healingTypes = {
  * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
  * @type {Array.<string>}
  */
-SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
+SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
 
 
 /* -------------------------------------------- */
@@ -461,14 +475,13 @@ SW5E.skills = {
 /* -------------------------------------------- */
 
 SW5E.powerPreparationModes = {
+  "prepared": "SW5E.PowerPrepPrepared",
   "always": "SW5E.PowerPrepAlways",
   "atwill": "SW5E.PowerPrepAtWill",
-  "innate": "SW5E.PowerPrepInnate",
-  "prepared": "SW5E.PowerPrepPrepared"
+  "innate": "SW5E.PowerPrepInnate"
 };
 
 SW5E.powerUpcastModes = ["always", "pact", "prepared"];
-
 
 SW5E.powerProgression = {
   "none": "SW5E.PowerNone",
@@ -1135,15 +1148,27 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "weaponCriticalThreshold": {
-    name: "SW5E.FlagsCritThreshold",
-    hint: "SW5E.FlagsCritThresholdHint",
+    name: "SW5E.FlagsWeaponCritThreshold",
+    hint: "SW5E.FlagsWeaponCritThresholdHint",
     section: "Feats",
     type: Number,
     placeholder: 20
+  },
+  "powerCriticalThreshold": {
+    name: "SW5E.FlagsPowerCritThreshold",
+    hint: "SW5E.FlagsPowerCritThresholdHint",
+    section: "Feats",
+    type: Number,
+    placeholder: 20
+  },
+  "meleeCriticalDamageDice": {
+    name: "SW5E.FlagsMeleeCriticalDice",
+    hint: "SW5E.FlagsMeleeCriticalDiceHint",
+    section: "Feats",
+    type: Number,
+    placeholder: 0
   }
 };
 
 // Configure allowed status flags
-SW5E.allowedActorFlags = [
-  "isPolymorphed", "originalActor"
-].concat(Object.keys(SW5E.characterFlags));
+SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(SW5E.characterFlags));

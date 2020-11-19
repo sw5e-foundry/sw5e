@@ -1,0 +1,407 @@
+.panel {
+    background: @actorPanelBgColor;
+}
+
+.sw5e.sheet .window-content {
+    color: @colorBlack;
+    background: linear-gradient(90deg,#afc6d6 0,#d6d6d6 30%,#d6d6d6 70%,#afc6d6);
+    input,
+    select {
+        color: @colorBlack;
+        &:hover {
+            border-color: @inputBorderHover;
+        }
+
+        &:focus {
+            border-color: @inputBorderFocus;
+        }
+    }
+
+    button {
+
+        &:hover,
+        &:focus {
+            border-color: @inputBorderFocus;
+        }
+    }
+}
+
+.sw5e.sheet.actor {
+    color: @colorBlack;
+    input, select, textarea {
+        &:hover {
+            border-color: @inputBorderFocus;
+        }
+        &:focus {
+            border-color: @inputBorderFocus;
+        }
+    }
+    .swalt-sheet {
+        section>h1 {
+            border-bottom: 2px solid @colorBlue;
+        }
+
+        header {
+            
+            h1.character-name {
+                color: @actorNameColor;
+
+                input[type="text"] {
+                    color: @actorNameColor;
+                }
+            }
+
+            .level-experience {
+
+                .xpbar {
+                    border: 1px solid @actorXPBarBorder;
+                    background-color: @actorXPBarBackground;
+
+                    .bar {
+                        background-color: @actorXPBarColor;
+                    }
+                }
+            }
+
+            .summary {
+
+                input,
+                .proficiency {
+                    color: @actorProficiencyTextColor;
+                }
+            }
+
+            .attributes {
+
+                .attribute-value,
+                .attribute-value input {
+                    color: @actorAttributeInputColor;
+                }
+
+                .attribute-value {
+
+                    .value-separator {
+                        color: @actorSeparatorColor;
+                    }
+                }
+
+                footer {
+                    button {
+                        border: 1px solid @actorAttributeButtonBorder;
+
+                        &:hover {
+                            color: @actorAttributeButtonBorderHover;
+                        }
+                    }
+
+                    &.hit-points,
+                    &.hit-dice,
+                    &.initiative {
+                        button {
+                            border: 1px solid @actorAttributeButtonBorder;
+                            color: @colorRed;
+
+                            &:hover {
+                                border-color: @actorAttributeButtonBorderHover;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        nav.sheet-navigation {
+            .item {
+                color: @actorNavigationTabsColor;
+
+                &.active {
+                    color: @actorNavigationTabsActiveColor;
+                    border-bottom-color: @actorNavigationTabsActiveColor;
+
+                    &:hover {
+                        background: @actorNavigationTabsHoverBgColor;
+                    }
+                }
+
+                &:hover {
+                    background: @actorNavigationTabsHoverBgColor;
+                }
+            }
+        }
+
+        .tab {
+
+            .filter-list {
+
+                .filter-item {
+                    border-bottom: 2px solid @actorFilterBorderColor;
+
+                    &:hover {
+                        color: @actorFilterHoverColor;
+                    }
+
+                    &.active {
+                        color: @actorFilterActiveColor;
+                        border-bottom-color: @actorFilterActiveColor;
+                    }
+                }
+            }
+
+            .group-list-header {
+                background: @actorGroupListHeaderBgColor;
+            }
+
+            .group-list-title {
+                border-bottom: 1px solid @actorGroupListTitleBorderColor;
+            }
+
+            .group-list-header,
+            .group-list {
+                .item-detail {
+                    border-left: 1px solid @actorGroupListColumnBorderColor;
+                }
+            }
+
+            .group-list,
+            .group-list ol {
+                li.item {
+                    &:nth-child(even) {
+                        background-color: @actorGroupListAltRowColor;
+                    }
+
+                    h4 {
+                        color: @colorBlack;
+                    }
+
+
+                    .item-name {
+
+                        .item-image {
+
+                            &::before {
+                                color: @actorItemRollableD20Color;
+                            }
+
+                        }
+
+
+                        &.rollable:hover {
+
+                            .item-image {
+                                &:hover {
+                                    &::before {
+                                        color: @actorItemRollableD20HoverColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .item-control {
+                        &:hover {
+                            color: @linkColor  !important;
+                        }
+
+                        &.item-toggle {
+                            color: @actorItemControlToggleColor;
+
+                            &.active {
+                                color: @colorBlack;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+
+
+        }
+
+
+        .tab.attributes {
+            .abilities {
+
+                .scores {
+                    li {
+                        border: 1px solid @actorAbilityBorderColor;
+
+                        h2 {
+                            &:hover {
+                                color: @linkColor;
+                            }
+                        }
+
+                        .ability-score {
+                            color: @actorAbilityScoreColor;
+                        }
+
+                        .ability-modifiers {
+
+                            .ability-mod,
+                            .ability-save {
+                                border-color: @actorAbilityBorderColor;
+                            }
+
+                        }
+
+                    }
+                }
+
+                .skills {
+                    li {
+                        &:nth-child(even) {
+                            background-color: @actorSkillsAltRowColor;
+                        }
+                        .proficiency-toggle {
+                            color: @colorBlack;
+                        }
+
+                        .skill-name {
+                            &:hover {
+                                color: @linkColor;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .traits-resources {
+                nav {
+                    button {
+                        color: @actorNavigationTabsColor;
+
+                        &.active {
+                            color: @actorNavigationTabsActiveColor;
+                            border-bottom-color: @actorNavigationTabsActiveColor;
+
+                            &:hover {
+                                background: @actorNavigationTabsActiveHoverBgColor;
+                            }
+                        }
+
+                        &:hover {
+                            background: @actorNavigationTabsHoverBgColor;
+                        }
+
+                    }
+                }
+
+                section.traits {
+                    .trait-selector {
+                        i.fas {
+                            color: @linkColor;
+                        }
+                    }
+
+                    .languages {
+                        label {
+                            &:hover {
+                                color: @linkColor;
+                            }
+                        }
+                    }
+
+                    
+                }
+
+                section.resources {
+                    .resource-items {
+                        .resource {
+                           h1 {
+        
+                                input {
+                                    color: @headingColor;
+                                    border-bottom: 2px solid @headerBorderColor;
+                                }
+                            }
+
+                            .attribute-value,
+                            .attribute-value input {
+                                color: @actorAttributeInputColor;
+                            }
+
+                            .attribute-value {
+                                .value-separator {
+                                    color: @actorSeparatorColor;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .counters {
+                        .counter {
+                            h4 {
+                                &.rollable {
+                                    &:hover {
+                                        color: @linkColor;
+                                    }
+                                }
+                            }
+
+                        
+                            .death-success {
+                                i {
+                                    color: @colorGreen;
+                                }
+                            }
+
+                            .death-fail {
+                                i {
+                                    color: @colorRed;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .tab.inventory {
+            .currency {
+                color: @headingColor;
+            }
+
+            .encumbrance-wrapper {
+                .encumbrance-label {
+                    background: @actorEncumbranceLabelBackground;
+                    color: @actorEncumbranceTextColor;
+                    border: 1px solid @actorEncumbranceBorderColor;
+                }
+
+                .encumbrance {
+                    background: @actorEncumbranceBarBgColor;
+                    .encumbrance-bar {
+                        background: @actorEncumbranceBarColor;
+                    }
+                }
+            }
+        }
+
+
+        .tab.powerbook {
+            .powercasting-ability {
+                label,
+                h3 {
+                    color: @headingColor;
+
+                    span {
+                        color: @colorBlack;
+                    }
+                }
+            }
+        }
+
+        .tab.notes {
+            section {
+                &>input {
+                    color: @headingColor;
+                    border-bottom: 2px solid @headerBorderColor;
+                }
+            }
+        }
+    }
+}

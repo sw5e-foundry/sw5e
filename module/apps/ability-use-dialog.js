@@ -70,7 +70,7 @@ export default class AbilityUseDialog extends Dialog {
       dlg.render(true);
     });
   }
-  
+
   /* -------------------------------------------- */
   /*  Helpers                                     */
   /* -------------------------------------------- */

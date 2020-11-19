@@ -1,0 +1,105 @@
+input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea {
+  border-radius: 4px;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: none;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  background: @colorRed;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+input[type=range]::-moz-range-thumb{
+  -webkit-appearance: none;
+  background: @colorRed;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+input[type=range]::-ms-thumb {
+  -webkit-appearance: none;
+  background: @colorRed;
+  width: 12px;
+  height: 12px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: @colorLightBlue;
+  border-radius: 4px;
+  border: 1px solid @colorBlue;
+  box-shadow: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: @colorBlue;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: @colorLightBlue;
+  border-radius: 4px;
+  border: 1px solid @colorBlue;
+  box-shadow: none;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: @colorLightBlue;
+  border-radius: 4px;
+  border: 1px solid @colorBlue;
+  box-shadow: none;
+}
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+  .openSans(13px, 700);
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover, &:focus {
+    box-shadow: none;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  
+  }
+  
+}

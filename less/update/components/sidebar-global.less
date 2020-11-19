@@ -1,0 +1,381 @@
+#sidebar {
+  border: none; //1px solid @colorBlue;
+  &.collapsed {
+    #sidebar-tabs {
+      min-height: 370px;
+      justify-content: center;
+      & > .item.active {
+        border: none;
+      }
+    }
+  }
+}
+
+#sidebar-tabs {
+  border: none;
+  box-shadow: none;
+  justify-content: space-between;
+  .dropShadow1();
+
+  .item {
+    font-size: 16px;
+  }
+  .item.active {
+    border: none;
+    box-shadow: none;
+    background: none;
+    text-shadow: none;
+  }
+  
+}
+
+/*-----------
+** Chat Tab
+-----------*/
+
+#chat-log {
+  .chat-message {
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    .dropShadow1();
+    & > header {
+      color: @colorRed;
+      border-bottom: 2px solid @colorBlue;
+      margin-bottom: 4px;
+      span {
+        color: @colorBlack;
+      }
+    }
+
+  }
+}
+.notification-pip {
+  color: @colorBlue;
+}
+
+.sw5e.chat-card {
+  .card-header {
+    padding: 0;
+    border: none;
+    img {
+      flex: 0 0 36px;
+      margin-right: 4px;
+    }
+
+    h3 {
+      flex: 1;
+      margin: 0;
+      line-height: 36px;
+      .russoOne(17px);
+      border-bottom: none;
+      &:hover {
+        text-shadow: none;
+      }
+    }
+  }
+
+  .card-content {
+    margin: 4px 0;
+
+    h3 {
+      font-size: 12px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    > * {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+  }
+
+  .card-buttons {
+    margin: 4px 0;
+
+    span {
+      display: block;
+      line-height: 28px;
+      text-align: center;
+    }
+
+    button {
+      .openSans(13px, 700);
+      padding: 4px 0;
+      height: auto;
+      line-height: 1.6;
+      margin: 4px 0;
+      border: none;
+      border-radius: 4px;
+      &:hover, &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .card-footer {
+    padding: 4px 0 0;
+
+    span {
+      padding: 0 4px 0 0;
+      font-size: 10px;
+
+      &:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+    }
+  }
+}
+.dice-roll {
+  .dice-formula {
+    border: none;
+    box-shadow: none;
+    border-radius: 4px;
+  }
+  .dice-total {
+    border-radius: 0;
+    padding: 4px 0;
+  }
+}
+#chat-controls {
+  padding-top: 4px;
+}
+#chat-form  textarea {
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+/*-----------
+** Combat Tab
+-----------*/
+#combat {
+  h3 {
+    border: none;
+  }
+
+    #combat-tracker {
+      li.combatant {
+        padding: 4px 0;
+        background: none;
+        .token-name {
+          text-shadow: none;
+        }
+        h4 {
+          color: @colorBlack;
+        }
+        .roll {
+          background: none;
+          &::before {
+            content: "\f6cf";
+            .fontAwesome();
+            font-size: 28px;
+          }
+          
+        }
+        
+        
+        .initiative {
+          text-shadow: none;
+        }
+        
+        &.hidden {
+          opacity: 0.5;
+        }
+      }
+    }
+    #combat-controls {
+      padding-top: 0;
+    }
+  }
+
+/*
+** Folders
+*/
+.sidebar-tab {
+.directory-header {
+  margin-bottom: 4px;
+  .header-search {
+    position: relative;
+    i.fa-search {
+      position: absolute;
+      left: 8px;
+    }
+    input {
+      text-align: left;
+      padding-left: 22px;
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+.subdirectory {
+  border: none;
+  margin-left: 8px;
+  min-height: 8px;
+
+}
+.directory-list {
+  padding-bottom: 4px;
+  .folder {
+    & > .folder-header {
+      line-height: default;
+      padding: 0 0 0 8px;
+      position: relative;
+      border: none;
+      h3 {
+        padding: 8px 4px;
+        .openSans(13px, 700);
+        line-height: 1.6;
+        & > i {
+          margin-right: 4px;
+        }
+      }
+      a {
+        position: absolute;
+        top: 0;
+        right: 4px;
+        height: 100%;
+        padding: 0 4px;
+        i {
+          margin-top: 12px;
+        }
+        
+        &.create-folder {
+          right: 28px;
+        }
+      }
+    }
+  }
+  .directory-item img {
+    flex: 0 0 32px;
+    height: 32px;
+    width: 32px;
+    align-self: center;
+  }
+  .actor, .item, .journal, .table {
+    border: none;
+    .entity-name {
+      .openSans(13px, 700);
+    }
+
+  }
+}
+}
+#scenes {
+  .subdirectory {
+    border-left: none;
+  }
+  .scene {
+    border: none;
+    box-shadow: none;
+    position: relative;
+    height: 128px;
+    & + .scene {
+      margin-top: 4px;
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 99px;
+      position: absolute;
+      top: 28px;
+      left: 0;
+    }
+    h3 {
+      .openSans(13px, 700);
+      text-align: left;
+      text-shadow: none;
+      padding: 4px 4px 4px 12px;
+      line-height: 1.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+#playlists {
+  .directory-list {
+    padding: 0 8px;
+    li.playlist {
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      border-top: inherit;
+      .dropShadow1();
+      .playlist-header {
+        text-decoration: none;
+      }
+      li.sound {
+        border: none;
+        h4 {
+          .openSans(13px, 400);
+        }
+        
+      }
+    }
+  }
+  
+}
+#compendium {
+  .compendium-entity {
+    margin: 0 4px;
+    padding: 8px;
+    .dropShadow1();
+    border-radius: 4px;
+    border: none;
+    &+ .compendium-entity {
+      margin-top: 4px;
+    }
+    h3 {
+      background: none;
+      border: none;
+      .russoOne(17px);
+      padding: 0;
+      margin-bottom: 4px;
+    }
+    ol.compendium-list {
+      li.compendium-pack {
+        margin: 0;
+        padding: 4px;
+        border: none;
+        .pack-title {
+          margin: 0;
+          position: relative;
+          a {
+            .openSans(13px, 700);
+            i {
+              display: none;
+            }
+          }
+          .status-icons {
+            top: 4px;
+            font-size: 13px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+#settings {
+  h2 {
+    border: none;
+    margin: 0 8px;
+    padding: 0;
+    background: none;
+  }
+  #game-details, #settings-game, #settings-documentation, #settings-access {
+    padding: 0 8px;
+    margin: 0 0 8px;
+  }
+}

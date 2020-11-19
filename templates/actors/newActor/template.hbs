@@ -1,0 +1,67 @@
+{{#if favItems}}
+<ol class="group-list ">
+	<li>
+		<div class="group-list-title group-grid-fav-items">
+			<h3 class="item-name">Items</h3>
+			<div class="item-detail item-uses">Charges</div>
+			<div class="item-detail item-quantity">Qty</div>
+			<div class="item-detail item-comps"></div>
+			<div class="item-detail item-controls"></div>
+		</div>
+
+		<ol class="item-list">
+			{{#each favItems as |item id|}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=item}}
+			{{/each}}
+		</ol>
+	</li>
+	{{#if favFeats}}
+	<li>
+		<div class="group-list-title group-grid-fav-items">
+			<h3 class="item-name">Features &amp; Feats</h3>
+			<div class="item-detail item-uses">Uses</div>
+			<div class="item-detail item-quantity"></div>
+			<div class="item-detail item-comps"></div>
+			<div class="item-detail item-controls"></div>
+		</div>
+
+		<ol class="item-list">
+			{{#each favFeats as |feat lvl|}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=feat}}
+			{{/each}}
+		</ol>
+	</li>
+	{{/if}}
+	{{#if favPowers}}
+	{{#each favPowers as |section lvl|}}
+	{{#if section.powers}}
+	{{#if lvl}}
+	<li>
+		<div class="group-list-title group-grid-fav-items">
+			<h3 class="item-name">
+				{{#if section.isCantrip}}At-Will Powers{{else}}Level {{lvl}} Powers{{/if}}
+			</h3>
+
+			<div class="item-detail item-uses">
+				{{#if section.isCantrip}}&nbsp;
+				{{else}}
+				{{section.value}}
+				/
+				{{section.max}}
+				{{/if}}
+			</div>
+			<div class="item-detail item-quantity"></div>
+			<div class="item-detail item-comps"></div>
+			<div class="item-detail item-controls"></div>
+		</div>
+		<ol class="item-list">
+			{{#each section.powers as |power id|}}
+			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=power}}
+			{{/each}}
+		</ol>
+	</li>
+	{{/if}}{{/if}}
+	{{/each}}
+	{{/if}}
+</ol>
+{{/if}}

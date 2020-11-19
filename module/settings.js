@@ -7,11 +7,11 @@ export const registerSystemSettings = function() {
     name: "System Migration Version",
     scope: "world",
     config: false,
-    type: Number,
-    default: 0
+    type: String,
+    default: ""
   });
 
-    /**
+  /**
    * Register resting variants
    */
   game.settings.register("sw5e", "restVariant", {
@@ -83,18 +83,6 @@ export const registerSystemSettings = function() {
   });
 
   /**
-   * Option to automatically create Power Measured Template on roll
-   */
-  game.settings.register("sw5e", "alwaysPlacePowerTemplate", {
-    name: "SETTINGS.5eAutoPowerTemplateN",
-    hint: "SETTINGS.5eAutoPowerTemplateL",
-    scope: "client",
-    config: true,
-    default: false,
-    type: Boolean
-  });
-
-  /**
    * Option to automatically collapse Item Card descriptions
    */
   game.settings.register("sw5e", "autoCollapseItemCards", {
@@ -140,6 +128,18 @@ export const registerSystemSettings = function() {
       keepBio: false,
       keepVision: true,
       transformTokens: true
+    }
+  });
+  game.settings.register("sw5e", "colorTheme", {
+    name: "SETTINGS.SWColorN",
+    hint: "SETTINGS.SWColorL",
+    scope: "world",
+    config: true,
+    default: "light",
+    type: String,
+    choices: {
+      "light": "SETTINGS.SWColorLight",
+      "dark": "SETTINGS.SWColorDark"
     }
   });
 };

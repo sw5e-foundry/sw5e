@@ -163,7 +163,7 @@ export default class Actor5e extends Actor {
     }
 
     // Acquire archetype features
-    const subConfig = clsConfig.archetypees[archetypeName] || {};
+    const subConfig = clsConfig.archetypes[archetypeName] || {};
     for ( let [l, f] of Object.entries(subConfig.features || {}) ) {
       l = parseInt(l);
       if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);

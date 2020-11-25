@@ -285,7 +285,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if ( !hasClass || addLevel ) {
         const features = await Actor5e.getClassFeatures({
           className: itemData.name,
-          subclassName: itemData.data.subclass,
+          archetypeName: itemData.data.archetype,
           level: itemData.levels,
           priorLevel: priorLevel
         });

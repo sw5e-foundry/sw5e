@@ -461,9 +461,7 @@
 }
 .sw5e.sheet .items-list .items-header .item-name {
   padding-left: 5px;
-  font-family: 'Russo One';
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
 }
 .sw5e.sheet .items-list .item-name {
   flex: 2;
@@ -1060,9 +1058,7 @@
   overflow-y: auto;
 }
 .sw5e.sheet.item {
-  min-height: 400px;
-  max-height: 95%;
-  min-width: 480px;
+  min-height: 420px;
   /* ----------------------------------------- */
   /*  Sheet Header                             */
   /* ----------------------------------------- */
@@ -1083,7 +1079,7 @@
   border: 2px solid #000;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle {
-  flex: 0 0 100px;
+  flex: 0 0 80px;
   height: 60px;
   margin: 0;
   padding: 5px;
@@ -1537,4 +1533,31 @@
 .sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
   text-align: right;
+}
+input[type="number"] {
+  width: calc(100% - 2px);
+  min-width: 20px;
+  height: 26px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 3px;
+  margin: 0;
+  color: #191813;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  border: 1px solid #7a7971;
+  border-radius: 3px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -moz-appearance: textfield;
+}
+input[type="number"]:focus {
+  box-shadow: 0 0 5px red;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }

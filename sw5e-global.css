@@ -783,6 +783,11 @@ input[type="reset"]:disabled {
   letter-spacing: 0.5px;
   text-align: right;
 }
+.sw5e.sheet.actor .swalt-sheet header .level-experience .charlevel input {
+  display: inline-block;
+  width: 42px;
+  height: auto;
+}
 .sw5e.sheet.actor .swalt-sheet header .level-experience .experience {
   font-family: 'Russo One';
   font-size: 17px;
@@ -1507,6 +1512,9 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.powerbook > .panel {
   grid-template-rows: 32px 24px 24px auto;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook h3.power-dc {
+  line-height: 24px;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -1566,6 +1574,38 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet.limited .tab.biography {
   grid-template-columns: 100%;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header h1.character-name {
+  align-self: auto;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header .attributes {
+  grid-template-columns: repeat(3, 1fr);
+}
+.sw5e.sheet.actor.npc .swalt-sheet header .attributes footer.proficiency {
+  margin-top: 0;
+  line-height: 24px;
+  text-align: center;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header .attributes footer.hit-points {
+  display: block;
+}
+.sw5e.sheet.actor.npc .swalt-sheet nav.sheet-navigation {
+  grid-template-columns: repeat(4, 1fr);
+}
+.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources {
+  display: block;
+}
+.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources .counter {
+  display: flex;
+}
+.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources .counter .counter-value {
+  margin-left: auto;
+}
+.sw5e.sheet.actor.npc .swalt-sheet .tab.powerbook input.powercasting-level {
+  width: 48px;
+}
+.sw5e.sheet.actor.npc .swalt-sheet .tab.biography.active {
+  display: block;
 }
 @keyframes pause-spin {
   from {

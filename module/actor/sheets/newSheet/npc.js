@@ -17,7 +17,12 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "npc"],
       width: 600,
-      height: 680
+      width: 800,
+      tabs: [{
+        navSelector: ".root-tabs",
+        contentSelector: ".sheet-body",
+        initial: "attributes"
+      }],
     });
   }
 

@@ -93,6 +93,11 @@
                 .charlevel {
                     .russoOne(17px);
                     text-align: right;
+                    input {
+                        display: inline-block;
+                        width: 42px;
+                        height: auto;
+                    }
                 }
 
                 .experience {
@@ -932,6 +937,9 @@
             &>.panel {
                 grid-template-rows: 32px 24px 24px auto;
             }
+            h3.power-dc {
+                line-height: 24px;
+            }
             .powercasting-ability {
                 display: grid;
                 grid-template-columns: 2fr 1fr 1fr;
@@ -988,6 +996,58 @@
 
             .tab.biography {
                 grid-template-columns: 100%;
+            }
+        }
+    }
+    &.npc {
+        .swalt-sheet {
+            header {
+                h1.character-name {
+                    align-self: auto;
+                }
+                .npc-size {
+                    .russoOne(18px);
+                    line-height: 28px;
+                }
+                .attributes {
+                    grid-template-columns: repeat(3, 1fr);
+                    footer {
+                        &.proficiency {
+                            margin-top: 0;
+                            line-height: 24px;
+                            text-align: center;
+                        }
+                        &.hit-points {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            nav.sheet-navigation {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .tab.attributes {
+                .traits-resources {
+                    display: block;
+
+                        .counter {
+                            display: flex;
+                            .counter-value {
+                                margin-left: auto;
+                            }
+                        }
+                    // section.traits {
+                    //     display:block;
+                    // }
+                }
+            }
+            .tab.powerbook {
+                input.powercasting-level {
+                    width: 48px;
+                }
+            }
+            .tab.biography.active {
+                display: block;
             }
         }
     }

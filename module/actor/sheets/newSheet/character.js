@@ -100,12 +100,12 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       if ( item.type === "power" ) arr[1].push(item);
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
-	  else if ( item.type === "species" ) arr[4].push(item);
-	  else if ( item.type === "archetype" ) arr[5].push(item);
-	  else if ( item.type === "classfeature" ) arr[6].push(item);
-	  else if ( item.type === "background" ) arr[7].push(item);
-    else if ( item.type === "lightsaberform" ) arr[8].push(item);
-    else if (item.type === "fightingstyle") arr[9].push(item);
+      else if ( item.type === "species" ) arr[4].push(item);
+      else if ( item.type === "archetype" ) arr[5].push(item);
+      else if ( item.type === "classfeature" ) arr[6].push(item);
+      else if ( item.type === "background" ) arr[7].push(item);
+      else if ( item.type === "lightsaberform" ) arr[8].push(item);
+      else if (item.type === "fightingstyle") arr[9].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
     }, [[], [], [], [], [], [], [], [], [], []]);

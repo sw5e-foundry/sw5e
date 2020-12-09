@@ -1295,29 +1295,46 @@ export default class CharacterImporter {
         newSearch.appendTo(header);
 
         let characterImportButton = $("#cs-import-button");
-        characterImportButton.click(e => { 
-            let file;
-            let content = '<h1>Saved Character JSONImport</h1> '
+        characterImportButton.click(ev => { 
+            console.log("FISH: character import button pressed. 2")
+            let files = [];
+            let content = '<h1>Saved Character JSON Import</h1> '
                 + '<input class="file-picker" type="file" id="sw5e-character-json" accept=".json" multiple name="sw5e-character-json">'
                 + '<hr>'
                 + '<div class="sw5e-file-import"></div>';
             let importDialog = new Dialog({
                 title: "Import Character from SW5e.com",
-                content: "HTML Content",
-                buttons: "The buttons which are disapled as action chjoices for teh dialog",
-                render: "A callback function invoed when teh dialog is rendered",
-                close: "Common callback operations to perform when the dialog is closed"
-            }
+                content: content,
+                buttons: {
+                    "Import": {
+                        icon: '<i class="fas fa-file-import"></i>',
+                        label: "Import Character",
+                        callback: (e) => {
+                            files = document.querySelector('#sw5e-character-json').files;
+                            if (files){
+                                for (let i = 0; i < files.length; i++){
+                                    console.log("Importing character...");
+                                    console.log(JSON.stringify(files));
+                                    const readerooni = new FileReader();
+                                    readerooni.onload = async (x) => {
+                                        const characterData = JSON.parse(x.target.result);
 
+                                    }
+                                    readerooni.readAsText(files[i]);
+                                }
+                            } else {
+                                console.log("No files selected...");
+                            }
+                        }
+                    },
+                    "Cancel": {
+                        icon: '<i class="fas fa-times-circle"></i>',
+                        label: "Cancel",
+                        callback: () => {},
+                    }
+                }
+            })
+            importDialog.render(true);
         });
-
-
-    }
-
-    
+    } 
 }
-
-
-/*
-var c = new CharacterImporter().import('filename').transform();
-*/

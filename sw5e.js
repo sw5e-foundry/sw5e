@@ -235,9 +235,6 @@ Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
 Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
 Hooks.on('getActorDirectoryEntryContext', Actor5e.addDirectoryContextOptions);
-<<<<<<< HEAD
-
-=======
 Hooks.on("renderSceneDirectory", (app, html, data)=> {
   //console.log(html.find("header.folder-header"));
   setFolderBackground(html);
@@ -258,7 +255,6 @@ Hooks.on("renderRollTableDirectory",  (app, html, data)=> {
 Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
   console.log("renderSwaltSheet");
 });
->>>>>>> upstream/master
 // TODO I should remove this
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);

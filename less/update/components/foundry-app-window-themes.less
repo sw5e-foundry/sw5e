@@ -1,0 +1,76 @@
+.window-app {
+  border-radius:  4px;
+  border: none;
+  .dropShadow2();
+  & > header {
+    background: @windowHeaderBackground;
+    border-radius: 4px 4px 0 0;
+    border: none;
+    .dropShadow1();
+    margin-bottom: 4px;
+  }
+  .window-content {
+    background: @primaryBackground;
+    color: @bodyFontColor;
+    footer {
+      margin-top: 8px;
+    }
+  }
+  &.minimized {
+    & > header, & > .window-header {
+      border: none;
+      border-radius: 4px;
+      margin: 0;
+    }
+  }
+}
+
+#client-settings  {
+  nav.tabs {
+    border: none;
+    font-size: 17px;
+    line-height: 1.6;
+    a.item {
+      border-bottom: 3px solid transparent;
+      color: @bodyFontColor;
+      &:hover {
+        text-decoration: none;
+      }
+      &.active {
+        text-shadow: none;
+        border-bottom-color: @sidebarTabLinkUnderline;
+      }
+    }
+  }
+  section.content {
+    border: none;
+    margin-top: 4px;
+  }
+}
+
+.dialog-buttons {
+  margin-top: 8px;
+  button:last-child {
+      margin-right: 0;
+    }
+  button:not(.default) {
+    border: 1px solid @buttonBackground;
+    margin-right: 4px;
+    background: @buttonSecondaryBackground;
+    color: @buttonSecondaryTextColor;
+    &:hover {
+      background: @buttonSecondaryHoverBackground;
+    }
+    
+  }
+  button.normal.default {
+    border: none;
+    background: @buttonBackground;
+    color: @buttonTextColor;
+    &:hover {
+      background: @buttonHoverBackground;
+    }
+  }
+
+
+}

@@ -1,0 +1,137 @@
+{{#unless isVehicle}}
+<div class="inventory-filters flexrow">
+    <ul class="filter-list flexrow" data-filter="features">
+        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+    </ul>
+</div>
+{{/unless}}
+
+<ol class="items-list inventory-list">
+{{#each sections as |section sid|}}
+    <li class="items-header flexrow">
+        <h3 class="item-name flexrow">{{localize section.label}}</h3>
+
+        {{#if section.hasActions}}
+        <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
+        <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+        {{/if}}
+
+        {{#if section.columns}}
+            {{#each section.columns}}
+                <div class="item-detail {{css}}">{{label}}</div>
+            {{/each}}
+        {{/if}}
+
+        {{#if ../owner}}
+        <div class="item-controls flexrow">
+            <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+                <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+            </a>
+        </div>
+        {{/if}}
+    </li>
+
+    <ol class="item-list">
+    {{#each section.items as |item iid|}}
+        <li class="item flexrow {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
+            <div class="item-name flexrow rollable">
+                <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+                <h4>{{item.name}}</h4>
+            </div>
+
+            {{#if section.hasActions}}
+            <div class="item-detail item-uses">
+                {{#if item.isOnCooldown}}
+                <a class="item-recharge rollable">{{item.labels.recharge}}</a>
+                {{else if item.data.recharge.value}}
+                {{localize "SW5E.Charged"}}
+
+                {{else if item.hasUses}}
+                <input type="text" value="{{item.data.uses.value}}" placeholder="0"/>/ {{item.data.uses.max}}
+                {{/if}}
+            </div>
+
+            <div class="item-detail item-action">
+                {{#if item.data.activation.type }}
+                {{item.labels.activation}}
+                {{/if}}
+            </div>
+
+            {{else if section.isSpecies}}
+            <div class="item-detail player-species">
+
+            </div>
+			
+			{{else if section.isArchetype}}
+			<div class="item-detail player-archetype">
+			    {{item.data.name}}
+			</div>
+			
+			{{else if section.isBackground}}
+			<div class="item-detail player-background">
+			
+			</div>
+			
+			{{else if section.isClassfeatures}}
+			<div class="item-detail player-classfeatures">
+			    {{item.data.name}}
+			</div>
+            
+			{{else if section.isFightingstyles}}
+			<div class="item-detail player-fightingstyles">
+			    {{item.data.name}}
+			</div>			
+
+			{{else if section.isFightingmasteries}}
+			<div class="item-detail player-fightingmasteries">
+			    {{item.data.name}}
+			</div>
+			
+			{{else if section.isLightsaberform}}
+			<div class="item-detail player-lightsaberforms">
+			    {{item.data.name}}
+			</div>
+			
+            {{else if section.isClass}}
+            <div class="item-detail player-class">
+                {{item.data.archetype}}
+            </div>
+            <div class="item-detail item-action">
+                Level {{item.data.levels}}
+            </div>
+            {{/if}}
+
+            {{#if section.columns}}
+                {{#each section.columns}}
+                    <div class="item-detail {{css}}">
+                        {{#with (getProperty item property)}}
+                            {{#if ../editable}}
+                                <input type="text" value="{{this}}" placeholder="&mdash;"
+                                       data-dtype="{{../editable}}">
+                            {{else}}
+                                {{this}}
+                            {{/if}}
+                        {{/with}}
+                    </div>
+                {{/each}}
+            {{/if}}
+
+            {{#if ../../owner}}
+            <div class="item-controls flexrow">
+                {{#if section.crewable}}
+                <a class="item-control item-toggle {{item.toggleClass}}"
+                   title="{{item.toggleTitle}}">
+                    <i class="fas fa-sun"></i>
+                </a>
+                {{/if}}
+                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </div>
+            {{/if}}
+        </li>
+    {{/each}}
+    </ol>
+{{/each}}
+</ol>

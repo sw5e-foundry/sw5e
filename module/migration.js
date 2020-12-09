@@ -14,6 +14,7 @@ export const migrateWorld = async function() {
         await a.update(updateData, {enforceTypes: false});
       }
     } catch(err) {
+      err.message = `Failed sw5e system migration for Actor ${a.name}: ${err.message}`;
       console.error(err);
     }
   }
@@ -27,6 +28,7 @@ export const migrateWorld = async function() {
         await i.update(updateData, {enforceTypes: false});
       }
     } catch(err) {
+      err.message = `Failed sw5e system migration for Item ${i.name}: ${err.message}`;
       console.error(err);
     }
   }
@@ -40,15 +42,15 @@ export const migrateWorld = async function() {
         await s.update(updateData, {enforceTypes: false});
       }
     } catch(err) {
+      err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Migrate World Compendium Packs
-  const packs = game.packs.filter(p => {
-    return (p.metadata.package === "world") && ["Actor", "Item", "Scene"].includes(p.metadata.entity)
-  });
-  for ( let p of packs ) {
+  for ( let p of game.packs ) {
+    if ( p.metadata.package !== "world" ) continue;
+    if ( !["Actor", "Item", "Scene"].includes(p.metadata.entity) ) continue;
     await migrateCompendium(p);
   }
 
@@ -68,27 +70,46 @@ export const migrateCompendium = async function(pack) {
   const entity = pack.metadata.entity;
   if ( !["Actor", "Item", "Scene"].includes(entity) ) return;
 
+  // Unlock the pack for editing
+  const wasLocked = pack.locked;
+  await pack.configure({locked: false});
+
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
   const content = await pack.getContent();
 
   // Iterate over compendium entries - applying fine-tuned migration functions
   for ( let ent of content ) {
+    let updateData = {};
     try {
-      let updateData = null;
-      if (entity === "Item") updateData = migrateItemData(ent.data);
-      else if (entity === "Actor") updateData = migrateActorData(ent.data);
-      else if ( entity === "Scene" ) updateData = migrateSceneData(ent.data);
-      if (!isObjectEmpty(updateData)) {
-        expandObject(updateData);
-        updateData["_id"] = ent._id;
-        await pack.updateEntity(updateData);
-        console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+      switch (entity) {
+        case "Actor":
+          updateData = migrateActorData(ent.data);
+          break;
+        case "Item":
+          updateData = migrateItemData(ent.data);
+          break;
+        case "Scene":
+          updateData = migrateSceneData(ent.data);
+          break;
       }
-    } catch(err) {
+      if ( isObjectEmpty(updateData) ) continue;
+
+      // Save the entry, if data was changed
+      updateData["_id"] = ent._id;
+      await pack.updateEntity(updateData);
+      console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+    }
+
+    // Handle migration failures
+    catch(err) {
+      err.message = `Failed sw5e system migration for entity ${ent.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
     }
   }
+
+  // Apply the original locked status for the pack
+  pack.configure({locked: wasLocked});
   console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 };
 
@@ -107,9 +128,7 @@ export const migrateActorData = function(actor) {
 
   // Actor Data Updates
   _migrateActorBonuses(actor, updateData);
-
-  // Remove deprecated fields
-  _migrateRemoveDeprecated(actor, updateData);
+  _migrateActorMovement(actor, updateData);
 
   // Migrate Owned Items
   if ( !actor.items ) return updateData;
@@ -172,11 +191,6 @@ function cleanActorData(actorData) {
  */
 export const migrateItemData = function(item) {
   const updateData = {};
-
-  // Remove deprecated fields
-  _migrateRemoveDeprecated(item, updateData);
-
-  // Return the migrated update data
   return updateData;
 };
 
@@ -225,31 +239,17 @@ function _migrateActorBonuses(actor, updateData) {
   }
 }
 
-
 /* -------------------------------------------- */
 
-
 /**
- * A general migration to remove all fields from the data model which are flagged with a _deprecated tag
+ * Migrate the actor bonuses object
  * @private
  */
-const _migrateRemoveDeprecated = function(ent, updateData) {
-  const flat = flattenObject(ent.data);
-
-  // Identify objects to deprecate
-  const toDeprecate = Object.entries(flat).filter(e => e[0].endsWith("_deprecated") && (e[1] === true)).map(e => {
-    let parent = e[0].split(".");
-    parent.pop();
-    return parent.join(".");
-  });
-
-  // Remove them
-  for ( let k of toDeprecate ) {
-    let parts = k.split(".");
-    parts[parts.length-1] = "-=" + parts[parts.length-1];
-    updateData[`data.${parts.join(".")}`] = null;
-  }
-};
+function _migrateActorMovement(actor, updateData) {
+  if ( actor.data.attributes?.movement?.walk !== undefined ) return;
+  const s = (actor.data.attributes?.speed?.value || "").split(" ");
+  if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
+}
 
 
 /* -------------------------------------------- */
@@ -279,4 +279,25 @@ export async function purgeFlags(pack) {
     console.log(`Purged flags from ${entity.name}`);
   }
   await pack.configure({locked: true});
+}
+
+/* -------------------------------------------- */
+
+
+/**
+ * Purge the data model of any inner objects which have been flagged as _deprecated.
+ * @param {object} data   The data to clean
+ * @private
+ */
+export function removeDeprecatedObjects(data) {
+  for ( let [k, v] of Object.entries(data) ) {
+    if ( getType(v) === "Object" ) {
+      if (v._deprecated === true) {
+        console.log(`Deleting deprecated object key ${k}`);
+        delete data[k];
+      }
+      else removeDeprecatedObjects(v);
+    }
+  }
+  return data;
 }

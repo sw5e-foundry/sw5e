@@ -1,0 +1,22 @@
+<div class="panel additional-info">
+  <section><h1 class="section-titles biopage">Personality Traits</h1>
+    {{editor content=data.details.trait target="data.details.trait" button=true owner=owner editable=editable}}
+  </section>
+  <section><h1 class="section-titles biopage">Ideals</h1>
+    {{editor content=data.details.ideal target="data.details.ideal" button=true owner=owner editable=editable}}
+  </section>
+  <section><h1 class="section-titles biopage">Bonds</h1>
+    {{editor content=data.details.bond target="data.details.bond" button=true owner=owner editable=editable}}
+  </section>
+  <section><h1 class="section-titles biopage">Flaws</h1>
+    {{editor content=data.details.flaw target="data.details.flaw" button=true owner=owner editable=editable}}
+  </section>
+</div>
+<div class="panel background">
+  <section><h1 class="section-titles biopage">Description</h1>
+    {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner editable=editable}}
+  </section>
+  <section><h1 class="section-titles">Background</h1>
+    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+  </section>
+</div>

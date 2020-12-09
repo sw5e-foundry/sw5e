@@ -1,0 +1,53 @@
+input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea {
+  border: 1px solid  @inputBorderNormal;
+  color: @inputTextColor;
+  &:hover {
+    border-color: @inputBorderHover;
+  }
+  &:focus {
+    border-color: @inputBorderFocus;
+  }
+  &::placeholder {
+    color: @inputTextColor;
+    opacity: 0.5;
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: @inputTextColor;
+    opacity: 0.5;
+  }
+}
+
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+  background: @buttonBackground;
+  color: @buttonTextColor;
+  &:hover, &:focus {
+    background: @buttonHoverBackground;
+  }
+  &:disabled {
+    &:hover, &:focus {
+      background: @buttonBackground;
+    }
+  }
+  
+}
+input[type="reset"], button.secondary, button[type="reset"], input[type="button"].secondary, input[type="submit"].secondary {
+  background: @buttonSecondaryBackground;
+  color: @buttonSecondaryTextColor;
+  &:hover {
+    background: @buttonSecondaryHoverBackground;
+  }
+  &:disabled {
+    &:hover, &:focus {
+      background: @buttonSecondaryBackground;
+    }
+  }
+}
+
+form {
+  button {
+    border: none;
+  }
+  .notes, .hint {
+    color: rgba(@bodyFontColor, 0.8);
+  }
+}

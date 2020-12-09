@@ -25,8 +25,26 @@
         </div>
     </header>
 
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+        <!-- <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a> -->
+    </nav>
+
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+
+        {{!-- Description Tab --}}
+        <div class="tab description" data-group="primary" data-tab="description">
+          {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+
+        </div>    
+        
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+        </div>
+
     </section>
 </form>

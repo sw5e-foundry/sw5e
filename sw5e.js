@@ -241,7 +241,7 @@ Hooks.on("renderSceneDirectory", (app, html, data)=> {
 });
 Hooks.on("renderActorDirectory", (app, html, data)=> {
   setFolderBackground(html);
-  CharacterImporter.addImportButton(html));
+  CharacterImporter.addImportButton(html);
 });
 Hooks.on("renderItemDirectory",  (app, html, data)=> {
   setFolderBackground(html);

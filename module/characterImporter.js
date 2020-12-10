@@ -1,3 +1,6 @@
+import Actor5e from "./actor/entity.js";
+import ActorSheet5eCharacterNew from "./actor/sheets/newSheet/character.js";
+
 export default class CharacterImporter {
 
   // transform JSON from sw5e.com to Foundry friendly format
@@ -43,6 +46,10 @@ export default class CharacterImporter {
       const stealthSkill = sourceCharacter.attribs.find(o => o.name == 'stealth_bonus').current;
       const survivalSkill = sourceCharacter.attribs.find(o => o.name == 'survival_bonus').current;
       const technologySkill = sourceCharacter.attribs.find(o => o.name == 'technology_bonus').current;
+
+      const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
+      const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
+
 
       const targetCharacter = {
           name: sourceCharacter.name,
@@ -160,20 +167,117 @@ export default class CharacterImporter {
                     }
                 }
           }
-      };        
+      };
 
-      let newActor = await Actor.create(targetCharacter);
-      let actor = await game.actors.get(newActor.id);
-      let classes = await game.packs.get('sw5e.classes');
-      let content = await classes.getContent();
-      let scout = content.find(o => o.name == 'Scout');
-      console.log(actor);
-      console.log(classes);
-      console.log(content);
-      console.log(Object.entries(actor.apps))
-      console.log(Object.keys(actor.apps))
-      console.log(Object.values(actor.apps))
-      //actor.apps[46]._onDropItemCreate(scout);
+      function addInitialClassAndLevel(itemData){
+        Actor5e.getClassFeatures(itemData).then(features => {
+          actor.createEmbeddedEntity("OwnedItem", features);
+        });
+      }
+
+      async function addSubsequentLevels(targetLvl, actor){
+        actor.data.data.details.level = targetLvl;
+        var x = await actor.items.find(x => x.name == 'Scout');
+        x.data.data.levels = 6;
+
+
+      }
+
+      function addSubsequentLevelsOld(/*targetLvl,*/ itemData, actorClass, actor){
+        //const lvl = actorClass.data.data.levels;
+        //const newLvl = Math.min(lvl + 1, 20 + lvl - actor.data.data.details.level);
+        //if ( !(lvl === newLvl) ) {
+          actorClass.update({"data.levels": newLvl});
+          itemData.data.levels = newLvl;
+          Actor5e.getClassFeatures(itemData).then(features => {
+            actor.createEmbeddedEntity("OwnedItem", features);
+          });
+        //}
+        return
+      }
+
+      let actor = await Actor.create(targetCharacter);
+      const actorClass = await actor.itemTypes.class.find(c => c.name === itemData.name);
+      const classWasAlreadyPresent = !!actorClass;
+      const classes = await game.packs.get('sw5e.classes');
+      const content = await classes.getContent();
+      const scout = await content.find(o => o.name == 'Scout').clone();
+      //scout.data.data.levels = 6;
+      let newActorSheet = new ActorSheet5eCharacterNew(actor);
+
+      addInitialClassAndLevel(scout);
+      addSubsequentLevels(scout, actor);
+      
+      // ActorSheet5eCharacterNew
+      //async _onDropItemCreate(itemData) {
+      // this is basically a direct copy of ActorSheet5eCharacterNew._onDropItemCreate()
+      function addActorClassLevel(itemData, actor) {
+        // Upgrade the number of class levels a character has and add features
+        if ( itemData.type === "class" ) {
+          const cls = actor.itemTypes.class.find(c => c.name === itemData.name);
+          const classWasAlreadyPresent = !!cls;
+          /*DEBUG*/
+          console.log("SW5e | Character Importer: cls: " + cls);
+          console.log("SW5e | Character Importer: classWasAlreadyPresent: " + classWasAlreadyPresent);
+          /*DEBUG*/
+          
+          // Add new features for class level
+          if ( !classWasAlreadyPresent ) {
+            Actor5e.getClassFeatures(itemData).then(features => {
+              actor.createEmbeddedEntity("OwnedItem", features);
+            });
+          }
+
+          // If the actor already has the class, increment the level instead of creating a new item
+          // then add new features as long as level increases
+          if ( classWasAlreadyPresent ) {
+            const lvl = cls.data.data.levels;
+            const newLvl = Math.min(lvl + 1, 20 + lvl - actor.data.data.details.level);
+            if ( !(lvl === newLvl) ) {
+              cls.update({"data.levels": newLvl});
+              itemData.data.levels = newLvl;
+              Actor5e.getClassFeatures(itemData).then(features => {
+                actor.createEmbeddedEntity("OwnedItem", features);
+              });
+            }
+            return
+          }
+        }
+        // from Actor5e._onDropItemCreate()
+        return actor.createEmbeddedEntity("OwnedItem", itemData);
+      }        
+
+
+
+      function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+          currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+      }
+    
+      /*
+      await newActorSheet._onDropItemCreate(scout);
+      await newActorSheet._onDropItemCreate(scout);
+      await newActorSheet._onDropItemCreate(scout);
+      */
+
+      /*
+      var newActor = game.actors.find(o => o.name === 'Strom Klovrah');
+      var classes = await game.packs.get('sw5e.classes');
+      var content = await classes.getContent();
+      var scout = content.find(o => o.name == 'Scout');
+      var newActorSheet = new game.sw5e.applications.ActorSheet5eCharacterNew(newActor);
+      await newActorSheet._onDropItemCreate(scout);
+      await newActorSheet.close();
+      var newActorSheet = new game.sw5e.applications.ActorSheet5eCharacterNew(newActor);
+      await newActorSheet._onDropItemCreate(scout);
+      await newActorSheet.close();
+      var newActorSheet = new game.sw5e.applications.ActorSheet5eCharacterNew(newActor);
+      await newActorSheet._onDropItemCreate(scout);
+      await newActorSheet.close();
+      */
   }
 
   static addImportButton(html){

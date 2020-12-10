@@ -347,7 +347,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     if ( itemData.type === "class" ) {
       const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
       const classWasAlreadyPresent = !!cls;
-
+      /*DEBUG*/
+      console.log("SW5e | Character Importer: cls: " + cls);
+      console.log("SW5e | Character Importer: classWasAlreadyPresent: " + classWasAlreadyPresent);
+      /*DEBUG*/
+      
       // Add new features for class level
       if ( !classWasAlreadyPresent ) {
         Actor5e.getClassFeatures(itemData).then(features => {

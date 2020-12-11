@@ -19,8 +19,6 @@ export default class CharacterImporter {
       const intelligence = sourceCharacter.attribs.find(o => o.name == "intelligence").current;
       const wisdom = sourceCharacter.attribs.find(o => o.name == "wisdom").current;
       const charisma = sourceCharacter.attribs.find(o => o.name == "charisma").current;
-
-      // v2 - skills and proficiencies
       const strengthSaveProf = sourceCharacter.attribs.find(o => o.name == 'strength_save_prof').current ? 1 : 0;
       const dexteritySaveProf = sourceCharacter.attribs.find(o => o.name == 'dexterity_save_prof').current ? 1 : 0;
       const constitutionSaveProf = sourceCharacter.attribs.find(o => o.name == 'constitution_save_prof').current ? 1 : 0;
@@ -28,6 +26,154 @@ export default class CharacterImporter {
       const wisdomSaveProf = sourceCharacter.attribs.find(o => o.name == 'wisdom_save_prof').current ? 1 : 0;
       const charismaSaveProf = sourceCharacter.attribs.find(o => o.name == 'charisma_save_prof').current ? 1 : 0;
 
+      const targetCharacter = {
+        name: sourceCharacter.name,
+        type: "character",
+        data: {
+            abilities: {
+              str: {
+                value: strength,
+                proficient: strengthSaveProf
+              },
+              dex: {
+                value: dexterity,
+                proficient: dexteritySaveProf
+              },
+              con: {
+                  value: constitution,
+                  proficient: constitutionSaveProf
+              },
+              int: {
+                  value: intelligence,
+                  proficient: intelligenceSaveProf
+              },
+              wis: {
+                  value: wisdom,
+                  proficient: wisdomSaveProf
+              },
+              cha: {
+                  value: charisma,
+                  proficient: charismaSaveProf
+              },
+            },
+            attributes: {
+                ac: {
+                    value: ac
+                },
+                hp: {
+                    value: hp,
+                    min: 0,
+                    max: hp,
+                    temp: hpTemp
+                }
+            }/*,
+              skills: {
+                  acr: {
+                    value: acrobaticsSkill,
+                    ability: "dex"
+                  },
+                  ani: {
+                    value: animalHandlingSkill,
+                    ability: "wis"
+                  },
+                  ath: {
+                    value: athleticsSkill,
+                    ability: "str"
+                  },
+                  dec: {
+                    value: deceptionSkill,
+                    ability: "cha"
+                  },
+                  ins: {
+                    value: insightSkill,
+                    ability: "wis"
+                  },
+                  itm: {
+                    value: intimidationSkill,
+                    ability: "cha"
+                  },
+                  inv: {
+                    value: investigationSkill,
+                    ability: "int"
+                  },
+                  lor: {
+                    value: loreSkill,
+                    ability: "int"
+                  },
+                  med: {
+                    value: medicineSkill,
+                    ability: "wis"
+                  },
+                  nat: {
+                    value: natureSkill,
+                    ability: "int"
+                  },
+                  pil: {
+                    value: pilotingSkill,
+                    ability: "int"
+                  },
+                  prc: {
+                    value: perceptionSkill,
+                    ability: "wis"
+                  },
+                  prf: {
+                    value: performanceSkill,
+                    ability: "cha"
+                  },
+                  per: {
+                    value: persuasionSkill,
+                    ability: "cha"
+                  },
+                  slt: {
+                    value: sleightOfHandSkill,
+                    ability: "dex"
+                  },
+                  ste: {
+                    value: stealthSkill,
+                    ability: "dex"
+                  },
+                  sur: {
+                    value: survivalSkill,
+                    ability: "wis"
+                  },
+                  tec: {
+                    value: technologySkill,
+                    ability: "int"
+                  }
+              }*/
+        }
+      };
+
+      const classes = await game.packs.get('sw5e.classes');
+      const content = await classes.getContent();
+      const scout = await content.find(o => o.name == 'Scout').clone();
+      scout.data.data.levels = 5;
+      targetCharacter.items = [scout];
+      let actor = await Actor.create(targetCharacter);
+
+      actor.data.data.skills.acr = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;
+      actor.data.data.skills.ani = sourceCharacter.attribs.find(o => o.name == 'animal_handling_bonus').current;
+      actor.data.data.skills.ath = sourceCharacter.attribs.find(o => o.name == 'athletics_bonus').current;
+      actor.data.data.skills.dec = sourceCharacter.attribs.find(o => o.name == 'deception_bonus').current;
+      actor.data.data.skills.ins = sourceCharacter.attribs.find(o => o.name == 'insight_bonus').current;
+      actor.data.data.skills.itm = sourceCharacter.attribs.find(o => o.name == 'intimidation_bonus').current;
+      actor.data.data.skills.inv = sourceCharacter.attribs.find(o => o.name == 'investigation_bonus').current;
+      actor.data.data.skills.lor = sourceCharacter.attribs.find(o => o.name == 'lore_bonus').current;
+      actor.data.data.skills.med = sourceCharacter.attribs.find(o => o.name == 'medicine_bonus').current;
+      actor.data.data.skills.nat = sourceCharacter.attribs.find(o => o.name == 'nature_bonus').current;
+      actor.data.data.skills.pil = sourceCharacter.attribs.find(o => o.name == 'piloting_bonus').current;
+      actor.data.data.skills.prc = sourceCharacter.attribs.find(o => o.name == 'perception_bonus').current;
+      actor.data.data.skills.prf = sourceCharacter.attribs.find(o => o.name == 'performance_bonus').current;
+      actor.data.data.skills.per = sourceCharacter.attribs.find(o => o.name == 'persuasion_bonus').current;
+      actor.data.data.skills.slt = sourceCharacter.attribs.find(o => o.name == 'sleight_of_hand_bonus').current;
+      actor.data.data.skills.ste = sourceCharacter.attribs.find(o => o.name == 'stealth_bonus').current;
+      actor.data.data.skills.sur = sourceCharacter.attribs.find(o => o.name == 'survival_bonus').current;
+      actor.data.data.skills.tec = sourceCharacter.attribs.find(o => o.name == 'technology_bonus').current;
+
+      const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
+      const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
+      // v2 - skills and proficiencies
+      /*
       const acrobaticsSkill = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;
       const animalHandlingSkill = sourceCharacter.attribs.find(o => o.name == 'animal_handling_bonus').current;
       const athleticsSkill = sourceCharacter.attribs.find(o => o.name == 'athletics_bonus').current;
@@ -49,125 +195,13 @@ export default class CharacterImporter {
 
       const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
       const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
+      */
 
 
-      const targetCharacter = {
-          name: sourceCharacter.name,
-          type: "character",
-          data: {
-              abilities: {
-                str: {
-                  value: strength,
-                  proficient: strengthSaveProf
-                },
-                dex: {
-                  value: dexterity,
-                  proficient: dexteritySaveProf
-                },
-                con: {
-                    value: constitution,
-                    proficient: constitutionSaveProf
-                },
-                int: {
-                    value: intelligence,
-                    proficient: intelligenceSaveProf
-                },
-                wis: {
-                    value: wisdom,
-                    proficient: wisdomSaveProf
-                },
-                cha: {
-                    value: charisma,
-                    proficient: charismaSaveProf
-                },
-              },
-              attributes: {
-                  ac: {
-                      value: ac
-                  },
-                  hp: {
-                      value: hp,
-                      min: 0,
-                      max: hp,
-                      temp: hpTemp
-                  }
-              },
-                skills: {
-                    acr: {
-                      value: acrobaticsSkill,
-                      ability: "dex"
-                    },
-                    ani: {
-                      value: animalHandlingSkill,
-                      ability: "wis"
-                    },
-                    ath: {
-                      value: athleticsSkill,
-                      ability: "str"
-                    },
-                    dec: {
-                      value: deceptionSkill,
-                      ability: "cha"
-                    },
-                    ins: {
-                      value: insightSkill,
-                      ability: "wis"
-                    },
-                    itm: {
-                      value: intimidationSkill,
-                      ability: "cha"
-                    },
-                    inv: {
-                      value: investigationSkill,
-                      ability: "int"
-                    },
-                    lor: {
-                      value: loreSkill,
-                      ability: "int"
-                    },
-                    med: {
-                      value: medicineSkill,
-                      ability: "wis"
-                    },
-                    nat: {
-                      value: natureSkill,
-                      ability: "int"
-                    },
-                    pil: {
-                      value: pilotingSkill,
-                      ability: "int"
-                    },
-                    prc: {
-                      value: perceptionSkill,
-                      ability: "wis"
-                    },
-                    prf: {
-                      value: performanceSkill,
-                      ability: "cha"
-                    },
-                    per: {
-                      value: persuasionSkill,
-                      ability: "cha"
-                    },
-                    slt: {
-                      value: sleightOfHandSkill,
-                      ability: "dex"
-                    },
-                    ste: {
-                      value: stealthSkill,
-                      ability: "dex"
-                    },
-                    sur: {
-                      value: survivalSkill,
-                      ability: "wis"
-                    },
-                    tec: {
-                      value: technologySkill,
-                      ability: "int"
-                    }
-                }
-          }
-      };
+
+
+
+
 
       function addInitialClassAndLevel(itemData){
         Actor5e.getClassFeatures(itemData).then(features => {
@@ -196,17 +230,20 @@ export default class CharacterImporter {
         return
       }
 
-      let actor = await Actor.create(targetCharacter);
-      const actorClass = await actor.itemTypes.class.find(c => c.name === itemData.name);
-      const classWasAlreadyPresent = !!actorClass;
-      const classes = await game.packs.get('sw5e.classes');
-      const content = await classes.getContent();
-      const scout = await content.find(o => o.name == 'Scout').clone();
+      
+      //const actorClass = await actor.itemTypes.class.find(c => c.name === itemData.name);
+      //const classWasAlreadyPresent = !!actorClass;
+      //const classes = await game.packs.get('sw5e.classes');
+      //const content = await classes.getContent();
+      //const scout = await content.find(o => o.name == 'Scout').clone();
       //scout.data.data.levels = 6;
-      let newActorSheet = new ActorSheet5eCharacterNew(actor);
+      //let newActorSheet = new ActorSheet5eCharacterNew(actor);
+      let sheet = new game.sw5e.applications.ActorSheet5eCharacterNew(actor);
+      //addInitialClassAndLevel(scout);
+      //sheet._onDropItem(false, scout);
 
-      addInitialClassAndLevel(scout);
-      addSubsequentLevels(scout, actor);
+      
+      //addSubsequentLevels(scout, actor);
       
       // ActorSheet5eCharacterNew
       //async _onDropItemCreate(itemData) {

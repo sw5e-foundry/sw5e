@@ -131,7 +131,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
-      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true },
+      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true },
 	  archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
 	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
 	  background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
@@ -516,7 +516,7 @@ async function addFavorites(app, html, data) {
 
   if (app.options.editable) {
     favtabHtml.find('.item-image').click(ev => app._onItemRoll(ev));
-    let handler = ev => app._onDragItemStart(ev);
+    let handler = ev => app._onDragStart(ev);
     favtabHtml.find('.item').each((i, li) => {
       if (li.classList.contains("inventory-header")) return;
       li.setAttribute("draggable", true);
@@ -566,7 +566,14 @@ async function addFavorites(app, html, data) {
     });
   }
   tabContainer.append(favtabHtml);
-
+  // if(app.options.editable) {
+  //   let handler = ev => app._onDragItemStart(ev);
+  //   tabContainer.find('.item').each((i, li) => {
+  //     if (li.classList.contains("inventory-header")) return;
+  //     li.setAttribute("draggable", true);
+  //     li.addEventListener("dragstart", handler, false);
+  //   });
+  //}
   // try {
   //   if (game.modules.get("betterrolls5e") && game.modules.get("betterrolls5e").active) BetterRolls.addItemContent(app.object, favtabHtml, ".item .item-name h4", ".item-properties", ".item > .rollable div");
   // } 

@@ -142,14 +142,14 @@ export default class Actor5e extends Actor {
   /**
    * Return the features which a character is awarded for each class level
    * @param {string} className        The class name being added
-   * @param {string} subclassName     The subclass of the class being added, if any
+   * @param {string} archetypeName     The archetype of the class being added, if any
    * @param {number} level            The number of levels in the added class
    * @param {number} priorLevel       The previous level of the added class
    * @return {Promise<Item5e[]>}     Array of Item5e entities
    */
-  static async getClassFeatures({className="", subclassName="", level=1, priorLevel=0}={}) {
+  static async getClassFeatures({className="", archetypeName="", level=1, priorLevel=0}={}) {
     className = className.toLowerCase();
-    subclassName = subclassName.slugify();
+    archetypeName = archetypeName.slugify();
 
     // Get the configuration of features which may be added
     const clsConfig = CONFIG.SW5E.classFeatures[className];
@@ -162,8 +162,8 @@ export default class Actor5e extends Actor {
       if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
     }
 
-    // Acquire subclass features
-    const subConfig = clsConfig.subclasses[subclassName] || {};
+    // Acquire archetype features
+    const subConfig = clsConfig.archetypes[archetypeName] || {};
     for ( let [l, f] of Object.entries(subConfig.features || {}) ) {
       l = parseInt(l);
       if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
@@ -207,7 +207,7 @@ export default class Actor5e extends Actor {
       const updateData = expandObject(u);
       const config = {
         className: updateData.name || item.data.name,
-        subclassName: updateData.data.subclass || item.data.data.subclass,
+        archetypeName: updateData.data.archetype || item.data.data.archetype,
         level: getProperty(updateData, "data.levels"),
         priorLevel: item ? item.data.data.levels : 0
       }
@@ -215,7 +215,7 @@ export default class Actor5e extends Actor {
       // Get and create features for an increased class level
       let changed = false;
       if ( config.level && (config.level > config.priorLevel)) changed = true;
-      if ( config.subclassName !== item.data.data.subclass ) changed = true;
+      if ( config.archetypeName !== item.data.data.archetype ) changed = true;
 
       // Get features to create
       if ( changed ) {
@@ -549,7 +549,7 @@ export default class Actor5e extends Actor {
   async createOwnedItem(itemData, options) {
 
     // Assume NPCs are always proficient with weapons and always have powers prepared
-    if ( !this.isPC ) {
+    if ( !this.hasPlayerOwner ) {
       let t = itemData.type;
       let initial = {};
       if ( t === "weapon" ) initial["data.proficient"] = true;

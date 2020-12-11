@@ -112,8 +112,9 @@
 		<button class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</button>
 		<button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
 		<button class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</button>
+        <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
 		<button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
-		<button class="item" data-tab="notes">Notes</button>
+		<button class="item" data-tab="notes">{{ localize "SW5E.Notes" }}</button>
 	</nav>
 	{{!-- PC Sheet Body --}}
 	<section class="sheet-body">
@@ -133,6 +134,10 @@
 		<section class="tab powerbook" data-group="primary" data-tab="powerbook">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-powerbook.html"}}
 		</section>
+		{{!-- Effects Tab --}}
+        <section class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
+        </section>
 		{{!-- Biography Tab --}}
 		<section class="tab biography" data-group="primary" data-tab="biography">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html"}}
@@ -140,5 +145,5 @@
 		{{!-- Notes Tab --}}
 		<section class="tab notes" data-group="primary" data-tab="notes">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-notes.html"}}
-	</section>
+		</section>
 </form>

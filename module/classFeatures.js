@@ -1,5 +1,6 @@
 export const ClassFeatures = {
-  "berserker": {
+/* TO BE FIXED
+/*  "berserker": {
     "archetypes": {
       "addicted-approach": {
           "label": "Addicted Approach",
@@ -31,5 +32,5 @@ export const ClassFeatures = {
     "features": {
         "20": ["Compendium.sw5e.classfeatures.gSGeitc98ItAwhfF"]
     }
-  }
+  } */
 };

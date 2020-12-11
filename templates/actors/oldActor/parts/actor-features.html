@@ -71,14 +71,14 @@
 			
 			{{else if section.isBackground}}
 			<div class="item-detail player-background">
-			
+			    {{item.data.name}}
 			</div>
 			
 			{{else if section.isClassfeatures}}
 			<div class="item-detail player-classfeatures">
 			    {{item.data.name}}
 			</div>
-            
+
 			{{else if section.isFightingstyles}}
 			<div class="item-detail player-fightingstyles">
 			    {{item.data.name}}
@@ -96,7 +96,7 @@
 			
             {{else if section.isClass}}
             <div class="item-detail player-class">
-                {{item.data.subclass}}
+                {{item.data.archetype}}
             </div>
             <div class="item-detail item-action">
                 Level {{item.data.levels}}

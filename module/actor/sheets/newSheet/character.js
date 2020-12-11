@@ -132,12 +132,13 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
-      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true },
-      archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
-      species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
-      background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
-      lightsaberform: { label: "SW5E.ItemTypeLightsaberForm", items: [], hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true },
-      fightingstyles: { label: "SW5E.ItemTypeFightingStyle", items: [], hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyles: true },
+
+      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true },
+	  archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
+	  species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
+	  background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
+	  lightsaberform: { label: "SW5E.ItemTypeLightsaberForm", items: [], hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true },
+
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };

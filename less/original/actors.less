@@ -238,6 +238,7 @@
 
     li.skill {
       height: 24px;
+      width: 225px;
       padding: 3px 2px;
 
       &:nth-child(even) {
@@ -429,6 +430,9 @@
         }
         i.attuned {
           color: @colorTan;
+        }        
+        h4 {
+        	font-size: 14px;
         }
       }
 
@@ -469,9 +473,8 @@
       white-space: nowrap;
       overflow: hidden;
       &:last-child { border-right: none; }
-      &.item-action {flex: 0 0 100px}
+      &.item-action {flex: 0 0 100px}     
     }
-
     .item-weight {
       flex: 0 0 60px;
       border-left: 1px solid @colorFaint;
@@ -491,6 +494,15 @@
       padding: 0.25em 0.5em;
       color: @colorDark;
       border-top: 1px solid @colorFaint;
+		  h2 {
+		    font-family: 'Russo One';
+		    font-size: 20px;
+		    font-weight: 400;
+		    text-transform: uppercase;
+		    letter-spacing: 0.5px;
+		    border-bottom: 2px solid rgb(13, 153, 204);
+		    color: #c40f0f;
+		  }      
     }
   }
 

@@ -135,3 +135,4 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
   }
 }
+

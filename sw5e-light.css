@@ -182,22 +182,28 @@ body.light-theme #chat-log .chat-message > header span {
 body.light-theme .notification-pip {
   color: #0d99cc;
 }
-body.light-theme .sw5e.chat-card .card-header h3 {
+body.light-theme .sw5e.chat-card .card-header h3,
+body.light-theme .midi-qol-item-card .card-header h3 {
   color: #1C1C1C;
 }
-body.light-theme .sw5e.chat-card .card-header h3:hover {
+body.light-theme .sw5e.chat-card .card-header h3:hover,
+body.light-theme .midi-qol-item-card .card-header h3:hover {
   color: #1C1C1C;
 }
-body.light-theme .sw5e.chat-card .card-buttons span {
+body.light-theme .sw5e.chat-card .card-buttons span,
+body.light-theme .midi-qol-item-card .card-buttons span {
   border: 1px solid #828282;
 }
-body.light-theme .sw5e.chat-card .card-footer {
+body.light-theme .sw5e.chat-card .card-footer,
+body.light-theme .midi-qol-item-card .card-footer {
   border-top: 1px solid #7ed6f7;
 }
-body.light-theme .sw5e.chat-card .card-footer span {
+body.light-theme .sw5e.chat-card .card-footer span,
+body.light-theme .midi-qol-item-card .card-footer span {
   border-right: 1px solid #D6D6D6;
 }
-body.light-theme .sw5e.chat-card .card-footer span:last-child {
+body.light-theme .sw5e.chat-card .card-footer span:last-child,
+body.light-theme .midi-qol-item-card .card-footer span:last-child {
   border-right: none;
 }
 body.light-theme .dice-roll .dice-formula {
@@ -766,4 +772,7 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-abi
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
   color: #c40f0f;
   border-bottom: 2px solid #0d99cc;
+}
+body.light-theme .sw5e.sheet.actor.npc .swalt-sheet header .experience {
+  color: #4f4f4f;
 }

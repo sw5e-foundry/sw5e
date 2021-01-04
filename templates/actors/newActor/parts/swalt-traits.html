@@ -11,11 +11,13 @@
     </label>
     <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
         {{#unless isVehicle}}
-        {{localize "SW5E.Senses"}}
-        <input type="text" name="data.traits.senses" value="{{data.traits.senses}}"
-            placeholder="{{ localize 'SW5E.None' }}" />
-        {{/unless}}
-    </label>
+        <label>{{localize "SW5E.Senses"}}</label>
+        <a class="config-button" data-action="senses" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
+        <ul class="traits-list">
+        {{#each senses as |v k|}}
+            <li class="tag {{k}}">{{v}}</li>
+        {{/each}}
+        </ul>
     <div class="languages">
         <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
         <a class="trait-selector" data-options="languages" data-target="data.traits.languages">
@@ -111,7 +113,7 @@
     {{#unless isVehicle}}
     <div>
         <label>{{localize "SW5E.SpecialTraits"}}</label>
-        <a class="configure-flags"><i class="fas fa-cog"></i></a>
+        <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
     </div>
     {{/unless}}
     <ul class="passives"></ul>

@@ -1,4 +1,4 @@
-import ActorSheet5e from "../base.js";
+import ActorSheet5e from "./base.js";
 import Actor5e from "../../entity.js";
 
 /**
@@ -75,6 +75,18 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
+      item.attunement = {
+        1: {
+          icon: "fa-sun",
+          cls: "not-attuned",
+          title: "SW5E.AttunementRequired"
+        },
+        2: {
+          icon: "fa-sun",
+          cls: "attuned",
+          title: "SW5E.AttunementAttuned"
+        }
+      }[item.data.attunement];
 
       // Item usage
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
@@ -203,7 +215,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /**
-   * Handle rolling a death saving throw for the Character
+   * Handle mouse click events for character sheet actions
    * @param {MouseEvent} event    The originating click event
    * @private
    */
@@ -263,37 +275,21 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /** @override */
   async _onDropItemCreate(itemData) {
-    let addLevel = false;
 
-    // Upgrade the number of class levels a character has and add features
+    // Increment the number of class levels a character instead of creating a new item
     if ( itemData.type === "class" ) {
       const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
       let priorLevel = cls?.data.data.levels ?? 0;
-      const hasClass = !!cls;
-
-      // Increment levels instead of creating a new item
-      if ( hasClass ) {
+      if ( !!cls ) {
         const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
         if ( next > priorLevel ) {
           itemData.levels = next;
-          await cls.update({"data.levels": next});
-          addLevel = true;
+          return cls.update({"data.levels": next});
         }
-      }
-
-      // Add class features
-      if ( !hasClass || addLevel ) {
-        const features = await Actor5e.getClassFeatures({
-          className: itemData.name,
-          archetypeName: itemData.data.archetype,
-          level: itemData.levels,
-          priorLevel: priorLevel
-        });
-        await this.actor.createEmbeddedEntity("OwnedItem", features);
       }
     }
 
     // Default drop handling if levels were not added
-    if ( !addLevel ) super._onDropItemCreate(itemData);
+    super._onDropItemCreate(itemData);
   }
 }

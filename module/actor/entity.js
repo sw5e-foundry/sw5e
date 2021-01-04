@@ -1,8 +1,6 @@
 import { d20Roll, damageRoll } from "../dice.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
-import AbilityUseDialog from "../apps/ability-use-dialog.js";
-import AbilityTemplate from "../pixi/ability-template.js";
 import {SW5E} from '../config.js';
 
 /**
@@ -163,8 +161,8 @@ export default class Actor5e extends Actor {
     }
 
     // Acquire archetype features
-    const subConfig = clsConfig.archetypes[archetypeName] || {};
-    for ( let [l, f] of Object.entries(subConfig.features || {}) ) {
+    const archConfig = clsConfig.archetypes[archetypeName] || {};
+    for ( let [l, f] of Object.entries(archConfig.features || {}) ) {
       l = parseInt(l);
       if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
     }
@@ -207,7 +205,7 @@ export default class Actor5e extends Actor {
       const updateData = expandObject(u);
       const config = {
         className: updateData.name || item.data.name,
-        archetypeName: updateData.data.archetype || item.data.data.archetype,
+        archetypeName: getProperty(updateData, "data.archetype") || item.data.data.archetype,
         level: getProperty(updateData, "data.levels"),
         priorLevel: item ? item.data.data.levels : 0
       }
@@ -356,16 +354,8 @@ export default class Actor5e extends Actor {
     const data = actorData.data;
     data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
 
-    // Apply powercasting DC to any power items which use it
-    for ( let i of this.items ) {
-      const save = i.data.data.save;
-      if ( save?.ability ) {
-        if ( save.scaling === "power" ) save.dc = data.attributes.powerdc;
-        else if ( save.scaling !== "flat" ) save.dc = data.abilities[save.scaling]?.dc ?? 10;
-        const ability = CONFIG.SW5E.abilities[save.ability];
-        i.labels.save = game.i18n.format("SW5E.SaveDC", {dc: save.dc || "", ability});
-      }
-    }
+    // Compute ability save DCs that depend on the calling actor
+    this.items.forEach(i => i.getSaveDC());
   }
 
   /* -------------------------------------------- */
@@ -546,20 +536,69 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /** @override */
-  async createOwnedItem(itemData, options) {
+  async createEmbeddedEntity(embeddedName, itemData, options={}) {
 
-    // Assume NPCs are always proficient with weapons and always have powers prepared
-    if ( !this.hasPlayerOwner ) {
-      let t = itemData.type;
-      let initial = {};
-      if ( t === "weapon" ) initial["data.proficient"] = true;
-      if ( ["weapon", "equipment"].includes(t) ) initial["data.equipped"] = true;
-      if ( t === "power" ) initial["data.prepared"] = true;
-      mergeObject(itemData, initial);
-    }
-    return super.createOwnedItem(itemData, options);
+    // Pre-creation steps for owned items
+    if ( embeddedName === "OwnedItem" ) this._preCreateOwnedItem(itemData, options);
+
+    // Standard embedded entity creation
+    return super.createEmbeddedEntity(embeddedName, itemData, options);
   }
 
+  /* -------------------------------------------- */
+
+  /**
+   * A temporary shim function which will eventually (in core fvtt version 0.8.0+) be migrated to the new abstraction layer
+   * @param itemData
+   * @param options
+   * @private
+   */
+  _preCreateOwnedItem(itemData, options) {
+    if ( this.data.type === "vehicle" ) return;
+    const isNPC = this.data.type === 'npc';
+    let initial = {};
+    switch ( itemData.type ) {
+      case "weapon":
+        initial["data.equipped"] = isNPC;         // NPCs automatically equip weapons
+        let hasWeaponProf = isNPC;                // NPCs automatically have weapon proficiency
+        if ( !isNPC ) {
+          const weaponProf = {
+            "natural": true,
+            "simpleVW": "sim",
+            "simpleB": "sim",
+            "simpleLW": "sim",
+            "martialVW": "mar",
+            "martialB": "mar",
+            "martialLW": "mar"
+          }[itemData.data?.weaponType];
+          const actorWeaponProfs = this.data.data.traits?.weaponProf?.value || [];
+          hasWeaponProf = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
+        }
+        initial["data.proficient"] = hasWeaponProf;
+        break;
+      case "equipment":
+        initial["data.equipped"] = isNPC;         // NPCs automatically equip equipment
+        let hasEquipmentProf = isNPC;             // NPCs automatically have equipment proficiency
+        if ( !isNPC ) {
+          const armorProf = {
+            "natural": true,
+            "clothing": true,
+            "light": "lgt",
+            "medium": "med",
+            "heavy": "hvy",
+            "shield": "shl"
+          }[itemData.data?.armor?.type];
+          const actorArmorProfs = this.data.data.traits?.armorProf?.value || [];
+          hasEquipmentProf = (armorProf === true) || actorArmorProfs.includes(armorProf);
+        }
+        initial["data.proficient"] = hasEquipmentProf;
+        break;
+      case "power":
+        initial["data.prepared"] = true;          // NPCs automatically prepare powers
+        break;
+    }
+    mergeObject(itemData, initial);
+  }
 
   /* -------------------------------------------- */
   /*  Gameplay Mechanics                          */
@@ -600,77 +639,16 @@ export default class Actor5e extends Actor {
       "data.attributes.hp.temp": tmp - dt,
       "data.attributes.hp.value": dh
     };
-    return this.update(updates);
-  }
 
-  /* -------------------------------------------- */
-
-  /**
-   * Cast a Power, consuming a power slot of a certain level
-   * @param {Item5e} item   The power being cast by the actor
-   * @param {Event} event   The originating user interaction which triggered the cast
-   */
-  async usePower(item, {configureDialog=true}={}) {
-    if ( item.data.type !== "power" ) throw new Error("Wrong Item type");
-    const itemData = item.data.data;
-
-    // Configure powercasting data
-    let lvl = itemData.level;
-    const usesSlots = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
-    const limitedUses = !!itemData.uses.per;
-    let consumeSlot = `power${lvl}`;
-    let consumeUse = false;
-    let placeTemplate = false;
-
-    // Configure power slot consumption and measured template placement from the form
-    if ( configureDialog && (usesSlots || item.hasAreaTarget || limitedUses) ) {
-      const usage = await AbilityUseDialog.create(item);
-      if ( usage === null ) return;
-
-      // Determine consumption preferences
-      consumeSlot = Boolean(usage.get("consumeSlot"));
-      consumeUse = Boolean(usage.get("consumeUse"));
-      placeTemplate = Boolean(usage.get("placeTemplate"));
-
-      // Determine the cast power level
-      const isPact = usage.get('level') === 'pact';
-      const lvl = isPact ? this.data.data.powers.pact.level : parseInt(usage.get("level"));
-      if ( lvl !== item.data.data.level ) {
-        const upcastData = mergeObject(item.data, {"data.level": lvl}, {inplace: false});
-        item = item.constructor.createOwned(upcastData, this);
-      }
-
-      // Denote the power slot being consumed
-      if ( consumeSlot ) consumeSlot = isPact ? "pact" : `power${lvl}`;
-    }
-
-    // Update Actor data
-    if ( usesSlots && consumeSlot && (lvl > 0) ) {
-      const slots = parseInt(this.data.data.powers[consumeSlot]?.value);
-      if ( slots === 0 || Number.isNaN(slots) ) {
-        return ui.notifications.error(game.i18n.localize("SW5E.PowerCastNoSlots"));
-      }
-      await this.update({
-        [`data.powers.${consumeSlot}.value`]: Math.max(slots - 1, 0)
-      });
-    }
-
-    // Update Item data
-    if ( limitedUses && consumeUse ) {
-      const uses = parseInt(itemData.uses.value || 0);
-      if ( uses <= 0 ) ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", {name: item.name}));
-      await item.update({"data.uses.value": Math.max(parseInt(item.data.data.uses.value || 0) - 1, 0)})
-    }
-
-    // Initiate ability template placement workflow if selected
-    if ( placeTemplate && item.hasAreaTarget ) {
-      const template = AbilityTemplate.fromItem(item);
-      if ( template ) template.drawPreview();
-      if ( this.sheet.rendered ) this.sheet.minimize();
-    }
-
-    // Invoke the Item roll
-    return item.roll();
+    // Delegate damage application to a hook
+    // TODO replace this in the future with a better modifyTokenAttribute function in the core
+    const allowed = Hooks.call("modifyTokenAttribute", {
+      attribute: "attributes.hp",
+      value: amount,
+      isDelta: false,
+      isBar: true
+    }, updates);
+    return allowed !== false ? this.update(updates) : this;
   }
 
   /* -------------------------------------------- */
@@ -989,7 +967,7 @@ export default class Actor5e extends Actor {
     // Adjust actor data
     await cls.update({"data.hitDiceUsed": cls.data.data.hitDiceUsed + 1});
     const hp = this.data.data.attributes.hp;
-    const dhp = Math.min(hp.max - hp.value, roll.total);
+    const dhp = Math.min(hp.max + (hp.tempmax ?? 0) - hp.value, roll.total);
     await this.update({"data.attributes.hp.value": hp.value + dhp});
     return roll;
   }
@@ -1436,5 +1414,19 @@ export default class Actor5e extends Actor {
   getPowerDC(ability) {
     console.warn(`The Actor5e#getPowerDC(ability) method has been deprecated in favor of Actor5e#data.data.abilities[ability].dc`);
     return this.data.data.abilities[ability]?.dc;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Cast a Power, consuming a power slot of a certain level
+   * @param {Item5e} item   The power being cast by the actor
+   * @param {Event} event   The originating user interaction which triggered the cast
+   * @deprecated since sw5e 1.2.0
+   */
+  async usePower(item, {configureDialog=true}={}) {
+    console.warn(`The Actor5e#usePower method has been deprecated in favor of Item5e#roll`);
+    if ( item.data.type !== "power" ) throw new Error("Wrong Item type");
+    return item.roll();
   }
 }

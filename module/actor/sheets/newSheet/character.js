@@ -201,7 +201,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     if ( !this.options.editable ) return;
 
     // Inventory Functions
-    html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
+    // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
 
     // Item State Toggling
     html.find('.item-toggle').click(this._onToggleItem.bind(this));

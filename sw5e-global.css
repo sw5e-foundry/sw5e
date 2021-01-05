@@ -80,9 +80,6 @@ body {
   font-family: 'Open Sans';
   font-size: 13px;
   font-weight: 400;
-  background-image: url('./ui/SW5e-logo.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 h1 {
   font-family: 'Russo One';
@@ -379,12 +376,12 @@ input[type="reset"]:disabled {
   padding: 0;
   border: none;
 }
-.sw5e.chat-card .card-header,
+.sw5e.chat-card .card-header img,
 .midi-qol-item-card .card-header img {
   flex: 0 0 36px;
   margin-right: 4px;
 }
-.sw5e.chat-card .card-header,
+.sw5e.chat-card .card-header h3,
 .midi-qol-item-card .card-header h3 {
   flex: 1;
   margin: 0;
@@ -945,7 +942,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 16px;
   margin: 4px 0;
 }

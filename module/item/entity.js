@@ -152,7 +152,7 @@ export default class Item5e extends Item {
     const itemData = this.data;
     const data = itemData.data;
     const C = CONFIG.SW5E;
-    const labels = {};
+    const labels = this.labels = {};
 
     // Classes
     if ( itemData.type === "class" ) {
@@ -252,12 +252,8 @@ export default class Item5e extends Item {
     // Item Actions
     if ( data.hasOwnProperty("actionType") ) {
 
-      // Saving throws for unowned items
-      const save = data.save;
-      if ( save?.ability && !this.isOwned ) {
-        if ( save.scaling !== "flat" ) save.dc = null;
-        labels.save = game.i18n.format("SW5E.SaveDC", {dc: save.dc || "", ability: C.abilities[save.ability]});
-      }
+      // Saving throws
+      this.getSaveDC();
 
       // Damage
       let dam = data.damage || {};
@@ -269,6 +265,30 @@ export default class Item5e extends Item {
 
     // Assign labels
     this.labels = labels;
+  }
+
+  /**
+   * Update the derived spell DC for an item that requires a saving throw
+   * @returns {number|null}
+   */
+  getSaveDC() {
+    if ( !this.hasSave ) return;
+    const save = this.data.data?.save;
+
+    // Actor spell-DC based scaling
+    if ( save.scaling === "spell" ) {
+      save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.spelldc") : null;
+    }
+
+    // Ability-score based scaling
+    else if ( save.scaling !== "flat" ) {
+      save.dc = this.isOwned ? getProperty(this.actor.data, `data.abilities.${save.scaling}.dc`) : null;
+    }
+
+    // Update labels
+    const abl = CONFIG.DND5E.abilities[save.ability];
+    this.labels.save = game.i18n.format("DND5E.SaveDC", {dc: save.dc || "", ability: abl});
+    return save.dc;
   }
 
   /* -------------------------------------------- */

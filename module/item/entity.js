@@ -152,7 +152,7 @@ export default class Item5e extends Item {
     const itemData = this.data;
     const data = itemData.data;
     const C = CONFIG.SW5E;
-    const labels = {};
+    const labels = this.labels = {};
 
     // Classes
     if ( itemData.type === "class" ) {

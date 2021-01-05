@@ -16,7 +16,6 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "npc"],
-      width: 600,
       width: 800,
       tabs: [{
         navSelector: ".root-tabs",

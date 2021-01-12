@@ -90,7 +90,10 @@
 
 			{{!-- SPEED / MOVEMENT TYPES --}}
 			<section>
-				<h1>{{ localize "SW5E.Movement" }}</h1>
+				<h1>
+					{{ localize "SW5E.Movement" }}
+					<a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
+				</h1>
 				<div class="attribute-value">
 					<span>{{movement.primary}}</span>
 				</div>

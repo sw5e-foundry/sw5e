@@ -272,9 +272,12 @@
   background: transparent;
 }
 .sw5e.sheet .editable .rollable:hover {
+  cursor: pointer;
+}
+.sw5e.sheet .editable h4.rollable:hover,
+.sw5e.sheet .editable .rollable:hover > h4 {
   color: #000;
   text-shadow: 0 0 10px red;
-  cursor: pointer;
 }
 .sw5e.sheet span.sep {
   flex: none;
@@ -366,6 +369,7 @@
   overflow: hidden;
 }
 .sw5e.sheet .filter-list {
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -423,6 +427,28 @@
   margin: 0;
   padding: 0;
 }
+.sw5e.sheet .items-list .item-name {
+  flex: 2;
+  margin: 0;
+  overflow: hidden;
+  font-size: 13px;
+  text-align: left;
+  align-items: center;
+}
+.sw5e.sheet .items-list .item-name h3,
+.sw5e.sheet .items-list .item-name h4 {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.sw5e.sheet .items-list .item-controls {
+  flex: 0 0 60px;
+  justify-content: space-between;
+}
+.sw5e.sheet .items-list .item-controls a {
+  font-size: 12px;
+  text-align: center;
+}
 .sw5e.sheet .items-list .item {
   align-items: center;
   padding: 0 2px;
@@ -459,25 +485,10 @@
   font-size: 12px;
   text-align: center;
 }
-.sw5e.sheet .items-list .items-header .item-name {
+.sw5e.sheet .items-list .items-header h3 {
   padding-left: 5px;
-  font-size: 16px;
-}
-.sw5e.sheet .items-list .item-name {
-  flex: 2;
-  margin: 0;
-  overflow: hidden;
-  font-size: 13px;
   text-align: left;
-  align-items: center;
-}
-.sw5e.sheet .items-list .item-controls {
-  flex: 0 0 60px;
-  justify-content: space-between;
-}
-.sw5e.sheet .items-list .item-controls a {
-  font-size: 12px;
-  text-align: center;
+  font-size: 16px;
 }
 .sw5e.sheet .effects .item .effect-source,
 .sw5e.sheet .effects .item .effect-duration,
@@ -586,7 +597,21 @@
   height: 30px;
   line-height: 30px;
 }
-.sw5e.sheet.actor .attributes input.temphp {
+.sw5e.sheet.actor .sheet-header .attributes .movement h4.attribute-name {
+  position: relative;
+}
+.sw5e.sheet.actor .sheet-header .attributes .movement .config-button {
+  position: absolute;
+  display: none;
+  right: 0;
+  top: 1px;
+  font-size: 12px;
+  font-weight: normal;
+}
+.sw5e.sheet.actor .sheet-header .attributes .movement:hover .config-button {
+  display: block;
+}
+.sw5e.sheet.actor .sheet-header .attributes input.temphp {
   width: 48%;
 }
 .sw5e.sheet.actor h4.box-title {
@@ -798,7 +823,7 @@
   margin: 0 0 3px 0;
   justify-content: space-between;
 }
-.sw5e.sheet.actor .traits .configure-flags {
+.sw5e.sheet.actor .traits .config-button {
   flex: 1;
 }
 .sw5e.sheet.actor .traits label {
@@ -871,8 +896,8 @@
 .sw5e.sheet.actor .inventory-list .item .item-name i.attuned {
   color: #7a7971;
 }
-.sw5e.sheet.actor .inventory-list .item .item-name h4 {
-  font-size: 14px;
+.sw5e.sheet.actor .inventory-list .item .item-name i.not-attuned {
+  color: #44191A;
 }
 .sw5e.sheet.actor .inventory-list .item .item-uses input {
   width: 24px;
@@ -904,6 +929,9 @@
 }
 .sw5e.sheet.actor .inventory-list .item-detail.item-action {
   flex: 0 0 100px;
+}
+.sw5e.sheet.actor .inventory-list .item-detail.attunement {
+  flex: 0 0 24px;
 }
 .sw5e.sheet.actor .inventory-list .item-weight {
   flex: 0 0 60px;
@@ -995,24 +1023,22 @@
   flex: 0 0 240px;
   margin: 0;
 }
-.sw5e.sheet.actor .powercasting-ability input,
+.sw5e.sheet.actor .powercasting-ability label,
 .sw5e.sheet.actor .powercasting-ability span {
-  flex: 0 0 32px;
+  flex: none;
+}
+.sw5e.sheet.actor .powercasting-ability input {
+  flex: 0 0 28px;
   text-align: center;
 }
 .sw5e.sheet.actor .powercasting-ability select {
   margin: 0 5px;
-  flex: 0 0 150px;
-}
-.sw5e.sheet.actor .powercasting-ability h3.power-dc {
-  flex: 1;
-  text-align: right;
+  flex: 0 0 120px;
 }
 .sw5e.sheet.actor .power-slots,
 .sw5e.sheet.actor .power-comps {
-  flex: 0 0 75px;
-  padding-right: 5px;
-  text-align: right;
+  flex: none;
+  padding: 0 5px;
   font-size: 12px;
   color: #7a7971;
   border-right: 1px solid #c9c7b8;
@@ -1025,9 +1051,10 @@
   font-size: 13px;
   font-weight: normal;
 }
-.sw5e.sheet.actor .power-uses {
-  padding-right: 8px;
-  text-align: right !important;
+.sw5e.sheet.actor .powerbook .power-uses {
+  padding-right: 5px;
+  text-align: right;
+  color: #7a7971;
 }
 .sw5e.sheet.actor .power-school,
 .sw5e.sheet.actor .power-action,
@@ -1069,6 +1096,7 @@
   padding-right: 8px;
   margin-bottom: 4px;
   overflow-y: auto;
+  scrollbar-width: thin;
 }
 .sw5e.sheet.item {
   min-height: 660px;
@@ -1587,7 +1615,7 @@
 .sw5e.chat-card .card-footer span,
 .midi-qol-item-card .card-footer span {
   border-right: 2px groove #FFF;
-  padding: 0 5px 0 0;
+  padding: 0 3px 0 0;
   font-size: 10px;
 }
 .sw5e.chat-card .card-footer span:last-child,
@@ -1762,7 +1790,7 @@
   resize: none;
 }
 .sw5e.sheet.actor.character .biography {
-  max-width: calc(-80%);
+  max-width: calc(100% - 180px);
 }
 /* ----------------------------------------- */
 /*  Basic Structure                          */
@@ -1794,9 +1822,6 @@
 .sw5e.sheet.actor.npc .summary {
   font-size: 18px;
 }
-.sw5e.sheet.actor.npc .powercasting-ability label {
-  flex: none;
-}
 .sw5e.sheet.actor.vehicle .features .item-controls {
   flex: 0 0 68px;
 }
@@ -1816,31 +1841,4 @@
 .sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
   text-align: right;
-}
-input[type="number"] {
-  width: calc(100% - 2px);
-  min-width: 20px;
-  height: 26px;
-  background: rgba(0, 0, 0, 0.05);
-  padding: 1px 3px;
-  margin: 0;
-  color: #191813;
-  font-family: inherit;
-  font-size: inherit;
-  text-align: inherit;
-  line-height: inherit;
-  border: 1px solid #7a7971;
-  border-radius: 3px;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  -moz-appearance: textfield;
-}
-input[type="number"]:focus {
-  box-shadow: 0 0 5px red;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
 }

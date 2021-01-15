@@ -30,7 +30,8 @@ import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
-import MovementConfig from "./module/apps/movement-config.js";
+import ActorMovementConfig from "./module/apps/movement-config.js";
+import ActorSensesConfig from "./module/apps/senses-config.js";
 
 // Import Helpers
 import * as chat from "./module/chat.js";
@@ -58,7 +59,7 @@ Hooks.once("init", function() {
       ItemSheet5e,
       ShortRestDialog,
       TraitSelector,
-      MovementConfig
+      ActorMovementConfig
     },
     canvas: {
       AbilityTemplate
@@ -141,12 +142,12 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments", 
+    "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
-    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes", 
-    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes" 
+    "limitedUsePeriods", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
 
   // Exclude some from sorting where the default order matters
@@ -186,7 +187,7 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.1.0";
+  const NEEDS_MIGRATION_VERSION = "1.2.0";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if ( !needsMigration ) return;

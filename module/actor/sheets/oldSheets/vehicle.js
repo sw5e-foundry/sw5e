@@ -1,4 +1,4 @@
-import ActorSheet5e from "../base.js";
+import ActorSheet5e from "./base.js";
 
 /**
  * An Actor sheet for Vehicle type actors.

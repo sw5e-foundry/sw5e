@@ -178,11 +178,14 @@
     background: transparent;
   }
 
-  // Rollable Links
+  // Rollable Titles
   .editable .rollable:hover {
+    cursor: pointer;
+  }
+  .editable h4.rollable:hover,
+  .editable .rollable:hover > h4 {
     color: #000;
     text-shadow: 0 0 10px red;
-    cursor: pointer;
   }
 
   // Separators
@@ -306,6 +309,7 @@
   /* ----------------------------------------- */
 
   .filter-list {
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -382,6 +386,30 @@
       padding: 0;
     }
 
+    // Item Name
+    .item-name {
+      flex: 2;
+      margin: 0;
+      overflow: hidden;
+      font-size: 13px;
+      text-align: left;
+      align-items: center;
+      h3, h4 {
+        margin: 0;
+        white-space: nowrap;
+        overflow-x: hidden;
+      }
+    }
+
+    // Control Buttons
+    .item-controls {
+      flex: 0 0 60px;
+      justify-content: space-between;
+      a {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
     // Individual Item
     .item {
       align-items: center;
@@ -419,30 +447,11 @@
         font-size: 12px;
         text-align: center;
       }
-      .item-name {
+      h3 {
         padding-left: 5px;
         //.modesto();
+        text-align: left;
         font-size: 16px;
-      }
-    }
-
-    // Item Name
-    .item-name {
-      flex: 2;
-      margin: 0;
-      overflow: hidden;
-      font-size: 13px;
-      text-align: left;
-      align-items: center;
-    }
-
-    // Control Buttons
-    .item-controls {
-      flex: 0 0 60px;
-      justify-content: space-between;
-      a {
-        font-size: 12px;
-        text-align: center;
       }
     }
   }
@@ -482,4 +491,41 @@
     height: 24px;
     margin: 2px;
   }
+}
+
+/* ----------------------------------------- */
+/* HUD
+/* ----------------------------------------- */
+
+.placeable-hud .control-icon {
+  box-sizing: content-box;
+  width: 40px;
+  flex: 0 0 40px;
+  margin: 8px 0;
+  font-size: 28px;
+  line-height: 40px;
+  text-align: center;
+  color: #FBF4F4;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  pointer-events: all;
+}
+#token-hud .status-effects {
+  visibility: hidden;
+  position: absolute;
+  left: 50px;
+  top: 0;
+  display: grid;
+  padding: 3px;
+  box-sizing: content-box;
+  width: 100px;
+  color: #FBF4F4;
+  grid-template-columns: 25px 25px 25px 25px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 4px;
+  pointer-events: all;
 }

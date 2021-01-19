@@ -48,6 +48,17 @@
   font-weight: 400;
   src: url('./fonts/Aurebesh.ttf');
 }
+@font-face {
+  font-family: 'Engli-Besh';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/EngliBesh-KG3W.ttf');
+}
+.engli-Besh {
+  font-family: 'Engli-Besh';
+  font-size: 20px;
+  font-weight: 400;
+}
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
@@ -379,12 +390,12 @@ input[type="reset"]:disabled {
   padding: 0;
   border: none;
 }
-.sw5e.chat-card .card-header,
+.sw5e.chat-card .card-header img,
 .midi-qol-item-card .card-header img {
   flex: 0 0 36px;
   margin-right: 4px;
 }
-.sw5e.chat-card .card-header,
+.sw5e.chat-card .card-header h3,
 .midi-qol-item-card .card-header h3 {
   flex: 1;
   margin: 0;
@@ -705,7 +716,7 @@ input[type="reset"]:disabled {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .sw5e.sheet.actor.character {
-  min-width: 800px;
+  min-width: 850px;
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -945,7 +956,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 16px;
   margin: 4px 0;
 }
@@ -1330,7 +1341,7 @@ input[type="reset"]:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits input,
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits select {
@@ -1357,7 +1368,7 @@ input[type="reset"]:disabled {
   text-shadow: none;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages {
-  grid-column-end: span 2;
+  grid-column-end: span 1;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages label:hover {
   cursor: pointer;

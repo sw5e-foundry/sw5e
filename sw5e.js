@@ -26,7 +26,6 @@ import ActorSheet5eCharacter from "./module/actor/sheets/oldSheets/character.js"
 import ActorSheet5eNPC from "./module/actor/sheets/oldSheets/npc.js";
 import ActorSheet5eVehicle from "./module/actor/sheets/oldSheets/vehicle.js";
 import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
-import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
@@ -53,7 +52,6 @@ Hooks.once("init", function() {
       ActorSheet5eCharacter,
       ActorSheet5eCharacterNew,
       ActorSheet5eNPC,
-      ActorSheet5eNPCNew,
       ActorSheet5eVehicle,
       ItemSheet5e,
       ShortRestDialog,
@@ -79,6 +77,11 @@ Hooks.once("init", function() {
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
   CONFIG.time.roundTime = 6;
+  CONFIG.fontFamilies = [
+    "Engli-Besh",
+    "Open Sans",
+    "Russo One"
+  ];
   
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
@@ -103,15 +106,10 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassCharacterOld"
    });
-  Actors.registerSheet("sw5e", ActorSheet5eNPCNew, {
+  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "SW5E.SheetClassNPC"
-  });
-  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
-    types: ["npc"],
-    makeDefault: false,
-    label: "SW5E.SheetClassNPCOld"
   });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],

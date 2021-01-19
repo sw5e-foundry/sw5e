@@ -49,7 +49,7 @@ export default class TraitSelector extends FormApplication {
     }
 
     // Return data
-	  return {
+    return {
       allowCustom: this.options.allowCustom,
 	    choices: choices,
       custom: attr ? attr.custom : ""

@@ -43,6 +43,15 @@
           "init": {
             "value": 0,
             "bonus": 0
+          },
+          "movement": {
+            "burrow": 0,
+            "climb": 0,
+            "fly": 0,
+            "swim": 0,
+            "walk": 30,
+            "units": "ft",
+            "hover": false
           }
         },
         "details": {
@@ -76,15 +85,6 @@
       },
       "creature": {
         "attributes": {
-          "movement": {
-            "burrow": 0,
-            "climb": 0,
-            "fly": 0,
-            "swim": 0,
-            "walk": 30,
-            "units": "ft",
-            "hover": false
-          },
           "senses": {
             "darkvision": 0,
             "blindsight": 0,
@@ -93,10 +93,7 @@
             "units": "ft",
             "special": ""
           },
-          "powercasting": "none",
-          "speed": {
-            "_deprecated": true
-          }
+          "powercasting": "none"
         },
         "details": {
           "alignment": "",

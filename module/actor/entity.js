@@ -1180,6 +1180,7 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+
   /**
    * Transform this Actor into another one.
    *

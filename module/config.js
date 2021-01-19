@@ -4,14 +4,13 @@ import {ClassFeatures} from "./classFeatures.js"
 export const SW5E = {};
 
 // ASCII Artwork
-SW5E.ASCII = `__________________________________________
-     _
-    | |
- ___| |_ __ _ _ ____      ____ _ _ __ ___
-/ __| __/ _\\ | |__\\ \\ /\\ / / _\\ | |__/ __|
-\\__ \\ || (_) | |   \\ \V  \V / (_) | |  \\__ \\
-|___/\\__\\__/_|_|    \\_/\\_/ \\__/_|_|  |___/
-__________________________________________`;
+SW5E.ASCII = `
+ ___________      ___________       
+/   _____/  \\    /  \\   ____/ ____  
+\\_____  \\\\   \\/\\/   /____  \\_/ __ \\ 
+/        \\\\        //       \\  ___/ 
+\\______  / \\__/\\  //______  /\\__  >
+       \\/       \\/        \\/    \\/ `;
 
 
 /**
@@ -315,6 +314,7 @@ SW5E.damageResistanceTypes = duplicate(SW5E.damageTypes);
 
 /* -------------------------------------------- */
 
+
 // armor Types
 SW5E.armorPropertiesTypes = {
 "Absorptive": "SW5E.ArmorProperAbsorptive",
@@ -348,6 +348,19 @@ SW5E.armorPropertiesTypes = {
 "Steadfast": "SW5E.ArmorProperSteadfast",
 "Versatile": "SW5E.ArmorProperVersatile"
 };
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default this uses the imperial units of feet and miles.
+ * @type {Object<string,string>}
+ */
+SW5E.movementTypes = {
+  "burrow": "SW5E.MovementBurrow",
+  "climb": "SW5E.MovementClimb",
+  "fly": "SW5E.MovementFly",
+  "swim": "SW5E.MovementSwim",
+  "walk": "SW5E.MovementWalk",
+}
 
 /**
  * The valid units of measure for movement distances in the game system.

@@ -57,6 +57,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Experience Tracking
     sheetData["disableExperience"] = game.settings.get("sw5e", "disableExperienceTracking");
     sheetData["classLabels"] = this.actor.itemTypes.class.map(c => c.name).join(", ");
+    sheetData["multiclassLabels"] = this.actor.itemTypes.class.map(c => {
+      return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(' ')
+    }).join(', ');
 
     // Return data for rendering
     return sheetData;
@@ -86,6 +89,18 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
+      item.attunement = {
+        [CONFIG.SW5E.attunementTypes.REQUIRED]: {
+          icon: "fa-sun",
+          cls: "not-attuned",
+          title: "SW5E.AttunementRequired"
+        },
+        [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+          icon: "fa-sun",
+          cls: "attuned",
+          title: "SW5E.AttunementAttuned"
+        }
+      }[item.data.attunement];
 
       // Item usage
       item.hasUses = item.data.uses && (item.data.uses.max > 0);

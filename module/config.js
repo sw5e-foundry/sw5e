@@ -57,6 +57,16 @@ SW5E.alignments = {
 /* -------------------------------------------- */
 
 /**
+ * An enumeration of item attunement types
+ * @enum {number}
+ */
+SW5E.attunementTypes = {
+  NONE: 0,
+  REQUIRED: 1,
+  ATTUNED: 2,
+}
+
+/**
  * An enumeration of item attunement states
  * @type {{"0": string, "1": string, "2": string}}
  */
@@ -456,7 +466,6 @@ SW5E.senses = {
   "tremorsense": "SW5E.SenseTremorsense",
   "truesight": "SW5E.SenseTruesight"
 };
-
 
 /* -------------------------------------------- */
 

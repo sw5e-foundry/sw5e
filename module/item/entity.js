@@ -1,6 +1,5 @@
 import {simplifyRollFormula, d20Roll, damageRoll} from "../dice.js";
 import AbilityUseDialog from "../apps/ability-use-dialog.js";
-import AbilityTemplate from "../pixi/ability-template.js";
 
 /**
  * Override and extend the basic :class:`Item` implementation
@@ -419,7 +418,7 @@ export default class Item5e extends Item {
       // Handle power upcasting
       if ( requirePowerSlot ) {
         const slotLevel = configuration.level;
-        const powerLevel = slotLevel === "pact" ? actor.data.data.powerss.pact.level : parseInt(slotLevel);
+        const powerLevel = slotLevel === "pact" ? actor.data.data.powers.pact.level : parseInt(slotLevel);
         if (powerLevel !== id.level) {
           const upcastData = mergeObject(this.data, {"data.level": powerLevel}, {inplace: false});
           item = this.constructor.createOwned(upcastData, actor);  // Replace the item with an upcast version
@@ -898,6 +897,7 @@ export default class Item5e extends Item {
    * Place a damage roll using an item (weapon, feat, power, or equipment)
    * Rely upon the damageRoll logic for the core implementation.
    * @param {MouseEvent} [event]    An event which triggered this roll, if any
+   * @param {boolean} [critical]    Should damage be rolled as a critical hit?
    * @param {number} [powerLevel]   If the item is a power, override the level for damage scaling
    * @param {boolean} [versatile]   If the item is a weapon, roll damage using the versatile formula
    * @param {object} [options]      Additional options passed to the damageRoll function
@@ -942,9 +942,9 @@ export default class Item5e extends Item {
 
     // Scale damage from up-casting powers
     if ( (this.data.type === "power") ) {
-      if ( (itemData.scaling.mode === "cantrip") ) {
+      if ( (itemData.scaling.mode === "atwill") ) {
         const level = this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
-        this._scaleCantripDamage(parts, itemData.scaling.formula, level, rollData);
+        this._scaleAtWillDamage(parts, itemData.scaling.formula, level, rollData);
       }
       else if ( powerLevel && (itemData.scaling.mode === "level") && itemData.scaling.formula ) {
         const scaling = itemData.scaling.formula;

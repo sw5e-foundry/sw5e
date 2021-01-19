@@ -119,22 +119,44 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Prepare the display of movement speed data for the Actor
-   * @param {object} actorData
+   * Prepare the display of movement speed data for the Actor*
+   * @param {object} actorData                The Actor data being prepared.
+   * @param {boolean} [largestPrimary=false]  Show the largest movement speed as "primary", otherwise show "walk"
    * @returns {{primary: string, special: string}}
    * @private
    */
-  _getMovementSpeed(actorData) {
+  _getMovementSpeed(actorData, largestPrimary=false) {
     const movement = actorData.data.attributes.movement || {};
-    const speeds = [
+
+    // Prepare an array of available movement speeds
+    let speeds = [
       [movement.burrow, `${game.i18n.localize("SW5E.MovementBurrow")} ${movement.burrow}`],
       [movement.climb, `${game.i18n.localize("SW5E.MovementClimb")} ${movement.climb}`],
       [movement.fly, `${game.i18n.localize("SW5E.MovementFly")} ${movement.fly}` + (movement.hover ? ` (${game.i18n.localize("SW5E.MovementHover")})` : "")],
       [movement.swim, `${game.i18n.localize("SW5E.MovementSwim")} ${movement.swim}`]
-    ].filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
-    return {
-      primary: `${movement.walk || 0} ${movement.units}`,
-      special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
+    ]
+    if ( largestPrimary ) {
+      speeds.push([movement.walk, `${game.i18n.localize("SW5E.MovementWalk")} ${movement.walk}`]);
+    }
+
+    // Filter and sort speeds on their values
+    speeds = speeds.filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
+
+    // Case 1: Largest as primary
+    if ( largestPrimary ) {
+      let primary = speeds.shift();
+      return {
+        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        special: speeds.map(s => s[1]).join(", ")
+      }
+    }
+
+    // Case 2: Walk as primary
+    else {
+      return {
+        primary: `${movement.walk || 0} ${movement.units}`,
+        special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
+      }
     }
   }
 
@@ -352,7 +374,7 @@ export default class ActorSheet5e extends ActorSheet {
       1: '<i class="fas fa-check"></i>',
       2: '<i class="fas fa-check-double"></i>'
     };
-    return icons[level];
+    return icons[level] || icons[0];
   }
 
   /* -------------------------------------------- */

@@ -1,4 +1,4 @@
-import ActorSheet5e from "../base.js";
+import ActorSheet5e from "./base.js";
 import Actor5e from "../../entity.js";
 
 /**
@@ -57,6 +57,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Experience Tracking
     sheetData["disableExperience"] = game.settings.get("sw5e", "disableExperienceTracking");
     sheetData["classLabels"] = this.actor.itemTypes.class.map(c => c.name).join(", ");
+    sheetData["multiclassLabels"] = this.actor.itemTypes.class.map(c => {
+      return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(' ')
+    }).join(', ');
 
     // Return data for rendering
     return sheetData;
@@ -86,6 +89,18 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
+      item.attunement = {
+        [CONFIG.SW5E.attunementTypes.REQUIRED]: {
+          icon: "fa-sun",
+          cls: "not-attuned",
+          title: "SW5E.AttunementRequired"
+        },
+        [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+          icon: "fa-sun",
+          cls: "attuned",
+          title: "SW5E.AttunementAttuned"
+        }
+      }[item.data.attunement];
 
       // Item usage
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
@@ -201,7 +216,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     if ( !this.options.editable ) return;
 
     // Inventory Functions
-    html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
+    // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
 
     // Item State Toggling
     html.find('.item-toggle').click(this._onToggleItem.bind(this));
@@ -210,8 +225,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     html.find('.short-rest').click(this._onShortRest.bind(this));
     html.find('.long-rest').click(this._onLongRest.bind(this));
 
-    // Death saving throws
-    html.find('.death-save').click(this._onDeathSave.bind(this));
+    // Rollable sheet actions
+    html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
 
     // Send Languages to Chat onClick
     html.find('[data-options="share-languages"]').click(event => {
@@ -277,13 +292,19 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /**
-   * Handle rolling a death saving throw for the Character
+   * Handle mouse click events for character sheet actions
    * @param {MouseEvent} event    The originating click event
    * @private
    */
-  _onDeathSave(event) {
+  _onSheetAction(event) {
     event.preventDefault();
-    return this.actor.rollDeathSave({event: event});
+    const button = event.currentTarget;
+    switch( button.dataset.action ) {
+      case "rollDeathSave":
+        return this.actor.rollDeathSave({event: event});
+      case "rollInitiative":
+        return this.actor.rollInitiative({createCombatants: true});
+    }
   }
 
   /* -------------------------------------------- */
@@ -330,57 +351,26 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
-  /**
-   * Handle mouse click events to convert currency to the highest possible denomination
-   * @param {MouseEvent} event    The originating click event
-   * @private
-   */
-  async _onConvertCurrency(event) {
-    event.preventDefault();
-    return Dialog.confirm({
-      title: `${game.i18n.localize("SW5E.CurrencyConvert")}`,
-      content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
-      yes: () => this.actor.convertCurrency()
-    });
-  }
-
-  /* -------------------------------------------- */
-
   /** @override */
   async _onDropItemCreate(itemData) {
 
-    // Upgrade the number of class levels a character has and add features
+    // Increment the number of class levels a character instead of creating a new item
     if ( itemData.type === "class" ) {
       const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
-      const classWasAlreadyPresent = !!cls;
-
-      // Add new features for class level
-      if ( !classWasAlreadyPresent ) {
-        Actor5e.getClassFeatures(itemData).then(features => {
-          this.actor.createEmbeddedEntity("OwnedItem", features);
-        });
-      }
-
-      // If the actor already has the class, increment the level instead of creating a new item
-      // then add new features as long as level increases
-      if ( classWasAlreadyPresent ) {
-        const lvl = cls.data.data.levels;
-        const newLvl = Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level);
-        if ( !(lvl === newLvl) ) {
-          cls.update({"data.levels": newLvl});
-          itemData.data.levels = newLvl;
-          Actor5e.getClassFeatures(itemData).then(features => {
-            this.actor.createEmbeddedEntity("OwnedItem", features);
-          });
+      let priorLevel = cls?.data.data.levels ?? 0;
+      if ( !!cls ) {
+        const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
+        if ( next > priorLevel ) {
+          itemData.levels = next;
+          return cls.update({"data.levels": next});
         }
-        return
       }
     }
 
+    // Default drop handling if levels were not added
     super._onDropItemCreate(itemData);
   }
 }
-
 async function addFavorites(app, html, data) {
   // Thisfunction is adapted for the SwaltSheet from the Favorites Item
   // Tab Module created for Foundry VTT - by Felix Müller (Felix#6196 on Discord).

@@ -4,14 +4,13 @@ import {ClassFeatures} from "./classFeatures.js"
 export const SW5E = {};
 
 // ASCII Artwork
-SW5E.ASCII = `__________________________________________
-     _
-    | |
- ___| |_ __ _ _ ____      ____ _ _ __ ___
-/ __| __/ _\ | |__\ \ /\ / / _\ | |__/ __|
-\__ \ || (_) | |   \ V  V / (_) | |  \__ \
-|___/\__\__/_|_|    \_/\_/ \__/_|_|  |___/
-__________________________________________`;
+SW5E.ASCII = `
+ ___________      ___________       
+/   _____/  \\    /  \\   ____/ ____  
+\\_____  \\\\   \\/\\/   /____  \\_/ __ \\ 
+/        \\\\        //       \\  ___/ 
+\\______  / \\__/\\  //______  /\\__  >
+       \\/       \\/        \\/    \\/ `;
 
 
 /**
@@ -53,6 +52,30 @@ SW5E.alignments = {
   'nd': "SW5E.AlignmentND",
   'cd': "SW5E.AlignmentCD"
 };
+
+/* -------------------------------------------- */
+
+/**
+ * An enumeration of item attunement types
+ * @enum {number}
+ */
+SW5E.attunementTypes = {
+  NONE: 0,
+  REQUIRED: 1,
+  ATTUNED: 2,
+}
+
+/**
+ * An enumeration of item attunement states
+ * @type {{"0": string, "1": string, "2": string}}
+ */
+SW5E.attunements = {
+  0: "SW5E.AttunementNone",
+  1: "SW5E.AttunementRequired",
+  2: "SW5E.AttunementAttuned"
+};
+
+/* -------------------------------------------- */
 
 
 SW5E.weaponProficiencies = {
@@ -291,6 +314,7 @@ SW5E.damageResistanceTypes = duplicate(SW5E.damageTypes);
 
 /* -------------------------------------------- */
 
+
 // armor Types
 SW5E.armorPropertiesTypes = {
 "Absorptive": "SW5E.ArmorProperAbsorptive",
@@ -324,6 +348,19 @@ SW5E.armorPropertiesTypes = {
 "Steadfast": "SW5E.ArmorProperSteadfast",
 "Versatile": "SW5E.ArmorProperVersatile"
 };
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default this uses the imperial units of feet and miles.
+ * @type {Object<string,string>}
+ */
+SW5E.movementTypes = {
+  "burrow": "SW5E.MovementBurrow",
+  "climb": "SW5E.MovementClimb",
+  "fly": "SW5E.MovementFly",
+  "swim": "SW5E.MovementSwim",
+  "walk": "SW5E.MovementWalk",
+}
 
 /**
  * The valid units of measure for movement distances in the game system.
@@ -433,16 +470,15 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
 /* -------------------------------------------- */
 
 /**
- * Character senses options
- * @type {Object}
+ * The set of possible sensory perception types which an Actor may have
+ * @type {object}
  */
 SW5E.senses = {
-  "bs": "SW5E.SenseBS",
-  "dv": "SW5E.SenseDV",
-  "ts": "SW5E.SenseTS",
-  "tr": "SW5E.SenseTR"
+  "blindsight": "SW5E.SenseBlindsight",
+  "darkvision": "SW5E.SenseDarkvision",
+  "tremorsense": "SW5E.SenseTremorsense",
+  "truesight": "SW5E.SenseTruesight"
 };
-
 
 /* -------------------------------------------- */
 
@@ -1140,7 +1176,7 @@ SW5E.characterFlags = {
     section: "Feats",
     type: Boolean
   },
-    "remarkableAthlete": {
+  "remarkableAthlete": {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],

@@ -3,7 +3,7 @@
  * @return {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function() {
-  ui.notifications.info(`Applying SW5E System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
+  ui.notifications.info(`Applying SW5e System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
 
   // Migrate World Actors
   for ( let a of game.actors.entities ) {
@@ -56,7 +56,7 @@ export const migrateWorld = async function() {
 
   // Set the migration as complete
   game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
-  ui.notifications.info(`SW5E System Migration to version ${game.system.data.version} completed!`, {permanent: true});
+  ui.notifications.info(`SW5e System Migration to version ${game.system.data.version} completed!`, {permanent: true});
 };
 
 /* -------------------------------------------- */
@@ -127,8 +127,8 @@ export const migrateActorData = function(actor) {
   const updateData = {};
 
   // Actor Data Updates
-  _migrateActorBonuses(actor, updateData);
   _migrateActorMovement(actor, updateData);
+  _migrateActorSenses(actor, updateData);
 
   // Migrate Owned Items
   if ( !actor.items ) return updateData;
@@ -191,6 +191,7 @@ function cleanActorData(actorData) {
  */
 export const migrateItemData = function(item) {
   const updateData = {};
+  _migrateItemAttunement(item, updateData);
   return updateData;
 };
 
@@ -228,32 +229,71 @@ export const migrateSceneData = function(scene) {
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor bonuses object
+ * Migrate the actor speed string to movement object
  * @private
  */
-function _migrateActorBonuses(actor, updateData) {
-  const b = game.system.model.Actor.character.bonuses;
-  for ( let k of Object.keys(actor.data.bonuses || {}) ) {
-    if ( k in b ) updateData[`data.bonuses.${k}`] = b[k];
-    else updateData[`data.bonuses.-=${k}`] = null;
-  }
+function _migrateActorMovement(actor, updateData) {
+  const ad = actor.data;
+  const old = actor.type === 'vehicle' ? ad?.attributes?.speed : ad?.attributes?.speed?.value;
+  if ( typeof old !== "string" ) return;
+  const s = (old || "").split(" ");
+  if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
+  updateData["data.attributes.-=speed"] = null;
+  return updateData
 }
 
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor bonuses object
+ * Migrate the actor traits.senses string to attributes.senses object
  * @private
  */
-function _migrateActorMovement(actor, updateData) {
-  if ( actor.data.attributes?.movement?.walk !== undefined ) return;
-  const s = (actor.data.attributes?.speed?.value || "").split(" ");
-  if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
+function _migrateActorSenses(actor, updateData) {
+  const ad = actor.data;
+  if ( ad?.traits?.senses === undefined ) return;
+  const original = ad.traits.senses || "";
+
+  // Try to match old senses with the format like "Darkvision 60 ft, Blindsight 30 ft"
+  const pattern = /([A-z]+)\s?([0-9]+)\s?([A-z]+)?/
+  let wasMatched = false;
+
+  // Match each comma-separated term
+  for ( let s of original.split(",") ) {
+    s = s.trim();
+    const match = s.match(pattern);
+    if ( !match ) continue;
+    const type = match[1].toLowerCase();
+    if ( type in CONFIG.SW5E.senses ) {
+      updateData[`data.attributes.senses.${type}`] = Number(match[2]).toNearest(0.5);
+      wasMatched = true;
+    }
+  }
+
+  // If nothing was matched, but there was an old string - put the whole thing in "special"
+  if ( !wasMatched && !!original ) {
+    updateData["data.attributes.senses.special"] = original;
+  }
+
+  // Remove the old traits.senses string once the migration is complete
+  updateData["data.traits.-=senses"] = null;
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Delete the old data.attuned boolean
+ * @private
+ */
+function _migrateItemAttunement(item, updateData) {
+  if ( item.data.attuned === undefined ) return;
+  updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
+  updateData["data.-=attuned"] = null;
+  return updateData;
 }
 
 
 /* -------------------------------------------- */
-
 
 /**
  * A general tool to purge flags from all entities in a Compendium pack.

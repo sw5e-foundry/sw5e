@@ -2,17 +2,23 @@
  * A simple form to set actor movement speeds
  * @implements {BaseEntitySheet}
  */
-export default class MovementConfig extends BaseEntitySheet {
+export default class ActorMovementConfig extends BaseEntitySheet {
 
   /** @override */
 	static get defaultOptions() {
 	  return mergeObject(super.defaultOptions, {
-	    title: "SW5E.MovementConfig",
       classes: ["sw5e"],
       template: "systems/sw5e/templates/apps/movement-config.html",
-      width: 240,
+      width: 300,
       height: "auto"
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  get title() {
+    return `${game.i18n.localize("SW5E.MovementConfig")}: ${this.entity.name}`;
   }
 
   /* -------------------------------------------- */

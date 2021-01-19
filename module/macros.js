@@ -55,6 +55,5 @@ export function rollItemMacro(itemName) {
   const item = items[0];
 
   // Trigger the item roll
-  if ( item.data.type === "power" ) return actor.usePower(item);
   return item.roll();
 }

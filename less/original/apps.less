@@ -487,3 +487,40 @@
     margin: 2px;
   }
 }
+
+/* ----------------------------------------- */
+/* HUD
+/* ----------------------------------------- */
+
+.placeable-hud .control-icon {
+  box-sizing: content-box;
+  width: 40px;
+  flex: 0 0 40px;
+  margin: 8px 0;
+  font-size: 28px;
+  line-height: 40px;
+  text-align: center;
+  color: #FBF4F4;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  pointer-events: all;
+}
+#token-hud .status-effects {
+  visibility: hidden;
+  position: absolute;
+  left: 50px;
+  top: 0;
+  display: grid;
+  padding: 3px;
+  box-sizing: content-box;
+  width: 100px;
+  color: #FBF4F4;
+  grid-template-columns: 25px 25px 25px 25px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 4px;
+  pointer-events: all;
+}

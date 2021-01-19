@@ -2,14 +2,14 @@
     <p>{{ title }}</p>
     <p class="notes">{{note}}</p>
     {{#each errors}}
-    <p class="notification error">{{localize this}}</p>
+    <p class="notification error">{{this}}</p>
     {{/each}}
 
-    {{#if canUpcast}}
+    {{#if consumePowerSlot}}
     <div class="form-group">
         <label>{{ localize "SW5E.PowerCastUpcast" }}</label>
         <div class="form-fields">
-            <select name="level" {{#unless canUpcast}}disabled{{/unless}}>
+            <select name="level">
                 {{#select item.data.level}}
                 {{#each powerLevels as |l|}}
                 <option value="{{l.level}}" {{#unless l.canCast}}disabled{{/unless}}>{{l.label}}</option>
@@ -24,13 +24,25 @@
     </div>
     {{/if}}
 
-    {{#if hasLimitedUses}}
+    {{#if consumeUses}}
     <div class="form-group">
         <label class="checkbox"><input type="checkbox" name="consumeUse" checked/>{{ localize "SW5E.AbilityUseConsume" }}</label>
     </div>
     {{/if}}
 
-    {{#if hasPlaceableTemplate}}
+    {{#if consumeResource}}
+    <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="consumeResource" checked/>{{ localize "SW5E.ConsumeResource" }}</label>
+    </div>
+    {{/if}}
+
+    {{#if consumeRecharge}}
+    <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="consumeRecharge" checked/>{{ localize "SW5E.ConsumeRecharge" }}</label>
+    </div>
+    {{/if}}
+    
+    {{#if createTemplate}}
     <div class="form-group">
         <label class="checkbox">
             <input type="checkbox" name="placeTemplate" checked/>

@@ -29,7 +29,8 @@ import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.j
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
-import MovementConfig from "./module/apps/movement-config.js";
+import ActorMovementConfig from "./module/apps/movement-config.js";
+import ActorSensesConfig from "./module/apps/senses-config.js";
 
 // Import Helpers
 import * as chat from "./module/chat.js";
@@ -42,7 +43,7 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
-  console.log(`SW5e | Initializing Star Wars 5th Edition System\n${SW5E.ASCII}`);
+  console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 
   // Create a SW5E namespace within the game global
   game.sw5e = {
@@ -56,7 +57,7 @@ Hooks.once("init", function() {
       ItemSheet5e,
       ShortRestDialog,
       TraitSelector,
-      MovementConfig
+      ActorMovementConfig
     },
     canvas: {
       AbilityTemplate
@@ -82,6 +83,9 @@ Hooks.once("init", function() {
     "Open Sans",
     "Russo One"
   ];
+
+  // 5e cone RAW should be 53.13 degrees
+  CONFIG.MeasuredTemplate.defaults.angle = 53.13;
   
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
@@ -139,12 +143,12 @@ Hooks.once("setup", function() {
 
   // Localize CONFIG objects once up-front
   const toLocalize = [
-    "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments", 
+    "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
-    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes", 
-    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes" 
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
 
   // Exclude some from sorting where the default order matters
@@ -184,7 +188,7 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.1.0";
+  const NEEDS_MIGRATION_VERSION = "1.2.1";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if ( !needsMigration ) return;

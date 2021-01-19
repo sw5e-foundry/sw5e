@@ -69,12 +69,29 @@
           line-height: 30px;
         }
       }
-    }
-  }
 
-  .attributes {
-    input.temphp {
-      width: 48%;
+      // Movement Configuration
+      .movement {
+        h4.attribute-name {
+          position: relative;
+        }
+        .config-button {
+          position: absolute;
+          display: none;
+          right: 0;
+          top: 1px;
+          font-size: 12px;
+          font-weight: normal;
+        }
+        &:hover .config-button {
+          display: block;
+        }
+      }
+
+      // Temporary HP
+      input.temphp {
+        width: 48%;
+      }
     }
   }
 
@@ -341,7 +358,7 @@
       margin: 0 0 3px 0;
       justify-content: space-between;
     }
-    .configure-flags {
+    .config-button {
       flex: 1;
     }
 
@@ -428,12 +445,8 @@
         &.rollable .item-image:hover {
           background-image: url("../../icons/svg/d20-black.svg") !important;
         }
-        i.attuned {
-          color: @colorTan;
-        }        
-        h4 {
-        	font-size: 14px;
-        }
+        i.attuned { color: @colorTan; }
+        i.not-attuned { color: @colorCrimson; }
       }
 
       // Item uses
@@ -473,7 +486,8 @@
       white-space: nowrap;
       overflow: hidden;
       &:last-child { border-right: none; }
-      &.item-action {flex: 0 0 100px}     
+      &.item-action {flex: 0 0 100px}
+      &.attunement {flex: 0 0 24px}
     }
     .item-weight {
       flex: 0 0 60px;
@@ -576,26 +590,23 @@
   .powercasting-ability {
     flex: 0 0 240px;
     margin: 0;
-
-    input, span {
-      flex: 0 0 32px;
+    label, span {
+      flex: none;
+    }
+    input {
+      flex: 0 0 28px;
       text-align: center;
     }
     select {
       margin: 0 5px;
-      flex: 0 0 150px;
-    }
-    h3.power-dc {
-      flex: 1;
-      text-align: right;
+      flex: 0 0 120px;
     }
   }
 
   .power-slots,
   .power-comps {
-    flex: 0 0 75px;
-    padding-right: 5px;
-    text-align: right;
+    flex: none;
+    padding: 0 5px;
     font-size: 12px;
     color: @colorTan;
     border-right: 1px solid @colorFaint;
@@ -612,9 +623,10 @@
     }
   }
 
-  .power-uses {
-    padding-right: 8px;
-    text-align: right !important;
+  .powerbook .power-uses {
+    padding-right: 5px;
+    text-align: right;
+    color: @colorTan;
   }
 
   .power-school, .power-action, .power-target {
@@ -663,5 +675,6 @@
     padding-right: 8px;
     margin-bottom: 4px;
     overflow-y: auto;
+    scrollbar-width: thin;
   }
 }

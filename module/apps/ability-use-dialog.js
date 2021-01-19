@@ -34,15 +34,19 @@ export default class AbilityUseDialog extends Dialog {
     const quantity = itemData.quantity || 0;
     const recharge = itemData.recharge || {};
     const recharges = !!recharge.value;
+    const sufficientUses = (quantity > 0 && !uses.value) || uses.value > 0; 
 
     // Prepare dialog form data
     const data = {
       item: item.data,
       title: game.i18n.format("SW5E.AbilityUseHint", item.data),
       note: this._getAbilityUseNote(item.data, uses, recharge),
-      hasLimitedUses: uses.max || recharges,
-      canUse: recharges ? recharge.charged : (quantity > 0 && !uses.value) || uses.value > 0,
-      hasPlaceableTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
+      consumePowerSlot: false,
+      consumeRecharge: recharges,
+      consumeResource: !!itemData.consume.target,
+      consumeUses: uses.max,
+      canUse: recharges ? recharge.charged : sufficientUses,
+      createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
       errors: []
     };
     if ( item.data.type === "power" ) this._getPowerData(actorData, itemData, data);
@@ -50,7 +54,7 @@ export default class AbilityUseDialog extends Dialog {
     // Render the ability usage template
     const html = await renderTemplate("systems/sw5e/templates/apps/ability-use.html", data);
 
-    // Create the Dialog and return as a Promise
+    // Create the Dialog and return data as a Promise
     const icon = data.isPower ? "fa-magic" : "fa-fist-raised";
     const label = game.i18n.localize("SW5E.AbilityUse" + (data.isPower ? "Cast" : "Use"));
     return new Promise((resolve) => {
@@ -61,7 +65,10 @@ export default class AbilityUseDialog extends Dialog {
           use: {
             icon: `<i class="fas ${icon}"></i>`,
             label: label,
-            callback: html => resolve(new FormData(html[0].querySelector("form")))
+            callback: html => {
+              const fd = new FormDataExtended(html[0].querySelector("form"));
+              resolve(fd.toObject());
+            }
           }
         },
         default: "use",
@@ -83,11 +90,11 @@ export default class AbilityUseDialog extends Dialog {
 
     // Determine whether the power may be up-cast
     const lvl = itemData.level;
-    const canUpcast = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
+    const consumePowerSlot = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
 
     // If can't upcast, return early and don't bother calculating available power slots
-    if (!canUpcast) {
-      data = mergeObject(data, { isPower: true, canUpcast });
+    if (!consumePowerSlot) {
+      mergeObject(data, { isPower: true, consumePowerSlot });
       return;
     }
 
@@ -120,10 +127,13 @@ export default class AbilityUseDialog extends Dialog {
       });
     }
     const canCast = powerLevels.some(l => l.hasSlots);
+    if ( !canCast ) data.errors.push(game.i18n.format("SW5E.PowerCastNoSlots", {
+      level: CONFIG.SW5E.powerLevels[lvl],
+      name: data.item.name
+    }));
 
-    // Return merged data
-    data = mergeObject(data, { isPower: true, canUpcast, powerLevels });
-    if ( !canCast ) data.errors.push("SW5E.PowerCastNoSlots");
+    // Merge power casting data
+    return mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
   }
 
   /* -------------------------------------------- */

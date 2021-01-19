@@ -71,9 +71,13 @@
     </label>
     <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
         {{#unless isVehicle}}
-        {{localize "SW5E.Senses"}}
-        <input type="text" name="data.traits.senses" value="{{data.traits.senses}}"
-            placeholder="{{ localize 'SW5E.None' }}" />
+        <label>{{localize "SW5E.Senses"}}</label>
+        <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}"><i class="fas fa-cog"></i></a>
+        <ul class="traits-list">
+        {{#each senses as |v k|}}
+            <li class="tag {{k}}">{{v}}</li>
+        {{/each}}
+        </ul>
         {{/unless}}
     </label>
 	<div>
@@ -177,5 +181,11 @@
     </div>{{#if isCharacter}}
 
     {{/if}}
+    {{#unless isVehicle}}
+    <div>
+        <label>{{localize "SW5E.SpecialTraits"}}</label>
+        <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
+    </div>
+    {{/unless}}
     <ul class="passives"></ul>
 </section>

@@ -15,6 +15,7 @@
             {{/each}}
             {{/select}}
         </select>
+        <span>{{localize "SW5E.AbbreviationDC"}} {{data.attributes.powerdc}}</span>
     </div>
 
     <ul class="filter-list flexrow" data-filter="powerbook">
@@ -30,28 +31,28 @@
 <ol class="items-list inventory-list">
 {{#each powerbook as |section|}}
     <li class="items-header powerbook-header flexrow">
-        <h3 class="item-name flexrow">{{section.label}}</h3>
-
-        <div class="power-slots">
-            {{#if section.usesSlots}}
-            <input type="text" name="data.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
-                   data-dtype="Number"/>
-            <span class="sep"> / </span>
-            <span class="power-max" data-level="{{section.prop}}" data-slots="{{section.slots}}">
-                {{{section.slots}}}
-                {{#if ../editable}}
-                <a class="slot-max-override" title="{{localize 'SW5E.PowerProgOverride'}}">
-                    <i class="fas fa-edit"></i>
-                </a>
+        <div class="item-name flexrow">
+            <h3>{{section.label}}</h3>
+            <div class="power-slots">
+                {{#if section.usesSlots}}
+                <input type="text" name="data.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
+                       data-dtype="Number"/>
+                <span class="sep"> / </span>
+                <span class="power-max" data-level="{{section.prop}}" data-slots="{{section.slots}}">
+                    {{{section.slots}}}
+                    {{#if ../editable}}
+                    <a class="slot-max-override" title="{{localize 'SW5E.PowerProgOverride'}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    {{/if}}
+                </span>
+                {{ else }}
+                <span>{{{section.uses}}}</span>
+                <span class="sep"> / </span>
+                <span class="power-max">{{{section.slots}}}</span>
                 {{/if}}
-            </span>
-            {{ else }}
-            <span>{{{section.uses}}}</span>
-            <span class="sep"> / </span>
-            <span class="power-max">{{{section.slots}}}</span>
-            {{/if}}
+            </div>
         </div>
-
         <div class="power-school">{{localize "SW5E.PowerSchool"}}</div>
         <div class="power-action">{{localize "SW5E.PowerUsage"}}</div>
         <div class="power-target">{{localize "SW5E.PowerTarget"}}</div>
@@ -74,12 +75,11 @@
                 {{#if item.data.uses.per }}
                 <div class="item-detail power-uses">Uses {{item.data.uses.value}} / {{item.data.uses.max}}</div>
                 {{/if}}
-            </div>
-
-            <div class="power-comps">
-                {{#each labels.components}}
-                <span class="power-component {{this}}">{{this}}</span>
-                {{/each}}
+                <div class="power-comps">
+                    {{#each labels.components}}
+                    <span class="power-component {{this}}">{{this}}</span>
+                    {{/each}}
+                </div>
             </div>
             <div class="power-school">{{labels.school}}</div>
             <div class="power-action">{{labels.activation}}</div>

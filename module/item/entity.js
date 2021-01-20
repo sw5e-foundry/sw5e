@@ -222,12 +222,14 @@ export default class Item5e extends Item {
 
     // Item Actions
     if ( data.hasOwnProperty("actionType") ) {
+      // if this item is owned, we populate the label and saving throw during actor init
+      if (!this.isOwned) {
+        // Saving throws
+        this.getSaveDC();
 
-      // Saving throws
-      this.getSaveDC();
-
-      // To Hit
-      this.getAttackToHit();
+        // To Hit
+        this.getAttackToHit();
+      }
 
       // Damage
       let dam = data.damage || {};
@@ -283,7 +285,7 @@ export default class Item5e extends Item {
    * - item's actor's proficiency bonus if applicable
    * - item's actor's global bonuses to the given item type
    * - item's ammunition if applicable
-   * 
+   *
    * @returns {Object} returns `rollData` and `parts` to be used in the item's Attack roll
    */
   getAttackToHit() {
@@ -886,7 +888,8 @@ export default class Item5e extends Item {
     if ( powerLevel ) rollData.item.level = powerLevel;
 
     // Configure the damage roll
-    const title = `${this.name} - ${game.i18n.localize("SW5E.DamageRoll")}`;
+    const actionFlavor = game.i18n.localize(itemData.actionType === "heal" ? "SW5E.Healing" : "SW5E.DamageRoll");
+    const title = `${this.name} - ${actionFlavor}`;
     const rollConfig = {
       actor: this.actor,
       critical: critical ?? event?.altKey ?? false,

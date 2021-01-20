@@ -33,10 +33,10 @@ export default class ActorSheet5e extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       scrollY: [
-        ".inventory .inventory-list",
-        ".features .inventory-list",
-        ".powerbook .inventory-list",
-        ".effects .inventory-list"
+        ".inventory .group-list",
+        ".features .group-list",
+        ".powerbook .group-list",
+        ".effects .effects-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });

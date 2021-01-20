@@ -9,15 +9,15 @@
   font-weight: 400;
   src: url('./fonts/RussoOne.ttf');
 }
-/* bungee-inline-regular - latin */
+/* engli-besh */
 @font-face {
-  font-family: 'Bungee Inline';
+  font-family: 'Engli-Besh';
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/BungeeInline.ttf');
+  src: url('./fonts/EngliBesh-KG3W.ttf');
 }
-.bungeeInline {
-  font-family: 'Bungee Inline';
+.engli-Besh {
+  font-family: 'Engli-Besh';
   font-size: 20px;
   font-weight: 400;
 }
@@ -466,11 +466,6 @@
   background-size: 30px;
   border: none;
   margin-right: 5px;
-}
-.sw5e.sheet .items-list .item .item-name h4 {
-  margin: 0;
-  white-space: nowrap;
-  overflow-x: hidden;
 }
 .sw5e.sheet .items-list .items-header {
   height: 28px;
@@ -1562,7 +1557,7 @@
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: 'Bungee Inline';
+  font-family: 'Engli-Besh';
   font-size: 20px;
   font-weight: 400;
   color: #4b4a44;
@@ -1841,4 +1836,36 @@
 .sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
   text-align: right;
+}
+.placeable-hud .control-icon {
+  box-sizing: content-box;
+  width: 40px;
+  flex: 0 0 40px;
+  margin: 8px 0;
+  font-size: 28px;
+  line-height: 40px;
+  text-align: center;
+  color: #FBF4F4;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  pointer-events: all;
+}
+#token-hud .status-effects {
+  visibility: hidden;
+  position: absolute;
+  left: 50px;
+  top: 0;
+  display: grid;
+  padding: 3px;
+  box-sizing: content-box;
+  width: 100px;
+  color: #FBF4F4;
+  grid-template-columns: 25px 25px 25px 25px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px #000;
+  border: 1px solid #333;
+  border-radius: 4px;
+  pointer-events: all;
 }

@@ -80,6 +80,11 @@ Hooks.once("init", function() {
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
   CONFIG.time.roundTime = 6;
+  CONFIG.fontFamilies = [
+    "Engli-Besh",
+    "Open Sans",
+    "Russo One"
+  ];
 
   // 5e cone RAW should be 53.13 degrees
   CONFIG.MeasuredTemplate.defaults.angle = 53.13;

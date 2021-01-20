@@ -1,102 +1,82 @@
 {
   "name": "sw5e",
-  "title": "Star Wars 5th Edition",
-  "description": "A comprehensive game system for running games of Star wars 5th Edition in the Foundry VTT environment.",
-  "version": 0.98,
-  "author": "Dev Team",
+  "title": "SW5e - Fifth Edition System",
+  "description": "A system for playing the fifth edition of the worlds most popular role-playing game in the Foundry Virtual Tabletop environment.",
+  "version": "1.1.1",
+  "author": "Atropos",
   "scripts": [],
   "esmodules": ["sw5e.js"],
   "styles": ["sw5e.css"],
   "packs": [
     {
-      "name": "adventuringgear",
-      "label": "Adventuring Gear",
-      "path": "./packs/packs/adventuringgear.db",
+      "name": "heroes",
+      "label": "Starter Heroes",
+      "system": "sw5e",
+      "path": "./packs/heroes.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "monsters",
+      "label": "Monsters (SRD)",
+      "system": "sw5e",
+      "path": "./packs/monsters.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "items",
+      "label": "Items (SRD)",
+      "system": "sw5e",
+      "path": "./packs/items.db",
       "entity": "Item"
     },
     {
-      "name": "armor",
-      "label": "Armor",
-      "path": "./packs/packs/armor.db",
+      "name": "tradegoods",
+      "label": "Trade Goods (SRD)",
+      "system": "sw5e",
+      "path": "./packs/tradegoods.db",
+      "entity": "Item"
+    },
+    {
+      "name": "powers",
+      "label": "Powers (SRD)",
+      "system": "sw5e",
+      "path": "./packs/powers.db",
       "entity": "Item"
     },
     {
       "name": "classes",
-      "label": "Classes",
-      "path": "./packs/packs/classes.db",
-      "entity": "Item"
-    },	
-    {
-      "name": "archetypes.db",
-      "label": "Archetypes",
-      "path": "./packs/packs/archetypes.db",
+      "label": "Classes (SRD)",
+      "system": "sw5e",
+      "path": "./packs/classes.db",
       "entity": "Item"
     },
     {
       "name": "classfeatures",
-      "label": "Class Features",
-      "path": "./packs/packs/classfeatures.db",
+      "label": "Class Features (SRD)",
+      "system": "sw5e",
+      "path": "./packs/classfeatures.db",
       "entity": "Item"
     },
     {
-      "name": "enhanceditems",
-      "label": "Enhanced Items",
-      "path": "./packs/packs/enhanceditems.db",
+      "name": "races",
+      "label": "Racial Features (SRD)",
+      "system": "sw5e",
+      "path": "./packs/races.db",
       "entity": "Item"
     },
     {
-      "name": "feats",
-      "label": "Feats",
-      "path": "./packs/packs/feats.db",
-      "entity": "Item"
-    },	  
-    {
-      "name": "forcepowers",
-      "label": "Force Powers",
-      "path": "./packs/packs/forcepowers.db",
-      "entity": "Item"
-    },	  
-    {
-      "name": "gamingset",
-      "label": "Gaming Sets",
-      "path": "./packs/packs/gamingset.db",
+      "name": "monsterfeatures",
+      "label": "Monster Features (SRD)",
+      "system": "sw5e",
+      "path": "./packs/monsterfeatures.db",
       "entity": "Item"
     },
     {
-      "name": "journal",
-      "label": "Journal Entries",
-      "path": "./packs/packs/journal.db",
+      "name": "rules",
+      "label": "Rules (SRD)",
+      "system": "sw5e",
+      "path": "./packs/rules.db",
       "entity": "JournalEntry"
-    },	  
-    {
-      "name": "monsters",
-      "label": "Monsters",
-      "path": "./packs/packs/monsters.db",
-      "entity": "Actor"
-    },	  
-    {
-      "name": "species",
-      "label": "Species",
-      "path": "./packs/packs/species.db",
-      "entity": "Item"
-    },
-    {
-      "name": "speciestraits",
-      "label": "Species Traits",
-      "path": "./packs/packs/speciestraits.db",
-      "entity": "Item"
-    },
-    {
-      "name": "tables",
-      "label": "Tables",
-      "path": "./packs/packs/tables.db",
-      "entity": "RollTable"
-     },
-     {
-      "name": "weapons",
-      "label": "Weapons",
-      "path": "./packs/packs/weapons.db",
-      "entity": "Item"
     }
   ],
   "languages": [
@@ -111,10 +91,9 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
   "secondaryTokenAttribute": null,
-  "minimumCoreVersion": "0.5.6",
-  "compatibleCoreVersion": "0.7.5",
-  "url": "https://github.com/unrealkakeman89/sw5e",
-  "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
-  "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"
-
+  "minimumCoreVersion": "0.7.6",
+  "compatibleCoreVersion": "0.7.6",
+  "url": "https://gitlab.com/foundrynet/sw5e",
+  "manifest": "https://gitlab.com/foundrynet/sw5e/raw/master/system.json",
+  "download": "https://gitlab.com/foundrynet/sw5e/-/archive/release-1.1.1/sw5e-release-1.1.1.zip"
 }

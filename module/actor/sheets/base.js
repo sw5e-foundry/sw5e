@@ -1,10 +1,12 @@
 import Item5e from "../../item/entity.js";
 import TraitSelector from "../../apps/trait-selector.js";
 import ActorSheetFlags from "../../apps/actor-flags.js";
+import MovementConfig from "../../apps/movement-config.js";
 import {SW5E} from '../../config.js';
+import {onManageActiveEffect, prepareActiveEffectCategories} from "../../effects.js";
 
 /**
- * Extend the basic ActorSheet class to do all the SW5e things!
+ * Extend the basic ActorSheet class to suppose system-specific logic and functionality.
  * This sheet is an Abstract layer which is not used.
  * @extends {ActorSheet}
  */
@@ -94,6 +96,9 @@ export default class ActorSheet5e extends ActorSheet {
       }
     }
 
+    // Movement speeds
+    data.movement = this._getMovementSpeed(data.actor);
+
     // Update traits
     this._prepareTraits(data.actor.data.traits);
 
@@ -101,11 +106,32 @@ export default class ActorSheet5e extends ActorSheet {
     this._prepareItems(data);
 
     // Prepare active effects
-    // TODO Disabled until 0.7.5 release
-    // this._prepareEffects(data);
+    data.effects = prepareActiveEffectCategories(this.entity.effects);
 
     // Return data to the sheet
     return data
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare the display of movement speed data for the Actor
+   * @param {object} actorData
+   * @returns {{primary: string, special: string}}
+   * @private
+   */
+  _getMovementSpeed(actorData) {
+    const movement = actorData.data.attributes.movement;
+    const speeds = [
+      [movement.burrow, `${game.i18n.localize("SW5E.MovementBurrow")} ${movement.burrow}`],
+      [movement.climb, `${game.i18n.localize("SW5E.MovementClimb")} ${movement.climb}`],
+      [movement.fly, `${game.i18n.localize("SW5E.MovementFly")} ${movement.fly}` + (movement.hover ? ` (${game.i18n.localize("SW5E.MovementHover")})` : "")],
+      [movement.swim, `${game.i18n.localize("SW5E.MovementSwim")} ${movement.swim}`]
+    ].filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
+    return {
+      primary: `${movement.walk || 0} ${movement.units}`,
+      special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
+    }
   }
 
   /* -------------------------------------------- */
@@ -144,43 +170,6 @@ export default class ActorSheet5e extends ActorSheet {
       }
       trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare the data structure for Active Effects which are currently applied to the Actor.
-   * @param {object} data       The object of rendering data which is being prepared
-   * @private
-   */
-  _prepareEffects(data) {
-
-    // Define effect header categories
-    const categories = {
-      temporary: {
-        label: "Temporary Effects",
-        effects: []
-      },
-      passive: {
-        label: "Passive Effects",
-        effects: []
-      },
-      inactive: {
-        label: "Inactive Effects",
-        effects: []
-      }
-    };
-
-    // Iterate over active effects, classifying them into categories
-    for ( let e of this.actor.effects ) {
-      e._getSourceName(); // Trigger a lookup for the source name
-      if ( e.data.disabled ) categories.inactive.effects.push(e);
-      else if ( e.isTemporary ) categories.temporary.effects.push(e);
-      else categories.inactive.push(e);
-    }
-
-    // Add the prepared categories of effects to the rendering data
-    return data.effects = categories;
   }
 
   /* -------------------------------------------- */
@@ -243,7 +232,7 @@ export default class ActorSheet5e extends ActorSheet {
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
     }
-    
+
     // Pact magic users have cantrips and a pact magic section
     if ( levels.pact && levels.pact.max ) {
       if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
@@ -364,7 +353,7 @@ export default class ActorSheet5e extends ActorSheet {
     filterLists.on("click", ".filter-item", this._onToggleFilter.bind(this));
 
     // Item summaries
-    html.find('.item .item-name h4').click(event => this._onItemSummary(event));
+    html.find('.item .item-name.rollable h4').click(event => this._onItemSummary(event));
 
     // Editable Only Listeners
     if ( this.isEditable ) {
@@ -384,6 +373,7 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.trait-selector').click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
+      html.find('.configure-movement').click(this._onMovementConfig.bind(this));
       html.find('.configure-flags').click(this._onConfigureFlags.bind(this));
 
       // Owned Item management
@@ -394,8 +384,7 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.slot-max-override').click(this._onPowerSlotOverride.bind(this));
 
       // Active Effect management
-      html.find(".effect-control").click(this._onManageActiveEffect.bind(this));
-
+      html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.entity));
     }
 
     // Owner Only Listeners
@@ -566,7 +555,7 @@ export default class ActorSheet5e extends ActorSheet {
   }
 
   /* -------------------------------------------- */
-  
+
   /** @override */
   async _onDropItemCreate(itemData) {
 
@@ -577,9 +566,7 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     // Create the owned item as normal
-    // TODO remove conditional logic in 0.7.x
-    if (isNewerVersion(game.data.version, "0.6.9")) return super._onDropItemCreate(itemData);
-    else return this.actor.createEmbeddedEntity("OwnedItem", itemData);
+    return super._onDropItemCreate(itemData);
   }
 
   /* -------------------------------------------- */
@@ -733,28 +720,6 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Manage Active Effect instances through the Actor Sheet via effect control buttons.
-   * @param {MouseEvent} event     The left-click event on the effect control
-   * @private
-   */
-  _onManageActiveEffect(event) {
-    event.preventDefault();
-    const a = event.currentTarget;
-    const li = a.closest(".effect");
-    const effect = this.actor.effects.get(li.dataset.effectId);
-    switch ( a.dataset.action ) {
-      case "edit":
-        return new ActiveEffectConfig(effect).render(true);
-      case "delete":
-        return effect.delete();
-      case "toggle":
-        return effect.update({disabled: !effect.data.disabled});
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Handle rolling an Ability check, either a test or a saving throw
    * @param {Event} event   The originating click event
    * @private
@@ -826,6 +791,18 @@ export default class ActorSheet5e extends ActorSheet {
 
   /* -------------------------------------------- */
 
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * @param {Event} event   The click event which originated the selection
+   * @private
+   */
+  _onMovementConfig(event) {
+    event.preventDefault();
+    new MovementConfig(this.object).render(true);
+  }
+
+  /* -------------------------------------------- */
+
   /** @override */
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
@@ -839,91 +816,5 @@ export default class ActorSheet5e extends ActorSheet {
       onclick: ev => this.actor.revertOriginalForm()
     });
     return buttons;
-  }
-  
-  /* -------------------------------------------- */
-  /*  DEPRECATED                                  */
-  /* -------------------------------------------- */
-
-  /**
-   * TODO: Remove once 0.7.x is release
-   * @deprecated since 0.7.0
-   */
-  async _onDrop (event) {
-    event.preventDefault();
-
-    // Get dropped data
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData('text/plain'));
-    } catch (err) {
-      return false;
-    }
-    if ( !data ) return false;
-
-    // Handle the drop with a Hooked function
-    const allowed = Hooks.call("dropActorSheetData", this.actor, this, data);
-    if ( allowed === false ) return;
-
-    // Case 1 - Dropped Item
-    if ( data.type === "Item" ) {
-      return this._onDropItem(event, data);
-    }
-
-    // Case 2 - Dropped Actor
-    if ( data.type === "Actor" ) {
-      return this._onDropActor(event, data);
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * TODO: Remove once 0.7.x is release
-   * @deprecated since 0.7.0
-   */
-  async _onDropItem(event, data) {
-    if ( !this.actor.owner ) return false;
-    let itemData = await this._getItemDropData(event, data);
-
-    // Handle item sorting within the same Actor
-    const actor = this.actor;
-    let sameActor = (data.actorId === actor._id) || (actor.isToken && (data.tokenId === actor.token.id));
-    if (sameActor) return this._onSortItem(event, itemData);
-
-    // Create a new item
-    this._onDropItemCreate(itemData);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * TODO: Remove once 0.7.x is release
-   * @deprecated since 0.7.0
-   */
-  async _getItemDropData(event, data) {
-    let itemData = null;
-
-    // Case 1 - Import from a Compendium pack
-    if (data.pack) {
-      const pack = game.packs.get(data.pack);
-      if (pack.metadata.entity !== "Item") return;
-      itemData = await pack.getEntry(data.id);
-    }
-
-    // Case 2 - Data explicitly provided
-    else if (data.data) {
-      itemData = data.data;
-    }
-
-    // Case 3 - Import from World entity
-    else {
-      let item = game.items.get(data.id);
-      if (!item) return;
-      itemData = item.data;
-    }
-
-    // Return a copy of the extracted data
-    return duplicate(itemData);
   }
 }

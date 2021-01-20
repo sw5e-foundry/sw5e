@@ -1,6 +1,8 @@
 @import "./variables.less";
 .sw5e.sheet.item {
-  min-height: 420px;
+  min-height: 400px;
+  max-height: 95%;
+  min-width: 480px;
 
   /* ----------------------------------------- */
   /*  Sheet Header                             */
@@ -12,7 +14,7 @@
     }
 
     .item-subtitle {
-      flex: 0 0 80px;
+      flex: 0 0 100px;
       height: 60px;
       margin: 0;
       padding: 5px;
@@ -116,17 +118,17 @@
     }
 
     .form-group.uses-per {
+      .form-fields {
+        flex-wrap: nowrap;
+      }
       input {
-        flex: 1;
+        flex: 0 0 32px;
       }
       span {
         flex: 0 0 16px;
-      }
-      select {
-        flex: 3;
+        margin: 0 4px 0 0;
       }
     }
-
     span.sep {
       flex: 0 0 8px;
     }
@@ -194,7 +196,7 @@
     text-align: right;
     color: @colorTan;
   }
- 
+
   .recharge.form-group {
     span {
       text-align: right;
@@ -213,7 +215,7 @@
       }
     }
   }
- 
+
   /* ----------------------------------------- */
   /*  Item Actions                             */
   /* ----------------------------------------- */

@@ -1,7 +1,7 @@
 import ActorSheet5e from "../sheets/base.js";
 
 /**
- * An Actor sheet for NPC type characters in the SW5E system.
+ * An Actor sheet for NPC type characters.
  * Extends the base ActorSheet5e class.
  * @extends {ActorSheet5e}
  */
@@ -106,7 +106,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
   /** @override */
 	activateListeners(html) {
     super.activateListeners(html);
-    html.find(".health .rollable").click(this._onRollHealthFormula.bind(this));
+    html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -116,7 +116,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
    * @param {Event} event     The original click event
    * @private
    */
-  _onRollHealthFormula(event) {
+  _onRollHPFormula(event) {
     event.preventDefault();
     const formula = this.actor.data.data.attributes.hp.formula;
     if ( !formula ) return;

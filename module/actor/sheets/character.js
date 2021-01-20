@@ -2,7 +2,7 @@ import ActorSheet5e from "./base.js";
 import Actor5e from "../entity.js";
 
 /**
- * An Actor sheet for player character type actors in the SW5E system.
+ * An Actor sheet for player character type actors.
  * Extends the base ActorSheet5e class.
  * @type {ActorSheet5e}
  */
@@ -16,7 +16,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "character"],
       width: 720,
-      height: 736
+      height: 680
     });
   }
 
@@ -68,9 +68,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       backpack: { label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"} },
       loot: { label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"} }
     };
-	  
+
     // Partition items by category
-    let [items, powers, feats, classes, species, archetypes, classfeatures] = data.items.reduce((arr, item) => {
+    let [items, powers, feats, classes] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -89,12 +89,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if ( item.type === "power" ) arr[1].push(item);
       else if ( item.type === "feat" ) arr[2].push(item);
       else if ( item.type === "class" ) arr[3].push(item);
-      else if ( item.type === "species" ) arr[4].push(item);
-      else if ( item.type === "archetype" ) arr[5].push(item);
-      else if ( item.type === "classfeature" ) arr[6].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], [], [], [], []]);
+    }, [[], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -105,7 +102,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     for ( let i of items ) {
       i.data.quantity = i.data.quantity || 0;
       i.data.weight = i.data.weight || 0;
-      i.totalWeight = Math.round(i.data.quantity * i.data.weight * 10) / 10;
+      i.totalWeight = (i.data.quantity * i.data.weight).toNearest(0.1);
       inventory[i.type].items.push(i);
     }
 
@@ -118,9 +115,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     const features = {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
-      classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: false, dataset: {type: "classfeature"}, isClassfeature: true},
-      archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
-	    species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true},
       active: { label: "SW5E.FeatureActive", items: [], hasActions: true, dataset: {type: "feat", "activation.type": "action"} },
       passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"} }
     };
@@ -130,9 +124,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }
     classes.sort((a, b) => b.levels - a.levels);
     features.classes.items = classes;
-    features.classfeatures.items = classfeatures;
-    features.archetype.items = archetypes;
-	  features.species.items = species;
 
     // Assign and return
     data.inventory = Object.values(inventory);
@@ -177,9 +168,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     super.activateListeners(html);
     if ( !this.options.editable ) return;
 
-    // Inventory Functions
-    html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
-
     // Item State Toggling
     html.find('.item-toggle').click(this._onToggleItem.bind(this));
 
@@ -187,24 +175,35 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     html.find('.short-rest').click(this._onShortRest.bind(this));
     html.find('.long-rest').click(this._onLongRest.bind(this));
 
-    // Death saving throws
-    html.find('.death-save').click(this._onDeathSave.bind(this));
+    // Rollable sheet actions
+    html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Handle rolling a death saving throw for the Character
+   * Handle mouse click events for character sheet actions
    * @param {MouseEvent} event    The originating click event
    * @private
    */
-  _onDeathSave(event) {
+  _onSheetAction(event) {
     event.preventDefault();
-    return this.actor.rollDeathSave({event: event});
+    const button = event.currentTarget;
+    switch( button.dataset.action ) {
+      case "convertCurrency":
+        return Dialog.confirm({
+          title: `${game.i18n.localize("SW5E.CurrencyConvert")}`,
+          content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
+          yes: () => this.actor.convertCurrency()
+        });
+      case "rollDeathSave":
+        return this.actor.rollDeathSave({event: event});
+      case "rollInitiative":
+        return this.actor.rollInitiative({createCombatants: true});
+    }
   }
 
   /* -------------------------------------------- */
-
 
   /**
    * Handle toggling the state of an Owned Item within the Actor
@@ -247,54 +246,39 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
-  /**
-   * Handle mouse click events to convert currency to the highest possible denomination
-   * @param {MouseEvent} event    The originating click event
-   * @private
-   */
-  async _onConvertCurrency(event) {
-    event.preventDefault();
-    return Dialog.confirm({
-      title: `${game.i18n.localize("SW5E.CurrencyConvert")}`,
-      content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
-      yes: () => this.actor.convertCurrency()
-    });
-  }
-
-  /* -------------------------------------------- */
-
   /** @override */
   async _onDropItemCreate(itemData) {
+    let addLevel = false;
 
-    // Upgrade the number of class levels a character has
-    // and add features
+    // Upgrade the number of class levels a character has and add features
     if ( itemData.type === "class" ) {
       const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
-      const classWasAlreadyPresent = !!cls;
+      let priorLevel = cls?.data.data.levels ?? 0;
+      const hasClass = !!cls;
 
-      // Add new features for class level
-      if ( !classWasAlreadyPresent ) {
-        Actor5e.getClassFeatures(itemData).then(features => {
-          this.actor.createEmbeddedEntity("OwnedItem", features);
-        });
+      // Increment levels instead of creating a new item
+      if ( hasClass ) {
+        const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
+        if ( next > priorLevel ) {
+          itemData.levels = next;
+          await cls.update({"data.levels": next});
+          addLevel = true;
+        }
       }
 
-      // If the actor already has the class, increment the level instead of creating a new item
-      // then add new features as long as level increases
-      if ( classWasAlreadyPresent ) {
-        const lvl = cls.data.data.levels;
-        const newLvl = Math.min(lvl + 1, 20 + lvl - this.actor.data.data.details.level);
-        if ( !(lvl === newLvl) ) {
-          cls.update({"data.levels": newLvl});
-          itemData.data.levels = newLvl;
-          Actor5e.getClassFeatures(itemData).then(features => {
-            this.actor.createEmbeddedEntity("OwnedItem", features);
-          });
-        }
-        return
+      // Add class features
+      if ( !hasClass || addLevel ) {
+        const features = await Actor5e.getClassFeatures({
+          className: itemData.name,
+          archetypeName: itemData.data.archetype,
+          level: itemData.levels,
+          priorLevel: priorLevel
+        });
+        await this.actor.createEmbeddedEntity("OwnedItem", features);
       }
     }
 
-    super._onDropItemCreate(itemData);
+    // Default drop handling if levels were not added
+    if ( !addLevel ) super._onDropItemCreate(itemData);
   }
 }

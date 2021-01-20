@@ -36,7 +36,7 @@ export default class ShortRestDialog extends Dialog {
   /** @override */
   getData() {
     const data = super.getData();
-    
+
     // Determine Hit Dice
     data.availableHD = this.actor.data.items.reduce((hd, item) => {
       if ( item.type === "class" ) {
@@ -49,7 +49,7 @@ export default class ShortRestDialog extends Dialog {
     }, {});
     data.canRoll = this.actor.data.data.attributes.hd > 0;
     data.denomination = this._denom;
-    
+
     // Determine rest type
     const variant = game.settings.get("sw5e", "restVariant");
     data.promptNewDay = variant !== "epic";     // It's never a new day when only resting 1 minute

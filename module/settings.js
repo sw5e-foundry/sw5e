@@ -7,11 +7,11 @@ export const registerSystemSettings = function() {
     name: "System Migration Version",
     scope: "world",
     config: false,
-    type: Number,
-    default: 0
+    type: String,
+    default: ""
   });
 
-    /**
+  /**
    * Register resting variants
    */
   game.settings.register("sw5e", "restVariant", {
@@ -80,18 +80,6 @@ export const registerSystemSettings = function() {
     config: true,
     default: false,
     type: Boolean,
-  });
-
-  /**
-   * Option to automatically create Power Measured Template on roll
-   */
-  game.settings.register("sw5e", "alwaysPlacePowerTemplate", {
-    name: "SETTINGS.5eAutoPowerTemplateN",
-    hint: "SETTINGS.5eAutoPowerTemplateL",
-    scope: "client",
-    config: true,
-    default: false,
-    type: Boolean
   });
 
   /**

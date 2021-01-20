@@ -63,6 +63,16 @@
     </div>
 </div>
 
+{{!-- Ability Target Width --}}
+{{#if isLine}}
+<div class="form-group input-select-select">
+    <label>{{ localize "SW5E.TargetWidth" }}</label>
+    <div class="form-fields">
+        <input type="text" name="data.target.width" value="{{data.target.width}}" data-dtype="Number" placeholder="-"/>
+    </div>
+</div>
+{{/if}}
+
 {{!-- Ability Range --}}
 <div class="form-group input-select">
     <label>{{ localize "SW5E.Range" }}</label>
@@ -102,8 +112,9 @@
     <label>{{ localize "SW5E.LimitedUses" }}</label>
     <div class="form-fields">
         <input type="text" name="data.uses.value" value="{{data.uses.value}}" data-dtype="Number"/>
-        <span class="sep"> {{ localize "SW5E.of" }} </span>
+        <span class="sep">{{ localize "SW5E.of" }}</span>
         <input type="text" name="data.uses.max" value="{{data.uses.max}}" data-dtype="Number"/>
+        <span class="sep">{{ localize "SW5E.per" }}</span>
         <select name="data.uses.per">
             {{#select data.uses.per}}
             <option value=""></option>

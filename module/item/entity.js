@@ -37,7 +37,7 @@ export default class Item5e extends Item {
         const wt = itemData.weaponType;
 
         // Melee weapons - Str or Dex if Finesse (PHB pg. 147)
-        if ( ["simpleVW", "martialVW", "simpleLW", "martialLW"].includes(wt) ) {
+        if ( ["simpleM", "martialM"].includes(wt) ) {
           if (itemData.properties.fin === true) {   // Finesse weapons
             return (actorData.abilities["dex"].mod >= actorData.abilities["str"].mod) ? "dex" : "str";
           }
@@ -45,7 +45,7 @@ export default class Item5e extends Item {
         }
 
         // Ranged weapons - Dex (PH p.194)
-        else if ( ["simpleB", "martialB"].includes(wt) ) return "dex";
+        else if ( ["simpleR", "martialR"].includes(wt) ) return "dex";
       }
       return "str";
     }
@@ -61,7 +61,7 @@ export default class Item5e extends Item {
    * @type {boolean}
    */
   get hasAttack() {
-    return ["mwak", "rwak", "mpak", "rpak"].includes(this.data.data.actionType);
+    return ["mwak", "rwak", "msak", "rsak"].includes(this.data.data.actionType);
   }
 
   /* -------------------------------------------- */
@@ -161,6 +161,7 @@ export default class Item5e extends Item {
 
     // Power Level,  School, and Components
     if ( itemData.type === "power" ) {
+      data.preparation.mode = data.preparation.mode || "prepared";
       labels.level = C.powerLevels[data.level];
       labels.school = C.powerSchools[data.school];
       labels.components = Object.entries(data.components).reduce((arr, c) => {
@@ -179,19 +180,6 @@ export default class Item5e extends Item {
       else if ( act && act.type ) labels.featType = game.i18n.localize(data.damage.length ? "SW5E.Attack" : "SW5E.Action");
       else labels.featType = game.i18n.localize("SW5E.Passive");
     }
-
-	// Species Items
-	else if ( itemData.type === "species" ) {
-	  //  labels.species = C.species[data.species];
-  }
-  // Archetype Items
-  else if ( itemData.type === "archetype" ) {
-    //  labels.archetype = C.archetype[data.archetype];
-  }
-  // Class Feature Items
-  else if ( itemData.type === "classfeature" ) {
-
-  }
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {
@@ -306,7 +294,7 @@ export default class Item5e extends Item {
       user: game.user._id,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       content: html,
-      flavor: this.name,
+      flavor: this.data.data.chatFlavor || this.name,
       speaker: {
         actor: this.actor._id,
         token: this.actor.token,
@@ -332,7 +320,7 @@ export default class Item5e extends Item {
 
   /* -------------------------------------------- */
 
-    /**
+  /**
    * For items which consume a resource, handle the consumption of that resource when the item is used.
    * There are four types of ability consumptions which are handled:
    * 1. Ammunition (on attack rolls)
@@ -351,7 +339,6 @@ export default class Item5e extends Item {
     if ( !consume.type ) return true;
     const actor = this.actor;
     const typeLabel = CONFIG.SW5E.abilityConsumptionTypes[consume.type];
-    const amount = parseInt(consume.amount || 1);
 
     // Only handle certain types for certain actions
     if ( ((consume.type === "ammo") && !isAttack ) || ((consume.type !== "ammo") && !isCard) ) return true;
@@ -364,6 +351,7 @@ export default class Item5e extends Item {
 
     // Identify the consumed resource and it's quantity
     let consumed = null;
+    let amount = parseInt(consume.amount || 1);
     let quantity = 0;
     switch ( consume.type ) {
       case "attribute":
@@ -377,7 +365,13 @@ export default class Item5e extends Item {
         break;
       case "charges":
         consumed = actor.items.get(consume.target);
-        quantity = consumed ? consumed.data.data.uses.value : 0;
+        if ( !consumed ) break;
+        const uses = consumed.data.data.uses;
+        if ( uses.per && uses.max ) quantity = uses.value;
+        else if ( consumed.data.data.recharge?.value ) {
+          quantity = consumed.data.data.recharge.charged ? 1 : 0;
+          amount = 1;
+        }
         break;
     }
 
@@ -402,7 +396,11 @@ export default class Item5e extends Item {
         await consumed.update({"data.quantity": remaining});
         break;
       case "charges":
-        await consumed.update({"data.uses.value": remaining});
+        const uses = consumed.data.data.uses || {};
+        const recharge = consumed.data.data.recharge || {};
+        if ( uses.per && uses.max ) await consumed.update({"data.uses.value": remaining});
+        else if ( recharge.value ) await consumed.update({"data.recharge.charged": false});
+        break;
     }
     return true;
   }
@@ -420,7 +418,7 @@ export default class Item5e extends Item {
     // Configure whether to consume a limited use or to place a template
     const charge = this.data.data.recharge;
     const uses = this.data.data.uses;
-    let usesCharges = !!uses.per && (uses.max > 0);
+    let usesCharges = !!uses.per && !!uses.max;
     let placeTemplate = false;
     let consume = charge.value || usesCharges;
 
@@ -621,40 +619,37 @@ export default class Item5e extends Item {
     }
 
     // Attack Bonus
+    if ( itemData.attackBonus ) parts.push(itemData.attackBonus);
     const actorBonus = actorData?.bonuses?.[itemData.actionType] || {};
-    if ( itemData.attackBonus || actorBonus.attack ) {
-      parts.push("@atk");
-      rollData["atk"] = [itemData.attackBonus, actorBonus.attack].filterJoin(" + ");
-    }
+    if ( actorBonus.attack ) parts.push(actorBonus.attack);
 
-      // Ammunition Bonus
-      delete this._ammo;
-      const consume = itemData.consume;
-      if ( consume?.type === "ammo" ) {
-        const ammo = this.actor.items.get(consume.target);
-        if(ammo?.data){
-          const q = ammo.data.data.quantity;
-          const consumeAmount = consume.amount ?? 0;
-          if ( q && (q - consumeAmount >= 0) ) {
-            let ammoBonus = ammo.data.data.attackBonus;
-            if ( ammoBonus ) {
-              parts.push("@ammo");
-              rollData["ammo"] = ammoBonus;
-              title += ` [${ammo.name}]`;
-              this._ammo = ammo;
-            }
+    // Ammunition Bonus
+    delete this._ammo;
+    const consume = itemData.consume;
+    if ( consume?.type === "ammo" ) {
+      const ammo = this.actor.items.get(consume.target);
+      if(ammo?.data){
+        const q = ammo.data.data.quantity;
+        const consumeAmount = consume.amount ?? 0;
+        if ( q && (q - consumeAmount >= 0) ) {
+          this._ammo = ammo;
+          let ammoBonus = ammo.data.data.attackBonus;
+          if ( ammoBonus ) {
+            parts.push("@ammo");
+            rollData["ammo"] = ammoBonus;
+            title += ` [${ammo.name}]`;
           }
-        //}else{
-        //  ui.notifications.error(game.i18n.format("SW5E.ConsumeWarningNoResource", {name: this.name, type: typeLabel}));
         }
       }
-    
+    }
+
     // Compose roll options
     const rollConfig = mergeObject({
       parts: parts,
       actor: this.actor,
       data: rollData,
       title: title,
+      flavor: title,
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
       dialogOptions: {
         width: 400,
@@ -665,9 +660,11 @@ export default class Item5e extends Item {
     }, options);
     rollConfig.event = options.event;
 
-    // Expanded weapon critical threshold
+    // Expanded critical hit thresholds
     if (( this.data.type === "weapon" ) && flags.weaponCriticalThreshold) {
       rollConfig.critical = parseInt(flags.weaponCriticalThreshold);
+    } else if (( this.data.type === "power" ) && flags.powerCriticalThreshold) {
+      rollConfig.critical = parseInt(flags.powerCriticalThreshold);
     }
 
     // Elven Accuracy
@@ -694,28 +691,41 @@ export default class Item5e extends Item {
 
   /**
    * Place a damage roll using an item (weapon, feat, power, or equipment)
-   * Rely upon the damageRoll logic for the core implementation
-   *
-   * @return {Promise<Roll>}   A Promise which resolves to the created Roll instance
+   * Rely upon the damageRoll logic for the core implementation.
+   * @param {MouseEvent} [event]    An event which triggered this roll, if any
+   * @param {number} [powerLevel]   If the item is a power, override the level for damage scaling
+   * @param {boolean} [versatile]   If the item is a weapon, roll damage using the versatile formula
+   * @param {object} [options]      Additional options passed to the damageRoll function
+   * @return {Promise<Roll>}        A Promise which resolves to the created Roll instance
    */
-  rollDamage({event, powerLevel=null, versatile=false}={}) {
+  rollDamage({event, powerLevel=null, versatile=false, options={}}={}) {
+    if ( !this.hasDamage ) throw new Error("You may not make a Damage Roll with this Item.");
     const itemData = this.data.data;
     const actorData = this.actor.data.data;
-    if ( !this.hasDamage ) {
-      throw new Error("You may not make a Damage Roll with this Item.");
-    }
     const messageData = {"flags.sw5e.roll": {type: "damage", itemId: this.id }};
 
     // Get roll data
+    const parts = itemData.damage.parts.map(d => d[0]);
     const rollData = this.getRollData();
     if ( powerLevel ) rollData.item.level = powerLevel;
 
-    // Get message labels
+    // Configure the damage roll
     const title = `${this.name} - ${game.i18n.localize("SW5E.DamageRoll")}`;
-    let flavor = this.labels.damageTypes.length ? `${title} (${this.labels.damageTypes})` : title;
-
-    // Define Roll parts
-    const parts = itemData.damage.parts.map(d => d[0]);
+    const rollConfig = {
+      event: event,
+      parts: parts,
+      actor: this.actor,
+      data: rollData,
+      title: title,
+      flavor: this.labels.damageTypes.length ? `${title} (${this.labels.damageTypes})` : title,
+      speaker: ChatMessage.getSpeaker({actor: this.actor}),
+      dialogOptions: {
+        width: 400,
+        top: event ? event.clientY - 80 : null,
+        left: window.innerWidth - 710
+      },
+      messageData: messageData
+    };
 
     // Adjust damage from versatile usage
     if ( versatile && itemData.damage.versatile ) {
@@ -725,9 +735,9 @@ export default class Item5e extends Item {
 
     // Scale damage from up-casting powers
     if ( (this.data.type === "power") ) {
-      if ( (itemData.scaling.mode === "atwill") ) {
+      if ( (itemData.scaling.mode === "cantrip") ) {
         const level = this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
-        this._scaleAtWillDamage(parts, itemData.scaling.formula, level, rollData);
+        this._scaleCantripDamage(parts, itemData.scaling.formula, level, rollData);
       }
       else if ( powerLevel && (itemData.scaling.mode === "level") && itemData.scaling.formula ) {
         const scaling = itemData.scaling.formula;
@@ -735,64 +745,39 @@ export default class Item5e extends Item {
       }
     }
 
-    // Define Roll Data
+    // Add damage bonus formula
     const actorBonus = getProperty(actorData, `bonuses.${itemData.actionType}`) || {};
-    if ( actorBonus.damage && parseInt(actorBonus.damage) !== 0 ) {
-      parts.push("@dmg");
-      rollData["dmg"] = actorBonus.damage;
+    if ( actorBonus.damage && (parseInt(actorBonus.damage) !== 0) ) {
+      parts.push(actorBonus.damage);
     }
 
-    // Ammunition Damage
+    // Add ammunition damage
     if ( this._ammo ) {
       parts.push("@ammo");
       rollData["ammo"] = this._ammo.data.data.damage.parts.map(p => p[0]).join("+");
-      flavor += ` [${this._ammo.name}]`;
+      rollConfig.flavor += ` [${this._ammo.name}]`;
       delete this._ammo;
     }
 
+    // Scale melee critical hit damage
+    if ( itemData.actionType === "mwak" ) {
+      rollConfig.criticalBonusDice = this.actor.getFlag("sw5e", "meleeCriticalDamageDice") ?? 0;
+    }
+
     // Call the roll helper utility
-    return damageRoll({
-      event: event,
-      parts: parts,
-      actor: this.actor,
-      data: rollData,
-      title: title,
-      flavor: flavor,
-      speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      dialogOptions: {
-        width: 400,
-        top: event ? event.clientY - 80 : null,
-        left: window.innerWidth - 710
-      },
-      messageData
-    });
+    return damageRoll(mergeObject(rollConfig, options));
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Adjust an at-will damage formula to scale it for higher level characters and monsters
+   * Adjust a cantrip damage formula to scale it for higher level characters and monsters
    * @private
    */
-  _scaleAtWillDamage(parts, scale, level, rollData) {
+  _scaleCantripDamage(parts, scale, level, rollData) {
     const add = Math.floor((level + 1) / 6);
     if ( add === 0 ) return;
-
-    // FUTURE SOLUTION - 0.7.0 AND LATER
-    if (isNewerVersion(game.data.version, "0.6.9")) {
-      this._scaleDamage(parts, scale || parts.join(" + "), add, rollData)
-
-    }
-
-    // LEGACY SOLUTION - 0.6.x AND OLDER
-    // TODO: Deprecate the legacy solution one FVTT 0.7.x is RELEASE
-    else {
-      if ( scale && (scale !== parts[0]) ) {
-        parts[0] = parts[0] + " + " + scale.replace(new RegExp(Roll.diceRgx, "g"), (match, nd, d) => `${add}d${d}`);
-      } else {
-        parts[0] = parts[0].replace(new RegExp(Roll.diceRgx, "g"), (match, nd, d) => `${parseInt(nd)+add}d${d}`);
-      }
-    }
+    this._scaleDamage(parts, scale || parts.join(" + "), add, rollData);
   }
 
   /* -------------------------------------------- */
@@ -810,20 +795,7 @@ export default class Item5e extends Item {
   _scalePowerDamage(parts, baseLevel, powerLevel, formula, rollData) {
     const upcastLevels = Math.max(powerLevel - baseLevel, 0);
     if ( upcastLevels === 0 ) return parts;
-
-    // FUTURE SOLUTION - 0.7.0 AND LATER
-    if (isNewerVersion(game.data.version, "0.6.9")) {
-      this._scaleDamage(parts, formula, upcastLevels, rollData);
-    }
-
-    // LEGACY SOLUTION - 0.6.x AND OLDER
-    // TODO: Deprecate the legacy solution one FVTT 0.7.x is RELEASE
-    else {
-      const bonus = new Roll(formula);
-      bonus.alter(0, upcastLevels);
-      parts.push(bonus.formula);
-    }
-    return parts;
+    this._scaleDamage(parts, formula, upcastLevels, rollData);
   }
 
   /* -------------------------------------------- */
@@ -866,7 +838,7 @@ export default class Item5e extends Item {
   /**
    * Place an attack roll using an item (weapon, feat, power, or equipment)
    * Rely upon the d20Roll logic for the core implementation
-   * 
+   *
    * @return {Promise<Roll>}   A Promise which resolves to the created Roll instance
    */
   async rollFormula(options={}) {
@@ -883,7 +855,7 @@ export default class Item5e extends Item {
     const roll = new Roll(rollData.item.formula, rollData).roll();
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      flavor: this.data.data.chatFlavor || title,
+      flavor: title,
       rollMode: game.settings.get("core", "rollMode"),
       messageData: {"flags.sw5e.roll": {type: "other", itemId: this.id }}
     });
@@ -894,7 +866,7 @@ export default class Item5e extends Item {
 
   /**
    * Use a consumable item, deducting from the quantity or charges of the item.
-  * @param {boolean} configureDialog   Whether to show a configuration dialog
+   * @param {boolean} configureDialog   Whether to show a configuration dialog
    * @return {boolean}                  Whether further execution should be prevented
    * @private
    */
@@ -956,7 +928,7 @@ export default class Item5e extends Item {
       if ( this.owner && this.owner.sheet ) this.owner.sheet.minimize();
     }
     return true;
-    }
+  }
 
   /* -------------------------------------------- */
 
@@ -1005,7 +977,7 @@ export default class Item5e extends Item {
       template: "systems/sw5e/templates/chat/tool-roll-dialog.html",
       title: title,
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      flavor: `${this.name} - ${game.i18n.localize("SW5E.ToolCheck")}`,
+      flavor: title,
       dialogOptions: {
         width: 400,
         top: options.event ? options.event.clientY - 80 : null,
@@ -1039,8 +1011,8 @@ export default class Item5e extends Item {
     }
 
     // Include a proficiency score
-    const prof = "proficient" in rollData.item ? (rollData.item.proficient || 0) : 1;
-    rollData["prof"] = Math.floor(prof * rollData.attributes.prof);
+    const prof = ("proficient" in rollData.item) ? (rollData.item.proficient || 0) : 1;
+    rollData["prof"] = Math.floor(prof * (rollData.attributes.prof || 0));
     return rollData;
   }
 
@@ -1173,7 +1145,7 @@ export default class Item5e extends Item {
     if ( !targets.length ) ui.notifications.warn(game.i18n.localize("SW5E.ActionWarningNoToken"));
     return targets;
   }
-  
+
   /* -------------------------------------------- */
   /*  Factory Methods                             */
   /* -------------------------------------------- */

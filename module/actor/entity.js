@@ -6,7 +6,7 @@ import AbilityTemplate from "../pixi/ability-template.js";
 import {SW5E} from '../config.js';
 
 /**
- * Extend the base Actor class to implement additional logic specialized for SW5e.
+ * Extend the base Actor class to implement additional system-specific logic.
  */
 export default class Actor5e extends Actor {
 
@@ -16,48 +16,6 @@ export default class Actor5e extends Actor {
    */
   get isPolymorphed() {
     return this.getFlag("sw5e", "isPolymorphed") || false;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * @override
-   * TODO: This becomes unnecessary after 0.7.x is released
-   */
-  initialize() {
-    try {
-      this.prepareData();
-    } catch(err) {
-      console.error(`Failed to initialize data for ${this.constructor.name} ${this.id}:`);
-      console.error(err);
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * @override
-   * TODO: This becomes unnecessary after 0.7.x is released
-   */
-  prepareData() {
-    const is07x = !isNewerVersion("0.7.1", game.data.version);
-    if ( is07x ) this.data = duplicate(this._data);
-    if (!this.data.img) this.data.img = CONST.DEFAULT_TOKEN;
-    if ( !this.data.name ) this.data.name = "New " + this.entity;
-    this.prepareBaseData();
-    this.prepareEmbeddedEntities();
-    if ( is07x ) this.applyActiveEffects();
-    this.prepareDerivedData();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * @override
-   * TODO: This becomes unnecessary after 0.7.x is released
-   */
-  applyActiveEffects() {
-    if (!isNewerVersion("0.7.1", game.data.version)) return super.applyActiveEffects();
   }
 
   /* -------------------------------------------- */
@@ -100,10 +58,11 @@ export default class Actor5e extends Actor {
     }
 
     // Ability modifiers and saves
-    const dcBonus = Number.isNumeric(data.bonuses.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
+    const dcBonus = Number.isNumeric(data.bonuses?.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
     const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
     const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
     for (let [id, abl] of Object.entries(data.abilities)) {
+      if ( flags.diamondSoul ) abl.proficient = 1;  // Diamond Soul is proficient in all saves
       abl.mod = Math.floor((abl.value - 10) / 2);
       abl.prof = (abl.proficient || 0) * data.attributes.prof;
       abl.saveBonus = saveBonus;
@@ -116,6 +75,11 @@ export default class Actor5e extends Actor {
         abl.save = Math.max(abl.save, originalSaves[id].save);
       }
     }
+
+    // Inventory encumbrance
+    data.attributes.encumbrance = this._computeEncumbrance(actorData);
+
+    // Prepare skills
     this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
 
     // Determine Initiative Modifier
@@ -126,7 +90,8 @@ export default class Actor5e extends Actor {
     if ( joat ) init.prof = Math.floor(0.5 * data.attributes.prof);
     else if ( athlete ) init.prof = Math.ceil(0.5 * data.attributes.prof);
     else init.prof = 0;
-    init.bonus = Number(init.value + (flags.initiativeAlert ? 5 : 0));
+    init.value = init.value ?? 0;
+    init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
@@ -169,7 +134,7 @@ export default class Actor5e extends Actor {
       }
       return obj;
     }, {});
-    data.prof = this.data.data.attributes.prof;
+    data.prof = this.data.data.attributes.prof || 0;
     return data;
   }
 
@@ -177,32 +142,36 @@ export default class Actor5e extends Actor {
 
   /**
    * Return the features which a character is awarded for each class level
-   * @param cls {Object}    Data object for class, equivalent to Item5e.data or raw compendium entry
+   * @param {string} className        The class name being added
+   * @param {string} archetypeName     The archetype of the class being added, if any
+   * @param {number} level            The number of levels in the added class
+   * @param {number} priorLevel       The previous level of the added class
    * @return {Promise<Item5e[]>}     Array of Item5e entities
    */
-  static async getClassFeatures(cls) {
-    const level = cls.data.levels;
-    const className = cls.name.toLowerCase();
+  static async getClassFeatures({className="", archetypeName="", level=1, priorLevel=0}={}) {
+    className = className.toLowerCase();
+    archetypeName = archetypeName.slugify();
 
     // Get the configuration of features which may be added
     const clsConfig = CONFIG.SW5E.classFeatures[className];
-    let featureIDs = clsConfig["features"][level] || [];
-    const subclassName = cls.data.subclass.toLowerCase().slugify();
+    if (!clsConfig) return [];
 
-    // Identify subclass features
-    if ( subclassName !== "" ) {
-      const subclassConfig = clsConfig["subclasses"][subclassName];
-      if ( subclassConfig !== undefined ) {
-        const subclassFeatureIDs = subclassConfig["features"][level];
-        if ( subclassFeatureIDs ) {
-          featureIDs = featureIDs.concat(subclassFeatureIDs);
-        }
-      }
-      else console.warn("Invalid subclass: " + subclassName);
+    // Acquire class features
+    let ids = [];
+    for ( let [l, f] of Object.entries(clsConfig.features || {}) ) {
+      l = parseInt(l);
+      if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
+    }
+
+    // Acquire archetype features
+    const archConfig = clsConfig.archetypes[archetypeName] || {};
+    for ( let [l, f] of Object.entries(archConfig.features || {}) ) {
+      l = parseInt(l);
+      if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
     }
 
     // Load item data for all identified features
-    const features = await Promise.all(featureIDs.map(id => fromUuid(id)));
+    const features = await Promise.all(ids.map(id => fromUuid(id)));
 
     // Class powers should always be prepared
     for ( const feature of features ) {
@@ -236,34 +205,27 @@ export default class Actor5e extends Actor {
     for (let u of updated instanceof Array ? updated : [updated]) {
       const item = this.items.get(u._id);
       if (!item || (item.data.type !== "class")) continue;
-      const classData = duplicate(item.data);
-      let changed = false;
+      const updateData = expandObject(u);
+      const config = {
+        className: updateData.name || item.data.name,
+        archetypeName: updateData.data.archetype || item.data.data.archetype,
+        level: getProperty(updateData, "data.levels"),
+        priorLevel: item ? item.data.data.levels : 0
+      }
 
       // Get and create features for an increased class level
-      const newLevels = getProperty(u, "data.levels");
-      if (newLevels && (newLevels > item.data.data.levels)) {
-        classData.data.levels = newLevels;
-        changed = true;
-      }
+      let changed = false;
+      if ( config.level && (config.level > config.priorLevel)) changed = true;
+      if ( config.archetypeName !== item.data.data.archetype ) changed = true;
 
-      // Get features for a newly changed subclass
-      const newSubclass = getProperty(u, "data.subclass");
-      if (newSubclass && (newSubclass !== item.data.data.subclass)) {
-        classData.data.subclass = newSubclass;
-        changed = true;
-      }
-
-      // Get the new features
+      // Get features to create
       if ( changed ) {
-        const features = await Actor5e.getClassFeatures(classData);
-        if ( features.length ) toCreate.push(...features);
+        const existing = new Set(this.items.map(i => i.name));
+        const features = await Actor5e.getClassFeatures(config);
+        for ( let f of features ) {
+          if ( !existing.has(f.name) ) toCreate.push(f);
+        }
       }
-    }
-
-    // De-dupe created items with ones that already exist (by name)
-    if ( toCreate.length ) {
-      const existing = new Set(this.items.map(i => i.name));
-      toCreate = toCreate.filter(c => !existing.has(c.name));
     }
     return toCreate
   }
@@ -300,9 +262,6 @@ export default class Actor5e extends Actor {
     const required = xp.max - prior;
     const pct = Math.round((xp.value - prior) * 100 / required);
     xp.pct = Math.clamped(pct, 0, 100);
-
-    // Inventory encumbrance
-    data.attributes.encumbrance = this._computeEncumbrance(actorData);
   }
 
   /* -------------------------------------------- */
@@ -368,16 +327,16 @@ export default class Actor5e extends Actor {
       }
       if ( joat && (skl.value === 0 ) ) multi = 0.5;
 
+      // Retain the maximum skill proficiency when skill proficiencies are merged
+      if ( originalSkills ) {
+        skl.value = Math.max(skl.value, originalSkills[id].value);
+      }
+
       // Compute modifier
       skl.bonus = checkBonus + skillBonus;
       skl.mod = data.abilities[skl.ability].mod;
       skl.prof = round(multi * data.attributes.prof);
       skl.total = skl.mod + skl.prof + skl.bonus;
-
-      // If we merged skills when transforming, take the highest bonus here.
-      if (originalSkills && skl.value > 0.5) {
-        skl.total = Math.max(skl.total, originalSkills[id].total);
-      }
 
       // Compute passive bonus
       const passive = observant && (feats.observantFeat.skills.includes(id)) ? 5 : 0;
@@ -460,7 +419,7 @@ export default class Actor5e extends Actor {
       progression.slot = Math.ceil(caster.data.levels / denom);
     }
 
-    // EXCEPTION: NPC with an explicit powercaster level
+    // EXCEPTION: NPC with an explicit power-caster level
     if (isNPC && actorData.data.details.powerLevel) {
       progression.slot = actorData.data.details.powerLevel;
     }
@@ -488,8 +447,8 @@ export default class Actor5e extends Actor {
       else powers.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
       powers.pact.value = Math.min(powers.pact.value, powers.pact.max);
     } else {
-      powers.pact.level = 0;
-      powers.pact.max = 0;
+      powers.pact.max = parseInt(powers.pact.override) || 0
+      powers.pact.level = powers.pact.max > 0 ? 1 : 0;
     }
   }
 
@@ -512,14 +471,14 @@ export default class Actor5e extends Actor {
       if ( !physicalItems.includes(i.type) ) return weight;
       const q = i.data.quantity || 0;
       const w = i.data.weight || 0;
-      return weight + Math.round(q * w * 10) / 10;
+      return weight + (q * w);
     }, 0);
 
     // [Optional] add Currency Weight
     if ( game.settings.get("sw5e", "currencyWeight") ) {
       const currency = actorData.data.currency;
       const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
-      weight += Math.round((numCoins * 10) / CONFIG.SW5E.encumbrance.currencyPerWeight) / 10;
+      weight += numCoins / CONFIG.SW5E.encumbrance.currencyPerWeight;
     }
 
     // Determine the encumbrance size class
@@ -534,9 +493,10 @@ export default class Actor5e extends Actor {
     if ( this.getFlag("sw5e", "powerfulBuild") ) mod = Math.min(mod * 2, 8);
 
     // Compute Encumbrance percentage
+    weight = weight.toNearest(0.1);
     const max = actorData.data.abilities.str.value * CONFIG.SW5E.encumbrance.strMultiplier * mod;
-    const pct = Math.clamped((weight* 100) / max, 0, 100);
-    return { value: weight, max, pct, encumbered: pct > (2/3) };
+    const pct = Math.clamped((weight * 100) / max, 0, 100);
+    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2/3) };
   }
 
   /* -------------------------------------------- */
@@ -563,9 +523,6 @@ export default class Actor5e extends Actor {
   /** @override */
   async update(data, options={}) {
 
-        // TODO: 0.7.1 compatibility - remove when stable
-        if ( !data.hasOwnProperty("data") ) data = expandObject(data);
-
     // Apply changes in Actor size to Token width/height
     const newSize = getProperty(data, "data.traits.size");
     if ( newSize && (newSize !== getProperty(this.data, "data.traits.size")) ) {
@@ -576,7 +533,7 @@ export default class Actor5e extends Actor {
         data["token.width"] = size;
       }
     }
-    
+
     // Reset death save counters
     if ( (this.data.data.attributes.hp.value <= 0) && (getProperty(data, "data.attributes.hp.value") > 0) ) {
       setProperty(data, "data.attributes.death.success", 0);
@@ -857,7 +814,7 @@ export default class Actor5e extends Actor {
   rollAbilitySave(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId];
     const abl = this.data.data.abilities[abilityId];
-    
+
     // Construct parts
     const parts = ["@mod"];
     const data = {mod: abl.mod};
@@ -913,6 +870,12 @@ export default class Actor5e extends Actor {
     const data = {};
     const speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
 
+    // Diamond Soul adds proficiency
+    if ( this.getFlag("sw5e", "diamondSoul") ) {
+      parts.push("@prof");
+      data.prof = this.data.data.attributes.prof;
+    }
+
     // Include a global actor ability save bonus
     const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
     if ( bonuses.save ) {
@@ -936,7 +899,7 @@ export default class Actor5e extends Actor {
 
     // Take action depending on the result
     const success = roll.total >= 10;
-    const d20 = roll.dice[0].total;    
+    const d20 = roll.dice[0].total;
 
     // Save success
     if ( success ) {
@@ -1252,6 +1215,23 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+  /**
+   * Convert all carried currency to the highest possible denomination to reduce the number of raw coins being
+   * carried by an Actor.
+   * @return {Promise<Actor5e>}
+   */
+  convertCurrency() {
+    const curr = duplicate(this.data.data.currency);
+    const convert = CONFIG.SW5E.currencyConversion;
+    for ( let [c, t] of Object.entries(convert) ) {
+      let change = Math.floor(curr[c] / t.each);
+      curr[c] -= (change * t.each);
+      curr[t.into] += change;
+    }
+    return this.update({"data.currency": curr});
+  }
+
+  /* -------------------------------------------- */
 
   /**
    * Transform this Actor into another one.
@@ -1428,14 +1408,16 @@ export default class Actor5e extends Actor {
     if ( !original ) return;
 
     // Get the Tokens which represent this actor
-    const tokens = this.getActiveTokens(true);
-    const tokenUpdates = tokens.map(t => {
-      const tokenData = duplicate(original.data.token);
-      tokenData._id = t.id;
-      tokenData.actorId = original.id;
-      return tokenData;
-    });
-    canvas.scene.updateEmbeddedEntity("Token", tokenUpdates);
+    if ( canvas.ready ) {
+      const tokens = this.getActiveTokens(true);
+      const tokenUpdates = tokens.map(t => {
+        const tokenData = duplicate(original.data.token);
+        tokenData._id = t.id;
+        tokenData.actorId = original.id;
+        return tokenData;
+      });
+      canvas.scene.updateEmbeddedEntity("Token", tokenUpdates);
+    }
 
     // Delete the polymorphed Actor and maybe re-render the original sheet
     const isRendered = this.sheet.rendered;
@@ -1447,7 +1429,7 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Add additional system-specific sidebar directory context menu options for SW5e Actor entities
+   * Add additional system-specific sidebar directory context menu options for Actor entities
    * @param {jQuery} html         The sidebar HTML
    * @param {Array} entryOptions  The default array of context menu options
    */

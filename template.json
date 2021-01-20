@@ -71,20 +71,32 @@
           }
         },
         "currency": {
-          "gc": 0
+          "pp": 0,
+          "gp": 0,
+          "ep": 0,
+          "sp": 0,
+          "cp": 0
         }
       },
       "creature": {
         "attributes": {
+          "movement": {
+            "burrow": 0,
+            "climb": 0,
+            "fly": 0,
+            "swim": 0,
+            "walk": 30,
+            "units": "ft",
+            "hover": false
+          },
           "powercasting": "int",
           "speed": {
-            "value": "30 ft",
-            "special": ""
+            "_deprecated": true
           }
         },
         "details": {
           "alignment": "",
-          "species": ""
+          "race": ""
         },
         "skills": {
           "acr": {
@@ -95,6 +107,10 @@
             "value": 0,
             "ability": "wis"
           },
+          "arc": {
+            "value": 0,
+            "ability": "int"
+          },
           "ath": {
             "value": 0,
             "ability": "str"
@@ -102,6 +118,10 @@
           "dec": {
             "value": 0,
             "ability": "cha"
+          },
+          "his": {
+            "value": 0,
+            "ability": "int"
           },
           "ins": {
             "value": 0,
@@ -115,19 +135,11 @@
             "value": 0,
             "ability": "int"
           },
-          "lor": {
-            "value": 0,
-            "ability": "int"
-          },
           "med": {
             "value": 0,
             "ability": "wis"
           },
           "nat": {
-            "value": 0,
-            "ability": "int"
-          },
-          "pil": {
             "value": 0,
             "ability": "int"
           },
@@ -143,6 +155,10 @@
             "value": 0,
             "ability": "cha"
           },
+          "rel": {
+            "value": 0,
+            "ability": "int"
+          },
           "slt": {
             "value": 0,
             "ability": "dex"
@@ -154,10 +170,6 @@
           "sur": {
             "value": 0,
             "ability": "wis"
-          },
-          "tec": {
-            "value": 0,
-            "ability": "int"
           }
         },
         "traits": {
@@ -170,52 +182,42 @@
         "powers": {
           "power1": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power2": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power3": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power4": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power5": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power6": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power7": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power8": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "power9": {
             "value": 0,
-            "max": 0,
             "override": null
           },
           "pact": {
             "value": 0,
-            "max": 0,
             "override": null
           }
         },
@@ -228,11 +230,11 @@
             "attack": "",
             "damage": ""
           },
-          "mpak": {
+          "msak": {
             "attack": "",
             "damage": ""
           },
-          "rpak": {
+          "rsak": {
             "attack": "",
             "damage": ""
           },
@@ -393,13 +395,8 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "archetype", "classfeature", "backpack"],
+    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "backpack"],
     "templates": {
-      "archetypeDescription": {
-        "className": "",
-	    "description": "",
-        "source": ""
-      },
       "itemDescription": {
         "description": {
           "value": "",
@@ -407,15 +404,6 @@
           "unidentified": ""
         },
         "source": ""
-      },
-      "speciesDescription": {
-        "data": "$characteristics-table",
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-       "traits": ""
       },
       "physicalItem": {
         "quantity": 1,
@@ -438,6 +426,7 @@
         },
         "target": {
           "value": null,
+          "width": null,
           "units": "",
           "type": ""
         },
@@ -494,13 +483,17 @@
         "weightless": false
       },
       "currency": {
-        "gc": 0
+        "cp": 0,
+        "sp": 0,
+        "ep": 0,
+        "gp": 0,
+        "pp": 0
       }
     },
     "class": {
       "templates": ["itemDescription"],
       "levels": 1,
-      "subclass": "",
+      "archetype": "",
       "hitDice": "d6",
       "hitDiceUsed": 0,
       "skills": {
@@ -509,15 +502,6 @@
         "value": []
       },
       "powercasting": "none"
-    },
-    "archetype": {
-      "templates": ["archetypeDescription"],
-      "className": "",
-      "description": ""
-    },
-    "classfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "className": ""
     },
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
@@ -552,9 +536,6 @@
     "loot": {
       "templates": ["itemDescription", "physicalItem"]
     },
-    "species": {
-      "templates": ["speciesDescription"]
-	  },
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",
@@ -580,7 +561,7 @@
         "supply": 0
       },
       "preparation": {
-        "mode": null,
+        "mode": "prepared",
         "prepared": false
       },
       "scaling": {
@@ -590,7 +571,7 @@
     },
     "weapon": {
       "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action", "mountable"],
-      "weaponType": "simpleVW",
+      "weaponType": "simpleM",
       "properties": {},
       "proficient": true
     }

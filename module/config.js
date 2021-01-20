@@ -1,17 +1,17 @@
 import {ClassFeatures} from "./classFeatures.js"
 
-// Namespace SW5e Configuration Values
+// Namespace Configuration Values
 export const SW5E = {};
 
 // ASCII Artwork
-SW5E.ASCII = `__________________________________________
-     _
-    | |
- ___| |_ __ _ _ ____      ____ _ _ __ ___
-/ __| __/ _\ | |__\ \ /\ / / _\ | |__/ __|
-\__ \ || (_) | |   \ V  V / (_) | |  \__ \
-|___/\__\__/_|_|    \_/\_/ \__/_|_|  |___/
-__________________________________________`;
+SW5E.ASCII = `_______________________________
+______      ______ _____ _____
+|  _  \\___  |  _  \\  ___|  ___|
+| | | ( _ ) | | | |___ \\| |__
+| | | / _ \\/\\ | | |   \\ \\  __|
+| |/ / (_>  < |/ //\\__/ / |___
+|___/ \\___/\\/___/ \\____/\\____/
+_______________________________`;
 
 
 /**
@@ -43,15 +43,15 @@ SW5E.abilityAbbreviations = {
  * @type {Object}
  */
 SW5E.alignments = {
-  'll': "SW5E.AlignmentLL",
-  'nl': "SW5E.AlignmentNL",
-  'cl': "SW5E.AlignmentCL",
-  'lb': "SW5E.AlignmentLB",
-  'bn': "SW5E.AlignmentBN",
-  'cb': "SW5E.AlignmentCB",
-  'ld': "SW5E.AlignmentLD",
-  'nd': "SW5E.AlignmentND",
-  'cd': "SW5E.AlignmentCD"
+  'lg': "SW5E.AlignmentLG",
+  'ng': "SW5E.AlignmentNG",
+  'cg': "SW5E.AlignmentCG",
+  'ln': "SW5E.AlignmentLN",
+  'tn': "SW5E.AlignmentTN",
+  'cn': "SW5E.AlignmentCN",
+  'le': "SW5E.AlignmentLE",
+  'ne': "SW5E.AlignmentNE",
+  'ce': "SW5E.AlignmentCE"
 };
 
 
@@ -61,35 +61,15 @@ SW5E.weaponProficiencies = {
 };
 
 SW5E.toolProficiencies = {
-  "armor": "SW5E.ToolArmormech",
-  "arms": "SW5E.ToolArmstech",
-  "arti": "SW5E.ToolArtificer",
-  "art": "SW5E.ToolArtist",
-  "astro": "SW5E.ToolAstrotech",
-  "bio": "SW5E.ToolBiotech",
-  "con": "SW5E.ToolConstructor",
-  "cyb": "SW5E.ToolCybertech",
-  "jew": "SW5E.ToolJeweler",
-  "sur": "SW5E.ToolSurveyor",
-  "syn": "SW5E.ToolSynthweaver",
-  "tin": "SW5E.ToolTinker",
-  "ant": "SW5E.ToolAntitoxkit",
-  "arc": "SW5E.ToolArchaeologistKit",
-  "aud": "SW5E.ToolAudiotechKit",
-  "bioa": "SW5E.ToolBioanalysisKit",
-  "brew": "SW5E.ToolBrewerKit",
-  "chef": "SW5E.ToolChefKit",
-  "demo": "SW5E.ToolDemolitionKit",
+  "art": "SW5E.ToolArtisans",
   "disg": "SW5E.ToolDisguiseKit",
   "forg": "SW5E.ToolForgeryKit",
-  "mech": "SW5E.ToolMechanicKit",
   "game": "SW5E.ToolGamingSet",
-  "poi": "SW5E.ToolPoisonKit",
-  "scav": "SW5E.ToolScavengingKit",
-  "secur": "SW5E.ToolSecurityKit",
-  "slic": "SW5E.ToolSlicerKit",
-  "spice": "SW5E.ToolSpiceKit",
+  "herb": "SW5E.ToolHerbalismKit",
   "music": "SW5E.ToolMusicalInstrument",
+  "navg": "SW5E.ToolNavigators",
+  "pois": "SW5E.ToolPoisonersKit",
+  "thief": "SW5E.ToolThieves",
   "vehicle": "SW5E.ToolVehicle"
 };
 
@@ -97,7 +77,7 @@ SW5E.toolProficiencies = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the various lengths of time which can occur in SW5e
+ * This Object defines the various lengths of time which can occur
  * @type {Object}
  */
 SW5E.timePeriods = {
@@ -175,8 +155,8 @@ SW5E.tokenSizes = {
 SW5E.itemActionTypes = {
   "mwak": "SW5E.ActionMWAK",
   "rwak": "SW5E.ActionRWAK",
-  "mpak": "SW5E.ActionMPAK",
-  "rpak": "SW5E.ActionRPAK",
+  "msak": "SW5E.ActionMSAK",
+  "rsak": "SW5E.ActionRSAK",
   "save": "SW5E.ActionSave",
   "heal": "SW5E.ActionHeal",
   "abil": "SW5E.ActionAbil",
@@ -245,16 +225,14 @@ SW5E.armorProficiencies = {
  * @type {Object}
  */
 SW5E.consumableTypes = {
-  "adrenal": "SW5E.ConsumableAdrenal",
+  "ammo": "SW5E.ConsumableAmmunition",
+  "potion": "SW5E.ConsumablePotion",
   "poison": "SW5E.ConsumablePoison",
-  "explosive": "SW5E.ConsumableExplosive",
   "food": "SW5E.ConsumableFood",
-  "medpac": "SW5E.ConsumableMedpac",
-  "technology": "SW5E.ConsumableTechnology",
-  "ammunition": "SW5E.ConsumableAmmunition",
-  "trinket": "SW5E.ConsumableTrinket",
-  "force": "SW5E.ConsumableForce",
-  "tech": "SW5E.ConsumableTech"
+  "scroll": "SW5E.ConsumableScroll",
+  "wand": "SW5E.ConsumableWand",
+  "rod": "SW5E.ConsumableRod",
+  "trinket": "SW5E.ConsumableTrinket"
 };
 
 /* -------------------------------------------- */
@@ -264,8 +242,24 @@ SW5E.consumableTypes = {
  * @type {Object}
  */
 SW5E.currencies = {
-  "CR": "SW5E.CurrencyCR",
-  };
+  "pp": "SW5E.CurrencyPP",
+  "gp": "SW5E.CurrencyGP",
+  "ep": "SW5E.CurrencyEP",
+  "sp": "SW5E.CurrencySP",
+  "cp": "SW5E.CurrencyCP",
+};
+
+
+/**
+ * Define the upwards-conversion rules for registered currency types
+ * @type {{string, object}}
+ */
+SW5E.currencyConversion = {
+  cp: {into: "sp", each: 10},
+  sp: {into: "ep", each: 5 },
+  ep: {into: "gp", each: 2 },
+  gp: {into: "pp", each: 10}
+};
 
 /* -------------------------------------------- */
 
@@ -273,69 +267,54 @@ SW5E.currencies = {
 // Damage Types
 SW5E.damageTypes = {
   "acid": "SW5E.DamageAcid",
+  "bludgeoning": "SW5E.DamageBludgeoning",
   "cold": "SW5E.DamageCold",
-  "energy": "SW5E.DamageEnergy",
   "fire": "SW5E.DamageFire",
   "force": "SW5E.DamageForce",
-  "ion": "SW5E.DamageIon",
-  "kinetic": "SW5E.DamageKinetic",
   "lightning": "SW5E.DamageLightning",
   "necrotic": "SW5E.DamageNecrotic",
+  "piercing": "SW5E.DamagePiercing",
   "poison": "SW5E.DamagePoison",
   "psychic": "SW5E.DamagePsychic",
-  "sonic": "SW5E.DamageSonic"
+  "radiant": "SW5E.DamageRadiant",
+  "slashing": "SW5E.DamageSlashing",
+  "thunder": "SW5E.DamageThunder"
 };
 
 // Damage Resistance Types
-SW5E.damageResistanceTypes = duplicate(SW5E.damageTypes);
+SW5E.damageResistanceTypes = mergeObject(duplicate(SW5E.damageTypes), {
+  "physical": "SW5E.DamagePhysical"
+});
+
 
 /* -------------------------------------------- */
 
-// armor Types
-SW5E.armorPropertiesTypes = {
-"Absorptive": "SW5E.ArmorProperAbsorptive",
-"Agile": "SW5E.ArmorProperAgile",
-"Anchor": "SW5E.ArmorProperAnchor",
-"Avoidant": "SW5E.ArmorProperAvoidant",
-"Barbed": "SW5E.ArmorProperBarbed",
-"Bulky": "SW5E.ArmorProperBulky",
-"Charging": "SW5E.ArmorProperCharging",
-"Concealing": "SW5E.ArmorProperConcealing",
-"Cumbersome": "SW5E.ArmorProperCumbersome",
-"Gauntleted": "SW5E.ArmorProperGauntleted",
-"Imbalanced": "SW5E.ArmorProperImbalanced",
-"Impermeable": "SW5E.ArmorProperImpermeable",
-"Insulated": "SW5E.ArmorProperInsulated",
-"Interlocking": "SW5E.ArmorProperInterlocking",
-"Lambent": "SW5E.ArmorProperLambent",
-"Lightweight": "SW5E.ArmorProperLightweight",
-"Magnetic": "SW5E.ArmorProperMagnetic",
-"Obscured": "SW5E.ArmorProperObscured",
-"Obtrusive": "SW5E.ArmorProperObtrusive",
-"Powered": "SW5E.ArmorProperPowered",
-"Reactive": "SW5E.ArmorProperReactive",
-"Regulated": "SW5E.ArmorProperRegulated",
-"Reinforced": "SW5E.ArmorProperReinforced",
-"Responsive": "SW5E.ArmorProperResponsive",
-"Rigid": "SW5E.ArmorProperRigid",
-"Silent": "SW5E.ArmorProperSilent",
-"Spiked": "SW5E.ArmorProperSpiked",
-"Strength": "SW5E.ArmorProperStrength",
-"Steadfast": "SW5E.ArmorProperSteadfast",
-"Versatile": "SW5E.ArmorProperVersatile"
-};
 
-/* -------------------------------------------- */
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default this uses the imperial units of feet and miles.
+ * @type {Object<string,string>}
+ */
+SW5E.movementUnits = {
+  "ft": "SW5E.DistFt",
+  "mi": "SW5E.DistMi"
+}
 
+/**
+ * The valid units of measure for the range of an action or effect.
+ * This object automatically includes the movement units from SW5E.movementUnits
+ * @type {Object<string,string>}
+ */
 SW5E.distanceUnits = {
   "none": "SW5E.None",
   "self": "SW5E.DistSelf",
   "touch": "SW5E.DistTouch",
-  "ft": "SW5E.DistFt",
-  "mi": "SW5E.DistMi",
   "spec": "SW5E.Special",
   "any": "SW5E.DistAny"
 };
+for ( let [k, v] of Object.entries(SW5E.movementUnits) ) {
+  SW5E.distanceUnits[k] = v;
+}
 
 /* -------------------------------------------- */
 
@@ -353,14 +332,13 @@ SW5E.encumbrance = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the types of single or area targets which can be applied in SW5e
+ * This Object defines the types of single or area targets which can be applied
  * @type {Object}
  */
 SW5E.targetTypes = {
   "none": "SW5E.None",
   "self": "SW5E.TargetSelf",
   "creature": "SW5E.TargetCreature",
-  "droid": "SW5E.TargetDroid",
   "ally": "SW5E.TargetAlly",
   "enemy": "SW5E.TargetEnemy",
   "object": "SW5E.TargetObject",
@@ -372,8 +350,7 @@ SW5E.targetTypes = {
   "square": "SW5E.TargetSquare",
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
-  "wall": "SW5E.TargetWall",
-  "weapon": "SW5E.TargetWeapon"   
+  "wall": "SW5E.TargetWall"
 };
 
 
@@ -410,10 +387,10 @@ SW5E.healingTypes = {
 
 
 /**
- * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
+ * Enumerate the denominations of hit dice which can apply to classes
  * @type {Array.<string>}
  */
-SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
+SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
 
 
 /* -------------------------------------------- */
@@ -433,46 +410,49 @@ SW5E.senses = {
 /* -------------------------------------------- */
 
 /**
- * The set of skill which can be trained in SW5e
+ * The set of skill which can be trained
  * @type {Object}
  */
 SW5E.skills = {
   "acr": "SW5E.SkillAcr",
   "ani": "SW5E.SkillAni",
+  "arc": "SW5E.SkillArc",
   "ath": "SW5E.SkillAth",
   "dec": "SW5E.SkillDec",
+  "his": "SW5E.SkillHis",
   "ins": "SW5E.SkillIns",
   "itm": "SW5E.SkillItm",
   "inv": "SW5E.SkillInv",
-  "lor": "SW5E.SkillLor",
   "med": "SW5E.SkillMed",
   "nat": "SW5E.SkillNat",
   "prc": "SW5E.SkillPrc",
   "prf": "SW5E.SkillPrf",
   "per": "SW5E.SkillPer",
-  "pil": "SW5E.SkillPil",
+  "rel": "SW5E.SkillRel",
   "slt": "SW5E.SkillSlt",
   "ste": "SW5E.SkillSte",
-  "sur": "SW5E.SkillSur",
-  "tec": "SW5E.SkillTec"
+  "sur": "SW5E.SkillSur"
 };
 
 
 /* -------------------------------------------- */
 
 SW5E.powerPreparationModes = {
+  "prepared": "SW5E.PowerPrepPrepared",
+  "pact": "SW5E.PactMagic",
   "always": "SW5E.PowerPrepAlways",
   "atwill": "SW5E.PowerPrepAtWill",
-  "innate": "SW5E.PowerPrepInnate",
-  "prepared": "SW5E.PowerPrepPrepared"
+  "innate": "SW5E.PowerPrepInnate"
 };
 
 SW5E.powerUpcastModes = ["always", "pact", "prepared"];
 
-
 SW5E.powerProgression = {
   "none": "SW5E.PowerNone",
   "full": "SW5E.PowerProgFull",
+  "half": "SW5E.PowerProgHalf",
+  "third": "SW5E.PowerProgThird",
+  "pact": "SW5E.PowerProgPact",
   "artificer": "SW5E.PowerProgArt"
 };
 
@@ -484,7 +464,7 @@ SW5E.powerProgression = {
  */
 SW5E.powerScalingModes = {
   "none": "SW5E.PowerNone",
-  "atwill": "SW5E.PowerAtWill",
+  "cantrip": "SW5E.PowerCantrip",
   "level": "SW5E.PowerLevel"
 };
 
@@ -496,15 +476,12 @@ SW5E.powerScalingModes = {
  * @type {Object}
  */
 SW5E.weaponTypes = {
-  "simpleVW": "SW5E.WeaponSimpleVW",
-  "simpleB": "SW5E.WeaponSimpleB",
-  "simpleLW": "SW5E.WeaponSimpleLW",
-  "martialVW": "SW5E.WeaponMartialVW",
-  "martialB": "SW5E.WeaponMartialB",
-  "martialLW": "SW5E.WeaponMartialLW",
+  "simpleM": "SW5E.WeaponSimpleM",
+  "simpleR": "SW5E.WeaponSimpleR",
+  "martialM": "SW5E.WeaponMartialM",
+  "martialR": "SW5E.WeaponMartialR",
   "natural": "SW5E.WeaponNatural",
   "improv": "SW5E.WeaponImprov",
-  "ammo": "SW5E.WeaponAmmo",
   "siege": "SW5E.WeaponSiege"
 };
 
@@ -517,38 +494,19 @@ SW5E.weaponTypes = {
  */
 SW5E.weaponProperties = {
   "amm": "SW5E.WeaponPropertiesAmm",
-  "aut": "SW5E.WeaponPropertiesAut",
-  "bur": "SW5E.WeaponPropertiesBur",
-  "def": "SW5E.WeaponPropertiesDef",
-  "dex": "SW5E.WeaponPropertiesDex",
-  "dir": "SW5E.WeaponPropertiesDir",
-  "drm": "SW5E.WeaponPropertiesDrm",
-  "dgd": "SW5E.WeaponPropertiesDgd",
-  "dis": "SW5E.WeaponPropertiesDis",
-  "dpt": "SW5E.WeaponPropertiesDpt",
-  "dou": "SW5E.WeaponPropertiesDou",
-  "fin": "SW5E.WeaponPropertiesFin",
-  "fix": "SW5E.WeaponPropertiesFix",
-  "foc": "SW5E.WeaponPropertiesFoc",
   "hvy": "SW5E.WeaponPropertiesHvy",
-  "hid": "SW5E.WeaponPropertiesHid",
-  "ken": "SW5E.WeaponPropertiesKen",
+  "fin": "SW5E.WeaponPropertiesFin",
+  "fir": "SW5E.WeaponPropertiesFir",
+  "foc": "SW5E.WeaponPropertiesFoc",
   "lgt": "SW5E.WeaponPropertiesLgt",
-  "lum": "SW5E.WeaponPropertiesLum",
-  "mig": "SW5E.WeaponPropertiesMig",
-  "pic": "SW5E.WeaponPropertiesPic",
-  "rap": "SW5E.WeaponPropertiesRap",
+  "lod": "SW5E.WeaponPropertiesLod",
   "rch": "SW5E.WeaponPropertiesRch",
   "rel": "SW5E.WeaponPropertiesRel",
   "ret": "SW5E.WeaponPropertiesRet",
-  "shk": "SW5E.WeaponPropertiesShk",
-  "sil": "SW5E.WeaponPropertiesSil",
   "spc": "SW5E.WeaponPropertiesSpc",
-  "str": "SW5E.WeaponPropertiesStr",
   "thr": "SW5E.WeaponPropertiesThr",
   "two": "SW5E.WeaponPropertiesTwo",
-  "ver": "SW5E.WeaponPropertiesVer",
-  "vic": "SW5E.WeaponPropertiesVic"
+  "ver": "SW5E.WeaponPropertiesVer"
 };
 
 
@@ -561,11 +519,14 @@ SW5E.powerComponents = {
 
 // Power Schools
 SW5E.powerSchools = {
-  "lgt": "SW5E.SchoolLgt",
-  "uni": "SW5E.SchoolUni",
-  "drk": "SW5E.SchoolDrk",
-  "tec": "SW5E.SchoolTec",
-  "enh": "SW5E.SchoolEnh"
+  "abj": "SW5E.SchoolAbj",
+  "con": "SW5E.SchoolCon",
+  "div": "SW5E.SchoolDiv",
+  "enc": "SW5E.SchoolEnc",
+  "evo": "SW5E.SchoolEvo",
+  "ill": "SW5E.SchoolIll",
+  "nec": "SW5E.SchoolNec",
+  "trs": "SW5E.SchoolTrs"
 };
 
 // Power Levels
@@ -580,6 +541,20 @@ SW5E.powerLevels = {
   7: "SW5E.PowerLevel7",
   8: "SW5E.PowerLevel8",
   9: "SW5E.PowerLevel9"
+};
+
+// Power Scroll Compendium UUIDs
+SW5E.powerScrollIds = {
+  0: 'Compendium.sw5e.items.rQ6sO7HDWzqMhSI3',
+  1: 'Compendium.sw5e.items.9GSfMg0VOA2b4uFN',
+  2: 'Compendium.sw5e.items.XdDp6CKh9qEvPTuS',
+  3: 'Compendium.sw5e.items.hqVKZie7x9w3Kqds',
+  4: 'Compendium.sw5e.items.DM7hzgL836ZyUFB1',
+  5: 'Compendium.sw5e.items.wa1VF8TXHmkrrR35',
+  6: 'Compendium.sw5e.items.tI3rWx4bxefNCexS',
+  7: 'Compendium.sw5e.items.mtyw4NS1s7j2EJaD',
+  8: 'Compendium.sw5e.items.aOrinPg7yuDZEuWr',
+  9: 'Compendium.sw5e.items.O4YbkJkLlnsgUszZ'
 };
 
 /**
@@ -675,114 +650,37 @@ SW5E.conditionTypes = {
   "poisoned": "SW5E.ConPoisoned",
   "prone": "SW5E.ConProne",
   "restrained": "SW5E.ConRestrained",
-  "shocked": "SW5E.ConShocked",
-  "slowed": "SW5E.ConSlowed",
   "stunned": "SW5E.ConStunned",
   "unconscious": "SW5E.ConUnconscious"
 };
 
 // Languages
 SW5E.languages = {
-  "aleena": "SW5E.LanguagesAleena",
-  "antarian": "SW5E.LanguagesAntarian",  
-  "anzellan": "SW5E.LanguagesAnzellan",
-  "aqualish": "SW5E.LanguagesAqualish",
-  "ardennian": "SW5E.LanguagesArdennian",
-  "balosur": "SW5E.LanguagesBalosur",
-  "barabel": "SW5E.LanguagesBarabel",
-  "basic": "SW5E.LanguagesBasic",
-  "besalisk": "SW5E.LanguagesBesalisk",									   
-  "binary": "SW5E.LanguagesBinary",
-  "bith": "SW5E.LanguagesBith",
-  "bocce": "SW5E.LanguagesBocce",
-  "bothese": "SW5E.LanguagesBothese",
-  "catharese": "SW5E.LanguagesCatharese",
-  "cerean": "SW5E.LanguagesCerean",
-  "chadra-fan": "SW5E.LanguagesChadra-Fan",
-  "chagri": "SW5E.LanguagesChagri",
-  "cheunh": "SW5E.LanguagesCheunh",
-  "chevin": "SW5E.LanguagesChevin",
-  "chironan": "SW5E.LanguagesChironan",
-  "clawdite": "SW5E.LanguagesClawdite",
-  "codruese": "SW5E.LanguagesCodruese",
-  "colicoid": "SW5E.LanguagesColicoid",
-  "dashadi": "SW5E.LanguagesDashadi",
-  "defel": "SW5E.LanguagesDefel",
-  "devaronese": "SW5E.LanguagesDevaronese",
-  "dosh": "SW5E.LanguagesDosh",  
-  "draethos": "SW5E.LanguagesDraethos",
-  "durese": "SW5E.LanguagesDurese",
-  "dug": "SW5E.LanguagesDug",
-  "ewokese": "SW5E.LanguagesEwokese",
-  "falleen": "SW5E.LanguagesFalleen",
-  "felucianese": "SW5E.LanguagesFelucianese",
-  "gamorrese": "SW5E.LanguagesGamorrese",
-  "gand": "SW5E.LanguagesGand",
-  "geonosian": "SW5E.LanguagesGeonosian",
-  "givin": "SW5E.LanguagesGivin",
-  "gran": "SW5E.LanguagesGran",
-  "gungan": "SW5E.LanguagesGungan",
-  "hapan": "SW5E.LanguagesHapan",
-  "harchese": "SW5E.LanguagesHarchese",
-  "herglese": "SW5E.LanguagesHerglese",
-  "honoghran": "SW5E.LanguagesHonoghran",
-  "huttese": "SW5E.LanguagesHuttese",
-  "iktotchese": "SW5E.LanguagesIktotchese",
-  "ithorese": "SW5E.LanguagesIthorese",
-  "jawaese": "SW5E.LanguagesJawaese",
-  "kaleesh": "SW5E.LanguagesKaleesh",
-  "kaminoan": "SW5E.LanguagesKaminoan",
-  "karkaran": "SW5E.LanguagesKarkaran",
-  "keldor": "SW5E.LanguagesKelDor",
-  "kharan": "SW5E.LanguagesKharan",
-  "killik": "SW5E.LanguagesKillik",
-  "klatooinian": "SW5E.LanguagesKlatooinian",
-  "kubazian": "SW5E.LanguagesKubazian",
-  "kushiban": "SW5E.LanguagesKushiban",
-  "kyuzo": "SW5E.LanguagesKyuzo",
-  "lannik": "SW5E.LanguagesLannik",
-  "lasat": "SW5E.LanguagesLasat",
-  "lowickese": "SW5E.LanguagesLowickese",
-  "mandoa": "SW5E.LanguagesMandoa",
-  "miralukese": "SW5E.LanguagesMiralukese",
-  "mirialan": "SW5E.LanguagesMirialan",
-  "moncal": "SW5E.LanguagesMonCal",
-  "mustafarian": "SW5E.LanguagesMustafarian",
-  "muun": "SW5E.LanguagesMuun",
-  "nautila": "SW5E.LanguagesNautila",
-  "ortolan": "SW5E.LanguagesOrtolan",
-  "pakpak": "SW5E.LanguagesPakPak",
-  "pyke": "SW5E.LanguagesPyke",
-  "quarrenese": "SW5E.LanguagesQuarrenese",
-  "rakata": "SW5E.LanguagesRakata",
-  "rattataki": "SW5E.LanguagesRattataki",
-  "rishii": "SW5E.LanguagesRishii",
-  "rodese": "SW5E.LanguagesRodese",
-  "selkatha": "SW5E.LanguagesSelkatha",
-  "semblan": "SW5E.LanguagesSemblan",
-  "shistavanen": "SW5E.LanguagesShistavanen",
-  "shyriiwook": "SW5E.LanguagesShyriiwook",  
-  "sith": "SW5E.LanguagesSith",
-  "squibbian": "SW5E.LanguagesSquibbian",
-  "sriluurian": "SW5E.LanguagesSriluurian",
-  "ssi-ruuvi": "SW5E.LanguagesSsi-ruuvi",
-  "sullustese": "SW5E.LanguagesSullustese",
-  "talzzi": "SW5E.LanguagesTalzzi",
-  "thisspiasian": "SW5E.LanguagesThisspiasian",
-  "togorese": "SW5E.LanguagesTogorese",
-  "togruti": "SW5E.LanguagesTogruti",
-  "toydarian": "SW5E.LanguagesToydarian",
-  "tusken": "SW5E.LanguagesTusken",
-  "twi'leki": "SW5E.LanguagesTwileki",
-  "ugnaught": "SW5E.LanguagesUgnaught",
-  "umbaran": "SW5E.LanguagesUmbaran",
-  "utapese": "SW5E.LanguagesUtapese",
-  "verpine": "SW5E.LanguagesVerpine",
-  "vong": "SW5E.LanguagesVong",
-  "voss": "SW5E.LanguagesVoss",
-  "yevethan": "SW5E.LanguagesYevethan",
-  "zabraki": "SW5E.LanguagesZabraki",
-  "zygerrian": "SW5E.LanguagesZygerrian"
+  "common": "SW5E.LanguagesCommon",
+  "aarakocra": "SW5E.LanguagesAarakocra",
+  "abyssal": "SW5E.LanguagesAbyssal",
+  "aquan": "SW5E.LanguagesAquan",
+  "auran": "SW5E.LanguagesAuran",
+  "celestial": "SW5E.LanguagesCelestial",
+  "deep": "SW5E.LanguagesDeepSpeech",
+  "draconic": "SW5E.LanguagesDraconic",
+  "druidic": "SW5E.LanguagesDruidic",
+  "dwarvish": "SW5E.LanguagesDwarvish",
+  "elvish": "SW5E.LanguagesElvish",
+  "giant": "SW5E.LanguagesGiant",
+  "gith": "SW5E.LanguagesGith",
+  "gnomish": "SW5E.LanguagesGnomish",
+  "goblin": "SW5E.LanguagesGoblin",
+  "gnoll": "SW5E.LanguagesGnoll",
+  "halfling": "SW5E.LanguagesHalfling",
+  "ignan": "SW5E.LanguagesIgnan",
+  "infernal": "SW5E.LanguagesInfernal",
+  "orc": "SW5E.LanguagesOrc",
+  "primordial": "SW5E.LanguagesPrimordial",
+  "sylvan": "SW5E.LanguagesSylvan",
+  "terran": "SW5E.LanguagesTerran",
+  "cant": "SW5E.LanguagesThievesCant",
+  "undercommon": "SW5E.LanguagesUndercommon"
 };
 
 // Character Level XP Requirements
@@ -802,57 +700,21 @@ SW5E.classFeatures = ClassFeatures;
 
 // Configure Optional Character Flags
 SW5E.characterFlags = {
-  "detailOriented": {
-    name: "Detail Oriented",
-    hint: "You have advantage on Intelligence (Investigation) checks within 5 feet.",
+  "diamondSoul": {
+    name: "SW5E.FlagsDiamondSoul",
+    hint: "SW5E.FlagsDiamondSoulHint",
+    section: "Feats",
+    type: Boolean
+  },
+  "elvenAccuracy": {
+    name: "SW5E.FlagsElvenAccuracy",
+    hint: "SW5E.FlagsElvenAccuracyHint",
     section: "Racial Traits",
     type: Boolean
   },
-  "keenSenses": {
-    name: "Keen Hearing and Smell",
-    hint: "You have advantage on Wisdom (Perception) checks that involve hearing or smell.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "naturallyStealthy": {
-    name: "Naturally Stealthy",
-    hint: "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "nimbleEscape": {
-    name: "Nimble Escape",
-    hint: "You can take the Disengage or Hide action as a bonus action.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "powerfulBuild": {
-    name: "SW5E.FlagsPowerfulBuild",
-    hint: "SW5E.FlagsPowerfulBuildHint",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "programmer": {
-    name: "Programmer",
-    hint: "Whenever you make an Intelligence (Technology) check related to computers, you are considered to have expertise in the Technology skill.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "techResistance": {
-    name: "Tech Resistance",
-    hint: "You have advantage on Dexterity and Intelligence saving throws against tech powers.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "unarmedCombatant": {
-    name: "Unarmed Combatant",
-    hint: "Your unarmed strikes deal 1d4 kinetic damage. You can use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.",
-    section: "Racial Traits",
-    type: Boolean
-  },
-  "undersized": {
-    name: "Undersized",
-    hint: "You can’t use heavy shields, martial weapons with the two-handed property unless it also has the light property, and if a martial weapon has the versatile property, you can only wield it in two hands.",
+  "halflingLucky": {
+    name: "SW5E.FlagsHalflingLucky",
+    hint: "SW5E.FlagsHalflingLuckyHint",
     section: "Racial Traits",
     type: Boolean
   },
@@ -881,13 +743,19 @@ SW5E.characterFlags = {
     section: "Feats",
     type: Boolean
   },
+  "powerfulBuild": {
+    name: "SW5E.FlagsPowerfulBuild",
+    hint: "SW5E.FlagsPowerfulBuildHint",
+    section: "Racial Traits",
+    type: Boolean
+  },
   "reliableTalent": {
     name: "SW5E.FlagsReliableTalent",
     hint: "SW5E.FlagsReliableTalentHint",
     section: "Feats",
     type: Boolean
   },
-    "remarkableAthlete": {
+  "remarkableAthlete": {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],
@@ -895,15 +763,27 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "weaponCriticalThreshold": {
-    name: "SW5E.FlagsCritThreshold",
-    hint: "SW5E.FlagsCritThresholdHint",
+    name: "SW5E.FlagsWeaponCritThreshold",
+    hint: "SW5E.FlagsWeaponCritThresholdHint",
     section: "Feats",
     type: Number,
     placeholder: 20
-  }
+  },
+  "powerCriticalThreshold": {
+    name: "SW5E.FlagsPowerCritThreshold",
+    hint: "SW5E.FlagsPowerCritThresholdHint",
+    section: "Feats",
+    type: Number,
+    placeholder: 20
+  },
+  "meleeCriticalDamageDice": {
+    name: "SW5E.FlagsMeleeCriticalDice",
+    hint: "SW5E.FlagsMeleeCriticalDiceHint",
+    section: "Feats",
+    type: Number,
+    placeholder: 0
+  },
 };
 
 // Configure allowed status flags
-SW5E.allowedActorFlags = [
-  "isPolymorphed", "originalActor"
-].concat(Object.keys(SW5E.characterFlags));
+SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(SW5E.characterFlags));

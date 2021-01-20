@@ -1,6 +1,6 @@
 /**
  * A specialized form used to select from a checklist of attributes, traits, or properties
- * @extends {FormApplication}
+ * @implements {FormApplication}
  */
 export default class TraitSelector extends FormApplication {
 
@@ -36,8 +36,8 @@ export default class TraitSelector extends FormApplication {
   getData() {
 
     // Get current values
-    let attr = getProperty(this.object.data, this.attribute) || {};
-    attr.value = attr.value || [];
+    let attr = getProperty(this.object._data, this.attribute);
+    if ( getType(attr) !== "Object" ) attr = {value: [], custom: ""};
 
 	  // Populate choices
     const choices = duplicate(this.options.choices);
@@ -49,7 +49,7 @@ export default class TraitSelector extends FormApplication {
     }
 
     // Return data
-	  return {
+    return {
       allowCustom: this.options.allowCustom,
 	    choices: choices,
       custom: attr ? attr.custom : ""

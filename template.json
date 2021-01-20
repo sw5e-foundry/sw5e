@@ -89,10 +89,15 @@
             "units": "ft",
             "hover": false
           },
-          "powercasting": "int",
-          "speed": {
-            "_deprecated": true
-          }
+          "senses": {
+            "darkvision": 0,
+            "blindsight": 0,
+            "tremorsense": 0,
+            "truesight": 0,
+            "units": "ft",
+            "special": ""
+          },
+          "powercasting": "int"
         },
         "details": {
           "alignment": "",
@@ -173,7 +178,6 @@
           }
         },
         "traits": {
-          "senses": "",
           "languages": {
             "value": [],
             "custom": ""
@@ -230,11 +234,11 @@
             "attack": "",
             "damage": ""
           },
-          "msak": {
+          "mpak": {
             "attack": "",
             "damage": ""
           },
-          "rsak": {
+          "rpak": {
             "attack": "",
             "damage": ""
           },
@@ -249,6 +253,7 @@
         }
       }
     },
+    "htmlFields": ["details.biography.value", "details.biography.public"],
     "character": {
       "templates": ["common", "creature"],
       "attributes": {
@@ -410,6 +415,7 @@
         "weight": 0,
         "price": 0,
         "attuned": false,
+        "attunement": 0,
         "equipped": false,
         "rarity": "",
         "identified": true
@@ -475,6 +481,7 @@
         }
       }
     },
+    "htmlFields": ["description.value", "description.chat", "description.unidentified"],
     "backpack": {
       "templates": ["itemDescription", "physicalItem"],
       "capacity": {

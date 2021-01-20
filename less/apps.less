@@ -178,11 +178,14 @@
     background: transparent;
   }
 
-  // Rollable Links
+  // Rollable Titles
   .editable .rollable:hover {
+    cursor: pointer;
+  }
+  .editable h4.rollable:hover,
+  .editable .rollable:hover > h4 {
     color: #000;
     text-shadow: 0 0 10px red;
-    cursor: pointer;
   }
 
   // Separators
@@ -306,6 +309,7 @@
   /* ----------------------------------------- */
 
   .filter-list {
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -382,13 +386,37 @@
       padding: 0;
     }
 
+    // Item Name
+    .item-name {
+      flex: 2;
+      margin: 0;
+      overflow: hidden;
+      font-size: 13px;
+      text-align: left;
+      align-items: center;
+      h3, h4 {
+        margin: 0;
+        white-space: nowrap;
+        overflow-x: hidden;
+      }
+    }
+
+    // Control Buttons
+    .item-controls {
+      flex: 0 0 60px;
+      justify-content: space-between;
+      a {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
     // Individual Item
     .item {
       align-items: center;
       padding: 0 2px; // to align with the header border
       border-bottom: 1px solid @colorFaint;
       &:last-child { border-bottom: none; }
-
       .item-name {
         color: @colorDark;
         .item-image {
@@ -419,30 +447,11 @@
         font-size: 12px;
         text-align: center;
       }
-      .item-name {
+      h3 {
         padding-left: 5px;
         .modesto();
+        text-align: left;
         font-size: 16px;
-      }
-    }
-
-    // Item Name
-    .item-name {
-      flex: 2;
-      margin: 0;
-      overflow: hidden;
-      font-size: 13px;
-      text-align: left;
-      align-items: center;
-    }
-
-    // Control Buttons
-    .item-controls {
-      flex: 0 0 60px;
-      justify-content: space-between;
-      a {
-        font-size: 12px;
-        text-align: center;
       }
     }
   }

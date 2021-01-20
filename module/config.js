@@ -54,6 +54,20 @@ SW5E.alignments = {
   'ce': "SW5E.AlignmentCE"
 };
 
+/* -------------------------------------------- */
+
+/**
+ * An enumeration of item attunement states
+ * @type {{"0": string, "1": string, "2": string}}
+ */
+SW5E.attunements = {
+  0: "SW5E.AttunementNone",
+  1: "SW5E.AttunementRequired",
+  2: "SW5E.AttunementAttuned"
+};
+
+/* -------------------------------------------- */
+
 
 SW5E.weaponProficiencies = {
   "sim": "SW5E.WeaponSimpleProficiency",
@@ -155,8 +169,8 @@ SW5E.tokenSizes = {
 SW5E.itemActionTypes = {
   "mwak": "SW5E.ActionMWAK",
   "rwak": "SW5E.ActionRWAK",
-  "msak": "SW5E.ActionMSAK",
-  "rsak": "SW5E.ActionRSAK",
+  "mpak": "SW5E.ActionMPAK",
+  "rpak": "SW5E.ActionRPAK",
   "save": "SW5E.ActionSave",
   "heal": "SW5E.ActionHeal",
   "abil": "SW5E.ActionAbil",
@@ -396,16 +410,15 @@ SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
 /* -------------------------------------------- */
 
 /**
- * Character senses options
- * @type {Object}
+ * The set of possible sensory perception types which an Actor may have
+ * @type {object}
  */
 SW5E.senses = {
-  "bs": "SW5E.SenseBS",
-  "dv": "SW5E.SenseDV",
-  "ts": "SW5E.SenseTS",
-  "tr": "SW5E.SenseTR"
+  "blindsight": "SW5E.SenseBlindsight",
+  "darkvision": "SW5E.SenseDarkvision",
+  "tremorsense": "SW5E.SenseTremorsense",
+  "truesight": "SW5E.SenseTruesight"
 };
-
 
 /* -------------------------------------------- */
 

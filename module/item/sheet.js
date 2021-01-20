@@ -61,6 +61,9 @@ export default class ItemSheet5e extends ItemSheet {
     data.isFlatDC = getProperty(data.item.data, "save.scaling") === "flat";
     data.isLine = ["line", "wall"].includes(data.item.data.target?.type);
 
+    // Original maximum uses formula
+    if ( this.item._data.data?.uses?.max ) data.data.uses.max = this.item._data.data.uses.max;
+
     // Vehicles
     data.isCrewed = data.item.data.activation?.type === 'crew';
     data.isMountable = this._isItemMountable(data.item);
@@ -91,7 +94,7 @@ export default class ItemSheet5e extends ItemSheet {
           ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
         }
         return ammo;
-      }, {});
+      }, {[item._id]: `${item.name} (${item.data.quantity})`});
     }
 
     // Attributes
@@ -313,7 +316,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     // Render the Trait Selector dialog
     new TraitSelector(this.item, {
-      name: a.dataset.edit,
+      name: a.dataset.target,
       title: label.innerText,
       choices: Object.entries(CONFIG.SW5E.skills).reduce((obj, e) => {
         if ( choices.includes(e[0] ) ) obj[e[0]] = e[1];

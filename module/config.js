@@ -57,6 +57,16 @@ SW5E.alignments = {
 /* -------------------------------------------- */
 
 /**
+ * An enumeration of item attunement types
+ * @enum {number}
+ */
+SW5E.attunementTypes = {
+  NONE: 0,
+  REQUIRED: 1,
+  ATTUNED: 2,
+}
+
+/**
  * An enumeration of item attunement states
  * @type {{"0": string, "1": string, "2": string}}
  */
@@ -303,6 +313,18 @@ SW5E.damageResistanceTypes = mergeObject(duplicate(SW5E.damageTypes), {
 
 /* -------------------------------------------- */
 
+/**
+ * The valid units of measure for movement distances in the game system.
+ * By default this uses the imperial units of feet and miles.
+ * @type {Object<string,string>}
+ */
+SW5E.movementTypes = {
+  "burrow": "SW5E.MovementBurrow",
+  "climb": "SW5E.MovementClimb",
+  "fly": "SW5E.MovementFly",
+  "swim": "SW5E.MovementSwim",
+  "walk": "SW5E.MovementWalk",
+}
 
 /**
  * The valid units of measure for movement distances in the game system.
@@ -506,16 +528,19 @@ SW5E.weaponTypes = {
  * @type {Object}
  */
 SW5E.weaponProperties = {
+  "ada": "SW5E.WeaponPropertiesAda",
   "amm": "SW5E.WeaponPropertiesAmm",
-  "hvy": "SW5E.WeaponPropertiesHvy",
   "fin": "SW5E.WeaponPropertiesFin",
   "fir": "SW5E.WeaponPropertiesFir",
   "foc": "SW5E.WeaponPropertiesFoc",
+  "hvy": "SW5E.WeaponPropertiesHvy",
   "lgt": "SW5E.WeaponPropertiesLgt",
   "lod": "SW5E.WeaponPropertiesLod",
+  "mgc": "SW5E.WeaponPropertiesMgc",
   "rch": "SW5E.WeaponPropertiesRch",
   "rel": "SW5E.WeaponPropertiesRel",
   "ret": "SW5E.WeaponPropertiesRet",
+  "sil": "SW5E.WeaponPropertiesSil",
   "spc": "SW5E.WeaponPropertiesSpc",
   "thr": "SW5E.WeaponPropertiesThr",
   "two": "SW5E.WeaponPropertiesTwo",

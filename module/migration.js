@@ -234,8 +234,8 @@ export const migrateSceneData = function(scene) {
  */
 function _migrateActorMovement(actor, updateData) {
   const ad = actor.data;
-  const old = ad?.attributes?.speed?.value;
-  if ( old === undefined ) return;
+  const old = actor.type === 'vehicle' ? ad?.attributes?.speed : ad?.attributes?.speed?.value;
+  if ( typeof old !== "string" ) return;
   const s = (old || "").split(" ");
   if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
   updateData["data.attributes.-=speed"] = null;
@@ -287,7 +287,7 @@ function _migrateActorSenses(actor, updateData) {
  */
 function _migrateItemAttunement(item, updateData) {
   if ( item.data.attuned === undefined ) return;
-  updateData["data.attunement"] = 0;
+  updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;
 }

@@ -93,8 +93,14 @@ export default class Actor5e extends Actor {
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    this._computePowercastingDC(this.data);
+    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
     this._computePowercastingProgression(this.data);
+
+    // Compute owned item attributes which depend on prepared Actor data
+    this.items.forEach(item => {
+      item.getSaveDC();
+      item.getAttackToHit();
+    });
   }
 
   /* -------------------------------------------- */
@@ -169,7 +175,10 @@ export default class Actor5e extends Actor {
     }
 
     // Load item data for all identified features
-    const features = await Promise.all(ids.map(id => fromUuid(id)));
+    const features = [];
+    for ( let id of ids ) {
+      features.push(await fromUuid(id));
+    }
 
     // Class powers should always be prepared
     for ( const feature of features ) {
@@ -313,19 +322,22 @@ export default class Actor5e extends Actor {
     const joat = flags.jackOfAllTrades;
     const observant = flags.observantFeat;
     const skillBonus = Number.isNumeric(bonuses.skill) ? parseInt(bonuses.skill) :  0;
-    let round = Math.floor;
     for (let [id, skl] of Object.entries(data.skills)) {
-      skl.value = parseFloat(skl.value || 0);
+      skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 2) ?? 0;
+      let round = Math.floor;
 
-      // Apply Remarkable Athlete or Jack of all Trades
-      let multi = skl.value;
-      if ( athlete && (skl.value === 0) && feats.remarkableAthlete.abilities.includes(skl.ability) ) {
-        multi = 0.5;
+      // Remarkable
+      if ( athlete && (skl.value < 0.5) && feats.remarkableAthlete.abilities.includes(skl.ability) ) {
+        skl.value = 0.5;
         round = Math.ceil;
       }
-      if ( joat && (skl.value === 0 ) ) multi = 0.5;
 
-      // Retain the maximum skill proficiency when skill proficiencies are merged
+      // Jack of All Trades
+      if ( joat && (skl.value < 0.5) ) {
+        skl.value = 0.5;
+      }
+
+      // Polymorph Skill Proficiencies
       if ( originalSkills ) {
         skl.value = Math.max(skl.value, originalSkills[id].value);
       }
@@ -333,30 +345,13 @@ export default class Actor5e extends Actor {
       // Compute modifier
       skl.bonus = checkBonus + skillBonus;
       skl.mod = data.abilities[skl.ability].mod;
-      skl.prof = round(multi * data.attributes.prof);
+      skl.prof = round(skl.value * data.attributes.prof);
       skl.total = skl.mod + skl.prof + skl.bonus;
 
       // Compute passive bonus
       const passive = observant && (feats.observantFeat.skills.includes(id)) ? 5 : 0;
       skl.passive = 10 + skl.total + passive;
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Compute the powercasting DC for all item abilities which use power DC scaling
-   * @param {object} actorData    The actor data being prepared
-   * @private
-   */
-  _computePowercastingDC(actorData) {
-
-    // Compute the powercasting DC
-    const data = actorData.data;
-    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
-
-    // Compute ability save DCs that depend on the calling actor
-    this.items.forEach(i => i.getSaveDC());
   }
 
   /* -------------------------------------------- */
@@ -420,9 +415,9 @@ export default class Actor5e extends Actor {
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
       if ( Number.isNaN(i) ) continue;
-      if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 1);
+      if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 0);
       else lvl.max = slots[i-1] || 0;
-      lvl.value = Math.min(parseInt(lvl.value), lvl.max);
+      lvl.value = parseInt(lvl.value);
     }
 
     // Determine the Actor's pact magic level (if any)
@@ -1113,8 +1108,7 @@ export default class Actor5e extends Actor {
 
     // Recover power slots
     for ( let [k, v] of Object.entries(data.powers) ) {
-      if ( !v.max && !v.override ) continue;
-      updateData[`data.powers.${k}.value`] = v.override || v.max;
+      updateData[`data.powers.${k}.value`] = !Number.isNaN(v.override) ? v.override : (v.max ?? 0);
     }
 
     // Recover pact slots.
@@ -1238,10 +1232,10 @@ export default class Actor5e extends Actor {
     }
 
     // Get the original Actor data and the new source data
-    const o = duplicate(this.data);
+    const o = this.toJSON();
     o.flags.sw5e = o.flags.sw5e || {};
     o.flags.sw5e.transformOptions = {mergeSkills, mergeSaves};
-    const source = duplicate(target.data);
+    const source = target.toJSON();
 
     // Prepare new data to merge from the source
     const d = {
@@ -1249,6 +1243,7 @@ export default class Actor5e extends Actor {
       name: `${o.name} (${source.name})`, // Append the new shape to your old name
       data: source.data, // Get the data model of your new form
       items: source.items, // Get the items of your new form
+      effects: o.effects.concat(source.effects), // Combine active effects from both forms
       token: source.token, // New token configuration
       img: source.img, // New appearance
       permission: o.permission, // Use the original actor permissions

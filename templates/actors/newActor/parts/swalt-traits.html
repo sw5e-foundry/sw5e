@@ -1,63 +1,3 @@
-<section class="resources">
-<section class="resource-items">
-    {{#each resources as |res|}}
-	<div class="resource">
-		<h1>
-			<input name="data.resources.{{res.name}}.label" type="text" value="{{res.label}}"
-				placeholder="{{res.placeholder}}" />
-		</h1>
-		<div class="attribute-value">
-			<input name="data.resources.{{res.name}}.value" type="text" value="{{res.value}}" data-dtype="Number"
-				placeholder="0" class="value-number" />
-			<span class="value-separator">/</span>
-			<input name="data.resources.{{res.name}}.max" type="text" value="{{res.max}}" data-dtype="Number"
-				placeholder="0" class="value-number" />
-		</div>
-		<footer class="attribute-footer">
-			<label class="recharge checkbox">
-				{{ localize "SW5E.AbbreviationSR" }} <input name="data.resources.{{res.name}}.sr" type="checkbox"
-					{{checked res.sr}} />
-			</label>
-			<label class="recharge checkbox">
-				{{ localize "SW5E.AbbreviationLR" }} <input name="data.resources.{{res.name}}.lr" type="checkbox"
-					{{checked res.lr}} />
-			</label>
-		</footer>
-	</div>
-	{{/each}}
-
-</section>
-<section class="counters">
-	<div class="counter">
-		<h4 class="death-save rollable">{{ localize "SW5E.DeathSave" }}</h4>
-		<div class="counter-value">
-			<div class="death-success">
-				<i class="fas fa-check"></i>
-				<input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
-					value="{{data.attributes.death.success}}" />
-			</div>
-			<div class="death-fail">
-				<i class="fas fa-times"></i>
-				<input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
-					value="{{data.attributes.death.failure}}" />
-			</div>
-		</div>
-	</div>
-	<div class="counter">
-		<h4>{{ localize "SW5E.Exhaustion" }}</h4>
-		<div class="counter-value">
-			<input type="text" name="data.attributes.exhaustion" data-dtype="Number" placeholder="0"
-				value="{{data.attributes.exhaustion}}" />
-		</div>
-	</div>
-	<div class="counter">
-		<h4>{{ localize "SW5E.Inspiration" }}</h4>
-		<div class="counter-value">
-			<input type="checkbox" name="data.attributes.inspiration" data-dtype="Boolean"
-				{{checked data.attributes.inspiration}} />
-		</div>
-	</div>
-</section>
 <section class="traits">
     <label>
         {{localize "SW5E.Size"}}
@@ -80,16 +20,6 @@
         </ul>
         {{/unless}}
     </label>
-	<div>
-        <label>{{localize "SW5E.MovementConfig"}}</label>
-        <a class="configure-movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
-	</div>
-	<div>
-    {{#unless isVehicle}}
-        <label>{{localize "SW5E.SpecialTraits"}}</label>
-        <a class="configure-flags"><i class="fas fa-cog"></i></a>
-    {{/unless}}
-    </div>
     <div class="languages">
         <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
         <a class="trait-selector" data-options="languages" data-target="data.traits.languages">
@@ -100,40 +30,7 @@
             <li>{{v}}</li>
             {{/each}}
         </ul>
-    </div>	
-    <div>
-        <label>{{localize "SW5E.TraitArmorProf"}}</label>
-        <a class="trait-selector" data-options="armorProficiencies" data-target="data.traits.armorProf">
-            <i class="fas fa-edit"></i>
-        </a>
-        <ul class="traits-list">
-        {{#each data.traits.armorProf.selected as |v k|}}
-            <li>{{v}}</li>
-        {{/each}}
-        </ul>
     </div>
-    <div>
-        <label>{{localize "SW5E.TraitToolProf"}}</label>
-        <a class="trait-selector" data-options="toolProficiencies" data-target="data.traits.toolProf">
-            <i class="fas fa-edit"></i>
-        </a>
-        <ul class="traits-list">
-        {{#each data.traits.toolProf.selected as |v k|}}
-            <li>{{v}}</li>
-        {{/each}}
-        </ul>
-    </div>
-    <div>
-        <label>{{localize "SW5E.TraitWeaponProf"}}</label>
-        <a class="trait-selector" data-options="weaponProficiencies" data-target="data.traits.weaponProf">
-            <i class="fas fa-edit"></i>
-        </a>
-        <ul class="traits-list">
-        {{#each data.traits.weaponProf.selected as |v k|}}
-            <li>{{v}}</li>
-        {{/each}}
-        </ul>
-    </div>	
     <div>
         <label>{{localize "SW5E.DamImm"}}</label>
         <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.di">
@@ -179,7 +76,47 @@
         {{/each}}
         </ul>
     </div>{{#if isCharacter}}
+    <div>
+        <label>{{localize "SW5E.TraitWeaponProf"}}</label>
+        <a class="trait-selector" data-options="weaponProficiencies" data-target="data.traits.weaponProf">
+            <i class="fas fa-edit"></i>
+        </a>
+        <ul class="traits-list">
+        {{#each data.traits.weaponProf.selected as |v k|}}
+            <li>{{v}}</li>
+        {{/each}}
+        </ul>
+    </div>
+    <div>
+        <label>{{localize "SW5E.TraitArmorProf"}}</label>
+        <a class="trait-selector" data-options="armorProficiencies" data-target="data.traits.armorProf">
+            <i class="fas fa-edit"></i>
+        </a>
+        <ul class="traits-list">
+        {{#each data.traits.armorProf.selected as |v k|}}
+            <li>{{v}}</li>
+        {{/each}}
+        </ul>
+    </div>
 
+    <div>
+        <label>{{localize "SW5E.TraitToolProf"}}</label>
+        <a class="trait-selector" data-options="toolProficiencies" data-target="data.traits.toolProf">
+            <i class="fas fa-edit"></i>
+        </a>
+        <ul class="traits-list">
+        {{#each data.traits.toolProf.selected as |v k|}}
+            <li>{{v}}</li>
+        {{/each}}
+        </ul>
+    </div>
     {{/if}}
+
+    {{#unless isVehicle}}
+    <div>
+        <label>{{localize "SW5E.SpecialTraits"}}</label>
+        <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
+    </div>
+    {{/unless}}
     <ul class="passives"></ul>
 </section>

@@ -33,10 +33,10 @@ export default class ActorSheet5e extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       scrollY: [
-        ".inventory .group-list",
-        ".features .group-list",
-        ".powerbook .group-list",
-        ".effects .effects-list"
+        ".inventory .inventory-list",
+        ".features .inventory-list",
+        ".powerbook .inventory-list",
+        ".effects .inventory-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
@@ -617,6 +617,11 @@ export default class ActorSheet5e extends ActorSheet {
     if ( (itemData.type === "power") && (this._tabs[0].active === "inventory") ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       itemData = scroll.data;
+    }
+
+    // Ignore certain statuses
+    if ( itemData.data ) {
+      ["attunement", "equipped", "proficient", "prepared"].forEach(k => delete itemData.data[k]);
     }
 
     // Create the owned item as normal

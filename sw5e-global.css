@@ -48,17 +48,6 @@
   font-weight: 400;
   src: url('./fonts/Aurebesh.ttf');
 }
-@font-face {
-  font-family: 'Engli-Besh';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/EngliBesh-KG3W.ttf');
-}
-.engli-Besh {
-  font-family: 'Engli-Besh';
-  font-size: 20px;
-  font-weight: 400;
-}
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
@@ -716,7 +705,7 @@ input[type="reset"]:disabled {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .sw5e.sheet.actor.character {
-  min-width: 850px;
+  min-width: 800px;
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -1341,7 +1330,7 @@ input[type="reset"]:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
-  grid-row-gap: 8px;
+  row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits input,
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits select {
@@ -1368,7 +1357,7 @@ input[type="reset"]:disabled {
   text-shadow: none;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages {
-  grid-column-end: span 1;
+  grid-column-end: span 2;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages label:hover {
   cursor: pointer;

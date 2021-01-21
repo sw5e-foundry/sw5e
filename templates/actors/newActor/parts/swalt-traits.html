@@ -80,16 +80,6 @@
         </ul>
         {{/unless}}
     </label>
-	<div>
-        <label>{{localize "SW5E.MovementConfig"}}</label>
-        <a class="configure-movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
-	</div>
-	<div>
-    {{#unless isVehicle}}
-        <label>{{localize "SW5E.SpecialTraits"}}</label>
-        <a class="configure-flags"><i class="fas fa-cog"></i></a>
-    {{/unless}}
-    </div>
     <div class="languages">
         <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
         <a class="trait-selector" data-options="languages" data-target="data.traits.languages">
@@ -101,6 +91,13 @@
             {{/each}}
         </ul>
     </div>	
+    {{#unless isVehicle}}
+    <div class="form-group ">
+        <label>{{localize "SW5E.SpecialTraits"}}</label>
+        <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
+    </div>
+    {{/unless}}
+
     <div>
         <label>{{localize "SW5E.TraitArmorProf"}}</label>
         <a class="trait-selector" data-options="armorProficiencies" data-target="data.traits.armorProf">
@@ -181,11 +178,5 @@
     </div>{{#if isCharacter}}
 
     {{/if}}
-    {{#unless isVehicle}}
-    <div>
-        <label>{{localize "SW5E.SpecialTraits"}}</label>
-        <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
-    </div>
-    {{/unless}}
     <ul class="passives"></ul>
 </section>

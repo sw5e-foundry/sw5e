@@ -56,7 +56,7 @@ body.light-theme input[type="time"],
 body.light-theme select,
 body.light-theme textarea {
   border: 1px solid #828282;
-  color: #1C1C1C;
+  color: #FFFFFF;
 }
 body.light-theme input[type="text"]:hover,
 body.light-theme input[type="number"]:hover,
@@ -83,7 +83,7 @@ body.light-theme input[type="date"]::placeholder,
 body.light-theme input[type="time"]::placeholder,
 body.light-theme select::placeholder,
 body.light-theme textarea::placeholder {
-  color: #1C1C1C;
+  color: #FFFFFF;
   opacity: 0.5;
 }
 body.light-theme input[type="text"] ::-ms-input-placeholder,
@@ -94,7 +94,7 @@ body.light-theme input[type="time"] ::-ms-input-placeholder,
 body.light-theme select ::-ms-input-placeholder,
 body.light-theme textarea ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #1C1C1C;
+  color: #FFFFFF;
   opacity: 0.5;
 }
 body.light-theme button,
@@ -234,13 +234,14 @@ body.light-theme .dice-roll .dice-total.fumble {
   box-shadow: 0 0 12px rgba(196, 15, 15, 0.5);
 }
 body.light-theme #chat-controls .roll-type-select {
-  background: white;
+  background: #4f4f4f;
 }
 body.light-theme #chat-controls label {
   color: #1C1C1C;
 }
 body.light-theme #chat-form textarea {
-  background: white;
+  background: #4f4f4f;
+  color: #FFFFFF;
 }
 body.light-theme #combat #combat-round {
   color: #c40f0f;
@@ -776,3 +777,4 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
 body.light-theme .sw5e.sheet.actor.npc .swalt-sheet header .experience {
   color: #4f4f4f;
 }
+

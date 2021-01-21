@@ -127,10 +127,13 @@ export default class AbilityUseDialog extends Dialog {
       });
     }
     const canCast = powerLevels.some(l => l.hasSlots);
+    if ( !canCast ) data.errors.push(game.i18n.format("SW5E.PowerCastNoSlots", {
+      level: CONFIG.SW5E.powerLevels[lvl],
+      name: data.item.name
+    }));
 
-    // Return merged data
-    data = mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
-    if ( !canCast ) data.errors.push("SW5E.PowerCastNoSlots");
+    // Merge power casting data
+    return mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
   }
 
   /* -------------------------------------------- */
@@ -165,6 +168,8 @@ export default class AbilityUseDialog extends Dialog {
         type: item.data.consumableType,
         value: uses.value,
         quantity: item.data.quantity,
+        max: uses.max,
+        per: CONFIG.SW5E.limitedUsePeriods[uses.per]
       });
     }
 

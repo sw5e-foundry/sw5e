@@ -127,7 +127,6 @@ export const migrateActorData = function(actor) {
   const updateData = {};
 
   // Actor Data Updates
-  _migrateActorBonuses(actor, updateData);
   _migrateActorMovement(actor, updateData);
   _migrateActorSenses(actor, updateData);
 
@@ -230,27 +229,13 @@ export const migrateSceneData = function(scene) {
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor bonuses object
- * @private
- */
-function _migrateActorBonuses(actor, updateData) {
-  const b = game.system.model.Actor.character.bonuses;
-  for ( let k of Object.keys(actor.data.bonuses || {}) ) {
-    if ( k in b ) updateData[`data.bonuses.${k}`] = b[k];
-    else updateData[`data.bonuses.-=${k}`] = null;
-  }
-}
-
-/* -------------------------------------------- */
-
-/**
  * Migrate the actor speed string to movement object
  * @private
  */
 function _migrateActorMovement(actor, updateData) {
   const ad = actor.data;
-  const old = ad?.attributes?.speed?.value;
-  if ( old === undefined ) return;
+  const old = actor.type === 'vehicle' ? ad?.attributes?.speed : ad?.attributes?.speed?.value;
+  if ( typeof old !== "string" ) return;
   const s = (old || "").split(" ");
   if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
   updateData["data.attributes.-=speed"] = null;
@@ -302,7 +287,7 @@ function _migrateActorSenses(actor, updateData) {
  */
 function _migrateItemAttunement(item, updateData) {
   if ( item.data.attuned === undefined ) return;
-  updateData["data.attunement"] = 0;
+  updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;
 }

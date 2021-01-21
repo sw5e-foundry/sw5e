@@ -56,6 +56,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
+  /** @override */
+  _getMovementSpeed(actorData, largestPrimary=true) {
+    return super._getMovementSpeed(actorData, largestPrimary);
+  }
+
+  /* -------------------------------------------- */
+
   /**
    * Prepare items that are mounted to a vehicle and require one or more crew
    * to operate.
@@ -82,13 +89,6 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     if (item.type === 'equipment' || item.type === 'weapon') {
       item.threshold = item.data.hp.dt ? item.data.hp.dt : '—';
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /** @override */
-  _getMovementSpeed(actorData) {
-    return {primary: "", special: ""};
   }
 
   /* -------------------------------------------- */

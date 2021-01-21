@@ -44,7 +44,7 @@ import * as migrations from "./module/migration.js";
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
-  console.log(`SW5e | Initializing Star Wars 5th Edition System\n${SW5E.ASCII}`);
+  console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 
   // Create a SW5E namespace within the game global
   game.sw5e = {
@@ -80,7 +80,15 @@ Hooks.once("init", function() {
   CONFIG.Actor.entityClass = Actor5e;
   CONFIG.Item.entityClass = Item5e;
   CONFIG.time.roundTime = 6;
-  
+  CONFIG.fontFamilies = [
+    "Engli-Besh",
+    "Open Sans",
+    "Russo One"
+  ];
+
+  // 5e cone RAW should be 53.13 degrees
+  CONFIG.MeasuredTemplate.defaults.angle = 53.13;
+
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
@@ -145,7 +153,7 @@ Hooks.once("setup", function() {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
     "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
   ];
@@ -187,7 +195,7 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.2.0";
+  const NEEDS_MIGRATION_VERSION = "1.2.1";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
   if ( !needsMigration ) return;

@@ -48,6 +48,12 @@
   font-weight: 400;
   src: url('./fonts/Aurebesh.ttf');
 }
+@font-face {
+  font-family: 'Engli-Besh';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/EngliBesh-KG3W.ttf');
+}
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
@@ -80,6 +86,9 @@ body {
   font-family: 'Open Sans';
   font-size: 13px;
   font-weight: 400;
+  background-image: url('./ui/SW5e-logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 h1 {
   font-family: 'Russo One';
@@ -702,7 +711,7 @@ input[type="reset"]:disabled {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .sw5e.sheet.actor.character {
-  min-width: 800px;
+  min-width: 850px;
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -754,7 +763,7 @@ input[type="reset"]:disabled {
   grid-template-rows: 1fr 26px auto;
   grid-template-columns: 128px 1fr;
   column-gap: 8px;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet header img {
   grid-column-start: 1;
@@ -1327,7 +1336,7 @@ input[type="reset"]:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits input,
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits select {
@@ -1354,7 +1363,7 @@ input[type="reset"]:disabled {
   text-shadow: none;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages {
-  grid-column-end: span 2;
+  grid-column-end: span 1;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages label:hover {
   cursor: pointer;
@@ -1376,7 +1385,7 @@ input[type="reset"]:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4px;
-  row-gap: 4px;
+  grid-row-gap: 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits ul.passives strong {
   font-size: 13px;
@@ -1587,7 +1596,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet.limited {
   grid-template-rows: 144px auto;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet.limited header {
   grid-template-rows: 1fr;

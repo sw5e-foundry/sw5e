@@ -26,6 +26,15 @@ export default class CharacterImporter {
       const wisdomSaveProf = sourceCharacter.attribs.find(o => o.name == 'wisdom_save_prof').current ? 1 : 0;
       const charismaSaveProf = sourceCharacter.attribs.find(o => o.name == 'charisma_save_prof').current ? 1 : 0;
 
+      let characterJSON = {
+        character: character,
+        features: features,
+        classes: classes,
+        inventory: inventory,
+        spells: spells,
+        actions: actions,
+        itemSpells: itemSpells,
+      };
       // v2 - skills and proficiencies
       /*
       const acrobaticsSkill = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;

@@ -24,6 +24,28 @@ export default class CharacterImporter {
     const wisdomSaveProf = sourceCharacter.attribs.find(o => o.name == 'wisdom_save_prof').current ? 1 : 0;
     const charismaSaveProf = sourceCharacter.attribs.find(o => o.name == 'charisma_save_prof').current ? 1 : 0;
 
+    // v2 - skills and proficiencies
+    const acrobaticsSkill = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;
+    const animalHandlingSkill = sourceCharacter.attribs.find(o => o.name == 'animal_handling_bonus').current;
+    const athleticsSkill = sourceCharacter.attribs.find(o => o.name == 'athletics_bonus').current;
+    const deceptionSkill = sourceCharacter.attribs.find(o => o.name == 'deception_bonus').current;
+    const insightSkill = sourceCharacter.attribs.find(o => o.name == 'insight_bonus').current;
+    const intimidationSkill = sourceCharacter.attribs.find(o => o.name == 'intimidation_bonus').current;
+    const investigationSkill = sourceCharacter.attribs.find(o => o.name == 'investigation_bonus').current;
+    const loreSkill = sourceCharacter.attribs.find(o => o.name == 'lore_bonus').current;
+    const medicineSkill = sourceCharacter.attribs.find(o => o.name == 'medicine_bonus').current;
+    const natureSkill = sourceCharacter.attribs.find(o => o.name == 'nature_bonus').current;
+    const pilotingSkill = sourceCharacter.attribs.find(o => o.name == 'piloting_bonus').current;
+    const perceptionSkill = sourceCharacter.attribs.find(o => o.name == 'perception_bonus').current;
+    const performanceSkill = sourceCharacter.attribs.find(o => o.name == 'performance_bonus').current;
+    const persuasionSkill = sourceCharacter.attribs.find(o => o.name == 'persuasion_bonus').current;
+    const sleightOfHandSkill = sourceCharacter.attribs.find(o => o.name == 'sleight_of_hand_bonus').current;
+    const stealthSkill = sourceCharacter.attribs.find(o => o.name == 'stealth_bonus').current;
+    const survivalSkill = sourceCharacter.attribs.find(o => o.name == 'survival_bonus').current;
+    const technologySkill = sourceCharacter.attribs.find(o => o.name == 'technology_bonus').current;
+    const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
+    const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
+    
     const targetCharacter = {
       name: sourceCharacter.name,
       type: "character",
@@ -64,7 +86,7 @@ export default class CharacterImporter {
             max: hp,
             temp: hpTemp
           }
-        }/*,
+        },
         skills: {
           acr: {
             value: acrobaticsSkill,
@@ -138,7 +160,7 @@ export default class CharacterImporter {
             value: technologySkill,
             ability: "int"
           }
-        }*/
+        }
       }
     };
 

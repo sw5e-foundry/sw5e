@@ -4,6 +4,7 @@ export default class CharacterImporter {
   // and insert new actor
   static async transform(rawCharacter){
     const sourceCharacter = JSON.parse(rawCharacter);
+    
     // v1 - just import the very basics: name, species, hp, ac and abilities
     const name = sourceCharacter.name;
     const species = sourceCharacter.attribs.find(o => o.name == "race").current;

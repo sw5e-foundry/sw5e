@@ -29,8 +29,8 @@ export default class AbilityTemplate extends MeasuredTemplate {
 
     // Additional type-specific data
     switch ( templateShape ) {
-      case "cone": // 5e cone RAW should be 53.13 degrees
-        templateData.angle = 53.13;
+      case "cone":
+        templateData.angle = CONFIG.MeasuredTemplate.defaults.angle;
         break;
       case "rect": // 5e rectangular AoEs are always cubes
         templateData.distance = Math.hypot(target.value, target.value);
@@ -45,7 +45,10 @@ export default class AbilityTemplate extends MeasuredTemplate {
     }
 
     // Return the template constructed from the item data
-    return new this(templateData);
+    const template = new this(templateData);
+    template.item = item;
+    template.actorSheet = item.actor?.sheet || null;
+    return template;
   }
 
   /* -------------------------------------------- */
@@ -55,9 +58,16 @@ export default class AbilityTemplate extends MeasuredTemplate {
    */
   drawPreview() {
     const initialLayer = canvas.activeLayer;
+
+    // Draw the template and switch to the template layer
     this.draw();
     this.layer.activate();
     this.layer.preview.addChild(this);
+
+    // Hide the sheet that originated the preview
+    if ( this.actorSheet ) this.actorSheet.minimize();
+
+    // Activate interactivity
     this.activatePreviewListeners(initialLayer);
   }
 
@@ -92,6 +102,7 @@ export default class AbilityTemplate extends MeasuredTemplate {
       canvas.app.view.oncontextmenu = null;
       canvas.app.view.onwheel = null;
       initialLayer.activate();
+      this.actorSheet.maximize();
     };
 
     // Confirm the workflow (left-click)

@@ -51,7 +51,8 @@
 
 }
 
-.sw5e.chat-card {
+.sw5e.chat-card,
+.midi-qol-item-card {
   font-size: 13px;
 
   .card-header {
@@ -168,6 +169,10 @@
 }
 }
 #chat-controls {
+  &.roll-type-select {
+    background: #4f4f4f;
+	color: #FFFFFF;
+  }
   padding-top: 4px;
   label {
     color: @colorBlack;
@@ -175,7 +180,7 @@
  
 }
 #chat-form  textarea {
-  background: white;
+  background: #4f4f4f;
   &:focus {
     box-shadow: none;
     outline: none;

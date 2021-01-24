@@ -43,6 +43,15 @@
           "init": {
             "value": 0,
             "bonus": 0
+          },
+          "movement": {
+            "burrow": 0,
+            "climb": 0,
+            "fly": 0,
+            "swim": 0,
+            "walk": 30,
+            "units": "ft",
+            "hover": false
           }
         },
         "details": {
@@ -76,19 +85,15 @@
       },
       "creature": {
         "attributes": {
-          "movement": {
-            "burrow": 0,
-            "climb": 0,
-            "fly": 0,
-            "swim": 0,
-            "walk": 30,
+          "senses": {
+            "darkvision": 0,
+            "blindsight": 0,
+            "tremorsense": 0,
+            "truesight": 0,
             "units": "ft",
-            "hover": false
+            "special": ""
           },
-          "powercasting": "int",
-          "speed": {
-            "_deprecated": true
-          }
+          "powercasting": "none"
         },
         "details": {
           "alignment": "",
@@ -169,7 +174,6 @@
           }
         },
         "traits": {
-          "senses": "",
           "languages": {
             "value": [],
             "custom": ""
@@ -245,6 +249,7 @@
         }
       }
     },
+    "htmlFields": ["details.biography.value", "details.biography.public"],
     "character": {
       "templates": ["common", "creature"],
       "attributes": {
@@ -503,6 +508,7 @@
         "weight": 0,
         "price": 0,
         "attuned": false,
+        "attunement": 0,
         "equipped": false,
         "rarity": "",
         "identified": true
@@ -519,7 +525,7 @@
         },
         "target": {
           "value": null,
-		  "width": null,
+          "width": null,
           "units": "",
           "type": ""
         },
@@ -568,6 +574,7 @@
         }
       }
     },
+    "htmlFields": ["description.value", "description.chat", "description.unidentified"],
     "archetype": {
       "templates": ["archetypeDescription"],
       "className": "",
@@ -675,8 +682,8 @@
         "supply": 0
       },
       "preparation": {
-        "mode": null,
-        "prepared": false
+        "mode": "prepared",
+        "prepared": true
       },
       "scaling": {
         "mode": "none",

@@ -1,9 +1,10 @@
-import Item5e from "../../item/entity.js";
-import TraitSelector from "../../apps/trait-selector.js";
-import ActorSheetFlags from "../../apps/actor-flags.js";
-import MovementConfig from "../../apps/movement-config.js";
-import {SW5E} from '../../config.js';
-import {onManageActiveEffect, prepareActiveEffectCategories} from "../../effects.js";
+import Item5e from "../../../item/entity.js";
+import TraitSelector from "../../../apps/trait-selector.js";
+import ActorSheetFlags from "../../../apps/actor-flags.js";
+import ActorMovementConfig from "../../../apps/movement-config.js";
+import ActorSensesConfig from "../../../apps/senses-config.js";
+import {SW5E} from '../../../config.js';
+import {onManageActiveEffect, prepareActiveEffectCategories} from "../../../effects.js";
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
@@ -32,10 +33,10 @@ export default class ActorSheet5e extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       scrollY: [
-        ".inventory .inventory-list",
-        ".features .inventory-list",
-        ".powerbook .inventory-list",
-        ".effects .inventory-list"
+        ".inventory .group-list",
+        ".features .group-list",
+        ".powerbook .group-list",
+        ".effects .effects-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
     });
@@ -45,8 +46,8 @@ export default class ActorSheet5e extends ActorSheet {
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/oldActor/limited-sheet.html";
-    return `systems/sw5e/templates/actors/oldActor/${this.actor.data.type}-sheet.html`;
+    if ( !game.user.isGM && this.actor.limited ) return "systems/sw5e/templates/actors/newActor/expanded-limited-sheet.html";
+    return `systems/sw5e/templates/actors/newActor/${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -99,6 +100,9 @@ export default class ActorSheet5e extends ActorSheet {
     // Movement speeds
     data.movement = this._getMovementSpeed(data.actor);
 
+    // Senses
+    data.senses = this._getSenses(data.actor);
+
     // Update traits
     this._prepareTraits(data.actor.data.traits);
 
@@ -115,23 +119,59 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Prepare the display of movement speed data for the Actor
-   * @param {object} actorData
+   * Prepare the display of movement speed data for the Actor*
+   * @param {object} actorData                The Actor data being prepared.
+   * @param {boolean} [largestPrimary=false]  Show the largest movement speed as "primary", otherwise show "walk"
    * @returns {{primary: string, special: string}}
    * @private
    */
-  _getMovementSpeed(actorData) {
-    const movement = actorData.data.attributes.movement;
-    const speeds = [
+  _getMovementSpeed(actorData, largestPrimary=false) {
+    const movement = actorData.data.attributes.movement || {};
+
+    // Prepare an array of available movement speeds
+    let speeds = [
       [movement.burrow, `${game.i18n.localize("SW5E.MovementBurrow")} ${movement.burrow}`],
       [movement.climb, `${game.i18n.localize("SW5E.MovementClimb")} ${movement.climb}`],
       [movement.fly, `${game.i18n.localize("SW5E.MovementFly")} ${movement.fly}` + (movement.hover ? ` (${game.i18n.localize("SW5E.MovementHover")})` : "")],
       [movement.swim, `${game.i18n.localize("SW5E.MovementSwim")} ${movement.swim}`]
-    ].filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
-    return {
-      primary: `${movement.walk || 0} ${movement.units}`,
-      special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
+    ]
+    if ( largestPrimary ) {
+      speeds.push([movement.walk, `${game.i18n.localize("SW5E.MovementWalk")} ${movement.walk}`]);
     }
+
+    // Filter and sort speeds on their values
+    speeds = speeds.filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
+
+    // Case 1: Largest as primary
+    if ( largestPrimary ) {
+      let primary = speeds.shift();
+      return {
+        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        special: speeds.map(s => s[1]).join(", ")
+      }
+    }
+
+    // Case 2: Walk as primary
+    else {
+      return {
+        primary: `${movement.walk || 0} ${movement.units}`,
+        special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  _getSenses(actorData) {
+    const senses = actorData.data.attributes.senses || {};
+    const tags = {};
+    for ( let [k, label] of Object.entries(CONFIG.SW5E.senses) ) {
+      const v = senses[k] ?? 0
+      if ( v === 0 ) continue;
+      tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units}`;
+    }
+    if ( !!senses.special ) tags["special"] = senses.special;
+    return tags;
   }
 
   /* -------------------------------------------- */
@@ -334,7 +374,7 @@ export default class ActorSheet5e extends ActorSheet {
       1: '<i class="fas fa-check"></i>',
       2: '<i class="fas fa-check-double"></i>'
     };
-    return icons[level];
+    return icons[level] || icons[0];
   }
 
   /* -------------------------------------------- */
@@ -373,8 +413,7 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.trait-selector').click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
-      html.find('.configure-movement').click(this._onMovementConfig.bind(this));
-      html.find('.configure-flags').click(this._onConfigureFlags.bind(this));
+      html.find('.config-button').click(this._onConfigMenu.bind(this));
 
       // Owned Item management
       html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -448,11 +487,24 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle click events for the Traits tab button to configure special Character Flags
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
+   * @param {Event} event   The click event which originated the selection
+   * @private
    */
-  _onConfigureFlags(event) {
+  _onConfigMenu(event) {
     event.preventDefault();
-    new ActorSheetFlags(this.actor).render(true);
+    const button = event.currentTarget;
+    switch ( button.dataset.action ) {
+      case "movement":
+        new ActorMovementConfig(this.object).render(true);
+        break;
+      case "flags":
+        new ActorSheetFlags(this.object).render(true);
+        break;
+      case "senses":
+        new ActorSensesConfig(this.object).render(true);
+        break;
+    }
   }
 
   /* -------------------------------------------- */
@@ -529,6 +581,8 @@ export default class ActorSheet5e extends ActorSheet {
           icon: '<i class="fas fa-paw"></i>',
           label: game.i18n.localize('SW5E.PolymorphWildShape'),
           callback: html => this.actor.transformInto(sourceActor, {
+            keepBio: true,
+            keepClass: true,
             keepMental: true,
             mergeSaves: true,
             mergeSkills: true,
@@ -563,6 +617,11 @@ export default class ActorSheet5e extends ActorSheet {
     if ( (itemData.type === "power") && (this._tabs[0].active === "inventory") ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       itemData = scroll.data;
+    }
+
+    // Ignore certain statuses
+    if ( itemData.data ) {
+      ["attunement", "equipped", "proficient", "prepared"].forEach(k => delete itemData.data[k]);
     }
 
     // Create the owned item as normal
@@ -619,14 +678,7 @@ export default class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.getOwnedItem(itemId);
-
-    // Roll powers through the actor
-    if ( item.data.type === "power" ) {
-      return this.actor.usePower(item, {configureDialog: !event.shiftKey});
-    }
-
-    // Otherwise roll the Item directly
-    else return item.roll();
+    return item.roll();
   }
 
   /* -------------------------------------------- */
@@ -687,7 +739,7 @@ export default class ActorSheet5e extends ActorSheet {
       data: duplicate(header.dataset)
     };
     delete itemData.data["type"];
-    return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedEntity("OwnedItem", itemData);
   }
 
   /* -------------------------------------------- */
@@ -787,18 +839,6 @@ export default class ActorSheet5e extends ActorSheet {
     const choices = CONFIG.SW5E[a.dataset.options];
     const options = { name: a.dataset.target, title: label.innerText, choices };
     new TraitSelector(this.actor, options).render(true)
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options
-   * @param {Event} event   The click event which originated the selection
-   * @private
-   */
-  _onMovementConfig(event) {
-    event.preventDefault();
-    new MovementConfig(this.object).render(true);
   }
 
   /* -------------------------------------------- */

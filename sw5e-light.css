@@ -182,22 +182,28 @@ body.light-theme #chat-log .chat-message > header span {
 body.light-theme .notification-pip {
   color: #0d99cc;
 }
-body.light-theme .sw5e.chat-card .card-header h3 {
+body.light-theme .sw5e.chat-card .card-header h3,
+body.light-theme .midi-qol-item-card .card-header h3 {
   color: #1C1C1C;
 }
-body.light-theme .sw5e.chat-card .card-header h3:hover {
+body.light-theme .sw5e.chat-card .card-header h3:hover,
+body.light-theme .midi-qol-item-card .card-header h3:hover {
   color: #1C1C1C;
 }
-body.light-theme .sw5e.chat-card .card-buttons span {
+body.light-theme .sw5e.chat-card .card-buttons span,
+body.light-theme .midi-qol-item-card .card-buttons span {
   border: 1px solid #828282;
 }
-body.light-theme .sw5e.chat-card .card-footer {
+body.light-theme .sw5e.chat-card .card-footer,
+body.light-theme .midi-qol-item-card .card-footer {
   border-top: 1px solid #7ed6f7;
 }
-body.light-theme .sw5e.chat-card .card-footer span {
+body.light-theme .sw5e.chat-card .card-footer span,
+body.light-theme .midi-qol-item-card .card-footer span {
   border-right: 1px solid #D6D6D6;
 }
-body.light-theme .sw5e.chat-card .card-footer span:last-child {
+body.light-theme .sw5e.chat-card .card-footer span:last-child,
+body.light-theme .midi-qol-item-card .card-footer span:last-child {
   border-right: none;
 }
 body.light-theme .dice-roll .dice-formula {
@@ -228,13 +234,14 @@ body.light-theme .dice-roll .dice-total.fumble {
   box-shadow: 0 0 12px rgba(196, 15, 15, 0.5);
 }
 body.light-theme #chat-controls .roll-type-select {
-  background: white;
+  background: #4f4f4f;
+  color: #FFFFFF;
 }
 body.light-theme #chat-controls label {
   color: #1C1C1C;
 }
 body.light-theme #chat-form textarea {
-  background: white;
+  background: #4f4f4f;
 }
 body.light-theme #combat #combat-round {
   color: #c40f0f;
@@ -291,7 +298,7 @@ body.light-theme .sidebar-tab .directory-header .header-search i.fa-search {
   color: #0d99cc;
 }
 body.light-theme .sidebar-tab .directory-header .header-search input {
-  background: white;
+  background: #4f4f4f;
 }
 body.light-theme .sidebar-tab .subdirectory {
   background: white;

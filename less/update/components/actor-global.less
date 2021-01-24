@@ -5,7 +5,7 @@
     .dropShadow1();
 }
 .sw5e.sheet.actor.character {
-    min-width: 780px;
+    min-width: 850px;
     min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -54,7 +54,7 @@
             grid-template-rows: 1fr 26px auto;
             grid-template-columns: 128px 1fr;
             column-gap: 8px;
-            row-gap: 8px;
+            grid-row-gap: 8px;
             
             img {
                 grid-column-start: 1;
@@ -683,7 +683,7 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-gap: 16px;
-                    row-gap: 8px;
+                    grid-row-gap: 8px;
 
                     input,
                     select {
@@ -715,7 +715,7 @@
                     }
 
                     .languages {
-                        grid-column-end: span 2;
+                        grid-column-end: span 1;
                         label {
                             &:hover {
                                 cursor: pointer;
@@ -745,7 +745,7 @@
                         display: grid;
                         grid-template-columns: 1fr 1fr;
                         grid-gap: 4px;
-                        row-gap: 4px;
+                        grid-row-gap: 4px;
 
                         strong {
                             font-size: 13px;
@@ -994,7 +994,7 @@
         }
         &.limited {
             grid-template-rows: 144px auto;
-            row-gap: 8px;
+            grid-row-gap: 8px;
             header {
                 grid-template-rows: 1fr;
             }

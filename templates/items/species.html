@@ -38,7 +38,7 @@
 		<div class="speciestable">
 		<blockquote class="block">
 		<br />
-		<h3 style="font-style: normal; font-size: 20px;">{{item.name}}</h3>
+		<h3>{{item.name}}</h3>
 		{{#if data.manufacturer}}
 		<table id="droid-visualchar">
 			<thead>
@@ -181,7 +181,7 @@
         {{!-- Traits Tab --}}
 		
 		<div id="species traits" class="tab species-traits flexcol" data-group="primary" data-tab="species-traits">
-		<span id="Traits"><h2>{{item.name}} TRAITS</h2>
+		<span id="Traits"><h2>{{item.name}} Traits</h2>
 		<p>As a/an {{item.name}}, you have the following special traits.<br>
 		{{editor content=data.traits.value target="data.traits.value" button=true editable=editable}}
 		</span>

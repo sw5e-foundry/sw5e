@@ -10,7 +10,7 @@
             </h1>
 
             <aside class="header-exp flexcol">
-                <div class="charlevel">
+                <div class="charlevel" title="{{multiclassLabels}}">
                     <label>{{ localize "SW5E.Level" }} {{data.details.level}}</label>
                     <span class="levels">{{classLabels}}</span>
                 </div>
@@ -81,9 +81,10 @@
                     </footer>
                 </li>
 
-                <li class="attribute">
+                <li class="attribute movement">
                     <h4 class="attribute-name box-title">
-                        {{ localize "SW5E.Speed" }}
+                        {{ localize "SW5E.Movement" }}
+                        <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                     </h4>
                     <div class="attribute-value">
                         <span>{{movement.primary}}</span>
@@ -116,6 +117,7 @@
         <a class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
         <a class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</a>
+		<a class="item" data-tab="notes">Notes</a>
     </nav>
 
     {{!-- Character Sheet Body --}}
@@ -252,5 +254,10 @@
                 {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
             </div>
         </div>
+		
+       {{!-- Notes Tab --}}		
+		<div class="tab notes flexcol" data-group="primary" data-tab="notes">
+			{{> "systems/sw5e/templates/actors/oldActor/parts/actor-notes.html"}}
+		</div>
     </section>
 </form>

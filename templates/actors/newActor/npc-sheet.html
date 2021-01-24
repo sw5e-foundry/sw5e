@@ -41,32 +41,32 @@
 			</section>
 
 			{{!-- HIT POINTS --}}
-			<section>
-				<h1>Hit Points</h1>
-				<div class="attribute-value multiple">
-					<input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
-						data-dtype="Number" placeholder="10" class="value-number" />
-					<span class="value-separator">/</span>
-					<input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
-						data-dtype="Number" placeholder="10" class="value-number" />
-				</div>
-				<footer class="attribute-footer hit-points">
-					<input name="data.attributes.hp.formula" class="hpformula" type="text"
+			<section class="attribute health">
+                <h1 class="attribute-name rollable">{{ localize "SW5E.Health" }}</h1>
+                <div class="attribute-value multiple">
+                    <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
+                        data-dtype="Number" placeholder="10" class="value-number" />
+                    <span class="value-separator">/</span>
+                    <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
+                        data-dtype="Number" placeholder="10" class="value-number" />
+                </div>
+                <footer class="attribute-footer hit-points">
+                    <input name="data.attributes.hp.formula" class="hpformula" type="text"
                             placeholder="{{ localize 'SW5E.HealthFormula' }}" value="{{data.attributes.hp.formula}}" />
-				</footer>
+                </footer>
             </section>
             <section>
-				<h1>{{ localize "SW5E.Speed" }}</h1>
-				<div class="attribute-value">
-					<input name="data.attributes.speed.value" type="text" value="{{data.attributes.speed.value}}"
-						placeholder="0" />
-				</div>
-				<footer class="attribute-footer speed">
-					<input type="text" class="speed" name="data.attributes.speed.special"
-						value="{{data.attributes.speed.special}}" placeholder="{{ localize 'SW5E.SpeedSpecial' }}" />
-				</footer>
-			</section>
-            </div>
+				<h1>{{ localize "SW5E.Movement" }}
+                    <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
+                </h1>
+                <div class="attribute-value">
+                    <span>{{movement.primary}}</span>
+                </div>
+                <footer class="attribute-footer">
+                    <span>{{movement.special}}</span>
+                </footer>
+            </section>
+        </div>
         
     </header>
 
@@ -75,6 +75,7 @@
         <button class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</button>
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
         <button class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</button>
+        <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
         <button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
     </nav>
 
@@ -173,6 +174,11 @@
         {{!-- Powerbook Tab --}}
         <div class="tab powerbook flexcol" data-group="primary" data-tab="powerbook">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-powerbook.html"}}
+        </div>
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
         </div>
 
         {{!-- Biography Tab --}}

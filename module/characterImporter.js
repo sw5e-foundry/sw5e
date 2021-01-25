@@ -23,31 +23,16 @@ export default class CharacterImporter {
     const intelligenceSaveProf = sourceCharacter.attribs.find(o => o.name == 'intelligence_save_prof').current ? 1 : 0;
     const wisdomSaveProf = sourceCharacter.attribs.find(o => o.name == 'wisdom_save_prof').current ? 1 : 0;
     const charismaSaveProf = sourceCharacter.attribs.find(o => o.name == 'charisma_save_prof').current ? 1 : 0;
+    // v2 skills
+    // broken
 
-    // v2 - skills and proficiencies
-    const acrobaticsSkill = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;
-    const animalHandlingSkill = sourceCharacter.attribs.find(o => o.name == 'animal_handling_bonus').current;
-    const athleticsSkill = sourceCharacter.attribs.find(o => o.name == 'athletics_bonus').current;
-    const deceptionSkill = sourceCharacter.attribs.find(o => o.name == 'deception_bonus').current;
-    const insightSkill = sourceCharacter.attribs.find(o => o.name == 'insight_bonus').current;
-    const intimidationSkill = sourceCharacter.attribs.find(o => o.name == 'intimidation_bonus').current;
-    const investigationSkill = sourceCharacter.attribs.find(o => o.name == 'investigation_bonus').current;
-    const loreSkill = sourceCharacter.attribs.find(o => o.name == 'lore_bonus').current;
-    const medicineSkill = sourceCharacter.attribs.find(o => o.name == 'medicine_bonus').current;
-    const natureSkill = sourceCharacter.attribs.find(o => o.name == 'nature_bonus').current;
-    const pilotingSkill = sourceCharacter.attribs.find(o => o.name == 'piloting_bonus').current;
-    const perceptionSkill = sourceCharacter.attribs.find(o => o.name == 'perception_bonus').current;
-    const performanceSkill = sourceCharacter.attribs.find(o => o.name == 'performance_bonus').current;
-    const persuasionSkill = sourceCharacter.attribs.find(o => o.name == 'persuasion_bonus').current;
-    const sleightOfHandSkill = sourceCharacter.attribs.find(o => o.name == 'sleight_of_hand_bonus').current;
-    const stealthSkill = sourceCharacter.attribs.find(o => o.name == 'stealth_bonus').current;
-    const survivalSkill = sourceCharacter.attribs.find(o => o.name == 'survival_bonus').current;
-    const technologySkill = sourceCharacter.attribs.find(o => o.name == 'technology_bonus').current;
-    const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
-    const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
-    
+    // v3 classes
+    const profession = sourceCharacter.attribs.find(o => o.name == "class").current;
+    let professionLevel = sourceCharacter.attribs.find(o => o.name == "class_display").current;
+    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') );
+
     const targetCharacter = {
-      name: sourceCharacter.name,
+      name: name,
       type: "character",
       data: {
         abilities: {
@@ -86,141 +71,19 @@ export default class CharacterImporter {
             max: hp,
             temp: hpTemp
           }
-        },
-        skills: {
-          acr: {
-            value: acrobaticsSkill,
-            ability: "dex"
-          },
-          ani: {
-            value: animalHandlingSkill,
-            ability: "wis"
-          },
-          ath: {
-            value: athleticsSkill,
-            ability: "str"
-          },
-          dec: {
-            value: deceptionSkill,
-            ability: "cha"
-          },
-          ins: {
-            value: insightSkill,
-            ability: "wis"
-          },
-          itm: {
-            value: intimidationSkill,
-            ability: "cha"
-          },
-          inv: {
-            value: investigationSkill,
-            ability: "int"
-          },
-          lor: {
-            value: loreSkill,
-            ability: "int"
-          },
-          med: {
-            value: medicineSkill,
-            ability: "wis"
-          },
-          nat: {
-            value: natureSkill,
-            ability: "int"
-          },
-          pil: {
-            value: pilotingSkill,
-            ability: "int"
-          },
-          prc: {
-            value: perceptionSkill,
-            ability: "wis"
-          },
-          prf: {
-            value: performanceSkill,
-            ability: "cha"
-          },
-          per: {
-            value: persuasionSkill,
-            ability: "cha"
-          },
-          slt: {
-            value: sleightOfHandSkill,
-            ability: "dex"
-          },
-          ste: {
-            value: stealthSkill,
-            ability: "dex"
-          },
-          sur: {
-            value: survivalSkill,
-            ability: "wis"
-          },
-          tec: {
-            value: technologySkill,
-            ability: "int"
-          }
         }
       }
     };
-
-    let actor = await Actor.create(targetCharacter);
-
-    async function assignSkills(id){
-      let hero = game.actor.get(id);
-      actor.data.data.skills.acr = sourceCharacter.attribs.find(o => o.name == 'acrobatics_bonus').current;
-      actor.data.data.skills.ani = sourceCharacter.attribs.find(o => o.name == 'animal_handling_bonus').current;
-      actor.data.data.skills.ath = sourceCharacter.attribs.find(o => o.name == 'athletics_bonus').current;
-      actor.data.data.skills.dec = sourceCharacter.attribs.find(o => o.name == 'deception_bonus').current;
-      actor.data.data.skills.ins = sourceCharacter.attribs.find(o => o.name == 'insight_bonus').current;
-      actor.data.data.skills.itm = sourceCharacter.attribs.find(o => o.name == 'intimidation_bonus').current;
-      actor.data.data.skills.inv = sourceCharacter.attribs.find(o => o.name == 'investigation_bonus').current;
-      actor.data.data.skills.lor = sourceCharacter.attribs.find(o => o.name == 'lore_bonus').current;
-      actor.data.data.skills.med = sourceCharacter.attribs.find(o => o.name == 'medicine_bonus').current;
-      actor.data.data.skills.nat = sourceCharacter.attribs.find(o => o.name == 'nature_bonus').current;
-      actor.data.data.skills.pil = sourceCharacter.attribs.find(o => o.name == 'piloting_bonus').current;
-      actor.data.data.skills.prc = sourceCharacter.attribs.find(o => o.name == 'perception_bonus').current;
-      actor.data.data.skills.prf = sourceCharacter.attribs.find(o => o.name == 'performance_bonus').current;
-      actor.data.data.skills.per = sourceCharacter.attribs.find(o => o.name == 'persuasion_bonus').current;
-      actor.data.data.skills.slt = sourceCharacter.attribs.find(o => o.name == 'sleight_of_hand_bonus').current;
-      actor.data.data.skills.ste = sourceCharacter.attribs.find(o => o.name == 'stealth_bonus').current;
-      actor.data.data.skills.sur = sourceCharacter.attribs.find(o => o.name == 'survival_bonus').current;
-      actor.data.data.skills.tec = sourceCharacter.attribs.find(o => o.name == 'technology_bonus').current;
-    }
-
     
-    //const baseClassName = sourceCharacter.attribs.find(o => o.name == 'class').current;
-    //const baseClassLvl = sourceCharacter.attribs.find(o => o.name == 'base_level').current;
+    let actor = await Actor.create(targetCharacter);
+    addClasses(profession, professionLevel, actor);
+  }
 
-    /*
-    function addInitialClassAndLevel(itemData){
-      Actor5e.getClassFeatures(itemData).then(features => {
-        actor.createEmbeddedEntity("OwnedItem", features);
-      });
-    }
-    */
-
-    // async function addSubsequentLevels(targetLvl, actor){
-    //   actor.data.data.details.level = targetLvl;
-    //   var x = await actor.items.find(x => x.name == 'Scout');
-    //   x.data.data.levels = 6;
-
-
-    // }
-
-    // function addSubsequentLevelsOld(/*targetLvl,*/ itemData, actorClass, actor){
-    //   //const lvl = actorClass.data.data.levels;
-    //   //const newLvl = Math.min(lvl + 1, 20 + lvl - actor.data.data.details.level);
-    //   //if ( !(lvl === newLvl) ) {
-    //     actorClass.update({"data.levels": newLvl});
-    //     itemData.data.levels = newLvl;
-    //     Actor5e.getClassFeatures(itemData).then(features => {
-    //       actor.createEmbeddedEntity("OwnedItem", features);
-    //     });
-    //   //}
-    //   return
-    // }
-    //await newActorSheet.close();
+  async addClasses(profession, level, actor){
+    let classes = await game.packs.get('sw5e.classes').getContent();
+    let assignedClass = classes.find( c => c.name === profession );
+    assignedClass.data.data.levels = level;
+    await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
   }
 
   static addImportButton(html){

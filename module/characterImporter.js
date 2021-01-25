@@ -6,7 +6,7 @@ export default class CharacterImporter {
     const sourceCharacter = JSON.parse(rawCharacter);
     
     // v1 - just import the very basics: name, species, hp, ac and abilities
-    const name = sourceCharacter.name;
+    const characterName = sourceCharacter.name;
     const species = sourceCharacter.attribs.find(o => o.name == "race").current;
     const hp = sourceCharacter.attribs.find(o => o.name == "hp").current;
     const hpTemp = sourceCharacter.attribs.find(o => o.name == "hp_temp").current;
@@ -29,10 +29,10 @@ export default class CharacterImporter {
     // v3 classes
     const profession = sourceCharacter.attribs.find(o => o.name == "class").current;
     let professionLevel = sourceCharacter.attribs.find(o => o.name == "class_display").current;
-    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') );
+    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') ); //remove a-z, leaving only integers
 
     const targetCharacter = {
-      name: name,
+      name: characterName,
       type: "character",
       data: {
         abilities: {
@@ -74,12 +74,12 @@ export default class CharacterImporter {
         }
       }
     };
-    
+    console.log(targetCharacter);
     let actor = await Actor.create(targetCharacter);
-    addClasses(profession, professionLevel, actor);
+    //CharacterImporter.addClasses(profession, professionLevel, actor);
   }
 
-  async addClasses(profession, level, actor){
+  static async addClasses(profession, level, actor){
     let classes = await game.packs.get('sw5e.classes').getContent();
     let assignedClass = classes.find( c => c.name === profession );
     assignedClass.data.data.levels = level;

@@ -49,6 +49,15 @@ export default class CharacterImporter {
       },
     };
 
+    /* ----------------------------------------------------------------- */
+    /*  character.data.skills.<skill_name>.value is all that matters
+    /*  values can be 0, 0.5, 1 or 2
+    /*  0 = regular
+    /*  0.5 = half-proficient
+    /*  1 = proficient
+    /*  2 = expertise
+    /*  foundry takes care of calculating the rest
+    /* ----------------------------------------------------------------- */
     const skills = {
       acr: {
         value: sourceCharacter.attribs.find(e => e.name == 'acrobatics_type').current
@@ -133,14 +142,6 @@ export default class CharacterImporter {
     let assignedClass = classes.find( c => c.name === profession );
     assignedClass.data.data.levels = level;
     await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
-  }
-
-  static async addSkils(){
-    // data.skills.skill.value is all that matters
-    // value = 0 = regular
-    // value = 0.5 = half-proficient
-    // value = 1 = proficient
-    // value = 2 = expertise
   }
 
   static addImportButton(html){

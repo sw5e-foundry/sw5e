@@ -49,6 +49,63 @@ export default class CharacterImporter {
       },
     };
 
+    const skills = {
+      acr: {
+        value: sourceCharacter.attribs.find(e => e.name == 'acrobatics_type').current
+      },
+      ani: {
+        value: sourceCharacter.attribs.find(e => e.name == 'animal_handling_type').current
+      },
+      ath: {
+        value: sourceCharacter.attribs.find(e => e.name == 'athletics_type').current
+      },
+      dec: {
+        value: sourceCharacter.attribs.find(e => e.name == 'deception_type').current
+      },
+      ins: {
+        value: sourceCharacter.attribs.find(e => e.name == 'insight_type').current
+      },
+      inv: {
+        value: sourceCharacter.attribs.find(e => e.name == 'investigation_type').current
+      },
+      itm: {
+        value: sourceCharacter.attribs.find(e => e.name == 'intimidation_type').current
+      },
+      lor: {
+        value: sourceCharacter.attribs.find(e => e.name == 'lore_type').current
+      },
+      med: {
+        value: sourceCharacter.attribs.find(e => e.name == 'medicine_type').current
+      },
+      nat: {
+        value: sourceCharacter.attribs.find(e => e.name == 'nature_type').current
+      },
+      per: {
+        value: sourceCharacter.attribs.find(e => e.name == 'persuasion_type').current
+      },
+      pil: {
+        value: sourceCharacter.attribs.find(e => e.name == 'piloting_type').current
+      },
+      prc: {
+        value: sourceCharacter.attribs.find(e => e.name == 'perception_type').current
+      },
+      prf: {
+        value: sourceCharacter.attribs.find(e => e.name == 'performance_type').current
+      },
+      slt: {
+        value: sourceCharacter.attribs.find(e => e.name == 'sleight_of_hand_type').current
+      },
+      ste: {
+        value: sourceCharacter.attribs.find(e => e.name == 'stealth_type').current
+      },
+      sur: {
+        value: sourceCharacter.attribs.find(e => e.name == 'survival_type').current
+      },
+      tec: {
+        value: sourceCharacter.attribs.find(e => e.name == 'technology_type').current
+      }
+    };
+
     const targetCharacter = {
       name: sourceCharacter.name,
       type: "character",
@@ -58,7 +115,8 @@ export default class CharacterImporter {
         attributes: {
           ac: ac,
           hp: hp
-        }
+        },
+        skills: skills
       }
     };
 
@@ -75,6 +133,14 @@ export default class CharacterImporter {
     let assignedClass = classes.find( c => c.name === profession );
     assignedClass.data.data.levels = level;
     await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
+  }
+
+  static async addSkils(){
+    // data.skills.skill.value is all that matters
+    // value = 0 = regular
+    // value = 0.5 = half-proficient
+    // value = 1 = proficient
+    // value = 2 = expertise
   }
 
   static addImportButton(html){

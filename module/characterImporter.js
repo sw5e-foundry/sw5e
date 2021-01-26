@@ -3,86 +3,70 @@ export default class CharacterImporter {
   // transform JSON from sw5e.com to Foundry friendly format
   // and insert new actor
   static async transform(rawCharacter){
-    const sourceCharacter = JSON.parse(rawCharacter);
+    const sourceCharacter = JSON.parse(rawCharacter); //source character
     
-    // v1 - just import the very basics: name, species, hp, ac and abilities
-    const characterName = sourceCharacter.name;
-    const species = sourceCharacter.attribs.find(o => o.name == "race").current;
-    const background = sourceCharacter.attribs.find(o => o.name == "background").current;
-    const alignment = sourceCharacter.attribs.find(o => o.name == "alignment").current;
-    const hp = sourceCharacter.attribs.find(o => o.name == "hp").current;
-    const hpTemp = sourceCharacter.attribs.find(o => o.name == "hp_temp").current;
-    const ac = sourceCharacter.attribs.find(o => o.name == "ac").current;
-    const strength = sourceCharacter.attribs.find(o => o.name == "strength").current;
-    const dexterity = sourceCharacter.attribs.find(o => o.name == "dexterity").current;
-    const constitution = sourceCharacter.attribs.find(o => o.name == "constitution").current;
-    const intelligence = sourceCharacter.attribs.find(o => o.name == "intelligence").current;
-    const wisdom = sourceCharacter.attribs.find(o => o.name == "wisdom").current;
-    const charisma = sourceCharacter.attribs.find(o => o.name == "charisma").current;
-    const strengthSaveProf = sourceCharacter.attribs.find(o => o.name == 'strength_save_prof').current ? 1 : 0;
-    const dexteritySaveProf = sourceCharacter.attribs.find(o => o.name == 'dexterity_save_prof').current ? 1 : 0;
-    const constitutionSaveProf = sourceCharacter.attribs.find(o => o.name == 'constitution_save_prof').current ? 1 : 0;
-    const intelligenceSaveProf = sourceCharacter.attribs.find(o => o.name == 'intelligence_save_prof').current ? 1 : 0;
-    const wisdomSaveProf = sourceCharacter.attribs.find(o => o.name == 'wisdom_save_prof').current ? 1 : 0;
-    const charismaSaveProf = sourceCharacter.attribs.find(o => o.name == 'charisma_save_prof').current ? 1 : 0;
-    // v2 skills
-    // broken
+    const details = {
+      species: sourceCharacter.attribs.find(e => e.name == "race").current,
+      background: sourceCharacter.attribs.find(e => e.name == "background").current,
+      alignment: sourceCharacter.attribs.find(e => e.name == "alignment").current
+    }
+    
+    const hp = {
+      value: sourceCharacter.attribs.find(e => e.name == "hp").current,
+      min: 0,
+      max: sourceCharacter.attribs.find(e => e.name == "hp").current,
+      temp: sourceCharacter.attribs.find(e => e.name == "hp_temp").current
+    };
 
-    // v3 classes
-    const profession = sourceCharacter.attribs.find(o => o.name == "class").current;
-    let professionLevel = sourceCharacter.attribs.find(o => o.name == "class_display").current;
-    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') ); //remove a-z, leaving only integers
+    const ac = {
+      value: sourceCharacter.attribs.find(e => e.name == "ac").current
+    };
+
+    const abilities = {
+      str: {
+        value: sourceCharacter.attribs.find(e => e.name == "strength").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'strength_save_prof').current ? 1 : 0
+      },
+      dex: {
+        value: sourceCharacter.attribs.find(e => e.name == "dexterity").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'dexterity_save_prof').current ? 1 : 0
+      },
+      con: {
+        value: sourceCharacter.attribs.find(e => e.name == "constitution").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'constitution_save_prof').current ? 1 : 0
+      },
+      int: {
+        value: sourceCharacter.attribs.find(e => e.name == "intelligence").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'intelligence_save_prof').current ? 1 : 0
+      },
+      wis: {
+        value: sourceCharacter.attribs.find(e => e.name == "wisdom").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'wisdom_save_prof').current ? 1 : 0
+      },
+      cha: {
+        value: sourceCharacter.attribs.find(e => e.name == "charisma").current,
+        proficient: sourceCharacter.attribs.find(e => e.name == 'charisma_save_prof').current ? 1 : 0
+      },
+    };
 
     const targetCharacter = {
-      name: characterName,
+      name: sourceCharacter.name,
       type: "character",
       data: {
-        abilities: {
-          str: {
-            value: strength,
-            proficient: strengthSaveProf
-          },
-          dex: {
-            value: dexterity,
-            proficient: dexteritySaveProf
-          },
-          con: {
-            value: constitution,
-            proficient: constitutionSaveProf
-          },
-          int: {
-            value: intelligence,
-            proficient: intelligenceSaveProf
-          },
-          wis: {
-            value: wisdom,
-            proficient: wisdomSaveProf
-          },
-          cha: {
-            value: charisma,
-            proficient: charismaSaveProf
-          },
-        },
-        details: {
-          species: species,
-          background: background,
-          alignment: alignment
-        },
+        abilities: abilities,
+        details: details,
         attributes: {
-          ac: {
-            value: ac
-          },
-          hp: {
-            value: hp,
-            min: 0,
-            max: hp,
-            temp: hpTemp
-          }
+          ac: ac,
+          hp: hp
         }
       }
     };
-    console.log(targetCharacter);
+
     let actor = await Actor.create(targetCharacter);
+
+    const profession = sourceCharacter.attribs.find(e => e.name == "class").current;
+    let professionLevel = sourceCharacter.attribs.find(e => e.name == "class_display").current;
+    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') ); //remove a-z, leaving only integers
     CharacterImporter.addClasses(profession, professionLevel, actor);
   }
 

@@ -3,7 +3,7 @@ export default class CharacterImporter {
   // transform JSON from sw5e.com to Foundry friendly format
   // and insert new actor
   static async transform(rawCharacter){
-    const sourceCharacter = JSON.parse(rawCharacter); //source character
+    const sourceCharacter = JSON.parse(rawCharacter);
     
     const details = {
       species: sourceCharacter.attribs.find(e => e.name == "race").current,
@@ -131,12 +131,14 @@ export default class CharacterImporter {
 
     let actor = await Actor.create(targetCharacter);
 
+    //add class and level
     const profession = sourceCharacter.attribs.find(e => e.name == "class").current;
     let professionLevel = sourceCharacter.attribs.find(e => e.name == "class_display").current;
     professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') ); //remove a-z, leaving only integers
     CharacterImporter.addClasses(profession, professionLevel, actor);
   }
 
+  //currently only works with 1 class 
   static async addClasses(profession, level, actor){
     let classes = await game.packs.get('sw5e.classes').getContent();
     let assignedClass = classes.find( c => c.name === profession );

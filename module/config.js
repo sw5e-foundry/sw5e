@@ -274,7 +274,7 @@ SW5E.consumableTypes = {
   "food": "SW5E.ConsumableFood",
   "medpac": "SW5E.ConsumableMedpac",
   "technology": "SW5E.ConsumableTechnology",
-  "ammunition": "SW5E.ConsumableAmmunition",
+  "ammo": "SW5E.ConsumableAmmunition",
   "trinket": "SW5E.ConsumableTrinket",
   "force": "SW5E.ConsumableForce",
   "tech": "SW5E.ConsumableTech"

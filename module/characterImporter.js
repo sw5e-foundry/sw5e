@@ -133,12 +133,15 @@ export default class CharacterImporter {
     CharacterImporter.addProfessions(sourceCharacter, actor);
   }
 
+  // Parse all classes and add them to already created actor.
+  // "class" is a reserved word, therefore I use profession where I can.
   static async addProfessions(sourceCharacter, actor){
-    // "class" is a reserved word, therefore I use profession where I can.
+    
     let result = [];
 
     // parse all class and multiclassX items
     // couldn't get Array.filter to work here for some reason
+    // result = array of objects. each object is a separate class
     sourceCharacter.attribs.forEach( (e) => {
       if ( CharacterImporter.classOrMulticlass(e.name) ){
         var t = {
@@ -150,6 +153,7 @@ export default class CharacterImporter {
       }
     });
 
+    // pull classes directly from system compendium and add them to current actor
     const professionsPack = await game.packs.get('sw5e.classes').getContent();
     result.forEach( (prof) => {
       let assignedProfession = professionsPack.find( o => o.name === prof.profession );

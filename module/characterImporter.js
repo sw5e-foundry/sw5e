@@ -8,6 +8,8 @@ export default class CharacterImporter {
     // v1 - just import the very basics: name, species, hp, ac and abilities
     const characterName = sourceCharacter.name;
     const species = sourceCharacter.attribs.find(o => o.name == "race").current;
+    const background = sourceCharacter.attribs.find(o => o.name == "background").current;
+    const alignment = sourceCharacter.attribs.find(o => o.name == "alignment").current;
     const hp = sourceCharacter.attribs.find(o => o.name == "hp").current;
     const hpTemp = sourceCharacter.attribs.find(o => o.name == "hp_temp").current;
     const ac = sourceCharacter.attribs.find(o => o.name == "ac").current;
@@ -61,6 +63,11 @@ export default class CharacterImporter {
             proficient: charismaSaveProf
           },
         },
+        details: {
+          species: species,
+          background: background,
+          alignment: alignment
+        },
         attributes: {
           ac: {
             value: ac
@@ -76,7 +83,7 @@ export default class CharacterImporter {
     };
     console.log(targetCharacter);
     let actor = await Actor.create(targetCharacter);
-    //CharacterImporter.addClasses(profession, professionLevel, actor);
+    CharacterImporter.addClasses(profession, professionLevel, actor);
   }
 
   static async addClasses(profession, level, actor){

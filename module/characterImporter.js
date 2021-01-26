@@ -130,20 +130,58 @@ export default class CharacterImporter {
     };
 
     let actor = await Actor.create(targetCharacter);
-
-    //add class and level
-    const profession = sourceCharacter.attribs.find(e => e.name == "class").current;
-    let professionLevel = sourceCharacter.attribs.find(e => e.name == "class_display").current;
-    professionLevel = parseInt( professionLevel.replace(/[^0-9]/g,'') ); //remove a-z, leaving only integers
-    CharacterImporter.addClasses(profession, professionLevel, actor);
+    CharacterImporter.addProfessions(sourceCharacter, actor);
   }
 
-  //currently only works with 1 class 
-  static async addClasses(profession, level, actor){
-    let classes = await game.packs.get('sw5e.classes').getContent();
-    let assignedClass = classes.find( c => c.name === profession );
-    assignedClass.data.data.levels = level;
-    await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
+  static async addProfessions(sourceCharacter, actor){
+    // "class" is a reserved word, therefore I use profession where I can.
+    let result = [];
+
+    // parse all class and multiclassX items
+    // couldn't get Array.filter to work here for some reason
+    sourceCharacter.attribs.forEach( (e) => {
+      if ( CharacterImporter.classOrMulticlass(e.name) ){
+        var t = {
+          profession: CharacterImporter.capitalize(e.current),
+          type: CharacterImporter.baseOrMulti(e.name),
+          level: CharacterImporter.getLevel(e, sourceCharacter)
+        }
+        result.push(t);
+      }
+    });
+
+    const professionsPack = await game.packs.get('sw5e.classes').getContent();
+    result.forEach( (prof) => {
+      let assignedProfession = professionsPack.find( o => o.name === prof.profession );
+      assignedProfession.data.data.levels = prof.level;
+      actor.createEmbeddedEntity("OwnedItem", assignedProfession.data, { displaySheet: false });
+    });
+  }
+
+  static classOrMulticlass(name){
+    return name === 'class' || (name.includes('multiclass') && name.length <= 12);
+  }
+
+  static baseOrMulti(name){
+    if (name === 'class'){
+      return 'base_class';
+    } else {
+      return 'multi_class';
+    }
+  }
+
+  static getLevel(item, sourceCharacter){
+    if (item.name === 'class'){
+      let result = sourceCharacter.attribs.find( e => e.name === 'base_level' ).current;
+      return parseInt(result);
+    } else {
+      let result = sourceCharacter.attribs.find( e => e.name === `${item.name}_lvl` ).current;
+      return parseInt(result);
+    }
+  }
+
+  static capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   static addImportButton(html){

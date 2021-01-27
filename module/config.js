@@ -517,12 +517,73 @@ SW5E.powerPreparationModes = {
   "innate": "SW5E.PowerPrepInnate"
 };
 
-SW5E.powerUpcastModes = ["always", "pact", "prepared"];
+SW5E.powerUpcastModes = ["always", "prepared"];
+
+/**
+ * The available choices for power progression for a character class
+ * @type {Object}
+ */
 
 SW5E.powerProgression = {
   "none": "SW5E.PowerNone",
-  "full": "SW5E.PowerProgFull",
-  "artificer": "SW5E.PowerProgArt"
+  "consular": "SW5E.PowerProgCns",
+  "engineer": "SW5E.PowerProgEng",
+  "guardian": "SW5E.PowerProgGrd",
+  "scout": "SW5E.PowerProgSct",
+  "sentinel": "SW5E.PowerProgSnt"
+};
+
+/**
+ * The max number of known powers available to each class per level
+ */
+
+SW5E.powerKnown = {
+  "none": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "consular": [9,11,13,15,17,19,21,23,25,26,28,29,31,32,34,35,37,38,39,40],
+  "engineer": [6,7,9,10,12,13,15,16,18,19,21,22,23,24,25,26,27,28,29,30],
+  "guardian": [5,7,9,10,12,13,14,15,17,18,19,20,22,23,24,25,27,28,29,30],
+  "scout": [0,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,23],
+  "sentinel": [7,9,11,13,15,17,18,19,21,22,24,25,26,28,29,30,32,33,34,35]
+};
+
+/**
+ * The max number of powers cast for each power level per long rest
+ */
+
+SW5E.powerLimit = {
+  "none": [0,0,0,0,0,0,0,0,0],
+  "consular": [99,99,99,99,99,1,1,1,1],
+  "engineer": [99,99,99,99,99,1,1,1,1],
+  "guardian": [99,99,99,99,1,0,0,0,0],
+  "scout": [99,99,99,1,1,0,0,0,0],
+  "sentinel": [99,99,99,99,1,1,1,0,0]
+};
+
+/**
+ * The max level of a known/overpowered power available to each class per level
+ */
+
+SW5E.powerMaxLevel = {
+  "none": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "consular": [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9],
+  "engineer": [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9],
+  "guardian": [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5],
+  "scout": [0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5],
+  "sentinel": [1,1,2,2,2,3,3,3,4,4,5,5,5,6,6,6,7,7,7,7],
+  "multi": [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9]
+};
+
+/**
+ * The number of base force/tech points available to each class per level
+ */
+
+SW5E.powerPoints = {
+  "none": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  "consular": [4,8,12,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80],
+  "engineer": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40],
+  "guardian": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40],
+  "scout": [0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+  "sentinel": [3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60]
 };
 
 /* -------------------------------------------- */
@@ -630,36 +691,6 @@ SW5E.powerLevels = {
   8: "SW5E.PowerLevel8",
   9: "SW5E.PowerLevel9"
 };
-
-/**
- * Define the standard slot progression by character level.
- * The entries of this array represent the power slot progression for a full power-caster.
- * @type {Array[]}
- */
-SW5E.SPELL_SLOT_TABLE = [
-  [2],
-  [3],
-  [4, 2],
-  [4, 3],
-  [4, 3, 2],
-  [4, 3, 3],
-  [4, 3, 3, 1],
-  [4, 3, 3, 2],
-  [4, 3, 3, 3, 1],
-  [4, 3, 3, 3, 2],
-  [4, 3, 3, 3, 2, 1],
-  [4, 3, 3, 3, 2, 1],
-  [4, 3, 3, 3, 2, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1, 1],
-  [4, 3, 3, 3, 3, 1, 1, 1, 1],
-  [4, 3, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 3, 2, 2, 1, 1]
-];
-
-/* -------------------------------------------- */
 
 // Polymorph options.
 SW5E.polymorphSettings = {

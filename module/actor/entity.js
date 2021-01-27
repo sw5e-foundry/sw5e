@@ -364,11 +364,16 @@ export default class Actor5e extends Actor {
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 
-    // Translate the list of classes into power-casting progression
-    const progression = {
-      total: 0,
-      slot: 0,
-      pact: 0
+    // Translate the list of classes into force and tech power-casting progression
+    const forceProgression = {
+      classes: 0,
+      levels: 0,
+      multi: 0
+    };
+    const techProgression = {
+      classes: 0,
+      levels: 0,
+      multi: 0
     };
 
     // Keep track of the last seen caster in case we're in a single-caster situation.
@@ -383,30 +388,55 @@ export default class Actor5e extends Actor {
       const prog = d.powercasting;
 
       // Accumulate levels
-      if ( prog !== "pact" ) {
-        caster = cls;
-        progression.total++;
-      }
+      caster = cls;
+
       switch (prog) {
-        case 'third': progression.slot += Math.floor(levels / 3); break;
-        case 'half': progression.slot += Math.floor(levels / 2); break;
-        case 'full': progression.slot += levels; break;
-        case 'artificer': progression.slot += Math.ceil(levels / 2); break;
-        case 'pact': progression.pact += levels; break;
+        case 'consular': 
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['consular'][levels-1]/9)*levels;
+          forceProgression.classes++;
+          break;
+        case 'engineer': 
+          techProgression.levels += levels;
+          techProgression.multi += (SW5E.powerMaxLevel['engineer'][levels-1]/9)*levels;
+          techProgression.classes++;
+          break;
+        case 'guardian': 
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['guardian'][levels-1]/9)*levels;
+          forceProgression.classes++;
+          break;
+        case 'scout': 
+          techProgression.levels += levels;
+          techProgression.multi += (SW5E.powerMaxLevel['scout'][levels-1]/9)*levels;
+          techProgression.classes++;
+          break;
+        case 'sentinel': 
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][levels-1]/9)*levels;
+          forceProgression.classes++;
+          break;
       }
     }
 
-    // EXCEPTION: single-classed non-full progression rounds up, rather than down
-    const isSingleClass = (progression.total === 1) && (progression.slot > 0);
-    if (!isNPC && isSingleClass && ['half', 'third'].includes(caster.data.powercasting) ) {
-      const denom = caster.data.powercasting === 'third' ? 3 : 2;
-      progression.slot = Math.ceil(caster.data.levels / denom);
+    // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
+    if (!isNPC && forceProgression.classes > 1) {
+      forceProgression.levels = Math.floor(forceProgression.multi);
+    }
+    if (!isNPC && techProgression.classes > 1) {
+      techProgression.levels = Math.floor(techProgression.multi);
+    }
+    
+    // EXCEPTION: NPC with an explicit power-caster level
+    if (isNPC && actorData.data.details.powerForceLevel) {
+      forceProgression.levels = actorData.data.details.powerForceLevel;
+    }
+    if (isNPC && actorData.data.details.powerTechLevel) {
+      techProgression.levels = actorData.data.details.powerTechLevel;
     }
 
-    // EXCEPTION: NPC with an explicit power-caster level
-    if (isNPC && actorData.data.details.powerLevel) {
-      progression.slot = actorData.data.details.powerLevel;
-    }
+    //TODO: STOPPED HERE, PICKUP WHERE YOU LEFT OFF
+
 
     // Look up the number of slots per level from the progression table
     const levels = Math.clamped(progression.slot, 0, 20);

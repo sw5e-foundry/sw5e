@@ -368,16 +368,25 @@ export default class Actor5e extends Actor {
     const forceProgression = {
       classes: 0,
       levels: 0,
-      multi: 0
+      multi: 0,
+      maxClass: "none",
+      maxClassPriority: 0,
+      maxClassLevels: 0,
+      maxClassPowerLevel: 0,
+      powersKnown: 0,
+      points: 0
     };
     const techProgression = {
       classes: 0,
       levels: 0,
-      multi: 0
+      multi: 0,
+      maxClass: "none",
+      maxClassPriority: 0,
+      maxClassLevels: 0,
+      maxClassPowerLevel: 0,
+      powersKnown: 0,
+      points: 0
     };
-
-    // Keep track of the last seen caster in case we're in a single-caster situation.
-    let caster = null;
 
     // Tabulate the total power-casting progression
     const classes = this.data.items.filter(i => i.type === "class");
@@ -387,82 +396,129 @@ export default class Actor5e extends Actor {
       const levels = d.levels;
       const prog = d.powercasting;
 
-      // Accumulate levels
-      caster = cls;
-
       switch (prog) {
         case 'consular': 
+          let priority = 3;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['consular'][levels-1]/9)*levels;
           forceProgression.classes++;
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'consular';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['consular'][Math.clamped((levels - 1), 0, 20)];
+          }
+          // calculate points and powers known
+          forceProgression.powersKnown += SW5E.powersKnown['consular'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['consular'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'engineer': 
+          let priority = 2
           techProgression.levels += levels;
           techProgression.multi += (SW5E.powerMaxLevel['engineer'][levels-1]/9)*levels;
           techProgression.classes++;
+          // see if class controls high level techcasting
+          if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
+            techProgression.maxClass = 'engineer';
+            techProgression.maxClassLevels = levels;
+            techProgression.maxClassPriority = priority;
+            techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['engineer'][Math.clamped((levels - 1), 0, 20)];
+          }
+          techProgression.powersKnown += SW5E.powersKnown['engineer'][Math.clamped((levels - 1), 0, 20)];
+          techProgression.points += SW5E.powerPoints['engineer'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'guardian': 
+          let priority = 1;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['guardian'][levels-1]/9)*levels;
           forceProgression.classes++;
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'guardian';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['guardian'][Math.clamped((levels - 1), 0, 20)];
+          }
+          forceProgression.powersKnown += SW5E.powersKnown['guardian'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['guardian'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'scout': 
+          let priority = 1;
           techProgression.levels += levels;
           techProgression.multi += (SW5E.powerMaxLevel['scout'][levels-1]/9)*levels;
           techProgression.classes++;
+          // see if class controls high level techcasting
+          if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
+            techProgression.maxClass = 'scout';
+            techProgression.maxClassLevels = levels;
+            techProgression.maxClassPriority = priority;
+            techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['scout'][Math.clamped((levels - 1), 0, 20)];
+          }
+          techProgression.powersKnown += SW5E.powersKnown['scout'][Math.clamped((levels - 1), 0, 20)];
+          techProgression.points += SW5E.powerPoints['scout'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'sentinel': 
+          let priority = 2;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][levels-1]/9)*levels;
           forceProgression.classes++;
-          break;
-      }
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'sentinel';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          }
+          forceProgression.powersKnown += SW5E.powersKnown['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          break;      }
     }
 
     // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
     if (!isNPC && forceProgression.classes > 1) {
       forceProgression.levels = Math.floor(forceProgression.multi);
+      forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['multi'][levels - 1];
     }
     if (!isNPC && techProgression.classes > 1) {
       techProgression.levels = Math.floor(techProgression.multi);
+      techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['multi'][levels - 1];
     }
     
     // EXCEPTION: NPC with an explicit power-caster level
     if (isNPC && actorData.data.details.powerForceLevel) {
       forceProgression.levels = actorData.data.details.powerForceLevel;
+      forceProgression.maxClass = 'consular';
+      forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
+      forceProgression.powersKnown = SW5E.powersKnown['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
+      forceProgression.points = SW5E.powerPoints['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
     }
     if (isNPC && actorData.data.details.powerTechLevel) {
       techProgression.levels = actorData.data.details.powerTechLevel;
+      techProgression.maxClass = 'engineer';
+      techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
+      techProgression.powersKnown = SW5E.powersKnown['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
+      techProgression.points = SW5E.powerPoints['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
     }
 
-    //TODO: STOPPED HERE, PICKUP WHERE YOU LEFT OFF
+    // Look up the number of slots per level from the powerLimit table
+    const forcePowerLimit = SW5E.powerLimit['none'];
+    for (let i = 0; i < (forceProgression.maxPowerLevel - 1); i++) {
+      forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
+    }
+    
+    /** 
+     *  ? set max force/tech points? Should probably be done on class level up drop
+     *  ? set max force/tech powers known? Should probably be done on class level up drop
+     *  ? should I tally number of powers known here?
+     */
 
-
-    // Look up the number of slots per level from the progression table
-    const levels = Math.clamped(progression.slot, 0, 20);
-    const slots = SW5E.SPELL_SLOT_TABLE[levels - 1] || [];
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 0);
-      else lvl.max = slots[i-1] || 0;
+      else lvl.max = forcePowerLimit[i-1] || 0;
       lvl.value = parseInt(lvl.value);
-    }
-
-    // Determine the Actor's pact magic level (if any)
-    let pl = Math.clamped(progression.pact, 0, 20);
-    powers.pact = powers.pact || {};
-    if ( (pl === 0) && isNPC && Number.isNumeric(powers.pact.override) ) pl = actorData.data.details.powerLevel;
-
-    // Determine the number of Warlock pact slots per level
-    if ( pl > 0) {
-      powers.pact.level = Math.ceil(Math.min(10, pl) / 2);
-      if ( Number.isNumeric(powers.pact.override) ) powers.pact.max = Math.max(parseInt(powers.pact.override), 1);
-      else powers.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
-      powers.pact.value = Math.min(powers.pact.value, powers.pact.max);
-    } else {
-      powers.pact.max = parseInt(powers.pact.override) || 0
-      powers.pact.level = powers.pact.max > 0 ? 1 : 0;
     }
   }
 
@@ -1058,11 +1114,6 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Recover pact slots.
-    const pact = this.data.data.powers.pact;
-    updateData['data.powers.pact.value'] = pact.override || pact.max;
-    await this.update(updateData);
-
     // Recover item uses
     const recovery = newDay ? ["sr", "day"] : ["sr"];
     const items = this.items.filter(item => item.data.data.uses && recovery.includes(item.data.data.uses.per));
@@ -1148,10 +1199,6 @@ export default class Actor5e extends Actor {
     for ( let [k, v] of Object.entries(data.powers) ) {
       updateData[`data.powers.${k}.value`] = Number.isNumeric(v.override) ? v.override : (v.max ?? 0);
     }
-
-    // Recover pact slots.
-    const pact = data.powers.pact;
-    updateData['data.powers.pact.value'] = pact.override || pact.max;
 
     // Determine the number of hit dice which may be recovered
     let recoverHD = Math.max(Math.floor(data.details.level / 2), 1);

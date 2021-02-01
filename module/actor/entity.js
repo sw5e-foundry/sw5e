@@ -92,7 +92,10 @@ export default class Actor5e extends Actor {
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
+    data.attributes.powerForceLightDC = data.attributes[wis].dc ?? 10;
+    data.attributes.powerForceDarkDC = data.attributes[cha].dc ?? 10;
+    data.attributes.powerForceUniDC = floor.ceil(data.attributes.powerfldc,data.attributes.powerfddc) ?? 10;
+    data.attributes.powerTechDC = data.attributes[int].dc ?? 10;
     this._computePowercastingProgression(this.data);
 
     // Compute owned item attributes which depend on prepared Actor data
@@ -390,6 +393,7 @@ export default class Actor5e extends Actor {
 
     // Tabulate the total power-casting progression
     const classes = this.data.items.filter(i => i.type === "class");
+    let priority = 0;
     for ( let cls of classes ) {
       const d = cls.data;
       if ( d.powercasting === "none" ) continue;
@@ -398,7 +402,7 @@ export default class Actor5e extends Actor {
 
       switch (prog) {
         case 'consular': 
-          let priority = 3;
+          priority = 3;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['consular'][levels-1]/9)*levels;
           forceProgression.classes++;
@@ -414,7 +418,7 @@ export default class Actor5e extends Actor {
           forceProgression.points += SW5E.powerPoints['consular'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'engineer': 
-          let priority = 2
+          priority = 2
           techProgression.levels += levels;
           techProgression.multi += (SW5E.powerMaxLevel['engineer'][levels-1]/9)*levels;
           techProgression.classes++;
@@ -429,7 +433,7 @@ export default class Actor5e extends Actor {
           techProgression.points += SW5E.powerPoints['engineer'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'guardian': 
-          let priority = 1;
+          priority = 1;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['guardian'][levels-1]/9)*levels;
           forceProgression.classes++;
@@ -444,7 +448,7 @@ export default class Actor5e extends Actor {
           forceProgression.points += SW5E.powerPoints['guardian'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'scout': 
-          let priority = 1;
+          priority = 1;
           techProgression.levels += levels;
           techProgression.multi += (SW5E.powerMaxLevel['scout'][levels-1]/9)*levels;
           techProgression.classes++;
@@ -459,7 +463,7 @@ export default class Actor5e extends Actor {
           techProgression.points += SW5E.powerPoints['scout'][Math.clamped((levels - 1), 0, 20)];
           break;
         case 'sentinel': 
-          let priority = 2;
+          priority = 2;
           forceProgression.levels += levels;
           forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][levels-1]/9)*levels;
           forceProgression.classes++;

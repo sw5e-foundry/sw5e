@@ -92,10 +92,10 @@ export default class Actor5e extends Actor {
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    data.attributes.powerForceLightDC = data.attributes[wis].dc ?? 10;
-    data.attributes.powerForceDarkDC = data.attributes[cha].dc ?? 10;
-    data.attributes.powerForceUniDC = floor.ceil(data.attributes.powerfldc,data.attributes.powerfddc) ?? 10;
-    data.attributes.powerTechDC = data.attributes[int].dc ?? 10;
+    data.attributes.powerForceLightDC = 8 + data.abilities.wis.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceDarkDC = 8 + data.abilities.cha.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceUnivDC = Math.ceil(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
+    data.attributes.powerTechDC = 8 + data.abilities.int.mod + data.attributes.prof ?? 10;
     this._computePowercastingProgression(this.data);
 
     // Compute owned item attributes which depend on prepared Actor data
@@ -411,7 +411,7 @@ export default class Actor5e extends Actor {
             forceProgression.maxClass = 'consular';
             forceProgression.maxClassLevels = levels;
             forceProgression.maxClassPriority = priority;
-            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['consular'][Math.clamped((levels - 1), 0, 20)];
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['consular'][Math.clamped((levels - 1), 0, 20)];
           }
           // calculate points and powers known
           forceProgression.powersKnown += SW5E.powersKnown['consular'][Math.clamped((levels - 1), 0, 20)];
@@ -427,7 +427,7 @@ export default class Actor5e extends Actor {
             techProgression.maxClass = 'engineer';
             techProgression.maxClassLevels = levels;
             techProgression.maxClassPriority = priority;
-            techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['engineer'][Math.clamped((levels - 1), 0, 20)];
+            techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['engineer'][Math.clamped((levels - 1), 0, 20)];
           }
           techProgression.powersKnown += SW5E.powersKnown['engineer'][Math.clamped((levels - 1), 0, 20)];
           techProgression.points += SW5E.powerPoints['engineer'][Math.clamped((levels - 1), 0, 20)];
@@ -442,7 +442,7 @@ export default class Actor5e extends Actor {
             forceProgression.maxClass = 'guardian';
             forceProgression.maxClassLevels = levels;
             forceProgression.maxClassPriority = priority;
-            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['guardian'][Math.clamped((levels - 1), 0, 20)];
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['guardian'][Math.clamped((levels - 1), 0, 20)];
           }
           forceProgression.powersKnown += SW5E.powersKnown['guardian'][Math.clamped((levels - 1), 0, 20)];
           forceProgression.points += SW5E.powerPoints['guardian'][Math.clamped((levels - 1), 0, 20)];
@@ -457,7 +457,7 @@ export default class Actor5e extends Actor {
             techProgression.maxClass = 'scout';
             techProgression.maxClassLevels = levels;
             techProgression.maxClassPriority = priority;
-            techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['scout'][Math.clamped((levels - 1), 0, 20)];
+            techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['scout'][Math.clamped((levels - 1), 0, 20)];
           }
           techProgression.powersKnown += SW5E.powersKnown['scout'][Math.clamped((levels - 1), 0, 20)];
           techProgression.points += SW5E.powerPoints['scout'][Math.clamped((levels - 1), 0, 20)];
@@ -472,7 +472,7 @@ export default class Actor5e extends Actor {
             forceProgression.maxClass = 'sentinel';
             forceProgression.maxClassLevels = levels;
             forceProgression.maxClassPriority = priority;
-            forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['sentinel'][Math.clamped((levels - 1), 0, 20)];
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['sentinel'][Math.clamped((levels - 1), 0, 20)];
           }
           forceProgression.powersKnown += SW5E.powersKnown['sentinel'][Math.clamped((levels - 1), 0, 20)];
           forceProgression.points += SW5E.powerPoints['sentinel'][Math.clamped((levels - 1), 0, 20)];
@@ -482,40 +482,35 @@ export default class Actor5e extends Actor {
     // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
     if (!isNPC && forceProgression.classes > 1) {
       forceProgression.levels = Math.floor(forceProgression.multi);
-      forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['multi'][levels - 1];
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][levels - 1];
     }
     if (!isNPC && techProgression.classes > 1) {
       techProgression.levels = Math.floor(techProgression.multi);
-      techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['multi'][levels - 1];
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][levels - 1];
     }
     
     // EXCEPTION: NPC with an explicit power-caster level
     if (isNPC && actorData.data.details.powerForceLevel) {
       forceProgression.levels = actorData.data.details.powerForceLevel;
       forceProgression.maxClass = 'consular';
-      forceProgression.maxClassPowerLevel = SW5E.maxPowerLevel['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
       forceProgression.powersKnown = SW5E.powersKnown['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
       forceProgression.points = SW5E.powerPoints['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
     }
     if (isNPC && actorData.data.details.powerTechLevel) {
       techProgression.levels = actorData.data.details.powerTechLevel;
       techProgression.maxClass = 'engineer';
-      techProgression.maxClassPowerLevel = SW5E.maxPowerLevel['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
       techProgression.powersKnown = SW5E.powersKnown['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
       techProgression.points = SW5E.powerPoints['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
     }
 
     // Look up the number of slots per level from the powerLimit table
-    const forcePowerLimit = SW5E.powerLimit['none'];
-    for (let i = 0; i < (forceProgression.maxPowerLevel - 1); i++) {
+    // TODO: Add Tech progression afterwards
+    let forcePowerLimit = SW5E.powerLimit['none'];
+    for (let i = 0; i < (forceProgression.maxClassPowerLevel); i++) {
       forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
     }
-    
-    /** 
-     *  ? set max force/tech points? Should probably be done on class level up drop
-     *  ? set max force/tech powers known? Should probably be done on class level up drop
-     *  ? should I tally number of powers known here?
-     */
 
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
@@ -524,6 +519,24 @@ export default class Actor5e extends Actor {
       else lvl.max = forcePowerLimit[i-1] || 0;
       lvl.value = parseInt(lvl.value);
     }
+
+    // Set Force and tech power
+    if (forceProgression.levels > 0){
+      actorData.data.attributes.force.known.max = forceProgression.powersKnown;
+      actorData.data.attributes.force.points.max = forceProgression.points + Math.max(actorData.data.abilities.wis.mod,actorData.data.abilities.cha.mod);
+      actorData.data.attributes.force.level = forceProgression.levels;
+    }
+    if (techProgression.levels > 0){
+      actorData.data.attributes.tech.known.max = techProgression.powersKnown;
+      actorData.data.attributes.tech.points.max = techProgression.points + actorData.data.abilities.int.mod;
+      actorData.data.attributes.tech.level = techProgression.levels;
+    }
+
+    /** 
+     *  ? should I tally number of powers known here?
+     */
+
+
   }
 
   /* -------------------------------------------- */

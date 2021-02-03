@@ -129,6 +129,7 @@ export const migrateActorData = function(actor) {
   // Actor Data Updates
   _migrateActorMovement(actor, updateData);
   _migrateActorSenses(actor, updateData);
+  _migrateActorPowers(actor, updateData);
 
   // Migrate Owned Items
   if ( !actor.items ) return updateData;
@@ -250,6 +251,48 @@ function _migrateActorMovement(actorData, updateData) {
     // Remove the old attribute
     updateData["data.attributes.-=speed"] = null;
   }
+  return updateData
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor speed string to movement object
+ * @private
+ */
+function _migrateActorPowers(actorData, updateData) {
+  const ad = actorData.data;
+
+  // If new Force & Tech data is not present, create it
+  const hasNewAttrib = ad?.attributes?.force?.level !== undefined;
+  if ( !hasNewAttrib ) {
+    updateData["data.attributes.force.known.value"] = 0;
+    updateData["data.attributes.force.known.min"] = 0;
+    updateData["data.attributes.force.known.max"] = 0;
+    updateData["data.attributes.force.points.value"] = 0;
+    updateData["data.attributes.force.points.min"] = 0;
+    updateData["data.attributes.force.points.max"] = 0;
+    updateData["data.attributes.force.level"] = 0;
+    updateData["data.attributes.tech.known.value"] = 0;
+    updateData["data.attributes.tech.known.min"] = 0;
+    updateData["data.attributes.tech.known.max"] = 0;
+    updateData["data.attributes.tech.points.value"] = 0;
+    updateData["data.attributes.tech.points.min"] = 0;
+    updateData["data.attributes.tech.points.max"] = 0;
+    updateData["data.attributes.tech.level"] = 0;
+  }
+  // If new Bonus Power DC data is not present, create it
+  const hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
+  if ( !hasNewBonus ) {
+    updateData["data.bonuses.power.forceLightDC"] = "";
+    updateData["data.bonuses.power.forceDarkDC"] = "";
+    updateData["data.bonuses.power.forceUnivDC"] = "";
+    updateData["data.bonuses.power.TechDC"] = "";
+  }
+
+  // Remove the Power DC Bonus
+  updateData["data.bonuses.power.-=dc"] = null;
+
   return updateData
 }
 

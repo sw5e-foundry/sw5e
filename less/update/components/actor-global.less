@@ -939,6 +939,57 @@
             }
         }
         .tab.powerbook {
+            .resource-items {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: 12px;
+
+                .resource {
+
+                    h1 {
+                        border: none;
+                        margin: 0;
+                        font-family: 'Russo One';
+                        font-size: 16px;
+                        font-weight: 400;
+                        text-align: center;
+                        margin-bottom: 4px;
+                        border-radius: 0;
+                    }
+
+                    .attribute-value,
+                    .attribute-value input {
+                        .russoOne(22px);
+                        text-align: center;
+                        line-height: 1;
+                    }
+
+                    .attribute-value {
+                        display: grid;
+                        grid-template-columns: auto 14px auto;
+
+                        input {
+                            display: block;
+                            width: 100%;
+                        }
+
+                        .value-number {
+                            display: block;
+                            width: 100%;
+                            text-align: right;
+                            padding: 0px 3px;
+                            &:last-child {
+                                text-align: left;
+                            }
+                        }
+
+                        span.value-number {
+                            padding: 1px 4px;
+                        }
+                    }
+                }
+            }
+
             &>.panel {
                 grid-template-rows: 32px 24px 24px auto;
             }

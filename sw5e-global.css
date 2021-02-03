@@ -86,9 +86,6 @@ body {
   font-family: 'Open Sans';
   font-size: 13px;
   font-weight: 400;
-  background-image: url('./ui/SW5e-logo.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 h1 {
   font-family: 'Russo One';
@@ -1537,6 +1534,50 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.features > .panel {
   grid-template-rows: 24px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource h1 {
+  border: none;
+  margin: 0;
+  font-family: 'Russo One';
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+  border-radius: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value input {
+  font-family: 'Russo One';
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value {
+  display: grid;
+  grid-template-columns: auto 14px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value input {
+  display: block;
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value .value-number {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 0px 3px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value .value-number:last-child {
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value span.value-number {
+  padding: 1px 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.powerbook > .panel {
   grid-template-rows: 32px 24px 24px auto;

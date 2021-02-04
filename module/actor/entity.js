@@ -458,8 +458,8 @@ export default class Actor5e extends Actor {
       return weight + (q * w);
     }, 0);
 
-    // [Optional] add Currency Weight
-    if ( game.settings.get("sw5e", "currencyWeight") ) {
+    // [Optional] add Currency Weight (for non-transformed actors)
+    if ( game.settings.get("sw5e", "currencyWeight") && actorData.data.currency ) {
       const currency = actorData.data.currency;
       const numCoins = Object.values(currency).reduce((val, denom) => val += Math.max(denom, 0), 0);
       weight += numCoins / CONFIG.SW5E.encumbrance.currencyPerWeight;
@@ -553,43 +553,56 @@ export default class Actor5e extends Actor {
     const isNPC = this.data.type === 'npc';
     let initial = {};
     switch ( itemData.type ) {
+
       case "weapon":
-        initial["data.equipped"] = isNPC;         // NPCs automatically equip weapons
-        let hasWeaponProf = isNPC;                // NPCs automatically have weapon proficiency
-        if ( !isNPC ) {
-          const weaponProf = {
-            "natural": true,
-            "simpleVW": "sim",
-            "simpleB": "sim",
-            "simpleLW": "sim",
-            "martialVW": "mar",
-            "martialB": "mar",
-            "martialLW": "mar"
-          }[itemData.data?.weaponType];
-          const actorWeaponProfs = this.data.data.traits?.weaponProf?.value || [];
-          hasWeaponProf = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
+        if ( getProperty(itemData, "data.equipped") === undefined ) {
+          initial["data.equipped"] = isNPC;       // NPCs automatically equip weapons
         }
-        initial["data.proficient"] = hasWeaponProf;
+        if ( getProperty(itemData, "data.proficient") === undefined ) {
+          if ( isNPC ) {
+            initial["data.proficient"] = true;    // NPCs automatically have equipment proficiency
+          } else {
+            const weaponProf = {
+              "natural": true,
+              "simpleVW": "sim",
+              "simpleB": "sim",
+              "simpleLW": "sim",
+              "martialVW": "mar",
+              "martialB": "mar",
+              "martialLW": "mar"
+            }[itemData.data?.weaponType];         // Player characters check proficiency
+            const actorWeaponProfs = this.data.data.traits?.weaponProf?.value || [];
+            const hasWeaponProf = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
+            initial["data.proficient"] = hasWeaponProf;
+          }
+        }
         break;
+
       case "equipment":
-        initial["data.equipped"] = isNPC;         // NPCs automatically equip equipment
-        let hasEquipmentProf = isNPC;             // NPCs automatically have equipment proficiency
-        if ( !isNPC ) {
-          const armorProf = {
-            "natural": true,
-            "clothing": true,
-            "light": "lgt",
-            "medium": "med",
-            "heavy": "hvy",
-            "shield": "shl"
-          }[itemData.data?.armor?.type];
-          const actorArmorProfs = this.data.data.traits?.armorProf?.value || [];
-          hasEquipmentProf = (armorProf === true) || actorArmorProfs.includes(armorProf);
+        if ( getProperty(itemData, "data.equipped") === undefined ) {
+          initial["data.equipped"] = isNPC;       // NPCs automatically equip equipment
         }
-        initial["data.proficient"] = hasEquipmentProf;
+        if ( getProperty(itemData, "data.proficient") === undefined ) {
+          if ( isNPC ) {
+            initial["data.proficient"] = true;    // NPCs automatically have equipment proficiency
+          } else {
+            const armorProf = {
+              "natural": true,
+              "clothing": true,
+              "light": "lgt",
+              "medium": "med",
+              "heavy": "hvy",
+              "shield": "shl"
+            }[itemData.data?.armor?.type];        // Player characters check proficiency
+            const actorArmorProfs = this.data.data.traits?.armorProf?.value || [];
+            const hasEquipmentProf = (armorProf === true) || actorArmorProfs.includes(armorProf);
+            initial["data.proficient"] = hasEquipmentProf;
+          }
+        }
         break;
+
       case "power":
-        initial["data.prepared"] = true;          // NPCs automatically prepare powers
+        initial["data.prepared"] = true;          // automatically prepare powers for everyone
         break;
     }
     mergeObject(itemData, initial);
@@ -1103,7 +1116,7 @@ export default class Actor5e extends Actor {
 
     // Recover power slots
     for ( let [k, v] of Object.entries(data.powers) ) {
-      updateData[`data.powers.${k}.value`] = !Number.isNaN(v.override) ? v.override : (v.max ?? 0);
+      updateData[`data.powers.${k}.value`] = Number.isNumeric(v.override) ? v.override : (v.max ?? 0);
     }
 
     // Recover pact slots.
@@ -1210,10 +1223,10 @@ export default class Actor5e extends Actor {
     }
 
     // Get the original Actor data and the new source data
-    const o = this.toJSON();
+    const o = duplicate(this.toJSON());
     o.flags.sw5e = o.flags.sw5e || {};
     o.flags.sw5e.transformOptions = {mergeSkills, mergeSaves};
-    const source = target.toJSON();
+    const source = duplicate(target.toJSON());
 
     // Prepare new data to merge from the source
     const d = {
@@ -1244,7 +1257,7 @@ export default class Actor5e extends Actor {
     // Handle wildcard
     if ( source.token.randomImg ) {
       const images = await target.getTokenImages();
-      d.token.img = images[0];
+      d.token.img = images[Math.floor(Math.random() * images.length)];
     }
 
     // Keep Token configurations
@@ -1328,7 +1341,7 @@ export default class Actor5e extends Actor {
       newTokenData.actorId = newActor.id;
       return newTokenData;
     });
-    return canvas.scene.updateEmbeddedEntity("Token", updates);
+    return canvas.scene?.updateEmbeddedEntity("Token", updates);
   }
 
   /* -------------------------------------------- */

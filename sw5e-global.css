@@ -54,11 +54,6 @@
   font-weight: 400;
   src: url('./fonts/EngliBesh-KG3W.ttf');
 }
-.engli-Besh {
-  font-family: 'Engli-Besh';
-  font-size: 20px;
-  font-weight: 400;
-}
 /* ----------------------------------------- */
 /*  Fonts                                    */
 /* ----------------------------------------- */
@@ -768,7 +763,7 @@ input[type="reset"]:disabled {
   grid-template-rows: 1fr 26px auto;
   grid-template-columns: 128px 1fr;
   column-gap: 8px;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet header img {
   grid-column-start: 1;
@@ -1390,7 +1385,7 @@ input[type="reset"]:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4px;
-  row-gap: 4px;
+  grid-row-gap: 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits ul.passives strong {
   font-size: 13px;
@@ -1601,7 +1596,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet.limited {
   grid-template-rows: 144px auto;
-  row-gap: 8px;
+  grid-row-gap: 8px;
 }
 .sw5e.sheet.actor .swalt-sheet.limited header {
   grid-template-rows: 1fr;

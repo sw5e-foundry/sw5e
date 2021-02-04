@@ -17,6 +17,7 @@ import { measureDistances, getBarAttribute } from "./module/canvas.js";
 // Import Entities
 import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
+import CharacterImporter from "./module/characterImporter.js";
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -26,6 +27,7 @@ import ActorSheet5eCharacter from "./module/actor/sheets/oldSheets/character.js"
 import ActorSheet5eNPC from "./module/actor/sheets/oldSheets/npc.js";
 import ActorSheet5eVehicle from "./module/actor/sheets/oldSheets/vehicle.js";
 import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
+import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
 import ItemSheet5e from "./module/item/sheet.js";
 import ShortRestDialog from "./module/apps/short-rest.js";
 import TraitSelector from "./module/apps/trait-selector.js";
@@ -53,6 +55,7 @@ Hooks.once("init", function() {
       ActorSheet5eCharacter,
       ActorSheet5eCharacterNew,
       ActorSheet5eNPC,
+      ActorSheet5eNPCNew,
       ActorSheet5eVehicle,
       ItemSheet5e,
       ShortRestDialog,
@@ -86,7 +89,7 @@ Hooks.once("init", function() {
 
   // 5e cone RAW should be 53.13 degrees
   CONFIG.MeasuredTemplate.defaults.angle = 53.13;
-  
+
   // Add DND5e namespace for module compatability
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
@@ -110,10 +113,15 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassCharacterOld"
    });
-  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
+  Actors.registerSheet("sw5e", ActorSheet5eNPCNew, {
     types: ["npc"],
     makeDefault: true,
     label: "SW5E.SheetClassNPC"
+  });
+  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
+    types: ["npc"],
+    makeDefault: false,
+    label: "SW5E.SheetClassNPCOld"
   });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],
@@ -241,6 +249,7 @@ Hooks.on("renderSceneDirectory", (app, html, data)=> {
 });
 Hooks.on("renderActorDirectory", (app, html, data)=> {
   setFolderBackground(html);
+  CharacterImporter.addImportButton(html);
 });
 Hooks.on("renderItemDirectory",  (app, html, data)=> {
   setFolderBackground(html);

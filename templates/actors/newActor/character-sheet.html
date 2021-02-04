@@ -98,7 +98,7 @@
 					<span>{{movement.primary}}</span>
 				</div>
 				<footer class="attribute-footer">
-					<span>{{movement.special}}</span>
+					<span>{{movement.special}} {{data.attributes.movement.units}}</span>
 				</footer>
 			</section>
 
@@ -115,7 +115,6 @@
 		<button class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
 		<button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
-<!--		<button class="item" data-tab="notes">{{ localize "SW5E.Notes" }}</button> -->
 	</nav>
 	{{!-- PC Sheet Body --}}
 	<section class="sheet-body">
@@ -143,8 +142,4 @@
 		<section class="tab biography" data-group="primary" data-tab="biography">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html"}}
 		</section>
-<!--		{{!-- Notes Tab --}}
-		<section class="tab notes" data-group="primary" data-tab="notes">
-			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-notes.html"}}
-		</section> -->
 </form>

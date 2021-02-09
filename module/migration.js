@@ -192,6 +192,7 @@ function cleanActorData(actorData) {
  */
 export const migrateItemData = function(item) {
   const updateData = {};
+  _migrateItemClassPowerCasting(item, updateData)
   _migrateItemAttunement(item, updateData);
   return updateData;
 };
@@ -272,6 +273,8 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.attributes.force.points.value"] = 0;
     updateData["data.attributes.force.points.min"] = 0;
     updateData["data.attributes.force.points.max"] = 0;
+    updateData["data.attributes.force.points.temp"] = 0;
+    updateData["data.attributes.force.points.tempmax"] = 0;
     updateData["data.attributes.force.level"] = 0;
     updateData["data.attributes.tech.known.value"] = 0;
     updateData["data.attributes.tech.known.min"] = 0;
@@ -279,6 +282,8 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.attributes.tech.points.value"] = 0;
     updateData["data.attributes.tech.points.min"] = 0;
     updateData["data.attributes.tech.points.max"] = 0;
+    updateData["data.attributes.tech.points.temp"] = 0;
+    updateData["data.attributes.tech.points.tempmax"] = 0;
     updateData["data.attributes.tech.level"] = 0;
   }
   // If new Bonus Power DC data is not present, create it
@@ -332,6 +337,35 @@ function _migrateActorSenses(actor, updateData) {
   updateData["data.traits.-=senses"] = null;
   return updateData;
 }
+
+/* -------------------------------------------- */
+
+/**
+ * @private
+ */
+function _migrateItemClassPowerCasting(item, updateData) {
+  if (item.type === "class"){
+    switch (item.name){
+      case "Consular": 
+        updateData["data.powercasting"] = "consular";
+        break;
+      case "Engineer":
+        updateData["data.powercasting"] = "engineer";
+        break;
+      case "Guardian":
+        updateData["data.powercasting"] = "guardian";
+        break;
+      case "Scout":
+        updateData["data.powercasting"] = "scout";
+        break;
+      case "Sentinel":
+        updateData["data.powercasting"] = "sentinel";
+        break;
+    }
+  }
+  return updateData;
+}
+
 
 /* -------------------------------------------- */
 

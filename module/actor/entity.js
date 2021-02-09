@@ -1086,7 +1086,7 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Cause this Actor to take a Short Rest
+   * Cause this Actor to take a Short Rest and regain all Tech Points
    * During a Short Rest resources and limited item uses may be recovered
    * @param {boolean} dialog  Present a dialog window which allows for rolling hit dice as part of the Short Rest
    * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
@@ -1119,10 +1119,16 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Note the change in HP and HD which occurred
+
+
+    // Note the change in HP and HD and TP which occurred
     const dhd = this.data.data.attributes.hd - hd0;
     const dhp = this.data.data.attributes.hp.value - hp0;
+    const dtp = this.data.data.attributes.tech.points.max - this.data.data.attributes.tech.points.value;
 
+    // Automatically Retore Tech Points
+    this.update({"data.attributes.tech.points.value": this.data.data.attributes.tech.points.max});
+    
     // Recover character resources
     const updateData = {};
     for ( let [k, r] of Object.entries(this.data.data.resources) ) {
@@ -1155,14 +1161,24 @@ export default class Actor5e extends Actor {
 
       // Summarize the health effects
       let srMessage = "SW5E.ShortRestResultShort";
-      if ((dhd !== 0) && (dhp !== 0)) srMessage = "SW5E.ShortRestResult";
+      if ((dhd !== 0) && (dhp !== 0)){
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultWithTech";
+        }else{
+          srMessage = "SW5E.ShortRestResult";
+        }
+      }else{
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultOnlyTech";
+        }
+      }  
 
       // Create a chat message
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp})
+        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp, tech: dtp})
       });
     }
 
@@ -1170,6 +1186,7 @@ export default class Actor5e extends Actor {
     return {
       dhd: dhd,
       dhp: dhp,
+      dtp: dtp,
       updateData: updateData,
       updateItems: updateItems,
       newDay: newDay
@@ -1179,7 +1196,7 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Take a long rest, recovering HP, HD, resources, and power slots
+   * Take a long rest, recovering HP, HD, resources, Force and Power points and power slots
    * @param {boolean} dialog  Present a confirmation dialog window whether or not to take a long rest
    * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
    * @param {boolean} newDay  Whether the long rest carries over to a new day
@@ -1197,12 +1214,20 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Recover hit points to full, and eliminate any existing temporary HP
+    // Recover hit, tech, and force points to full, and eliminate any existing temporary HP, TP, and FP
     const dhp = data.attributes.hp.max - data.attributes.hp.value;
+    const dtp = data.attributes.tech.points.max - data.attributes.tech.points.value;
+    const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
     const updateData = {
       "data.attributes.hp.value": data.attributes.hp.max,
       "data.attributes.hp.temp": 0,
-      "data.attributes.hp.tempmax": 0
+      "data.attributes.hp.tempmax": 0,
+      "data.attributes.tech.points.value": data.attributes.tech.points.max,
+      "data.attributes.tech.points.temp": 0,
+      "data.attributes.tech.points.tempmax": 0,
+      "data.attributes.force.points.value": data.attributes.force.points.max,
+      "data.attributes.force.points.temp": 0,
+      "data.attributes.force.points.tempmax": 0
     };
 
     // Recover character resources
@@ -1263,15 +1288,16 @@ export default class Actor5e extends Actor {
 
     // Determine the chat message to display
     if ( chat ) {
-      let lrMessage = "SW5E.LongRestResultShort";
-      if((dhp !== 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResult";
-      else if ((dhp !== 0) && (dhd === 0)) lrMessage = "SW5E.LongRestResultHitPoints";
-      else if ((dhp === 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResultHitDice";
+      let lrMessage = "SW5E.LongRestResult";
+      if (dhp !== 0) lrMessage += "HP";
+      if (dfp !== 0) lrMessage += "FP";
+      if (dtp !== 0) lrMessage += "TP";
+      if (dhd !== 0) lrMessage += "HD";
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, dice: dhd})
+        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, tech: dtp, force: dfp, dice: dhd})
       });
     }
 
@@ -1279,6 +1305,8 @@ export default class Actor5e extends Actor {
     return {
       dhd: dhd,
       dhp: dhp,
+      dtp: dtp,
+      dfp: dfp,
       updateData: updateData,
       updateItems: updateItems,
       newDay: newDay

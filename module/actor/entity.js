@@ -94,7 +94,7 @@ export default class Actor5e extends Actor {
     // Prepare power-casting data
     data.attributes.powerForceLightDC = 8 + data.abilities.wis.mod + data.attributes.prof ?? 10;
     data.attributes.powerForceDarkDC = 8 + data.abilities.cha.mod + data.attributes.prof ?? 10;
-    data.attributes.powerForceUnivDC = Math.ceil(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
+    data.attributes.powerForceUnivDC = Math.max(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
     data.attributes.powerTechDC = 8 + data.abilities.int.mod + data.attributes.prof ?? 10;
     this._computePowercastingProgression(this.data);
 
@@ -1118,8 +1118,6 @@ export default class Actor5e extends Actor {
         if ( r === null ) break;
       }
     }
-
-
 
     // Note the change in HP and HD and TP which occurred
     const dhd = this.data.data.attributes.hd - hd0;

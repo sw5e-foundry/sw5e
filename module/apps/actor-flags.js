@@ -74,7 +74,11 @@ export default class ActorSheetFlags extends BaseEntitySheet {
       {name: "data.bonuses.abilities.check", label: "SW5E.BonusAbilityCheck"},
       {name: "data.bonuses.abilities.save", label: "SW5E.BonusAbilitySave"},
       {name: "data.bonuses.abilities.skill", label: "SW5E.BonusAbilitySkill"},
-      {name: "data.bonuses.power.dc", label: "SW5E.BonusPowerDC"}
+      {name: "data.bonuses.power.dc", label: "SW5E.BonusPowerDC"},
+      {name: "data.bonuses.power.forceLightDC", label: "SW5E.BonusForceLightPowerDC"},
+      {name: "data.bonuses.power.forceDarkDC", label: "SW5E.BonusForceDarkPowerDC"},
+      {name: "data.bonuses.power.forceUnivDC", label: "SW5E.BonusForceUnivPowerDC"},
+      {name: "data.bonuses.power.techDC", label: "SW5E.BonusTechPowerDC"}
     ];
     for ( let b of bonuses ) {
       b.value = getProperty(this.object._data, b.name) || "";

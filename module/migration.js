@@ -292,7 +292,7 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.bonuses.power.forceLightDC"] = "";
     updateData["data.bonuses.power.forceDarkDC"] = "";
     updateData["data.bonuses.power.forceUnivDC"] = "";
-    updateData["data.bonuses.power.TechDC"] = "";
+    updateData["data.bonuses.power.techDC"] = "";
   }
 
   // Remove the Power DC Bonus

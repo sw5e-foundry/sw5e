@@ -431,11 +431,18 @@ export default class Item5e extends Item {
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
 
+    //set rollback values in case you pick a spell level you can't cast anymore
+    let forcePointValueRollback = actor.data.data.attributes.force.points.value;
+    let forcePointTempRollback = actor.data.data.attributes.force.points.temp;
+    let techPointValueRollback = actor.data.data.attributes.tech.points.value;
+    let techPointTempRollback = actor.data.data.attributes.tech.points.temp;
+
     // Display a configuration dialog to customize the usage
     const needsConfiguration = createMeasuredTemplate || consumeRecharge || consumeResource || consumePowerSlot || consumeUsage;
     if (configureDialog && needsConfiguration) {
       const configuration = await AbilityUseDialog.create(this);
       if (!configuration) return;
+      
 
       // Determine consumption preferences
       createMeasuredTemplate = Boolean(configuration.placeTemplate);
@@ -448,6 +455,31 @@ export default class Item5e extends Item {
       if ( requirePowerSlot ) {
         const slotLevel = configuration.level;
         const powerLevel = parseInt(slotLevel);
+        const fp = actor.data.data.attributes.force.points;
+        const tp = actor.data.data.attributes.tech.points;
+        const powerCost = powerLevel + 1;
+        switch (id.school){
+          case "lgt":
+          case "uni":
+          case "drk": {
+            if (fp.temp >= powerCost) {
+              actor.update({"data.attributes.force.points.temp": fp.temp - powerCost});
+            }else{
+              actor.update({"data.attributes.force.points.value": fp.value + fp.temp - powerCost});
+              actor.update({"data.attributes.force.points.temp": 0});
+            }
+            break;
+          }
+          case "tec": {
+            if (tp.temp >= powerCost) {
+              actor.update({"data.attributes.tech.points.temp": tp.temp - powerCost});
+            }else{
+              actor.update({"data.attributes.tech.points.value": tp.value + tp.temp - powerCost});
+              actor.update({"data.attributes.tech.points.temp": 0});
+            break;
+            }
+          }
+        }
         if (powerLevel !== id.level) {
           const upcastData = mergeObject(this.data, {"data.level": powerLevel}, {inplace: false});
           item = this.constructor.createOwned(upcastData, actor);  // Replace the item with an upcast version
@@ -458,7 +490,13 @@ export default class Item5e extends Item {
 
     // Determine whether the item can be used by testing for resource consumption
     const usage = item._getUsageUpdates({consumeRecharge, consumeResource, consumePowerSlot, consumeUsage, consumeQuantity});
-    if ( !usage ) return;
+    if ( !usage ) {
+      actor.update({"data.attributes.force.points.value": forcePointValueRollback});
+      actor.update({"data.attributes.force.points.temp": forcePointTempRollback});
+      actor.update({"data.attributes.tech.points.value": techPointValueRollback});
+      actor.update({"data.attributes.tech.points.temp": techPointTempRollback});
+      return;
+    }
     const {actorUpdates, itemUpdates, resourceUpdates} = usage;
 
     // Commit pending data updates

@@ -100,6 +100,19 @@ export default class AbilityUseDialog extends Dialog {
 
     // Determine the levels which are feasible
     let lmax = 0;
+    let points;
+    switch (itemData.school){
+      case "lgt":
+      case "uni":
+      case "drk": {
+        points = actorData.attributes.force.points.value + actorData.attributes.force.points.temp;
+        break;
+      }
+      case "tec": {
+        points = actorData.attributes.tech.points.value + actorData.attributes.tech.points.temp;
+        break;
+      }
+    }
     const powerLevels = Array.fromRange(10).reduce((arr, i) => {
       if ( i < lvl ) return arr;
       const label = CONFIG.SW5E.powerLevels[i];
@@ -111,21 +124,11 @@ export default class AbilityUseDialog extends Dialog {
         level: i,
         label: i > 0 ? game.i18n.format('SW5E.PowerLevelSlot', {level: label, n: slots}) : label,
         canCast: max > 0,
-        hasSlots: slots > 0
+        hasSlots: ((slots > 0) && (points > i))
       });
       return arr;
     }, []).filter(sl => sl.level <= lmax);
 
-    // If this character has pact slots, present them as an option for casting the power.
-    const pact = actorData.powers.pact;
-    if (pact.level >= lvl) {
-      powerLevels.push({
-        level: 'pact',
-        label: `${game.i18n.format('SW5E.PowerLevelPact', {level: pact.level, n: pact.value})}`,
-        canCast: true,
-        hasSlots: pact.value > 0
-      });
-    }
     const canCast = powerLevels.some(l => l.hasSlots);
     if ( !canCast ) data.errors.push(game.i18n.format("SW5E.PowerCastNoSlots", {
       level: CONFIG.SW5E.powerLevels[lvl],

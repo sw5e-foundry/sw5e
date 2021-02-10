@@ -101,33 +101,61 @@ export default class AbilityUseDialog extends Dialog {
     // Determine the levels which are feasible
     let lmax = 0;
     let points;
+    let powerType;
     switch (itemData.school){
       case "lgt":
       case "uni":
       case "drk": {
+        powerType = "force"
         points = actorData.attributes.force.points.value + actorData.attributes.force.points.temp;
         break;
       }
       case "tec": {
+        powerType = "tech"
         points = actorData.attributes.tech.points.value + actorData.attributes.tech.points.temp;
         break;
       }
     }
-    const powerLevels = Array.fromRange(10).reduce((arr, i) => {
-      if ( i < lvl ) return arr;
-      const label = CONFIG.SW5E.powerLevels[i];
-      const l = actorData.powers["power"+i] || {max: 0, override: null};
-      let max = parseInt(l.override || l.max || 0);
-      let slots = Math.clamped(parseInt(l.value || 0), 0, max);
-      if ( max > 0 ) lmax = i;
-      arr.push({
-        level: i,
-        label: i > 0 ? game.i18n.format('SW5E.PowerLevelSlot', {level: label, n: slots}) : label,
-        canCast: max > 0,
-        hasSlots: ((slots > 0) && (points > i))
-      });
-      return arr;
-    }, []).filter(sl => sl.level <= lmax);
+    let powerLevels
+    if (powerType === "force"){
+      powerLevels = Array.fromRange(10).reduce((arr, i) => {
+        if ( i < lvl ) return arr;
+        const label = CONFIG.SW5E.powerLevels[i];
+        const l = actorData.powers["power"+i] || {fmax: 0, foverride: null};
+        let max = parseInt(l.foverride || l.fmax || 0);
+        let slots = Math.clamped(parseInt(l.fvalue || 0), 0, max);
+        if ( max > 0 ) lmax = i;
+        if ((max > 0) && (slots > 0) && (points > i)){
+          arr.push({
+            level: i,
+            label: i > 0 ? game.i18n.format('SW5E.PowerLevelSlot', {level: label, n: slots}) : label,
+            canCast: max > 0,
+            hasSlots: slots > 0
+          });
+        }
+        return arr;
+      }, []).filter(sl => sl.level <= lmax);
+    }else if (powerType === "tech"){
+      powerLevels = Array.fromRange(10).reduce((arr, i) => {
+        if ( i < lvl ) return arr;
+        const label = CONFIG.SW5E.powerLevels[i];
+        const l = actorData.powers["power"+i] || {tmax: 0, toverride: null};
+        let max = parseInt(l.override || l.tmax || 0);
+        let slots = Math.clamped(parseInt(l.tvalue || 0), 0, max);
+        if ( max > 0 ) lmax = i;
+        if ((max > 0) && (slots > 0) && (points > i)){
+          arr.push({
+            level: i,
+            label: i > 0 ? game.i18n.format('SW5E.PowerLevelSlot', {level: label, n: slots}) : label,
+            canCast: max > 0,
+            hasSlots: slots > 0
+          });
+        }
+        return arr;
+      }, []).filter(sl => sl.level <= lmax);
+    }
+  
+    
 
     const canCast = powerLevels.some(l => l.hasSlots);
     if ( !canCast ) data.errors.push(game.i18n.format("SW5E.PowerCastNoSlots", {

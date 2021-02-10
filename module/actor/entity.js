@@ -506,7 +506,6 @@ export default class Actor5e extends Actor {
     }
 
     // Look up the number of slots per level from the powerLimit table
-    // TODO: Add Tech progression afterwards
     let forcePowerLimit = SW5E.powerLimit['none'];
     for (let i = 0; i < (forceProgression.maxClassPowerLevel); i++) {
       forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
@@ -515,9 +514,22 @@ export default class Actor5e extends Actor {
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
       if ( Number.isNaN(i) ) continue;
-      if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 0);
-      else lvl.max = forcePowerLimit[i-1] || 0;
-      lvl.value = parseInt(lvl.value);
+      if ( Number.isNumeric(lvl.foverride) ) lvl.fmax = Math.max(parseInt(lvl.foverride), 0);
+      else lvl.fmax = forcePowerLimit[i-1] || 0;
+      lvl.fvalue = parseInt(lvl.fvalue);
+    }
+    
+    let techPowerLimit = SW5E.powerLimit['none'];
+    for (let i = 0; i < (techProgression.maxClassPowerLevel); i++) {
+      techPowerLimit[i] = SW5E.powerLimit[techProgression.maxClass][i];
+    }
+
+    for ( let [n, lvl] of Object.entries(powers) ) {
+      let i = parseInt(n.slice(-1));
+      if ( Number.isNaN(i) ) continue;
+      if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
+      else lvl.tmax = techPowerLimit[i-1] || 0;
+      lvl.tvalue = parseInt(lvl.tvalue);
     }
 
     // Set Force and tech power

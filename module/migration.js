@@ -286,13 +286,28 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.attributes.tech.points.tempmax"] = 0;
     updateData["data.attributes.tech.level"] = 0;
   }
+
+  // If new Power F/T split data is not present, create it
+  const hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
+  if ( !hasNewBonus ) {
+    for (let i = 1; i <= 9; i++) { 
+      // add new
+      updateData["data.powers.power" + i + ".fvalue"] = 0;
+      updateData["data.powers.power" + i + ".foverride"] = null;
+      updateData["data.powers.power" + i + ".tvalue"] = 0;
+      updateData["data.powers.power" + i + ".toverride"] = null;
+      //remove old
+      updateData["data.powers.power" + i + ".-=value"] = null;
+      updateData["data.powers.power" + i + ".-=override"] = null;
+    }
+  }
   // If new Bonus Power DC data is not present, create it
   const hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
   if ( !hasNewBonus ) {
     updateData["data.bonuses.power.forceLightDC"] = "";
     updateData["data.bonuses.power.forceDarkDC"] = "";
     updateData["data.bonuses.power.forceUnivDC"] = "";
-    updateData["data.bonuses.power.TechDC"] = "";
+    updateData["data.bonuses.power.techDC"] = "";
   }
 
   // Remove the Power DC Bonus

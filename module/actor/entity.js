@@ -94,7 +94,7 @@ export default class Actor5e extends Actor {
     // Prepare power-casting data
     data.attributes.powerForceLightDC = 8 + data.abilities.wis.mod + data.attributes.prof ?? 10;
     data.attributes.powerForceDarkDC = 8 + data.abilities.cha.mod + data.attributes.prof ?? 10;
-    data.attributes.powerForceUnivDC = Math.ceil(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
+    data.attributes.powerForceUnivDC = Math.max(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
     data.attributes.powerTechDC = 8 + data.abilities.int.mod + data.attributes.prof ?? 10;
     this._computePowercastingProgression(this.data);
 
@@ -506,7 +506,6 @@ export default class Actor5e extends Actor {
     }
 
     // Look up the number of slots per level from the powerLimit table
-    // TODO: Add Tech progression afterwards
     let forcePowerLimit = SW5E.powerLimit['none'];
     for (let i = 0; i < (forceProgression.maxClassPowerLevel); i++) {
       forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
@@ -515,9 +514,22 @@ export default class Actor5e extends Actor {
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
       if ( Number.isNaN(i) ) continue;
-      if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 0);
-      else lvl.max = forcePowerLimit[i-1] || 0;
-      lvl.value = parseInt(lvl.value);
+      if ( Number.isNumeric(lvl.foverride) ) lvl.fmax = Math.max(parseInt(lvl.foverride), 0);
+      else lvl.fmax = forcePowerLimit[i-1] || 0;
+      lvl.fvalue = parseInt(lvl.fvalue);
+    }
+    
+    let techPowerLimit = SW5E.powerLimit['none'];
+    for (let i = 0; i < (techProgression.maxClassPowerLevel); i++) {
+      techPowerLimit[i] = SW5E.powerLimit[techProgression.maxClass][i];
+    }
+
+    for ( let [n, lvl] of Object.entries(powers) ) {
+      let i = parseInt(n.slice(-1));
+      if ( Number.isNaN(i) ) continue;
+      if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
+      else lvl.tmax = techPowerLimit[i-1] || 0;
+      lvl.tvalue = parseInt(lvl.tvalue);
     }
 
     // Set Force and tech power
@@ -1118,8 +1130,6 @@ export default class Actor5e extends Actor {
         if ( r === null ) break;
       }
     }
-
-
 
     // Note the change in HP and HD and TP which occurred
     const dhd = this.data.data.attributes.hd - hd0;

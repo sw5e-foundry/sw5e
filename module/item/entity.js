@@ -25,8 +25,17 @@ export default class Item5e extends Item {
     else if (this.actor) {
       const actorData = this.actor.data.data;
 
-      // Powers - Use Actor powercasting modifier
-      if (this.data.type === "power") return actorData.attributes.powercasting || "int";
+      // Powers - Use Actor powercasting modifier based on power school
+      if (this.data.type === "power") {
+        switch (this.data.data.school) {
+          case "lgt": return "wis";
+          case "uni": return (actorData.abilities["wis"].mod >= actorData.abilities["cha"].mod) ? "wis" : "cha";
+          case "drk": return "cha";
+          case "tec": return "int";
+        }
+        return "none";
+      }
+        
 
       // Tools - default to Intelligence
       else if (this.data.type === "tool") return "int";
@@ -311,7 +320,24 @@ export default class Item5e extends Item {
 
     // Actor power-DC based scaling
     if ( save.scaling === "power" ) {
-      save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerdc") : null;
+      switch (this.data.data.school) {
+        case "lgt": {
+          save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceLightDC") : null;
+          break;
+        }
+        case "uni": {
+          save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceUnivDC") : null;
+          break;
+        }
+        case "drk": {
+          save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceDarkDC") : null;
+          break;
+        }
+        case "tec": {
+          save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerTechDC") : null;
+          break;
+        }
+      }
     }
 
     // Ability-score based scaling
@@ -414,6 +440,7 @@ export default class Item5e extends Item {
     const recharge = id.recharge || {};       // Recharge mechanic
     const uses = id?.uses ?? {};              // Limited uses
     const isPower = this.type === "power";    // Does the item require a power slot?
+    // TODO: Possibly Mod this to not consume slots based on class?
     const requirePowerSlot = isPower && (id.level > 0) && CONFIG.SW5E.powerUpcastModes.includes(id.preparation.mode);
 
     // Define follow-up actions resulting from the item usage
@@ -424,11 +451,18 @@ export default class Item5e extends Item {
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
 
+    /*//set rollback values in case you pick a spell level you can't cast anymore
+    let forcePointValueRollback = actor.data.data.attributes.force.points.value;
+    let forcePointTempRollback = actor.data.data.attributes.force.points.temp;
+    let techPointValueRollback = actor.data.data.attributes.tech.points.value;
+    let techPointTempRollback = actor.data.data.attributes.tech.points.temp;
+    */
     // Display a configuration dialog to customize the usage
     const needsConfiguration = createMeasuredTemplate || consumeRecharge || consumeResource || consumePowerSlot || consumeUsage;
     if (configureDialog && needsConfiguration) {
       const configuration = await AbilityUseDialog.create(this);
       if (!configuration) return;
+      
 
       // Determine consumption preferences
       createMeasuredTemplate = Boolean(configuration.placeTemplate);
@@ -440,18 +474,20 @@ export default class Item5e extends Item {
       // Handle power upcasting
       if ( requirePowerSlot ) {
         const slotLevel = configuration.level;
-        const powerLevel = slotLevel === "pact" ? actor.data.data.powers.pact.level : parseInt(slotLevel);
+        const powerLevel = parseInt(slotLevel);
+        
         if (powerLevel !== id.level) {
           const upcastData = mergeObject(this.data, {"data.level": powerLevel}, {inplace: false});
           item = this.constructor.createOwned(upcastData, actor);  // Replace the item with an upcast version
         }
-        if ( consumePowerSlot ) consumePowerSlot = slotLevel === "pact" ? "pact" : `power${powerLevel}`;
+        if ( consumePowerSlot ) consumePowerSlot = `power${powerLevel}`;
       }
     }
 
     // Determine whether the item can be used by testing for resource consumption
     const usage = item._getUsageUpdates({consumeRecharge, consumeResource, consumePowerSlot, consumeUsage, consumeQuantity});
     if ( !usage ) return;
+    
     const {actorUpdates, itemUpdates, resourceUpdates} = usage;
 
     // Commit pending data updates
@@ -513,14 +549,47 @@ export default class Item5e extends Item {
     // Consume Power Slots
     if ( consumePowerSlot ) {
       const level = this.actor?.data.data.powers[consumePowerSlot];
-      const powers = Number(level?.value ?? 0);
-      if ( powers === 0 ) {
-        const label = game.i18n.localize(consumePowerSlot === "pact" ? "SW5E.PowerProgPact" : `SW5E.PowerLevel${id.level}`);
-        ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
-        return false;
+      const fp = this.actor.data.data.attributes.force.points;
+      const tp = this.actor.data.data.attributes.tech.points;
+      const powerCost = level + 1;
+      switch (id.school){
+        case "lgt":
+        case "uni":
+        case "drk": {
+          const powers = Number(level?.fvalue ?? 0);
+          if ( powers === 0 ) {
+            const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
+            ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
+            return false;
+          }
+          actorUpdates[`data.powers.${consumePowerSlot}.fvalue`] = Math.max(powers - 1, 0);
+          if (fp.temp >= powerCost) {
+            actorUpdates["data.attributes.force.points.temp"] = fp.temp - powerCost;
+          }else{
+            actorUpdates["data.attributes.force.points.value"] = fp.value + fp.temp - powerCost;
+            actorUpdates["data.attributes.force.points.temp"] = 0;
+          }
+          break;
+        }
+        case "tec": {
+          const powers = Number(level?.tvalue ?? 0);
+          if ( powers === 0 ) {
+            const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
+            ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
+            return false;
+          }
+          actorUpdates[`data.powers.${consumePowerSlot}.tvalue`] = Math.max(powers - 1, 0);
+          if (tp.temp >= powerCost) {
+            actorUpdates["data.attributes.force.points.temp"] = tp.temp - powerCost;
+          }else{
+            actorUpdates["data.attributes.force.points.value"] = tp.value + tp.temp - powerCost;
+            actorUpdates["data.attributes.force.points.temp"] = 0;
+          }
+          break;
+        }
       }
-      actorUpdates[`data.powers.${consumePowerSlot}.value`] = Math.max(powers - 1, 0);
     }
+    
 
     // Consume Limited Usage
     if ( consumeUsage ) {
@@ -792,7 +861,7 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Prepare chat card data for tool type items
+   * Prepare chat card data for loot type items
    * @private
    */
   _lootChatData(data, labels, props) {

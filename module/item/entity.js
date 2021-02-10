@@ -56,6 +56,26 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
+   * Is the Item a force power
+   * @type {boolean}
+   */
+  get isForcePower() {
+    return ["lgt", "drk", "uni"].includes(this.data.data.school);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is the Item a tech power
+   * @type {boolean}
+   */
+  get isTechPower() {
+    return ["tec"].includes(this.data.data.school);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Does the Item implement an attack roll as part of its usage
    * @type {boolean}
    */

@@ -1,27 +1,11 @@
 <section class="resource-items">
     <div class="resource">
-        <h1>
-            Force Points
-        </h1>
-        <div class="attribute-value">
-            <input name="data.attributes.force.points.value" type="text" value="{{data.attributes.force.points.value}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-            <span class="value-separator">/</span>
-            <input name="data.attributes.force.points.max" type="text" value="{{data.attributes.force.points.max}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-        </div>
-    </div>
+        <h1>Tech Points</h1>
 
-    <div class="resource">
-        <h1>
-            Tech Points
-        </h1>
         <div class="attribute-value">
-            <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
+            <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
             <span class="value-separator">/</span>
-            <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
+            <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
         </div>
     </div>
 </section>
@@ -54,18 +38,16 @@
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
         <li class="filter-item" data-filter="concentration">{{localize "SW5E.AbbreviationConc"}}</li>
         <li class="filter-item" data-filter="ritual">{{localize "SW5E.Ritual"}}</li>
-        <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}}
-            ({{preparedPowers}}){{/if}}</li>
+        <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}}({{preparedPowers}}){{/if}}</li>
     </ul>
 
     <div class="group-list-header group-grid-powers">
-        <div></div>
         <div class="item-detail item-uses"></div>
         <div class="item-detail item-school">{{localize "SW5E.PowerSchool"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.PowerUsage"}}</div>
         <div class="item-detail item-target">{{localize "SW5E.PowerTarget"}}</div>
-
     </div>
+
     <ol class="group-list">
         {{#each powerbook as |section|}}
         <li>
@@ -99,6 +81,7 @@
             </div>
             <ol class="item-list">
                 {{#each section.powers as |item i|}}
+                {{#if item.data.isTechPower }}
                 <li class="item group-grid-powers" data-item-id="{{item._id}}">
                     <div class="item-name rollable">
                         <div class="item-image" style="background-image: url({{item.img}})"></div>
@@ -110,12 +93,7 @@
                         Uses {{item.data.uses.value}} / {{item.data.uses.max}}
                         {{/if}}
                     </div>
-                    
-                    <!-- <div class="power-comps">
-                        {{#each labels.components}}
-                        <span class="power-component {{this}}">{{this}}</span>
-                        {{/each}}
-                    </div> -->
+
                     <div class="item-detail item-school">{{labels.school}}</div>
                     <div class="item-detail item-action">{{labels.activation}}</div>
                     <div class="item-detail item-target" title="{{localize 'SW5E.Range'}}: {{labels.range}}">
@@ -124,7 +102,6 @@
                         {{else}}None
                         {{/if}}
                     </div>
-
 
                     {{#if ../../owner}}
                     <div class="item-detail item-controls">
@@ -137,6 +114,7 @@
                     </div>
                     {{/if}}
                 </li>
+                {{/if}}
                 {{/each}}
             </ol>
         </li>

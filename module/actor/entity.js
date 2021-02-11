@@ -544,10 +544,28 @@ export default class Actor5e extends Actor {
       actorData.data.attributes.tech.level = techProgression.levels;
     }
 
-    /** 
-     *  ? should I tally number of powers known here?
-     */
-
+    // Tally Powers Known
+    const knownPowers = this.data.items.filter(i => i.type === "power");
+    let knownForcePowers = 0;
+    let knownTechPowers = 0;
+    for ( let knownPower of knownPowers ) {
+      const d = knownPower.data;
+      switch (knownPower.data.school){
+        case "lgt":
+        case "uni":
+        case "drk":{
+          knownForcePowers++;
+          break;
+        }
+        case "tec":{
+          knownTechPowers++;
+          break;
+        }
+      } 
+      continue;
+    }
+    actorData.data.attributes.force.known.value = knownForcePowers;
+    actorData.data.attributes.tech.known.value = knownTechPowers;
 
   }
 
@@ -1249,9 +1267,11 @@ export default class Actor5e extends Actor {
 
     // Recover power slots
     for ( let [k, v] of Object.entries(data.powers) ) {
-      updateData[`data.powers.${k}.value`] = Number.isNumeric(v.override) ? v.override : (v.max ?? 0);
+      updateData[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : (v.fmax ?? 0);
     }
-
+    for ( let [k, v] of Object.entries(data.powers) ) {
+      updateData[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : (v.tmax ?? 0);
+    }
     // Determine the number of hit dice which may be recovered
     let recoverHD = Math.max(Math.floor(data.details.level / 2), 1);
     let dhd = 0;

@@ -265,7 +265,7 @@ function _migrateActorPowers(actorData, updateData) {
   const ad = actorData.data;
 
   // If new Force & Tech data is not present, create it
-  const hasNewAttrib = ad?.attributes?.force?.level !== undefined;
+  let hasNewAttrib = ad?.attributes?.force?.level !== undefined;
   if ( !hasNewAttrib ) {
     updateData["data.attributes.force.known.value"] = 0;
     updateData["data.attributes.force.known.min"] = 0;
@@ -288,8 +288,8 @@ function _migrateActorPowers(actorData, updateData) {
   }
 
   // If new Power F/T split data is not present, create it
-  let hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
-  if ( !hasNewBonus ) {
+  const hasNewLimit = ad?.powers?.power1?.fvalue !== undefined;
+  if ( !hasNewLimit ) {
     for (let i = 1; i <= 9; i++) { 
       // add new
       updateData["data.powers.power" + i + ".fvalue"] = 0;
@@ -302,7 +302,7 @@ function _migrateActorPowers(actorData, updateData) {
     }
   }
   // If new Bonus Power DC data is not present, create it
-  hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
+  const hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
   if ( !hasNewBonus ) {
     updateData["data.bonuses.power.forceLightDC"] = "";
     updateData["data.bonuses.power.forceDarkDC"] = "";

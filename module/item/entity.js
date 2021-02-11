@@ -526,12 +526,12 @@ export default class Item5e extends Item {
       if ( canConsume === false ) return false;
     }
 
-    // Consume Power Slots
+    // Consume Power Slots and Force/Tech Points
     if ( consumePowerSlot ) {
       const level = this.actor?.data.data.powers[consumePowerSlot];
       const fp = this.actor.data.data.attributes.force.points;
       const tp = this.actor.data.data.attributes.tech.points;
-      const powerCost = level + 1;
+      const powerCost = id.level + 1;
       switch (id.school){
         case "lgt":
         case "uni":

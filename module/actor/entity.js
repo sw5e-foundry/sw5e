@@ -544,10 +544,28 @@ export default class Actor5e extends Actor {
       actorData.data.attributes.tech.level = techProgression.levels;
     }
 
-    /** 
-     *  ? should I tally number of powers known here?
-     */
-
+    // Tally Powers Known
+    const knownPowers = this.data.items.filter(i => i.type === "power");
+    let knownForcePowers = 0;
+    let knownTechPowers = 0;
+    for ( let knownPower of knownPowers ) {
+      const d = knownPower.data;
+      switch (knownPower.data.school){
+        case "lgt":
+        case "uni":
+        case "drk":{
+          knownForcePowers++;
+          break;
+        }
+        case "tec":{
+          knownTechPowers++;
+          break;
+        }
+      } 
+      continue;
+    }
+    actorData.data.attributes.force.known.value = knownForcePowers;
+    actorData.data.attributes.tech.known.value = knownTechPowers;
 
   }
 

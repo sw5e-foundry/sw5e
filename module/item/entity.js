@@ -560,10 +560,10 @@ export default class Item5e extends Item {
           }
           actorUpdates[`data.powers.${consumePowerSlot}.tvalue`] = Math.max(powers - 1, 0);
           if (tp.temp >= powerCost) {
-            actorUpdates["data.attributes.force.points.temp"] = tp.temp - powerCost;
+            actorUpdates["data.attributes.tech.points.temp"] = tp.temp - powerCost;
           }else{
-            actorUpdates["data.attributes.force.points.value"] = tp.value + tp.temp - powerCost;
-            actorUpdates["data.attributes.force.points.temp"] = 0;
+            actorUpdates["data.attributes.tech.points.value"] = tp.value + tp.temp - powerCost;
+            actorUpdates["data.attributes.tech.points.temp"] = 0;
           }
           break;
         }

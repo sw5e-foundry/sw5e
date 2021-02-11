@@ -288,8 +288,8 @@ function _migrateActorPowers(actorData, updateData) {
   }
 
   // If new Power F/T split data is not present, create it
-  hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
-  if ( !hasNewBonus ) {
+  const hasNewLimit = ad?.powers?.power1?.fvalue !== undefined;
+  if ( !hasNewLimit ) {
     for (let i = 1; i <= 9; i++) { 
       // add new
       updateData["data.powers.power" + i + ".fvalue"] = 0;

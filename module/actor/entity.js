@@ -1249,9 +1249,11 @@ export default class Actor5e extends Actor {
 
     // Recover power slots
     for ( let [k, v] of Object.entries(data.powers) ) {
-      updateData[`data.powers.${k}.value`] = Number.isNumeric(v.override) ? v.override : (v.max ?? 0);
+      updateData[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : (v.fmax ?? 0);
     }
-
+    for ( let [k, v] of Object.entries(data.powers) ) {
+      updateData[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : (v.tmax ?? 0);
+    }
     // Determine the number of hit dice which may be recovered
     let recoverHD = Math.max(Math.floor(data.details.level / 2), 1);
     let dhd = 0;

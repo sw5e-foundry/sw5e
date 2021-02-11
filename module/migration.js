@@ -265,7 +265,7 @@ function _migrateActorPowers(actorData, updateData) {
   const ad = actorData.data;
 
   // If new Force & Tech data is not present, create it
-  const hasNewAttrib = ad?.attributes?.force?.level !== undefined;
+  let hasNewAttrib = ad?.attributes?.force?.level !== undefined;
   if ( !hasNewAttrib ) {
     updateData["data.attributes.force.known.value"] = 0;
     updateData["data.attributes.force.known.min"] = 0;
@@ -288,7 +288,7 @@ function _migrateActorPowers(actorData, updateData) {
   }
 
   // If new Power F/T split data is not present, create it
-  const hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
+  hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
   if ( !hasNewBonus ) {
     for (let i = 1; i <= 9; i++) { 
       // add new

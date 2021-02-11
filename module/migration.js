@@ -288,7 +288,7 @@ function _migrateActorPowers(actorData, updateData) {
   }
 
   // If new Power F/T split data is not present, create it
-  const hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
+  let hasNewBonus = ad?.powers?.power1?.fvalue !== undefined;
   if ( !hasNewBonus ) {
     for (let i = 1; i <= 9; i++) { 
       // add new
@@ -302,7 +302,7 @@ function _migrateActorPowers(actorData, updateData) {
     }
   }
   // If new Bonus Power DC data is not present, create it
-  const hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
+  hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
   if ( !hasNewBonus ) {
     updateData["data.bonuses.power.forceLightDC"] = "";
     updateData["data.bonuses.power.forceDarkDC"] = "";

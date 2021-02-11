@@ -21,7 +21,8 @@ export default class ActorSheet5e extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
-      powerbook: new Set(),
+      forcePowerbook: new Set(),
+      techPowerbook: new Set(),
       features: new Set(),
       effects: new Set()
     };
@@ -35,7 +36,8 @@ export default class ActorSheet5e extends ActorSheet {
       scrollY: [
         ".inventory .group-list",
         ".features .group-list",
-        ".powerbook .group-list",
+        ".force-powerbook .group-list",
+        ".tech-powerbook .group-list",
         ".effects .effects-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]

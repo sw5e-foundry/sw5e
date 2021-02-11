@@ -5,7 +5,7 @@
     .dropShadow1();
 }
 .sw5e.sheet.actor.character {
-    min-width: 850px;
+    min-width: 880px;
     min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -258,8 +258,8 @@
 
         nav.sheet-navigation {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            column-gap: 16px;
+            grid-template-columns: repeat(7, 1fr);
+            column-gap: 8px;
             margin: 4px 0;
 
             .item {
@@ -938,10 +938,11 @@
                 grid-template-rows: 24px auto;
             }
         }
-        .tab.powerbook {
+        .tab.force-powerbook,
+        .tab.tech-powerbook {
             .resource-items {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 1fr);
                 column-gap: 12px;
 
                 .resource {
@@ -991,21 +992,21 @@
             }
 
             &>.panel {
-                grid-template-rows: 32px 24px 24px auto;
+                grid-template-rows: 56px 32px 24px auto;
             }
             h3.power-dc {
                 line-height: 24px;
             }
-            .powercasting-ability {
+            .force-powercasting-ability {
                 display: grid;
-                grid-template-columns: 2fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
                 label, h3 {
                     .russoOne(13px);
                     border-bottom: none;
                 }
-                .power-dc {
-                    grid-column-start: 3;
-                }
+                // .power-dc {
+                //     grid-column-start: 3;
+                // }
             }
         }
         .tab.biography {
@@ -1097,7 +1098,8 @@
                     // }
                 }
             }
-            .tab.powerbook {
+            .tab.force-powerbook,
+            .tab.tech-powerbook {
                 input.powercasting-level {
                     width: 48px;
                 }

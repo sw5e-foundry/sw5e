@@ -84,7 +84,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     };
 
     // Partition items by category
-    let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
+    let [items, forcepowers, techpowers, feats, classes, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -112,23 +112,25 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       this._prepareItemToggleState(item);
 
       // Classify items into types
-      if ( item.type === "power" ) arr[1].push(item);
-      else if ( item.type === "feat" ) arr[2].push(item);
-      else if ( item.type === "class" ) arr[3].push(item);
-	  else if ( item.type === "species" ) arr[4].push(item);
-	  else if ( item.type === "archetype" ) arr[5].push(item);
-	  else if ( item.type === "classfeature" ) arr[6].push(item);
-	  else if ( item.type === "background" ) arr[7].push(item);
-	  else if ( item.type === "fightingstyle" ) arr[8].push(item);
-	  else if ( item.type === "fightingmastery" ) arr[9].push(item);
-	  else if ( item.type === "lightsaberform" ) arr[10].push(item);	  
+      if ( item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school) ) arr[1].push(item);
+      else if ( item.type === "power" && ["tec"].includes(item.data.school) ) arr[2].push(item);
+      else if ( item.type === "feat" ) arr[3].push(item);
+      else if ( item.type === "class" ) arr[4].push(item);
+      else if ( item.type === "species" ) arr[5].push(item);
+      else if ( item.type === "archetype" ) arr[6].push(item);
+      else if ( item.type === "classfeature" ) arr[7].push(item);
+      else if ( item.type === "background" ) arr[8].push(item);
+      else if ( item.type === "fightingstyle" ) arr[9].push(item);
+      else if ( item.type === "fightingmastery" ) arr[10].push(item);
+      else if ( item.type === "lightsaberform" ) arr[11].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], [], [], [], [], [], [], [], []]);
+    }, [[], [], [], [], [], [], [], [], [], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
-    powers = this._filterItems(powers, this._filters.powerbook);
+    forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
+    techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
     feats = this._filterItems(feats, this._filters.features);
 
     // Organize items
@@ -140,10 +142,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     }
 
     // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
-    const powerbook = this._preparePowerbook(data, powers);
-    const nPrepared = powers.filter(s => {
-      return (s.data.level > 0) && (s.data.preparation.mode === "prepared") && s.data.preparation.prepared;
-    }).length;
+    const forcePowerbook = this._preparePowerbook(data, forcepowers);
+    const techPowerbook = this._preparePowerbook(data, techpowers);
 
     // Organize Features
     const features = {
@@ -174,8 +174,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     // Assign and return
     data.inventory = Object.values(inventory);
-    data.powerbook = powerbook;
-    data.preparedPowers = nPrepared;
+    data.forcePowerbook = forcePowerbook;
+    data.techPowerbook = techPowerbook;
     data.features = Object.values(features);
   }
 

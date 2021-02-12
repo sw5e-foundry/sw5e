@@ -1,73 +1,50 @@
-<section class="resource-items">
-    <div class="resource">
-        <h1>
-            Force Points
-        </h1>
-        <div class="attribute-value">
-            <input name="data.attributes.force.points.value" type="text" value="{{data.attributes.force.points.value}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-            <span class="value-separator">/</span>
-            <input name="data.attributes.force.points.max" type="text" value="{{data.attributes.force.points.max}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-        </div>
-    </div>
-
-    <div class="resource">
-        <h1>
-            Tech Points
-        </h1>
-        <div class="attribute-value">
-            <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-            <span class="value-separator">/</span>
-            <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number"
-                placeholder="0" class="value-number" />
-        </div>
-    </div>
-</section>
-
 <section class="panel">
-    <div class="powercasting-ability">
-        <label>{{localize "SW5E.PowerAbility"}}
-        <select name="data.attributes.powercasting" data-type="String">
-            {{#select data.attributes.powercasting}}
-            <option value="">{{localize "SW5E.None"}}</option>
-            {{#each data.abilities as |abl a|}}
-            <option value="{{a}}">{{abl.label}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
-        </label>
-        {{#if isNPC}}
-        <label>{{localize "SW5E.PowercasterLevel"}}
-        <input class="powercasting-level" type="text" name="data.details.powerLevel" value="{{data.details.powerLevel}}"
-            data-dtype="Number" placeholder="0" />
-            </label>
-        {{/if}}
-        <h3 class="power-dc">{{localize "SW5E.PowerDC"}} <span>{{data.attributes.powerdc}}</span></h3>
-    </div>
+    <section class="resource-items">
+        <div class="resource">
+            <h1>Tech Points</h1>
 
-    <ul class="filter-list" data-filter="powerbook">
+            <div class="attribute-value">
+                <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <span class="value-separator">/</span>
+                <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>Universal Power DC</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.powerTechDC}}</span>
+            </div>
+        </div>
+    </section>
+
+    {{#if isNPC}}
+        <div class="tech-powercasting-ability">
+            <label>{{localize "SW5E.PowercasterLevel"}}
+                <input class="powercasting-level" type="text" name="data.details.powerLevel" value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0" />
+            </label>
+        </div>
+    {{/if}}
+
+    <ul class="filter-list" data-filter="techPowerbook">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
         <li class="filter-item" data-filter="concentration">{{localize "SW5E.AbbreviationConc"}}</li>
-        <li class="filter-item" data-filter="ritual">{{localize "SW5E.Ritual"}}</li>
-        <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}}
-            ({{preparedPowers}}){{/if}}</li>
     </ul>
 
     <div class="group-list-header group-grid-powers">
-        <div></div>
         <div class="item-detail item-uses"></div>
         <div class="item-detail item-school">{{localize "SW5E.PowerSchool"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.PowerUsage"}}</div>
         <div class="item-detail item-target">{{localize "SW5E.PowerTarget"}}</div>
-
     </div>
+
     <ol class="group-list">
-        {{#each powerbook as |section|}}
+        {{#each techPowerbook as |section|}}
         <li>
             <div class="group-list-title group-grid-powers">
                 <div class="item-name">
@@ -78,23 +55,6 @@
                         <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                     </a>
                     {{/if}}
-                </div>
-    
-                <div class="item-detail item-uses">
-                    {{#if section.usesSlots}}
-                    <input type="text" name="data.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
-                        data-dtype="Number" />
-                    /
-                    <span data-level="{{section.prop}}" data-slots="{{section.slots}}">
-                        {{{section.slots}}}
-                        {{#if ../editable}}
-                        <a class="slot-max-override" title="{{localize 'SW5E.PowerProgOverride'}}">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        {{/if}}
-                        {{ else }}
-                        {{{section.uses}}} / {{{section.slots}}}
-                        {{/if}}
                 </div>
             </div>
             <ol class="item-list">
@@ -110,12 +70,7 @@
                         Uses {{item.data.uses.value}} / {{item.data.uses.max}}
                         {{/if}}
                     </div>
-                    
-                    <!-- <div class="power-comps">
-                        {{#each labels.components}}
-                        <span class="power-component {{this}}">{{this}}</span>
-                        {{/each}}
-                    </div> -->
+
                     <div class="item-detail item-school">{{labels.school}}</div>
                     <div class="item-detail item-action">{{labels.activation}}</div>
                     <div class="item-detail item-target" title="{{localize 'SW5E.Range'}}: {{labels.range}}">
@@ -124,7 +79,6 @@
                         {{else}}None
                         {{/if}}
                     </div>
-
 
                     {{#if ../../owner}}
                     <div class="item-detail item-controls">

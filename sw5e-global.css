@@ -86,6 +86,9 @@ body {
   font-family: 'Open Sans';
   font-size: 13px;
   font-weight: 400;
+  background-image: url('./ui/SW5e-logo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 h1 {
   font-family: 'Russo One';
@@ -708,7 +711,7 @@ input[type="reset"]:disabled {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .sw5e.sheet.actor.character {
-  min-width: 850px;
+  min-width: 880px;
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
@@ -948,8 +951,8 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 16px;
+  grid-template-columns: repeat(7, 1fr);
+  column-gap: 8px;
   margin: 4px 0;
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
@@ -1109,7 +1112,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f6cf';
+  content: "\f6cf";
   opacity: 0;
   position: absolute;
   top: 0;
@@ -1369,10 +1372,10 @@ input[type="reset"]:disabled {
   display: inline;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .traits-list li::after {
-  content: ',';
+  content: ",";
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .traits-list li:last-child::after {
-  content: '';
+  content: "";
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits ul.passives {
   grid-column-end: span 2;
@@ -1397,7 +1400,7 @@ input[type="reset"]:disabled {
   margin: 0;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource h1 input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   text-align: center;
@@ -1535,23 +1538,26 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.features > .panel {
   grid-template-rows: 24px auto;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource h1 {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource h1,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource h1 {
   border: none;
   margin: 0;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   text-align: center;
   margin-bottom: 4px;
   border-radius: 0;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value input {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input {
   font-family: 'Russo One';
   font-size: 22px;
   font-weight: 400;
@@ -1559,46 +1565,70 @@ input[type="reset"]:disabled {
   text-align: center;
   line-height: 1;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value {
   display: grid;
   grid-template-columns: auto 14px auto;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value input {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input {
   display: block;
   width: 100%;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value .value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number {
   display: block;
   width: 100%;
   text-align: right;
   padding: 0px 3px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value .value-number:last-child {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number:last-child,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .resource-items .resource .attribute-value span.value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value span.value-number,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value span.value-number {
   padding: 1px 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook > .panel {
-  grid-template-rows: 32px 24px 24px auto;
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 0 0 18px;
+  margin-top: -1px;
+  line-height: 18px;
+  font-family: "Signika", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook h3.power-dc {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer input,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer input {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook > .panel,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook > .panel {
+  grid-template-rows: 56px 32px 24px auto;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook h3.power-dc,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook h3.power-dc {
   line-height: 24px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability label,
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability h3 {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability label,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability label,
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability h3,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability h3 {
   font-family: 'Russo One';
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.5px;
   border-bottom: none;
-}
-.sw5e.sheet.actor .swalt-sheet .tab.powerbook .powercasting-ability .power-dc {
-  grid-column-start: 3;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.biography {
   grid-template-columns: 1fr 2fr;
@@ -1678,7 +1708,8 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources .counter .counter-value {
   margin-left: auto;
 }
-.sw5e.sheet.actor.npc .swalt-sheet .tab.powerbook input.powercasting-level {
+.sw5e.sheet.actor.npc .swalt-sheet .tab.force-powerbook input.powercasting-level,
+.sw5e.sheet.actor.npc .swalt-sheet .tab.tech-powerbook input.powercasting-level {
   width: 48px;
 }
 .sw5e.sheet.actor.npc .swalt-sheet .tab.biography.active {

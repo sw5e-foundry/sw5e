@@ -516,7 +516,7 @@ export default class Actor5e extends Actor {
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.foverride) ) lvl.fmax = Math.max(parseInt(lvl.foverride), 0);
       else lvl.fmax = forcePowerLimit[i-1] || 0;
-      lvl.fvalue = parseInt(lvl.fvalue);
+      lvl.fvalue = Math.min(parseInt(lvl.fvalue),lvl.fmax);
     }
     
     let techPowerLimit = SW5E.powerLimit['none'];
@@ -529,7 +529,7 @@ export default class Actor5e extends Actor {
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
       else lvl.tmax = techPowerLimit[i-1] || 0;
-      lvl.tvalue = parseInt(lvl.tvalue);
+      lvl.tvalue = Math.min(parseInt(lvl.tvalue),lvl.tmax);
     }
 
     // Set Force and tech power

@@ -292,9 +292,9 @@ function _migrateActorPowers(actorData, updateData) {
   if ( !hasNewLimit ) {
     for (let i = 1; i <= 9; i++) { 
       // add new
-      updateData["data.powers.power" + i + ".fvalue"] = 0;
+      updateData["data.powers.power" + i + ".fvalue"] = 1000;
       updateData["data.powers.power" + i + ".foverride"] = null;
-      updateData["data.powers.power" + i + ".tvalue"] = 0;
+      updateData["data.powers.power" + i + ".tvalue"] = 1000;
       updateData["data.powers.power" + i + ".toverride"] = null;
       //remove old
       updateData["data.powers.power" + i + ".-=value"] = null;

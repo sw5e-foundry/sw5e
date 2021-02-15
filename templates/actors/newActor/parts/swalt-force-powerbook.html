@@ -43,22 +43,23 @@
         </div>
 
         <div class="resource">
+        {{#if isNPC}}
+            <h1>{{localize "SW5E.PowercasterLevel"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <input class="powercasting-level" type="text" name="data.details.powerLevel" value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0" />
+            </div>
+        {{else}}
             <h1>Powers Known</h1>
 
             <div class="attribute-value">
                 <div></div>
                 <span>{{data.attributes.force.known.max}}</span>
             </div>
+        {{/if}}
         </div>
     </section>
-
-    {{#if isNPC}}
-        <div class="force-powercasting-ability">
-            <label>{{localize "SW5E.PowercasterLevel"}}
-                <input class="powercasting-level" type="text" name="data.details.powerLevel" value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0" />
-            </label>
-        </div>
-    {{/if}}
 
     <ul class="filter-list" data-filter="forcePowerbook">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>

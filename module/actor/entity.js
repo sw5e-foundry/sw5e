@@ -529,7 +529,7 @@ export default class Actor5e extends Actor {
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
       else lvl.tmax = techPowerLimit[i-1] || 0;
-      lvl.tvalue = Math.max(parseInt(lvl.tvalue),lvl.tmax);
+      lvl.tvalue = Math.min(parseInt(lvl.tvalue),lvl.tmax);
     }
 
     // Set Force and tech power

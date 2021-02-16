@@ -65,7 +65,7 @@ body.dark-theme input[type="date"]:hover,
 body.dark-theme input[type="time"]:hover,
 body.dark-theme select:hover,
 body.dark-theme textarea:hover {
-  border-color: #4f4f4f;
+  border-color: #a9a9a9;
 }
 body.dark-theme input[type="text"]:focus,
 body.dark-theme input[type="number"]:focus,
@@ -207,7 +207,7 @@ body.dark-theme .midi-qol-item-card .card-footer span:last-child {
   border-right: none;
 }
 body.dark-theme .dice-roll .dice-formula {
-  background: #4f4f4f;
+  background: #a9a9a9;
   color: white;
   box-shadow: none;
   border-radius: 4px;
@@ -234,14 +234,15 @@ body.dark-theme .dice-roll .dice-total.fumble {
   box-shadow: 0 0 12px rgba(232, 17, 17, 0.5);
 }
 body.dark-theme #chat-controls .roll-type-select {
-  background: #4f4f4f;
-  color: #FFFFFF;
+  background: #a9a9a9;
+  color: #1C1C1C;
 }
 body.dark-theme #chat-controls label {
   color: white;
 }
 body.dark-theme #chat-form textarea {
-  background: #4f4f4f;
+  background: #a9a9a9;
+  color: #1C1C1C;
 }
 body.dark-theme #combat #combat-round {
   color: #E81111;
@@ -260,7 +261,7 @@ body.dark-theme #combat #combat-tracker li.combatant {
   color: white;
 }
 body.dark-theme #combat #combat-tracker li.combatant:nth-child(even) {
-  background: rgba(79, 79, 79, 0.5);
+  background: rgba(169, 169, 169, 0.5);
 }
 body.dark-theme #combat #combat-tracker li.combatant h4 {
   color: white;
@@ -347,7 +348,7 @@ body.dark-theme .sidebar-tab .directory-list .actor:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .item:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .journal:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .table:nth-child(even) {
-  background: rgba(79, 79, 79, 0.3);
+  background: rgba(169, 169, 169, 0.3);
 }
 body.dark-theme #scenes .scene {
   border-top: 1px solid #0d99cc;
@@ -380,7 +381,7 @@ body.dark-theme #compendium .compendium-entity h3 {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
-  background: rgba(79, 79, 79, 0.3);
+  background: rgba(169, 169, 169, 0.3);
 }
 body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   color: #828282;
@@ -559,7 +560,7 @@ body.dark-theme .sw5e.sheet .window-content select {
 }
 body.dark-theme .sw5e.sheet .window-content input:hover,
 body.dark-theme .sw5e.sheet .window-content select:hover {
-  border-color: #4f4f4f;
+  border-color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet .window-content input:focus,
 body.dark-theme .sw5e.sheet .window-content select:focus {
@@ -592,7 +593,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name input[ty
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar {
-  border: 1px solid #4f4f4f;
+  border: 1px solid #a9a9a9;
   background-color: #afc6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .bar {
@@ -600,11 +601,11 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .summary input,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .value-separator {
   color: #828282;
@@ -627,17 +628,17 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.initiat
   border-color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active {
   color: #E81111;
   border-bottom-color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active:hover {
-  background: rgba(79, 79, 79, 0.1);
+  background: rgba(169, 169, 169, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item:hover {
-  background: rgba(79, 79, 79, 0.1);
+  background: rgba(169, 169, 169, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item {
   border-bottom: 2px solid #828282;
@@ -669,7 +670,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover::before {
@@ -694,7 +695,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .score
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-score {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-mod,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-save {
@@ -710,7 +711,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skill
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button.active {
   color: #E81111;
@@ -720,7 +721,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources
   background: rgba(232, 17, 17, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button:hover {
-  background: rgba(79, 79, 79, 0.1);
+  background: rgba(169, 169, 169, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas {
   color: #E81111;
@@ -734,7 +735,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value input {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value .value-separator {
   color: #828282;
@@ -775,5 +776,5 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme .sw5e.sheet.actor.npc .swalt-sheet header .experience {
-  color: #4f4f4f;
+  color: #a9a9a9;
 }

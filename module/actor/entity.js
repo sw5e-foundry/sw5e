@@ -92,7 +92,7 @@ export default class Actor5e extends Actor {
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
+    data.attributes.powerdc = data.attributes.powercasting && data.attributes.powercasting !== "none" ? data.abilities[data.attributes.powercasting].dc : 10;
     this._computePowercastingProgression(this.data);
 
     // Compute owned item attributes which depend on prepared Actor data

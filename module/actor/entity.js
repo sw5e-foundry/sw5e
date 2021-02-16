@@ -404,7 +404,7 @@ export default class Actor5e extends Actor {
         case 'consular': 
           priority = 3;
           forceProgression.levels += levels;
-          forceProgression.multi += (SW5E.powerMaxLevel['consular'][levels-1]/9)*levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['consular'][19]/9)*levels;
           forceProgression.classes++;
           // see if class controls high level forcecasting
           if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
@@ -420,7 +420,7 @@ export default class Actor5e extends Actor {
         case 'engineer': 
           priority = 2
           techProgression.levels += levels;
-          techProgression.multi += (SW5E.powerMaxLevel['engineer'][levels-1]/9)*levels;
+          techProgression.multi += (SW5E.powerMaxLevel['engineer'][19]/9)*levels;
           techProgression.classes++;
           // see if class controls high level techcasting
           if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
@@ -435,7 +435,7 @@ export default class Actor5e extends Actor {
         case 'guardian': 
           priority = 1;
           forceProgression.levels += levels;
-          forceProgression.multi += (SW5E.powerMaxLevel['guardian'][levels-1]/9)*levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['guardian'][19]/9)*levels;
           forceProgression.classes++;
           // see if class controls high level forcecasting
           if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
@@ -450,7 +450,7 @@ export default class Actor5e extends Actor {
         case 'scout': 
           priority = 1;
           techProgression.levels += levels;
-          techProgression.multi += (SW5E.powerMaxLevel['scout'][levels-1]/9)*levels;
+          techProgression.multi += (SW5E.powerMaxLevel['scout'][19]/9)*levels;
           techProgression.classes++;
           // see if class controls high level techcasting
           if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
@@ -465,7 +465,7 @@ export default class Actor5e extends Actor {
         case 'sentinel': 
           priority = 2;
           forceProgression.levels += levels;
-          forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][levels-1]/9)*levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][19]/9)*levels;
           forceProgression.classes++;
           // see if class controls high level forcecasting
           if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
@@ -482,31 +482,27 @@ export default class Actor5e extends Actor {
     // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
     if (!isNPC && forceProgression.classes > 1) {
       forceProgression.levels = Math.floor(forceProgression.multi);
-      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][levels - 1];
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
     }
     if (!isNPC && techProgression.classes > 1) {
       techProgression.levels = Math.floor(techProgression.multi);
-      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][levels - 1];
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
     }
     
     // EXCEPTION: NPC with an explicit power-caster level
     if (isNPC && actorData.data.details.powerForceLevel) {
       forceProgression.levels = actorData.data.details.powerForceLevel;
-      forceProgression.maxClass = 'consular';
-      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
-      forceProgression.powersKnown = SW5E.powersKnown['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
-      forceProgression.points = SW5E.powerPoints['consular'][Math.clamped((forceProgression.levels - 1), 0, 20)];
+      forceProgression.maxClass = actorData.data.attributes.powercasting;
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
     }
     if (isNPC && actorData.data.details.powerTechLevel) {
       techProgression.levels = actorData.data.details.powerTechLevel;
-      techProgression.maxClass = 'engineer';
-      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
-      techProgression.powersKnown = SW5E.powersKnown['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
-      techProgression.points = SW5E.powerPoints['engineer'][Math.clamped((techProgression.levels - 1), 0, 20)];
+      techProgression.maxClass = actorData.data.attributes.powercasting;
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
     }
 
     // Look up the number of slots per level from the powerLimit table
-    let forcePowerLimit = SW5E.powerLimit['none'];
+    let forcePowerLimit = Array.from(SW5E.powerLimit['none']);
     for (let i = 0; i < (forceProgression.maxClassPowerLevel); i++) {
       forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
     }
@@ -516,10 +512,14 @@ export default class Actor5e extends Actor {
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.foverride) ) lvl.fmax = Math.max(parseInt(lvl.foverride), 0);
       else lvl.fmax = forcePowerLimit[i-1] || 0;
-      lvl.fvalue = Math.min(parseInt(lvl.fvalue),lvl.fmax);
+      if (isNPC){
+        lvl.fvalue = lvl.fmax; 
+      }else{
+        lvl.fvalue = Math.min(parseInt(lvl.fvalue || lvl.value || lvl.fmax),lvl.fmax);
+      }
     }
     
-    let techPowerLimit = SW5E.powerLimit['none'];
+    let techPowerLimit = Array.from(SW5E.powerLimit['none']);
     for (let i = 0; i < (techProgression.maxClassPowerLevel); i++) {
       techPowerLimit[i] = SW5E.powerLimit[techProgression.maxClass][i];
     }
@@ -529,7 +529,11 @@ export default class Actor5e extends Actor {
       if ( Number.isNaN(i) ) continue;
       if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
       else lvl.tmax = techPowerLimit[i-1] || 0;
-      lvl.tvalue = Math.min(parseInt(lvl.tvalue),lvl.tmax);
+      if (isNPC){
+        lvl.tvalue = lvl.tmax;
+      }else{
+        lvl.tvalue = Math.min(parseInt(lvl.tvalue || lvl.value || lvl.tmax),lvl.tmax);
+      }
     }
 
     // Set Force and tech power
@@ -544,29 +548,31 @@ export default class Actor5e extends Actor {
       actorData.data.attributes.tech.level = techProgression.levels;
     }
 
-    // Tally Powers Known
-    const knownPowers = this.data.items.filter(i => i.type === "power");
-    let knownForcePowers = 0;
-    let knownTechPowers = 0;
-    for ( let knownPower of knownPowers ) {
-      const d = knownPower.data;
-      switch (knownPower.data.school){
-        case "lgt":
-        case "uni":
-        case "drk":{
-          knownForcePowers++;
-          break;
-        }
-        case "tec":{
-          knownTechPowers++;
-          break;
-        }
-      } 
-      continue;
+    // Tally Powers Known and check for migration first to avoid errors
+    let hasKnownPowers = actorData?.data?.attributes?.force?.known?.value !== undefined;
+    if ( hasKnownPowers ) {
+      const knownPowers = this.data.items.filter(i => i.type === "power");
+      let knownForcePowers = 0;
+      let knownTechPowers = 0;
+      for ( let knownPower of knownPowers ) {
+        const d = knownPower.data;
+        switch (knownPower.data.school){
+          case "lgt":
+          case "uni":
+          case "drk":{
+            knownForcePowers++;
+            break;
+          }
+          case "tec":{
+            knownTechPowers++;
+            break;
+          }
+        } 
+        continue;
+      }
+      actorData.data.attributes.force.known.value = knownForcePowers;
+      actorData.data.attributes.tech.known.value = knownTechPowers;
     }
-    actorData.data.attributes.force.known.value = knownForcePowers;
-    actorData.data.attributes.tech.known.value = knownTechPowers;
-
   }
 
   /* -------------------------------------------- */

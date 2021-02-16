@@ -52,10 +52,11 @@
             </div>
         {{else}}
             <h1>{{localize "SW5E.PowersKnown"}}</h1>
-
-            <div class="attribute-value">
-                <div></div>
-                <span>{{data.attributes.force.known.max}}</span>
+            
+            <div class="attribute-value multiple">
+                <span class="value-number">{{data.attributes.force.known.value}}</span>
+                <span class="value-separator">/</span>
+                <span class="value-number">{{data.attributes.force.known.max}}</span>
             </div>
         {{/if}}
         </div>

@@ -129,7 +129,6 @@ export const migrateActorData = function(actor) {
   // Actor Data Updates
   _migrateActorMovement(actor, updateData);
   _migrateActorSenses(actor, updateData);
-  _migrateActorPowers(actor, updateData);
 
   // Migrate Owned Items
   if ( !actor.items ) return updateData;
@@ -153,6 +152,10 @@ export const migrateActorData = function(actor) {
     } else return i;
   });
   if ( hasItemUpdates ) updateData.items = items;
+
+  // migrate powers last since it relies on item classes being migrated first.
+  _migrateActorPowers(actor, updateData);
+  
   return updateData;
 };
 
@@ -268,7 +271,6 @@ function _migrateActorPowers(actorData, updateData) {
   let hasNewAttrib = ad?.attributes?.force?.level !== undefined;
   if ( !hasNewAttrib ) {
     updateData["data.attributes.force.known.value"] = 0;
-    updateData["data.attributes.force.known.min"] = 0;
     updateData["data.attributes.force.known.max"] = 0;
     updateData["data.attributes.force.points.value"] = 0;
     updateData["data.attributes.force.points.min"] = 0;
@@ -277,7 +279,6 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.attributes.force.points.tempmax"] = 0;
     updateData["data.attributes.force.level"] = 0;
     updateData["data.attributes.tech.known.value"] = 0;
-    updateData["data.attributes.tech.known.min"] = 0;
     updateData["data.attributes.tech.known.max"] = 0;
     updateData["data.attributes.tech.points.value"] = 0;
     updateData["data.attributes.tech.points.min"] = 0;
@@ -288,13 +289,15 @@ function _migrateActorPowers(actorData, updateData) {
   }
 
   // If new Power F/T split data is not present, create it
-  const hasNewLimit = ad?.powers?.power1?.fvalue !== undefined;
+  const hasNewLimit = ad?.powers?.power1?.foverride !== undefined;
   if ( !hasNewLimit ) {
     for (let i = 1; i <= 9; i++) { 
-      // add new
-      updateData["data.powers.power" + i + ".fvalue"] = 1000;
+      // add new 
+      updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers,"power" + i + ".fvalue");
+      updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers,"power" + i + ".fmax");
       updateData["data.powers.power" + i + ".foverride"] = null;
-      updateData["data.powers.power" + i + ".tvalue"] = 1000;
+      updateData["data.powers.power" + i + ".tvalue"] = getProperty(ad.powers,"power" + i + ".tvalue");
+      updateData["data.powers.power" + i + ".tmax"] = getProperty(ad.powers,"power" + i + ".tmax");
       updateData["data.powers.power" + i + ".toverride"] = null;
       //remove old
       updateData["data.powers.power" + i + ".-=value"] = null;

@@ -231,7 +231,6 @@ export default class ActorSheet5e extends ActorSheet {
     const sections = {
       "atwill": -20,
       "innate": -10,
-      "pact": 0.5
     };
 
     // Label power slot uses headers
@@ -273,19 +272,6 @@ export default class ActorSheet5e extends ActorSheet {
         const sl = `power${lvl}`;
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
-    }
-
-    // Pact magic users have cantrips and a pact magic section
-    if ( levels.pact && levels.pact.max ) {
-      if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      const l = levels.pact;
-      const config = CONFIG.SW5E.powerPreparationModes.pact;
-      registerSection("pact", sections.pact, config, {
-        prepMode: "pact",
-        value: l.value,
-        max: l.max,
-        override: l.override
-      });
     }
 
     // Iterate over every power item, adding powers to the powerbook by section

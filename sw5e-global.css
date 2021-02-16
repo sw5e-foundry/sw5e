@@ -1542,13 +1542,14 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  column-gap: 24px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource h1 {
   border: none;
   margin: 0;
   font-family: "Russo One";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   text-align: center;
   margin-bottom: 4px;
@@ -1697,7 +1698,7 @@ input[type="reset"]:disabled {
   display: block;
 }
 .sw5e.sheet.actor.npc .swalt-sheet nav.sheet-navigation {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 .sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources {
   display: block;

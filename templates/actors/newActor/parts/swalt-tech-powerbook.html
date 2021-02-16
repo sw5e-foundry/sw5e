@@ -1,32 +1,47 @@
 <section class="panel">
     <section class="resource-items">
         <div class="resource">
-            <h1>Tech Points</h1>
+            <h1>{{localize "SW5E.ConsumableTech"}}</h1>
 
             <div class="attribute-value">
                 <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
                 <span class="value-separator">/</span>
                 <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
             </div>
+
+            <footer class="attribute-footer">
+                <input name="data.attributes.tech.points.temp" type="text" placeholder="+Temp" value="{{data.attributes.tech.points.temp}}" data-dtype="Number" />
+                <input name="data.attributes.tech.points.tempmax" type="text" placeholder="+Max" value="{{data.attributes.tech.points.tempmax}}" data-dtype="Number" />
+            </footer>
         </div>
 
         <div class="resource">
-            <h1>Universal Power DC</h1>
+            <h1>{{localize "SW5E.TechPowerDC"}}</h1>
 
             <div class="attribute-value">
                 <div></div>
                 <span>{{data.attributes.powerTechDC}}</span>
             </div>
         </div>
-    </section>
 
-    {{#if isNPC}}
-        <div class="tech-powercasting-ability">
-            <label>{{localize "SW5E.PowercasterLevel"}}
-                <input class="powercasting-level" type="text" name="data.details.powerLevel" value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0" />
-            </label>
+        <div class="resource">
+        {{#if isNPC}}
+            <h1>{{localize "SW5E.PowercasterLevel"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <input class="powercasting-level" type="text" name="data.details.powerTechLevel" value="{{data.details.powerTechLevel}}" data-dtype="Number" placeholder="0" />
+            </div>
+        {{else}}
+            <h1>{{localize "SW5E.PowersKnown"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.tech.known.max}}</span>
+            </div>
+        {{/if}}
         </div>
-    {{/if}}
+    </section>
 
     <ul class="filter-list" data-filter="techPowerbook">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
@@ -37,6 +52,7 @@
     </ul>
 
     <div class="group-list-header group-grid-powers">
+        <div></div>
         <div class="item-detail item-uses"></div>
         <div class="item-detail item-school">{{localize "SW5E.PowerSchool"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.PowerUsage"}}</div>

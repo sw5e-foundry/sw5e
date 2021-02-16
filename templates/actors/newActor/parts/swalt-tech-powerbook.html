@@ -29,7 +29,6 @@
             <h1>{{localize "SW5E.PowercasterLevel"}}</h1>
 
             <div class="attribute-value">
-                <div></div>
                 <input class="powercasting-level" type="text" name="data.details.powerTechLevel" value="{{data.details.powerTechLevel}}" data-dtype="Number" placeholder="0" />
             </div>
         {{else}}
@@ -121,7 +120,7 @@
         <li class="item flexrow inventory-header powerbook-header powerbook-empty">
             <div class="item-controls">
                 <a class="item-control item-create" title="{{localize 'SW5E.PowerCreate'}}" data-type="power"
-                    data-level="{{lvl}}"><i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}</a>
+                    data-level="{{lvl}}" data-school="tec"><i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}</a>
             </div>
         </li>
         <li class="item flexrow">

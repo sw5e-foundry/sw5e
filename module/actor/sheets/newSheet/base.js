@@ -222,7 +222,7 @@ export default class ActorSheet5e extends ActorSheet {
    * @param {Array} powers    The power data being prepared
    * @private
    */
-  _preparePowerbook(data, powers) {
+  _preparePowerbook(data, powers, school) {
     const owner = this.actor.owner;
     const levels = data.data.powers;
     const powerbook = {};
@@ -252,7 +252,7 @@ export default class ActorSheet5e extends ActorSheet {
         uses: useLabels[i] || value || 0,
         slots: useLabels[i] || max || 0,
         override: override || 0,
-        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode},
+        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode, "school": school},
         prop: sl
       };
     };

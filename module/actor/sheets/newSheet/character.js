@@ -142,8 +142,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     }
 
     // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
-    const forcePowerbook = this._preparePowerbook(data, forcepowers);
-    const techPowerbook = this._preparePowerbook(data, techpowers);
+    const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
+    const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
 
     // Organize Features
     const features = {

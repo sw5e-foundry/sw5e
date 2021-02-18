@@ -61,8 +61,8 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     other = this._filterItems(other, this._filters.features);
 
     // Organize Powerbook
-    const forcePowerbook = this._preparePowerbook(data, forcepowers);
-    const techPowerbook = this._preparePowerbook(data, techpowers);
+    const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
+    const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
 
     // Organize Features
     for ( let item of other ) {

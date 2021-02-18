@@ -1362,6 +1362,9 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas:hover {
   text-shadow: none;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .powercasting {
+  text-transform: capitalize;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .languages {
   grid-column-end: span 1;
 }
@@ -1610,7 +1613,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook > .panel,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook > .panel {
-  grid-template-rows: 56px 32px 24px auto;
+  grid-template-rows: 64px 32px 24px auto;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook h3.power-dc,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook h3.power-dc {

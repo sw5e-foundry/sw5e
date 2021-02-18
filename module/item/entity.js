@@ -431,13 +431,7 @@ export default class Item5e extends Item {
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
 
-    /*//set rollback values in case you pick a spell level you can't cast anymore
-    let forcePointValueRollback = actor.data.data.attributes.force.points.value;
-    let forcePointTempRollback = actor.data.data.attributes.force.points.temp;
-    let techPointValueRollback = actor.data.data.attributes.tech.points.value;
-    let techPointTempRollback = actor.data.data.attributes.tech.points.temp;
-    */
-    // Display a configuration dialog to customize the usage
+  // Display a configuration dialog to customize the usage
     const needsConfiguration = createMeasuredTemplate || consumeRecharge || consumeResource || consumePowerSlot || consumeUsage;
     if (configureDialog && needsConfiguration) {
       const configuration = await AbilityUseDialog.create(this);
@@ -532,40 +526,43 @@ export default class Item5e extends Item {
       const fp = this.actor.data.data.attributes.force.points;
       const tp = this.actor.data.data.attributes.tech.points;
       const powerCost = id.level + 1;
-      switch (id.school){
-        case "lgt":
-        case "uni":
-        case "drk": {
-          const powers = Number(level?.fvalue ?? 0);
-          if ( powers === 0 ) {
-            const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
-            ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
-            return false;
+      const innatePower = this.actor.data.data.attributes.powercasting === 'innate';
+      if (!innatePower){
+        switch (id.school){
+          case "lgt":
+          case "uni":
+          case "drk": {
+            const powers = Number(level?.fvalue ?? 0);
+            if ( powers === 0 ) {
+              const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
+              ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
+              return false;
+            }
+            actorUpdates[`data.powers.${consumePowerSlot}.fvalue`] = Math.max(powers - 1, 0);
+            if (fp.temp >= powerCost) {
+              actorUpdates["data.attributes.force.points.temp"] = fp.temp - powerCost;
+            }else{
+              actorUpdates["data.attributes.force.points.value"] = fp.value + fp.temp - powerCost;
+              actorUpdates["data.attributes.force.points.temp"] = 0;
+            }
+            break;
           }
-          actorUpdates[`data.powers.${consumePowerSlot}.fvalue`] = Math.max(powers - 1, 0);
-          if (fp.temp >= powerCost) {
-            actorUpdates["data.attributes.force.points.temp"] = fp.temp - powerCost;
-          }else{
-            actorUpdates["data.attributes.force.points.value"] = fp.value + fp.temp - powerCost;
-            actorUpdates["data.attributes.force.points.temp"] = 0;
+          case "tec": {
+            const powers = Number(level?.tvalue ?? 0);
+            if ( powers === 0 ) {
+              const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
+              ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
+              return false;
+            }
+            actorUpdates[`data.powers.${consumePowerSlot}.tvalue`] = Math.max(powers - 1, 0);
+            if (tp.temp >= powerCost) {
+              actorUpdates["data.attributes.tech.points.temp"] = tp.temp - powerCost;
+            }else{
+              actorUpdates["data.attributes.tech.points.value"] = tp.value + tp.temp - powerCost;
+              actorUpdates["data.attributes.tech.points.temp"] = 0;
+            }
+            break;
           }
-          break;
-        }
-        case "tec": {
-          const powers = Number(level?.tvalue ?? 0);
-          if ( powers === 0 ) {
-            const label = game.i18n.localize(`SW5E.PowerLevel${id.level}`);
-            ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
-            return false;
-          }
-          actorUpdates[`data.powers.${consumePowerSlot}.tvalue`] = Math.max(powers - 1, 0);
-          if (tp.temp >= powerCost) {
-            actorUpdates["data.attributes.tech.points.temp"] = tp.temp - powerCost;
-          }else{
-            actorUpdates["data.attributes.tech.points.value"] = tp.value + tp.temp - powerCost;
-            actorUpdates["data.attributes.tech.points.temp"] = 0;
-          }
-          break;
         }
       }
     }

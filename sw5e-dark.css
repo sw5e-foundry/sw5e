@@ -48,6 +48,19 @@ body.dark-theme hr {
   border-width: 0 0 1px 0;
   border-bottom: 1px solid #0d99cc;
 }
+body.dark-theme select {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+body.dark-theme input[type="text"],
+body.dark-theme input[type="number"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="time"],
+body.dark-theme select,
+body.dark-theme textarea {
+  color: white;
+}
 body.dark-theme input[type="text"],
 body.dark-theme input[type="number"],
 body.dark-theme input[type="password"],
@@ -56,7 +69,6 @@ body.dark-theme input[type="time"],
 body.dark-theme select,
 body.dark-theme textarea {
   border: 1px solid #828282;
-  color: white;
 }
 body.dark-theme input[type="text"]:hover,
 body.dark-theme input[type="number"]:hover,
@@ -65,7 +77,7 @@ body.dark-theme input[type="date"]:hover,
 body.dark-theme input[type="time"]:hover,
 body.dark-theme select:hover,
 body.dark-theme textarea:hover {
-  border-color: #a9a9a9;
+  border-color: #4f4f4f;
 }
 body.dark-theme input[type="text"]:focus,
 body.dark-theme input[type="number"]:focus,
@@ -207,7 +219,7 @@ body.dark-theme .midi-qol-item-card .card-footer span:last-child {
   border-right: none;
 }
 body.dark-theme .dice-roll .dice-formula {
-  background: #a9a9a9;
+  background: #4f4f4f;
   color: white;
   box-shadow: none;
   border-radius: 4px;
@@ -261,7 +273,7 @@ body.dark-theme #combat #combat-tracker li.combatant {
   color: white;
 }
 body.dark-theme #combat #combat-tracker li.combatant:nth-child(even) {
-  background: rgba(169, 169, 169, 0.5);
+  background: rgba(79, 79, 79, 0.5);
 }
 body.dark-theme #combat #combat-tracker li.combatant h4 {
   color: white;
@@ -348,7 +360,7 @@ body.dark-theme .sidebar-tab .directory-list .actor:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .item:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .journal:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .table:nth-child(even) {
-  background: rgba(169, 169, 169, 0.3);
+  background: rgba(79, 79, 79, 0.3);
 }
 body.dark-theme #scenes .scene {
   border-top: 1px solid #0d99cc;
@@ -381,7 +393,7 @@ body.dark-theme #compendium .compendium-entity h3 {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
-  background: rgba(169, 169, 169, 0.3);
+  background: rgba(79, 79, 79, 0.3);
 }
 body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   color: #828282;
@@ -560,7 +572,7 @@ body.dark-theme .sw5e.sheet .window-content select {
 }
 body.dark-theme .sw5e.sheet .window-content input:hover,
 body.dark-theme .sw5e.sheet .window-content select:hover {
-  border-color: #a9a9a9;
+  border-color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet .window-content input:focus,
 body.dark-theme .sw5e.sheet .window-content select:focus {
@@ -593,7 +605,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name input[ty
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar {
-  border: 1px solid #a9a9a9;
+  border: 1px solid #4f4f4f;
   background-color: #afc6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .bar {
@@ -601,11 +613,11 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar .
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .summary input,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .value-separator {
   color: #828282;
@@ -628,17 +640,17 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes footer.initiat
   border-color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active {
   color: #E81111;
   border-bottom-color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active:hover {
-  background: rgba(169, 169, 169, 0.1);
+  background: rgba(79, 79, 79, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item:hover {
-  background: rgba(169, 169, 169, 0.1);
+  background: rgba(79, 79, 79, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item {
   border-bottom: 2px solid #828282;
@@ -670,7 +682,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover::before {
@@ -695,7 +707,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .score
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-score {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-mod,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .scores li .ability-modifiers .ability-save {
@@ -711,7 +723,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .abilities .skill
   color: #E81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button.active {
   color: #E81111;
@@ -721,7 +733,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources
   background: rgba(232, 17, 17, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources nav button:hover {
-  background: rgba(169, 169, 169, 0.1);
+  background: rgba(79, 79, 79, 0.1);
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.traits .trait-selector i.fas {
   color: #E81111;
@@ -735,7 +747,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value input {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.attributes .traits-resources section.resources .resource-items .resource .attribute-value .value-separator {
   color: #828282;
@@ -776,5 +788,5 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme .sw5e.sheet.actor.npc .swalt-sheet header .experience {
-  color: #a9a9a9;
+  color: #4f4f4f;
 }

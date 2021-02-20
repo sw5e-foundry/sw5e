@@ -492,11 +492,13 @@ export default class Actor5e extends Actor {
     // EXCEPTION: NPC with an explicit power-caster level
     if (isNPC && actorData.data.details.powerForceLevel) {
       forceProgression.levels = actorData.data.details.powerForceLevel;
+      actorData.data.attributes.force.level = forceProgression.levels;
       forceProgression.maxClass = actorData.data.attributes.powercasting;
       forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
     }
     if (isNPC && actorData.data.details.powerTechLevel) {
       techProgression.levels = actorData.data.details.powerTechLevel;
+      actorData.data.attributes.tech.level = techProgression.levels;
       techProgression.maxClass = actorData.data.attributes.powercasting;
       techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
     }
@@ -536,13 +538,13 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Set Force and tech power
-    if (forceProgression.levels > 0){
+    // Set Force and tech power for PC Actors
+    if (!isNPC && forceProgression.levels){
       actorData.data.attributes.force.known.max = forceProgression.powersKnown;
       actorData.data.attributes.force.points.max = forceProgression.points + Math.max(actorData.data.abilities.wis.mod,actorData.data.abilities.cha.mod);
       actorData.data.attributes.force.level = forceProgression.levels;
     }
-    if (techProgression.levels > 0){
+    if (!isNPC && techProgression.levels){
       actorData.data.attributes.tech.known.max = techProgression.powersKnown;
       actorData.data.attributes.tech.points.max = techProgression.points + actorData.data.abilities.int.mod;
       actorData.data.attributes.tech.level = techProgression.levels;

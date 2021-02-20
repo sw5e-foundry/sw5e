@@ -131,27 +131,28 @@ export const migrateActorData = function(actor) {
   _migrateActorSenses(actor, updateData);
 
   // Migrate Owned Items
-  if ( !actor.items ) return updateData;
-  let hasItemUpdates = false;
-  const items = actor.items.map(i => {
+  if ( !!actor.items ) {
+    let hasItemUpdates = false;
+    const items = actor.items.map(i => {
 
-    // Migrate the Owned Item
-    let itemUpdate = migrateItemData(i);
+      // Migrate the Owned Item
+      let itemUpdate = migrateItemData(i);
 
-    // Prepared, Equipped, and Proficient for NPC actors
-    if ( actor.type === "npc" ) {
-      if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
-      if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
-      if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
-    }
+      // Prepared, Equipped, and Proficient for NPC actors
+      if ( actor.type === "npc" ) {
+        if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
+        if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
+        if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
+      }
 
-    // Update the Owned Item
-    if ( !isObjectEmpty(itemUpdate) ) {
-      hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false});
-    } else return i;
-  });
-  if ( hasItemUpdates ) updateData.items = items;
+      // Update the Owned Item
+      if ( !isObjectEmpty(itemUpdate) ) {
+        hasItemUpdates = true;
+        return mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false});
+      } else return i;
+    });
+    if ( hasItemUpdates ) updateData.items = items;
+  }
 
   // migrate powers last since it relies on item classes being migrated first.
   _migrateActorPowers(actor, updateData);

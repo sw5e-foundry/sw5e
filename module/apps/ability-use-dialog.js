@@ -116,6 +116,11 @@ export default class AbilityUseDialog extends Dialog {
         break;
       }
     }
+    
+    // eliminate point usage for innate casters
+    if (actorData.attributes.powercasting === 'innate') points = 999;
+
+
     let powerLevels
     if (powerType === "force"){
       powerLevels = Array.fromRange(10).reduce((arr, i) => {

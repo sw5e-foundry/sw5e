@@ -1242,4 +1242,4 @@ SW5E.characterFlags = {
 };
 
 // Configure allowed status flags
-SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(SW5E.characterFlags));
+SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat(Object.keys(SW5E.characterFlags));

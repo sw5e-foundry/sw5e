@@ -156,7 +156,7 @@ export const migrateActorData = function(actor) {
 
   // Update NPC data with new datamodel information
   if (actor.type === "npc") {
-    //_updateNPCData(actor);
+    _updateNPCData(actor);
   }
 
   // migrate powers last since it relies on item classes being migrated first.
@@ -248,35 +248,39 @@ export const migrateSceneData = function(scene) {
  */
 function _updateNPCData(actor) {
 
-  const actorData = actor.data;
+  let actorData = actor.data;
   const updateData = {};
 // check for flag.core
   const hasSource = actor?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return actor;
   // shortcut out if dataVersion flag is set to 1.2.4
-  const sourceID = actor.flags.core.sourceID;
-  const coreSource = sourceID.substr(0,sourceID.length-17);
-  const core_id = sourceID.substr(sourceID.length-16,16);
+  const sourceId = actor.flags.core.sourceId;
+  const coreSource = sourceId.substr(0,sourceId.length-17);
+  const core_id = sourceId.substr(sourceId.length-16,16);
   if (coreSource === "Compendium.sw5e.monsters"){
-    const monster = game.actors.entities.filter(entry => entry._id === core_id);
-    const monsterData = monster.data;
-    // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
-    updateData["data.attributes.movement"] = monsterData.attributes.movement;
-    updateData["data.attributes.senses"] = monsterData.attributes.senses;
-    updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
-    updateData["data.attributes.force"] = monsterData.attributes.force;
-    updateData["data.attributes.tech"] = monsterData.attributes.tech;
-    updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
-    updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
-    // push missing powers onto actor
-    for ( let i of monster.items ) {
-        const itemData = migrateItemData(i.data);
-        if ( itemData.type === "power" ) {
-          // check to see if actor has that core item, if not, push to actor.
-        }
-    }
-    // set flag to check to see if migration has been done so we don't do it again.
-    actor.setFlag("sw5e","dataVersion","1.2.4");
+    game.packs.get("sw5e.monsters").getEntity(core_id).then(monster => {
+      const monsterData = monster.data.data;
+      // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
+      updateData["data.attributes.movement"] = monsterData.attributes.movement;
+      updateData["data.attributes.senses"] = monsterData.attributes.senses;
+      updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
+      updateData["data.attributes.force"] = monsterData.attributes.force;
+      updateData["data.attributes.tech"] = monsterData.attributes.tech;
+      updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
+      updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
+      // push missing powers onto actor
+      for ( let i of monster.items ) {
+          const itemData = i.data;
+          if ( itemData.type === "power" ) {
+            let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemData.flags?.core?.sourceId.split(".").slice(-1)[0]);
+            if (!hasPower) {
+              actor.createOwnedItem(itemData,{renderSheet: false});
+            }
+          }
+      }
+      // set flag to check to see if migration has been done so we don't do it again.
+      //actor.setFlag("sw5e","dataVersion","1.2.4");
+    })  
   }
 
 

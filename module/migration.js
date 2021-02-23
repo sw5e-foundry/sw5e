@@ -276,13 +276,21 @@ function _updateNPCData(actor) {
             const itemCompendium_id = itemData.flags?.core?.sourceId.split(".").slice(-1)[0];
             let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemCompendium_id);
             if (!hasPower) {
-              newPowers.push(itemData);       
+              // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
+              const newPower = JSON.parse(JSON.stringify(itemData));
+
+              newPowers.push(newPower);
             }
           }
       }
-      let updateActor = await actor.createEmbeddedEntity("OwnedItem", newPowers);
+
+      const liveActor = game.actors.get(actor._id);
+
+      liveActor.createEmbeddedEntity("OwnedItem", newPowers);
+
+      // let updateActor = await actor.createOwnedItem(newPowers);
       // set flag to check to see if migration has been done so we don't do it again.
-      actor.setFlag("sw5e","dataVersion","1.2.4");
+      liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
     })  
   }
 

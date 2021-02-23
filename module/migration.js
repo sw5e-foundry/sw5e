@@ -269,17 +269,20 @@ function _updateNPCData(actor) {
       updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
       updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
       // push missing powers onto actor
+      let newPowers = [];
       for ( let i of monster.items ) {
           const itemData = i.data;
           if ( itemData.type === "power" ) {
-            let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemData.flags?.core?.sourceId.split(".").slice(-1)[0]);
+            const itemCompendium_id = itemData.flags?.core?.sourceId.split(".").slice(-1)[0];
+            let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemCompendium_id);
             if (!hasPower) {
-              actor.createOwnedItem(itemData,{renderSheet: false});
+              newPowers.push(itemData);       
             }
           }
       }
+      actor.createEmbeddedEntity("OwnedItem", newPowers);
       // set flag to check to see if migration has been done so we don't do it again.
-      //actor.setFlag("sw5e","dataVersion","1.2.4");
+      actor.setFlag("sw5e","dataVersion","1.2.4");
     })  
   }
 

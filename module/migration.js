@@ -280,7 +280,7 @@ function _updateNPCData(actor) {
             }
           }
       }
-      actor.createEmbeddedEntity("OwnedItem", newPowers);
+      let updateActor = await actor.createEmbeddedEntity("OwnedItem", newPowers);
       // set flag to check to see if migration has been done so we don't do it again.
       actor.setFlag("sw5e","dataVersion","1.2.4");
     })  

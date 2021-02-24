@@ -17,6 +17,7 @@ import { measureDistances, getBarAttribute } from "./module/canvas.js";
 // Import Entities
 import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
+import CharacterImporter from "./module/characterImporter.js";
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -248,6 +249,7 @@ Hooks.on("renderSceneDirectory", (app, html, data)=> {
 });
 Hooks.on("renderActorDirectory", (app, html, data)=> {
   setFolderBackground(html);
+  CharacterImporter.addImportButton(html);
 });
 Hooks.on("renderItemDirectory",  (app, html, data)=> {
   setFolderBackground(html);

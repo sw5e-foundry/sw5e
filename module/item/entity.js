@@ -426,7 +426,7 @@ export default class Item5e extends Item {
     // Define follow-up actions resulting from the item usage
     let createMeasuredTemplate = hasArea;       // Trigger a template creation
     let consumeRecharge = !!recharge.value;     // Consume recharge
-    let consumeResource = !!resource.target && (resource.type !== "ammo") // Consume a linked (non-ammo) resource
+    let consumeResource = !!resource.target && resource.type !== "ammo" && !['simpleB', 'martialB'].includes(id.weaponType); // Consume a linked (non-ammo) resource, ignore if use is from a blaster
     let consumePowerSlot = requirePowerSlot;    // Consume a power slot
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses

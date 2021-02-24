@@ -48,6 +48,19 @@ body.dark-theme hr {
   border-width: 0 0 1px 0;
   border-bottom: 1px solid #0d99cc;
 }
+body.dark-theme select {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+body.dark-theme input[type="text"],
+body.dark-theme input[type="number"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="time"],
+body.dark-theme select,
+body.dark-theme textarea {
+  color: white;
+}
 body.dark-theme input[type="text"],
 body.dark-theme input[type="number"],
 body.dark-theme input[type="password"],
@@ -56,7 +69,6 @@ body.dark-theme input[type="time"],
 body.dark-theme select,
 body.dark-theme textarea {
   border: 1px solid #828282;
-  color: white;
 }
 body.dark-theme input[type="text"]:hover,
 body.dark-theme input[type="number"]:hover,
@@ -234,14 +246,15 @@ body.dark-theme .dice-roll .dice-total.fumble {
   box-shadow: 0 0 12px rgba(232, 17, 17, 0.5);
 }
 body.dark-theme #chat-controls .roll-type-select {
-  background: #4f4f4f;
-  color: #FFFFFF;
+  background: #a9a9a9;
+  color: #1C1C1C;
 }
 body.dark-theme #chat-controls label {
   color: white;
 }
 body.dark-theme #chat-form textarea {
-  background: #4f4f4f;
+  background: #a9a9a9;
+  color: #1C1C1C;
 }
 body.dark-theme #combat #combat-round {
   color: #E81111;

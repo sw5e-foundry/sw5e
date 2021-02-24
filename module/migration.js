@@ -154,6 +154,11 @@ export const migrateActorData = function(actor) {
     if ( hasItemUpdates ) updateData.items = items;
   }
 
+  // Update NPC data with new datamodel information
+  if (actor.type === "npc") {
+    _updateNPCData(actor);
+  }
+
   // migrate powers last since it relies on item classes being migrated first.
   _migrateActorPowers(actor, updateData);
   
@@ -234,6 +239,69 @@ export const migrateSceneData = function(scene) {
 /*  Low level migration utilities
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+
+/**
+ * Update an NPC Actor's data based on compendium
+ * @param {Object} actor    The data object for an Actor
+ * @return {Object}         The updated Actor
+ */
+function _updateNPCData(actor) {
+
+  let actorData = actor.data;
+  const updateData = {};
+// check for flag.core
+  const hasSource = actor?.flags?.core?.sourceId !== undefined;
+  if (!hasSource) return actor;
+  // shortcut out if dataVersion flag is set to 1.2.4
+  const sourceId = actor.flags.core.sourceId;
+  const coreSource = sourceId.substr(0,sourceId.length-17);
+  const core_id = sourceId.substr(sourceId.length-16,16);
+  if (coreSource === "Compendium.sw5e.monsters"){
+    game.packs.get("sw5e.monsters").getEntity(core_id).then(monster => {
+      const monsterData = monster.data.data;
+      // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
+      updateData["data.attributes.movement"] = monsterData.attributes.movement;
+      updateData["data.attributes.senses"] = monsterData.attributes.senses;
+      updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
+      updateData["data.attributes.force"] = monsterData.attributes.force;
+      updateData["data.attributes.tech"] = monsterData.attributes.tech;
+      updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
+      updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
+      // push missing powers onto actor
+      let newPowers = [];
+      for ( let i of monster.items ) {
+          const itemData = i.data;
+          if ( itemData.type === "power" ) {
+            const itemCompendium_id = itemData.flags?.core?.sourceId.split(".").slice(-1)[0];
+            let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemCompendium_id);
+            if (!hasPower) {
+              // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
+              const newPower = JSON.parse(JSON.stringify(itemData));
+
+              newPowers.push(newPower);
+            }
+          }
+      }
+
+      const liveActor = game.actors.get(actor._id);
+
+      liveActor.createEmbeddedEntity("OwnedItem", newPowers);
+
+      // let updateActor = await actor.createOwnedItem(newPowers);
+      // set flag to check to see if migration has been done so we don't do it again.
+      liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
+    })  
+  }
+
+
+  //merge object
+  actorData = mergeObject(actorData, updateData);
+  // Return the scrubbed data
+  return actor;
+}
+
+
 /**
  * Migrate the actor speed string to movement object
  * @private
@@ -294,11 +362,11 @@ function _migrateActorPowers(actorData, updateData) {
   if ( !hasNewLimit ) {
     for (let i = 1; i <= 9; i++) { 
       // add new 
-      updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers,"power" + i + ".fvalue");
-      updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers,"power" + i + ".fmax");
+      updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers,"power" + i + ".value");
+      updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers,"power" + i + ".max");
       updateData["data.powers.power" + i + ".foverride"] = null;
-      updateData["data.powers.power" + i + ".tvalue"] = getProperty(ad.powers,"power" + i + ".tvalue");
-      updateData["data.powers.power" + i + ".tmax"] = getProperty(ad.powers,"power" + i + ".tmax");
+      updateData["data.powers.power" + i + ".tvalue"] = getProperty(ad.powers,"power" + i + ".value");
+      updateData["data.powers.power" + i + ".tmax"] = getProperty(ad.powers,"power" + i + ".max");
       updateData["data.powers.power" + i + ".toverride"] = null;
       //remove old
       updateData["data.powers.power" + i + ".-=value"] = null;

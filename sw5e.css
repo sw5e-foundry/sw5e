@@ -883,7 +883,8 @@
 }
 .sw5e.sheet.actor .tab.features,
 .sw5e.sheet.actor .tab.inventory,
-.sw5e.sheet.actor .tab.powerbook {
+.sw5e.sheet.actor .tab.force-powerbook,
+.sw5e.sheet.actor .tab.tech-powerbook {
   overflow-y: hidden;
 }
 .sw5e.sheet.actor .inventory-filters {
@@ -1826,7 +1827,7 @@
 /*  Basic Structure                          */
 /* ----------------------------------------- */
 .sw5e.sheet.actor.npc {
-  min-width: 600px;
+  min-width: 872px;
   min-height: 680px;
 }
 .sw5e.sheet.actor.npc .header-exp {

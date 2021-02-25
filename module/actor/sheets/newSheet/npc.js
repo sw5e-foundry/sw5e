@@ -42,24 +42,27 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     };
 
     // Start by classifying items into groups for rendering
-    let [powers, other] = data.items.reduce((arr, item) => {
+    let [forcepowers, techpowers, other] = data.items.reduce((arr, item) => {
       item.img = item.img || DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
       item.isOnCooldown = item.data.recharge && !!item.data.recharge.value && (item.data.recharge.charged === false);
       item.isDepleted = item.isOnCooldown && (item.data.uses.per && (item.data.uses.value > 0));
       item.hasTarget = !!item.data.target && !(["none",""].includes(item.data.target.type));
-      if ( item.type === "power" ) arr[0].push(item);
-      else arr[1].push(item);
+      if ( item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school) ) arr[0].push(item);
+      else if ( item.type === "power" && ["tec"].includes(item.data.school) ) arr[1].push(item);
+      else arr[2].push(item);
       return arr;
-    }, [[], []]);
+    }, [[], [], []]);
 
     // Apply item filters
-    powers = this._filterItems(powers, this._filters.powerbook);
+    forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
+    techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
     other = this._filterItems(other, this._filters.features);
 
     // Organize Powerbook
-    const powerbook = this._preparePowerbook(data, powers);
+    const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
+    const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
 
     // Organize Features
     for ( let item of other ) {
@@ -73,7 +76,8 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 
     // Assign and return
     data.features = Object.values(features);
-    data.powerbook = powerbook;
+    data.forcePowerbook = forcePowerbook;
+    data.techPowerbook = techPowerbook;
   }
 
 

@@ -131,27 +131,37 @@ export const migrateActorData = function(actor) {
   _migrateActorSenses(actor, updateData);
 
   // Migrate Owned Items
-  if ( !actor.items ) return updateData;
-  let hasItemUpdates = false;
-  const items = actor.items.map(i => {
+  if ( !!actor.items ) {
+    let hasItemUpdates = false;
+    const items = actor.items.map(i => {
 
-    // Migrate the Owned Item
-    let itemUpdate = migrateItemData(i);
+      // Migrate the Owned Item
+      let itemUpdate = migrateItemData(i);
 
-    // Prepared, Equipped, and Proficient for NPC actors
-    if ( actor.type === "npc" ) {
-      if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
-      if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
-      if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
-    }
+      // Prepared, Equipped, and Proficient for NPC actors
+      if ( actor.type === "npc" ) {
+        if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
+        if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
+        if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
+      }
 
-    // Update the Owned Item
-    if ( !isObjectEmpty(itemUpdate) ) {
-      hasItemUpdates = true;
-      return mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false});
-    } else return i;
-  });
-  if ( hasItemUpdates ) updateData.items = items;
+      // Update the Owned Item
+      if ( !isObjectEmpty(itemUpdate) ) {
+        hasItemUpdates = true;
+        return mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false});
+      } else return i;
+    });
+    if ( hasItemUpdates ) updateData.items = items;
+  }
+
+  // Update NPC data with new datamodel information
+  if (actor.type === "npc") {
+    _updateNPCData(actor);
+  }
+
+  // migrate powers last since it relies on item classes being migrated first.
+  _migrateActorPowers(actor, updateData);
+  
   return updateData;
 };
 
@@ -191,6 +201,7 @@ function cleanActorData(actorData) {
  */
 export const migrateItemData = function(item) {
   const updateData = {};
+  _migrateItemClassPowerCasting(item, updateData)
   _migrateItemAttunement(item, updateData);
   return updateData;
 };
@@ -228,6 +239,69 @@ export const migrateSceneData = function(scene) {
 /*  Low level migration utilities
 /* -------------------------------------------- */
 
+/* -------------------------------------------- */
+
+/**
+ * Update an NPC Actor's data based on compendium
+ * @param {Object} actor    The data object for an Actor
+ * @return {Object}         The updated Actor
+ */
+function _updateNPCData(actor) {
+
+  let actorData = actor.data;
+  const updateData = {};
+// check for flag.core
+  const hasSource = actor?.flags?.core?.sourceId !== undefined;
+  if (!hasSource) return actor;
+  // shortcut out if dataVersion flag is set to 1.2.4
+  const sourceId = actor.flags.core.sourceId;
+  const coreSource = sourceId.substr(0,sourceId.length-17);
+  const core_id = sourceId.substr(sourceId.length-16,16);
+  if (coreSource === "Compendium.sw5e.monsters"){
+    game.packs.get("sw5e.monsters").getEntity(core_id).then(monster => {
+      const monsterData = monster.data.data;
+      // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
+      updateData["data.attributes.movement"] = monsterData.attributes.movement;
+      updateData["data.attributes.senses"] = monsterData.attributes.senses;
+      updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
+      updateData["data.attributes.force"] = monsterData.attributes.force;
+      updateData["data.attributes.tech"] = monsterData.attributes.tech;
+      updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
+      updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
+      // push missing powers onto actor
+      let newPowers = [];
+      for ( let i of monster.items ) {
+          const itemData = i.data;
+          if ( itemData.type === "power" ) {
+            const itemCompendium_id = itemData.flags?.core?.sourceId.split(".").slice(-1)[0];
+            let hasPower = !!actor.items.find(item => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemCompendium_id);
+            if (!hasPower) {
+              // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
+              const newPower = JSON.parse(JSON.stringify(itemData));
+
+              newPowers.push(newPower);
+            }
+          }
+      }
+
+      const liveActor = game.actors.get(actor._id);
+
+      liveActor.createEmbeddedEntity("OwnedItem", newPowers);
+
+      // let updateActor = await actor.createOwnedItem(newPowers);
+      // set flag to check to see if migration has been done so we don't do it again.
+      liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
+    })  
+  }
+
+
+  //merge object
+  actorData = mergeObject(actorData, updateData);
+  // Return the scrubbed data
+  return actor;
+}
+
+
 /**
  * Migrate the actor speed string to movement object
  * @private
@@ -250,6 +324,67 @@ function _migrateActorMovement(actorData, updateData) {
     // Remove the old attribute
     updateData["data.attributes.-=speed"] = null;
   }
+  return updateData
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor speed string to movement object
+ * @private
+ */
+function _migrateActorPowers(actorData, updateData) {
+  const ad = actorData.data;
+
+  // If new Force & Tech data is not present, create it
+  let hasNewAttrib = ad?.attributes?.force?.level !== undefined;
+  if ( !hasNewAttrib ) {
+    updateData["data.attributes.force.known.value"] = 0;
+    updateData["data.attributes.force.known.max"] = 0;
+    updateData["data.attributes.force.points.value"] = 0;
+    updateData["data.attributes.force.points.min"] = 0;
+    updateData["data.attributes.force.points.max"] = 0;
+    updateData["data.attributes.force.points.temp"] = 0;
+    updateData["data.attributes.force.points.tempmax"] = 0;
+    updateData["data.attributes.force.level"] = 0;
+    updateData["data.attributes.tech.known.value"] = 0;
+    updateData["data.attributes.tech.known.max"] = 0;
+    updateData["data.attributes.tech.points.value"] = 0;
+    updateData["data.attributes.tech.points.min"] = 0;
+    updateData["data.attributes.tech.points.max"] = 0;
+    updateData["data.attributes.tech.points.temp"] = 0;
+    updateData["data.attributes.tech.points.tempmax"] = 0;
+    updateData["data.attributes.tech.level"] = 0;
+  }
+
+  // If new Power F/T split data is not present, create it
+  const hasNewLimit = ad?.powers?.power1?.foverride !== undefined;
+  if ( !hasNewLimit ) {
+    for (let i = 1; i <= 9; i++) { 
+      // add new 
+      updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers,"power" + i + ".value");
+      updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers,"power" + i + ".max");
+      updateData["data.powers.power" + i + ".foverride"] = null;
+      updateData["data.powers.power" + i + ".tvalue"] = getProperty(ad.powers,"power" + i + ".value");
+      updateData["data.powers.power" + i + ".tmax"] = getProperty(ad.powers,"power" + i + ".max");
+      updateData["data.powers.power" + i + ".toverride"] = null;
+      //remove old
+      updateData["data.powers.power" + i + ".-=value"] = null;
+      updateData["data.powers.power" + i + ".-=override"] = null;
+    }
+  }
+  // If new Bonus Power DC data is not present, create it
+  const hasNewBonus = ad?.bonuses?.power?.forceLightDC !== undefined;
+  if ( !hasNewBonus ) {
+    updateData["data.bonuses.power.forceLightDC"] = "";
+    updateData["data.bonuses.power.forceDarkDC"] = "";
+    updateData["data.bonuses.power.forceUnivDC"] = "";
+    updateData["data.bonuses.power.techDC"] = "";
+  }
+
+  // Remove the Power DC Bonus
+  updateData["data.bonuses.power.-=dc"] = null;
+
   return updateData
 }
 
@@ -289,6 +424,35 @@ function _migrateActorSenses(actor, updateData) {
   updateData["data.traits.-=senses"] = null;
   return updateData;
 }
+
+/* -------------------------------------------- */
+
+/**
+ * @private
+ */
+function _migrateItemClassPowerCasting(item, updateData) {
+  if (item.type === "class"){
+    switch (item.name){
+      case "Consular": 
+        updateData["data.powercasting"] = "consular";
+        break;
+      case "Engineer":
+        updateData["data.powercasting"] = "engineer";
+        break;
+      case "Guardian":
+        updateData["data.powercasting"] = "guardian";
+        break;
+      case "Scout":
+        updateData["data.powercasting"] = "scout";
+        break;
+      case "Sentinel":
+        updateData["data.powercasting"] = "sentinel";
+        break;
+    }
+  }
+  return updateData;
+}
+
 
 /* -------------------------------------------- */
 

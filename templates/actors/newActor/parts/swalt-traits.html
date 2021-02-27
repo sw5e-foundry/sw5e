@@ -79,10 +79,32 @@
             {{#each senses as |v k|}}
                 <li class="tag {{k}}">{{v}}</li>
             {{/each}}
-            </ul>
-            {{/unless}}
-        </label>
-    </div>
+            {{/select}}
+        </select>
+    </label>
+    {{#if isNPC}}
+        <label>
+        {{localize "SW5E.Powercasting"}}
+        <select class="powercasting" name="data.attributes.powercasting">
+            {{#select data.attributes.powercasting}}
+            {{#each config.powerMaxLevel as |id class|}}
+                <option value="{{class}}">{{class}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </label>
+    {{/if}}
+    <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
+        {{#unless isVehicle}}
+        <label>{{localize "SW5E.Senses"}}</label>
+        <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}"><i class="fas fa-cog"></i></a>
+        <ul class="traits-list">
+        {{#each senses as |v k|}}
+            <li class="tag {{k}}">{{v}}</li>
+        {{/each}}
+        </ul>
+        {{/unless}}
+    </label>
     <div class="languages">
         <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
         <a class="trait-selector" data-options="languages" data-target="data.traits.languages">

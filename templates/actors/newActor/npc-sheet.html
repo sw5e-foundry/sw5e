@@ -86,7 +86,7 @@
             <section class="panel abilities">
                 {{!-- Ability Scores --}}
                 <section class="scores">
-                    <h1>Ability Scores</h1>
+                    <h1>{{localize "SW5E.Ability" }}</h1>
                     <ol>
                         {{#each data.abilities as |ability id|}}
                         <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
@@ -109,7 +109,7 @@
                 </section>
                 {{!-- Skills --}}
                 <section class="skills">
-                    <h1>Skills</h1>
+                    <h1>{{localize "SW5E.Skills"}}</h1>
                     <ol>
                         {{#each data.skills as |skill s|}}
                         <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
@@ -190,7 +190,7 @@
         <div class="tab biography flexcol" data-group="primary" data-tab="biography">
             <div class="panel">
                 <section>
-                    <h1>Biography</h1>
+                    <h1>{{localize "SW5E.Biography"}}</h1>
                     {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
 
                 </section>

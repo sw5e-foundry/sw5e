@@ -112,8 +112,9 @@
 		<button class="item active" data-tab="attributes">Core</button>
 		<button class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</button>
 		<button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
-		<button class="item" data-tab="powerbook">{{ localize "SW5E.Powerbook" }}</button>
-        <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
+		<button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
+		<button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+    <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
 		<button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
 	</nav>
 	{{!-- PC Sheet Body --}}
@@ -130,9 +131,13 @@
 		<section class="tab features" data-group="primary" data-tab="features">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}
 		</section>
-		{{!-- Powerbook Tab --}}
-		<section class="tab powerbook" data-group="primary" data-tab="powerbook">
-			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-powerbook.html"}}
+		{{!-- Powerbook Tabs --}}
+		<section class="tab force-powerbook" data-group="primary" data-tab="force-powerbook">
+			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html"}}
+		</section>
+
+		<section class="tab tech-powerbook" data-group="primary" data-tab="tech-powerbook">
+			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
 		</section>
 		{{!-- Effects Tab --}}
         <section class="tab effects flexcol" data-group="primary" data-tab="effects">

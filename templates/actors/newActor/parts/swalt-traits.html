@@ -59,16 +59,41 @@
 	</div>
 </section>
 <section class="traits">
-    <label>
-        {{localize "SW5E.Size"}}
-        <select class="actor-size" name="data.traits.size">
-            {{#select data.traits.size}}
-            {{#each config.actorSizes as |label size|}}
-            <option value="{{size}}">{{label}}</option>
+    <div>
+        <label>{{localize "SW5E.Size"}}
+            <select class="actor-size" name="data.traits.size">
+                {{#select data.traits.size}}
+                {{#each config.actorSizes as |label size|}}
+                <option value="{{size}}">{{label}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </label>
+    </div>
+    <div>
+        <label {{#unless data.traits.senses}}class="inactive"{{/unless}}>
+            {{#unless isVehicle}}
+            <label>{{localize "SW5E.Senses"}}</label>
+            <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}"><i class="fas fa-cog"></i></a>
+            <ul class="traits-list">
+            {{#each senses as |v k|}}
+                <li class="tag {{k}}">{{v}}</li>
             {{/each}}
             {{/select}}
         </select>
     </label>
+    {{#if isNPC}}
+        <label>
+        {{localize "SW5E.Powercasting"}}
+        <select class="powercasting" name="data.attributes.powercasting">
+            {{#select data.attributes.powercasting}}
+            {{#each config.powerMaxLevel as |id class|}}
+                <option value="{{class}}">{{class}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </label>
+    {{/if}}
     <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
         {{#unless isVehicle}}
         <label>{{localize "SW5E.Senses"}}</label>

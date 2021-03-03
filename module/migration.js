@@ -201,8 +201,9 @@ function cleanActorData(actorData) {
  */
 export const migrateItemData = function(item) {
   const updateData = {};
-  _migrateItemClassPowerCasting(item, updateData)
+  _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
+  _migrateItemPower(item, updateData);
   return updateData;
 };
 
@@ -250,10 +251,14 @@ function _updateNPCData(actor) {
 
   let actorData = actor.data;
   const updateData = {};
-// check for flag.core
+  // check for flag.core, if not there is no compendium monster so exit
   const hasSource = actor?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return actor;
   // shortcut out if dataVersion flag is set to 1.2.4
+  const hasDataVersion = actor?.flags?.dataVersion !== undefined;
+  // TODO update check to do version checking
+  if ((hasDataVersion) && (actor.flags.dataVersion === "1.2.4")) return actor;
+  // Check to see what the source of NPC is
   const sourceId = actor.flags.core.sourceId;
   const coreSource = sourceId.substr(0,sourceId.length-17);
   const core_id = sourceId.substr(sourceId.length-16,16);
@@ -285,10 +290,8 @@ function _updateNPCData(actor) {
       }
 
       const liveActor = game.actors.get(actor._id);
-
       liveActor.createEmbeddedEntity("OwnedItem", newPowers);
 
-      // let updateActor = await actor.createOwnedItem(newPowers);
       // set flag to check to see if migration has been done so we don't do it again.
       liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
     })  
@@ -453,6 +456,46 @@ function _migrateItemClassPowerCasting(item, updateData) {
   return updateData;
 }
 
+/* -------------------------------------------- */
+
+/**
+ * @private
+ */
+function _migrateItemPower(item, updateData) {
+  if (item.type === "power"){
+    // check for flag.core, if not there is no compendium monster so exit
+    const hasSource = item?.flags?.core?.sourceId !== undefined;
+    if (!hasSource) return updateData;
+    // shortcut out if dataVersion flag is set to 1.2.4
+    const hasDataVersion = item?.flags?.dataVersion !== undefined;
+    // TODO update check to do version checking
+    if ((hasDataVersion) && (item.flags.dataVersion === "1.2.4")) return updateData;
+    // Check to see what the source of item is
+    const sourceId = item.flags.core.sourceId;
+    const coreSource = sourceId.substr(0,sourceId.length-17);
+    const core_id = sourceId.substr(sourceId.length-16,16);
+    let compendiumPowerType = "none"
+    if (coreSource === "Compendium.sw5e.forcepowers"){
+      compendiumPowerType = "sw5e.forcepowers"
+    }else if (coreSource === "Compendium.sw5e.techpowers"){
+      compendiumPowerType = "sw5e.techpowers";
+    }
+    if (compendiumPowerType !== "none") {
+      game.packs.get(compendiumPowerType).getEntity(core_id).then(compPower => {
+        const powerData = compPower.data.data;
+        // Update all the item data
+        updateData["data"] = powerData;
+
+        // set flag to check to see if migration has been done so we don't do it again.
+        const liveItem = game.items.get(item._id);
+        liveItem.setFlag("sw5e", "dataVersion", "1.2.4");
+      })  
+    }
+      
+  }
+
+  return updateData;
+}
 
 /* -------------------------------------------- */
 

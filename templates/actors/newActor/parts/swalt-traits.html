@@ -69,6 +69,18 @@
             {{/select}}
         </select>
     </label>
+    {{#if isNPC}}
+        <label>
+        {{localize "SW5E.Powercasting"}}
+        <select class="powercasting" name="data.attributes.powercasting">
+            {{#select data.attributes.powercasting}}
+            {{#each config.powerMaxLevel as |id class|}}
+                <option value="{{class}}">{{class}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </label>
+    {{/if}}
     <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
         {{#unless isVehicle}}
         <label>{{localize "SW5E.Senses"}}</label>

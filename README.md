@@ -31,6 +31,6 @@ Please reach out on the SW5E Foundry Dev Discord with any questions.
 ## Compatible Modules and Optimum Settings
 
 - DAE (Dynamic Active Effects) is needed for many automatic features. 
-  -**Please enable: "Include active effects in special traits display" in "Configure Game Settings> Module Settings> Dynamic Active Effects".**
+  - **Please enable: "Include active effects in special traits display" in "Configure Game Settings> Module Settings> Dynamic Active Effects".**
 - Midi QoL is compatible with great features
 - Token Action Hud has compatibility

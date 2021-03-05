@@ -893,349 +893,349 @@ SW5E.classFeatures = ClassFeatures;
 // Configure Optional Character Flags
 SW5E.characterFlags = {
   "adaptiveResilience": {
-	name: "SW5E.FlagsAdaptiveResilience",
-	hint: "Prolongued use of technology allows members of your species to readily adapt to its effects. You have advantage on Strength and Constitution saving throws against tech powers.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsAdaptiveResilience",
+    hint: "SW5E.FlagsAdaptiveResilienceHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "aggressive": {
-	name: "SW5E.FlagsAggressive",
-	hint: "As a bonus action, you can move up to your speed toward an enemy of your choice that you can see or hear. You must end this move closer to the enemy than you started.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsAggressive",
+    hint: "SW5E.FlagsAggressiveHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "amphibious": {
-	name: "SW5E.FlagsAmphibious",
-    hint: "You can breathe air and water.",
-    section: "Species Traits",
+    name: "SW5E.FlagsAmphibious",
+    hint: "SW5E.FlagsAmphibiousHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "armorIntegration": {
-	name: "SW5E.FlagsArmorIntegration",
-    hint: "You cannot wear armor, but you can have the armor professionally integrated into your chassis over the course of a long rest. This work must be done by someone proficient with astrotech’s implements. You must be proficient in armor in order to have it integrated.",	
-    section: "Species Traits",
-	type: Boolean
+	  name: "SW5E.FlagsArmorIntegration",
+    hint: "SW5E.FlagsArmorIntegrationHint",
+    section: "SW5E.SpeciesTraits",
+	  type: Boolean
   },
   "businessSavvy": {
-	name: "SW5E.FlagsBusinessSavvy",
-	hint: "Whenever you make a Charisma (Persuasion) check involving haggling you are considered to have expertise in the Persuasion skill.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsBusinessSavvy",
+    hint: "SW5E.FlagsBusinessSavvyHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "cannibalize": {
-	name: "SW5E.FlagsCannibalize",
-    hint: "If you spend at least 1 minute devouring the corpse of a beast or humanoid, you gain temporary hit points equal to your Constitution modifier. Once you've used this feature, you must complete a short or long rest before you can use it again.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsCannibalize",
+    hint: "SW5E.FlagsCannibalizeHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "closedMind": {
-	name: "SW5E.FlagsClosedMind",
-    hint: "Members of your species have a natural attunement to the Force, which makes them resistant to its powers. You have advantage on Wisdom and Charisma saving throws against force powers.",
-	section: "Species Traits",
-	type: Boolean
+  	name: "SW5E.FlagsClosedMind",
+    hint: "SW5E.FlagsClosedMindHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "crudeWeaponSpecialists": {
-	name: "SW5E.FlagsCrudeWeaponSpecialists",
-	hint: "Members of your species are used to making do with less. You can spend 1 hour, which you can do over the course of a short rest, crafting a weapon out of loose materials. You can craft any simple kinetic weapon, but the weapon’s damage suffers a -1 penalty.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsCrudeWeaponSpecialists",
+    hint: "SW5E.FlagsCrudeWeaponSpecialistsHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "defiant": {
-	name: "SW5E.FlagsDefiant",
-	hint: "Members of your species are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). You can use this before or after the roll, but before the GM determines the roll’s outcome. Once you’ve used this feature, you must complete a short or long rest before you can use it again.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsDefiant",
+    hint: "SW5E.FlagsDefiantHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "detailOriented": {
     name: "SW5E.FlagsDetailOriented",
-    hint: "You have advantage on Intelligence (Investigation) checks within 5 feet.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsDetailOrientedHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "enthrallingPheromones": {
-	name: "SW5E.FlagsEnthrallingPheromones",
-	hint: "You can use your pheromones to influence individuals of both sexes. Whenever you roll a 1 on a Charisma (Persuasion) check, you can reroll the die and must use the new roll. Additionally, once per short or long rest, you can treat a d20 roll of 9 or lower on a Charisma check as a 10. This feature has no effect on droids or constructs.",
-	section: "Species Traits",
-	type: Boolean
+	  name: "SW5E.FlagsEnthrallingPheromones",
+    hint: "SW5E.FlagsEnthrallingPheromonesHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "extraArms": {
-	name: "SW5E.FlagsExtraArms",
-	hint: "You possess more than two arms, which you can use independently of one another. You can only gain the benefit of items held by two of your arms at any given time, and once per round you can switch which arms you are benefiting from (no action required).",
-	section: "Species Traits",
-	type: Boolean
+  	name: "SW5E.FlagsExtraArms",
+    hint: "SW5E.FlagsExtraArmsHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },  
   "forceContention": {
-	name: "SW5E.FlagsForceContention",
-	hint: "Due to their unique physiology, members of your species exhibit a hardiness that allows them to overcome use of the Force. You have advantage on Strength and Constitution saving throws against force powers.",
-	section: "Species Traits",
-	type: Boolean
+  	name: "SW5E.FlagsForceContention",
+    hint: "SW5E.FlagsForceContentionHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "forceInsensitive": {
     name: "SW5E.FlagsForceInsensitive",
-	hint: "While droids can be manipulated by many force powers, they cannot sense the Force. You can not use force powers or take levels in forcecasting classes.",
-	section: "Species Traits",
-	type: Boolean
+    hint: "SW5E.FlagsForceInsensitiveHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "foreignBiology": {
-	name: "SW5E.FlagsForeignBiology",
-	hint: "You wear a breathing apparatus because many atmospheres in the galaxy differ from that of your species' homeworld. If your apparatus is removed while you are in such an environment, you lose consciousness.",
-	section: "Species Traits",
-	type: Boolean
+	  name: "SW5E.FlagsForeignBiology",
+    hint: "SW5E.FlagsForeignBiologyHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "furyOfTheSmall": {
-	name: "SW5E.FlagsFuryOfTheSmall",
-    hint: "When you damage a creature with an attack or a power and the creature's size is larger than yours, you can cause the attack or power to deal extra damage to the creature. The extra damage equals your level. Once you use this trait, you can't use it again until you finish a short or long rest.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsFuryOfTheSmall",
+    hint: "SW5E.FlagsFuryOfTheSmallHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "grovelCowerAndBeg": {
-	name: "SW5E.FlagsGrovelCowerAndBeg",
-	hint: "As an action on your turn, you can cower pathetically to distract nearby foes. Until the end of your next turn, your allies gain advantage on attack rolls against enemies within 10 feet of you that can see you. Once you use this trait, you can’t use it again until you finish a short or long rest.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsGrovelCowerAndBeg",
+    hint: "SW5E.FlagsGrovelCowerAndBegHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "inscrutable": {
-	name: "SW5E.FlagsInscrutable",
-    hint: "Your calm demeaner and control make you hard to read. Wisdom (Insight) checks made against you have disadvantage, and you have advantage on any saving throw against an effect that would read your thoughts.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsInscrutable",
+    hint: "SW5E.FlagsInscrutableHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "keenSenses": {
     name: "SW5E.FlagsKeenSenses",
-    hint: "You have advantage on Wisdom (Perception) checks that involve using particular senses (see your species' traits for details).",
-    section: "Species Traits",
+    hint: "SW5E.FlagsKeenSensesHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "longlimbed": {
-	name: "SW5E.FlagsLongLimbed",
-	hint: "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsLongLimbed",
+    hint: "SW5E.FlagsLongLimbedHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "maintenanceMode": {
     name: "SW5E.FlagsMaintenanceMode",
-	hint: "Rather than sleep, you enter an inactive state to perform routine maintenance for 4 hours each day. You have disadvantage on Wisdom (Perception) checks while performing maintenance.",
-	section: "Species Traits",
-	type: Boolean
+    hint: "SW5E.FlagsMaintenanceModeHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "maskOfTheWild": {
-	name: "SW5E.FlagsMaskOfTheWild",
-	hint: "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsMaskOfTheWild",
+    hint: "SW5E.FlagsMaskOfTheWildHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "multipleHearts": {
-	name: "SW5E.FlagsMultipleHearts",
-    hint: "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsMultipleHearts",
+    hint: "SW5E.FlagsMultipleHeartsHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "naturallyStealthy": {
     name: "SW5E.FlagsNaturallyStealthy",
-    hint: "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsNaturallyStealthyHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "nimbleAgility": {
-	name: "SW5E.FlagsNimbleAgility",
-	hint: "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0 feet on one of your turns.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsNimbleAgility",
+    hint: "SW5E.FlagsNimbleAgilityHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "nimbleEscape": {
     name: "SW5E.FlagsNimbleEscape",
-    hint: "You can take the Disengage or Hide action as a bonus action.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsNimbleEscapeHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "nimbleness": {
-	name: "SW5E.FlagsNimbleness",
-	hint: "You can move through the space of any creature that is of a size larger than yours.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsNimbleness",
+    hint: "SW5E.FlagsNimblenessHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "pintsized": {
     name: "SW5E.FlagsPintsized",
-	hint: "Your tiny stature makes it hard for you to wield bigger weapons. You can’t use medium or heavy shields. Additionally, you can’t wield weapons with the two-handed or versatile property, and you can only wield one-handed weapons in two hands unless they have the light property.",
-	section: "Species Traits",
-	type: Boolean
+    hint: "SW5E.FlagsPintsizedHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "powerfulBuild": {
     name: "SW5E.FlagsPowerfulBuild",
     hint: "SW5E.FlagsPowerfulBuildHint",
-    section: "Species Traits",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "precognition": {
-	name: "SW5E.FlagsPrecognition",
-    hint: "You can see brief visions of the future that allow you to turn failures into successes. When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsPrecognition",
+    hint: "SW5E.FlagsPrecognitionHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "programmer": {
     name: "SW5E.FlagsProgrammer",
-    hint: "Whenever you make an Intelligence (Technology) check related to computers, you are considered to have expertise in the Technology skill.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsProgrammerHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "puny": {
     name: "SW5E.FlagsPuny",
-	hint: "Members of your species are too small to pack much of a punch. You have disadvantage on Strength saving throws, and when determining your bonus to attack and damage rolls for weapon attacks using Strength, you can’t add more than +3.",
-	section: "Species Traits",
-	type: Boolean
+	  hint: "SW5E.FlagsPunyHint",
+	  section: "SW5E.SpeciesTraits",
+	  type: Boolean
   },
   "rapidReconstruction": {
-	name: "SW5E.FlagsRapidReconstruction",
-	hint: "You are built with internal repair mechanisms. As a bonus action, you can choose to spend one of your Hit Dice to recover hit points.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsRapidReconstruction",
+    hint: "SW5E.FlagsRapidReconstructionHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "rapidlyRegenerative": {
-	name: "SW5E.FlagsRapidlyRegenerative",
-    hint: "You heal quickly, both at will and in response to danger. As a bonus action, you can choose to spend one of your Hit Dice to recover hit points. Additionally, when you take damage, you can use your reaction and expend a Hit Die to regain hit points as long as the damage would not reduce your hit points to 0.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsRapidlyRegenerative",
+    hint: "SW5E.FlagsRapidlyRegenerativeHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "regenerative": {
-	name: "SW5E.FlagsRegenerative",
-	hint: "When you take damage, you can use your reaction and expend a Hit Die to regain hit points as long as the damage would not reduce your hit points to 0.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsRegenerative",
+    hint: "SW5E.FlagsRegenerativeHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "savageAttacks": {
-	name: "SW5E.FlagsSavageAttacks",
+	  name: "SW5E.FlagsSavageAttacks",
     hint: "SW5E.FlagsSavageAttacksHint",
-    section: "Species Traits",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "shapechanger": {
-	name: "SW5E.FlagsShapechanger",
-	hint: "As an action, you can change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and sex. You can also adjust your height and weight, but not so much that your size changes. You can make yourself appear as a member of another species, though none of your game statistics change. You can't duplicate the appearance of a creature you've never seen, and you must adopt a form that has the same basic arrangement of limbs that you have. Your clothing and equipment aren't changed by this trait. You stay in the new form until you use an action to revert to your true form or until you die.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsShapechanger",
+    hint: "SW5E.FlagsShapechangerHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },	
   "strongLegged": {
-	name: "SW5E.FlagsStrongLegged",
-    hint: "When you make a long jump, you can cover a number of feet up to twice your Strength score. When you make a high jump, you can leap a number of feet up into the air equal to 3 + twice your Strength modifier.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsStrongLegged",
+    hint: "SW5E.FlagsStrongLeggedHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "sunlightSensitivity": {
-	name: "SW5E.FlagsSunlightSensitivity",
-    hint: "You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.",
-	section: "Species Traits",
+	  name: "SW5E.FlagsSunlightSensitivity",
+    hint: "SW5E.FlagsSunlightSensitivityHint",
+	  section: "SW5E.SpeciesTraits",
 	type: Boolean
   },
   "surpriseAttack": {
-	name: "SW5E.FlagsSurpriseAttack",
-	hint: "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait only once per combat.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsSurpriseAttack",
+    hint: "SW5E.FlagsSurpriseAttackHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },	  
   "techImpaired": {
-	name: "SW5E.FlagsTechImpaired",
-	hint: "While members of your species can figure out basic technology, they experience difficulty using more complex equipment like wristpads. You cannot use tech powers or take levels in techcasting classes.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsTechImpaired",
+    hint: "SW5E.FlagsTechImpairedHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "techResistance": {
     name: "SW5E.FlagsTechResistance",
-    hint: "You have advantage on Dexterity and Intelligence saving throws against tech powers.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsTechResistanceHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "tinker": {
-	name: "SW5E.FlagsTinker",
-    hint: "You have proficiency with tinker’s implements. You can use these and spend 1 hour and 100 cr worth of materials to construct a Tiny Device (AC 5, 1 hp). You can take the Use an Object action to have your device cause one of a variety of minor effects (see your species' traits list). You can maintain a number of these devices up to your proficiency bonus at once, and a device stops functioning after 24 hours away from you. You can dismantle the device to reclaim the materials used to create it.",
-    section: "Species Traits",
+	  name: "SW5E.FlagsTinker",
+    hint: "SW5E.FlagsTinkerHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "toughness": {
-	name: "SW5E.FlagsToughness",
-	hint: "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsToughness",
+    hint: "SW5E.FlagsToughnessHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "trance": {
-	name: "SW5E.FlagsTrance",
-	hint: "Either through meditation or a reduced sleep schedule, you are able to receive the rest you require on a daily basis (see your species' traits for details). After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.",
-	section: "Species Traits",
-	type: Boolean
+    name: "SW5E.FlagsTrance",
+    hint: "SW5E.FlagsTranceHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "unarmedCombatant": {
     name: "SW5E.FlagsUnarmedCombatant",
-    hint: "Your unarmed strikes deal 1d4 kinetic damage. You can use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsUnarmedCombatantHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "undersized": {
     name: "SW5E.FlagsUndersized",
-    hint: "Your small stature makes it hard for you to wield bigger weapons. You can’t use heavy shields, martial weapons with the two-handed property unless it also has the light property, and if a martial weapon has the versatile property, you can only wield it in two hands.",
-    section: "Species Traits",
+    hint: "SW5E.FlagsUndersizedHint",
+    section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "unsettlingVisage": {
     name: "SW5E.FlagsUnsettlingVisage",
-	hint: "When a creature you can see makes an attack roll against you, you can use your reaction to impose disadvantage on the roll. You must use this feature before knowing whether the attack hits or misses. Using this trait reveals your shapeshifting nature to any creature within 30 feet that can see you. Once you use this trait, you can't use it again until you finish a short or long rest.",
-	section: "Species Traits",
-	type: Boolean
+    hint: "SW5E.FlagsUnsettlingVisageHint", 
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "initiativeAdv": {
     name: "SW5E.FlagsInitiativeAdv",
     hint: "SW5E.FlagsInitiativeAdvHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "initiativeAlert": {
     name: "SW5E.FlagsAlert",
     hint: "SW5E.FlagsAlertHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "jackOfAllTrades": {
     name: "SW5E.FlagsJOAT",
     hint: "SW5E.FlagsJOATHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "observantFeat": {
     name: "SW5E.FlagsObservant",
     hint: "SW5E.FlagsObservantHint",
     skills: ['prc','inv'],
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "reliableTalent": {
     name: "SW5E.FlagsReliableTalent",
     hint: "SW5E.FlagsReliableTalentHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "remarkableAthlete": {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],
-    section: "Feats",
+    section: "SW5E.Features",
     type: Boolean
   },
   "weaponCriticalThreshold": {
     name: "SW5E.FlagsWeaponCritThreshold",
     hint: "SW5E.FlagsWeaponCritThresholdHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Number,
     placeholder: 20
   },
   "powerCriticalThreshold": {
     name: "SW5E.FlagsPowerCritThreshold",
     hint: "SW5E.FlagsPowerCritThresholdHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Number,
     placeholder: 20
   },
   "meleeCriticalDamageDice": {
     name: "SW5E.FlagsMeleeCriticalDice",
     hint: "SW5E.FlagsMeleeCriticalDiceHint",
-    section: "Feats",
+    section: "SW5E.Features",
     type: Number,
     placeholder: 0
   }

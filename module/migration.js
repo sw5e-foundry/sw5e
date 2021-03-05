@@ -136,7 +136,7 @@ export const migrateActorData = function(actor) {
     const items = actor.items.map(i => {
 
       // Migrate the Owned Item
-      let itemUpdate = migrateItemData(i);
+      let itemUpdate = migrateItemData(i, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
       if ( actor.type === "npc" ) {
@@ -199,11 +199,11 @@ function cleanActorData(actorData) {
  * Migrate a single Item entity to incorporate latest data model changes
  * @param item
  */
-export const migrateItemData = function(item) {
+export const migrateItemData = function(item, actor) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
-  _migrateItemPower(item, updateData);
+  _migrateItemPower(item, actor, updateData);
   return updateData;
 };
 
@@ -461,7 +461,7 @@ function _migrateItemClassPowerCasting(item, updateData) {
 /**
  * @private
  */
-function _migrateItemPower(item, updateData) {
+async function _migrateItemPower(item, actor, updateData) {
   if (item.type === "power"){
     // check for flag.core, if not there is no compendium monster so exit
     const hasSource = item?.flags?.core?.sourceId !== undefined;
@@ -472,29 +472,19 @@ function _migrateItemPower(item, updateData) {
     if ((hasDataVersion) && (item.flags.dataVersion === "1.2.4")) return updateData;
     // Check to see what the source of item is
     const sourceId = item.flags.core.sourceId;
-    const coreSource = sourceId.substr(0,sourceId.length-17);
-    const core_id = sourceId.substr(sourceId.length-16,16);
-    let compendiumPowerType = "none"
-    if (coreSource === "Compendium.sw5e.forcepowers"){
-      compendiumPowerType = "sw5e.forcepowers"
-    }else if (coreSource === "Compendium.sw5e.techpowers"){
-      compendiumPowerType = "sw5e.techpowers";
-    }
-    if (compendiumPowerType !== "none") {
-      game.packs.get(compendiumPowerType).getEntity(core_id).then(compPower => {
-        const powerData = compPower.data.data;
-        // Update all the item data
-        updateData["data"] = powerData;
-
-        // set flag to check to see if migration has been done so we don't do it again.
-        const liveItem = game.items.get(item._id);
-        liveItem.setFlag("sw5e", "dataVersion", "1.2.4");
-      })  
-    }
-      
+    // Load item data for source power
+    const compPower = await fromUuid(sourceId);
+    const powerData = compPower.data.data;
+    // Update all the item data
+    updateData["data"] = powerData;
+    // set flag to check to see if migration has been done so we don't do it again.
+    const liveActor = game.actors.get(actor._id);
+    const LiveItem = liveActor.items.find(actorItem => actorItem._id === item._id);
+    LiveItem.setFlag("sw5e", "dataVersion", "1.2.4");
   }
 
-  return updateData;
+  return updateData;    
+
 }
 
 /* -------------------------------------------- */

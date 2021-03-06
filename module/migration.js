@@ -8,7 +8,7 @@ export const migrateWorld = async function() {
   // Migrate World Actors
   for ( let a of game.actors.entities ) {
     try {
-      const updateData = migrateActorData(a.data);
+      const updateData = await migrateActorData(a.data);
       if ( !isObjectEmpty(updateData) ) {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
@@ -36,7 +36,7 @@ export const migrateWorld = async function() {
   // Migrate Actor Override Tokens
   for ( let s of game.scenes.entities ) {
     try {
-      const updateData = migrateSceneData(s.data);
+      const updateData = await migrateSceneData(s.data);
       if ( !isObjectEmpty(updateData) ) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
@@ -84,13 +84,13 @@ export const migrateCompendium = async function(pack) {
     try {
       switch (entity) {
         case "Actor":
-          updateData = migrateActorData(ent.data);
+          updateData = await migrateActorData(ent.data);
           break;
         case "Item":
           updateData = migrateItemData(ent.data);
           break;
         case "Scene":
-          updateData = migrateSceneData(ent.data);
+          updateData = await migrateSceneData(ent.data);
           break;
       }
       if ( isObjectEmpty(updateData) ) continue;
@@ -123,7 +123,7 @@ export const migrateCompendium = async function(pack) {
  * @param {object} actor    The actor data object to update
  * @return {Object}         The updateData to apply
  */
-export const migrateActorData = function(actor) {
+export const migrateActorData = async function(actor) {
   const updateData = {};
 
   // Actor Data Updates
@@ -136,7 +136,7 @@ export const migrateActorData = function(actor) {
     const items = actor.items.map(i => {
 
       // Migrate the Owned Item
-      let itemUpdate = migrateItemData(i, actor);
+      let itemUpdate = await migrateActorItemData(i, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
       if ( actor.type === "npc" ) {
@@ -199,11 +199,25 @@ function cleanActorData(actorData) {
  * Migrate a single Item entity to incorporate latest data model changes
  * @param item
  */
-export const migrateItemData = function(item, actor) {
+export const migrateItemData = function(item) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
-  _migrateItemPower(item, actor, updateData);
+  return updateData;
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate a single owned actor Item entity to incorporate latest data model changes
+ * @param item
+ * @param actor
+ */
+ export const migrateActorItemData = async function(item, actor) {
+  const updateData = {};
+  _migrateItemClassPowerCasting(item, updateData);
+  _migrateItemAttunement(item, updateData);
+  await _migrateItemPower(item, actor, updateData);
   return updateData;
 };
 
@@ -215,7 +229,7 @@ export const migrateItemData = function(item, actor) {
  * @param {Object} scene  The Scene data to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateSceneData = function(scene) {
+export const migrateSceneData = async function(scene) {
   const tokens = duplicate(scene.tokens);
   return {
     tokens: tokens.map(t => {
@@ -228,7 +242,7 @@ export const migrateSceneData = function(scene) {
         t.actorId = null;
         t.actorData = {};
       } else if ( !t.actorLink ) {
-        const updateData = migrateActorData(token.data.actorData);
+        const updateData = await migrateActorData(token.data.actorData);
         t.actorData = mergeObject(token.data.actorData, updateData);
       }
       return t;

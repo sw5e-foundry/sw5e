@@ -92,7 +92,10 @@ export default class Actor5e extends Actor {
     init.total = init.mod + init.prof + init.bonus;
 
     // Prepare power-casting data
-    data.attributes.powerdc = data.attributes.powercasting ? data.abilities[data.attributes.powercasting].dc : 10;
+    data.attributes.powerForceLightDC = 8 + data.abilities.wis.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceDarkDC = 8 + data.abilities.cha.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceUnivDC = Math.max(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
+    data.attributes.powerTechDC = 8 + data.abilities.int.mod + data.attributes.prof ?? 10;
     this._computePowercastingProgression(this.data);
 
     // Compute owned item attributes which depend on prepared Actor data
@@ -364,75 +367,213 @@ export default class Actor5e extends Actor {
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 
-    // Translate the list of classes into power-casting progression
-    const progression = {
-      total: 0,
-      slot: 0,
-      pact: 0
+    // Translate the list of classes into force and tech power-casting progression
+    const forceProgression = {
+      classes: 0,
+      levels: 0,
+      multi: 0,
+      maxClass: "none",
+      maxClassPriority: 0,
+      maxClassLevels: 0,
+      maxClassPowerLevel: 0,
+      powersKnown: 0,
+      points: 0
     };
-
-    // Keep track of the last seen caster in case we're in a single-caster situation.
-    let caster = null;
+    const techProgression = {
+      classes: 0,
+      levels: 0,
+      multi: 0,
+      maxClass: "none",
+      maxClassPriority: 0,
+      maxClassLevels: 0,
+      maxClassPowerLevel: 0,
+      powersKnown: 0,
+      points: 0
+    };
 
     // Tabulate the total power-casting progression
     const classes = this.data.items.filter(i => i.type === "class");
+    let priority = 0;
     for ( let cls of classes ) {
       const d = cls.data;
       if ( d.powercasting === "none" ) continue;
       const levels = d.levels;
       const prog = d.powercasting;
 
-      // Accumulate levels
-      if ( prog !== "pact" ) {
-        caster = cls;
-        progression.total++;
-      }
       switch (prog) {
-        case 'third': progression.slot += Math.floor(levels / 3); break;
-        case 'half': progression.slot += Math.floor(levels / 2); break;
-        case 'full': progression.slot += levels; break;
-        case 'artificer': progression.slot += Math.ceil(levels / 2); break;
-        case 'pact': progression.pact += levels; break;
-      }
+        case 'consular': 
+          priority = 3;
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['consular'][19]/9)*levels;
+          forceProgression.classes++;
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'consular';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['consular'][Math.clamped((levels - 1), 0, 20)];
+          }
+          // calculate points and powers known
+          forceProgression.powersKnown += SW5E.powersKnown['consular'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['consular'][Math.clamped((levels - 1), 0, 20)];
+          break;
+        case 'engineer': 
+          priority = 2
+          techProgression.levels += levels;
+          techProgression.multi += (SW5E.powerMaxLevel['engineer'][19]/9)*levels;
+          techProgression.classes++;
+          // see if class controls high level techcasting
+          if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
+            techProgression.maxClass = 'engineer';
+            techProgression.maxClassLevels = levels;
+            techProgression.maxClassPriority = priority;
+            techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['engineer'][Math.clamped((levels - 1), 0, 20)];
+          }
+          techProgression.powersKnown += SW5E.powersKnown['engineer'][Math.clamped((levels - 1), 0, 20)];
+          techProgression.points += SW5E.powerPoints['engineer'][Math.clamped((levels - 1), 0, 20)];
+          break;
+        case 'guardian': 
+          priority = 1;
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['guardian'][19]/9)*levels;
+          forceProgression.classes++;
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'guardian';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['guardian'][Math.clamped((levels - 1), 0, 20)];
+          }
+          forceProgression.powersKnown += SW5E.powersKnown['guardian'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['guardian'][Math.clamped((levels - 1), 0, 20)];
+          break;
+        case 'scout': 
+          priority = 1;
+          techProgression.levels += levels;
+          techProgression.multi += (SW5E.powerMaxLevel['scout'][19]/9)*levels;
+          techProgression.classes++;
+          // see if class controls high level techcasting
+          if ((levels >= techProgression.maxClassLevels) && (priority > techProgression.maxClassPriority)){
+            techProgression.maxClass = 'scout';
+            techProgression.maxClassLevels = levels;
+            techProgression.maxClassPriority = priority;
+            techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['scout'][Math.clamped((levels - 1), 0, 20)];
+          }
+          techProgression.powersKnown += SW5E.powersKnown['scout'][Math.clamped((levels - 1), 0, 20)];
+          techProgression.points += SW5E.powerPoints['scout'][Math.clamped((levels - 1), 0, 20)];
+          break;
+        case 'sentinel': 
+          priority = 2;
+          forceProgression.levels += levels;
+          forceProgression.multi += (SW5E.powerMaxLevel['sentinel'][19]/9)*levels;
+          forceProgression.classes++;
+          // see if class controls high level forcecasting
+          if ((levels >= forceProgression.maxClassLevels) && (priority > forceProgression.maxClassPriority)){
+            forceProgression.maxClass = 'sentinel';
+            forceProgression.maxClassLevels = levels;
+            forceProgression.maxClassPriority = priority;
+            forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          }
+          forceProgression.powersKnown += SW5E.powersKnown['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          forceProgression.points += SW5E.powerPoints['sentinel'][Math.clamped((levels - 1), 0, 20)];
+          break;      }
     }
 
-    // EXCEPTION: single-classed non-full progression rounds up, rather than down
-    const isSingleClass = (progression.total === 1) && (progression.slot > 0);
-    if (!isNPC && isSingleClass && ['half', 'third'].includes(caster.data.powercasting) ) {
-      const denom = caster.data.powercasting === 'third' ? 3 : 2;
-      progression.slot = Math.ceil(caster.data.levels / denom);
+    // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
+    if (!isNPC && forceProgression.classes > 1) {
+      forceProgression.levels = Math.floor(forceProgression.multi);
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
     }
-
+    if (!isNPC && techProgression.classes > 1) {
+      techProgression.levels = Math.floor(techProgression.multi);
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
+    }
+    
     // EXCEPTION: NPC with an explicit power-caster level
-    if (isNPC && actorData.data.details.powerLevel) {
-      progression.slot = actorData.data.details.powerLevel;
+    if (isNPC && actorData.data.details.powerForceLevel) {
+      forceProgression.levels = actorData.data.details.powerForceLevel;
+      actorData.data.attributes.force.level = forceProgression.levels;
+      forceProgression.maxClass = actorData.data.attributes.powercasting;
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
+    }
+    if (isNPC && actorData.data.details.powerTechLevel) {
+      techProgression.levels = actorData.data.details.powerTechLevel;
+      actorData.data.attributes.tech.level = techProgression.levels;
+      techProgression.maxClass = actorData.data.attributes.powercasting;
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
     }
 
-    // Look up the number of slots per level from the progression table
-    const levels = Math.clamped(progression.slot, 0, 20);
-    const slots = SW5E.SPELL_SLOT_TABLE[levels - 1] || [];
+    // Look up the number of slots per level from the powerLimit table
+    let forcePowerLimit = Array.from(SW5E.powerLimit['none']);
+    for (let i = 0; i < (forceProgression.maxClassPowerLevel); i++) {
+      forcePowerLimit[i] = SW5E.powerLimit[forceProgression.maxClass][i];
+    }
+
     for ( let [n, lvl] of Object.entries(powers) ) {
       let i = parseInt(n.slice(-1));
       if ( Number.isNaN(i) ) continue;
-      if ( Number.isNumeric(lvl.override) ) lvl.max = Math.max(parseInt(lvl.override), 0);
-      else lvl.max = slots[i-1] || 0;
-      lvl.value = parseInt(lvl.value);
+      if ( Number.isNumeric(lvl.foverride) ) lvl.fmax = Math.max(parseInt(lvl.foverride), 0);
+      else lvl.fmax = forcePowerLimit[i-1] || 0;
+      if (isNPC){
+        lvl.fvalue = lvl.fmax; 
+      }else{
+        lvl.fvalue = Math.min(parseInt(lvl.fvalue || lvl.value || lvl.fmax),lvl.fmax);
+      }
+    }
+    
+    let techPowerLimit = Array.from(SW5E.powerLimit['none']);
+    for (let i = 0; i < (techProgression.maxClassPowerLevel); i++) {
+      techPowerLimit[i] = SW5E.powerLimit[techProgression.maxClass][i];
     }
 
-    // Determine the Actor's pact magic level (if any)
-    let pl = Math.clamped(progression.pact, 0, 20);
-    powers.pact = powers.pact || {};
-    if ( (pl === 0) && isNPC && Number.isNumeric(powers.pact.override) ) pl = actorData.data.details.powerLevel;
+    for ( let [n, lvl] of Object.entries(powers) ) {
+      let i = parseInt(n.slice(-1));
+      if ( Number.isNaN(i) ) continue;
+      if ( Number.isNumeric(lvl.toverride) ) lvl.tmax = Math.max(parseInt(lvl.toverride), 0);
+      else lvl.tmax = techPowerLimit[i-1] || 0;
+      if (isNPC){
+        lvl.tvalue = lvl.tmax;
+      }else{
+        lvl.tvalue = Math.min(parseInt(lvl.tvalue || lvl.value || lvl.tmax),lvl.tmax);
+      }
+    }
 
-    // Determine the number of Warlock pact slots per level
-    if ( pl > 0) {
-      powers.pact.level = Math.ceil(Math.min(10, pl) / 2);
-      if ( Number.isNumeric(powers.pact.override) ) powers.pact.max = Math.max(parseInt(powers.pact.override), 1);
-      else powers.pact.max = Math.max(1, Math.min(pl, 2), Math.min(pl - 8, 3), Math.min(pl - 13, 4));
-      powers.pact.value = Math.min(powers.pact.value, powers.pact.max);
-    } else {
-      powers.pact.max = parseInt(powers.pact.override) || 0
-      powers.pact.level = powers.pact.max > 0 ? 1 : 0;
+    // Set Force and tech power for PC Actors
+    if (!isNPC && forceProgression.levels){
+      actorData.data.attributes.force.known.max = forceProgression.powersKnown;
+      actorData.data.attributes.force.points.max = forceProgression.points + Math.max(actorData.data.abilities.wis.mod,actorData.data.abilities.cha.mod);
+      actorData.data.attributes.force.level = forceProgression.levels;
+    }
+    if (!isNPC && techProgression.levels){
+      actorData.data.attributes.tech.known.max = techProgression.powersKnown;
+      actorData.data.attributes.tech.points.max = techProgression.points + actorData.data.abilities.int.mod;
+      actorData.data.attributes.tech.level = techProgression.levels;
+    }
+
+    // Tally Powers Known and check for migration first to avoid errors
+    let hasKnownPowers = actorData?.data?.attributes?.force?.known?.value !== undefined;
+    if ( hasKnownPowers ) {
+      const knownPowers = this.data.items.filter(i => i.type === "power");
+      let knownForcePowers = 0;
+      let knownTechPowers = 0;
+      for ( let knownPower of knownPowers ) {
+        const d = knownPower.data;
+        switch (knownPower.data.school){
+          case "lgt":
+          case "uni":
+          case "drk":{
+            knownForcePowers++;
+            break;
+          }
+          case "tec":{
+            knownTechPowers++;
+            break;
+          }
+        } 
+        continue;
+      }
+      actorData.data.attributes.force.known.value = knownForcePowers;
+      actorData.data.attributes.tech.known.value = knownTechPowers;
     }
   }
 
@@ -983,7 +1124,7 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Cause this Actor to take a Short Rest
+   * Cause this Actor to take a Short Rest and regain all Tech Points
    * During a Short Rest resources and limited item uses may be recovered
    * @param {boolean} dialog  Present a dialog window which allows for rolling hit dice as part of the Short Rest
    * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
@@ -1016,10 +1157,14 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Note the change in HP and HD which occurred
+    // Note the change in HP and HD and TP which occurred
     const dhd = this.data.data.attributes.hd - hd0;
     const dhp = this.data.data.attributes.hp.value - hp0;
+    const dtp = this.data.data.attributes.tech.points.max - this.data.data.attributes.tech.points.value;
 
+    // Automatically Retore Tech Points
+    this.update({"data.attributes.tech.points.value": this.data.data.attributes.tech.points.max});
+    
     // Recover character resources
     const updateData = {};
     for ( let [k, r] of Object.entries(this.data.data.resources) ) {
@@ -1027,11 +1172,6 @@ export default class Actor5e extends Actor {
         updateData[`data.resources.${k}.value`] = r.max;
       }
     }
-
-    // Recover pact slots.
-    const pact = this.data.data.powers.pact;
-    updateData['data.powers.pact.value'] = pact.override || pact.max;
-    await this.update(updateData);
 
     // Recover item uses
     const recovery = newDay ? ["sr", "day"] : ["sr"];
@@ -1057,14 +1197,24 @@ export default class Actor5e extends Actor {
 
       // Summarize the health effects
       let srMessage = "SW5E.ShortRestResultShort";
-      if ((dhd !== 0) && (dhp !== 0)) srMessage = "SW5E.ShortRestResult";
+      if ((dhd !== 0) && (dhp !== 0)){
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultWithTech";
+        }else{
+          srMessage = "SW5E.ShortRestResult";
+        }
+      }else{
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultOnlyTech";
+        }
+      }  
 
       // Create a chat message
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp})
+        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp, tech: dtp})
       });
     }
 
@@ -1072,6 +1222,7 @@ export default class Actor5e extends Actor {
     return {
       dhd: dhd,
       dhp: dhp,
+      dtp: dtp,
       updateData: updateData,
       updateItems: updateItems,
       newDay: newDay
@@ -1081,7 +1232,7 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Take a long rest, recovering HP, HD, resources, and power slots
+   * Take a long rest, recovering HP, HD, resources, Force and Power points and power slots
    * @param {boolean} dialog  Present a confirmation dialog window whether or not to take a long rest
    * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
    * @param {boolean} newDay  Whether the long rest carries over to a new day
@@ -1099,12 +1250,20 @@ export default class Actor5e extends Actor {
       }
     }
 
-    // Recover hit points to full, and eliminate any existing temporary HP
+    // Recover hit, tech, and force points to full, and eliminate any existing temporary HP, TP, and FP
     const dhp = data.attributes.hp.max - data.attributes.hp.value;
+    const dtp = data.attributes.tech.points.max - data.attributes.tech.points.value;
+    const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
     const updateData = {
       "data.attributes.hp.value": data.attributes.hp.max,
       "data.attributes.hp.temp": 0,
-      "data.attributes.hp.tempmax": 0
+      "data.attributes.hp.tempmax": 0,
+      "data.attributes.tech.points.value": data.attributes.tech.points.max,
+      "data.attributes.tech.points.temp": 0,
+      "data.attributes.tech.points.tempmax": 0,
+      "data.attributes.force.points.value": data.attributes.force.points.max,
+      "data.attributes.force.points.temp": 0,
+      "data.attributes.force.points.tempmax": 0
     };
 
     // Recover character resources
@@ -1116,13 +1275,11 @@ export default class Actor5e extends Actor {
 
     // Recover power slots
     for ( let [k, v] of Object.entries(data.powers) ) {
-      updateData[`data.powers.${k}.value`] = Number.isNumeric(v.override) ? v.override : (v.max ?? 0);
+      updateData[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : (v.fmax ?? 0);
     }
-
-    // Recover pact slots.
-    const pact = data.powers.pact;
-    updateData['data.powers.pact.value'] = pact.override || pact.max;
-
+    for ( let [k, v] of Object.entries(data.powers) ) {
+      updateData[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : (v.tmax ?? 0);
+    }
     // Determine the number of hit dice which may be recovered
     let recoverHD = Math.max(Math.floor(data.details.level / 2), 1);
     let dhd = 0;
@@ -1169,15 +1326,16 @@ export default class Actor5e extends Actor {
 
     // Determine the chat message to display
     if ( chat ) {
-      let lrMessage = "SW5E.LongRestResultShort";
-      if((dhp !== 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResult";
-      else if ((dhp !== 0) && (dhd === 0)) lrMessage = "SW5E.LongRestResultHitPoints";
-      else if ((dhp === 0) && (dhd !== 0)) lrMessage = "SW5E.LongRestResultHitDice";
+      let lrMessage = "SW5E.LongRestResult";
+      if (dhp !== 0) lrMessage += "HP";
+      if (dfp !== 0) lrMessage += "FP";
+      if (dtp !== 0) lrMessage += "TP";
+      if (dhd !== 0) lrMessage += "HD";
       ChatMessage.create({
         user: game.user._id,
         speaker: {actor: this, alias: this.name},
         flavor: restFlavor,
-        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, dice: dhd})
+        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, tech: dtp, force: dfp, dice: dhd})
       });
     }
 
@@ -1185,6 +1343,8 @@ export default class Actor5e extends Actor {
     return {
       dhd: dhd,
       dhp: dhp,
+      dtp: dtp,
+      dfp: dfp,
       updateData: updateData,
       updateItems: updateItems,
       newDay: newDay

@@ -45,7 +45,7 @@
 
 			{{!-- HIT POINTS --}}
 			<section>
-				<h1>Hit Points</h1>
+				<h1>{{ localize "SW5E.HP" }}</h1>
 				<div class="attribute-value multiple">
 					<input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
 						data-dtype="Number" placeholder="10" class="value-number" />
@@ -128,7 +128,10 @@
 		</section>
 		{{!-- Powerbook Tab --}}
 		<section class="tab powerbook" data-group="primary" data-tab="powerbook">
-			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-powerbook.html"}}
+			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html"}}
+		</section>
+		<section class="tab powerbook" data-group="primary" data-tab="powerbook">
+			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
 		</section>
 		{{!-- Biography Tab --}}
 		<section class="tab biography" data-group="primary" data-tab="biography">

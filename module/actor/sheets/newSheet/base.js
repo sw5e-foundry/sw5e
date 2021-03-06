@@ -21,7 +21,8 @@ export default class ActorSheet5e extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
-      powerbook: new Set(),
+      forcePowerbook: new Set(),
+      techPowerbook: new Set(),
       features: new Set(),
       effects: new Set()
     };
@@ -35,7 +36,8 @@ export default class ActorSheet5e extends ActorSheet {
       scrollY: [
         ".inventory .group-list",
         ".features .group-list",
-        ".powerbook .group-list",
+        ".force-powerbook .group-list",
+        ".tech-powerbook .group-list",
         ".effects .effects-list"
       ],
       tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -220,7 +222,7 @@ export default class ActorSheet5e extends ActorSheet {
    * @param {Array} powers    The power data being prepared
    * @private
    */
-  _preparePowerbook(data, powers) {
+  _preparePowerbook(data, powers, school) {
     const owner = this.actor.owner;
     const levels = data.data.powers;
     const powerbook = {};
@@ -229,7 +231,6 @@ export default class ActorSheet5e extends ActorSheet {
     const sections = {
       "atwill": -20,
       "innate": -10,
-      "pact": 0.5
     };
 
     // Label power slot uses headers
@@ -251,7 +252,7 @@ export default class ActorSheet5e extends ActorSheet {
         uses: useLabels[i] || value || 0,
         slots: useLabels[i] || max || 0,
         override: override || 0,
-        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode},
+        dataset: {"type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode, "school": school},
         prop: sl
       };
     };
@@ -271,19 +272,6 @@ export default class ActorSheet5e extends ActorSheet {
         const sl = `power${lvl}`;
         registerSection(sl, lvl, CONFIG.SW5E.powerLevels[lvl], levels[sl]);
       }
-    }
-
-    // Pact magic users have cantrips and a pact magic section
-    if ( levels.pact && levels.pact.max ) {
-      if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      const l = levels.pact;
-      const config = CONFIG.SW5E.powerPreparationModes.pact;
-      registerSection("pact", sections.pact, config, {
-        prepMode: "pact",
-        value: l.value,
-        max: l.max,
-        override: l.override
-      });
     }
 
     // Iterate over every power item, adding powers to the powerbook by section

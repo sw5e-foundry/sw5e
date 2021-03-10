@@ -8,7 +8,7 @@ export const migrateWorld = async function() {
   // Migrate World Actors
   for ( let a of game.actors.entities ) {
     try {
-      const updateData = await migrateActorData(a.data);
+      const updateData = migrateActorData(a.data);
       if ( !isObjectEmpty(updateData) ) {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
@@ -36,7 +36,7 @@ export const migrateWorld = async function() {
   // Migrate Actor Override Tokens
   for ( let s of game.scenes.entities ) {
     try {
-      const updateData = await migrateSceneData(s.data);
+      const updateData = migrateSceneData(s.data);
       if ( !isObjectEmpty(updateData) ) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
@@ -84,13 +84,13 @@ export const migrateCompendium = async function(pack) {
     try {
       switch (entity) {
         case "Actor":
-          updateData = await migrateActorData(ent.data);
+          updateData = migrateActorData(ent.data);
           break;
         case "Item":
           updateData = migrateItemData(ent.data);
           break;
         case "Scene":
-          updateData = await migrateSceneData(ent.data);
+          updateData = migrateSceneData(ent.data);
           break;
       }
       if ( isObjectEmpty(updateData) ) continue;
@@ -123,7 +123,7 @@ export const migrateCompendium = async function(pack) {
  * @param {object} actor    The actor data object to update
  * @return {Object}         The updateData to apply
  */
-export const migrateActorData = async function(actor) {
+export const migrateActorData = function(actor) {
   const updateData = {};
 
   // Actor Data Updates
@@ -136,7 +136,7 @@ export const migrateActorData = async function(actor) {
     const items = actor.items.map(i => {
 
       // Migrate the Owned Item
-      let itemUpdate = await migrateActorItemData(i, actor);
+      let itemUpdate = migrateActorItemData(i, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
       if ( actor.type === "npc" ) {
@@ -213,11 +213,11 @@ export const migrateItemData = function(item) {
  * @param item
  * @param actor
  */
- export const migrateActorItemData = async function(item, actor) {
+ export const migrateActorItemData = function(item, actor) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
-  await _migrateItemPower(item, actor, updateData);
+  _migrateItemPower(item, actor, updateData);
   return updateData;
 };
 
@@ -229,7 +229,7 @@ export const migrateItemData = function(item) {
  * @param {Object} scene  The Scene data to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateSceneData = async function(scene) {
+export const migrateSceneData = function(scene) {
   const tokens = duplicate(scene.tokens);
   return {
     tokens: tokens.map(t => {
@@ -242,7 +242,7 @@ export const migrateSceneData = async function(scene) {
         t.actorId = null;
         t.actorData = {};
       } else if ( !t.actorLink ) {
-        const updateData = await migrateActorData(token.data.actorData);
+        const updateData = migrateActorData(token.data.actorData);
         t.actorData = mergeObject(token.data.actorData, updateData);
       }
       return t;
@@ -269,9 +269,9 @@ function _updateNPCData(actor) {
   const hasSource = actor?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return actor;
   // shortcut out if dataVersion flag is set to 1.2.4
-  const hasDataVersion = actor?.flags?.dataVersion !== undefined;
+  const hasDataVersion = actor?.flags?.sw5e?.dataVersion !== undefined;
   // TODO update check to do version checking
-  if ((hasDataVersion) && (actor.flags.dataVersion === "1.2.4")) return actor;
+  if ((hasDataVersion) && (actor.flags.sw5e.dataVersion === "1.2.4")) return actor;
   // Check to see what the source of NPC is
   const sourceId = actor.flags.core.sourceId;
   const coreSource = sourceId.substr(0,sourceId.length-17);
@@ -303,11 +303,13 @@ function _updateNPCData(actor) {
           }
       }
 
+
       const liveActor = game.actors.get(actor._id);
       liveActor.createEmbeddedEntity("OwnedItem", newPowers);
 
       // set flag to check to see if migration has been done so we don't do it again.
-      liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
+      actor.flags.sw5e.dataVersion === "1.2.4";
+      // liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
     })  
   }
 
@@ -473,34 +475,84 @@ function _migrateItemClassPowerCasting(item, updateData) {
 /* -------------------------------------------- */
 
 /**
+ * Update an Power Item's data based on compendium
+ * @param {Object} item    The data object for an item
+ * @param {Object} actor    The data object for the actor owning the item
  * @private
  */
-async function _migrateItemPower(item, actor, updateData) {
+ function _migrateItemPower(item, actor, updateData) {
+  // if item is not a power shortcut out
+  if (item.type !== "power") return updateData;
+  // check for flag.core, if not there is no compendium power so exit
+  const hasSource = item?.flags?.core?.sourceId !== undefined;
+  if (!hasSource) return updateData;
+  // shortcut out if dataVersion flag is set to 1.2.4
+  const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
+  // TODO update check to do version checking
+  if ((hasDataVersion) && (item.flags.sw5e.dataVersion === "1.2.4")) return updateData;
+  // Check to see what the source of Power is
+  const sourceId = item.flags.core.sourceId;
+  const coreSource = sourceId.substr(0,sourceId.length-17);
+  const core_id = sourceId.substr(sourceId.length-16,16);
+  if (coreSource === "Compendium.sw5e.forcepowers"){
+    game.packs.get("sw5e.forcepowers").getEntity(core_id).then(corePower => {
+      const coreData = corePower.data.data;
+      // copy Core Power Data over original Power
+      updateData["data"] = coreData;
+
+      // set flag to check to see if migration has been done so we don't do it again.
+      item.flags.sw5e.dataVersion === "1.2.4";
+    })  
+  }
+
+  // Return the updated data
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * @private
+
+ function _migrateItemPower(item, actor, updateData) {
   if (item.type === "power"){
     // check for flag.core, if not there is no compendium monster so exit
     const hasSource = item?.flags?.core?.sourceId !== undefined;
     if (!hasSource) return updateData;
     // shortcut out if dataVersion flag is set to 1.2.4
-    const hasDataVersion = item?.flags?.dataVersion !== undefined;
+    const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
     // TODO update check to do version checking
-    if ((hasDataVersion) && (item.flags.dataVersion === "1.2.4")) return updateData;
+    if ((hasDataVersion) && (item.flags.sw5e.dataVersion === "1.2.4")) return updateData;
     // Check to see what the source of item is
     const sourceId = item.flags.core.sourceId;
-    // Load item data for source power
-    const compPower = await fromUuid(sourceId);
-    const powerData = compPower.data.data;
-    // Update all the item data
-    updateData["data"] = powerData;
-    // set flag to check to see if migration has been done so we don't do it again.
-    const liveActor = game.actors.get(actor._id);
-    const LiveItem = liveActor.items.find(actorItem => actorItem._id === item._id);
-    LiveItem.setFlag("sw5e", "dataVersion", "1.2.4");
+    const coreSource = sourceId.substr(0,sourceId.length-17);
+    const core_id = sourceId.substr(sourceId.length-16,16);
+    if (coreSource === "Compendium.sw5e.forcepowers") {
+      game.packs.get("sw5e.forcepowers").getEntity(core_id).then(compPower => {
+        const powerData = compPower.data.data;
+        // Update all the item data
+        updateData["data"] = powerData;
+  
+        // set flag to check to see if migration has been done so we don't do it again.
+        item.flags.sw5e.dataVersion === "1.2.4";
+      });
+
+    }else if (coreSource === "Compendium.sw5e.techpowers"){
+      game.packs.get("sw5e.techpowers").getEntity(core_id).then(compPower => {
+        const powerData = compPower.data.data;
+        // Update all the item data
+        updateData["data"] = powerData;
+  
+        // set flag to check to see if migration has been done so we don't do it again.
+        item.flags.sw5e.dataVersion === "1.2.4";
+      }) 
+    }
+      
   }
 
-  return updateData;    
-
+  return updateData;
 }
-
+*/
 /* -------------------------------------------- */
 
 /**

@@ -2,7 +2,7 @@
   "name": "sw5e",
   "title": "SW 5th Edition",
   "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
-  "version": "R1-A2",
+  "version": "R1-A4",
   "author": "Dev Team",
   "scripts": [],
   "esmodules": ["sw5e.js"],
@@ -43,7 +43,13 @@
 	    "label": "Class Features",
 	    "path": "./packs/packs/classfeatures.db",
 	    "entity": "Item"
-	  },    	
+	  },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "path": "./packs/packs/conditions.db",
+      "entity": "JournalEntry"
+    },	    	
     {
       "name": "enhanceditems",
       "label": "Enhanced Items",

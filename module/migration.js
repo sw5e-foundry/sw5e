@@ -268,10 +268,9 @@ function _updateNPCData(actor) {
   // check for flag.core, if not there is no compendium monster so exit
   const hasSource = actor?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return actor;
-  // shortcut out if dataVersion flag is set to 1.2.4
+  // shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = actor?.flags?.sw5e?.dataVersion !== undefined;
-  // TODO update check to do version checking
-  if ((hasDataVersion) && (actor.flags.sw5e.dataVersion === "1.2.4")) return actor;
+  if (hasDataVersion && (actor.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", actor.flags.sw5e.dataVersion))) return actor;
   // Check to see what the source of NPC is
   const sourceId = actor.flags.core.sourceId;
   const coreSource = sourceId.substr(0,sourceId.length-17);
@@ -303,12 +302,12 @@ function _updateNPCData(actor) {
           }
       }
 
-
+      // get actor to create new powers
       const liveActor = game.actors.get(actor._id);
+      // create the powers on the actor
       liveActor.createEmbeddedEntity("OwnedItem", newPowers);
 
       // set flag to check to see if migration has been done so we don't do it again.
-      // actor.flags.sw5e.dataVersion === "1.2.4";
       liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
     })  
   }
@@ -483,95 +482,36 @@ function _migrateItemClassPowerCasting(item, updateData) {
 async function _migrateItemPower(item, actor, updateData) {
   // if item is not a power shortcut out
   if (item.type !== "power") return updateData;
+
   // check for flag.core, if not there is no compendium power so exit
   const hasSource = item?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return updateData;
-  // shortcut out if dataVersion flag is set to 1.2.4
+
+  // shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
-  // TODO update check to do version checking
-  if ((hasDataVersion) && (item.flags.sw5e.dataVersion === "1.2.4")) return updateData;
+  if (hasDataVersion && (item.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", item.flags.sw5e.dataVersion))) return updateData;
+  
   // Check to see what the source of Power is
   const sourceId = item.flags.core.sourceId;
   const coreSource = sourceId.substr(0, sourceId.length - 17);
   const core_id = sourceId.substr(sourceId.length - 16, 16);
-  if (coreSource === "Compendium.sw5e.techpowers") {
-    game.packs
-      .get("sw5e.techpowers")
-      .getEntity(core_id)
-      .then((corePower) => {
-        const coreData = corePower.data.data;
-        // copy Core Power Data over original Power
-        updateData["data"] = coreData;
-        updateData["flags"] = {"sw5e": {"dataVersion": "1.2.4"}};
+  
+  //if power type is not force or tech  exit out
+  let powerType = "none";
+  if (coreSource === "Compendium.sw5e.forcepowers") powerType = "sw5e.forcepowers";
+  if (coreSource === "Compendium.sw5e.techpowers") powerType = "sw5e.techpowers";
+  if (powerType === "none") return updateData;
 
-        // set flag to check to see if migration has been done so we don't do it again.
-        // item.flags.sw5e.dataVersion === "1.2.4";
-
-        return updateData;
-      });
-  }
-
-  if (coreSource === "Compendium.sw5e.forcepowers") {
-    const compendium = game.packs.get("sw5e.forcepowers");
-
-    const corePower = await compendium.getEntity(core_id)
-    const coreData = corePower.data.data;
-
+  game.packs.get(powerType).getEntity(core_id).then(corePower => {
+    const corePowerData = corePower.data.data;
     // copy Core Power Data over original Power
-    updateData["data"] = coreData;
+    updateData["data"] = corePowerData;
     updateData["flags"] = {"sw5e": {"dataVersion": "1.2.4"}};
 
-    // set flag to check to see if migration has been done so we don't do it again.
-    // item.setFlag("sw5e", "dataVersion", "1.2.4");
-
     return updateData;
-  }
+  })  
 }
 
-/* -------------------------------------------- */
-
-/**
- * @private
-
- function _migrateItemPower(item, actor, updateData) {
-  if (item.type === "power"){
-    // check for flag.core, if not there is no compendium monster so exit
-    const hasSource = item?.flags?.core?.sourceId !== undefined;
-    if (!hasSource) return updateData;
-    // shortcut out if dataVersion flag is set to 1.2.4
-    const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
-    // TODO update check to do version checking
-    if ((hasDataVersion) && (item.flags.sw5e.dataVersion === "1.2.4")) return updateData;
-    // Check to see what the source of item is
-    const sourceId = item.flags.core.sourceId;
-    const coreSource = sourceId.substr(0,sourceId.length-17);
-    const core_id = sourceId.substr(sourceId.length-16,16);
-    if (coreSource === "Compendium.sw5e.forcepowers") {
-      game.packs.get("sw5e.forcepowers").getEntity(core_id).then(compPower => {
-        const powerData = compPower.data.data;
-        // Update all the item data
-        updateData["data"] = powerData;
-  
-        // set flag to check to see if migration has been done so we don't do it again.
-        item.flags.sw5e.dataVersion === "1.2.4";
-      });
-
-    }else if (coreSource === "Compendium.sw5e.techpowers"){
-      game.packs.get("sw5e.techpowers").getEntity(core_id).then(compPower => {
-        const powerData = compPower.data.data;
-        // Update all the item data
-        updateData["data"] = powerData;
-  
-        // set flag to check to see if migration has been done so we don't do it again.
-        item.flags.sw5e.dataVersion === "1.2.4";
-      }) 
-    }
-      
-  }
-
-  return updateData;
-}
-*/
 /* -------------------------------------------- */
 
 /**
@@ -584,7 +524,6 @@ function _migrateItemAttunement(item, updateData) {
   updateData["data.-=attuned"] = null;
   return updateData;
 }
-
 
 /* -------------------------------------------- */
 

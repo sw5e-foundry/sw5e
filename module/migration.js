@@ -6,8 +6,9 @@ export const migrateWorld = async function() {
   ui.notifications.info(`Applying SW5e System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
 
   // Migrate World Actors
-  for ( let a of game.actors.entities ) {
+  for await ( let a of game.actors.entities ) {
     try {
+      console.log(`Checking Actor entity ${a.name} for migration needs`);
       const updateData = await migrateActorData(a.data);
       if ( !isObjectEmpty(updateData) ) {
         console.log(`Migrating Actor entity ${a.name}`);
@@ -79,7 +80,7 @@ export const migrateCompendium = async function(pack) {
   const content = await pack.getContent();
 
   // Iterate over compendium entries - applying fine-tuned migration functions
-  for ( let ent of content ) {
+  for await ( let ent of content ) {
     let updateData = {};
     try {
       switch (entity) {
@@ -133,7 +134,8 @@ export const migrateActorData = async function(actor) {
   // Migrate Owned Items
   if ( !!actor.items ) {
     let hasItemUpdates = false;
-    const items = await Promise.all(actor.items.map(async (i) => {
+    const items = await actor.items.reduce(async (memo, i) => {
+      const results = await memo;
 
       // Migrate the Owned Item
       let itemUpdate = await migrateActorItemData(i, actor);
@@ -148,9 +150,11 @@ export const migrateActorData = async function(actor) {
       // Update the Owned Item
       if ( !isObjectEmpty(itemUpdate) ) {
         hasItemUpdates = true;
-        return mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false});
-      } else return i;
-    }));
+        console.log(`Migrating Actor ${actor.name}'s ${i.name}`);
+        return [...results, mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false})];
+      } else return [...results, i];
+    }, []);
+
     if ( hasItemUpdates ) updateData.items = items;
   }
 
@@ -229,7 +233,7 @@ export const migrateActorItemData = async function(item, actor) {
  * @param {Object} scene  The Scene data to Update
  * @return {Object}       The updateData to apply
  */
-export const migrateSceneData = async function(scene) {
+ export const migrateSceneData = async function(scene) {
   const tokens = duplicate(scene.tokens);
   return {
     tokens: await Promise.all(tokens.map(async (t) => {
@@ -483,6 +487,7 @@ async function _migrateItemPower(item, actor, updateData) {
   // if item is not a power shortcut out
   if (item.type !== "power") return updateData;
 
+  console.log(`Checking Actor ${actor.name}'s ${item.name} for migration needs`);
   // check for flag.core, if not there is no compendium power so exit
   const hasSource = item?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return updateData;
@@ -502,14 +507,19 @@ async function _migrateItemPower(item, actor, updateData) {
   if (coreSource === "Compendium.sw5e.techpowers") powerType = "sw5e.techpowers";
   if (powerType === "none") return updateData;
 
-  game.packs.get(powerType).getEntity(core_id).then(corePower => {
-    const corePowerData = corePower.data.data;
+    const corePower = duplicate(await game.packs.get(powerType).getEntity(core_id));
+    console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
+    const corePowerData = corePower.data;
     // copy Core Power Data over original Power
     updateData["data"] = corePowerData;
     updateData["flags"] = {"sw5e": {"dataVersion": "1.2.4"}};
 
     return updateData;
-  })  
+    
+ 
+  //game.packs.get(powerType).getEntity(core_id).then(corePower => {
+
+  //})  
 }
 
 /* -------------------------------------------- */

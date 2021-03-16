@@ -1256,14 +1256,14 @@ export default class Actor5e extends Actor {
     const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
     const updateData = {
       "data.attributes.hp.value": data.attributes.hp.max,
-      "data.attributes.hp.temp": 0,
-      "data.attributes.hp.tempmax": 0,
+      "data.attributes.hp.temp": null,
+      "data.attributes.hp.tempmax": null,
       "data.attributes.tech.points.value": data.attributes.tech.points.max,
-      "data.attributes.tech.points.temp": 0,
-      "data.attributes.tech.points.tempmax": 0,
+      "data.attributes.tech.points.temp": null,
+      "data.attributes.tech.points.tempmax": null,
       "data.attributes.force.points.value": data.attributes.force.points.max,
-      "data.attributes.force.points.temp": 0,
-      "data.attributes.force.points.tempmax": 0
+      "data.attributes.force.points.temp": null,
+      "data.attributes.force.points.tempmax": null
     };
 
     // Recover character resources

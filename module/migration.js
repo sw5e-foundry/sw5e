@@ -366,16 +366,16 @@ function _migrateActorPowers(actorData, updateData) {
     updateData["data.attributes.force.points.value"] = 0;
     updateData["data.attributes.force.points.min"] = 0;
     updateData["data.attributes.force.points.max"] = 0;
-    updateData["data.attributes.force.points.temp"] = 0;
-    updateData["data.attributes.force.points.tempmax"] = 0;
+    updateData["data.attributes.force.points.temp"] = null;
+    updateData["data.attributes.force.points.tempmax"] = null;
     updateData["data.attributes.force.level"] = 0;
     updateData["data.attributes.tech.known.value"] = 0;
     updateData["data.attributes.tech.known.max"] = 0;
     updateData["data.attributes.tech.points.value"] = 0;
     updateData["data.attributes.tech.points.min"] = 0;
     updateData["data.attributes.tech.points.max"] = 0;
-    updateData["data.attributes.tech.points.temp"] = 0;
-    updateData["data.attributes.tech.points.tempmax"] = 0;
+    updateData["data.attributes.tech.points.temp"] = null;
+    updateData["data.attributes.tech.points.tempmax"] = null;
     updateData["data.attributes.tech.level"] = 0;
   }
 

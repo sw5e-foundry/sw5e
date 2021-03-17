@@ -1,7 +1,7 @@
 <section class="panel abilities">
     {{!-- Ability Scores --}}
     <section class="scores">
-        <h1>Ability Scores</h1>
+        <h1>{{localize "SW5E.AbilityScores"}}</h1>
         <ol>
             {{#each data.abilities as |ability id|}}
             <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
@@ -24,7 +24,7 @@
     </section>
     {{!-- Skills --}}
     <section class="skills">
-        <h1>Skills</h1>
+        <h1>{{localize "SW5E.Skills" }}</h1>
         <ol>
             {{#each data.skills as |skill s|}}
             <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
@@ -44,8 +44,8 @@
 </section>
 <section class="panel traits-resources">
     <nav class="core-tabs tab-list" data-subgroup-selection>
-        <button type="button" class="item active" data-subgroup="coreattributes" data-target="traits">Resources & Traits</button>
-        <button type="button" class="item" data-subgroup="coreattributes" data-target="resources">Favorites & Notes</button>
+        <button type="button" class="item active" data-subgroup="coreattributes" data-target="traits">{{localize "SW5E.ResourcesAndTraits"}}</button>
+        <button type="button" class="item" data-subgroup="coreattributes" data-target="resources">{{localize "SW5E.FavoritesAndNotes" }}</button>
     </nav>
     <div class="tab core-traits active" data-subgroup="coreattributes" data-target="traits">
         {{> "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html"}}

@@ -196,16 +196,18 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "R1-A1";
+  const NEEDS_MIGRATION_VERSION = "1.2.4.R1-A5";
+  // Check for R1 SW5E versions
+  const SW5E_NEEDS_MIGRATION_VERSION = "R1-A5";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
-  const needsMigration = currentVersion && isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
-  //if ( !needsMigration ) return;
+  const needsMigration = currentVersion && (isNewerVersion(SW5E_NEEDS_MIGRATION_VERSION, currentVersion) || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion));
+  if ( !needsMigration ) return;
 
   // Perform the migration
-  //if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
-  //  const warning = `Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
-  //  ui.notifications.error(warning, {permanent: true});
-  //}
+  if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
+    const warning = `Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+    ui.notifications.error(warning, {permanent: true});
+  }
   migrations.migrateWorld();
 });
 

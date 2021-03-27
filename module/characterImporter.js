@@ -70,7 +70,7 @@ export default class CharacterImporter {
 
     this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
 
-    this.addForcePowers(
+    this.addPowers(
       sourceCharacter.attribs.filter((e) => e.name.search(/repeating_power.+_powername/g) != -1).map((e) => e.current),
       actor
     );
@@ -125,14 +125,18 @@ export default class CharacterImporter {
     await actor.createEmbeddedEntity("OwnedItem", assignedSpecies.data, { displaySheet: false });
   }
 
-  static async addForcePowers(powers, actor) {
+  static async addPowers(powers, actor) {
     const forcePowers = await game.packs.get("sw5e.forcepowers").getContent();
+    const techPowers = await game.packs.get("sw5e.techpowers").getContent();
 
     for (const power of powers) {
-      const selectedPower = forcePowers.find((c) => c.name === power);
+      const forcePower = forcePowers.find((c) => c.name === power);
+      const techPower = techPowers.find((c) => c.name === power);
 
-      if (selectedPower) {
-        await actor.createEmbeddedEntity("OwnedItem", selectedPower.data, { displaySheet: false });
+      if (forcePower) {
+        await actor.createEmbeddedEntity("OwnedItem", forcePower.data, { displaySheet: false });
+      } else if (techPower) {
+        await actor.createEmbeddedEntity("OwnedItem", techPower.data, { displaySheet: false });
       }
     }
   }

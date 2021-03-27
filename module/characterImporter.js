@@ -69,6 +69,11 @@ export default class CharacterImporter {
     this.addClasses(profession, professionLevel, actor);
 
     this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
+
+    this.addForcePowers(
+      sourceCharacter.attribs.filter((e) => e.name.search(/repeating_power.+_powername/g) != -1).map((e) => e.current),
+      actor
+    );
   }
 
   static async addClasses(profession, level, actor) {
@@ -118,6 +123,18 @@ export default class CharacterImporter {
     actor.update(actorData);
 
     await actor.createEmbeddedEntity("OwnedItem", assignedSpecies.data, { displaySheet: false });
+  }
+
+  static async addForcePowers(powers, actor) {
+    const forcePowers = await game.packs.get("sw5e.forcepowers").getContent();
+
+    for (const power of powers) {
+      const selectedPower = forcePowers.find((c) => c.name === power);
+
+      if (selectedPower) {
+        await actor.createEmbeddedEntity("OwnedItem", selectedPower.data, { displaySheet: false });
+      }
+    }
   }
 
   static addImportButton() {

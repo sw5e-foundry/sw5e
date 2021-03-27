@@ -79,13 +79,48 @@ export default class CharacterImporter {
   }
 
   static async addSpecies(race, actor) {
-    let species = await game.packs.get("sw5e.species").getContent();
-    let assignedSpecies = species.find((c) => c.name === race);
+    const species = await game.packs.get("sw5e.species").getContent();
+    const assignedSpecies = species.find((c) => c.name === race);
+    const activeEffects = assignedSpecies.data.effects[0].changes;
+    const actorData = { data: { ...actor.data.abilities } };
+
+    activeEffects.map((effect) => {
+      switch (effect.key) {
+        case "data.abilities.str.value":
+          actorData.data.abilities.str.value -= effect.value;
+          break;
+
+        case "data.abilities.dex.value":
+          actorData.data.abilities.dex.value -= effect.value;
+          break;
+
+        case "data.abilities.con.value":
+          actorData.data.abilities.con.value -= effect.value;
+          break;
+
+        case "data.abilities.int.value":
+          actorData.data.abilities.int.value -= effect.value;
+          break;
+
+        case "data.abilities.wis.value":
+          actorData.data.abilities.wis.value -= effect.value;
+          break;
+
+        case "data.abilities.cha.value":
+          actorData.data.abilities.cha.value -= effect.value;
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    actor.update(actorData);
 
     await actor.createEmbeddedEntity("OwnedItem", assignedSpecies.data, { displaySheet: false });
   }
 
-  static addImportButton(html) {
+  static addImportButton() {
     const header = $("#actors").find("header.directory-header");
     const search = $("#actors").children().find("div.header-search");
     const newImportButtonDiv = $("#actors").children().find("div.header-actions").clone();
@@ -100,7 +135,7 @@ export default class CharacterImporter {
     newSearch.appendTo(header);
 
     let characterImportButton = $("#cs-import-button");
-    characterImportButton.click((ev) => {
+    characterImportButton.click(() => {
       let content =
         "<h1>Saved Character JSON Import</h1> " +
         '<label for="character-json">Paste character JSON here:</label> ' +
@@ -113,7 +148,7 @@ export default class CharacterImporter {
           Import: {
             icon: '<i class="fas fa-file-import"></i>',
             label: "Import Character",
-            callback: (e) => {
+            callback: () => {
               let characterData = $("#character-json").val();
               console.log("Parsing Character JSON");
               CharacterImporter.transform(characterData);

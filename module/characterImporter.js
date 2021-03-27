@@ -74,6 +74,13 @@ export default class CharacterImporter {
       sourceCharacter.attribs.filter((e) => e.name.search(/repeating_power.+_powername/g) != -1).map((e) => e.current),
       actor
     );
+
+    this.addItems(
+      sourceCharacter.attribs
+        .filter((e) => e.name.search(/repeating_inventory.+_itemname/g) != -1)
+        .map((e) => e.current),
+      actor
+    );
   }
 
   static async addClasses(profession, level, actor) {
@@ -137,6 +144,22 @@ export default class CharacterImporter {
         await actor.createEmbeddedEntity("OwnedItem", forcePower.data, { displaySheet: false });
       } else if (techPower) {
         await actor.createEmbeddedEntity("OwnedItem", techPower.data, { displaySheet: false });
+      }
+    }
+  }
+
+  static async addItems(items, actor) {
+    const weapons = await game.packs.get("sw5e.weapons").getContent();
+    const armors = await game.packs.get("sw5e.armor").getContent();
+
+    for (const item of items) {
+      const weapon = weapons.find((c) => c.name === item);
+      const armor = armors.find((c) => c.name === item);
+
+      if (weapon) {
+        await actor.createEmbeddedEntity("OwnedItem", weapon.data, { displaySheet: false });
+      } else if (armor) {
+        await actor.createEmbeddedEntity("OwnedItem", armor.data, { displaySheet: false });
       }
     }
   }

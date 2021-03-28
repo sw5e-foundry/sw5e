@@ -70,12 +70,19 @@ export default class CharacterImporter {
       actor
     );
 
-    this.addItems(
-      sourceCharacter.attribs
-        .filter((e) => e.name.search(/repeating_inventory.+_itemname/g) != -1)
-        .map((e) => e.current),
-      actor
+    const discoveredItems = sourceCharacter.attribs.filter(
+      (e) => e.name.search(/repeating_inventory.+_itemname/g) != -1
     );
+    const items = discoveredItems.map((item) => {
+      const id = item.name.match(/-\w{19}/g);
+
+      return {
+        name: item.current,
+        quantity: sourceCharacter.attribs.find((e) => e.name === `repeating_inventory_${id}_itemcount`).current
+      };
+    });
+
+    this.addItems(items, actor);
   }
 
   static async addClasses(profession, level, actor) {
@@ -132,13 +139,10 @@ export default class CharacterImporter {
     const techPowers = await game.packs.get("sw5e.techpowers").getContent();
 
     for (const power of powers) {
-      const forcePower = forcePowers.find((c) => c.name === power);
-      const techPower = techPowers.find((c) => c.name === power);
+      const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
 
-      if (forcePower) {
-        await actor.createEmbeddedEntity("OwnedItem", forcePower.data, { displaySheet: false });
-      } else if (techPower) {
-        await actor.createEmbeddedEntity("OwnedItem", techPower.data, { displaySheet: false });
+      if (createdPower) {
+        await actor.createEmbeddedEntity("OwnedItem", createdPower.data, { displaySheet: false });
       }
     }
   }
@@ -146,19 +150,20 @@ export default class CharacterImporter {
   static async addItems(items, actor) {
     const weapons = await game.packs.get("sw5e.weapons").getContent();
     const armors = await game.packs.get("sw5e.armor").getContent();
-    const adventuringGears = await game.packs.get("sw5e.adventuringgear").getContent();
+    const adventuringGear = await game.packs.get("sw5e.adventuringgear").getContent();
 
     for (const item of items) {
-      const weapon = weapons.find((c) => c.name.toLowerCase() === item.toLowerCase());
-      const armor = armors.find((c) => c.name.toLowerCase() === item.toLowerCase());
-      const gear = adventuringGears.find((c) => c.name.toLowerCase() === item.toLowerCase());
+      const createdItem =
+        weapons.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+        armors.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+        adventuringGear.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
 
-      if (weapon) {
-        await actor.createEmbeddedEntity("OwnedItem", weapon.data, { displaySheet: false });
-      } else if (armor) {
-        await actor.createEmbeddedEntity("OwnedItem", armor.data, { displaySheet: false });
-      } else if (gear) {
-        await actor.createEmbeddedEntity("OwnedItem", gear.data, { displaySheet: false });
+      if (createdItem) {
+        if (item.quantity != 1) {
+          createdItem.data.data.quantity = item.quantity;
+        }
+
+        await actor.createEmbeddedEntity("OwnedItem", createdItem.data, { displaySheet: false });
       }
     }
   }

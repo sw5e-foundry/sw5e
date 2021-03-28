@@ -89,7 +89,7 @@ export default class CharacterImporter {
     const species = await game.packs.get("sw5e.species").getContent();
     const assignedSpecies = species.find((c) => c.name === race);
     const activeEffects = assignedSpecies.data.effects[0].changes;
-    const actorData = { data: { ...actor.data.abilities } };
+    const actorData = { data: { abilities: { ...actor.data.data.abilities } } };
 
     activeEffects.map((effect) => {
       switch (effect.key) {

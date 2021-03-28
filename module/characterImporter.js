@@ -44,12 +44,34 @@ export default class CharacterImporter {
       }
     };
 
+    const skills = {
+      acr: { value: sourceCharacter.attribs.find((e) => e.name == "acrobatics_type").current },
+      ani: { value: sourceCharacter.attribs.find((e) => e.name == "animal_handling_type").current },
+      ath: { value: sourceCharacter.attribs.find((e) => e.name == "athletics_type").current },
+      dec: { value: sourceCharacter.attribs.find((e) => e.name == "deception_type").current },
+      ins: { value: sourceCharacter.attribs.find((e) => e.name == "insight_type").current },
+      inv: { value: sourceCharacter.attribs.find((e) => e.name == "investigation_type").current },
+      itm: { value: sourceCharacter.attribs.find((e) => e.name == "intimidation_type").current },
+      lor: { value: sourceCharacter.attribs.find((e) => e.name == "lore_type").current },
+      med: { value: sourceCharacter.attribs.find((e) => e.name == "medicine_type").current },
+      nat: { value: sourceCharacter.attribs.find((e) => e.name == "nature_type").current },
+      per: { value: sourceCharacter.attribs.find((e) => e.name == "persuasion_type").current },
+      pil: { value: sourceCharacter.attribs.find((e) => e.name == "piloting_type").current },
+      prc: { value: sourceCharacter.attribs.find((e) => e.name == "perception_type").current },
+      prf: { value: sourceCharacter.attribs.find((e) => e.name == "performance_type").current },
+      slt: { value: sourceCharacter.attribs.find((e) => e.name == "sleight_of_hand_type").current },
+      ste: { value: sourceCharacter.attribs.find((e) => e.name == "stealth_type").current },
+      sur: { value: sourceCharacter.attribs.find((e) => e.name == "survival_type").current },
+      tec: { value: sourceCharacter.attribs.find((e) => e.name == "technology_type").current }
+    };
+
     const targetCharacter = {
       name: sourceCharacter.name,
       type: "character",
       data: {
         abilities: abilities,
         details: details,
+        skills: skills,
         attributes: {
           hp: hp
         }

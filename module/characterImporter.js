@@ -17,10 +17,6 @@ export default class CharacterImporter {
       temp: sourceCharacter.attribs.find((e) => e.name == "hp_temp").current
     };
 
-    const ac = {
-      value: sourceCharacter.attribs.find((e) => e.name == "ac").current
-    };
-
     const abilities = {
       str: {
         value: sourceCharacter.attribs.find((e) => e.name == "strength").current,
@@ -55,7 +51,6 @@ export default class CharacterImporter {
         abilities: abilities,
         details: details,
         attributes: {
-          ac: ac,
           hp: hp
         }
       }
@@ -151,15 +146,19 @@ export default class CharacterImporter {
   static async addItems(items, actor) {
     const weapons = await game.packs.get("sw5e.weapons").getContent();
     const armors = await game.packs.get("sw5e.armor").getContent();
+    const adventuringGears = await game.packs.get("sw5e.adventuringgear").getContent();
 
     for (const item of items) {
-      const weapon = weapons.find((c) => c.name === item);
-      const armor = armors.find((c) => c.name === item);
+      const weapon = weapons.find((c) => c.name.toLowerCase() === item.toLowerCase());
+      const armor = armors.find((c) => c.name.toLowerCase() === item.toLowerCase());
+      const gear = adventuringGears.find((c) => c.name.toLowerCase() === item.toLowerCase());
 
       if (weapon) {
         await actor.createEmbeddedEntity("OwnedItem", weapon.data, { displaySheet: false });
       } else if (armor) {
         await actor.createEmbeddedEntity("OwnedItem", armor.data, { displaySheet: false });
+      } else if (gear) {
+        await actor.createEmbeddedEntity("OwnedItem", gear.data, { displaySheet: false });
       }
     }
   }

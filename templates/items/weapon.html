@@ -15,7 +15,7 @@
             </div>
 
             <ul class="summary flexrow">
-                <li>
+                <li style="flex-basis: 80px;">
                     {{lookup config.weaponTypes data.weaponType }}
                 </li>
                 <li>
@@ -56,7 +56,20 @@
                     {{/select}}
                 </select>
             </div>
-
+			
+			{{!-- Starship Weapon Size --}}
+<!--             <div class="form-group">
+                <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
+                <select name="data.weaponSize">
+					<option value="" selected disabled>Select Size</option>
+                    {{#select data.weaponSize}}
+                    {{#each config.weaponSizes as |name size|}}
+                    <option value="{{size}}">{{name}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div> -->
+			
             {{#unless isMountable}}
             <div class="form-group">
                 <label>{{localize "SW5E.Attunement"}}</label>

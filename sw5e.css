@@ -426,6 +426,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  display: block;
 }
 .sw5e.sheet .items-list .item-name {
   flex: 2;
@@ -1823,6 +1824,9 @@
 .sw5e.sheet.actor.character .biography {
   max-width: calc(100% - 180px);
 }
+.sw5e.sheet.actor.character .content{
+  display: block;
+}	
 /* ----------------------------------------- */
 /*  Basic Structure                          */
 /* ----------------------------------------- */

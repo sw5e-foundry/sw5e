@@ -25,6 +25,8 @@ export default class Actor5e extends Actor {
         return this._prepareCharacterData(this.data);
       case "npc":
         return this._prepareNPCData(this.data);
+      case "starship":
+        return this._prepareStarshipData(this.data);
       case "vehicle":
         return this._prepareVehicleData(this.data);
     }
@@ -301,6 +303,23 @@ export default class Actor5e extends Actor {
    * @private
    */
   _prepareVehicleData(actorData) {}
+
+  /* -------------------------------------------- */
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare starship type-specific data
+   * @param actorData
+   * @private
+   */
+  _prepareStarshipData(actorData) {
+      const data = actorData.data;
+
+    // Proficiency
+      data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
+
+  }
 
   /* -------------------------------------------- */
 
@@ -1256,14 +1275,14 @@ export default class Actor5e extends Actor {
     const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
     const updateData = {
       "data.attributes.hp.value": data.attributes.hp.max,
-      "data.attributes.hp.temp": null,
-      "data.attributes.hp.tempmax": null,
+      "data.attributes.hp.temp": 0,
+      "data.attributes.hp.tempmax": 0,
       "data.attributes.tech.points.value": data.attributes.tech.points.max,
-      "data.attributes.tech.points.temp": null,
-      "data.attributes.tech.points.tempmax": null,
+      "data.attributes.tech.points.temp": 0,
+      "data.attributes.tech.points.tempmax": 0,
       "data.attributes.force.points.value": data.attributes.force.points.max,
-      "data.attributes.force.points.temp": null,
-      "data.attributes.force.points.tempmax": null
+      "data.attributes.force.points.temp": 0,
+      "data.attributes.force.points.tempmax": 0
     };
 
     // Recover character resources

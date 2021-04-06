@@ -19,8 +19,12 @@
                     {{#if ../owner}}
                     <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
                         {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
-                        <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
-                    </a>
+						<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                    </a>&nbsp;
+                    <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
+                        {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>					
+                        <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
+					</a>
                     {{/if}}
                 </div>
                 {{#if section.hasActions}}
@@ -30,7 +34,7 @@
 
 
             </div>
-            <ol class="item-list">
+            <ol class="item-list content" style="display: block">
                 {{#each section.items as |item iid|}}
                 <li class="item group-grid-features {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
                     <div class="item-name rollable">
@@ -57,11 +61,18 @@
                     </div>
 
                     {{else if section.isClass}}
-                    <div class="item-detail player-class">
-                        {{item.data.archetype}}
+                    <div class="item-detail player-class"><strong>HD:</strong>
+					    <input style="width:50px;" name="hitdice" type="text" value="{{item.data.hitDice}}" placeholder="{{ localize 'SW5E.HitDice' }}"/>
+<!--                        {{item.data.hitDice}} -->
                     </div>
                     <div class="item-detail player-class-levels">
-                        Level {{item.data.levels}}
+                        <strong>Level {{item.data.levels}}</strong> &nbsp;&nbsp;<a class="increment-class-level"><i style="color:#c40f0f; text-shadow: 0px 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-class-level"><i style="color:#c40f0f; text-shadow: 0px 1px 2px gray" class="fas fa-arrow-down"></i></a>
+<!--				    {{#if ../owner}}
+                    <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
+                        {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+                        <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}
+                    </a>
+                    {{/if}} -->
                     </div>
                     {{/if}}
 

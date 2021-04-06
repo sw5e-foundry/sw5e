@@ -1,4 +1,4 @@
-import {ClassFeatures} from "./classFeatures.js"
+import {ClassFeatures} from "./classFeatures.js"	
 
 // Namespace SW5e Configuration Values
 export const SW5E = {};
@@ -238,11 +238,16 @@ SW5E.equipmentTypes = {
   "light": "SW5E.EquipmentLight",
   "medium": "SW5E.EquipmentMedium",
   "heavy": "SW5E.EquipmentHeavy",
+  "hyper": "SW5E.EquipmentHyperdrive",
   "bonus": "SW5E.EquipmentBonus",
   "natural": "SW5E.EquipmentNatural",
+  "powerc": "SW5E.EquipmentPowerCoupling",
+  "reactor": "SW5E.EquipmentReactor",  
   "shield": "SW5E.EquipmentShield",
   "clothing": "SW5E.EquipmentClothing",
   "trinket": "SW5E.EquipmentTrinket",
+  "ssarmor": "SW5E.EquipmentStarshipArmor",
+  "ssshield": "SW5E.EquipmentStarshipShield",
   "vehicle": "SW5E.EquipmentVehicle"
 };
 
@@ -423,6 +428,7 @@ SW5E.targetTypes = {
   "square": "SW5E.TargetSquare",
   "cube": "SW5E.TargetCube",
   "line": "SW5E.TargetLine",
+  "starship": "SW5E.TargetStarship",
   "wall": "SW5E.TargetWall",
   "weapon": "SW5E.TargetWeapon"   
 };
@@ -505,6 +511,29 @@ SW5E.skills = {
   "ste": "SW5E.SkillSte",
   "sur": "SW5E.SkillSur",
   "tec": "SW5E.SkillTec"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of starship skills which can be trained in SW5e
+ * @type {Object}
+ */
+SW5E.starshipSkills = {
+  "ast": "SW5E.StarshipSkillAst",
+  "bst": "SW5E.StarshipSkillBst",
+  "dat": "SW5E.StarshipSkillDat",
+  "hid": "SW5E.StarshipSkillHid",
+  "imp": "SW5E.StarshipSkillImp",
+  "int": "SW5E.StarshipSkillInt",
+  "man": "SW5E.StarshipSkillMan",
+  "men": "SW5E.StarshipSkillMen",
+  "pat": "SW5E.StarshipSkillPat",
+  "prb": "SW5E.StarshipSkillPrb",
+  "ram": "SW5E.StarshipSkillRam",
+  "reg": "SW5E.StarshipSkillReg",
+  "scn": "SW5E.StarshipSkillScn",
+  "swn": "SW5E.StarshipSkillSwn"
 };
 
 
@@ -610,16 +639,21 @@ SW5E.powerScalingModes = {
  * @type {Object}
  */
 SW5E.weaponTypes = {
-  "simpleVW": "SW5E.WeaponSimpleVW",
-  "simpleB": "SW5E.WeaponSimpleB",
-  "simpleLW": "SW5E.WeaponSimpleLW",
+
+  "ammo": "SW5E.WeaponAmmo",
+  "improv": "SW5E.WeaponImprov",  
   "martialVW": "SW5E.WeaponMartialVW",
   "martialB": "SW5E.WeaponMartialB",
   "martialLW": "SW5E.WeaponMartialLW",
-  "natural": "SW5E.WeaponNatural",
-  "improv": "SW5E.WeaponImprov",
-  "ammo": "SW5E.WeaponAmmo",
-  "siege": "SW5E.WeaponSiege"
+  "natural": "SW5E.WeaponNatural",  
+  "siege": "SW5E.WeaponSiege",
+  "simpleVW": "SW5E.WeaponSimpleVW",
+  "simpleB": "SW5E.WeaponSimpleB",
+  "simpleLW": "SW5E.WeaponSimpleLW",
+  "primary (starship)": "SW5E.WeaponPrimarySW",
+  "secondary (starship)": "SW5E.WeaponSecondarySW",
+  "tertiary (starship)": "SW5E.WeaponTertiarySW",
+  "quaternary (starship)": "SW5E.WeaponQuaternarySW"
 };
 
 
@@ -633,6 +667,7 @@ SW5E.weaponProperties = {
   "amm": "SW5E.WeaponPropertiesAmm",
   "aut": "SW5E.WeaponPropertiesAut",
   "bur": "SW5E.WeaponPropertiesBur",
+  "con": "SW5E.WeaponPropertiesCon",
   "def": "SW5E.WeaponPropertiesDef",
   "dex": "SW5E.WeaponPropertiesDex",
   "dir": "SW5E.WeaponPropertiesDir",
@@ -641,20 +676,27 @@ SW5E.weaponProperties = {
   "dis": "SW5E.WeaponPropertiesDis",
   "dpt": "SW5E.WeaponPropertiesDpt",
   "dou": "SW5E.WeaponPropertiesDou",
+  "exp": "SW5E.WeaponPropertiesExp",
   "fin": "SW5E.WeaponPropertiesFin",
   "fix": "SW5E.WeaponPropertiesFix",
   "foc": "SW5E.WeaponPropertiesFoc",
   "hvy": "SW5E.WeaponPropertiesHvy",
   "hid": "SW5E.WeaponPropertiesHid",
+  "hom": "SW5E.WeaponPropertiesHom",
+  "ion": "SW5E.WeaponPropertiesIon",
   "ken": "SW5E.WeaponPropertiesKen",
   "lgt": "SW5E.WeaponPropertiesLgt",
   "lum": "SW5E.WeaponPropertiesLum",
+  "mlt": "SW5E.WeaponPropertiesMlt",
   "mig": "SW5E.WeaponPropertiesMig",
+  "ovr": "SW5E.WeaponPropertiesOvr",
   "pic": "SW5E.WeaponPropertiesPic",
+  "pow": "SW5E.WeaponPropertiesPow",
   "rap": "SW5E.WeaponPropertiesRap",
   "rch": "SW5E.WeaponPropertiesRch",
   "rel": "SW5E.WeaponPropertiesRel",
   "ret": "SW5E.WeaponPropertiesRet",
+  "sat": "SW5E.WeaponPropertiesSat",
   "shk": "SW5E.WeaponPropertiesShk",
   "sil": "SW5E.WeaponPropertiesSil",
   "spc": "SW5E.WeaponPropertiesSpc",
@@ -662,9 +704,24 @@ SW5E.weaponProperties = {
   "thr": "SW5E.WeaponPropertiesThr",
   "two": "SW5E.WeaponPropertiesTwo",
   "ver": "SW5E.WeaponPropertiesVer",
-  "vic": "SW5E.WeaponPropertiesVic"
+  "vic": "SW5E.WeaponPropertiesVic",
+  "zon": "SW5E.WeaponPropertiesZon"
 };
 
+/* -------------------------------------------- */
+
+/**
+ * Define the set of starship weapon size flags which can exist on a weapon
+ * @type {Object}
+ */
+SW5E.weaponSizes = {
+  "tiny": "SW5E.SizeTiny",
+  "sm": "SW5E.SizeSmall",
+  "med": "SW5E.SizeMedium",
+  "lg": "SW5E.SizeLarge",
+  "huge": "SW5E.SizeHuge",
+  "grg": "SW5E.SizeGargantuan"
+};	
 
 // Power Components
 SW5E.powerComponents = {

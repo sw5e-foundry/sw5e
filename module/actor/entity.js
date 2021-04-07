@@ -317,7 +317,7 @@ export default class Actor5e extends Actor {
       const data = actorData.data;
 
     // Proficiency
-      data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
+      data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
 
   }
 
@@ -382,7 +382,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _computePowercastingProgression (actorData) {
-    if (actorData.type === 'vehicle') return;
+    if (actorData.type === 'vehicle' || actorData.type === 'starship') return;
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 

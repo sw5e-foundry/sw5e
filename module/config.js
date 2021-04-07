@@ -224,7 +224,9 @@ SW5E.limitedUsePeriods = {
   "sr": "SW5E.ShortRest",
   "lr": "SW5E.LongRest",
   "day": "SW5E.Day",
-  "charges": "SW5E.Charges"
+  "charges": "SW5E.Charges",
+  "recharge": "SW5E.Recharge",
+  "refitting": "SW5E.Refitting"
 };
 
 

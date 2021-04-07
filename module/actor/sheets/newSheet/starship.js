@@ -38,7 +38,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       weapons: { label: game.i18n.localize("SW5E.ItemTypeWeaponPl"), items: [], hasActions: true, dataset: {type: "weapon", "weapon-type": "natural"} },
       passive: { label: game.i18n.localize("SW5E.Features"), items: [], dataset: {type: "feat"} },
       equipment: { label: game.i18n.localize("SW5E.StarshipEquipment"), items: [], dataset: {type: "equipment"}},
-	  starshipmods: { label: game.i18n.localize("SW5E.ItemTypeStarshipModPl"), items: [], hasActions: false, dataset: {type: "starshipmod"} }
+	  starshipfeatures: { label: game.i18n.localize("SW5E.StarshipfeaturePl"), items: [], hasActions: true, dataset: {type: "starshipfeature"} },
+	  starshipmods: { label: game.i18n.localize("SW5E.StarshipmodPl"), items: [], hasActions: false, dataset: {type: "starshipmod"} }
     };
 
     // Start by classifying items into groups for rendering
@@ -70,10 +71,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       else if ( item.type === "feat" ) {
         if ( item.data.activation.type ) features.actions.items.push(item);
         else features.passive.items.push(item);
-      } 
+      }
+      else if ( item.type === "starshipfeature" ) {
+		  features.starshipfeatures.items.push(item);
+	  }	  
 	  else if ( item.type === "starshipmod" ) {
 		  features.starshipmods.items.push(item);
-	  }	  
+	  }
       else features.equipment.items.push(item);
     }
 

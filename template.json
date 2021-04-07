@@ -541,7 +541,7 @@
     }
   },
   "Item": {
-    "types": ["archetype", "background", "backpack", "class", "classfeature", "consumable", "deployment", "deploymentfeature", "equipment", "feat", "fightingmastery", "fightingstyle", "lightsaberform", "loot", "power", "species", "starshipmod", "tool", "venture", "weapon"],
+    "types": ["archetype", "background", "backpack", "class", "classfeature", "consumable", "deployment", "deploymentfeature", "equipment", "feat", "fightingmastery", "fightingstyle", "lightsaberform", "loot", "power", "species", "starshipfeature", "starshipmod", "tool", "venture", "weapon"],
     "templates": {
       "archetypeDescription": {
         "className": "",
@@ -846,6 +846,11 @@
         "mode": "none",
         "formula": null
       }
+    },
+    "starshipfeature": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "size": "med",
+	  "tier": 0
     },
 	"starshipmod": {
 	  "templates": ["itemDescription"]

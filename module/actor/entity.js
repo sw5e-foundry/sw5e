@@ -25,6 +25,8 @@ export default class Actor5e extends Actor {
         return this._prepareCharacterData(this.data);
       case "npc":
         return this._prepareNPCData(this.data);
+      case "starship":
+        return this._prepareStarshipData(this.data);
       case "vehicle":
         return this._prepareVehicleData(this.data);
     }
@@ -304,6 +306,23 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare starship type-specific data
+   * @param actorData
+   * @private
+   */
+  _prepareStarshipData(actorData) {
+      const data = actorData.data;
+
+    // Proficiency
+      data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
+
+  }
+
+  /* -------------------------------------------- */
+
   /**
    * Prepare skill checks.
    * @param actorData
@@ -363,7 +382,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _computePowercastingProgression (actorData) {
-    if (actorData.type === 'vehicle') return;
+    if (actorData.type === 'vehicle' || actorData.type === 'starship') return;
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 

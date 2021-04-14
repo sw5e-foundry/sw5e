@@ -205,19 +205,27 @@ export default class Item5e extends Item {
     // Class Feature Items
     else if ( itemData.type === "classfeature" ) {
     //  labels.classFeature = C.classFeature[data.classFeature];
-	  }
-	  // Fighting Style Items
-	  else if ( itemData.type === "fightingstyle" ) {
-	  //  labels.fightingstyle = C.fightingstyle[data.fightingstyle];
-	  }
-	  // Fighting Mastery Items
-	  else if ( itemData.type === "fightingmastery" ) {
-	  //  labels.fightingmastery = C.fightingmastery[data.fightingmastery];
-	  }
-	  // Lightsaber Form Items
-	  else if ( itemData.type === "lightsaberform" ) {
-	  //  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
-	  }
+	}
+    // Deployment Items
+    else if ( itemData.type === "deployment" ) {
+    //  labels.deployment = C.deployment[data.deployment];
+	}
+    // Venture Items
+    else if ( itemData.type === "venture" ) {
+    //  labels.venture = C.venture[data.venture];
+	}	
+	// Fighting Style Items
+	else if ( itemData.type === "fightingstyle" ) {
+    //  labels.fightingstyle = C.fightingstyle[data.fightingstyle];
+	}
+	// Fighting Mastery Items
+	else if ( itemData.type === "fightingmastery" ) {
+	//  labels.fightingmastery = C.fightingmastery[data.fightingmastery];
+	}
+	// Lightsaber Form Items
+	else if ( itemData.type === "lightsaberform" ) {
+	//  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
+	}
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {

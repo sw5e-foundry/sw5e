@@ -65,6 +65,72 @@ export default class CharacterImporter {
       tec: { value: sourceCharacter.attribs.find((e) => e.name == "technology_type").current }
     };
 
+    /* ----------------------------------------------------------------- */
+    /*  character.data.skills.<skill_name>.value is all that matters
+    /*  values can be 0, 0.5, 1 or 2
+    /*  0 = regular
+    /*  0.5 = half-proficient
+    /*  1 = proficient
+    /*  2 = expertise
+    /*  foundry takes care of calculating the rest
+    /* ----------------------------------------------------------------- */
+    const skills = {
+      acr: {
+        value: sourceCharacter.attribs.find((e) => e.name == "acrobatics_type").current
+      },
+      ani: {
+        value: sourceCharacter.attribs.find((e) => e.name == "animal_handling_type").current
+      },
+      ath: {
+        value: sourceCharacter.attribs.find((e) => e.name == "athletics_type").current
+      },
+      dec: {
+        value: sourceCharacter.attribs.find((e) => e.name == "deception_type").current
+      },
+      ins: {
+        value: sourceCharacter.attribs.find((e) => e.name == "insight_type").current
+      },
+      inv: {
+        value: sourceCharacter.attribs.find((e) => e.name == "investigation_type").current
+      },
+      itm: {
+        value: sourceCharacter.attribs.find((e) => e.name == "intimidation_type").current
+      },
+      lor: {
+        value: sourceCharacter.attribs.find((e) => e.name == "lore_type").current
+      },
+      med: {
+        value: sourceCharacter.attribs.find((e) => e.name == "medicine_type").current
+      },
+      nat: {
+        value: sourceCharacter.attribs.find((e) => e.name == "nature_type").current
+      },
+      per: {
+        value: sourceCharacter.attribs.find((e) => e.name == "persuasion_type").current
+      },
+      pil: {
+        value: sourceCharacter.attribs.find((e) => e.name == "piloting_type").current
+      },
+      prc: {
+        value: sourceCharacter.attribs.find((e) => e.name == "perception_type").current
+      },
+      prf: {
+        value: sourceCharacter.attribs.find((e) => e.name == "performance_type").current
+      },
+      slt: {
+        value: sourceCharacter.attribs.find((e) => e.name == "sleight_of_hand_type").current
+      },
+      ste: {
+        value: sourceCharacter.attribs.find((e) => e.name == "stealth_type").current
+      },
+      sur: {
+        value: sourceCharacter.attribs.find((e) => e.name == "survival_type").current
+      },
+      tec: {
+        value: sourceCharacter.attribs.find((e) => e.name == "technology_type").current
+      }
+    };
+
     const targetCharacter = {
       name: sourceCharacter.name,
       type: "character",
@@ -74,16 +140,41 @@ export default class CharacterImporter {
         skills: skills,
         attributes: {
           hp: hp
-        }
+        },
+        skills: skills
       }
     };
 
     let actor = await Actor.create(targetCharacter);
+    CharacterImporter.addProfessions(sourceCharacter, actor);
+  }
 
-    const profession = sourceCharacter.attribs.find((e) => e.name == "class").current;
-    let professionLevel = sourceCharacter.attribs.find((e) => e.name == "class_display").current;
-    professionLevel = parseInt(professionLevel.replace(/[^0-9]/g, "")); //remove a-z, leaving only integers
-    this.addClasses(profession, professionLevel, actor);
+  // Parse all classes and add them to already created actor.
+  // "class" is a reserved word, therefore I use profession where I can.
+  static async addProfessions(sourceCharacter, actor) {
+    let result = [];
+
+    // parse all class and multiclassX items
+    // couldn't get Array.filter to work here for some reason
+    // result = array of objects. each object is a separate class
+    sourceCharacter.attribs.forEach((e) => {
+      if (CharacterImporter.classOrMulticlass(e.name)) {
+        var t = {
+          profession: CharacterImporter.capitalize(e.current),
+          type: CharacterImporter.baseOrMulti(e.name),
+          level: CharacterImporter.getLevel(e, sourceCharacter)
+        };
+        result.push(t);
+      }
+    });
+
+    // pull classes directly from system compendium and add them to current actor
+    const professionsPack = await game.packs.get("sw5e.classes").getContent();
+    result.forEach((prof) => {
+      let assignedProfession = professionsPack.find((o) => o.name === prof.profession);
+      assignedProfession.data.data.levels = prof.level;
+      actor.createEmbeddedEntity("OwnedItem", assignedProfession.data, { displaySheet: false });
+    });
 
     this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
 
@@ -112,6 +203,32 @@ export default class CharacterImporter {
     let assignedClass = classes.find((c) => c.name === profession);
     assignedClass.data.data.levels = level;
     await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
+  }
+
+  static classOrMulticlass(name) {
+    return name === "class" || (name.includes("multiclass") && name.length <= 12);
+  }
+
+  static baseOrMulti(name) {
+    if (name === "class") {
+      return "base_class";
+    } else {
+      return "multi_class";
+    }
+  }
+
+  static getLevel(item, sourceCharacter) {
+    if (item.name === "class") {
+      let result = sourceCharacter.attribs.find((e) => e.name === "base_level").current;
+      return parseInt(result);
+    } else {
+      let result = sourceCharacter.attribs.find((e) => e.name === `${item.name}_lvl`).current;
+      return parseInt(result);
+    }
+  }
+
+  static capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   static async addSpecies(race, actor) {

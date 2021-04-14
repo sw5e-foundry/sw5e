@@ -84,7 +84,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     };
 
     // Partition items by category
-    let [items, forcepowers, techpowers, feats, classes, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
+    let [items, forcepowers, techpowers, feats, classes, deployments, deploymentfeatures, ventures, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
 
       // Item details
       item.img = item.img || DEFAULT_TOKEN;
@@ -116,16 +116,19 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       else if ( item.type === "power" && ["tec"].includes(item.data.school) ) arr[2].push(item);
       else if ( item.type === "feat" ) arr[3].push(item);
       else if ( item.type === "class" ) arr[4].push(item);
-      else if ( item.type === "species" ) arr[5].push(item);
-      else if ( item.type === "archetype" ) arr[6].push(item);
-      else if ( item.type === "classfeature" ) arr[7].push(item);
-      else if ( item.type === "background" ) arr[8].push(item);
-      else if ( item.type === "fightingstyle" ) arr[9].push(item);
-      else if ( item.type === "fightingmastery" ) arr[10].push(item);
-      else if ( item.type === "lightsaberform" ) arr[11].push(item);
+	  else if ( item.type === "deployment" ) arr[5].push(item);
+	  else if ( item.type === "deploymentfeature" ) arr[6].push(item);
+	  else if ( item.type === "venture" ) arr[7].push(item);	  
+      else if ( item.type === "species" ) arr[8].push(item);
+      else if ( item.type === "archetype" ) arr[9].push(item);
+      else if ( item.type === "classfeature" ) arr[10].push(item);
+      else if ( item.type === "background" ) arr[11].push(item);
+      else if ( item.type === "fightingstyle" ) arr[12].push(item);
+      else if ( item.type === "fightingmastery" ) arr[13].push(item);
+      else if ( item.type === "lightsaberform" ) arr[14].push(item);
       else if ( Object.keys(inventory).includes(item.type ) ) arr[0].push(item);
       return arr;
-    }, [[], [], [], [], [], [], [], [], [], [], [], []]);
+    }, [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]);
 
     // Apply active item filters
     items = this._filterItems(items, this._filters.inventory);
@@ -150,6 +153,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
       classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true },
       archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
+	  deployments: { label: "SW5E.ItemTypeDeploymentPl", items: [], hasActions: false, dataset: {type: "deployment"}, isDeployment: true },
+	  deploymentfeatures: { label: "SW5E.ItemTypeDeploymentFeaturePl", items: [], hasActions: true, dataset: {type: "deploymentfeature"}, isDeploymentfeature: true },
+	  ventures: { label: "SW5E.ItemTypeVenturePl", items: [], hasActions: false, dataset: {type: "venture"}, isVenture: true },
       species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
       background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
       fightingstyles: { label: "SW5E.ItemTypeFightingStylePl", items: [], hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyle: true },
@@ -166,6 +172,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     features.classes.items = classes;
     features.classfeatures.items = classfeatures;
     features.archetype.items = archetypes;
+	features.deployments.items = deployments;
+	features.deploymentfeatures.items = deploymentfeatures;
+	features.ventures.items = ventures;	
     features.species.items = species;
     features.background.items = backgrounds;
     features.fightingstyles.items = fightingstyles;
@@ -354,7 +363,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
   /** @override */
   async _onDropItemCreate(itemData) {
 
-    // Increment the number of class levels a character instead of creating a new item
+    // Increment the number of class levels of a character instead of creating a new item
     if ( itemData.type === "class" ) {
       const cls = this.actor.itemTypes.class.find(c => c.name === itemData.name);
       let priorLevel = cls?.data.data.levels ?? 0;
@@ -366,6 +375,19 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         }
       }
     }
+
+    // Increment the number of deployment ranks of a character instead of creating a new item
+    // else if ( itemData.type === "deployment" ) {
+    //  const rnk = this.actor.itemTypes.deployment.find(c => c.name === itemData.name);
+    //  let priorRank = rnk?.data.data.ranks ?? 0;
+    //  if ( !!rnk ) {
+    //    const next = Math.min(priorLevel + 1, 5 + priorRank - this.actor.data.data.details.rank);
+    //    if ( next > priorRank ) {
+    //      itemData.ranks = next;
+    //      return rnk.update({"data.ranks": next});
+    //    }
+    //  }
+    // } 
 
     // Default drop handling if levels were not added
     super._onDropItemCreate(itemData);

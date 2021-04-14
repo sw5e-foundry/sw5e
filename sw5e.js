@@ -1,5 +1,5 @@
 /**
- * The Star Wars 5th Edition game system for Foundry Virtual Tabletop
+ * The SW5E game system for Foundry Virtual Tabletop
  * Author: Kakeman89
  * Software License: GNU GPLv3
  * Content License: https://media.wizards.com/2016/downloads/SW5E/SRD-OGL_V5.1.pdf
@@ -25,6 +25,7 @@ import AbilityUseDialog from "./module/apps/ability-use-dialog.js";
 import ActorSheetFlags from "./module/apps/actor-flags.js";
 import ActorSheet5eCharacter from "./module/actor/sheets/oldSheets/character.js";
 import ActorSheet5eNPC from "./module/actor/sheets/oldSheets/npc.js";
+import ActorSheet5eStarship from "./module/actor/sheets/newSheet/starship.js";
 import ActorSheet5eVehicle from "./module/actor/sheets/oldSheets/vehicle.js";
 import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
 import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
@@ -123,6 +124,11 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassNPCOld"
   });
+  Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+    types: ["starship"],
+    makeDefault: true,
+    label: "SW5E.SheetClassStarship"
+  });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
@@ -130,7 +136,7 @@ Hooks.once("init", function() {
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("sw5e", ItemSheet5e, {
-	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform'],
+	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform', 'deployment', 'deploymentfeature', 'starshipfeature', 'starshipmod', 'venture'],
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });

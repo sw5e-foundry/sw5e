@@ -194,6 +194,10 @@ export default class ItemSheet5e extends ItemSheet {
       //props.push(labels.background);
     } else if (item.type === "classfeature") {
       //props.push(labels.classfeature);
+    } else if (item.type === "deployment") {
+      //props.push(labels.deployment);
+    } else if (item.type === "venture") {
+      //props.push(labels.venture);	  
     } else if (item.type === "fightingmastery") {
       //props.push(labels.fightingmastery);
     } else if (item.type === "fightingstyle") {

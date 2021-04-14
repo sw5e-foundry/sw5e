@@ -67,7 +67,7 @@ export default class ActorSheet5e extends ActorSheet {
       cssClass: isOwner ? "editable" : "locked",
       isCharacter: this.entity.data.type === "character",
       isNPC: this.entity.data.type === "npc",
-	  isStarship: this.entity.data.type === "starship",
+	    isStarship: this.entity.data.type === "starship",
       isVehicle: this.entity.data.type === 'vehicle',
       config: CONFIG.SW5E,
     };
@@ -96,7 +96,11 @@ export default class ActorSheet5e extends ActorSheet {
         skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
         skl.icon = this._getProficiencyIcon(skl.value);
         skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
-        skl.label = CONFIG.SW5E.skills[s];
+        if (data.actor.type === "starship") {
+          skl.label = CONFIG.SW5E.starshipSkills[s];
+        }else{
+          skl.label = CONFIG.SW5E.skills[s];
+        }
       }
     }
 
@@ -409,11 +413,11 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.item-create').click(this._onItemCreate.bind(this));
       html.find('.item-edit').click(this._onItemEdit.bind(this));
       html.find('.item-delete').click(this._onItemDelete.bind(this));
-	  html.find('.item-collapse').click(this._onItemCollapse.bind(this));
+	    html.find('.item-collapse').click(this._onItemCollapse.bind(this));
       html.find('.item-uses input').click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
       html.find('.slot-max-override').click(this._onPowerSlotOverride.bind(this));
-	  html.find('.increment-class-level').click(this._onIncrementClassLevel.bind(this));
-	  html.find('.decrement-class-level').click(this._onDecrementClassLevel.bind(this));
+	    html.find('.increment-class-level').click(this._onIncrementClassLevel.bind(this));
+	    html.find('.decrement-class-level').click(this._onDecrementClassLevel.bind(this));
 
       // Active Effect management
       html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.entity));

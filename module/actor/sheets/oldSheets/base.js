@@ -65,6 +65,7 @@ export default class ActorSheet5e extends ActorSheet {
       cssClass: isOwner ? "editable" : "locked",
       isCharacter: this.entity.data.type === "character",
       isNPC: this.entity.data.type === "npc",
+      isStarship: this.entity.data.type === "starship",
       isVehicle: this.entity.data.type === 'vehicle',
       config: CONFIG.SW5E,
     };

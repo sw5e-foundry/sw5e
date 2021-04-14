@@ -25,6 +25,8 @@ export default class Actor5e extends Actor {
         return this._prepareCharacterData(this.data);
       case "npc":
         return this._prepareNPCData(this.data);
+      case "starship":
+        return this._prepareStarshipData(this.data);
       case "vehicle":
         return this._prepareVehicleData(this.data);
     }
@@ -304,6 +306,23 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare starship type-specific data
+   * @param actorData
+   * @private
+   */
+  _prepareStarshipData(actorData) {
+      const data = actorData.data;
+
+    // Proficiency
+      data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
+
+  }
+
+  /* -------------------------------------------- */
+
   /**
    * Prepare skill checks.
    * @param actorData
@@ -363,7 +382,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _computePowercastingProgression (actorData) {
-    if (actorData.type === 'vehicle') return;
+    if (actorData.type === 'vehicle' || actorData.type === 'starship') return;
     const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
 
@@ -841,7 +860,7 @@ export default class Actor5e extends Actor {
     const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId]}),
+      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId] || CONFIG.SW5E.starshipSkills[skillId]}),
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       reliableTalent: reliableTalent,
       messageData: {"flags.sw5e.roll": {type: "skill", skillId }}
@@ -1256,14 +1275,14 @@ export default class Actor5e extends Actor {
     const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
     const updateData = {
       "data.attributes.hp.value": data.attributes.hp.max,
-      "data.attributes.hp.temp": null,
-      "data.attributes.hp.tempmax": null,
+      "data.attributes.hp.temp": 0,
+      "data.attributes.hp.tempmax": 0,
       "data.attributes.tech.points.value": data.attributes.tech.points.max,
-      "data.attributes.tech.points.temp": null,
-      "data.attributes.tech.points.tempmax": null,
+      "data.attributes.tech.points.temp": 0,
+      "data.attributes.tech.points.tempmax": 0,
       "data.attributes.force.points.value": data.attributes.force.points.max,
-      "data.attributes.force.points.temp": null,
-      "data.attributes.force.points.tempmax": null
+      "data.attributes.force.points.temp": 0,
+      "data.attributes.force.points.tempmax": 0
     };
 
     // Recover character resources

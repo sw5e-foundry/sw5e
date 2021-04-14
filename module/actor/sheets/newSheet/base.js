@@ -67,6 +67,7 @@ export default class ActorSheet5e extends ActorSheet {
       cssClass: isOwner ? "editable" : "locked",
       isCharacter: this.entity.data.type === "character",
       isNPC: this.entity.data.type === "npc",
+	    isStarship: this.entity.data.type === "starship",
       isVehicle: this.entity.data.type === 'vehicle',
       config: CONFIG.SW5E,
     };
@@ -95,7 +96,11 @@ export default class ActorSheet5e extends ActorSheet {
         skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
         skl.icon = this._getProficiencyIcon(skl.value);
         skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
-        skl.label = CONFIG.SW5E.skills[s];
+        if (data.actor.type === "starship") {
+          skl.label = CONFIG.SW5E.starshipSkills[s];
+        }else{
+          skl.label = CONFIG.SW5E.skills[s];
+        }
       }
     }
 
@@ -338,6 +343,7 @@ export default class ActorSheet5e extends ActorSheet {
       if ( filters.has("prepared") ) {
         if ( data.level === 0 || ["innate", "always"].includes(data.preparation.mode) ) return true;
         if ( this.actor.data.type === "npc" ) return true;
+        if ( this.actor.data.type === "starship" ) return true;		
         return data.preparation.prepared;
       }
 
@@ -407,8 +413,11 @@ export default class ActorSheet5e extends ActorSheet {
       html.find('.item-create').click(this._onItemCreate.bind(this));
       html.find('.item-edit').click(this._onItemEdit.bind(this));
       html.find('.item-delete').click(this._onItemDelete.bind(this));
+	    html.find('.item-collapse').click(this._onItemCollapse.bind(this));
       html.find('.item-uses input').click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
       html.find('.slot-max-override').click(this._onPowerSlotOverride.bind(this));
+	    html.find('.increment-class-level').click(this._onIncrementClassLevel.bind(this));
+	    html.find('.decrement-class-level').click(this._onDecrementClassLevel.bind(this));
 
       // Active Effect management
       html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.entity));
@@ -756,6 +765,75 @@ export default class ActorSheet5e extends ActorSheet {
     const li = event.currentTarget.closest(".item");
     this.actor.deleteOwnedItem(li.dataset.itemId);
   }
+
+ /**
+   * Handle collapsing a Feature row on the actor sheet
+   * @param {Event} event   The originating click event
+   * @private
+   */
+   
+_onItemCollapse(event) {
+    event.preventDefault();
+
+    event.currentTarget.classList.toggle("active");
+
+    const li = event.currentTarget.closest("li");
+    const content = li.querySelector(".content");
+
+    if (content.style.display === "none") {
+      content.style.display = "block";
+    } else {
+      content.style.display = "none";
+    }
+  }
+
+/**
+   * Handle incrementing class level on the actor sheet
+   * @param {Event} event   The originating click event
+   * @private
+   */
+ 
+ _onIncrementClassLevel(event) {
+  event.preventDefault();
+
+  const div = event.currentTarget.closest(".character")
+  const li = event.currentTarget.closest("li");
+
+  const actorId = div.id.split("-")[1];
+  const itemId = li.dataset.itemId;
+
+  const actor = game.actors.get(actorId);
+  const item = actor.getOwnedItem(itemId);
+
+  let levels = item.data.data.levels;
+  const update = {_id: item._id, data: {levels: (levels + 1) }};
+
+  actor.updateOwnedItem(update)
+}
+ 
+/**
+   * Handle decrementing class level on the actor sheet
+   * @param {Event} event   The originating click event
+   * @private
+   */
+ 
+ _onDecrementClassLevel(event) {
+  event.preventDefault();
+
+  const div = event.currentTarget.closest(".character")
+  const li = event.currentTarget.closest("li");
+
+  const actorId = div.id.split("-")[1];
+  const itemId = li.dataset.itemId;
+
+  const actor = game.actors.get(actorId);
+  const item = actor.getOwnedItem(itemId);
+
+  let levels = item.data.data.levels;
+  const update = {_id: item._id, data: {levels: (levels - 1) }};
+
+  actor.updateOwnedItem(update)
+}
 
   /* -------------------------------------------- */
 

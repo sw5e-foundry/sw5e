@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "vehicle"],
+    "types": ["character", "npc", "starship", "vehicle"],
     "templates": {
       "common": {
         "abilities": {
@@ -37,8 +37,8 @@
             "value": 10,
             "min": 0,
             "max": 10,
-            "temp": null,
-            "tempmax": null
+            "temp": 0,
+            "tempmax": 0
           },
           "init": {
             "value": 0,
@@ -103,8 +103,8 @@
               "value": 0,
               "min": 0,
               "max": 0,
-              "temp": null,
-              "tempmax": null
+              "temp": 0,
+              "tempmax": 0
             },
             "level": 0
           },
@@ -117,8 +117,8 @@
               "value": 0,
               "min": 0,
               "max": 0,
-              "temp": null,
-              "tempmax": null
+              "temp": 0,
+              "tempmax": 0
             },
             "level": 0
           }
@@ -403,6 +403,87 @@
         }
       }
     },
+    "starship": {
+	    "templates": ["common"],
+	    "attributes": {
+        "hp": {
+          "value": 10,
+          "max": 10,
+          "formula": "",
+          "temp": 0,
+          "tempmax": 0
+        },
+        "sp": {
+          "formula": ""
+        }
+	    },
+	    "details": {
+	      "tier": 0,
+		    "role": "",
+		    "source": ""
+	    },
+	    "skills": {
+        "ast": {
+          "value": 0,
+          "ability": "int"
+        },
+        "bst": {
+          "value": 0,
+          "ability": "str"
+        },
+        "dat": {
+          "value": 0,
+          "ability": "int"
+        },
+        "hid": {
+          "value": 0,
+          "ability": "dex"
+        },
+        "imp": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "int": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "man": {
+          "value": 0,
+          "ability": "dex"
+        },
+        "men": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "pat": {
+          "value": 0,
+          "ability": "con"
+        },
+        "prb": {
+          "value": 0,
+            "ability": "int"
+        },
+        "ram": {
+          "value": 0,
+          "ability": "str"
+        },
+        "reg": {
+          "value": 0,
+          "ability": "con"
+        },
+        "scn": {
+          "value": 0,
+          "ability": "wis"
+        },
+        "swn": {
+          "value": 0,
+          "ability": "cha"
+        }
+		  },
+      "traits": {
+        "size": "med"
+      }
+	  },
     "vehicle": {
       "templates": ["common"],
       "abilities": {
@@ -460,7 +541,7 @@
     }
   },
   "Item": {
-    "types": ["weapon", "equipment", "consumable", "tool", "loot", "class", "power", "feat", "species", "backpack", "archetype", "classfeature", "background", "fightingstyle", "fightingmastery", "lightsaberform"],
+    "types": ["archetype", "background", "backpack", "class", "classfeature", "consumable", "deployment", "deploymentfeature", "equipment", "feat", "fightingmastery", "fightingstyle", "lightsaberform", "loot", "power", "species", "starshipfeature", "starshipmod", "tool", "venture", "weapon"],
     "templates": {
       "archetypeDescription": {
         "className": "",
@@ -567,6 +648,15 @@
         },
 		    "traits": ""
 	    },
+	  "ventureDescription": {
+        "description": {
+          "value": ""
+        },
+		"prerequisites": [""],
+		"source": {
+		  "value": ""
+		}
+      },		
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
@@ -685,6 +775,9 @@
     "lightsaberform": {
       "templates": ["lightsaberformDescription"]
     },
+    "venture": {
+      "templates": ["ventureDescription"]
+    },	
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",
@@ -754,6 +847,14 @@
         "formula": null
       }
     },
+    "starshipfeature": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "size": "med",
+	  "tier": 0
+    },
+	"starshipmod": {
+	  "templates": ["itemDescription"]
+	},
     "weapon": {
       "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action", "mountable"],
       "weaponType": "simpleVW",

@@ -38,8 +38,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       weapons: { label: game.i18n.localize("SW5E.ItemTypeWeaponPl"), items: [], hasActions: true, dataset: {type: "weapon", "weapon-type": "natural"} },
       passive: { label: game.i18n.localize("SW5E.Features"), items: [], dataset: {type: "feat"} },
       equipment: { label: game.i18n.localize("SW5E.StarshipEquipment"), items: [], dataset: {type: "equipment"}},
-	  starshipfeatures: { label: game.i18n.localize("SW5E.StarshipfeaturePl"), items: [], hasActions: true, dataset: {type: "starshipfeature"} },
-	  starshipmods: { label: game.i18n.localize("SW5E.StarshipmodPl"), items: [], hasActions: false, dataset: {type: "starshipmod"} }
+	    starshipfeatures: { label: game.i18n.localize("SW5E.StarshipfeaturePl"), items: [], hasActions: true, dataset: {type: "starshipfeature"} },
+	    starshipmods: { label: game.i18n.localize("SW5E.StarshipmodPl"), items: [], hasActions: false, dataset: {type: "starshipmod"} }
     };
 
     // Start by classifying items into groups for rendering
@@ -144,5 +144,5 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     AudioHelper.play({src: CONFIG.sounds.dice});
     this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
   }
+  
 }
-

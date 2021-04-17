@@ -860,7 +860,7 @@ export default class Actor5e extends Actor {
     const rollData = mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId]}),
+      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId] || CONFIG.SW5E.starshipSkills[skillId]}),
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       reliableTalent: reliableTalent,
       messageData: {"flags.sw5e.roll": {type: "skill", skillId }}

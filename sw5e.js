@@ -160,9 +160,9 @@ Hooks.once("setup", function() {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", "starshipRolessm", "starshipRolesmed", "starshipRoleslg", "starshipRoleshuge", "starshipRolesgrg", "starshipSkills",
     "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
-    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponSizes", "weaponTypes"
   ];
 
   // Exclude some from sorting where the default order matters

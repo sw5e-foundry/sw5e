@@ -406,6 +406,17 @@
     "starship": {
 	  "templates": ["common"],
 	  "attributes": {
+	    "cargcap": 0,
+		"crewcap": 0,
+	    "cscap": 0,
+		"death": {
+		  "failure": 0,
+		  "success": 0
+		},
+	    "dr": 0,
+		"engpow": 1,
+		"exhaustion": 0,
+	    "hd": "",
 		"hp": {
 		  "value": 10,
 		  "max": 10,
@@ -413,9 +424,23 @@
 		  "temp": 0,
 		  "tempmax": 0
 		},
+		"hsm": 1,
+		"mods": {
+		  "open": 10,
+		  "max": 10
+		},
+		"pd": "",
+		"sd": "",
+		"shieldpow": 1,
 		"sp": {
 		  "formula": ""
-		}
+		},
+		"sscap": 0,
+        "suites": {
+		  "open": 0,
+		  "max": 0
+        },
+		"weaponpow": 1
 	  },
 	  "details": {
 	    "tier": 0,
@@ -766,6 +791,9 @@
       "templates": ["itemDescription", "activatedEffect", "action"],
       "className": ""
     },
+	"deploymentfeature": {
+	  "templates": ["itemDescription", "activatedEffect", "action"]
+	},
     "fightingmastery": {
       "templates": ["fightingmasteryDescription"]
     },

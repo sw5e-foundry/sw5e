@@ -460,55 +460,68 @@
 		  "value": 0,
 		  "ability": "int"
 	    },
-		"hid": {
-		  "value": 0,
-		  "ability": "dex"
-		},
-		"imp": {
-		  "value": 0,
-		  "ability": "cha"
-		},
-		"int": {
-		  "value": 0,
-		  "ability": "cha"
-		},
-		"man": {
-		  "value": 0,
-		  "ability": "dex"
-		},
-		"men": {
-		  "value": 0,
-		  "ability": "cha"
-		},
-		"pat": {
-		  "value": 0,
-		  "ability": "con"
-		},
-		"prb": {
-		  "value": 0,
-	      "ability": "int"
-		},
-		"ram": {
-		  "value": 0,
-		  "ability": "str"
-		},
-		"reg": {
-		  "value": 0,
-		  "ability": "con"
-		},
-		"scn": {
-		  "value": 0,
-		  "ability": "wis"
-		},
-		"swn": {
-		  "value": 0,
-		  "ability": "cha"
-		}
-		},
-	  "traits": {
-	    "size": "med"
-	  }
-	},
+	    "skills": {
+        "ast": {
+          "value": 0,
+          "ability": "int"
+        },
+        "bst": {
+          "value": 0,
+          "ability": "str"
+        },
+        "dat": {
+          "value": 0,
+          "ability": "int"
+        },
+        "hid": {
+          "value": 0,
+          "ability": "dex"
+        },
+        "imp": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "int": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "man": {
+          "value": 0,
+          "ability": "dex"
+        },
+        "men": {
+          "value": 0,
+          "ability": "cha"
+        },
+        "pat": {
+          "value": 0,
+          "ability": "con"
+        },
+        "prb": {
+          "value": 0,
+            "ability": "int"
+        },
+        "ram": {
+          "value": 0,
+          "ability": "str"
+        },
+        "reg": {
+          "value": 0,
+          "ability": "con"
+        },
+        "scn": {
+          "value": 0,
+          "ability": "wis"
+        },
+        "swn": {
+          "value": 0,
+          "ability": "cha"
+        }
+		  },
+      "traits": {
+        "size": "med"
+      }
+	  },
     "vehicle": {
       "templates": ["common"],
       "abilities": {
@@ -569,7 +582,6 @@
     "types": ["archetype", "background", "backpack", "class", "classfeature", "consumable", "deployment", "deploymentfeature", "equipment", "feat", "fightingmastery", "fightingstyle", "lightsaberform", "loot", "power", "species", "starshipfeature", "starshipmod", "tool", "venture", "weapon"],
     "templates": {
       "archetypeDescription": {
-        "className": "",
 	      "description": "",
         "source": ""
       },
@@ -632,12 +644,12 @@
           "chat": "",
           "unidentified": ""
         },
+        "requirements": "",
         "source": ""
       },
 	    "classDescription": {
-		    "className": "",
-	      "description": {
-        "value": ""
+		    "description": {
+          "value": ""
         }
 		  },
       "fightingmasteryDescription": {
@@ -671,16 +683,17 @@
           "chat": "",
           "unidentified": ""
         },
+        "source": "",
 		    "traits": ""
 	    },
-	  "ventureDescription": {
+	    "ventureDescription": {
         "description": {
           "value": ""
         },
-		"prerequisites": [""],
-		"source": {
-		  "value": ""
-		}
+        "prerequisites": [""],
+        "source": {
+          "value": ""
+        }
       },		
       "physicalItem": {
         "quantity": 1,
@@ -751,13 +764,39 @@
           "dt": null,
           "conditions": ""
         }
+      },
+      "starshipEquipment": {
+        "capx": {
+          "value":null
+        },
+        "hpperhd": {
+          "value":null
+        },
+        "regrateco": {
+          "value":null
+        },
+        "cscap": {
+          "value":null
+        },
+        "sscap": {
+          "value":null
+        },
+        "fuelcostsmod": {
+          "value":null
+        },
+        "powerdicerec": {
+          "value":null
+        },
+        "hdclass": {
+          "value":null
+        }
       }
     },
     "htmlFields": ["description.value", "description.chat", "description.unidentified"],
     "archetype": {
       "templates": ["archetypeDescription"],
       "className": "",
-      "description": ""
+      "classCasterType": ""
     },
     "background": {
       "templates": ["backgroundDescription"]
@@ -785,11 +824,27 @@
         "choices": [],
         "value": []
       },
+      "source": "",
       "powercasting": "none"
     },
     "classfeature": {
       "templates": ["itemDescription", "activatedEffect", "action"],
-      "className": ""
+      "recharge": {
+        "charged": false,
+        "value": null
+      }
+    },
+    "deployment": {
+      "templates": ["classDescription"],
+      "flavorText": "",
+      "source": ""
+    },
+    "deploymentfeature": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "recharge": {
+        "charged": false,
+        "value": null
+      }
     },
 	"deploymentfeature": {
 	  "templates": ["itemDescription", "activatedEffect", "action"]
@@ -814,7 +869,7 @@
       }
     },
     "equipment": {
-      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
+      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable", "starshipEquipment"],
       "armor": {
         "type": "light",
         "value": 10,
@@ -878,11 +933,27 @@
     "starshipfeature": {
       "templates": ["itemDescription", "activatedEffect", "action"],
       "size": "med",
-	  "tier": 0
+	    "tier": 0
     },
-	"starshipmod": {
-	  "templates": ["itemDescription"]
-	},
+    "starshipmod": {
+      "templates": ["itemDescription", "activatedEffect", "action"],
+      "recharge": {
+        "charged": false,
+        "value": null
+      },
+      "system": {
+        "value": ""
+      },
+      "grade": {
+        "value": ""
+      },
+      "basecost": {
+        "value": ""
+      },
+      "prerequisites": {
+        "value": ""
+      }
+    },
     "weapon": {
       "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action", "mountable"],
       "weaponType": "simpleVW",

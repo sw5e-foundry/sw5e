@@ -17,10 +17,9 @@
 <!--			<input type="text" name="data.traits.size" value="{{data.traits.size}}"
 				placeholder="{{lookup config.actorSizes data.traits.size}}" style="text-transform: capitalize;" /> -->
 			<span class="summary-input" style="text-transform: capitalize;font-family: 'Russo One';display: inline; height: auto; font-size: 17px; font-weight: 400; letter-spacing: 0.5px; line-height: 24px; color: #4f4f4f;">{{lookup config.actorSizes data.traits.size}}</span>
-			<input type="text" name="data.details.role" value="{{data.details.role}}"
-				placeholder="{{ localize 'SW5E.Role' }}" />
-<!--                <input type="text" name="data.details.type" value="{{data.details.type}}"
-                placeholder="{{ localize 'SW5E.Type' }}" /> -->
+<!--			<input type="text" name="data.details.role" value="{{data.details.role}}"
+				placeholder="{{ localize 'SW5E.Role' }}" /> -->
+			<span class="summary-input" style="text-transform: capitalize;font-family: 'Russo One';display: inline; height: auto; font-size: 17px; font-weight: 400; letter-spacing: 0.5px; line-height: 24px; color: #4f4f4f;">{{lookup config.starshipRolessm data.details.role}}</span>
                 <input type="text" name="data.details.source" value="{{data.details.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}" />
         </div>
@@ -75,19 +74,20 @@
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
                 <div class="attribute-value">
-                    <span>{{movement.primary}}</span>
+                    <span>{{data.attributes.movement.fly}} {{data.attributes.movement.units}}</span>
                 </div>
-                <footer class="attribute-footer">
-                    <span>{{movement.special}}</span>
+                <footer class="attribute-footer" style="font-family: 'Russo One'; text-align: center;">
+                    <span>Turning Speed: {{data.attributes.movement.turn}} {{data.attributes.movement.units}}</span>
                 </footer>
             </section>
         </div>
         
     </header>
 
-    {{!-- NPC Sheet Navigation --}}
-    <nav class="sheet-navigation root-tabs" data-group="primary">
+    {{!-- Starship Sheet Navigation --}}
+    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(4, 1fr);" data-group="primary">
         <button class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</button>
+        <button class="item" data-tab="cargo">{{localize 'SW5E.VehicleCargoCrew'}}</button>
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
     </nav>
@@ -139,22 +139,145 @@
                     </ol>
                 </section>
             </section>
-            <section class="panel traits-resources">
 
+            <section class="panel resources">
+				<h1>Resources and Traits</h1>
 				<div class="traits">
 					<label>
 						{{localize "SW5E.Size"}}
 						<select class="actor-size" name="data.traits.size">
 							{{#select data.traits.size}}
+							<option value=""> </option>							
 							{{#each config.actorSizes as |label size|}}
 							<option value="{{size}}">{{label}}</option>
 							{{/each}}
 							{{/select}}
 						</select>
 					</label>
+					<label>
+						{{localize "SW5E.Role"}}
+						<select class="actor-size" name="data.details.role">
+							{{#select data.details.role}}
+							<option value=""> </option>							
+							{{#each config.starshipRolessm as |label role|}}
+							<option value="{{role}}">{{label}}</option>
+							{{/each}}
+							{{/select}}
+						</select>
+					</label>
+					<br />
+                    <label>
+                        {{localize "SW5E.HullDice"}}: <input class="hpformula" style="max-width:50px;" name="data.attributes.hd" value="{{data.attributes.hd}}" placeholder="{{data.attributes.hd}}" />
+                    </label>
+                    <label>
+                        {{localize "SW5E.ShieldDice"}}: <input class="hpformula" style="max-width:50px;" name="data.attributes.sd" value="{{data.attributes.sd}}" placeholder="{{data.attributes.sd}}" />
+                    </label>
+                   <label>
+                        {{localize "SW5E.PowerDice"}}:
+						<select class="actor-size" name="data.attributes.pd">
+						  {{#select data.attributes.pd}}
+						  <option value=""> </option>							
+						  {{#each config.powerDieTypes as |pd|}}
+						  <option value="{{pd}}">{{pd}}</option>
+						  {{/each}}
+						  {{/select}}
+						</select>
+                    </label>
+					<br />
+                    <label>
+                        {{localize "SW5E.DmgRed"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.dr" value="{{data.attributes.dr}}" placeholder="0" />
+                    </label>
+                    <label>
+                        {{localize "SW5E.VehicleCargoCapacity"}}: <input class="hpformula" style="max-width:60px;" name="data.attributes.cargcap" value="{{data.attributes.cargcap}}" placeholder="0" /> tons
+                    </label>
+                    <br />
+                    <label>
+                        {{localize "SW5E.CrewCap"}}: <input class="hpformula" style="max-width:60px;" name="data.attributes.crewcap" value="{{data.attributes.crewcap}}" placeholder="0" />
+                    </label>
+					<br />
+                    <label>
+                        {{localize "SW5E.CentStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.cscap" value="{{data.attributes.cscap}}" placeholder="0" />
+                    </label>
+                    <label>
+                        {{localize "SW5E.SysStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.sscap" value="{{data.attributes.sscap}}" placeholder="0" />
+                    </label>
+				</div>
+				  <h1>{{localize "SW5E.PowerRouting"}}</h1>
+				<div class="traits">
+                    <label>
+                        {{localize "SW5E.EnginePl"}}: 
+						<select name="data.attributes.engpow">
+						{{#select data.attributes.engpow}}					
+						  <option value="1">&#61;</option>
+						  <option value="2">&#8593;</option>
+						  <option value="0.5">&#8595;</option>
+						{{/select}}
+						</select>
+                    </label>
+                    <label>
+                        {{localize "SW5E.EquipmentShieldProficiency"}}: 
+						<select name="data.attributes.shieldpow">
+						{{#select data.attributes.shieldpow}}
+						  <option value="1">&#61;</option>
+						  <option value="2">&#8593;</option>
+						  <option value="0.5">&#8595;</option>
+						{{/select}}
+						</select>
+                    </label>
+                    <label>
+                        {{localize "SW5E.ItemTypeWeaponPl"}}: 
+						<select name="data.attributes.weaponpow">
+						{{#select data.attributes.weaponpow}}
+						  <option value="1">&#61;</option>
+						  <option value="2">&#8593;</option>
+						  <option value="0.5">&#8595;</option>
+						{{/select}}
+						</select>
+                    </label>
+				</div>
+				<section class="counters" style="border: none; margin: 8px 0; display: grid; grid-template-columns: repeat(2, 1fr);">
+				<div class="counter">
+					<h4 class="death-save rollable" data-action="rollDeathSave">{{ localize "SW5E.DestructionSave" }}</h4>
+					<div class="counter-value" style="text-align: left;">
+						<div class="death-success" style="color: #0dce0d;">
+							<i class="fas fa-check"></i>
+							<input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
+								value="{{data.attributes.death.success}}" />
+						</div>
+						<div class="death-fail" style="color: #c40f0f;">
+							<i class="fas fa-times"></i>
+							<input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
+								value="{{data.attributes.death.failure}}" />
+						</div>
+					</div>
+				</div>
+				<div class="counter">
+					<h4>{{ localize "SW5E.SystemDrainage" }}</h4>
+					<div class="counter-value" style="text-align: left;">
+						<input type="text" name="data.attributes.exhaustion" data-dtype="Number" placeholder="0"
+							value="{{data.attributes.exhaustion}}" />
+					</div>
+				</div></section>
+				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
+				<div class="traits">
+                    <label>
+                        {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.open" value="{{data.attributes.mods.open}}" placeholder="10" />/<input class="hpformula" style="max-width:30px;" name="data.attributes.mods.max" value="{{data.attributes.mods.max}}" placeholder="10" /> 
+                    </label>
+                   <label>
+                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.suites.open}}" placeholder="0" />/<input class="hpformula" style="max-width:30px;" name="data.attributes.suites.max" value="{{data.attributes.suites.max}}" placeholder="0" /> 
+                    </label>
+					<br />
+                   <label>
+                        {{localize "SW5E.HardpointSizeMod"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.hsm" value="{{data.attributes.hsm}}" placeholder="0" />
+                    </label>
 				</div>
 		    </section>
 		</section>
+		{{!-- Cargo & Crew --}}
+		<div class="tab features flexcol" data-group="primary" data-tab="cargo">
+            {{> 'systems/sw5e/templates/actors/newActor/parts/swalt-crew.html'}}
+        </div>
+		
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}

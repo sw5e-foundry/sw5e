@@ -16,13 +16,16 @@
 
             <ul class="summary">
                 <li>
-                    <input style="max-width:150px;" type="text" name="data.deployment.value" value="{{data.deployment.value}}" placeholder="{{ localize 'SW5E.Deployment' }}"/>
+                    {{labels.featType}}
                 </li>
                 <li>
-                    <input style="max-width:200px;" type="text" name="data.featureType.value" value="{{data.featureType.value}}" />
+                    <input style="max-width: 150px;" type="text" name="data.size" value="{{data.size}}" placeholder="{{ localize 'SW5E.Size' }}"/>
                 </li>
-                <li>{{ localize "SW5E.Rank" }} 
-                    <input style="max-width:150px;" type="text" name="data.rank.value" value="{{data.rank.value}}" placeholder="{{ localize 'SW5E.Rank' }}"/>
+				<li>Tier 
+				    <input style="max-width: 50px;" type="text" name="data.tier" value="{{data.tier}}" placeholder="0"/>
+				</li>
+                <li>
+                    <input style="max-width: 150px;" type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>

@@ -47,8 +47,11 @@
           "movement": {
             "burrow": 0,
             "climb": 0,
+            "crawl": 0,
             "fly": 0,
+            "roll": 0,
             "swim": 0,
+            "turn": 0,
             "walk": 30,
             "units": "ft",
             "hover": false
@@ -303,7 +306,7 @@
             "save": "",
             "skill": ""
           },
-          "power":  {
+          "power": {
             "forceLightDC": "",
             "forceUnivDC": "",
             "forceDarkDC": "",
@@ -404,63 +407,50 @@
       }
     },
     "starship": {
-	  "templates": ["common"],
-	  "attributes": {
-	    "cargcap": 0,
-		"crewcap": 0,
-	    "cscap": 0,
-		"death": {
-		  "failure": 0,
-		  "success": 0
-		},
-	    "dr": 0,
-		"engpow": 1,
-		"exhaustion": 0,
-	    "hd": "",
-		"hp": {
-		  "value": 10,
-		  "max": 10,
-		  "formula": "",
-		  "temp": 0,
-		  "tempmax": 0
-		},
-		"hsm": 1,
-		"mods": {
-		  "open": 10,
-		  "max": 10
-		},
-		"pd": "",
-		"sd": "",
-		"shieldpow": 1,
-		"sp": {
-		  "formula": ""
-		},
-		"sscap": 0,
-        "suites": {
-		  "open": 0,
-		  "max": 0
+      "templates": ["common"],
+      "attributes": {
+        "cargcap": 0,
+        "crewcap": 0,
+        "cscap": 0,
+        "death": {
+          "failure": 0,
+          "success": 0
         },
-		"weaponpow": 1
-	  },
-	  "details": {
-	    "tier": 0,
-		"role": "",
-		"source": ""
-	  },
-	  "skills": {
-	    "ast": {
-		  "value": 0,
-		  "ability": "int"
-		},
-		"bst": {
-		  "value": 0,
-		  "ability": "str"
-		},
-		"dat": {
-		  "value": 0,
-		  "ability": "int"
-	    },
-	    "skills": {
+        "dr": 0,
+        "engpow": 1,
+        "exhaustion": 0,
+        "hd": "",
+        "hp": {
+          "value": 10,
+          "max": 10,
+          "formula": "",
+          "temp": 0,
+          "tempmax": 0
+        },
+        "hsm": 1,
+        "mods": {
+          "open": 10,
+          "max": 10
+        },
+        "pd": "",
+        "sd": "",
+        "shieldpow": 1,
+        "sp": {
+          "formula": ""
+        },
+        "sscap": 0,
+        "suites": {
+          "open": 0,
+          "max": 0
+        },
+        "weaponpow": 1
+      },
+      "details": {
+        "tier": 0,
+        "role": "",
+        "source": ""
+      },
+      "skills": {
         "ast": {
           "value": 0,
           "ability": "int"
@@ -499,7 +489,7 @@
         },
         "prb": {
           "value": 0,
-            "ability": "int"
+          "ability": "int"
         },
         "ram": {
           "value": 0,
@@ -517,11 +507,11 @@
           "value": 0,
           "ability": "cha"
         }
-		  },
+      },
       "traits": {
         "size": "med"
       }
-	  },
+    },
     "vehicle": {
       "templates": ["common"],
       "abilities": {
@@ -568,8 +558,17 @@
           "value": ["poison", "psychic"]
         },
         "ci": {
-          "value": ["blinded", "charmed", "deafened", "frightened", "paralyzed", "petrified", "poisoned", "stunned",
-            "unconscious"]
+          "value": [
+            "blinded",
+            "charmed",
+            "deafened",
+            "frightened",
+            "paralyzed",
+            "petrified",
+            "poisoned",
+            "stunned",
+            "unconscious"
+          ]
         }
       },
       "cargo": {
@@ -579,65 +578,87 @@
     }
   },
   "Item": {
-    "types": ["archetype", "background", "backpack", "class", "classfeature", "consumable", "deployment", "deploymentfeature", "equipment", "feat", "fightingmastery", "fightingstyle", "lightsaberform", "loot", "power", "species", "starshipfeature", "starshipmod", "tool", "venture", "weapon"],
+    "types": [
+      "archetype",
+      "background",
+      "backpack",
+      "class",
+      "classfeature",
+      "consumable",
+      "deployment",
+      "deploymentfeature",
+      "equipment",
+      "feat",
+      "fightingmastery",
+      "fightingstyle",
+      "lightsaberform",
+      "loot",
+      "power",
+      "species",
+      "starshipfeature",
+      "starshipmod",
+      "tool",
+      "venture",
+      "weapon"
+    ],
     "templates": {
       "archetypeDescription": {
-	      "description": "",
+        "description": "",
         "source": ""
       },
-	    "backgroundDescription": {
-	      "flavorText": {
-		        "value": ""
-		    },
-	      "flavorName": {
-            "value": ""
+      "backgroundDescription": {
+        "flavorText": {
+          "value": ""
+        },
+        "flavorName": {
+          "value": ""
         },
         "flavorDescription": {
-            "value": ""
+          "value": ""
         },
         "flavorOptions": {
-            "value": ""
+          "value": ""
         },
         "skillProficiencies": {
-            "value": ""
+          "value": ""
         },
         "toolProficiencies": {
-            "value": ""
+          "value": ""
         },
         "languages": {
-            "value": ""
+          "value": ""
         },
         "equipment": {
-            "value": ""
+          "value": ""
         },
         "suggestedCharacteristics": {
-            "value": ""
+          "value": ""
         },
         "featureName": {
-            "value": ""
+          "value": ""
         },
         "featureText": {
-            "value": ""
+          "value": ""
         },
         "featOptions": {
-            "value": ""
+          "value": ""
         },
         "personalityTraitOptions": {
-            "value": ""
+          "value": ""
         },
         "idealOptions": {
-            "value": ""
+          "value": ""
         },
         "flawOptions": {
-            "value": ""
+          "value": ""
         },
         "bondOptions": {
-            "value": ""
+          "value": ""
         },
         "source": {
-            "value": ""
+          "value": ""
         }
-      },		
+      },
       "itemDescription": {
         "description": {
           "value": "",
@@ -647,46 +668,46 @@
         "requirements": "",
         "source": ""
       },
-	    "classDescription": {
-		    "description": {
+      "classDescription": {
+        "description": {
           "value": ""
         }
-		  },
+      },
       "fightingmasteryDescription": {
-	      "description": {
-		      "value": ""
-		    },
-		    "source": {
-		      "value": ""
-		    }
-      },	  
+        "description": {
+          "value": ""
+        },
+        "source": {
+          "value": ""
+        }
+      },
       "fightingstyleDescription": {
-	      "description": {
-		      "value": ""
-		    },
-		    "source": {
-		      "value": ""
-		    }
-      },	  
+        "description": {
+          "value": ""
+        },
+        "source": {
+          "value": ""
+        }
+      },
       "lightsaberformDescription": {
-	      "description": {
-		      "value": ""
-		    },
-		    "source": {
-		      "value": ""
-		    }
-      },	  
-	    "speciesDescription": {
-		    "data": "$characteristics-table",
+        "description": {
+          "value": ""
+        },
+        "source": {
+          "value": ""
+        }
+      },
+      "speciesDescription": {
+        "data": "$characteristics-table",
         "description": {
           "value": "",
           "chat": "",
           "unidentified": ""
         },
         "source": "",
-		    "traits": ""
-	    },
-	    "ventureDescription": {
+        "traits": ""
+      },
+      "ventureDescription": {
         "description": {
           "value": ""
         },
@@ -694,7 +715,7 @@
         "source": {
           "value": ""
         }
-      },		
+      },
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
@@ -767,32 +788,36 @@
       },
       "starshipEquipment": {
         "capx": {
-          "value":null
+          "value": null
         },
         "hpperhd": {
-          "value":null
+          "value": null
         },
         "regrateco": {
-          "value":null
+          "value": null
         },
         "cscap": {
-          "value":null
+          "value": null
         },
         "sscap": {
-          "value":null
+          "value": null
         },
         "fuelcostsmod": {
-          "value":null
+          "value": null
         },
         "powerdicerec": {
-          "value":null
+          "value": null
         },
         "hdclass": {
-          "value":null
+          "value": null
         }
       }
     },
-    "htmlFields": ["description.value", "description.chat", "description.unidentified"],
+    "htmlFields": [
+      "description.value",
+      "description.chat",
+      "description.unidentified"
+    ],
     "archetype": {
       "templates": ["archetypeDescription"],
       "className": "",
@@ -814,7 +839,7 @@
     },
     "class": {
       "templates": ["classDescription"],
-	    "className": "",
+      "className": "",
       "levels": 1,
       "archetype": "",
       "hitDice": "d6",
@@ -846,30 +871,39 @@
         "value": null
       }
     },
-	"deploymentfeature": {
-	  "templates": ["itemDescription", "activatedEffect", "action"]
-	},
     "fightingmastery": {
       "templates": ["fightingmasteryDescription"]
     },
     "fightingstyle": {
       "templates": ["fightingstyleDescription"]
-    },	
+    },
     "lightsaberform": {
       "templates": ["lightsaberformDescription"]
     },
     "venture": {
       "templates": ["ventureDescription"]
-    },	
+    },
     "consumable": {
-      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "activatedEffect",
+        "action"
+      ],
       "consumableType": "potion",
       "uses": {
         "autoDestroy": false
       }
     },
     "equipment": {
-      "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable", "starshipEquipment"],
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "activatedEffect",
+        "action",
+        "mountable",
+        "starshipEquipment"
+      ],
       "armor": {
         "type": "light",
         "value": 10,
@@ -896,7 +930,7 @@
     },
     "species": {
       "templates": ["speciesDescription"]
-	  },
+    },
     "tool": {
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",
@@ -933,7 +967,7 @@
     "starshipfeature": {
       "templates": ["itemDescription", "activatedEffect", "action"],
       "size": "med",
-	    "tier": 0
+      "tier": 0
     },
     "starshipmod": {
       "templates": ["itemDescription", "activatedEffect", "action"],
@@ -955,7 +989,13 @@
       }
     },
     "weapon": {
-      "templates": ["itemDescription", "physicalItem" ,"activatedEffect", "action", "mountable"],
+      "templates": [
+        "itemDescription",
+        "physicalItem",
+        "activatedEffect",
+        "action",
+        "mountable"
+      ],
       "weaponType": "simpleVW",
       "properties": {},
       "proficient": true

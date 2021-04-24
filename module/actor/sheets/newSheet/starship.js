@@ -144,5 +144,5 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     AudioHelper.play({src: CONFIG.sounds.dice});
     this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
   }
+  
 }
-

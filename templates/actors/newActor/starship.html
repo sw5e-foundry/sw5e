@@ -159,9 +159,36 @@
 						<select class="actor-size" name="data.details.role">
 							{{#select data.details.role}}
 							<option value=""> </option>							
-							{{#each config.starshipRolessm as |label role|}}
-							<option value="{{role}}">{{label}}</option>
-							{{/each}}
+							{{#if isTiny}}
+                                {{#each config.starshipRolestiny as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+							{{#if isSmall}}
+                                {{#each config.starshipRolessm as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isMedium}}
+                                {{#each config.starshipRolesmed as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isLarge}}
+                                {{#each config.starshipRoleslg as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isHuge}}
+                                {{#each config.starshipRoleshuge as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isGargantuan}}
+                                {{#each config.starshipRolesgrg as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
 							{{/select}}
 						</select>
 					</label>

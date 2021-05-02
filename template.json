@@ -624,6 +624,7 @@
       "loot",
       "power",
       "species",
+      "starship",
       "starshipfeature",
       "starshipmod",
       "tool",
@@ -815,6 +816,11 @@
           "conditions": ""
         }
       },
+      "starshipDescription": {
+        "description": {
+          "value": ""
+        }
+      },
       "starshipEquipment": {
         "capx": {
           "value": null
@@ -992,6 +998,19 @@
         "mode": "none",
         "formula": null
       }
+    },
+    "starship": {
+      "templates": ["starshipDescription"],
+      "size": "",
+      "tier": 0,
+      "hullDice": "d6",
+      "hullDiceStart": 1,
+      "hullDiceUsed": 0,
+      "shldDice": "d6",
+      "shldDiceStart": 1,
+      "shldDiceUsed": 0,
+      "pwrDice": "1",
+      "source": "SotG"
     },
     "starshipfeature": {
       "templates": ["itemDescription", "activatedEffect", "action"],

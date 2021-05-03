@@ -136,7 +136,7 @@ Hooks.once("init", function() {
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("sw5e", ItemSheet5e, {
-	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform', 'deployment', 'deploymentfeature', 'starshipfeature', 'starshipmod', 'venture'],
+	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform', 'deployment', 'deploymentfeature', 'starship', 'starshipfeature', 'starshipmod', 'venture'],
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });
@@ -160,7 +160,8 @@ Hooks.once("setup", function() {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", "starshipRolessm", "starshipRolesmed", "starshipRoleslg", "starshipRoleshuge", "starshipRolesgrg", "starshipSkills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
+    "starshipRolessm", "starshipRolesmed", "starshipRoleslg", "starshipRoleshuge", "starshipRolesgrg", "starshipSkills",
     "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponSizes", "weaponTypes"
   ];

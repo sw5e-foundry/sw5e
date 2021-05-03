@@ -94,6 +94,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   getData() {
     const data = super.getData();
 
+    // Add Size info
+    data.isTiny = data.actor.data.traits.size === "tiny";
+    data.isSmall = data.actor.data.traits.size === "sm";
+    data.isMedium = data.actor.data.traits.size === "med";
+    data.isLarge = data.actor.data.traits.size === "lg";
+    data.isHuge = data.actor.data.traits.size === "huge";
+    data.isGargantuan = data.actor.data.traits.size === "grg";
+
     // Challenge Rating
     const cr = parseFloat(data.data.details.cr || 0);
     const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};

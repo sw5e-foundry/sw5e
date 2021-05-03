@@ -37,19 +37,19 @@
                 </footer>
 			</section>
 
-			{{!-- HIT POINTS --}}
+			{{!-- HULL POINTS --}}
 			<section class="attribute health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.HullPoints" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
+                    <input name="data.attributes.hull.value" type="text" value="{{data.attributes.hull.value}}"
                         data-dtype="Number" class="value-number" />
                     <span class="value-separator">/</span>
-                    <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
+                    <input name="data.attributes.hull.max" type="text" value="{{data.attributes.hull.max}}"
                         data-dtype="Number" class="value-number" />
                 </div>
                 <footer class="attribute-footer hit-points">
-                    <input name="data.attributes.hp.formula" class="hpformula" type="text"
-                            placeholder="{{ localize 'SW5E.HullPointsFormula' }}" value="{{data.attributes.hp.formula}}" style="min-width: 150px;" />
+                    <input name="data.attributes.hull.formula" class="hpformula" type="text"
+                            placeholder="{{ localize 'SW5E.HullPointsFormula' }}" value="{{data.attributes.hull.formula}}" style="min-width: 150px;" />
                 </footer>
             </section>
 			
@@ -57,15 +57,15 @@
 			<section class="attribute health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.ShieldPoints" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="data.attributes.hp.temp" type="text" value="{{data.attributes.hp.temp}}"
+                    <input name="data.attributes.shld.value" type="text" value="{{data.attributes.shld.value}}"
                         data-dtype="Number" placeholder="10" class="value-number" />
                     <span class="value-separator">/</span>
-                    <input name="data.attributes.hp.tempmax" type="text" value="{{data.attributes.hp.tempmax}}"
+                    <input name="data.attributes.shld.max" type="text" value="{{data.attributes.shld.max}}"
                         data-dtype="Number" placeholder="10" class="value-number" />
                 </div>
                 <footer class="attribute-footer hit-points">
-                    <input name="data.attributes.sp.formula" class="hpformula" type="text"
-                            placeholder="{{ localize 'SW5E.ShieldPointsFormula' }}" value="{{data.attributes.sp.formula}}" style="min-width: 150px;" />
+                    <input name="data.attributes.shld.formula" class="hpformula" type="text"
+                            placeholder="{{ localize 'SW5E.ShieldPointsFormula' }}" value="{{data.attributes.shld.formula}}" style="min-width: 150px;" />
                 </footer>
             </section>			
 			
@@ -159,9 +159,36 @@
 						<select class="actor-size" name="data.details.role">
 							{{#select data.details.role}}
 							<option value=""> </option>							
-							{{#each config.starshipRolessm as |label role|}}
-							<option value="{{role}}">{{label}}</option>
-							{{/each}}
+							{{#if isTiny}}
+                                {{#each config.starshipRolestiny as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+							{{#if isSmall}}
+                                {{#each config.starshipRolessm as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isMedium}}
+                                {{#each config.starshipRolesmed as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isLarge}}
+                                {{#each config.starshipRoleslg as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isHuge}}
+                                {{#each config.starshipRoleshuge as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
+                            {{#if isGargantuan}}
+                                {{#each config.starshipRolesgrg as |label role|}}
+                                    <option value="{{role}}">{{label}}</option>
+                                {{/each}}
+                            {{/if}}
 							{{/select}}
 						</select>
 					</label>

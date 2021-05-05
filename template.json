@@ -50,6 +50,7 @@
             "crawl": 0,
             "fly": 0,
             "roll": 0,
+            "space": 0,
             "swim": 0,
             "turn": 0,
             "walk": 30,
@@ -419,21 +420,14 @@
         "dr": 0,
         "engpow": 1,
         "exhaustion": 0,
-        "hulldie": "",
-        "hulldice": 0,
-        "hull": {
-          "value": 0,
-          "max": 0,
-          "formula": ""
-        },
-        "shlddie": "",
-        "shlddice": 0,
-        "shld": {
-          "value": 0,
-          "max": 0,
-          "formula": ""
-        },
         "hsm": 1,
+        "hull": {
+          "die": "",
+          "dice": 0,
+          "formula":"",
+          "value": null,
+          "max": null
+        },
         "mods": {
           "open": 10,
           "max": 10
@@ -465,6 +459,13 @@
             "value": 0,
             "max": 0
           }
+        },
+        "shld": {
+          "die": "",
+          "dice": 0,
+          "formula":"",
+          "value": null,
+          "max": null
         },
         "shieldpow": 1,
         "sscap": 0,

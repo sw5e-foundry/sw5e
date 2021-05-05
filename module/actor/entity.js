@@ -319,6 +319,11 @@ export default class Actor5e extends Actor {
     // Proficiency
       data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
 
+    // Link hull to hp and shields to temp hp
+    data.attributes.hull.value = data.attributes.hp.value;
+    data.attributes.hull.max = data.attributes.hp.max;
+    data.attributes.shld.value = data.attributes.hp.temp;
+    data.attributes.shld.max = data.attributes.hp.tempmax;
   }
 
   /* -------------------------------------------- */

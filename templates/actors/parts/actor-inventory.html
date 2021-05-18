@@ -4,7 +4,7 @@
     <ol class="currency flexrow">
         <h3>
             {{localize "SW5E.Currency"}}
-            <a class="currency-convert rollable" data-action="convertCurrency" title="Convert Currency">
+            <a class="currency-convert rollable" data-action="convertCurrency" title="{{localize 'SW5E.CurrencyConvert'}}">
                 <i class="fas fa-coins"></i>
             </a>
         </h3>
@@ -89,13 +89,13 @@
                 {{/each}}
             {{else}}
                 {{#if ../../isCharacter}}
-                    <div class="item-detail item-weight">
-                        {{#if item.totalWeight}}
-                            <div class="item-detail">
-                                {{ item.totalWeight }} {{localize "SW5E.AbbreviationLbs"}}
-                            </div>
-                        {{/if}}
-                    </div>
+                <div class="item-detail item-weight">
+                    {{#if item.totalWeight}}
+                        <div class="item-detail">
+                            {{ item.totalWeight }} {{localize "SW5E.AbbreviationLbs"}}
+                        </div>
+                    {{/if}}
+                </div>
                 {{/if}}
 
                 <div class="item-detail item-uses">

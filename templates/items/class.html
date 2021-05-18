@@ -76,16 +76,41 @@
                 </div>
             </div>
 
+            {{!-- Powercasting --}}
             <div class="form-group">
                 <label>{{localize 'SW5E.PowerProgression'}}</label>
                 <div class="form-fields">
-                    <select name="data.powercasting">
-                        {{#select data.powercasting}}
-                            {{#each config.powerProgression}}
-                                <option value="{{@key}}">{{localize this}}</option>
-                            {{/each}}
-                        {{/select}}
+                    <select name="data.powercasting.progression">
+                        {{selectOptions config.powerProgression selected=data.powercasting.progression localize=true}}
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.PowerAbility"}}</label>
+                <div class="form-fields">
+                    <select name="data.powercasting.ability">
+                        {{selectOptions config.abilities selected=data.powercasting.ability blank=""}}
+                    </select>
+                </div>
+            </div>
+
+            {{!-- Proficiencies --}}
+            <div class="form-group">
+                <label>
+                    {{ localize "SW5E.ClassSaves" }}
+                    {{#if editable}}
+                    <a class="trait-selector class-saves" data-target="data.saves" data-options="saves">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    {{/if}}
+                </label>
+                <div class="form-fields">
+                    <ul class="traits-list">
+                        {{#each data.saves}}
+                            <li class="tag {{this}}">{{lookup ../config.abilities this}}</li>
+                        {{/each}}
+                    </ul>
                 </div>
             </div>
 

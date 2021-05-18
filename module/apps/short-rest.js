@@ -40,7 +40,7 @@ export default class ShortRestDialog extends Dialog {
     // Determine Hit Dice
     data.availableHD = this.actor.data.items.reduce((hd, item) => {
       if ( item.type === "class" ) {
-        const d = item.data;
+        const d = item.data.data;
         const denom = d.hitDice || "d6";
         const available = parseInt(d.levels || 1) - parseInt(d.hitDiceUsed || 0);
         hd[denom] = denom in hd ? hd[denom] + available : available;
@@ -93,11 +93,11 @@ export default class ShortRestDialog extends Dialog {
   static async shortRestDialog({actor}={}) {
     return new Promise((resolve, reject) => {
       const dlg = new this(actor, {
-        title: "Short Rest",
+        title: game.i18n.localize("SW5E.ShortRest"),
         buttons: {
           rest: {
             icon: '<i class="fas fa-bed"></i>',
-            label: "Rest",
+            label: game.i18n.localize("SW5E.Rest"),
             callback: html => {
               let newDay = false;
               if (game.settings.get("sw5e", "restVariant") === "gritty")
@@ -107,7 +107,7 @@ export default class ShortRestDialog extends Dialog {
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: "Cancel",
+            label: game.i18n.localize("Cancel"),
             callback: reject
           }
         },

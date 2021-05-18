@@ -64,7 +64,7 @@ SW5E.attunementTypes = {
   NONE: 0,
   REQUIRED: 1,
   ATTUNED: 2,
-}
+};
 
 /**
  * An enumeration of item attunement states
@@ -84,6 +84,69 @@ SW5E.weaponProficiencies = {
   "mar": "SW5E.WeaponMartialProficiency"
 };
 
+/**
+ * A map of weapon item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+SW5E.weaponProficienciesMap = {
+  "natural": true,
+  "simpleM": "sim",
+  "simpleR": "sim",
+  "martialM": "mar",
+  "martialR": "mar"
+}
+
+/**
+ * The basic weapon types in 5e. This enables specific weapon proficiencies or
+ * starting equipment provided by classes and backgrounds.
+ *
+ * @enum {string}
+ */
+SW5E.weaponIds = {
+    "battleaxe": "I0WocDSuNpGJayPb",
+    "blowgun": "wNWK6yJMHG9ANqQV",
+    "club": "nfIRTECQIG81CvM4",
+    "dagger": "0E565kQUBmndJ1a2",
+    "dart": "3rCO8MTIdPGSW6IJ",
+    "flail": "UrH3sMdnUDckIHJ6",
+    "glaive": "rOG1OM2ihgPjOvFW",
+    "greataxe": "1Lxk6kmoRhG8qQ0u",
+    "greatclub": "QRCsxkCwWNwswL9o",
+    "greatsword": "xMkP8BmFzElcsMaR",
+    "halberd": "DMejWAc8r8YvDPP1",
+    "handaxe": "eO7Fbv5WBk5zvGOc",
+    "handcrossbow": "qaSro7kFhxD6INbZ",
+    "heavycrossbow": "RmP0mYRn2J7K26rX",
+    "javelin": "DWLMnODrnHn8IbAG",
+    "lance": "RnuxdHUAIgxccVwj",
+    "lightcrossbow": "ddWvQRLmnnIS0eLF",
+    "lighthammer": "XVK6TOL4sGItssAE",
+    "longbow": "3cymOVja8jXbzrdT",
+    "longsword": "10ZP2Bu3vnCuYMIB",
+    "mace": "Ajyq6nGwF7FtLhDQ",
+    "maul": "DizirD7eqjh8n95A",
+    "morningstar": "dX8AxCh9o0A9CkT3",
+    "net": "aEiM49V8vWpWw7rU",
+    "pike": "tC0kcqZT9HHAO0PD",
+    "quarterstaff": "g2dWN7PQiMRYWzyk",
+    "rapier": "Tobce1hexTnDk4sV",
+    "scimitar": "fbC0Mg1a73wdFbqO",
+    "shortsword": "osLzOwQdPtrK3rQH",
+    "sickle": "i4NeNZ30ycwPDHMx",
+    "spear": "OG4nBBydvmfWYXIk",
+    "shortbow": "GJv6WkD7D2J6rP6M",
+    "sling": "3gynWO9sN4OLGMWD",
+    "trident": "F65ANO66ckP8FDMa",
+    "warpick": "2YdfjN1PIIrSHZii",
+    "warhammer":  "F0Df164Xv1gWcYt0",
+    "whip": "QKTyxoO0YDnAsbYe"
+};
+
+/* -------------------------------------------- */
+
+
+
 SW5E.toolProficiencies = {
   "art": "SW5E.ToolArtisans",
   "disg": "SW5E.ToolDisguiseKit",
@@ -95,6 +158,50 @@ SW5E.toolProficiencies = {
   "pois": "SW5E.ToolPoisonersKit",
   "thief": "SW5E.ToolThieves",
   "vehicle": "SW5E.ToolVehicle"
+};
+
+/**
+ * The basic tool types in 5e. This enables specific tool proficiencies or
+ * starting equipment provided by classes and backgrounds.
+ *
+ * @enum {string}
+ */
+SW5E.toolIds = {
+  "alchemist": "SztwZhbhZeCqyAes",
+  "bagpipes": "yxHi57T5mmVt0oDr",
+  "brewer": "Y9S75go1hLMXUD48",
+  "calligrapher": "jhjo20QoiD5exf09",
+  "card": "YwlHI3BVJapz4a3E",
+  "carpenter": "8NS6MSOdXtUqD7Ib",
+  "cartographer": "fC0lFK8P4RuhpfaU",
+  "cobbler": "hM84pZnpCqKfi8XH",
+  "cook": "Gflnp29aEv5Lc1ZM",
+  "dice": "iBuTM09KD9IoM5L8",
+  "disg": "IBhDAr7WkhWPYLVn",
+  "drum": "69Dpr25pf4BjkHKb",
+  "dulcimer": "NtdDkjmpdIMiX7I2",
+  "flute": "eJOrPcAz9EcquyRQ",
+  "forg": "cG3m4YlHfbQlLEOx",
+  "glassblower": "rTbVrNcwApnuTz5E",
+  "herb": "i89okN7GFTWHsvPy",
+  "horn": "aa9KuBy4dst7WIW9",
+  "jeweler": "YfBwELTgPFHmQdHh",
+  "leatherworker": "PUMfwyVUbtyxgYbD",
+  "lute": "qBydtUUIkv520DT7",
+  "lyre": "EwG1EtmbgR3bM68U",
+  "mason": "skUih6tBvcBbORzA",
+  "navg": "YHCmjsiXxZ9UdUhU",
+  "painter": "ccm5xlWhx74d6lsK",
+  "panflute": "G5m5gYIx9VAUWC3J",
+  "pois": "il2GNi8C0DvGLL9P",
+  "potter": "hJS8yEVkqgJjwfWa",
+  "shawm": "G3cqbejJpfB91VhP",
+  "smith": "KndVe2insuctjIaj",
+  "thief": "woWZ1sO5IUVGzo58",
+  "tinker": "0d08g1i5WXnNrCNA",
+  "viol": "baoe3U5BfMMMxhCU",
+  "weaver": "ap9prThUB2y9lDyj",
+  "woodcarver": "xKErqkLo4ASYr5EP",
 };
 
 
@@ -133,8 +240,8 @@ SW5E.abilityActivationTypes = {
   "hour": SW5E.timePeriods.hour,
   "day": SW5E.timePeriods.day,
   "special": SW5E.timePeriods.spec,
-  "legendary": "SW5E.LegAct",
-  "lair": "SW5E.LairAct",
+  "legendary": "SW5E.LegendaryActionLabel",
+  "lair": "SW5E.LairActionLabel",
   "crew": "SW5E.VehicleCrewAction"
 };
 
@@ -169,6 +276,40 @@ SW5E.tokenSizes = {
   "huge": 3,
   "grg": 4
 };
+
+/**
+ * Colors used to visualize temporary and temporary maximum HP in token health bars
+ * @enum {number}
+ */
+SW5E.tokenHPColors = {
+  temp: 0x66CCFF,
+  tempmax: 0x440066,
+  negmax: 0x550000
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Creature types
+ * @type {Object}
+ */
+SW5E.creatureTypes = {
+  "aberration": "SW5E.CreatureAberration",
+  "beast": "SW5E.CreatureBeast",
+  "celestial": "SW5E.CreatureCelestial",
+  "construct": "SW5E.CreatureConstruct",
+  "dragon": "SW5E.CreatureDragon",
+  "elemental": "SW5E.CreatureElemental",
+  "fey": "SW5E.CreatureFey",
+  "fiend": "SW5E.CreatureFiend",
+  "giant": "SW5E.CreatureGiant",
+  "humanoid": "SW5E.CreatureHumanoid",
+  "monstrosity": "SW5E.CreatureMonstrosity",
+  "ooze": "SW5E.CreatureOoze",
+  "plant": "SW5E.CreaturePlant",
+  "undead": "SW5E.CreatureUndead"
+};
+
 
 /* -------------------------------------------- */
 
@@ -212,7 +353,7 @@ SW5E.limitedUsePeriods = {
 /* -------------------------------------------- */
 
 /**
- * The set of equipment types for armor, clothing, and other objects which can ber worn by the character
+ * The set of equipment types for armor, clothing, and other objects which can be worn by the character
  * @type {Object}
  */
 SW5E.equipmentTypes = {
@@ -240,6 +381,20 @@ SW5E.armorProficiencies = {
   "hvy": SW5E.equipmentTypes.heavy,
   "shl": "SW5E.EquipmentShieldProficiency"
 };
+
+/**
+ * A map of armor item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+SW5E.armorProficienciesMap = {
+  "natural": true,
+  "clothing": true,
+  "light": "lgt",
+  "medium": "med",
+  "heavy": "hvy",
+  "shield": "shl"
+}
 
 
 /* -------------------------------------------- */
@@ -306,7 +461,7 @@ SW5E.damageTypes = {
 };
 
 // Damage Resistance Types
-SW5E.damageResistanceTypes = mergeObject(duplicate(SW5E.damageTypes), {
+SW5E.damageResistanceTypes = mergeObject(foundry.utils.deepClone(SW5E.damageTypes), {
   "physical": "SW5E.DamagePhysical"
 });
 
@@ -324,7 +479,7 @@ SW5E.movementTypes = {
   "fly": "SW5E.MovementFly",
   "swim": "SW5E.MovementSwim",
   "walk": "SW5E.MovementWalk",
-}
+};
 
 /**
  * The valid units of measure for movement distances in the game system.
@@ -334,7 +489,7 @@ SW5E.movementTypes = {
 SW5E.movementUnits = {
   "ft": "SW5E.DistFt",
   "mi": "SW5E.DistMi"
-}
+};
 
 /**
  * The valid units of measure for the range of an action or effect.
@@ -424,7 +579,7 @@ SW5E.healingTypes = {
 
 /**
  * Enumerate the denominations of hit dice which can apply to classes
- * @type {Array.<string>}
+ * @type {string[]}
  */
 SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
 
@@ -433,7 +588,7 @@ SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
 
 /**
  * The set of possible sensory perception types which an Actor may have
- * @type {object}
+ * @enum {string}
  */
 SW5E.senses = {
   "blindsight": "SW5E.SenseBlindsight",
@@ -583,17 +738,25 @@ SW5E.powerLevels = {
 
 // Power Scroll Compendium UUIDs
 SW5E.powerScrollIds = {
-  0: 'Compendium.sw5e.items.rQ6sO7HDWzqMhSI3',
-  1: 'Compendium.sw5e.items.9GSfMg0VOA2b4uFN',
-  2: 'Compendium.sw5e.items.XdDp6CKh9qEvPTuS',
-  3: 'Compendium.sw5e.items.hqVKZie7x9w3Kqds',
-  4: 'Compendium.sw5e.items.DM7hzgL836ZyUFB1',
-  5: 'Compendium.sw5e.items.wa1VF8TXHmkrrR35',
-  6: 'Compendium.sw5e.items.tI3rWx4bxefNCexS',
-  7: 'Compendium.sw5e.items.mtyw4NS1s7j2EJaD',
-  8: 'Compendium.sw5e.items.aOrinPg7yuDZEuWr',
-  9: 'Compendium.sw5e.items.O4YbkJkLlnsgUszZ'
+  0: "rQ6sO7HDWzqMhSI3",
+  1: "9GSfMg0VOA2b4uFN",
+  2: "XdDp6CKh9qEvPTuS",
+  3: "hqVKZie7x9w3Kqds",
+  4: "DM7hzgL836ZyUFB1",
+  5: "wa1VF8TXHmkrrR35",
+  6: "tI3rWx4bxefNCexS",
+  7: "mtyw4NS1s7j2EJaD",
+  8: "aOrinPg7yuDZEuWr",
+  9: "O4YbkJkLlnsgUszZ"
 };
+
+/**
+ * Compendium packs used for localized items.
+ * @enum {string}
+ */
+SW5E.sourcePacks = {
+  ITEMS: "sw5e.items"
+}
 
 /**
  * Define the standard slot progression by character level.
@@ -741,83 +904,83 @@ SW5E.characterFlags = {
   "diamondSoul": {
     name: "SW5E.FlagsDiamondSoul",
     hint: "SW5E.FlagsDiamondSoulHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "elvenAccuracy": {
     name: "SW5E.FlagsElvenAccuracy",
     hint: "SW5E.FlagsElvenAccuracyHint",
-    section: "Racial Traits",
+    section: "SW5E.RacialTraits",
     type: Boolean
   },
   "halflingLucky": {
     name: "SW5E.FlagsHalflingLucky",
     hint: "SW5E.FlagsHalflingLuckyHint",
-    section: "Racial Traits",
+    section: "SW5E.RacialTraits",
     type: Boolean
   },
   "initiativeAdv": {
     name: "SW5E.FlagsInitiativeAdv",
     hint: "SW5E.FlagsInitiativeAdvHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "initiativeAlert": {
     name: "SW5E.FlagsAlert",
     hint: "SW5E.FlagsAlertHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "jackOfAllTrades": {
     name: "SW5E.FlagsJOAT",
     hint: "SW5E.FlagsJOATHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "observantFeat": {
     name: "SW5E.FlagsObservant",
     hint: "SW5E.FlagsObservantHint",
     skills: ['prc','inv'],
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "powerfulBuild": {
     name: "SW5E.FlagsPowerfulBuild",
     hint: "SW5E.FlagsPowerfulBuildHint",
-    section: "Racial Traits",
+    section: "SW5E.RacialTraits",
     type: Boolean
   },
   "reliableTalent": {
     name: "SW5E.FlagsReliableTalent",
     hint: "SW5E.FlagsReliableTalentHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "remarkableAthlete": {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ['str','dex','con'],
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Boolean
   },
   "weaponCriticalThreshold": {
     name: "SW5E.FlagsWeaponCritThreshold",
     hint: "SW5E.FlagsWeaponCritThresholdHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Number,
     placeholder: 20
   },
   "powerCriticalThreshold": {
     name: "SW5E.FlagsPowerCritThreshold",
     hint: "SW5E.FlagsPowerCritThresholdHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Number,
     placeholder: 20
   },
   "meleeCriticalDamageDice": {
     name: "SW5E.FlagsMeleeCriticalDice",
     hint: "SW5E.FlagsMeleeCriticalDiceHint",
-    section: "Feats",
+    section: "SW5E.Feats",
     type: Number,
     placeholder: 0
   },

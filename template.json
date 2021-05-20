@@ -417,6 +417,26 @@
           "failure": 0,
           "success": 0
         },
+        "deployment": {
+          "coord": {
+            "uuid": null
+          },
+          "gunner": {
+            "uuid": null
+          },
+          "mechanic": {
+            "uuid": null
+          },
+          "operator": {
+            "uuid": null
+          },
+          "pilot": {
+            "uuid": null
+          },
+          "technician": {
+            "uuid": null
+          }
+        },
         "dr": 0,
         "engpow": 1,
         "exhaustion": 0,
@@ -424,6 +444,7 @@
         "hull": {
           "die": "",
           "dice": 0,
+          "dicemax": 0,
           "formula":"",
           "value": null,
           "max": null
@@ -433,7 +454,7 @@
           "max": 10
         },
         "pwrdice": {
-          "pwrdie": "",
+          "die": "",
           "recovery": 1,
           "central": {
             "value": 0,
@@ -463,7 +484,11 @@
         "shld": {
           "die": "",
           "dice": 0,
+          "dicemax": 0,
+          "depleted": false,
           "formula":"",
+          "regenRate": 1,
+          "capMod": 1,
           "value": null,
           "max": null
         },
@@ -501,7 +526,7 @@
           "value": 0,
           "ability": "cha"
         },
-        "int": {
+        "inf": {
           "value": 0,
           "ability": "cha"
         },

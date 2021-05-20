@@ -317,13 +317,13 @@ export default class Actor5e extends Actor {
       const data = actorData.data;
 
     // Proficiency
-      data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
+     data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
 
     // Link hull to hp and shields to temp hp
-    data.attributes.hull.value = data.attributes.hp.value;
-    data.attributes.hull.max = data.attributes.hp.max;
-    data.attributes.shld.value = data.attributes.hp.temp;
-    data.attributes.shld.max = data.attributes.hp.tempmax;
+    //data.attributes.hull.value = data.attributes.hp.value;
+    //data.attributes.hull.max = data.attributes.hp.max;
+    //data.attributes.shld.value = data.attributes.hp.temp;
+    //data.attributes.shld.max = data.attributes.hp.tempmax;
   }
 
   /* -------------------------------------------- */
@@ -1142,6 +1142,196 @@ export default class Actor5e extends Actor {
     const hp = this.data.data.attributes.hp;
     const dhp = Math.min(hp.max + (hp.tempmax ?? 0) - hp.value, roll.total);
     await this.update({"data.attributes.hp.value": hp.value + dhp});
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
+   * @param {string} [denomination]   The hit denomination of hull die to roll. Example "d8".
+   *                                  If no denomination is provided, the first available HD will be used
+   * @param {string} [numDice]        How many damage dice to roll?
+   * @param {string} [keep]           Which dice to keep? Example "kh1".
+   * @param {boolean} [dialog]        Show a dialog prompt for configuring the hull die roll?
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
+   */
+   async rollHullDie(denomination, numDice="1", keep="",{dialog=true}={}) {
+
+    // If no denomination was provided, choose the first available
+    let sship = null;
+    if ( !denomination ) {
+      sship = this.itemTypes.class.find(s => s.data.data.hullDiceUsed < (s.data.data.tier + s.data.data.hullDiceStart));
+      if ( !sship ) return null;
+      denomination = sship.data.data.hullDice;
+    }
+
+    // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+    else {
+      sship = this.items.find(i => {
+        const d = i.data.data;
+        return (d.hullDice === denomination) && ((d.hitDiceUsed || 0) < ((d.tier || 0) + d.hullDiceStart));
+      });
+    }
+
+    // If no class is available, display an error notification
+    if ( !sship ) {
+      ui.notifications.error(game.i18n.format("SW5E.HullDiceWarn", {name: this.name, formula: denomination}));
+      return null;
+    }
+
+    // Prepare roll data
+    const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
+    const title = game.i18n.localize("SW5E.HullDiceRoll");
+    const rollData = duplicate(this.data.data);
+
+    // Call the roll helper utility
+    const roll = await damageRoll({
+      event: new Event("hitDie"),
+      parts: parts,
+      data: rollData,
+      title: title,
+      speaker: ChatMessage.getSpeaker({actor: this}),
+      allowcritical: false,
+      fastForward: !dialog,
+      dialogOptions: {width: 350},
+      messageData: {"flags.sw5e.roll": {type: "hullDie"}}
+    });
+    if ( !roll ) return null;
+
+    // Adjust actor data
+    await sship.update({"data.hullDiceUsed": sship.data.data.hullDiceUsed + 1});
+    const hp = this.data.data.attributes.hp;
+    const dhp = Math.min(hp.max - hp.value, roll.total);
+    await this.update({"data.attributes.hp.value": hp.value + dhp});
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+   /**
+   * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
+   */
+    async rollHullDieCheck() {
+
+      // If no denomination was provided, choose the first available
+      let sship = null;
+      if ( !denomination ) {
+        sship = this.itemTypes.class.find(s => s.data.data.hullDiceUsed < (s.data.data.tier + s.data.data.hullDiceStart));
+        if ( !sship ) return null;
+        denomination = sship.data.data.hullDice;
+      }
+  
+      // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+      else {
+        sship = this.items.find(i => {
+          const d = i.data.data;
+          return (d.hullDice === denomination) && ((d.hitDiceUsed || 0) < ((d.tier || 0) + d.hullDiceStart));
+        });
+      }
+  
+      // If no class is available, display an error notification
+      if ( !sship ) {
+        ui.notifications.error(game.i18n.format("SW5E.HullDiceWarn", {name: this.name, formula: denomination}));
+        return null;
+      }
+  
+      // Prepare roll data
+      const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
+      const title = game.i18n.localize("SW5E.HullDiceRoll");
+      const rollData = duplicate(this.data.data);
+  
+      // Call the roll helper utility
+      const roll = await damageRoll({
+        event: new Event("hitDie"),
+        parts: parts,
+        data: rollData,
+        title: title,
+        speaker: ChatMessage.getSpeaker({actor: this}),
+        allowcritical: false,
+        fastForward: !dialog,
+        dialogOptions: {width: 350},
+        messageData: {"flags.sw5e.roll": {type: "hullDie"}}
+      });
+      if ( !roll ) return null;
+  
+      // Adjust actor data
+      await sship.update({"data.hullDiceUsed": sship.data.data.hullDiceUsed + 1});
+      const hp = this.data.data.attributes.hp;
+      const dhp = Math.min(hp.max - hp.value, roll.total);
+      await this.update({"data.attributes.hp.value": hp.value + dhp});
+      return roll;
+    }
+  
+    /* -------------------------------------------- */
+
+  /**
+   * Roll a shield die of the appropriate type, gaining shield points equal to the die roll 
+   * multiplied by the shield regeneration coefficient
+   * @param {string} [denomination]   The denomination of shield die to roll. Example "d8".
+   *                                  If no denomination is provided, the first available SD will be used
+   * @param {boolean} [natural]       Natural ship shield regeneration (true) or user action (false)?
+   * @param {string} [numDice]        How many damage dice to roll?
+   * @param {string} [keep]           Which dice to keep? Example "kh1".
+   * @param {boolean} [dialog]        Show a dialog prompt for configuring the shield die roll?
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no shield die was rolled
+   */
+   async rollShieldDie(denomination, natural=false, numDice="1", keep="", {dialog=true}={}) {
+
+    // If no denomination was provided, choose the first available
+    let sship = null;
+    if ( !denomination ) {
+      sship = this.itemTypes.class.find(s => s.data.data.shldDiceUsed < (s.data.data.tier + s.data.data.shldDiceStart));
+      if ( !sship ) return null;
+      denomination = sship.data.data.shldDice;
+    }
+
+    // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+    else {
+      sship = this.items.find(i => {
+        const d = i.data.data;
+        return (d.shldDice === denomination) && ((d.shldDiceUsed || 0) < ((d.tier || 0) + d.shldDiceStart));
+      });
+    }
+
+    // If no starship is available, display an error notification
+    if ( !sship ) {
+      ui.notifications.error(game.i18n.format("SW5E.ShldDiceWarn", {name: this.name, formula: denomination}));
+      return null;
+    }
+
+    // if natural regeneration roll max
+    if (natural) {
+      numdice = denomination.substring(1);
+      denomination = "";
+      keep = "";
+    }
+
+    // Prepare roll data
+    const parts = [`${numDice}${denomination}${keep} * @attributes.regenRate`];
+    const title = game.i18n.localize("SW5E.ShieldDiceRoll");
+    const rollData = duplicate(this.data.data);
+
+    // Call the roll helper utility
+    roll = await damageRoll({
+      event: new Event("shldDie"),
+      parts: parts,
+      data: rollData,
+      title: title,
+      speaker: ChatMessage.getSpeaker({actor: this}),
+      allowcritical: false,
+      fastForward: !dialog,
+      dialogOptions: {width: 350},
+      messageData: {"flags.sw5e.roll": {type: "shldDie"}}
+    });
+    if ( !roll ) return null;
+
+    // Adjust actor data
+    await sship.update({"data.shldDiceUsed": sship.data.data.shldDiceUsed + 1});
+    const hp = this.data.data.attributes.hp;
+    const dhp = Math.min(hp.tempmax - hp.temp, roll.total);
+    await this.update({"data.attributes.hp.temp": hp.temp + dhp});
     return roll;
   }
 

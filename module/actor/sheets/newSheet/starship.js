@@ -17,6 +17,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 	  return mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "starship"],
       width: 800,
+	  height: 775,
       tabs: [{
         navSelector: ".root-tabs",
         contentSelector: ".sheet-body",
@@ -135,6 +136,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 	activateListeners(html) {
     super.activateListeners(html);
     html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
+	  html.find('.refuel').click(this._onIncrementFuelLevel.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -153,4 +155,81 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
   }
   
+  /* -------------------------------------------- */
+
+  /**
+   * Handle refueling a starship
+   * @param {Event} event     The original click event
+   * @private
+   */
+  _onIncrementFuelLevel(event) {
+    event.preventDefault();
+    const fuelcaparray = this.actor.data.effects.changes;
+    var fuelcappos = fuelcaparray.indexOf('fuel.cap');
+    const refuel = this.actor.data.effect.changes[fuelcappos].value;
+    this.actor.update({"data.attributes.fuel.value": refuel});
+  }
+
+  function engineSliderUpdate(num) {
+    var symbol;
+    var coefficient;
+    switch(num) {
+      case "0":
+      symbol = "↓";
+      coefficient = 0.5;
+      break;
+    case "1":
+      symbol = "=";
+      coefficient = 1;
+      break;
+    case "2":
+      symbol = "↑";
+      coefficient = 2;
+    };
+    let slideroutput = symbol;
+    document.querySelector('#engineslideroutput').value = slideroutput;
+    this.actor.update({"data.attributes.engpow": coefficient});
+  }
+
+  function shieldSliderUpdate(num) {
+    var symbol;
+    var coefficient;
+    switch(num) {
+      case "0":
+      symbol = "↓";
+      coefficient = 0.5;
+      break;
+    case "1":
+      symbol = "=";
+      coefficient = 1;
+      break;
+    case "2":
+      symbol = "↑";
+      coefficient = 2;
+    };
+    let slideroutput = symbol;
+    document.querySelector('#shieldslideroutput').value = slideroutput;
+    this.actor.update({"data.attributes.shieldpow": coefficient});
+  }
+  
+  function weaponSliderUpdate(num) {
+    var symbol;
+    var coefficient;
+    switch(num) {
+      case "0":
+      symbol = "↓";
+      coefficient = 0.5;
+      break;
+    case "1":
+      symbol = "=";
+      coefficient = 1;
+      break;
+    case "2":
+      symbol = "↑";
+      coefficient = 2;
+    };
+    let slideroutput = symbol;
+    document.querySelector('#weaponslideroutput').value = slideroutput;
+    this.actor.update({"data.attributes.weaponpow": coefficient});
+  } 
 }

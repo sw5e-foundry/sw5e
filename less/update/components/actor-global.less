@@ -249,7 +249,45 @@
         }
       }
     }
-
+	
+    .panel.resources {
+      .traits {
+        .fuel-wrapper {
+          display: grid;
+          grid-template-columns: 300px 100px;
+          width: 400px;
+          justify-self: end;
+          .fuel-label {
+            font-size: 12px;
+            line-height: 14px;
+            width: 100%;
+            text-shadow: none;
+            padding: 0;
+            margin: 0;
+            height: auto;
+            text-align: center;
+            margin-left: -2px;
+            border-radius: 0 4px 4px 0;
+          }
+          .fuel {
+            position: relative;
+            border-radius: 4px;
+            height: 16px;
+            margin: 0;
+            width: 100%;
+            .fuel-bar {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              border-radius: 4px;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+  
     nav.sheet-navigation {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -1097,4 +1135,44 @@
       }
     }
   }
+	input[type=range][orient=vertical] {
+		-webkit-appearance: slider-vertical;
+		width: 10px;
+		height: 60px !important;
+		padding: 0 0 !important;
+		background-color: #c40f0f !important;
+		box-sizing: border-box;
+		&::-webkit-slider-runnable-track {
+			-webkit-appearance: slider-vertical !important;
+			height: 60px !important;
+			width: 10px !important;
+			line-height: 60px !important;
+			padding-top: 0 !important;
+			padding-bottom: 0 !important;
+			margin-top: 0 0 !important;
+			border-radius: 3px !important;
+			background: linear-gradient( to top, #c40f0f 50%, #0dce0d 50% );
+		}
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none !important;
+			background-color: #c40f0f !important;
+			margin-right: -4px !important;
+			margin-top: 0px !important;
+			cursor: grab !important;
+			border-radius: 0 0 0 0 !important;
+			width: 10px !important;
+			height: 5px !important;
+			font-size: 10px;
+		}
+	}
+	output {
+		display: block;
+		margin: 5px auto;
+		font-size: 1.75em;
+	}
+	input {
+		.vertslider {
+			height: 60px;
+		}
+	}
 }

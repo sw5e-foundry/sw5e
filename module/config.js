@@ -367,6 +367,7 @@ SW5E.movementTypes = {
   "crawl": "SW5E.MovementCrawl",
   "fly": "SW5E.MovementFly",
   "roll": "SW5E.MovementRoll",
+  "space": "SW5E.MovementSpace",
   "swim": "SW5E.MovementSwim",
   "turn": "SW5E.MovementTurn",
   "walk": "SW5E.MovementWalk",

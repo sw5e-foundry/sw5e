@@ -671,6 +671,77 @@
   .editor {
     padding: 0 8px;
   }
+	.fuel {
+		flex: 0 0 12px;
+		background: #7a7971;
+		margin: 1px 15px 0 1px;
+		border: 1px solid #191813;
+		border-radius: 3px;
+		position: relative;
+		.fuel-bar {
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			background: #6c8aa5;
+			height: 8px;
+			border: 1px solid #cde4ff;
+			border-radius: 2px;
+		}
+		.fuel-label {
+			height: 10px;
+			padding: 0 5px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: 13px;
+			line-height: 12px;
+			text-align: right;
+			color: #EEE;
+			text-shadow: 0 0 5px #000;
+		}
+		.fuel-breakpoint {
+			display: block;
+			position: absolute;
+		}
+		.fuel-breakpoint.fuel-20 {
+			left: 20%;
+		}
+		.fuel-breakpoint.fuel-40 {
+			left: 40%;
+		}
+		.fuel-breakpoint.fuel-60 {
+			left: 60%;
+		}
+		.fuel-breakpoint.fuel-80 {
+			left: 80%;
+		}
+		.arrow-up {
+			bottom: 0;
+			width: 0;
+			height: 0;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-bottom: 4px solid #000;
+		}
+		.arrow-down {
+			top: 0;
+			width: 0;
+			height: 0;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			border-top: 4px solid #000;
+		}
+	}
+	.fuel.fueled {
+		.arrow-up {
+			border-bottom: 4px solid #fff;
+			border-bottom: 4px solid #000;
+		}
+		.arrow-down {
+			border-top: 4px solid #fff;
+			border-top: 4px solid #000;
+		}
+	}	
 }
 
 #actor-flags {

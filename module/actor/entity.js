@@ -118,7 +118,11 @@ export default class Actor5e extends Actor {
 
     // Inventory encumbrance
     data.attributes.encumbrance = this._computeEncumbrance(actorData);
-
+	
+    if (actorData.type === "starship") {
+      data.attributes.fuel = this._computeFuel(actorData);
+    }
+  
     // Prepare skills
     this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
 
@@ -726,6 +730,19 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
   /*  Event Handlers                              */
+  /* -------------------------------------------- */
+  
+  _computeFuel(actorData) {
+    let fuel = actorData.data.attributes.fuel.value;  
+    // Compute Fuel percentage
+      fuel = fuel.toNearest(0.1);
+      const max = actorData.data.attributes.fuel.cap;
+      const pct = Math.clamped((fuel * 100) / max, 0, 100);
+      return { value: fuel.toNearest(0.1), max, pct, fueled: pct > 0 };	
+    }
+  
+  /* -------------------------------------------- */  
+  /*  Socket Listeners and Handlers
   /* -------------------------------------------- */
 
   /** @inheritdoc */

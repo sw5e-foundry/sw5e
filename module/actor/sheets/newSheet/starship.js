@@ -169,7 +169,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     const refuel = this.actor.data.effect.changes[fuelcappos].value;
     this.actor.update({"data.attributes.fuel.value": refuel});
   }
-
+}
   function engineSliderUpdate(num) {
     var symbol;
     var coefficient;
@@ -232,4 +232,3 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     document.querySelector('#weaponslideroutput').value = slideroutput;
     this.actor.update({"data.attributes.weaponpow": coefficient});
   } 
-}

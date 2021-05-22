@@ -323,6 +323,29 @@ export default class Actor5e extends Actor {
     // Proficiency
      data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
 
+    // Determine Starship Tier and available Hull/Shield dice based on owned starship items
+    const size = actorData.items.filter(i => i.type === "starship");
+    if (size.length === 0) return;
+    const sizeData = size[0].data;
+    const tiers = parseInt(sizeData.tier) || 0;
+    data.details.tier = tiers;
+    data.traits.size = sizeData.size;
+    data.attributes.cargcap = (parseInt(sizeData.cargoCap) || 0);
+    data.attributes.crewcap = (parseInt(sizeData.minCrew) || 1);
+    data.attributes.fuel.cap = (parseInt(sizeData.fuelCap) || 5);
+    data.attributes.fuel.cost = sizeData.fuelCost;
+    data.attributes.hsm = sizeData.hardpointSizeMod;
+    data.attributes.hull.die = sizeData.hullDice;
+    data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
+    data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
+    // if hull.value .max = null then calculate them out
+    data.attributes.shld.die = sizeData.shldDice;
+    data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
+    data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
+    // if shld.value .max = null then calculate them out
+    data.attributes.mods.max = sizeData.modBaseCap;
+    data.attributes.pwrdice.die = SW5E.powerDieTypes[tiers];
+
     // Link hull to hp and shields to temp hp
     //data.attributes.hull.value = data.attributes.hp.value;
     //data.attributes.hull.max = data.attributes.hp.max;

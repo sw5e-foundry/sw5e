@@ -468,7 +468,6 @@ SW5E.healingTypes = {
   "temphp": "SW5E.HealingTemp"
 };
 
-
 /* -------------------------------------------- */
 
 
@@ -648,7 +647,7 @@ SW5E.starshipSkills = {
   "dat": "SW5E.StarshipSkillDat",
   "hid": "SW5E.StarshipSkillHid",
   "imp": "SW5E.StarshipSkillImp",
-  "int": "SW5E.StarshipSkillInt",
+  "inf": "SW5E.StarshipSkillInf",
   "man": "SW5E.StarshipSkillMan",
   "men": "SW5E.StarshipSkillMen",
   "pat": "SW5E.StarshipSkillPat",

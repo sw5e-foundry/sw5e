@@ -117,6 +117,152 @@
                 </div>
             </div>
 
+            {{!-- Construction --}}
+
+            <div class="form-group">
+                <label>{{localize "SW5E.StockCost"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.constBaseCost" value="{{data.constBaseCost}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinConstWorkforce"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.constMinWorkforce" value="{{data.constMinWorkforce}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.UpgradeCostMult"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.upgrdCostMult" value="{{data.upgrdCostMult}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinUpgradeWorkforce"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.upgrdMinWorkforce" value="{{data.upgrdMinWorkforce}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseSpaceSpeed"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.baseSpaceSpeed" value="{{data.baseSpaceSpeed}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseTurnSpeed"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.baseTurnSpeed" value="{{data.baseTurnSpeed}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinCrewWorkforce"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.crewMinWorkforce" value="{{data.crewMinWorkforce}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            {{!-- Modifications --}}
+            
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseModCap"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modBaseCap" value="{{data.modBaseCap}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseMaxSuites"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modMaxSuitesBase" value="{{data.modMaxSuitesBase}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseMaxConMult"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modMaxSuitesMult" value="{{data.modMaxSuitesMult}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MaxSuiteCapacity"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modMaxSuiteCap" value="{{data.modMaxSuiteCap}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.ModCostMult"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modCostMult" value="{{data.modCostMult}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinModWorkforce"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.modMinWorkforce" value="{{data.modMinWorkforce}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.HardpointStrMult"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.hardpointMult" value="{{data.hardpointMult}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            {{!-- Equipment --}}
+            
+            <div class="form-group">
+                <label>{{localize "SW5E.EquipCostMult"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.equipCostMult" value="{{data.equipCostMult}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinEquipWorkforce"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.equipMinWorkforce" value="{{data.equipMinWorkforce}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.CargoCap"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.cargoCap" value="{{data.cargoCap}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FuelCost"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.fuelCost" value="{{data.fuelCost}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FuelCap"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.fuelCap" value="{{data.fuelCap}}" data-dtype="Number"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FoodCap"}}</label>
+                <div class="form-fields">
+                    <input type="text" placeholder="0" name="data.foodCap" value="{{data.foodCap}}" data-dtype="Number"/>
+                </div>
+            </div>
+
         </div>
     </section>
 </form>

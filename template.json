@@ -416,9 +416,6 @@
     "starship": {
       "templates": ["common"],
       "attributes": {
-        "cargcap": 0,
-        "crewcap": 0,
-        "cscap": 0,
         "death": {
           "failure": 0,
           "success": 0
@@ -444,14 +441,17 @@
           }
         },
         "dr": 0,
-        "engpow": 1,
-        "exhaustion": 0,
+        "equip":{
+          "cargoCap": 0,
+          "crewMinWorkforce": 0,
+          "foodCap": 0  
+        },
+        "systemDamage": 0,
         "fuel": {
           "cap": 0,
           "cost": 0,
           "value": 0
         },
-        "hsm": 1,
         "hull": {
           "die": "",
           "dice": 0,
@@ -461,12 +461,23 @@
           "max": null
         },
         "mods": {
-          "open": 10,
-          "max": 10
+          "capUsed": 0,
+          "capLimit": 10,
+          "installed": 0,
+          "suites": {
+            "open": 0,
+            "max": 0,
+            "cap": 0
+          }
         },
-        "pwrdice": {
+        "power": {
           "die": "",
           "recovery": 1,
+          "routing":{
+            "engines": 1,
+            "shields": 1,
+            "weapons": 1
+          },
           "central": {
             "value": 0,
             "max": 0
@@ -503,13 +514,7 @@
           "value": null,
           "max": null
         },
-        "shieldpow": 1,
-        "sscap": 0,
-        "suites": {
-          "open": 0,
-          "max": 0
-        },
-        "weaponpow": 1
+        "used": false
       },
       "details": {
         "tier": 0,
@@ -1046,28 +1051,33 @@
       "tier": 0,
       "hullDice": "d6",
       "hullDiceStart": 3,
-      "hullDiceRolled":[6],
+      "hullDiceRolled":[6,4,4],
       "hullDiceUsed": 0,
       "shldDice": "d6",
       "shldDiceStart": 3,
-      "shldDiceRolled":[6],
+      "shldDiceRolled":[6,4,4],
       "shldDiceUsed": 0,
+      "pwrDice": "1",
+      "constBaseCost": 50000,
+      "constMinWorkforce": 5,
+      "upgrdCostMult": 1,
+      "upgrdMinWorkforce": 1,
+      "baseSpaceSpeed": 300,
+      "baseTurnSpeed": 250,
+      "crewMinWorkforce": 1,
+      "modBaseCap": 20,
       "modMaxSuitesBase": 0,
       "modMaxSuitesMult": 1,
-      "modBaseCap": 20,
-      "modSizeCostMult": 1,
+      "modMaxSuiteCap": 1,
+      "modCostMult": 1,
       "modMinWorkforce": 2,
-      "suiteCap": 1,
+      "hardpointMult": 2,
       "equipCostMult": 1,
       "equipMinWorkforce": 1,
       "cargoCap": 2,
       "fuelCost": 50,
       "fuelCap": 10,
       "foodCap": 10,
-      "baseTurnSpeed": 250,
-      "hardpointSizeMod": 2,
-      "minCrew": 1,
-      "pwrDice": "1",
       "source": "SotG"
     },
     "starshipfeature": {

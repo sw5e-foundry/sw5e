@@ -79,8 +79,29 @@ SW5E.attunements = {
 
 
 SW5E.weaponProficiencies = {
+	"blp": "SW5E.WeaponBlasterPistolProficiency",
+	"chk": "SW5E.WeaponChakramProficiency",
+	"dbb": "SW5E.WeaponDoubleBladeProficiency",
+	"dbs": "SW5E.WeaponDoubleSaberProficiency",
+	"dsh": "SW5E.WeaponDoubleShotoProficiency",
+	"dsw": "SW5E.WeaponDoubleSwordProficiency",
+	"hid": "SW5E.WeaponHiddenBladeProficiency",
+	"imp": "SW5E.WeaponImprovisedProficiency",
+	"lfl": "SW5E.WeaponLightFoilProficiency",
+	"lrg": "SW5E.WeaponLightRingProficiency",
+  "mar": "SW5E.WeaponMartialProficiency",
+	"mrb": "SW5E.WeaponMartialBlasterProficiency",
+	"mlw": "SW5E.WeaponMartialLightweaponProficiency",
+	"mvb": "SW5E.WeaponMartialVibroweaponProficiency",
+	"ntl": "SW5E.WeaponNaturalProficiency",
+	"swh": "SW5E.WeaponSaberWhipProficiency",
   "sim": "SW5E.WeaponSimpleProficiency",
-  "mar": "SW5E.WeaponMartialProficiency"
+	"smb": "SW5E.WeaponSimpleBlasterProficiency",
+	"slw": "SW5E.WeaponSimpleLightweaponProficiency",
+	"svb": "SW5E.WeaponSimpleVibroweaponProficiency",
+	"tch": "SW5E.WeaponTechbladeProficiency",
+	"vbr": "SW5E.WeaponVibrorapierProficiency",
+	"vbw": "SW5E.WeaponVibrowhipProficiency"
 };
 
 SW5E.toolProficiencies = {
@@ -367,6 +388,7 @@ SW5E.movementTypes = {
   "crawl": "SW5E.MovementCrawl",
   "fly": "SW5E.MovementFly",
   "roll": "SW5E.MovementRoll",
+  "space": "SW5E.MovementSpace",
   "swim": "SW5E.MovementSwim",
   "turn": "SW5E.MovementTurn",
   "walk": "SW5E.MovementWalk",

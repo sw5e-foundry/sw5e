@@ -79,8 +79,29 @@ SW5E.attunements = {
 
 
 SW5E.weaponProficiencies = {
+	"blp": "SW5E.WeaponBlasterPistolProficiency",
+	"chk": "SW5E.WeaponChakramProficiency",
+	"dbb": "SW5E.WeaponDoubleBladeProficiency",
+	"dbs": "SW5E.WeaponDoubleSaberProficiency",
+	"dsh": "SW5E.WeaponDoubleShotoProficiency",
+	"dsw": "SW5E.WeaponDoubleSwordProficiency",
+	"hid": "SW5E.WeaponHiddenBladeProficiency",
+	"imp": "SW5E.WeaponImprovisedProficiency",
+	"lfl": "SW5E.WeaponLightFoilProficiency",
+	"lrg": "SW5E.WeaponLightRingProficiency",
+  "mar": "SW5E.WeaponMartialProficiency",
+	"mrb": "SW5E.WeaponMartialBlasterProficiency",
+	"mlw": "SW5E.WeaponMartialLightweaponProficiency",
+	"mvb": "SW5E.WeaponMartialVibroweaponProficiency",
+	"ntl": "SW5E.WeaponNaturalProficiency",
+	"swh": "SW5E.WeaponSaberWhipProficiency",
   "sim": "SW5E.WeaponSimpleProficiency",
-  "mar": "SW5E.WeaponMartialProficiency"
+	"smb": "SW5E.WeaponSimpleBlasterProficiency",
+	"slw": "SW5E.WeaponSimpleLightweaponProficiency",
+	"svb": "SW5E.WeaponSimpleVibroweaponProficiency",
+	"tch": "SW5E.WeaponTechbladeProficiency",
+	"vbr": "SW5E.WeaponVibrorapierProficiency",
+	"vbw": "SW5E.WeaponVibrowhipProficiency"
 };
 
 SW5E.toolProficiencies = {
@@ -367,6 +388,7 @@ SW5E.movementTypes = {
   "crawl": "SW5E.MovementCrawl",
   "fly": "SW5E.MovementFly",
   "roll": "SW5E.MovementRoll",
+  "space": "SW5E.MovementSpace",
   "swim": "SW5E.MovementSwim",
   "turn": "SW5E.MovementTurn",
   "walk": "SW5E.MovementWalk",
@@ -494,20 +516,108 @@ SW5E.powerDieTypes = [1, "d4", "d6", "d8", "d10", "d12"];
   * @type {Array.<string>}
  */
 
-SW5E.baseStarshipSettingsTiny = {"changes":[{"key":"data.abilities.dex.value","value":4,"mode":2,"priority":20},{"key":"data.abilities.dex.proficient","value":1,"mode":4,"priority":20}, {"key":"data.abilities.con.value","value":-4,"mode":2,"priority":20}, {"key":"data.abilities.int.proficient","value":1,"mode":4,"priority":20}], "attributes":{"crewcap":null, "hd":"1d4", "hp":{"value":4, "max":4, "temp":4, "tempmax":4}, "hsm":1, "sd":"1d4", "mods":{"open":10, "max":10}, "suites":{"open":0, "max":0}, "movement":{"fly":300, "turn":300}}};
-
-SW5E.baseStarshipSettingsSm = {"changes":[{"key":"data.abilities.dex.value","value":2,"mode":2,"priority":20},{"key":"data.abilities.dex.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":-2,"mode":2,"priority":20},{"key":"data.abilities.str.proficient","value":1,"mode":4,"priority":20}], "attributes":{"crewcap":1, "hd":"3d6", "hp":{"value":6, "max":6, "temp":6, "tempmax":6}, "hsm":2, "sd":"3d6", "mods":{"open":20, "max":20}, "suites":{"open":-1, "max":-1}, "movement":{"fly":300, "turn":250}}};
-
-SW5E.baseStarshipSettingsMed = {"attributes":{"crewcap":1, "hd":"5d8", "hp":{"value":8, "max":8, "temp":8, "tempmax":8}, "hsm":3, "sd":"5d8", "mods":{"open":30, "max":30}, "suites":{"open":3, "max":3}, "movement":{"fly":300, "turn":200}}};
-
-SW5E.baseStarshipSettingsLg = {"changes":[{"key":"data.abilities.dex.value","value":-2,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":2,"mode":2,"priority":20}], "attributes":{"crewcap":200, "hd":"7d10", "hp":{"value":10, "max":10, "temp":10, "tempmax":10}, "hsm":4, "sd":"7d10", "mods":{"open":50, "max":50}, "suites":{"open":3, "max":3}, "movement":{"fly":300, "turn":150}}};
-
-SW5E.baseStarshipSettingsHuge = {"changes":[{"key":"data.abilities.dex.value","value":-4,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":4,"mode":2,"priority":20}], "attributes":{"crewcap":4000, "hd":"9d12", "hp":{"value":12, "max":12, "temp":12, "tempmax":12}, "hsm":2, "sd":"9d12", "mods":{"open":60, "max":60}, "suites":{"open":6, "max":6}, "movement":{"fly":300, "turn":100}}};
-
-SW5E.baseStarshipSettingsGrg = {"changes":[{"key":"data.abilities.dex.value","value":-6,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":6,"mode":2,"priority":20}], "attributes":{"crewcap":80000, "hd":"11d20", "hp":{"value":20, "max":20, "temp":20, "tempmax":20}, "hsm":3, "sd":"11d20", "mods":{"open":70, "max":70}, "suites":{"open":10, "max":10}, "movement":{"fly":300, "turn":50}}};
-
+SW5E.baseStarshipSettings = {
+  "tiny": {"changes":[{"key":"data.abilities.dex.value","value":4,"mode":2,"priority":20},{"key":"data.abilities.dex.proficient","value":1,"mode":4,"priority":20}, {"key":"data.abilities.con.value","value":-4,"mode":2,"priority":20}, {"key":"data.abilities.int.proficient","value":1,"mode":4,"priority":20}], "attributes":{"crewcap":null, "hd":"1d4", "hp":{"value":4, "max":4, "temp":4, "tempmax":4}, "hsm":1, "sd":"1d4", "mods":{"open":10, "max":10}, "suites":{"open":0, "max":0}, "movement":{"fly":300, "turn":300}}},
+  "sm": {"changes":[{"key":"data.abilities.dex.value","value":2,"mode":2,"priority":20},{"key":"data.abilities.dex.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":-2,"mode":2,"priority":20},{"key":"data.abilities.str.proficient","value":1,"mode":4,"priority":20}], "attributes":{"crewcap":1, "hd":"3d6", "hp":{"value":6, "max":6, "temp":6, "tempmax":6}, "hsm":2, "sd":"3d6", "mods":{"open":20, "max":20}, "suites":{"open":-1, "max":-1}, "movement":{"fly":300, "turn":250}}},
+  "med": {"attributes":{"crewcap":1, "hd":"5d8", "hp":{"value":8, "max":8, "temp":8, "tempmax":8}, "hsm":3, "sd":"5d8", "mods":{"open":30, "max":30}, "suites":{"open":3, "max":3}, "movement":{"fly":300, "turn":200}}},
+  "lg": {"changes":[{"key":"data.abilities.dex.value","value":-2,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":2,"mode":2,"priority":20}], "attributes":{"crewcap":200, "hd":"7d10", "hp":{"value":10, "max":10, "temp":10, "tempmax":10}, "hsm":4, "sd":"7d10", "mods":{"open":50, "max":50}, "suites":{"open":3, "max":3}, "movement":{"fly":300, "turn":150}}},
+  "huge": {"changes":[{"key":"data.abilities.dex.value","value":-4,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":4,"mode":2,"priority":20}], "attributes":{"crewcap":4000, "hd":"9d12", "hp":{"value":12, "max":12, "temp":12, "tempmax":12}, "hsm":2, "sd":"9d12", "mods":{"open":60, "max":60}, "suites":{"open":6, "max":6}, "movement":{"fly":300, "turn":100}}},
+  "grg": {"changes":[{"key":"data.abilities.dex.value","value":-6,"mode":2,"priority":20},{"key":"data.abilities.wis.proficient","value":1,"mode":4,"priority":20},{"key":"data.abilities.con.value","value":6,"mode":2,"priority":20}], "attributes":{"crewcap":80000, "hd":"11d20", "hp":{"value":20, "max":20, "temp":20, "tempmax":20}, "hsm":3, "sd":"11d20", "mods":{"open":70, "max":70}, "suites":{"open":10, "max":10}, "movement":{"fly":300, "turn":50}}}
+}
 
 /* -------------------------------------------- */
+
+/**
+ * The set of starship roles which can be selected in SW5e
+ * @type {Object}
+ */
+
+ SW5E.starshipRolestiny = {
+};
+SW5E.starshipRolessm = {
+  "bmbr": "SW5E.StarshipBomber", 
+  "intc": "SW5E.StarshipInterceptor", 
+  "scout": "SW5E.StarshipScout", 
+  "scrm": "SW5E.StarshipScrambler", 
+  "shtl": "SW5E.StarshipShuttle", 
+  "strf": "SW5E.StarshipStrikeFighter"
+};
+SW5E.starshipRolesmed = {
+  "cour": "SW5E.StarshipCourier", 
+  "frtr": "SW5E.StarshipFreighter", 
+  "gnbt": "SW5E.StarshipGunboat", 
+  "msbt": "SW5E.StarshipMissileBoat", 
+  "nvgt": "SW5E.StarshipNavigator", 
+  "yacht": "SW5E.StarshipYacht"
+};
+SW5E.starshipRoleslg = {
+  "ambd": "SW5E.StarshipAmbassador",
+  "corv": "SW5E.StarshipCorvette",
+  "crui": "SW5E.StarshipCruiser",
+  "expl": "SW5E.StarshipExplorer",
+  "pics": "SW5E.StarshipPicketShip",
+  "shtd": "SW5E.StarshipShipsTender"
+};
+SW5E.starshipRoleshuge = {
+  "btls": "SW5E.StarshipBattleship",
+  "carr": "SW5E.StarshipCarrier",
+  "colo": "SW5E.StarshipColonizer",
+  "cmds": "SW5E.StarshipCommandShip",
+  "intd": "SW5E.StarshipInterdictor",
+  "jugg": "SW5E.StarshipJuggernaut"
+};
+SW5E.starshipRolesgrg = {
+  "blks": "SW5E.StarshipBlockadeShip",
+  "flgs": "SW5E.StarshipFlagship",
+  "inct": "SW5E.StarshipIndustrialCenter",
+  "mbmt": "SW5E.StarshipMobileMetropolis",
+  "rsrc": "SW5E.StarshipResearcher",
+  "wars": "SW5E.StarshipWarship"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of starship role bonuses to starships which can be selected in SW5e
+ * @type {Object}
+ */
+
+ SW5E.starshipRoleBonuses = {
+  "bmbr":  {"changes":[{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "intc": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20}]},
+  "scout": {"changes":[{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20}]},
+  "scrm": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20}]},
+  "shtl": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20}]},
+  "strf": {"changes":[{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "cour": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20}]},
+  "frtr": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20}]},
+  "gnbt": {"changes":[{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "msbt": {"changes":[{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "nvgt": {"changes":[{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20}]},
+  "yacht": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20}]},
+  "ambd": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20}]},
+  "corv": {"changes":[{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20}]},
+  "crui": {"changes":[{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "expl": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20}]},
+  "pics": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "shtd": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "btls": {"changes":[{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "carr": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20}]},
+  "colo": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20}]},
+  "cmds": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "intd": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "jugg": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "blks": {"changes":[{"key":"data.abilities.dex.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "flgs": {"changes":[{"key":"data.abilities.cha.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "inct": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]},
+  "mbmt": {"changes":[{"key":"data.abilities.con.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "rsrc": {"changes":[{"key":"data.abilities.int.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20}]},
+  "wars": {"changes":[{"key":"data.abilities.wis.value","value":1,"mode":2,"priority":20},{"key":"data.abilities.str.value","value":1,"mode":2,"priority":20}]}
+};
+
+/* -------------------------------------------- */
+
+
 
 /**
  * The set of possible sensory perception types which an Actor may have
@@ -568,53 +678,6 @@ SW5E.starshipSkills = {
   "reg": "SW5E.StarshipSkillReg",
   "scn": "SW5E.StarshipSkillScn",
   "swn": "SW5E.StarshipSkillSwn"
-};
-
-/* -------------------------------------------- */
-
-/**
- * The set of starship roles which can be selected in SW5e
- * @type {Object}
- */
-SW5E.starshipRolessm = {
-  "bmbr": "SW5E.StarshipBomber", 
-  "intc": "SW5E.StarshipInterceptor", 
-  "scout": "SW5E.StarshipScout", 
-  "scrm": "SW5E.StarshipScrambler", 
-  "shtl": "SW5E.StarshipShuttle", 
-  "strf": "SW5E.StarshipStrikeFighter"
-};
-SW5E.starshipRolesmed = {
-  "cour": "SW5E.StarshipCourier", 
-  "frtr": "SW5E.StarshipFreighter", 
-  "gnbt": "SW5E.StarshipGunboat", 
-  "msbt": "SW5E.StarshipMissileBoat", 
-  "nvgt": "SW5E.StarshipNavigator", 
-  "yacht": "SW5E.StarshipYacht"
-};
-SW5E.starshipRoleslg = {
-  "ambd": "SW5E.StarshipAmbassador",
-  "corv": "SW5E.StarshipCorvette",
-  "crui": "SW5E.StarshipCruiser",
-  "expl": "SW5E.StarshipExplorer",
-  "pics": "SW5E.StarshipPicketShip",
-  "shtd": "SW5E.StarshipShipsTender"
-};
-SW5E.starshipRoleshuge = {
-  "btls": "SW5E.StarshipBattleship",
-  "carr": "SW5E.StarshipCarrier",
-  "colo": "SW5E.StarshipColonizer",
-  "cmds": "SW5E.StarshipCommandShip",
-  "intd": "SW5E.StarshipInterdictor",
-  "jugg": "SW5E.StarshipJuggernaut"
-};
-SW5E.starshipRolesgrg = {
-  "blks": "SW5E.StarshipBlockadeShip",
-  "flgs": "SW5E.StarshipFlagship",
-  "inct": "SW5E.StarshipIndustrialCenter",
-  "mbmt": "SW5E.StarshipMobileMetropolis",
-  "rsrc": "SW5E.StarshipResearcher",
-  "wars": "SW5E.StarshipWarship"
 };
 
 /* -------------------------------------------- */

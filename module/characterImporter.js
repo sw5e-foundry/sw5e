@@ -285,33 +285,25 @@ export default class CharacterImporter {
     }
   }
 
-  static addImportButton() {
-    const header = $("#actors").find("header.directory-header");
-    const search = $("#actors").children().find("div.header-search");
-    const newImportButtonDiv = $("#actors").children().find("div.header-actions").clone();
-    const newSearch = search.clone();
-    search.remove();
-    newImportButtonDiv.attr("id", "character-sheet-import");
-    header.append(newImportButtonDiv);
-    newImportButtonDiv.children("button").remove();
-    newImportButtonDiv.append(
-      "<button class='create-entity' id='cs-import-button'><i class='fas fa-upload'></i> Import Character</button>"
+  static addImportButton(html) {
+    const actionButtons = html.find(".header-actions");
+    actionButtons[0].insertAdjacentHTML(
+      "afterend",
+      `<div class="header-actions action-buttons flexrow"><button class="create-entity cs-import-button"><i class="fas fa-upload"></i> Import Character</button></div>`
     );
-    newSearch.appendTo(header);
 
-    let characterImportButton = $("#cs-import-button");
+    let characterImportButton = $(".cs-import-button");
     characterImportButton.click(() => {
-      let content =
-        "<h1>Saved Character JSON Import</h1> " +
-        '<label for="character-json">Paste character JSON here:</label> ' +
-        "</br>" +
-        '<textarea id="character-json" name="character-json" rows="10" cols="50"></textarea>';
+      let content = `<h1>Saved Character JSON Import</h1>
+        <label for="character-json">Paste character JSON here:</label>
+        </br>
+        <textarea id="character-json" name="character-json" rows="10" cols="50"></textarea>`;
       let importDialog = new Dialog({
         title: "Import Character from SW5e.com",
         content: content,
         buttons: {
           Import: {
-            icon: '<i class="fas fa-file-import"></i>',
+            icon: `<i class="fas fa-file-import"></i>`,
             label: "Import Character",
             callback: () => {
               let characterData = $("#character-json").val();
@@ -320,7 +312,7 @@ export default class CharacterImporter {
             }
           },
           Cancel: {
-            icon: '<i class="fas fa-times-circle"></i>',
+            icon: `<i class="fas fa-times-circle"></i>`,
             label: "Cancel",
             callback: () => {}
           }

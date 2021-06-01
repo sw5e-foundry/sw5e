@@ -76,7 +76,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     let [items, powers, feats, classes, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
 
       // Item details
-      item.img = item.img || DEFAULT_TOKEN;
+      item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.attunement = {
         [CONFIG.SW5E.attunementTypes.REQUIRED]: {
@@ -99,6 +99,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
       // Item toggle state
       this._prepareItemToggleState(item);
+
+      // Primary Class
+      if ( item.type === "class" ) item.isOriginalClass = ( item.data._id === this.actor.data.data.details.originalClass );
 
       // Classify items into types
       if ( item.type === "power" ) arr[1].push(item);
@@ -151,7 +154,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if ( f.data.activation.type ) features.active.items.push(f);
       else features.passive.items.push(f);
     }
-    classes.sort((a, b) => b.levels - a.levels);
+    classes.sort((a, b) => b.data.levels - a.data.levels);
     features.classes.items = classes;
     features.classfeatures.items = classfeatures;
     features.archetype.items = archetypes;
@@ -243,7 +246,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   _onToggleItem(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     const attr = item.data.type === "power" ? "data.preparation.prepared" : "data.equipped";
     return item.update({[attr]: !getProperty(item.data, attr)});
   }
@@ -293,6 +296,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }
 
     // Default drop handling if levels were not added
-    super._onDropItemCreate(itemData);
+    return super._onDropItemCreate(itemData);
   }
 }

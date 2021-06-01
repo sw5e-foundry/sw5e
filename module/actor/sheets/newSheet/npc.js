@@ -1,3 +1,4 @@
+import Actor5e from "../../entity.js";
 import ActorSheet5e from "./base.js";
 
 /**
@@ -27,6 +28,11 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
+  /** @override */
+  static unsupportedItemTypes = new Set(["class"]);
+
+  /* -------------------------------------------- */
+
   /**
    * Organize Owned Items for rendering the NPC sheet
    * @private
@@ -43,7 +49,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 
     // Start by classifying items into groups for rendering
     let [forcepowers, techpowers, other] = data.items.reduce((arr, item) => {
-      item.img = item.img || DEFAULT_TOKEN;
+      item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.hasUses = item.data.uses && (item.data.uses.max > 0);
       item.isOnCooldown = item.data.recharge && !!item.data.recharge.value && (item.data.recharge.charged === false);
@@ -80,17 +86,19 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     data.techPowerbook = techPowerbook;
   }
 
-
   /* -------------------------------------------- */
 
   /** @override */
-  getData() {
-    const data = super.getData();
+  getData(options) {
+    const data = super.getData(options);
 
     // Challenge Rating
     const cr = parseFloat(data.data.details.cr || 0);
     const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};
     data.labels["cr"] = cr >= 1 ? String(cr) : crLabels[cr] || 1;
+
+    // Creature Type
+    data.labels["type"] = this.actor.labels.creatureType;
     return data;
   }
 
@@ -99,7 +107,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /** @override */
-  _updateObject(event, formData) {
+  async _updateObject(event, formData) {
 
     // Format NPC Challenge Rating
     const crs = {"1/8": 0.125, "1/4": 0.25, "1/2": 0.5};
@@ -109,7 +117,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     if ( cr ) formData[crv] = cr < 1 ? cr : parseInt(cr);
 
     // Parent ActorSheet update steps
-    super._updateObject(event, formData);
+    return super._updateObject(event, formData);
   }
 
   /* -------------------------------------------- */

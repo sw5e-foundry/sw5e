@@ -21,8 +21,10 @@
 			<span class="npc-size">{{lookup config.actorSizes data.traits.size}}</span>
 			<input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
 				placeholder="{{ localize 'SW5E.Alignment' }}" />
-                <input type="text" name="data.details.type" value="{{data.details.type}}"
-                placeholder="{{ localize 'SW5E.Type' }}" />
+                <div class="creature-type roundTransition">
+                    <span title="{{labels.type}}">{{labels.type}}</span>
+                    <a class="config-button" data-action="type" title="{{localize 'SW5E.CreatureTypeConfig'}}"><i class="fas fa-cog"></i></a>
+                </div>
                 <input type="text" name="data.details.source" value="{{data.details.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}" />
         </div>
@@ -111,18 +113,20 @@
                 <section class="skills">
                     <h1>{{localize "SW5E.Skills"}}</h1>
                     <ol>
-                        {{#each data.skills as |skill s|}}
-                        <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
-                            <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.value}}"
-                                data-dtype="Number" />
-                            <button class="proficiency-toggle skill-proficiency"
-                                title="{{skill.hover}}">{{{skill.icon}}}</button>
-                            <span class="skill-name rollable">{{skill.label}}</span>
-                            <span class="skill-ability">{{skill.ability}}</span>
-                            <span class="skill-mod">{{numberFormat skill.total decimals=0 sign=true}}</span>
-                            {{!-- <input class="skill-bonus" name="data.skills.{{s}}.bonus" type="text" value="{{numberFormat skill.bonus decimals=0 sign=true}}" data-dtype="Number" placeholder="0" title="Misc. Modifier"/> --}}
-                            {{!-- <span class="skill-passive">({{skill.passive}})</span> --}}
-                        </li>
+                        {{#each config.skills as |label s|}}
+                            {{#with (lookup ../data.skills s) as |skill|}}
+                                <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
+                                    <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.value}}"
+                                        data-dtype="Number" />
+                                    <button class="proficiency-toggle skill-proficiency"
+                                        title="{{skill.hover}}">{{{skill.icon}}}</button>
+                                    <span class="skill-name rollable">{{label}}</span>
+                                    <span class="skill-ability">{{skill.ability}}</span>
+                                    <span class="skill-mod">{{numberFormat skill.total decimals=0 sign=true}}</span>
+                                    {{!-- <input class="skill-bonus" name="data.skills.{{s}}.bonus" type="text" value="{{numberFormat skill.bonus decimals=0 sign=true}}" data-dtype="Number" placeholder="0" title="Misc. Modifier"/> --}}
+                                    {{!-- <span class="skill-passive">({{skill.passive}})</span> --}}
+                                </li>
+                            {{/with}}
                         {{/each}}
                     </ol>
                 </section>
@@ -191,7 +195,7 @@
             <div class="panel">
                 <section>
                     <h1>{{localize "SW5E.Biography"}}</h1>
-                    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable}}
+                    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable rollData=rollData}}
 
                 </section>
             </div>

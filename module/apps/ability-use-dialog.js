@@ -44,7 +44,7 @@ export default class AbilityUseDialog extends Dialog {
       consumePowerSlot: false,
       consumeRecharge: recharges,
       consumeResource: !!itemData.consume.target,
-      consumeUses: uses.max,
+      consumeUses: uses.per && (uses.max > 0),
       canUse: recharges ? recharge.charged : sufficientUses,
       createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
       errors: []
@@ -169,7 +169,7 @@ export default class AbilityUseDialog extends Dialog {
     }));
 
     // Merge power casting data
-    return mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
+    return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
   }
 
   /* -------------------------------------------- */
@@ -218,11 +218,5 @@ export default class AbilityUseDialog extends Dialog {
         per: CONFIG.SW5E.limitedUsePeriods[uses.per]
       });
     }
-  }
-
-  /* -------------------------------------------- */
-
-  static _handleSubmit(formData, item) {
-
   }
 }

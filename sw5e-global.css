@@ -206,7 +206,8 @@ input[type="password"],
 input[type="date"],
 input[type="time"],
 select,
-textarea {
+textarea,
+.roundTransition {
   border-radius: 4px;
   transition: all 0.3s;
 }
@@ -216,7 +217,8 @@ input[type="password"]:hover,
 input[type="date"]:hover,
 input[type="time"]:hover,
 select:hover,
-textarea:hover {
+textarea:hover,
+.roundTransition:hover {
   box-shadow: none;
 }
 input[type="text"]:focus,
@@ -225,7 +227,8 @@ input[type="password"]:focus,
 input[type="date"]:focus,
 input[type="time"]:focus,
 select:focus,
-textarea:focus {
+textarea:focus,
+.roundTransition:focus {
   box-shadow: none;
 }
 input[type=range] {
@@ -858,6 +861,7 @@ input[type="reset"]:disabled {
   font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 24px;
+  width: 100%;
 }
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   line-height: 26px;
@@ -1686,12 +1690,33 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor.npc .swalt-sheet header h1.character-name {
   align-self: auto;
 }
-.sw5e.sheet.actor.npc .swalt-sheet header .npc-size {
+.sw5e.sheet.actor.npc .swalt-sheet header .npc-size,
+.sw5e.sheet.actor.npc .swalt-sheet header .creature-type {
   font-family: 'Russo One';
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 28px;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header div.creature-type {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 4px;
+  border: 1px solid transparent;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header div.creature-type span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header div.creature-type .config-button {
+  display: none;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2em;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header div.creature-type:hover .config-button {
+  display: block;
 }
 .sw5e.sheet.actor.npc .swalt-sheet header .attributes {
   grid-template-columns: repeat(3, 1fr);

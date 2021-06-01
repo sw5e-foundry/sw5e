@@ -140,6 +140,7 @@
           height: auto;
           .russoOne(17px);
           line-height: 24px;
+          width: 100%;
         }
 
         .proficiency {
@@ -1053,10 +1054,34 @@
         h1.character-name {
           align-self: auto;
         }
-        .npc-size {
+        .npc-size, .creature-type {
           .russoOne(18px);
           line-height: 28px;
         }
+
+        div.creature-type {
+          display: flex;
+          justify-content: space-between;
+          padding: 1px 4px;
+          border: 1px solid transparent;
+
+          span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .config-button {
+            display: none;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 2em;
+          }
+          &:hover .config-button {
+            display: block;
+          }
+        }
+
         .attributes {
           grid-template-columns: repeat(3, 1fr);
           footer {

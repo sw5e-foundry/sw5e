@@ -333,6 +333,7 @@
       },
       "details": {
         "background": "",
+        "originalClass": "",
         "xp": {
           "value": 0,
           "min": 0,
@@ -382,7 +383,12 @@
     "npc": {
       "templates": ["common", "creature"],
       "details": {
-        "type": "",
+        "type": {
+          "value": "",
+          "subtype": "",
+          "swarm": "",
+          "custom": ""
+        },
         "environment": "",
         "cr": 1,
         "powerForceLevel": 0,
@@ -880,13 +886,17 @@
       "archetype": "",
       "hitDice": "d6",
       "hitDiceUsed": 0,
+      "saves": [],
       "skills": {
         "number": 2,
         "choices": [],
         "value": []
       },
       "source": "",
-      "powercasting": "none"
+      "powercasting": {
+        "progression": "none",
+        "ability": ""
+      }
     },
     "classfeature": {
       "templates": ["itemDescription", "activatedEffect", "action"],

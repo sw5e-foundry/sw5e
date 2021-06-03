@@ -342,15 +342,13 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
-  /* -------------------------------------------- */
-
   /**
    * Prepare starship type-specific data
    * @param actorData
    * @private
    */
   _prepareStarshipData(actorData) {
-      const data = actorData.data;
+    const data = actorData.data;
 
     // Proficiency
     data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
@@ -547,30 +545,32 @@ export default class Actor5e extends Actor {
           break;      }
     }
 
-    // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
-    // TODO: This could be cleaned up a little, one change at a time though
-    if (!isNPC && forceProgression.classes > 1) {
-      forceProgression.levels = Math.floor(forceProgression.multi);
-      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
+    if (isNPC) {
+      // EXCEPTION: NPC with an explicit power-caster level
+      if (ad.details.powerForceLevel) {
+        forceProgression.levels = ad.details.powerForceLevel;
+        ad.attributes.force.level = forceProgression.levels;
+        forceProgression.maxClass = ad.attributes.powercasting;
+        forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
+      }
+      if (ad.details.powerTechLevel) {
+        techProgression.levels = ad.details.powerTechLevel;
+        ad.attributes.tech.level = techProgression.levels;
+        techProgression.maxClass = ad.attributes.powercasting;
+        techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
+      }
+    } else {
+      // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
+      if (forceProgression.classes > 1) {
+        forceProgression.levels = Math.floor(forceProgression.multi);
+        forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
+      }
+      if (techProgression.classes > 1) {
+        techProgression.levels = Math.floor(techProgression.multi);
+        techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
+      }
     }
-    if (!isNPC && techProgression.classes > 1) {
-      techProgression.levels = Math.floor(techProgression.multi);
-      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
-    }
-    
-    // EXCEPTION: NPC with an explicit power-caster level
-    if (isNPC && ad.details.powerForceLevel) {
-      forceProgression.levels = ad.details.powerForceLevel;
-      ad.attributes.force.level = forceProgression.levels;
-      forceProgression.maxClass = ad.attributes.powercasting;
-      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
-    }
-    if (isNPC && ad.details.powerTechLevel) {
-      techProgression.levels = ad.details.powerTechLevel;
-      ad.attributes.tech.level = techProgression.levels;
-      techProgression.maxClass = ad.attributes.powercasting;
-      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
-    }
+
 
     // Look up the number of slots per level from the powerLimit table
     let forcePowerLimit = Array.from(SW5E.powerLimit['none']);
@@ -608,17 +608,19 @@ export default class Actor5e extends Actor {
     }
 
     // Set Force and tech power for PC Actors
-    // TODO: Can join these !NPCs to save a whole comparison
-    if (!isNPC && forceProgression.levels){
-      ad.attributes.force.known.max = forceProgression.powersKnown;
-      ad.attributes.force.points.max = forceProgression.points + Math.max(ad.abilities.wis.mod,ad.abilities.cha.mod);
-      ad.attributes.force.level = forceProgression.levels;
+    if (!isNPC) {
+      if (forceProgression.levels) {
+        ad.attributes.force.known.max = forceProgression.powersKnown;
+        ad.attributes.force.points.max = forceProgression.points + Math.max(ad.abilities.wis.mod, ad.abilities.cha.mod);
+        ad.attributes.force.level = forceProgression.levels;
+      }
+      if (techProgression.levels){
+        ad.attributes.tech.known.max = techProgression.powersKnown;
+        ad.attributes.tech.points.max = techProgression.points + ad.abilities.int.mod;
+        ad.attributes.tech.level = techProgression.levels;
+      }
     }
-    if (!isNPC && techProgression.levels){
-      ad.attributes.tech.known.max = techProgression.powersKnown;
-      ad.attributes.tech.points.max = techProgression.points + ad.abilities.int.mod;
-      ad.attributes.tech.level = techProgression.levels;
-    }
+
 
     // Tally Powers Known and check for migration first to avoid errors
     let hasKnownPowers = actorData?.data?.attributes?.force?.known?.value !== undefined;

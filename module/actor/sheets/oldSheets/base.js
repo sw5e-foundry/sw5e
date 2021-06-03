@@ -90,7 +90,7 @@ export default class ActorSheet5e extends ActorSheet {
     // Owned Items
     data.items = actorData.items;
     for ( let i of data.items ) {
-      const item = this.actor.items.get(i.data._id);
+      const item = this.actor.items.get(i._id);
       i.labels = item.labels;
     }
     data.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));

@@ -1559,7 +1559,7 @@ export default class Item5e extends Item {
    */
   _onCreateOwnedPower(data, actorData, isNPC) {
     const updates = {};
-    updates["data.prepared"] = true;       // Automatically prepare powers for everyone
+    updates["data.preparation.prepared"] = true;       // Automatically prepare powers for everyone
     return updates;
   }
 

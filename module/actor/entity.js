@@ -1458,8 +1458,8 @@ export default class Actor5e extends Actor {
     }
 
     // Sort classes which can recover HD, assuming players prefer recovering larger HD first.
-    const sortedClasses = this.items.filter(item => item.data.type === "class").sort((a, b) => {
-      return (parseInt(a.data.data.hitDice.slice(1)) || 0) - (parseInt(a.data.data.hitDice.slice(1)) || 0);
+    const sortedClasses = Object.values(this.classes).sort((a, b) => {
+      return (parseInt(b.data.data.hitDice.slice(1)) || 0) - (parseInt(a.data.data.hitDice.slice(1)) || 0);
     });
 
     let updates = [];

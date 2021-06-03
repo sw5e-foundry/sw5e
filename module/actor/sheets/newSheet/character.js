@@ -221,11 +221,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
   /**
    * Activate event listeners using the prepared sheet HTML
-   * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
+   * @param html {jQuery}   The prepared HTML object ready to be rendered into the DOM
    */
 	activateListeners(html) {
     super.activateListeners(html);
-    if ( !this.options.editable ) return;
+    if ( !this.isEditable ) return;
 
     // Inventory Functions
     // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));

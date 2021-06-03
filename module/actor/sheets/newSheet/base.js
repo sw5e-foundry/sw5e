@@ -393,10 +393,7 @@ export default class ActorSheet5e extends ActorSheet {
   /*  Event Listeners and Handlers
   /* -------------------------------------------- */
 
-  /**
-   * Activate event listeners using the prepared sheet HTML
-   * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
-   */
+  /** @inheritdoc */
   activateListeners(html) {
 
     // Activate Item Filters
@@ -406,6 +403,9 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Item summaries
     html.find('.item .item-name.rollable h4').click(event => this._onItemSummary(event));
+
+    // View Item Sheets
+    html.find('.item-edit').click(this._onItemEdit.bind(this));
 
     // Editable Only Listeners
     if ( this.isEditable ) {
@@ -429,7 +429,6 @@ export default class ActorSheet5e extends ActorSheet {
 
       // Owned Item management
       html.find('.item-create').click(this._onItemCreate.bind(this));
-      html.find('.item-edit').click(this._onItemEdit.bind(this));
       html.find('.item-delete').click(this._onItemDelete.bind(this));
       html.find('.item-collapse').click(this._onItemCollapse.bind(this));
       html.find('.item-uses input').click(ev => ev.target.select()).change(this._onUsesChange.bind(this));

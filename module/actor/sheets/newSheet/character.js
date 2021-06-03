@@ -243,11 +243,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Send Languages to Chat onClick
     html.find('[data-options="share-languages"]').click(event => {
       event.preventDefault();
-      let langs = this.actor.data.data.traits.languages.value.map(l => SW5E.languages[l] || l).join(", ");
+      let langs = this.actor.data.data.traits.languages.value.map(l => CONFIG.SW5E.languages[l] || l).join(", ");
       let custom = this.actor.data.data.traits.languages.custom;
       if (custom) langs += ", " + custom.replace(/;/g, ",");
       let content = `
-        <div class="sw5e chat-card item-card" data-acor-id="${this.actor._id}">
+        <div class="sw5e chat-card item-card" data-acor-id="${this.actor.data._id}">
           <header class="card-header flexrow">
             <img src="${this.actor.data.token.img}" title="" width="36" height="36" style="border: none;"/>
             <h3>Known Languages</h3>
@@ -257,21 +257,25 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       `;
 
       // Send to Chat
-      let rollWhisper = null;
       let rollBlind = false;
       let rollMode = game.settings.get("core", "rollMode");
-      if (["gmroll", "blindroll"].includes(rollMode)) rollWhisper = ChatMessage.getWhisperIDs("GM");
       if (rollMode === "blindroll") rollBlind = true;
-      ChatMessage.create({
+      let data = {
         user: game.user.data._id,
         content: content,
+        blind: rollBlind,
         speaker: {
           actor: this.actor.data._id,
           token: this.actor.token,
           alias: this.actor.name
         },
         type: CONST.CHAT_MESSAGE_TYPES.OTHER
-      });
+      };
+
+      if (["gmroll", "blindroll"].includes(rollMode)) data["whisper"] = ChatMessage.getWhisperRecipients("GM");
+      else if (rollMode === "selfroll") data["whisper"] = [game.users.get(game.user.data._id)];
+
+      ChatMessage.create(data);
     });
 
     // Item Delete Confirmation

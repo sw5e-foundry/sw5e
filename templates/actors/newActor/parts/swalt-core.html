@@ -5,7 +5,7 @@
         <ol>
             {{#each data.abilities as |ability id|}}
             <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
-                <h2 class="ability-name rollable">{{ability.label}}</h4>
+                <h2 class="ability-name rollable">{{ability.label}}</h2>
                     <input class="ability-score" name="data.abilities.{{id}}.value" type="text"
                         value="{{ability.value}}" data-dtype="Number" placeholder="10" />
                     <div class="ability-modifiers">

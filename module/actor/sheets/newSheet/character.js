@@ -486,8 +486,8 @@ async function addFavorites(app, html, data) {
         let v = (comps.vocal) ? "V" : "";
         let s = (comps.somatic) ? "S" : "";
         let m = (comps.material) ? "M" : "";
-        let c = (comps.concentration) ? true : false;
-        let r = (comps.ritual) ? true : false;
+        let c = !!(comps.concentration);
+        let r = !!(comps.ritual);
         item.powerComps = `${v}${s}${m}`;
         item.powerCon = c;
         item.powerRit = r;
@@ -643,11 +643,7 @@ async function addSubTabs(app, html, data) {
       return tab.target == target
     });
     data.options.subTabs[subgroup].map(el => {
-      if(el.target == target) {
-        el.active = true;
-      } else {
-        el.active = false; 
-      }
+      el.active = el.target == target;
       return el;
     })
     

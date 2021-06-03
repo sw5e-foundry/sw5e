@@ -641,8 +641,7 @@ export default class Actor5e extends Actor {
             knownTechPowers++;
             break;
           }
-        } 
-        continue;
+        }
       }
       ad.attributes.force.known.value = knownForcePowers;
       ad.attributes.tech.known.value = knownTechPowers;

@@ -1022,7 +1022,7 @@ SW5E.powerLevels = {
 };
 
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
-// We could use this wit, say, holocrons to produce scrolls
+// We could use this with, say, holocrons to produce scrolls
 /*
 // Power Scroll Compendium UUIDs
 SW5E.powerScrollIds = {
@@ -1262,10 +1262,10 @@ SW5E.characterFlags = {
     type: Boolean	
   },
   "armorIntegration": {
-	  name: "SW5E.FlagsArmorIntegration",
+    name: "SW5E.FlagsArmorIntegration",
     hint: "SW5E.FlagsArmorIntegrationHint",
     section: "SW5E.SpeciesTraits",
-	  type: Boolean
+    type: Boolean
   },
   "businessSavvy": {
     name: "SW5E.FlagsBusinessSavvy",
@@ -1274,7 +1274,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "cannibalize": {
-	  name: "SW5E.FlagsCannibalize",
+    name: "SW5E.FlagsCannibalize",
     hint: "SW5E.FlagsCannibalizeHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1304,7 +1304,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "enthrallingPheromones": {
-	  name: "SW5E.FlagsEnthrallingPheromones",
+    name: "SW5E.FlagsEnthrallingPheromones",
     hint: "SW5E.FlagsEnthrallingPheromonesHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
@@ -1328,13 +1328,13 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "foreignBiology": {
-	  name: "SW5E.FlagsForeignBiology",
+    name: "SW5E.FlagsForeignBiology",
     hint: "SW5E.FlagsForeignBiologyHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
   "furyOfTheSmall": {
-	  name: "SW5E.FlagsFuryOfTheSmall",
+    name: "SW5E.FlagsFuryOfTheSmall",
     hint: "SW5E.FlagsFuryOfTheSmallHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1346,7 +1346,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "inscrutable": {
-	  name: "SW5E.FlagsInscrutable",
+    name: "SW5E.FlagsInscrutable",
     hint: "SW5E.FlagsInscrutableHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1376,7 +1376,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "multipleHearts": {
-	  name: "SW5E.FlagsMultipleHearts",
+    name: "SW5E.FlagsMultipleHearts",
     hint: "SW5E.FlagsMultipleHeartsHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1418,7 +1418,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "precognition": {
-	  name: "SW5E.FlagsPrecognition",
+    name: "SW5E.FlagsPrecognition",
     hint: "SW5E.FlagsPrecognitionHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1431,9 +1431,9 @@ SW5E.characterFlags = {
   },
   "puny": {
     name: "SW5E.FlagsPuny",
-	  hint: "SW5E.FlagsPunyHint",
-	  section: "SW5E.SpeciesTraits",
-	  type: Boolean
+    hint: "SW5E.FlagsPunyHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
   },
   "rapidReconstruction": {
     name: "SW5E.FlagsRapidReconstruction",
@@ -1442,7 +1442,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "rapidlyRegenerative": {
-	  name: "SW5E.FlagsRapidlyRegenerative",
+    name: "SW5E.FlagsRapidlyRegenerative",
     hint: "SW5E.FlagsRapidlyRegenerativeHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1454,7 +1454,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "savageAttacks": {
-	  name: "SW5E.FlagsSavageAttacks",
+    name: "SW5E.FlagsSavageAttacks",
     hint: "SW5E.FlagsSavageAttacksHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
@@ -1466,15 +1466,15 @@ SW5E.characterFlags = {
     type: Boolean
   },	
   "strongLegged": {
-	  name: "SW5E.FlagsStrongLegged",
+    name: "SW5E.FlagsStrongLegged",
     hint: "SW5E.FlagsStrongLeggedHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	
   },
   "sunlightSensitivity": {
-	  name: "SW5E.FlagsSunlightSensitivity",
+    name: "SW5E.FlagsSunlightSensitivity",
     hint: "SW5E.FlagsSunlightSensitivityHint",
-	  section: "SW5E.SpeciesTraits",
+    section: "SW5E.SpeciesTraits",
 	type: Boolean
   },
   "surpriseAttack": {
@@ -1496,7 +1496,7 @@ SW5E.characterFlags = {
     type: Boolean
   },
   "tinker": {
-	  name: "SW5E.FlagsTinker",
+    name: "SW5E.FlagsTinker",
     hint: "SW5E.FlagsTinkerHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean	

@@ -324,15 +324,14 @@ SW5E.tokenHPColors = {
  * @type {Object}
  */
 SW5E.creatureTypes = {
-  "Aberration": "SW5E.CreatureAberration",
-  "Beast": "SW5E.CreatureBeast",
-  "Construct": "SW5E.CreatureConstruct",
-  "Droid": "SW5E.CreatureDroid",
-  "Elemental": "SW5E.CreatureElemental",
-  "Human": "SW5E.CreatureHuman",
-  "Humanoid": "SW5E.CreatureHumanoid",
-  "Plant": "SW5E.CreaturePlant",
-  "Undead": "SW5E.CreatureUndead"
+  "aberration": "SW5E.CreatureAberration",
+  "beast": "SW5E.CreatureBeast",
+  "construct": "SW5E.CreatureConstruct",
+  "droid": "SW5E.CreatureDroid",
+  "force": "SW5E.CreatureForceEntity",
+  "humanoid": "SW5E.CreatureHumanoid",
+  "plant": "SW5E.CreaturePlant",
+  "undead": "SW5E.CreatureUndead"
 };
 
 

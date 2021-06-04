@@ -357,6 +357,7 @@ export default class Actor5e extends Actor {
    * @private
    */
   _prepareStarshipData(actorData) {
+      
     const data = actorData.data;
 
     // Proficiency
@@ -367,24 +368,49 @@ export default class Actor5e extends Actor {
     if (size.length === 0) return;
     const sizeData = size[0].data;
     const tiers = parseInt(sizeData.tier) || 0;
+    data.traits.size = sizeData.size; // needs to be the short code
     data.details.tier = tiers;
-    data.traits.size = sizeData.size;
-    data.attributes.cargcap = (parseInt(sizeData.cargoCap) || 0);
-    data.attributes.crewcap = (parseInt(sizeData.minCrew) || 1);
-    data.attributes.fuel.cap = (parseInt(sizeData.fuelCap) || 5);
-    data.attributes.fuel.cost = sizeData.fuelCost;
-    data.attributes.hsm = sizeData.hardpointSizeMod;
     data.attributes.hull.die = sizeData.hullDice;
     data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
     data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
-    // if hull.value .max = null then calculate them out
+    // push to derived since based on attributes
+    // data.attributes.hp.max = sizeData.hullDiceRolled[].reduce((a, b) => a + b, 0) + con.mod * hull.diceMax;
+    // if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
     data.attributes.shld.die = sizeData.shldDice;
     data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
     data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
-    // if shld.value .max = null then calculate them out
-    data.attributes.mods.max = sizeData.modBaseCap;
+    // push to derived since based on attributes
+    // data.attributes.hp.tempmax = sizeData.shldDiceRolled[].reduce((a, b) => a + b, 0) + str.mod * shld.diceMax;
+    // if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
     data.attributes.pwrdice.die = SW5E.powerDieTypes[tiers];
+    data.attributes.cost.baseBuild = sizeData.buildBaseCost;
+    data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
+    data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
+    data.attributes.cost.baseUpgrade = SW5E.upgradeBaseCost[tiers];
+    data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
+    data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
+    // push to derived since based on attributes
+    // data.attributes. = sizeData.baseSpaceSpeed;
+    // data.attributes. = sizeData.baseTurnSpeed;
+    data.attributes.equip.crewMinWorkforce = (parseInt(sizeData.crewMinWorkforce) || 1);
+    data.attributes.mods.capLimit = sizeData.modBaseCap;
+    // push to derived since based on attributes
+    // data.attributes. = sizeData.modMaxSuitesBase;
+    // data.attributes. = sizeData.modMaxSuitesMult;
+    data.attributes.mods.suites.cap = sizeData.modMaxSuiteCap;
+    data.attributes.cost.multModification = sizeData.modCostMult;
+    data.attributes.workforce.minModification = sizeData.modMinWorkforce;
+    // push to derived since based on attributes
+    // data.attributes. = sizeData.hardpointMult;
+    data.attributes.cost.multEquip = sizeData.equipCostMult;
+    data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
+    data.attributes.equip.cargoCap = sizeData.cargoCap;
+    data.attributes.fuel.cost = sizeData.fuelCost;
+    data.attributes.fuel.value = sizeData.fuelCap;
+    data.attributes.equip.foodCap = sizeData.foodCap;
 
+
+    // push to derived since based on attributes
     // Link hull to hp and shields to temp hp
     //data.attributes.hull.value = data.attributes.hp.value;
     //data.attributes.hull.max = data.attributes.hp.max;

@@ -37,8 +37,8 @@
             "value": 10,
             "min": 0,
             "max": 10,
-            "temp": 0,
-            "tempmax": 0
+            "temp": null,
+            "tempmax": null
           },
           "init": {
             "value": 0,
@@ -416,6 +416,13 @@
     "starship": {
       "templates": ["common"],
       "attributes": {
+        "cost": {
+          "baseBuild": 0,
+          "baseUpgrade": 0,
+          "multEquip": 0,
+          "multModification": 0,
+          "multUpgrade": 0
+        },
         "death": {
           "failure": 0,
           "success": 0
@@ -514,7 +521,14 @@
           "value": null,
           "max": null
         },
-        "used": false
+        "used": false,
+        "workforce": {
+          "max": 0,
+          "minBuild": 0,
+          "minEquip": 0,
+          "minModification": 0,
+          "minUpgrade": 0
+        }
       },
       "details": {
         "tier": 0,
@@ -1058,8 +1072,8 @@
       "shldDiceRolled":[6,4,4],
       "shldDiceUsed": 0,
       "pwrDice": "1",
-      "constBaseCost": 50000,
-      "constMinWorkforce": 5,
+      "buildBaseCost": 50000,
+      "buildMinWorkforce": 5,
       "upgrdCostMult": 1,
       "upgrdMinWorkforce": 1,
       "baseSpaceSpeed": 300,

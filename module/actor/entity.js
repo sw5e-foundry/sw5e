@@ -386,7 +386,7 @@ export default class Actor5e extends Actor {
     data.attributes.cost.baseBuild = sizeData.buildBaseCost;
     data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
     data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
-    data.attributes.cost.baseUpgrade = SW5E.upgradeBaseCost[tiers];
+    data.attributes.cost.baseUpgrade = SW5E.baseUpgradeCost[tiers];
     data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
     data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
     // push to derived since based on attributes

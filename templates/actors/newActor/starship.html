@@ -89,7 +89,7 @@
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
     </nav>
 
-    {{!-- NPC Sheet Body --}}
+    {{!-- Starship Sheet Body --}}
     <section class="sheet-body">
         <section class="tab attributes core" data-group="primary" data-tab="attributes">
             <section class="panel abilities">
@@ -170,12 +170,12 @@
                                 {{localize "SW5E.DmgRed"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.dr" value="{{data.attributes.dr}}" placeholder="0" />
                             </label>
                             <label>
-                                {{localize "SW5E.VehicleCargoCapacity"}}: {{data.attributes.cargcap}} tons
+                                {{localize "SW5E.VehicleCargoCapacity"}}: {{data.attributes.equip.cargoCap}} tons
                             </label>
                         </td>
                         <td>
                             <label>
-                                {{localize "SW5E.CrewCap"}}: {{data.attributes.crewcap}}
+                                {{localize "SW5E.CrewCap"}}: {{data.attributes.crewMinWorkforce}}
                             </label>
 
                         </td>
@@ -273,7 +273,7 @@
 					  <tr><th colspan=3 align="left">{{localize "SW5E.PowerDieAlloc"}}</th><th colspan=3 align="right">
 					  	{{localize "SW5E.PowerDie"}}:
 						<select class="actor-size" name="data.attributes.pd">
-						  {{#select data.attributes.pd}}
+						  {{#select data.attributes.power.die}}
 						  <option value=""> </option>							
 						  {{#each config.powerDieTypes as |pd|}}
 						  <option value="{{pd}}">{{pd}}</option>
@@ -312,14 +312,14 @@
 				<div class="counter">
 					<h4>{{ localize "SW5E.SystemDrainage" }}</h4>
 					<div class="counter-value" style="text-align: left;">
-						<input type="text" name="data.attributes.exhaustion" data-dtype="Number" placeholder="0"
-							value="{{data.attributes.exhaustion}}" />
+						<input type="text" name="data.attributes.systemDamage" data-dtype="Number" placeholder="0"
+							value="{{data.attributes.systemDamage}}" />
 					</div>
 				</div></section>
 				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
 				<div class="traits">
                     <label>
-                        {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.open" value="{{data.attributes.mods.open}}" placeholder="10" />/ {{data.attributes.mods.max}}
+                        {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.capUsed" value="{{data.attributes.mods.capUsed}}" placeholder="10" />/ {{data.attributes.mods.capLimit}}
                     </label>
                    <label>
                         {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.suites.open}}" placeholder="0" />/ {{data.attributes.suites.max}}

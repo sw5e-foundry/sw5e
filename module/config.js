@@ -663,6 +663,17 @@ SW5E.powerDieTypes = [1, "d4", "d6", "d8", "d10", "d12"];
 
 /* -------------------------------------------- */
 
+
+/**
+ * Enumerate the upgrade costs as they apply to starships in the SW5E system based on Tier.
+ * @type {Array.<string>}
+ */
+
+SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
+
+/* -------------------------------------------- */
+
+ 
 /**
  * Enumerate the base stat and feature settings for starships based on size.
   * @type {Array.<string>}

@@ -175,7 +175,7 @@
                         </td>
                         <td>
                             <label>
-                                {{localize "SW5E.CrewCap"}}: {{data.attributes.crewMinWorkforce}}
+                                {{localize "SW5E.CrewCap"}}: {{data.attributes.equip.crewMinWorkforce}}
                             </label>
 
                         </td>
@@ -224,11 +224,11 @@
                     <table style="border:none;">
                         <tr>
                             <td align="center"><strong>{{localize "SW5E.EnginePl"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="engineslidervalue" class="vertslider" value="1" step="1" min="0" max="2" oninput="engineSliderUpdate(value)"></td>
+                            <td rowspan=3><input type="range" orient="vertical" id="engineslidervalue" class="vertslider" value={{data.attributes.power.routing.engines}} step="1" min="0" max="2" ></td>
                             <td align="center"><strong>{{localize "SW5E.EquipmentShieldProficiency"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="shieldslidervalue" class="vertslider" value="1" step="1" min="0" max="2" oninput="shieldSliderUpdate(value)"></td>
+                            <td rowspan=3><input type="range" orient="vertical" id="shieldslidervalue" class="vertslider" value={{data.attributes.power.routing.shields}} step="1" min="0" max="2" ></td>
                             <td align="center"><strong>{{localize "SW5E.ItemTypeWeaponPl"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="weaponslidervalue" class="vertslider" value="1" step="1" min="0" max="2" oninput="weaponSliderUpdate(value)"></td>
+                            <td rowspan=3><input type="range" orient="vertical" id="weaponslidervalue" class="vertslider" value={{data.attributes.power.routing.weapons}} step="1" min="0" max="2" ></td>
                         </tr>
                         <tr>
                             <td rowspan=2 align="center"><strong><output for=value id="engineslideroutput">=</output></td>
@@ -271,17 +271,11 @@
 					<br /> -->
 					<table style="border: none; width: 400px;">
 					  <tr><th colspan=3 align="left">{{localize "SW5E.PowerDieAlloc"}}</th><th colspan=3 align="right">
-					  	{{localize "SW5E.PowerDie"}}:
-						<select class="actor-size" name="data.attributes.pd">
-						  {{#select data.attributes.power.die}}
-						  <option value=""> </option>							
-						  {{#each config.powerDieTypes as |pd|}}
-						  <option value="{{pd}}">{{pd}}</option>
-						  {{/each}}
-						  {{/select}}
-						</select></th>
+					  	<label>
+                            {{localize "SW5E.PowerDie"}}: {{data.attributes.power.die}}
+                          </label>
 				      </tr>
-					  <tr><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Central</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Comms</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Engines</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Sensors</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Shields</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Weapons</th>
+ 					  <tr><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Central</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Comms</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Engines</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Sensors</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Shields</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Weapons</th>
                       <tr>
 					    <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.central.value" value="{{data.attributes.pwrdice.central.value}}" placeholder="{{data.attributes.pwrdice.central.value}}" /> / {{data.attributes.cscap}}</td>
                       	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.comms.value" value="{{data.attributes.pwrdice.comms.value}}" placeholder="{{data.attributes.pwrdice.comms.value}}" /> / {{data.attributes.sscap}}</td>

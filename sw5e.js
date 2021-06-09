@@ -292,6 +292,10 @@ Handlebars.registerHelper('round', function(value) {
   return Math.floor(value);
 });
 
+Handlebars.registerHelper('debug', function(value) {
+  console.log(value)
+  return value;
+})
 
 function setFolderBackground(html) {
   html.find("header.folder-header").each(function() {

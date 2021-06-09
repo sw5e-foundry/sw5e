@@ -382,7 +382,8 @@ export default class Actor5e extends Actor {
     // push to derived since based on attributes
     // data.attributes.hp.tempmax = sizeData.shldDiceRolled[].reduce((a, b) => a + b, 0) + str.mod * shld.diceMax;
     // if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
-    data.attributes.pwrdice.die = SW5E.powerDieTypes[tiers];
+    sizeData.pwrDice = SW5E.powerDieTypes[tiers];
+    data.attributes.power.die = sizeData.pwrDice;
     data.attributes.cost.baseBuild = sizeData.buildBaseCost;
     data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
     data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
@@ -406,7 +407,7 @@ export default class Actor5e extends Actor {
     data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
     data.attributes.equip.cargoCap = sizeData.cargoCap;
     data.attributes.fuel.cost = sizeData.fuelCost;
-    data.attributes.fuel.value = sizeData.fuelCap;
+    data.attributes.fuel.cap = sizeData.fuelCap;
     data.attributes.equip.foodCap = sizeData.foodCap;
 
 
@@ -782,12 +783,10 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
   
   _computeFuel(actorData) {
-    let fuel = actorData.data.attributes.fuel.value;  
+    const fuel = actorData.data.attributes.fuel;  
     // Compute Fuel percentage
-      fuel = fuel.toNearest(0.1);
-      const max = actorData.data.attributes.fuel.cap;
-      const pct = Math.clamped((fuel * 100) / max, 0, 100);
-      return { value: fuel.toNearest(0.1), max, pct, fueled: pct > 0 };	
+      const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.cap, 0, 100);
+      return { ...fuel, pct, fueled: pct > 0 };	
     }
   
   /* -------------------------------------------- */  

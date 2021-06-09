@@ -137,6 +137,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     super.activateListeners(html);
     html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
 	  html.find('.refuel').click(this._onIncrementFuelLevel.bind(this));
+    html.find('.burnfuel').click(this._onDecrementFuelLevel.bind(this));
+    html.find('#engineslidervalue')[0].addEventListener('input', this._engineSliderUpdate.bind(this));
+    html.find('#shieldslidervalue')[0].addEventListener('input', this._shieldSliderUpdate.bind(this));
+    html.find('#weaponslidervalue')[0].addEventListener('input', this._weaponSliderUpdate.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -163,17 +167,31 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * @private
    */
   _onIncrementFuelLevel(event) {
-    event.preventDefault();
-    const fuelcaparray = this.actor.data.effects.changes;
-    var fuelcappos = fuelcaparray.indexOf('fuel.cap');
-    const refuel = this.actor.data.effect.changes[fuelcappos].value;
-    this.actor.update({"data.attributes.fuel.value": refuel});
+    // event.preventDefault();
+    // const fuelcaparray = this.actor.data.effects.changes;
+    // var fuelcappos = fuelcaparray.indexOf('fuel.cap');
+    // const refuel = this.actor.data.effect.changes[fuelcappos].value;
+    this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.cap});
   }
-}
-  function engineSliderUpdate(num) {
+
+    /* -------------------------------------------- */
+
+  /**
+   * Handle a starship burning fuel
+   * @param {Event} event     The original click event
+   * @private
+   */
+   _onDecrementFuelLevel(event) {
+    // event.preventDefault();
+    // const fuelcaparray = this.actor.data.effects.changes;
+    // var fuelcappos = fuelcaparray.indexOf('fuel.cap');
+    // const refuel = this.actor.data.effect.changes[fuelcappos].value;
+    this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.value - 1});
+  }
+  _engineSliderUpdate(input) {
     var symbol;
     var coefficient;
-    switch(num) {
+    switch(input.target.value) {
       case "0":
       symbol = "↓";
       coefficient = 0.5;
@@ -188,13 +206,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     };
     let slideroutput = symbol;
     document.querySelector('#engineslideroutput').value = slideroutput;
-    this.actor.update({"data.attributes.engpow": coefficient});
+    this.actor.update({"data.attributes.power.routing.engines": coefficient});
   }
 
-  function shieldSliderUpdate(num) {
+  _shieldSliderUpdate(input) {
     var symbol;
     var coefficient;
-    switch(num) {
+    switch(input.target.value) {
       case "0":
       symbol = "↓";
       coefficient = 0.5;
@@ -209,13 +227,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     };
     let slideroutput = symbol;
     document.querySelector('#shieldslideroutput').value = slideroutput;
-    this.actor.update({"data.attributes.shieldpow": coefficient});
+    this.actor.update({"data.attributes.power.routing.shields": coefficient});
   }
   
-  function weaponSliderUpdate(num) {
+  _weaponSliderUpdate(input) {
     var symbol;
     var coefficient;
-    switch(num) {
+    switch(input.target.value) {
       case "0":
       symbol = "↓";
       coefficient = 0.5;
@@ -230,5 +248,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     };
     let slideroutput = symbol;
     document.querySelector('#weaponslideroutput').value = slideroutput;
-    this.actor.update({"data.attributes.weaponpow": coefficient});
+    this.actor.update({"data.attributes.power.routing.weapons": coefficient});
   } 
+}

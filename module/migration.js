@@ -1,4 +1,3 @@
-// TODO: Update
 /**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @return {Promise}      A Promise which resolves once the migration is completed
@@ -11,7 +10,7 @@ export const migrateWorld = async function() {
     try {
       console.log(`Checking Actor entity ${a.name} for migration needs`);
       const updateData = await migrateActorData(a.data);
-      if ( !isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isObjectEmpty(updateData) ) {
         console.log(`Migrating Actor entity ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
       }
@@ -25,7 +24,7 @@ export const migrateWorld = async function() {
   for ( let i of game.items.entities ) {
     try {
       const updateData = migrateItemData(i.data);
-      if ( !isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isObjectEmpty(updateData) ) {
         console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, {enforceTypes: false});
       }
@@ -39,7 +38,7 @@ export const migrateWorld = async function() {
   for ( let s of game.scenes.entities ) {
     try {
       const updateData = await migrateSceneData(s.data);
-      if ( !isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isObjectEmpty(updateData) ) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
       }
@@ -78,40 +77,39 @@ export const migrateCompendium = async function(pack) {
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
-  const content = await pack.getContent();
+  const documents = await pack.getDocuments();
 
   // Iterate over compendium entries - applying fine-tuned migration functions
-  for await ( let ent of content ) {
+  for await ( let doc of documents ) {
     let updateData = {};
     try {
       switch (entity) {
         case "Actor":
-          updateData = await migrateActorData(ent.data);
+          updateData = await migrateActorData(doc.data);
           break;
         case "Item":
-          updateData = migrateItemData(ent.data);
+          updateData = migrateItemData(doc.data);
           break;
         case "Scene":
-          updateData = await migrateSceneData(ent.data);
+          updateData = await migrateSceneData(doc.data);
           break;
       }
-      if ( isObjectEmpty(updateData) ) continue;
+      if ( foundry.utils.isObjectEmpty(updateData) ) continue;
 
       // Save the entry, if data was changed
-      updateData["_id"] = ent._id;
-      await pack.updateEntity(updateData);
-      console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+      await doc.update(updateData);
+      console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
     }
 
     // Handle migration failures
     catch(err) {
-      err.message = `Failed sw5e system migration for entity ${ent.name} in pack ${pack.collection}: ${err.message}`;
+      err.message = `Failed sw5e system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Apply the original locked status for the pack
-  pack.configure({locked: wasLocked});
+  await pack.configure({locked: wasLocked});
   console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 };
 
@@ -131,15 +129,15 @@ export const migrateActorData = async function(actor) {
   // Actor Data Updates
   _migrateActorMovement(actor, updateData);
   _migrateActorSenses(actor, updateData);
+  _migrateActorType(actor, updateData);
 
   // Migrate Owned Items
   if ( !!actor.items ) {
-    let hasItemUpdates = false;
     const items = await actor.items.reduce(async (memo, i) => {
       const results = await memo;
 
       // Migrate the Owned Item
-      let itemUpdate = await migrateActorItemData(i, actor);
+      let itemUpdate = await migrateActorItemData(i.data, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
       if ( actor.type === "npc" ) {
@@ -150,13 +148,15 @@ export const migrateActorData = async function(actor) {
 
       // Update the Owned Item
       if ( !isObjectEmpty(itemUpdate) ) {
-        hasItemUpdates = true;
+        itemUpdate._id = i.id;
         console.log(`Migrating Actor ${actor.name}'s ${i.name}`);
-        return [...results, mergeObject(i, itemUpdate, {enforceTypes: false, inplace: false})];
-      } else return [...results, i];
+        results.push(itemUpdate)
+      }
+
+      return results;
     }, []);
 
-    if ( hasItemUpdates ) updateData.items = items;
+    if ( items.length > 0 ) updateData.items = items;
   }
 
   // Update NPC data with new datamodel information
@@ -235,24 +235,20 @@ export const migrateActorItemData = async function(item, actor) {
  * @return {Object}       The updateData to apply
  */
  export const migrateSceneData = async function(scene) {
-  const tokens = duplicate(scene.tokens);
-  return {
-    tokens: await Promise.all(tokens.map(async (t) => {
+    const tokens = await Promise.all(scene.tokens.map(async token => {
+      const t = token.toJSON();
       if (!t.actorId || t.actorLink || !t.actorData.data) {
         t.actorData = {};
-        return t;
       }
-      const token = new Token(t);
-      if ( !token.actor ) {
+      else if (!game.actors.has(t.actorId)) {
         t.actorId = null;
         t.actorData = {};
       } else if ( !t.actorLink ) {
-        const updateData = await migrateActorData(token.data.actorData);
-        t.actorData = mergeObject(token.data.actorData, updateData);
+        t.actorData = mergeObject(token.data.actorData, await migrateActorData(t.actorData));
       }
       return t;
-    }))
-  };
+    }));
+    return {tokens};
 };
 
 /* -------------------------------------------- */
@@ -448,6 +444,84 @@ function _migrateActorSenses(actor, updateData) {
   return updateData;
 }
 
+/**
+ * Migrate the actor details.type string to object
+ * @private
+ */
+function _migrateActorType(actor, updateData) {
+  const ad = actor.data;
+  const original = ad.details?.type;
+  if ( (original === undefined) || (foundry.utils.getType(original) === "Object") ) return;
+
+  // New default data structure
+  let data = {
+    "value": "",
+    "subtype": "",
+    "swarm": "",
+    "custom": ""
+  }
+
+  // Specifics
+  // (Some of these have weird names, these need to be addressed individually)
+  if (original === "force entity") {
+    data.value = "force";
+    data.subtype = "storm";
+  } else if (original === "human") {
+    data.value = "humanoid";
+    data.subtype = "human";
+  } else if (["humanoid (any)", "humanoid (Villainous"].includes(original)) {
+    data.value = "humanoid";
+  } else if (original === "tree") {
+    data.value = "plant";
+    data.subtype = "tree";
+  } else if (original === "(humanoid) or Large (beast) force entity") {
+    data.value = "force";
+  } else if (original === "droid (appears human)") {
+    data.value = "droid";
+  } else {
+    // Match the existing string
+    const pattern = /^(?:swarm of (?<size>[\w\-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
+    const match = original.trim().match(pattern);
+    if (match) {
+
+      // Match a known creature type
+      const typeLc = match.groups.type.trim().toLowerCase();
+      const typeMatch = Object.entries(CONFIG.SW5E.creatureTypes).find(([k, v]) => {
+        return (typeLc === k) ||
+            (typeLc === game.i18n.localize(v).toLowerCase()) ||
+            (typeLc === game.i18n.localize(`${v}Pl`).toLowerCase());
+      });
+      if (typeMatch) data.value = typeMatch[0];
+      else {
+        data.value = "custom";
+        data.custom = match.groups.type.trim().titleCase();
+      }
+      data.subtype = match.groups.subtype?.trim().titleCase() || "";
+
+      // Match a swarm
+      const isNamedSwarm = actor.name.startsWith(game.i18n.localize("SW5E.CreatureSwarm"));
+      if (match.groups.size || isNamedSwarm) {
+        const sizeLc = match.groups.size ? match.groups.size.trim().toLowerCase() : "tiny";
+        const sizeMatch = Object.entries(CONFIG.SW5E.actorSizes).find(([k, v]) => {
+          return (sizeLc === k) || (sizeLc === game.i18n.localize(v).toLowerCase());
+        });
+        data.swarm = sizeMatch ? sizeMatch[0] : "tiny";
+      } else data.swarm = "";
+    }
+
+    // No match found
+    else {
+      data.value = "custom";
+      data.custom = original;
+    }
+  }
+
+  // Update the actor data
+  updateData["data.details.type"] = data;
+  console.log(data);
+  return updateData;
+}
+
 /* -------------------------------------------- */
 
 /**
@@ -457,19 +531,35 @@ function _migrateItemClassPowerCasting(item, updateData) {
   if (item.type === "class"){
     switch (item.name){
       case "Consular": 
-        updateData["data.powercasting"] = "consular";
+        updateData["data.powercasting"] = {
+          progression: "consular",
+          ability: ""
+        };
         break;
       case "Engineer":
-        updateData["data.powercasting"] = "engineer";
+
+        updateData["data.powercasting"] = {
+          progression: "engineer",
+          ability: ""
+        };
         break;
       case "Guardian":
-        updateData["data.powercasting"] = "guardian";
+        updateData["data.powercasting"] = {
+          progression: "guardian",
+          ability: ""
+        };
         break;
       case "Scout":
-        updateData["data.powercasting"] = "scout";
+        updateData["data.powercasting"] = {
+          progression: "scout",
+          ability: ""
+        };
         break;
       case "Sentinel":
-        updateData["data.powercasting"] = "sentinel";
+        updateData["data.powercasting"] = {
+          progression: "sentinel",
+          ability: ""
+        };
         break;
     }
   }
@@ -527,10 +617,14 @@ async function _migrateItemPower(item, actor, updateData) {
 
 /**
  * Delete the old data.attuned boolean
+ *
+ * @param {object} item        Item data to migrate
+ * @param {object} updateData  Existing update to expand upon
+ * @return {object}            The updateData to apply
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data.attuned === undefined ) return;
+  if ( item.data.attuned === undefined ) return updateData;
   updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;

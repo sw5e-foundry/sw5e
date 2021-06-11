@@ -447,11 +447,32 @@
             "uuid": null
           }
         },
-        "dr": 0,
-        "equip":{
-          "cargoCap": 0,
-          "crewMinWorkforce": 0,
-          "foodCap": 0  
+        "equip": {
+          "armor": {
+            "dr": 0,
+            "maxDex": 99,
+            "stealthDisadv": false
+          },
+          "hyperdrive": {
+            "class": null
+          },
+          "powerCoupling": {
+            "centralCap": 0,
+            "systemCap": 0
+          },
+          "reactor": {
+            "fuelMult": 1,
+            "powerRecDie": "1"
+          },
+          "size": {
+            "cargoCap": 0,
+            "crewMinWorkforce": 0,
+            "foodCap": 0
+          },
+          "shields": {
+            "capMult": 1,
+            "regenRateMult": 1
+          }
         },
         "systemDamage": 0,
         "fuel": {
@@ -483,7 +504,6 @@
         },
         "power": {
           "die": "",
-          "recovery": 1,
           "routing":{
             "engines": 1,
             "shields": 1,
@@ -520,8 +540,6 @@
           "dicemax": 0,
           "depleted": false,
           "formula":"",
-          "regenRate": 1,
-          "capMod": 1,
           "value": null,
           "max": null
         },
@@ -885,7 +903,7 @@
         "capx": {
           "value": null
         },
-        "hpperhd": {
+        "dmgred": {
           "value": null
         },
         "regrateco": {

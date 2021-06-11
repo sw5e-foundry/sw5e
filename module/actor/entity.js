@@ -120,6 +120,18 @@ export default class Actor5e extends Actor {
     data.attributes.encumbrance = this._computeEncumbrance(actorData);
 	
     if (actorData.type === "starship") {
+      
+      // Calculate AC
+      data.attributes.ac.value += Math.min(data.abilities.dex.mod, data.attributes.equip.armor.maxDex);
+
+      // Set Power Die Storage
+      data.attributes.power.central.max += data.attributes.equip.powerCoupling.centralCap;
+      data.attributes.power.comms.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.engines.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.shields.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.sensors.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.weapons.max += data.attributes.equip.powerCoupling.systemCap;
+
       // Find Size info of Starship
       const size = actorData.items.filter(i => i.type === "starship");
       if (size.length === 0) return;
@@ -130,18 +142,18 @@ export default class Actor5e extends Actor {
       if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
 
       // Prepare Shield Points
-      data.attributes.hp.tempmax = sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.str.mod * data.attributes.shld.dicemax;
+      data.attributes.hp.tempmax = (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.str.mod * data.attributes.shld.dicemax) * data.attributes.equip.shields.capMult;
       if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
 
       // Prepare Speeds
       data.attributes.movement.space = sizeData.baseSpaceSpeed + (50 * (data.abilities.str.mod - data.abilities.con.mod));
-      data.attributes.movement.turn = Math.max(50,(sizeData.baseTurnSpeed - (50 * (data.abilities.dex.mod - data.abilities.con.mod))));
+      data.attributes.movement.turn = Math.min(data.attributes.movement.space, Math.max(50,(sizeData.baseTurnSpeed - (50 * (data.abilities.dex.mod - data.abilities.con.mod)))));
 
       // Prepare Max Suites
       data.attributes.mods.suites.max = sizeData.modMaxSuitesBase + (sizeData.modMaxSuitesMult * data.abilities.con.mod);
 
       // Prepare Hardpoints
-      data.attributes.mods.hardpoints.max = sizeData.hardpointMult * Math.max(0,data.abilities.str.mod);
+      data.attributes.mods.hardpoints.max = sizeData.hardpointMult * Math.max(1,data.abilities.str.mod);
 
       //Prepare Fuel
       data.attributes.fuel = this._computeFuel(actorData);
@@ -383,50 +395,88 @@ export default class Actor5e extends Actor {
   _prepareStarshipData(actorData) {
       
     const data = actorData.data;
-
-    // Proficiency
-     data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
-
-    // Determine Starship Tier and available Hull/Shield dice based on owned starship items
+    data.attributes.prof = 0;
+    // Determine Starship size-based properties based on owned Starship item
     const size = actorData.items.filter(i => i.type === "starship");
-    if (size.length === 0) return;
-    const sizeData = size[0].data;
-    const tiers = parseInt(sizeData.tier) || 0;
-    data.traits.size = sizeData.size; // needs to be the short code
-    data.details.tier = tiers;
-    data.attributes.hull.die = sizeData.hullDice;
-    data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
-    data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
-    data.attributes.shld.die = sizeData.shldDice;
-    data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
-    data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
-    sizeData.pwrDice = SW5E.powerDieTypes[tiers];
-    data.attributes.power.die = sizeData.pwrDice;
-    data.attributes.cost.baseBuild = sizeData.buildBaseCost;
-    data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
-    data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
-    data.attributes.cost.baseUpgrade = SW5E.baseUpgradeCost[tiers];
-    data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
-    data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
-    data.attributes.equip.crewMinWorkforce = (parseInt(sizeData.crewMinWorkforce) || 1);
-    data.attributes.mods.capLimit = sizeData.modBaseCap;
-    data.attributes.mods.suites.cap = sizeData.modMaxSuiteCap;
-    data.attributes.cost.multModification = sizeData.modCostMult;
-    data.attributes.workforce.minModification = sizeData.modMinWorkforce;
-    data.attributes.cost.multEquip = sizeData.equipCostMult;
-    data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
-    data.attributes.equip.cargoCap = sizeData.cargoCap;
-    data.attributes.fuel.cost = sizeData.fuelCost;
-    data.attributes.fuel.cap = sizeData.fuelCap;
-    data.attributes.equip.foodCap = sizeData.foodCap;
+    if (size.length !== 0) {
+      const sizeData = size[0].data;
+      const tiers = parseInt(sizeData.tier) || 0;
+      data.traits.size = sizeData.size; // needs to be the short code
+      data.details.tier = tiers;
+      data.attributes.ac.value = 10 + Math.max(tiers - 1, 0);
+      data.attributes.hull.die = sizeData.hullDice;
+      data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
+      data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
+      data.attributes.shld.die = sizeData.shldDice;
+      data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
+      data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
+      sizeData.pwrDice = SW5E.powerDieTypes[tiers];
+      data.attributes.power.die = sizeData.pwrDice;
+      data.attributes.cost.baseBuild = sizeData.buildBaseCost;
+      data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
+      data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
+      data.attributes.cost.baseUpgrade = SW5E.baseUpgradeCost[tiers];
+      data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
+      data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
+      data.attributes.equip.size.crewMinWorkforce = (parseInt(sizeData.crewMinWorkforce) || 1);
+      data.attributes.mods.capLimit = sizeData.modBaseCap;
+      data.attributes.mods.suites.cap = sizeData.modMaxSuiteCap;
+      data.attributes.cost.multModification = sizeData.modCostMult;
+      data.attributes.workforce.minModification = sizeData.modMinWorkforce;
+      data.attributes.cost.multEquip = sizeData.equipCostMult;
+      data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
+      data.attributes.equip.size.cargoCap = sizeData.cargoCap;
+      data.attributes.fuel.cost = sizeData.fuelCost;
+      data.attributes.fuel.cap = sizeData.fuelCap;
+      data.attributes.equip.size.foodCap = sizeData.foodCap;
+    }
 
+    // Determine Starship armor-based properties based on owned Starship item
+    const armor = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "ssarmor"))); // && (i.data.equipped === true)));
+    if (armor.length !== 0) {
+      const armorData = armor[0].data;
+      data.attributes.equip.armor.dr = (parseInt(armorData.dmgred.value) || 0);
+      data.attributes.equip.armor.maxDex = armorData.armor.dex;
+      data.attributes.equip.armor.stealthDisadv = armorData.stealth;
+    }
 
-    // push to derived since based on attributes
-    // Link hull to hp and shields to temp hp
-    //data.attributes.hull.value = data.attributes.hp.value;
-    //data.attributes.hull.max = data.attributes.hp.max;
-    //data.attributes.shld.value = data.attributes.hp.temp;
-    //data.attributes.shld.max = data.attributes.hp.tempmax;
+    // Determine Starship hyperdrive-based properties based on owned Starship item
+    const hyperdrive = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "hyper"))); // && (i.data.equipped === true)));
+    if (hyperdrive.length !== 0) {
+      const hdData = hyperdrive[0].data;
+      data.attributes.equip.hyperdrive.class = (parseFloat(hdData.hdclass.value) || null);
+    }
+
+    // Determine Starship power coupling-based properties based on owned Starship item
+    const pwrcpl = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "powerc"))); // && (i.data.equipped === true)));
+    if (pwrcpl.length !== 0) {
+      const pwrcplData = pwrcpl[0].data;
+      data.attributes.equip.powerCoupling.centralCap = (parseInt(pwrcplData.cscap.value) || 0);
+      data.attributes.equip.powerCoupling.systemCap = (parseInt(pwrcplData.sscap.value) || 0);
+      data.attributes.power.central.max = 0;
+      data.attributes.power.comms.max = 0;
+      data.attributes.power.engines.max = 0;
+      data.attributes.power.shields.max = 0;
+      data.attributes.power.sensors.max = 0;
+      data.attributes.power.weapons.max = 0;
+    }
+
+    // Determine Starship reactor-based properties based on owned Starship item
+    const reactor = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "reactor"))); // && (i.data.equipped === true)));
+    if (reactor.length !== 0) {
+      const reactorData = reactor[0].data;
+      data.attributes.equip.reactor.fuelMult = (parseFloat(reactorData.fuelcostsmod.value) || 0);
+      data.attributes.equip.reactor.powerRecDie = reactorData.powdicerec.value;
+    }
+
+    // Determine Starship shield-based properties based on owned Starship item
+    const shields = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "ssshield"))); // && (i.data.equipped === true)));
+    if (shields.length !== 0) {
+      const shieldsData = shields[0].data;
+      data.attributes.equip.shields.capMult = (parseFloat(shieldsData.capx.value) || 1);
+      data.attributes.equip.shields.regenRateMult = (parseFloat(shieldsData.regrateco.value) || 1);
+    }
+
   }
 
   /* -------------------------------------------- */

@@ -143,39 +143,13 @@
                     <table style="border: none; background: none;">
                         <tr>
                         <td>
-    <!--					<label>
-						{{localize "SW5E.Size"}}
-						<select class="actor-size" name="data.traits.size">
-							{{#select data.traits.size}}
-							<option value=""> </option>							
-							{{#each config.actorSizes as |label size|}}
-							<option value="{{size}}">{{label}}</option>
-							{{/each}}
-							{{/select}}
-						</select>
-					</label>
-					<label>
-						{{localize "SW5E.Role"}}
-						<select class="actor-size" name="data.details.role">
-							{{#select data.details.role}}
-							<option value=""> </option>							
-							{{#each config.starshipRolessm as |label role|}}
-							<option value="{{role}}">{{label}}</option>
-							{{/each}}
-							{{/select}}
-						</select>
-					</label>
-					<br /> -->
                             <label>
-                                {{localize "SW5E.DmgRed"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.dr" value="{{data.attributes.dr}}" placeholder="0" />
-                            </label>
-                            <label>
-                                {{localize "SW5E.VehicleCargoCapacity"}}: {{data.attributes.equip.cargoCap}} tons
+                                {{localize "SW5E.VehicleCargoCapacity"}}: {{data.attributes.equip.size.cargoCap}} tons
                             </label>
                         </td>
                         <td>
                             <label>
-                                {{localize "SW5E.CrewCap"}}: {{data.attributes.equip.crewMinWorkforce}}
+                                {{localize "SW5E.CrewCap"}}: {{data.attributes.equip.size.crewMinWorkforce}}
                             </label>
 
                         </td>
@@ -277,12 +251,12 @@
 				      </tr>
  					  <tr><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Central</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Comms</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Engines</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Sensors</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Shields</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Weapons</th>
                       <tr>
-					    <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.central.value" value="{{data.attributes.pwrdice.central.value}}" placeholder="{{data.attributes.pwrdice.central.value}}" /> / {{data.attributes.cscap}}</td>
-                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.comms.value" value="{{data.attributes.pwrdice.comms.value}}" placeholder="{{data.attributes.pwrdice.comms.value}}" /> / {{data.attributes.sscap}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.engines.value" value="{{data.attributes.pwrdice.engines.value}}" placeholder="{{data.attributes.pwrdice.engines.value}}" /> / {{data.attributes.sscap}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.sensors.value" value="{{data.attributes.pwrdice.sensors.value}}" placeholder="{{data.attributes.pwrdice.sensors.value}}" /> / {{data.attributes.sscap}}</td>
-                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.shields.value" value="{{data.attributes.pwrdice.shields.value}}" placeholder="{{data.attributes.pwrdice.shields.value}}" /> / {{data.attributes.sscap}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.pwrdice.weapons.value" value="{{data.attributes.pwrdice.weapons.value}}" placeholder="{{data.attributes.pwrdice.weapons.value}}" /> / {{data.attributes.sscap}}</td>
+					    <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.central.value" value="{{data.attributes.power.central.value}}" placeholder="{{data.attributes.power.central.max}}" /> / {{data.attributes.power.central.max}}</td>
+                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.comms.value" value="{{data.attributes.power.comms.value}}" placeholder="{{data.attributes.power.comms.max}}" /> / {{data.attributes.power.comms.max}}</td>
+						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.engines.value" value="{{data.attributes.power.engines.value}}" placeholder="{{data.attributes.power.engines.max}}" /> / {{data.attributes.power.engines.max}}</td>
+						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.sensors.value" value="{{data.attributes.power.sensors.value}}" placeholder="{{data.attributes.power.sensors.max}}" /> / {{data.attributes.power.sensors.max}}</td>
+                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.shields.value" value="{{data.attributes.power.shields.value}}" placeholder="{{data.attributes.power.shields.max}}" /> / {{data.attributes.power.shields.max}}</td>
+						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.weapons.value" value="{{data.attributes.power.weapons.value}}" placeholder="{{data.attributes.power.weapons.max}}" /> / {{data.attributes.power.weapons.max}}</td>
                       </tr>
 					</table>
 					</label>
@@ -316,14 +290,14 @@
                         {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.capUsed" value="{{data.attributes.mods.capUsed}}" placeholder="10" />/ {{data.attributes.mods.capLimit}}
                     </label>
                    <label>
-                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}} - capacity: {{data.attributes.mods.suites.cap}}
+                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}} - Occupancy: {{data.attributes.mods.suites.cap}}
                     </label>
 					<br />
                    <label>
-                        {{localize "SW5E.HardpointSizeMod"}}: {{data.attributes.mods.hardpoints.open}} / {{data.attributes.mods.hardpoints.max}}
+                        {{localize "SW5E.HardpointsPerRound"}}: {{data.attributes.mods.hardpoints.max}}
                     </label>
                     <label>
-                        {{localize "SW5E.DmgRed"}}: {{data.attributes.dr}}
+                        {{localize "SW5E.DmgRed"}}: {{data.attributes.equip.armor.dr}}
                     </label>
                 </div>
 		    </section>

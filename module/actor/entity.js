@@ -1859,6 +1859,88 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+
+ /**
+   * Deploy an Actor into this one.
+   *
+   * @param {Actor} target The Actor to be deployed.
+   * @param {boolean} [coord] Deploy as Coordinator
+   * @param {boolean} [gunner] Deploy as Gunner
+   * @param {boolean} [mech] Deploy as Mechanic
+   * @param {boolean} [oper] Deploy as Operator
+   * @param {boolean} [pilot] Deploy as Pilot
+   * @param {boolean} [tech] Deploy as Technician
+   * @param {boolean} [crew] Deploy as Crew
+   * @param {boolean} [pass] Deploy as Passenger
+   */
+  async deployInto(target, { coord=false, gunner=false, mech=false, oper=false,
+    pilot=false, tech=false, crew=false, pass=false}={}) {
+
+    // Get the starship Actor data and the new char data
+    const sship = duplicate(this.toJSON());
+    const ssDeploy = sship.data.attributes.deployment;
+    const char = target;
+    const charUUID = char.uuid;
+    const charName = char.data.name;
+    const charRank = char.data.data.attributes.rank;
+    let charProf = 0;
+    if (charRank.total > 0) {
+      charProf = char.data.data.attributes.prof;
+    }
+
+    if (coord){
+      ssDeploy.coord.uuid = charUUID;
+      ssDeploy.coord.name = charName;
+      ssDeploy.coord.rank = charRank.coord;
+      ssDeploy.coord.prof = charProf;
+    }
+
+    if (gunner){
+      ssDeploy.gunner.uuid = charUUID;
+      ssDeploy.gunner.name = charName;
+      ssDeploy.gunner.rank = charRank.gunner;
+      ssDeploy.gunner.prof = charProf;
+    }
+
+    if (mech){
+      ssDeploy.mechanic.uuid = charUUID;
+      ssDeploy.mechanic.name = charName;
+      ssDeploy.mechanic.rank = charRank.mechanic;
+      ssDeploy.mechanic.prof = charProf;
+    }
+
+    if (oper){
+      ssDeploy.operator.uuid = charUUID;
+      ssDeploy.operator.name = charName;
+      ssDeploy.operator.rank = charRank.operator;
+      ssDeploy.operator.prof = charProf;
+    }
+
+    if (pilot){
+      ssDeploy.pilot.uuid = charUUID;
+      ssDeploy.pilot.name = charName;
+      ssDeploy.pilot.rank = charRank.pilot;
+      ssDeploy.pilot.prof = charProf;
+    }
+
+    if (tech){
+      ssDeploy.technician.uuid = charUUID;
+      ssDeploy.technician.name = charName;
+      ssDeploy.technician.rank = charRank.technician;
+      ssDeploy.technician.prof = charProf;
+    }
+
+    if (crew){
+      ssDeploy.crew.push({"uuid": charUUID, "name": charName, "rank": charRank, "prof": charProf});
+    }
+
+    if (pass){
+      ssDeploy.passenger.push({"uuid": charUUID, "name": charName, "rank": charRank, "prof": charProf});
+    }
+    this.update({"data.attributes.deployment": ssDeploy});
+  }
+
+
   /**
    * Transform this Actor into another one.
    *

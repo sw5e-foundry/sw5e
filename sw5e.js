@@ -175,16 +175,15 @@ Hooks.once("setup", function() {
   const toLocalize = [
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
-    "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
+    "damageTypes", "deploymentTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
     "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
-    "starshipRolessm", "starshipRolesmed", "starshipRoleslg", "starshipRoleshuge", "starshipRolesgrg", "starshipSkills",
-    "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
+    "starshipSkills", "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
     "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponSizes", "weaponTypes"
   ];
 
   // Exclude some from sorting where the default order matters
   const noSort = [
-    "abilities", "alignments", "currencies", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
+    "abilities", "alignments", "currencies", "deploymentTypes", "distanceUnits", "movementUnits", "itemActionTypes", "proficiencyLevels",
     "limitedUsePeriods", "powerComponents", "powerLevels", "powerPreparationModes", "weaponTypes"
   ];
 

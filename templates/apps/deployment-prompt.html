@@ -1,0 +1,18 @@
+<div class="dialog-content">
+	{{#each content.i18n}}
+		<div>
+			<label class="checkbox" for="{{@key}}">
+				<input type="checkbox" id="{{@key}}" name="{{@key}}" {{checked (lookup ../content.options @key)}}>
+				{{this}}
+			</label>
+		</div>
+	{{/each}}
+</div>
+<div class="dialog-buttons">
+    {{#each buttons as |button id|}}
+    <button class="dialog-button" data-button="{{id}}">
+        {{{button.icon}}}
+        {{{button.label}}}
+    </button>
+    {{/each}}
+</div>

@@ -560,7 +560,7 @@ export default class ActorSheet5e extends ActorSheet {
 
   /** @override */
   async _onDropActor(event, data) {
-    const canPolymorph = game.user.isGM || (this.actor.isOwner && game.settings.get('sw5e', 'allowPolymorphing'));
+    const canPolymorph = game.user.isGM || (this.actor.data.type === "starship") || (this.actor.owner && game.settings.get('sw5e', 'allowPolymorphing'));
     if ( !canPolymorph ) return false;
 
     // Get the target actor
@@ -585,49 +585,76 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     // Create and render the Dialog
-    return new Dialog({
-      title: game.i18n.localize('SW5E.PolymorphPromptTitle'),
-      content: {
-        options: game.settings.get('sw5e', 'polymorphSettings'),
-        i18n: SW5E.polymorphSettings,
-        isToken: this.actor.isToken
-      },
-      default: 'accept',
-      buttons: {
-        accept: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize('SW5E.PolymorphAcceptSettings'),
-          callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
+
+    if (this.actor.data.type === "starship") {
+      return new Dialog({
+        title: game.i18n.localize('SW5E.DeploymentPromptTitle') + " " + sourceActor.data.name + " into " + this.actor.data.name,
+        content: {
+          i18n: SW5E.deploymentTypes,
+          isToken: this.actor.isToken
         },
-        wildshape: {
-          icon: '<i class="fas fa-paw"></i>',
-          label: game.i18n.localize('SW5E.PolymorphWildShape'),
-          callback: html => this.actor.transformInto(sourceActor, {
-            keepBio: true,
-            keepClass: true,
-            keepMental: true,
-            mergeSaves: true,
-            mergeSkills: true,
-            transformTokens: rememberOptions(html).transformTokens
-          })
-        },
-        polymorph: {
-          icon: '<i class="fas fa-pastafarianism"></i>',
-          label: game.i18n.localize('SW5E.Polymorph'),
-          callback: html => this.actor.transformInto(sourceActor, {
-            transformTokens: rememberOptions(html).transformTokens
-          })
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize('Cancel')
+        default: 'accept',
+        buttons: {
+          deploy: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize('SW5E.DeploymentAcceptSettings'),
+            callback: html => this.actor.deployInto(sourceActor, rememberOptions(html))
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize('Cancel')
+          }
         }
-      }
-    }, {
-      classes: ['dialog', 'sw5e'],
-      width: 600,
-      template: 'systems/sw5e/templates/apps/polymorph-prompt.html'
-    }).render(true);
+      }, {
+        classes: ['dialog', 'sw5e'],
+        width: 600,
+        template: 'systems/sw5e/templates/apps/deployment-prompt.html'
+      }).render(true);
+    } else {
+      return new Dialog({
+        title: game.i18n.localize('SW5E.PolymorphPromptTitle'),
+        content: {
+          options: game.settings.get('sw5e', 'polymorphSettings'),
+          i18n: SW5E.polymorphSettings,
+          isToken: this.actor.isToken
+        },
+        default: 'accept',
+        buttons: {
+          accept: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize('SW5E.PolymorphAcceptSettings'),
+            callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
+          },
+          wildshape: {
+            icon: '<i class="fas fa-paw"></i>',
+            label: game.i18n.localize('SW5E.PolymorphWildShape'),
+            callback: html => this.actor.transformInto(sourceActor, {
+              keepBio: true,
+              keepClass: true,
+              keepMental: true,
+              mergeSaves: true,
+              mergeSkills: true,
+              transformTokens: rememberOptions(html).transformTokens
+            })
+          },
+          polymorph: {
+            icon: '<i class="fas fa-pastafarianism"></i>',
+            label: game.i18n.localize('SW5E.Polymorph'),
+            callback: html => this.actor.transformInto(sourceActor, {
+              transformTokens: rememberOptions(html).transformTokens
+            })
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize('Cancel')
+          }
+        }
+      }, {
+        classes: ['dialog', 'sw5e'],
+        width: 600,
+        template: 'systems/sw5e/templates/apps/polymorph-prompt.html'
+      }).render(true);
+    }
   }
 
   /* -------------------------------------------- */

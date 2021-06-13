@@ -140,11 +140,11 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassNPCOld"
   });
-  Actors.registerSheet("sw5e", ActorSheet5eStarship, {
-    types: ["starship"],
-    makeDefault: true,
-    label: "SW5E.SheetClassStarship"
-  });
+  // Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+  //   types: ["starship"],
+  //   makeDefault: true,
+  //   label: "SW5E.SheetClassStarship"
+  // });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
@@ -207,7 +207,6 @@ Hooks.once("setup", function() {
 });
 
 /* -------------------------------------------- */
-//TODO: Setup Migration
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
@@ -219,12 +218,12 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.3.2.R1-A5";
+  const NEEDS_MIGRATION_VERSION = "1.3.0.R1-A6";
   // Check for R1 SW5E versions
-  const SW5E_NEEDS_MIGRATION_VERSION = "R1-A5";
+  const SW5E_NEEDS_MIGRATION_VERSION = "R1-A6";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const needsMigration = currentVersion && (isNewerVersion(SW5E_NEEDS_MIGRATION_VERSION, currentVersion) || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion));
-  if ( !needsMigration ) return;
+  if (!needsMigration && needsMigration !== "") return;
 
   // Perform the migration
   if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {

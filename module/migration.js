@@ -6,7 +6,7 @@ export const migrateWorld = async function() {
   ui.notifications.info(`Applying SW5e System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`, {permanent: true});
 
   // Migrate World Actors
-  for await ( let a of game.actors.entities ) {
+  for await ( let a of game.actors.contents ) {
     try {
       console.log(`Checking Actor entity ${a.name} for migration needs`);
       const updateData = await migrateActorData(a.data);
@@ -21,9 +21,9 @@ export const migrateWorld = async function() {
   }
 
   // Migrate World Items
-  for ( let i of game.items.entities ) {
+  for ( let i of game.items.contents ) {
     try {
-      const updateData = migrateItemData(i.data);
+      const updateData = migrateItemData(i.toObject());
       if ( !foundry.utils.isObjectEmpty(updateData) ) {
         console.log(`Migrating Item entity ${i.name}`);
         await i.update(updateData, {enforceTypes: false});
@@ -35,12 +35,15 @@ export const migrateWorld = async function() {
   }
 
   // Migrate Actor Override Tokens
-  for ( let s of game.scenes.entities ) {
+  for ( let s of game.scenes.contents ) {
     try {
       const updateData = await migrateSceneData(s.data);
       if ( !foundry.utils.isObjectEmpty(updateData) ) {
         console.log(`Migrating Scene entity ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
+        // If we do not do this, then synthetic token actors remain in cache
+        // with the un-updated actorData.
+        s.tokens.contents.forEach(t => t._actor = null);
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
@@ -88,7 +91,7 @@ export const migrateCompendium = async function(pack) {
           updateData = await migrateActorData(doc.data);
           break;
         case "Item":
-          updateData = migrateItemData(doc.data);
+          updateData = migrateItemData(doc.toObject());
           break;
         case "Scene":
           updateData = await migrateSceneData(doc.data);
@@ -127,9 +130,11 @@ export const migrateActorData = async function(actor) {
   const updateData = {};
 
   // Actor Data Updates
-  _migrateActorMovement(actor, updateData);
-  _migrateActorSenses(actor, updateData);
-  _migrateActorType(actor, updateData);
+  if(actor.data) {
+    _migrateActorMovement(actor, updateData);
+    _migrateActorSenses(actor, updateData);
+    _migrateActorType(actor, updateData);
+  }
 
   // Migrate Owned Items
   if ( !!actor.items ) {
@@ -137,20 +142,21 @@ export const migrateActorData = async function(actor) {
       const results = await memo;
 
       // Migrate the Owned Item
-      let itemUpdate = await migrateActorItemData(i.data, actor);
+      const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i
+      let itemUpdate = await migrateActorItemData(itemData, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
       if ( actor.type === "npc" ) {
-        if (getProperty(i.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
-        if (getProperty(i.data, "equipped") === false) itemUpdate["data.equipped"] = true;
-        if (getProperty(i.data, "proficient") === false) itemUpdate["data.proficient"] = true;
+        if (getProperty(itemData.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
+        if (getProperty(itemData.data, "equipped") === false) itemUpdate["data.equipped"] = true;
+        if (getProperty(itemData.data, "proficient") === false) itemUpdate["data.proficient"] = true;
       }
 
       // Update the Owned Item
       if ( !isObjectEmpty(itemUpdate) ) {
-        itemUpdate._id = i.id;
+        itemUpdate._id = itemData.id;
         console.log(`Migrating Actor ${actor.name}'s ${i.name}`);
-        results.push(itemUpdate)
+        results.push(expandObject(itemUpdate));
       }
 
       return results;
@@ -237,14 +243,27 @@ export const migrateActorItemData = async function(item, actor) {
  export const migrateSceneData = async function(scene) {
     const tokens = await Promise.all(scene.tokens.map(async token => {
       const t = token.toJSON();
-      if (!t.actorId || t.actorLink || !t.actorData.data) {
+      if (!t.actorId || t.actorLink) {
         t.actorData = {};
       }
       else if (!game.actors.has(t.actorId)) {
         t.actorId = null;
         t.actorData = {};
       } else if ( !t.actorLink ) {
-        t.actorData = mergeObject(token.data.actorData, await migrateActorData(t.actorData));
+        const actorData = duplicate(t.actorData);
+        actorData.type = token.actor?.type;
+        const update = migrateActorData(actorData);
+        ['items', 'effects'].forEach(embeddedName => {
+          if (!update[embeddedName]?.length) return;
+          const updates = new Map(update[embeddedName].map(u => [u._id, u]));
+          t.actorData[embeddedName].forEach(original => {
+            const update = updates.get(original._id);
+            if (update) mergeObject(original, update);
+          });
+          delete update[embeddedName];
+        });
+
+        mergeObject(t.actorData, update);
       }
       return t;
     }));
@@ -417,6 +436,7 @@ function _migrateActorSenses(actor, updateData) {
   const ad = actor.data;
   if ( ad?.traits?.senses === undefined ) return;
   const original = ad.traits.senses || "";
+  if ( typeof original !== "string" ) return;
 
   // Try to match old senses with the format like "Darkvision 60 ft, Blindsight 30 ft"
   const pattern = /([A-z]+)\s?([0-9]+)\s?([A-z]+)?/;
@@ -451,7 +471,7 @@ function _migrateActorSenses(actor, updateData) {
 function _migrateActorType(actor, updateData) {
   const ad = actor.data;
   const original = ad.details?.type;
-  if ( (original === undefined) || (foundry.utils.getType(original) === "Object") ) return;
+  if ( typeof original !== "string" ) return;
 
   // New default data structure
   let data = {
@@ -518,7 +538,6 @@ function _migrateActorType(actor, updateData) {
 
   // Update the actor data
   updateData["data.details.type"] = data;
-  console.log(data);
   return updateData;
 }
 
@@ -624,7 +643,7 @@ async function _migrateItemPower(item, actor, updateData) {
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data.attuned === undefined ) return updateData;
+  if ( item.data.data.attuned === undefined ) return updateData;
   updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;

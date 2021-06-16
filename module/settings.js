@@ -8,7 +8,7 @@ export const registerSystemSettings = function() {
     scope: "world",
     config: false,
     type: String,
-    default: ""
+    default: game.system.data.version
   });
 
   /**

@@ -87,7 +87,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     let [items, forcepowers, techpowers, feats, classes, deployments, deploymentfeatures, ventures, species, archetypes, classfeatures, backgrounds, fightingstyles, fightingmasteries, lightsaberforms] = data.items.reduce((arr, item) => {
 
       // Item details
-      item.img = item.img || DEFAULT_TOKEN;
+      item.img = item.img || CONST.DEFAULT_TOKEN;
       item.isStack = Number.isNumeric(item.data.quantity) && (item.data.quantity !== 1);
       item.attunement = {
         [CONFIG.SW5E.attunementTypes.REQUIRED]: {
@@ -110,6 +110,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
       // Item toggle state
       this._prepareItemToggleState(item);
+
+      // Primary Class
+      if ( item.type === "class" ) item.isOriginalClass = ( item.data._id === this.actor.data.data.details.originalClass );
 
       // Classify items into types
       if ( item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school) ) arr[1].push(item);
@@ -168,7 +171,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       if ( f.data.activation.type ) features.active.items.push(f);
       else features.passive.items.push(f);
     }
-    classes.sort((a, b) => b.levels - a.levels);
+    classes.sort((a, b) => b.data.levels - a.data.levels);
     features.classes.items = classes;
     features.classfeatures.items = classfeatures;
     features.archetype.items = archetypes;
@@ -218,11 +221,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
   /**
    * Activate event listeners using the prepared sheet HTML
-   * @param html {HTML}   The prepared HTML object ready to be rendered into the DOM
+   * @param html {jQuery}   The prepared HTML object ready to be rendered into the DOM
    */
 	activateListeners(html) {
     super.activateListeners(html);
-    if ( !this.options.editable ) return;
+    if ( !this.isEditable ) return;
 
     // Inventory Functions
     // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
@@ -240,11 +243,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // Send Languages to Chat onClick
     html.find('[data-options="share-languages"]').click(event => {
       event.preventDefault();
-      let langs = this.actor.data.data.traits.languages.value.map(l => SW5E.languages[l] || l).join(", ");
+      let langs = this.actor.data.data.traits.languages.value.map(l => CONFIG.SW5E.languages[l] || l).join(", ");
       let custom = this.actor.data.data.traits.languages.custom;
       if (custom) langs += ", " + custom.replace(/;/g, ",");
       let content = `
-        <div class="sw5e chat-card item-card" data-acor-id="${this.actor._id}">
+        <div class="sw5e chat-card item-card" data-acor-id="${this.actor.data._id}">
           <header class="card-header flexrow">
             <img src="${this.actor.data.token.img}" title="" width="36" height="36" style="border: none;"/>
             <h3>Known Languages</h3>
@@ -254,21 +257,25 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       `;
 
       // Send to Chat
-      let rollWhisper = null;
       let rollBlind = false;
       let rollMode = game.settings.get("core", "rollMode");
-      if (["gmroll", "blindroll"].includes(rollMode)) rollWhisper = ChatMessage.getWhisperIDs("GM");
       if (rollMode === "blindroll") rollBlind = true;
-      ChatMessage.create({
-        user: game.user._id,
+      let data = {
+        user: game.user.data._id,
         content: content,
+        blind: rollBlind,
         speaker: {
-          actor: this.actor._id,
+          actor: this.actor.data._id,
           token: this.actor.token,
           alias: this.actor.name
         },
         type: CONST.CHAT_MESSAGE_TYPES.OTHER
-      });
+      };
+
+      if (["gmroll", "blindroll"].includes(rollMode)) data["whisper"] = ChatMessage.getWhisperRecipients("GM");
+      else if (rollMode === "selfroll") data["whisper"] = [game.users.get(game.user.data._id)];
+
+      ChatMessage.create(data);
     });
 
     // Item Delete Confirmation
@@ -276,7 +283,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     html.find('.item-delete').click(event => {
       let li = $(event.currentTarget).parents('.item');
       let itemId = li.attr("data-item-id");
-      let item = this.actor.getOwnedItem(itemId);
+      let item = this.actor.items.get(itemId);
       new Dialog({
         title: `Deleting ${item.data.name}`,
         content: `<p>Are you sure you want to delete ${item.data.name}?</p>`,
@@ -327,7 +334,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
   _onToggleItem(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const item = this.actor.getOwnedItem(itemId);
+    const item = this.actor.items.get(itemId);
     const attr = item.data.type === "power" ? "data.preparation.prepared" : "data.equipped";
     return item.update({[attr]: !getProperty(item.data, attr)});
   }
@@ -390,7 +397,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     // } 
 
     // Default drop handling if levels were not added
-    super._onDropItemCreate(itemData);
+    return super._onDropItemCreate(itemData);
   }
 }
 async function addFavorites(app, html, data) {
@@ -465,11 +472,11 @@ async function addFavorites(app, html, data) {
     if (app.options.editable) {
       let favBtn = $(`<a class="item-control item-toggle item-fav ${isFav ? "active" : ""}" data-fav="${isFav}" title="${isFav ? "Remove from Favourites" : "Add to Favourites"}"><i class="fas fa-star"></i></a>`);
       favBtn.click(ev => {
-        app.actor.getOwnedItem(item._id).update({
+        app.actor.items.get(item.data._id).update({
           "flags.favtab.isFavourite": !item.flags.favtab.isFavourite
         });
       });
-      html.find(`.item[data-item-id="${item._id}"]`).find('.item-controls').prepend(favBtn);
+      html.find(`.item[data-item-id="${item.data._id}"]`).find('.item-controls').prepend(favBtn);
     }
 
     if (isFav) {
@@ -479,8 +486,8 @@ async function addFavorites(app, html, data) {
         let v = (comps.vocal) ? "V" : "";
         let s = (comps.somatic) ? "S" : "";
         let m = (comps.material) ? "M" : "";
-        let c = (comps.concentration) ? true : false;
-        let r = (comps.ritual) ? true : false;
+        let c = !!(comps.concentration);
+        let r = !!(comps.ritual);
         item.powerComps = `${v}${s}${m}`;
         item.powerCon = c;
         item.powerRit = r;
@@ -543,12 +550,12 @@ async function addFavorites(app, html, data) {
     //favtabHtml.find('.item-toggle').click(event => app._onToggleItem(event));
     favtabHtml.find('.item-edit').click(ev => {
       let itemId = $(ev.target).parents('.item')[0].dataset.itemId;
-      app.actor.getOwnedItem(itemId).sheet.render(true);
+      app.actor.items.get(itemId).sheet.render(true);
     });
     favtabHtml.find('.item-fav').click(ev => {
       let itemId = $(ev.target).parents('.item')[0].dataset.itemId;
-      let val = !app.actor.getOwnedItem(itemId).data.flags.favtab.isFavourite
-      app.actor.getOwnedItem(itemId).update({
+      let val = !app.actor.items.get(itemId).data.flags.favtab.isFavourite
+      app.actor.items.get(itemId).update({
         "flags.favtab.isFavourite": val
       });
     });
@@ -564,10 +571,10 @@ async function addFavorites(app, html, data) {
       let list = null;
       if (dropData.data.type === 'feat') list = favFeats;
       else list = favItems;
-      let dragSource = list.find(i => i._id === dropData.data._id);
-      let siblings = list.filter(i => i._id !== dropData.data._id);
+      let dragSource = list.find(i => i.data._id === dropData.data._id);
+      let siblings = list.filter(i => i.data._id !== dropData.data._id);
       let targetId = ev.target.closest('.item').dataset.itemId;
-      let dragTarget = siblings.find(s => s._id === targetId);
+      let dragTarget = siblings.find(s => s.data._id === targetId);
 
       if (dragTarget === undefined) return;
       const sortUpdates = SortingHelpers.performIntegerSort(dragSource, {
@@ -577,7 +584,7 @@ async function addFavorites(app, html, data) {
       });
       const updateData = sortUpdates.map(u => {
         const update = u.update;
-        update._id = u.target._id;
+        update._id = u.target.data._id;
         return update;
       });
       app.actor.updateEmbeddedEntity("OwnedItem", updateData);
@@ -636,11 +643,7 @@ async function addSubTabs(app, html, data) {
       return tab.target == target
     });
     data.options.subTabs[subgroup].map(el => {
-      if(el.target == target) {
-        el.active = true;
-      } else {
-        el.active = false; 
-      }
+      el.active = el.target == target;
       return el;
     })
     

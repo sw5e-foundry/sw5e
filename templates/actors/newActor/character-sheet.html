@@ -63,7 +63,10 @@
 
 			{{!-- HIT DICE / SHORT & LONG REST BUTTONS --}}
 			<section>
-				<h1>{{ localize "SW5E.HitDice" }}</h1>
+				<h1>
+                    {{ localize "SW5E.HitDice" }}
+                    <a class="config-button" data-action="hit-dice" title="{{localize 'SW5E.HitDiceConfig'}}"><i class="fas fa-cog"></i></a>
+                </h1>
 				<div class="attribute-value multiple">
 					<span class="value-number">{{data.attributes.hd}}</span>
 					<span class="value-separator">/</span>
@@ -147,4 +150,5 @@
 		<section class="tab biography" data-group="primary" data-tab="biography">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html"}}
 		</section>
+    </section>
 </form>

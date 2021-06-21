@@ -103,6 +103,27 @@ SW5E.weaponProficiencies = {
 	"vbw": "SW5E.WeaponVibrowhipProficiency"
 };
 
+/**
+ * A map of weapon item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+ SW5E.weaponProficienciesMap = {
+  "natural": true,
+  "simpleB": "sim",
+  "simpleVW": "sim",
+  "simpleLW": "sim",
+  "martialB": "mar",
+  "martialVW": "mar",
+  "martialLW": "mar",
+
+  // "simpleM": "sim",
+  // "simpleR": "sim",
+  // "martialM": "mar",
+  // "martialR": "mar"
+}
+
+
 // TODO: Check to see if this can be used
 // It's not actually been used anywhere in DND5e 1.3.2
 // Note name mapped to ID in compendium
@@ -270,8 +291,8 @@ SW5E.abilityActivationTypes = {
   "hour": SW5E.timePeriods.hour,
   "day": SW5E.timePeriods.day,
   "special": SW5E.timePeriods.spec,
-  "legendary": "SW5E.LegAct",
-  "lair": "SW5E.LairAct",
+  "legendary": "SW5E.LegendaryActionLabel",
+  "lair": "SW5E.LairActionLabel",
   "crew": "SW5E.VehicleCrewAction"
 };
 
@@ -413,6 +434,19 @@ SW5E.armorProficiencies = {
   "shl": "SW5E.EquipmentShieldProficiency"
 };
 
+/**
+ * A map of armor item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+SW5E.armorProficienciesMap = {
+  "natural": true,
+  "clothing": true,
+  "light": "lgt",
+  "medium": "med",
+  "heavy": "hvy",
+  "shield": "shl"
+}
 
 /* -------------------------------------------- */
 

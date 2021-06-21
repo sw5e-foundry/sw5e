@@ -1539,7 +1539,7 @@ export default class Item5e extends Item {
       if ( isNPC ) {
         updates["data.proficient"] = true;  // NPCs automatically have equipment proficiency
       } else {
-        const armorProf = CONFIG.DND5E.armorProficienciesMap[data.data?.armor?.type]; // Player characters check proficiency
+        const armorProf = CONFIG.SW5E.armorProficienciesMap[data.data?.armor?.type]; // Player characters check proficiency
         const actorArmorProfs = actorData.data.traits?.armorProf?.value || [];
         updates["data.proficient"] = (armorProf === true) || actorArmorProfs.includes(armorProf);
       }
@@ -1575,7 +1575,7 @@ export default class Item5e extends Item {
         updates["data.proficient"] = true;    // NPCs automatically have equipment proficiency
       } else {
         // TODO: With the changes to make weapon proficiencies more verbose, this may need revising
-        const weaponProf = CONFIG.DND5E.weaponProficienciesMap[data.data?.weaponType]; // Player characters check proficiency
+        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[data.data?.weaponType]; // Player characters check proficiency
         const actorWeaponProfs = actorData.data.traits?.weaponProf?.value || [];
         updates["data.proficient"] = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
       }

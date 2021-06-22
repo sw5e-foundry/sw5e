@@ -154,7 +154,7 @@ export const migrateActorData = async function(actor) {
 
       // Update the Owned Item
       if ( !isObjectEmpty(itemUpdate) ) {
-        itemUpdate._id = itemData.id;
+        itemUpdate._id = itemData._id;
         console.log(`Migrating Actor ${actor.name}'s ${i.name}`);
         results.push(expandObject(itemUpdate));
       }
@@ -643,7 +643,7 @@ async function _migrateItemPower(item, actor, updateData) {
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data.data.attuned === undefined ) return updateData;
+  if ( item.data?.attuned === undefined ) return updateData;
   updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;

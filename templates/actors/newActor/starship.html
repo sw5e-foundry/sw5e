@@ -109,13 +109,13 @@
                                     value="{{ability.value}}" data-dtype="Number" placeholder="10" />
                                 <div class="ability-modifiers">
                                     <span class="ability-mod"
-                                        title="Modifier">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                                        title="{{ localize 'SW5E.Modifier' }}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
                                     <input type="hidden" name="data.abilities.{{id}}.proficient"
                                         value="{{ability.proficient}}" data-dtype="Number" />
                                     <button class="proficiency-toggle ability-proficiency"
                                         title="Proficiency">{{{ability.icon}}}</button>
                                     <span class="ability-save"
-                                        title="Saving Throw">{{numberFormat ability.save decimals=0 sign=true}}</span>
+                                        title="{{ localize 'SW5E.SavingThrow' }}">{{numberFormat ability.save decimals=0 sign=true}}</span>
                                 </div>
                         </li>
                         {{/each}}

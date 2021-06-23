@@ -216,7 +216,6 @@ export const migrateItemData = function(item) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
-  _migrateItemPowercasting(item, updateData);
   return updateData;
 };
 
@@ -231,7 +230,6 @@ export const migrateActorItemData = async function(item, actor) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
-  _migrateItemPowercasting(item, updateData);
   await _migrateItemPower(item, actor, updateData);
   return updateData;
 };
@@ -654,26 +652,6 @@ function _migrateItemAttunement(item, updateData) {
   updateData["data.-=attuned"] = null;
   return updateData;
 }
-
-/* -------------------------------------------- */
-
-/**
- * Replace class powercasting string to object.
- *
- * @param {object} item        Item data to migrate
- * @param {object} updateData  Existing update to expand upon
- * @return {object}            The updateData to apply
- * @private
- */
- function _migrateItemPowercasting(item, updateData) {
-  if ( item.type !== "class" || (foundry.utils.getType(item.data.powercasting) === "Object") ) return updateData;
-  updateData["data.powercasting"] = {
-    progression: item.data.powercasting,
-    ability: ""
-  };
-  return updateData;
-}
-
 
 /* -------------------------------------------- */
 

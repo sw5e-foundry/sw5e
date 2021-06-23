@@ -1,4 +1,4 @@
-import Actor5e from "../../entity.js";
+import Actor5e from "../entity.js";
 import ActorSheet5e from "./base.js";
 
 /**
@@ -88,7 +88,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritdoc */
   getData(options) {
     const data = super.getData(options);
 

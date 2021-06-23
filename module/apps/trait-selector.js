@@ -4,7 +4,7 @@
  */
 export default class TraitSelector extends DocumentSheet {
 
-  /** @inheritDoc */
+  /** @inheritdoc */
   static get defaultOptions() {
 	  return foundry.utils.mergeObject(super.defaultOptions, {
       id: "trait-selector",

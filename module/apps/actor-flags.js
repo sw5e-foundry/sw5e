@@ -1,6 +1,6 @@
 /**
  * An application class which provides advanced configuration for special character flags which modify an Actor
- * @extends {DocumentSheet}
+ * @implements {DocumentSheet}
  */
 export default class ActorSheetFlags extends DocumentSheet {
   static get defaultOptions() {

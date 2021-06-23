@@ -110,19 +110,13 @@ SW5E.weaponProficiencies = {
  */
  SW5E.weaponProficienciesMap = {
   "natural": true,
-  "simpleB": "sim",
   "simpleVW": "sim",
+  "simpleB": "sim",
   "simpleLW": "sim",
-  "martialB": "mar",
   "martialVW": "mar",
-  "martialLW": "mar",
-
-  // "simpleM": "sim",
-  // "simpleR": "sim",
-  // "martialM": "mar",
-  // "martialR": "mar"
-}
-
+  "martialB": "mar",
+  "martialLW": "mar"
+};
 
 // TODO: Check to see if this can be used
 // It's not actually been used anywhere in DND5e 1.3.2
@@ -439,7 +433,7 @@ SW5E.armorProficiencies = {
  * Used when a new player owned item is created
  * @type {Object}
  */
-SW5E.armorProficienciesMap = {
+ SW5E.armorProficienciesMap = {
   "natural": true,
   "clothing": true,
   "light": "lgt",
@@ -780,7 +774,7 @@ SW5E.starshipRolesgrg = {
 
 /**
  * The set of possible sensory perception types which an Actor may have
- * @type {object}
+ * @enum {string}
  */
 SW5E.senses = {
   "blindsight": "SW5E.SenseBlindsight",

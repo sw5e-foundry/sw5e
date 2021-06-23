@@ -789,7 +789,7 @@ export default class ActorSheet5e extends ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const itemData = {
-      name: game.i18n.format("SW5E.ItemNew", {type: type.capitalize()}),
+      name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(`SW5E.ItemType${type.capitalize()}`)}),
       type: type,
       data: foundry.utils.deepClone(header.dataset)
     };
@@ -820,6 +820,7 @@ export default class ActorSheet5e extends ActorSheet {
    */
   _onItemDelete(event) {
     event.preventDefault();
+    const li = event.currentTarget.closest(".item");
     const item = this.actor.items.get(li.dataset.itemId);
     if ( item ) return item.delete();
   }

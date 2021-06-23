@@ -255,7 +255,7 @@ export default class Item5e extends Item {
 
       // Range Label
       let rng = data.range || {};
-      if (["none", "touch", "self"].includes(rng.units) || (rng.value === 0)) {
+      if ( ["none", "touch", "self"].includes(rng.units) ) {
         rng.value = null;
         rng.long = null;
       }

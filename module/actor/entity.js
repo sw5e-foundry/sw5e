@@ -696,10 +696,10 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
-  /*  Event Handlers
+  /*  Event Handlers                              */
   /* -------------------------------------------- */
 
-  /** @inheritDoc */
+  /** @inheritdoc */
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
 

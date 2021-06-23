@@ -1,3 +1,4 @@
+import Actor5e from "../entity.js";
 import ActorSheet5e from "./base.js";
 
 /**

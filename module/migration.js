@@ -142,7 +142,7 @@ export const migrateActorData = async function(actor) {
       const results = await memo;
 
       // Migrate the Owned Item
-      const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i
+      const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
       let itemUpdate = await migrateActorItemData(itemData, actor);
 
       // Prepared, Equipped, and Proficient for NPC actors
@@ -154,7 +154,7 @@ export const migrateActorData = async function(actor) {
 
       // Update the Owned Item
       if ( !isObjectEmpty(itemUpdate) ) {
-        itemUpdate._id = itemData.id;
+        itemUpdate._id = itemData._id;
         console.log(`Migrating Actor ${actor.name}'s ${i.name}`);
         results.push(expandObject(itemUpdate));
       }
@@ -208,12 +208,15 @@ function cleanActorData(actorData) {
 
 /**
  * Migrate a single Item entity to incorporate latest data model changes
- * @param item
+ *
+ * @param {object} item  Item data to migrate
+ * @return {object}      The updateData to apply
  */
 export const migrateItemData = function(item) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
+  _migrateItemPowercasting(item, updateData);
   return updateData;
 };
 
@@ -228,6 +231,7 @@ export const migrateActorItemData = async function(item, actor) {
   const updateData = {};
   _migrateItemClassPowerCasting(item, updateData);
   _migrateItemAttunement(item, updateData);
+  _migrateItemPowercasting(item, updateData);
   await _migrateItemPower(item, actor, updateData);
   return updateData;
 };
@@ -464,6 +468,8 @@ function _migrateActorSenses(actor, updateData) {
   return updateData;
 }
 
+/* -------------------------------------------- */
+
 /**
  * Migrate the actor details.type string to object
  * @private
@@ -643,11 +649,31 @@ async function _migrateItemPower(item, actor, updateData) {
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data.data.attuned === undefined ) return updateData;
+  if ( item.data?.attuned === undefined ) return updateData;
   updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
   updateData["data.-=attuned"] = null;
   return updateData;
 }
+
+/* -------------------------------------------- */
+
+/**
+ * Replace class powercasting string to object.
+ *
+ * @param {object} item        Item data to migrate
+ * @param {object} updateData  Existing update to expand upon
+ * @return {object}            The updateData to apply
+ * @private
+ */
+ function _migrateItemPowercasting(item, updateData) {
+  if ( item.type !== "class" || (foundry.utils.getType(item.data.powercasting) === "Object") ) return updateData;
+  updateData["data.powercasting"] = {
+    progression: item.data.powercasting,
+    ability: ""
+  };
+  return updateData;
+}
+
 
 /* -------------------------------------------- */
 

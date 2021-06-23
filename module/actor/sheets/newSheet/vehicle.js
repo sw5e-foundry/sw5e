@@ -222,7 +222,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       if ( isCargo ) {
         totalWeight += (item.data.weight || 0) * item.data.quantity;
         cargo.cargo.items.push(item);
-        continue
+        continue;
       }
 
       // Handle non-cargo item types
@@ -370,6 +370,8 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
 
     return super._onItemDelete(event);
   }
+
+  /* -------------------------------------------- */
 
   /** @override */
   async _onDropItemCreate(itemData) {

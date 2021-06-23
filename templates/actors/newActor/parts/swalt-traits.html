@@ -14,12 +14,12 @@
                     placeholder="0" class="value-number" />
             </div>
             <footer class="attribute-footer">
-                <label class="recharge checkbox">
-                    {{ localize "SW5E.AbbreviationSR" }} <input name="data.resources.{{res.name}}.sr" type="checkbox"
+                <label class="recharge checkbox flexcol">
+                    <span>{{ localize "SW5E.AbbreviationSR" }}</span> <input name="data.resources.{{res.name}}.sr" type="checkbox"
                         {{checked res.sr}} />
                 </label>
-                <label class="recharge checkbox">
-                    {{ localize "SW5E.AbbreviationLR" }} <input name="data.resources.{{res.name}}.lr" type="checkbox"
+                <label class="recharge checkbox flexcol">
+                    <span>{{ localize "SW5E.AbbreviationLR" }}</span> <input name="data.resources.{{res.name}}.lr" type="checkbox"
                         {{checked res.lr}} />
                 </label>
             </footer>

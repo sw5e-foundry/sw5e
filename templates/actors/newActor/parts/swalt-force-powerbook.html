@@ -110,7 +110,7 @@
                     <div class="item-detail item-target" title="{{localize 'SW5E.Range'}}: {{labels.range}}">
                         {{#if labels.target}}
                         {{labels.target}}
-                        {{else}}None
+                        {{else}}{{localize 'SW5E.None'}}
                         {{/if}}
                     </div>
 
@@ -120,8 +120,8 @@
                         <a class="item-control item-toggle {{item.toggleClass}}" title="{{item.toggleTitle}}"><i
                                 class="fas fa-check-circle"></i></a>
                         {{/if}}
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
                     </div>
                     {{/if}}
                 </li>

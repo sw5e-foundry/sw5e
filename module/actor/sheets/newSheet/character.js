@@ -112,7 +112,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       this._prepareItemToggleState(item);
 
       // Primary Class
-      if ( item.type === "class" ) item.isOriginalClass = ( item.data._id === this.actor.data.data.details.originalClass );
+      if ( item.type === "class" ) item.isOriginalClass = ( item._id === this.actor.data.data.details.originalClass );
 
       // Classify items into types
       if ( item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school) ) arr[1].push(item);
@@ -143,7 +143,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     for ( let i of items ) {
       i.data.quantity = i.data.quantity || 0;
       i.data.weight = i.data.weight || 0;
-      i.totalWeight = Math.round(i.data.quantity * i.data.weight * 10) / 10;
+      i.totalWeight = (i.data.quantity * i.data.weight).toNearest(0.1);
       inventory[i.type].items.push(i);
     }
 
@@ -156,9 +156,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
       classes: { label: "SW5E.ItemTypeClassPl", items: [], hasActions: false, dataset: {type: "class"}, isClass: true },
       classfeatures: { label: "SW5E.ItemTypeClassFeats", items: [], hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true },
       archetype: { label: "SW5E.ItemTypeArchetype", items: [], hasActions: false, dataset: {type: "archetype"}, isArchetype: true },
-	  deployments: { label: "SW5E.ItemTypeDeploymentPl", items: [], hasActions: false, dataset: {type: "deployment"}, isDeployment: true },
-	  deploymentfeatures: { label: "SW5E.ItemTypeDeploymentFeaturePl", items: [], hasActions: true, dataset: {type: "deploymentfeature"}, isDeploymentfeature: true },
-	  ventures: { label: "SW5E.ItemTypeVenturePl", items: [], hasActions: false, dataset: {type: "venture"}, isVenture: true },
+	    deployments: { label: "SW5E.ItemTypeDeploymentPl", items: [], hasActions: false, dataset: {type: "deployment"}, isDeployment: true },
+	    deploymentfeatures: { label: "SW5E.ItemTypeDeploymentFeaturePl", items: [], hasActions: true, dataset: {type: "deploymentfeature"}, isDeploymentfeature: true },
+	    ventures: { label: "SW5E.ItemTypeVenturePl", items: [], hasActions: false, dataset: {type: "venture"}, isVenture: true },
       species: { label: "SW5E.ItemTypeSpecies", items: [], hasActions: false, dataset: {type: "species"}, isSpecies: true },
       background: { label: "SW5E.ItemTypeBackground", items: [], hasActions: false, dataset: {type: "background"}, isBackground: true },
       fightingstyles: { label: "SW5E.ItemTypeFightingStylePl", items: [], hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyle: true },
@@ -175,9 +175,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     features.classes.items = classes;
     features.classfeatures.items = classfeatures;
     features.archetype.items = archetypes;
-	features.deployments.items = deployments;
-	features.deploymentfeatures.items = deploymentfeatures;
-	features.ventures.items = ventures;	
+	  features.deployments.items = deployments;
+	  features.deploymentfeatures.items = deploymentfeatures;
+	  features.ventures.items = ventures;	
     features.species.items = species;
     features.background.items = backgrounds;
     features.fightingstyles.items = fightingstyles;

@@ -75,10 +75,10 @@ export default class ActorSheet5e extends ActorSheet {
       options: this.options,
       editable: this.isEditable,
       cssClass: isOwner ? "editable" : "locked",
-      isCharacter: this.actor.data.type === "character",
-      isNPC: this.actor.data.type === "npc",
-      isStarship: this.actor.data.type === "starship",
-      isVehicle: this.actor.data.type === 'vehicle',
+      isCharacter: this.actor.type === "character",
+      isNPC: this.actor.type === "npc",
+      isStarship: this.actor.type === "starship",
+      isVehicle: this.actor.type === 'vehicle',
       config: CONFIG.SW5E,
       rollData: this.actor.getRollData.bind(this.actor)
     };
@@ -109,7 +109,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Skills
     if (actorData.data.skills) {
-      for ( let [s, skl] of Object.entries(actorData.data.skills)) {
+      for (let [s, skl] of Object.entries(actorData.data.skills)) {
         skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
         skl.icon = this._getProficiencyIcon(skl.value);
         skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
@@ -781,7 +781,7 @@ export default class ActorSheet5e extends ActorSheet {
     const header = event.currentTarget;
     const type = header.dataset.type;
     const itemData = {
-      name: game.i18n.format("SW5E.ItemNew", {type: type.capitalize()}),
+      name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(`SW5E.ItemType${type.capitalize()}`)}),
       type: type,
       data: foundry.utils.deepClone(header.dataset)
     };

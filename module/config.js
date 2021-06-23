@@ -103,6 +103,21 @@ SW5E.weaponProficiencies = {
 	"vbw": "SW5E.WeaponVibrowhipProficiency"
 };
 
+/**
+ * A map of weapon item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+ SW5E.weaponProficienciesMap = {
+  "natural": true,
+  "simpleVW": "sim",
+  "simpleB": "sim",
+  "simpleLW": "sim",
+  "martialVW": "mar",
+  "martialB": "mar",
+  "martialLW": "mar"
+};
+
 // TODO: Check to see if this can be used
 // It's not actually been used anywhere in DND5e 1.3.2
 // Note name mapped to ID in compendium
@@ -270,8 +285,8 @@ SW5E.abilityActivationTypes = {
   "hour": SW5E.timePeriods.hour,
   "day": SW5E.timePeriods.day,
   "special": SW5E.timePeriods.spec,
-  "legendary": "SW5E.LegAct",
-  "lair": "SW5E.LairAct",
+  "legendary": "SW5E.LegendaryActionLabel",
+  "lair": "SW5E.LairActionLabel",
   "crew": "SW5E.VehicleCrewAction"
 };
 
@@ -412,6 +427,20 @@ SW5E.armorProficiencies = {
   "hvy": SW5E.equipmentTypes.heavy,
   "shl": "SW5E.EquipmentShieldProficiency"
 };
+
+/**
+ * A map of armor item proficiency to actor item proficiency
+ * Used when a new player owned item is created
+ * @type {Object}
+ */
+ SW5E.armorProficienciesMap = {
+  "natural": true,
+  "clothing": true,
+  "light": "lgt",
+  "medium": "med",
+  "heavy": "hvy",
+  "shield": "shl"
+}
 
 
 /* -------------------------------------------- */
@@ -746,7 +775,7 @@ SW5E.starshipRolesgrg = {
 
 /**
  * The set of possible sensory perception types which an Actor may have
- * @type {object}
+ * @enum {string}
  */
 SW5E.senses = {
   "blindsight": "SW5E.SenseBlindsight",

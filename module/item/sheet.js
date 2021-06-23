@@ -56,7 +56,7 @@ export default class ItemSheet5e extends ItemSheet {
     // Potential consumption targets
     data.abilityConsumptionTargets = this._getItemConsumptionTargets(itemData);
 
-    // Action Detail
+    // Action Details
     data.hasAttackRoll = this.item.hasAttack;
     data.isHealing = itemData.data.actionType === "heal";
     data.isFlatDC = getProperty(itemData, "data.save.scaling") === "flat";

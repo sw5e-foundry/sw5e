@@ -255,7 +255,7 @@ export default class Item5e extends Item {
 
       // Range Label
       let rng = data.range || {};
-      if (["none", "touch", "self"].includes(rng.units) || (rng.value === 0)) {
+      if ( ["none", "touch", "self"].includes(rng.units) ) {
         rng.value = null;
         rng.long = null;
       }
@@ -1295,7 +1295,10 @@ export default class Item5e extends Item {
     const abl = this.abilityMod;
     if ( abl ) {
       const ability = rollData.abilities[abl];
-      rollData["mod"] = ability.mod || 0;
+      if ( !ability ) {
+        console.warn(`Item ${this.name} in Actor ${this.actor.name} has an invalid item ability modifier of ${abl} defined`);
+      }
+      rollData["mod"] = ability?.mod || 0;
     }
 
     // Include a proficiency score
@@ -1536,14 +1539,7 @@ export default class Item5e extends Item {
       if ( isNPC ) {
         updates["data.proficient"] = true;  // NPCs automatically have equipment proficiency
       } else {
-        const armorProf = {
-          "natural": true,
-          "clothing": true,
-          "light": "lgt",
-          "medium": "med",
-          "heavy": "hvy",
-          "shield": "shl"
-        }[data.data?.armor?.type];        // Player characters check proficiency
+        const armorProf = CONFIG.SW5E.armorProficienciesMap[data.data?.armor?.type]; // Player characters check proficiency
         const actorArmorProfs = actorData.data.traits?.armorProf?.value || [];
         updates["data.proficient"] = (armorProf === true) || actorArmorProfs.includes(armorProf);
       }
@@ -1579,15 +1575,7 @@ export default class Item5e extends Item {
         updates["data.proficient"] = true;    // NPCs automatically have equipment proficiency
       } else {
         // TODO: With the changes to make weapon proficiencies more verbose, this may need revising
-        const weaponProf = {
-          "natural": true,
-          "simpleVW": "sim",
-          "simpleB": "sim",
-          "simpleLW": "sim",
-          "martialVW": "mar",
-          "martialB": "mar",
-          "martialLW": "mar"
-        }[data.data?.weaponType];         // Player characters check proficiency
+        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[data.data?.weaponType]; // Player characters check proficiency
         const actorWeaponProfs = actorData.data.traits?.weaponProf?.value || [];
         updates["data.proficient"] = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
       }

@@ -39,7 +39,7 @@ export default class AbilityUseDialog extends Dialog {
     // Prepare dialog form data
     const data = {
       item: item.data,
-      title: game.i18n.format("SW5E.AbilityUseHint", item.data),
+      title: game.i18n.format("SW5E.AbilityUseHint", {type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`), name: item.name}),
       note: this._getAbilityUseNote(item.data, uses, recharge),
       consumePowerSlot: false,
       consumeRecharge: recharges,
@@ -59,7 +59,7 @@ export default class AbilityUseDialog extends Dialog {
     const label = game.i18n.localize("SW5E.AbilityUse" + (data.isPower ? "Cast" : "Use"));
     return new Promise((resolve) => {
       const dlg = new this(item, {
-        title: `${item.name}: Usage Configuration`,
+        title: `${item.name}: ${game.i18n.localize("SW5E.AbilityUseConfig")}`,
         content: html,
         buttons: {
           use: {
@@ -187,7 +187,7 @@ export default class AbilityUseDialog extends Dialog {
     // Abilities which use Recharge
     if ( !!recharge.value ) {
       return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
-        type: item.type,
+        type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
       })
     }
 
@@ -201,7 +201,7 @@ export default class AbilityUseDialog extends Dialog {
       else if ( item.data.quantity === 1 && uses.autoDestroy ) str = "SW5E.AbilityUseConsumableDestroyHint";
       else if ( item.data.quantity > 1 ) str = "SW5E.AbilityUseConsumableQuantityHint";
       return game.i18n.format(str, {
-        type: item.data.consumableType,
+        type: game.i18n.localize(`SW5E.Consumable${item.data.consumableType.capitalize()}`),
         value: uses.value,
         quantity: item.data.quantity,
         max: uses.max,
@@ -212,7 +212,7 @@ export default class AbilityUseDialog extends Dialog {
     // Other Items
     else {
       return game.i18n.format("SW5E.AbilityUseNormalHint", {
-        type: item.type,
+        type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
         value: uses.value,
         max: uses.max,
         per: CONFIG.SW5E.limitedUsePeriods[uses.per]

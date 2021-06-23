@@ -664,7 +664,7 @@ export default class ActorSheet5e extends ActorSheet {
         return sourceId && (sourceId === itemData.flags.core?.sourceId) &&
             (i.type === "consumable");
       });
-      if ( similarItem ) {
+      if ( similarItem && itemData.name !== "Power Cell" ) { // Always create a new powercell instead of increasing quantity
         return similarItem.update({
           'data.quantity': similarItem.data.data.quantity + Math.max(itemData.data.quantity, 1)
         });

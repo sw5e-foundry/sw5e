@@ -184,7 +184,6 @@ export default class ItemSheet5e extends ItemSheet {
       );
     } else if (item.type === "power") {
       props.push(
-        labels.components,
         labels.materials,
         item.data.components.concentration ? game.i18n.localize("SW5E.Concentration") : null,
         item.data.components.ritual ? game.i18n.localize("SW5E.Ritual") : null

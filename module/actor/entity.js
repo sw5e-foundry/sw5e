@@ -425,7 +425,7 @@ export default class Actor5e extends Actor {
    * Prepare data related to the power-casting capabilities of the Actor
    * @private
    */
-  _computePowercastingProgression (actorData) {
+  _computeBasePowercasting (actorData) {
     if (actorData.type === 'vehicle' || actorData.type === 'starship') return;
     const ad = actorData.data;
     const powers = ad.powers;
@@ -635,7 +635,7 @@ export default class Actor5e extends Actor {
       let knownTechPowers = 0;
       for ( let knownPower of knownPowers ) {
         const d = knownPower.data;
-        switch (knownPower.data.school){
+        switch (d.data.school){
           case "lgt":
           case "uni":
           case "drk":{
@@ -663,7 +663,7 @@ export default class Actor5e extends Actor {
 
     if ((actorData.type === 'actor') || (actorData.type === 'npc')) return;
     
-    ad = actorData.data;
+    const ad = actorData.data;
 
     // Powercasting DC for Actors and NPCs
     // TODO: Consider an option for using the variant rule of all powers use the same value

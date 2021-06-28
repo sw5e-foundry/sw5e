@@ -1,60 +1,19 @@
 import { d20Roll, damageRoll } from "../dice.js";
-import SelectItemsPrompt from "../apps/select-items-prompt.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
 import {SW5E} from '../config.js';
-import Item5e from "../item/entity.js";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
- * @extends {Actor}
  */
 export default class Actor5e extends Actor {
 
   /**
-   * The data source for Actor5e.classes allowing it to be lazily computed.
-   * @type {Object<string, Item5e>}
-   * @private
-   */
-  _classes = undefined;
-
-  /* -------------------------------------------- */
-  /*  Properties                                  */
-  /* -------------------------------------------- */
-
-  /**
-   * A mapping of classes belonging to this Actor.
-   * @type {Object<string, Item5e>}
-   */
-  get classes() {
-    if ( this._classes !== undefined ) return this._classes;
-    if ( this.data.type !== "character" ) return this._classes = {};
-    return this._classes = this.items.filter((item) => item.type === "class").reduce((obj, cls) => {
-      obj[cls.name.slugify({strict: true})] = cls;
-      return obj;
-    }, {});
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Is this Actor currently polymorphed into some other creature?
-   * @type {boolean}
+   * @return {boolean}
    */
   get isPolymorphed() {
     return this.getFlag("sw5e", "isPolymorphed") || false;
-  }
-
-  /* -------------------------------------------- */
-  /*  Methods                                     */
-  /* -------------------------------------------- */
-
-  /** @override */
-  prepareData() {
-    super.prepareData();
-
-    // iterate over owned items and recompute attributes that depend on prepared actor data
-    this.items.forEach(item => item.prepareFinalAttributes());
   }
 
   /* -------------------------------------------- */
@@ -118,12 +77,49 @@ export default class Actor5e extends Actor {
 
     // Inventory encumbrance
     data.attributes.encumbrance = this._computeEncumbrance(actorData);
+	
+    if (actorData.type === "starship") {
+      
+      // Calculate AC
+      data.attributes.ac.value += Math.min(data.abilities.dex.mod, data.attributes.equip.armor.maxDex);
 
+      // Set Power Die Storage
+      data.attributes.power.central.max += data.attributes.equip.powerCoupling.centralCap;
+      data.attributes.power.comms.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.engines.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.shields.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.sensors.max += data.attributes.equip.powerCoupling.systemCap;
+      data.attributes.power.weapons.max += data.attributes.equip.powerCoupling.systemCap;
+
+      // Find Size info of Starship
+      const size = actorData.items.filter(i => i.type === "starship");
+      if (size.length === 0) return;
+      const sizeData = size[0].data;
+
+      // Prepare Hull Points
+      data.attributes.hp.max = sizeData.hullDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.con.mod * data.attributes.hull.dicemax;
+      if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
+
+      // Prepare Shield Points
+      data.attributes.hp.tempmax = (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.str.mod * data.attributes.shld.dicemax) * data.attributes.equip.shields.capMult;
+      if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
+
+      // Prepare Speeds
+      data.attributes.movement.space = sizeData.baseSpaceSpeed + (50 * (data.abilities.str.mod - data.abilities.con.mod));
+      data.attributes.movement.turn = Math.min(data.attributes.movement.space, Math.max(50,(sizeData.baseTurnSpeed - (50 * (data.abilities.dex.mod - data.abilities.con.mod)))));
+
+      // Prepare Max Suites
+      data.attributes.mods.suites.max = sizeData.modMaxSuitesBase + (sizeData.modMaxSuitesMult * data.abilities.con.mod);
+
+      // Prepare Hardpoints
+      data.attributes.mods.hardpoints.max = sizeData.hardpointMult * Math.max(1,data.abilities.str.mod);
+
+      //Prepare Fuel
+      data.attributes.fuel = this._computeFuel(actorData);
+    }
+  
     // Prepare skills
     this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
-
-    // Reset class store to ensure it is updated with any changes
-    this._classes = undefined;
 
     // Determine Initiative Modifier
     const init = data.attributes.init;
@@ -137,14 +133,18 @@ export default class Actor5e extends Actor {
     init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
     init.total = init.mod + init.prof + init.bonus;
 
-    // Cache labels
-    this.labels = {};
-    if ( this.type === "npc" ) {
-      this.labels["creatureType"] = this.constructor.formatCreatureType(data.details.type);
-    }
-
     // Prepare power-casting data
+    data.attributes.powerForceLightDC = 8 + data.abilities.wis.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceDarkDC = 8 + data.abilities.cha.mod + data.attributes.prof ?? 10;
+    data.attributes.powerForceUnivDC = Math.max(data.attributes.powerForceLightDC,data.attributes.powerForceDarkDC) ?? 10;
+    data.attributes.powerTechDC = 8 + data.abilities.int.mod + data.attributes.prof ?? 10;
     this._computeDerivedPowercasting(this.data);
+
+    // Compute owned item attributes which depend on prepared Actor data
+    this.items.forEach(item => {
+      item.getSaveDC();
+      item.getAttackToHit();
+    });
   }
 
   /* -------------------------------------------- */
@@ -173,59 +173,17 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @override */
   getRollData() {
     const data = super.getRollData();
-    data.prof = this.data.data.attributes.prof || 0;
-    data.classes = Object.entries(this.classes).reduce((obj, e) => {
-      const [slug, cls] = e;
-      obj[slug] = cls.data.data;
+    data.classes = this.data.items.reduce((obj, i) => {
+      if ( i.type === "class" ) {
+        obj[i.name.slugify({strict: true})] = i.data;
+      }
       return obj;
     }, {});
+    data.prof = this.data.data.attributes.prof || 0;
     return data;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Given a list of items to add to the Actor, optionally prompt the
-   * user for which they would like to add.
-   * @param {Array.<Item5e>} items - The items being added to the Actor.
-   * @param {boolean} [prompt=true] - Whether or not to prompt the user.
-   * @returns {Promise<Item5e[]>}
-   */
-  async addEmbeddedItems(items, prompt=true) {
-    let itemsToAdd = items;
-    if ( !items.length ) return [];
-
-    // Obtain the array of item creation data
-    let toCreate = [];
-    if (prompt) {
-      const itemIdsToAdd = await SelectItemsPrompt.create(items, {
-        hint: game.i18n.localize('SW5E.AddEmbeddedItemPromptHint')
-      });
-      for (let item of items) {
-        if (itemIdsToAdd.includes(item.id)) toCreate.push(item.toObject());
-      }
-    } else {
-      toCreate = items.map(item => item.toObject());
-    }
-
-    // Create the requested items
-    if (itemsToAdd.length === 0) return [];
-    return Item5e.createDocuments(toCreate, {parent: this});
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Get a list of features to add to the Actor when a class item is updated.
-   * Optionally prompt the user for which they would like to add.
-   */
-  async getClassFeatures({className, archetypeName, level}={}) {
-    const existing = new Set(this.items.map(i => i.name));
-    const features = await Actor5e.loadClassFeatures({className, archetypeName, level});
-    return features.filter(f => !existing.has(f.name)) || [];
   }
 
   /* -------------------------------------------- */
@@ -238,7 +196,7 @@ export default class Actor5e extends Actor {
    * @param {number} priorLevel       The previous level of the added class
    * @return {Promise<Item5e[]>}     Array of Item5e entities
    */
-  static async loadClassFeatures({className="", archetypeName="", level=1, priorLevel=0}={}) {
+  static async getClassFeatures({className="", archetypeName="", level=1, priorLevel=0}={}) {
     className = className.toLowerCase();
     archetypeName = archetypeName.slugify();
 
@@ -278,6 +236,52 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
+
+  /** @override */
+  async updateEmbeddedEntity(embeddedName, data, options={}) {
+    const createItems = embeddedName === "OwnedItem" ? await this._createClassFeatures(data) : [];
+    let updated = await super.updateEmbeddedEntity(embeddedName, data, options);
+    if ( createItems.length ) await this.createEmbeddedEntity("OwnedItem", createItems);
+    return updated;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create additional class features in the Actor when a class item is updated.
+   * @private
+   */
+  async _createClassFeatures(updated) {
+    let toCreate = [];
+    for (let u of updated instanceof Array ? updated : [updated]) {
+      const item = this.items.get(u._id);
+      if (!item || (item.data.type !== "class")) continue;
+      const updateData = expandObject(u);
+      const config = {
+        className: updateData.name || item.data.name,
+        archetypeName: getProperty(updateData, "data.archetype") || item.data.data.archetype,
+        level: getProperty(updateData, "data.levels"),
+        priorLevel: item ? item.data.data.levels : 0
+      }
+
+      // Get and create features for an increased class level
+      let changed = false;
+      if ( config.level && (config.level > config.priorLevel)) changed = true;
+      if ( config.archetypeName !== item.data.data.archetype ) changed = true;
+
+      // Get features to create
+      if ( changed ) {
+        const existing = new Set(this.items.map(i => i.name));
+        const features = await Actor5e.getClassFeatures(config);
+        for ( let f of features ) {
+          if ( !existing.has(f.name) ) toCreate.push(f);
+        }
+      }
+    }
+    return toCreate
+  }
+
+  /* -------------------------------------------- */
   /*  Data Preparation Helpers                    */
   /* -------------------------------------------- */
 
@@ -288,11 +292,11 @@ export default class Actor5e extends Actor {
     const data = actorData.data;
 
     // Determine character level and available hit dice based on owned Class items
-    const [level, hd] = this.items.reduce((arr, item) => {
+    const [level, hd] = actorData.items.reduce((arr, item) => {
       if ( item.type === "class" ) {
-        const classLevels = parseInt(item.data.data.levels) || 1;
+        const classLevels = parseInt(item.data.levels) || 1;
         arr[0] += classLevels;
-        arr[1] += classLevels - (parseInt(item.data.data.hitDiceUsed) || 0);
+        arr[1] += classLevels - (parseInt(item.data.hitDiceUsed) || 0);
       }
       return arr;
     }, [0, 0]);
@@ -309,7 +313,7 @@ export default class Actor5e extends Actor {
     const required = xp.max - prior;
     const pct = Math.round((xp.value - prior) * 100 / required);
     xp.pct = Math.clamped(pct, 0, 100);
-    
+
     // Add base Powercasting attributes
     this._computeBasePowercasting(actorData);
   }
@@ -347,22 +351,98 @@ export default class Actor5e extends Actor {
 
   /* -------------------------------------------- */
 
+  /* -------------------------------------------- */
+
   /**
    * Prepare starship type-specific data
    * @param actorData
    * @private
    */
   _prepareStarshipData(actorData) {
+      
     const data = actorData.data;
+    data.attributes.prof = 0;
+    // Determine Starship size-based properties based on owned Starship item
+    const size = actorData.items.filter(i => i.type === "starship");
+    if (size.length !== 0) {
+      const sizeData = size[0].data;
+      const tiers = parseInt(sizeData.tier) || 0;
+      data.traits.size = sizeData.size; // needs to be the short code
+      data.details.tier = tiers;
+      data.attributes.ac.value = 10 + Math.max(tiers - 1, 0);
+      data.attributes.hull.die = sizeData.hullDice;
+      data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
+      data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
+      data.attributes.shld.die = sizeData.shldDice;
+      data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
+      data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
+      sizeData.pwrDice = SW5E.powerDieTypes[tiers];
+      data.attributes.power.die = sizeData.pwrDice;
+      data.attributes.cost.baseBuild = sizeData.buildBaseCost;
+      data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
+      data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
+      data.attributes.cost.baseUpgrade = SW5E.baseUpgradeCost[tiers];
+      data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
+      data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
+      data.attributes.equip.size.crewMinWorkforce = (parseInt(sizeData.crewMinWorkforce) || 1);
+      data.attributes.mods.capLimit = sizeData.modBaseCap;
+      data.attributes.mods.suites.cap = sizeData.modMaxSuiteCap;
+      data.attributes.cost.multModification = sizeData.modCostMult;
+      data.attributes.workforce.minModification = sizeData.modMinWorkforce;
+      data.attributes.cost.multEquip = sizeData.equipCostMult;
+      data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
+      data.attributes.equip.size.cargoCap = sizeData.cargoCap;
+      data.attributes.fuel.cost = sizeData.fuelCost;
+      data.attributes.fuel.cap = sizeData.fuelCap;
+      data.attributes.equip.size.foodCap = sizeData.foodCap;
+    }
 
-    // Proficiency
-    data.attributes.prof = Math.floor((Math.max(data.details.tier, 1) + 7) / 4);
+    // Determine Starship armor-based properties based on owned Starship item
+    const armor = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "ssarmor"))); // && (i.data.equipped === true)));
+    if (armor.length !== 0) {
+      const armorData = armor[0].data;
+      data.attributes.equip.armor.dr = (parseInt(armorData.dmgred.value) || 0);
+      data.attributes.equip.armor.maxDex = armorData.armor.dex;
+      data.attributes.equip.armor.stealthDisadv = armorData.stealth;
+    }
 
-    // Link hull to hp and shields to temp hp
-    data.attributes.hull.value = data.attributes.hp.value;
-    data.attributes.hull.max = data.attributes.hp.max;
-    data.attributes.shld.value = data.attributes.hp.temp;
-    data.attributes.shld.max = data.attributes.hp.tempmax;
+    // Determine Starship hyperdrive-based properties based on owned Starship item
+    const hyperdrive = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "hyper"))); // && (i.data.equipped === true)));
+    if (hyperdrive.length !== 0) {
+      const hdData = hyperdrive[0].data;
+      data.attributes.equip.hyperdrive.class = (parseFloat(hdData.hdclass.value) || null);
+    }
+
+    // Determine Starship power coupling-based properties based on owned Starship item
+    const pwrcpl = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "powerc"))); // && (i.data.equipped === true)));
+    if (pwrcpl.length !== 0) {
+      const pwrcplData = pwrcpl[0].data;
+      data.attributes.equip.powerCoupling.centralCap = (parseInt(pwrcplData.cscap.value) || 0);
+      data.attributes.equip.powerCoupling.systemCap = (parseInt(pwrcplData.sscap.value) || 0);
+      data.attributes.power.central.max = 0;
+      data.attributes.power.comms.max = 0;
+      data.attributes.power.engines.max = 0;
+      data.attributes.power.shields.max = 0;
+      data.attributes.power.sensors.max = 0;
+      data.attributes.power.weapons.max = 0;
+    }
+
+    // Determine Starship reactor-based properties based on owned Starship item
+    const reactor = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "reactor"))); // && (i.data.equipped === true)));
+    if (reactor.length !== 0) {
+      const reactorData = reactor[0].data;
+      data.attributes.equip.reactor.fuelMult = (parseFloat(reactorData.fuelcostsmod.value) || 0);
+      data.attributes.equip.reactor.powerRecDie = reactorData.powdicerec.value;
+    }
+
+    // Determine Starship shield-based properties based on owned Starship item
+    const shields = actorData.items.filter(i => ((i.type === "equipment") && (i.data.armor.type === "ssshield"))); // && (i.data.equipped === true)));
+    if (shields.length !== 0) {
+      const shieldsData = shields[0].data;
+      data.attributes.equip.shields.capMult = (parseFloat(shieldsData.capx.value) || 1);
+      data.attributes.equip.shields.regenRateMult = (parseFloat(shieldsData.regrateco.value) || 1);
+    }
+
   }
 
   /* -------------------------------------------- */
@@ -425,18 +505,10 @@ export default class Actor5e extends Actor {
    * Prepare data related to the power-casting capabilities of the Actor
    * @private
    */
-  _computeBasePowercasting (actorData) {
+   _computeBasePowercasting (actorData) {
     if (actorData.type === 'vehicle' || actorData.type === 'starship') return;
-    const ad = actorData.data;
-    const powers = ad.powers;
+    const powers = actorData.data.powers;
     const isNPC = actorData.type === 'npc';
-
-    // Powercasting DC
-    // TODO: Consider an option for using the variant rule of all powers use the same value
-    ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceUnivDC = Math.max(ad.attributes.powerForceLightDC,ad.attributes.powerForceDarkDC) ?? 10
-    ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
 
     // Translate the list of classes into force and tech power-casting progression
     const forceProgression = {
@@ -466,11 +538,11 @@ export default class Actor5e extends Actor {
     const classes = this.data.items.filter(i => i.type === "class");
     let priority = 0;
     for ( let cls of classes ) {
-      const d = cls.data.data;
-      if ( d.powercasting.progression === "none" ) continue;
+      const d = cls.data;
+      if ( d.powercasting === "none" ) continue;
       const levels = d.levels;
-      const prog = d.powercasting.progression;
-      // TODO: Consider a more dynamic system
+      const prog = d.powercasting;
+
       switch (prog) {
         case 'consular': 
           priority = 3;
@@ -550,32 +622,29 @@ export default class Actor5e extends Actor {
           break;      }
     }
 
-    if (isNPC) {
-      // EXCEPTION: NPC with an explicit power-caster level
-      if (ad.details.powerForceLevel) {
-        forceProgression.levels = ad.details.powerForceLevel;
-        ad.attributes.force.level = forceProgression.levels;
-        forceProgression.maxClass = ad.attributes.powercasting;
-        forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
-      }
-      if (ad.details.powerTechLevel) {
-        techProgression.levels = ad.details.powerTechLevel;
-        ad.attributes.tech.level = techProgression.levels;
-        techProgression.maxClass = ad.attributes.powercasting;
-        techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
-      }
-    } else {
-      // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
-      if (forceProgression.classes > 1) {
-        forceProgression.levels = Math.floor(forceProgression.multi);
-        forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
-      }
-      if (techProgression.classes > 1) {
-        techProgression.levels = Math.floor(techProgression.multi);
-        techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
-      }
+    // EXCEPTION: multi-classed progression uses multi rounded down rather than levels
+    if (!isNPC && forceProgression.classes > 1) {
+      forceProgression.levels = Math.floor(forceProgression.multi);
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][forceProgression.levels - 1];
     }
-
+    if (!isNPC && techProgression.classes > 1) {
+      techProgression.levels = Math.floor(techProgression.multi);
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel['multi'][techProgression.levels - 1];
+    }
+    
+    // EXCEPTION: NPC with an explicit power-caster level
+    if (isNPC && actorData.data.details.powerForceLevel) {
+      forceProgression.levels = actorData.data.details.powerForceLevel;
+      actorData.data.attributes.force.level = forceProgression.levels;
+      forceProgression.maxClass = actorData.data.attributes.powercasting;
+      forceProgression.maxClassPowerLevel = SW5E.powerMaxLevel[forceProgression.maxClass][Math.clamped((forceProgression.levels - 1), 0, 20)];
+    }
+    if (isNPC && actorData.data.details.powerTechLevel) {
+      techProgression.levels = actorData.data.details.powerTechLevel;
+      actorData.data.attributes.tech.level = techProgression.levels;
+      techProgression.maxClass = actorData.data.attributes.powercasting;
+      techProgression.maxClassPowerLevel = SW5E.powerMaxLevel[techProgression.maxClass][Math.clamped((techProgression.levels - 1), 0, 20)];
+    }
 
     // Look up the number of slots per level from the powerLimit table
     let forcePowerLimit = Array.from(SW5E.powerLimit['none']);
@@ -613,19 +682,16 @@ export default class Actor5e extends Actor {
     }
 
     // Set Force and tech power for PC Actors
-    if (!isNPC) {
-      if (forceProgression.levels) {
-        ad.attributes.force.known.max = forceProgression.powersKnown;
-        ad.attributes.force.points.max = forceProgression.points + Math.max(ad.abilities.wis.mod, ad.abilities.cha.mod);
-        ad.attributes.force.level = forceProgression.levels;
-      }
-      if (techProgression.levels){
-        ad.attributes.tech.known.max = techProgression.powersKnown;
-        ad.attributes.tech.points.max = techProgression.points + ad.abilities.int.mod;
-        ad.attributes.tech.level = techProgression.levels;
-      }
+    if (!isNPC && forceProgression.levels){
+      actorData.data.attributes.force.known.max = forceProgression.powersKnown;
+      actorData.data.attributes.force.points.max = forceProgression.points; // + Math.max(actorData.data.abilities.wis.mod,actorData.data.abilities.cha.mod);
+      actorData.data.attributes.force.level = forceProgression.levels;
     }
-
+    if (!isNPC && techProgression.levels){
+      actorData.data.attributes.tech.known.max = techProgression.powersKnown;
+      actorData.data.attributes.tech.points.max = techProgression.points; // + actorData.data.abilities.int.mod;
+      actorData.data.attributes.tech.level = techProgression.levels;
+    }
 
     // Tally Powers Known and check for migration first to avoid errors
     let hasKnownPowers = actorData?.data?.attributes?.force?.known?.value !== undefined;
@@ -635,7 +701,7 @@ export default class Actor5e extends Actor {
       let knownTechPowers = 0;
       for ( let knownPower of knownPowers ) {
         const d = knownPower.data;
-        switch (d.data.school){
+        switch (knownPower.data.school){
           case "lgt":
           case "uni":
           case "drk":{
@@ -646,10 +712,11 @@ export default class Actor5e extends Actor {
             knownTechPowers++;
             break;
           }
-        }
+        } 
+        continue;
       }
-      ad.attributes.force.known.value = knownForcePowers;
-      ad.attributes.tech.known.value = knownTechPowers;
+      actorData.data.attributes.force.known.value = knownForcePowers;
+      actorData.data.attributes.tech.known.value = knownTechPowers;
     }
   }
 
@@ -659,27 +726,15 @@ export default class Actor5e extends Actor {
    * Prepare data related to the power-casting capabilities of the Actor
    * @private
    */
-   _computeDerivedPowercasting (actorData) {
-
-    if ((actorData.type === 'actor') || (actorData.type === 'npc')) return;
-    
-    const ad = actorData.data;
-
-    // Powercasting DC for Actors and NPCs
-    // TODO: Consider an option for using the variant rule of all powers use the same value
-    ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceUnivDC = Math.max(ad.attributes.powerForceLightDC,ad.attributes.powerForceDarkDC) ?? 10
-    ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
-
+  _computeDerivedPowercasting (actorData) {
     if (actorData.type !== 'actor') return;
 
-    // Set Force and tech bonus points for PC Actors
-    if (!!ad.attributes.force.level){
-      ad.attributes.force.points.max += Math.max(ad.abilities.wis.mod,ad.abilities.cha.mod);
+    // Set Force and tech power for PC Actors
+    if (!!actorData.data.attributes.force.level){
+      actorData.data.attributes.force.points.max += Math.max(actorData.data.abilities.wis.mod,actorData.data.abilities.cha.mod);
     }
-    if (!!ad.attributes.tech.level){
-      ad.attributes.tech.points.max += ad.abilities.int.mod;
+    if (!!actorData.data.attributes.tech.level){
+      actorData.data.attributes.tech.points.max += actorData.data.abilities.int.mod;
     }
 
   }
@@ -696,13 +751,13 @@ export default class Actor5e extends Actor {
    * @private
    */
   _computeEncumbrance(actorData) {
-    // TODO: Maybe add an option for variant encumbrance
+
     // Get the total weight from items
     const physicalItems = ["weapon", "equipment", "consumable", "tool", "backpack", "loot"];
     let weight = actorData.items.reduce((weight, i) => {
       if ( !physicalItems.includes(i.type) ) return weight;
-      const q = i.data.data.quantity || 0;
-      const w = i.data.data.weight || 0;
+      const q = i.data.quantity || 0;
+      const w = i.data.weight || 0;
       return weight + (q * w);
     }, 0);
 
@@ -730,60 +785,137 @@ export default class Actor5e extends Actor {
     const pct = Math.clamped((weight * 100) / max, 0, 100);
     return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2/3) };
   }
-
-  /* -------------------------------------------- */
-  /*  Event Handlers                              */
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _preCreate(data, options, user) {
-    await super._preCreate(data, options, user);
-
-    // Token size category
-    const s = CONFIG.SW5E.tokenSizes[this.data.data.traits.size || "med"];
-    this.data.token.update({width: s, height: s});
-
-    // Player character configuration
-    if ( this.type === "character" ) {
-      this.data.token.update({vision: true, actorLink: true, disposition: 1});
+  
+  _computeFuel(actorData) {
+    const fuel = actorData.data.attributes.fuel;  
+    // Compute Fuel percentage
+      const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.cap, 0, 100);
+      return { ...fuel, pct, fueled: pct > 0 };	
     }
+  
+    /* -------------------------------------------- */
+  /*  Socket Listeners and Handlers
+  /* -------------------------------------------- */
+
+  /** @override */
+  static async create(data, options={}) {
+    data.token = data.token || {};
+    if ( data.type === "character" ) {
+      mergeObject(data.token, {
+        vision: true,
+        dimSight: 30,
+        brightSight: 0,
+        actorLink: true,
+        disposition: 1
+      }, {overwrite: false});
+    }
+    return super.create(data, options);
   }
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
-  async _preUpdate(changed, options, user) {
-    await super._preUpdate(changed, options, user);
+  /** @override */
+  async update(data, options={}) {
 
     // Apply changes in Actor size to Token width/height
-    const newSize = foundry.utils.getProperty(changed, "data.traits.size");
-    if ( newSize && (newSize !== foundry.utils.getProperty(this.data, "data.traits.size")) ) {
+    const newSize = getProperty(data, "data.traits.size");
+    if ( newSize && (newSize !== getProperty(this.data, "data.traits.size")) ) {
       let size = CONFIG.SW5E.tokenSizes[newSize];
-      if ( !foundry.utils.hasProperty(changed, "token.width") ) {
-        changed.token = changed.token || {};
-        changed.token.height = size;
-        changed.token.width = size;
+      if ( this.isToken ) this.token.update({height: size, width: size});
+      else if ( !data["token.width"] && !hasProperty(data, "token.width") ) {
+        data["token.height"] = size;
+        data["token.width"] = size;
       }
     }
 
     // Reset death save counters
-    const isDead = this.data.data.attributes.hp.value <= 0;
-    if ( isDead && (foundry.utils.getProperty(changed, "data.attributes.hp.value") > 0) ) {
-      foundry.utils.setProperty(changed, "data.attributes.death.success", 0);
-      foundry.utils.setProperty(changed, "data.attributes.death.failure", 0);
+    if ( (this.data.data.attributes.hp.value <= 0) && (getProperty(data, "data.attributes.hp.value") > 0) ) {
+      setProperty(data, "data.attributes.death.success", 0);
+      setProperty(data, "data.attributes.death.failure", 0);
     }
+
+    // Perform the update
+    return super.update(data, options);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async createEmbeddedEntity(embeddedName, itemData, options={}) {
+
+    // Pre-creation steps for owned items
+    if ( embeddedName === "OwnedItem" ) this._preCreateOwnedItem(itemData, options);
+
+    // Standard embedded entity creation
+    return super.createEmbeddedEntity(embeddedName, itemData, options);
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Assign a class item as the original class for the Actor based on which class has the most levels
-   * @protected
+   * A temporary shim function which will eventually (in core fvtt version 0.8.0+) be migrated to the new abstraction layer
+   * @param itemData
+   * @param options
+   * @private
    */
-  _assignPrimaryClass() {
-    const classes = this.itemTypes.class.sort((a, b) => b.data.data.levels - a.data.data.levels);
-    const newPC = classes[0]?.id || "";
-    return this.update({"data.details.originalClass": newPC});
+  _preCreateOwnedItem(itemData, options) {
+    if ( this.data.type === "vehicle" ) return;
+    const isNPC = this.data.type === 'npc';
+    let initial = {};
+    switch ( itemData.type ) {
+
+      case "weapon":
+        if ( getProperty(itemData, "data.equipped") === undefined ) {
+          initial["data.equipped"] = isNPC;       // NPCs automatically equip weapons
+        }
+        if ( getProperty(itemData, "data.proficient") === undefined ) {
+          if ( isNPC ) {
+            initial["data.proficient"] = true;    // NPCs automatically have equipment proficiency
+          } else {
+            const weaponProf = {
+              "natural": true,
+              "simpleVW": "sim",
+              "simpleB": "sim",
+              "simpleLW": "sim",
+              "martialVW": "mar",
+              "martialB": "mar",
+              "martialLW": "mar"
+            }[itemData.data?.weaponType];         // Player characters check proficiency
+            const actorWeaponProfs = this.data.data.traits?.weaponProf?.value || [];
+            const hasWeaponProf = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
+            initial["data.proficient"] = hasWeaponProf;
+          }
+        }
+        break;
+
+      case "equipment":
+        if ( getProperty(itemData, "data.equipped") === undefined ) {
+          initial["data.equipped"] = isNPC;       // NPCs automatically equip equipment
+        }
+        if ( getProperty(itemData, "data.proficient") === undefined ) {
+          if ( isNPC ) {
+            initial["data.proficient"] = true;    // NPCs automatically have equipment proficiency
+          } else {
+            const armorProf = {
+              "natural": true,
+              "clothing": true,
+              "light": "lgt",
+              "medium": "med",
+              "heavy": "hvy",
+              "shield": "shl"
+            }[itemData.data?.armor?.type];        // Player characters check proficiency
+            const actorArmorProfs = this.data.data.traits?.armorProf?.value || [];
+            const hasEquipmentProf = (armorProf === true) || actorArmorProfs.includes(armorProf);
+            initial["data.proficient"] = hasEquipmentProf;
+          }
+        }
+        break;
+
+      case "power":
+        initial["data.prepared"] = true;          // automatically prepare powers for everyone
+        break;
+    }
+    mergeObject(itemData, initial);
   }
 
   /* -------------------------------------------- */
@@ -875,17 +1007,15 @@ export default class Actor5e extends Actor {
     const reliableTalent = (skl.value >= 1 && this.getFlag("sw5e", "reliableTalent"));
 
     // Roll and return
-    const rollData = foundry.utils.mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
       title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId] || CONFIG.SW5E.starshipSkills[skillId]}),
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       reliableTalent: reliableTalent,
-      messageData: {
-        speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
-        "flags.sw5e.roll": {type: "skill", skillId }
-      }
+      messageData: {"flags.sw5e.roll": {type: "skill", skillId }}
     });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
     return d20Roll(rollData);
   }
 
@@ -956,16 +1086,14 @@ export default class Actor5e extends Actor {
     }
 
     // Roll and return
-    const rollData = foundry.utils.mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
       title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
       halflingLucky: feats.halflingLucky,
-      messageData: {
-        speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
-        "flags.sw5e.roll": {type: "ability", abilityId }
-      }
+      messageData: {"flags.sw5e.roll": {type: "ability", abilityId }}
     });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
     return d20Roll(rollData);
   }
 
@@ -1005,16 +1133,14 @@ export default class Actor5e extends Actor {
     }
 
     // Roll and return
-    const rollData = foundry.utils.mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
       title: game.i18n.format("SW5E.SavePromptTitle", {ability: label}),
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
-      messageData: {
-        speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
-        "flags.sw5e.roll": {type: "save", abilityId }
-      }
+      messageData: {"flags.sw5e.roll": {type: "save", abilityId }}
     });
+    rollData.speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
     return d20Roll(rollData);
   }
 
@@ -1037,34 +1163,32 @@ export default class Actor5e extends Actor {
     // Evaluate a global saving throw bonus
     const parts = [];
     const data = {};
+    const speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
 
     // Include a global actor ability save bonus
-    const bonuses = foundry.utils.getProperty(this.data.data, "bonuses.abilities") || {};
+    const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
     if ( bonuses.save ) {
       parts.push("@saveBonus");
       data.saveBonus = bonuses.save;
     }
 
     // Evaluate the roll
-    const rollData = foundry.utils.mergeObject(options, {
+    const rollData = mergeObject(options, {
       parts: parts,
       data: data,
       title: game.i18n.localize("SW5E.DeathSavingThrow"),
+      speaker: speaker,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       targetValue: 10,
-      messageData: {
-        speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
-        "flags.sw5e.roll": {type: "death"}
-      }
+      messageData: {"flags.sw5e.roll": {type: "death"}}
     });
+    rollData.speaker = speaker;
     const roll = await d20Roll(rollData);
     if ( !roll ) return null;
 
     // Take action depending on the result
     const success = roll.total >= 10;
     const d20 = roll.dice[0].total;
-
-    let chatString;
 
     // Save success
     if ( success ) {
@@ -1077,7 +1201,7 @@ export default class Actor5e extends Actor {
           "data.attributes.death.failure": 0,
           "data.attributes.hp.value": 1
         });
-        chatString = "SW5E.DeathSaveCriticalSuccess";
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveCriticalSuccess", {name: this.name}), speaker});
       }
 
       // 3 Successes = survive and reset checks
@@ -1086,7 +1210,7 @@ export default class Actor5e extends Actor {
           "data.attributes.death.success": 0,
           "data.attributes.death.failure": 0
         });
-        chatString = "SW5E.DeathSaveSuccess";
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveSuccess", {name: this.name}), speaker});
       }
 
       // Increment successes
@@ -1098,15 +1222,8 @@ export default class Actor5e extends Actor {
       let failures = (death.failure || 0) + (d20 === 1 ? 2 : 1);
       await this.update({"data.attributes.death.failure": Math.clamped(failures, 0, 3)});
       if ( failures >= 3 ) {  // 3 Failures = death
-        chatString = "SW5E.DeathSaveFailure";
+        await ChatMessage.create({content: game.i18n.format("SW5E.DeathSaveFailure", {name: this.name}), speaker});
       }
-    }
-
-    // Display success/failure chat message
-    if ( chatString ) {
-      let chatData = { content: game.i18n.format(chatString, {name: this.name}), speaker };
-      ChatMessage.applyRollMode(chatData, roll.options.rollMode);
-      await ChatMessage.create(chatData);
     }
 
     // Return the rolled result
@@ -1149,7 +1266,7 @@ export default class Actor5e extends Actor {
     // Prepare roll data
     const parts = [`1${denomination}`, "@abilities.con.mod"];
     const title = game.i18n.localize("SW5E.HitDiceRoll");
-    const rollData = foundry.utils.deepClone(this.data.data);
+    const rollData = duplicate(this.data.data);
 
     // Call the roll helper utility
     const roll = await damageRoll({
@@ -1157,13 +1274,11 @@ export default class Actor5e extends Actor {
       parts: parts,
       data: rollData,
       title: title,
-      allowCritical: false,
+      speaker: ChatMessage.getSpeaker({actor: this}),
+      allowcritical: false,
       fastForward: !dialog,
       dialogOptions: {width: 350},
-      messageData: {
-        speaker: ChatMessage.getSpeaker({actor: this}),
-        "flags.sw5e.roll": {type: "hitDie"}
-      }
+      messageData: {"flags.sw5e.roll": {type: "hitDie"}}
     });
     if ( !roll ) return null;
 
@@ -1178,34 +1293,210 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Results from a rest operation.
-   *
-   * @typedef {object} RestResult
-   * @property {number} dhp                  Hit points recovered during the rest.
-   * @property {number} dhd                  Hit dice recovered or spent during the rest.
-   * @property {object} updateData           Updates applied to the actor.
-   * @property {Array.<object>} updateItems  Updates applied to actor's items.
-   * @property {boolean} newDay              Whether a new day occurred during the rest.
+   * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
+   * @param {string} [denomination]   The hit denomination of hull die to roll. Example "d8".
+   *                                  If no denomination is provided, the first available HD will be used
+   * @param {string} [numDice]        How many damage dice to roll?
+   * @param {string} [keep]           Which dice to keep? Example "kh1".
+   * @param {boolean} [dialog]        Show a dialog prompt for configuring the hull die roll?
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
    */
+   async rollHullDie(denomination, numDice="1", keep="",{dialog=true}={}) {
+
+    // If no denomination was provided, choose the first available
+    let sship = null;
+    if ( !denomination ) {
+      sship = this.itemTypes.class.find(s => s.data.data.hullDiceUsed < (s.data.data.tier + s.data.data.hullDiceStart));
+      if ( !sship ) return null;
+      denomination = sship.data.data.hullDice;
+    }
+
+    // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+    else {
+      sship = this.items.find(i => {
+        const d = i.data.data;
+        return (d.hullDice === denomination) && ((d.hitDiceUsed || 0) < ((d.tier || 0) + d.hullDiceStart));
+      });
+    }
+
+    // If no class is available, display an error notification
+    if ( !sship ) {
+      ui.notifications.error(game.i18n.format("SW5E.HullDiceWarn", {name: this.name, formula: denomination}));
+      return null;
+    }
+
+    // Prepare roll data
+    const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
+    const title = game.i18n.localize("SW5E.HullDiceRoll");
+    const rollData = duplicate(this.data.data);
+
+    // Call the roll helper utility
+    const roll = await damageRoll({
+      event: new Event("hitDie"),
+      parts: parts,
+      data: rollData,
+      title: title,
+      speaker: ChatMessage.getSpeaker({actor: this}),
+      allowcritical: false,
+      fastForward: !dialog,
+      dialogOptions: {width: 350},
+      messageData: {"flags.sw5e.roll": {type: "hullDie"}}
+    });
+    if ( !roll ) return null;
+
+    // Adjust actor data
+    await sship.update({"data.hullDiceUsed": sship.data.data.hullDiceUsed + 1});
+    const hp = this.data.data.attributes.hp;
+    const dhp = Math.min(hp.max - hp.value, roll.total);
+    await this.update({"data.attributes.hp.value": hp.value + dhp});
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+   /**
+   * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
+   */
+    async rollHullDieCheck() {
+
+      // If no denomination was provided, choose the first available
+      let sship = null;
+      if ( !denomination ) {
+        sship = this.itemTypes.class.find(s => s.data.data.hullDiceUsed < (s.data.data.tier + s.data.data.hullDiceStart));
+        if ( !sship ) return null;
+        denomination = sship.data.data.hullDice;
+      }
+  
+      // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+      else {
+        sship = this.items.find(i => {
+          const d = i.data.data;
+          return (d.hullDice === denomination) && ((d.hitDiceUsed || 0) < ((d.tier || 0) + d.hullDiceStart));
+        });
+      }
+  
+      // If no class is available, display an error notification
+      if ( !sship ) {
+        ui.notifications.error(game.i18n.format("SW5E.HullDiceWarn", {name: this.name, formula: denomination}));
+        return null;
+      }
+  
+      // Prepare roll data
+      const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
+      const title = game.i18n.localize("SW5E.HullDiceRoll");
+      const rollData = duplicate(this.data.data);
+  
+      // Call the roll helper utility
+      const roll = await damageRoll({
+        event: new Event("hitDie"),
+        parts: parts,
+        data: rollData,
+        title: title,
+        speaker: ChatMessage.getSpeaker({actor: this}),
+        allowcritical: false,
+        fastForward: !dialog,
+        dialogOptions: {width: 350},
+        messageData: {"flags.sw5e.roll": {type: "hullDie"}}
+      });
+      if ( !roll ) return null;
+  
+      // Adjust actor data
+      await sship.update({"data.hullDiceUsed": sship.data.data.hullDiceUsed + 1});
+      const hp = this.data.data.attributes.hp;
+      const dhp = Math.min(hp.max - hp.value, roll.total);
+      await this.update({"data.attributes.hp.value": hp.value + dhp});
+      return roll;
+    }
+  
+    /* -------------------------------------------- */
+
+  /**
+   * Roll a shield die of the appropriate type, gaining shield points equal to the die roll 
+   * multiplied by the shield regeneration coefficient
+   * @param {string} [denomination]   The denomination of shield die to roll. Example "d8".
+   *                                  If no denomination is provided, the first available SD will be used
+   * @param {boolean} [natural]       Natural ship shield regeneration (true) or user action (false)?
+   * @param {string} [numDice]        How many damage dice to roll?
+   * @param {string} [keep]           Which dice to keep? Example "kh1".
+   * @param {boolean} [dialog]        Show a dialog prompt for configuring the shield die roll?
+   * @return {Promise<Roll|null>}     The created Roll instance, or null if no shield die was rolled
+   */
+   async rollShieldDie(denomination, natural=false, numDice="1", keep="", {dialog=true}={}) {
+
+    // If no denomination was provided, choose the first available
+    let sship = null;
+    if ( !denomination ) {
+      sship = this.itemTypes.class.find(s => s.data.data.shldDiceUsed < (s.data.data.tier + s.data.data.shldDiceStart));
+      if ( !sship ) return null;
+      denomination = sship.data.data.shldDice;
+    }
+
+    // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+    else {
+      sship = this.items.find(i => {
+        const d = i.data.data;
+        return (d.shldDice === denomination) && ((d.shldDiceUsed || 0) < ((d.tier || 0) + d.shldDiceStart));
+      });
+    }
+
+    // If no starship is available, display an error notification
+    if ( !sship ) {
+      ui.notifications.error(game.i18n.format("SW5E.ShldDiceWarn", {name: this.name, formula: denomination}));
+      return null;
+    }
+
+    // if natural regeneration roll max
+    if (natural) {
+      numdice = denomination.substring(1);
+      denomination = "";
+      keep = "";
+    }
+
+    // Prepare roll data
+    const parts = [`${numDice}${denomination}${keep} * @attributes.regenRate`];
+    const title = game.i18n.localize("SW5E.ShieldDiceRoll");
+    const rollData = duplicate(this.data.data);
+
+    // Call the roll helper utility
+    roll = await damageRoll({
+      event: new Event("shldDie"),
+      parts: parts,
+      data: rollData,
+      title: title,
+      speaker: ChatMessage.getSpeaker({actor: this}),
+      allowcritical: false,
+      fastForward: !dialog,
+      dialogOptions: {width: 350},
+      messageData: {"flags.sw5e.roll": {type: "shldDie"}}
+    });
+    if ( !roll ) return null;
+
+    // Adjust actor data
+    await sship.update({"data.shldDiceUsed": sship.data.data.shldDiceUsed + 1});
+    const hp = this.data.data.attributes.hp;
+    const dhp = Math.min(hp.tempmax - hp.temp, roll.total);
+    await this.update({"data.attributes.hp.temp": hp.temp + dhp});
+    return roll;
+  }
 
   /* -------------------------------------------- */
 
   /**
-   * Take a short rest, possibly spending hit dice and recovering resources, item uses, and tech slots & points.
-   *
-   * @param {object} [options]
-   * @param {boolean} [options.dialog=true]         Present a dialog window which allows for rolling hit dice as part
-   *                                                of the Short Rest and selecting whether a new day has occurred.
-   * @param {boolean} [options.chat=true]           Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} [options.autoHD=false]        Automatically spend Hit Dice if you are missing 3 or more hit points.
-   * @param {boolean} [options.autoHDThreshold=3]   A number of missing hit points which would trigger an automatic HD roll.
-   * @return {Promise.<RestResult>}                 A Promise which resolves once the short rest workflow has completed.
+   * Cause this Actor to take a Short Rest and regain all Tech Points
+   * During a Short Rest resources and limited item uses may be recovered
+   * @param {boolean} dialog  Present a dialog window which allows for rolling hit dice as part of the Short Rest
+   * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
+   * @param {boolean} autoHD  Automatically spend Hit Dice if you are missing 3 or more hit points
+   * @param {boolean} autoHDThreshold   A number of missing hit points which would trigger an automatic HD roll
+   * @return {Promise}        A Promise which resolves once the short rest workflow has completed
    */
   async shortRest({dialog=true, chat=true, autoHD=false, autoHDThreshold=3}={}) {
 
     // Take note of the initial hit points and number of hit dice the Actor has
+    const hp = this.data.data.attributes.hp;
     const hd0 = this.data.data.attributes.hd;
-    const hp0 = this.data.data.attributes.hp.value;
+    const hp0 = hp.value;
     let newDay = false;
 
     // Display a Dialog for rolling hit dice
@@ -1219,24 +1510,96 @@ export default class Actor5e extends Actor {
 
     // Automatically spend hit dice
     else if ( autoHD ) {
-      await this.autoSpendHitDice({ threshold: autoHDThreshold });
+      while ( (hp.value + autoHDThreshold) <= hp.max ) {
+        const r = await this.rollHitDie(undefined, {dialog: false});
+        if ( r === null ) break;
+      }
     }
 
-    return this._rest(chat, newDay, false, this.data.data.attributes.hd - hd0, this.data.data.attributes.hp.value - hp0, this.data.data.attributes.tech.points.max - this.data.data.attributes.tech.points.value);
+    // Note the change in HP and HD and TP which occurred
+    const dhd = this.data.data.attributes.hd - hd0;
+    const dhp = this.data.data.attributes.hp.value - hp0;
+    const dtp = this.data.data.attributes.tech.points.max - this.data.data.attributes.tech.points.value;
+
+    // Automatically Retore Tech Points
+    this.update({"data.attributes.tech.points.value": this.data.data.attributes.tech.points.max});
+    
+    // Recover character resources
+    const updateData = {};
+    for ( let [k, r] of Object.entries(this.data.data.resources) ) {
+      if ( r.max && r.sr ) {
+        updateData[`data.resources.${k}.value`] = r.max;
+      }
+    }
+
+    // Recover item uses
+    const recovery = newDay ? ["sr", "day"] : ["sr"];
+    const items = this.items.filter(item => item.data.data.uses && recovery.includes(item.data.data.uses.per));
+    const updateItems = items.map(item => {
+      return {
+        _id: item._id,
+        "data.uses.value": item.data.data.uses.max
+      };
+    });
+    await this.updateEmbeddedEntity("OwnedItem", updateItems);
+
+    // Display a Chat Message summarizing the rest effects
+    if ( chat ) {
+
+      // Summarize the rest duration
+      let restFlavor;
+      switch (game.settings.get("sw5e", "restVariant")) {
+        case 'normal': restFlavor = game.i18n.localize("SW5E.ShortRestNormal"); break;
+        case 'gritty': restFlavor = game.i18n.localize(newDay ? "SW5E.ShortRestOvernight" : "SW5E.ShortRestGritty"); break;
+        case 'epic':  restFlavor = game.i18n.localize("SW5E.ShortRestEpic"); break;
+      }
+
+      // Summarize the health effects
+      let srMessage = "SW5E.ShortRestResultShort";
+      if ((dhd !== 0) && (dhp !== 0)){
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultWithTech";
+        }else{
+          srMessage = "SW5E.ShortRestResult";
+        }
+      }else{
+        if (dtp !== 0){
+          srMessage = "SW5E.ShortRestResultOnlyTech";
+        }
+      }  
+
+      // Create a chat message
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {actor: this, alias: this.name},
+        flavor: restFlavor,
+        content: game.i18n.format(srMessage, {name: this.name, dice: -dhd, health: dhp, tech: dtp})
+      });
+    }
+
+    // Return data summarizing the rest effects
+    return {
+      dhd: dhd,
+      dhp: dhp,
+      dtp: dtp,
+      updateData: updateData,
+      updateItems: updateItems,
+      newDay: newDay
+    }
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Take a long rest, recovering hit points, hit dice, resources, item uses, and tech & force power points & slots.
-   *
-   * @param {object} [options]
-   * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a long rest.
-   * @param {boolean} [options.chat=true]    Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} [options.newDay=true]  Whether the long rest carries over to a new day.
-   * @return {Promise.<RestResult>}          A Promise which resolves once the long rest workflow has completed.
+   * Take a long rest, recovering HP, HD, resources, Force and Power points and power slots
+   * @param {boolean} dialog  Present a confirmation dialog window whether or not to take a long rest
+   * @param {boolean} chat    Summarize the results of the rest workflow as a chat message
+   * @param {boolean} newDay  Whether the long rest carries over to a new day
+   * @return {Promise}        A Promise which resolves once the long rest workflow has completed
    */
   async longRest({dialog=true, chat=true, newDay=true}={}) {
+    const data = this.data.data;
+
     // Maybe present a confirmation dialog
     if ( dialog ) {
       try {
@@ -1246,304 +1609,190 @@ export default class Actor5e extends Actor {
       }
     }
 
-    return this._rest(chat, newDay, true, 0, 0, this.data.data.attributes.tech.points.max - this.data.data.attributes.tech.points.value, this.data.data.attributes.force.points.max - this.data.data.attributes.force.points.value);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Perform all of the changes needed for a short or long rest.
-   *
-   * @param {boolean} chat           Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} newDay         Has a new day occurred during this rest?
-   * @param {boolean} longRest       Is this a long rest?
-   * @param {number} [dhd=0]         Number of hit dice spent during so far during the rest.
-   * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
-   * @param {number} [dtp=0]         Number of tech points recovered so far during the rest.
-   * @param {number} [dfp=0]         Number of force points recovered so far during the rest.
-   * @return {Promise.<RestResult>}  Consolidated results of the rest workflow.
-   * @private
-   */
-  async _rest(chat, newDay, longRest, dhd=0, dhp=0, dtp=0, dfp=0) {
-    // TODO: Turn gritty realism into the SW5e longer rests variant rule https://sw5e.com/rules/variantRules/Longer%20Rests
-    let hitPointsRecovered = 0;
-    let hitPointUpdates = {};
-    let hitDiceRecovered = 0;
-    let hitDiceUpdates = [];
-
-    // Recover hit points & hit dice on long rest
-    if ( longRest ) {
-      ({ updates: hitPointUpdates, hitPointsRecovered } = this._getRestHitPointRecovery());
-      ({ updates: hitDiceUpdates, hitDiceRecovered } = this._getRestHitDiceRecovery());
-    }
-
-    // Figure out the rest of the changes
-    const result = {
-      dhd: dhd + hitDiceRecovered,
-      dhp: dhp + hitPointsRecovered,
-      dtp: dtp,
-      dfp: dfp,
-      updateData: {
-        ...hitPointUpdates,
-        ...this._getRestResourceRecovery({ recoverShortRestResources: !longRest, recoverLongRestResources: longRest }),
-        ...this._getRestPowerRecovery({ recoverForcePowers: longRest })
-      },
-      updateItems: [
-        ...hitDiceUpdates,
-        ...this._getRestItemUsesRecovery({ recoverLongRestUses: longRest, recoverDailyUses: newDay })
-      ],
-      newDay: newDay
-    }
-
-    // Perform updates
-    await this.update(result.updateData);
-    await this.updateEmbeddedDocuments("Item", result.updateItems);
-
-    // Display a Chat Message summarizing the rest effects
-    if ( chat ) await this._displayRestResultMessage(result, longRest);
-
-    // Return data summarizing the rest effects
-    return result;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Display a chat message with the result of a rest.
-   *
-   * @param {RestResult} result         Result of the rest operation.
-   * @param {boolean} [longRest=false]  Is this a long rest?
-   * @return {Promise.<ChatMessage>}    Chat message that was created.
-   * @protected
-   */
-  async _displayRestResultMessage(result, longRest=false) {
-    const { dhd, dhp, dtp, dfp, newDay } = result;
-    const diceRestored = dhd !== 0;
-    const healthRestored = dhp !== 0;
-    const length = longRest ? "Long" : "Short";
-
-    let restFlavor, message;
-
-    // Summarize the rest duration
-    switch (game.settings.get("sw5e", "restVariant")) {
-      case 'normal': restFlavor = (longRest && newDay) ? "SW5E.LongRestOvernight" : `SW5E.${length}RestNormal`; break;
-      case 'gritty': restFlavor = (!longRest && newDay) ? "SW5E.ShortRestOvernight" : `SW5E.${length}RestGritty`; break;
-      case 'epic':  restFlavor = `SW5E.${length}RestEpic`; break;
-    }
-
-    // Determine the chat message to display
-    if (longRest) {
-      message = "SW5E.LongRestResult";
-      if (dhp !== 0) message += "HP";
-      if (dfp !== 0) message += "FP";
-      if (dtp !== 0) message += "TP";
-      if (dhd !== 0) message += "HD";
-    } else {
-      message = "SW5E.ShortRestResultShort";
-      if ((dhd !== 0) && (dhp !== 0)){
-        if (dtp !== 0){
-          message = "SW5E.ShortRestResultWithTech";
-        }else{
-          message = "SW5E.ShortRestResult";
-        }
-      }else{
-        if (dtp !== 0){
-          message = "SW5E.ShortRestResultOnlyTech";
-        }
-      }
-    }
-
-    // Create a chat message
-    let chatData = {
-      user: game.user.id,
-      speaker: {actor: this, alias: this.name},
-      flavor: game.i18n.localize(restFlavor),
-      content: game.i18n.format(message, {
-        name: this.name,
-        dice: longRest ? dhd : -dhd,
-        health: dhp,
-        tech: dtp,
-        force: dfp
-      })
+    // Recover hit, tech, and force points to full, and eliminate any existing temporary HP, TP, and FP
+    const dhp = data.attributes.hp.max - data.attributes.hp.value;
+    const dtp = data.attributes.tech.points.max - data.attributes.tech.points.value;
+    const dfp = data.attributes.force.points.max - data.attributes.force.points.value;
+    const updateData = {
+      "data.attributes.hp.value": data.attributes.hp.max,
+      "data.attributes.hp.temp": 0,
+      "data.attributes.hp.tempmax": 0,
+      "data.attributes.tech.points.value": data.attributes.tech.points.max,
+      "data.attributes.tech.points.temp": 0,
+      "data.attributes.tech.points.tempmax": 0,
+      "data.attributes.force.points.value": data.attributes.force.points.max,
+      "data.attributes.force.points.temp": 0,
+      "data.attributes.force.points.tempmax": 0
     };
-    ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
-    return ChatMessage.create(chatData);
-  }
 
-  /* -------------------------------------------- */
-
-  /**
-   * Automatically spend hit dice to recover hit points up to a certain threshold.
-   *
-   * @param {object} [options]
-   * @param {number} [options.threshold=3]  A number of missing hit points which would trigger an automatic HD roll.
-   * @return {Promise.<number>}             Number of hit dice spent.
-   */
-  async autoSpendHitDice({ threshold=3 }={}) {
-    const max = this.data.data.attributes.hp.max + this.data.data.attributes.hp.tempmax;
-
-    let diceRolled = 0;
-    while ( (this.data.data.attributes.hp.value + threshold) <= max ) {
-      const r = await this.rollHitDie(undefined, {dialog: false});
-      if ( r === null ) break;
-      diceRolled += 1;
-    }
-
-    return diceRolled;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers actor hit points and eliminates any temp HP.
-   *
-   * @param {object} [options]
-   * @param {boolean} [options.recoverTemp=true]     Reset temp HP to zero.
-   * @param {boolean} [options.recoverTempMax=true]  Reset temp max HP to zero.
-   * @return {object}                                Updates to the actor and change in hit points.
-   * @protected
-   */
-  _getRestHitPointRecovery({ recoverTemp=true, recoverTempMax=true }={}) {
-    const data = this.data.data;
-    let updates = {};
-    let max = data.attributes.hp.max;
-
-    if ( recoverTempMax ) {
-      updates["data.attributes.hp.tempmax"] = 0;
-    } else {
-      max += data.attributes.hp.tempmax;
-    }
-    updates["data.attributes.hp.value"] = max;
-    if ( recoverTemp ) {
-      updates["data.attributes.hp.temp"] = 0;
-    }
-
-    return { updates, hitPointsRecovered: max - data.attributes.hp.value };
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers actor resources.
-   * @param {object} [options]
-   * @param {boolean} [options.recoverShortRestResources=true]  Recover resources that recharge on a short rest.
-   * @param {boolean} [options.recoverLongRestResources=true]   Recover resources that recharge on a long rest.
-   * @return {object}                                           Updates to the actor.
-   * @protected
-   */
-  _getRestResourceRecovery({recoverShortRestResources=true, recoverLongRestResources=true}={}) {
-    let updates = {};
-    for ( let [k, r] of Object.entries(this.data.data.resources) ) {
-      if ( Number.isNumeric(r.max) && ((recoverShortRestResources && r.sr) || (recoverLongRestResources && r.lr)) ) {
-        updates[`data.resources.${k}.value`] = Number(r.max);
-      }
-    }
-    return updates;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers power slots.
-   *
-   * @param longRest = true  It's a long rest
-   * @return {object}        Updates to the actor.
-   * @protected
-   */
-  _getRestPowerRecovery({ recoverTechPowers=true, recoverForcePowers=true }={}) {
-    let updates = {};
-
-    if (recoverTechPowers) {
-      updates["data.attributes.tech.points.value"] = this.data.data.attributes.tech.points.max;
-      updates["data.attributes.tech.points.temp"] = 0;
-      updates["data.attributes.tech.points.tempmax"] = 0;
-
-      for (let [k, v] of Object.entries(this.data.data.powers)) {
-        updates[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : (v.tmax ?? 0);
+    // Recover character resources
+    for ( let [k, r] of Object.entries(data.resources) ) {
+      if ( r.max && (r.sr || r.lr) ) {
+        updateData[`data.resources.${k}.value`] = r.max;
       }
     }
 
-    if (recoverForcePowers) {
-      updates["data.attributes.force.points.value"] = this.data.data.attributes.force.points.max;
-      updates["data.attributes.force.points.temp"] = 0;
-      updates["data.attributes.force.points.tempmax"] = 0;
-
-      for ( let [k, v] of Object.entries(this.data.data.powers) ) {
-        updates[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : (v.fmax ?? 0);
-      }
+    // Recover power slots
+    for ( let [k, v] of Object.entries(data.powers) ) {
+      updateData[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : (v.fmax ?? 0);
     }
-
-    return updates;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers class hit dice during a long rest.
-   *
-   * @param {object} [options]
-   * @param {number} [options.maxHitDice]  Maximum number of hit dice to recover.
-   * @return {object}                      Array of item updates and number of hit dice recovered.
-   * @protected
-   */
-  _getRestHitDiceRecovery({ maxHitDice=undefined }={}) {
+    for ( let [k, v] of Object.entries(data.powers) ) {
+      updateData[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : (v.tmax ?? 0);
+    }
     // Determine the number of hit dice which may be recovered
-    if ( maxHitDice === undefined ) {
-      maxHitDice = Math.max(Math.floor(this.data.data.details.level / 2), 1);
-    }
+    let recoverHD = Math.max(Math.floor(data.details.level / 2), 1);
+    let dhd = 0;
 
     // Sort classes which can recover HD, assuming players prefer recovering larger HD first.
-    const sortedClasses = Object.values(this.classes).sort((a, b) => {
-      return (parseInt(b.data.data.hitDice.slice(1)) || 0) - (parseInt(a.data.data.hitDice.slice(1)) || 0);
-    });
-
-    let updates = [];
-    let hitDiceRecovered = 0;
-    for ( let item of sortedClasses ) {
+    const updateItems = this.items.filter(item => item.data.type === "class").sort((a, b) => {
+      let da = parseInt(a.data.data.hitDice.slice(1)) || 0;
+      let db = parseInt(b.data.data.hitDice.slice(1)) || 0;
+      return db - da;
+    }).reduce((updates, item) => {
       const d = item.data.data;
-      if ( (hitDiceRecovered < maxHitDice) && (d.hitDiceUsed > 0) ) {
-        let delta = Math.min(d.hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
-        hitDiceRecovered += delta;
+      if ( (recoverHD > 0) && (d.hitDiceUsed > 0) ) {
+        let delta = Math.min(d.hitDiceUsed || 0, recoverHD);
+        recoverHD -= delta;
+        dhd += delta;
         updates.push({_id: item.id, "data.hitDiceUsed": d.hitDiceUsed - delta});
       }
-    }
+      return updates;
+    }, []);
 
-    return { updates, hitDiceRecovered };
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Recovers item uses during short or long rests.
-   *
-   * @param {object} [options]
-   * @param {boolean} [options.recoverShortRestUses=true]  Recover uses for items that recharge after a short rest.
-   * @param {boolean} [options.recoverLongRestUses=true]   Recover uses for items that recharge after a long rest.
-   * @param {boolean} [options.recoverDailyUses=true]      Recover uses for items that recharge on a new day.
-   * @return {Array.<object>}                              Array of item updates.
-   * @protected
-   */
-  _getRestItemUsesRecovery({ recoverShortRestUses=true, recoverLongRestUses=true, recoverDailyUses=true }={}) {
-    let recovery = [];
-    if ( recoverShortRestUses ) recovery.push("sr");
-    if ( recoverLongRestUses ) recovery.push("lr");
-    if ( recoverDailyUses ) recovery.push("day");
-
-    let updates = [];
+    // Iterate over owned items, restoring uses per day and recovering Hit Dice
+    const recovery = newDay ? ["sr", "lr", "day"] : ["sr", "lr"];
     for ( let item of this.items ) {
       const d = item.data.data;
       if ( d.uses && recovery.includes(d.uses.per) ) {
-        updates.push({_id: item.id, "data.uses.value": d.uses.max});
+        updateItems.push({_id: item.id, "data.uses.value": d.uses.max});
       }
-      if ( recoverLongRestUses && d.recharge && d.recharge.value ) {
-        updates.push({_id: item.id, "data.recharge.charged": true});
+      else if ( d.recharge && d.recharge.value ) {
+        updateItems.push({_id: item.id, "data.recharge.charged": true});
       }
     }
 
-    return updates;
+    // Perform the updates
+    await this.update(updateData);
+    if ( updateItems.length ) await this.updateEmbeddedEntity("OwnedItem", updateItems);
+
+    // Display a Chat Message summarizing the rest effects
+    let restFlavor;
+    switch (game.settings.get("sw5e", "restVariant")) {
+      case 'normal': restFlavor = game.i18n.localize(newDay ? "SW5E.LongRestOvernight" : "SW5E.LongRestNormal"); break;
+      case 'gritty': restFlavor = game.i18n.localize("SW5E.LongRestGritty"); break;
+      case 'epic':  restFlavor = game.i18n.localize("SW5E.LongRestEpic"); break;
+    }
+
+    // Determine the chat message to display
+    if ( chat ) {
+      let lrMessage = "SW5E.LongRestResult";
+      if (dhp !== 0) lrMessage += "HP";
+      if (dfp !== 0) lrMessage += "FP";
+      if (dtp !== 0) lrMessage += "TP";
+      if (dhd !== 0) lrMessage += "HD";
+      ChatMessage.create({
+        user: game.user._id,
+        speaker: {actor: this, alias: this.name},
+        flavor: restFlavor,
+        content: game.i18n.format(lrMessage, {name: this.name, health: dhp, tech: dtp, force: dfp, dice: dhd})
+      });
+    }
+
+    // Return data summarizing the rest effects
+    return {
+      dhd: dhd,
+      dhp: dhp,
+      dtp: dtp,
+      dfp: dfp,
+      updateData: updateData,
+      updateItems: updateItems,
+      newDay: newDay
+    }
   }
 
   /* -------------------------------------------- */
+
+
+ /**
+   * Deploy an Actor into this one.
+   *
+   * @param {Actor} target The Actor to be deployed.
+   * @param {boolean} [coord] Deploy as Coordinator
+   * @param {boolean} [gunner] Deploy as Gunner
+   * @param {boolean} [mech] Deploy as Mechanic
+   * @param {boolean} [oper] Deploy as Operator
+   * @param {boolean} [pilot] Deploy as Pilot
+   * @param {boolean} [tech] Deploy as Technician
+   * @param {boolean} [crew] Deploy as Crew
+   * @param {boolean} [pass] Deploy as Passenger
+   */
+  async deployInto(target, { coord=false, gunner=false, mech=false, oper=false,
+    pilot=false, tech=false, crew=false, pass=false}={}) {
+
+    // Get the starship Actor data and the new char data
+    const sship = duplicate(this.toJSON());
+    const ssDeploy = sship.data.attributes.deployment;
+    const char = target;
+    const charUUID = char.uuid;
+    const charName = char.data.name;
+    const charRank = char.data.data.attributes.rank;
+    let charProf = 0;
+    if (charRank.total > 0) {
+      charProf = char.data.data.attributes.prof;
+    }
+
+    if (coord){
+      ssDeploy.coord.uuid = charUUID;
+      ssDeploy.coord.name = charName;
+      ssDeploy.coord.rank = charRank.coord;
+      ssDeploy.coord.prof = charProf;
+    }
+
+    if (gunner){
+      ssDeploy.gunner.uuid = charUUID;
+      ssDeploy.gunner.name = charName;
+      ssDeploy.gunner.rank = charRank.gunner;
+      ssDeploy.gunner.prof = charProf;
+    }
+
+    if (mech){
+      ssDeploy.mechanic.uuid = charUUID;
+      ssDeploy.mechanic.name = charName;
+      ssDeploy.mechanic.rank = charRank.mechanic;
+      ssDeploy.mechanic.prof = charProf;
+    }
+
+    if (oper){
+      ssDeploy.operator.uuid = charUUID;
+      ssDeploy.operator.name = charName;
+      ssDeploy.operator.rank = charRank.operator;
+      ssDeploy.operator.prof = charProf;
+    }
+
+    if (pilot){
+      ssDeploy.pilot.uuid = charUUID;
+      ssDeploy.pilot.name = charName;
+      ssDeploy.pilot.rank = charRank.pilot;
+      ssDeploy.pilot.prof = charProf;
+    }
+
+    if (tech){
+      ssDeploy.technician.uuid = charUUID;
+      ssDeploy.technician.name = charName;
+      ssDeploy.technician.rank = charRank.technician;
+      ssDeploy.technician.prof = charProf;
+    }
+
+    if (crew){
+      ssDeploy.crew.push({"uuid": charUUID, "name": charName, "rank": charRank, "prof": charProf});
+    }
+
+    if (pass){
+      ssDeploy.passenger.push({"uuid": charUUID, "name": charName, "rank": charRank, "prof": charProf});
+    }
+    this.update({"data.attributes.deployment": ssDeploy});
+  }
+
 
   /**
    * Transform this Actor into another one.
@@ -1574,10 +1823,10 @@ export default class Actor5e extends Actor {
     }
 
     // Get the original Actor data and the new source data
-    const o = this.toJSON();
+    const o = duplicate(this.toJSON());
     o.flags.sw5e = o.flags.sw5e || {};
     o.flags.sw5e.transformOptions = {mergeSkills, mergeSaves};
-    const source = target.toJSON();
+    const source = duplicate(target.toJSON());
 
     // Prepare new data to merge from the source
     const d = {
@@ -1586,36 +1835,38 @@ export default class Actor5e extends Actor {
       data: source.data, // Get the data model of your new form
       items: source.items, // Get the items of your new form
       effects: o.effects.concat(source.effects), // Combine active effects from both forms
+      token: source.token, // New token configuration
       img: source.img, // New appearance
       permission: o.permission, // Use the original actor permissions
       folder: o.folder, // Be displayed in the same sidebar folder
       flags: o.flags // Use the original actor flags
     };
 
-    // Specifically delete some data attributes
+    // Additional adjustments
     delete d.data.resources; // Don't change your resource pools
     delete d.data.currency; // Don't lose currency
     delete d.data.bonuses; // Don't lose global bonuses
-
-    // Specific additional adjustments
+    delete d.token.actorId; // Don't reference the old actor ID
+    d.token.actorLink = o.token.actorLink; // Keep your actor link
+    d.token.name = d.name; // Token name same as actor name
     d.data.details.alignment = o.data.details.alignment; // Don't change alignment
     d.data.attributes.exhaustion = o.data.attributes.exhaustion; // Keep your prior exhaustion level
     d.data.attributes.inspiration = o.data.attributes.inspiration; // Keep inspiration
     d.data.powers = o.data.powers; // Keep power slots
 
-    // Token appearance updates
-    d.token = {name: d.name};
-    for ( let k of ["width", "height", "scale", "img", "mirrorX", "mirrorY", "tint", "alpha", "lockRotation"] ) {
-      d.token[k] = source.token[k];
-    }
-    if ( !keepVision ) {
-      for ( let k of ['dimSight', 'brightSight', 'dimLight', 'brightLight', 'vision', 'sightAngle'] ) {
-        d.token[k] = source.token[k];
-      }
-    }
+    // Handle wildcard
     if ( source.token.randomImg ) {
       const images = await target.getTokenImages();
       d.token.img = images[Math.floor(Math.random() * images.length)];
+    }
+
+    // Keep Token configurations
+    const tokenConfig = ["displayName", "vision", "actorLink", "disposition", "displayBars", "bar1", "bar2"];
+    if ( keepVision ) {
+      tokenConfig.push(...['dimSight', 'brightSight', 'dimLight', 'brightLight', 'vision', 'sightAngle']);
+    }
+    for ( let c of tokenConfig ) {
+      d.token[c] = o.token[c];
     }
 
     // Transfer ability scores
@@ -1684,13 +1935,13 @@ export default class Actor5e extends Actor {
     if ( !transformTokens ) return;
     const tokens = this.getActiveTokens(true);
     const updates = tokens.map(t => {
-      const newTokenData = foundry.utils.deepClone(d.token);
+      const newTokenData = duplicate(d.token);
       if ( !t.data.actorLink ) newTokenData.actorData = newActor.data;
       newTokenData._id = t.data._id;
       newTokenData.actorId = newActor.id;
       return newTokenData;
     });
-    return canvas.scene?.updateEmbeddedDocuments("Token", updates);
+    return canvas.scene?.updateEmbeddedEntity("Token", updates);
   }
 
   /* -------------------------------------------- */
@@ -1702,19 +1953,16 @@ export default class Actor5e extends Actor {
    */
   async revertOriginalForm() {
     if ( !this.isPolymorphed ) return;
-    if ( !this.isOwner ) {
+    if ( !this.owner ) {
       return ui.notifications.warn(game.i18n.localize("SW5E.PolymorphRevertWarn"));
     }
 
     // If we are reverting an unlinked token, simply replace it with the base actor prototype
     if ( this.isToken ) {
       const baseActor = game.actors.get(this.token.data.actorId);
-      const prototypeTokenData = await baseActor.getTokenData();
-      const tokenUpdate = {actorData: {}};
-      for ( let k of ["width", "height", "scale", "img", "mirrorX", "mirrorY", "tint", "alpha", "lockRotation"] ) {
-        tokenUpdate[k] = prototypeTokenData[k];
-      }
-      return this.token.update(tokenUpdate, {recursive: false});
+      const prototypeTokenData = duplicate(baseActor.token);
+      prototypeTokenData.actorData = null;
+      return this.token.update(prototypeTokenData);
     }
 
     // Obtain a reference to the original actor
@@ -1724,22 +1972,19 @@ export default class Actor5e extends Actor {
     // Get the Tokens which represent this actor
     if ( canvas.ready ) {
       const tokens = this.getActiveTokens(true);
-      const tokenData = await original.getTokenData();
       const tokenUpdates = tokens.map(t => {
-        const update = duplicate(tokenData);
-        update._id = t.id;
-        delete update.x;
-        delete update.y;
-        return update;
+        const tokenData = duplicate(original.data.token);
+        tokenData._id = t.id;
+        tokenData.actorId = original.id;
+        return tokenData;
       });
-      canvas.scene.updateEmbeddedDocuments("Token", tokenUpdates);
+      canvas.scene.updateEmbeddedEntity("Token", tokenUpdates);
     }
 
-    // Delete the polymorphed version of the actor, if possible
+    // Delete the polymorphed Actor and maybe re-render the original sheet
     const isRendered = this.sheet.rendered;
     if ( game.user.isGM ) await this.delete();
-    else if ( isRendered ) this.sheet.close();
-    if ( isRendered ) original.sheet.render(isRendered);
+    original.sheet.render(isRendered);
     return original;
   }
 
@@ -1765,33 +2010,6 @@ export default class Actor5e extends Actor {
         return actor && actor.isPolymorphed;
       }
     });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Format a type object into a string.
-   * @param {object} typeData          The type data to convert to a string.
-   * @returns {string}
-   */
-  static formatCreatureType(typeData) {
-    if ( typeof typeData === "string" ) return typeData; // backwards compatibility
-    let localizedType;
-    if ( typeData.value === "custom" ) {
-      localizedType = typeData.custom;
-    } else {
-      let code = CONFIG.SW5E.creatureTypes[typeData.value];
-      localizedType = game.i18n.localize(!!typeData.swarm ? `${code}Pl` : code);
-    }
-    let type = localizedType;
-    if ( !!typeData.swarm ) {
-      type = game.i18n.format('SW5E.CreatureSwarmPhrase', {
-        size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm]),
-        type: localizedType
-      });
-    }
-    if (typeData.subtype) type = `${type} (${typeData.subtype})`;
-    return type;
   }
 
   /* -------------------------------------------- */

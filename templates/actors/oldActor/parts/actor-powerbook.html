@@ -1,7 +1,7 @@
 <div class="inventory-filters powerbook-filters flexrow">
     <div class="form-group powercasting-ability">
         {{#unless isNPC}}
-        <label>{{localize "SW5E.PowerAbility"}}</label>
+        <label>{{localize "SW5E.Powercasting"}}</label>
         {{else}}
         <label>{{localize "SW5E.Level"}}</label>
         <input class="powercasting-level" type="text" name="data.details.powerLevel"
@@ -86,7 +86,7 @@
             <div class="power-target" title="{{localize 'SW5E.Range'}}: {{labels.range}}">
                 {{#if labels.target}}
                 {{labels.target}}
-                {{else}}None
+                {{else}}{{localize 'SW5E.None'}}
                 {{/if}}
             </div>
 
@@ -95,8 +95,8 @@
                 {{#if section.canPrepare}}
                 <a class="item-control item-toggle {{item.toggleClass}}" title="{{item.toggleTitle}}"><i class="fas fa-sun"></i></a>
                 {{/if}}
-                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
             </div>
             {{/if}}
         </li>

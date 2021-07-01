@@ -91,6 +91,38 @@
                 {{/each}}
             </div>
 
+            {{!-- Starship Armor and Shield Properties --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.StarshipArmorandShieldProps" }}</label>
+            </div>
+
+            <div class="form-group" style="width: 60%;">
+                <strong style="color:#4b4a44; font-size: 11px">{{ localize "SW5E.CapacityMultiplier" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.capx.value" value="{{data.capx.value}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.DmgRed" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.attributes.dr" value="{{data.attributes.dr}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.RegenerationRateCoefficient" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.regrateco.value" value="{{data.regrateco.value}}" /> &nbsp;&nbsp;
+            </div>
+
+            {{!-- Starship Equipment Properties --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.StarshipEquipmentProps" }}</label>
+            </div>
+
+            <div class="form-group" style="width: 100%;">
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.CentStorageCapacity" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.cscap.value" value="{{data.cscap.value}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.SysStorageCapacity" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.sscap.value" value="{{data.sscap.value}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.FuelCostsMod" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.fuelcostsmod.value" value="{{data.fuelcostsmod.value}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.PowerDiceRecovery" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.powdicerec.value" value="{{data.powdicerec.value}}" /> &nbsp;&nbsp;
+                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.HyperdriveClass" }}</strong>
+                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.hdclass.value" value="{{data.hdclass.value}}" /> &nbsp;&nbsp;
+            </div>
+
             {{!-- Armor Class --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ArmorClass" }}</label>

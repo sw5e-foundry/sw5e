@@ -2,7 +2,8 @@ import {simplifyRollFormula, d20Roll, damageRoll} from "../dice.js";
 import AbilityUseDialog from "../apps/ability-use-dialog.js";
 
 /**
- * Override and extend the basic :class:`Item` implementation
+ * Override and extend the basic Item implementation
+ * @extends {Item}
  */
 export default class Item5e extends Item {
 
@@ -44,12 +45,15 @@ export default class Item5e extends Item {
       else if (this.data.type === "weapon") {
         const wt = itemData.weaponType;
 
-        // Melee weapons - Str or Dex if Finesse (PHB pg. 147)
-        if ( ["simpleVW", "martialVW", "simpleLW", "martialLW"].includes(wt) ) {
-          if (itemData.properties.fin === true) {   // Finesse weapons
-            return (actorData.abilities["dex"].mod >= actorData.abilities["str"].mod) ? "dex" : "str";
-          }
-          return "str";
+        // Weapons using the powercasting modifier
+        // No current SW5e weapons use this, but it's worth checking just in case
+        if (["mpak", "rpak"].includes(itemData.actionType)) {
+          return actorData.attributes.powercasting || "int";
+        }
+
+        // Finesse weapons - Str or Dex (PHB pg. 147)
+        else if (itemData.properties.fin === true) {
+          return (actorData.abilities["dex"].mod >= actorData.abilities["str"].mod) ? "dex" : "str";
         }
 
         // Ranged weapons - Dex (PH p.194)
@@ -144,7 +148,7 @@ export default class Item5e extends Item {
   get hasLimitedUses() {
     let chg = this.data.data.recharge || {};
     let uses = this.data.data.uses || {};
-    return !!chg.value || (!!uses.per && (uses.max > 0));
+    return !!chg.value || (uses.per && (uses.max > 0));
   }
 
   /* -------------------------------------------- */
@@ -154,8 +158,8 @@ export default class Item5e extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */
-  prepareData() {
-    super.prepareData();
+  prepareDerivedData() {
+    super.prepareDerivedData();
 
     // Get the Item's data
     const itemData = this.data;
@@ -190,6 +194,7 @@ export default class Item5e extends Item {
       else labels.featType = game.i18n.localize("SW5E.Passive");
     }
 
+    // TODO: Something with all this
     // Species Items
     else if ( itemData.type === "species" ) {
     //  labels.species = C.species[data.species];
@@ -205,19 +210,27 @@ export default class Item5e extends Item {
     // Class Feature Items
     else if ( itemData.type === "classfeature" ) {
     //  labels.classFeature = C.classFeature[data.classFeature];
-	  }
-	  // Fighting Style Items
-	  else if ( itemData.type === "fightingstyle" ) {
-	  //  labels.fightingstyle = C.fightingstyle[data.fightingstyle];
-	  }
-	  // Fighting Mastery Items
-	  else if ( itemData.type === "fightingmastery" ) {
-	  //  labels.fightingmastery = C.fightingmastery[data.fightingmastery];
-	  }
-	  // Lightsaber Form Items
-	  else if ( itemData.type === "lightsaberform" ) {
-	  //  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
-	  }
+	}
+    // Deployment Items
+    else if ( itemData.type === "deployment" ) {
+    //  labels.deployment = C.deployment[data.deployment];
+	}
+    // Venture Items
+    else if ( itemData.type === "venture" ) {
+    //  labels.venture = C.venture[data.venture];
+	}	
+	// Fighting Style Items
+	else if ( itemData.type === "fightingstyle" ) {
+    //  labels.fightingstyle = C.fightingstyle[data.fightingstyle];
+	}
+	// Fighting Mastery Items
+	else if ( itemData.type === "fightingmastery" ) {
+	//  labels.fightingmastery = C.fightingmastery[data.fightingmastery];
+	}
+	// Lightsaber Form Items
+	else if ( itemData.type === "lightsaberform" ) {
+	//  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
+	}
 
     // Equipment Items
     else if ( itemData.type === "equipment" ) {
@@ -242,7 +255,7 @@ export default class Item5e extends Item {
 
       // Range Label
       let rng = data.range || {};
-      if (["none", "touch", "self"].includes(rng.units) || (rng.value === 0)) {
+      if ( ["none", "touch", "self"].includes(rng.units) ) {
         rng.value = null;
         rng.long = null;
       }
@@ -260,33 +273,63 @@ export default class Item5e extends Item {
 
     // Item Actions
     if ( data.hasOwnProperty("actionType") ) {
-      // if this item is owned, we populate the label and saving throw during actor init
-      if (!this.isOwned) {
-        // Saving throws
-        this.getSaveDC();
-
-        // To Hit
-        this.getAttackToHit();
-      }
-
       // Damage
       let dam = data.damage || {};
-      if ( dam.parts ) {
+      if (dam.parts) {
         labels.damage = dam.parts.map(d => d[0]).join(" + ").replace(/\+ -/g, "- ");
         labels.damageTypes = dam.parts.map(d => C.damageTypes[d[1]]).join(", ");
       }
+    }
+
+    // if this item is owned, we prepareFinalAttributes() at the end of actor init
+    if (!this.isOwned) this.prepareFinalAttributes();
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Compute item attributes which might depend on prepared actor data.
+   */
+  prepareFinalAttributes() {
+    if ( this.data.data.hasOwnProperty("actionType") ) {
+      // Saving throws
+      this.getSaveDC();
+
+      // To Hit
+      this.getAttackToHit();
 
       // Limited Uses
-      if ( this.isOwned && !!data.uses?.max ) {
-        let max = data.uses.max;
-        if ( !Number.isNumeric(max) ) {
-          max = Roll.replaceFormulaData(max, this.actor.getRollData());
-          if ( Roll.MATH_PROXY.safeEval ) max = Roll.MATH_PROXY.safeEval(max);
-        }
-        data.uses.max = Number(max);
-      }
+      this.prepareMaxUses();
+
+      // Damage Label
+      this.getDerivedDamageLabel();
     }
   }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Populate a label with the compiled and simplified damage formula
+     * based on owned item actor data. This is only used for display
+     * purposes and is not related to Item5e#rollDamage
+     *
+     * @returns {Array} array of objects with `formula` and `damageType`
+     */
+    getDerivedDamageLabel() {
+      const itemData = this.data.data;
+      if ( !this.hasDamage || !itemData || !this.isOwned ) return [];
+
+      const rollData = this.getRollData();
+
+      const derivedDamage = itemData.damage?.parts?.map((damagePart) => ({
+        formula: simplifyRollFormula(damagePart[0], rollData, { constantFirst: false }),
+        damageType: damagePart[1],
+      }));
+
+      this.labels.derivedDamage = derivedDamage
+
+      return derivedDamage;
+    }
 
   /* -------------------------------------------- */
 
@@ -402,6 +445,31 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
+   * Populates the max uses of an item.
+   * If the item is an owned item and the `max` is not numeric, calculate based on actor data.
+   */
+  prepareMaxUses() {
+    const data = this.data.data;
+    if (!data.uses?.max) return;
+    let max = data.uses.max;
+
+    // if this is an owned item and the max is not numeric, we need to calculate it
+    if (this.isOwned && !Number.isNumeric(max)) {
+      if (this.actor.data === undefined) return;
+      try {
+        max = Roll.replaceFormulaData(max, this.actor.getRollData(), {missing: 0, warn: true});
+        max = Roll.safeEval(max);
+      } catch(e) {
+        console.error('Problem preparing Max uses for', this.data.name, e);
+        return;
+      }
+    }
+    data.uses.max = Number(max);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Roll the item to Chat, creating a chat card which contains follow up attack or damage roll options
    * @param {boolean} [configureDialog]     Display a configuration dialog for the item roll, if applicable?
    * @param {string} [rollMode]             The roll display mode with which to display (or not) the card
@@ -411,16 +479,18 @@ export default class Item5e extends Item {
    */
   async roll({configureDialog=true, rollMode, createMessage=true}={}) {
     let item = this;
+    const id = this.data.data;                // Item system data
     const actor = this.actor;
+    const ad = actor.data.data;               // Actor system data
 
     // Reference aspects of the item data necessary for usage
-    const id = this.data.data;                // Item data
     const hasArea = this.hasAreaTarget;       // Is the ability usage an AoE?
     const resource = id.consume || {};        // Resource consumption
     const recharge = id.recharge || {};       // Recharge mechanic
     const uses = id?.uses ?? {};              // Limited uses
     const isPower = this.type === "power";    // Does the item require a power slot?
     // TODO: Possibly Mod this to not consume slots based on class?
+    // We could use this for feats and architypes that let a character cast one slot every rest or so
     const requirePowerSlot = isPower && (id.level > 0) && CONFIG.SW5E.powerUpcastModes.includes(id.preparation.mode);
 
     // Define follow-up actions resulting from the item usage
@@ -430,6 +500,8 @@ export default class Item5e extends Item {
     let consumePowerSlot = requirePowerSlot;    // Consume a power slot
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
+    let consumePowerLevel = null;               // Consume a specific category of power slot
+    if ( requirePowerSlot ) consumePowerLevel = id.preparation.mode === "pact" ? "pact" : `power${id.level}`;
 
   // Display a configuration dialog to customize the usage
     const needsConfiguration = createMeasuredTemplate || consumeRecharge || (consumeResource && !['simpleB', 'martialB'].includes(id.weaponType)) || consumePowerSlot || (consumeUsage && !['simpleB', 'martialB'].includes(id.weaponType));
@@ -447,28 +519,28 @@ export default class Item5e extends Item {
 
       // Handle power upcasting
       if ( requirePowerSlot ) {
-        const slotLevel = configuration.level;
-        const powerLevel = parseInt(slotLevel);
-        
-        if (powerLevel !== id.level) {
-          const upcastData = mergeObject(this.data, {"data.level": powerLevel}, {inplace: false});
-          item = this.constructor.createOwned(upcastData, actor);  // Replace the item with an upcast version
+        consumePowerLevel = `power${configuration.level}`;
+        if (consumePowerSlot === false) consumePowerLevel = null;
+        const upcastLevel = parseInt(configuration.level);
+        if (upcastLevel !== id.level) {
+          item = this.clone({"data.level": upcastLevel}, {keepId: true});
+          item.data.update({_id: this.id}); // Retain the original ID (needed until 0.8.2+)
+          item.prepareFinalAttributes(); // Power save DC, etc...
         }
-        if ( consumePowerSlot ) consumePowerSlot = `power${powerLevel}`;
       }
     }
 
     // Determine whether the item can be used by testing for resource consumption
-    const usage = item._getUsageUpdates({consumeRecharge, consumeResource, consumePowerSlot, consumeUsage, consumeQuantity});
+    const usage = item._getUsageUpdates({consumeRecharge, consumeResource, consumePowerLevel, consumeUsage, consumeQuantity});
     if ( !usage ) return;
     
     const {actorUpdates, itemUpdates, resourceUpdates} = usage;
 
     // Commit pending data updates
-    if ( !isObjectEmpty(itemUpdates) ) await item.update(itemUpdates);
+    if ( !foundry.utils.isObjectEmpty(itemUpdates) ) await item.update(itemUpdates);
     if ( consumeQuantity && (item.data.data.quantity === 0) ) await item.delete();
-    if ( !isObjectEmpty(actorUpdates) ) await actor.update(actorUpdates);
-    if ( !isObjectEmpty(resourceUpdates) ) {
+    if ( !foundry.utils.isObjectEmpty(actorUpdates) ) await actor.update(actorUpdates);
+    if ( !foundry.utils.isObjectEmpty(resourceUpdates) ) {
       const resource = actor.items.get(id.consume?.target);
       if ( resource ) await resource.update(resourceUpdates);
     }
@@ -491,12 +563,12 @@ export default class Item5e extends Item {
    * @param {boolean} consumeQuantity     Consume quantity of the item if other consumption modes are not available?
    * @param {boolean} consumeRecharge     Whether the item consumes the recharge mechanic
    * @param {boolean} consumeResource     Whether the item consumes a limited resource
-   * @param {string|boolean} consumePowerSlot   A level of power slot consumed, or false
+   * @param {string|null} consumePowerLevel The category of power slot to consume, or null
    * @param {boolean} consumeUsage        Whether the item consumes a limited usage
    * @returns {object|boolean}            A set of data changes to apply when the item is used, or false
    * @private
    */
-  _getUsageUpdates({consumeQuantity=false, consumeRecharge=false, consumeResource=false, consumePowerSlot=false, consumeUsage=false}) {
+  _getUsageUpdates({consumeQuantity, consumeRecharge, consumeResource, consumePowerLevel, consumeUsage}) {
 
     // Reference item data
     const id = this.data.data;
@@ -521,8 +593,9 @@ export default class Item5e extends Item {
     }
 
     // Consume Power Slots and Force/Tech Points
-    if ( consumePowerSlot ) {
-      const level = this.actor?.data.data.powers[consumePowerSlot];
+    if ( consumePowerLevel ) {
+      if ( Number.isNumeric(consumePowerLevel) ) consumePowerLevel = `power${consumePowerLevel}`;
+      const level = this.actor?.data.data.powers[consumePowerLevel];
       const fp = this.actor.data.data.attributes.force.points;
       const tp = this.actor.data.data.attributes.tech.points;
       const powerCost = id.level + 1;
@@ -538,7 +611,7 @@ export default class Item5e extends Item {
               ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
               return false;
             }
-            actorUpdates[`data.powers.${consumePowerSlot}.fvalue`] = Math.max(powers - 1, 0);
+            actorUpdates[`data.powers.${consumePowerLevel}.fvalue`] = Math.max(powers - 1, 0);
             if (fp.temp >= powerCost) {
               actorUpdates["data.attributes.force.points.temp"] = fp.temp - powerCost;
             }else{
@@ -554,7 +627,7 @@ export default class Item5e extends Item {
               ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
               return false;
             }
-            actorUpdates[`data.powers.${consumePowerSlot}.tvalue`] = Math.max(powers - 1, 0);
+            actorUpdates[`data.powers.${consumePowerLevel}.tvalue`] = Math.max(powers - 1, 0);
             if (tp.temp >= powerCost) {
               actorUpdates["data.attributes.tech.points.temp"] = tp.temp - powerCost;
             }else{
@@ -693,11 +766,11 @@ export default class Item5e extends Item {
    */
   async displayCard({rollMode, createMessage=true}={}) {
 
-    // Basic template rendering data
+    // Render the chat card template
     const token = this.actor.token;
     const templateData = {
       actor: this.actor,
-      tokenId: token ? `${token.scene._id}.${token.id}` : null,
+      tokenId: token?.uuid || null,
       item: this.data,
       data: this.getChatData(),
       labels: this.labels,
@@ -707,17 +780,14 @@ export default class Item5e extends Item {
       isVersatile: this.isVersatile,
       isPower: this.data.type === "power",
       hasSave: this.hasSave,
-      hasAreaTarget: this.hasAreaTarget
+      hasAreaTarget: this.hasAreaTarget,
+      isTool: this.data.type === "tool"
     };
-
-    // Render the chat card template
-    const templateType = ["tool"].includes(this.data.type) ? this.data.type : "item";
-    const template = `systems/sw5e/templates/chat/${templateType}-card.html`;
-    const html = await renderTemplate(template, templateData);
+    const html = await renderTemplate("systems/sw5e/templates/chat/item-card.html", templateData);
 
     // Create the ChatMessage data object
     const chatData = {
-      user: game.user._id,
+      user: game.user.data._id,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       content: html,
       flavor: this.data.data.chatFlavor || this.name,
@@ -747,7 +817,7 @@ export default class Item5e extends Item {
    * @return {Object}               An object of chat data to render
    */
   getChatData(htmlOptions={}) {
-    const data = duplicate(this.data.data);
+    const data = foundry.utils.deepClone(this.data.data);
     const labels = this.labels;
 
     // Rich text description
@@ -941,11 +1011,10 @@ export default class Item5e extends Item {
     }
 
     // Elven Accuracy
-    if ( ["weapon", "power"].includes(this.data.type) ) {
-      if (flags.elvenAccuracy && ["dex", "int", "wis", "cha"].includes(this.abilityMod)) {
-        rollConfig.elvenAccuracy = true;
-      }
+    if ( flags.elvenAccuracy && ["dex", "int", "wis", "cha"].includes(this.abilityMod) ) {
+      rollConfig.elvenAccuracy = true;
     }
+
 
     // Apply Halfling Lucky
     if ( flags.halflingLucky ) rollConfig.halflingLucky = true;
@@ -1181,11 +1250,17 @@ export default class Item5e extends Item {
     const parts = [`@mod`, "@prof"];
     const title = `${this.name} - ${game.i18n.localize("SW5E.ToolCheck")}`;
 
+    // Add global actor bonus
+    const bonuses = getProperty(this.actor.data.data, "bonuses.abilities") || {};
+    if ( bonuses.check ) {
+      parts.push("@checkBonus");
+      rollData.checkBonus = bonuses.check;
+    }
+
     // Compose the roll data
     const rollConfig = mergeObject({
       parts: parts,
       data: rollData,
-      template: "systems/sw5e/templates/chat/tool-roll-dialog.html",
       title: title,
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
       flavor: title,
@@ -1194,6 +1269,7 @@ export default class Item5e extends Item {
         top: options.event ? options.event.clientY - 80 : null,
         left: window.innerWidth - 710,
       },
+      chooseModifier: true,
       halflingLucky: this.actor.getFlag("sw5e", "halflingLucky" ) || false,
       reliableTalent: (this.data.data.proficient >= 1) && this.actor.getFlag("sw5e", "reliableTalent"),
       messageData: {"flags.sw5e.roll": {type: "tool", itemId: this.id }}
@@ -1213,13 +1289,16 @@ export default class Item5e extends Item {
   getRollData() {
     if ( !this.actor ) return null;
     const rollData = this.actor.getRollData();
-    rollData.item = duplicate(this.data.data);
+    rollData.item = foundry.utils.deepClone(this.data.data);
 
     // Include an ability score modifier if one exists
     const abl = this.abilityMod;
     if ( abl ) {
       const ability = rollData.abilities[abl];
-      rollData["mod"] = ability.mod || 0;
+      if ( !ability ) {
+        console.warn(`Item ${this.name} in Actor ${this.actor.name} has an invalid item ability modifier of ${abl} defined`);
+      }
+      rollData["mod"] = ability?.mod || 0;
     }
 
     // Include a proficiency score
@@ -1261,12 +1340,12 @@ export default class Item5e extends Item {
     if ( !( isTargetted || game.user.isGM || message.isAuthor ) ) return;
 
     // Recover the actor for the chat card
-    const actor = this._getChatCardActor(card);
+    const actor = await this._getChatCardActor(card);
     if ( !actor ) return;
 
     // Get the Item from stored flag data or by the item ID on the Actor
     const storedData = message.getFlag("sw5e", "itemData");
-    const item = storedData ? this.createOwned(storedData, actor) : actor.getOwnedItem(card.dataset.itemId);
+    const item = storedData ? new this(storedData, {parent: actor}) : actor.items.get(card.dataset.itemId);
     if ( !item ) {
       return ui.notifications.error(game.i18n.format("SW5E.ActionWarningNoItem", {item: card.dataset.itemId, name: actor.name}))
     }
@@ -1329,17 +1408,12 @@ export default class Item5e extends Item {
    * @return {Actor|null}         The Actor entity or null
    * @private
    */
-  static _getChatCardActor(card) {
+  static async _getChatCardActor(card) {
 
     // Case 1 - a synthetic actor from a Token
-    const tokenKey = card.dataset.tokenId;
-    if (tokenKey) {
-      const [sceneId, tokenId] = tokenKey.split(".");
-      const scene = game.scenes.get(sceneId);
-      if (!scene) return null;
-      const tokenData = scene.getEmbeddedEntity("Token", tokenId);
-      if (!tokenData) return null;
-      const token = new Token(tokenData);
+    if ( card.dataset.tokenId ) {
+      const token = await fromUuid(card.dataset.tokenId);
+      if ( !token ) return null;
       return token.actor;
     }
 
@@ -1353,7 +1427,7 @@ export default class Item5e extends Item {
   /**
    * Get the Actor which is the author of a chat card
    * @param {HTMLElement} card    The chat card being used
-   * @return {Array.<Actor>}      An Array of Actor entities, if any
+   * @return {Actor[]}            An Array of Actor entities, if any
    * @private
    */
   static _getChatCardTargets(card) {
@@ -1364,14 +1438,159 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
-  /*  Factory Methods                             */
+  /*  Event Handlers                              */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+    if ( !this.isEmbedded || (this.parent.type === "vehicle") ) return;
+    const actorData = this.parent.data;
+    const isNPC = this.parent.type === "npc";
+    let updates;
+    switch (data.type) {
+      case "equipment":
+        updates = this._onCreateOwnedEquipment(data, actorData, isNPC);
+        break;
+      case "weapon":
+        updates = this._onCreateOwnedWeapon(data, actorData, isNPC);
+        break;
+      case "power":
+        updates = this._onCreateOwnedPower(data, actorData, isNPC);
+        break;
+    }
+    if (updates) return this.data.update(updates);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onCreate(data, options, userId) {
+    super._onCreate(data, options, userId);
+
+    // The below options are only needed for character classes
+    if ( userId !== game.user.id ) return;
+    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.type === "class");
+    if ( !isCharacterClass ) return;
+
+    // Assign a new primary class
+    const pc = this.parent.items.get(this.parent.data.data.details.originalClass);
+    if ( !pc ) this.parent._assignPrimaryClass();
+
+    // Prompt to add new class features
+    if (options.addFeatures === false) return;
+    this.parent.getClassFeatures({
+      className: this.name,
+      archetypeName: this.data.data.archetype,
+      level: this.data.data.levels
+    }).then(features => {
+      return this.parent.addEmbeddedItems(features, options.promptAddFeatures);
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onUpdate(changed, options, userId) {
+    super._onUpdate(changed, options, userId);
+
+    // The below options are only needed for character classes
+    if ( userId !== game.user.id ) return;
+    const isCharacterClass = this.parent && (this.parent.type !== "vehicle") && (this.type === "class");
+    if ( !isCharacterClass ) return;
+
+    // Prompt to add new class features
+    const addFeatures = changed["name"] || (changed.data && ["archetype", "levels"].some(k => k in changed.data));
+    if ( !addFeatures || (options.addFeatures === false) ) return;
+    this.parent.getClassFeatures({
+      className: changed.name || this.name,
+      archetypeName: changed.data?.archetype || this.data.data.archetype,
+      level: changed.data?.levels || this.data.data.levels
+    }).then(features => {
+      return this.parent.addEmbeddedItems(features, options.promptAddFeatures);
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onDelete(options, userId) {
+    super._onDelete(options, userId);
+
+    // Assign a new primary class
+    if ( this.parent && (this.type === "class") && (userId === game.user.id) )  {
+      if ( this.id !== this.parent.data.data.details.originalClass ) return;
+      this.parent._assignPrimaryClass();
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Pre-creation logic for the automatic configuration of owned equipment type Items
+   * @private
+   */
+  _onCreateOwnedEquipment(data, actorData, isNPC) {
+    const updates = {};
+    if ( foundry.utils.getProperty(data, "data.equipped") === undefined ) {
+      updates["data.equipped"] = isNPC;  // NPCs automatically equip equipment
+    }
+    if ( foundry.utils.getProperty(data, "data.proficient") === undefined ) {
+      if ( isNPC ) {
+        updates["data.proficient"] = true;  // NPCs automatically have equipment proficiency
+      } else {
+        const armorProf = CONFIG.SW5E.armorProficienciesMap[data.data?.armor?.type]; // Player characters check proficiency
+        const actorArmorProfs = actorData.data.traits?.armorProf?.value || [];
+        updates["data.proficient"] = (armorProf === true) || actorArmorProfs.includes(armorProf);
+      }
+    }
+    return updates;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Pre-creation logic for the automatic configuration of owned power type Items
+   * @private
+   */
+  _onCreateOwnedPower(data, actorData, isNPC) {
+    const updates = {};
+    updates["data.preparation.prepared"] = true;       // Automatically prepare powers for everyone
+    return updates;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Pre-creation logic for the automatic configuration of owned weapon type Items
+   * @private
+   */
+  _onCreateOwnedWeapon(data, actorData, isNPC) {
+    const updates = {};
+    if ( foundry.utils.getProperty(data, "data.equipped") === undefined ) {
+      updates["data.equipped"] = isNPC;       // NPCs automatically equip weapons
+    }
+    if ( foundry.utils.getProperty(data, "data.proficient") === undefined ) {
+      if ( isNPC ) {
+        updates["data.proficient"] = true;    // NPCs automatically have equipment proficiency
+      } else {
+        // TODO: With the changes to make weapon proficiencies more verbose, this may need revising
+        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[data.data?.weaponType]; // Player characters check proficiency
+        const actorWeaponProfs = actorData.data.traits?.weaponProf?.value || [];
+        updates["data.proficient"] = (weaponProf === true) || actorWeaponProfs.includes(weaponProf);
+      }
+    }
+    return updates;
+  }
+
+  /* -------------------------------------------- */
+  /*  Factory Methods                             */
+  /* -------------------------------------------- */
+// TODO: Make work properly
   /**
    * Create a consumable power scroll Item from a power Item.
    * @param {Item5e} power      The power to be made into a scroll
    * @return {Item5e}           The created scroll consumable item
-   * @private
    */
   static async createScrollFromPower(power) {
 
@@ -1380,7 +1599,7 @@ export default class Item5e extends Item {
     const {actionType, description, source, activation, duration, target, range, damage, save, level} = itemData.data;
 
     // Get scroll data
-    const scrollUuid = CONFIG.SW5E.powerScrollIds[level];
+    const scrollUuid = `Compendium.${CONFIG.SW5E.sourcePacks.ITEMS}.${CONFIG.SW5E.powerScrollIds[level]}`;
     const scrollItem = await fromUuid(scrollUuid);
     const scrollData = scrollItem.data;
     delete scrollData._id;

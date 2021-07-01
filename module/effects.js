@@ -10,13 +10,13 @@ export function onManageActiveEffect(event, owner) {
   const effect = li.dataset.effectId ? owner.effects.get(li.dataset.effectId) : null;
   switch ( a.dataset.action ) {
     case "create":
-      return ActiveEffect.create({
-        label: "New Effect",
+      return owner.createEmbeddedDocuments("ActiveEffect", [{
+        label: game.i18n.localize("SW5E.EffectNew"),
         icon: "icons/svg/aura.svg",
         origin: owner.uuid,
         "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
         disabled: li.dataset.effectType === "inactive"
-      }, owner).create();
+      }]);
     case "edit":
       return effect.sheet.render(true);
     case "delete":
@@ -37,17 +37,17 @@ export function prepareActiveEffectCategories(effects) {
     const categories = {
       temporary: {
         type: "temporary",
-        label: "SW5E.EffectsCategoryTemporary",
+        label: game.i18n.localize("SW5E.EffectTemporary"),
         effects: []
       },
       passive: {
         type: "passive",
-        label: "SW5E.EffectsCategoryPassive",
+        label: game.i18n.localize("SW5E.EffectPassive"),
         effects: []
       },
       inactive: {
         type: "inactive",
-        label: "SW5E.EffectsCategoryInactive",
+        label: game.i18n.localize("SW5E.EffectInactive"),
         effects: []
       }
     };

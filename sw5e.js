@@ -1,5 +1,5 @@
 /**
- * The Star Wars 5th Edition game system for Foundry Virtual Tabletop
+ * The SW5E game system for Foundry Virtual Tabletop
  * Author: Kakeman89
  * Software License: GNU GPLv3
  * Content License: https://media.wizards.com/2016/downloads/SW5E/SRD-OGL_V5.1.pdf
@@ -12,12 +12,13 @@ import { SW5E } from "./module/config.js";
 import { registerSystemSettings } from "./module/settings.js";
 import { preloadHandlebarsTemplates } from "./module/templates.js";
 import { _getInitiativeFormula } from "./module/combat.js";
-import { measureDistances, getBarAttribute } from "./module/canvas.js";
+import { measureDistances } from "./module/canvas.js";
 
-// Import Entities
+// Import Documents
 import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
 import CharacterImporter from "./module/characterImporter.js";
+import { TokenDocument5e, Token5e } from "./module/token.js"
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -25,6 +26,7 @@ import AbilityUseDialog from "./module/apps/ability-use-dialog.js";
 import ActorSheetFlags from "./module/apps/actor-flags.js";
 import ActorSheet5eCharacter from "./module/actor/sheets/oldSheets/character.js";
 import ActorSheet5eNPC from "./module/actor/sheets/oldSheets/npc.js";
+import ActorSheet5eStarship from "./module/actor/sheets/newSheet/starship.js";
 import ActorSheet5eVehicle from "./module/actor/sheets/oldSheets/vehicle.js";
 import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
 import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
@@ -44,6 +46,9 @@ import * as migrations from "./module/migration.js";
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
+// Keep on while migrating to Foundry version 0.8
+CONFIG.debug.hooks = true;
+
 Hooks.once("init", function() {
   console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 
@@ -60,7 +65,8 @@ Hooks.once("init", function() {
       ItemSheet5e,
       ShortRestDialog,
       TraitSelector,
-      ActorMovementConfig
+      ActorMovementConfig,
+      ActorSensesConfig
     },
     canvas: {
       AbilityTemplate
@@ -70,6 +76,8 @@ Hooks.once("init", function() {
     entities: {
       Actor5e,
       Item5e,
+      TokenDocument5e,
+      Token5e,
     },
     macros: macros,
     migrations: migrations,
@@ -78,14 +86,19 @@ Hooks.once("init", function() {
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
-  CONFIG.Actor.entityClass = Actor5e;
-  CONFIG.Item.entityClass = Item5e;
+  CONFIG.Actor.documentClass = Actor5e;
+  CONFIG.Item.documentClass = Item5e;
+  CONFIG.Token.documentClass = TokenDocument5e;
+  CONFIG.Token.objectClass = Token5e;
   CONFIG.time.roundTime = 6;
   CONFIG.fontFamilies = [
     "Engli-Besh",
     "Open Sans",
     "Russo One"
   ];
+
+  CONFIG.Dice.DamageRoll = dice.DamageRoll;
+  CONFIG.Dice.D20Roll = dice.D20Roll;
 
   // 5e cone RAW should be 53.13 degrees
   CONFIG.MeasuredTemplate.defaults.angle = 53.13;
@@ -99,7 +112,11 @@ Hooks.once("init", function() {
 
   // Patch Core Functions
   CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus";
-  Combat.prototype._getInitiativeFormula = _getInitiativeFormula;
+  Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
+
+  // Register Roll Extensions
+  CONFIG.Dice.rolls.push(dice.D20Roll);
+  CONFIG.Dice.rolls.push(dice.DamageRoll);
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -123,6 +140,11 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassNPCOld"
   });
+  // Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+  //   types: ["starship"],
+  //   makeDefault: true,
+  //   label: "SW5E.SheetClassStarship"
+  // });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,
@@ -130,13 +152,13 @@ Hooks.once("init", function() {
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("sw5e", ItemSheet5e, {
-	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform'],
+	types: ['weapon', 'equipment', 'consumable', 'tool', 'loot', 'class', 'power', 'feat', 'species', 'backpack', 'archetype', 'classfeature', 'background', 'fightingmastery', 'fightingstyle', 'lightsaberform', 'deployment', 'deploymentfeature', 'starship', 'starshipfeature', 'starshipmod', 'venture'],
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });
 
   // Preload Handlebars Templates
-  preloadHandlebarsTemplates();
+  return preloadHandlebarsTemplates();
 });
 
 
@@ -154,9 +176,10 @@ Hooks.once("setup", function() {
     "abilities", "abilityAbbreviations", "abilityActivationTypes", "abilityConsumptionTypes", "actorSizes", "alignments",
     "armorProficiencies", "armorPropertiesTypes", "conditionTypes", "consumableTypes", "cover", "currencies", "damageResistanceTypes",
     "damageTypes", "distanceUnits", "equipmentTypes", "healingTypes", "itemActionTypes", "languages",
-    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills",
+    "limitedUsePeriods", "movementTypes", "movementUnits", "polymorphSettings", "proficiencyLevels", "senses", "skills", 
+    "starshipRolessm", "starshipRolesmed", "starshipRoleslg", "starshipRoleshuge", "starshipRolesgrg", "starshipSkills",
     "powerComponents", "powerLevels", "powerPreparationModes", "powerScalingModes", "powerSchools", "targetTypes",
-    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponTypes"
+    "timePeriods", "toolProficiencies", "weaponProficiencies", "weaponProperties", "weaponSizes", "weaponTypes"
   ];
 
   // Exclude some from sorting where the default order matters
@@ -184,7 +207,6 @@ Hooks.once("setup", function() {
 });
 
 /* -------------------------------------------- */
-
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
@@ -196,12 +218,12 @@ Hooks.once("ready", function() {
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
   const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.2.4.R1-A5";
+  const NEEDS_MIGRATION_VERSION = "1.3.5.R1-A6";
   // Check for R1 SW5E versions
-  const SW5E_NEEDS_MIGRATION_VERSION = "R1-A5";
+  const SW5E_NEEDS_MIGRATION_VERSION = "R1-A6";
   const COMPATIBLE_MIGRATION_VERSION = 0.80;
   const needsMigration = currentVersion && (isNewerVersion(SW5E_NEEDS_MIGRATION_VERSION, currentVersion) || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion));
-  if ( !needsMigration ) return;
+  if (!needsMigration && needsMigration !== "") return;
 
   // Perform the migration
   if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
@@ -216,13 +238,9 @@ Hooks.once("ready", function() {
 /* -------------------------------------------- */
 
 Hooks.on("canvasInit", function() {
-
   // Extend Diagonal Measurement
   canvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
   SquareGrid.prototype.measureDistances = measureDistances;
-
-  // Extend Token Resource Bars
-  Token.prototype.getBarAttribute = getBarAttribute;
 });
 
 
@@ -265,7 +283,7 @@ Hooks.on("renderRollTableDirectory",  (app, html, data)=> {
 Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
   console.log("renderSwaltSheet");
 });
-// TODO I should remove this
+// FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
 Handlebars.registerHelper('getProperty', function (data, property) {
   return getProperty(data, property);
 });

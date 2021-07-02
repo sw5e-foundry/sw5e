@@ -616,12 +616,12 @@ export default class Actor5e extends Actor {
     if (!isNPC) {
       if (forceProgression.levels) {
         ad.attributes.force.known.max = forceProgression.powersKnown;
-        ad.attributes.force.points.max = forceProgression.points + Math.max(ad.abilities.wis.mod, ad.abilities.cha.mod);
+        ad.attributes.force.points.max = forceProgression.points;
         ad.attributes.force.level = forceProgression.levels;
       }
       if (techProgression.levels){
         ad.attributes.tech.known.max = techProgression.powersKnown;
-        ad.attributes.tech.points.max = techProgression.points + ad.abilities.int.mod;
+        ad.attributes.tech.points.max = techProgression.points;
         ad.attributes.tech.level = techProgression.levels;
       }
     }

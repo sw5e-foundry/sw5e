@@ -661,8 +661,8 @@ export default class Actor5e extends Actor {
    */
    _computeDerivedPowercasting (actorData) {
 
-    if ((actorData.type === 'actor') || (actorData.type === 'npc')) return;
-    
+    if (!(actorData.type === 'character' || actorData.type === 'npc')) return;
+
     const ad = actorData.data;
 
     // Powercasting DC for Actors and NPCs

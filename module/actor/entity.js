@@ -431,13 +431,6 @@ export default class Actor5e extends Actor {
     const powers = ad.powers;
     const isNPC = actorData.type === 'npc';
 
-    // Powercasting DC
-    // TODO: Consider an option for using the variant rule of all powers use the same value
-    ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceUnivDC = Math.max(ad.attributes.powerForceLightDC,ad.attributes.powerForceDarkDC) ?? 10
-    ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
-
     // Translate the list of classes into force and tech power-casting progression
     const forceProgression = {
       classes: 0,
@@ -661,18 +654,18 @@ export default class Actor5e extends Actor {
    */
    _computeDerivedPowercasting (actorData) {
 
-    if ((actorData.type === 'actor') || (actorData.type === 'npc')) return;
-    
+    if (!(actorData.type === 'character' || actorData.type === 'npc')) return;
+
     const ad = actorData.data;
 
     // Powercasting DC for Actors and NPCs
     // TODO: Consider an option for using the variant rule of all powers use the same value
     ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
     ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
-    ad.attributes.powerForceUnivDC = Math.max(ad.attributes.powerForceLightDC,ad.attributes.powerForceDarkDC) ?? 10
+    ad.attributes.powerForceUnivDC = Math.max(ad.attributes.powerForceLightDC,ad.attributes.powerForceDarkDC) ?? 10;
     ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
 
-    if (actorData.type !== 'actor') return;
+    if (actorData.type !== 'character') return;
 
     // Set Force and tech bonus points for PC Actors
     if (!!ad.attributes.force.level){

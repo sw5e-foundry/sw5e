@@ -147,11 +147,11 @@ export default class CharacterImporter {
     });
 
     // pull classes directly from system compendium and add them to current actor
-    const professionsPack = await game.packs.get("sw5e.classes").getContent();
+    const professionsPack = await game.packs.get("sw5e.classes").getDocuments();
     result.forEach((prof) => {
       let assignedProfession = professionsPack.find((o) => o.name === prof.profession);
       assignedProfession.data.data.levels = prof.level;
-      actor.createEmbeddedEntity("OwnedItem", assignedProfession.data, { displaySheet: false });
+      actor.createEmbeddedDocuments("Item", [assignedProfession.data], { displaySheet: false });
     });
 
     this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
@@ -177,10 +177,10 @@ export default class CharacterImporter {
   }
 
   static async addClasses(profession, level, actor) {
-    let classes = await game.packs.get("sw5e.classes").getContent();
+    let classes = await game.packs.get("sw5e.classes").getDocuments();
     let assignedClass = classes.find((c) => c.name === profession);
     assignedClass.data.data.levels = level;
-    await actor.createEmbeddedEntity("OwnedItem", assignedClass.data, { displaySheet: false });
+    await actor.createEmbeddedDocuments("Item", [assignedClass.data], { displaySheet: false });
   }
 
   static classOrMulticlass(name) {
@@ -210,9 +210,9 @@ export default class CharacterImporter {
   }
 
   static async addSpecies(race, actor) {
-    const species = await game.packs.get("sw5e.species").getContent();
+    const species = await game.packs.get("sw5e.species").getDocuments();
     const assignedSpecies = species.find((c) => c.name === race);
-    const activeEffects = assignedSpecies.data.effects[0].changes;
+    const activeEffects = [...assignedSpecies.data.effects][0].data.changes;
     const actorData = { data: { abilities: { ...actor.data.data.abilities } } };
 
     activeEffects.map((effect) => {
@@ -248,26 +248,26 @@ export default class CharacterImporter {
 
     actor.update(actorData);
 
-    await actor.createEmbeddedEntity("OwnedItem", assignedSpecies.data, { displaySheet: false });
+    await actor.createEmbeddedDocuments("Item", [assignedSpecies.data], { displaySheet: false });
   }
 
   static async addPowers(powers, actor) {
-    const forcePowers = await game.packs.get("sw5e.forcepowers").getContent();
-    const techPowers = await game.packs.get("sw5e.techpowers").getContent();
+    const forcePowers = await game.packs.get("sw5e.forcepowers").getDocuments();
+    const techPowers = await game.packs.get("sw5e.techpowers").getDocuments();
 
     for (const power of powers) {
       const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
 
       if (createdPower) {
-        await actor.createEmbeddedEntity("OwnedItem", createdPower.data, { displaySheet: false });
+        await actor.createEmbeddedDocuments("Item", [createdPower.data], { displaySheet: false });
       }
     }
   }
 
   static async addItems(items, actor) {
-    const weapons = await game.packs.get("sw5e.weapons").getContent();
-    const armors = await game.packs.get("sw5e.armor").getContent();
-    const adventuringGear = await game.packs.get("sw5e.adventuringgear").getContent();
+    const weapons = await game.packs.get("sw5e.weapons").getDocuments();
+    const armors = await game.packs.get("sw5e.armor").getDocuments();
+    const adventuringGear = await game.packs.get("sw5e.adventuringgear").getDocuments();
 
     for (const item of items) {
       const createdItem =
@@ -280,7 +280,7 @@ export default class CharacterImporter {
           createdItem.data.data.quantity = item.quantity;
         }
 
-        await actor.createEmbeddedEntity("OwnedItem", createdItem.data, { displaySheet: false });
+        await actor.createEmbeddedDocuments("Item", [createdItem.data], { displaySheet: false });
       }
     }
   }

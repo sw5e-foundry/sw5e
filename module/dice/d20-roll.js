@@ -16,7 +16,7 @@
 export default class D20Roll extends Roll {
     constructor(formula, data, options) {
         super(formula, data, options);
-        if ( !((this.terms[0] instanceof Die) && (this.terms[0].faces === 20)) ) {
+        if (!(this.terms[0] instanceof Die && this.terms[0].faces === 20)) {
             throw new Error(`Invalid D20Roll formula provided ${this._formula}`);
         }
         this.configureModifiers();
@@ -31,8 +31,8 @@ export default class D20Roll extends Roll {
     static ADV_MODE = {
         NORMAL: 0,
         ADVANTAGE: 1,
-        DISADVANTAGE: -1,
-    }
+        DISADVANTAGE: -1
+    };
 
     /**
      * The HTML template path used to configure evaluation of this Roll
@@ -71,28 +71,26 @@ export default class D20Roll extends Roll {
         d20.modifiers = [];
 
         // Halfling Lucky
-        if ( this.options.halflingLucky ) d20.modifiers.push("r1=1");
+        if (this.options.halflingLucky) d20.modifiers.push("r1=1");
 
         // Reliable Talent
-        if ( this.options.reliableTalent ) d20.modifiers.push("min10");
+        if (this.options.reliableTalent) d20.modifiers.push("min10");
 
         // Handle Advantage or Disadvantage
-        if ( this.hasAdvantage ) {
+        if (this.hasAdvantage) {
             d20.number = this.options.elvenAccuracy ? 3 : 2;
             d20.modifiers.push("kh");
             d20.options.advantage = true;
-        }
-        else if ( this.hasDisadvantage ) {
+        } else if (this.hasDisadvantage) {
             d20.number = 2;
             d20.modifiers.push("kl");
             d20.options.disadvantage = true;
-        }
-        else d20.number = 1;
+        } else d20.number = 1;
 
         // Assign critical and fumble thresholds
-        if ( this.options.critical ) d20.options.critical = this.options.critical;
-        if ( this.options.fumble ) d20.options.fumble = this.options.fumble;
-        if ( this.options.targetValue ) d20.options.target = this.options.targetValue;
+        if (this.options.critical) d20.options.critical = this.options.critical;
+        if (this.options.fumble) d20.options.fumble = this.options.fumble;
+        if (this.options.targetValue) d20.options.target = this.options.targetValue;
 
         // Re-compile the underlying formula
         this._formula = this.constructor.getFormula(this.terms);
@@ -101,22 +99,21 @@ export default class D20Roll extends Roll {
     /* -------------------------------------------- */
 
     /** @inheritdoc */
-    async toMessage(messageData={}, options={}) {
-
+    async toMessage(messageData = {}, options = {}) {
         // Evaluate the roll now so we have the results available to determine whether reliable talent came into play
-        if ( !this._evaluated ) await this.evaluate({async: true});
+        if (!this._evaluated) await this.evaluate({async: true});
 
         // Add appropriate advantage mode message flavor and sw5e roll flags
         messageData.flavor = messageData.flavor || this.options.flavor;
-        if ( this.hasAdvantage ) messageData.flavor += ` (${game.i18n.localize("SW5E.Advantage")})`;
-        else if ( this.hasDisadvantage ) messageData.flavor += ` (${game.i18n.localize("SW5E.Disadvantage")})`;
+        if (this.hasAdvantage) messageData.flavor += ` (${game.i18n.localize("SW5E.Advantage")})`;
+        else if (this.hasDisadvantage) messageData.flavor += ` (${game.i18n.localize("SW5E.Disadvantage")})`;
 
         // Add reliable talent to the d20-term flavor text if it applied
-        if ( this.options.reliableTalent ) {
+        if (this.options.reliableTalent) {
             const d20 = this.dice[0];
-            const isRT = d20.results.every(r => !r.active || (r.result < 10));
+            const isRT = d20.results.every((r) => !r.active || r.result < 10);
             const label = `(${game.i18n.localize("SW5E.FlagsReliableTalent")})`;
-            if ( isRT ) d20.options.flavor = d20.options.flavor ? `${d20.options.flavor} (${label})` : label;
+            if (isRT) d20.options.flavor = d20.options.flavor ? `${d20.options.flavor} (${label})` : label;
         }
 
         // Record the preferred rollMode
@@ -140,8 +137,17 @@ export default class D20Roll extends Roll {
      * @param {object} options                  Additional Dialog customization options
      * @returns {Promise<D20Roll|null>}         A resulting D20Roll object constructed with the dialog, or null if the dialog was closed
      */
-    async configureDialog({title, defaultRollMode, defaultAction=D20Roll.ADV_MODE.NORMAL, chooseModifier=false, defaultAbility, template}={}, options={}) {
-
+    async configureDialog(
+        {
+            title,
+            defaultRollMode,
+            defaultAction = D20Roll.ADV_MODE.NORMAL,
+            chooseModifier = false,
+            defaultAbility,
+            template
+        } = {},
+        options = {}
+    ) {
         // Render the Dialog inner HTML
         const content = await renderTemplate(template ?? this.constructor.EVALUATION_TEMPLATE, {
             formula: `${this.formula} + @bonus`,
@@ -154,32 +160,39 @@ export default class D20Roll extends Roll {
 
         let defaultButton = "normal";
         switch (defaultAction) {
-            case D20Roll.ADV_MODE.ADVANTAGE: defaultButton = "advantage"; break;
-            case D20Roll.ADV_MODE.DISADVANTAGE: defaultButton = "disadvantage"; break;
+            case D20Roll.ADV_MODE.ADVANTAGE:
+                defaultButton = "advantage";
+                break;
+            case D20Roll.ADV_MODE.DISADVANTAGE:
+                defaultButton = "disadvantage";
+                break;
         }
 
         // Create the Dialog window and await submission of the form
-        return new Promise(resolve => {
-            new Dialog({
-                title,
-                content,
-                buttons: {
-                    advantage: {
-                        label: game.i18n.localize("SW5E.Advantage"),
-                        callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
+        return new Promise((resolve) => {
+            new Dialog(
+                {
+                    title,
+                    content,
+                    buttons: {
+                        advantage: {
+                            label: game.i18n.localize("SW5E.Advantage"),
+                            callback: (html) => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
+                        },
+                        normal: {
+                            label: game.i18n.localize("SW5E.Normal"),
+                            callback: (html) => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
+                        },
+                        disadvantage: {
+                            label: game.i18n.localize("SW5E.Disadvantage"),
+                            callback: (html) => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
+                        }
                     },
-                    normal: {
-                        label: game.i18n.localize("SW5E.Normal"),
-                        callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
-                    },
-                    disadvantage: {
-                        label: game.i18n.localize("SW5E.Disadvantage"),
-                        callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
-                    }
+                    default: defaultButton,
+                    close: () => resolve(null)
                 },
-                default: defaultButton,
-                close: () => resolve(null)
-            }, options).render(true);
+                options
+            ).render(true);
         });
     }
 
@@ -195,16 +208,16 @@ export default class D20Roll extends Roll {
         const form = html[0].querySelector("form");
 
         // Append a situational bonus term
-        if ( form.bonus.value ) {
+        if (form.bonus.value) {
             const bonus = new Roll(form.bonus.value, this.data);
-            if ( !(bonus.terms[0] instanceof OperatorTerm) ) this.terms.push(new OperatorTerm({operator: "+"}));
+            if (!(bonus.terms[0] instanceof OperatorTerm)) this.terms.push(new OperatorTerm({operator: "+"}));
             this.terms = this.terms.concat(bonus.terms);
         }
 
         // Customize the modifier
-        if ( form.ability?.value ) {
+        if (form.ability?.value) {
             const abl = this.data.abilities[form.ability.value];
-            this.terms.findSplice(t => t.term === "@mod", new NumericTerm({number: abl.mod}));
+            this.terms.findSplice((t) => t.term === "@mod", new NumericTerm({number: abl.mod}));
             this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]})`;
         }
 

@@ -12,50 +12,55 @@ export {default as DamageRoll} from "./dice/damage-roll.js";
  * @return {string}                        The resulting simplified formula
  */
 export function simplifyRollFormula(formula, data, {constantFirst = false} = {}) {
-  const roll = new Roll(formula, data); // Parses the formula and replaces any @properties
-  const terms = roll.terms;
+    const roll = new Roll(formula, data); // Parses the formula and replaces any @properties
+    const terms = roll.terms;
 
-  // Some terms are "too complicated" for this algorithm to simplify
-  // In this case, the original formula is returned.
-  if (terms.some(_isUnsupportedTerm)) return roll.formula;
+    // Some terms are "too complicated" for this algorithm to simplify
+    // In this case, the original formula is returned.
+    if (terms.some(_isUnsupportedTerm)) return roll.formula;
 
-  const rollableTerms = []; // Terms that are non-constant, and their associated operators
-  const constantTerms = []; // Terms that are constant, and their associated operators
-  let operators = [];       // Temporary storage for operators before they are moved to one of the above
+    const rollableTerms = []; // Terms that are non-constant, and their associated operators
+    const constantTerms = []; // Terms that are constant, and their associated operators
+    let operators = []; // Temporary storage for operators before they are moved to one of the above
 
-  for (let term of terms) {                                 // For each term
-    if (term instanceof OperatorTerm) operators.push(term); // If the term is an addition/subtraction operator, push the term into the operators array
-    else {                                                  // Otherwise the term is not an operator
-      if (term instanceof DiceTerm) {                       // If the term is something rollable
-        rollableTerms.push(...operators);                   // Place all the operators into the rollableTerms array
-        rollableTerms.push(term);                           // Then place this rollable term into it as well
-      }                                                     //
-      else {                                                // Otherwise, this must be a constant
-        constantTerms.push(...operators);                   // Place the operators into the constantTerms array
-        constantTerms.push(term);                           // Then also add this constant term to that array.
-      }                                                     //
-      operators = [];                                       // Finally, the operators have now all been assigend to one of the arrays, so empty this before the next iteration.
+    for (let term of terms) {
+        // For each term
+        if (term instanceof OperatorTerm) operators.push(term);
+        // If the term is an addition/subtraction operator, push the term into the operators array
+        else {
+            // Otherwise the term is not an operator
+            if (term instanceof DiceTerm) {
+                // If the term is something rollable
+                rollableTerms.push(...operators); // Place all the operators into the rollableTerms array
+                rollableTerms.push(term); // Then place this rollable term into it as well
+            } //
+            else {
+                // Otherwise, this must be a constant
+                constantTerms.push(...operators); // Place the operators into the constantTerms array
+                constantTerms.push(term); // Then also add this constant term to that array.
+            } //
+            operators = []; // Finally, the operators have now all been assigend to one of the arrays, so empty this before the next iteration.
+        }
     }
-  }
 
-  const constantFormula = Roll.getFormula(constantTerms);  // Cleans up the constant terms and produces a new formula string
-  const rollableFormula = Roll.getFormula(rollableTerms);  // Cleans up the non-constant terms and produces a new formula string
+    const constantFormula = Roll.getFormula(constantTerms); // Cleans up the constant terms and produces a new formula string
+    const rollableFormula = Roll.getFormula(rollableTerms); // Cleans up the non-constant terms and produces a new formula string
 
-  // Mathematically evaluate the constant formula to produce a single constant term
-  let constantPart = undefined;
-  if ( constantFormula ) {
-    try {
-      constantPart = Roll.safeEval(constantFormula)
-    } catch (err) {
-      console.warn(`Unable to evaluate constant term ${constantFormula} in simplifyRollFormula`);
+    // Mathematically evaluate the constant formula to produce a single constant term
+    let constantPart = undefined;
+    if (constantFormula) {
+        try {
+            constantPart = Roll.safeEval(constantFormula);
+        } catch (err) {
+            console.warn(`Unable to evaluate constant term ${constantFormula} in simplifyRollFormula`);
+        }
     }
-  }
 
-  // Order the rollable and constant terms, either constant first or second depending on the optional argument
-  const parts = constantFirst ? [constantPart, rollableFormula] : [rollableFormula, constantPart];
+    // Order the rollable and constant terms, either constant first or second depending on the optional argument
+    const parts = constantFirst ? [constantPart, rollableFormula] : [rollableFormula, constantPart];
 
-  // Join the parts with a + sign, pass them to `Roll` once again to clean up the formula
-  return new Roll(parts.filterJoin(" + ")).formula;
+    // Join the parts with a + sign, pass them to `Roll` once again to clean up the formula
+    return new Roll(parts.filterJoin(" + ")).formula;
 }
 
 /* -------------------------------------------- */
@@ -66,11 +71,11 @@ export function simplifyRollFormula(formula, data, {constantFirst = false} = {})
  * @return {Boolean} True when unsupported, false if supported
  */
 function _isUnsupportedTerm(term) {
-  const diceTerm = term instanceof DiceTerm;
-  const operator = term instanceof OperatorTerm && ["+", "-"].includes(term.operator);
-  const number   = term instanceof NumericTerm;
+    const diceTerm = term instanceof DiceTerm;
+    const operator = term instanceof OperatorTerm && ["+", "-"].includes(term.operator);
+    const number = term instanceof NumericTerm;
 
-  return !(diceTerm || operator || number);
+    return !(diceTerm || operator || number);
 }
 
 /* -------------------------------------------- */
@@ -111,54 +116,75 @@ function _isUnsupportedTerm(term) {
  * @return {Promise<D20Roll|null>}  The evaluated D20Roll, or null if the workflow was cancelled
  */
 export async function d20Roll({
-  parts=[], data={}, // Roll creation
-  advantage, disadvantage, fumble=1, critical=20, targetValue, elvenAccuracy, halflingLucky, reliableTalent, // Roll customization
-  chooseModifier=false, fastForward=false, event, template, title, dialogOptions, // Dialog configuration
-  chatMessage=true, messageData={}, rollMode, speaker, flavor // Chat Message customization
-  }={}) {
-
-  // Handle input arguments
-  const formula = ["1d20"].concat(parts).join(" + ");
-  const {advantageMode, isFF} = _determineAdvantageMode({advantage, disadvantage, fastForward, event});
-  const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
-  if ( chooseModifier && !isFF ) data["mod"] = "@mod";
-
-  // Construct the D20Roll instance
-  const roll = new CONFIG.Dice.D20Roll(formula, data, {
-    flavor: flavor || title,
-    advantageMode,
-    defaultRollMode,
-    critical,
-    fumble,
+    parts = [],
+    data = {}, // Roll creation
+    advantage,
+    disadvantage,
+    fumble = 1,
+    critical = 20,
     targetValue,
     elvenAccuracy,
     halflingLucky,
-    reliableTalent
-  });
+    reliableTalent, // Roll customization
+    chooseModifier = false,
+    fastForward = false,
+    event,
+    template,
+    title,
+    dialogOptions, // Dialog configuration
+    chatMessage = true,
+    messageData = {},
+    rollMode,
+    speaker,
+    flavor // Chat Message customization
+} = {}) {
+    // Handle input arguments
+    const formula = ["1d20"].concat(parts).join(" + ");
+    const {advantageMode, isFF} = _determineAdvantageMode({advantage, disadvantage, fastForward, event});
+    const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
+    if (chooseModifier && !isFF) data["mod"] = "@mod";
 
-  // Prompt a Dialog to further configure the D20Roll
-  if ( !isFF ) {
-    const configured = await roll.configureDialog({
-      title,
-      chooseModifier,
-      defaultRollMode: defaultRollMode,
-      defaultAction: advantageMode,
-      defaultAbility: data?.item?.ability,
-      template
-    }, dialogOptions);
-    if ( configured === null ) return null;
-  }
+    // Construct the D20Roll instance
+    const roll = new CONFIG.Dice.D20Roll(formula, data, {
+        flavor: flavor || title,
+        advantageMode,
+        defaultRollMode,
+        critical,
+        fumble,
+        targetValue,
+        elvenAccuracy,
+        halflingLucky,
+        reliableTalent
+    });
 
-  // Evaluate the configured roll
-  await roll.evaluate({async: true});
+    // Prompt a Dialog to further configure the D20Roll
+    if (!isFF) {
+        const configured = await roll.configureDialog(
+            {
+                title,
+                chooseModifier,
+                defaultRollMode: defaultRollMode,
+                defaultAction: advantageMode,
+                defaultAbility: data?.item?.ability,
+                template
+            },
+            dialogOptions
+        );
+        if (configured === null) return null;
+    }
 
-  // Create a Chat Message
-  if ( speaker ) {
-    console.warn(`You are passing the speaker argument to the d20Roll function directly which should instead be passed as an internal key of messageData`);
-    messageData.speaker = speaker;
-  }
-  if ( roll && chatMessage ) await roll.toMessage(messageData);
-  return roll;
+    // Evaluate the configured roll
+    await roll.evaluate({async: true});
+
+    // Create a Chat Message
+    if (speaker) {
+        console.warn(
+            `You are passing the speaker argument to the d20Roll function directly which should instead be passed as an internal key of messageData`
+        );
+        messageData.speaker = speaker;
+    }
+    if (roll && chatMessage) await roll.toMessage(messageData);
+    return roll;
 }
 
 /* -------------------------------------------- */
@@ -167,12 +193,13 @@ export async function d20Roll({
  * Determines whether this d20 roll should be fast-forwarded, and whether advantage or disadvantage should be applied
  * @returns {{isFF: boolean, advantageMode: number}}  Whether the roll is fast-forward, and its advantage mode
  */
-function _determineAdvantageMode({event, advantage=false, disadvantage=false, fastForward=false}={}) {
-  const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-  let advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.NORMAL;
-  if ( advantage || event?.altKey ) advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.ADVANTAGE;
-  else if ( disadvantage || event?.ctrlKey || event?.metaKey ) advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.DISADVANTAGE;
-  return {isFF, advantageMode};
+function _determineAdvantageMode({event, advantage = false, disadvantage = false, fastForward = false} = {}) {
+    const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+    let advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.NORMAL;
+    if (advantage || event?.altKey) advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.ADVANTAGE;
+    else if (disadvantage || event?.ctrlKey || event?.metaKey)
+        advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.DISADVANTAGE;
+    return {isFF, advantageMode};
 }
 
 /* -------------------------------------------- */
@@ -210,49 +237,67 @@ function _determineAdvantageMode({event, advantage=false, disadvantage=false, fa
  * @return {Promise<DamageRoll|null>} The evaluated DamageRoll, or null if the workflow was canceled
  */
 export async function damageRoll({
- parts=[], data, // Roll creation
- critical=false, criticalBonusDice, criticalMultiplier, multiplyNumeric, powerfulCritical, // Damage customization
- fastForward=false, event, allowCritical=true, template, title, dialogOptions, // Dialog configuration
- chatMessage=true, messageData={}, rollMode, speaker, flavor, // Chat Message customization
- }={}) {
-
-  // Handle input arguments
-  const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
-
-  // Construct the DamageRoll instance
-  const formula = parts.join(" + ");
-  const {isCritical, isFF} = _determineCriticalMode({critical, fastForward, event});
-  const roll = new CONFIG.Dice.DamageRoll(formula, data, {
-    flavor: flavor || title,
-    critical: isCritical,
+    parts = [],
+    data, // Roll creation
+    critical = false,
     criticalBonusDice,
     criticalMultiplier,
     multiplyNumeric,
-    powerfulCritical
-  });
+    powerfulCritical, // Damage customization
+    fastForward = false,
+    event,
+    allowCritical = true,
+    template,
+    title,
+    dialogOptions, // Dialog configuration
+    chatMessage = true,
+    messageData = {},
+    rollMode,
+    speaker,
+    flavor // Chat Message customization
+} = {}) {
+    // Handle input arguments
+    const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
 
-  // Prompt a Dialog to further configure the DamageRoll
-  if ( !isFF ) {
-    const configured = await roll.configureDialog({
-      title,
-      defaultRollMode: defaultRollMode,
-      defaultCritical: isCritical,
-      template,
-      allowCritical
-    }, dialogOptions);
-    if ( configured === null ) return null;
-  }
+    // Construct the DamageRoll instance
+    const formula = parts.join(" + ");
+    const {isCritical, isFF} = _determineCriticalMode({critical, fastForward, event});
+    const roll = new CONFIG.Dice.DamageRoll(formula, data, {
+        flavor: flavor || title,
+        critical: isCritical,
+        criticalBonusDice,
+        criticalMultiplier,
+        multiplyNumeric,
+        powerfulCritical
+    });
 
-  // Evaluate the configured roll
-  await roll.evaluate({async: true});
+    // Prompt a Dialog to further configure the DamageRoll
+    if (!isFF) {
+        const configured = await roll.configureDialog(
+            {
+                title,
+                defaultRollMode: defaultRollMode,
+                defaultCritical: isCritical,
+                template,
+                allowCritical
+            },
+            dialogOptions
+        );
+        if (configured === null) return null;
+    }
 
-  // Create a Chat Message
-  if ( speaker ) {
-    console.warn(`You are passing the speaker argument to the damageRoll function directly which should instead be passed as an internal key of messageData`);
-    messageData.speaker = speaker;
-  }
-  if ( roll && chatMessage ) await roll.toMessage(messageData);
-  return roll;
+    // Evaluate the configured roll
+    await roll.evaluate({async: true});
+
+    // Create a Chat Message
+    if (speaker) {
+        console.warn(
+            `You are passing the speaker argument to the damageRoll function directly which should instead be passed as an internal key of messageData`
+        );
+        messageData.speaker = speaker;
+    }
+    if (roll && chatMessage) await roll.toMessage(messageData);
+    return roll;
 }
 
 /* -------------------------------------------- */
@@ -261,8 +306,8 @@ export async function damageRoll({
  * Determines whether this d20 roll should be fast-forwarded, and whether advantage or disadvantage should be applied
  * @returns {{isFF: boolean, isCritical: boolean}}  Whether the roll is fast-forward, and whether it is a critical hit
  */
-function _determineCriticalMode({event, critical=false, fastForward=false}={}) {
-  const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-  if ( event?.altKey ) critical = true;
-  return {isFF, isCritical: critical};
+function _determineCriticalMode({event, critical = false, fastForward = false} = {}) {
+    const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+    if (event?.altKey) critical = true;
+    return {isFF, isCritical: critical};
 }

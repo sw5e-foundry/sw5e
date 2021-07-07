@@ -3,7 +3,7 @@
  * @type {Dialog}
  */
 export default class SelectItemsPrompt extends Dialog {
-    constructor(items, dialogData={}, options={}) {
+    constructor(items, dialogData = {}, options = {}) {
         super(dialogData, options);
         this.options.classes = ["sw5e", "dialog", "select-items-prompt", "sheet"];
 
@@ -18,11 +18,11 @@ export default class SelectItemsPrompt extends Dialog {
         super.activateListeners(html);
 
         // render the item's sheet if its image is clicked
-        html.on('click', '.item-image', (event) => {
+        html.on("click", ".item-image", (event) => {
             const item = this.items.find((feature) => feature.id === event.currentTarget.dataset?.itemId);
 
             item?.sheet.render(true);
-        })
+        });
     }
 
     /**
@@ -33,29 +33,27 @@ export default class SelectItemsPrompt extends Dialog {
      * @param {string} options.hint - Localized hint to display at the top of the prompt
      * @return {Promise<string[]>} - list of item ids which the user has selected
      */
-    static async create(items, {
-        hint
-    }) {
+    static async create(items, {hint}) {
         // Render the ability usage template
         const html = await renderTemplate("systems/sw5e/templates/apps/select-items-prompt.html", {items, hint});
 
         return new Promise((resolve) => {
             const dlg = new this(items, {
-                title: game.i18n.localize('SW5E.SelectItemsPromptTitle'),
+                title: game.i18n.localize("SW5E.SelectItemsPromptTitle"),
                 content: html,
                 buttons: {
                     apply: {
                         icon: `<i class="fas fa-user-plus"></i>`,
-                        label: game.i18n.localize('SW5E.Apply'),
-                        callback: html => {
+                        label: game.i18n.localize("SW5E.Apply"),
+                        callback: (html) => {
                             const fd = new FormDataExtended(html[0].querySelector("form")).toObject();
-                            const selectedIds = Object.keys(fd).filter(itemId => fd[itemId]);
+                            const selectedIds = Object.keys(fd).filter((itemId) => fd[itemId]);
                             resolve(selectedIds);
                         }
                     },
                     cancel: {
                         icon: '<i class="fas fa-forward"></i>',
-                        label: game.i18n.localize('SW5E.Skip'),
+                        label: game.i18n.localize("SW5E.Skip"),
                         callback: () => resolve([])
                     }
                 },

@@ -5,7 +5,6 @@ import Actor5e from "../actor/entity.js";
  * @extends {FormApplication}
  */
 export default class ActorTypeConfig extends FormApplication {
-
     /** @inheritdoc */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
@@ -32,23 +31,23 @@ export default class ActorTypeConfig extends FormApplication {
 
     /** @override */
     getData(options) {
-
         // Get current value or new default
-        let attr = foundry.utils.getProperty(this.object.data.data, 'details.type');
-        if ( foundry.utils.getType(attr) !== "Object" ) attr = {
-            value: (attr in CONFIG.SW5E.creatureTypes) ? attr : "humanoid",
-            subtype: "",
-            swarm: "",
-            custom: ""
-        };
+        let attr = foundry.utils.getProperty(this.object.data.data, "details.type");
+        if (foundry.utils.getType(attr) !== "Object")
+            attr = {
+                value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
+                subtype: "",
+                swarm: "",
+                custom: ""
+            };
 
         // Populate choices
         const types = {};
-        for ( let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes) ) {
+        for (let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes)) {
             types[k] = {
                 label: game.i18n.localize(v),
                 chosen: attr.value === k
-            }
+            };
         }
 
         // Return data for rendering
@@ -61,12 +60,14 @@ export default class ActorTypeConfig extends FormApplication {
             },
             subtype: attr.subtype,
             swarm: attr.swarm,
-            sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes)).reverse().reduce((obj, e) => {
-                obj[e[0]] = e[1];
-                return obj;
-            }, {}),
+            sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes))
+                .reverse()
+                .reduce((obj, e) => {
+                    obj[e[0]] = e[1];
+                    return obj;
+                }, {}),
             preview: Actor5e.formatCreatureType(attr) || "–"
-        }
+        };
     }
 
     /* -------------------------------------------- */
@@ -74,7 +75,7 @@ export default class ActorTypeConfig extends FormApplication {
     /** @override */
     async _updateObject(event, formData) {
         const typeObject = foundry.utils.expandObject(formData);
-        return this.object.update({ 'data.details.type': typeObject });
+        return this.object.update({"data.details.type": typeObject});
     }
 
     /* -------------------------------------------- */

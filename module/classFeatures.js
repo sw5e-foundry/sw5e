@@ -1,4 +1,1 @@
-export const ClassFeatures = {
-
-};
-
+export const ClassFeatures = {};

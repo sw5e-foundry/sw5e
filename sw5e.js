@@ -46,9 +46,6 @@ import * as migrations from "./module/migration.js";
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
-// Keep on while migrating to Foundry version 0.8
-CONFIG.debug.hooks = true;
-
 Hooks.once("init", function() {
   console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 

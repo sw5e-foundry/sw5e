@@ -135,7 +135,7 @@ export default class Actor5e extends Actor {
       // Find Size info of Starship
       const size = actorData.items.filter(i => i.type === "starship");
       if (size.length === 0) return;
-      const sizeData = size[0].data;
+      const sizeData = size[0].data.data;
 
       // Prepare Hull Points
       data.attributes.hp.max = sizeData.hullDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.con.mod * data.attributes.hull.dicemax;
@@ -399,7 +399,7 @@ export default class Actor5e extends Actor {
     // Determine Starship size-based properties based on owned Starship item
     const size = actorData.items.filter(i => i.type === "starship");
     if (size.length !== 0) {
-      const sizeData = size[0].data;
+      const sizeData = size[0].data.data;
       const tiers = parseInt(sizeData.tier) || 0;
       data.traits.size = sizeData.size; // needs to be the short code
       data.details.tier = tiers;

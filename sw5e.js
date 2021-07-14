@@ -140,11 +140,11 @@ Hooks.once("init", function() {
     makeDefault: false,
     label: "SW5E.SheetClassNPCOld"
   });
-  // Actors.registerSheet("sw5e", ActorSheet5eStarship, {
-  //   types: ["starship"],
-  //   makeDefault: true,
-  //   label: "SW5E.SheetClassStarship"
-  // });
+  Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+     types: ["starship"],
+     makeDefault: true,
+     label: "SW5E.SheetClassStarship"
+   });
   Actors.registerSheet('sw5e', ActorSheet5eVehicle, {
     types: ['vehicle'],
     makeDefault: true,

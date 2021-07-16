@@ -8,6 +8,26 @@
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
     </ul>
 
+    <ol>
+        <li>Coordinator: {{data.attributes.deployment.coord.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.coord.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.coord.prof}}</li>
+        <li>Gunner:      {{data.attributes.deployment.gunner.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.gunner.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.gunner.prof}}</li>
+        <li>Mechanic:    {{data.attributes.deployment.mechanic.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.mechanic.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.mechanic.prof}}</li>        
+        <li>Operator:    {{data.attributes.deployment.operator.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.operator.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.operator.prof}}</li>        
+        <li>Pilot:       {{data.attributes.deployment.pilot.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.pilot.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.pilot.prof}}</li>        
+        <li>Technician:  {{data.attributes.deployment.technician.name}}</li>
+        <li>     Rank:   {{data.attributes.deployment.technician.rank}}</li>
+        <li>     Prof:   {{data.attributes.deployment.technician.prof}}</li>        
+    </ol>
 
     <ol class="group-list">
         {{#each sections as |section sid|}}

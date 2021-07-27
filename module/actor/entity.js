@@ -177,6 +177,18 @@ export default class Actor5e extends Actor {
 
     /* -------------------------------------------- */
 
+    /**
+     * Return the amount of prestige required to gain a certain rank level.
+     * @param level {Number}  The desired level
+     * @return {Number}       The prestige required
+     */
+    getRankExp(rank) {
+        const ranks = CONFIG.SW5E.CHARACTER_RANK_LEVELS;
+        return ranks[Math.min(rank, ranks.length - 1)];
+    }
+
+    /* -------------------------------------------- */
+
     /** @inheritdoc */
     getRollData() {
         const data = super.getRollData();
@@ -320,6 +332,27 @@ export default class Actor5e extends Actor {
         const required = xp.max - prior;
         const pct = Math.round(((xp.value - prior) * 100) / required);
         xp.pct = Math.clamped(pct, 0, 100);
+
+        // Determine character rank based on owned Deployment items
+        const [rank] = this.items.reduce(
+            (arr, item) => {
+                if (item.type === "deployment") {
+                    const rankLevels = parseInt(item.data.data.rank) || 0;
+                    arr[0] += rankLevels;
+                }
+                return arr;
+            },
+            [0]
+        );
+        data.attributes.rank.total = rank;
+
+        // Prestige required for next Rank
+        const prestige = data.details.prestige;
+        prestige.max = this.getRankExp(rank + 1 || 0);
+        const prior = this.getRankExp(rank || 0);
+        const required = prestige.max - prior;
+        const pct = Math.round(((prestige.value - prior) * 100) / required);
+        prestige.pct = Math.clamped(pct, 0, 100);
 
         // Add base Powercasting attributes
         this._computeBasePowercasting(actorData);

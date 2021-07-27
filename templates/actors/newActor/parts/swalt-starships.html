@@ -1,7 +1,85 @@
-<div class="panel">
+<section class="panel">
 
+    <header class="panel">
+        
+        <div class="Rank-Prestige">
+            <div class="rank" title="Total rank">
+                {{ localize "SW5E.Rank" }} {{data.attributes.rank.total}}
+            </div>
+            <div class="prestige">
+                <input name="data.details.prestige.value" type="text" value="{{data.details.prestige.value}}" data-dtype="Number"
+                    placeholder="0" />
+                <span class="sep">/</span>
+                <span class="max">{{data.details.prestige.max}}</span>
+            </div>
+            <div class="xpbar">
+                <span class="bar" style="width: {{data.details.prestige.pct}}%"></span>
+            </div>
+        </div>
 
-    <ul class="filter-list" data-filter="features">
+    </header>
+    
+    <section class="resource-items">
+		
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypeCoordinator"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.coord}}</span>
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypeGunner"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.gunner}}</span>
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypeMechanic"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.mechanic}}</span>
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypeOperator"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.operator}}</span>
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypePilot"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.pilot}}</span>
+            </div>
+        </div>
+
+        <div class="resource">
+            <h1>{{localize "SW5E.DeploymentTypeTechnician"}}</h1>
+
+            <div class="attribute-value">
+                <div></div>
+                <span>{{data.attributes.rank.technician}}</span>
+            </div>
+        </div>
+
+    </section>
+    
+<!--<section class="panel">-->
+<!-- make the sections the deployments with their deployment features unde each heading and also a section for ventures -->
+    <ul class="filter-list" data-filter="ssfeatures">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
@@ -63,24 +141,9 @@
                         {{/if}}
                     </div>
 
-                    {{else if section.isClass}}
-                    <div class="item-detail player-class"><strong>HD:</strong>
-					    <input style="width:50px;" name="hitdice" type="text" value="{{item.data.hitDice}}" placeholder="{{ localize 'SW5E.HitDice' }}"/>
-<!--                        {{item.data.hitDice}} -->
-                    </div>
-                    <div class="item-detail player-class-levels">
-                        <strong>{{localize "SW5E.Level"}} {{item.data.levels}}</strong> &nbsp;&nbsp;<a class="increment-class-level"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-class-level"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
-<!--				    {{#if ../owner}}
-                    <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
-                        {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
-                        <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}
-                    </a>
-                    {{/if}} -->
-                    </div>
-
-                    {{else if section.isStarship}}
-                    <div class="item-detail player-starship-tier">
-                        <strong>{{localize "SW5E.Tier"}} {{item.data.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
+                    {{else if section.isDeployment}}
+                    <div class="item-detail player-deployment-ranks">
+                        <strong>{{localize "SW5E.Rank"}} {{item.data.rank}}</strong> &nbsp;&nbsp;<a class="increment-deployment-rank"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-deployment-rank"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
 <!--				    {{#if ../owner}}
                     <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
                         {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
@@ -102,4 +165,4 @@
         </li>
         {{/each}}
     </ol>
-</div>
+</section>

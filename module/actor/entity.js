@@ -349,10 +349,10 @@ export default class Actor5e extends Actor {
         // Prestige required for next Rank
         const prestige = data.details.prestige;
         prestige.max = this.getRankExp(rank + 1 || 0);
-        const prior = this.getRankExp(rank || 0);
-        const required = prestige.max - prior;
-        const pct = Math.round(((prestige.value - prior) * 100) / required);
-        prestige.pct = Math.clamped(pct, 0, 100);
+        const rankPrior = this.getRankExp(rank || 0);
+        const rankRequired = prestige.max - rankPrior;
+        const rankPct = Math.round(((prestige.value - rankPrior) * 100) / rankRequired);
+        prestige.pct = Math.clamped(rankPct, 0, 100);
 
         // Add base Powercasting attributes
         this._computeBasePowercasting(actorData);

@@ -117,7 +117,8 @@
 		<button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
 		<button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
 		<button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
-    <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
+		<button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
+    	<button class="item" data-tab="ssfeatures">{{ localize "SW5E.StarshipfeaturePl" }}</button>
 		<button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
 	</nav>
 	{{!-- PC Sheet Body --}}
@@ -143,7 +144,7 @@
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
 		</section>
 		{{!-- Starships Tab --}}
-		<section class="tab ssfeatures" data-group="primary" data-tab="ssfeatures">
+		<section class="tab features" data-group="primary" data-tab="ssfeatures">
 			{{> "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html" sections=ssfeatures}}
 		</section>
 		{{!-- Effects Tab --}}

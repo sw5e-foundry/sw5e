@@ -1,26 +1,18 @@
 <section class="panel">
+    <section class="resource-items">
+        <div class="resource">
+            <h1>{{ localize "SW5E.Rank" }}: {{data.attributes.rank.total}}</h1>
 
-    <header class="panel">
-        
-        <div class="Rank-Prestige">
-            <div class="rank" title="Total rank">
-                {{ localize "SW5E.Rank" }} {{data.attributes.rank.total}}
+            <div class="attribute-value">
+                <span class="value-number">{{data.details.prestige.value}}</span>
+                <span class="value-separator">/</span>
+                <span class="value-number">{{data.details.prestige.max}}</span>
             </div>
-            <div class="prestige">
-                <input name="data.details.prestige.value" type="text" value="{{data.details.prestige.value}}" data-dtype="Number"
-                    placeholder="0" />
-                <span class="sep">/</span>
-                <span class="max">{{data.details.prestige.max}}</span>
-            </div>
-            <div class="xpbar">
+            <footer class="xpbar">
                 <span class="bar" style="width: {{data.details.prestige.pct}}%"></span>
-            </div>
+            </footer>
         </div>
 
-    </header>
-    
-    <section class="resource-items">
-		
         <div class="resource">
             <h1>{{localize "SW5E.DeploymentTypeCoordinator"}}</h1>
 

@@ -948,7 +948,7 @@ export default class ActorSheet5e extends ActorSheet {
      * @private
      */
 
-    _onIncrementDeploymentRank(event) {
+    async _onIncrementDeploymentRank(event) {
         event.preventDefault();
 
         const div = event.currentTarget.closest(".character");
@@ -964,6 +964,54 @@ export default class ActorSheet5e extends ActorSheet {
         const update = {_id: item.data._id, data: {rank: rank + 1}};
 
         actor.updateEmbeddedDocuments("Item", [update]);
+
+        const rankTotal = actor.data.data.attributes.rank.total;
+        let rankDeployment = 0;
+
+        switch (item.data.name) {
+            case "Coordinator":
+                rankDeployment = actor.data.data.attributes.rank.coord;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.coord": rankDeployment + 1
+                });
+                break;
+            case "Gunner":
+                rankDeployment = actor.data.data.attributes.rank.gunner;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.gunner": rankDeployment + 1
+                });
+                break;
+            case "Mechanic":
+                rankDeployment = actor.data.data.attributes.rank.mechanic;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.mechanic": rankDeployment + 1
+                });
+                break;
+            case "Operator":
+                rankDeployment = actor.data.data.attributes.rank.operator;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.operator": rankDeployment + 1
+                });
+                break;
+            case "Pilot":
+                rankDeployment = actor.data.data.attributes.rank.pilot;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.pilot": rankDeployment + 1
+                });
+                break;
+            case "Technician":
+                rankDeployment = actor.data.data.attributes.rank.technician;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.technician": rankDeployment + 1
+                });
+                break;
+        }
     }
 
     /**
@@ -972,7 +1020,7 @@ export default class ActorSheet5e extends ActorSheet {
      * @private
      */
 
-    _onDecrementDeploymentRank(event) {
+    async _onDecrementDeploymentRank(event) {
         event.preventDefault();
 
         const div = event.currentTarget.closest(".character");
@@ -988,6 +1036,54 @@ export default class ActorSheet5e extends ActorSheet {
         const update = {_id: item.data._id, data: {rank: rank - 1}};
 
         actor.updateEmbeddedDocuments("Item", [update]);
+
+        const rankTotal = actor.data.data.attributes.rank.total;
+        let rankDeployment = 0;
+
+        switch (item.data.name) {
+            case "Coordinator":
+                rankDeployment = actor.data.data.attributes.rank.coord;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.coord": rankDeployment - 1
+                });
+                break;
+            case "Gunner":
+                rankDeployment = actor.data.data.attributes.rank.gunner;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.gunner": rankDeployment - 1
+                });
+                break;
+            case "Mechanic":
+                rankDeployment = actor.data.data.attributes.rank.mechanic;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.mechanic": rankDeployment - 1
+                });
+                break;
+            case "Operator":
+                rankDeployment = actor.data.data.attributes.rank.operator;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.operator": rankDeployment - 1
+                });
+                break;
+            case "Pilot":
+                rankDeployment = actor.data.data.attributes.rank.pilot;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.pilot": rankDeployment - 1
+                });
+                break;
+            case "Technician":
+                rankDeployment = actor.data.data.attributes.rank.technician;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.technician": rankDeployment - 1
+                });
+                break;
+        }
     }
 
     /**

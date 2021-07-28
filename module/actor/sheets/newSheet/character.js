@@ -90,6 +90,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             forcepowers,
             techpowers,
             feats,
+            ssfeats,
             classes,
             deployments,
             deploymentfeatures,

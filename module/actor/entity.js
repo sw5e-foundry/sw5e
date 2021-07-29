@@ -339,6 +339,26 @@ export default class Actor5e extends Actor {
                 if (item.type === "deployment") {
                     const rankLevels = parseInt(item.data.data.rank) || 0;
                     arr[0] += rankLevels;
+                    switch (item.data.name) {
+                        case "Coordinator":
+                            data.attributes.rank.coord = rankLevels;
+                            break;
+                        case "Gunner":
+                            data.attributes.rank.gunner = rankLevels;
+                            break;
+                        case "Mechanic":
+                            data.attributes.rank.mechanic = rankLevels;
+                            break;
+                        case "Operator":
+                            data.attributes.rank.operator = rankLevels;
+                            break;
+                        case "Pilot":
+                            data.attributes.rank.pilot = rankLevels;
+                            break;
+                        case "Technician":
+                            data.attributes.rank.technician = rankLevels;
+                            break;
+                    }
                 }
                 return arr;
             },

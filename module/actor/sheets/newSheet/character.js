@@ -297,7 +297,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
             else ssfeatures.passive.items.push(ssf);
         }
-        deployments.sort((a, b) => b.data.ranks - a.data.ranks);
+        deployments.sort((a, b) => b.data.rank - a.data.rank);
         ssfeatures.deployments.items = deployments;
         ssfeatures.deploymentfeatures.items = deploymentfeatures;
         ssfeatures.ventures.items = ventures;
@@ -335,7 +335,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /**
      * Activate event listeners using the prepared sheet HTML
@@ -502,17 +502,17 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         }
 
         // Increment the number of deployment ranks of a character instead of creating a new item
-        // else if ( itemData.type === "deployment" ) {
-        //  const rnk = this.actor.itemTypes.deployment.find(c => c.name === itemData.name);
-        //  let priorRank = rnk?.data.data.ranks ?? 0;
-        //  if ( !!rnk ) {
-        //    const next = Math.min(priorLevel + 1, 5 + priorRank - this.actor.data.data.details.rank);
-        //    if ( next > priorRank ) {
-        //      itemData.ranks = next;
-        //      return rnk.update({"data.ranks": next});
-        //    }
-        //  }
-        // }
+        else if (itemData.type === "deployment") {
+            const rnk = this.actor.itemTypes.deployment.find((c) => c.name === itemData.name);
+            let priorRank = rnk?.data.data.rank ?? 0;
+            if (!!rnk) {
+                const rnkNext = Math.min(priorRank + 1, 5);
+                if (rnkNext > priorRank) {
+                    itemData.rank = rnkNext;
+                    return rnk.update({"data.rank": rnkNext});
+                }
+            }
+        }
 
         // Default drop handling if levels were not added
         return super._onDropItemCreate(itemData);

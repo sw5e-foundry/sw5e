@@ -59,7 +59,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         };
 
         // Start by classifying items into groups for rendering
-        let [forcepowers, techpowers, other] = data.items.reduce(
+        let [other] = data.items.reduce(
             (arr, item) => {
                 item.img = item.img || CONST.DEFAULT_TOKEN;
                 item.isStack = Number.isNumeric(item.data.quantity) && item.data.quantity !== 1;
@@ -68,22 +68,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                     item.data.recharge && !!item.data.recharge.value && item.data.recharge.charged === false;
                 item.isDepleted = item.isOnCooldown && item.data.uses.per && item.data.uses.value > 0;
                 item.hasTarget = !!item.data.target && !["none", ""].includes(item.data.target.type);
-                if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) arr[0].push(item);
-                else if (item.type === "power" && ["tec"].includes(item.data.school)) arr[1].push(item);
-                else arr[2].push(item);
+                arr[0].push(item);
                 return arr;
             },
-            [[], [], []]
+            [[]]
         );
 
         // Apply item filters
-        forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
-        techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
         other = this._filterItems(other, this._filters.features);
-
-        // Organize Powerbook
-        //    const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
-        //    const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
 
         // Organize Features
         for (let item of other) {
@@ -100,8 +92,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Assign and return
         data.features = Object.values(features);
-        //    data.forcePowerbook = forcePowerbook;
-        //    data.techPowerbook = techPowerbook;
     }
 
     /* -------------------------------------------- */
@@ -118,28 +108,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         data.isHuge = data.actor.data.traits.size === "huge";
         data.isGargantuan = data.actor.data.traits.size === "grg";
 
-        // Challenge Rating
-        const cr = parseFloat(data.data.details.cr || 0);
-        const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};
-        data.labels["cr"] = cr >= 1 ? String(cr) : crLabels[cr] || 1;
         return data;
-    }
-
-    /* -------------------------------------------- */
-    /*  Object Updates                              */
-    /* -------------------------------------------- */
-
-    /** @override */
-    async _updateObject(event, formData) {
-        // Format NPC Challenge Rating
-        const crs = {"1/8": 0.125, "1/4": 0.25, "1/2": 0.5};
-        let crv = "data.details.cr";
-        let cr = formData[crv];
-        cr = crs[cr] || parseFloat(cr);
-        if (cr) formData[crv] = cr < 1 ? cr : parseInt(cr);
-
-        // Parent ActorSheet update steps
-        return super._updateObject(event, formData);
     }
 
     /* -------------------------------------------- */
@@ -155,6 +124,54 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         html.find("#engineslidervalue")[0].addEventListener("input", this._engineSliderUpdate.bind(this));
         html.find("#shieldslidervalue")[0].addEventListener("input", this._shieldSliderUpdate.bind(this));
         html.find("#weaponslidervalue")[0].addEventListener("input", this._weaponSliderUpdate.bind(this));
+        // Recharge and Refitting Repairs
+        html.find(".recharge-repair").click(this._onRechargeRepair.bind(this));
+        html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
+        // Rollable sheet actions
+        html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
+    }
+    /* -------------------------------------------- */
+
+    /**
+     * Handle mouse click events for character sheet actions
+     * @param {MouseEvent} event    The originating click event
+     * @private
+     */
+    _onSheetAction(event) {
+        event.preventDefault();
+        const button = event.currentTarget;
+        switch (button.dataset.action) {
+            case "rollDestructionSave":
+                return this.actor.rollDestructionSave({event: event});
+            case "rollInitiative":
+                return this.actor.rollInitiative({createCombatants: true});
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a Recharge repair, calling the relevant function on the Actor instance
+     * @param {Event} event   The triggering click event
+     * @private
+     */
+    async _onRechargeRepair(event) {
+        event.preventDefault();
+        await this._onSubmit(event);
+        return this.actor.rechargeRepair();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a refitting repair, calling the relevant function on the Actor instance
+     * @param {Event} event   The triggering click event
+     * @private
+     */
+    async _onRefittingRepair(event) {
+        event.preventDefault();
+        await this._onSubmit(event);
+        return this.actor.refittingRepair();
     }
 
     /* -------------------------------------------- */

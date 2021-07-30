@@ -2,6 +2,8 @@ import {d20Roll, damageRoll} from "../dice.js";
 import SelectItemsPrompt from "../apps/select-items-prompt.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
+import RechargeRepairDialog from "../apps/recharge-repair.js";
+import RefittingRepairDialog from "../apps/refitting-repair.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
 
@@ -1992,6 +1994,414 @@ export default class Actor5e extends Actor {
                 updates.push({"_id": item.id, "data.uses.value": d.uses.max});
             }
             if (recoverLongRestUses && d.recharge && d.recharge.value) {
+                updates.push({"_id": item.id, "data.recharge.charged": true});
+            }
+        }
+
+        return updates;
+    }
+
+    /**
+     * Results from a repair operation.
+     *
+     * @typedef {object} RepairResult
+     * @property {number} dhp                  Hull points recovered during the repair.
+     * @property {number} dhd                  Hull dice recovered or spent during the repair.
+     * @property {object} updateData           Updates applied to the actor.
+     * @property {Array.<object>} updateItems  Updates applied to actor's items.
+     * @property {boolean} newDay              Whether a new day occurred during the repair.
+     */
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a recharge repair, possibly spending hull dice and recovering resources, and item uses.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.dialog=true]         Present a dialog window which allows for rolling hull dice as part
+     *                                                of the Recharge Repair and selecting whether a new day has occurred.
+     * @param {boolean} [options.chat=true]           Summarize the results of the repair workflow as a chat message.
+     * @param {boolean} [options.autoHD=false]        Automatically spend Hull Dice if you are missing 3 or more hit points.
+     * @param {boolean} [options.autoHDThreshold=3]   A number of missing hull points which would trigger an automatic HD roll.
+     * @return {Promise.<RepairResult>}               A Promise which resolves once the recharge repair workflow has completed.
+     */
+    async rechargeRepair({dialog = true, chat = true, autoHD = false, autoHDThreshold = 3} = {}) {
+        // Take note of the initial hull points and number of hull dice the Actor has
+        const hd0 = this.data.data.attributes.hull.dice;
+        const hp0 = this.data.data.attributes.hp.value;
+        const regenShld = !this.data.data.attributes.shld.depleted;
+        let newDay = false;
+
+        // Display a Dialog for rolling hull dice
+        if (dialog) {
+            try {
+                newDay = await RechargeRepairDialog.rechargeRepairDialog({
+                    actor: this,
+                    canRoll: hd0 > 0
+                });
+            } catch (err) {
+                return;
+            }
+        }
+
+        // Automatically spend hit dice
+        else if (autoHD) {
+            await this.autoSpendHitDice({threshold: autoHDThreshold});
+        }
+
+        return this._repair(
+            chat,
+            newDay,
+            false,
+            this.data.data.attributes.hd - hd0,
+            this.data.data.attributes.hp.value - hp0,
+            regenShld
+        );
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a refitting repair, recovering hull points, hull dice, resources, and item uses.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a refitting repair.
+     * @param {boolean} [options.chat=true]    Summarize the results of the repair workflow as a chat message.
+     * @param {boolean} [options.newDay=true]  Whether the refitting repair carries over to a new day.
+     * @return {Promise.<RepairResult>}        A Promise which resolves once the refitting repair workflow has completed.
+     */
+    async refittingRepair({dialog = true, chat = true, newDay = true} = {}) {
+        // Maybe present a confirmation dialog
+        if (dialog) {
+            try {
+                newDay = await RefittingRepairDialog.refittingRepairDialog({actor: this});
+            } catch (err) {
+                return;
+            }
+        }
+
+        return this._repair(chat, newDay, true, 0, 0, true);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Perform all of the changes needed for a recharge or refitting repair.
+     *
+     * @param {boolean} chat             Summarize the results of the repair workflow as a chat message.
+     * @param {boolean} newDay           Has a new day occurred during this repair?
+     * @param {boolean} refittingRepair  Is this a refitting repair?
+     * @param {number} [dhd=0]           Number of hit dice spent during so far during the repair.
+     * @param {number} [dhp=0]           Number of hit points recovered so far during the repair.
+     * @param {boolean} resetShields     reset shields to max during the repair.
+     * @return {Promise.<RepairResult>}  Consolidated results of the repair workflow.
+     * @private
+     */
+    async _repair(chat, newDay, refittingRepair, dhd = 0, dhp = 0, resetShields) {
+        // TODO: Turn gritty realism into the SW5e longer repairs variant rule https://sw5e.com/rules/variantRules/Longer%20Repairs
+        let hullPointsRecovered = 0;
+        let hullPointUpdates = {};
+        let hullDiceRecovered = 0;
+        let hullDiceUpdates = [];
+        let shldPointsRecovered = 0;
+        let shldPointUpdates = {};
+        let shldDiceRecovered = 0;
+        let shldDiceUpdates = [];
+
+        // Recover hit points & hit dice on refitting repair
+        if (refittingRepair) {
+            ({updates: hullPointUpdates, hullPointsRecovered} = this._getRepairHullPointRecovery());
+            ({updates: hullDiceUpdates, hullDiceRecovered} = this._getRepairHullDiceRecovery());
+            resetShields = true;
+        }
+
+        if (resetShields) {
+            ({updates: shldPointUpdates, shldPointsRecovered} = this._getRepairShieldPointRecovery());
+            ({updates: shldDiceUpdates, shldDiceRecovered} = this._getRepairShieldDiceRecovery());
+        }
+
+        // Figure out the repair of the changes
+        const result = {
+            dhd: dhd + hullDiceRecovered,
+            dhp: dhp + hullPointsRecovered,
+            shd: shd + shldDiceRecovered,
+            shp: shp + shldPointsRecovered,
+            updateData: {
+                ...hullPointUpdates,
+                ...shldPointUpdates,
+                ...this._getRepairResourceRecovery({
+                    recoverRechargeRepairResources: !refittingRepair,
+                    recoverRefittingRepairResources: refittingRepair
+                })
+            },
+            updateItems: [
+                ...hullDiceUpdates,
+                ...shldDiceUpdates,
+                ...this._getRepairItemUsesRecovery({
+                    recoverRefittingRepairUses: refittingRepair,
+                    recoverDailyUses: newDay
+                })
+            ],
+            newDay: newDay
+        };
+
+        // Perform updates
+        await this.update(result.updateData);
+        await this.updateEmbeddedDocuments("Item", result.updateItems);
+
+        // Display a Chat Message summarizing the repair effects
+        if (chat) await this._displayRepairResultMessage(result, refittingRepair);
+
+        // Return data summarizing the repair effects
+        return result;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Display a chat message with the result of a repair.
+     *
+     * @param {RepairResult} result              Result of the repair operation.
+     * @param {boolean} [refittingRepair=false]  Is this a refitting repair?
+     * @return {Promise.<ChatMessage>}           Chat message that was created.
+     * @protected
+     */
+    async _displayRepairResultMessage(result, refittingRepair = false) {
+        const {dhd, dhp, shd, shp, newDay} = result;
+        const hullDiceRestored = dhd !== 0;
+        const hullPointsRestored = dhp !== 0;
+        const shldDiceRestored = shd !== 0;
+        const shldPointsRestored = shp !== 0;
+        const length = refittingRepair ? "Refitting" : "Recharge";
+
+        let repairFlavor, message;
+
+        // Summarize the repair duration
+        switch (game.settings.get("sw5e", "repairVariant")) {
+            case "normal":
+                repairFlavor =
+                    refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
+                break;
+            case "gritty":
+                repairFlavor =
+                    !refittingRepair && newDay ? "SW5E.RechargeRepairOvernight" : `SW5E.${length}RepairGritty`;
+                break;
+            case "epic":
+                repairFlavor = `SW5E.${length}RepairEpic`;
+                break;
+        }
+
+        // Determine the chat message to display
+        if (refittingRepair) {
+            message = "SW5E.RefittingRepairResult";
+            if (hullPointsRestored) message += "HP";
+            if (hullDiceRestored) message += "HD";
+            if (shldDiceRestored || shldPointsRestored) message += "S";
+        } else {
+            message = "SW5E.RechargeRepairResult";
+            if (hullPointsRestored) message += "HP";
+            if (hullDiceRestored) message += "HD";
+            if (shldDiceRestored || shldPointsRestored) message += "S";
+        }
+
+        // Create a chat message
+        let chatData = {
+            user: game.user.id,
+            speaker: {actor: this, alias: this.name},
+            flavor: game.i18n.localize(repairFlavor),
+            content: game.i18n.format(message, {
+                name: this.name,
+                hullDice: refittingRepair ? dhd : -dhd,
+                hullPoints: dhp,
+                shldDice: shd,
+                shldPoints: shp
+            })
+        };
+        ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+        return ChatMessage.create(chatData);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Automatically spend hull dice to recover hit points up to a certain threshold.
+     *
+     * @param {object} [options]
+     * @param {number} [options.threshold=3]  A number of missing hull points which would trigger an automatic HD roll.
+     * @return {Promise.<number>}             Number of hull dice spent.
+     */
+    async autoSpendHullDice({threshold = 3} = {}) {
+        const max = this.data.data.attributes.hp.max;
+
+        let diceRolled = 0;
+        while (this.data.data.attributes.hp.value + threshold <= max) {
+            const r = await this.rollHullDie(undefined, {dialog: false});
+            if (r === null) break;
+            diceRolled += 1;
+        }
+
+        return diceRolled;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers actor hull points.
+     *
+     * @param {object} [options]
+     * @return {object}           Updates to the actor and change in hull points.
+     * @protected
+     */
+    _getRepairHullPointRecovery() {
+        const data = this.data.data;
+        let updates = {};
+        let max = data.attributes.hp.max;
+
+        return {updates, hullPointsRecovered: max - data.attributes.hp.value};
+    }
+
+    /**
+     * Recovers actor shield points.
+     *
+     * @param {object} [options]
+     * @return {object}           Updates to the actor and change in shield points.
+     * @protected
+     */
+    _getRepairShieldPointRecovery() {
+        const data = this.data.data;
+        let updates = {};
+        let max = data.attributes.hp.tempmax;
+        updates.push({
+            "_id": this.id,
+            "data.attributes,shld.depleted": false
+        });
+
+        return {updates, shieldPointsRecovered: max - data.attributes.hp.temp};
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers actor resources.
+     * @param {object} [options]
+     * @param {boolean} [options.recoverRechargeRepairResources=true]   Recover resources that recharge on a recharge repair.
+     * @param {boolean} [options.recoverRefittingRepairResources=true]  Recover resources that recharge on a refitting repair.
+     * @return {object}                                                 Updates to the actor.
+     * @protected
+     */
+    _getRepairResourceRecovery({recoverRechargeRepairResources = true, recoverRefittingRepairResources = true} = {}) {
+        let updates = {};
+        for (let [k, r] of Object.entries(this.data.data.resources)) {
+            if (
+                Number.isNumeric(r.max) &&
+                ((recoverRechargeRepairResources && r.recharge) || (recoverRefittingRepairResources && r.refitting))
+            ) {
+                updates[`data.resources.${k}.value`] = Number(r.max);
+            }
+        }
+        return updates;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers hull during a refitting repair.
+     *
+     * @param {object} [options]
+     * @param {number} [options.maxHullDice]    Maximum number of hull dice to recover.
+     * @return {object}                         Array of item updates and number of hit dice recovered.
+     * @protected
+     */
+    _getRepairHullDiceRecovery({maxHullDice = undefined} = {}) {
+        // Determine the number of hull dice which may be recovered
+        if (maxHullDice === undefined) {
+            maxHullDice = this.data.data.attributes.hull.dicemax;
+        }
+
+        // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
+        const starship = Object.values(this.starship).sort((a, b) => {
+            return (parseInt(b.data.data.hullDice.slice(1)) || 0) - (parseInt(a.data.data.hullDice.slice(1)) || 0);
+        });
+
+        let updates = [];
+        let hullDiceRecovered = 0;
+        for (let item of starship) {
+            const d = item.data.data;
+            if (hullDiceRecovered < maxHullDice && d.hullDiceUsed > 0) {
+                let delta = Math.min(d.hullDiceUsed || 0, maxHullDice - hullDiceRecovered);
+                hullDiceRecovered += delta;
+                updates.push({
+                    "_id": item.id,
+                    "data.hullDiceUsed": d.hullDiceUsed - delta
+                });
+            }
+        }
+
+        return {updates, hullDiceRecovered};
+    }
+
+    /**
+     * Recovers shields during a repair.
+     *
+     * @param {object} [options]
+     * @return {object}                         Array of item updates and number of hit dice recovered.
+     * @protected
+     */
+    _getRepairShldDiceRecovery() {
+        // Determine the number of hull dice which may be recovered
+        maxShldDice = this.data.data.attributes.shld.dicemax;
+
+        // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
+        const starship = Object.values(this.starship).sort((a, b) => {
+            return (parseInt(b.data.data.shldDice.slice(1)) || 0) - (parseInt(a.data.data.shldDice.slice(1)) || 0);
+        });
+
+        let updates = [];
+        let shldDiceRecovered = 0;
+        for (let item of starship) {
+            const d = item.data.data;
+            if (shldDiceRecovered < maxShldDice && d.shldDiceUsed > 0) {
+                let delta = Math.min(d.shldDiceUsed || 0, maxShldDice - shldDiceRecovered);
+                shldDiceRecovered += delta;
+                updates.push({
+                    "_id": item.id,
+                    "data.shldDiceUsed": d.shldDiceUsed - delta
+                });
+            }
+        }
+
+        return {updates, hullDiceRecovered};
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers item uses during recharge or refitting repairs.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.recoverRechargeRepairUses=true]   Recover uses for items that recharge after a recharge repair.
+     * @param {boolean} [options.recoverRefittingRepairUses=true]  Recover uses for items that recharge after a refitting repair.
+     * @param {boolean} [options.recoverDailyUses=true]            Recover uses for items that recharge on a new day.
+     * @return {Array.<object>}                                    Array of item updates.
+     * @protected
+     */
+    _getRepairItemUsesRecovery({
+        recoverRechargeRepairUses = true,
+        recoverRefittingRepairUses = true,
+        recoverDailyUses = true
+    } = {}) {
+        let recovery = [];
+        if (recoverRechargeRepairUses) recovery.push("recharge");
+        if (recoverRefittingRepairUses) recovery.push("refitting");
+        if (recoverDailyUses) recovery.push("day");
+
+        let updates = [];
+        for (let item of this.items) {
+            const d = item.data.data;
+            if (d.uses && recovery.includes(d.uses.per)) {
+                updates.push({"_id": item.id, "data.uses.value": d.uses.max});
+            }
+            if (recoverRefittingRepairUses && d.recharge && d.recharge.value) {
                 updates.push({"_id": item.id, "data.recharge.charged": true});
             }
         }

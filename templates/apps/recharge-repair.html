@@ -1,7 +1,7 @@
-<form id="recharge-rest-hd" class="dialog-content" onsubmit="event.preventDefault();">
-    <p>{{ localize "SW5E.RechargeRestHint" }}</p>
+<form id="recharge-repair-hd" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>{{ localize "SW5E.RechargeRepairHint" }}</p>
     <div class="form-group">
-        <label>{{ localize "SW5E.RechargeRestSelect" }}</label>
+        <label>{{ localize "SW5E.RechargeRepairSelect" }}</label>
         <div class="form-fields">
             <select name="hd">
                 {{#select denomination}}
@@ -15,7 +15,7 @@
             </button>
         </div>
         {{#unless canRoll}}
-        <p class="notes">{{ localize "SW5E.RechargeRestNoHullD" }}</p>
+        <p class="notes">{{ localize "SW5E.RechargeRepairNoHullD" }}</p>
         {{/unless}}
     </div>
     

@@ -38,7 +38,7 @@ export default class RechargeRepairDialog extends Dialog {
         // Determine Hull Dice
         data.availableHD = this.actor.data.items.reduce((hd, item) => {
             if (item.type === "starship") {
-                const d = item.data;
+                const d = item.data.data;
                 const denom = d.hullDice || "d6";
                 const available =
                     parseInt(d.hullDiceStart || 1) + parseInt(d.tier || 0) - parseInt(d.hullDiceUsed || 0);
@@ -91,11 +91,11 @@ export default class RechargeRepairDialog extends Dialog {
     static async rechargeRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {
             const dlg = new this(actor, {
-                title: "Recharge Repair",
+                title: game.i18n.localize("SW5E.Recharge Repair"),
                 buttons: {
                     rest: {
                         icon: '<i class="fas fa-bed"></i>',
-                        label: "Repair",
+                        label: game.i18n.localize("SW5E.Repair"),
                         callback: (html) => {
                             let newDay = false;
                             if (game.settings.get("sw5e", "restVariant") === "gritty")
@@ -105,7 +105,7 @@ export default class RechargeRepairDialog extends Dialog {
                     },
                     cancel: {
                         icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
+                        label: game.i18n.localize("Cancel"),
                         callback: reject
                     }
                 },

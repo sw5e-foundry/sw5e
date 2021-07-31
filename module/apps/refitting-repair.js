@@ -40,22 +40,21 @@ export default class RefittingRepairDialog extends Dialog {
     static async refittingRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {
             const dlg = new this(actor, {
-                title: "Refitting Repair",
+                title: game.i18n.localize("SW5E.Refitting Repair"),
                 buttons: {
                     rest: {
                         icon: '<i class="fas fa-bed"></i>',
-                        label: "Repair",
+                        label: game.i18n.localize("SW5E.Repair"),
                         callback: (html) => {
-                            let newDay = false;
-                            if (game.settings.get("sw5e", "restVariant") === "normal")
+                            let newDay = true;
+                            if (game.settings.get("sw5e", "restVariant") !== "gritty")
                                 newDay = html.find('input[name="newDay"]')[0].checked;
-                            else if (game.settings.get("sw5e", "restVariant") === "gritty") newDay = true;
                             resolve(newDay);
                         }
                     },
                     cancel: {
                         icon: '<i class="fas fa-times"></i>',
-                        label: "Cancel",
+                        label: game.i18n.localize("Cancel"),
                         callback: reject
                     }
                 },

@@ -1,4 +1,4 @@
-import {d20Roll, damageRoll} from "../dice.js";
+import {d20Roll, damageRoll, attribDieRoll} from "../dice.js";
 import SelectItemsPrompt from "../apps/select-items-prompt.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
@@ -1450,6 +1450,7 @@ export default class Actor5e extends Actor {
     async rollHullDie(denomination, numDice = "1", keep = "", {dialog = true} = {}) {
         // If no denomination was provided, choose the first available
         let sship = null;
+        // TODO: make the max 2x tier if huge or grg
         if (!denomination) {
             sship = this.itemTypes.starship.find(
                 (s) => s.data.data.hullDiceUsed < s.data.data.tier + s.data.data.hullDiceStart
@@ -1480,20 +1481,22 @@ export default class Actor5e extends Actor {
         // Prepare roll data
         const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
         const title = game.i18n.localize("SW5E.HullDiceRoll");
-        const rollData = duplicate(this.data.data);
+        const rollData = foundry.utils.deepClone(this.data.data);
 
         // Call the roll helper utility
-        const roll = await damageRoll({
+        const roll = await attribDieRoll({
             event: new Event("hullDie"),
             parts: parts,
             data: rollData,
             title: title,
-            speaker: ChatMessage.getSpeaker({actor: this}),
-            allowcritical: false,
             fastForward: !dialog,
             dialogOptions: {width: 350},
-            messageData: {"flags.sw5e.roll": {type: "hullDie"}}
+            messageData: {
+                "speaker": ChatMessage.getSpeaker({actor: this}),
+                "flags.sw5e.roll": {type: "hullDie"}
+            }
         });
+
         if (!roll) return null;
 
         // Adjust actor data
@@ -1549,7 +1552,7 @@ export default class Actor5e extends Actor {
 
         // Call the roll helper utility
         const roll = await damageRoll({
-            event: new Event("hitDie"),
+            event: new Event("hullDie"),
             parts: parts,
             data: rollData,
             title: title,

@@ -94,7 +94,7 @@ export default class RechargeRepairDialog extends Dialog {
                 title: game.i18n.localize("SW5E.Recharge Repair"),
                 buttons: {
                     rest: {
-                        icon: '<i class="fas fa-bed"></i>',
+                        icon: '<i class="fas fa-wrench"></i>',
                         label: game.i18n.localize("SW5E.Repair"),
                         callback: (html) => {
                             let newDay = false;

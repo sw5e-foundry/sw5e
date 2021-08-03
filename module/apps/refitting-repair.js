@@ -43,7 +43,7 @@ export default class RefittingRepairDialog extends Dialog {
                 title: game.i18n.localize("SW5E.Refitting Repair"),
                 buttons: {
                     rest: {
-                        icon: '<i class="fas fa-bed"></i>',
+                        icon: '<i class="fas fa-wrench"></i>',
                         label: game.i18n.localize("SW5E.Repair"),
                         callback: (html) => {
                             let newDay = true;

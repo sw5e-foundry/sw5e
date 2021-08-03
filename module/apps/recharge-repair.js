@@ -36,15 +36,15 @@ export default class RechargeRepairDialog extends Dialog {
         const data = super.getData();
 
         // Determine Hull Dice
-        data.availableHD = this.actor.data.items.reduce((hd, item) => {
+        data.availableHD = this.actor.data.items.reduce((hulld, item) => {
             if (item.type === "starship") {
                 const d = item.data.data;
                 const denom = d.hullDice || "d6";
                 const available =
                     parseInt(d.hullDiceStart || 1) + parseInt(d.tier || 0) - parseInt(d.hullDiceUsed || 0);
-                hd[denom] = denom in hd ? hd[denom] + available : available;
+                hulld[denom] = denom in hulld ? hulld[denom] + available : available;
             }
-            return hd;
+            return hulld;
         }, {});
         data.canRoll = this.actor.data.data.attributes.hull.dice > 0;
         data.denomination = this._denom;

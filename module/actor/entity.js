@@ -19,6 +19,13 @@ export default class Actor5e extends Actor {
      */
     _classes = undefined;
 
+    /**
+     * The data source for Actor5e.starships allowing it to be lazily computed.
+     * @type {Object<string, Item5e>}
+     * @private
+     */
+    _starships = undefined;
+
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */
@@ -34,6 +41,23 @@ export default class Actor5e extends Actor {
             .filter((item) => item.type === "class")
             .reduce((obj, cls) => {
                 obj[cls.name.slugify({strict: true})] = cls;
+                return obj;
+            }, {}));
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * A mapping of starships belonging to this Actor.
+     * @type {Object<string, Item5e>}
+     */
+    get starships() {
+        if (this._starships !== undefined) return this._starships;
+        if (this.data.type !== "starship") return (this._starships = {});
+        return (this._starships = this.items
+            .filter((item) => item.type === "starship")
+            .reduce((obj, sship) => {
+                obj[sship.name.slugify({strict: true})] = sship;
                 return obj;
             }, {}));
     }
@@ -1401,7 +1425,7 @@ export default class Actor5e extends Actor {
         // If no denomination was provided, choose the first available
         let sship = null;
         if (!denomination) {
-            sship = this.itemTypes.class.find(
+            sship = this.itemTypes.starship.find(
                 (s) => s.data.data.hullDiceUsed < s.data.data.tier + s.data.data.hullDiceStart
             );
             if (!sship) return null;
@@ -1412,7 +1436,7 @@ export default class Actor5e extends Actor {
         else {
             sship = this.items.find((i) => {
                 const d = i.data.data;
-                return d.hullDice === denomination && (d.hitDiceUsed || 0) < (d.tier || 0) + d.hullDiceStart;
+                return d.hullDice === denomination && (d.hullDiceUsed || 0) < (d.tier || 0) + d.hullDiceStart;
             });
         }
 
@@ -1434,7 +1458,7 @@ export default class Actor5e extends Actor {
 
         // Call the roll helper utility
         const roll = await damageRoll({
-            event: new Event("hitDie"),
+            event: new Event("hullDie"),
             parts: parts,
             data: rollData,
             title: title,
@@ -2053,7 +2077,7 @@ export default class Actor5e extends Actor {
             chat,
             newDay,
             false,
-            this.data.data.attributes.hd - hd0,
+            this.data.data.attributes.hull.dice - hd0,
             this.data.data.attributes.hp.value - hp0,
             regenShld
         );
@@ -2124,15 +2148,11 @@ export default class Actor5e extends Actor {
         const result = {
             dhd: dhd + hullDiceRecovered,
             dhp: dhp + hullPointsRecovered,
-            shd: shd + shldDiceRecovered,
-            shp: shp + shldPointsRecovered,
+            shd: shldDiceRecovered,
+            shp: shldPointsRecovered,
             updateData: {
                 ...hullPointUpdates,
-                ...shldPointUpdates,
-                ...this._getRepairResourceRecovery({
-                    recoverRechargeRepairResources: !refittingRepair,
-                    recoverRefittingRepairResources: refittingRepair
-                })
+                ...shldPointUpdates
             },
             updateItems: [
                 ...hullDiceUpdates,
@@ -2177,19 +2197,24 @@ export default class Actor5e extends Actor {
         let repairFlavor, message;
 
         // Summarize the repair duration
-        switch (game.settings.get("sw5e", "repairVariant")) {
-            case "normal":
-                repairFlavor =
-                    refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
-                break;
-            case "gritty":
-                repairFlavor =
-                    !refittingRepair && newDay ? "SW5E.RechargeRepairOvernight" : `SW5E.${length}RepairGritty`;
-                break;
-            case "epic":
-                repairFlavor = `SW5E.${length}RepairEpic`;
-                break;
-        }
+        repairFlavor = refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
+
+        // if we have a variant timing use the following instead
+        /*
+        /* switch (game.settings.get("sw5e", "repairVariant")) {
+        /*     case "normal":
+        /*         repairFlavor =
+        /*             refittingRepair && newDay ? "SW5E.RefittingRepairOvernight" : `SW5E.${length}RepairNormal`;
+        /*         break;
+        /*     case "gritty":
+        /*         repairFlavor =
+        /*             !refittingRepair && newDay ? "SW5E.RechargeRepairOvernight" : `SW5E.${length}RepairGritty`;
+        /*         break;
+        /*     case "epic":
+        /*         repairFlavor = `SW5E.${length}RepairEpic`;
+        /*         break;
+        /* }
+        */
 
         // Determine the chat message to display
         if (refittingRepair) {
@@ -2255,13 +2280,15 @@ export default class Actor5e extends Actor {
     _getRepairHullPointRecovery() {
         const data = this.data.data;
         let updates = {};
-        let max = data.attributes.hp.max;
+        const max = data.attributes.hp.max;
+
+        updates["data.attributes.hp.value"] = max;
 
         return {updates, hullPointsRecovered: max - data.attributes.hp.value};
     }
 
     /**
-     * Recovers actor shield points.
+     * Recovers actor shield points and repair depleted shields.
      *
      * @param {object} [options]
      * @return {object}           Updates to the actor and change in shield points.
@@ -2270,36 +2297,13 @@ export default class Actor5e extends Actor {
     _getRepairShieldPointRecovery() {
         const data = this.data.data;
         let updates = {};
-        let max = data.attributes.hp.tempmax;
-        updates.push({
-            "_id": this.id,
-            "data.attributes,shld.depleted": false
-        });
+        const max = data.attributes.hp.tempmax;
 
-        return {updates, shieldPointsRecovered: max - data.attributes.hp.temp};
-    }
+        updates["data.attributes.hp.temp"] = max;
 
-    /* -------------------------------------------- */
+        updates["data.attributes.shld.depleted"] = false;
 
-    /**
-     * Recovers actor resources.
-     * @param {object} [options]
-     * @param {boolean} [options.recoverRechargeRepairResources=true]   Recover resources that recharge on a recharge repair.
-     * @param {boolean} [options.recoverRefittingRepairResources=true]  Recover resources that recharge on a refitting repair.
-     * @return {object}                                                 Updates to the actor.
-     * @protected
-     */
-    _getRepairResourceRecovery({recoverRechargeRepairResources = true, recoverRefittingRepairResources = true} = {}) {
-        let updates = {};
-        for (let [k, r] of Object.entries(this.data.data.resources)) {
-            if (
-                Number.isNumeric(r.max) &&
-                ((recoverRechargeRepairResources && r.recharge) || (recoverRefittingRepairResources && r.refitting))
-            ) {
-                updates[`data.resources.${k}.value`] = Number(r.max);
-            }
-        }
-        return updates;
+        return {updates, shldPointsRecovered: max - data.attributes.hp.temp};
     }
 
     /* -------------------------------------------- */
@@ -2319,7 +2323,7 @@ export default class Actor5e extends Actor {
         }
 
         // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
-        const starship = Object.values(this.starship).sort((a, b) => {
+        const starship = Object.values(this.starships).sort((a, b) => {
             return (parseInt(b.data.data.hullDice.slice(1)) || 0) - (parseInt(a.data.data.hullDice.slice(1)) || 0);
         });
 
@@ -2344,15 +2348,15 @@ export default class Actor5e extends Actor {
      * Recovers shields during a repair.
      *
      * @param {object} [options]
-     * @return {object}                         Array of item updates and number of hit dice recovered.
+     * @return {object}           Array of item updates and number of shield dice recovered.
      * @protected
      */
-    _getRepairShldDiceRecovery() {
-        // Determine the number of hull dice which may be recovered
-        maxShldDice = this.data.data.attributes.shld.dicemax;
+    _getRepairShieldDiceRecovery() {
+        // Determine the number of shield dice which may be recovered
+        const maxShldDice = this.data.data.attributes.shld.dicemax;
 
-        // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
-        const starship = Object.values(this.starship).sort((a, b) => {
+        // Sort starship sizes which can recover SD, assuming players prefer recovering larger SD first.
+        const starship = Object.values(this.starships).sort((a, b) => {
             return (parseInt(b.data.data.shldDice.slice(1)) || 0) - (parseInt(a.data.data.shldDice.slice(1)) || 0);
         });
 
@@ -2370,7 +2374,7 @@ export default class Actor5e extends Actor {
             }
         }
 
-        return {updates, hullDiceRecovered};
+        return {updates, shldDiceRecovered};
     }
 
     /* -------------------------------------------- */

@@ -492,6 +492,11 @@ export default class Actor5e extends Actor {
             data.attributes.equip.armor.dr = parseInt(armorData.dmgred.value) || 0;
             data.attributes.equip.armor.maxDex = armorData.armor.dex;
             data.attributes.equip.armor.stealthDisadv = armorData.stealth;
+        } else {
+            // no armor installed
+            data.attributes.equip.armor.dr = 0;
+            data.attributes.equip.armor.maxDex = 99;
+            data.attributes.equip.armor.stealthDisadv = false;
         }
 
         // Determine Starship hyperdrive-based properties based on owned Starship item
@@ -499,6 +504,9 @@ export default class Actor5e extends Actor {
         if (hyperdrive.length !== 0) {
             const hdData = hyperdrive[0].data;
             data.attributes.equip.hyperdrive.class = parseFloat(hdData.hdclass.value) || null;
+        } else {
+            // no hyperdrive installed
+            data.attributes.equip.hyperdrive.class = null;
         }
 
         // Determine Starship power coupling-based properties based on owned Starship item
@@ -507,13 +515,18 @@ export default class Actor5e extends Actor {
             const pwrcplData = pwrcpl[0].data;
             data.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.cscap.value) || 0;
             data.attributes.equip.powerCoupling.systemCap = parseInt(pwrcplData.sscap.value) || 0;
-            data.attributes.power.central.max = 0;
-            data.attributes.power.comms.max = 0;
-            data.attributes.power.engines.max = 0;
-            data.attributes.power.shields.max = 0;
-            data.attributes.power.sensors.max = 0;
-            data.attributes.power.weapons.max = 0;
+        } else {
+            // no power coupling installed
+            data.attributes.equip.powerCoupling.centralCap = 0;
+            data.attributes.equip.powerCoupling.systemCap = 0;
         }
+
+        data.attributes.power.central.max = 0;
+        data.attributes.power.comms.max = 0;
+        data.attributes.power.engines.max = 0;
+        data.attributes.power.shields.max = 0;
+        data.attributes.power.sensors.max = 0;
+        data.attributes.power.weapons.max = 0;
 
         // Determine Starship reactor-based properties based on owned Starship item
         const reactor = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "reactor"); // && (i.data.equipped === true)));
@@ -521,6 +534,10 @@ export default class Actor5e extends Actor {
             const reactorData = reactor[0].data;
             data.attributes.equip.reactor.fuelMult = parseFloat(reactorData.fuelcostsmod.value) || 0;
             data.attributes.equip.reactor.powerRecDie = reactorData.powdicerec.value;
+        } else {
+            // no reactor installed
+            data.attributes.equip.reactor.fuelMult = 1;
+            data.attributes.equip.reactor.powerRecDie = "1d1";
         }
 
         // Determine Starship shield-based properties based on owned Starship item
@@ -529,6 +546,10 @@ export default class Actor5e extends Actor {
             const shieldsData = shields[0].data;
             data.attributes.equip.shields.capMult = parseFloat(shieldsData.capx.value) || 1;
             data.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.regrateco.value) || 1;
+        } else {
+            // no shields installed
+            data.attributes.equip.shields.capMult = 1;
+            data.attributes.equip.shields.regenRateMult = 1;
         }
     }
 

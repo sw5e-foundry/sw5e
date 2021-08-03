@@ -454,11 +454,16 @@ export default class Actor5e extends Actor {
             data.details.tier = tiers;
             data.attributes.ac.value = 10 + Math.max(tiers - 1, 0);
             data.attributes.hull.die = sizeData.hullDice;
-            data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
-            data.attributes.hull.dice = sizeData.hullDiceStart + tiers - (parseInt(sizeData.hullDiceUsed) || 0);
+            if (["huge", "grg"].includes(sizeData.size)) {
+                data.attributes.hull.dicemax = sizeData.hullDiceStart + 2 * tiers;
+                data.attributes.shld.dicemax = sizeData.shldDiceStart + 2 * tiers;
+            } else {
+                data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
+                data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
+            }
+            data.attributes.hull.dice = data.attributes.hull.dicemax - (parseInt(sizeData.hullDiceUsed) || 0);
             data.attributes.shld.die = sizeData.shldDice;
-            data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
-            data.attributes.shld.dice = sizeData.shldDiceStart + tiers - (parseInt(sizeData.shldDiceUsed) || 0);
+            data.attributes.shld.dice = data.attributes.shld.dicemax - (parseInt(sizeData.shldDiceUsed) || 0);
             sizeData.pwrDice = SW5E.powerDieTypes[tiers];
             data.attributes.power.die = sizeData.pwrDice;
             data.attributes.cost.baseBuild = sizeData.buildBaseCost;

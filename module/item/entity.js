@@ -1039,7 +1039,7 @@ export default class Item5e extends Item {
 
         // Invoke the d20 roll helper
         const roll = await d20Roll(rollConfig);
-        if (roll === false) return null;
+        if (!roll) return null;
 
         // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
         if (ammo && !isObjectEmpty(ammoUpdate)) await ammo.update(ammoUpdate);

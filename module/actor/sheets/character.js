@@ -50,6 +50,11 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(' ')
     }).join(', ');
 
+    // Weight unit
+    sheetData["weightUnit"] = game.settings.get("sw5e", "metricWeightUnits")
+      ? game.i18n.localize("SW5E.AbbreviationKgs")
+      : game.i18n.localize("SW5E.AbbreviationLbs");
+
     // Return data for rendering
     return sheetData;
   }

@@ -47,7 +47,7 @@ export default class Item5e extends Item {
         }
 
         // Ranged weapons - Dex (PH p.194)
-        else if ( ["simpleR", "martialR"].includes(wt) ) return "dex";
+        else if ( ["simpleB", "martialB"].includes(wt) ) return "dex";
       }
       return "str";
     }
@@ -620,7 +620,7 @@ export default class Item5e extends Item {
     }
 
     // Verify that a consumed resource is available
-    if ( !resource ) {
+    if ( resource === undefined ) {
       ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoSource", {name: this.name, type: typeLabel}));
       return false;
     }
@@ -664,7 +664,7 @@ export default class Item5e extends Item {
     // Render the chat card template
     const token = this.actor.token;
     const templateData = {
-      actor: this.actor,
+      actor: this.actor.data,
       tokenId: token?.uuid || null,
       item: this.data,
       data: this.getChatData(),
@@ -682,7 +682,7 @@ export default class Item5e extends Item {
 
     // Create the ChatMessage data object
     const chatData = {
-      user: game.user._id,
+      user: game.user.data._id,
       type: CONST.CHAT_MESSAGE_TYPES.OTHER,
       content: html,
       flavor: this.data.data.chatFlavor || this.name,
@@ -882,21 +882,22 @@ export default class Item5e extends Item {
     }
 
     // Compose roll options
-    const rollConfig = mergeObject({
+    let rollConfig = {
       parts: parts,
       actor: this.actor,
       data: rollData,
       title: title,
       flavor: title,
-      speaker: ChatMessage.getSpeaker({actor: this.actor}),
       dialogOptions: {
         width: 400,
         top: options.event ? options.event.clientY - 80 : null,
         left: window.innerWidth - 710
       },
-      messageData: {"flags.sw5e.roll": {type: "attack", itemId: this.id }}
-    }, options);
-    rollConfig.event = options.event;
+      messageData: {
+        "flags.sw5e.roll": {type: "attack", itemId: this.id },
+        speaker: ChatMessage.getSpeaker({actor: this.actor})
+      }
+    };
 
     // Expanded critical hit thresholds
     if (( this.data.type === "weapon" ) && flags.weaponCriticalThreshold) {
@@ -912,6 +913,9 @@ export default class Item5e extends Item {
 
     // Apply Halfling Lucky
     if ( flags.halflingLucky ) rollConfig.halflingLucky = true;
+
+    // Compose calculated roll options with passed-in roll options 
+    rollConfig = mergeObject(rollConfig, options)
 
     // Invoke the d20 roll helper
     const roll = await d20Roll(rollConfig);
@@ -975,7 +979,10 @@ export default class Item5e extends Item {
     // Scale damage from up-casting powers
     if ( (this.data.type === "power") ) {
       if ( (itemData.scaling.mode === "cantrip") ) {
-        const level = this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
+        let level;
+        if ( this.actor.type === "character" ) level = actorData.details.level;
+        else if ( itemData.preparation.mode === "innate" ) level = Math.ceil(actorData.details.cr);
+        else level = actorData.details.powerLevel;
         this._scaleCantripDamage(parts, itemData.scaling.formula, level, rollData);
       }
       else if ( powerLevel && (itemData.scaling.mode === "level") && itemData.scaling.formula ) {
@@ -1490,7 +1497,7 @@ export default class Item5e extends Item {
   static async createScrollFromPower(power) {
 
     // Get power data
-    const itemData = power instanceof Item5e ? power.data : power;
+    const itemData = (power instanceof Item5e) ? power.toObject() : power;
     const {actionType, description, source, activation, duration, target, range, damage, save, level} = itemData.data;
 
     // Get scroll data
@@ -1510,7 +1517,7 @@ export default class Item5e extends Item {
     const desc = `${scrollIntro}<hr/><h3>${itemData.name} (Level ${level})</h3><hr/>${description.value}<hr/><h3>Scroll Details</h3><hr/>${scrollDetails}`;
 
     // Create the power scroll data
-    const powerScrollData = mergeObject(scrollData, {
+    const powerScrollData = foundry.utils.mergeObject(scrollData, {
       name: `${game.i18n.localize("SW5E.PowerScroll")}: ${itemData.name}`,
       img: itemData.img,
       data: {

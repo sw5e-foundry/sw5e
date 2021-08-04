@@ -92,10 +92,10 @@ SW5E.weaponProficiencies = {
 SW5E.weaponProficienciesMap = {
   "natural": true,
   "simpleM": "sim",
-  "simpleR": "sim",
+  "simpleB": "sim",
   "martialM": "mar",
-  "martialR": "mar"
-}
+  "martialB": "mar"
+};
 
 /**
  * The basic weapon types in 5e. This enables specific weapon proficiencies or
@@ -146,17 +146,24 @@ SW5E.weaponIds = {
 /* -------------------------------------------- */
 
 
-
-SW5E.toolProficiencies = {
+/**
+ * The categories into which Tool items can be grouped.
+ *
+ * @enum {string}
+ */
+SW5E.toolTypes = {
   "art": "SW5E.ToolArtisans",
-  "disg": "SW5E.ToolDisguiseKit",
-  "forg": "SW5E.ToolForgeryKit",
   "game": "SW5E.ToolGamingSet",
-  "herb": "SW5E.ToolHerbalismKit",
-  "music": "SW5E.ToolMusicalInstrument",
-  "navg": "SW5E.ToolNavigators",
-  "pois": "SW5E.ToolPoisonersKit",
-  "thief": "SW5E.ToolThieves",
+  "music": "SW5E.ToolMusicalInstrument"
+};
+
+/**
+ * The categories of tool proficiencies that a character can gain.
+ *
+ * @enum {string}
+ */
+SW5E.toolProficiencies = {
+  ...SW5E.toolTypes,
   "vehicle": "SW5E.ToolVehicle"
 };
 
@@ -174,6 +181,7 @@ SW5E.toolIds = {
   "card": "YwlHI3BVJapz4a3E",
   "carpenter": "8NS6MSOdXtUqD7Ib",
   "cartographer": "fC0lFK8P4RuhpfaU",
+  "chess": "23y8FvWKf9YLcnBL",
   "cobbler": "hM84pZnpCqKfi8XH",
   "cook": "Gflnp29aEv5Lc1ZM",
   "dice": "iBuTM09KD9IoM5L8",
@@ -285,7 +293,7 @@ SW5E.tokenHPColors = {
   temp: 0x66CCFF,
   tempmax: 0x440066,
   negmax: 0x550000
-}
+};
 
 /* -------------------------------------------- */
 
@@ -339,6 +347,21 @@ SW5E.itemCapacityTypes = {
 /* -------------------------------------------- */
 
 /**
+ * List of various item rarities.
+ * @enum {String}
+ */
+SW5E.itemRarity = {
+  "common": "SW5E.ItemRarityCommon",
+  "uncommon": "SW5E.ItemRarityUncommon",
+  "rare": "SW5E.ItemRarityRare",
+  "veryRare": "SW5E.ItemRarityVeryRare",
+  "legendary": "SW5E.ItemRarityLegendary",
+  "artifact": "SW5E.ItemRarityArtifact"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the lengths of time over which an item can have limited use ability
  * @type {Object}
  */
@@ -349,6 +372,19 @@ SW5E.limitedUsePeriods = {
   "charges": "SW5E.Charges"
 };
 
+/* -------------------------------------------- */
+
+/**
+ * Specific equipment types that modify base AC
+ * @type {object}
+ */
+SW5E.armorTypes = {
+  "light": "SW5E.EquipmentLight",
+  "medium": "SW5E.EquipmentMedium",
+  "heavy": "SW5E.EquipmentHeavy",
+  "natural": "SW5E.EquipmentNatural",
+  "shield": "SW5E.EquipmentShield"
+};
 
 /* -------------------------------------------- */
 
@@ -357,17 +393,24 @@ SW5E.limitedUsePeriods = {
  * @type {Object}
  */
 SW5E.equipmentTypes = {
-  "light": "SW5E.EquipmentLight",
-  "medium": "SW5E.EquipmentMedium",
-  "heavy": "SW5E.EquipmentHeavy",
   "bonus": "SW5E.EquipmentBonus",
-  "natural": "SW5E.EquipmentNatural",
-  "shield": "SW5E.EquipmentShield",
   "clothing": "SW5E.EquipmentClothing",
   "trinket": "SW5E.EquipmentTrinket",
-  "vehicle": "SW5E.EquipmentVehicle"
+  "vehicle": "SW5E.EquipmentVehicle",
+  ...SW5E.armorTypes
 };
 
+/* -------------------------------------------- */
+
+/**
+ * The various types of vehicles in which characters can be proficient.
+ * @enum {string}
+ */
+SW5E.vehicleTypes = {
+  "air": "SW5E.VehicleTypeAir",
+  "land": "SW5E.VehicleTypeLand",
+  "water": "SW5E.VehicleTypeWater"
+};
 
 /* -------------------------------------------- */
 
@@ -394,8 +437,75 @@ SW5E.armorProficienciesMap = {
   "medium": "med",
   "heavy": "hvy",
   "shield": "shl"
-}
+};
 
+/**
+ * The basic armor types in 5e. This enables specific armor proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ *
+ * @enum {string}
+ */
+SW5E.armorIds = {
+  "breastplate": "SK2HATQ4abKUlV8i",
+  "chainmail": "rLMflzmxpe8JGTOA",
+  "chainshirt": "p2zChy24ZJdVqMSH",
+  "halfplate": "vsgmACFYINloIdPm",
+  "hide": "n1V07puo0RQxPGuF",
+  "leather": "WwdpHLXGX5r8uZu5",
+  "padded": "GtKV1b5uqFQqpEni",
+  "plate": "OjkIqlW2UpgFcjZa",
+  "ringmail": "nsXZejlmgalj4he9",
+  "scalemail": "XmnlF5fgIO3tg6TG",
+  "splint": "cKpJmsJmU8YaiuqG",
+  "studded": "TIV3B1vbrVHIhQAm"
+};
+
+/**
+ * The basic shield in 5e.
+ *
+ * @enum {string}
+ */
+SW5E.shieldIds = {
+  "shield": "sSs3hSzkKBMNBgTs"
+};
+
+/**
+ * Common armor class calculations.
+ * @enum {object}
+ */
+SW5E.armorClasses = {
+  flat: {
+    label: "SW5E.ArmorClassFlat",
+    formula: "@attributes.ac.flat"
+  },
+  natural: {
+    label: "SW5E.ArmorClassNatural",
+    formula: "@attributes.ac.flat"
+  },
+  default: {
+    label: "SW5E.ArmorClassEquipment",
+    formula: "@attributes.ac.base + @abilities.dex.mod"
+  },
+  mage: {
+    label: "SW5E.ArmorClassMage",
+    formula: "13 + @abilities.dex.mod"
+  },
+  draconic: {
+    label: "SW5E.ArmorClassDraconic",
+    formula: "13 + @abilities.dex.mod"
+  },
+  unarmoredMonk: {
+    label: "SW5E.ArmorClassUnarmoredMonk",
+    formula: "10 + @abilities.dex.mod + @abilities.wis.mod"
+  },
+  unarmoredBarb: {
+    label: "SW5E.ArmorClassUnarmoredBarbarian",
+    formula: "10 + @abilities.dex.mod + @abilities.con.mod"
+  },
+  custom: {
+    label: "SW5E.ArmorClassCustom"
+  }
+};
 
 /* -------------------------------------------- */
 
@@ -488,7 +598,9 @@ SW5E.movementTypes = {
  */
 SW5E.movementUnits = {
   "ft": "SW5E.DistFt",
-  "mi": "SW5E.DistMi"
+  "mi": "SW5E.DistMi",
+  "m": "SW5E.DistM",
+  "km": "SW5E.DistKm"
 };
 
 /**
@@ -515,9 +627,18 @@ for ( let [k, v] of Object.entries(SW5E.movementUnits) ) {
  * @type {Object}
  */
 SW5E.encumbrance = {
-  currencyPerWeight: 50,
-  strMultiplier: 15,
-  vehicleWeightMultiplier: 2000 // 2000 lbs in a ton
+  currencyPerWeight: {
+    imperial: 50,
+    metric: 110
+  },
+  strMultiplier: {
+    imperial: 15,
+    metric: 6.8
+  },
+  vehicleWeightMultiplier: {
+    imperial: 2000, // 2000 lbs in an imperial ton
+    metric: 1000, // 1000 kg in a metric ton
+  }
 };
 
 /* -------------------------------------------- */
@@ -667,9 +788,9 @@ SW5E.powerScalingModes = {
  */
 SW5E.weaponTypes = {
   "simpleM": "SW5E.WeaponSimpleM",
-  "simpleR": "SW5E.WeaponSimpleR",
+  "simpleB": "SW5E.WeaponSimpleR",
   "martialM": "SW5E.WeaponMartialM",
-  "martialR": "SW5E.WeaponMartialR",
+  "martialB": "SW5E.WeaponMartialR",
   "natural": "SW5E.WeaponNatural",
   "improv": "SW5E.WeaponImprov",
   "siege": "SW5E.WeaponSiege"

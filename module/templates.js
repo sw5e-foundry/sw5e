@@ -14,6 +14,7 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/sw5e/templates/actors/parts/actor-inventory.html",
     "systems/sw5e/templates/actors/parts/actor-features.html",
     "systems/sw5e/templates/actors/parts/actor-powerbook.html",
+    "systems/sw5e/templates/actors/parts/actor-warnings.html",
 
     // Item Sheet Partials
     "systems/sw5e/templates/items/parts/item-action.html",

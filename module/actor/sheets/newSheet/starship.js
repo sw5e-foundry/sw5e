@@ -288,13 +288,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     async _onDropItemCreate(itemData) {
         // Increment the number of tier of a starship instead of creating a new item
         if (itemData.type === "starship") {
-            const tier = this.actor.itemTypes.class.find((c) => c.name === itemData.name);
-            let priorTier = cls?.data.data.tier ?? 0;
+            const tier = this.actor.itemTypes.starship.find((c) => c.name === itemData.name);
+            let priorTier = tier?.data.data.tier ?? 0;
             if (!!tier) {
                 const next = Math.min(priorTier + 1, 5);
-                if (next > priorLevel) {
-                    itemData.levels = next;
-                    return tier.update({"data.levels": next});
+                if (next > priorTier) {
+                    itemData.tier = next;
+                    return tier.update({"data.tier": next});
                 }
             }
         }

@@ -494,6 +494,7 @@ export default class Item5e extends Item {
         // Reference aspects of the item data necessary for usage
         const hasArea = this.hasAreaTarget; // Is the ability usage an AoE?
         const resource = id.consume || {}; // Resource consumption
+        const resourceTarget = actor.items.get(resource.target);
         const recharge = id.recharge || {}; // Recharge mechanic
         const uses = id?.uses ?? {}; // Limited uses
         const isPower = this.type === "power"; // Does the item require a power slot?
@@ -504,7 +505,10 @@ export default class Item5e extends Item {
         // Define follow-up actions resulting from the item usage
         let createMeasuredTemplate = hasArea; // Trigger a template creation
         let consumeRecharge = !!recharge.value; // Consume recharge
-        let consumeResource = !!resource.target && resource.type !== "ammo"; // Consume a linked (non-ammo) resource
+        let consumeResource =
+            !!resource.target &&
+            resource.type !== "ammo" &&
+            !(resource.type === "charges" && resourceTarget?.data.data.consumableType === "ammo"); // Consume a linked (non-ammo) resource
         let consumePowerSlot = requirePowerSlot; // Consume a power slot
         let consumeUsage = !!uses.per; // Consume limited uses
         let consumeQuantity = uses.autoDestroy; // Consume quantity of the item in lieu of uses
@@ -1000,6 +1004,24 @@ export default class Item5e extends Item {
             const usage = this._getUsageUpdates({consumeResource: true});
             if (usage === false) return null;
             ammoUpdate = usage.resourceUpdates || {};
+        } else if (consume?.type === "charges") {
+            ammo = this.actor.items.get(consume.target);
+            if (ammo?.data?.data?.consumableType === "ammo") {
+                const uses = ammo.data.data.uses;
+                if (uses.per && uses.max) {
+                    const q = ammo.data.data.uses.value;
+                    const consumeAmount = consume.amount ?? 0;
+                    if (q && q - consumeAmount >= 0) {
+                        this._ammo = ammo;
+                        title += ` [${ammo.name}]`;
+                    }
+                }
+
+                // Get pending ammunition update
+                const usage = this._getUsageUpdates({consumeResource: true});
+                if (usage === false) return null;
+                ammoUpdate = usage.resourceUpdates || {};
+            }
         }
 
         // Compose roll options

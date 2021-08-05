@@ -486,9 +486,9 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship armor-based properties based on owned Starship item
-        const armor = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "ssarmor"); // && (i.data.equipped === true)));
+        const armor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "ssarmor"); // && (i.data.equipped === true)));
         if (armor.length !== 0) {
-            const armorData = armor[0].data;
+            const armorData = armor[0].data.data;
             data.attributes.equip.armor.dr = parseInt(armorData.dmgred.value) || 0;
             data.attributes.equip.armor.maxDex = armorData.armor.dex;
             data.attributes.equip.armor.stealthDisadv = armorData.stealth;
@@ -500,9 +500,9 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship hyperdrive-based properties based on owned Starship item
-        const hyperdrive = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "hyper"); // && (i.data.equipped === true)));
+        const hyperdrive = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "hyper"); // && (i.data.equipped === true)));
         if (hyperdrive.length !== 0) {
-            const hdData = hyperdrive[0].data;
+            const hdData = hyperdrive[0].data.data;
             data.attributes.equip.hyperdrive.class = parseFloat(hdData.hdclass.value) || null;
         } else {
             // no hyperdrive installed
@@ -510,9 +510,9 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship power coupling-based properties based on owned Starship item
-        const pwrcpl = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "powerc"); // && (i.data.equipped === true)));
+        const pwrcpl = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "powerc"); // && (i.data.equipped === true)));
         if (pwrcpl.length !== 0) {
-            const pwrcplData = pwrcpl[0].data;
+            const pwrcplData = pwrcpl[0].data.data;
             data.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.cscap.value) || 0;
             data.attributes.equip.powerCoupling.systemCap = parseInt(pwrcplData.sscap.value) || 0;
         } else {
@@ -529,9 +529,9 @@ export default class Actor5e extends Actor {
         data.attributes.power.weapons.max = 0;
 
         // Determine Starship reactor-based properties based on owned Starship item
-        const reactor = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "reactor"); // && (i.data.equipped === true)));
+        const reactor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "reactor"); // && (i.data.equipped === true)));
         if (reactor.length !== 0) {
-            const reactorData = reactor[0].data;
+            const reactorData = reactor[0].data.data;
             data.attributes.equip.reactor.fuelMult = parseFloat(reactorData.fuelcostsmod.value) || 0;
             data.attributes.equip.reactor.powerRecDie = reactorData.powdicerec.value;
         } else {
@@ -541,9 +541,9 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship shield-based properties based on owned Starship item
-        const shields = actorData.items.filter((i) => i.type === "equipment" && i.data.armor.type === "ssshield"); // && (i.data.equipped === true)));
+        const shields = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "ssshield"); // && (i.data.equipped === true)));
         if (shields.length !== 0) {
-            const shieldsData = shields[0].data;
+            const shieldsData = shields[0].data.data;
             data.attributes.equip.shields.capMult = parseFloat(shieldsData.capx.value) || 1;
             data.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.regrateco.value) || 1;
         } else {

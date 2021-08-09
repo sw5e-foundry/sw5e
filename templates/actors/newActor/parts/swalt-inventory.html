@@ -74,7 +74,7 @@
                     {{#if ../../isCharacter}}
                     <div class="item-detail item-weight">
                         {{#if item.totalWeight}}
-                            {{ item.totalWeight }} {{localize "SW5E.AbbreviationLbs"}}
+                            {{ item.totalWeight }} {{ @root.weightUnit }}
                         {{/if}}
                     </div>
                     {{/if}}

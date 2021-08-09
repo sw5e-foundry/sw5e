@@ -1,5 +1,5 @@
 import TraitSelector from "../apps/trait-selector.js";
-import {onManageActiveEffect, prepareActiveEffectCategories} from "../effects.js";
+import ActiveEffect5e from "../active-effect.js";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types
@@ -71,7 +71,7 @@ export default class ItemSheet5e extends ItemSheet {
         data.isMountable = this._isItemMountable(itemData);
 
         // Prepare Active Effects
-        data.effects = prepareActiveEffectCategories(this.item.effects);
+        data.effects = ActiveEffect5e.prepareActiveEffectCategories(this.item.effects);
 
         // Re-define the template data references (backwards compatible)
         data.item = itemData;
@@ -347,12 +347,15 @@ export default class ItemSheet5e extends ItemSheet {
                 options.choices = CONFIG.SW5E.abilities;
                 options.valueKey = null;
                 break;
+            case "skills.choices":
+                options.choices = CONFIG.SW5E.skills;
+                options.valueKey = null;
+                break;
             case "skills":
                 const skills = this.item.data.data.skills;
-                const choiceSet =
-                    skills.choices && skills.choices.length ? skills.choices : Object.keys(CONFIG.SW5E.skills);
+                const choiceSet = skills.choices?.length ? skills.choices : Object.keys(CONFIG.SW5E.skills);
                 options.choices = Object.fromEntries(
-                    Object.entries(CONFIG.SW5E.skills).filter((skill) => choiceSet.includes(skill[0]))
+                    Object.entries(CONFIG.SW5E.skills).filter(([skill]) => choiceSet.includes(skill))
                 );
                 options.maximum = skills.number;
                 break;

@@ -1,1063 +1,1051 @@
 {
-  "Actor": {
-    "types": ["character", "npc", "vehicle"],
-    "templates": {
-      "common": {
-        "abilities": {
-          "str": {
-            "value": 10,
-            "proficient": 0
-          },
-          "dex": {
-            "value": 10,
-            "proficient": 0
-          },
-          "con": {
-            "value": 10,
-            "proficient": 0
-          },
-          "int": {
-            "value": 10,
-            "proficient": 0
-          },
-          "wis": {
-            "value": 10,
-            "proficient": 0
-          },
-          "cha": {
-            "value": 10,
-            "proficient": 0
-          }
-        },
-        "attributes": {
-          "ac": {
-            "value": 10
-          },
-          "hp": {
-            "value": 10,
-            "min": 0,
-            "max": 10,
-            "temp": 0,
-            "tempmax": 0
-          },
-          "init": {
-            "value": 0,
-            "bonus": 0
-          },
-          "movement": {
-            "burrow": 0,
-            "climb": 0,
-            "crawl": 0,
-            "fly": 0,
-            "roll": 0,
-            "space": 0,
-            "swim": 0,
-            "turn": 0,
-            "walk": 30,
-            "units": "ft",
-            "hover": false
-          }
-        },
-        "details": {
-          "biography": {
-            "value": "",
-            "public": ""
-          }
-        },
-        "traits": {
-          "size": "med",
-          "di": {
-            "value": [],
-            "custom": ""
-          },
-          "dr": {
-            "value": [],
-            "custom": ""
-          },
-          "dv": {
-            "value": [],
-            "custom": ""
-          },
-          "ci": {
-            "value": [],
-            "custom": ""
-          }
-        },
-        "currency": {
-          "gc": 0
-        }
-      },
-      "creature": {
-        "attributes": {
-          "senses": {
-            "darkvision": 0,
-            "blindsight": 0,
-            "tremorsense": 0,
-            "truesight": 0,
-            "units": "ft",
-            "special": ""
-          },
-          "powercasting": "none",
-          "force": {
-            "known": {
-              "value": 0,
-              "max": 0
+    "Actor": {
+        "types": ["character", "npc", "vehicle"],
+        "templates": {
+            "common": {
+                "abilities": {
+                    "str": {
+                        "value": 10,
+                        "proficient": 0
+                    },
+                    "dex": {
+                        "value": 10,
+                        "proficient": 0
+                    },
+                    "con": {
+                        "value": 10,
+                        "proficient": 0
+                    },
+                    "int": {
+                        "value": 10,
+                        "proficient": 0
+                    },
+                    "wis": {
+                        "value": 10,
+                        "proficient": 0
+                    },
+                    "cha": {
+                        "value": 10,
+                        "proficient": 0
+                    }
+                },
+                "attributes": {
+                    "ac": {
+                        "flat": null,
+                        "calc": "default",
+                        "formula": ""
+                    },
+                    "hp": {
+                        "value": 10,
+                        "min": 0,
+                        "max": 10,
+                        "temp": 0,
+                        "tempmax": 0
+                    },
+                    "init": {
+                        "value": 0,
+                        "bonus": 0
+                    },
+                    "movement": {
+                        "burrow": 0,
+                        "climb": 0,
+                        "crawl": 0,
+                        "fly": 0,
+                        "roll": 0,
+                        "space": 0,
+                        "swim": 0,
+                        "turn": 0,
+                        "walk": 30,
+                        "units": "ft",
+                        "hover": false
+                    }
+                },
+                "details": {
+                    "biography": {
+                        "value": "",
+                        "public": ""
+                    }
+                },
+                "traits": {
+                    "size": "med",
+                    "di": {
+                        "value": [],
+                        "custom": ""
+                    },
+                    "dr": {
+                        "value": [],
+                        "custom": ""
+                    },
+                    "dv": {
+                        "value": [],
+                        "custom": ""
+                    },
+                    "ci": {
+                        "value": [],
+                        "custom": ""
+                    }
+                },
+                "currency": {
+                    "gc": 0
+                }
             },
-            "points": {
-              "value": 0,
-              "min": 0,
-              "max": 0,
-              "temp": 0,
-              "tempmax": 0
+            "creature": {
+                "attributes": {
+                    "senses": {
+                        "darkvision": 0,
+                        "blindsight": 0,
+                        "tremorsense": 0,
+                        "truesight": 0,
+                        "units": "ft",
+                        "special": ""
+                    },
+                    "powercasting": "none",
+                    "force": {
+                        "known": {
+                            "value": 0,
+                            "max": 0
+                        },
+                        "points": {
+                            "value": 0,
+                            "min": 0,
+                            "max": 0,
+                            "temp": 0,
+                            "tempmax": 0
+                        },
+                        "level": 0
+                    },
+                    "tech": {
+                        "known": {
+                            "value": 0,
+                            "max": 0
+                        },
+                        "points": {
+                            "value": 0,
+                            "min": 0,
+                            "max": 0,
+                            "temp": 0,
+                            "tempmax": 0
+                        },
+                        "level": 0
+                    }
+                },
+                "details": {
+                    "alignment": "",
+                    "species": ""
+                },
+                "skills": {
+                    "acr": {
+                        "value": 0,
+                        "ability": "dex"
+                    },
+                    "ani": {
+                        "value": 0,
+                        "ability": "wis"
+                    },
+                    "ath": {
+                        "value": 0,
+                        "ability": "str"
+                    },
+                    "dec": {
+                        "value": 0,
+                        "ability": "cha"
+                    },
+                    "ins": {
+                        "value": 0,
+                        "ability": "wis"
+                    },
+                    "itm": {
+                        "value": 0,
+                        "ability": "cha"
+                    },
+                    "inv": {
+                        "value": 0,
+                        "ability": "int"
+                    },
+                    "lor": {
+                        "value": 0,
+                        "ability": "int"
+                    },
+                    "med": {
+                        "value": 0,
+                        "ability": "wis"
+                    },
+                    "nat": {
+                        "value": 0,
+                        "ability": "int"
+                    },
+                    "pil": {
+                        "value": 0,
+                        "ability": "int"
+                    },
+                    "prc": {
+                        "value": 0,
+                        "ability": "wis"
+                    },
+                    "prf": {
+                        "value": 0,
+                        "ability": "cha"
+                    },
+                    "per": {
+                        "value": 0,
+                        "ability": "cha"
+                    },
+                    "slt": {
+                        "value": 0,
+                        "ability": "dex"
+                    },
+                    "ste": {
+                        "value": 0,
+                        "ability": "dex"
+                    },
+                    "sur": {
+                        "value": 0,
+                        "ability": "wis"
+                    },
+                    "tec": {
+                        "value": 0,
+                        "ability": "int"
+                    }
+                },
+                "traits": {
+                    "languages": {
+                        "value": [],
+                        "custom": ""
+                    }
+                },
+                "powers": {
+                    "power1": {
+                        "fvalue": 1000,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1000,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power2": {
+                        "fvalue": 1000,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1000,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power3": {
+                        "fvalue": 1000,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1000,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power4": {
+                        "fvalue": 1000,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1000,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power5": {
+                        "fvalue": 1000,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1000,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power6": {
+                        "fvalue": 1,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power7": {
+                        "fvalue": 1,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power8": {
+                        "fvalue": 1,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1,
+                        "tmax": 0,
+                        "toverride": null
+                    },
+                    "power9": {
+                        "fvalue": 1,
+                        "fmax": 0,
+                        "foverride": null,
+                        "tvalue": 1,
+                        "tmax": 0,
+                        "toverride": null
+                    }
+                },
+                "bonuses": {
+                    "mwak": {
+                        "attack": "",
+                        "damage": ""
+                    },
+                    "rwak": {
+                        "attack": "",
+                        "damage": ""
+                    },
+                    "mpak": {
+                        "attack": "",
+                        "damage": ""
+                    },
+                    "rpak": {
+                        "attack": "",
+                        "damage": ""
+                    },
+                    "abilities": {
+                        "check": "",
+                        "save": "",
+                        "skill": ""
+                    },
+                    "power": {
+                        "forceLightDC": "",
+                        "forceUnivDC": "",
+                        "forceDarkDC": "",
+                        "techDC": ""
+                    }
+                }
+            }
+        },
+        "htmlFields": ["details.biography.value", "details.biography.public"],
+        "character": {
+            "templates": ["common", "creature"],
+            "attributes": {
+                "death": {
+                    "success": 0,
+                    "failure": 0
+                },
+                "encumbrance": {
+                    "value": null,
+                    "max": null
+                },
+                "exhaustion": 0,
+                "inspiration": 0
             },
-            "level": 0
-          },
-          "tech": {
-            "known": {
-              "value": 0,
-              "max": 0
+            "details": {
+                "background": "",
+                "originalClass": "",
+                "xp": {
+                    "value": 0,
+                    "min": 0,
+                    "max": 300
+                },
+                "appearance": "",
+                "trait": "",
+                "ideal": "",
+                "bond": "",
+                "flaw": ""
             },
-            "points": {
-              "value": 0,
-              "min": 0,
-              "max": 0,
-              "temp": 0,
-              "tempmax": 0
+            "resources": {
+                "primary": {
+                    "value": 0,
+                    "max": 0,
+                    "sr": 0,
+                    "lr": 0
+                },
+                "secondary": {
+                    "value": 0,
+                    "max": 0,
+                    "sr": 0,
+                    "lr": 0
+                },
+                "tertiary": {
+                    "value": 0,
+                    "max": 0,
+                    "sr": 0,
+                    "lr": 0
+                }
             },
-            "level": 0
-          }
+            "traits": {
+                "weaponProf": {
+                    "value": [],
+                    "custom": ""
+                },
+                "armorProf": {
+                    "value": [],
+                    "custom": ""
+                },
+                "toolProf": {
+                    "value": [],
+                    "custom": ""
+                }
+            }
         },
-        "details": {
-          "alignment": "",
-          "species": ""
+        "npc": {
+            "templates": ["common", "creature"],
+            "details": {
+                "type": {
+                    "value": "",
+                    "subtype": "",
+                    "swarm": "",
+                    "custom": ""
+                },
+                "environment": "",
+                "cr": 1,
+                "powerForceLevel": 0,
+                "powerTechLevel": 0,
+                "xp": {
+                    "value": 10
+                },
+                "source": ""
+            },
+            "resources": {
+                "legact": {
+                    "value": 0,
+                    "max": 0
+                },
+                "legres": {
+                    "value": 0,
+                    "max": 0
+                },
+                "lair": {
+                    "value": 0,
+                    "initiative": 0
+                }
+            }
         },
-        "skills": {
-          "acr": {
-            "value": 0,
-            "ability": "dex"
-          },
-          "ani": {
-            "value": 0,
-            "ability": "wis"
-          },
-          "ath": {
-            "value": 0,
-            "ability": "str"
-          },
-          "dec": {
-            "value": 0,
-            "ability": "cha"
-          },
-          "ins": {
-            "value": 0,
-            "ability": "wis"
-          },
-          "itm": {
-            "value": 0,
-            "ability": "cha"
-          },
-          "inv": {
-            "value": 0,
-            "ability": "int"
-          },
-          "lor": {
-            "value": 0,
-            "ability": "int"
-          },
-          "med": {
-            "value": 0,
-            "ability": "wis"
-          },
-          "nat": {
-            "value": 0,
-            "ability": "int"
-          },
-          "pil": {
-            "value": 0,
-            "ability": "int"
-          },
-          "prc": {
-            "value": 0,
-            "ability": "wis"
-          },
-          "prf": {
-            "value": 0,
-            "ability": "cha"
-          },
-          "per": {
-            "value": 0,
-            "ability": "cha"
-          },
-          "slt": {
-            "value": 0,
-            "ability": "dex"
-          },
-          "ste": {
-            "value": 0,
-            "ability": "dex"
-          },
-          "sur": {
-            "value": 0,
-            "ability": "wis"
-          },
-          "tec": {
-            "value": 0,
-            "ability": "int"
-          }
+        "starship": {
+            "templates": ["common"],
+            "attributes": {
+                "cargcap": 0,
+                "crewcap": 0,
+                "cscap": 0,
+                "death": {
+                    "failure": 0,
+                    "success": 0
+                },
+                "dr": 0,
+                "engpow": 1,
+                "exhaustion": 0,
+                "hsm": 1,
+                "hull": {
+                    "die": "",
+                    "dice": 0,
+                    "formula": "",
+                    "value": null,
+                    "max": null
+                },
+                "mods": {
+                    "open": 10,
+                    "max": 10
+                },
+                "pwrdice": {
+                    "pwrdie": "",
+                    "recovery": 1,
+                    "central": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "comms": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "engines": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "shields": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "sensors": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "weapons": {
+                        "value": 0,
+                        "max": 0
+                    }
+                },
+                "shld": {
+                    "die": "",
+                    "dice": 0,
+                    "formula": "",
+                    "value": null,
+                    "max": null
+                },
+                "shieldpow": 1,
+                "sscap": 0,
+                "suites": {
+                    "open": 0,
+                    "max": 0
+                },
+                "weaponpow": 1
+            },
+            "details": {
+                "tier": 0,
+                "role": "",
+                "source": ""
+            },
+            "skills": {
+                "ast": {
+                    "value": 0,
+                    "ability": "int"
+                },
+                "bst": {
+                    "value": 0,
+                    "ability": "str"
+                },
+                "dat": {
+                    "value": 0,
+                    "ability": "int"
+                },
+                "hid": {
+                    "value": 0,
+                    "ability": "dex"
+                },
+                "imp": {
+                    "value": 0,
+                    "ability": "cha"
+                },
+                "int": {
+                    "value": 0,
+                    "ability": "cha"
+                },
+                "man": {
+                    "value": 0,
+                    "ability": "dex"
+                },
+                "men": {
+                    "value": 0,
+                    "ability": "cha"
+                },
+                "pat": {
+                    "value": 0,
+                    "ability": "con"
+                },
+                "prb": {
+                    "value": 0,
+                    "ability": "int"
+                },
+                "ram": {
+                    "value": 0,
+                    "ability": "str"
+                },
+                "reg": {
+                    "value": 0,
+                    "ability": "con"
+                },
+                "scn": {
+                    "value": 0,
+                    "ability": "wis"
+                },
+                "swn": {
+                    "value": 0,
+                    "ability": "cha"
+                }
+            },
+            "traits": {
+                "size": "med"
+            }
         },
-        "traits": {
-          "languages": {
-            "value": [],
-            "custom": ""
-          }
-        },
-        "powers": {
-          "power1": {
-            "fvalue": 1000,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1000,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power2": {
-            "fvalue": 1000,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1000,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power3": {
-            "fvalue": 1000,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1000,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power4": {
-            "fvalue": 1000,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1000,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power5": {
-            "fvalue": 1000,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1000,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power6": {
-            "fvalue": 1,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power7": {
-            "fvalue": 1,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power8": {
-            "fvalue": 1,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1,
-            "tmax": 0,
-            "toverride": null
-          },
-          "power9": {
-            "fvalue": 1,
-            "fmax": 0,
-            "foverride": null,
-            "tvalue": 1,
-            "tmax": 0,
-            "toverride": null
-          }
-        },
-        "bonuses": {
-          "mwak": {
-            "attack": "",
-            "damage": ""
-          },
-          "rwak": {
-            "attack": "",
-            "damage": ""
-          },
-          "mpak": {
-            "attack": "",
-            "damage": ""
-          },
-          "rpak": {
-            "attack": "",
-            "damage": ""
-          },
-          "abilities": {
-            "check": "",
-            "save": "",
-            "skill": ""
-          },
-          "power": {
-            "forceLightDC": "",
-            "forceUnivDC": "",
-            "forceDarkDC": "",
-            "techDC": ""
-          }
+        "vehicle": {
+            "templates": ["common"],
+            "vehicleType": "water",
+            "abilities": {
+                "int": {
+                    "value": 0
+                },
+                "wis": {
+                    "value": 0
+                },
+                "cha": {
+                    "value": 0
+                }
+            },
+            "attributes": {
+                "ac": {
+                    "value": null,
+                    "motionless": ""
+                },
+                "actions": {
+                    "stations": false,
+                    "value": 0,
+                    "thresholds": {
+                        "2": null,
+                        "1": null,
+                        "0": null
+                    }
+                },
+                "hp": {
+                    "value": null,
+                    "max": null,
+                    "dt": null,
+                    "mt": null
+                },
+                "capacity": {
+                    "creature": "",
+                    "cargo": 0
+                },
+                "speed": ""
+            },
+            "traits": {
+                "size": "lg",
+                "dimensions": "",
+                "di": {
+                    "value": ["poison", "psychic"]
+                },
+                "ci": {
+                    "value": [
+                        "blinded",
+                        "charmed",
+                        "deafened",
+                        "frightened",
+                        "paralyzed",
+                        "petrified",
+                        "poisoned",
+                        "stunned",
+                        "unconscious"
+                    ]
+                }
+            },
+            "cargo": {
+                "crew": [],
+                "passengers": []
+            }
         }
-      }
     },
-    "htmlFields": ["details.biography.value", "details.biography.public"],
-    "character": {
-      "templates": ["common", "creature"],
-      "attributes": {
-        "death": {
-          "success": 0,
-          "failure": 0
+    "Item": {
+        "types": [
+            "archetype",
+            "background",
+            "backpack",
+            "class",
+            "classfeature",
+            "consumable",
+            "deployment",
+            "deploymentfeature",
+            "equipment",
+            "feat",
+            "fightingmastery",
+            "fightingstyle",
+            "lightsaberform",
+            "loot",
+            "power",
+            "species",
+            "starship",
+            "starshipfeature",
+            "starshipmod",
+            "tool",
+            "venture",
+            "weapon"
+        ],
+        "templates": {
+            "archetypeDescription": {
+                "description": "",
+                "source": ""
+            },
+            "backgroundDescription": {
+                "flavorText": {
+                    "value": ""
+                },
+                "flavorName": {
+                    "value": ""
+                },
+                "flavorDescription": {
+                    "value": ""
+                },
+                "flavorOptions": {
+                    "value": ""
+                },
+                "skillProficiencies": {
+                    "value": ""
+                },
+                "toolProficiencies": {
+                    "value": ""
+                },
+                "languages": {
+                    "value": ""
+                },
+                "equipment": {
+                    "value": ""
+                },
+                "suggestedCharacteristics": {
+                    "value": ""
+                },
+                "featureName": {
+                    "value": ""
+                },
+                "featureText": {
+                    "value": ""
+                },
+                "featOptions": {
+                    "value": ""
+                },
+                "personalityTraitOptions": {
+                    "value": ""
+                },
+                "idealOptions": {
+                    "value": ""
+                },
+                "flawOptions": {
+                    "value": ""
+                },
+                "bondOptions": {
+                    "value": ""
+                },
+                "source": {
+                    "value": ""
+                }
+            },
+            "itemDescription": {
+                "description": {
+                    "value": "",
+                    "chat": "",
+                    "unidentified": ""
+                },
+                "requirements": "",
+                "source": ""
+            },
+            "classDescription": {
+                "description": {
+                    "value": ""
+                }
+            },
+            "fightingmasteryDescription": {
+                "description": {
+                    "value": ""
+                },
+                "source": {
+                    "value": ""
+                }
+            },
+            "fightingstyleDescription": {
+                "description": {
+                    "value": ""
+                },
+                "source": {
+                    "value": ""
+                }
+            },
+            "lightsaberformDescription": {
+                "description": {
+                    "value": ""
+                },
+                "source": {
+                    "value": ""
+                }
+            },
+            "speciesDescription": {
+                "data": "$characteristics-table",
+                "description": {
+                    "value": "",
+                    "chat": "",
+                    "unidentified": ""
+                },
+                "source": "",
+                "traits": ""
+            },
+            "ventureDescription": {
+                "description": {
+                    "value": ""
+                },
+                "prerequisites": [""],
+                "source": {
+                    "value": ""
+                }
+            },
+            "physicalItem": {
+                "quantity": 1,
+                "weight": 0,
+                "price": 0,
+                "attunement": 0,
+                "equipped": false,
+                "rarity": "",
+                "identified": true
+            },
+            "activatedEffect": {
+                "activation": {
+                    "type": "",
+                    "cost": 0,
+                    "condition": ""
+                },
+                "duration": {
+                    "value": null,
+                    "units": ""
+                },
+                "target": {
+                    "value": null,
+                    "width": null,
+                    "units": "",
+                    "type": ""
+                },
+                "range": {
+                    "value": null,
+                    "long": null,
+                    "units": ""
+                },
+                "uses": {
+                    "value": 0,
+                    "max": 0,
+                    "per": null
+                },
+                "consume": {
+                    "type": "",
+                    "target": null,
+                    "amount": null
+                }
+            },
+            "action": {
+                "ability": null,
+                "actionType": null,
+                "attackBonus": 0,
+                "chatFlavor": "",
+                "critical": null,
+                "damage": {
+                    "parts": [],
+                    "versatile": ""
+                },
+                "formula": "",
+                "save": {
+                    "ability": "",
+                    "dc": null,
+                    "scaling": "power"
+                }
+            },
+            "mountable": {
+                "armor": {
+                    "value": 10
+                },
+                "hp": {
+                    "value": 0,
+                    "max": 0,
+                    "dt": null,
+                    "conditions": ""
+                }
+            },
+            "starshipDescription": {
+                "description": {
+                    "value": ""
+                }
+            },
+            "starshipEquipment": {
+                "capx": {
+                    "value": null
+                },
+                "hpperhd": {
+                    "value": null
+                },
+                "regrateco": {
+                    "value": null
+                },
+                "cscap": {
+                    "value": null
+                },
+                "sscap": {
+                    "value": null
+                },
+                "fuelcostsmod": {
+                    "value": null
+                },
+                "powerdicerec": {
+                    "value": null
+                },
+                "hdclass": {
+                    "value": null
+                }
+            }
         },
-        "encumbrance": {
-          "value": null,
-          "max": null
+        "htmlFields": ["description.value", "description.chat", "description.unidentified"],
+        "archetype": {
+            "templates": ["archetypeDescription"],
+            "className": "",
+            "classCasterType": ""
         },
-        "exhaustion": 0,
-        "inspiration": 0
-      },
-      "details": {
-        "background": "",
-        "originalClass": "",
-        "xp": {
-          "value": 0,
-          "min": 0,
-          "max": 300
+        "background": {
+            "templates": ["backgroundDescription"]
         },
-        "appearance": "",
-        "trait": "",
-        "ideal": "",
-        "bond": "",
-        "flaw": ""
-      },
-      "resources": {
-        "primary": {
-          "value": 0,
-          "max": 0,
-          "sr": 0,
-          "lr": 0
+        "backpack": {
+            "templates": ["itemDescription", "physicalItem"],
+            "capacity": {
+                "type": "weight",
+                "value": 0,
+                "weightless": false
+            },
+            "currency": {
+                "gc": 0
+            }
         },
-        "secondary": {
-          "value": 0,
-          "max": 0,
-          "sr": 0,
-          "lr": 0
+        "class": {
+            "templates": ["classDescription"],
+            "className": "",
+            "levels": 1,
+            "archetype": "",
+            "hitDice": "d6",
+            "hitDiceUsed": 0,
+            "saves": [],
+            "skills": {
+                "number": 2,
+                "choices": [],
+                "value": []
+            },
+            "source": "",
+            "powercasting": {
+                "progression": "none",
+                "ability": ""
+            }
         },
-        "tertiary": {
-          "value": 0,
-          "max": 0,
-          "sr": 0,
-          "lr": 0
-        }
-      },
-      "traits": {
-        "weaponProf": {
-          "value": [],
-          "custom": ""
+        "classfeature": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "recharge": {
+                "charged": false,
+                "value": null
+            }
         },
-        "armorProf": {
-          "value": [],
-          "custom": ""
+        "deployment": {
+            "templates": ["classDescription"],
+            "flavorText": "",
+            "source": ""
         },
-        "toolProf": {
-          "value": [],
-          "custom": ""
-        }
-      }
-    },
-    "npc": {
-      "templates": ["common", "creature"],
-      "details": {
-        "type": {
-          "value": "",
-          "subtype": "",
-          "swarm": "",
-          "custom": ""
+        "deploymentfeature": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "recharge": {
+                "charged": false,
+                "value": null
+            }
         },
-        "environment": "",
-        "cr": 1,
-        "powerForceLevel": 0,
-        "powerTechLevel": 0,
-        "xp": {
-          "value": 10
+        "fightingmastery": {
+            "templates": ["fightingmasteryDescription"]
         },
-        "source": ""
-      },
-      "resources": {
-        "legact": {
-          "value": 0,
-          "max": 0
+        "fightingstyle": {
+            "templates": ["fightingstyleDescription"]
         },
-        "legres": {
-          "value": 0,
-          "max": 0
+        "lightsaberform": {
+            "templates": ["lightsaberformDescription"]
         },
-        "lair": {
-          "value": 0,
-          "initiative": 0
-        }
-      }
-    },
-    "starship": {
-      "templates": ["common"],
-      "attributes": {
-        "cargcap": 0,
-        "crewcap": 0,
-        "cscap": 0,
-        "death": {
-          "failure": 0,
-          "success": 0
+        "venture": {
+            "templates": ["ventureDescription"]
         },
-        "dr": 0,
-        "engpow": 1,
-        "exhaustion": 0,
-        "hsm": 1,
-        "hull": {
-          "die": "",
-          "dice": 0,
-          "formula":"",
-          "value": null,
-          "max": null
-        },
-        "mods": {
-          "open": 10,
-          "max": 10
-        },
-        "pwrdice": {
-          "pwrdie": "",
-          "recovery": 1,
-          "central": {
-            "value": 0,
-            "max": 0
-          },
-          "comms": {
-            "value": 0,
-            "max": 0
-          },
-          "engines": {
-            "value": 0,
-            "max": 0
-          },
-          "shields": {
-            "value": 0,
-            "max": 0
-          },
-          "sensors": {
-            "value": 0,
-            "max": 0
-          },
-          "weapons": {
-            "value": 0,
-            "max": 0
-          }
-        },
-        "shld": {
-          "die": "",
-          "dice": 0,
-          "formula":"",
-          "value": null,
-          "max": null
-        },
-        "shieldpow": 1,
-        "sscap": 0,
-        "suites": {
-          "open": 0,
-          "max": 0
-        },
-        "weaponpow": 1
-      },
-      "details": {
-        "tier": 0,
-        "role": "",
-        "source": ""
-      },
-      "skills": {
-        "ast": {
-          "value": 0,
-          "ability": "int"
-        },
-        "bst": {
-          "value": 0,
-          "ability": "str"
-        },
-        "dat": {
-          "value": 0,
-          "ability": "int"
-        },
-        "hid": {
-          "value": 0,
-          "ability": "dex"
-        },
-        "imp": {
-          "value": 0,
-          "ability": "cha"
-        },
-        "int": {
-          "value": 0,
-          "ability": "cha"
-        },
-        "man": {
-          "value": 0,
-          "ability": "dex"
-        },
-        "men": {
-          "value": 0,
-          "ability": "cha"
-        },
-        "pat": {
-          "value": 0,
-          "ability": "con"
-        },
-        "prb": {
-          "value": 0,
-          "ability": "int"
-        },
-        "ram": {
-          "value": 0,
-          "ability": "str"
-        },
-        "reg": {
-          "value": 0,
-          "ability": "con"
-        },
-        "scn": {
-          "value": 0,
-          "ability": "wis"
-        },
-        "swn": {
-          "value": 0,
-          "ability": "cha"
-        }
-      },
-      "traits": {
-        "size": "med"
-      }
-    },
-    "vehicle": {
-      "templates": ["common"],
-      "abilities": {
-        "int": {
-          "value": 0
-        },
-        "wis": {
-          "value": 0
-        },
-        "cha": {
-          "value": 0
-        }
-      },
-      "attributes": {
-        "ac": {
-          "value": null,
-          "motionless": ""
-        },
-        "actions": {
-          "stations": false,
-          "value": 0,
-          "thresholds": {
-            "2": null,
-            "1": null,
-            "0": null
-          }
-        },
-        "hp": {
-          "value": null,
-          "max": null,
-          "dt": null,
-          "mt": null
-        },
-        "capacity": {
-          "creature": "",
-          "cargo": 0
-        },
-        "speed": ""
-      },
-      "traits": {
-        "size": "lg",
-        "dimensions": "",
-        "di": {
-          "value": ["poison", "psychic"]
-        },
-        "ci": {
-          "value": [
-            "blinded",
-            "charmed",
-            "deafened",
-            "frightened",
-            "paralyzed",
-            "petrified",
-            "poisoned",
-            "stunned",
-            "unconscious"
-          ]
-        }
-      },
-      "cargo": {
-        "crew": [],
-        "passengers": []
-      }
-    }
-  },
-  "Item": {
-    "types": [
-      "archetype",
-      "background",
-      "backpack",
-      "class",
-      "classfeature",
-      "consumable",
-      "deployment",
-      "deploymentfeature",
-      "equipment",
-      "feat",
-      "fightingmastery",
-      "fightingstyle",
-      "lightsaberform",
-      "loot",
-      "power",
-      "species",
-      "starship",
-      "starshipfeature",
-      "starshipmod",
-      "tool",
-      "venture",
-      "weapon"
-    ],
-    "templates": {
-      "archetypeDescription": {
-        "description": "",
-        "source": ""
-      },
-      "backgroundDescription": {
-        "flavorText": {
-          "value": ""
-        },
-        "flavorName": {
-          "value": ""
-        },
-        "flavorDescription": {
-          "value": ""
-        },
-        "flavorOptions": {
-          "value": ""
-        },
-        "skillProficiencies": {
-          "value": ""
-        },
-        "toolProficiencies": {
-          "value": ""
-        },
-        "languages": {
-          "value": ""
+        "consumable": {
+            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+            "consumableType": "potion",
+            "uses": {
+                "autoDestroy": false
+            }
         },
         "equipment": {
-          "value": ""
+            "templates": [
+                "itemDescription",
+                "physicalItem",
+                "activatedEffect",
+                "action",
+                "mountable",
+                "starshipEquipment"
+            ],
+            "armor": {
+                "type": "light",
+                "value": 10,
+                "dex": null
+            },
+            "speed": {
+                "value": null,
+                "conditions": ""
+            },
+            "strength": 0,
+            "stealth": false,
+            "proficient": true
         },
-        "suggestedCharacteristics": {
-          "value": ""
+        "feat": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "requirements": "",
+            "recharge": {
+                "value": null,
+                "charged": false
+            }
         },
-        "featureName": {
-          "value": ""
+        "loot": {
+            "templates": ["itemDescription", "physicalItem"]
         },
-        "featureText": {
-          "value": ""
+        "species": {
+            "templates": ["speciesDescription"]
         },
-        "featOptions": {
-          "value": ""
+        "tool": {
+            "templates": ["itemDescription", "physicalItem"],
+            "toolType": "",
+            "ability": "int",
+            "chatFlavor": "",
+            "proficient": 0
         },
-        "personalityTraitOptions": {
-          "value": ""
+        "power": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "level": 1,
+            "school": "",
+            "components": {
+                "value": "",
+                "vocal": false,
+                "somatic": false,
+                "material": false,
+                "ritual": false,
+                "concentration": false
+            },
+            "materials": {
+                "value": "",
+                "consumed": false,
+                "cost": 0,
+                "supply": 0
+            },
+            "preparation": {
+                "mode": "prepared",
+                "prepared": true
+            },
+            "scaling": {
+                "mode": "none",
+                "formula": null
+            }
         },
-        "idealOptions": {
-          "value": ""
+        "starship": {
+            "templates": ["starshipDescription"],
+            "size": "",
+            "tier": 0,
+            "hullDice": "d6",
+            "hullDiceStart": 1,
+            "hullDiceUsed": 0,
+            "shldDice": "d6",
+            "shldDiceStart": 1,
+            "shldDiceUsed": 0,
+            "pwrDice": "1",
+            "source": "SotG"
         },
-        "flawOptions": {
-          "value": ""
+        "starshipfeature": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "size": "med",
+            "tier": 0
         },
-        "bondOptions": {
-          "value": ""
+        "starshipmod": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "recharge": {
+                "charged": false,
+                "value": null
+            },
+            "system": {
+                "value": ""
+            },
+            "grade": {
+                "value": ""
+            },
+            "basecost": {
+                "value": ""
+            },
+            "prerequisites": {
+                "value": ""
+            }
         },
-        "source": {
-          "value": ""
+        "weapon": {
+            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
+            "weaponType": "simpleVW",
+            "properties": {},
+            "proficient": true
         }
-      },
-      "itemDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "requirements": "",
-        "source": ""
-      },
-      "classDescription": {
-        "description": {
-          "value": ""
-        }
-      },
-      "fightingmasteryDescription": {
-        "description": {
-          "value": ""
-        },
-        "source": {
-          "value": ""
-        }
-      },
-      "fightingstyleDescription": {
-        "description": {
-          "value": ""
-        },
-        "source": {
-          "value": ""
-        }
-      },
-      "lightsaberformDescription": {
-        "description": {
-          "value": ""
-        },
-        "source": {
-          "value": ""
-        }
-      },
-      "speciesDescription": {
-        "data": "$characteristics-table",
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "traits": ""
-      },
-      "ventureDescription": {
-        "description": {
-          "value": ""
-        },
-        "prerequisites": [""],
-        "source": {
-          "value": ""
-        }
-      },
-      "physicalItem": {
-        "quantity": 1,
-        "weight": 0,
-        "price": 0,
-        "attuned": false,
-        "attunement": 0,
-        "equipped": false,
-        "rarity": "",
-        "identified": true
-      },
-      "activatedEffect": {
-        "activation": {
-          "type": "",
-          "cost": 0,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": ""
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        }
-      },
-      "action": {
-        "ability": null,
-        "actionType": null,
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": null,
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power"
-        }
-      },
-      "mountable": {
-        "armor": {
-          "value": 10
-        },
-        "hp": {
-          "value": 0,
-          "max": 0,
-          "dt": null,
-          "conditions": ""
-        }
-      },
-      "starshipDescription": {
-        "description": {
-          "value": ""
-        }
-      },
-      "starshipEquipment": {
-        "capx": {
-          "value": null
-        },
-        "hpperhd": {
-          "value": null
-        },
-        "regrateco": {
-          "value": null
-        },
-        "cscap": {
-          "value": null
-        },
-        "sscap": {
-          "value": null
-        },
-        "fuelcostsmod": {
-          "value": null
-        },
-        "powerdicerec": {
-          "value": null
-        },
-        "hdclass": {
-          "value": null
-        }
-      }
-    },
-    "htmlFields": [
-      "description.value",
-      "description.chat",
-      "description.unidentified"
-    ],
-    "archetype": {
-      "templates": ["archetypeDescription"],
-      "className": "",
-      "classCasterType": ""
-    },
-    "background": {
-      "templates": ["backgroundDescription"]
-    },
-    "backpack": {
-      "templates": ["itemDescription", "physicalItem"],
-      "capacity": {
-        "type": "weight",
-        "value": 0,
-        "weightless": false
-      },
-      "currency": {
-        "gc": 0
-      }
-    },
-    "class": {
-      "templates": ["classDescription"],
-      "className": "",
-      "levels": 1,
-      "archetype": "",
-      "hitDice": "d6",
-      "hitDiceUsed": 0,
-      "saves": [],
-      "skills": {
-        "number": 2,
-        "choices": [],
-        "value": []
-      },
-      "source": "",
-      "powercasting": {
-        "progression": "none",
-        "ability": ""
-      }
-    },
-    "classfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "recharge": {
-        "charged": false,
-        "value": null
-      }
-    },
-    "deployment": {
-      "templates": ["classDescription"],
-      "flavorText": "",
-      "source": ""
-    },
-    "deploymentfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "recharge": {
-        "charged": false,
-        "value": null
-      }
-    },
-    "fightingmastery": {
-      "templates": ["fightingmasteryDescription"]
-    },
-    "fightingstyle": {
-      "templates": ["fightingstyleDescription"]
-    },
-    "lightsaberform": {
-      "templates": ["lightsaberformDescription"]
-    },
-    "venture": {
-      "templates": ["ventureDescription"]
-    },
-    "consumable": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "activatedEffect",
-        "action"
-      ],
-      "consumableType": "potion",
-      "uses": {
-        "autoDestroy": false
-      }
-    },
-    "equipment": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "activatedEffect",
-        "action",
-        "mountable",
-        "starshipEquipment"
-      ],
-      "armor": {
-        "type": "light",
-        "value": 10,
-        "dex": null
-      },
-      "speed": {
-        "value": null,
-        "conditions": ""
-      },
-      "strength": 0,
-      "stealth": false,
-      "proficient": true
-    },
-    "feat": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "requirements": "",
-      "recharge": {
-        "value": null,
-        "charged": false
-      }
-    },
-    "loot": {
-      "templates": ["itemDescription", "physicalItem"]
-    },
-    "species": {
-      "templates": ["speciesDescription"]
-    },
-    "tool": {
-      "templates": ["itemDescription", "physicalItem"],
-      "ability": "int",
-      "chatFlavor": "",
-      "proficient": 0
-    },
-    "power": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "level": 1,
-      "school": "",
-      "components": {
-        "value": "",
-        "vocal": false,
-        "somatic": false,
-        "material": false,
-        "ritual": false,
-        "concentration": false
-      },
-      "materials": {
-        "value": "",
-        "consumed": false,
-        "cost": 0,
-        "supply": 0
-      },
-      "preparation": {
-        "mode": "prepared",
-        "prepared": true
-      },
-      "scaling": {
-        "mode": "none",
-        "formula": null
-      }
-    },
-    "starship": {
-      "templates": ["starshipDescription"],
-      "size": "",
-      "tier": 0,
-      "hullDice": "d6",
-      "hullDiceStart": 1,
-      "hullDiceUsed": 0,
-      "shldDice": "d6",
-      "shldDiceStart": 1,
-      "shldDiceUsed": 0,
-      "pwrDice": "1",
-      "source": "SotG"
-    },
-    "starshipfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "size": "med",
-      "tier": 0
-    },
-    "starshipmod": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "recharge": {
-        "charged": false,
-        "value": null
-      },
-      "system": {
-        "value": ""
-      },
-      "grade": {
-        "value": ""
-      },
-      "basecost": {
-        "value": ""
-      },
-      "prerequisites": {
-        "value": ""
-      }
-    },
-    "weapon": {
-      "templates": [
-        "itemDescription",
-        "physicalItem",
-        "activatedEffect",
-        "action",
-        "mountable"
-      ],
-      "weaponType": "simpleVW",
-      "properties": {},
-      "proficient": true
     }
-  }
 }

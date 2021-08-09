@@ -12,7 +12,7 @@ export const migrateWorld = async function () {
     for await (let a of game.actors.contents) {
         try {
             console.log(`Checking Actor entity ${a.name} for migration needs`);
-            const updateData = await migrateActorData(a.data);
+            const updateData = await migrateActorData(a.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
                 console.log(`Migrating Actor entity ${a.name}`);
                 await a.update(updateData, {enforceTypes: false});
@@ -91,7 +91,7 @@ export const migrateCompendium = async function (pack) {
         try {
             switch (entity) {
                 case "Actor":
-                    updateData = await migrateActorData(doc.data);
+                    updateData = await migrateActorData(doc.toObject());
                     break;
                 case "Item":
                     updateData = migrateItemData(doc.toObject());
@@ -117,6 +117,49 @@ export const migrateCompendium = async function (pack) {
     console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
 };
 
+/**
+ * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
+ * check to see if the actor has armor already equipped, and opt to use that instead.
+ * @param pack
+ * @return {Promise}
+ */
+export const migrateArmorClass = async function (pack) {
+    if (typeof pack === "string") pack = game.packs.get(pack);
+    if (pack.metadata.entity !== "Actor") return;
+    const wasLocked = pack.locked;
+    await pack.configure({locked: false});
+    const actors = await pack.getDocuments();
+    const updates = [];
+    const armor = new Set(Object.keys(CONFIG.SW5E.armorTypes));
+
+    for (const actor of actors) {
+        try {
+            console.log(`Migrating ${actor.name}...`);
+            const src = actor.toObject();
+            const update = {_id: actor.id};
+
+            // Perform the normal migration.
+            _migrateActorAC(src, update);
+            updates.push(update);
+
+            // CASE 1: Armor is equipped
+            const hasArmorEquipped = actor.itemTypes.equipment.some((e) => {
+                return armor.has(e.data.data.armor?.type) && e.data.data.equipped;
+            });
+            if (hasArmorEquipped) update["data.attributes.ac.calc"] = "default";
+            // CASE 2: NPC Natural Armor
+            else if (src.type === "npc") update["data.attributes.ac.calc"] = "natural";
+        } catch (e) {
+            console.warn(`Failed to migrate armor class for Actor ${actor.name}`, e);
+        }
+    }
+
+    await Actor.implementation.updateDocuments(updates, {pack: pack.collection});
+    await pack.getDocuments(); // Force a re-prepare of all actors.
+    await pack.configure({locked: wasLocked});
+    console.log(`Migrated the AC of all Actors from Compendium ${pack.collection}`);
+};
+
 /* -------------------------------------------- */
 /*  Entity Type Migration Helpers               */
 /* -------------------------------------------- */
@@ -135,6 +178,7 @@ export const migrateActorData = async function (actor) {
         _migrateActorMovement(actor, updateData);
         _migrateActorSenses(actor, updateData);
         _migrateActorType(actor, updateData);
+        _migrateActorAC(actor, updateData);
     }
 
     // Migrate Owned Items
@@ -215,6 +259,7 @@ export const migrateItemData = function (item) {
     const updateData = {};
     _migrateItemClassPowerCasting(item, updateData);
     _migrateItemAttunement(item, updateData);
+    _migrateItemRarity(item, updateData);
     return updateData;
 };
 
@@ -229,6 +274,7 @@ export const migrateActorItemData = async function (item, actor) {
     const updateData = {};
     _migrateItemClassPowerCasting(item, updateData);
     _migrateItemAttunement(item, updateData);
+    _migrateItemRarity(item, updateData);
     await _migrateItemPower(item, actor, updateData);
     return updateData;
 };
@@ -598,6 +644,20 @@ function _migrateItemClassPowerCasting(item, updateData) {
 /* -------------------------------------------- */
 
 /**
+ * Migrate the actor attributes.ac.value to the new ac.flat override field.
+ * @private
+ */
+function _migrateActorAC(actorData, updateData) {
+    const ac = actorData.data?.attributes?.ac;
+    if (!Number.isNumeric(ac?.value)) return;
+    updateData["data.attributes.ac.flat"] = ac.value;
+    updateData["data.attributes.ac.-=value"] = null;
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
  * Update an Power Item's data based on compendium
  * @param {Object} item    The data object for an item
  * @param {Object} actor    The data object for the actor owning the item
@@ -659,6 +719,26 @@ function _migrateItemAttunement(item, updateData) {
     if (item.data?.attuned === undefined) return updateData;
     updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
     updateData["data.-=attuned"] = null;
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Attempt to migrate item rarity from freeform string to enum value.
+ *
+ * @param {object} item        Item data to migrate
+ * @param {object} updateData  Existing update to expand upon
+ * @return {object}            The updateData to apply
+ * @private
+ */
+function _migrateItemRarity(item, updateData) {
+    if (item.data?.rarity === undefined) return updateData;
+    const rarity = Object.keys(CONFIG.SW5E.itemRarity).find(
+        (key) =>
+            CONFIG.SW5E.itemRarity[key].toLowerCase() === item.data.rarity.toLowerCase() || key === item.data.rarity
+    );
+    updateData["data.rarity"] = rarity ?? "";
     return updateData;
 }
 

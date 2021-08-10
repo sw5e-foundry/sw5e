@@ -619,7 +619,7 @@ export default class Item5e extends Item {
             const level = this.actor?.data.data.powers[consumePowerLevel];
             const fp = this.actor.data.data.attributes.force.points;
             const tp = this.actor.data.data.attributes.tech.points;
-            const powerCost = id.level + 1;
+            const powerCost = parseInt(id.level, 10) + 1;
             const innatePower = this.actor.data.data.attributes.powercasting === "innate";
             if (!innatePower) {
                 switch (id.school) {

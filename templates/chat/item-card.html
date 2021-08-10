@@ -1,4 +1,4 @@
-<div class="sw5e chat-card item-card" data-actor-id="{{actor.data._id}}" data-item-id="{{item._id}}"
+<div class="sw5e chat-card item-card" data-actor-id="{{actor._id}}" data-item-id="{{item._id}}"
      {{#if tokenId}}data-token-id="{{tokenId}}"{{/if}} {{#if isPower}}data-power-level="{{item.data.level}}"{{/if}}>
     <header class="card-header flexrow">
         <img src="{{item.img}}" title="{{item.name}}" width="36" height="36"/>
@@ -27,7 +27,7 @@
         {{/if}}
 
         {{#if hasSave}}
-        <button data-action="save" data-ability="{{data.save.ability}}" disabled>
+        <button data-action="save" data-ability="{{data.save.ability}}">
             {{ localize "SW5E.SavingThrow" }} {{labels.save}}
         </button>
         {{/if}}
@@ -39,7 +39,6 @@
         {{#if hasAreaTarget}}
         <button data-action="placeTemplate">{{ localize "SW5E.PlaceTemplate" }}</button>
         {{/if}}
-
 
         {{#if isTool}}
             <button data-action="toolCheck" data-ability="{{data.ability.value}}">{{ localize "SW5E.Use" }} {{item.name}}</button>

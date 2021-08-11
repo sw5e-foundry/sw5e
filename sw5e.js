@@ -116,6 +116,7 @@ Hooks.once("init", function () {
     // Register Roll Extensions
     CONFIG.Dice.rolls.push(dice.D20Roll);
     CONFIG.Dice.rolls.push(dice.DamageRoll);
+    CONFIG.Dice.rolls.push(dice.AttribDieRoll);
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);

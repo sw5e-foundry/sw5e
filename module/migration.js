@@ -179,6 +179,9 @@ export const migrateActorData = async function (actor) {
         _migrateActorSenses(actor, updateData);
         _migrateActorType(actor, updateData);
         _migrateActorAC(actor, updateData);
+        if (["character", "npc"].includes(actor.type)) {
+            _migrateActorAttribRank(actor, updateData);
+        }
     }
 
     // Migrate Owned Items
@@ -217,7 +220,9 @@ export const migrateActorData = async function (actor) {
     }
 
     // migrate powers last since it relies on item classes being migrated first.
-    _migrateActorPowers(actor, updateData);
+    if (["character", "npc"].includes(actor.type)) {
+        _migrateActorPowers(actor, updateData);
+    }
 
     return updateData;
 };
@@ -299,7 +304,7 @@ export const migrateSceneData = async function (scene) {
             } else if (!t.actorLink) {
                 const actorData = duplicate(t.actorData);
                 actorData.type = token.actor?.type;
-                const update = migrateActorData(actorData);
+                const update = await migrateActorData(actorData);
                 ["items", "effects"].forEach((embeddedName) => {
                     if (!update[embeddedName]?.length) return;
                     const updates = new Map(update[embeddedName].map((u) => [u._id, u]));
@@ -422,7 +427,7 @@ function _migrateActorMovement(actorData, updateData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor speed string to movement object
+ * Migrate the actor to have Force and Tech attributes
  * @private
  */
 function _migrateActorPowers(actorData, updateData) {
@@ -739,6 +744,30 @@ function _migrateItemRarity(item, updateData) {
             CONFIG.SW5E.itemRarity[key].toLowerCase() === item.data.rarity.toLowerCase() || key === item.data.rarity
     );
     updateData["data.rarity"] = rarity ?? "";
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor to have Rank Deployment attributes
+ * @private
+ */
+function _migrateActorAttribRank(actorData, updateData) {
+    const ad = actorData.data;
+
+    // If new Rank data is not present, create it
+    let hasNewAttrib = ad?.attributes?.rank?.total !== undefined;
+    if (!hasNewAttrib) {
+        updateData["data.attributes.rank.total"] = 0;
+        updateData["data.attributes.rank.coord"] = 0;
+        updateData["data.attributes.rank.gunner"] = 0;
+        updateData["data.attributes.rank.mechanic"] = 0;
+        updateData["data.attributes.rank.operator"] = 0;
+        updateData["data.attributes.rank.pilot"] = 0;
+        updateData["data.attributes.rank.technician"] = 0;
+    }
+
     return updateData;
 }
 

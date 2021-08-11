@@ -57,7 +57,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
         };
 
         // Start by classifying items into groups for rendering
-        let [forcepowers, techpowers, other] = data.items.reduce(
+        let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other] = data.items.reduce(
             (arr, item) => {
                 item.img = item.img || CONST.DEFAULT_TOKEN;
                 item.isStack = Number.isNumeric(item.data.quantity) && item.data.quantity !== 1;
@@ -68,15 +68,19 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
                 item.hasTarget = !!item.data.target && !["none", ""].includes(item.data.target.type);
                 if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) arr[0].push(item);
                 else if (item.type === "power" && ["tec"].includes(item.data.school)) arr[1].push(item);
-                else arr[2].push(item);
+                else if (item.type === "deployment") arr[2].push(item);
+                else if (item.type === "deploymentfeature") arr[3].push(item);
+                else if (item.type === "venture") arr[4].push(item);
+                else arr[5].push(item);
                 return arr;
             },
-            [[], [], []]
+            [[], [], [], [], [], []]
         );
 
         // Apply item filters
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
+        ssfeats = this._filterItems(feats, this._filters.ssfeatures);
         other = this._filterItems(other, this._filters.features);
 
         // Organize Powerbook
@@ -91,11 +95,51 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
                 else features.passive.items.push(item);
             } else features.equipment.items.push(item);
         }
+        // Organize Starship Features
+        const ssfeatures = {
+            deployments: {
+                label: "SW5E.ItemTypeDeploymentPl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "deployment"},
+                isDeployment: true
+            },
+            deploymentfeatures: {
+                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                items: [],
+                hasActions: true,
+                dataset: {type: "deploymentfeature"},
+                isDeploymentfeature: true
+            },
+            ventures: {
+                label: "SW5E.ItemTypeVenturePl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "venture"},
+                isVenture: true
+            },
+            active: {
+                label: "SW5E.FeatureActive",
+                items: [],
+                hasActions: true,
+                dataset: {"type": "feat", "activation.type": "action"}
+            },
+            passive: {label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"}}
+        };
+        for (let ssf of ssfeats) {
+            if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
+            else ssfeatures.passive.items.push(ssf);
+        }
+        deployments.sort((a, b) => b.data.rank - a.data.rank);
+        ssfeatures.deployments.items = deployments;
+        ssfeatures.deploymentfeatures.items = deploymentfeatures;
+        ssfeatures.ventures.items = ventures;
 
         // Assign and return
         data.features = Object.values(features);
         data.forcePowerbook = forcePowerbook;
         data.techPowerbook = techPowerbook;
+        data.ssfeatures = Object.values(ssfeatures);
     }
 
     /* -------------------------------------------- */

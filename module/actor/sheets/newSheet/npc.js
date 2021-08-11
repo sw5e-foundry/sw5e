@@ -57,7 +57,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
         };
 
         // Start by classifying items into groups for rendering
-        let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other] = data.items.reduce(
+        let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other, ssfeats] = data.items.reduce(
             (arr, item) => {
                 item.img = item.img || CONST.DEFAULT_TOKEN;
                 item.isStack = Number.isNumeric(item.data.quantity) && item.data.quantity !== 1;
@@ -74,13 +74,13 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
                 else arr[5].push(item);
                 return arr;
             },
-            [[], [], [], [], [], []]
+            [[], [], [], [], [], [], []]
         );
 
         // Apply item filters
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
-        ssfeats = this._filterItems(feats, this._filters.ssfeatures);
+        ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
         other = this._filterItems(other, this._filters.features);
 
         // Organize Powerbook

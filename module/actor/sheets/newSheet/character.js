@@ -94,7 +94,6 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             forcepowers,
             techpowers,
             feats,
-            ssfeats,
             classes,
             deployments,
             deploymentfeatures,
@@ -105,7 +104,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             backgrounds,
             fightingstyles,
             fightingmasteries,
-            lightsaberforms
+            lightsaberforms,
+            ssfeats
         ] = data.items.reduce(
             (arr, item) => {
                 // Item details
@@ -165,7 +165,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
         feats = this._filterItems(feats, this._filters.features);
-        ssfeats = this._filterItems(feats, this._filters.ssfeatures);
+        ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
 
         // Organize items
         for (let i of items) {

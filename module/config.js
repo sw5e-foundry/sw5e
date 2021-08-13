@@ -400,7 +400,6 @@ SW5E.armorTypes = {
  */
 SW5E.equipmentTypes = {
     hyper: "SW5E.EquipmentHyperdrive",
-    bonus: "SW5E.EquipmentBonus",
     powerc: "SW5E.EquipmentPowerCoupling",
     reactor: "SW5E.EquipmentReactor",
     clothing: "SW5E.EquipmentClothing",

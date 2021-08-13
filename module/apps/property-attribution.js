@@ -16,14 +16,14 @@
  */
 export default class PropertyAttribution extends Application {
     /**
-     * @param {Document} object - Object containing the property to be attributed.
-     * @param {object.<string, AttributionDescription[]>} attribution - Object containing all of the attribution data.
-     * @param {string} property - Dot separated path to the property.
+     * @param {Document} object                        The Document that owns the property being attributed.
+     * @param {AttributionDescription[]} attributions  An array of all the attribution data.
+     * @param {string} property                        Dot separated path to the property.
      */
-    constructor(object, attribution, property, options = {}) {
+    constructor(object, attributions, property, options = {}) {
         super(options);
         this.object = object;
-        this.attribution = attribution;
+        this.attributions = attributions;
         this.property = property;
     }
 
@@ -64,7 +64,7 @@ export default class PropertyAttribution extends Application {
             total = property.value;
         }
 
-        const sources = foundry.utils.duplicate(this.attribution[this.property]);
+        const sources = foundry.utils.duplicate(this.attributions);
         return {
             sources: sources.map((entry) => {
                 if (entry.label.startsWith("@")) {

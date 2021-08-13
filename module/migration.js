@@ -9,7 +9,7 @@ export const migrateWorld = async function () {
     );
 
     // Migrate World Actors
-    for await (let a of game.actors.contents) {
+    for await (let a of game.actors) {
         try {
             console.log(`Checking Actor entity ${a.name} for migration needs`);
             const updateData = await migrateActorData(a.toObject());
@@ -24,7 +24,7 @@ export const migrateWorld = async function () {
     }
 
     // Migrate World Items
-    for (let i of game.items.contents) {
+    for (let i of game.items) {
         try {
             const updateData = migrateItemData(i.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
@@ -38,7 +38,7 @@ export const migrateWorld = async function () {
     }
 
     // Migrate Actor Override Tokens
-    for (let s of game.scenes.contents) {
+    for (let s of game.scenes) {
         try {
             const updateData = await migrateSceneData(s.data);
             if (!foundry.utils.isObjectEmpty(updateData)) {
@@ -46,7 +46,7 @@ export const migrateWorld = async function () {
                 await s.update(updateData, {enforceTypes: false});
                 // If we do not do this, then synthetic token actors remain in cache
                 // with the un-updated actorData.
-                s.tokens.contents.forEach((t) => (t._actor = null));
+                s.tokens.forEach((t) => (t._actor = null));
             }
         } catch (err) {
             err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
@@ -260,6 +260,7 @@ export const migrateItemData = function (item) {
     _migrateItemClassPowerCasting(item, updateData);
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
+    _migrateArmorType(item, updateData);
     return updateData;
 };
 
@@ -276,6 +277,7 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
     await _migrateItemPower(item, actor, updateData);
+    _migrateArmorType(item, updateData);
     return updateData;
 };
 
@@ -601,6 +603,7 @@ function _migrateActorType(actor, updateData) {
 /* -------------------------------------------- */
 
 /**
+ * Migrate the Class item powercasting field to allow powercasting to properly calculate
  * @private
  */
 function _migrateItemClassPowerCasting(item, updateData) {
@@ -649,9 +652,18 @@ function _migrateItemClassPowerCasting(item, updateData) {
  */
 function _migrateActorAC(actorData, updateData) {
     const ac = actorData.data?.attributes?.ac;
-    if (!Number.isNumeric(ac?.value)) return;
-    updateData["data.attributes.ac.flat"] = ac.value;
-    updateData["data.attributes.ac.-=value"] = null;
+    // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
+    if (Number.isNumeric(ac?.value)) {
+        updateData["data.attributes.ac.flat"] = ac.value;
+        updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
+        updateData["data.attributes.ac.-=value"] = null;
+        return updateData;
+    }
+
+    // If the actor is already on the AC auto-calculation schema, but is using a flat value, they must now have their
+    // calculation updated to an appropriate value.
+    if (!Number.isNumeric(ac?.flat)) return updateData;
+    updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
     return updateData;
 }
 
@@ -739,6 +751,22 @@ function _migrateItemRarity(item, updateData) {
             CONFIG.SW5E.itemRarity[key].toLowerCase() === item.data.rarity.toLowerCase() || key === item.data.rarity
     );
     updateData["data.rarity"] = rarity ?? "";
+    return updateData;
+}
+
+/* --------------------------------------------- */
+
+/**
+ * Convert equipment items of type 'bonus' to 'trinket'.
+ *
+ * @param {object} item        Item data to migrate
+ * @param {object} updateData  Existing update to expand upon
+ * @return {object}            The updateData to apply
+ * @private
+ */
+function _migrateArmorType(item, updateData) {
+    if (item.type !== "equipment") return updateData;
+    if (item.data?.armor?.type === "bonus") updateData["data.armor.type"] = "trinket";
     return updateData;
 }
 

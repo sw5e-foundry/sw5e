@@ -393,7 +393,6 @@ SW5E.armorTypes = {
  * @type {Object}
  */
 SW5E.equipmentTypes = {
-  "bonus": "SW5E.EquipmentBonus",
   "clothing": "SW5E.EquipmentClothing",
   "trinket": "SW5E.EquipmentTrinket",
   "vehicle": "SW5E.EquipmentVehicle",

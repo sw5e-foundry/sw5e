@@ -37,18 +37,16 @@
         <div class="attributes">
 			{{!-- ARMOR CLASS --}}
 			<section>
-                <li class="attribute armor">
-                    <h4 class="attribute-name box-title">
+                    <h1 class="attribute-name armor">
                         {{ localize "SW5E.ArmorClass" }}
                         <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"><i class="fas fa-cog"></i></a>
-                    </h4>
+                    </h1>
                     <div class="attribute-value attributable" data-property="attributes.ac">
                         <span>{{data.attributes.ac.value}}</span>
                     </div>
                     <footer class="attribute-footer">
                         <span>{{labels.armorType}}</span>
                     </footer>
-                </li>
 			</section>
 
 			{{!-- HIT POINTS --}}
@@ -67,7 +65,8 @@
                 </footer>
             </section>
             <section>
-				<h1>{{ localize "SW5E.Movement" }}
+				<h1 class="attribute-name movement">
+                    {{ localize "SW5E.Movement" }}
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
                 <div class="attribute-value">

@@ -143,17 +143,16 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 else if (item.type === "power" && ["tec"].includes(item.data.school)) arr[2].push(item);
                 else if (item.type === "feat") arr[3].push(item);
                 else if (item.type === "class") arr[4].push(item);
-                else if (item.type === "starship") arr[5].push(item);
-                else if (item.type === "deployment") arr[6].push(item);
-                else if (item.type === "deploymentfeature") arr[7].push(item);
-                else if (item.type === "venture") arr[8].push(item);
-                else if (item.type === "species") arr[9].push(item);
-                else if (item.type === "archetype") arr[10].push(item);
-                else if (item.type === "classfeature") arr[11].push(item);
-                else if (item.type === "background") arr[12].push(item);
-                else if (item.type === "fightingstyle") arr[13].push(item);
-                else if (item.type === "fightingmastery") arr[14].push(item);
-                else if (item.type === "lightsaberform") arr[15].push(item);
+                else if (item.type === "deployment") arr[5].push(item);
+                else if (item.type === "deploymentfeature") arr[6].push(item);
+                else if (item.type === "venture") arr[7].push(item);
+                else if (item.type === "species") arr[8].push(item);
+                else if (item.type === "archetype") arr[9].push(item);
+                else if (item.type === "classfeature") arr[10].push(item);
+                else if (item.type === "background") arr[11].push(item);
+                else if (item.type === "fightingstyle") arr[12].push(item);
+                else if (item.type === "fightingmastery") arr[13].push(item);
+                else if (item.type === "lightsaberform") arr[14].push(item);
                 else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
                 return arr;
             },

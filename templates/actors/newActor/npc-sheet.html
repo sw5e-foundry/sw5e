@@ -3,6 +3,8 @@
     {{!-- NPC Sheet Header --}}
     <header class="panel">
         <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+        {{> "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.html"}}
+
         <h1 class="character-name">
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
@@ -15,8 +17,12 @@
             <div class="experience">
                 <span class="max">{{data.details.xp.value}} XP</span>
             </div>
-
-        </div>
+            <div class="proficiency">
+                <span>
+                    {{ localize "SW5E.Proficiency" }} {{numberFormat data.attributes.prof decimals=0 sign=true}}
+                </span>
+            </div>
+    </div>
         <div class="summary">
 			<span class="npc-size">{{lookup config.actorSizes data.traits.size}}</span>
 			<input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
@@ -31,14 +37,15 @@
         <div class="attributes">
 			{{!-- ARMOR CLASS --}}
 			<section>
-				<h1>{{ localize "SW5E.ArmorClass" }}</h1>
-				<div class="attribute-value">
-					<input class="ac-display" name="data.attributes.ac.value" type="text"
-						value="{{data.attributes.ac.value}}" data-dtype="Number" placeholder="10" />
+                <h1 class="attribute-name armor">
+                    {{ localize "SW5E.ArmorClass" }}
+                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"><i class="fas fa-cog"></i></a>
+                </h1>
+                <div class="attribute-value attributable" data-property="attributes.ac">
+                    <span>{{data.attributes.ac.value}}</span>
                 </div>
-                <footer class="attribute-footer proficiency">
-                    {{ localize "SW5E.Proficiency" }}
-                    {{numberFormat data.attributes.prof decimals=0 sign=true}}
+                <footer class="attribute-footer">
+                    <span>{{labels.armorType}}</span>
                 </footer>
 			</section>
 
@@ -58,7 +65,8 @@
                 </footer>
             </section>
             <section>
-				<h1>{{ localize "SW5E.Movement" }}
+                <h1 class="attribute-name movement">
+                    {{ localize "SW5E.Movement" }}
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
                 <div class="attribute-value">
@@ -99,7 +107,7 @@
                                     <span class="ability-mod"
                                         title="{{ localize 'SW5E.Modifier' }}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
                                     <input type="hidden" name="data.abilities.{{id}}.proficient"
-                                        value="{{ability.proficient}}" data-dtype="Number" />
+                                        value="{{ability.baseProf}}" data-dtype="Number" />
                                     <button class="proficiency-toggle ability-proficiency"
                                         title="Proficiency">{{{ability.icon}}}</button>
                                     <span class="ability-save"
@@ -116,7 +124,7 @@
                         {{#each config.skills as |label s|}}
                             {{#with (lookup ../data.skills s) as |skill|}}
                                 <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
-                                    <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.value}}"
+                                    <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.baseValue}}"
                                         data-dtype="Number" />
                                     <button class="proficiency-toggle skill-proficiency"
                                         title="{{skill.hover}}">{{{skill.icon}}}</button>

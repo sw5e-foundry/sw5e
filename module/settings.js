@@ -141,4 +141,16 @@ export const registerSystemSettings = function () {
             dark: "SETTINGS.SWColorDark"
         }
     });
+
+    /**
+     * Option to replace imperial weight units with metric weight units.
+     */
+    game.settings.register("sw5e", "metricWeightUnits", {
+        name: "SETTINGS.5eMetricN",
+        hint: "SETTINGS.5eMetricL",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false
+    });
 };

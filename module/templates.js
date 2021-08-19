@@ -14,6 +14,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/actors/oldActor/parts/actor-features.html",
         "systems/sw5e/templates/actors/oldActor/parts/actor-powerbook.html",
         "systems/sw5e/templates/actors/oldActor/parts/actor-notes.html",
+        "systems/sw5e/templates/actors/oldActor/parts/actor-warnings.html",
 
         "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-core.html",
@@ -25,6 +26,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-resources.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html",
+        "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.html",
 
         // Item Sheet Partials
         "systems/sw5e/templates/items/parts/item-action.html",

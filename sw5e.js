@@ -41,6 +41,7 @@ import * as chat from "./module/chat.js";
 import * as dice from "./module/dice.js";
 import * as macros from "./module/macros.js";
 import * as migrations from "./module/migration.js";
+import ActiveEffect5e from "./module/active-effect.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -83,6 +84,7 @@ Hooks.once("init", function () {
 
     // Record Configuration Values
     CONFIG.SW5E = SW5E;
+    CONFIG.ActiveEffect.documentClass = ActiveEffect5e;
     CONFIG.Actor.documentClass = Actor5e;
     CONFIG.Item.documentClass = Item5e;
     CONFIG.Token.documentClass = TokenDocument5e;
@@ -193,6 +195,7 @@ Hooks.once("setup", function () {
         "abilityConsumptionTypes",
         "actorSizes",
         "alignments",
+        "armorClasses",
         "armorProficiencies",
         "armorPropertiesTypes",
         "conditionTypes",
@@ -205,6 +208,7 @@ Hooks.once("setup", function () {
         "equipmentTypes",
         "healingTypes",
         "itemActionTypes",
+        "itemRarity",
         "languages",
         "limitedUsePeriods",
         "movementTypes",
@@ -227,6 +231,8 @@ Hooks.once("setup", function () {
         "targetTypes",
         "timePeriods",
         "toolProficiencies",
+        "toolTypes",
+        "vehicleTypes",
         "weaponProficiencies",
         "weaponProperties",
         "weaponSizes",
@@ -237,24 +243,30 @@ Hooks.once("setup", function () {
     const noSort = [
         "abilities",
         "alignments",
+        "armorClasses",
+        "armorProficiencies",
         "currencies",
         "distanceUnits",
         "movementUnits",
         "itemActionTypes",
+        "itemRarity",
         "proficiencyLevels",
         "limitedUsePeriods",
         "powerComponents",
         "powerLevels",
         "powerPreparationModes",
+        "weaponProficiencies",
         "weaponTypes"
     ];
 
     // Localize and sort CONFIG objects
     for (let o of toLocalize) {
-        const localized = Object.entries(CONFIG.SW5E[o]).map((e) => {
-            return [e[0], game.i18n.localize(e[1])];
+        const localized = Object.entries(CONFIG.SW5E[o]).map(([k, v]) => {
+            if (v.label) v.label = game.i18n.localize(v.label);
+            if (typeof v === "string") return [k, game.i18n.localize(v)];
+            return [k, v];
         });
-        if (!noSort.includes(o)) localized.sort((a, b) => a[1].localeCompare(b[1]));
+        if (!noSort.includes(o)) localized.sort((a, b) => (a[1].label ?? a[1]).localeCompare(b[1].label ?? b[1]));
         CONFIG.SW5E[o] = localized.reduce((obj, e) => {
             obj[e[0]] = e[1];
             return obj;
@@ -278,10 +290,13 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.3.5.R1-A6";
+    const NEEDS_MIGRATION_VERSION = "1.4.2.R1-A8";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A6";
+    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A8";
     const COMPATIBLE_MIGRATION_VERSION = 0.8;
+    const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
+    if (!currentVersion && totalDocuments === 0)
+        return game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
     const needsMigration =
         currentVersion &&
         (isNewerVersion(SW5E_NEEDS_MIGRATION_VERSION, currentVersion) ||

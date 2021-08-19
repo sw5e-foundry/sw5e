@@ -753,6 +753,12 @@ input[type="reset"]:disabled {
   border-color: transparent;
   background: none;
 }
+.sw5e.sheet.actor .attributable {
+  position: relative;
+}
+.sw5e.sheet.actor .attributable:hover .tooltip {
+  display: block;
+}
 .sw5e.sheet.actor .swalt-sheet {
   display: grid;
   grid-template-rows: 182px 36px auto;
@@ -866,6 +872,10 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   line-height: 26px;
 }
+.sw5e.sheet.actor .swalt-sheet header .summary select {
+  position: relative;
+  top: -4px;
+}
 .sw5e.sheet.actor .swalt-sheet header .attributes {
   grid-column-start: 2;
   grid-row-start: 3;
@@ -876,6 +886,9 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes h1 {
   text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .attribute-name {
+  position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value input {
@@ -910,6 +923,28 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .attributes .attribute-value .initiative {
   padding: 1px 4px;
   display: block;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .config-button {
+  position: absolute;
+  display: none;
+  right: -6px;
+  top: -3px;
+  font-size: 10px;
+  font-weight: normal;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes:hover .config-button {
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes input.temphp {
+  width: 48%;
+}
+.sw5e.sheet.actor .swalt-sheet header .attributes .property-attribution {
+  min-width: 150px;
+  top: 50px;
+  font-family: Signika, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1rem;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes footer button {
   background: none;

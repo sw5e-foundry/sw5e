@@ -19,7 +19,9 @@
                     {{lookup config.equipmentTypes data.armor.type }}
                 </li>
                 <li>
-                    <input type="text" name="data.rarity" value="{{data.rarity}}" placeholder="{{ localize 'SW5E.Rarity' }}"/>
+                    <select name="data.rarity">
+                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    </select>
                 </li>
                 <li>
                     <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
@@ -49,12 +51,7 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
                 <select name="data.armor.type">
-                    {{#select data.armor.type}}
-                    <option value=""></option>
-                    {{#each config.equipmentTypes as |name type|}}
-                    <option value="{{type}}">{{localize name}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{selectOptions config.equipmentTypes selected=data.armor.type blank=""}}
                 </select>
             </div>
 
@@ -124,36 +121,38 @@
             </div>
 
             {{!-- Armor Class --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ArmorClass" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number"/>
+            {{#if hasAC}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ArmorClass" }}</label>
+                    <div class="form-fields">
+                        <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number"/>
+                    </div>
                 </div>
-            </div>
+            {{/if}}
 
-            {{#unless isMountable}}
-            {{!-- Dexterity Modifier --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.armor.dex" value="{{data.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unlimited' }}"/>
+            {{#if isArmor}}
+                {{!-- Dexterity Modifier --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
+                    <div class="form-fields">
+                        <input type="text" name="data.armor.dex" value="{{data.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unlimited' }}"/>
+                    </div>
                 </div>
-            </div>
 
-            {{!-- Required Strength --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.strength" value="{{data.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
+                {{!-- Required Strength --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
+                    <div class="form-fields">
+                        <input type="text" name="data.strength" value="{{data.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
+                    </div>
                 </div>
-            </div>
 
-            {{!-- Stealth Disadvantage --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                <input type="checkbox" name="data.stealth" value="1" {{checked data.stealth}}/>
-            </div>
-            {{/unless}}
+                {{!-- Stealth Disadvantage --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
+                    <input type="checkbox" name="data.stealth" value="1" {{checked data.stealth}}/>
+                </div>
+            {{/if}}
 
             {{#if isMountable}}
             {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}

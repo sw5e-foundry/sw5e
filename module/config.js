@@ -166,11 +166,14 @@ SW5E.weaponIds = {
   "whip": "QKTyxoO0YDnAsbYe"
 };
 
- */
-
 /* -------------------------------------------- */
 
-SW5E.toolProficiencies = {
+/**
+ * The categories into which Tool items can be grouped.
+ *
+ * @enum {string}
+ */
+SW5E.toolTypes = {
     armor: "SW5E.ToolArmormech",
     arms: "SW5E.ToolArmstech",
     arti: "SW5E.ToolArtificer",
@@ -199,7 +202,16 @@ SW5E.toolProficiencies = {
     secur: "SW5E.ToolSecurityKit",
     slic: "SW5E.ToolSlicerKit",
     spice: "SW5E.ToolSpiceKit",
-    music: "SW5E.ToolMusicalInstrument",
+    music: "SW5E.ToolMusicalInstrument"
+};
+
+/**
+ * The categories of tool proficiencies that a character can gain.
+ *
+ * @enum {string}
+ */
+SW5E.toolProficiencies = {
+    ...SW5E.toolTypes,
     vehicle: "SW5E.ToolVehicle"
 };
 
@@ -211,41 +223,7 @@ SW5E.toolProficiencies = {
  *
  * @enum {string}
 SW5E.toolIds = {
-  "alchemist": "SztwZhbhZeCqyAes",
-  "bagpipes": "yxHi57T5mmVt0oDr",
-  "brewer": "Y9S75go1hLMXUD48",
-  "calligrapher": "jhjo20QoiD5exf09",
-  "card": "YwlHI3BVJapz4a3E",
-  "carpenter": "8NS6MSOdXtUqD7Ib",
-  "cartographer": "fC0lFK8P4RuhpfaU",
-  "cobbler": "hM84pZnpCqKfi8XH",
-  "cook": "Gflnp29aEv5Lc1ZM",
-  "dice": "iBuTM09KD9IoM5L8",
-  "disg": "IBhDAr7WkhWPYLVn",
-  "drum": "69Dpr25pf4BjkHKb",
-  "dulcimer": "NtdDkjmpdIMiX7I2",
-  "flute": "eJOrPcAz9EcquyRQ",
-  "forg": "cG3m4YlHfbQlLEOx",
-  "glassblower": "rTbVrNcwApnuTz5E",
-  "herb": "i89okN7GFTWHsvPy",
-  "horn": "aa9KuBy4dst7WIW9",
-  "jeweler": "YfBwELTgPFHmQdHh",
-  "leatherworker": "PUMfwyVUbtyxgYbD",
-  "lute": "qBydtUUIkv520DT7",
-  "lyre": "EwG1EtmbgR3bM68U",
-  "mason": "skUih6tBvcBbORzA",
-  "navg": "YHCmjsiXxZ9UdUhU",
-  "painter": "ccm5xlWhx74d6lsK",
-  "panflute": "G5m5gYIx9VAUWC3J",
-  "pois": "il2GNi8C0DvGLL9P",
-  "potter": "hJS8yEVkqgJjwfWa",
-  "shawm": "G3cqbejJpfB91VhP",
-  "smith": "KndVe2insuctjIaj",
-  "thief": "woWZ1sO5IUVGzo58",
-  "tinker": "0d08g1i5WXnNrCNA",
-  "viol": "baoe3U5BfMMMxhCU",
-  "weaver": "ap9prThUB2y9lDyj",
-  "woodcarver": "xKErqkLo4ASYr5EP",
+
 };
 */
 
@@ -373,6 +351,21 @@ SW5E.itemCapacityTypes = {
 /* -------------------------------------------- */
 
 /**
+ * List of various item rarities.
+ * @enum {String}
+ */
+SW5E.itemRarity = {
+    common: "SW5E.ItemRarityCommon",
+    uncommon: "SW5E.ItemRarityUncommon",
+    rare: "SW5E.ItemRarityRare",
+    veryRare: "SW5E.ItemRarityVeryRare",
+    legendary: "SW5E.ItemRarityLegendary",
+    artifact: "SW5E.ItemRarityArtifact"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the lengths of time over which an item can have limited use ability
  * @type {Object}
  */
@@ -388,24 +381,45 @@ SW5E.limitedUsePeriods = {
 /* -------------------------------------------- */
 
 /**
+ * Specific equipment types that modify base AC
+ * @type {object}
+ */
+SW5E.armorTypes = {
+    light: "SW5E.EquipmentLight",
+    medium: "SW5E.EquipmentMedium",
+    heavy: "SW5E.EquipmentHeavy",
+    natural: "SW5E.EquipmentNatural",
+    shield: "SW5E.EquipmentShield"
+};
+
+/* -------------------------------------------- */
+
+/**
  * The set of equipment types for armor, clothing, and other objects which can be worn by the character
  * @type {Object}
  */
 SW5E.equipmentTypes = {
-    light: "SW5E.EquipmentLight",
-    medium: "SW5E.EquipmentMedium",
-    heavy: "SW5E.EquipmentHeavy",
     hyper: "SW5E.EquipmentHyperdrive",
-    bonus: "SW5E.EquipmentBonus",
-    natural: "SW5E.EquipmentNatural",
     powerc: "SW5E.EquipmentPowerCoupling",
     reactor: "SW5E.EquipmentReactor",
-    shield: "SW5E.EquipmentShield",
     clothing: "SW5E.EquipmentClothing",
     trinket: "SW5E.EquipmentTrinket",
     ssarmor: "SW5E.EquipmentStarshipArmor",
     ssshield: "SW5E.EquipmentStarshipShield",
-    vehicle: "SW5E.EquipmentVehicle"
+    vehicle: "SW5E.EquipmentVehicle",
+    ...SW5E.armorTypes
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The various types of vehicles in which characters can be proficient.
+ * @enum {string}
+ */
+SW5E.vehicleTypes = {
+    air: "SW5E.VehicleTypeAir",
+    land: "SW5E.VehicleTypeLand",
+    water: "SW5E.VehicleTypeWater"
 };
 
 /* -------------------------------------------- */
@@ -433,6 +447,61 @@ SW5E.armorProficienciesMap = {
     medium: "med",
     heavy: "hvy",
     shield: "shl"
+};
+
+// TODO: Same as weapon IDs
+/**
+ * The basic armor types in 5e. This enables specific armor proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ *
+ * @enum {string}
+ */
+SW5E.armorIds = {};
+
+// TODO: Same as weapon IDs
+/**
+ * The basic shield in 5e.
+ *
+ * @enum {string}
+ */
+SW5E.shieldIds = {};
+
+/**
+ * Common armor class calculations.
+ * @enum {object}
+ */
+SW5E.armorClasses = {
+    flat: {
+        label: "SW5E.ArmorClassFlat",
+        formula: "@attributes.ac.flat"
+    },
+    natural: {
+        label: "SW5E.ArmorClassNatural",
+        formula: "@attributes.ac.flat"
+    },
+    default: {
+        label: "SW5E.ArmorClassEquipment",
+        formula: "@attributes.ac.base + @abilities.dex.mod"
+    },
+    mage: {
+        label: "SW5E.ArmorClassMage",
+        formula: "13 + @abilities.dex.mod"
+    },
+    draconic: {
+        label: "SW5E.ArmorClassDraconic",
+        formula: "13 + @abilities.dex.mod"
+    },
+    unarmoredMonk: {
+        label: "SW5E.ArmorClassUnarmoredMonk",
+        formula: "10 + @abilities.dex.mod + @abilities.wis.mod"
+    },
+    unarmoredBarb: {
+        label: "SW5E.ArmorClassUnarmoredBarbarian",
+        formula: "10 + @abilities.dex.mod + @abilities.con.mod"
+    },
+    custom: {
+        label: "SW5E.ArmorClassCustom"
+    }
 };
 
 /* -------------------------------------------- */
@@ -545,7 +614,9 @@ SW5E.movementTypes = {
  */
 SW5E.movementUnits = {
     ft: "SW5E.DistFt",
-    mi: "SW5E.DistMi"
+    mi: "SW5E.DistMi",
+    m: "SW5E.DistM",
+    km: "SW5E.DistKm"
 };
 
 /**
@@ -571,9 +642,18 @@ for (let [k, v] of Object.entries(SW5E.movementUnits)) {
  * @type {Object}
  */
 SW5E.encumbrance = {
-    currencyPerWeight: 50,
-    strMultiplier: 15,
-    vehicleWeightMultiplier: 2000 // 2000 lbs in a ton
+    currencyPerWeight: {
+        imperial: 50,
+        metric: 110
+    },
+    strMultiplier: {
+        imperial: 15,
+        metric: 6.8
+    },
+    vehicleWeightMultiplier: {
+        imperial: 2000, // 2000 lbs in an imperial ton
+        metric: 1000 // 1000 kg in a metric ton
+    }
 };
 
 /* -------------------------------------------- */

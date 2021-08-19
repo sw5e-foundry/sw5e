@@ -99,7 +99,7 @@ export default class ActorSheetFlags extends DocumentSheet {
             {name: "data.bonuses.power.techDC", label: "SW5E.BonusTechPowerDC"}
         ];
         for (let b of bonuses) {
-            b.value = getProperty(this.object._data, b.name) || "";
+            b.value = getProperty(this.object.data._source, b.name) || "";
         }
         return bonuses;
     }
@@ -119,7 +119,7 @@ export default class ActorSheetFlags extends DocumentSheet {
         for (let [k, v] of Object.entries(flags)) {
             if ([undefined, null, "", false, 0].includes(v)) {
                 delete flags[k];
-                if (hasProperty(actor._data.flags, `sw5e.${k}`)) {
+                if (hasProperty(actor.data._source.flags, `sw5e.${k}`)) {
                     unset = true;
                     flags[`-=${k}`] = null;
                 }

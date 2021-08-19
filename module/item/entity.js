@@ -494,6 +494,7 @@ export default class Item5e extends Item {
         // Reference aspects of the item data necessary for usage
         const hasArea = this.hasAreaTarget; // Is the ability usage an AoE?
         const resource = id.consume || {}; // Resource consumption
+        const resourceTarget = actor.items.get(resource.target);
         const recharge = id.recharge || {}; // Recharge mechanic
         const uses = id?.uses ?? {}; // Limited uses
         const isPower = this.type === "power"; // Does the item require a power slot?
@@ -504,7 +505,10 @@ export default class Item5e extends Item {
         // Define follow-up actions resulting from the item usage
         let createMeasuredTemplate = hasArea; // Trigger a template creation
         let consumeRecharge = !!recharge.value; // Consume recharge
-        let consumeResource = !!resource.target && resource.type !== "ammo"; // Consume a linked (non-ammo) resource
+        let consumeResource =
+            !!resource.target &&
+            resource.type !== "ammo" &&
+            !(resource.type === "charges" && resourceTarget?.data.data.consumableType === "ammo"); // Consume a linked (non-ammo) resource
         let consumePowerSlot = requirePowerSlot; // Consume a power slot
         let consumeUsage = !!uses.per; // Consume limited uses
         let consumeQuantity = uses.autoDestroy; // Consume quantity of the item in lieu of uses
@@ -615,7 +619,7 @@ export default class Item5e extends Item {
             const level = this.actor?.data.data.powers[consumePowerLevel];
             const fp = this.actor.data.data.attributes.force.points;
             const tp = this.actor.data.data.attributes.tech.points;
-            const powerCost = id.level + 1;
+            const powerCost = parseInt(id.level, 10) + 1;
             const innatePower = this.actor.data.data.attributes.powercasting === "innate";
             if (!innatePower) {
                 switch (id.school) {
@@ -747,7 +751,7 @@ export default class Item5e extends Item {
         }
 
         // Verify that a consumed resource is available
-        if (!resource) {
+        if (resource === undefined) {
             ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoSource", {name: this.name, type: typeLabel}));
             return false;
         }
@@ -792,7 +796,7 @@ export default class Item5e extends Item {
         // Render the chat card template
         const token = this.actor.token;
         const templateData = {
-            actor: this.actor,
+            actor: this.actor.data,
             tokenId: token?.uuid || null,
             item: this.data,
             data: this.getChatData(),
@@ -1000,27 +1004,43 @@ export default class Item5e extends Item {
             const usage = this._getUsageUpdates({consumeResource: true});
             if (usage === false) return null;
             ammoUpdate = usage.resourceUpdates || {};
+        } else if (consume?.type === "charges") {
+            ammo = this.actor.items.get(consume.target);
+            if (ammo?.data?.data?.consumableType === "ammo") {
+                const uses = ammo.data.data.uses;
+                if (uses.per && uses.max) {
+                    const q = ammo.data.data.uses.value;
+                    const consumeAmount = consume.amount ?? 0;
+                    if (q && q - consumeAmount >= 0) {
+                        this._ammo = ammo;
+                        title += ` [${ammo.name}]`;
+                    }
+                }
+
+                // Get pending ammunition update
+                const usage = this._getUsageUpdates({consumeResource: true});
+                if (usage === false) return null;
+                ammoUpdate = usage.resourceUpdates || {};
+            }
         }
 
         // Compose roll options
-        const rollConfig = mergeObject(
-            {
-                parts: parts,
-                actor: this.actor,
-                data: rollData,
-                title: title,
-                flavor: title,
-                speaker: ChatMessage.getSpeaker({actor: this.actor}),
-                dialogOptions: {
-                    width: 400,
-                    top: options.event ? options.event.clientY - 80 : null,
-                    left: window.innerWidth - 710
-                },
-                messageData: {"flags.sw5e.roll": {type: "attack", itemId: this.id}}
+        let rollConfig = {
+            parts: parts,
+            actor: this.actor,
+            data: rollData,
+            title: title,
+            flavor: title,
+            dialogOptions: {
+                width: 400,
+                top: options.event ? options.event.clientY - 80 : null,
+                left: window.innerWidth - 710
             },
-            options
-        );
-        rollConfig.event = options.event;
+            messageData: {
+                "flags.sw5e.roll": {type: "attack", itemId: this.id},
+                "speaker": ChatMessage.getSpeaker({actor: this.actor})
+            }
+        };
 
         // Expanded critical hit thresholds
         if (this.data.type === "weapon" && flags.weaponCriticalThreshold) {
@@ -1037,9 +1057,12 @@ export default class Item5e extends Item {
         // Apply Halfling Lucky
         if (flags.halflingLucky) rollConfig.halflingLucky = true;
 
+        // Compose calculated roll options with passed-in roll options
+        rollConfig = mergeObject(rollConfig, options);
+
         // Invoke the d20 roll helper
         const roll = await d20Roll(rollConfig);
-        if (roll === false) return null;
+        if (!roll) return null;
 
         // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
         if (ammo && !isObjectEmpty(ammoUpdate)) await ammo.update(ammoUpdate);
@@ -1099,8 +1122,10 @@ export default class Item5e extends Item {
         // Scale damage from up-casting powers
         if (this.data.type === "power") {
             if (itemData.scaling.mode === "atwill") {
-                const level =
-                    this.actor.data.type === "character" ? actorData.details.level : actorData.details.powerLevel;
+                let level;
+                if (this.actor.type === "character") level = actorData.details.level;
+                else if (itemData.preparation.mode === "innate") level = Math.ceil(actorData.details.cr);
+                else level = actorData.details.powerLevel;
                 this._scaleAtWillDamage(parts, itemData.scaling.formula, level, rollData);
             } else if (powerLevel && itemData.scaling.mode === "level" && itemData.scaling.formula) {
                 const scaling = itemData.scaling.formula;
@@ -1629,7 +1654,7 @@ export default class Item5e extends Item {
      */
     static async createScrollFromPower(power) {
         // Get power data
-        const itemData = power instanceof Item5e ? power.data : power;
+        const itemData = power instanceof Item5e ? power.toObject() : power;
         const {actionType, description, source, activation, duration, target, range, damage, save, level} =
             itemData.data;
 
@@ -1650,7 +1675,7 @@ export default class Item5e extends Item {
         const desc = `${scrollIntro}<hr/><h3>${itemData.name} (Level ${level})</h3><hr/>${description.value}<hr/><h3>Scroll Details</h3><hr/>${scrollDetails}`;
 
         // Create the power scroll data
-        const powerScrollData = mergeObject(scrollData, {
+        const powerScrollData = foundry.utils.mergeObject(scrollData, {
             name: `${game.i18n.localize("SW5E.PowerScroll")}: ${itemData.name}`,
             img: itemData.img,
             data: {

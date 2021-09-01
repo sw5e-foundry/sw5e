@@ -1586,7 +1586,7 @@ export default class Actor5e extends Actor {
      * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
      * @param {string} [denomination]   The hit denomination of hull die to roll. Example "d8".
      *                                  If no denomination is provided, the first available HD will be used
-     * @param {string} [numDice]        How many damage dice to roll?
+     * @param {string} [numDice]        How many dice to roll?
      * @param {string} [keep]           Which dice to keep? Example "kh1".
      * @param {boolean} [dialog]        Show a dialog prompt for configuring the hull die roll?
      * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
@@ -1663,7 +1663,7 @@ export default class Actor5e extends Actor {
      * @param {string} [denomination]   The denomination of shield die to roll. Example "d8".
      *                                  If no denomination is provided, the first available SD will be used
      * @param {boolean} [natural]       Natural ship shield regeneration (true) or user action (false)?
-     * @param {string} [numDice]        How many damage dice to roll?
+     * @param {string} [numDice]        How many dice to roll?
      * @param {string} [keep]           Which dice to keep? Example "kh1".
      * @param {boolean} [dialog]        Show a dialog prompt for configuring the shield die roll?
      * @return {Promise<Roll|null>}     The created Roll instance, or null if no shield die was rolled
@@ -1680,7 +1680,7 @@ export default class Actor5e extends Actor {
             denomination = sship.data.data.shldDice;
         }
 
-        // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
+        // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
         else {
             sship = this.items.find((i) => {
                 const d = i.data.data;
@@ -1736,6 +1736,47 @@ export default class Actor5e extends Actor {
         const hp = this.data.data.attributes.hp;
         const dhp = Math.min(hp.tempmax - hp.temp, roll.total);
         await this.update({"data.attributes.hp.temp": hp.temp + dhp});
+        return roll;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Roll a power die recovery of the appropriate type, gaining power dice equal to the roll
+     *
+     * @param {string} [formula]        Formula from reactor to use for power die recovery
+     * @param {boolean} [dialog]        Show a dialog prompt for configuring the power die roll?
+     * @return {Promise<Roll|null>}     The created Roll instance, or null if no power die was rolled
+     */
+    async rollPowerDieRecovery(formula, {dialog = true} = {}) {
+        // if no formula check starship for equipped reactor
+        if (!formula) {
+            formula = this.data.data.attributes.equip.reactor.powerRecDie;
+        }
+
+        // Prepare roll data
+        const parts = [formula];
+        const title = game.i18n.localize("SW5E.PowerDiceRecovery");
+        const rollData = foundry.utils.deepClone(this.data.data);
+
+        // Call the roll helper utility
+        const roll = await attribDieRoll({
+            event: new Event("pwrDieRec"),
+            parts: parts,
+            data: rollData,
+            title: title,
+            fastForward: !dialog,
+            dialogOptions: {width: 350},
+            messageData: {
+                "speaker": ChatMessage.getSpeaker({actor: this}),
+                "flags.sw5e.roll": {type: "pwrDieRec"}
+            }
+        });
+
+        if (!roll) return null;
+
+        // Adjust actor data
+        //TODO: Make a new dialog box to allocate power dice
         return roll;
     }
 
@@ -2247,6 +2288,7 @@ export default class Actor5e extends Actor {
      */
     async _repair(chat, newDay, refittingRepair, dhd = 0, dhp = 0, resetShields) {
         // TODO: Turn gritty realism into the SW5e longer repairs variant rule https://sw5e.com/rules/variantRules/Longer%20Repairs
+        let powerDiceUpdates = {};
         let hullPointsRecovered = 0;
         let hullPointUpdates = {};
         let hullDiceRecovered = 0;
@@ -2255,6 +2297,9 @@ export default class Actor5e extends Actor {
         let shldPointUpdates = {};
         let shldDiceRecovered = 0;
         let shldDiceUpdates = [];
+
+        // Recover power dice on any repair
+        ({updates: powerDiceUpdates} = this._getRepairPowerDiceRecovery());
 
         // Recover hit points & hit dice on refitting repair
         if (refittingRepair) {
@@ -2275,6 +2320,7 @@ export default class Actor5e extends Actor {
             shd: shldDiceRecovered,
             shp: shldPointsRecovered,
             updateData: {
+                ...powerDiceUpdates,
                 ...hullPointUpdates,
                 ...shldPointUpdates
             },
@@ -2411,6 +2457,8 @@ export default class Actor5e extends Actor {
         return {updates, hullPointsRecovered: max - data.attributes.hp.value};
     }
 
+    /* -------------------------------------------- */
+
     /**
      * Recovers actor shield points and repair depleted shields.
      *
@@ -2428,6 +2476,35 @@ export default class Actor5e extends Actor {
         updates["data.attributes.shld.depleted"] = false;
 
         return {updates, shldPointsRecovered: max - data.attributes.hp.temp};
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers actor power dice.
+     *
+     * @param {object} [options]
+     * @return {object}           Updates to the actor.
+     * @protected
+     */
+    _getRepairPowerDiceRecovery() {
+        const data = this.data.data;
+        let updates = {};
+        const centralMax = data.attributes.power.central.max;
+        const commsMax = data.attributes.power.comms.max;
+        const enginesMax = data.attributes.power.engines.max;
+        const shieldsMax = data.attributes.power.shields.max;
+        const sensorsMax = data.attributes.power.sensors.max;
+        const weaponsMax = data.attributes.power.weapons.max;
+
+        updates["data.attributes.power.central.value"] = centralMax;
+        updates["data.attributes.power.comms.value"] = commsMax;
+        updates["data.attributes.power.engines.value"] = enginesMax;
+        updates["data.attributes.power.shields.value"] = shieldsMax;
+        updates["data.attributes.power.sensors.value"] = sensorsMax;
+        updates["data.attributes.power.weapons.value"] = weaponsMax;
+
+        return {updates};
     }
 
     /* -------------------------------------------- */

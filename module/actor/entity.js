@@ -1594,10 +1594,10 @@ export default class Actor5e extends Actor {
     async rollHullDie(denomination, numDice = "1", keep = "", {dialog = true} = {}) {
         // If no denomination was provided, choose the first available
         let sship = null;
-        // TODO: make the max 2x tier if huge or grg
+        const hullMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
         if (!denomination) {
             sship = this.itemTypes.starship.find(
-                (s) => s.data.data.hullDiceUsed < s.data.data.tier + s.data.data.hullDiceStart
+                (s) => s.data.data.hullDiceUsed < s.data.data.tier * hullMult + s.data.data.hullDiceStart
             );
             if (!sship) return null;
             denomination = sship.data.data.hullDice;
@@ -1607,11 +1607,13 @@ export default class Actor5e extends Actor {
         else {
             sship = this.items.find((i) => {
                 const d = i.data.data;
-                return d.hullDice === denomination && (d.hullDiceUsed || 0) < (d.tier || 0) + d.hullDiceStart;
+                return (
+                    d.hullDice === denomination && (d.hullDiceUsed || 0) < (d.tier * hullMult || 0) + d.hullDiceStart
+                );
             });
         }
 
-        // If no class is available, display an error notification
+        // If no starship is available, display an error notification
         if (!sship) {
             ui.notifications.error(
                 game.i18n.format("SW5E.HullDiceWarn", {
@@ -1656,71 +1658,6 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
-     */
-    async rollHullDieCheck() {
-        // If no denomination was provided, choose the first available
-        let sship = null;
-        if (!denomination) {
-            sship = this.itemTypes.class.find(
-                (s) => s.data.data.hullDiceUsed < s.data.data.tier + s.data.data.hullDiceStart
-            );
-            if (!sship) return null;
-            denomination = sship.data.data.hullDice;
-        }
-
-        // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
-        else {
-            sship = this.items.find((i) => {
-                const d = i.data.data;
-                return d.hullDice === denomination && (d.hitDiceUsed || 0) < (d.tier || 0) + d.hullDiceStart;
-            });
-        }
-
-        // If no class is available, display an error notification
-        if (!sship) {
-            ui.notifications.error(
-                game.i18n.format("SW5E.HullDiceWarn", {
-                    name: this.name,
-                    formula: denomination
-                })
-            );
-            return null;
-        }
-
-        // Prepare roll data
-        const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
-        const title = game.i18n.localize("SW5E.HullDiceRoll");
-        const rollData = duplicate(this.data.data);
-
-        // Call the roll helper utility
-        const roll = await damageRoll({
-            event: new Event("hullDie"),
-            parts: parts,
-            data: rollData,
-            title: title,
-            speaker: ChatMessage.getSpeaker({actor: this}),
-            allowcritical: false,
-            fastForward: !dialog,
-            dialogOptions: {width: 350},
-            messageData: {"flags.sw5e.roll": {type: "hullDie"}}
-        });
-        if (!roll) return null;
-
-        // Adjust actor data
-        await sship.update({
-            "data.hullDiceUsed": sship.data.data.hullDiceUsed + 1
-        });
-        const hp = this.data.data.attributes.hp;
-        const dhp = Math.min(hp.max - hp.value, roll.total);
-        await this.update({"data.attributes.hp.value": hp.value + dhp});
-        return roll;
-    }
-
-    /* -------------------------------------------- */
-
-    /**
      * Roll a shield die of the appropriate type, gaining shield points equal to the die roll
      * multiplied by the shield regeneration coefficient
      * @param {string} [denomination]   The denomination of shield die to roll. Example "d8".
@@ -1734,9 +1671,10 @@ export default class Actor5e extends Actor {
     async rollShieldDie(denomination, natural = false, numDice = "1", keep = "", {dialog = true} = {}) {
         // If no denomination was provided, choose the first available
         let sship = null;
+        const shldMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
         if (!denomination) {
-            sship = this.itemTypes.class.find(
-                (s) => s.data.data.shldDiceUsed < s.data.data.tier + s.data.data.shldDiceStart
+            sship = this.itemTypes.starship.find(
+                (s) => s.data.data.shldDiceUsed < s.data.data.tier * shldMult + s.data.data.shldDiceStart
             );
             if (!sship) return null;
             denomination = sship.data.data.shldDice;
@@ -1746,7 +1684,9 @@ export default class Actor5e extends Actor {
         else {
             sship = this.items.find((i) => {
                 const d = i.data.data;
-                return d.shldDice === denomination && (d.shldDiceUsed || 0) < (d.tier || 0) + d.shldDiceStart;
+                return (
+                    d.shldDice === denomination && (d.shldDiceUsed || 0) < (d.tier * shldMult || 0) + d.shldDiceStart
+                );
             });
         }
 
@@ -1771,20 +1711,22 @@ export default class Actor5e extends Actor {
         // Prepare roll data
         const parts = [`${numDice}${denomination}${keep} * @attributes.regenRate`];
         const title = game.i18n.localize("SW5E.ShieldDiceRoll");
-        const rollData = duplicate(this.data.data);
+        const rollData = foundry.utils.deepClone(this.data.data);
 
         // Call the roll helper utility
-        roll = await damageRoll({
+        const roll = await attribDieRoll({
             event: new Event("shldDie"),
             parts: parts,
             data: rollData,
             title: title,
-            speaker: ChatMessage.getSpeaker({actor: this}),
-            allowcritical: false,
             fastForward: !dialog,
             dialogOptions: {width: 350},
-            messageData: {"flags.sw5e.roll": {type: "shldDie"}}
+            messageData: {
+                "speaker": ChatMessage.getSpeaker({actor: this}),
+                "flags.sw5e.roll": {type: "shldDie"}
+            }
         });
+
         if (!roll) return null;
 
         // Adjust actor data
@@ -1796,6 +1738,8 @@ export default class Actor5e extends Actor {
         await this.update({"data.attributes.hp.temp": hp.temp + dhp});
         return roll;
     }
+
+    /* -------------------------------------------- */
 
     /**
      * Results from a rest operation.
@@ -2202,6 +2146,8 @@ export default class Actor5e extends Actor {
 
         return updates;
     }
+
+    /* -------------------------------------------- */
 
     /**
      * Results from a repair operation.

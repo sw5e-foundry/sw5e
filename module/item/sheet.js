@@ -294,7 +294,7 @@ export default class ItemSheet5e extends ItemSheet {
                     return ui.notifications.warn(
                         "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
                     );
-                onManageActiveEffect(ev, this.item);
+                ActiveEffect5e.onManageActiveEffect(ev, this.item);
             });
         }
     }

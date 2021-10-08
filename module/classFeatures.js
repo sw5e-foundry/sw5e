@@ -9,7 +9,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.MJWkoxc5VysBiugy"],
                     "6": ["Compendium.sw5e.archetypefeatures.gblPkRcNLt6Wb6Sx"],
                     "10": ["Compendium.sw5e.archetypefeatures.DWm0s5SZ86921Q72"],
-                    //"14": [Compendium.sw5e.archetypefeatures.]
+                    "14": ["Compendium.sw5e.archetypefeatures.LMvbZfbx0lih3Dbu"]
                 }
             },
             "marauder-approach": {
@@ -19,7 +19,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.yAPAAJ8zHALWR0kn", "Compendium.sw5e.archetypefeatures.s3NSEjWFRlUfNlT3"],
                     "6": ["Compendium.sw5e.archetypefeatures.zwX26iCZadE3YGqA"],
                     "10": ["Compendium.sw5e.archetypefeatures.031GMctPEmFs4iPi"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.dtp98aDdpaAZHTnu"]
                 }
             },
             "precision-approach": {
@@ -29,7 +29,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.ZwzEXmXUBSQMarA7", "Compendium.sw5e.archetypefeatures.aAMTfVpJR1g1Da7x"],
                     "6": ["Compendium.sw5e.archetypefeatures.QGZymJSoQ0q2BiZn"],
                     "10": ["Compendium.sw5e.archetypefeatures.9RlZQaQbXOowxZ3c"],
-                    //"14": ["Compendium.sw5e.classfeatures."]
+                    "14": ["Compendium.sw5e.classfeatures.p1EP6FF3RmWNr44d"]
                 }
             },
             "warchief-approach": {
@@ -39,7 +39,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.7gnVnIDhy4tXzcTi", "Compendium.sw5e.archetypefeatures.gtzwgunkGHxVh7Ec"],
                     "6": ["Compendium.sw5e.archetypefeatures.03qIkerlYzQEYusy"],
                     "10": ["Compendium.sw5e.archetypefeatures.AtCohgxfC4bUhGpp"],
-                    //"14": ["Compendium.sw5e.classfeatures."]
+                    "14": ["Compendium.sw5e.classfeatures.UYWFpXz6HKecYIC2"]
                 }
             },
             "addicted-approach": {
@@ -49,7 +49,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.CKntWLvkT4yeEBoz", "Compendium.sw5e.archetypefeatures.OScTgUb0TSSZq83i"],
                     "6": ["Compendium.sw5e.archetypefeatures.A8fbhjrWemYCKBIB"],
                     "10": ["Compendium.sw5e.archetypefeatures.j0rh642WBKpFaKQF"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.xzRNHB2M2HdOZzr7"]
                 }
             },
             "bloodstorm-approach": {
@@ -59,7 +59,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.a4zSRZYJfNv0a4fP", "Compendium.sw5e.archetypefeatures.7hrUI1fmnFMx4MTf"],
                     "6": ["Compendium.sw5e.archetypefeatures.w9kmr36IxzwXq7Ac"],
                     "10": ["Compendium.sw5e.archetypefeatures.jL3qsXtVhhJaNU8D"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.3lqydI4v73szourv"]
                 }
             },
             "brawling-approach": {
@@ -69,7 +69,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.2EFKQR8uB0Q45bfq", "Compendium.sw5e.archetypefeatures.pWFFSFny78mzQ40m"],
                     "6": ["Compendium.sw5e.archetypefeatures.JhNJZ4XPOLYYM86B"],
                     "10": ["Compendium.sw5e.archetypefeatures.vl9pSe18a4NGegzs"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.ktNY0EzlYaTBkNs1"]
                 }
             },
             "cyclone-approach": {
@@ -79,7 +79,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.UMbQEY4Ayb1tYMqU", "Compendium.sw5e.archetypefeatures.yC60nJSLsjnVYsgA"],
                     "6": ["Compendium.sw5e.archetypefeatures.YtFAC4EfLEUcsegh"],
                     "10": ["Compendium.sw5e.archetypefeatures.qIyMkK0g5nYUSc9c"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.D2dpEvNZhLDsArYf"]
                 }
             },
             "frenzied-approach": {
@@ -89,7 +89,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.l5vfYRFvCWoTbcpv", "Compendium.sw5e.archetypefeatures.4rYFYNq25QmWn0N2"],
                     "6": ["Compendium.sw5e.archetypefeatures.4PEXkYT9cwVAsCEm"],
                     "10": ["Compendium.sw5e.archetypefeatures.tEVh58kiI7VKmor0"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.0NxbCrcn4Ty81wWf"]
                 }
             },
             "industrial-approach": {
@@ -99,7 +99,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.dR3JBEK6uHhf4QKc", "Compendium.sw5e.archetypefeatures.TibDm2g8xFkS6Jqt"],
                     "6": ["Compendium.sw5e.archetypefeatures.6s5kjhE7rZzei9rF"],
                     "10": ["Compendium.sw5e.archetypefeatures.r0nbaq3ZkbLxSes8"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.CnVQJRpnRpsY0OFA"]
                 }
             },
             "juggernaut-approach": {
@@ -109,7 +109,7 @@ export const ClassFeatures = {
                     "3": ["Compendium.sw5e.archetypefeatures.6OxOqwyYkKrRxO0q", "Compendium.sw5e.archetypefeatures.32KS28X7sKF1k41F"],
                     "6": ["Compendium.sw5e.archetypefeatures.YpfHnbbecdt4nzYr"],
                     "10": ["Compendium.sw5e.archetypefeatures.ysGth3KGrTcWz6DX"],
-                    //"14": ["Compendium.sw5e.archetypefeatures."]
+                    "14": ["Compendium.sw5e.archetypefeatures.hwww57Bl4DAqvd5q"]
                 }
             },
         },
@@ -147,7 +147,7 @@ export const ClassFeatures = {
                     "6": ["Compendium.sw5e.archetypefeatures.uhL2zKncjExhqYAO"],
                     "10": ["Compendium.sw5e.archetypefeatures.O4PNMZ9JPYtjh3JK"],
                     "14": ["Compendium.sw5e.archetypefeatures.FeKp7411q8HxbOG7"],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "18": ["Compendium.sw5e.archetypefeatures.s0Bf6Sv2exQNH7vK"]
                 }
             },
             "way-of-suggestion": {
@@ -158,7 +158,7 @@ export const ClassFeatures = {
                     "6": ["Compendium.sw5e.archetypefeatures.jzmXjWeAHYNsJtVl"],
                     "10": ["Compendium.sw5e.archetypefeatures.abm19PGEEaf9AoaS"],
                     "14": ["Compendium.sw5e.archetypefeatures.tq9bDlDLLs3XNeu4"],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "18": ["Compendium.sw5e.archetypefeatures.pWu7ql7UFckNjgmK"]
                 }
             },
             "way-of-the-sage": {
@@ -265,7 +265,7 @@ export const ClassFeatures = {
             "1": ["Compendium.sw5e.classfeatures.5hve0KTY6KeMNbXS", "Compendium.sw5e.classfeatures.qNvcODTcxVtFhwHF"],
             "2": ["Compendium.sw5e.classfeatures.sxIhmkRXuWKO2dSC", "Compendium.sw5e.classfeatures.Rkeqzwdy1u70ReDg"],
             "3": ["Compendium.sw5e.classfeatures.RO2dWrjk2ik8gc3S"],
-            //"20": ["Compendium.sw5e.classfeatures."]
+            "20": ["Compendium.sw5e.classfeatures.SRvdjRxU3cpcEdcw"]
         }
     },
     "engineer": {
@@ -394,7 +394,7 @@ export const ClassFeatures = {
         "features": {
             "1": ["Compendium.sw5e.classfeatures.mCxdqUjDPAo38JTt", "Compendium.sw5e.classfeatures.fGsRWj9oEKcrukw6"],
             "2": ["Compendium.sw5e.classfeatures.CBf0Ynl0NuA2z7sl", "Compendium.sw5e.classfeatures.mX2O4be5m3rPokOa"],
-            //"20": ["Compendium.sw5e.classfeatures."]
+            "20": ["Compendium.sw5e.classfeatures.f1XeMafaqejD02MW"]
         },
     },
     "fighter": {
@@ -539,7 +539,7 @@ export const ClassFeatures = {
             "5": ["Compendium.sw5e.classfeatures.DHYAPcWik4J1Br4y"],
             "9": ["Compendium.sw5e.classfeatures.DWwrLeysfW2VPx3m"],
             "11": ["Compendium.sw5e.classfeatures.Q7qPuL7FOn0DQWtD"],
-            //"20": ["Compendium.sw5e.classfeatures."]
+            "20": ["Compendium.sw5e.classfeatures.0L38TGkU8ViI7klt"]
         },
     },
     "guardian": {

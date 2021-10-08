@@ -1,0 +1,79 @@
+{
+  "_id": "hqVKZie7x9w3Kqds",
+  "name": "Power Scroll 3rd Level",
+  "type": "consumable",
+  "img": "icons/sundries/scrolls/scroll-bound-gold-brown.webp",
+  "data": {
+    "description": {
+      "value": "<p>A power scroll bears the words of a single power, written in a mystical cipher. If the power is on your class's power list, you can use an action to read the scroll and cast its power without having to provide any of the power's components. Otherwise, the scroll is unintelligible.</p>\n<p>If the power is on your class's power list but of a higher level than you can normally cast, you must make an ability check using your powercasting ability to determine whether you cast it successfully. The DC is 13. On a failed check, the power disappears from the scroll with no other effect.</p>\n<p>Once the power is cast, the words on the scroll fade, and the scroll itself crumbles to dust.</p>\n<p>The level of the power on the scroll determines the power's saving throw DC and attack bonus, as well as the scroll's rarity.</p>\n<p><strong>Save DC</strong>: 15<br><strong>Attack bonus</strong>: +7.</p>\n<p>A wizard power on a power scroll can be copied just as powers in powerbooks can be copied. When a power is copied from a power scroll, the copier must succeed on an Intelligence (Arcana) check with a DC equal to 10. If the check succeeds, the power is successfully copied. Whether the check succeeds or fails, the power scroll is destroyed.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 200",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200,
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "uncommon",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": "Power must be on the caster's power list."
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "charges",
+      "autoDestroy": true,
+      "autoUse": true
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "mpak",
+    "attackBonus": 7,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "flat"
+    },
+    "consumableType": "scroll",
+    "attributes": {
+      "powerdc": 10
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 600000,
+  "permission": {
+    "default": 0
+  },
+  "flags": {}
+}

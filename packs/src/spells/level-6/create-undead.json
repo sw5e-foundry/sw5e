@@ -1,0 +1,85 @@
+{
+  "_id": "E4NXux0RHvME1XgP",
+  "name": "Create Undead",
+  "permission": {
+    "default": 0
+  },
+  "type": "power",
+  "data": {
+    "description": {
+      "value": "<p>You can cast this power only at night. Choose up to three corpses of Medium or Small humanoids within range. Each corpse becomes a ghoul under your control. (The DM has game statistics for these creatures.)</p><p>As a bonus action on each of your turns, you can mentally command any creature you animated with this power if the creature is within 120 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete.</p><p>The creature is under your control for 24 hours, after which it stops obeying any command you have given it. To maintain control of the creature for another 24 hours, you must cast this power on the creature before the current 24-hour period ends. This use of the power reasserts your control over up to three creatures you have animated with this power, rather than animating new ones.</p><p><strong>Higher Levels.&nbsp;</strong>When you cast this power using a 7th-level power slot, you can animate or reassert control over four ghouls. When you cast this power using an 8th-level power slot, you can animate or reassert control over five ghouls or two ghasts or wights. When you cast this power using a 9th-level power slot, you can animate or reassert control over six ghouls, three ghasts or wights, or two mummies.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "PHB pg. 229",
+    "activation": {
+      "type": "minute",
+      "cost": 1,
+      "condition": "You can cast this power only at night."
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "target": {
+      "value": 3,
+      "units": "spec",
+      "type": "creature"
+    },
+    "range": {
+      "value": 10,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 0,
+      "max": 0,
+      "per": ""
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": "",
+      "value": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "value": "",
+      "scaling": "power"
+    },
+    "level": 6,
+    "school": "nec",
+    "components": {
+      "value": "",
+      "vocal": true,
+      "somatic": true,
+      "material": true,
+      "ritual": false,
+      "concentration": false
+    },
+    "materials": {
+      "value": "One clay pot filled with grave dirt, one clay pot filled with brackish water, and one 150 gp black onyx stone for each corpse.",
+      "consumed": false,
+      "cost": 150,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": false
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": ""
+    }
+  },
+  "sort": 100001,
+  "flags": {},
+  "img": "systems/sw5e/icons/powers/horror-red-3.jpg",
+  "effects": []
+}

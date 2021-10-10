@@ -2,7 +2,6 @@ import ActorSheet5e from "./base.js";
 
 /**
  * An Actor sheet for NPC type characters in the SW5E system.
- * Extends the base ActorSheet5e class.
  * @extends {ActorSheet5e}
  */
 export default class ActorSheet5eNPCNew extends ActorSheet5e {
@@ -34,7 +33,8 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Organize Owned Items for rendering the NPC sheet
+     * Organize Owned Items for rendering the NPC sheet.
+     * @param {object} data  Copy of the actor data being prepared for displayed. *Will be mutated.*
      * @private
      */
     _prepareItems(data) {
@@ -107,13 +107,13 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
         // Challenge Rating
         const cr = parseFloat(data.data.details.cr || 0);
         const crLabels = {0: "0", 0.125: "1/8", 0.25: "1/4", 0.5: "1/2"};
-        data.labels["cr"] = cr >= 1 ? String(cr) : crLabels[cr] || 1;
+        data.labels.cr = cr >= 1 ? String(cr) : crLabels[cr] || 1;
 
         // Creature Type
-        data.labels["type"] = this.actor.labels.creatureType;
+        data.labels.type = this.actor.labels.creatureType;
 
         // Armor Type
-        data.labels["armorType"] = this.getArmorLabel();
+        data.labels.armorType = this.getArmorLabel();
 
         return data;
     }
@@ -122,7 +122,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
 
     /**
      * Format NPC armor information into a localized string.
-     * @return {string}  Formatted armor label.
+     * @returns {string}  Formatted armor label.
      */
     getArmorLabel() {
         const ac = this.actor.data.data.attributes.ac;
@@ -163,8 +163,8 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Handle rolling NPC health values using the provided formula
-     * @param {Event} event     The original click event
+     * Handle rolling NPC health values using the provided formula.
+     * @param {Event} event  The original click event.
      * @private
      */
     _onRollHPFormula(event) {

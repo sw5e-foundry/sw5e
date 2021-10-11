@@ -985,120 +985,120 @@ export const ClassFeatures = {
                 "label": "Dpctor Pursuit",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.xO0S3b8PDyIhbcpB","Compendium.sw5e.archetypefeatures.nK8YfaQhpKL1cRc7","Compendium.sw5e.archetypefeatures.IPpqdSEBLz4oFA8Y"],
+                    "6": ["Compendium.sw5e.archetypefeatures.ltVNKNzWzeoKiWKH"],
+                    "9": ["Compendium.sw5e.archetypefeatures.sghpF39rTtLdRPcB"],
+                    "17": ["Compendium.sw5e.archetypefeatures.oj5YJYw3sN0iB3An"]
                 }
             },
             "gambler-pursuit": {
                 "label": "Gambler Pursuit",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.fJm2hbth4x8MjcaE","Compendium.sw5e.archetypefeatures.P4qsjclV61jsbYy1","Compendium.sw5e.archetypefeatures.DC1OEtQjBBDeW5OW"],
+                    "6": ["Compendium.sw5e.archetypefeatures.JDQX7iHuOBK2MFNE"],
+                    "9": ["Compendium.sw5e.archetypefeatures.pmDPB4ewbOA3EUHg"],
+                    "17": ["Compendium.sw5e.archetypefeatures.Y78JOUdUxUJXEfa5"]
                 }
             },
             "politician-pursuit": {
                 "label": "Politician Pursuit",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.BVQD3b9dRRc1NOZ8","Compendium.sw5e.archetypefeatures.Vr8h2Pce9Uwlzd90","Compendium.sw5e.archetypefeatures.RtsQMA65PUTd9OO4"],
+                    "6": ["Compendium.sw5e.archetypefeatures.9iLGiSiIDGl0kbc7"],
+                    "9": ["Compendium.sw5e.archetypefeatures.asO7zdX5mtGyDEjS"],
+                    "17": ["Compendium.sw5e.archetypefeatures.J33LpvlIbUMtwpnC"]
                 }
             },
             "tactician-pursuit": {
                 "label": "Tactician Pursuit",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.dNtJVJ9I4aZkDOBX","Compendium.sw5e.archetypefeatures.lVMORYeK91lvgrwI","Compendium.sw5e.archetypefeatures.mdzDjiiRWx0WX4UZ"],
+                    "6": ["Compendium.sw5e.archetypefeatures.t4nWB2j7ima6POST"],
+                    "9": ["Compendium.sw5e.archetypefeatures.1cxc0QDekoOmh4jL"],
+                    "17": ["Compendium.sw5e.archetypefeatures.sZZ2LNKMInGa6qst"]
                 }
             },
             "archaeologist-pursuit": {
                 "label": "Archaeologist Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.MWo1kqA0ba5Ta43R","Compendium.sw5e.archetypefeatures.KL57sS7jcwOWdqZ8","Compendium.sw5e.archetypefeatures.HuWC6nLw7bmqQz4H","Compendium.sw5e.archetypefeatures.bUxGwGbxAAwlm8L7"],
+                    "6": ["Compendium.sw5e.archetypefeatures.pANZh0AtuI6THv2S"],
+                    "9": ["Compendium.sw5e.archetypefeatures.pJ8e1i2GwBP8yRum"],
+                    "17": ["Compendium.sw5e.archetypefeatures.wNQS0Ptg34IyGxZZ"]
                 }
             },
             "chef-pursuit": {
                 "label": "Chef Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.CAZeKeseBHQp9Pko","Compendium.sw5e.archetypefeatures.nCs6NVeaLoDueywC","Compendium.sw5e.archetypefeatures.xtoig0biGPgiry1w"],
+                    "6": ["Compendium.sw5e.archetypefeatures.szOx52zJzpJDDk2G"],
+                    "9": ["Compendium.sw5e.archetypefeatures.OMEv8u23ORmqxHnj"],
+                    "17": ["Compendium.sw5e.archetypefeatures.gyGfm8RxCPlB4ObC"]
                 }
             },
             "detective-pursuit": {
                 "label": "Detective Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.W5u2eDcPKOToaldJ","Compendium.sw5e.archetypefeatures.3xIaG9crc9GhsCA6","Compendium.sw5e.archetypefeatures.yd6v0Fx9huLYA2ap"],
+                    "6": ["Compendium.sw5e.archetypefeatures.qTmxhbveE0VYfCGt"],
+                    "9": ["Compendium.sw5e.archetypefeatures.CBXMcglIi2IMS7WM"],
+                    "17": ["Compendium.sw5e.archetypefeatures.i77R0HxIcTGrzhnx"]
                 }
             },
             "explorer-pursuit": {
                 "label": "Explorer Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.Fu2aqFTGJ5Q7n25w","Compendium.sw5e.archetypefeatures.jKiBiuMk3P99GgWf","Compendium.sw5e.archetypefeatures.HIwOMC5nWObSzGXB"],
+                    "6": ["Compendium.sw5e.archetypefeatures.JOvOKdoAbqk0WvJ2"],
+                    "9": ["Compendium.sw5e.archetypefeatures.TQ7URl0pKOkScno8"],
+                    "17": ["Compendium.sw5e.archetypefeatures.0A1mJxDpF6jQjeyJ"]
                 }
             },
             "geneticist-pursuit": {
                 "label": "Geneticist Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.HOVhj9BhxNZLSptR","Compendium.sw5e.archetypefeatures.GGqgKEqABS3cAOWt","Compendium.sw5e.archetypefeatures.9OSqgtLXkhztRVdU"],
+                    "6": ["Compendium.sw5e.archetypefeatures.hiImvWE5BU0Ef9iK"],
+                    "9": ["Compendium.sw5e.archetypefeatures.yGgGu0kOs7wkemhh"],
+                    "17": ["Compendium.sw5e.archetypefeatures.yeqHFCjFYscQqYSr"]
                 }
             },
             "occultist-pursuit": {
                 "label": "Occultist Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.aGO7s8TkeY9fEmd4","Compendium.sw5e.archetypefeatures.SyMBU3AYiyorZllq","Compendium.sw5e.archetypefeatures.htWHo1KNbOE7MChz"],
+                    "6": ["Compendium.sw5e.archetypefeatures.ZI7BjzLcFQzru8Ga"],
+                    "9": ["Compendium.sw5e.archetypefeatures.wokNr8mYw9khsGQK"],
+                    "17": ["Compendium.sw5e.archetypefeatures.bcFE1wrOE90hfVrM"]
                 }
             },
             "slicer-pursuit": {
                 "label": "Slicer Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.kGZL0ubyZRM9aB2c","Compendium.sw5e.archetypefeatures.6k4LOfeCmWigPPRv","Compendium.sw5e.archetypefeatures.JdDir2xAqh46P4Rm","Compendium.sw5e.archetypefeatures.g2VSGKg8UJ7mrSAd"],
+                    "6": ["Compendium.sw5e.archetypefeatures.Ox1ISzt9vMy71JIb"],
+                    "9": ["Compendium.sw5e.archetypefeatures.80yruN7q6k2svTUi"],
+                    "17": ["Compendium.sw5e.archetypefeatures.aA0DqIU3oPAfqp91"]
                 }
             },
             "zoologist-pursuit": {
                 "label": "Zoologist Pursuit",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.",Compendium.sw5e.archetypefeatures.,Compendium.sw5e.archetypefeatures.],
-                    //"6": ["Compendium.sw5e.archetypefeatures."],
-                    //"9": ["Compendium.sw5e.archetypefeatures."],
-                    //"17": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.x7soWLW66lFNBZXi","Compendium.sw5e.archetypefeatures.pUuuUnNpq00TmruK","Compendium.sw5e.archetypefeatures.AMkBtHyMFw34LVtA"],
+                    "6": ["Compendium.sw5e.archetypefeatures.XhiqRVGEwwXj2NNt"],
+                    "9": ["Compendium.sw5e.archetypefeatures.796zwjcYoSMTPHkC"],
+                    "17": ["Compendium.sw5e.archetypefeatures.Vt6K2CCbLOvgSP04"]
                 }
             },
         },
@@ -1118,49 +1118,49 @@ export const ClassFeatures = {
                 "label": "Bulwark Technique",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.DM2NcnlKJq8EGjKq","Compendium.sw5e.archetypefeatures.9H0lc69pjr25CmUA","Compendium.sw5e.archetypefeatures.3IRtRyM0ksFP8wdA"],
+                    "7": ["Compendium.sw5e.archetypefeatures.82oCGF1LmiYnLL9g"],
+                    "11": ["Compendium.sw5e.archetypefeatures.558flgosIwSyAW9g"],
+                    "15": ["Compendium.sw5e.archetypefeatures.WvP6k5LuXOxqbn7o"]
                 }
             },
             "hunter-technique": {
                 "label": "Hunter Technique",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.qIxH6tE6oiSglRaa","Compendium.sw5e.archetypefeatures.bjJxubtnG3WiZoxM"],
+                    "7": ["Compendium.sw5e.archetypefeatures.VdGLqnS8HMmGWoKU"],
+                    "11": ["Compendium.sw5e.archetypefeatures.61JqyWqdGARulMnP"],
+                    "15": ["Compendium.sw5e.archetypefeatures.LLSeCmTx42FanV5K"]
                 }
             },
             "slayer-technique": {
                 "label": "Slayer Technique",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.tkaAavTOVOjaB8dl","Compendium.sw5e.archetypefeatures.Bpe67XmrSlb9cEeX","Compendium.sw5e.archetypefeatures.hX7H3BNaMpMRd9u8"],
+                    "7": ["Compendium.sw5e.archetypefeatures.cjhhmi5WU4mK9DLz"],
+                    "11": ["Compendium.sw5e.archetypefeatures.Lvls76izYod2m2MF"],
+                    "15": ["Compendium.sw5e.archetypefeatures.21o2m4T6nKInTyiI"]
                 }
             },            
             "stalker-technique": {
                 "label": "Stalker Technique",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.mHMVnLFhcHBG6cAt","Compendium.sw5e.archetypefeatures.tjyIuf8lisQ2DNtP"],
+                    "7": ["Compendium.sw5e.archetypefeatures.mXa6gcQBg2g497U7"],
+                    "11": ["Compendium.sw5e.archetypefeatures.2jjhHwDNTNAjKPzZ"],
+                    "15": ["Compendium.sw5e.archetypefeatures.neI83QoBohA6gEqz"]
                 }
             },            
             "artillerist-technique": {
                 "label": "Artillerist Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
+                    "3": ["Compendium.sw5e.archetypefeatures.8xS2WONKsMp0LbrM","Compendium.sw5e.archetypefeatures.1eKyPs6RoO573uYw"],
+                    "7": ["Compendium.sw5e.archetypefeatures.O2lxvWuyGLw2sVAc"],
+                    "11": ["Compendium.sw5e.archetypefeatures.GirKxjNPvTGk3DVX"],
                     //"15": ["Compendium.sw5e.archetypefeatures."]
                 }
             },
@@ -1168,59 +1168,59 @@ export const ClassFeatures = {
                 "label": "Artillerist Technique (Companion)",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.BeTpCbtERBREvnMl","Compendium.sw5e.archetypefeatures.FzzFxDLgPWBkXcXq","Compendium.sw5e.archetypefeatures.ZbziaeIzHNnBexBM"],
+                    "7": ["Compendium.sw5e.archetypefeatures.fx08RPXw91EqjPsT"],
+                    "11": ["Compendium.sw5e.archetypefeatures.LqbUKNqodgjoGUvt"],
+                    "15": ["Compendium.sw5e.archetypefeatures.j2mJ1wVjN04WYs8c"]
                 }
             },
             "deadeye-technique": {
                 "label": "Deadeye Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.IbNoVrcKZpAa8dVo","Compendium.sw5e.archetypefeatures.jCmKJKpNwiYatPkA"],
+                    "7": ["Compendium.sw5e.archetypefeatures.PjOShcmujgdSM6J3"],
+                    "11": ["Compendium.sw5e.archetypefeatures.EWZnV1TWQASPvG3W"],
+                    "15": ["Compendium.sw5e.archetypefeatures.M2bObVPZABsSjW3H"]
                 }
             },
             "illusionist-technique": {
                 "label": "Illusionist Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.lAW369rv2hiS8dkA","Compendium.sw5e.archetypefeatures.h9jPXWvV178DU6YK"],
+                    "7": ["Compendium.sw5e.archetypefeatures.kuyt0JMu56ObIrNW"],
+                    "11": ["Compendium.sw5e.archetypefeatures.ItBrXVOTDaTVCcKR"],
+                    "15": ["Compendium.sw5e.archetypefeatures.v1GPZX7JZ4lh2Bhy"]
                 }
             },
             "inquisitor-technique": {
                 "label": "Inquisitor Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.NVrCQl39GalpyYd4","Compendium.sw5e.archetypefeatures.95ko8pHzF6cxFyaf"],
+                    "7": ["Compendium.sw5e.archetypefeatures.wucg8tZ2hIeP6aGS"],
+                    "11": ["Compendium.sw5e.archetypefeatures.V2Dl98rSZpMZFTvG"],
+                    "15": ["Compendium.sw5e.archetypefeatures.3g7tveozmCHAkd5R"]
                 }
             },
             "mastermind-technique": {
                 "label": "Mastermind Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.VKL4s3L46zJwKrQ3","Compendium.sw5e.archetypefeatures.SpcKTAe4Vje803U5"],
+                    "7": ["Compendium.sw5e.archetypefeatures.Tab0PheZbRvNPIco"],
+                    "11": ["Compendium.sw5e.archetypefeatures.hEtaCq4DRAre5lt3"],
+                    "15": ["Compendium.sw5e.archetypefeatures.8z9FXsEARlNTDuDY"]
                 }
             },
             "mechanist-technique": {
                 "label": "Mechanist Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
+                    "3": ["Compendium.sw5e.archetypefeatures.7gGJEND9BUbWfFph","Compendium.sw5e.archetypefeatures.MGwm0S67qVVfB1DZ"],
+                    "7": ["Compendium.sw5e.archetypefeatures.ZN4h1iJ6TZcrGJs5"],
+                    "11": ["Compendium.sw5e.archetypefeatures.Rw1vjSKJYqeeGqqZ"],
                     //"15": ["Compendium.sw5e.archetypefeatures."]
                 }
             },
@@ -1228,9 +1228,9 @@ export const ClassFeatures = {
                 "label": "Mechanist Technique (Companion)",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
+                    "3": ["Compendium.sw5e.archetypefeatures.BVX0dQP2dSubCuYQ","Compendium.sw5e.archetypefeatures.7gGJEND9BUbWfFph","Compendium.sw5e.archetypefeatures.iX1kh5BKeeXyvVQO"],
+                    "7": ["Compendium.sw5e.archetypefeatures.MGwm0S67qVVfB1DZ"],
+                    "11": ["Compendium.sw5e.archetypefeatures.eviAtXKewLeaplqC"],
                     //"15": ["Compendium.sw5e.archetypefeatures."]
                 }
             },
@@ -1238,30 +1238,30 @@ export const ClassFeatures = {
                 "label": "Predator Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.4vVKWpTYeithsY3k","Compendium.sw5e.archetypefeatures.Jgio8XTyovOMeOxk","Compendium.sw5e.archetypefeatures.3fGONRv3flikLZAI"],
+                    "7": ["Compendium.sw5e.archetypefeatures.KKh8VZnbhTMAfXyY"],
+                    "11": ["Compendium.sw5e.archetypefeatures.JCDQRKdrqpvoxE57"],
+                    "15": ["Compendium.sw5e.archetypefeatures.QiK8clUuVuTqq9YB"]
                 }
             },
             "teleportation-technique": {
                 "label": "Teleportation Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.GmdocTNaPecSqWJW","Compendium.sw5e.archetypefeatures.A69lAx3NTSzN75hR","Compendium.sw5e.archetypefeatures.Y9bdZJOPS2k29Vnu"],
+                    "7": ["Compendium.sw5e.archetypefeatures.yRcP6NMkwl2cdtDA"],
+                    "11": ["Compendium.sw5e.archetypefeatures.Zy1lZOSKK4qcSKQp"],
+                    "15": ["Compendium.sw5e.archetypefeatures.WxaVGJlPlo1kCQ4w"]
                 }
             },
             "triage-technique": {
                 "label": "Triage Technique",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"11": ["Compendium.sw5e.archetypefeatures."],
-                    //"15": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.d2t0mqgfXG8yjtmu","Compendium.sw5e.archetypefeatures.qP6RHh9oFC2swnUp"],
+                    "7": ["Compendium.sw5e.archetypefeatures.msWhMPDFs8berHvM"],
+                    "11": ["Compendium.sw5e.archetypefeatures.bayEAWiTjhqDChpF"],
+                    "15": ["Compendium.sw5e.archetypefeatures.0IfYzyCr3kBPGY9f"]
                 }
             },
         },
@@ -1283,120 +1283,120 @@ export const ClassFeatures = {
                 "label": "Path of Aggression",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.Jc07SykJ539Brb74","Compendium.sw5e.archetypefeatures.yQjjOO38mom8rzKe"],
+                    "7": ["Compendium.sw5e.archetypefeatures.FYQTWy0LiZHCGtxt"],
+                    "13": ["Compendium.sw5e.archetypefeatures.PO8HJonMjIBf22vq"],
+                    "18": ["Compendium.sw5e.archetypefeatures.shHFJ7KWhcnoOrQF"]
                 }
             },
             "path-of-focus": {
                 "label": "Path of Focus",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.M4TvPat9RcWb3Lld","Compendium.sw5e.archetypefeatures.krcbHJIBAzzgQQjG"],
+                    "7": ["Compendium.sw5e.archetypefeatures.wv6tHoPoz1VvOIsT"],
+                    "13": ["Compendium.sw5e.archetypefeatures.1JcvqmPhP8g4pDaD"],
+                    "18": ["Compendium.sw5e.archetypefeatures.2gNENhRMngBSCGae"]
                 }
             },
             "path-of-shadows": {
                 "label": "Path of Shadows",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.X53YgZevjoDygVam","Compendium.sw5e.archetypefeatures.ocyh8LZGSDc4trWi"],
+                    "7": ["Compendium.sw5e.archetypefeatures.S8EKDemG7wOzKU7x"],
+                    "13": ["Compendium.sw5e.archetypefeatures.ZXE4BqEuR817CI63"],
+                    "18": ["Compendium.sw5e.archetypefeatures.UALQWbDzmp6H8Uiq"]
                 }
             },
             "path-of-the-forceblade": {
                 "label": "Path of the Forceblade",
                 "source": "PHB",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.3kxULrcQfqD0PHCi","Compendium.sw5e.archetypefeatures.KOiETj8QsFdp2cVz"],
+                    "7": ["Compendium.sw5e.archetypefeatures.iOjqxoQUlpaFzOc7"],
+                    "13": ["Compendium.sw5e.archetypefeatures.9UP919oW3qE3p31P"],
+                    "18": ["Compendium.sw5e.archetypefeatures.P5jlHfbFfEgppwin"]
                 }
             },
             "path-of-communion": {
                 "label": "Path of Communion",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.XkMWMdiqpquvZDIl","Compendium.sw5e.archetypefeatures.qCk0uXIjvX0fp87f"],
+                    "7": ["Compendium.sw5e.archetypefeatures.kAYHyZ2j11MuED94"],
+                    "13": ["Compendium.sw5e.archetypefeatures.clyjD2vr3rdXLqrI"],
+                    "18": ["Compendium.sw5e.archetypefeatures.G9NlcRAQ2yP8Dkmc"]
                 }
             },
             "path-of-ethereality": {
                 "label": "Path of Ethereality",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.8pZDUMhGKgIQQkqc","Compendium.sw5e.archetypefeatures.uRwgNt43SzREjCce"],
+                    "7": ["Compendium.sw5e.archetypefeatures.VjnTTjD2eKKwImLP"],
+                    "13": ["Compendium.sw5e.archetypefeatures.6UKMlKLOknXRjIRm"],
+                    "18": ["Compendium.sw5e.archetypefeatures.fkw2xa0qoE9CkFDy"]
                 }
             },
             "path-of-meditation": {
                 "label": "Path of Meditation",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.jzk3jiTs5K4tXMgT","Compendium.sw5e.archetypefeatures.DzzBvbZTTc1CutJ7"],
+                    "7": ["Compendium.sw5e.archetypefeatures.LL8StaGlBvMjxaER"],
+                    "13": ["Compendium.sw5e.archetypefeatures.10fweZVQTNSQtqX8"],
+                    "18": ["Compendium.sw5e.archetypefeatures.gZ3oAi3tQKpvQ7KD"]
                 }
             },
             "path-of-synthesis": {
                 "label": "Path of Synthesis",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.Lw8sDgfB0hmIxhku","Compendium.sw5e.archetypefeatures.21Ktw6dxxFXmOh4P"],
+                    "7": ["Compendium.sw5e.archetypefeatures.VJgOOiZqdccEI7W3"],
+                    "13": ["Compendium.sw5e.archetypefeatures.0fo6KzqxikFvFhsw"],
+                    "18": ["Compendium.sw5e.archetypefeatures.GnOt6LNfEOoKjLl7"]
                 }
             },
             "path-of-tenacity": {
                 "label": "Path of Tenacity",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.n5v4Lb2ZOUOzzNME","Compendium.sw5e.archetypefeatures.IYZaMnSC37BmdWQf"],
+                    "7": ["Compendium.sw5e.archetypefeatures.PIUM7o85ft0EQzli"],
+                    "13": ["Compendium.sw5e.archetypefeatures.bjMJ4CWQiX8KbMHZ"],
+                    "18": ["Compendium.sw5e.archetypefeatures.vh8gpSCT41sZMONL"]
                 }
             },
             "path-of-witchcraft": {
                 "label": "Path of Witchcraft",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.AKhL9OSAKnfrO0Kg","Compendium.sw5e.archetypefeatures.lE7jPdFRhQiMTlou"],
+                    "7": ["Compendium.sw5e.archetypefeatures.fTZR8LG3Hn19WisN"],
+                    "13": ["Compendium.sw5e.archetypefeatures.3fRdeoUpDUI0Kqwi"],
+                    "18": ["Compendium.sw5e.archetypefeatures.5v2aXZyPOFOSUuAV"]
                 }
             },
             "path-of-witchcraft-companion": {
                 "label": "Path of Witchcraft (Companion)",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.aDLLQeIC3iBUYJ3K","Compendium.sw5e.archetypefeatures.AKhL9OSAKnfrO0Kg","Compendium.sw5e.archetypefeatures.9wvzjygMHDuw0px6"],
+                    "7": ["Compendium.sw5e.archetypefeatures.fTZR8LG3Hn19WisN"],
+                    "13": ["Compendium.sw5e.archetypefeatures.uAp4zqqSbx0HW05K"],
+                    "18": ["Compendium.sw5e.archetypefeatures.5v2aXZyPOFOSUuAV"]
                 }
             },
             "path-of-the-corsair": {
                 "label": "Path of the Corsair",
                 "source": "EC",
                 "features": {
-                    //"3": ["Compendium.sw5e.archetypefeatures.","Compendium.sw5e.archetypefeatures."],
-                    //"7": ["Compendium.sw5e.archetypefeatures."],
-                    //"13": ["Compendium.sw5e.archetypefeatures."],
-                    //"18": ["Compendium.sw5e.archetypefeatures."]
+                    "3": ["Compendium.sw5e.archetypefeatures.UXa0dXV2kZmyb1gI","Compendium.sw5e.archetypefeatures.ktHVI0CAisrtVuqm"],
+                    "7": ["Compendium.sw5e.archetypefeatures.GD5CpFHzFxaGzNWa"],
+                    "13": ["Compendium.sw5e.archetypefeatures.WQLfOKA36jXOSz0J"],
+                    "18": ["Compendium.sw5e.archetypefeatures.YQjndSMMsWAJSeMy"]
                 }
             },
         },

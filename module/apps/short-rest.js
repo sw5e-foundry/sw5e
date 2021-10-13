@@ -87,7 +87,7 @@ export default class ShortRestDialog extends Dialog {
      * A helper constructor function which displays the Short Rest dialog and returns a Promise once it's workflow has
      * been resolved.
      * @param {Actor5e} actor
-     * @return {Promise}
+     * @returns {Promise}
      */
     static async shortRestDialog({actor} = {}) {
         return new Promise((resolve, reject) => {
@@ -99,8 +99,9 @@ export default class ShortRestDialog extends Dialog {
                         label: game.i18n.localize("SW5E.Rest"),
                         callback: (html) => {
                             let newDay = false;
-                            if (game.settings.get("sw5e", "restVariant") === "gritty")
+                            if (game.settings.get("sw5e", "restVariant") === "gritty") {
                                 newDay = html.find('input[name="newDay"]')[0].checked;
+                            }
                             resolve(newDay);
                         }
                     },
@@ -123,7 +124,7 @@ export default class ShortRestDialog extends Dialog {
      * workflow has been resolved.
      * @deprecated
      * @param {Actor5e} actor
-     * @return {Promise}
+     * @returns {Promise}
      */
     static async longRestDialog({actor} = {}) {
         console.warn(

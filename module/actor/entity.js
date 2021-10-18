@@ -1178,7 +1178,7 @@ export default class Actor5e extends Actor {
         if (uuid) {
             for (const change of changed) {
                 const arr = change.split('.');
-                if (change == "name" || change == "data.attributes.prof" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
+                if (change == "name" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
                     const starship = fromUuidSynchronous(uuid);
                     starship.deployInto(this, [])
                     break;

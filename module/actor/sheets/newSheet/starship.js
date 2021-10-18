@@ -1,4 +1,5 @@
 import ActorSheet5e from "./base.js";
+import {SW5E} from "../../../config.js";
 
 /**
  * An Actor sheet for starships in the SW5E system.
@@ -11,6 +12,17 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.html";
         return `systems/sw5e/templates/actors/newActor/starship.html`;
     }
+
+    /* -------------------------------------------- */
+
+    constructor(...args) {
+        super(...args);
+
+        this._filters.features.add("activeDeploy")
+    }
+
+    /* -------------------------------------------- */
+
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -57,6 +69,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 dataset: {type: "starshipmod"}
             }
         };
+        const starshipactions = {}
+        for (const deploy of Object.keys(SW5E.deploymentTypes)) starshipactions[deploy] = {
+                items: [],
+                dataset: {"type": "starshipaction", "deployment": deploy}
+            };
 
         // Start by classifying items into groups for rendering
         let [other] = data.items.reduce(
@@ -83,6 +100,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             else if (item.type === "feat") {
                 if (item.data.activation.type) features.actions.items.push(item);
                 else features.passive.items.push(item);
+            } else if (item.type === "starshipaction") {
+                starshipactions[item.data.deployment].items.push(item);
             } else if (item.type === "starshipfeature") {
                 features.starshipfeatures.items.push(item);
             } else if (item.type === "starshipmod") {
@@ -92,6 +111,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Assign and return
         data.features = Object.values(features);
+        data.starshipactions = starshipactions;
     }
 
     /* -------------------------------------------- */
@@ -107,6 +127,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         data.isLarge = data.actor.data.traits.size === "lg";
         data.isHuge = data.actor.data.traits.size === "huge";
         data.isGargantuan = data.actor.data.traits.size === "grg";
+
+        if (!this._filters.features.has("activeDeploy")) data.showAllActions = true;
+        if (Object.entries(this.actor.data.data.attributes.deployment).filter(
+                ([key, deploy]) => key != "active" && (deploy.uuid || deploy.items?.length)
+            ).length == 0) {
+                data.showAllDeployments = true;
+        }
 
         return data;
     }
@@ -129,7 +156,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
         // Rollable sheet actions
         html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
+        // Deployment controls
+        html.find(".deploy-control").click(this._onDeployControl.bind(this));
     }
+
     /* -------------------------------------------- */
 
     /**
@@ -280,6 +310,140 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         let slideroutput = symbol;
         document.querySelector("#weaponslideroutput").value = slideroutput;
         this.actor.update({"data.attributes.power.routing.weapons": coefficient});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle control events from a deployed actor
+     * @param {Event} event     The original click event
+     * @private
+     */
+    _onDeployControl(event) {
+        event.preventDefault();
+        const a = event.currentTarget;
+        const li = a.closest("li");
+        const key = li.dataset.key;
+        const uuid = li.dataset.uuid;
+        const deployments = this.actor.data.data.attributes.deployment;
+        switch ( a.dataset.action ) {
+            case "delete":
+                if (deployments[key].items) {
+                    const aux1 = deployments[key].items.filter(e => e.uuid == uuid);
+                    const aux2 = deployments[key].items.filter(e => e.uuid != uuid);
+                    if (aux1.length && aux1[0].active) deployments[key].active = false;
+                    deployments[key].items = aux2;
+                }
+                else for (const k in deployments[key]) deployments[key][k] = null;
+                break;
+            case "toggle":
+                const active = {};
+                for (const [key, deployment] of Object.entries(deployments)) {
+                    if (key == "active") continue;
+                    if (deployment.items) {
+                        for (const deploy of Object.values(deployment.items)) {
+                            if (deploy.uuid == uuid) {
+                                deploy.active = !deploy.active;
+                                deployment.active = deploy.active;
+                                if (deploy.active) active[key] = deploy;
+                            }
+                            else deploy.active = false;
+                        }
+                    }
+                    else{
+                        if (deployment.uuid == uuid) {
+                            deployment.active = !deployment.active;
+                            if (deployment.active) active[key] = deployment;
+                        }
+                        else deployment.active = false;
+                    }
+                }
+                deployments.active = {
+                    uuid: null,
+                    name: null,
+                    maxrank: 0,
+                    prof: 0,
+                    deployments: []
+                }
+                for (const [key, deploy] of Object.entries(active)) {
+                    deployments.active.uuid = deploy.uuid;
+                    deployments.active.name = deploy.name;
+                    if (typeof deploy.rank == typeof 0) deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
+                    deployments.active.prof = deploy.prof;
+                    deployments.active.deployments.push(key);
+                }
+                break;
+        }
+        return this.actor.update({"data.attributes.deployment": deployments});
+    }
+
+    /* -------------------------------------------- */
+
+    /** @override */
+    async _onDropActor(event, data) {
+        // Get the target actor
+        let sourceActor = null;
+        if (data.pack) {
+            const pack = game.packs.find((p) => p.collection === data.pack);
+            sourceActor = await pack.getEntity(data.id);
+        } else {
+            sourceActor = game.actors.get(data.id);
+        }
+        if (!sourceActor) return;
+
+        if (!SW5E.deployableTypes.includes(sourceActor.type)) return ui.notifications.warn(
+                game.i18n.format("SW5E.DeploymentInvalidActorType", {
+                    actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type]),
+                })
+            );
+
+        // Pre-select the deployment slot with the highest rank
+        const preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
+                (prev, cur) => (cur[0] == "total") ? prev : (cur[1] > prev[1]) ? cur : prev,
+                ["passenger", 0]
+            )[0];
+        const iscrew = (preselected != "passenger") ? "crew" : "";
+
+        // Create and render the Dialog
+        // Define a function to record starship deployment selections
+        const rememberOptions = (html) => {
+            let values = [];
+            html.find("input").each((i, el) => { if (el.checked) values.push(el.name); });
+            return values;
+        };
+        return new Dialog(
+            {
+                title:
+                    game.i18n.localize("SW5E.DeploymentPromptTitle") +
+                    " " +
+                    sourceActor.data.name +
+                    " into " +
+                    this.actor.data.name,
+                content: {
+                    i18n: SW5E.deploymentTypes,
+                    isToken: this.actor.isToken,
+                    preselected: preselected,
+                    iscrew: iscrew,
+                },
+                default: "accept",
+                buttons: {
+                    deploy: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: game.i18n.localize("SW5E.DeploymentAcceptSettings"),
+                        callback: (html) => this.actor.deployInto(sourceActor, rememberOptions(html))
+                    },
+                    cancel: {
+                        icon: '<i class="fas fa-times"></i>',
+                        label: game.i18n.localize("Cancel")
+                    }
+                }
+            },
+            {
+                classes: ["dialog", "sw5e"],
+                width: 600,
+                template: "systems/sw5e/templates/apps/deployment-prompt.html"
+            }
+        ).render(true);
     }
 
     /* -------------------------------------------- */

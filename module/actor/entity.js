@@ -2620,89 +2620,46 @@ export default class Actor5e extends Actor {
      * Deploy an Actor into this one.
      *
      * @param {Actor} target The Actor to be deployed.
-     * @param {boolean} [coord] Deploy as Coordinator
-     * @param {boolean} [gunner] Deploy as Gunner
-     * @param {boolean} [mech] Deploy as Mechanic
-     * @param {boolean} [oper] Deploy as Operator
-     * @param {boolean} [pilot] Deploy as Pilot
-     * @param {boolean} [tech] Deploy as Technician
-     * @param {boolean} [crew] Deploy as Crew
-     * @param {boolean} [pass] Deploy as Passenger
+     * @param {array} deployments Array of the positions to deploy in
      */
-    async deployInto(
-        target,
-        {
-            coord = false,
-            gunner = false,
-            mech = false,
-            oper = false,
-            pilot = false,
-            tech = false,
-            crew = false,
-            pass = false
-        } = {}
-    ) {
+    async deployInto(target, deployments) {
         // Get the starship Actor data and the new char data
-        const sship = duplicate(this.toJSON());
-        const ssDeploy = sship.data.attributes.deployment;
-        const char = target;
-        const charUUID = char.uuid;
-        const charName = char.data.name;
-        const charRank = char.data.data.attributes.rank;
-        let charProf = 0;
-        if (charRank === undefined || charRank.total > 0) {
-            charProf = char.data.data.attributes.prof;
+        const ssDeploy = this.data.data.attributes.deployment;
+        const charUUID = target.uuid;
+        const charName = target.data.name;
+
+        for (const deployment of deployments) {
+            if (!deployment in SW5E.deploymentTypes) continue;
+
+            let charRank = target.data.data.attributes.rank;
+            let charProf = 0;
+
+            if (charRank === undefined || charRank.total > 0) charProf = target.data.data.attributes.prof;
+            if (!['active', 'crew', 'passenger'].includes(deployment)) charRank = charRank ? charRank[deployment] : 0;
+
+            const deploy = { uuid: charUUID, name: charName, rank: charRank, prof: charProf }
+
+            // If it's a deployment that accepts multiple characters
+            if (ssDeploy[deployment].items){
+                if (ssDeploy[deployment].items.filter(e => e.uuid == charUUID).length) ui.notifications.warn(
+                        game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
+                            actor: charName,
+                            deployment: game.i18n.localize(SW5E.deploymentTypes[deployment])
+                        })
+                    );
+                else ssDeploy[deployment].items.push(deploy);
+            }
+            else {
+                if (ssDeploy[deployment].uuid == charUUID) ui.notifications.warn(
+                        game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
+                            actor: charName,
+                            deployment: game.i18n.localize(SW5E.deploymentTypes[deployment])
+                        })
+                    );
+                else ssDeploy[deployment] = deploy;
+            }
         }
 
-        if (coord) {
-            ssDeploy.coord.uuid = charUUID;
-            ssDeploy.coord.name = charName;
-            ssDeploy.coord.rank = charRank ? charRank.coord : 0;
-            ssDeploy.coord.prof = charProf;
-        }
-
-        if (gunner) {
-            ssDeploy.gunner.uuid = charUUID;
-            ssDeploy.gunner.name = charName;
-            ssDeploy.gunner.rank = charRank ? charRank.gunner : 0;
-            ssDeploy.gunner.prof = charProf;
-        }
-
-        if (mech) {
-            ssDeploy.mechanic.uuid = charUUID;
-            ssDeploy.mechanic.name = charName;
-            ssDeploy.mechanic.rank = charRank ? charRank.mechanic : 0;
-            ssDeploy.mechanic.prof = charProf;
-        }
-
-        if (oper) {
-            ssDeploy.operator.uuid = charUUID;
-            ssDeploy.operator.name = charName;
-            ssDeploy.operator.rank = charRank ? charRank.operator : 0;
-            ssDeploy.operator.prof = charProf;
-        }
-
-        if (pilot) {
-            ssDeploy.pilot.uuid = charUUID;
-            ssDeploy.pilot.name = charName;
-            ssDeploy.pilot.rank = charRank ? charRank.pilot : 0;
-            ssDeploy.pilot.prof = charProf;
-        }
-
-        if (tech) {
-            ssDeploy.technician.uuid = charUUID;
-            ssDeploy.technician.name = charName;
-            ssDeploy.technician.rank = charRank ? charRank.technician : 0;
-            ssDeploy.technician.prof = charProf;
-        }
-
-        if (crew) {
-            ssDeploy.crew.push({uuid: charUUID, name: charName, rank: charRank, prof: charProf});
-        }
-
-        if (pass) {
-            ssDeploy.passenger.push({uuid: charUUID, name: charName, rank: charRank, prof: charProf});
-        }
         this.update({"data.attributes.deployment": ssDeploy});
     }
 

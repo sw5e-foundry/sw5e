@@ -54,8 +54,15 @@
                     {{selectOptions config.weaponTypes selected=data.weaponType}}
                 </select>
             </div>
-			
-			{{!-- Starship Weapon Size --}}
+
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
+                <select name="data.baseItem">
+                    {{selectOptions baseItems selected=data.baseItem blank=""}}
+                </select>
+            </div>
+
+            {{!-- Starship Weapon Size --}}
 <!--             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
                 <select name="data.weaponSize">

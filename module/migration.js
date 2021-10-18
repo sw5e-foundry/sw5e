@@ -1,13 +1,12 @@
 /**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
- * @return {Promise}      A Promise which resolves once the migration is completed
+ * @returns {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function () {
     ui.notifications.info(
         `Applying SW5e System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`,
         {permanent: true}
     );
-
     // Migrate World Actors
     for await (let a of game.actors) {
         try {
@@ -70,8 +69,8 @@ export const migrateWorld = async function () {
 
 /**
  * Apply migration rules to all Entities within a single Compendium pack
- * @param pack
- * @return {Promise}
+ * @param {Compendium} pack  Pack to be migrated.
+ * @returns {Promise}
  */
 export const migrateCompendium = async function (pack) {
     const entity = pack.metadata.entity;
@@ -100,9 +99,9 @@ export const migrateCompendium = async function (pack) {
                     updateData = await migrateSceneData(doc.data);
                     break;
             }
-            if (foundry.utils.isObjectEmpty(updateData)) continue;
 
             // Save the entry, if data was changed
+            if (foundry.utils.isObjectEmpty(updateData)) continue;
             await doc.update(updateData);
             console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
         } catch (err) {
@@ -120,8 +119,8 @@ export const migrateCompendium = async function (pack) {
 /**
  * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
  * check to see if the actor has armor already equipped, and opt to use that instead.
- * @param pack
- * @return {Promise}
+ * @param {Compendium|string} pack  Pack or name of pack to migrate.
+ * @returns {Promise}
  */
 export const migrateArmorClass = async function (pack) {
     if (typeof pack === "string") pack = game.packs.get(pack);
@@ -168,7 +167,7 @@ export const migrateArmorClass = async function (pack) {
  * Migrate a single Actor entity to incorporate latest data model changes
  * Return an Object of updateData to be applied
  * @param {object} actor    The actor data object to update
- * @return {Object}         The updateData to apply
+ * @returns {object}        The updateData to apply
  */
 export const migrateActorData = async function (actor) {
     const updateData = {};
@@ -226,9 +225,10 @@ export const migrateActorData = async function (actor) {
 
 /**
  * Scrub an Actor's system data, removing all keys which are not explicitly defined in the system template
- * @param {Object} actorData    The data object for an Actor
- * @return {Object}             The scrubbed Actor data
+ * @param {object} actorData    The data object for an Actor
+ * @returns {object}            The scrubbed Actor data
  */
+// eslint-disable-next-line no-unused-vars -- We might want to still use this in later migrations.
 function cleanActorData(actorData) {
     // Scrub system data
     const model = game.system.model.Actor[actorData.type];
@@ -253,7 +253,7 @@ function cleanActorData(actorData) {
  * Migrate a single Item entity to incorporate latest data model changes
  *
  * @param {object} item  Item data to migrate
- * @return {object}      The updateData to apply
+ * @returns {object}     The updateData to apply
  */
 export const migrateItemData = function (item) {
     const updateData = {};
@@ -261,6 +261,7 @@ export const migrateItemData = function (item) {
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
     _migrateArmorType(item, updateData);
+    _migrateItemCriticalData(item, updateData);
     return updateData;
 };
 
@@ -278,6 +279,8 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemRarity(item, updateData);
     await _migrateItemPower(item, actor, updateData);
     _migrateArmorType(item, updateData);
+    _migrateItemCriticalData(item, updateData);
+
     return updateData;
 };
 
@@ -286,13 +289,16 @@ export const migrateActorItemData = async function (item, actor) {
 /**
  * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
- * @param {Object} scene  The Scene data to Update
- * @return {Object}       The updateData to apply
+ * @param {object} scene   The Scene data to Update
+ * @returns {object}       The updateData to apply
  */
 export const migrateSceneData = async function (scene) {
     const tokens = await Promise.all(
         scene.tokens.map(async (token) => {
-            const t = token.toJSON();
+            const t = token.toObject();
+            const update = {};
+            if (Object.keys(update).length) foundry.utils.mergeObject(t, update);
+
             if (!t.actorId || t.actorLink) {
                 t.actorData = {};
             } else if (!game.actors.has(t.actorId)) {
@@ -328,8 +334,8 @@ export const migrateSceneData = async function (scene) {
 
 /**
  * Update an NPC Actor's data based on compendium
- * @param {Object} actor    The data object for an Actor
- * @return {Object}         The updated Actor
+ * @param {object} actor    The data object for an Actor
+ * @returns {object}        The updated Actor
  */
 function _updateNPCData(actor) {
     let actorData = actor.data;
@@ -398,6 +404,9 @@ function _updateNPCData(actor) {
 
 /**
  * Migrate the actor speed string to movement object
+ * @param {object} actorData   Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
  * @private
  */
 function _migrateActorMovement(actorData, updateData) {
@@ -424,7 +433,7 @@ function _migrateActorMovement(actorData, updateData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor speed string to movement object
+ * Migrate the actor powers if they are not present in the data model.
  * @private
  */
 function _migrateActorPowers(actorData, updateData) {
@@ -486,6 +495,9 @@ function _migrateActorPowers(actorData, updateData) {
 
 /**
  * Migrate the actor traits.senses string to attributes.senses object
+ * @param {object} actor       Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
  * @private
  */
 function _migrateActorSenses(actor, updateData) {
@@ -511,7 +523,7 @@ function _migrateActorSenses(actor, updateData) {
     }
 
     // If nothing was matched, but there was an old string - put the whole thing in "special"
-    if (!wasMatched && !!original) {
+    if (!wasMatched && original) {
         updateData["data.attributes.senses.special"] = original;
     }
 
@@ -524,6 +536,9 @@ function _migrateActorSenses(actor, updateData) {
 
 /**
  * Migrate the actor details.type string to object
+ * @param {object} actor       Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
  * @private
  */
 function _migrateActorType(actor, updateData) {
@@ -558,7 +573,7 @@ function _migrateActorType(actor, updateData) {
         data.value = "droid";
     } else {
         // Match the existing string
-        const pattern = /^(?:swarm of (?<size>[\w\-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
+        const pattern = /^(?:swarm of (?<size>[\w-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
         const match = original.trim().match(pattern);
         if (match) {
             // Match a known creature type
@@ -648,22 +663,25 @@ function _migrateItemClassPowerCasting(item, updateData) {
 
 /**
  * Migrate the actor attributes.ac.value to the new ac.flat override field.
+ * @param {object} actorData   Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
  * @private
  */
 function _migrateActorAC(actorData, updateData) {
     const ac = actorData.data?.attributes?.ac;
     // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
     if (Number.isNumeric(ac?.value)) {
-        updateData["data.attributes.ac.flat"] = ac.value;
+        updateData["data.attributes.ac.flat"] = parseInt(ac.value);
         updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
         updateData["data.attributes.ac.-=value"] = null;
         return updateData;
     }
 
-    // If the actor is already on the AC auto-calculation schema, but is using a flat value, they must now have their
-    // calculation updated to an appropriate value.
-    if (!Number.isNumeric(ac?.flat)) return updateData;
-    updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
+    if (typeof ac?.flat === "string" && Number.isNumeric(ac.flat)) {
+        updateData["data.attributes.ac.flat"] = parseInt(ac.flat);
+    }
+
     return updateData;
 }
 
@@ -720,11 +738,10 @@ async function _migrateItemPower(item, actor, updateData) {
 /* -------------------------------------------- */
 
 /**
- * Delete the old data.attuned boolean
- *
+ * Delete the old data.attuned boolean.
  * @param {object} item        Item data to migrate
  * @param {object} updateData  Existing update to expand upon
- * @return {object}            The updateData to apply
+ * @returns {object}           The updateData to apply
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
@@ -738,10 +755,9 @@ function _migrateItemAttunement(item, updateData) {
 
 /**
  * Attempt to migrate item rarity from freeform string to enum value.
- *
- * @param {object} item        Item data to migrate
- * @param {object} updateData  Existing update to expand upon
- * @return {object}            The updateData to apply
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
  * @private
  */
 function _migrateItemRarity(item, updateData) {
@@ -758,10 +774,9 @@ function _migrateItemRarity(item, updateData) {
 
 /**
  * Convert equipment items of type 'bonus' to 'trinket'.
- *
- * @param {object} item        Item data to migrate
- * @param {object} updateData  Existing update to expand upon
- * @return {object}            The updateData to apply
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
  * @private
  */
 function _migrateArmorType(item, updateData) {
@@ -773,8 +788,26 @@ function _migrateArmorType(item, updateData) {
 /* -------------------------------------------- */
 
 /**
+ * Set the item's `critical` property to a proper object value.
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+function _migrateItemCriticalData(item, updateData) {
+    if (foundry.utils.getType(item.data.critical) === "Object") return updateData;
+    updateData["data.critical"] = {
+        threshold: null,
+        damage: null
+    };
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
  * A general tool to purge flags from all entities in a Compendium pack.
- * @param {Compendium} pack   The compendium pack to clean
+ * @param {Compendium} pack   The compendium pack to clean.
  * @private
  */
 export async function purgeFlags(pack) {
@@ -802,7 +835,8 @@ export async function purgeFlags(pack) {
 
 /**
  * Purge the data model of any inner objects which have been flagged as _deprecated.
- * @param {object} data   The data to clean
+ * @param {object} data   The data to clean.
+ * @returns {object}      Cleaned data.
  * @private
  */
 export function removeDeprecatedObjects(data) {

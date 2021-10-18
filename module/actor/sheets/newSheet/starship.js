@@ -1,5 +1,6 @@
 import ActorSheet5e from "./base.js";
 import {SW5E} from "../../../config.js";
+import {fromUuidSynchronous} from "../../../helpers.js";
 
 /**
  * An Actor sheet for starships in the SW5E system.
@@ -326,55 +327,44 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const key = li.dataset.key;
         const uuid = li.dataset.uuid;
         const deployments = this.actor.data.data.attributes.deployment;
+        const deployment = deployments[key];
         switch ( a.dataset.action ) {
             case "delete":
-                if (deployments[key].items) {
-                    const aux1 = deployments[key].items.filter(e => e.uuid == uuid);
-                    const aux2 = deployments[key].items.filter(e => e.uuid != uuid);
-                    if (aux1.length && aux1[0].active) deployments[key].active = false;
-                    deployments[key].items = aux2;
+                if (deployment.items) {
+                    const aux1 = deployment.items.filter(e => e.uuid == uuid);
+                    const aux2 = deployment.items.filter(e => e.uuid != uuid);
+                    if (aux1.length && aux1[0].active) deployment.active = false;
+                    deployment.items = aux2;
                 }
-                else for (const k in deployments[key]) deployments[key][k] = null;
+                else for (const k in deployment) deployment[k] = null;
+                const actor = fromUuidSynchronous(uuid);
+                if (actor) {
+                    const deployed = actor.data.data.attributes.deployed;
+                    deployed.deployments = deployed.deployments.filter(e => e != key);
+                    if (!deployed.deployments.length) actor.undeployFromStarship();
+                }
                 break;
             case "toggle":
-                const active = {};
                 for (const [key, deployment] of Object.entries(deployments)) {
                     if (key == "active") continue;
                     if (deployment.items) {
+                        deployment.active = false;
                         for (const deploy of Object.values(deployment.items)) {
                             if (deploy.uuid == uuid) {
                                 deploy.active = !deploy.active;
                                 deployment.active = deploy.active;
-                                if (deploy.active) active[key] = deploy;
                             }
                             else deploy.active = false;
                         }
                     }
                     else{
-                        if (deployment.uuid == uuid) {
-                            deployment.active = !deployment.active;
-                            if (deployment.active) active[key] = deployment;
-                        }
+                        if (deployment.uuid == uuid) deployment.active = !deployment.active;
                         else deployment.active = false;
                     }
                 }
-                deployments.active = {
-                    uuid: null,
-                    name: null,
-                    maxrank: 0,
-                    prof: 0,
-                    deployments: []
-                }
-                for (const [key, deploy] of Object.entries(active)) {
-                    deployments.active.uuid = deploy.uuid;
-                    deployments.active.name = deploy.name;
-                    if (typeof deploy.rank == typeof 0) deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
-                    deployments.active.prof = deploy.prof;
-                    deployments.active.deployments.push(key);
-                }
-                break;
         }
-        return this.actor.update({"data.attributes.deployment": deployments});
+        this.actor.update({"data.attributes.deployment": deployments});
+        this.actor.updateActiveDeployment();
     }
 
     /* -------------------------------------------- */

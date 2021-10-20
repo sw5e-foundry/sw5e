@@ -101,7 +101,7 @@ SW5E.weaponProficienciesMap = {
   simpleM: "sim",
   simpleR: "sim",
   martialM: "mar",
-  martialR: "mar"
+  martialB: "mar"
 };
 
 /**
@@ -832,7 +832,7 @@ SW5E.weaponTypes = {
   simpleM: "SW5E.WeaponSimpleM",
   simpleR: "SW5E.WeaponSimpleB",
   martialM: "SW5E.WeaponMartialM",
-  martialR: "SW5E.WeaponMartialB",
+  martialB: "SW5E.WeaponMartialR",
   natural: "SW5E.WeaponNatural",
   improv: "SW5E.WeaponImprov",
   siege: "SW5E.WeaponSiege"

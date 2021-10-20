@@ -48,7 +48,7 @@ export default class Item5e extends Item {
         }
 
         // Ranged weapons - Dex (PH p.194)
-        else if ( ["simpleR", "martialR"].includes(wt) ) return "dex";
+        else if ( ["simpleR", "martialB"].includes(wt) ) return "dex";
       }
       return "str";
     }

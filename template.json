@@ -136,6 +136,11 @@
                             "tempmax": 0
                         },
                         "level": 0
+                    },
+                    "deployed": {
+                        "uuid": null,
+                        "name": null,
+                        "deployments": []
                     }
                 },
                 "details": {
@@ -451,10 +456,7 @@
                         "prof": null
                     },
                     "gunner": {
-                        "uuid": null,
-                        "name": null,
-                        "rank": null,
-                        "prof": null
+                        "items": []
                     },
                     "mechanic": {
                         "uuid": null,
@@ -480,8 +482,19 @@
                         "rank": null,
                         "prof": null
                     },
-                    "crew": [],
-                    "passenger": []
+                    "crew": {
+                        "items": []
+                    },
+                    "passenger": {
+                        "items": []
+                    },
+                    "active": {
+                        "uuid": null,
+                        "name": null,
+                        "maxrank": 0,
+                        "prof": 0,
+                        "deployments": []
+                    }
                 },
                 "equip": {
                     "armor": {
@@ -740,6 +753,7 @@
             "power",
             "species",
             "starship",
+            "starshipaction",
             "starshipfeature",
             "starshipmod",
             "tool",
@@ -1158,6 +1172,14 @@
             "fuelCap": 10,
             "foodCap": 10,
             "source": "SotG"
+        },
+        "starshipaction": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "deployment": "crew",
+            "recharge": {
+                "charged": false,
+                "value": null
+            }
         },
         "starshipfeature": {
             "templates": ["itemDescription", "activatedEffect", "action"],

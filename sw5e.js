@@ -172,6 +172,7 @@ Hooks.once("init", function () {
             "deployment",
             "deploymentfeature",
             "starship",
+            "starshipaction",
             "starshipfeature",
             "starshipmod",
             "venture"
@@ -373,6 +374,16 @@ Handlebars.registerHelper("round", function (value) {
 Handlebars.registerHelper("debug", function (value) {
     console.log(value);
     return value;
+});
+
+Handlebars.registerHelper("contentLink", function (uuid, placeholdertext) {
+    if (!uuid) {
+        if (!placeholdertext || typeof placeholdertext != String) return new Handlebars.SafeString('');
+        return new Handlebars.SafeString(placeholdertext);
+    }
+    const [type, target] = uuid.split('.');
+    const html = TextEditor._createContentLink('', type, target);
+    return new Handlebars.SafeString(html.outerHTML);
 });
 
 function setFolderBackground(html) {

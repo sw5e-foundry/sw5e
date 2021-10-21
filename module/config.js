@@ -743,13 +743,39 @@ SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
 SW5E.deploymentTypes = {
     coord: "SW5E.DeploymentTypeCoordinator",
     gunner: "SW5E.DeploymentTypeGunner",
-    mech: "SW5E.DeploymentTypeMechanic",
-    oper: "SW5E.DeploymentTypeOperator",
+    mechanic: "SW5E.DeploymentTypeMechanic",
+    operator: "SW5E.DeploymentTypeOperator",
     pilot: "SW5E.DeploymentTypePilot",
-    tech: "SW5E.DeploymentTypeTechnician",
+    technician: "SW5E.DeploymentTypeTechnician",
     crew: "SW5E.DeploymentTypeCrew",
-    pass: "SW5E.DeploymentTypePassenger"
+    passenger: "SW5E.DeploymentTypePassenger"
 };
+
+/**
+ * Starship Deployment types plural
+ */
+
+SW5E.deploymentTypesPlural = {
+    coord: "SW5E.DeploymentTypeCoordinatorPl",
+    gunner: "SW5E.DeploymentTypeGunnerPl",
+    mechanic: "SW5E.DeploymentTypeMechanicPl",
+    operator: "SW5E.DeploymentTypeOperatorPl",
+    pilot: "SW5E.DeploymentTypePilotPl",
+    technician: "SW5E.DeploymentTypeTechnicianPl",
+    crew: "SW5E.DeploymentTypeCrewPl",
+    passenger: "SW5E.DeploymentTypePassengerPl"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship Deployable actor types
+ */
+
+SW5E.deployableTypes = [
+    'character',
+    'npc'
+];
 
 /* -------------------------------------------- */
 

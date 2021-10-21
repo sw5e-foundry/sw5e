@@ -6,6 +6,7 @@ import RechargeRepairDialog from "../apps/recharge-repair.js";
 import RefittingRepairDialog from "../apps/refitting-repair.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
+import {fromUuidSynchronous} from "../helpers.js";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
@@ -1156,6 +1157,62 @@ export default class Actor5e extends Actor {
         if (isDead && foundry.utils.getProperty(changed, "data.attributes.hp.value") > 0) {
             foundry.utils.setProperty(changed, "data.attributes.death.success", 0);
             foundry.utils.setProperty(changed, "data.attributes.death.failure", 0);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    _onUpdate(data, options, userId) {
+        super._onUpdate(data, options, userId);
+
+        // Get the changed attributes
+        const keys = Object.keys(foundry.utils.flattenObject(data)).filter(k => k !== "_id");
+        const changed = new Set(keys);
+
+        // Additional options only apply to Actors which are not synthetic Tokens
+        if (this.isToken) return;
+
+        // Check for updates on deployed actors
+        const uuid = this.data.data.attributes.deployed?.uuid;
+        if (uuid) {
+            for (const change of changed) {
+                const arr = change.split('.');
+                if (change == "name" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
+                    const starship = fromUuidSynchronous(uuid);
+                    starship.deployInto(this, [])
+                    break;
+                }
+            }
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Follow-up actions taken after a set of embedded Documents in this parent Document are updated.
+     * @param {string} embeddedName   The name of the embedded Document type
+     * @param {Document[]} documents  An Array of updated Documents
+     * @param {object[]} result       An Array of incremental data objects
+     * @param {object} options        Options which modified the update operation
+     * @param {string} userId         The ID of the User who triggered the operation
+     * @memberof ClientDocumentMixin#
+     */
+    _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId)
+
+        // Check for leveling up actors that are deployed
+        const uuid = this.data.data.attributes.deployed?.uuid;
+        if (uuid) {
+            for (let i = 0; i < documents.length; i++) {
+                const doc = documents[i];
+                const changes = result[i];
+                if (doc.data.type == 'class' && 'data' in changes && 'levels' in changes.data) {
+                    const starship = fromUuidSynchronous(uuid);
+                    starship.deployInto(this, [])
+                    break;
+                }
+            }
         }
     }
 
@@ -2620,90 +2677,73 @@ export default class Actor5e extends Actor {
      * Deploy an Actor into this one.
      *
      * @param {Actor} target The Actor to be deployed.
-     * @param {boolean} [coord] Deploy as Coordinator
-     * @param {boolean} [gunner] Deploy as Gunner
-     * @param {boolean} [mech] Deploy as Mechanic
-     * @param {boolean} [oper] Deploy as Operator
-     * @param {boolean} [pilot] Deploy as Pilot
-     * @param {boolean} [tech] Deploy as Technician
-     * @param {boolean} [crew] Deploy as Crew
-     * @param {boolean} [pass] Deploy as Passenger
+     * @param {array} deployments Array of the positions to deploy in
      */
-    async deployInto(
-        target,
-        {
-            coord = false,
-            gunner = false,
-            mech = false,
-            oper = false,
-            pilot = false,
-            tech = false,
-            crew = false,
-            pass = false
-        } = {}
-    ) {
+    deployInto(target, deployments) {
         // Get the starship Actor data and the new char data
-        const sship = duplicate(this.toJSON());
-        const ssDeploy = sship.data.attributes.deployment;
-        const char = target;
-        const charUUID = char.uuid;
-        const charName = char.data.name;
-        const charRank = char.data.data.attributes.rank;
-        let charProf = 0;
-        if (charRank === undefined || charRank.total > 0) {
-            charProf = char.data.data.attributes.prof;
+        const ssDeploy = this.data.data.attributes.deployment;
+        const charUUID = target.uuid;
+        const charName = target.data.name;
+        const charDeployments = [];
+
+        for (const [key, name] of Object.entries(SW5E.deploymentTypes)) {
+            const deployment = ssDeploy[key];
+            let charRank = target.data.data.attributes.rank;
+            let charProf = 0;
+
+            if (charRank === undefined || charRank.total > 0) charProf = target.data.data.attributes.prof;
+            if (!['active', 'crew', 'passenger'].includes(deployment)) charRank = charRank ? charRank[deployment] : 0;
+
+            const deploymentData = { uuid: charUUID, name: charName, rank: charRank, prof: charProf }
+
+            if (deployment.items) {
+                for (let i = 0; i < deployment.items.length; i++) {
+                    const deploy = deployment.items[i];
+                    if (deploy.uuid == charUUID) {
+                        charDeployments.push(key);
+                        deployment.items[i] = deploymentData;
+                        if (deployments.includes(key)) {
+                            ui.notifications.warn(
+                                game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
+                                    actor: charName,
+                                    deployment: game.i18n.localize(name)
+                                })
+                            );
+                        }
+                    }
+                }
+                if (deployments.includes(key) && !charDeployments.includes(key)){
+                    deployment.items.push(deploymentData);
+                    charDeployments.push(key);
+                }
+            }
+            else {
+                if (deployment.uuid == charUUID){
+                    charDeployments.push(key);
+                    ssDeploy[key] = deploymentData;
+                    if (deployments.includes(key)) {
+                        ui.notifications.warn(
+                            game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
+                                actor: charName,
+                                deployment: game.i18n.localize(name)
+                            })
+                        );
+                    }
+                }
+                else if (deployments.includes(key)) ssDeploy[key] = deploymentData;
+            }
         }
 
-        if (coord) {
-            ssDeploy.coord.uuid = charUUID;
-            ssDeploy.coord.name = charName;
-            ssDeploy.coord.rank = charRank ? charRank.coord : 0;
-            ssDeploy.coord.prof = charProf;
-        }
-
-        if (gunner) {
-            ssDeploy.gunner.uuid = charUUID;
-            ssDeploy.gunner.name = charName;
-            ssDeploy.gunner.rank = charRank ? charRank.gunner : 0;
-            ssDeploy.gunner.prof = charProf;
-        }
-
-        if (mech) {
-            ssDeploy.mechanic.uuid = charUUID;
-            ssDeploy.mechanic.name = charName;
-            ssDeploy.mechanic.rank = charRank ? charRank.mechanic : 0;
-            ssDeploy.mechanic.prof = charProf;
-        }
-
-        if (oper) {
-            ssDeploy.operator.uuid = charUUID;
-            ssDeploy.operator.name = charName;
-            ssDeploy.operator.rank = charRank ? charRank.operator : 0;
-            ssDeploy.operator.prof = charProf;
-        }
-
-        if (pilot) {
-            ssDeploy.pilot.uuid = charUUID;
-            ssDeploy.pilot.name = charName;
-            ssDeploy.pilot.rank = charRank ? charRank.pilot : 0;
-            ssDeploy.pilot.prof = charProf;
-        }
-
-        if (tech) {
-            ssDeploy.technician.uuid = charUUID;
-            ssDeploy.technician.name = charName;
-            ssDeploy.technician.rank = charRank ? charRank.technician : 0;
-            ssDeploy.technician.prof = charProf;
-        }
-
-        if (crew) {
-            ssDeploy.crew.push({uuid: charUUID, name: charName, rank: charRank, prof: charProf});
-        }
-
-        if (pass) {
-            ssDeploy.passenger.push({uuid: charUUID, name: charName, rank: charRank, prof: charProf});
-        }
         this.update({"data.attributes.deployment": ssDeploy});
+
+        if (target.data.data.attributes.deployed?.uuid && target.data.data.attributes.deployed?.uuid != this.uuid) target.undeployFromStarship();
+        target.update({"data.attributes.deployed": {
+            uuid: this.uuid,
+            name: this.data.name,
+            deployments: charDeployments
+        }});
+
+        this.updateActiveDeployment();
     }
 
     /**
@@ -2879,6 +2919,69 @@ export default class Actor5e extends Actor {
             return newTokenData;
         });
         return canvas.scene?.updateEmbeddedDocuments("Token", updates);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Updates a starship's record of it's active deployed character.
+     */
+    updateActiveDeployment() {
+        const deployments = this.data.data.attributes.deployment;
+        const active = {};
+        for (const [key, deployment] of Object.entries(deployments)) {
+            if (key == "active") continue;
+            if (deployment.items) {
+                for (const deploy of Object.values(deployment.items)) {
+                    if (deploy.active) active[key] = deploy;
+                }
+            }
+            else if (deployment.active) active[key] = deployment;
+        }
+        deployments.active = {
+            uuid: null,
+            name: null,
+            maxrank: 0,
+            prof: 0,
+            deployments: []
+        }
+        for (const [key, deploy] of Object.entries(active)) {
+            deployments.active.uuid = deploy.uuid;
+            deployments.active.name = deploy.name;
+            if (typeof deploy.rank == typeof 0) deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
+            deployments.active.prof = deploy.prof;
+            deployments.active.deployments.push(key);
+        }
+        this.update({'data.attributes.deployment': deployments});
+        return deployments.active;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Undeploys the actor from it's currently deployed starship
+     */
+    undeployFromStarship() {
+        const deployed = this.data.data.attributes.deployed;
+        const starship = fromUuidSynchronous(deployed.uuid);
+
+        if (starship) {
+            const ssDeploy = starship.data.data.attributes.deployment;
+
+            for (const [key, deployment] of Object.entries(ssDeploy)) {
+                if (key == "active") continue;
+                if (deployment.items) deployment.items = deployment.items.filter(e => e.uuid != this.uuid);
+                else if (deployment.uuid == this.uuid) for (const k in deployment) deployment[k] = null;
+            }
+            starship.update({'data.attributes.deployment': ssDeploy});
+            starship.updateActiveDeployment();
+        }
+
+        this.update({'data.attributes.deployed': {
+            uuid: null,
+            name: null,
+            deployments: []
+        }});
     }
 
     /* -------------------------------------------- */

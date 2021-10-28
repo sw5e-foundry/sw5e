@@ -1,7 +1,5 @@
 export const registerSystemSettings = function () {
-    /**
-     * Track the system version upon which point a migration was last applied
-     */
+    // Internal System Migration Version
     game.settings.register("sw5e", "systemMigrationVersion", {
         name: "System Migration Version",
         scope: "world",
@@ -10,9 +8,7 @@ export const registerSystemSettings = function () {
         default: game.system.data.version
     });
 
-    /**
-     * Register resting variants
-     */
+    // Rest Recovery Rules
     game.settings.register("sw5e", "restVariant", {
         name: "SETTINGS.5eRestN",
         hint: "SETTINGS.5eRestL",
@@ -27,9 +23,7 @@ export const registerSystemSettings = function () {
         }
     });
 
-    /**
-     * Register diagonal movement rule setting
-     */
+    // Diagonal Movement Rule
     game.settings.register("sw5e", "diagonalMovement", {
         name: "SETTINGS.5eDiagN",
         hint: "SETTINGS.5eDiagL",
@@ -45,9 +39,21 @@ export const registerSystemSettings = function () {
         onChange: (rule) => (canvas.grid.diagonalRule = rule)
     });
 
-    /**
-     * Register Initiative formula setting
-     */
+    // Proficiency modifier type
+    game.settings.register("sw5e", "proficiencyModifier", {
+        name: "SETTINGS.5eProfN",
+        hint: "SETTINGS.5eProfL",
+        scope: "world",
+        config: true,
+        default: "bonus",
+        type: String,
+        choices: {
+            bonus: "SETTINGS.5eProfBonus",
+            dice: "SETTINGS.5eProfDice"
+        }
+    });
+
+    // Apply Dexterity as Initiative Tiebreaker
     game.settings.register("sw5e", "initiativeDexTiebreaker", {
         name: "SETTINGS.5eInitTBN",
         hint: "SETTINGS.5eInitTBL",
@@ -57,9 +63,7 @@ export const registerSystemSettings = function () {
         type: Boolean
     });
 
-    /**
-     * Require Currency Carrying Weight
-     */
+    // Record Currency Weight
     game.settings.register("sw5e", "currencyWeight", {
         name: "SETTINGS.5eCurWtN",
         hint: "SETTINGS.5eCurWtL",
@@ -69,9 +73,7 @@ export const registerSystemSettings = function () {
         type: Boolean
     });
 
-    /**
-     * Option to disable XP bar for session-based or story-based advancement.
-     */
+    // Disable Experience Tracking
     game.settings.register("sw5e", "disableExperienceTracking", {
         name: "SETTINGS.5eNoExpN",
         hint: "SETTINGS.5eNoExpL",
@@ -81,9 +83,7 @@ export const registerSystemSettings = function () {
         type: Boolean
     });
 
-    /**
-     * Option to automatically collapse Item Card descriptions
-     */
+    // Collapse Item Cards (by default)
     game.settings.register("sw5e", "autoCollapseItemCards", {
         name: "SETTINGS.5eAutoCollapseCardN",
         hint: "SETTINGS.5eAutoCollapseCardL",
@@ -96,9 +96,7 @@ export const registerSystemSettings = function () {
         }
     });
 
-    /**
-     * Option to allow GMs to restrict polymorphing to GMs only.
-     */
+    // Allow Polymorphing
     game.settings.register("sw5e", "allowPolymorphing", {
         name: "SETTINGS.5eAllowPolymorphingN",
         hint: "SETTINGS.5eAllowPolymorphingL",
@@ -108,9 +106,7 @@ export const registerSystemSettings = function () {
         type: Boolean
     });
 
-    /**
-     * Remember last-used polymorph settings.
-     */
+    // Polymorph Settings
     game.settings.register("sw5e", "polymorphSettings", {
         scope: "client",
         default: {
@@ -129,6 +125,8 @@ export const registerSystemSettings = function () {
             transformTokens: true
         }
     });
+
+    // Visual Color Theme
     game.settings.register("sw5e", "colorTheme", {
         name: "SETTINGS.SWColorN",
         hint: "SETTINGS.SWColorL",
@@ -142,12 +140,30 @@ export const registerSystemSettings = function () {
         }
     });
 
-    /**
-     * Option to replace imperial weight units with metric weight units.
-     */
+    // Metric Unit Weights
     game.settings.register("sw5e", "metricWeightUnits", {
         name: "SETTINGS.5eMetricN",
         hint: "SETTINGS.5eMetricL",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false
+    });
+
+    // Critical Damage Modifiers
+    game.settings.register("sw5e", "criticalDamageModifiers", {
+        name: "SETTINGS.5eCriticalModifiersN",
+        hint: "SETTINGS.5eCriticalModifiersL",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false
+    });
+
+    // Critical Damage Maximize
+    game.settings.register("sw5e", "criticalDamageMaxDice", {
+        name: "SETTINGS.5eCriticalMaxDiceN",
+        hint: "SETTINGS.5eCriticalMaxDiceL",
         scope: "world",
         config: true,
         type: Boolean,

@@ -1,15 +1,13 @@
 import ActorSheet5e from "./base.js";
-import Actor5e from "../../entity.js";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
- * Extends the base ActorSheet5e class.
- * @type {ActorSheet5e}
+ * @extends {ActorSheet5e}
  */
 export default class ActorSheet5eCharacter extends ActorSheet5e {
     /**
      * Define default rendering options for the NPC sheet
-     * @return {Object}
+     * @returns {object}
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -23,6 +21,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     /**
      * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
+     * @returns {object}  Prepared copy of the actor data ready to be displayed.
      */
     getData() {
         const sheetData = super.getData();
@@ -33,26 +32,26 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         if (hp.tempmax === 0) delete hp.tempmax;
 
         // Resources
-        sheetData["resources"] = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
+        sheetData.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
             const res = sheetData.data.resources[r] || {};
             res.name = r;
-            res.placeholder = game.i18n.localize("SW5E.Resource" + r.titleCase());
+            res.placeholder = game.i18n.localize(`SW5E.Resource${r.titleCase()}`);
             if (res && res.value === 0) delete res.value;
             if (res && res.max === 0) delete res.max;
             return arr.concat([res]);
         }, []);
 
         // Experience Tracking
-        sheetData["disableExperience"] = game.settings.get("sw5e", "disableExperienceTracking");
-        sheetData["classLabels"] = this.actor.itemTypes.class.map((c) => c.name).join(", ");
-        sheetData["multiclassLabels"] = this.actor.itemTypes.class
+        sheetData.disableExperience = game.settings.get("sw5e", "disableExperienceTracking");
+        sheetData.classLabels = this.actor.itemTypes.class.map((c) => c.name).join(", ");
+        sheetData.multiclassLabels = this.actor.itemTypes.class
             .map((c) => {
                 return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(" ");
             })
             .join(", ");
 
         // Weight unit
-        sheetData["weightUnit"] = game.settings.get("sw5e", "metricWeightUnits")
+        sheetData.weightUnit = game.settings.get("sw5e", "metricWeightUnits")
             ? game.i18n.localize("SW5E.AbbreviationKgs")
             : game.i18n.localize("SW5E.AbbreviationLbs");
 
@@ -64,6 +63,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     /**
      * Organize and classify Owned Items for Character sheets
+     * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItems(data) {
@@ -248,8 +248,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * A helper method to establish the displayed preparation state for an item
-     * @param {Item} item
+     * A helper method to establish the displayed preparation state for an item.
+     * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItemToggleState(item) {
@@ -273,8 +273,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   /* -------------------------------------------- */
 
     /**
-     * Activate event listeners using the prepared sheet HTML
-     * @param html {jQuery}   The prepared HTML object ready to be rendered into the DOM
+     * Activate event listeners using the prepared sheet HTML.
+     * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -294,8 +294,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Handle mouse click events for character sheet actions
-     * @param {MouseEvent} event    The originating click event
+     * Handle mouse click events for character sheet actions.
+     * @param {MouseEvent} event  The originating click event.
+     * @returns {Promise}         Dialog or roll result.
      * @private
      */
     _onSheetAction(event) {
@@ -312,8 +313,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Handle toggling the state of an Owned Item within the Actor
-     * @param {Event} event   The triggering click event
+     * Handle toggling the state of an Owned Item within the Actor.
+     * @param {Event} event        The triggering click event.
+     * @returns {Promise<Item5e>}  Item with the updates applied.
      * @private
      */
     _onToggleItem(event) {
@@ -327,8 +329,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Take a short rest, calling the relevant function on the Actor instance
-     * @param {Event} event   The triggering click event
+     * Take a short rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onShortRest(event) {
@@ -340,8 +343,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-     * Take a long rest, calling the relevant function on the Actor instance
-     * @param {Event} event   The triggering click event
+     * Take a long rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onLongRest(event) {
@@ -358,7 +362,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         if (itemData.type === "class") {
             const cls = this.actor.itemTypes.class.find((c) => c.name === itemData.name);
             let priorLevel = cls?.data.data.levels ?? 0;
-            if (!!cls) {
+            if (cls) {
                 const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
                 if (next > priorLevel) {
                     itemData.levels = next;

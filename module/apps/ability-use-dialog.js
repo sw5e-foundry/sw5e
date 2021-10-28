@@ -1,6 +1,6 @@
 /**
- * A specialized Dialog subclass for ability usage
- * @type {Dialog}
+ * A specialized Dialog subclass for ability usage.
+ * @extends {Dialog}
  */
 export default class AbilityUseDialog extends Dialog {
     constructor(item, dialogData = {}, options = {}) {
@@ -21,8 +21,8 @@ export default class AbilityUseDialog extends Dialog {
     /**
      * A constructor function which displays the Power Cast Dialog app for a given Actor and Item.
      * Returns a Promise which resolves to the dialog FormData once the workflow has been completed.
-     * @param {Item5e} item
-     * @return {Promise}
+   * @param {Item5e} item  Item being used.
+   * @returns {Promise}    Promise that is resolved when the use dialog is acted upon.
      */
     static async create(item) {
         if (!item.isOwned) throw new Error("You cannot display an ability usage dialog for an unowned item");
@@ -59,9 +59,9 @@ export default class AbilityUseDialog extends Dialog {
 
         // Create the Dialog and return data as a Promise
         const icon = data.isPower ? "fa-magic" : "fa-fist-raised";
-        const label = game.i18n.localize("SW5E.AbilityUse" + (data.isPower ? "Cast" : "Use"));
-        return new Promise((resolve) => {
-            const dlg = new this(item, {
+        const label = game.i18n.localize(`SW5E.AbilityUse${data.isPower ? "Cast" : "Use"}`);
+        return new Promise(resolve => {
+                const dlg = new this(item, {
                 title: `${item.name}: ${game.i18n.localize("SW5E.AbilityUseConfig")}`,
                 content: html,
                 buttons: {
@@ -86,18 +86,22 @@ export default class AbilityUseDialog extends Dialog {
     /* -------------------------------------------- */
 
     /**
-     * Get dialog data related to limited power slots
+   * Get dialog data related to limited power slots.
+   * @param {object} actorData  Data from the actor using the power.
+   * @param {object} itemData   Data from the power being used.
+   * @param {object} data       Data for the dialog being presented.
+   * @returns {object}          Modified dialog data.
      * @private
      */
     static _getPowerData(actorData, itemData, data) {
+
         // Determine whether the power may be up-cast
         const lvl = itemData.level;
         const consumePowerSlot = lvl > 0 && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
 
         // If can't upcast, return early and don't bother calculating available power slots
         if (!consumePowerSlot) {
-            mergeObject(data, {isPower: true, consumePowerSlot});
-            return;
+      return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot });
         }
 
         // Determine the levels which are feasible
@@ -128,7 +132,7 @@ export default class AbilityUseDialog extends Dialog {
                 .reduce((arr, i) => {
                     if (i < lvl) return arr;
                     const label = CONFIG.SW5E.powerLevels[i];
-                    const l = actorData.powers["power" + i] || {fmax: 0, foverride: null};
+                    const l = actorData.powers[[`power${i}`] || {fmax: 0, foverride: null};
                     let max = parseInt(l.foverride || l.fmax || 0);
                     let slots = Math.clamped(parseInt(l.fvalue || 0), 0, max);
                     if (max > 0) lmax = i;
@@ -148,7 +152,7 @@ export default class AbilityUseDialog extends Dialog {
                 .reduce((arr, i) => {
                     if (i < lvl) return arr;
                     const label = CONFIG.SW5E.powerLevels[i];
-                    const l = actorData.powers["power" + i] || {tmax: 0, toverride: null};
+                    const l = actorData.powers[[`power${i}`] || {tmax: 0, toverride: null};
                     let max = parseInt(l.override || l.tmax || 0);
                     let slots = Math.clamped(parseInt(l.tvalue || 0), 0, max);
                     if (max > 0) lmax = i;
@@ -181,16 +185,21 @@ export default class AbilityUseDialog extends Dialog {
     /* -------------------------------------------- */
 
     /**
-     * Get the ability usage note that is displayed
+   * Get the ability usage note that is displayed.
+   * @param {object} item                                     Data for the item being used.
+   * @param {{value: number, max: number, per: string}} uses  Object uses and recovery configuration.
+   * @param {{charged: boolean, value: string}} recharge      Object recharge configuration.
+   * @returns {string}                                        Localized string indicating available uses.
      * @private
      */
     static _getAbilityUseNote(item, uses, recharge) {
+
         // Zero quantity
         const quantity = item.data.quantity;
         if (quantity <= 0) return game.i18n.localize("SW5E.AbilityUseUnavailableHint");
 
         // Abilities which use Recharge
-        if (!!recharge.value) {
+        if (recharge.value) {
             return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
                 type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`)
             });

@@ -1,8 +1,9 @@
+import ProficiencySelector from "../apps/proficiency-selector.js";
 import TraitSelector from "../apps/trait-selector.js";
 import ActiveEffect5e from "../active-effect.js";
 
 /**
- * Override and extend the core ItemSheet implementation to handle specific item types
+ * Override and extend the core ItemSheet implementation to handle specific item types.
  * @extends {ItemSheet}
  */
 export default class ItemSheet5e extends ItemSheet {
@@ -51,6 +52,7 @@ export default class ItemSheet5e extends ItemSheet {
         data.itemType = game.i18n.localize(`ITEM.Type${data.item.type.titleCase()}`);
         data.itemStatus = this._getItemStatus(itemData);
         data.itemProperties = this._getItemProperties(itemData);
+        data.baseItems = await this._getItemBaseTypes(itemData);
         data.isPhysical = itemData.data.hasOwnProperty("quantity");
 
         // Potential consumption targets
@@ -71,8 +73,9 @@ export default class ItemSheet5e extends ItemSheet {
         data.isMountable = this._isItemMountable(itemData);
 
         // Armor Class
-        data.isArmor = itemData.data.armor?.type in data.config.armorTypes;
+        data.isArmor = this.item.isArmor;
         data.hasAC = data.isArmor || data.isMountable;
+        data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
 
         // Prepare Active Effects
         data.effects = ActiveEffect5e.prepareActiveEffectCategories(this.item.effects);
@@ -86,9 +89,37 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
+     * Get the base weapons and tools based on the selected type.
+     *
+     * @param {object} item        Item data for the item being displayed
+     * @returns {Promise<object>}  Object with base items for this type formatted for selectOptions.
+     * @protected
+     */
+    async _getItemBaseTypes(item) {
+        const type = item.type === "equipment" ? "armor" : item.type;
+        const ids = CONFIG.SW5E[`${type}Ids`];
+        if (ids === undefined) return {};
+
+        const typeProperty = type === "armor" ? "armor.type" : `${type}Type`;
+        const baseType = foundry.utils.getProperty(item.data, typeProperty);
+
+        const items = await Object.entries(ids).reduce(async (acc, [name, id]) => {
+            const baseItem = await ProficiencySelector.getBaseItem(id);
+            const obj = await acc;
+            if (baseType !== foundry.utils.getProperty(baseItem.data, typeProperty)) return obj;
+            obj[name] = baseItem.name;
+            return obj;
+        }, {});
+
+        return Object.fromEntries(Object.entries(items).sort((lhs, rhs) => lhs[1].localeCompare(rhs[1])));
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Get the valid item consumption targets which exist on the actor
-     * @param {Object} item         Item data for the item being displayed
-     * @return {{string: string}}   An object of potential consumption targets
+     * @param {object} item          Item data for the item being displayed
+     * @returns {{string: string}}   An object of potential consumption targets
      * @private
      */
     _getItemConsumptionTargets(item) {
@@ -112,7 +143,7 @@ export default class ItemSheet5e extends ItemSheet {
 
         // Attributes
         else if (consume.type === "attribute") {
-            const attributes = TokenDocument.getTrackedAttributes(actor.data.data);
+            const attributes = TokenDocument.implementation.getConsumedAttributes(actor.data.data);
             attributes.bar.forEach((a) => a.push("value"));
             return attributes.bar.concat(attributes.value).reduce((obj, a) => {
                 let k = a.join(".");
@@ -158,8 +189,9 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Get the text item status which is shown beneath the Item type in the top-right corner of the sheet
-     * @return {string}
+     * Get the text item status which is shown beneath the Item type in the top-right corner of the sheet.
+     * @param {object} item    Copy of the item data being prepared for display.
+     * @returns {string|null}  Item status string if applicable to item's type.
      * @private
      */
     _getItemStatus(item) {
@@ -175,8 +207,9 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Get the Array of item properties which are used in the small sidebar of the description tab
-     * @return {Array}
+     * Get the Array of item properties which are used in the small sidebar of the description tab.
+     * @param {object} item  Copy of the item data being prepared for display.
+     * @returns {string[]}   List of property labels to be shown.
      * @private
      */
     _getItemProperties(item) {
@@ -197,7 +230,7 @@ export default class ItemSheet5e extends ItemSheet {
             );
         } else if (item.type === "equipment") {
             props.push(CONFIG.SW5E.equipmentTypes[item.data.armor.type]);
-            props.push(labels.armor);
+            if (this.item.isArmor || this._isItemMountable(item)) props.push(labels.armor);
         } else if (item.type === "feat") {
             props.push(labels.featType);
             //TODO: Work out these
@@ -236,11 +269,10 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Is this item a separate large object like a siege engine or vehicle
-     * component that is usually mounted on fixtures rather than equipped, and
-     * has its own AC and HP.
-     * @param item
-     * @returns {boolean}
+     * Is this item a separate large object like a siege engine or vehicle component that is
+     * usually mounted on fixtures rather than equipped, and has its own AC and HP.
+     * @param {object} item  Copy of item data being prepared for display.
+     * @returns {boolean}    Is item siege weapon or vehicle equipment?
      * @private
      */
     _isItemMountable(item) {
@@ -277,6 +309,20 @@ export default class ItemSheet5e extends ItemSheet {
         const damage = data.data?.damage;
         if (damage) damage.parts = Object.values(damage?.parts || {}).map((d) => [d[0] || "", d[1] || ""]);
 
+        // Check max uses formula
+        if (data.data?.uses?.max) {
+            const maxRoll = new Roll(data.data.uses.max);
+            if (!maxRoll.isDeterministic) {
+                data.data.uses.max = this.object.data._source.data.uses.max;
+                this.form.querySelector("input[name='data.uses.max']").value = data.data.uses.max;
+                ui.notifications.error(
+                    game.i18n.format("SW5E.FormulaCannotContainDiceWarn", {
+                        name: game.i18n.localize("SW5E.LimitedUses")
+                    })
+                );
+            }
+        }
+
         // Return the flattened submission data
         return flattenObject(data);
     }
@@ -302,9 +348,9 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Add or remove a damage part from the damage formula
-     * @param {Event} event     The original click event
-     * @return {Promise}
+     * Add or remove a damage part from the damage formula.
+     * @param {Event} event             The original click event.
+     * @returns {Promise<Item5e>|null}  Item with updates applied.
      * @private
      */
     async _onDamageControl(event) {
@@ -332,7 +378,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     /**
      * Handle spawning the TraitSelector application for selection various options.
-     * @param {Event} event   The click event which originated the selection
+     * @param {Event} event   The click event which originated the selection.
      * @private
      */
     _onConfigureTraits(event) {

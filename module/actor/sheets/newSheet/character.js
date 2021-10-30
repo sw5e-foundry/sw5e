@@ -56,8 +56,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         // Experience Tracking
         sheetData.disableExperience = game.settings.get("sw5e", "disableExperienceTracking");
         sheetData.classLabels = this.actor.itemTypes.class.map(c => c.name).join(", ");
-        sheetData.multiclassLabels = this.actor.itemTypes.class.map(c => {
-                .map((c) => {
+        sheetData.multiclassLabels = this.actor.itemTypes.class
+            .map((c) => {
                 return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(" ");
             })
             .join(", ");

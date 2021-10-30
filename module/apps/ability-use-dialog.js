@@ -132,7 +132,7 @@ export default class AbilityUseDialog extends Dialog {
                 .reduce((arr, i) => {
                     if (i < lvl) return arr;
                     const label = CONFIG.SW5E.powerLevels[i];
-                    const l = actorData.powers[[`power${i}`] || {fmax: 0, foverride: null};
+                    const l = actorData.powers[`power${i}`] || {fmax: 0, foverride: null};
                     let max = parseInt(l.foverride || l.fmax || 0);
                     let slots = Math.clamped(parseInt(l.fvalue || 0), 0, max);
                     if (max > 0) lmax = i;
@@ -152,7 +152,7 @@ export default class AbilityUseDialog extends Dialog {
                 .reduce((arr, i) => {
                     if (i < lvl) return arr;
                     const label = CONFIG.SW5E.powerLevels[i];
-                    const l = actorData.powers[[`power${i}`] || {tmax: 0, toverride: null};
+                    const l = actorData.powers[`power${i}`] || {tmax: 0, toverride: null};
                     let max = parseInt(l.override || l.tmax || 0);
                     let slots = Math.clamped(parseInt(l.tvalue || 0), 0, max);
                     if (max > 0) lmax = i;

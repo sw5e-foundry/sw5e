@@ -226,11 +226,11 @@ Hooks.once("setup", function() {
         "proficiencyLevels",
         "senses",
         "skills",
-        "starshipRolessm",
-        "starshipRolesmed",
-        "starshipRoleslg",
-        "starshipRoleshuge",
-        "starshipRolesgrg",
+        // "starshipRolessm",
+        // "starshipRolesmed",
+        // "starshipRoleslg",
+        // "starshipRoleshuge",
+        // "starshipRolesgrg",
         "starshipSkills",
         "powerComponents",
         "powerLevels",
@@ -267,11 +267,11 @@ Hooks.once("setup", function() {
         "polymorphSettings",
         "senses",
         "skills",
-        "starshipRolessm",
-        "starshipRolesmed",
-        "starshipRoleslg",
-        "starshipRoleshuge",
-        "starshipRolesgrg",
+        // "starshipRolessm",
+        // "starshipRolesmed",
+        // "starshipRoleslg",
+        // "starshipRoleshuge",
+        // "starshipRolesgrg",
         "starshipSkills",
         "powerScalingModes",
         "powerSchools",
@@ -286,97 +286,97 @@ Hooks.once("setup", function() {
     preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);
     CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
     CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
-  });
-  
-  /* -------------------------------------------- */
-  
-  /**
-   * Localize and sort configuration values
-   * @param {object} config           The configuration object being prepared
-   * @param {string[]} localizeKeys   An array of keys to localize
-   * @param {string[]} sortKeys       An array of keys to sort
-   */
-  function preLocalizeConfig(config, localizeKeys, sortKeys) {
-  
-    // Localize Objects
-    for ( const key of localizeKeys ) {
-      if ( key.includes(".") ) {
-        const [inner, label] = key.split(".");
-        _localizeObject(config[inner], label);
-      }
-      else _localizeObject(config[key]);
-    }
-  
-    // Sort objects
-    for ( const key of sortKeys ) {
-      if ( key.includes(".") ) {
-        const [configKey, sortKey] = key.split(".");
-        config[configKey] = _sortObject(config[configKey], sortKey);
-      }
-      else config[key] = _sortObject(config[key]);
-    }
-  }
-  
-  /* -------------------------------------------- */
-  
-  /**
-   * Localize the values of a configuration object by translating them in-place.
-   * @param {object} obj                The configuration object to localize
-   * @param {string} [key]              An inner key which should be localized
-   * @private
-   */
-  function _localizeObject(obj, key) {
-    for ( const [k, v] of Object.entries(obj) ) {
-  
-      // String directly
-      if ( typeof v === "string" ) {
-        obj[k] = game.i18n.localize(v);
-        continue;
-      }
-  
-      // Inner object
-      if ( (typeof v !== "object") || !(key in v) ) {
-        console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
-        continue;
-      }
-      v[key] = game.i18n.localize(v[key]);
-    }
-  }
-  
-  /* -------------------------------------------- */
-  
-  /**
-   * Sort a configuration object by its values or by an inner sortKey.
-   * @param {object} obj                The configuration object to sort
-   * @param {string} [sortKey]          An inner key upon which to sort
-   * @returns {{[p: string]: any}}      The sorted configuration object
-   */
-  function _sortObject(obj, sortKey) {
-    let sorted = Object.entries(obj);
-    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
-    else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
-    return Object.fromEntries(sorted);
-  }
-  
-  /* --------------------------------------------- */
-  
-  /**
-   * Expand a list of attribute paths into an object that can be traversed.
-   * @param {string[]} attributes  The initial attributes configuration.
-   * @returns {object}  The expanded object structure.
-   */
-  function expandAttributeList(attributes) {
-    return attributes.reduce((obj, attr) => {
-      foundry.utils.setProperty(obj, attr, true);
-      return obj;
-    }, {});
-}
+
     // add DND5E translation for module compatability
     game.i18n.translations.DND5E = game.i18n.translations.SW5E;
     // console.log(game.settings.get("sw5e", "colorTheme"));
     let theme = game.settings.get("sw5e", "colorTheme") + "-theme";
     document.body.classList.add(theme);
 });
+
+/* -------------------------------------------- */
+
+/**
+ * Localize and sort configuration values
+ * @param {object} config           The configuration object being prepared
+ * @param {string[]} localizeKeys   An array of keys to localize
+ * @param {string[]} sortKeys       An array of keys to sort
+ */
+function preLocalizeConfig(config, localizeKeys, sortKeys) {
+
+    // Localize Objects
+    for ( const key of localizeKeys ) {
+        if ( key.includes(".") ) {
+            const [inner, label] = key.split(".");
+            _localizeObject(config[inner], label);
+        }
+        else _localizeObject(config[key]);
+    }
+
+    // Sort objects
+    for ( const key of sortKeys ) {
+        if ( key.includes(".") ) {
+            const [configKey, sortKey] = key.split(".");
+            config[configKey] = _sortObject(config[configKey], sortKey);
+        }
+        else config[key] = _sortObject(config[key]);
+    }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Localize the values of a configuration object by translating them in-place.
+ * @param {object} obj                The configuration object to localize
+ * @param {string} [key]              An inner key which should be localized
+ * @private
+ */
+function _localizeObject(obj, key) {
+    for ( const [k, v] of Object.entries(obj) ) {
+
+        // String directly
+        if ( typeof v === "string" ) {
+            obj[k] = game.i18n.localize(v);
+            continue;
+        }
+
+        // Inner object
+        if ( (typeof v !== "object") || !(key in v) ) {
+            console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
+            continue;
+        }
+        v[key] = game.i18n.localize(v[key]);
+    }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Sort a configuration object by its values or by an inner sortKey.
+ * @param {object} obj                The configuration object to sort
+ * @param {string} [sortKey]          An inner key upon which to sort
+ * @returns {{[p: string]: any}}      The sorted configuration object
+ */
+function _sortObject(obj, sortKey) {
+    let sorted = Object.entries(obj);
+    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+    else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
+    return Object.fromEntries(sorted);
+}
+
+/* --------------------------------------------- */
+
+/**
+ * Expand a list of attribute paths into an object that can be traversed.
+ * @param {string[]} attributes  The initial attributes configuration.
+ * @returns {object}  The expanded object structure.
+ */
+function expandAttributeList(attributes) {
+    return attributes.reduce((obj, attr) => {
+        foundry.utils.setProperty(obj, attr, true);
+        return obj;
+    }, {});
+}
 
 /* -------------------------------------------- */
 /*  Foundry VTT Ready                           */

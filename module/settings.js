@@ -150,6 +150,16 @@ export const registerSystemSettings = function () {
         default: false
     });
 
+    // Simplified Forcecasting
+    game.settings.register("sw5e", "simplifiedForcecasting", {
+        name: "SETTINGS.SWSimplifiedForcecastingN",
+        hint: "SETTINGS.SWSimplifiedForcecastingL",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false
+    });
+
     // Critical Damage Modifiers
     game.settings.register("sw5e", "criticalDamageModifiers", {
         name: "SETTINGS.5eCriticalModifiersN",

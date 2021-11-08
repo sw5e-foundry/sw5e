@@ -27,7 +27,9 @@ export default class Item5e extends Item {
 
             // Powers - Use Actor powercasting modifier based on power school
             if (this.data.type === "power") {
-                switch (this.data.data.school) {
+                let school = this.data.data.school;
+                if (game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk"].includes(school)) school = "uni";
+                switch (school) {
                     case "lgt":
                         return "wis";
                     case "uni":

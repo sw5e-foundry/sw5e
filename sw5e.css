@@ -433,8 +433,8 @@
 .sw5e.sheet .traits {
   margin: 5px 0 0;
 }
-.sw5e.sheet .traits .trait-selector,
-.sw5e.sheet .traits .proficiency-selector {
+.sw5e.sheet .traits .proficiency-selector,
+.sw5e.sheet .traits .trait-selector {
   flex: 0 0 16px;
   padding: 2px 0;
   color: #999;
@@ -532,14 +532,17 @@
 /* ----------------------------------------- */
 /* Trait Selector
 /* ----------------------------------------- */
+.proficiency-selector .trait-list,
 .trait-selector .trait-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+.proficiency-selector .trait-list li ol.trait-list,
 .trait-selector .trait-list li ol.trait-list {
   margin-left: 1.5em;
 }
+.proficiency-selector input[type="text"],
 .trait-selector input[type="text"] {
   height: 24px;
   margin: 2px;

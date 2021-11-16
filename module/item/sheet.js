@@ -97,17 +97,23 @@ export default class ItemSheet5e extends ItemSheet {
      */
     async _getItemBaseTypes(item) {
         const type = item.type === "equipment" ? "armor" : item.type;
-        const ids = CONFIG.SW5E[`${type}Ids`];
-        if (ids === undefined) return {};
-
         const typeProperty = type === "armor" ? "armor.type" : `${type}Type`;
         const baseType = foundry.utils.getProperty(item.data, typeProperty);
 
+        const ids = CONFIG.SW5E[`${baseType === "shield" ? "shield" : type}Ids`];
+        if (ids === undefined) return {};
+
         const items = await Object.entries(ids).reduce(async (acc, [name, id]) => {
-            const baseItem = await ProficiencySelector.getBaseItem(id);
+            let baseItem = await ProficiencySelector.getBaseItem(id);
+
+            // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
+            if (!baseItem?.data) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}))?.data;
+
+            if (!baseItem) return obj;
+
             const obj = await acc;
             if (baseType !== foundry.utils.getProperty(baseItem.data, typeProperty)) return obj;
-            obj[name] = baseItem.name;
+            obj[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
             return obj;
         }, {});
 

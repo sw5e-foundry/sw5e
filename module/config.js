@@ -85,29 +85,16 @@ SW5E.attunements = {
  * @enum {string}
  */
 SW5E.weaponProficiencies = {
-    blp: "SW5E.WeaponBlasterPistolProficiency",
-    chk: "SW5E.WeaponChakramProficiency",
-    dbb: "SW5E.WeaponDoubleBladeProficiency",
-    dbs: "SW5E.WeaponDoubleSaberProficiency",
-    dsh: "SW5E.WeaponDoubleShotoProficiency",
-    dsw: "SW5E.WeaponDoubleSwordProficiency",
-    hid: "SW5E.WeaponHiddenBladeProficiency",
     imp: "SW5E.WeaponImprovisedProficiency",
-    lfl: "SW5E.WeaponLightFoilProficiency",
-    lrg: "SW5E.WeaponLightRingProficiency",
-    mar: "SW5E.WeaponMartialProficiency",
-    mrb: "SW5E.WeaponMartialBlasterProficiency",
-    mlw: "SW5E.WeaponMartialLightweaponProficiency",
-    mvb: "SW5E.WeaponMartialVibroweaponProficiency",
     ntl: "SW5E.WeaponNaturalProficiency",
-    swh: "SW5E.WeaponSaberWhipProficiency",
-    sim: "SW5E.WeaponSimpleProficiency",
-    smb: "SW5E.WeaponSimpleBlasterProficiency",
+
+    sb: "SW5E.WeaponSimpleBlasterProficiency",
     slw: "SW5E.WeaponSimpleLightweaponProficiency",
-    svb: "SW5E.WeaponSimpleVibroweaponProficiency",
-    tch: "SW5E.WeaponTechbladeProficiency",
-    vbr: "SW5E.WeaponVibrorapierProficiency",
-    vbw: "SW5E.WeaponVibrowhipProficiency"
+    svw: "SW5E.WeaponSimpleVibroweaponProficiency",
+
+    mb: "SW5E.WeaponMartialBlasterProficiency",
+    mlw: "SW5E.WeaponMartialLightweaponProficiency",
+    mvw: "SW5E.WeaponMartialVibroweaponProficiency",
 };
 
 /**
@@ -117,62 +104,261 @@ SW5E.weaponProficiencies = {
  */
 SW5E.weaponProficienciesMap = {
     natural: true,
-    simpleVW: "sim",
-    simpleB: "sim",
-    simpleLW: "sim",
-    martialVW: "mar",
-    martialB: "mar",
-    martialLW: "mar"
+    simpleB: "sb",
+    simpleLW: "slw",
+    simpleVW: "svw",
+    martialB: "mb",
+    martialLW: "mlw",
+    martialVW: "mvw",
 };
 
-// TODO: Check to see if this can be used
-// It's not actually been used anywhere in DND5e 1.3.2
-// Note name mapped to ID in compendium
+/* -------------------------------------------- */
+
 /**
- * The basic weapon types in 5e. This enables specific weapon proficiencies or
+ * The basic weapon types in sw5e. This enables specific weapon proficiencies or
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
-
- SW5E.weaponIds = {
-  "battleaxe": "I0WocDSuNpGJayPb",
-  "blowgun": "wNWK6yJMHG9ANqQV",
-  "club": "nfIRTECQIG81CvM4",
-  "dagger": "0E565kQUBmndJ1a2",
-  "dart": "3rCO8MTIdPGSW6IJ",
-  "flail": "UrH3sMdnUDckIHJ6",
-  "glaive": "rOG1OM2ihgPjOvFW",
-  "greataxe": "1Lxk6kmoRhG8qQ0u",
-  "greatclub": "QRCsxkCwWNwswL9o",
-  "greatsword": "xMkP8BmFzElcsMaR",
-  "halberd": "DMejWAc8r8YvDPP1",
-  "handaxe": "eO7Fbv5WBk5zvGOc",
-  "handcrossbow": "qaSro7kFhxD6INbZ",
-  "heavycrossbow": "RmP0mYRn2J7K26rX",
-  "javelin": "DWLMnODrnHn8IbAG",
-  "lance": "RnuxdHUAIgxccVwj",
-  "lightcrossbow": "ddWvQRLmnnIS0eLF",
-  "lighthammer": "XVK6TOL4sGItssAE",
-  "longbow": "3cymOVja8jXbzrdT",
-  "longsword": "10ZP2Bu3vnCuYMIB",
-  "mace": "Ajyq6nGwF7FtLhDQ",
-  "maul": "DizirD7eqjh8n95A",
-  "morningstar": "dX8AxCh9o0A9CkT3",
-  "net": "aEiM49V8vWpWw7rU",
-  "pike": "tC0kcqZT9HHAO0PD",
-  "quarterstaff": "g2dWN7PQiMRYWzyk",
-  "rapier": "Tobce1hexTnDk4sV",
-  "scimitar": "fbC0Mg1a73wdFbqO",
-  "shortsword": "osLzOwQdPtrK3rQH",
-  "sickle": "i4NeNZ30ycwPDHMx",
-  "spear": "OG4nBBydvmfWYXIk",
-  "shortbow": "GJv6WkD7D2J6rP6M",
-  "sling": "3gynWO9sN4OLGMWD",
-  "trident": "F65ANO66ckP8FDMa",
-  "warpick": "2YdfjN1PIIrSHZii",
-  "warhammer":  "F0Df164Xv1gWcYt0",
-  "whip": "QKTyxoO0YDnAsbYe"
+ **/
+SW5E.weaponIds = {
+    "grenadelauncher": "sw5e.blasters.1PtYUVAzIi5e2x4H",
+    "heavyshotgun": "sw5e.blasters.TSOf2xTMf792t4af",
+    "cyclerrifle": "sw5e.blasters.yaFeefXN5oCNhZns",
+    "lightpistol": "sw5e.blasters.3MuBVRCfB4j2pmm1",
+    "heavyrepeater": "sw5e.blasters.CUGWEv0xw4OMdjsI",
+    "ionpistol": "sw5e.blasters.4CdI8yfutf7ZggfY",
+    "heavypistol": "sw5e.blasters.6S2Lb686mrKTQMTp",
+    "handblaster": "sw5e.blasters.6aTkk5EqFsVKECbn",
+    "disruptorpistol": "sw5e.blasters.7d9jf8kTjKtzIals",
+    "sonicpistol": "sw5e.blasters.8EKfBUh1sNYcdyxQ",
+    "bolt-thrower": "sw5e.blasters.9VhsUL3z9o62lUsT",
+    "nightstingerrifle": "sw5e.blasters.9h8aYCXd9O2aJThy",
+    "bkg": "sw5e.blasters.AChZTm3pFdO51aFE",
+    "switchpistol": "sw5e.blasters.BF0DbpSuicX8qHhb",
+    "shotgun": "sw5e.blasters.twTqep64yEvD27WD",
+    "heavyslugpistol": "sw5e.blasters.HXyrCz4Kun53F4kK",
+    "scattergun": "sw5e.blasters.Ul4lKHTI2TocCqBm",
+    "switchcannon": "sw5e.blasters.KO4QzzK90ddtTCeP",
+    "huntingrifle": "sw5e.blasters.E1qrlNHZ9VtE0lky",
+    "incineratorpistol": "sw5e.blasters.EY3jaFiEsO9UzEz9",
+    "ioncarbine": "sw5e.blasters.FJMwehrWtdagwsqn",
+    "revolver": "sw5e.blasters.KGY7W9ckhHlCmTLI",
+    "shatterrifle": "sw5e.blasters.Ger4Tz2ZQHBsvIdD",
+    "shattercannon": "sw5e.blasters.V69p6jqgTM5oyp3P",
+    "sonicrifle": "sw5e.blasters.Iv36Kvf4Twtr0WQf",
+    "assaultcannon": "sw5e.blasters.mXu2wQEqg6czu3X1",
+    "heavybowcaster": "sw5e.blasters.LyjP5ioaHCa8sSsp",
+    "shouldercannon": "sw5e.blasters.quQ1kOTjP0Z4DkE7",
+    "blasterrifle": "sw5e.blasters.Nww9kzfPy9D246fg",
+    "switchcarbine": "sw5e.blasters.OZhhFSXfVaTxlvMy",
+    "repeatingblaster": "sw5e.blasters.owCClcq8Zp0AJrb8",
+    "arccaster": "sw5e.blasters.xGH5V5Dh3Xd8yRZr",
+    "vaporprojector": "sw5e.blasters.PhJpjuTtS0E2dR5M",
+    "blastercarbine": "sw5e.blasters.PoGaGtinF97I9fQ0",
+    "sniperrifle": "sw5e.blasters.Q45OrdLhguL9OWNU",
+    "carbinerifle": "sw5e.blasters.SAWonBPE2WqRRJBd",
+    "switchrifle": "sw5e.blasters.TGpxeKGTfalYK5SA",
+    "wristblaster": "sw5e.blasters.TlrVX9tsQfnzmyo6",
+    "needler": "sw5e.blasters.tzlA3eYfQSOLVlUw",
+    "switchsniper": "sw5e.blasters.UZqJABEq0NUKU2Uf",
+    "slugthrower": "sw5e.blasters.k0KYmZ6myMThvhKH",
+    "hold-out": "sw5e.blasters.V7uuRrAqCINlkgFk",
+    "torpedolauncher": "sw5e.blasters.WUI1B0CvfWXMUABR",
+    "bowcaster": "sw5e.blasters.nbUdM3rwdWFLeRQr",
+    "ionrifle": "sw5e.blasters.aXCB2Uap09IIAV0p",
+    "chaingun": "sw5e.blasters.cchq3Zp6gDRHCPmJ",
+    "iws": "sw5e.blasters.yQKuemJZafYpqDxA",
+    "slugpistol": "sw5e.blasters.nFL3lIO5cZyGdi7h",
+    "rotarycannon": "sw5e.blasters.hiD9yXYbGr9qpEHP",
+    "wristlauncher": "sw5e.blasters.fhQ3oxD0XojwKnVN",
+    "lightbow": "sw5e.blasters.gIGxUwvW06msv36V",
+    "subrepeater": "sw5e.blasters.gPDZk2wbFxPbbZrl",
+    "blastercannon": "sw5e.blasters.hGHemt3w37BdkARm",
+    "tranquilizerrifle": "sw5e.blasters.kTknGaMyXROkwRvm",
+    "incineratorsniper": "sw5e.blasters.l1vS9YRrwQktdgbI",
+    "energybow": "sw5e.blasters.lb1KS1SOtmf384Xv",
+    "flechettecannon": "sw5e.blasters.lzJCdT9fuPVW5S44",
+    "lightslugpistol": "sw5e.blasters.md4uo61mzq3xBFh0",
+    "rocketlauncher": "sw5e.blasters.pYsmiZ98tXTfdbt0",
+    "blasterpistol": "sw5e.blasters.rz0YqUmRxFl79W0K",
+    "lightrepeater": "sw5e.blasters.t0Z84WWjYSNY92rf",
+    "disruptorrifle": "sw5e.blasters.yOsWMLHMEtzucKDC",
+    "shatterpistol": "sw5e.blasters.yVgru3dfq2S3HzVB",
+    "railgun": "sw5e.blasters.zuPhwZGH0j2ovgG7",
+    "lightglaive": "sw5e.lightweapons.A2LrY6YdgNv4JL74",
+    "doubleshoto": "sw5e.lightweapons.AVDPyImR6l9E2JEi",
+    "sithsaber": "sw5e.lightweapons.AoO7yHMOrYlG67fa",
+    "lightring": "sw5e.lightweapons.CFd2Rv27dH0c7cMt",
+    "sabergauntlet": "sw5e.lightweapons.Fbxbb4X9seaZzpQj",
+    "lightfist": "sw5e.lightweapons.I0DFU813iysKiYCj",
+    "cross-saber": "sw5e.lightweapons.J74mQptLf2FlsZHC",
+    "retrosaber": "sw5e.lightweapons.L47ZLQgshik5X5ea",
+    "chainedlightdagger": "sw5e.lightweapons.LzWg0JRhhyedB9bi",
+    "lightsaberpike": "sw5e.lightweapons.NKFT1tIzfAAZHsHn",
+    "lightaxe": "sw5e.lightweapons.Ncx7KBa8wBn9KztD",
+    "canesaber": "sw5e.lightweapons.Nv2WbsbQ767k40Hz",
+    "saberspear": "sw5e.lightweapons.NvHrxWiR8wiUeEhO",
+    "lightclub": "sw5e.lightweapons.OJmYglDcsfSbzuyK",
+    "lightdagger": "sw5e.lightweapons.Ri7R7WyapR2CDE9S",
+    "shotosaber": "sw5e.lightweapons.RjQEzblykRC6Qn8E",
+    "doublesaber": "sw5e.lightweapons.T3eHzkaSMMpLuBbr",
+    "lightsaber": "sw5e.lightweapons.TjTDmB8pIYSLkQvw",
+    "claymoresaber": "sw5e.lightweapons.TnPZm7K0XjygDfup",
+    "crossguardsaber": "sw5e.lightweapons.TzLXYpz7oWOPvZQR",
+    "greatsaber": "sw5e.lightweapons.VE0ivGhc34JZ7SDv",
+    "bustersaber": "sw5e.lightweapons.VxjgQHyXgtRgk9cD",
+    "martiallightsaber": "sw5e.lightweapons.ZAvRnvSdsRnz9CGQ",
+    "dual-phasesaber": "sw5e.lightweapons.btN7KpXTNmkCSNCr",
+    "saberwhip": "sw5e.lightweapons.gaFajnxdTGFGVOki",
+    "saberaxe": "sw5e.lightweapons.gj2EIKC9sEvLvc2E",
+    "lightfoil": "sw5e.lightweapons.s3PoP2XP6eNKibCh",
+    "wristsaber": "sw5e.lightweapons.tct3YIDnft6YS1zm",
+    "guardshoto": "sw5e.lightweapons.xYrgfBXhWqh7jsU5",
+    "warsword": "sw5e.vibroweapons.1l5wYDmKxsVtBh8C",
+    "techstaff": "sw5e.vibroweapons.1yjNZ2sexhgtLTJd",
+    "doubleblade": "sw5e.vibroweapons.2JAikVfIqqfVnz89",
+    "mancatcher": "sw5e.vibroweapons.2NpgNbbZii4hBxnf",
+    "disguisedblade": "sw5e.vibroweapons.2hh7rbRe2M7NtsSA",
+    "vibroknife": "sw5e.vibroweapons.3kUGRPNz1ZGoyroy",
+    "vibrodagger": "sw5e.vibroweapons.4NC3GFIB6fkAFode",
+    "vibromace": "sw5e.vibroweapons.4nhExqMbBBc43yEg",
+    "vibrotonfa": "sw5e.vibroweapons.51SEwkiAyEyNxepE",
+    "bo-rifle": "sw5e.vibroweapons.Q6TehYphedst0IO7",
+    "bolas": "sw5e.vibroweapons.9aZ7pxuQ53FSSln2",
+    "vibroshield": "sw5e.vibroweapons.AAPFz1h7zavJtNLT",
+    "vibrowhip": "sw5e.vibroweapons.DMhK05ya9IaoRaqn",
+    "electroprod": "sw5e.vibroweapons.DPM9vkX71mJqu56S",
+    "net": "sw5e.vibroweapons.E4yr74pank6zL4EM",
+    "echostaff": "sw5e.vibroweapons.EkHc4LJawI0MkZTt",
+    "vibroglaive": "sw5e.vibroweapons.FSHBcQtY54JJeRVj",
+    "electrovoulge": "sw5e.vibroweapons.GHNSNfGwYy5M7PHf",
+    "techblade": "sw5e.vibroweapons.IAgE03WckaYyW18F",
+    "vibrorapier": "sw5e.vibroweapons.INgbfJEkeG2eTK2J",
+    "nervebaton": "sw5e.vibroweapons.IR2YLzSMJtarjPRB",
+    "wristblade": "sw5e.vibroweapons.ITIKI8cm8bfdwJtr",
+    "jaggedvibroblade": "sw5e.vibroweapons.Ix3zb5hgZ8gMlUCU",
+    "vibrohammer": "sw5e.vibroweapons.IyUZfO6To2YpdRAc",
+    "techaxe": "sw5e.vibroweapons.JJW1OllV82jC2RXG",
+    "warhat": "sw5e.vibroweapons.KLQK6pxmZljlmTH7",
+    "riotshocker": "sw5e.vibroweapons.Kdl45Yv1B8aV6wb1",
+    "hookedvibroblade": "sw5e.vibroweapons.LbuQt3wl3ddFby24",
+    "vibrostaff": "sw5e.vibroweapons.Nai38YsJRjYCUrtq",
+    "vibrolance": "sw5e.vibroweapons.P5F9exDDwLqELvx8",
+    "chaineddagger": "sw5e.vibroweapons.QOlVIUthbalyOzx5",
+    "vibroblade": "sw5e.vibroweapons.UNkMw4mUkIIveQcJ",
+    "chakram": "sw5e.vibroweapons.WFtEcb6twwwCCJw3",
+    "vibrocutter": "sw5e.vibroweapons.aOSObG115AyL94wE",
+    "vibrobuster": "sw5e.vibroweapons.b7eKH5T3Djwod7fk",
+    "hiddenblade": "sw5e.vibroweapons.cmb8tlOI7j4wnfPi",
+    "electrohammer": "sw5e.vibroweapons.eIrYhQUAWrtb7hge",
+    "doublesword": "sw5e.vibroweapons.eNRNDJTz4Qwp9cGJ",
+    "electrostaff": "sw5e.vibroweapons.h05hvfoThlmCxW5H",
+    "vibrodart": "sw5e.vibroweapons.i9YbAYtjJ37eJv3K",
+    "vibroclaw": "sw5e.vibroweapons.j0sgK34TRKbyBprP",
+    "riotbaton": "sw5e.vibroweapons.mWlYuzFhHFek9NN2",
+    "vibroaxe": "sw5e.vibroweapons.o8JR5oLCQOYpP9Oa",
+    "vibrospear": "sw5e.vibroweapons.oS93z4sSFt0aidDI",
+    "vibroclaymore": "sw5e.vibroweapons.owrLUNZDefZk5dWY",
+    "vibroknuckler": "sw5e.vibroweapons.rqVAzueP6PdG3h4D",
+    "vibropike": "sw5e.vibroweapons.rsn8G4aAxpu0gJBH",
+    "disruptorshiv": "sw5e.vibroweapons.sG5tznTOdE50BvDE",
+    "vibrobattleaxe": "sw5e.vibroweapons.sJOPfGy0XqCOFq1n",
+    "electrobaton": "sw5e.vibroweapons.syMf22lyVB0OTV7V",
+    "vibrobaton": "sw5e.vibroweapons.t4GxMD52v7myAi41",
+    "vibrosword": "sw5e.vibroweapons.u1t2YqPQSOMWPQbs",
+    "shockwhip": "sw5e.vibroweapons.wmMxWXgZdlJ8SLXe"
 };
- */
+
+/**
+ * The basic armor types in sw5e. This enables specific armor proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ * @enum {string}
+ **/
+SW5E.armorIds = {
+    "combatsuit": "sw5e.armor.iJXWiOLOQcVohJBN",
+    "fiberarmor": "sw5e.armor.zAkvWO8lEohqewbB",
+
+    "mesharmor": "sw5e.armor.WalIq3DWny0Ud4Vn",
+    "weavearmor": "sw5e.armor.hpN14Vhgw82PHeEz",
+    "compositearmor": "sw5e.armor.mToMe4McIkZRIeCN",
+
+    "battlearmor": "sw5e.armor.wafF3SF4zQBOs34y",
+    "assaultarmor": "sw5e.armor.GO4yvhWLgLTrU0xb",
+    "heavyexoskeleton": "sw5e.armor.ggFMzbQrwkGZCoaQ",
+};
+/**
+ * The basic shield types in sw5e. This enables specific shield proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ * @enum {string}
+ **/
+SW5E.shieldIds = {
+    "lightshieldgenerator": "sw5e.armor.eMXpw3HIVMnaNFQ1",
+    "mediumshieldgenerator": "sw5e.armor.R2GRWrNHmAZzksg5",
+    "heavyshieldgenerator": "sw5e.armor.2u9493AUhrh2AfES",
+
+    "lightphysicalshield": "sw5e.armor.k1pOOCzZoWEr5Dia",
+    "mediumphysicalshield": "sw5e.armor.4vGeVWgLIUfN9YiB",
+    "heavyphysicalshield": "sw5e.armor.KvzKRKNWATwdzxjz",
+}
+/**
+ * The basic tool types in sw5e. This enables specific tool proficiencies or
+ * starting equipment provided by classes and backgrounds.
+ * @enum {string}
+ **/
+SW5E.toolIds = {
+    "constructorsimplements": "sw5e.implements.5HKxptQKBFED544u",
+    "geneticistsimplements": "sw5e.implements.80xuLufR1m7kpNRs",
+    "cybertechsimplements": "sw5e.implements.9w7V1PCf2aD4caVP",
+    "jewelersimplements": "sw5e.implements.EYpkyPlywQaH9Ivy",
+    "gadgeteersimplements": "sw5e.implements.GJrYc9KQ22o7qTlz",
+    "tinkersimplements": "sw5e.implements.IkmQFQjGc4xq0Czd",
+    "armstechsimplements": "sw5e.implements.Mrwh3CEneCPnPP1T",
+    "artistsimplements": "sw5e.implements.OXlKtbL29bLUluf2",
+    "biotechsimplements": "sw5e.implements.QTg2sCpSdPfyUoCq",
+    "astrotechsimplements": "sw5e.implements.RlQ4zlWA7EdohcEh",
+    "surveyorsimplements": "sw5e.implements.SvureMOX5qo6LqGt",
+    "audiotechsimplements": "sw5e.implements.VNto9t3diElKRHWG",
+    "armormechsimplements": "sw5e.implements.sjsX3NYk7eZ4udlw",
+    "synthweaversimplements": "sw5e.implements.uP1rZHmbOmg8BUaX",
+    "artificersimplements": "sw5e.implements.w7lWDrGgZeYbwiSH",
+
+    "chefskit": "sw5e.kits.BnhGtUc9G7issUcW",
+    "disguisekit": "sw5e.kits.ChmVrypurts3VY7i",
+    "scavengingkit": "sw5e.kits.NVxy5wBSpJcHxPEm",
+    "spicerskit": "sw5e.kits.NlppEcEGpDVDyPiH",
+    "mechanicskit": "sw5e.kits.NubaMVVv3vNwbtuj",
+    "brewerskit": "sw5e.kits.OAt131yAvZYPlUmO",
+    "munitionskit": "sw5e.kits.VJL0ue7Bpl3s0MHx",
+    "archaeologistkit": "sw5e.kits.WrJhpfymps4yRBdk",
+    "slicerskit": "sw5e.kits.Yonb0zHFV9asPJHq",
+    "bioanalysiskit": "sw5e.kits.fWoNUuZCNLG8W67s",
+    "demolitionskit": "sw5e.kits.gyhyVW4PEUWLpZTL",
+    "artilleristskit": "sw5e.kits.jJ1CiyKVXOlyjn8h",
+    "forgerykit": "sw5e.kits.ksrKs7yvm7X7CMxA",
+    "securitykit": "sw5e.kits.nqf9reJDGplVaeac",
+    "poisonerskit": "sw5e.kits.ofea5VziX4jBg5So",
+    "biochemistskit": "sw5e.kits.pq0o4lUKg8Nl08yf",
+
+    "sabaccdeck": "sw5e.gamingsets.RvFP7y8VWPMROQWv",
+    "pazaakdeck": "sw5e.gamingsets.XfClqzNPbjJxHqil",
+    "dejarikset": "sw5e.gamingsets.dKho3HXE7XfS4iRU",
+    "chancecubes": "sw5e.gamingsets.kqt52rtjpaz6jiCf",
+
+    "mandoviol": "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
+    "lute": "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
+    "shawm": "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
+    "fizzz": "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+    "chindinkaluhorn": "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
+    "kloohorn": "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
+    "xantha": "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
+    "slitherhorn": "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
+    "traz": "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
+    "ommnibox": "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
+    "bandfill": "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
+    "flute": "sw5e.musicalinstruments.mumHDhvGww117xoq",
+    "valahorn": "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
+    "drum": "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
+    "fanfar": "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
+};
 
 /* -------------------------------------------- */
 
@@ -182,38 +368,9 @@ SW5E.weaponProficienciesMap = {
  * @enum {string}
  */
 SW5E.toolTypes = {
-    armor: "SW5E.ToolArmormech",
-    arms: "SW5E.ToolArmstech",
-    arti: "SW5E.ToolArtificer",
-    artl: "SW5E.ToolArtillerist",
-    art: "SW5E.ToolArtist",
-    astro: "SW5E.ToolAstrotech",
-    bio: "SW5E.ToolBiotech",
-    con: "SW5E.ToolConstructor",
-    cyb: "SW5E.ToolCybertech",
-    gad: "SW5E.ToolGadgeteer",
-    gen: "SW5E.ToolGeneticist",
-    jew: "SW5E.ToolJeweler",
-    sur: "SW5E.ToolSurveyor",
-    syn: "SW5E.ToolSynthweaver",
-    tin: "SW5E.ToolTinker",
-    ant: "SW5E.ToolAntitoxkit",
-    arc: "SW5E.ToolArchaeologistKit",
-    aud: "SW5E.ToolAudiotechKit",
-    bioa: "SW5E.ToolBioanalysisKit",
-    bioc: "SW5E.ToolBiochemistsKit",
-    brew: "SW5E.ToolBrewerKit",
-    chef: "SW5E.ToolChefKit",
-    demo: "SW5E.ToolDemolitionKit",
-    disg: "SW5E.ToolDisguiseKit",
-    forg: "SW5E.ToolForgeryKit",
-    mech: "SW5E.ToolMechanicKit",
+    artisan: "SW5E.ToolArtisanImplement",
+    specialist: "SW5E.ToolSpecialistKit",
     game: "SW5E.ToolGamingSet",
-    poi: "SW5E.ToolPoisonKit",
-    scav: "SW5E.ToolScavengingKit",
-    secur: "SW5E.ToolSecurityKit",
-    slic: "SW5E.ToolSlicerKit",
-    spice: "SW5E.ToolSpiceKit",
     music: "SW5E.ToolMusicalInstrument"
 };
 
@@ -226,18 +383,6 @@ SW5E.toolProficiencies = {
     ...SW5E.toolTypes,
     vehicle: "SW5E.ToolVehicle"
 };
-
-// TODO: Same as weapon IDs
-// Also unused, and SW5E.toolProficiencies is already pretty verbose anyway
-/**
- * The basic tool types in 5e. This enables specific tool proficiencies or
- * starting equipment provided by classes and backgrounds.
- * @enum {string}
-
- SW5E.toolIds = {
-
-};
-*/
 
 /* -------------------------------------------- */
 
@@ -487,21 +632,6 @@ SW5E.armorProficienciesMap = {
     heavy: "hvy",
     shield: "shl"
 };
-
-// TODO: Same as weapon IDs
-/**
- * The basic armor types in 5e. This enables specific armor proficiencies,
- * automated AC calculation in NPCs, and starting equipment.
- * @enum {string}
- */
-SW5E.armorIds = {};
-
-// TODO: Same as weapon IDs
-/**
- * The basic shield in 5e.
- * @enum {string}
- */
-SW5E.shieldIds = {};
 
 /**
  * Common armor class calculations.

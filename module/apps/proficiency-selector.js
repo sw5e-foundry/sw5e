@@ -64,13 +64,17 @@ export default class ProficiencySelector extends TraitSelector {
         if (ids !== undefined) {
             const typeProperty = type !== "armor" ? `${type}Type` : "armor.type";
             for (const [key, id] of Object.entries(ids)) {
-                const item = await ProficiencySelector.getBaseItem(id);
+                let item = await ProficiencySelector.getBaseItem(id);
+
+                // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
+                if (!item?.data) item = (await ProficiencySelector.getBaseItem(id, {fullItem: true})).data;
+
                 if (!item) continue;
 
                 let type = foundry.utils.getProperty(item.data, typeProperty);
                 if (map && map[type]) type = map[type];
                 const entry = {
-                    label: item.name,
+                    label: item.name.replace(/\s*\([^)]*\)/g, ""), // Remove '(Rapid)' and '(Burst)' tags from item names
                     chosen: chosen.includes(key)
                 };
                 if (data[type] === undefined) {

@@ -5,7 +5,7 @@
 /**
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
- * @param {Object} data     The dropped data
+ * @param {object} data     The dropped data
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
@@ -16,7 +16,7 @@ export async function create5eMacro(data, slot) {
 
     // Create the macro command
     const command = `game.sw5e.rollItemMacro("${item.name}");`;
-    let macro = game.macros.entities.find((m) => m.name === item.name && m.command === command);
+    let macro = game.macros.find((m) => m.name === item.name && m.data.command === command);
     if (!macro) {
         macro = await Macro.create({
             name: item.name,
@@ -36,7 +36,7 @@ export async function create5eMacro(data, slot) {
  * Create a Macro from an Item drop.
  * Get an existing item macro if one exists, otherwise create a new one.
  * @param {string} itemName
- * @return {Promise}
+ * @returns {Promise}
  */
 export function rollItemMacro(itemName) {
     const speaker = ChatMessage.getSpeaker();

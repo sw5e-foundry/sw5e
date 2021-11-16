@@ -13,8 +13,8 @@ SW5E.ASCII = `
        \\/       \\/        \\/    \\/ `;
 
 /**
- * The set of Ability Scores used within the system
- * @type {Object}
+ * The set of Ability Scores used within the system.
+ * @enum {string}
  */
 SW5E.abilities = {
     str: "SW5E.AbilityStr",
@@ -25,6 +25,10 @@ SW5E.abilities = {
     cha: "SW5E.AbilityCha"
 };
 
+/**
+ * Localized abbreviations for Ability Scores.
+ * @enum {string}
+ */
 SW5E.abilityAbbreviations = {
     str: "SW5E.AbilityStrAbbr",
     dex: "SW5E.AbilityDexAbbr",
@@ -37,8 +41,8 @@ SW5E.abilityAbbreviations = {
 /* -------------------------------------------- */
 
 /**
- * Character alignment options
- * @type {Object}
+ * Character alignment options.
+ * @enum {string}
  */
 SW5E.alignments = {
     ll: "SW5E.AlignmentLL",
@@ -55,7 +59,7 @@ SW5E.alignments = {
 /* -------------------------------------------- */
 
 /**
- * An enumeration of item attunement types
+ * An enumeration of item attunement types.
  * @enum {number}
  */
 SW5E.attunementTypes = {
@@ -65,7 +69,7 @@ SW5E.attunementTypes = {
 };
 
 /**
- * An enumeration of item attunement states
+ * An enumeration of item attunement states.
  * @type {{"0": string, "1": string, "2": string}}
  */
 SW5E.attunements = {
@@ -76,94 +80,284 @@ SW5E.attunements = {
 
 /* -------------------------------------------- */
 
+/**
+ * General weapon categories.
+ * @enum {string}
+ */
 SW5E.weaponProficiencies = {
-    blp: "SW5E.WeaponBlasterPistolProficiency",
-    chk: "SW5E.WeaponChakramProficiency",
-    dbb: "SW5E.WeaponDoubleBladeProficiency",
-    dbs: "SW5E.WeaponDoubleSaberProficiency",
-    dsh: "SW5E.WeaponDoubleShotoProficiency",
-    dsw: "SW5E.WeaponDoubleSwordProficiency",
-    hid: "SW5E.WeaponHiddenBladeProficiency",
     imp: "SW5E.WeaponImprovisedProficiency",
-    lfl: "SW5E.WeaponLightFoilProficiency",
-    lrg: "SW5E.WeaponLightRingProficiency",
-    mar: "SW5E.WeaponMartialProficiency",
-    mrb: "SW5E.WeaponMartialBlasterProficiency",
-    mlw: "SW5E.WeaponMartialLightweaponProficiency",
-    mvb: "SW5E.WeaponMartialVibroweaponProficiency",
     ntl: "SW5E.WeaponNaturalProficiency",
-    swh: "SW5E.WeaponSaberWhipProficiency",
-    sim: "SW5E.WeaponSimpleProficiency",
-    smb: "SW5E.WeaponSimpleBlasterProficiency",
+
+    sb: "SW5E.WeaponSimpleBlasterProficiency",
     slw: "SW5E.WeaponSimpleLightweaponProficiency",
-    svb: "SW5E.WeaponSimpleVibroweaponProficiency",
-    tch: "SW5E.WeaponTechbladeProficiency",
-    vbr: "SW5E.WeaponVibrorapierProficiency",
-    vbw: "SW5E.WeaponVibrowhipProficiency"
+    svw: "SW5E.WeaponSimpleVibroweaponProficiency",
+
+    mb: "SW5E.WeaponMartialBlasterProficiency",
+    mlw: "SW5E.WeaponMartialLightweaponProficiency",
+    mvw: "SW5E.WeaponMartialVibroweaponProficiency",
 };
 
 /**
- * A map of weapon item proficiency to actor item proficiency
- * Used when a new player owned item is created
- * @type {Object}
+ * A mapping between `SW5E.weaponTypes` and `SW5E.weaponProficiencies` that
+ * is used to determine if character has proficiency when adding an item.
+ * @enum {(boolean|string)}
  */
 SW5E.weaponProficienciesMap = {
     natural: true,
-    simpleVW: "sim",
-    simpleB: "sim",
-    simpleLW: "sim",
-    martialVW: "mar",
-    martialB: "mar",
-    martialLW: "mar"
+    simpleB: "sb",
+    simpleLW: "slw",
+    simpleVW: "svw",
+    martialB: "mb",
+    martialLW: "mlw",
+    martialVW: "mvw",
 };
 
-// TODO: Check to see if this can be used
-// It's not actually been used anywhere in DND5e 1.3.2
-// Note name mapped to ID in compendium
-/**
- * The basic weapon types in 5e. This enables specific weapon proficiencies or
- * starting equipment provided by classes and backgrounds.
- *
- * @enum {string}
+/* -------------------------------------------- */
 
+/**
+ * The basic weapon types in sw5e. This enables specific weapon proficiencies or
+ * starting equipment provided by classes and backgrounds.
+ * @enum {string}
+ **/
 SW5E.weaponIds = {
-  "battleaxe": "I0WocDSuNpGJayPb",
-  "blowgun": "wNWK6yJMHG9ANqQV",
-  "club": "nfIRTECQIG81CvM4",
-  "dagger": "0E565kQUBmndJ1a2",
-  "dart": "3rCO8MTIdPGSW6IJ",
-  "flail": "UrH3sMdnUDckIHJ6",
-  "glaive": "rOG1OM2ihgPjOvFW",
-  "greataxe": "1Lxk6kmoRhG8qQ0u",
-  "greatclub": "QRCsxkCwWNwswL9o",
-  "greatsword": "xMkP8BmFzElcsMaR",
-  "halberd": "DMejWAc8r8YvDPP1",
-  "handaxe": "eO7Fbv5WBk5zvGOc",
-  "handcrossbow": "qaSro7kFhxD6INbZ",
-  "heavycrossbow": "RmP0mYRn2J7K26rX",
-  "javelin": "DWLMnODrnHn8IbAG",
-  "lance": "RnuxdHUAIgxccVwj",
-  "lightcrossbow": "ddWvQRLmnnIS0eLF",
-  "lighthammer": "XVK6TOL4sGItssAE",
-  "longbow": "3cymOVja8jXbzrdT",
-  "longsword": "10ZP2Bu3vnCuYMIB",
-  "mace": "Ajyq6nGwF7FtLhDQ",
-  "maul": "DizirD7eqjh8n95A",
-  "morningstar": "dX8AxCh9o0A9CkT3",
-  "net": "aEiM49V8vWpWw7rU",
-  "pike": "tC0kcqZT9HHAO0PD",
-  "quarterstaff": "g2dWN7PQiMRYWzyk",
-  "rapier": "Tobce1hexTnDk4sV",
-  "scimitar": "fbC0Mg1a73wdFbqO",
-  "shortsword": "osLzOwQdPtrK3rQH",
-  "sickle": "i4NeNZ30ycwPDHMx",
-  "spear": "OG4nBBydvmfWYXIk",
-  "shortbow": "GJv6WkD7D2J6rP6M",
-  "sling": "3gynWO9sN4OLGMWD",
-  "trident": "F65ANO66ckP8FDMa",
-  "warpick": "2YdfjN1PIIrSHZii",
-  "warhammer":  "F0Df164Xv1gWcYt0",
-  "whip": "QKTyxoO0YDnAsbYe"
+    "grenadelauncher": "sw5e.blasters.1PtYUVAzIi5e2x4H",
+    "heavyshotgun": "sw5e.blasters.TSOf2xTMf792t4af",
+    "cyclerrifle": "sw5e.blasters.yaFeefXN5oCNhZns",
+    "lightpistol": "sw5e.blasters.3MuBVRCfB4j2pmm1",
+    "heavyrepeater": "sw5e.blasters.CUGWEv0xw4OMdjsI",
+    "ionpistol": "sw5e.blasters.4CdI8yfutf7ZggfY",
+    "heavypistol": "sw5e.blasters.6S2Lb686mrKTQMTp",
+    "handblaster": "sw5e.blasters.6aTkk5EqFsVKECbn",
+    "disruptorpistol": "sw5e.blasters.7d9jf8kTjKtzIals",
+    "sonicpistol": "sw5e.blasters.8EKfBUh1sNYcdyxQ",
+    "bolt-thrower": "sw5e.blasters.9VhsUL3z9o62lUsT",
+    "nightstingerrifle": "sw5e.blasters.9h8aYCXd9O2aJThy",
+    "bkg": "sw5e.blasters.AChZTm3pFdO51aFE",
+    "switchpistol": "sw5e.blasters.BF0DbpSuicX8qHhb",
+    "shotgun": "sw5e.blasters.twTqep64yEvD27WD",
+    "heavyslugpistol": "sw5e.blasters.HXyrCz4Kun53F4kK",
+    "scattergun": "sw5e.blasters.Ul4lKHTI2TocCqBm",
+    "switchcannon": "sw5e.blasters.KO4QzzK90ddtTCeP",
+    "huntingrifle": "sw5e.blasters.E1qrlNHZ9VtE0lky",
+    "incineratorpistol": "sw5e.blasters.EY3jaFiEsO9UzEz9",
+    "ioncarbine": "sw5e.blasters.FJMwehrWtdagwsqn",
+    "revolver": "sw5e.blasters.KGY7W9ckhHlCmTLI",
+    "shatterrifle": "sw5e.blasters.Ger4Tz2ZQHBsvIdD",
+    "shattercannon": "sw5e.blasters.V69p6jqgTM5oyp3P",
+    "sonicrifle": "sw5e.blasters.Iv36Kvf4Twtr0WQf",
+    "assaultcannon": "sw5e.blasters.mXu2wQEqg6czu3X1",
+    "heavybowcaster": "sw5e.blasters.LyjP5ioaHCa8sSsp",
+    "shouldercannon": "sw5e.blasters.quQ1kOTjP0Z4DkE7",
+    "blasterrifle": "sw5e.blasters.Nww9kzfPy9D246fg",
+    "switchcarbine": "sw5e.blasters.OZhhFSXfVaTxlvMy",
+    "repeatingblaster": "sw5e.blasters.owCClcq8Zp0AJrb8",
+    "arccaster": "sw5e.blasters.xGH5V5Dh3Xd8yRZr",
+    "vaporprojector": "sw5e.blasters.PhJpjuTtS0E2dR5M",
+    "blastercarbine": "sw5e.blasters.PoGaGtinF97I9fQ0",
+    "sniperrifle": "sw5e.blasters.Q45OrdLhguL9OWNU",
+    "carbinerifle": "sw5e.blasters.SAWonBPE2WqRRJBd",
+    "switchrifle": "sw5e.blasters.TGpxeKGTfalYK5SA",
+    "wristblaster": "sw5e.blasters.TlrVX9tsQfnzmyo6",
+    "needler": "sw5e.blasters.tzlA3eYfQSOLVlUw",
+    "switchsniper": "sw5e.blasters.UZqJABEq0NUKU2Uf",
+    "slugthrower": "sw5e.blasters.k0KYmZ6myMThvhKH",
+    "hold-out": "sw5e.blasters.V7uuRrAqCINlkgFk",
+    "torpedolauncher": "sw5e.blasters.WUI1B0CvfWXMUABR",
+    "bowcaster": "sw5e.blasters.nbUdM3rwdWFLeRQr",
+    "ionrifle": "sw5e.blasters.aXCB2Uap09IIAV0p",
+    "chaingun": "sw5e.blasters.cchq3Zp6gDRHCPmJ",
+    "iws": "sw5e.blasters.yQKuemJZafYpqDxA",
+    "slugpistol": "sw5e.blasters.nFL3lIO5cZyGdi7h",
+    "rotarycannon": "sw5e.blasters.hiD9yXYbGr9qpEHP",
+    "wristlauncher": "sw5e.blasters.fhQ3oxD0XojwKnVN",
+    "lightbow": "sw5e.blasters.gIGxUwvW06msv36V",
+    "subrepeater": "sw5e.blasters.gPDZk2wbFxPbbZrl",
+    "blastercannon": "sw5e.blasters.hGHemt3w37BdkARm",
+    "tranquilizerrifle": "sw5e.blasters.kTknGaMyXROkwRvm",
+    "incineratorsniper": "sw5e.blasters.l1vS9YRrwQktdgbI",
+    "energybow": "sw5e.blasters.lb1KS1SOtmf384Xv",
+    "flechettecannon": "sw5e.blasters.lzJCdT9fuPVW5S44",
+    "lightslugpistol": "sw5e.blasters.md4uo61mzq3xBFh0",
+    "rocketlauncher": "sw5e.blasters.pYsmiZ98tXTfdbt0",
+    "blasterpistol": "sw5e.blasters.rz0YqUmRxFl79W0K",
+    "lightrepeater": "sw5e.blasters.t0Z84WWjYSNY92rf",
+    "disruptorrifle": "sw5e.blasters.yOsWMLHMEtzucKDC",
+    "shatterpistol": "sw5e.blasters.yVgru3dfq2S3HzVB",
+    "railgun": "sw5e.blasters.zuPhwZGH0j2ovgG7",
+    "lightglaive": "sw5e.lightweapons.A2LrY6YdgNv4JL74",
+    "doubleshoto": "sw5e.lightweapons.AVDPyImR6l9E2JEi",
+    "sithsaber": "sw5e.lightweapons.AoO7yHMOrYlG67fa",
+    "lightring": "sw5e.lightweapons.CFd2Rv27dH0c7cMt",
+    "sabergauntlet": "sw5e.lightweapons.Fbxbb4X9seaZzpQj",
+    "lightfist": "sw5e.lightweapons.I0DFU813iysKiYCj",
+    "cross-saber": "sw5e.lightweapons.J74mQptLf2FlsZHC",
+    "retrosaber": "sw5e.lightweapons.L47ZLQgshik5X5ea",
+    "chainedlightdagger": "sw5e.lightweapons.LzWg0JRhhyedB9bi",
+    "lightsaberpike": "sw5e.lightweapons.NKFT1tIzfAAZHsHn",
+    "lightaxe": "sw5e.lightweapons.Ncx7KBa8wBn9KztD",
+    "canesaber": "sw5e.lightweapons.Nv2WbsbQ767k40Hz",
+    "saberspear": "sw5e.lightweapons.NvHrxWiR8wiUeEhO",
+    "lightclub": "sw5e.lightweapons.OJmYglDcsfSbzuyK",
+    "lightdagger": "sw5e.lightweapons.Ri7R7WyapR2CDE9S",
+    "shotosaber": "sw5e.lightweapons.RjQEzblykRC6Qn8E",
+    "doublesaber": "sw5e.lightweapons.T3eHzkaSMMpLuBbr",
+    "lightsaber": "sw5e.lightweapons.TjTDmB8pIYSLkQvw",
+    "claymoresaber": "sw5e.lightweapons.TnPZm7K0XjygDfup",
+    "crossguardsaber": "sw5e.lightweapons.TzLXYpz7oWOPvZQR",
+    "greatsaber": "sw5e.lightweapons.VE0ivGhc34JZ7SDv",
+    "bustersaber": "sw5e.lightweapons.VxjgQHyXgtRgk9cD",
+    "martiallightsaber": "sw5e.lightweapons.ZAvRnvSdsRnz9CGQ",
+    "dual-phasesaber": "sw5e.lightweapons.btN7KpXTNmkCSNCr",
+    "saberwhip": "sw5e.lightweapons.gaFajnxdTGFGVOki",
+    "saberaxe": "sw5e.lightweapons.gj2EIKC9sEvLvc2E",
+    "lightfoil": "sw5e.lightweapons.s3PoP2XP6eNKibCh",
+    "wristsaber": "sw5e.lightweapons.tct3YIDnft6YS1zm",
+    "guardshoto": "sw5e.lightweapons.xYrgfBXhWqh7jsU5",
+    "warsword": "sw5e.vibroweapons.1l5wYDmKxsVtBh8C",
+    "techstaff": "sw5e.vibroweapons.1yjNZ2sexhgtLTJd",
+    "doubleblade": "sw5e.vibroweapons.2JAikVfIqqfVnz89",
+    "mancatcher": "sw5e.vibroweapons.2NpgNbbZii4hBxnf",
+    "disguisedblade": "sw5e.vibroweapons.2hh7rbRe2M7NtsSA",
+    "vibroknife": "sw5e.vibroweapons.3kUGRPNz1ZGoyroy",
+    "vibrodagger": "sw5e.vibroweapons.4NC3GFIB6fkAFode",
+    "vibromace": "sw5e.vibroweapons.4nhExqMbBBc43yEg",
+    "vibrotonfa": "sw5e.vibroweapons.51SEwkiAyEyNxepE",
+    "bo-rifle": "sw5e.vibroweapons.Q6TehYphedst0IO7",
+    "bolas": "sw5e.vibroweapons.9aZ7pxuQ53FSSln2",
+    "vibroshield": "sw5e.vibroweapons.AAPFz1h7zavJtNLT",
+    "vibrowhip": "sw5e.vibroweapons.DMhK05ya9IaoRaqn",
+    "electroprod": "sw5e.vibroweapons.DPM9vkX71mJqu56S",
+    "net": "sw5e.vibroweapons.E4yr74pank6zL4EM",
+    "echostaff": "sw5e.vibroweapons.EkHc4LJawI0MkZTt",
+    "vibroglaive": "sw5e.vibroweapons.FSHBcQtY54JJeRVj",
+    "electrovoulge": "sw5e.vibroweapons.GHNSNfGwYy5M7PHf",
+    "techblade": "sw5e.vibroweapons.IAgE03WckaYyW18F",
+    "vibrorapier": "sw5e.vibroweapons.INgbfJEkeG2eTK2J",
+    "nervebaton": "sw5e.vibroweapons.IR2YLzSMJtarjPRB",
+    "wristblade": "sw5e.vibroweapons.ITIKI8cm8bfdwJtr",
+    "jaggedvibroblade": "sw5e.vibroweapons.Ix3zb5hgZ8gMlUCU",
+    "vibrohammer": "sw5e.vibroweapons.IyUZfO6To2YpdRAc",
+    "techaxe": "sw5e.vibroweapons.JJW1OllV82jC2RXG",
+    "warhat": "sw5e.vibroweapons.KLQK6pxmZljlmTH7",
+    "riotshocker": "sw5e.vibroweapons.Kdl45Yv1B8aV6wb1",
+    "hookedvibroblade": "sw5e.vibroweapons.LbuQt3wl3ddFby24",
+    "vibrostaff": "sw5e.vibroweapons.Nai38YsJRjYCUrtq",
+    "vibrolance": "sw5e.vibroweapons.P5F9exDDwLqELvx8",
+    "chaineddagger": "sw5e.vibroweapons.QOlVIUthbalyOzx5",
+    "vibroblade": "sw5e.vibroweapons.UNkMw4mUkIIveQcJ",
+    "chakram": "sw5e.vibroweapons.WFtEcb6twwwCCJw3",
+    "vibrocutter": "sw5e.vibroweapons.aOSObG115AyL94wE",
+    "vibrobuster": "sw5e.vibroweapons.b7eKH5T3Djwod7fk",
+    "hiddenblade": "sw5e.vibroweapons.cmb8tlOI7j4wnfPi",
+    "electrohammer": "sw5e.vibroweapons.eIrYhQUAWrtb7hge",
+    "doublesword": "sw5e.vibroweapons.eNRNDJTz4Qwp9cGJ",
+    "electrostaff": "sw5e.vibroweapons.h05hvfoThlmCxW5H",
+    "vibrodart": "sw5e.vibroweapons.i9YbAYtjJ37eJv3K",
+    "vibroclaw": "sw5e.vibroweapons.j0sgK34TRKbyBprP",
+    "riotbaton": "sw5e.vibroweapons.mWlYuzFhHFek9NN2",
+    "vibroaxe": "sw5e.vibroweapons.o8JR5oLCQOYpP9Oa",
+    "vibrospear": "sw5e.vibroweapons.oS93z4sSFt0aidDI",
+    "vibroclaymore": "sw5e.vibroweapons.owrLUNZDefZk5dWY",
+    "vibroknuckler": "sw5e.vibroweapons.rqVAzueP6PdG3h4D",
+    "vibropike": "sw5e.vibroweapons.rsn8G4aAxpu0gJBH",
+    "disruptorshiv": "sw5e.vibroweapons.sG5tznTOdE50BvDE",
+    "vibrobattleaxe": "sw5e.vibroweapons.sJOPfGy0XqCOFq1n",
+    "electrobaton": "sw5e.vibroweapons.syMf22lyVB0OTV7V",
+    "vibrobaton": "sw5e.vibroweapons.t4GxMD52v7myAi41",
+    "vibrosword": "sw5e.vibroweapons.u1t2YqPQSOMWPQbs",
+    "shockwhip": "sw5e.vibroweapons.wmMxWXgZdlJ8SLXe"
+};
+
+/**
+ * The basic armor types in sw5e. This enables specific armor proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ * @enum {string}
+ **/
+SW5E.armorIds = {
+    "combatsuit": "sw5e.armor.iJXWiOLOQcVohJBN",
+    "fiberarmor": "sw5e.armor.zAkvWO8lEohqewbB",
+
+    "mesharmor": "sw5e.armor.WalIq3DWny0Ud4Vn",
+    "weavearmor": "sw5e.armor.hpN14Vhgw82PHeEz",
+    "compositearmor": "sw5e.armor.mToMe4McIkZRIeCN",
+
+    "battlearmor": "sw5e.armor.wafF3SF4zQBOs34y",
+    "assaultarmor": "sw5e.armor.GO4yvhWLgLTrU0xb",
+    "heavyexoskeleton": "sw5e.armor.ggFMzbQrwkGZCoaQ",
+};
+/**
+ * The basic shield types in sw5e. This enables specific shield proficiencies,
+ * automated AC calculation in NPCs, and starting equipment.
+ * @enum {string}
+ **/
+SW5E.shieldIds = {
+    "lightshieldgenerator": "sw5e.armor.eMXpw3HIVMnaNFQ1",
+    "mediumshieldgenerator": "sw5e.armor.R2GRWrNHmAZzksg5",
+    "heavyshieldgenerator": "sw5e.armor.2u9493AUhrh2AfES",
+
+    "lightphysicalshield": "sw5e.armor.k1pOOCzZoWEr5Dia",
+    "mediumphysicalshield": "sw5e.armor.4vGeVWgLIUfN9YiB",
+    "heavyphysicalshield": "sw5e.armor.KvzKRKNWATwdzxjz",
+}
+/**
+ * The basic tool types in sw5e. This enables specific tool proficiencies or
+ * starting equipment provided by classes and backgrounds.
+ * @enum {string}
+ **/
+SW5E.toolIds = {
+    "constructorsimplements": "sw5e.implements.5HKxptQKBFED544u",
+    "geneticistsimplements": "sw5e.implements.80xuLufR1m7kpNRs",
+    "cybertechsimplements": "sw5e.implements.9w7V1PCf2aD4caVP",
+    "jewelersimplements": "sw5e.implements.EYpkyPlywQaH9Ivy",
+    "gadgeteersimplements": "sw5e.implements.GJrYc9KQ22o7qTlz",
+    "tinkersimplements": "sw5e.implements.IkmQFQjGc4xq0Czd",
+    "armstechsimplements": "sw5e.implements.Mrwh3CEneCPnPP1T",
+    "artistsimplements": "sw5e.implements.OXlKtbL29bLUluf2",
+    "biotechsimplements": "sw5e.implements.QTg2sCpSdPfyUoCq",
+    "astrotechsimplements": "sw5e.implements.RlQ4zlWA7EdohcEh",
+    "surveyorsimplements": "sw5e.implements.SvureMOX5qo6LqGt",
+    "audiotechsimplements": "sw5e.implements.VNto9t3diElKRHWG",
+    "armormechsimplements": "sw5e.implements.sjsX3NYk7eZ4udlw",
+    "synthweaversimplements": "sw5e.implements.uP1rZHmbOmg8BUaX",
+    "artificersimplements": "sw5e.implements.w7lWDrGgZeYbwiSH",
+
+    "chefskit": "sw5e.kits.BnhGtUc9G7issUcW",
+    "disguisekit": "sw5e.kits.ChmVrypurts3VY7i",
+    "scavengingkit": "sw5e.kits.NVxy5wBSpJcHxPEm",
+    "spicerskit": "sw5e.kits.NlppEcEGpDVDyPiH",
+    "mechanicskit": "sw5e.kits.NubaMVVv3vNwbtuj",
+    "brewerskit": "sw5e.kits.OAt131yAvZYPlUmO",
+    "munitionskit": "sw5e.kits.VJL0ue7Bpl3s0MHx",
+    "archaeologistkit": "sw5e.kits.WrJhpfymps4yRBdk",
+    "slicerskit": "sw5e.kits.Yonb0zHFV9asPJHq",
+    "bioanalysiskit": "sw5e.kits.fWoNUuZCNLG8W67s",
+    "demolitionskit": "sw5e.kits.gyhyVW4PEUWLpZTL",
+    "artilleristskit": "sw5e.kits.jJ1CiyKVXOlyjn8h",
+    "forgerykit": "sw5e.kits.ksrKs7yvm7X7CMxA",
+    "securitykit": "sw5e.kits.nqf9reJDGplVaeac",
+    "poisonerskit": "sw5e.kits.ofea5VziX4jBg5So",
+    "biochemistskit": "sw5e.kits.pq0o4lUKg8Nl08yf",
+
+    "sabaccdeck": "sw5e.gamingsets.RvFP7y8VWPMROQWv",
+    "pazaakdeck": "sw5e.gamingsets.XfClqzNPbjJxHqil",
+    "dejarikset": "sw5e.gamingsets.dKho3HXE7XfS4iRU",
+    "chancecubes": "sw5e.gamingsets.kqt52rtjpaz6jiCf",
+
+    "mandoviol": "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
+    "lute": "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
+    "shawm": "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
+    "fizzz": "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+    "chindinkaluhorn": "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
+    "kloohorn": "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
+    "xantha": "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
+    "slitherhorn": "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
+    "traz": "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
+    "ommnibox": "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
+    "bandfill": "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
+    "flute": "sw5e.musicalinstruments.mumHDhvGww117xoq",
+    "valahorn": "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
+    "drum": "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
+    "fanfar": "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
 };
 
 /* -------------------------------------------- */
@@ -174,34 +368,9 @@ SW5E.weaponIds = {
  * @enum {string}
  */
 SW5E.toolTypes = {
-    armor: "SW5E.ToolArmormech",
-    arms: "SW5E.ToolArmstech",
-    arti: "SW5E.ToolArtificer",
-    art: "SW5E.ToolArtist",
-    astro: "SW5E.ToolAstrotech",
-    bio: "SW5E.ToolBiotech",
-    con: "SW5E.ToolConstructor",
-    cyb: "SW5E.ToolCybertech",
-    jew: "SW5E.ToolJeweler",
-    sur: "SW5E.ToolSurveyor",
-    syn: "SW5E.ToolSynthweaver",
-    tin: "SW5E.ToolTinker",
-    ant: "SW5E.ToolAntitoxkit",
-    arc: "SW5E.ToolArchaeologistKit",
-    aud: "SW5E.ToolAudiotechKit",
-    bioa: "SW5E.ToolBioanalysisKit",
-    brew: "SW5E.ToolBrewerKit",
-    chef: "SW5E.ToolChefKit",
-    demo: "SW5E.ToolDemolitionKit",
-    disg: "SW5E.ToolDisguiseKit",
-    forg: "SW5E.ToolForgeryKit",
-    mech: "SW5E.ToolMechanicKit",
+    artisan: "SW5E.ToolArtisanImplement",
+    specialist: "SW5E.ToolSpecialistKit",
     game: "SW5E.ToolGamingSet",
-    poi: "SW5E.ToolPoisonKit",
-    scav: "SW5E.ToolScavengingKit",
-    secur: "SW5E.ToolSecurityKit",
-    slic: "SW5E.ToolSlicerKit",
-    spice: "SW5E.ToolSpiceKit",
     music: "SW5E.ToolMusicalInstrument"
 };
 
@@ -215,23 +384,11 @@ SW5E.toolProficiencies = {
     vehicle: "SW5E.ToolVehicle"
 };
 
-// TODO: Same as weapon IDs
-// Also unused, and SW5E.toolProficiencies is already pretty verbose anyway
-/**
- * The basic tool types in 5e. This enables specific tool proficiencies or
- * starting equipment provided by classes and backgrounds.
- *
- * @enum {string}
-SW5E.toolIds = {
-
-};
-*/
-
 /* -------------------------------------------- */
 
 /**
- * This Object defines the various lengths of time which can occur in SW5e
- * @type {Object}
+ * The various lengths of time over which effects can occur.
+ * @enum {string}
  */
 SW5E.timePeriods = {
     inst: "SW5E.TimeInst",
@@ -249,8 +406,8 @@ SW5E.timePeriods = {
 /* -------------------------------------------- */
 
 /**
- * This describes the ways that an ability can be activated
- * @type {Object}
+ * Various ways in which an item or ability can be activated.
+ * @enum {string}
  */
 SW5E.abilityActivationTypes = {
     none: "SW5E.None",
@@ -268,6 +425,10 @@ SW5E.abilityActivationTypes = {
 
 /* -------------------------------------------- */
 
+/**
+ * Different things that an ability can consume upon use.
+ * @enum {string}
+ */
 SW5E.abilityConsumptionTypes = {
     ammo: "SW5E.ConsumeAmmunition",
     attribute: "SW5E.ConsumeAttribute",
@@ -277,7 +438,10 @@ SW5E.abilityConsumptionTypes = {
 
 /* -------------------------------------------- */
 
-// Creature Sizes
+/**
+ * Creature sizes.
+ * @enum {string}
+ */
 SW5E.actorSizes = {
     tiny: "SW5E.SizeTiny",
     sm: "SW5E.SizeSmall",
@@ -287,8 +451,12 @@ SW5E.actorSizes = {
     grg: "SW5E.SizeGargantuan"
 };
 
+/**
+ * Default token image size for the values of `SW5E.actorSizes`.
+ * @enum {number}
+ */
 SW5E.tokenSizes = {
-    tiny: 1,
+    tiny: 0.5,
     sm: 1,
     med: 1,
     lg: 2,
@@ -301,6 +469,8 @@ SW5E.tokenSizes = {
  * @enum {number}
  */
 SW5E.tokenHPColors = {
+    damage: 0xff0000,
+    healing: 0x00ff00,
     temp: 0x66ccff,
     tempmax: 0x440066,
     negmax: 0x550000
@@ -309,8 +479,8 @@ SW5E.tokenHPColors = {
 /* -------------------------------------------- */
 
 /**
- * Creature types
- * @type {Object}
+ * Default types of creatures.
+ * @enum {string}
  */
 SW5E.creatureTypes = {
     aberration: "SW5E.CreatureAberration",
@@ -326,8 +496,8 @@ SW5E.creatureTypes = {
 /* -------------------------------------------- */
 
 /**
- * Classification types for item action types
- * @type {Object}
+ * Classification types for item action types.
+ * @enum {string}
  */
 SW5E.itemActionTypes = {
     mwak: "SW5E.ActionMWAK",
@@ -343,6 +513,10 @@ SW5E.itemActionTypes = {
 
 /* -------------------------------------------- */
 
+/**
+ * Different ways in which item capacity can be limited.
+ * @enum {string}
+ */
 SW5E.itemCapacityTypes = {
     items: "SW5E.ItemContainerCapacityItems",
     weight: "SW5E.ItemContainerCapacityWeight"
@@ -352,7 +526,7 @@ SW5E.itemCapacityTypes = {
 
 /**
  * List of various item rarities.
- * @enum {String}
+ * @enum {string}
  */
 SW5E.itemRarity = {
     common: "SW5E.ItemRarityCommon",
@@ -367,7 +541,7 @@ SW5E.itemRarity = {
 
 /**
  * Enumerate the lengths of time over which an item can have limited use ability
- * @type {Object}
+ * @enum {string}
  */
 SW5E.limitedUsePeriods = {
     sr: "SW5E.ShortRest",
@@ -381,8 +555,8 @@ SW5E.limitedUsePeriods = {
 /* -------------------------------------------- */
 
 /**
- * Specific equipment types that modify base AC
- * @type {object}
+ * Specific equipment types that modify base AC.
+ * @enum {string}
  */
 SW5E.armorTypes = {
     light: "SW5E.EquipmentLight",
@@ -395,10 +569,10 @@ SW5E.armorTypes = {
 /* -------------------------------------------- */
 
 /**
- * The set of equipment types for armor, clothing, and other objects which can be worn by the character
- * @type {Object}
+ * Equipment types that aren't armor.
+ * @enum {string}
  */
-SW5E.equipmentTypes = {
+SW5E.miscEquipmentTypes = {
     hyper: "SW5E.EquipmentHyperdrive",
     powerc: "SW5E.EquipmentPowerCoupling",
     reactor: "SW5E.EquipmentReactor",
@@ -406,7 +580,17 @@ SW5E.equipmentTypes = {
     trinket: "SW5E.EquipmentTrinket",
     ssarmor: "SW5E.EquipmentStarshipArmor",
     ssshield: "SW5E.EquipmentStarshipShield",
-    vehicle: "SW5E.EquipmentVehicle",
+    vehicle: "SW5E.EquipmentVehicle"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of equipment types for armor, clothing, and other objects which can be worn by the character.
+ * @enum {string}
+ */
+SW5E.equipmentTypes = {
+    ...SW5E.miscEquipmentTypes,
     ...SW5E.armorTypes
 };
 
@@ -425,8 +609,8 @@ SW5E.vehicleTypes = {
 /* -------------------------------------------- */
 
 /**
- * The set of Armor Proficiencies which a character may have
- * @type {Object}
+ * The set of Armor Proficiencies which a character may have.
+ * @type {object}
  */
 SW5E.armorProficiencies = {
     lgt: SW5E.equipmentTypes.light,
@@ -436,9 +620,9 @@ SW5E.armorProficiencies = {
 };
 
 /**
- * A map of armor item proficiency to actor item proficiency
- * Used when a new player owned item is created
- * @type {Object}
+ * A mapping between `SW5E.equipmentTypes` and `SW5E.armorProficiencies` that
+ * is used to determine if character has proficiency when adding an item.
+ * @enum {(boolean|string)}
  */
 SW5E.armorProficienciesMap = {
     natural: true,
@@ -449,26 +633,9 @@ SW5E.armorProficienciesMap = {
     shield: "shl"
 };
 
-// TODO: Same as weapon IDs
-/**
- * The basic armor types in 5e. This enables specific armor proficiencies,
- * automated AC calculation in NPCs, and starting equipment.
- *
- * @enum {string}
- */
-SW5E.armorIds = {};
-
-// TODO: Same as weapon IDs
-/**
- * The basic shield in 5e.
- *
- * @enum {string}
- */
-SW5E.shieldIds = {};
-
 /**
  * Common armor class calculations.
- * @enum {object}
+ * @enum {{ label: string, [formula]: string }}
  */
 SW5E.armorClasses = {
     flat: {
@@ -507,8 +674,8 @@ SW5E.armorClasses = {
 /* -------------------------------------------- */
 
 /**
- * Enumerate the valid consumable types which are recognized by the system
- * @type {Object}
+ * Enumerate the valid consumable types which are recognized by the system.
+ * @enum {string}
  */
 SW5E.consumableTypes = {
     adrenal: "SW5E.ConsumableAdrenal",
@@ -526,16 +693,26 @@ SW5E.consumableTypes = {
 /* -------------------------------------------- */
 
 /**
- * The valid currency denominations supported by the 5e system
- * @type {Object}
+ * The valid currency denominations with localized labels, abbreviations, and conversions.
+ * @enum {{
+ *   label: string,
+ *   abbreviation: string,
+ *   [conversion]: {into: string, each: number}
+ * }}
  */
 SW5E.currencies = {
-    CR: "SW5E.CurrencyCR"
+    CR: {
+        label: "SW5E.CurrencyGC",
+        abbreviation: "SW5E.CurrencyAbbrGC"
+    }
 };
 
 /* -------------------------------------------- */
 
-// Damage Types
+/**
+ * Types of damage the can be caused by abilities.
+ * @enum {string}
+ */
 SW5E.damageTypes = {
     acid: "SW5E.DamageAcid",
     cold: "SW5E.DamageCold",
@@ -551,49 +728,20 @@ SW5E.damageTypes = {
     sonic: "SW5E.DamageSonic"
 };
 
-// Damage Resistance Types
-SW5E.damageResistanceTypes = foundry.utils.deepClone(SW5E.damageTypes);
+/**
+ * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
+ * @enum {string}
+ */
+SW5E.damageResistanceTypes = {
+    ...SW5E.damageTypes
+};
 
 /* -------------------------------------------- */
-
-// armor Types
-SW5E.armorPropertiesTypes = {
-    Absorptive: "SW5E.ArmorProperAbsorptive",
-    Agile: "SW5E.ArmorProperAgile",
-    Anchor: "SW5E.ArmorProperAnchor",
-    Avoidant: "SW5E.ArmorProperAvoidant",
-    Barbed: "SW5E.ArmorProperBarbed",
-    Bulky: "SW5E.ArmorProperBulky",
-    Charging: "SW5E.ArmorProperCharging",
-    Concealing: "SW5E.ArmorProperConcealing",
-    Cumbersome: "SW5E.ArmorProperCumbersome",
-    Gauntleted: "SW5E.ArmorProperGauntleted",
-    Imbalanced: "SW5E.ArmorProperImbalanced",
-    Impermeable: "SW5E.ArmorProperImpermeable",
-    Insulated: "SW5E.ArmorProperInsulated",
-    Interlocking: "SW5E.ArmorProperInterlocking",
-    Lambent: "SW5E.ArmorProperLambent",
-    Lightweight: "SW5E.ArmorProperLightweight",
-    Magnetic: "SW5E.ArmorProperMagnetic",
-    Obscured: "SW5E.ArmorProperObscured",
-    Obtrusive: "SW5E.ArmorProperObtrusive",
-    Powered: "SW5E.ArmorProperPowered",
-    Reactive: "SW5E.ArmorProperReactive",
-    Regulated: "SW5E.ArmorProperRegulated",
-    Reinforced: "SW5E.ArmorProperReinforced",
-    Responsive: "SW5E.ArmorProperResponsive",
-    Rigid: "SW5E.ArmorProperRigid",
-    Silent: "SW5E.ArmorProperSilent",
-    Spiked: "SW5E.ArmorProperSpiked",
-    Strength: "SW5E.ArmorProperStrength",
-    Steadfast: "SW5E.ArmorProperSteadfast",
-    Versatile: "SW5E.ArmorProperVersatile"
-};
 
 /**
  * The valid units of measure for movement distances in the game system.
  * By default this uses the imperial units of feet and miles.
- * @type {Object<string,string>}
+ * @enum {string}
  */
 SW5E.movementTypes = {
     burrow: "SW5E.MovementBurrow",
@@ -610,7 +758,7 @@ SW5E.movementTypes = {
 /**
  * The valid units of measure for movement distances in the game system.
  * By default this uses the imperial units of feet and miles.
- * @type {Object<string,string>}
+ * @enum {string}
  */
 SW5E.movementUnits = {
     ft: "SW5E.DistFt",
@@ -621,25 +769,23 @@ SW5E.movementUnits = {
 
 /**
  * The valid units of measure for the range of an action or effect.
- * This object automatically includes the movement units from SW5E.movementUnits
- * @type {Object<string,string>}
+ * This object automatically includes the movement units from `SW5E.movementUnits`.
+ * @enum {string}
  */
 SW5E.distanceUnits = {
     none: "SW5E.None",
     self: "SW5E.DistSelf",
     touch: "SW5E.DistTouch",
     spec: "SW5E.Special",
-    any: "SW5E.DistAny"
+    any: "SW5E.DistAny",
+    ...SW5E.movementUnits
 };
-for (let [k, v] of Object.entries(SW5E.movementUnits)) {
-    SW5E.distanceUnits[k] = v;
-}
 
 /* -------------------------------------------- */
 
 /**
- * Configure aspects of encumbrance calculation so that it could be configured by modules
- * @type {Object}
+ * Configure aspects of encumbrance calculation so that it could be configured by modules.
+ * @enum {{ imperial: number, metric: number }}
  */
 SW5E.encumbrance = {
     currencyPerWeight: {
@@ -659,8 +805,8 @@ SW5E.encumbrance = {
 /* -------------------------------------------- */
 
 /**
- * This Object defines the types of single or area targets which can be applied in SW5e
- * @type {Object}
+ * The types of single or area targets which can be applied to abilities.
+ * @enum {string}
  */
 SW5E.targetTypes = {
     none: "SW5E.None",
@@ -686,9 +832,9 @@ SW5E.targetTypes = {
 /* -------------------------------------------- */
 
 /**
- * Map the subset of target types which produce a template area of effect
- * The keys are SW5E target types and the values are MeasuredTemplate shape types
- * @type {Object}
+ * Mapping between `SW5E.targetTypes` and `MeasuredTemplate` shape types to define
+ * which templates are produced by which area of effect target type.
+ * @enum {string}
  */
 SW5E.areaTargetTypes = {
     cone: "cone",
@@ -703,7 +849,10 @@ SW5E.areaTargetTypes = {
 
 /* -------------------------------------------- */
 
-// Healing Types
+/**
+ * Different types of healing that can be applied using abilities.
+ * @enum {string}
+ */
 SW5E.healingTypes = {
     healing: "SW5E.Healing",
     temphp: "SW5E.HealingTemp"
@@ -712,7 +861,7 @@ SW5E.healingTypes = {
 /* -------------------------------------------- */
 
 /**
- * Enumerate the denominations of hit dice which can apply to classes in the SW5E system
+ * Denominations of hit dice which can apply to classes.
  * @type {string[]}
  */
 SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
@@ -721,302 +870,14 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
 
 /**
  * Enumerate the denominations of power dice which can apply to starships in the SW5E system
- * @enum {string}
+ * @type {string[]}
  */
 SW5E.powerDieTypes = [1, "d4", "d6", "d8", "d10", "d12"];
 
 /* -------------------------------------------- */
 
 /**
- * Enumerate the base stat and feature settings for starships based on size.
- * @type {Array.<string>}
- */
-
-SW5E.baseStarshipSettings = {
-    tiny: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 4, mode: 2, priority: 20},
-            {key: "data.abilities.dex.proficient", value: 1, mode: 4, priority: 20},
-            {key: "data.abilities.con.value", value: -4, mode: 2, priority: 20},
-            {key: "data.abilities.int.proficient", value: 1, mode: 4, priority: 20}
-        ],
-        attributes: {
-            crewcap: null,
-            hd: "1d4",
-            hp: {value: 4, max: 4, temp: 4, tempmax: 4},
-            hsm: 1,
-            sd: "1d4",
-            mods: {open: 10, max: 10},
-            suites: {open: 0, max: 0},
-            movement: {fly: 300, turn: 300}
-        }
-    },
-    sm: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 2, mode: 2, priority: 20},
-            {key: "data.abilities.dex.proficient", value: 1, mode: 4, priority: 20},
-            {key: "data.abilities.con.value", value: -2, mode: 2, priority: 20},
-            {key: "data.abilities.str.proficient", value: 1, mode: 4, priority: 20}
-        ],
-        attributes: {
-            crewcap: 1,
-            hd: "3d6",
-            hp: {value: 6, max: 6, temp: 6, tempmax: 6},
-            hsm: 2,
-            sd: "3d6",
-            mods: {open: 20, max: 20},
-            suites: {open: -1, max: -1},
-            movement: {fly: 300, turn: 250}
-        }
-    },
-    med: {
-        attributes: {
-            crewcap: 1,
-            hd: "5d8",
-            hp: {value: 8, max: 8, temp: 8, tempmax: 8},
-            hsm: 3,
-            sd: "5d8",
-            mods: {open: 30, max: 30},
-            suites: {open: 3, max: 3},
-            movement: {fly: 300, turn: 200}
-        }
-    },
-    lg: {
-        changes: [
-            {key: "data.abilities.dex.value", value: -2, mode: 2, priority: 20},
-            {key: "data.abilities.wis.proficient", value: 1, mode: 4, priority: 20},
-            {key: "data.abilities.con.value", value: 2, mode: 2, priority: 20}
-        ],
-        attributes: {
-            crewcap: 200,
-            hd: "7d10",
-            hp: {value: 10, max: 10, temp: 10, tempmax: 10},
-            hsm: 4,
-            sd: "7d10",
-            mods: {open: 50, max: 50},
-            suites: {open: 3, max: 3},
-            movement: {fly: 300, turn: 150}
-        }
-    },
-    huge: {
-        changes: [
-            {key: "data.abilities.dex.value", value: -4, mode: 2, priority: 20},
-            {key: "data.abilities.wis.proficient", value: 1, mode: 4, priority: 20},
-            {key: "data.abilities.con.value", value: 4, mode: 2, priority: 20}
-        ],
-        attributes: {
-            crewcap: 4000,
-            hd: "9d12",
-            hp: {value: 12, max: 12, temp: 12, tempmax: 12},
-            hsm: 2,
-            sd: "9d12",
-            mods: {open: 60, max: 60},
-            suites: {open: 6, max: 6},
-            movement: {fly: 300, turn: 100}
-        }
-    },
-    grg: {
-        changes: [
-            {key: "data.abilities.dex.value", value: -6, mode: 2, priority: 20},
-            {key: "data.abilities.wis.proficient", value: 1, mode: 4, priority: 20},
-            {key: "data.abilities.con.value", value: 6, mode: 2, priority: 20}
-        ],
-        attributes: {
-            crewcap: 80000,
-            hd: "11d20",
-            hp: {value: 20, max: 20, temp: 20, tempmax: 20},
-            hsm: 3,
-            sd: "11d20",
-            mods: {open: 70, max: 70},
-            suites: {open: 10, max: 10},
-            movement: {fly: 300, turn: 50}
-        }
-    }
-};
-
-/* -------------------------------------------- */
-
-/**
- * The set of starship roles which can be selected in SW5e
- * @type {Object}
- */
-
-SW5E.starshipRolestiny = {};
-SW5E.starshipRolessm = {
-    bmbr: "SW5E.StarshipBomber",
-    intc: "SW5E.StarshipInterceptor",
-    scout: "SW5E.StarshipScout",
-    scrm: "SW5E.StarshipScrambler",
-    shtl: "SW5E.StarshipShuttle",
-    strf: "SW5E.StarshipStrikeFighter"
-};
-SW5E.starshipRolesmed = {
-    cour: "SW5E.StarshipCourier",
-    frtr: "SW5E.StarshipFreighter",
-    gnbt: "SW5E.StarshipGunboat",
-    msbt: "SW5E.StarshipMissileBoat",
-    nvgt: "SW5E.StarshipNavigator",
-    yacht: "SW5E.StarshipYacht"
-};
-SW5E.starshipRoleslg = {
-    ambd: "SW5E.StarshipAmbassador",
-    corv: "SW5E.StarshipCorvette",
-    crui: "SW5E.StarshipCruiser",
-    expl: "SW5E.StarshipExplorer",
-    pics: "SW5E.StarshipPicketShip",
-    shtd: "SW5E.StarshipShipsTender"
-};
-SW5E.starshipRoleshuge = {
-    btls: "SW5E.StarshipBattleship",
-    carr: "SW5E.StarshipCarrier",
-    colo: "SW5E.StarshipColonizer",
-    cmds: "SW5E.StarshipCommandShip",
-    intd: "SW5E.StarshipInterdictor",
-    jugg: "SW5E.StarshipJuggernaut"
-};
-SW5E.starshipRolesgrg = {
-    blks: "SW5E.StarshipBlockadeShip",
-    flgs: "SW5E.StarshipFlagship",
-    inct: "SW5E.StarshipIndustrialCenter",
-    mbmt: "SW5E.StarshipMobileMetropolis",
-    rsrc: "SW5E.StarshipResearcher",
-    wars: "SW5E.StarshipWarship"
-};
-
-/* -------------------------------------------- */
-
-/**
- * The set of starship role bonuses to starships which can be selected in SW5e
- * @type {Object}
- */
-
-SW5E.starshipRoleBonuses = {
-    bmbr: {changes: [{key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}]},
-    intc: {changes: [{key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20}]},
-    scout: {changes: [{key: "data.abilities.int.value", value: 1, mode: 2, priority: 20}]},
-    scrm: {changes: [{key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20}]},
-    shtl: {changes: [{key: "data.abilities.con.value", value: 1, mode: 2, priority: 20}]},
-    strf: {changes: [{key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}]},
-    cour: {changes: [{key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20}]},
-    frtr: {changes: [{key: "data.abilities.con.value", value: 1, mode: 2, priority: 20}]},
-    gnbt: {changes: [{key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}]},
-    msbt: {changes: [{key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}]},
-    nvgt: {changes: [{key: "data.abilities.int.value", value: 1, mode: 2, priority: 20}]},
-    yacht: {changes: [{key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20}]},
-    ambd: {
-        changes: [
-            {key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    corv: {
-        changes: [
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    crui: {
-        changes: [
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    expl: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.int.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    pics: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    shtd: {
-        changes: [
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    btls: {
-        changes: [
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    carr: {
-        changes: [
-            {key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.int.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    colo: {
-        changes: [
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.int.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    cmds: {
-        changes: [
-            {key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    intd: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    jugg: {
-        changes: [
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    blks: {
-        changes: [
-            {key: "data.abilities.dex.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    flgs: {
-        changes: [
-            {key: "data.abilities.cha.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    inct: {
-        changes: [
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    mbmt: {
-        changes: [
-            {key: "data.abilities.con.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    rsrc: {
-        changes: [
-            {key: "data.abilities.int.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20}
-        ]
-    },
-    wars: {
-        changes: [
-            {key: "data.abilities.wis.value", value: 1, mode: 2, priority: 20},
-            {key: "data.abilities.str.value", value: 1, mode: 2, priority: 20}
-        ]
-    }
-};
-
-/* -------------------------------------------- */
-
-/**
- * The set of possible sensory perception types which an Actor may have
+ * The set of possible sensory perception types which an Actor may have.
  * @enum {string}
  */
 SW5E.senses = {
@@ -1029,8 +890,8 @@ SW5E.senses = {
 /* -------------------------------------------- */
 
 /**
- * The set of skill which can be trained in SW5e
- * @type {Object}
+ * The set of skill which can be trained.
+ * @enum {string}
  */
 SW5E.skills = {
     acr: "SW5E.SkillAcr",
@@ -1078,6 +939,9 @@ SW5E.starshipSkills = {
 
 /* -------------------------------------------- */
 
+/**
+ * Various different ways a power can be prepared.
+ */
 SW5E.powerPreparationModes = {
     prepared: "SW5E.PowerPrepPrepared",
     always: "SW5E.PowerPrepAlways",
@@ -1085,11 +949,15 @@ SW5E.powerPreparationModes = {
     innate: "SW5E.PowerPrepInnate"
 };
 
+/**
+ * Subset of `SW5E.powerPreparationModes` that consume power slots.
+ * @type {boolean[]}
+ */
 SW5E.powerUpcastModes = ["always", "prepared"];
 
 /**
  * The available choices for power progression for a character class
- * @type {Object}
+ * @enum {string}
  */
 
 SW5E.powerProgression = {
@@ -1161,8 +1029,8 @@ SW5E.powerPoints = {
 /* -------------------------------------------- */
 
 /**
- * The available choices for how power damage scaling may be computed
- * @type {Object}
+ * The available choices for how power damage scaling may be computed.
+ * @enum {string}
  */
 SW5E.powerScalingModes = {
     none: "SW5E.PowerNone",
@@ -1173,8 +1041,8 @@ SW5E.powerScalingModes = {
 /* -------------------------------------------- */
 
 /**
- * Define the set of types which a weapon item can take
- * @type {Object}
+ * The set of types which a weapon item can take.
+ * @enum {string}
  */
 SW5E.weaponTypes = {
     "ammo": "SW5E.WeaponAmmo",
@@ -1196,8 +1064,47 @@ SW5E.weaponTypes = {
 /* -------------------------------------------- */
 
 /**
- * Define the set of weapon property flags which can exist on a weapon
- * @type {Object}
+ * The set of weapon property flags which can exist on armor.
+ * @enum {string}
+ */
+SW5E.armorPropertiesTypes = {
+    Absorptive: "SW5E.ArmorProperAbsorptive",
+    Agile: "SW5E.ArmorProperAgile",
+    Anchor: "SW5E.ArmorProperAnchor",
+    Avoidant: "SW5E.ArmorProperAvoidant",
+    Barbed: "SW5E.ArmorProperBarbed",
+    Bulky: "SW5E.ArmorProperBulky",
+    Charging: "SW5E.ArmorProperCharging",
+    Concealing: "SW5E.ArmorProperConcealing",
+    Cumbersome: "SW5E.ArmorProperCumbersome",
+    Gauntleted: "SW5E.ArmorProperGauntleted",
+    Imbalanced: "SW5E.ArmorProperImbalanced",
+    Impermeable: "SW5E.ArmorProperImpermeable",
+    Insulated: "SW5E.ArmorProperInsulated",
+    Interlocking: "SW5E.ArmorProperInterlocking",
+    Lambent: "SW5E.ArmorProperLambent",
+    Lightweight: "SW5E.ArmorProperLightweight",
+    Magnetic: "SW5E.ArmorProperMagnetic",
+    Obscured: "SW5E.ArmorProperObscured",
+    Obtrusive: "SW5E.ArmorProperObtrusive",
+    Powered: "SW5E.ArmorProperPowered",
+    Reactive: "SW5E.ArmorProperReactive",
+    Regulated: "SW5E.ArmorProperRegulated",
+    Reinforced: "SW5E.ArmorProperReinforced",
+    Responsive: "SW5E.ArmorProperResponsive",
+    Rigid: "SW5E.ArmorProperRigid",
+    Silent: "SW5E.ArmorProperSilent",
+    Spiked: "SW5E.ArmorProperSpiked",
+    Strength: "SW5E.ArmorProperStrength",
+    Steadfast: "SW5E.ArmorProperSteadfast",
+    Versatile: "SW5E.ArmorProperVersatile"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist on a weapon.
+ * @enum {string}
  */
 SW5E.weaponProperties = {
     amm: "SW5E.WeaponPropertiesAmm",
@@ -1247,8 +1154,8 @@ SW5E.weaponProperties = {
 /* -------------------------------------------- */
 
 /**
- * Define the set of starship weapon size flags which can exist on a weapon
- * @type {Object}
+ * The set of weapon size flags which can exist on a starship weapon.
+ * @enum {string}
  */
 SW5E.weaponSizes = {
     tiny: "SW5E.SizeTiny",
@@ -1259,14 +1166,20 @@ SW5E.weaponSizes = {
     grg: "SW5E.SizeGargantuan"
 };
 
-// Power Components
+/**
+ * Types of components that can be required when casting a power.
+ * @enum {string}
+ */
 SW5E.powerComponents = {
     V: "SW5E.ComponentVerbal",
     S: "SW5E.ComponentSomatic",
     M: "SW5E.ComponentMaterial"
 };
 
-// Power Schools
+/**
+ * Schools to which a power can belong.
+ * @enum {string}
+ */
 SW5E.powerSchools = {
     lgt: "SW5E.SchoolLgt",
     uni: "SW5E.SchoolUni",
@@ -1275,7 +1188,10 @@ SW5E.powerSchools = {
     enh: "SW5E.SchoolEnh"
 };
 
-// Power Levels
+/**
+ * Valid power levels.
+ * @enum {string}
+ */
 SW5E.powerLevels = {
     0: "SW5E.PowerLevel0",
     1: "SW5E.PowerLevel1",
@@ -1292,8 +1208,11 @@ SW5E.powerLevels = {
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /*
-// Power Scroll Compendium UUIDs
-SW5E.powerScrollIds = {
+/**
+ * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
+ * @enum {string}
+ 
+ SW5E.powerScrollIds = {
   0: "rQ6sO7HDWzqMhSI3",
   1: "9GSfMg0VOA2b4uFN",
   2: "XdDp6CKh9qEvPTuS",
@@ -1315,7 +1234,12 @@ SW5E.sourcePacks = {
     ITEMS: "sw5e.items"
 };
 
-// Polymorph options.
+/* -------------------------------------------- */
+
+/**
+ * Settings to configure how actors are merged when polymorphing is applied.
+ * @enum {string}
+ */
 SW5E.polymorphSettings = {
     keepPhysical: "SW5E.PolymorphKeepPhysical",
     keepMental: "SW5E.PolymorphKeepMental",
@@ -1334,9 +1258,9 @@ SW5E.polymorphSettings = {
 /* -------------------------------------------- */
 
 /**
- * Skill, ability, and tool proficiency levels
- * Each level provides a proficiency multiplier
- * @type {Object}
+ * Skill, ability, and tool proficiency levels.
+ * The key for each level represents its proficiency multiplier.
+ * @enum {string}
  */
 SW5E.proficiencyLevels = {
     0: "SW5E.NotProficient",
@@ -1348,9 +1272,9 @@ SW5E.proficiencyLevels = {
 /* -------------------------------------------- */
 
 /**
- * The amount of cover provided by an object.
- * In cases where multiple pieces of cover are
- * in play, we take the highest value.
+ * The amount of cover provided by an object. In cases where multiple pieces
+ * of cover are in play, we take the highest value.
+ * @enum {string}
  */
 SW5E.cover = {
     0: "SW5E.None",
@@ -1361,7 +1285,52 @@ SW5E.cover = {
 
 /* -------------------------------------------- */
 
-// Condition Types
+/**
+ * A selection of actor attributes that can be tracked on token resource bars.
+ * @type {string[]}
+ */
+SW5E.trackableAttributes = [
+    "attributes.ac.value",
+    "attributes.init.value",
+    "attributes.movement",
+    "attributes.senses",
+    "attributes.powerdc",
+    "attributes.powerLevel",
+    "details.cr",
+    "details.powerLevel",
+    "details.xp.value",
+    "skills.*.passive",
+    "abilities.*.value"
+];
+
+/* -------------------------------------------- */
+
+/**
+ * A selection of actor and item attributes that are valid targets for item resource consumption.
+ * @type {string[]}
+ */
+SW5E.consumableResources = [
+    "item.quantity",
+    "item.weight",
+    "item.duration.value",
+    "currency",
+    "details.xp.value",
+    "abilities.*.value",
+    "attributes.senses",
+    "attributes.movement",
+    "attributes.ac.flat",
+    "item.armor.value",
+    "item.target",
+    "item.range",
+    "item.save.dc"
+];
+
+/* -------------------------------------------- */
+
+/**
+ * Conditions that can effect an actor.
+ * @enum {string}
+ */
 SW5E.conditionTypes = {
     blinded: "SW5E.ConBlinded",
     charmed: "SW5E.ConCharmed",
@@ -1383,7 +1352,10 @@ SW5E.conditionTypes = {
     unconscious: "SW5E.ConUnconscious"
 };
 
-// Languages
+/**
+ * Languages a character can learn.
+ * @enum {string}
+ */
 SW5E.languages = {
     "abyssin": "SW5E.LanguagesAbyssin",
     "aleena": "SW5E.LanguagesAleena",
@@ -1493,22 +1465,42 @@ SW5E.languages = {
     "zygerrian": "SW5E.LanguagesZygerrian"
 };
 
-// Character Level XP Requirements
+/**
+ * XP required to achieve each character level.
+ * @type {number[]}
+ */
 SW5E.CHARACTER_EXP_LEVELS = [
     0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000,
     265000, 305000, 355000
 ];
 
-// Challenge Rating XP Levels
+/**
+ * XP granted for each challenge rating.
+ * @type {number[]}
+ */
 SW5E.CR_EXP_LEVELS = [
     10, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000,
     22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
 ];
 
-// Character Features Per Class And Level
+/**
+ * Character features automatically granted by classes & archetypes at certain levels.
+ * @type {object}
+ */
 SW5E.classFeatures = ClassFeatures;
 
-// Configure Optional Character Flags
+/**
+ * Special character flags.
+ * @enum {{
+ *   name: string,
+ *   hint: string,
+ *   [abilities]: string[],
+ *   [skills]: string[],
+ *   section: string,
+ *   type: any,
+ *   placeholder: any
+ * }}
+ */
 SW5E.characterFlags = {
     adaptiveResilience: {
         name: "SW5E.FlagsAdaptiveResilience",
@@ -1859,5 +1851,8 @@ SW5E.characterFlags = {
     }
 };
 
-// Configure allowed status flags
+/**
+ * Flags allowed on actors. Any flags not in the list may be deleted during a migration.
+ * @type {string[]}
+ */
 SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].concat(Object.keys(SW5E.characterFlags));

@@ -42,6 +42,8 @@ import * as dice from "./module/dice.js";
 import * as macros from "./module/macros.js";
 import * as migrations from "./module/migration.js";
 import ActiveEffect5e from "./module/active-effect.js";
+import ActorAbilityConfig from "./module/apps/ability-config.js";
+import ActorSkillConfig from "./module/apps/skill-config.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -64,8 +66,10 @@ Hooks.once("init", function () {
             ShortRestDialog,
             TraitSelector,
             ActorMovementConfig,
-            ActorSensesConfig
-        },
+            ActorSensesConfig,
+            ActorAbilityConfig,
+            ActorSkillConfig
+              },
         canvas: {
             AbilityTemplate
         },
@@ -81,6 +85,9 @@ Hooks.once("init", function () {
         migrations: migrations,
         rollItemMacro: macros.rollItemMacro
     };
+
+  // This will be removed when sw5e minimum core version is updated to v9.
+  if ( foundry.utils.isNewerVersion("9.224", game.data.version) ) dice.shimIsDeterministic();
 
     // Record Configuration Values
     CONFIG.SW5E = SW5E;
@@ -106,7 +113,7 @@ Hooks.once("init", function () {
     registerSystemSettings();
 
     // Patch Core Functions
-    CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus";
+    CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
     Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
 
     // Register Roll Extensions
@@ -184,24 +191,25 @@ Hooks.once("init", function () {
 /* -------------------------------------------- */
 
 /**
- * This function runs after game data has been requested and loaded from the servers, so entities exist
+ * Perform one-time pre-localization and sorting of some configuration objects
  */
-Hooks.once("setup", function () {
-    // Localize CONFIG objects once up-front
-    const toLocalize = [
+Hooks.once("setup", function() {
+    const localizeKeys = [
         "abilities",
         "abilityAbbreviations",
         "abilityActivationTypes",
         "abilityConsumptionTypes",
         "actorSizes",
         "alignments",
-        "armorClasses",
+        "armorClasses.label",
         "armorProficiencies",
         "armorPropertiesTypes",
+        "armorTypes",
         "conditionTypes",
         "consumableTypes",
         "cover",
-        "currencies",
+        "currencies.label",
+        "currencies.abbreviation",
         "damageResistanceTypes",
         "damageTypes",
         "distanceUnits",
@@ -211,17 +219,18 @@ Hooks.once("setup", function () {
         "itemRarity",
         "languages",
         "limitedUsePeriods",
+        "miscEquipmentTypes",
         "movementTypes",
         "movementUnits",
         "polymorphSettings",
         "proficiencyLevels",
         "senses",
         "skills",
-        "starshipRolessm",
-        "starshipRolesmed",
-        "starshipRoleslg",
-        "starshipRoleshuge",
-        "starshipRolesgrg",
+        // "starshipRolessm",
+        // "starshipRolesmed",
+        // "starshipRoleslg",
+        // "starshipRoleshuge",
+        // "starshipRolesgrg",
         "starshipSkills",
         "powerComponents",
         "powerLevels",
@@ -238,40 +247,46 @@ Hooks.once("setup", function () {
         "weaponSizes",
         "weaponTypes"
     ];
-
-    // Exclude some from sorting where the default order matters
-    const noSort = [
-        "abilities",
-        "alignments",
-        "armorClasses",
-        "armorProficiencies",
-        "currencies",
-        "distanceUnits",
-        "movementUnits",
-        "itemActionTypes",
-        "itemRarity",
-        "proficiencyLevels",
-        "limitedUsePeriods",
-        "powerComponents",
-        "powerLevels",
-        "powerPreparationModes",
-        "weaponProficiencies",
-        "weaponTypes"
+    const sortKeys = [
+        "abilityAbbreviations",
+        "abilityActivationTypes",
+        "abilityConsumptionTypes",
+        "actorSizes",
+        "armorPropertiesTypes",
+        "armorTypes",
+        "conditionTypes",
+        "consumableTypes",
+        "cover",
+        "damageResistanceTypes",
+        "damageTypes",
+        "equipmentTypes",
+        "healingTypes",
+        "languages",
+        "miscEquipmentTypes",
+        "movementTypes",
+        "polymorphSettings",
+        "senses",
+        "skills",
+        // "starshipRolessm",
+        // "starshipRolesmed",
+        // "starshipRoleslg",
+        // "starshipRoleshuge",
+        // "starshipRolesgrg",
+        "starshipSkills",
+        "powerScalingModes",
+        "powerSchools",
+        "targetTypes",
+        "timePeriods",
+        "toolProficiencies",
+        "toolTypes",
+        "vehicleTypes",
+        "weaponProperties",
+        "weaponSizes",
     ];
+    preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);
+    CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
+    CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
 
-    // Localize and sort CONFIG objects
-    for (let o of toLocalize) {
-        const localized = Object.entries(CONFIG.SW5E[o]).map(([k, v]) => {
-            if (v.label) v.label = game.i18n.localize(v.label);
-            if (typeof v === "string") return [k, game.i18n.localize(v)];
-            return [k, v];
-        });
-        if (!noSort.includes(o)) localized.sort((a, b) => (a[1].label ?? a[1]).localeCompare(b[1].label ?? b[1]));
-        CONFIG.SW5E[o] = localized.reduce((obj, e) => {
-            obj[e[0]] = e[1];
-            return obj;
-        }, {});
-    }
     // add DND5E translation for module compatability
     game.i18n.translations.DND5E = game.i18n.translations.SW5E;
     // console.log(game.settings.get("sw5e", "colorTheme"));
@@ -280,6 +295,93 @@ Hooks.once("setup", function () {
 });
 
 /* -------------------------------------------- */
+
+/**
+ * Localize and sort configuration values
+ * @param {object} config           The configuration object being prepared
+ * @param {string[]} localizeKeys   An array of keys to localize
+ * @param {string[]} sortKeys       An array of keys to sort
+ */
+function preLocalizeConfig(config, localizeKeys, sortKeys) {
+
+    // Localize Objects
+    for ( const key of localizeKeys ) {
+        if ( key.includes(".") ) {
+            const [inner, label] = key.split(".");
+            _localizeObject(config[inner], label);
+        }
+        else _localizeObject(config[key]);
+    }
+
+    // Sort objects
+    for ( const key of sortKeys ) {
+        if ( key.includes(".") ) {
+            const [configKey, sortKey] = key.split(".");
+            config[configKey] = _sortObject(config[configKey], sortKey);
+        }
+        else config[key] = _sortObject(config[key]);
+    }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Localize the values of a configuration object by translating them in-place.
+ * @param {object} obj                The configuration object to localize
+ * @param {string} [key]              An inner key which should be localized
+ * @private
+ */
+function _localizeObject(obj, key) {
+    for ( const [k, v] of Object.entries(obj) ) {
+
+        // String directly
+        if ( typeof v === "string" ) {
+            obj[k] = game.i18n.localize(v);
+            continue;
+        }
+
+        // Inner object
+        if ( (typeof v !== "object") || !(key in v) ) {
+            console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
+            continue;
+        }
+        v[key] = game.i18n.localize(v[key]);
+    }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Sort a configuration object by its values or by an inner sortKey.
+ * @param {object} obj                The configuration object to sort
+ * @param {string} [sortKey]          An inner key upon which to sort
+ * @returns {{[p: string]: any}}      The sorted configuration object
+ */
+function _sortObject(obj, sortKey) {
+    let sorted = Object.entries(obj);
+    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+    else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
+    return Object.fromEntries(sorted);
+}
+
+/* --------------------------------------------- */
+
+/**
+ * Expand a list of attribute paths into an object that can be traversed.
+ * @param {string[]} attributes  The initial attributes configuration.
+ * @returns {object}  The expanded object structure.
+ */
+function expandAttributeList(attributes) {
+    return attributes.reduce((obj, attr) => {
+        foundry.utils.setProperty(obj, attr, true);
+        return obj;
+    }, {});
+}
+
+/* -------------------------------------------- */
+/*  Foundry VTT Ready                           */
+/* -------------------------------------------- */
+
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
@@ -290,10 +392,10 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.4.2.R1-A8";
+    const NEEDS_MIGRATION_VERSION = "1.5.2.R1-A9";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A8";
-    const COMPATIBLE_MIGRATION_VERSION = 0.8;
+    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A9";
+    const COMPATIBLE_MIGRATION_VERSION = 0.80;
     const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
     if (!currentVersion && totalDocuments === 0)
         return game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
@@ -305,7 +407,7 @@ Hooks.once("ready", function () {
 
     // Perform the migration
     if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
-        const warning = `Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.`;
+        const warning = "Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.";
         ui.notifications.error(warning, {permanent: true});
     }
     migrations.migrateWorld();
@@ -360,7 +462,7 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
     console.log("renderSwaltSheet");
 });
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
-Handlebars.registerHelper("getProperty", function (data, property) {
+Handlebars.registerHelper("getProperty", function(data, property) {
     return getProperty(data, property);
 });
 

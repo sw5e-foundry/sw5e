@@ -17,7 +17,7 @@ export default class SelectItemsPrompt extends Dialog {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // render the item's sheet if its image is clicked
+        // Render the item's sheet if its image is clicked
         html.on("click", ".item-image", (event) => {
             const item = this.items.find((feature) => feature.id === event.currentTarget.dataset?.itemId);
 
@@ -28,10 +28,10 @@ export default class SelectItemsPrompt extends Dialog {
     /**
      * A constructor function which displays the AddItemPrompt app for a given Actor and Item set.
      * Returns a Promise which resolves to the dialog FormData once the workflow has been completed.
-     * @param {Array<Item5e>} items
-     * @param {Object} options
-     * @param {string} options.hint - Localized hint to display at the top of the prompt
-     * @return {Promise<string[]>} - list of item ids which the user has selected
+     * @param {Array<Item5e>} items  Items that might be added.
+     * @param {object} options
+     * @param {string} options.hint  Localized hint to display at the top of the prompt
+     * @returns {Promise<string[]>}  list of item ids which the user has selected
      */
     static async create(items, {hint}) {
         // Render the ability usage template
@@ -43,7 +43,7 @@ export default class SelectItemsPrompt extends Dialog {
                 content: html,
                 buttons: {
                     apply: {
-                        icon: `<i class="fas fa-user-plus"></i>`,
+                        icon: '<i class="fas fa-user-plus"></i>',
                         label: game.i18n.localize("SW5E.Apply"),
                         callback: (html) => {
                             const fd = new FormDataExtended(html[0].querySelector("form")).toObject();

@@ -36,7 +36,7 @@ export default class ActorSheetFlags extends DocumentSheet {
 
     /**
      * Prepare an object of sorted classes.
-     * @return {object}
+     * @returns {object}
      * @private
      */
     _getClasses() {
@@ -54,7 +54,7 @@ export default class ActorSheetFlags extends DocumentSheet {
     /**
      * Prepare an object of flags data which groups flags by section
      * Add some additional data for rendering
-     * @return {object}
+     * @returns {object}
      * @private
      */
     _getFlags() {
@@ -76,7 +76,7 @@ export default class ActorSheetFlags extends DocumentSheet {
 
     /**
      * Get the bonuses fields and their localization strings
-     * @return {Array<object>}
+     * @returns {Array<object>}
      * @private
      */
     _getBonuses() {
@@ -112,7 +112,6 @@ export default class ActorSheetFlags extends DocumentSheet {
         let updateData = expandObject(formData);
 
         // Unset any flags which are "false"
-        let unset = false;
         const flags = updateData.flags.sw5e;
         //clone flags to dnd5e for module compatability
         updateData.flags.dnd5e = updateData.flags.sw5e;
@@ -120,7 +119,6 @@ export default class ActorSheetFlags extends DocumentSheet {
             if ([undefined, null, "", false, 0].includes(v)) {
                 delete flags[k];
                 if (hasProperty(actor.data._source.flags, `sw5e.${k}`)) {
-                    unset = true;
                     flags[`-=${k}`] = null;
                 }
             }

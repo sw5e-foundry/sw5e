@@ -196,7 +196,7 @@ export default class Actor5e extends Actor {
   /** @inheritdoc */
   getRollData() {
     const data = super.getRollData();
-    data.prof = this.data.data.attributes.prof || 0;
+    data.prof = new Proficiency(this.data.data.attributes.prof, 1);
     data.classes = Object.entries(this.classes).reduce((obj, e) => {
       const [slug, cls] = e;
       obj[slug] = cls.data.data;
@@ -926,7 +926,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId]}),
+      title: `${game.i18n.format("SW5E.SkillPromptTitle", {skill: CONFIG.SW5E.skills[skillId]})}: ${this.name}`,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       reliableTalent: reliableTalent,
       messageData: {
@@ -948,7 +948,7 @@ export default class Actor5e extends Actor {
   rollAbility(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId];
     new Dialog({
-      title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
+      title: `${game.i18n.format("SW5E.AbilityPromptTitle", {ability: label})}: ${this.name}`,
       content: `<p>${game.i18n.format("SW5E.AbilityPromptText", {ability: label})}</p>`,
       buttons: {
         test: {
@@ -1012,7 +1012,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
+      title: `${game.i18n.format("SW5E.AbilityPromptTitle", {ability: label})}: ${this.name}`,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
@@ -1071,7 +1071,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.format("SW5E.SavePromptTitle", {ability: label}),
+      title: `${game.i18n.format("SW5E.SavePromptTitle", {ability: label})}: ${this.name}`,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({actor: this}),
@@ -1119,7 +1119,7 @@ export default class Actor5e extends Actor {
     const rollData = foundry.utils.mergeObject(options, {
       parts: parts,
       data: data,
-      title: game.i18n.localize("SW5E.DeathSavingThrow"),
+      title: `${game.i18n.localize("SW5E.DeathSavingThrow")}: ${this.name}`,
       halflingLucky: this.getFlag("sw5e", "halflingLucky"),
       targetValue: 10,
       messageData: {
@@ -1218,7 +1218,7 @@ export default class Actor5e extends Actor {
 
     // Prepare roll data
     const parts = [`1${denomination}`, "@abilities.con.mod"];
-    const title = game.i18n.localize("SW5E.HitDiceRoll");
+    const title = `${game.i18n.localize("SW5E.HitDiceRoll")}: ${this.name}`;
     const rollData = foundry.utils.deepClone(this.data.data);
 
     // Call the roll helper utility

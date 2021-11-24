@@ -42,7 +42,10 @@
     "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": "",
@@ -99,7 +102,7 @@
       "flags": {},
       "changes": [
         {
-          "key": "data.attributes.ac.value",
+          "key": "data.attributes.ac.bonus",
           "value": 1,
           "mode": 2
         }

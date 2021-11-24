@@ -5,7 +5,7 @@
   "img": "icons/sundries/scrolls/scroll-bound-gold-brown.webp",
   "data": {
     "description": {
-      "value": "<p>A power scroll bears the words of a single power, written in a mystical cipher. If the power is on your class's power list, you can use an action to read the scroll and cast its power without having to provide any of the power's components. Otherwise, the scroll is unintelligible.</p>\n<p>If the power is on your class's power list but of a higher level than you can normally cast, you must make an ability check using your powercasting ability to determine whether you cast it successfully. The DC is 12. On a failed check, the power disappears from the scroll with no other effect.</p>\n<p>Once the power is cast, the words on the scroll fade, and the scroll itself crumbles to dust.</p>\n<p>The level of the power on the scroll determines the power's saving throw DC and attack bonus, as well as the scroll's rarity.</p>\n<p><strong>Save DC</strong>: 13<br><strong>Attack Bonus</strong>: +5.</p>\n<p>A wizard power on a power scroll can be copied just as powers in powerbooks can be copied. When a power is copied from a power scroll, the copier must succeed on an Intelligence (Arcana) check with a DC equal to 10. If the check succeeds, the power is successfully copied. Whether the check succeeds or fails, the power scroll is destroyed.</p>",
+      "value": "<p>A power scroll bears the words of a single power, written in a mystical cipher. If the power is on your class's power list, you can use an action to read the scroll and cast its power without having to provide any of the power's components. Otherwise, the scroll is unintelligible.</p>\n<p>If the power is on your class's power list but of a higher level than you can normally cast, you must make an ability check using your powercasting ability to determine whether you cast it successfully. The DC is 12. On a failed check, the power disappears from the scroll with no other effect.</p>\n<p>Once the power is cast, the words on the scroll fade, and the scroll itself crumbles to dust.</p>\n<p>The level of the power on the scroll determines the power's saving throw DC and attack bonus, as well as the scroll's rarity.</p>\n<p><strong>Save DC</strong>: 13<br><strong>Attack Bonus</strong>: +5.</p>\n<p>A wizard power on a power scroll can be copied just as powers in powerbooks can be copied. When a power is copied from a power scroll, the copier must succeed on an Intelligence (Arcana) check with a DC equal to 12. If the check succeeds, the power is successfully copied. Whether the check succeeds or fails, the power scroll is destroyed.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -53,7 +53,10 @@
     "actionType": "mpak",
     "attackBonus": 5,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""

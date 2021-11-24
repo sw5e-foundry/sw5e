@@ -99,7 +99,7 @@ SW5E.weaponProficiencies = {
 SW5E.weaponProficienciesMap = {
   natural: true,
   simpleM: "sim",
-  simpleR: "sim",
+  simpleB: "sim",
   martialM: "mar",
   martialB: "mar"
 };
@@ -830,9 +830,9 @@ SW5E.powerScalingModes = {
  */
 SW5E.weaponTypes = {
   simpleM: "SW5E.WeaponSimpleM",
-  simpleR: "SW5E.WeaponSimpleB",
+  simpleB: "SW5E.WeaponSimpleB",
   martialM: "SW5E.WeaponMartialM",
-  martialB: "SW5E.WeaponMartialR",
+  martialB: "SW5E.WeaponMartialB",
   natural: "SW5E.WeaponNatural",
   improv: "SW5E.WeaponImprov",
   siege: "SW5E.WeaponSiege"

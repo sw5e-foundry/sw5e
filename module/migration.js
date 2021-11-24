@@ -12,7 +12,7 @@ export const migrateWorld = async function() {
     try {
       const updateData = migrateActorData(a.toObject(), migrationData);
       if ( !foundry.utils.isObjectEmpty(updateData) ) {
-        console.log(`Migrating Actor entity ${a.name}`);
+        console.log(`Migrating Actor document ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
       }
     } catch(err) {
@@ -26,11 +26,25 @@ export const migrateWorld = async function() {
     try {
       const updateData = migrateItemData(i.toObject(), migrationData);
       if ( !foundry.utils.isObjectEmpty(updateData) ) {
-        console.log(`Migrating Item entity ${i.name}`);
+        console.log(`Migrating Item document ${i.name}`);
         await i.update(updateData, {enforceTypes: false});
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Item ${i.name}: ${err.message}`;
+      console.error(err);
+    }
+  }
+
+  // Migrate World Macros
+  for ( const m of game.macros ) {
+    try {
+      const updateData = migrateMacroData(m.toObject(), migrationData);
+      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+        console.log(`Migrating Macro document ${m.name}`);
+        await m.update(updateData, {enforceTypes: false});
+      }
+    } catch(err) {
+      err.message = `Failed sw5e system migration for Macro ${m.name}: ${err.message}`;
       console.error(err);
     }
   }
@@ -40,7 +54,7 @@ export const migrateWorld = async function() {
     try {
       const updateData = migrateSceneData(s.data, migrationData);
       if ( !foundry.utils.isObjectEmpty(updateData) ) {
-        console.log(`Migrating Scene entity ${s.name}`);
+        console.log(`Migrating Scene document ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
         // If we do not do this, then synthetic token actors remain in cache
         // with the un-updated actorData.
@@ -263,7 +277,21 @@ export const migrateItemData = function(item, migrationData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
+ * Migrate a single Macro document to incorporate latest data model changes.
+ * @param {object} macro            Macro data to migrate
+ * @param {object} [migrationData]  Additional data to perform the migration
+ * @returns {object}                The updateData to apply
+ */
+export const migrateMacroData = function(macro, migrationData) {
+  const updateData = {};
+  _migrateItemIcon(macro, updateData, migrationData);
+  return updateData;
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
  * @param {object} scene            The Scene data to Update
  * @param {object} [migrationData]  Additional data to perform the migration
@@ -312,8 +340,10 @@ export const migrateSceneData = function(scene, migrationData) {
 export const getMigrationData = async function() {
   const data = {};
   try {
-    const res = await fetch("systems/sw5e/json/icon-migration.json");
+    let res = await fetch("systems/sw5e/json/icon-migration.json");
     data.iconMap = await res.json();
+    res = await fetch("systems/sw5e/json/undo-icons.json");
+    data.undoMap = await res.json();
   } catch(err) {
     console.warn(`Failed to retrieve icon migration data: ${err.message}`);
   }
@@ -496,6 +526,7 @@ const TOKEN_IMAGE_RENAME = {
   "systems/sw5e/tokens/beast/BaboonBlack.png": "systems/sw5e/tokens/beast/Baboon.webp",
   "systems/sw5e/tokens/humanoid/BanditRedM.png": "systems/sw5e/tokens/humanoid/Bandit.webp",
   "systems/sw5e/tokens/humanoid/GuardBlueM.png": "systems/sw5e/tokens/humanoid/Guard.webp",
+  "systems/sw5e/tokens/humanoid/HumanBrownM.png": "systems/sw5e/tokens/humanoid/Commoner.webp",
   "systems/sw5e/tokens/humanoid/NobleSwordM.png": "systems/sw5e/tokens/humanoid/Noble.webp",
   "systems/sw5e/tokens/humanoid/MerfolkBlue.png": "systems/sw5e/tokens/humanoid/Merfolk.webp",
   "systems/sw5e/tokens/humanoid/TribalWarriorM.png": "systems/sw5e/tokens/humanoid/TribalWarrior.webp",
@@ -537,6 +568,11 @@ const TOKEN_IMAGE_RESCALE = {
 function _migrateTokenImage(actorData, updateData) {
   ["img", "token.img"].forEach(prop => {
     const img = foundry.utils.getProperty(actorData, prop);
+    // Special fix for a renamed token that we missed the first time.
+    if ( img === "systems/sw5e/tokens/humanoid/HumanBrownM.webp" ) {
+      updateData[prop] = "systems/sw5e/tokens/humanoid/Commoner.webp";
+      return updateData;
+    }
     if ( !img?.startsWith("systems/sw5e/tokens/") || img?.endsWith(".webp") ) return;
     updateData[prop] = TOKEN_IMAGE_RENAME[img] ?? img.replace(/\.png$/, ".webp");
     const scale = `${prop.startsWith("token.") ? "token." : ""}scale`;
@@ -643,10 +679,16 @@ function _migrateItemCriticalData(item, updateData) {
  * @returns {object}                                        The updateData to apply
  * @private
  */
-function _migrateItemIcon(item, updateData, {iconMap}={}) {
-  if ( !iconMap || !item.img?.startsWith("systems/sw5e/icons/") ) return updateData;
-  const rename = iconMap[item.img];
-  if ( rename ) updateData.img = rename;
+function _migrateItemIcon(item, updateData, {iconMap, undoMap}={}) {
+  if ( iconMap && item.img?.startsWith("systems/sw5e/icons/") ) {
+    const rename = iconMap[item.img];
+    if ( rename ) updateData.img = rename;
+  }
+
+  if ( undoMap ) {
+    const rename = undoMap[item.img];
+    if ( rename ) updateData.img = rename;
+  }
   return updateData;
 }
 

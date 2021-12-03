@@ -10,10 +10,10 @@ export const migrateWorld = async function () {
     // Migrate World Actors
     for await (let a of game.actors) {
         try {
-            console.log(`Checking Actor entity ${a.name} for migration needs`);
+            console.log(`Checking Actor document ${a.name} for migration needs`);
             const updateData = await migrateActorData(a.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Actor entity ${a.name}`);
+                console.log(`Migrating Actor document ${a.name}`);
                 await a.update(updateData, {enforceTypes: false});
             }
         } catch (err) {
@@ -27,7 +27,7 @@ export const migrateWorld = async function () {
         try {
             const updateData = migrateItemData(i.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Item entity ${i.name}`);
+                console.log(`Migrating Item document ${i.name}`);
                 await i.update(updateData, {enforceTypes: false});
             }
         } catch (err) {
@@ -41,7 +41,7 @@ export const migrateWorld = async function () {
         try {
             const updateData = await migrateSceneData(s.data);
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Scene entity ${s.name}`);
+                console.log(`Migrating Scene document ${s.name}`);
                 await s.update(updateData, {enforceTypes: false});
                 // If we do not do this, then synthetic token actors remain in cache
                 // with the un-updated actorData.
@@ -287,7 +287,7 @@ export const migrateActorItemData = async function (item, actor) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
+ * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
  * @param {object} scene   The Scene data to Update
  * @returns {object}       The updateData to apply

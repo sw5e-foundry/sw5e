@@ -50,34 +50,42 @@
 			<section>
 				<h1>{{ localize "SW5E.HP" }}</h1>
 				<div class="attribute-value multiple">
-					<input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
-						data-dtype="Number" placeholder="10" class="value-number" />
-					<span class="value-separator">/</span>
-					<input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
-						data-dtype="Number" placeholder="10" class="value-number" />
-				</div>
+					<input name="data.attributes.hp.value" type="text"
+					value="{{data.attributes.hp.value}}" placeholder="10"
+					data-dtype="Number" title="{{localize 'SW5E.HitPointsCurrent'}}">
+		 <span class="value-separator">/</span>
+		 <input name="data.attributes.hp.max" type="text"
+		 value="{{data.attributes.hp.max}}" placeholder="10" 
+		 data-dtype="Number" title="{{localize 'SW5E.HitPointsMax'}}">
+</div>
 				<footer class="attribute-footer hit-points">
-					<input name="data.attributes.hp.temp" type="text" class="temphp" placeholder="+Temp"
-						value="{{data.attributes.hp.temp}}" data-dtype="{{data.attributes.hp.type}}" />
-					<input name="data.attributes.hp.tempmax" type="text" class="temphp" placeholder="+Max"
-						value="{{data.attributes.hp.tempmax}}" data-dtype="{{data.attributes.hp.type}}" />
+					<input name="data.attributes.hp.temp" type="text" class="temphp" 
+						placeholder="+{{ localize 'SW5E.Temp' }}"
+						value="{{data.attributes.hp.temp}}" data-dtype="{{data.attributes.hp.type}}"
+						title="{{localize 'SW5E.HitPointsTemp'}}">
+					<input name="data.attributes.hp.tempmax" type="text" class="temphp"
+						placeholder="+{{ localize 'SW5E.Max' }}"
+						value="{{data.attributes.hp.tempmax}}" data-dtype="{{data.attributes.hp.type}}"
+						title="{{localize 'SW5E.HitPointsTempMax'}}">
 				</footer>
 			</section>
 
 			{{!-- HIT DICE / SHORT & LONG REST BUTTONS --}}
 			<section>
-				<h1>
+				<h1 class="attribute hit-dice">
                     {{ localize "SW5E.HitDice" }}
                     <a class="config-button" data-action="hit-dice" title="{{localize 'SW5E.HitDiceConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
 				<div class="attribute-value multiple">
-					<span class="value-number">{{data.attributes.hd}}</span>
-					<span class="value-separator">/</span>
-					<span class="value-number">{{data.details.level}}</span>
-				</div>
+					<label class="hit-dice">
+						<span title="{{localize 'SW5E.HitDiceRemaining'}}">{{data.attributes.hd}}</span>
+						<span class="value-separator">/</span>
+						<span title="{{localize 'SW5E.HitDiceMax'}}">{{data.details.level}}</span>
+					</label>
+			</div>
 				<footer class="attribute-footer hit-dice">
-					<button type="button" class="rest short-rest">{{ localize "SW5E.RestS" }}</button>
-					<button type="button" class="rest long-rest">{{ localize "SW5E.RestL" }}</button>
+					<button type="button" class="rest short-rest" title="{{localize 'SW5E.ShortRest'}}">{{ localize "SW5E.RestS" }}</button>
+					<button type="button" class="rest long-rest" title="{{localize 'SW5E.LongRest'}}">{{ localize "SW5E.RestL" }}</button>
 				</footer>
 			</section>
 

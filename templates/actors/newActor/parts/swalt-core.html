@@ -39,9 +39,9 @@
                             <a class="config-button" data-action="skill" title="{{localize 'SW5E.SkillConfigure'}}"><i class="fas fa-cog"></i></a>
                           </div>
                         <span class="skill-ability">{{skill.ability}}</span>
-                        <span class="skill-mod">{{numberFormat skill.total decimals=0 sign=true}}</span>
+                        <span class="skill-mod" title="{{ localize 'SW5E.SkillModifierHint' skill=label }}">{{numberFormat skill.total decimals=0 sign=true}}</span>
                         {{!-- <input class="skill-bonus" name="data.skills.{{s}}.bonus" type="text" value="{{numberFormat skill.bonus decimals=0 sign=true}}" data-dtype="Number" placeholder="0" title="Misc. Modifier"/> --}}
-                        {{!-- <span class="skill-passive">({{skill.passive}})</span> --}}
+                        {{!-- <span class="skill-passive" title="{{ localize 'SW5E.SkillPassiveHint' skill=label }}">({{skill.passive}})</span> --}}
                     </li>
                 {{/with}}
             {{/each}}

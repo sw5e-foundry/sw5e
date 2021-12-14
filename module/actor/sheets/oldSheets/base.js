@@ -1115,7 +1115,7 @@ export default class ActorSheet5e extends ActorSheet {
         event.preventDefault();
         const a = event.currentTarget;
         const label = a.parentElement.querySelector("label");
-        const options = {name: a.dataset.target, title: label.innerText, type: a.dataset.type};
+        const options = {name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, type: a.dataset.type};
         return new ProficiencySelector(this.actor, options).render(true);
     }
 
@@ -1132,7 +1132,7 @@ export default class ActorSheet5e extends ActorSheet {
         const a = event.currentTarget;
         const label = a.parentElement.querySelector("label");
         const choices = CONFIG.SW5E[a.dataset.options];
-        const options = {name: a.dataset.target, title: label.innerText, choices};
+        const options = {name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, choices};
         return new TraitSelector(this.actor, options).render(true);
     }
 

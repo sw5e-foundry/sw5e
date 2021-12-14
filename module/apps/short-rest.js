@@ -92,7 +92,7 @@ export default class ShortRestDialog extends Dialog {
     static async shortRestDialog({actor} = {}) {
         return new Promise((resolve, reject) => {
             const dlg = new this(actor, {
-                title: game.i18n.localize("SW5E.ShortRest"),
+                title: `${game.i18n.localize("SW5E.ShortRest")}: ${actor.name}`,
                 buttons: {
                     rest: {
                         icon: '<i class="fas fa-bed"></i>',

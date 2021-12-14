@@ -69,7 +69,7 @@ Hooks.once("init", function () {
             ActorSensesConfig,
             ActorAbilityConfig,
             ActorSkillConfig
-              },
+        },
         canvas: {
             AbilityTemplate
         },
@@ -86,8 +86,8 @@ Hooks.once("init", function () {
         rollItemMacro: macros.rollItemMacro
     };
 
-  // This will be removed when sw5e minimum core version is updated to v9.
-  if ( foundry.utils.isNewerVersion("9.224", game.data.version) ) dice.shimIsDeterministic();
+    // This will be removed when sw5e minimum core version is updated to v9.
+    if (foundry.utils.isNewerVersion("9.224", game.data.version)) dice.shimIsDeterministic();
 
     // Record Configuration Values
     CONFIG.SW5E = SW5E;
@@ -113,7 +113,8 @@ Hooks.once("init", function () {
     registerSystemSettings();
 
     // Patch Core Functions
-    CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
+    CONFIG.Combat.initiative.formula =
+        "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
     Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
 
     // Register Roll Extensions
@@ -193,7 +194,7 @@ Hooks.once("init", function () {
 /**
  * Perform one-time pre-localization and sorting of some configuration objects
  */
-Hooks.once("setup", function() {
+Hooks.once("setup", function () {
     const localizeKeys = [
         "abilities",
         "abilityAbbreviations",
@@ -281,7 +282,7 @@ Hooks.once("setup", function() {
         "toolTypes",
         "vehicleTypes",
         "weaponProperties",
-        "weaponSizes",
+        "weaponSizes"
     ];
     preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);
     CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
@@ -303,23 +304,20 @@ Hooks.once("setup", function() {
  * @param {string[]} sortKeys       An array of keys to sort
  */
 function preLocalizeConfig(config, localizeKeys, sortKeys) {
-
     // Localize Objects
-    for ( const key of localizeKeys ) {
-        if ( key.includes(".") ) {
+    for (const key of localizeKeys) {
+        if (key.includes(".")) {
             const [inner, label] = key.split(".");
             _localizeObject(config[inner], label);
-        }
-        else _localizeObject(config[key]);
+        } else _localizeObject(config[key]);
     }
 
     // Sort objects
-    for ( const key of sortKeys ) {
-        if ( key.includes(".") ) {
+    for (const key of sortKeys) {
+        if (key.includes(".")) {
             const [configKey, sortKey] = key.split(".");
             config[configKey] = _sortObject(config[configKey], sortKey);
-        }
-        else config[key] = _sortObject(config[key]);
+        } else config[key] = _sortObject(config[key]);
     }
 }
 
@@ -332,16 +330,15 @@ function preLocalizeConfig(config, localizeKeys, sortKeys) {
  * @private
  */
 function _localizeObject(obj, key) {
-    for ( const [k, v] of Object.entries(obj) ) {
-
+    for (const [k, v] of Object.entries(obj)) {
         // String directly
-        if ( typeof v === "string" ) {
+        if (typeof v === "string") {
             obj[k] = game.i18n.localize(v);
             continue;
         }
 
         // Inner object
-        if ( (typeof v !== "object") || !(key in v) ) {
+        if (typeof v !== "object" || !(key in v)) {
             console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
             continue;
         }
@@ -359,7 +356,7 @@ function _localizeObject(obj, key) {
  */
 function _sortObject(obj, sortKey) {
     let sorted = Object.entries(obj);
-    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+    if (sortKey) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
     else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
     return Object.fromEntries(sorted);
 }
@@ -392,10 +389,10 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.5.2.R1-A9";
+    const NEEDS_MIGRATION_VERSION = "1.5.5.R1-B1";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A9";
-    const COMPATIBLE_MIGRATION_VERSION = 0.80;
+    const SW5E_NEEDS_MIGRATION_VERSION = "R1-B1";
+    const COMPATIBLE_MIGRATION_VERSION = 0.8;
     const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
     if (!currentVersion && totalDocuments === 0)
         return game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
@@ -407,7 +404,8 @@ Hooks.once("ready", function () {
 
     // Perform the migration
     if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
-        const warning = "Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.";
+        const warning =
+            "Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.";
         ui.notifications.error(warning, {permanent: true});
     }
     migrations.migrateWorld();
@@ -462,7 +460,7 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
     console.log("renderSwaltSheet");
 });
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
-Handlebars.registerHelper("getProperty", function(data, property) {
+Handlebars.registerHelper("getProperty", function (data, property) {
     return getProperty(data, property);
 });
 

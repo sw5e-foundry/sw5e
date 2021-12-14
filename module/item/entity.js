@@ -28,7 +28,8 @@ export default class Item5e extends Item {
             // Powers - Use Actor powercasting modifier based on power school
             if (this.data.type === "power") {
                 let school = this.data.data.school;
-                if (game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk"].includes(school)) school = "uni";
+                if (game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk"].includes(school))
+                    school = "uni";
                 switch (school) {
                     case "lgt":
                         return "wis";
@@ -172,6 +173,20 @@ export default class Item5e extends Item {
      */
     get isArmor() {
         return this.data.data.armor?.type in CONFIG.SW5E.armorTypes;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Should this item's active effects be suppressed.
+     * @type {boolean}
+     */
+    get areEffectsSuppressed() {
+        const requireEquipped =
+            this.data.type !== "consumable" || ["rod", "trinket", "wand"].includes(this.data.data.consumableType);
+        if (requireEquipped && this.data.data.equipped === false) return true;
+
+        return this.data.data.attunement === CONFIG.SW5E.attunementTypes.REQUIRED;
     }
 
     /* -------------------------------------------- */
@@ -324,7 +339,7 @@ export default class Item5e extends Item {
      */
     prepareFinalAttributes() {
         // Proficiency
-        this.data.data.prof = new Proficiency(this.actor?.data.data.prof, this.data.data.proficient);
+        this.data.data.prof = new Proficiency(this.actor?.data.data.attributes.prof, this.data.data.proficient);
 
         if (this.data.data.hasOwnProperty("actionType")) {
             // Ability checks
@@ -1191,11 +1206,11 @@ export default class Item5e extends Item {
             parts: parts,
             title: title,
             flavor: this.labels.damageTypes.length ? `${title} (${this.labels.damageTypes})` : title,
-            speaker: ChatMessage.getSpeaker({actor: this.actor}),
             dialogOptions: {
                 width: 400,
                 top: event ? event.clientY - 80 : null,
-                left: window.innerWidth - 710
+                left: window.innerWidth - 710,
+                speaker: ChatMessage.getSpeaker({actor: this.actor})
             },
             messageData: messageData
         };
@@ -1810,6 +1825,8 @@ export default class Item5e extends Item {
             updates["data.proficient"] = true;
             return updates;
         }
+
+        if (data.data?.proficient !== undefined) return updates;
 
         // Some weapon types are always proficient
         const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.data.data.weaponType];

@@ -4,6 +4,19 @@
 
 .sw5e.sheet.actor {
     /* ----------------------------------------- */
+    /*  Shared Styles                            */
+    /* ----------------------------------------- */
+
+    // Attribute Configuration
+    .config-button {
+        color: @colorOlive;
+        right: -6px;
+        top: -3px;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
+    /* ----------------------------------------- */
     /*  Sheet Header                             */
     /* ----------------------------------------- */
     .sheet-header {
@@ -203,6 +216,7 @@
             height: 70px;
             text-align: center;
             border-bottom: @borderGroove;
+            position: relative;
 
             &:last-child {
                 border-bottom: none;
@@ -215,6 +229,17 @@
                 margin: 0 auto;
                 line-height: 32px;
                 font-size: 24px;
+            }
+
+            .config-button {
+                right: 2px;
+                top: 3px;
+                position: absolute;
+                display: none;
+            }
+
+            &:hover .config-button {
+                display: block;
             }
 
             .ability-modifiers {
@@ -292,6 +317,21 @@
             .skill-proficiency {
                 flex: 0 0 16px;
                 line-height: 18px;
+            }
+
+            .skill-name-controls {
+                position: relative;
+
+                .config-button {
+                    right: 3px;
+                    top: 4px;
+                    position: absolute;
+                    display: none;
+                }
+
+                &:hover .config-button {
+                    display: block;
+                }
             }
 
             .skill-ability {

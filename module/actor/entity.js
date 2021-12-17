@@ -1,9 +1,11 @@
+import Proficiency from "./proficiency.js";
 import {d20Roll, damageRoll, attribDieRoll} from "../dice.js";
 import SelectItemsPrompt from "../apps/select-items-prompt.js";
 import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
 import RechargeRepairDialog from "../apps/recharge-repair.js";
 import RefittingRepairDialog from "../apps/refitting-repair.js";
+import ProficiencySelector from "../apps/proficiency-selector.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
 import {fromUuidSynchronous} from "../helpers.js";
@@ -15,14 +17,14 @@ import {fromUuidSynchronous} from "../helpers.js";
 export default class Actor5e extends Actor {
     /**
      * The data source for Actor5e.classes allowing it to be lazily computed.
-     * @type {Object<string, Item5e>}
+     * @type {object<string, Item5e>}
      * @private
      */
     _classes = undefined;
 
     /**
      * The data source for Actor5e.starships allowing it to be lazily computed.
-     * @type {Object<string, Item5e>}
+     * @type {object<string, Item5e>}
      * @private
      */
     _starships = undefined;
@@ -33,7 +35,7 @@ export default class Actor5e extends Actor {
 
     /**
      * A mapping of classes belonging to this Actor.
-     * @type {Object<string, Item5e>}
+     * @type {object<string, Item5e>}
      */
     get classes() {
         if (this._classes !== undefined) return this._classes;
@@ -50,7 +52,7 @@ export default class Actor5e extends Actor {
 
     /**
      * A mapping of starships belonging to this Actor.
-     * @type {Object<string, Item5e>}
+     * @type {object<string, Item5e>}
      */
     get starships() {
         if (this._starships !== undefined) return this._starships;
@@ -82,7 +84,7 @@ export default class Actor5e extends Actor {
         this._preparationWarnings = [];
         super.prepareData();
 
-        // iterate over owned items and recompute attributes that depend on prepared actor data
+        // Iterate over owned items and recompute attributes that depend on prepared actor data
         this.items.forEach((item) => item.prepareFinalAttributes());
     }
 
@@ -139,15 +141,24 @@ export default class Actor5e extends Actor {
         }
 
         // Ability modifiers and saves
-        const dcBonus = Number.isNumeric(data.bonuses?.power?.dc) ? parseInt(data.bonuses.power.dc) : 0;
-        const saveBonus = Number.isNumeric(bonuses.save) ? parseInt(bonuses.save) : 0;
-        const checkBonus = Number.isNumeric(bonuses.check) ? parseInt(bonuses.check) : 0;
+        const bonusData = this.getRollData();
+        const joat = flags.jackOfAllTrades;
+        const dcBonus = this._simplifyBonus(data.bonuses?.power?.dc, bonusData);
+        const saveBonus = this._simplifyBonus(bonuses.save, bonusData);
+        const checkBonus = this._simplifyBonus(bonuses.check, bonusData);
         for (let [id, abl] of Object.entries(data.abilities)) {
             abl.mod = Math.floor((abl.value - 10) / 2);
-            abl.prof = (abl.proficient || 0) * data.attributes.prof;
-            abl.saveBonus = saveBonus;
-            abl.checkBonus = checkBonus;
-            abl.save = abl.mod + abl.prof + abl.saveBonus;
+            const isRA = this._isRemarkableAthlete(id);
+            abl.checkProf = new Proficiency(data.attributes.prof, isRA || joat ? 0.5 : 0, !isRA);
+            const saveBonusAbl = this._simplifyBonus(abl.bonuses?.save, bonusData);
+            abl.saveBonus = saveBonusAbl + saveBonus;
+
+            abl.saveProf = new Proficiency(data.attributes.prof, abl.proficient);
+            const checkBonusAbl = this._simplifyBonus(abl.bonuses?.check, bonusData);
+            abl.checkBonus = checkBonusAbl + checkBonus;
+
+            abl.save = abl.mod + abl.saveBonus;
+            if (Number.isNumeric(abl.saveProf.term)) abl.save += abl.saveProf.flat;
             abl.dc = 8 + abl.mod + data.attributes.prof + dcBonus;
 
             // If we merged saves when transforming, take the highest bonus here.
@@ -163,27 +174,18 @@ export default class Actor5e extends Actor {
         if (actorData.type === "starship") this._computeStarshipData(actorData, data);
 
         // Prepare skills
-        this._prepareSkills(actorData, bonuses, checkBonus, originalSkills);
+        this._prepareSkills(actorData, bonusData, bonuses, checkBonus, originalSkills);
 
         // Reset class store to ensure it is updated with any changes
         this._classes = undefined;
 
         // Determine Initiative Modifier
-        const init = data.attributes.init;
-        const athlete = flags.remarkableAthlete;
-        const joat = flags.jackOfAllTrades;
-        init.mod = data.abilities.dex.mod;
-        if (joat) init.prof = Math.floor(0.5 * data.attributes.prof);
-        else if (athlete) init.prof = Math.ceil(0.5 * data.attributes.prof);
-        else init.prof = 0;
-        init.value = init.value ?? 0;
-        init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
-        init.total = init.mod + init.prof + init.bonus;
+        this._computeInitiativeModifier(actorData, checkBonus, bonusData);
 
         // Cache labels
         this.labels = {};
         if (this.type === "npc") {
-            this.labels["creatureType"] = this.constructor.formatCreatureType(data.details.type);
+            this.labels.creatureType = this.constructor.formatCreatureType(data.details.type);
         }
 
         // Prepare power-casting data
@@ -200,8 +202,8 @@ export default class Actor5e extends Actor {
 
     /**
      * Return the amount of experience required to gain a certain character level.
-     * @param level {Number}  The desired level
-     * @return {Number}       The XP required
+     * @param {number} level  The desired level.
+     * @returns {number}      The XP required.
      */
     getLevelExp(level) {
         const levels = CONFIG.SW5E.CHARACTER_EXP_LEVELS;
@@ -212,8 +214,8 @@ export default class Actor5e extends Actor {
 
     /**
      * Return the amount of experience granted by killing a creature of a certain CR.
-     * @param cr {Number}     The creature's challenge rating
-     * @return {Number}       The amount of experience granted per kill
+     * @param {number} cr     The creature's challenge rating.
+     * @returns {number}      The amount of experience granted per kill.
      */
     getCRExp(cr) {
         if (cr < 1.0) return Math.max(200 * cr, 10);
@@ -224,8 +226,8 @@ export default class Actor5e extends Actor {
 
     /**
      * Return the amount of prestige required to gain a certain rank level.
-     * @param level {Number}  The desired level
-     * @return {Number}       The prestige required
+     * @param {number} level  The desired level.
+     * @return {Number}       The prestige required.
      */
     getRankExp(rank) {
         const ranks = CONFIG.SW5E.CHARACTER_RANK_LEVELS;
@@ -237,7 +239,7 @@ export default class Actor5e extends Actor {
     /** @inheritdoc */
     getRollData() {
         const data = super.getRollData();
-        data.prof = this.data.data.attributes.prof || 0;
+        data.prof = new Proficiency(this.data.data.attributes.prof, 1);
         data.classes = Object.entries(this.classes).reduce((obj, e) => {
             const [slug, cls] = e;
             obj[slug] = cls.data.data;
@@ -251,8 +253,8 @@ export default class Actor5e extends Actor {
     /**
      * Given a list of items to add to the Actor, optionally prompt the
      * user for which they would like to add.
-     * @param {Array.<Item5e>} items - The items being added to the Actor.
-     * @param {boolean} [prompt=true] - Whether or not to prompt the user.
+     * @param {Item5e[]} items         The items being added to the Actor.
+     * @param {boolean} [prompt=true]  Whether or not to prompt the user.
      * @returns {Promise<Item5e[]>}
      */
     async addEmbeddedItems(items, prompt = true) {
@@ -282,26 +284,28 @@ export default class Actor5e extends Actor {
     /**
      * Get a list of features to add to the Actor when a class item is updated.
      * Optionally prompt the user for which they would like to add.
+     * @param {object} [options]
+     * @param {string} [options.className]      Name of the class if it has been changed.
+     * @param {string} [options.archetypeName]  Name of the selected archetype if it has been changed.
+     * @param {number} [options.level]          New class level if it has been changed.
+     * @returns {Promise<Item5e[]>}             Any new items that should be added to the actor.
      */
     async getClassFeatures({className, archetypeName, level} = {}) {
         const existing = new Set(this.items.map((i) => i.name));
-        const features = await Actor5e.loadClassFeatures({
-            className,
-            archetypeName,
-            level
-        });
+        const features = await Actor5e.loadClassFeatures({className, archetypeName, level});
         return features.filter((f) => !existing.has(f.name)) || [];
     }
 
     /* -------------------------------------------- */
 
     /**
-     * Return the features which a character is awarded for each class level
-     * @param {string} className        The class name being added
-     * @param {string} archetypeName     The archetype of the class being added, if any
-     * @param {number} level            The number of levels in the added class
-     * @param {number} priorLevel       The previous level of the added class
-     * @return {Promise<Item5e[]>}     Array of Item5e entities
+     * Return the features which a character is awarded for each class level.
+     * @param {object} [options]
+     * @param {string} [options.className]      Name of the class being added or updated.
+     * @param {string} [options.archetypeName]  Name of the archetype of the class being added, if any.
+     * @param {number} [options.level]          The number of levels in the added class.
+     * @param {number} [options.priorLevel]     The previous level of the added class.
+     * @returns {Promise<Item5e[]>}             Items that should be added based on the changes made.
      */
     static async loadClassFeatures({className = "", archetypeName = "", level = 1, priorLevel = 0} = {}) {
         className = className.toLowerCase();
@@ -347,7 +351,8 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Prepare Character type specific data
+     * Perform any Character specific preparation.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      */
     _prepareCharacterData(actorData) {
         const data = actorData.data;
@@ -426,7 +431,8 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Prepare NPC type specific data
+     * Perform any NPC specific preparation.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      */
     _prepareNPCData(actorData) {
         const data = actorData.data;
@@ -448,8 +454,8 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Prepare vehicle type-specific data
-     * @param actorData
+     * Perform any Vehicle specific preparation.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      * @private
      */
     _prepareVehicleData(actorData) {}
@@ -457,8 +463,8 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Prepare starship type-specific data
-     * @param actorData
+     * Perform any Starship specific preparation.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      * @private
      */
     _prepareStarshipData(actorData) {
@@ -576,13 +582,14 @@ export default class Actor5e extends Actor {
 
     /**
      * Prepare skill checks.
-     * @param actorData
-     * @param bonuses Global bonus data.
-     * @param checkBonus Ability check specific bonus.
-     * @param originalSkills A transformed actor's original actor's skills.
+     * @param {object} actorData       Copy of the data for the actor being prepared. *Will be mutated.*
+     * @param {object} bonusData       Data produced by `getRollData` to be applied to bonus formulas.
+     * @param {object} bonuses         Global bonus data.
+     * @param {number} checkBonus      Global ability check bonus.
+     * @param {object} originalSkills  A transformed actor's original actor's skills.
      * @private
      */
-    _prepareSkills(actorData, bonuses, checkBonus, originalSkills) {
+    _prepareSkills(actorData, bonusData, bonuses, checkBonus, originalSkills) {
         if (actorData.type === "vehicle") return;
 
         const data = actorData.data;
@@ -590,22 +597,22 @@ export default class Actor5e extends Actor {
 
         // Skill modifiers
         const feats = SW5E.characterFlags;
-        const athlete = flags.remarkableAthlete;
         const joat = flags.jackOfAllTrades;
         const observant = flags.observantFeat;
-        const skillBonus = Number.isNumeric(bonuses.skill) ? parseInt(bonuses.skill) : 0;
+        const skillBonus = this._simplifyBonus(bonuses.skill, bonusData);
         for (let [id, skl] of Object.entries(data.skills)) {
             skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 2) ?? 0;
-            let round = Math.floor;
+            const baseBonus = this._simplifyBonus(skl.bonuses?.check, bonusData);
+            let roundDown = true;
 
-            // Remarkable
-            if (athlete && skl.value < 0.5 && feats.remarkableAthlete.abilities.includes(skl.ability)) {
+            // Remarkable Athlete
+            if (this._isRemarkableAthlete(skl.ability) && skl.value < 0.5) {
                 skl.value = 0.5;
-                round = Math.ceil;
+                roundDown = false;
             }
 
             // Jack of All Trades
-            if (joat && skl.value < 0.5) {
+            else if (joat && skl.value < 0.5) {
                 skl.value = 0.5;
             }
 
@@ -615,14 +622,41 @@ export default class Actor5e extends Actor {
             }
 
             // Compute modifier
-            skl.bonus = checkBonus + skillBonus;
+            const checkBonusAbl = this._simplifyBonus(data.abilities[skl.ability]?.bonuses?.check, bonusData);
+            skl.bonus = baseBonus + checkBonus + checkBonusAbl + skillBonus;
             skl.mod = data.abilities[skl.ability].mod;
-            skl.prof = round(skl.value * data.attributes.prof);
-            skl.total = skl.mod + skl.prof + skl.bonus;
+            skl.prof = new Proficiency(data.attributes.prof, skl.value, roundDown);
+            skl.proficient = skl.value;
+            skl.total = skl.mod + skl.bonus;
+            if (Number.isNumeric(skl.prof.term)) skl.total += skl.prof.flat;
 
             // Compute passive bonus
             const passive = observant && feats.observantFeat.skills.includes(id) ? 5 : 0;
-            skl.passive = 10 + skl.total + passive;
+            const passiveBonus = this._simplifyBonus(skl.bonuses?.passive, bonusData);
+            skl.passive = 10 + skl.mod + skl.bonus + skl.prof.flat + passive + passiveBonus;
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Convert a bonus value to a simple integer for displaying on the sheet.
+     * @param {number|string|null} bonus  Actor's bonus value.
+     * @param {object} data               Actor data to use for replacing @ strings.
+     * @returns {number}                  Simplified bonus as an integer.
+     * @protected
+     */
+    _simplifyBonus(bonus, data) {
+        if (!bonus) return 0;
+        if (Number.isNumeric(bonus)) return Number(bonus);
+        try {
+            const roll = new Roll(bonus, data);
+            if (!roll.isDeterministic) return 0;
+            roll.evaluate({async: false});
+            return roll.total;
+        } catch (error) {
+            console.error(error);
+            return 0;
         }
     }
 
@@ -630,7 +664,7 @@ export default class Actor5e extends Actor {
 
     /**
      * Initialize derived AC fields for Active Effects to target.
-     * @param actorData
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      * @private
      */
     _prepareBaseArmorClass(actorData) {
@@ -644,7 +678,34 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Prepare data related to the power-casting capabilities of the Actor
+     * Calculate the initiative bonus to display on a character sheet
+     *
+     * @param {object} actorData         The actor data being prepared.
+     * @param {number} globalCheckBonus  The simplified global ability check bonus for this actor
+     * @param {object} bonusData         Actor data to use for replacing formula variables in bonuses
+     */
+    _computeInitiativeModifier(actorData, globalCheckBonus, bonusData) {
+        const data = actorData.data;
+        const flags = actorData.flags.sw5e || {};
+        const init = data.attributes.init;
+
+        // Initiative modifiers
+        const joat = flags.jackOfAllTrades;
+        const athlete = flags.remarkableAthlete;
+        const dexCheckBonus = this._simplifyBonus(data.abilities.dex.bonuses?.check, bonusData);
+
+        // Compute initiative modifier
+        init.mod = data.abilities.dex.mod;
+        init.prof = new Proficiency(data.attributes.prof, joat || athlete ? 0.5 : 0, !athlete);
+        init.value = init.value ?? 0;
+        init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
+        init.total = init.mod + init.bonus + dexCheckBonus + globalCheckBonus;
+        if (Number.isNumeric(init.prof.term)) init.total += init.prof.flat;
+    }
+
+    /**
+     * Prepare data related to the power-casting capabilities of the Actor.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
      * @private
      */
     _computeBasePowercasting(actorData) {
@@ -878,8 +939,8 @@ export default class Actor5e extends Actor {
 
     /**
      * Determine a character's AC value from their equipped armor and shield.
-     * @param {object} data      Note that this object will be mutated.
-     * @return {{
+     * @param {object} data  Copy of the data for the actor being prepared. *Will be mutated.*
+     * @returns {{
      *   calc: string,
      *   value: number,
      *   base: number,
@@ -921,12 +982,12 @@ export default class Actor5e extends Actor {
         switch (ac.calc) {
             // Flat AC (no additional bonuses)
             case "flat":
-                ac.value = ac.flat;
+                ac.value = Number(ac.flat);
                 return ac;
 
             // Natural AC (includes bonuses)
             case "natural":
-                ac.base = ac.flat;
+                ac.base = Number(ac.flat);
                 break;
 
             // Equipment-based AC
@@ -990,6 +1051,11 @@ export default class Actor5e extends Actor {
             Math.max(ad.attributes.powerForceLightDC, ad.attributes.powerForceDarkDC) ?? 10;
         ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
 
+        if (game.settings.get("sw5e", "simplifiedForcecasting")) {
+            ad.attributes.powerForceLightDC = ad.attributes.powerForceUnivDC;
+            ad.attributes.powerForceDarkDC = ad.attributes.powerForceUnivDC;
+        }
+
         if (actorData.type !== "character") return;
 
         // Set Force and tech bonus points for PC Actors
@@ -1008,7 +1074,7 @@ export default class Actor5e extends Actor {
      *
      * Optionally include the weight of carried currency across all denominations by applying the standard rule
      * from the PHB pg. 143
-     * @param {Object} actorData      The data object for the Actor being rendered
+     * @param {object} actorData      The data object for the Actor being rendered
      * @returns {{max: number, value: number, pct: number}}  An object describing the character's encumbrance level
      * @private
      */
@@ -1162,64 +1228,9 @@ export default class Actor5e extends Actor {
 
     /* -------------------------------------------- */
 
-    /** @inheritdoc */
-    _onUpdate(data, options, userId) {
-        super._onUpdate(data, options, userId);
-
-        // Get the changed attributes
-        const keys = Object.keys(foundry.utils.flattenObject(data)).filter(k => k !== "_id");
-        const changed = new Set(keys);
-
-        // Additional options only apply to Actors which are not synthetic Tokens
-        if (this.isToken) return;
-
-        // Check for updates on deployed actors
-        const uuid = this.data.data.attributes.deployed?.uuid;
-        if (uuid) {
-            for (const change of changed) {
-                const arr = change.split('.');
-                if (change == "name" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
-                    const starship = fromUuidSynchronous(uuid);
-                    starship.deployInto(this, [])
-                    break;
-                }
-            }
-        }
-    }
-
-    /* -------------------------------------------- */
-
     /**
-     * Follow-up actions taken after a set of embedded Documents in this parent Document are updated.
-     * @param {string} embeddedName   The name of the embedded Document type
-     * @param {Document[]} documents  An Array of updated Documents
-     * @param {object[]} result       An Array of incremental data objects
-     * @param {object} options        Options which modified the update operation
-     * @param {string} userId         The ID of the User who triggered the operation
-     * @memberof ClientDocumentMixin#
-     */
-    _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId)
-
-        // Check for leveling up actors that are deployed
-        const uuid = this.data.data.attributes.deployed?.uuid;
-        if (uuid) {
-            for (let i = 0; i < documents.length; i++) {
-                const doc = documents[i];
-                const changes = result[i];
-                if (doc.data.type == 'class' && 'data' in changes && 'levels' in changes.data) {
-                    const starship = fromUuidSynchronous(uuid);
-                    starship.deployInto(this, [])
-                    break;
-                }
-            }
-        }
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Assign a class item as the original class for the Actor based on which class has the most levels
+     * Assign a class item as the original class for the Actor based on which class has the most levels.
+     * @returns {Promise<Actor5e>}  Instance of the updated actor.
      * @protected
      */
     _assignPrimaryClass() {
@@ -1248,7 +1259,7 @@ export default class Actor5e extends Actor {
      * Apply a certain amount of damage or healing to the health pool for Actor
      * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
      * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
-     * @return {Promise<Actor>}     A Promise which resolves once the damage has been applied
+     * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1) {
         amount = Math.floor(parseInt(amount) * multiplier);
@@ -1280,7 +1291,23 @@ export default class Actor5e extends Actor {
             },
             updates
         );
-        return allowed !== false ? this.update(updates) : this;
+        return allowed !== false ? this.update(updates, {dhp: -amount}) : this;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Determine whether the provided ability is usable for remarkable athlete.
+     *
+     * @param {string} ability  Ability type to check.
+     * @returns {boolean}       Whether the actor has the remarkable athlete flag and the ability is physical.
+     * @private
+     */
+    _isRemarkableAthlete(ability) {
+        return (
+            this.getFlag("sw5e", "remarkableAthlete") &&
+            SW5E.characterFlags.remarkableAthlete.abilities.includes(ability)
+        );
     }
 
     /* -------------------------------------------- */
@@ -1289,27 +1316,51 @@ export default class Actor5e extends Actor {
      * Roll a Skill Check
      * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
      * @param {string} skillId      The skill id (e.g. "ins")
-     * @param {Object} options      Options which configure how the skill check is rolled
-     * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
+     * @param {object} options      Options which configure how the skill check is rolled
+     * @returns {Promise<Roll>}     A Promise which resolves to the created Roll instance
      */
     rollSkill(skillId, options = {}) {
         const skl = this.data.data.skills[skillId];
+        const abl = this.data.data.abilities[skl.ability];
         const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
 
-        // Compose roll parts and data
-        const parts = ["@mod"];
-        const data = {mod: skl.mod + skl.prof};
+        const parts = [];
+        const data = this.getRollData();
 
-        // Ability test bonus
-        if (bonuses.check) {
-            data["checkBonus"] = bonuses.check;
-            parts.push("@checkBonus");
+        // Add ability modifier
+        parts.push("@mod");
+        data.mod = skl.mod;
+
+        // Include proficiency bonus
+        if (skl.prof.hasProficiency) {
+            parts.push("@prof");
+            data.prof = skl.prof.term;
         }
 
-        // Skill check bonus
+        // Global ability check bonus
+        if (bonuses.check) {
+            parts.push("@checkBonus");
+            data.checkBonus = Roll.replaceFormulaData(bonuses.check, data);
+        }
+
+        // Ability-specific check bonus
+        if (abl?.bonuses?.check) {
+            const checkBonusKey = `${skl.ability}CheckBonus`;
+            parts.push(`@${checkBonusKey}`);
+            data[checkBonusKey] = Roll.replaceFormulaData(abl.bonuses.check, data);
+        }
+
+        // Skill-specific skill bonus
+        if (skl.bonuses?.check) {
+            const checkBonusKey = `${skillId}CheckBonus`;
+            parts.push(`@${checkBonusKey}`);
+            data[checkBonusKey] = Roll.replaceFormulaData(skl.bonuses.check, data);
+        }
+
+        // Global skill check bonus
         if (bonuses.skill) {
-            data["skillBonus"] = bonuses.skill;
             parts.push("@skillBonus");
+            data.skillBonus = Roll.replaceFormulaData(bonuses.skill, data);
         }
 
         // Add provided extra roll parts now because they will get clobbered by mergeObject below
@@ -1324,9 +1375,9 @@ export default class Actor5e extends Actor {
         const rollData = foundry.utils.mergeObject(options, {
             parts: parts,
             data: data,
-            title: game.i18n.format("SW5E.SkillPromptTitle", {
+            title: `${game.i18n.format("SW5E.SkillPromptTitle", {
                 skill: CONFIG.SW5E.skills[skillId] || CONFIG.SW5E.starshipSkills[skillId]
-            }),
+            })}: ${this.name}`,
             halflingLucky: this.getFlag("sw5e", "halflingLucky"),
             reliableTalent: reliableTalent,
             messageData: {
@@ -1342,16 +1393,14 @@ export default class Actor5e extends Actor {
     /**
      * Roll a generic ability test or saving throw.
      * Prompt the user for input on which variety of roll they want to do.
-     * @param {String}abilityId     The ability id (e.g. "str")
-     * @param {Object} options      Options which configure how ability tests or saving throws are rolled
+     * @param {string} abilityId    The ability id (e.g. "str")
+     * @param {object} options      Options which configure how ability tests or saving throws are rolled
      */
     rollAbility(abilityId, options = {}) {
         const label = CONFIG.SW5E.abilities[abilityId];
         new Dialog({
-            title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
-            content: `<p>${game.i18n.format("SW5E.AbilityPromptText", {
-                ability: label
-            })}</p>`,
+            title: `${game.i18n.format("SW5E.AbilityPromptTitle", {ability: label})}: ${this.name}`,
+            content: `<p>${game.i18n.format("SW5E.AbilityPromptText", {ability: label})}</p>`,
             buttons: {
                 test: {
                     label: game.i18n.localize("SW5E.ActionAbil"),
@@ -1370,33 +1419,39 @@ export default class Actor5e extends Actor {
     /**
      * Roll an Ability Test
      * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
-     * @param {String} abilityId    The ability ID (e.g. "str")
-     * @param {Object} options      Options which configure how ability tests are rolled
-     * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
+     * @param {string} abilityId    The ability ID (e.g. "str")
+     * @param {object} options      Options which configure how ability tests are rolled
+     * @returns {Promise<Roll>}     A Promise which resolves to the created Roll instance
      */
     rollAbilityTest(abilityId, options = {}) {
         const label = CONFIG.SW5E.abilities[abilityId];
         const abl = this.data.data.abilities[abilityId];
 
-        // Construct parts
-        const parts = ["@mod"];
-        const data = {mod: abl.mod};
+        const parts = [];
+        const data = this.getRollData();
 
-        // Add feat-related proficiency bonuses
-        const feats = this.data.flags.sw5e || {};
-        if (feats.remarkableAthlete && SW5E.characterFlags.remarkableAthlete.abilities.includes(abilityId)) {
-            parts.push("@proficiency");
-            data.proficiency = Math.ceil(0.5 * this.data.data.attributes.prof);
-        } else if (feats.jackOfAllTrades) {
-            parts.push("@proficiency");
-            data.proficiency = Math.floor(0.5 * this.data.data.attributes.prof);
+        // Add ability modifier
+        parts.push("@mod");
+        data.mod = abl.mod;
+
+        // Include proficiency bonus
+        if (abl.checkProf.hasProficiency) {
+            parts.push("@prof");
+            data.prof = abl.checkProf.term;
+        }
+
+        // Add ability-specific check bonus
+        if (abl.bonuses?.check) {
+            const checkBonusKey = `${abilityId}CheckBonus`;
+            parts.push(`@${checkBonusKey}`);
+            data[checkBonusKey] = Roll.replaceFormulaData(abl.bonuses.check, data);
         }
 
         // Add global actor bonus
         const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
         if (bonuses.check) {
             parts.push("@checkBonus");
-            data.checkBonus = bonuses.check;
+            data.checkBonus = Roll.replaceFormulaData(bonuses.check, data);
         }
 
         // Add provided extra roll parts now because they will get clobbered by mergeObject below
@@ -1408,8 +1463,8 @@ export default class Actor5e extends Actor {
         const rollData = foundry.utils.mergeObject(options, {
             parts: parts,
             data: data,
-            title: game.i18n.format("SW5E.AbilityPromptTitle", {ability: label}),
-            halflingLucky: feats.halflingLucky,
+            title: `${game.i18n.format("SW5E.AbilityPromptTitle", {ability: label})}: ${this.name}`,
+            halflingLucky: this.getFlag("sw5e", "halflingLucky"),
             messageData: {
                 "speaker": options.speaker || ChatMessage.getSpeaker({actor: this}),
                 "flags.sw5e.roll": {type: "ability", abilityId}
@@ -1423,29 +1478,39 @@ export default class Actor5e extends Actor {
     /**
      * Roll an Ability Saving Throw
      * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
-     * @param {String} abilityId    The ability ID (e.g. "str")
-     * @param {Object} options      Options which configure how ability tests are rolled
-     * @return {Promise<Roll>}      A Promise which resolves to the created Roll instance
+     * @param {string} abilityId    The ability ID (e.g. "str")
+     * @param {object} options      Options which configure how ability tests are rolled
+     * @returns {Promise<Roll>}     A Promise which resolves to the created Roll instance
      */
     rollAbilitySave(abilityId, options = {}) {
         const label = CONFIG.SW5E.abilities[abilityId];
         const abl = this.data.data.abilities[abilityId];
 
-        // Construct parts
-        const parts = ["@mod"];
-        const data = {mod: abl.mod};
+        const parts = [];
+        const data = this.getRollData();
+
+        // Add ability modifier
+        parts.push("@mod");
+        data.mod = abl.mod;
 
         // Include proficiency bonus
-        if (abl.prof > 0) {
+        if (abl.saveProf.hasProficiency) {
             parts.push("@prof");
-            data.prof = abl.prof;
+            data.prof = abl.saveProf.term;
+        }
+
+        // Include ability-specific saving throw bonus
+        if (abl.bonuses?.save) {
+            const saveBonusKey = `${abilityId}SaveBonus`;
+            parts.push(`@${saveBonusKey}`);
+            data[saveBonusKey] = Roll.replaceFormulaData(abl.bonuses.save, data);
         }
 
         // Include a global actor ability save bonus
         const bonuses = getProperty(this.data.data, "bonuses.abilities") || {};
         if (bonuses.save) {
             parts.push("@saveBonus");
-            data.saveBonus = bonuses.save;
+            data.saveBonus = Roll.replaceFormulaData(bonuses.save, data);
         }
 
         // Add provided extra roll parts now because they will get clobbered by mergeObject below
@@ -1457,7 +1522,7 @@ export default class Actor5e extends Actor {
         const rollData = foundry.utils.mergeObject(options, {
             parts: parts,
             data: data,
-            title: game.i18n.format("SW5E.SavePromptTitle", {ability: label}),
+            title: `${game.i18n.format("SW5E.SavePromptTitle", {ability: label})}: ${this.name}`,
             halflingLucky: this.getFlag("sw5e", "halflingLucky"),
             messageData: {
                 "speaker": options.speaker || ChatMessage.getSpeaker({actor: this}),
@@ -1471,8 +1536,8 @@ export default class Actor5e extends Actor {
 
     /**
      * Perform a death saving throw, rolling a d20 plus any global save bonuses
-     * @param {Object} options        Additional options which modify the roll
-     * @return {Promise<Roll|null>}   A Promise which resolves to the Roll instance
+     * @param {object} options        Additional options which modify the roll
+     * @returns {Promise<Roll|null>}  A Promise which resolves to the Roll instance
      */
     async rollDeathSave(options = {}) {
         // Display a warning if we are not at zero HP or if we already have reached 3
@@ -1484,21 +1549,21 @@ export default class Actor5e extends Actor {
 
         // Evaluate a global saving throw bonus
         const parts = [];
-        const data = {};
+        const data = this.getRollData();
         const speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
 
         // Include a global actor ability save bonus
         const bonuses = foundry.utils.getProperty(this.data.data, "bonuses.abilities") || {};
         if (bonuses.save) {
             parts.push("@saveBonus");
-            data.saveBonus = bonuses.save;
+            data.saveBonus = Roll.replaceFormulaData(bonuses.save, data);
         }
 
         // Evaluate the roll
         const rollData = foundry.utils.mergeObject(options, {
             parts: parts,
             data: data,
-            title: game.i18n.localize("SW5E.DeathSavingThrow"),
+            title: `${game.i18n.localize("SW5E.DeathSavingThrow")}: ${this.name}`,
             halflingLucky: this.getFlag("sw5e", "halflingLucky"),
             targetValue: 10,
             messageData: {
@@ -1539,18 +1604,13 @@ export default class Actor5e extends Actor {
             }
 
             // Increment successes
-            else
-                await this.update({
-                    "data.attributes.death.success": Math.clamped(successes, 0, 3)
-                });
+            else await this.update({"data.attributes.death.success": Math.clamped(successes, 0, 3)});
         }
 
         // Save failure
         else {
             let failures = (death.failure || 0) + (d20 === 1 ? 2 : 1);
-            await this.update({
-                "data.attributes.death.failure": Math.clamped(failures, 0, 3)
-            });
+            await this.update({"data.attributes.death.failure": Math.clamped(failures, 0, 3)});
             if (failures >= 3) {
                 // 3 Failures = death
                 chatString = "SW5E.DeathSaveFailure";
@@ -1559,10 +1619,7 @@ export default class Actor5e extends Actor {
 
         // Display success/failure chat message
         if (chatString) {
-            let chatData = {
-                content: game.i18n.format(chatString, {name: this.name}),
-                speaker
-            };
+            let chatData = {content: game.i18n.format(chatString, {name: this.name}), speaker};
             ChatMessage.applyRollMode(chatData, roll.options.rollMode);
             await ChatMessage.create(chatData);
         }
@@ -1578,7 +1635,7 @@ export default class Actor5e extends Actor {
      * @param {string} [denomination]   The hit denomination of hit die to roll. Example "d8".
      *                                  If no denomination is provided, the first available HD will be used
      * @param {boolean} [dialog]        Show a dialog prompt for configuring the hit die roll?
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no hit die was rolled
+     * @returns {Promise<Roll|null>}    The created Roll instance, or null if no hit die was rolled
      */
     async rollHitDie(denomination, {dialog = true} = {}) {
         // If no denomination was provided, choose the first available
@@ -1599,18 +1656,13 @@ export default class Actor5e extends Actor {
 
         // If no class is available, display an error notification
         if (!cls) {
-            ui.notifications.error(
-                game.i18n.format("SW5E.HitDiceWarn", {
-                    name: this.name,
-                    formula: denomination
-                })
-            );
+            ui.notifications.error(game.i18n.format("SW5E.HitDiceWarn", {name: this.name, formula: denomination}));
             return null;
         }
 
         // Prepare roll data
         const parts = [`1${denomination}`, "@abilities.con.mod"];
-        const title = game.i18n.localize("SW5E.HitDiceRoll");
+        const title = `${game.i18n.localize("SW5E.HitDiceRoll")}: ${this.name}`;
         const rollData = foundry.utils.deepClone(this.data.data);
 
         // Call the roll helper utility
@@ -1843,12 +1895,12 @@ export default class Actor5e extends Actor {
      * Results from a rest operation.
      *
      * @typedef {object} RestResult
-     * @property {number} dhp                  Hit points recovered during the rest.
-     * @property {number} dhd                  Hit dice recovered or spent during the rest.
-     * @property {object} updateData           Updates applied to the actor.
-     * @property {Array.<object>} updateItems  Updates applied to actor's items.
-     * @property {boolean} longRest            Whether the rest type was a long rest.
-     * @property {boolean} newDay              Whether a new day occurred during the rest.
+     * @property {number} dhp            Hit points recovered during the rest.
+     * @property {number} dhd            Hit dice recovered or spent during the rest.
+     * @property {object} updateData     Updates applied to the actor.
+     * @property {object[]} updateItems  Updates applied to actor's items.
+     * @property {boolean} longRest      Whether the rest type was a long rest.
+     * @property {boolean} newDay        Whether a new day occurred during the rest.
      */
 
     /* -------------------------------------------- */
@@ -1862,7 +1914,7 @@ export default class Actor5e extends Actor {
      * @param {boolean} [options.chat=true]           Summarize the results of the rest workflow as a chat message.
      * @param {boolean} [options.autoHD=false]        Automatically spend Hit Dice if you are missing 3 or more hit points.
      * @param {boolean} [options.autoHDThreshold=3]   A number of missing hit points which would trigger an automatic HD roll.
-     * @return {Promise.<RestResult>}                 A Promise which resolves once the short rest workflow has completed.
+     * @returns {Promise<RestResult>}                 A Promise which resolves once the short rest workflow has completed.
      */
     async shortRest({dialog = true, chat = true, autoHD = false, autoHDThreshold = 3} = {}) {
         // Take note of the initial hit points and number of hit dice the Actor has
@@ -1873,10 +1925,7 @@ export default class Actor5e extends Actor {
         // Display a Dialog for rolling hit dice
         if (dialog) {
             try {
-                newDay = await ShortRestDialog.shortRestDialog({
-                    actor: this,
-                    canRoll: hd0 > 0
-                });
+                newDay = await ShortRestDialog.shortRestDialog({actor: this, canRoll: hd0 > 0});
             } catch (err) {
                 return;
             }
@@ -1906,7 +1955,7 @@ export default class Actor5e extends Actor {
      * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a long rest.
      * @param {boolean} [options.chat=true]    Summarize the results of the rest workflow as a chat message.
      * @param {boolean} [options.newDay=true]  Whether the long rest carries over to a new day.
-     * @return {Promise.<RestResult>}          A Promise which resolves once the long rest workflow has completed.
+     * @returns {Promise<RestResult>}          A Promise which resolves once the long rest workflow has completed.
      */
     async longRest({dialog = true, chat = true, newDay = true} = {}) {
         // Maybe present a confirmation dialog
@@ -1941,7 +1990,7 @@ export default class Actor5e extends Actor {
      * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
      * @param {number} [dtp=0]         Number of tech points recovered so far during the rest.
      * @param {number} [dfp=0]         Number of force points recovered so far during the rest.
-     * @return {Promise.<RestResult>}  Consolidated results of the rest workflow.
+     * @returns {Promise<RestResult>}  Consolidated results of the rest workflow.
      * @private
      */
     async _rest(chat, newDay, longRest, dhd = 0, dhp = 0, dtp = 0, dfp = 0) {
@@ -1973,10 +2022,7 @@ export default class Actor5e extends Actor {
             },
             updateItems: [
                 ...hitDiceUpdates,
-                ...this._getRestItemUsesRecovery({
-                    recoverLongRestUses: longRest,
-                    recoverDailyUses: newDay
-                })
+                ...this._getRestItemUsesRecovery({recoverLongRestUses: longRest, recoverDailyUses: newDay})
             ],
             longRest,
             newDay
@@ -2003,7 +2049,7 @@ export default class Actor5e extends Actor {
      *
      * @param {RestResult} result         Result of the rest operation.
      * @param {boolean} [longRest=false]  Is this a long rest?
-     * @return {Promise.<ChatMessage>}    Chat message that was created.
+     * @returns {Promise<ChatMessage>}    Chat message that was created.
      * @protected
      */
     async _displayRestResultMessage(result, longRest = false) {
@@ -2012,7 +2058,8 @@ export default class Actor5e extends Actor {
         const healthRestored = dhp !== 0;
         const length = longRest ? "Long" : "Short";
 
-        let restFlavor, message;
+        let restFlavor;
+        let message;
 
         // Summarize the rest duration
         switch (game.settings.get("sw5e", "restVariant")) {
@@ -2073,7 +2120,7 @@ export default class Actor5e extends Actor {
      *
      * @param {object} [options]
      * @param {number} [options.threshold=3]  A number of missing hit points which would trigger an automatic HD roll.
-     * @return {Promise.<number>}             Number of hit dice spent.
+     * @returns {Promise<number>}             Number of hit dice spent.
      */
     async autoSpendHitDice({threshold = 3} = {}) {
         const max = this.data.data.attributes.hp.max + this.data.data.attributes.hp.tempmax;
@@ -2096,7 +2143,7 @@ export default class Actor5e extends Actor {
      * @param {object} [options]
      * @param {boolean} [options.recoverTemp=true]     Reset temp HP to zero.
      * @param {boolean} [options.recoverTempMax=true]  Reset temp max HP to zero.
-     * @return {object}                                Updates to the actor and change in hit points.
+     * @returns {object}                               Updates to the actor and change in hit points.
      * @protected
      */
     _getRestHitPointRecovery({recoverTemp = true, recoverTempMax = true} = {}) {
@@ -2124,7 +2171,7 @@ export default class Actor5e extends Actor {
      * @param {object} [options]
      * @param {boolean} [options.recoverShortRestResources=true]  Recover resources that recharge on a short rest.
      * @param {boolean} [options.recoverLongRestResources=true]   Recover resources that recharge on a long rest.
-     * @return {object}                                           Updates to the actor.
+     * @returns {object}                                          Updates to the actor.
      * @protected
      */
     _getRestResourceRecovery({recoverShortRestResources = true, recoverLongRestResources = true} = {}) {
@@ -2146,7 +2193,7 @@ export default class Actor5e extends Actor {
      * Recovers power slots.
      *
      * @param longRest = true  It's a long rest
-     * @return {object}        Updates to the actor.
+     * @returns {object}       Updates to the actor.
      * @protected
      */
     _getRestPowerRecovery({recoverTechPowers = true, recoverForcePowers = true} = {}) {
@@ -2182,7 +2229,7 @@ export default class Actor5e extends Actor {
      *
      * @param {object} [options]
      * @param {number} [options.maxHitDice]  Maximum number of hit dice to recover.
-     * @return {object}                      Array of item updates and number of hit dice recovered.
+     * @returns {object}                     Array of item updates and number of hit dice recovered.
      * @protected
      */
     _getRestHitDiceRecovery({maxHitDice = undefined} = {}) {
@@ -2203,10 +2250,7 @@ export default class Actor5e extends Actor {
             if (hitDiceRecovered < maxHitDice && d.hitDiceUsed > 0) {
                 let delta = Math.min(d.hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
                 hitDiceRecovered += delta;
-                updates.push({
-                    "_id": item.id,
-                    "data.hitDiceUsed": d.hitDiceUsed - delta
-                });
+                updates.push({"_id": item.id, "data.hitDiceUsed": d.hitDiceUsed - delta});
             }
         }
 
@@ -2222,7 +2266,7 @@ export default class Actor5e extends Actor {
      * @param {boolean} [options.recoverShortRestUses=true]  Recover uses for items that recharge after a short rest.
      * @param {boolean} [options.recoverLongRestUses=true]   Recover uses for items that recharge after a long rest.
      * @param {boolean} [options.recoverDailyUses=true]      Recover uses for items that recharge on a new day.
-     * @return {Array.<object>}                              Array of item updates.
+     * @returns {Array<object>}                              Array of item updates.
      * @protected
      */
     _getRestItemUsesRecovery({recoverShortRestUses = true, recoverLongRestUses = true, recoverDailyUses = true} = {}) {
@@ -2692,9 +2736,9 @@ export default class Actor5e extends Actor {
             let charProf = 0;
 
             if (charRank === undefined || charRank.total > 0) charProf = target.data.data.attributes.prof;
-            if (!['active', 'crew', 'passenger'].includes(deployment)) charRank = charRank ? charRank[deployment] : 0;
+            if (!["active", "crew", "passenger"].includes(deployment)) charRank = charRank ? charRank[deployment] : 0;
 
-            const deploymentData = { uuid: charUUID, name: charName, rank: charRank, prof: charProf }
+            const deploymentData = {uuid: charUUID, name: charName, rank: charRank, prof: charProf};
 
             if (deployment.items) {
                 for (let i = 0; i < deployment.items.length; i++) {
@@ -2712,13 +2756,12 @@ export default class Actor5e extends Actor {
                         }
                     }
                 }
-                if (deployments.includes(key) && !charDeployments.includes(key)){
+                if (deployments.includes(key) && !charDeployments.includes(key)) {
                     deployment.items.push(deploymentData);
                     charDeployments.push(key);
                 }
-            }
-            else {
-                if (deployment.uuid == charUUID){
+            } else {
+                if (deployment.uuid == charUUID) {
                     charDeployments.push(key);
                     ssDeploy[key] = deploymentData;
                     if (deployments.includes(key)) {
@@ -2729,19 +2772,21 @@ export default class Actor5e extends Actor {
                             })
                         );
                     }
-                }
-                else if (deployments.includes(key)) ssDeploy[key] = deploymentData;
+                } else if (deployments.includes(key)) ssDeploy[key] = deploymentData;
             }
         }
 
         this.update({"data.attributes.deployment": ssDeploy});
 
-        if (target.data.data.attributes.deployed?.uuid && target.data.data.attributes.deployed?.uuid != this.uuid) target.undeployFromStarship();
-        target.update({"data.attributes.deployed": {
-            uuid: this.uuid,
-            name: this.data.name,
-            deployments: charDeployments
-        }});
+        if (target.data.data.attributes.deployed?.uuid && target.data.data.attributes.deployed?.uuid != this.uuid)
+            target.undeployFromStarship();
+        target.update({
+            "data.attributes.deployed": {
+                uuid: this.uuid,
+                name: this.data.name,
+                deployments: charDeployments
+            }
+        });
 
         this.updateActiveDeployment();
     }
@@ -2750,19 +2795,21 @@ export default class Actor5e extends Actor {
      * Transform this Actor into another one.
      *
      * @param {Actor5e} target            The target Actor.
-     * @param {boolean} [keepPhysical]    Keep physical abilities (str, dex, con)
-     * @param {boolean} [keepMental]      Keep mental abilities (int, wis, cha)
-     * @param {boolean} [keepSaves]       Keep saving throw proficiencies
-     * @param {boolean} [keepSkills]      Keep skill proficiencies
-     * @param {boolean} [mergeSaves]      Take the maximum of the save proficiencies
-     * @param {boolean} [mergeSkills]     Take the maximum of the skill proficiencies
-     * @param {boolean} [keepClass]       Keep proficiency bonus
-     * @param {boolean} [keepFeats]       Keep features
-     * @param {boolean} [keepPowers]      Keep powers
-     * @param {boolean} [keepItems]       Keep items
-     * @param {boolean} [keepBio]         Keep biography
-     * @param {boolean} [keepVision]      Keep vision
-     * @param {boolean} [transformTokens] Transform linked tokens too
+     * @param {object} [options]
+     * @param {boolean} [options.keepPhysical]    Keep physical abilities (str, dex, con)
+     * @param {boolean} [options.keepMental]      Keep mental abilities (int, wis, cha)
+     * @param {boolean} [options.keepSaves]       Keep saving throw proficiencies
+     * @param {boolean} [options.keepSkills]      Keep skill proficiencies
+     * @param {boolean} [options.mergeSaves]      Take the maximum of the save proficiencies
+     * @param {boolean} [options.mergeSkills]     Take the maximum of the skill proficiencies
+     * @param {boolean} [options.keepClass]       Keep proficiency bonus
+     * @param {boolean} [options.keepFeats]       Keep features
+     * @param {boolean} [options.keepPowers]      Keep powers
+     * @param {boolean} [options.keepItems]       Keep items
+     * @param {boolean} [options.keepBio]         Keep biography
+     * @param {boolean} [options.keepVision]      Keep vision
+     * @param {boolean} [options.transformTokens] Transform linked tokens too
+     * @returns {Promise<Array<Token>>|null}      Updated token if the transformation was performed.
      */
     async transformInto(
         target,
@@ -2935,8 +2982,7 @@ export default class Actor5e extends Actor {
                 for (const deploy of Object.values(deployment.items)) {
                     if (deploy.active) active[key] = deploy;
                 }
-            }
-            else if (deployment.active) active[key] = deployment;
+            } else if (deployment.active) active[key] = deployment;
         }
         deployments.active = {
             uuid: null,
@@ -2944,15 +2990,16 @@ export default class Actor5e extends Actor {
             maxrank: 0,
             prof: 0,
             deployments: []
-        }
+        };
         for (const [key, deploy] of Object.entries(active)) {
             deployments.active.uuid = deploy.uuid;
             deployments.active.name = deploy.name;
-            if (typeof deploy.rank == typeof 0) deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
+            if (typeof deploy.rank == typeof 0)
+                deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
             deployments.active.prof = deploy.prof;
             deployments.active.deployments.push(key);
         }
-        this.update({'data.attributes.deployment': deployments});
+        this.update({"data.attributes.deployment": deployments});
         return deployments.active;
     }
 
@@ -2970,18 +3017,20 @@ export default class Actor5e extends Actor {
 
             for (const [key, deployment] of Object.entries(ssDeploy)) {
                 if (key == "active") continue;
-                if (deployment.items) deployment.items = deployment.items.filter(e => e.uuid != this.uuid);
+                if (deployment.items) deployment.items = deployment.items.filter((e) => e.uuid != this.uuid);
                 else if (deployment.uuid == this.uuid) for (const k in deployment) deployment[k] = null;
             }
-            starship.update({'data.attributes.deployment': ssDeploy});
+            starship.update({"data.attributes.deployment": ssDeploy});
             starship.updateActiveDeployment();
         }
 
-        this.update({'data.attributes.deployed': {
-            uuid: null,
-            name: null,
-            deployments: []
-        }});
+        this.update({
+            "data.attributes.deployed": {
+                uuid: null,
+                name: null,
+                deployments: []
+            }
+        });
     }
 
     /* -------------------------------------------- */
@@ -2990,6 +3039,7 @@ export default class Actor5e extends Actor {
      * If this actor was transformed with transformTokens enabled, then its
      * active tokens need to be returned to their original state. If not, then
      * we can safely just delete this actor.
+     * @returns {Promise<Actor>|null}  Original actor if it was reverted.
      */
     async revertOriginalForm() {
         if (!this.isPolymorphed) return;
@@ -3081,16 +3131,16 @@ export default class Actor5e extends Actor {
      * @returns {string}
      */
     static formatCreatureType(typeData) {
-        if (typeof typeData === "string") return typeData; // backwards compatibility
+        if (typeof typeData === "string") return typeData; // Backwards compatibility
         let localizedType;
         if (typeData.value === "custom") {
             localizedType = typeData.custom;
         } else {
             let code = CONFIG.SW5E.creatureTypes[typeData.value];
-            localizedType = game.i18n.localize(!!typeData.swarm ? `${code}Pl` : code);
+            localizedType = game.i18n.localize(typeData.swarm ? `${code}Pl` : code);
         }
         let type = localizedType;
-        if (!!typeData.swarm) {
+        if (typeData.swarm) {
             type = game.i18n.format("SW5E.CreatureSwarmPhrase", {
                 size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm]),
                 type: localizedType
@@ -3106,10 +3156,10 @@ export default class Actor5e extends Actor {
      * Populate a proficiency object with a `selected` field containing a combination of
      * localizable group & individual proficiencies from `value` and the contents of `custom`.
      *
-     * @param {object} data                Object containing proficiency data
-     * @param {Array.<string>} data.value  Array of standard proficiency keys
-     * @param {string} data.custom         Semicolon-separated string of custom proficiencies
-     * @param {string} type                "armor", "weapon", or "tool"
+     * @param {object} data          Object containing proficiency data.
+     * @param {string[]} data.value  Array of standard proficiency keys.
+     * @param {string} data.custom   Semicolon-separated string of custom proficiencies.
+     * @param {string} type          "armor", "weapon", or "tool"
      */
     static prepareProficiencies(data, type) {
         const profs = CONFIG.SW5E[`${type}Proficiencies`];
@@ -3121,12 +3171,11 @@ export default class Actor5e extends Actor {
         }
 
         data.selected = {};
-        const pack = game.packs.get(CONFIG.SW5E.sourcePacks.ITEMS);
         for (const key of values) {
             if (profs[key]) {
                 data.selected[key] = profs[key];
             } else if (itemTypes && itemTypes[key]) {
-                const item = pack.index.get(itemTypes[key]);
+                const item = ProficiencySelector.getBaseItem(itemTypes[key], {indexOnly: true});
                 data.selected[key] = item.name;
             } else if (type === "tool" && CONFIG.SW5E.vehicleTypes[key]) {
                 data.selected[key] = CONFIG.SW5E.vehicleTypes[key];
@@ -3140,15 +3189,101 @@ export default class Actor5e extends Actor {
     }
 
     /* -------------------------------------------- */
+    /*  Event Listeners and Handlers                */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    _onUpdate(data, options, userId) {
+        super._onUpdate(data, options, userId);
+        this._displayScrollingDamage(options.dhp);
+
+        // Get the changed attributes
+        const keys = Object.keys(foundry.utils.flattenObject(data)).filter((k) => k !== "_id");
+        const changed = new Set(keys);
+
+        // Additional options only apply to Actors which are not synthetic Tokens
+        if (this.isToken) return;
+
+        // Check for updates on deployed actors
+        const uuid = this.data.data.attributes.deployed?.uuid;
+        if (uuid) {
+            for (const change of changed) {
+                const arr = change.split(".");
+                if (change == "name" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
+                    const starship = fromUuidSynchronous(uuid);
+                    starship.deployInto(this, []);
+                    break;
+                }
+            }
+        }
+    }
+
+    /* -------------------------------------------- */
+    /**
+     * Follow-up actions taken after a set of embedded Documents in this parent Document are updated.
+     * @param {string} embeddedName   The name of the embedded Document type
+     * @param {Document[]} documents  An Array of updated Documents
+     * @param {object[]} result       An Array of incremental data objects
+     * @param {object} options        Options which modified the update operation
+     * @param {string} userId         The ID of the User who triggered the operation
+     * @memberof ClientDocumentMixin#
+     */
+    _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+
+        // Check for leveling up actors that are deployed
+        const uuid = this.data.data.attributes.deployed?.uuid;
+        if (uuid) {
+            for (let i = 0; i < documents.length; i++) {
+                const doc = documents[i];
+                const changes = result[i];
+                if (doc.data.type == "class" && "data" in changes && "levels" in changes.data) {
+                    const starship = fromUuidSynchronous(uuid);
+                    starship.deployInto(this, []);
+                    break;
+                }
+            }
+        }
+    }
+
+    /* -------------------------------------------- */
+    /**
+     * Display changes to health as scrolling combat text.
+     * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
+     * @param {number} dhp      The change in hit points that was applied
+     * @private
+     */
+    _displayScrollingDamage(dhp) {
+        if (!dhp) return;
+        dhp = Number(dhp);
+        const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
+        for (let t of tokens) {
+            if (!t?.hud?.createScrollingText) continue; // This is undefined prior to v9-p2
+            const pct = Math.clamped(Math.abs(dhp) / this.data.data.attributes.hp.max, 0, 1);
+            t.hud.createScrollingText(dhp.signedString(), {
+                anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+                fontSize: 16 + 32 * pct, // Range between [16, 48]
+                fill: CONFIG.SW5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
+                stroke: 0x000000,
+                strokeThickness: 4,
+                jitter: 0.25
+            });
+        }
+    }
+
+    /* -------------------------------------------- */
     /*  DEPRECATED METHODS                          */
     /* -------------------------------------------- */
 
     /**
+     * Retrieve the power save DC for the provided ability.
+     * @param {string} ability  Ability key as defined in `CONFIG.SW5E.abilities`.
+     * @returns {number}        Power save DC for provided ability.
      * @deprecated since sw5e 0.97
      */
     getPowerDC(ability) {
         console.warn(
-            `The Actor5e#getPowerDC(ability) method has been deprecated in favor of Actor5e#data.data.abilities[ability].dc`
+            "The Actor5e#getPowerDC(ability) method has been deprecated in favor of Actor5e#data.data.abilities[ability].dc"
         );
         return this.data.data.abilities[ability]?.dc;
     }
@@ -3159,10 +3294,11 @@ export default class Actor5e extends Actor {
      * Cast a Power, consuming a power slot of a certain level
      * @param {Item5e} item   The power being cast by the actor
      * @param {Event} event   The originating user interaction which triggered the cast
+     * @returns {Promise<ChatMessage|object|void>}  Dialog if `configureDialog` is true, else prepared dialog data.
      * @deprecated since sw5e 1.2.0
      */
     async usePower(item, {configureDialog = true} = {}) {
-        console.warn(`The Actor5e#usePower method has been deprecated in favor of Item5e#roll`);
+        console.warn("The Actor5e#usePower method has been deprecated in favor of Item5e#roll");
         if (item.data.type !== "power") throw new Error("Wrong Item type");
         return item.roll();
     }

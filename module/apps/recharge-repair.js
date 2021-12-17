@@ -86,20 +86,21 @@ export default class RechargeRepairDialog extends Dialog {
      * A helper constructor function which displays the Recharge Repair dialog and returns a Promise once it's workflow has
      * been resolved.
      * @param {Actor5e} actor
-     * @return {Promise}
+     * @returns {Promise}
      */
     static async rechargeRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {
             const dlg = new this(actor, {
-                title: game.i18n.localize("SW5E.Recharge Repair"),
+                title: `${game.i18n.localize("SW5E.Recharge Repair")}: ${actor.name}`,
                 buttons: {
                     rest: {
                         icon: '<i class="fas fa-wrench"></i>',
                         label: game.i18n.localize("SW5E.Repair"),
                         callback: (html) => {
                             let newDay = false;
-                            if (game.settings.get("sw5e", "restVariant") === "gritty")
+                            if (game.settings.get("sw5e", "restVariant") === "gritty") {
                                 newDay = html.find('input[name="newDay"]')[0].checked;
+                            }
                             resolve(newDay);
                         }
                     },

@@ -4,6 +4,7 @@
  * @param {object} data                     The data object against which to parse attributes within the formula
  * @param {object} [options={}]             Extra optional arguments which describe or modify the AttribDieRoll
  * @param {number} [options.advantageMode]  What advantage modifier to apply to the roll (none, advantage, disadvantage)
+ * @extends {Roll}
  */
 // TODO: Blend D20 Adv/Disadv with damage die roll
 
@@ -172,8 +173,9 @@ export default class AttribDieRoll extends Roll {
 
     /**
      * Handle submission of the Roll evaluation configuration Dialog
-     * @param {jQuery} html             The submitted dialog content
-     * @param {number} advantageMode    The chosen advantage mode
+     * @param {jQuery} html            The submitted dialog content
+     * @param {number} advantageMode   The chosen advantage mode
+     * @returns {AttribDieRoll}        This Attribute Die roll.
      * @private
      */
     _onDialogSubmit(html, advantageMode) {

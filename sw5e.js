@@ -49,6 +49,9 @@ import ActorSkillConfig from "./module/apps/skill-config.js";
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
+// Keep on while testing new SW5e build
+CONFIG.debug.hooks = true;
+
 Hooks.once("init", function () {
     console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 
@@ -101,6 +104,7 @@ Hooks.once("init", function () {
 
     CONFIG.Dice.DamageRoll = dice.DamageRoll;
     CONFIG.Dice.D20Roll = dice.D20Roll;
+    CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
 
     // 5e cone RAW should be 53.13 degrees
     CONFIG.MeasuredTemplate.defaults.angle = 53.13;
@@ -120,6 +124,7 @@ Hooks.once("init", function () {
     // Register Roll Extensions
     CONFIG.Dice.rolls.push(dice.D20Roll);
     CONFIG.Dice.rolls.push(dice.DamageRoll);
+    CONFIG.Dice.rolls.push(dice.AttribDieRoll);
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
@@ -143,11 +148,11 @@ Hooks.once("init", function () {
         makeDefault: false,
         label: "SW5E.SheetClassNPCOld"
     });
-    // Actors.registerSheet("sw5e", ActorSheet5eStarship, {
-    //   types: ["starship"],
-    //   makeDefault: true,
-    //   label: "SW5E.SheetClassStarship"
-    // });
+    Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+        types: ["starship"],
+        makeDefault: true,
+        label: "SW5E.SheetClassStarship"
+    });
     Actors.registerSheet("sw5e", ActorSheet5eVehicle, {
         types: ["vehicle"],
         makeDefault: true,
@@ -175,6 +180,7 @@ Hooks.once("init", function () {
             "deployment",
             "deploymentfeature",
             "starship",
+            "starshipaction",
             "starshipfeature",
             "starshipmod",
             "venture"
@@ -213,6 +219,7 @@ Hooks.once("setup", function () {
         "currencies.abbreviation",
         "damageResistanceTypes",
         "damageTypes",
+        "deploymentTypes",
         "distanceUnits",
         "equipmentTypes",
         "healingTypes",
@@ -227,11 +234,6 @@ Hooks.once("setup", function () {
         "proficiencyLevels",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerComponents",
         "powerLevels",
@@ -260,6 +262,7 @@ Hooks.once("setup", function () {
         "cover",
         "damageResistanceTypes",
         "damageTypes",
+        "deploymentTypes",
         "equipmentTypes",
         "healingTypes",
         "languages",
@@ -268,11 +271,6 @@ Hooks.once("setup", function () {
         "polymorphSettings",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerScalingModes",
         "powerSchools",
@@ -462,6 +460,25 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
 Handlebars.registerHelper("getProperty", function (data, property) {
     return getProperty(data, property);
+});
+
+Handlebars.registerHelper("round", function (value) {
+    return Math.floor(value);
+});
+
+Handlebars.registerHelper("debug", function (value) {
+    console.log(value);
+    return value;
+});
+
+Handlebars.registerHelper("contentLink", function (uuid, placeholdertext) {
+    if (!uuid) {
+        if (!placeholdertext || typeof placeholdertext != String) return new Handlebars.SafeString("");
+        return new Handlebars.SafeString(placeholdertext);
+    }
+    const [type, target] = uuid.split(".");
+    const html = TextEditor._createContentLink("", type, target);
+    return new Handlebars.SafeString(html.outerHTML);
 });
 
 function setFolderBackground(html) {

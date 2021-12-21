@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -16,7 +15,12 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -26,24 +30,24 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+            {{editor content=data.description.value target="data.description.value" button=true owner=owner
+            editable=editable}}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-
             {{!-- Tier --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.StarshipTier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.tier" value="{{data.tier}}" data-dtype="Number"/>
+                    <input type="text" name="data.tier" value="{{data.tier}}" data-dtype="Number" />
                 </div>
             </div>
 
@@ -52,11 +56,9 @@
                 <label>{{localize "SW5E.HullDice"}}</label>
                 <div class="form-fields">
                     <select name="data.hullDice">
-                        {{#select data.hullDice}}
-                        {{#each config.hitDieTypes}}
+                        {{#select data.hullDice}} {{#each config.hitDieTypes}}
                         <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{/each}} {{/select}}
                     </select>
                 </div>
             </div>
@@ -64,14 +66,26 @@
             <div class="form-group">
                 <label>{{localize "SW5E.HullDiceStart"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hullDiceStart" value="{{data.hullDiceStart}}" data-dtype="Number"/>
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.hullDiceStart"
+                        value="{{data.hullDiceStart}}"
+                        data-dtype="Number"
+                    />
                 </div>
             </div>
 
             <div class="form-group">
                 <label>{{localize "SW5E.HullDiceUsed"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hullDiceUsed" value="{{data.hullDiceUsed}}" data-dtype="Number"/>
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.hullDiceUsed"
+                        value="{{data.hullDiceUsed}}"
+                        data-dtype="Number"
+                    />
                 </div>
             </div>
 
@@ -80,11 +94,9 @@
                 <label>{{localize "SW5E.ShieldDice"}}</label>
                 <div class="form-fields">
                     <select name="data.shldDice">
-                        {{#select data.shldDice}}
-                        {{#each config.hitDieTypes}}
+                        {{#select data.shldDice}} {{#each config.hitDieTypes}}
                         <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{/each}} {{/select}}
                     </select>
                 </div>
             </div>
@@ -92,14 +104,26 @@
             <div class="form-group">
                 <label>{{localize "SW5E.ShieldDiceStart"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.shldDiceStart" value="{{data.shldDiceStart}}" data-dtype="Number"/>
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.shldDiceStart"
+                        value="{{data.shldDiceStart}}"
+                        data-dtype="Number"
+                    />
                 </div>
             </div>
 
             <div class="form-group">
                 <label>{{localize "SW5E.ShieldDiceUsed"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.shldDiceUsed" value="{{data.shldDiceUsed}}" data-dtype="Number"/>
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.shldDiceUsed"
+                        value="{{data.shldDiceUsed}}"
+                        data-dtype="Number"
+                    />
                 </div>
             </div>
 
@@ -108,15 +132,282 @@
                 <label>{{localize "SW5E.PowerDice"}}</label>
                 <div class="form-fields">
                     <select name="data.pwrDice">
-                        {{#select data.pwrDice}}
-                        {{#each config.powerDieTypes}}
+                        {{#select data.pwrDice}} {{#each config.powerDieTypes}}
                         <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{/each}} {{/select}}
                     </select>
                 </div>
             </div>
 
+            {{!-- Construction --}}
+
+            <div class="form-group">
+                <label>{{localize "SW5E.StockCost"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.buildBaseCost"
+                        value="{{data.buildBaseCost}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinConstWorkforce"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.buildMinWorkforce"
+                        value="{{data.buildMinWorkforce}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.UpgradeCostMult"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.upgrdCostMult"
+                        value="{{data.upgrdCostMult}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinUpgradeWorkforce"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.upgrdMinWorkforce"
+                        value="{{data.upgrdMinWorkforce}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseSpaceSpeed"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.baseSpaceSpeed"
+                        value="{{data.baseSpaceSpeed}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseTurnSpeed"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.baseTurnSpeed"
+                        value="{{data.baseTurnSpeed}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinCrewWorkforce"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.crewMinWorkforce"
+                        value="{{data.crewMinWorkforce}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            {{!-- Modifications --}}
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseModCap"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modBaseCap"
+                        value="{{data.modBaseCap}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseMaxSuites"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modMaxSuitesBase"
+                        value="{{data.modMaxSuitesBase}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.BaseMaxConMult"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modMaxSuitesMult"
+                        value="{{data.modMaxSuitesMult}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MaxSuiteCapacity"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modMaxSuiteCap"
+                        value="{{data.modMaxSuiteCap}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.ModCostMult"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modCostMult"
+                        value="{{data.modCostMult}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinModWorkforce"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.modMinWorkforce"
+                        value="{{data.modMinWorkforce}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.HardpointStrMult"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.hardpointMult"
+                        value="{{data.hardpointMult}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            {{!-- Equipment --}}
+
+            <div class="form-group">
+                <label>{{localize "SW5E.EquipCostMult"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.equipCostMult"
+                        value="{{data.equipCostMult}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.MinEquipWorkforce"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.equipMinWorkforce"
+                        value="{{data.equipMinWorkforce}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.CargoCap"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.cargoCap"
+                        value="{{data.cargoCap}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FuelCost"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.fuelCost"
+                        value="{{data.fuelCost}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FuelCap"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.fuelCap"
+                        value="{{data.fuelCap}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.FoodCap"}}</label>
+                <div class="form-fields">
+                    <input
+                        type="text"
+                        placeholder="0"
+                        name="data.foodCap"
+                        value="{{data.foodCap}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+        </div>
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
     </section>
 </form>

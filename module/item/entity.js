@@ -34,7 +34,7 @@ export default class Item5e extends Item {
                     case "lgt":
                         return "wis";
                     case "uni":
-                        return actorData.abilities["wis"].mod >= actorData.abilities["cha"].mod ? "wis" : "cha";
+                        return actorData.abilities.wis.mod >= actorData.abilities.cha.mod ? "wis" : "cha";
                     case "drk":
                         return "cha";
                     case "tec":
@@ -561,8 +561,7 @@ export default class Item5e extends Item {
      * @param {boolean} [options.configureDialog]     Display a configuration dialog for the item roll, if applicable?
      * @param {string} [options.rollMode]             The roll display mode with which to display (or not) the card
      * @param {boolean} [options.createMessage]       Whether to automatically create a chat message (if true) or simply
-     *                                                return
-     *                                                the prepared chat message data (if false).
+     *                                                return the prepared chat message data (if false).
      * @returns {Promise<ChatMessage|object|void>}
      */
     async roll({configureDialog = true, rollMode, createMessage = true} = {}) {
@@ -663,13 +662,13 @@ export default class Item5e extends Item {
      * Verify that the consumed resources used by an Item are available.
      * Otherwise display an error and return false.
      * @param {object} options
-     * @param {boolean} options.consumeQuantity     Consume quantity of the item if other consumption modes are not
-     *                                              available?
-     * @param {boolean} options.consumeRecharge     Whether the item consumes the recharge mechanic
-     * @param {boolean} options.consumeResource     Whether the item consumes a limited resource
+     * @param {boolean} options.consumeQuantity       Consume quantity of the item if other consumption modes are not
+     *                                                available?
+     * @param {boolean} options.consumeRecharge       Whether the item consumes the recharge mechanic
+     * @param {boolean} options.consumeResource       Whether the item consumes a limited resource
      * @param {string|null} options.consumePowerLevel The category of power slot to consume, or null
-     * @param {boolean} options.consumeUsage        Whether the item consumes a limited usage
-     * @returns {object|boolean}            A set of data changes to apply when the item is used, or false
+     * @param {boolean} options.consumeUsage          Whether the item consumes a limited usage
+     * @returns {object|boolean}                      A set of data changes to apply when the item is used, or false
      * @private
      */
     _getUsageUpdates({consumeQuantity, consumeRecharge, consumeResource, consumePowerLevel, consumeUsage}) {
@@ -873,7 +872,7 @@ export default class Item5e extends Item {
      * @param {string} [options.rollMode]       The message visibility mode to apply to the created card
      * @param {boolean} [options.createMessage] Whether to automatically create a ChatMessage entity (if true), or only
      *                                          return the prepared message data (if false)
-     * @returns {ChatMessage|object} Chat message if `createMessage` is true, otherwise an object containing message data.
+     * @returns {ChatMessage|object}            Chat message if `createMessage` is true, otherwise an object containing message data.
      */
     async displayCard({rollMode, createMessage = true} = {}) {
         // Render the chat card template
@@ -1181,7 +1180,7 @@ export default class Item5e extends Item {
      * @param {number} [config.powerLevel]   If the item is a power, override the level for damage scaling
      * @param {boolean} [config.versatile]   If the item is a weapon, roll damage using the versatile formula
      * @param {object} [config.options]      Additional options passed to the damageRoll function
-     * @returns {Promise<Roll>}        A Promise which resolves to the created Roll instance
+     * @returns {Promise<Roll>}              A Promise which resolves to the created Roll instance
      */
     rollDamage({critical = false, event = null, powerLevel = null, versatile = false, options = {}} = {}) {
         if (!this.hasDamage) throw new Error("You may not make a Damage Roll with this Item.");
@@ -1606,7 +1605,7 @@ export default class Item5e extends Item {
     /**
      * Get the Actor which is the author of a chat card
      * @param {HTMLElement} card    The chat card being used
-     * @returns {Actor|null}          The Actor entity or null
+     * @returns {Actor|null}        The Actor entity or null
      * @private
      */
     static async _getChatCardActor(card) {
@@ -1627,7 +1626,7 @@ export default class Item5e extends Item {
     /**
      * Get the Actor which is the author of a chat card
      * @param {HTMLElement} card    The chat card being used
-     * @returns {Actor[]}            An Array of Actor entities, if any
+     * @returns {Actor[]}           An Array of Actor entities, if any
      * @private
      */
     static _getChatCardTargets(card) {

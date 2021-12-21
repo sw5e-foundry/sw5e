@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -15,14 +14,29 @@
             </div>
 
             <ul class="summary">
-                <li style="width: 125px;">
-                   <input type="text" name="data.className" value="{{data.className}}" placeholder="{{ localize 'SW5E.ClassName' }}"/>
+                <li style="width: 125px">
+                    <input
+                        type="text"
+                        name="data.className"
+                        value="{{data.className}}"
+                        placeholder="{{ localize 'SW5E.ClassName' }}"
+                    />
                 </li>
-                <li style="width: 275px;">
-                    <input type="text" name="data.classCasterType" value="{{data.classCasterType}}" placeholder="{{ localize 'SW5E.ClassCasterType' }}"/>
+                <li style="width: 275px">
+                    <input
+                        type="text"
+                        name="data.classCasterType"
+                        value="{{data.classCasterType}}"
+                        placeholder="{{ localize 'SW5E.ClassCasterType' }}"
+                    />
                 </li>
-                <li style="width: 75px;">
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                <li style="width: 75px">
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -37,16 +51,15 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
-		<div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+        <div class="tab description" data-group="primary" data-tab="description">
+            {{editor content=data.description.value target="data.description.value" button=true owner=owner
+            editable=editable}}
         </div>
-        
+
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
-
     </section>
 </form>

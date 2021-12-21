@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -15,7 +14,12 @@
 
             <ul class="summary">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -30,45 +34,89 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            <div class="background">{{editor content=data.flavorText.value target="data.flavorText.value" button=true editable=editable}}</div>
-            <div class="background"><p><strong>Skill Proficiencies:</strong> {{{data.skillProficiencies.value}}}</p></div>
-            <div class="background"><p><strong>Tool Proficiencies:</strong> {{{data.toolProficiencies.value}}}</p></div>
-            <div class="background"><p><strong>Languages:</strong> {{{data.languages.value}}}</p></div>
-            <div class="background"><p><strong>Equipment:</strong> {{{data.equipment.value}}}</p></div>
+            <div class="background">
+                {{editor content=data.flavorText.value target="data.flavorText.value" button=true editable=editable}}
+            </div>
+            <div class="background">
+                <p><strong>Skill Proficiencies:</strong> {{{data.skillProficiencies.value}}}</p>
+            </div>
+            <div class="background">
+                <p><strong>Tool Proficiencies:</strong> {{{data.toolProficiencies.value}}}</p>
+            </div>
+            <div class="background">
+                <p><strong>Languages:</strong> {{{data.languages.value}}}</p>
+            </div>
+            <div class="background">
+                <p><strong>Equipment:</strong> {{{data.equipment.value}}}</p>
+            </div>
             <div class="background"><h3>{{{data.flavorName.value}}}</h3></div>
             <div class="background"><p>{{{data.flavorDescription.value}}}</p></div>
-            <div class="smalltable"><p>{{editor content=data.flavorOptions.value target="data.flavorOptions.value" button=true editable=editable}}</p></div>
+            <div class="smalltable">
+                <p>
+                    {{editor content=data.flavorOptions.value target="data.flavorOptions.value" button=true
+                    editable=editable}}
+                </p>
+            </div>
             <div class="background"><h2>Feature: {{{data.featureName.value}}}</h2></div>
             <div class="background"><p>{{{data.featureText.value}}}</p></div>
             <h2>Background Feat</h2>
-            <p>As a further embodiment of the experience and training of your background, you can choose from the following feats:</p>
-            <div class="smalltable"><p>{{editor content=data.featOptions.value target="data.featOptions.value" button=true editable=editable}}</p></div>
+            <p>
+                As a further embodiment of the experience and training of your background, you can choose from the
+                following feats:
+            </p>
+            <div class="smalltable">
+                <p>
+                    {{editor content=data.featOptions.value target="data.featOptions.value" button=true
+                    editable=editable}}
+                </p>
+            </div>
             <h3>Suggested Characteristics</h3>
             <div class="background"><p>{{{data.suggestedCharacteristics.value}}}</p></div>
-            <div class="medtable"><p>{{editor content=data.personalityTraitOptions.value target="data.personalityTraitOptions.value" button=true editable=editable}}</p></div><p>&nbsp;</p>
-            <div class="medtable"><p>{{editor content=data.idealOptions.value target="data.idealOptions.value" button=true editable=editable}}</p></div><p>&nbsp;</p>
-            <div class="medtable"><p>{{editor content=data.flawOptions.value target="data.flawOptions.value" button=true editable=editable}}</p></div><p>&nbsp;</p>
-            <div class="medtable"><p>{{editor content=data.bondOptions.value target="data.bondOptions.value" button=true editable=editable}}</p></div>
+            <div class="medtable">
+                <p>
+                    {{editor content=data.personalityTraitOptions.value target="data.personalityTraitOptions.value"
+                    button=true editable=editable}}
+                </p>
+            </div>
+            <p>&nbsp;</p>
+            <div class="medtable">
+                <p>
+                    {{editor content=data.idealOptions.value target="data.idealOptions.value" button=true
+                    editable=editable}}
+                </p>
+            </div>
+            <p>&nbsp;</p>
+            <div class="medtable">
+                <p>
+                    {{editor content=data.flawOptions.value target="data.flawOptions.value" button=true
+                    editable=editable}}
+                </p>
+            </div>
+            <p>&nbsp;</p>
+            <div class="medtable">
+                <p>
+                    {{editor content=data.bondOptions.value target="data.bondOptions.value" button=true
+                    editable=editable}}
+                </p>
+            </div>
 
             <script>
-                let nullField = document.querySelectorAll('.background > div');
+                let nullField = document.querySelectorAll(".background > div");
 
-                nullField.forEach(function(element) {
+                nullField.forEach(function (element) {
                     if (element.value === null) {
-                        element.previousElementSibling.style.display = 'none';
-                        element.style.display = 'none';
+                        element.previousElementSibling.style.display = "none";
+                        element.style.display = "none";
                     }
                 });
-            </script>        
-        </div> 
-        
+            </script>
+        </div>
+
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
-   
     </section>
 </form>

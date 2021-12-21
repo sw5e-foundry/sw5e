@@ -2,7 +2,7 @@
     "name": "sw5e",
     "title": "SW 5th Edition",
     "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
-    "version": "1.5.5.R1-B1",
+    "version": "1.5.5.R1-B2",
     "author": "Dev Team",
     "scripts": [],
     "esmodules": ["sw5e.js", "babele-register.js"],
@@ -78,6 +78,18 @@
             "name": "consumables",
             "label": "Consumables",
             "path": "./packs/packs/consumables.db",
+            "entity": "Item"
+        },
+        {
+            "name": "deploymentfeatures",
+            "label": "Deployment Features",
+            "path": "./packs/packs/deploymentfeatures.db",
+            "entity": "Item"
+        },
+        {
+            "name": "deployments",
+            "label": "Deployments",
+            "path": "./packs/packs/deployments.db",
             "entity": "Item"
         },
         {
@@ -177,6 +189,48 @@
             "entity": "Item"
         },
         {
+            "name": "starshipactions",
+            "label": "Starship Actions",
+            "path": "./packs/packs/starshipactions.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starshiparmor",
+            "label": "Starship Armor",
+            "path": "./packs/packs/starshiparmor.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starshipequipment",
+            "label": "Starship Equipment",
+            "path": "./packs/packs/starshipequipment.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starshipfeatures",
+            "label": "Starship Features",
+            "path": "./packs/packs/starshipfeatures.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starshipmodifications",
+            "label": "Starship Modifications",
+            "path": "./packs/packs/starshipmodifications.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starships",
+            "label": "Starship Types",
+            "path": "./packs/packs/starships.db",
+            "entity": "Item"
+        },
+        {
+            "name": "starshipweapons",
+            "label": "Starship Weapons",
+            "path": "./packs/packs/starshipweapons.db",
+            "entity": "Item"
+        },
+        {
             "name": "tables",
             "label": "Tables",
             "path": "./packs/packs/tables.db",
@@ -186,6 +240,12 @@
             "name": "techpowers",
             "label": "Tech Powers",
             "path": "./packs/packs/techpowers.db",
+            "entity": "Item"
+        },
+        {
+            "name": "ventures",
+            "label": "Ventures",
+            "path": "./packs/packs/ventures.db",
             "entity": "Item"
         },
         {

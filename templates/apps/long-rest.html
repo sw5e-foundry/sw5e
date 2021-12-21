@@ -4,17 +4,14 @@
     {{#if promptNewDay}}
     <div class="form-group">
         <label>{{ localize "SW5E.NewDay" }}</label>
-        <input type="checkbox" name="newDay" {{checked newDay}}/>
+        <input type="checkbox" name="newDay" {{checked newDay}} />
         <p class="hint">{{ localize "SW5E.NewDayHint" }}</p>
     </div>
     {{/if}}
 
     <div class="dialog-buttons">
         {{#each buttons as |button id|}}
-        <button class="dialog-button" data-button="{{id}}">
-            {{{button.icon}}}
-            {{{button.label}}}
-        </button>
+        <button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button>
         {{/each}}
     </div>
 </form>

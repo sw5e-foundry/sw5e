@@ -85,16 +85,29 @@ SW5E.attunements = {
  * @enum {string}
  */
 SW5E.weaponProficiencies = {
+    blp: "SW5E.WeaponBlasterPistolProficiency",
+    chk: "SW5E.WeaponChakramProficiency",
+    dbb: "SW5E.WeaponDoubleBladeProficiency",
+    dbs: "SW5E.WeaponDoubleSaberProficiency",
+    dsh: "SW5E.WeaponDoubleShotoProficiency",
+    dsw: "SW5E.WeaponDoubleSwordProficiency",
+    hid: "SW5E.WeaponHiddenBladeProficiency",
     imp: "SW5E.WeaponImprovisedProficiency",
-    ntl: "SW5E.WeaponNaturalProficiency",
-
-    sb: "SW5E.WeaponSimpleBlasterProficiency",
-    slw: "SW5E.WeaponSimpleLightweaponProficiency",
-    svw: "SW5E.WeaponSimpleVibroweaponProficiency",
-
-    mb: "SW5E.WeaponMartialBlasterProficiency",
+    lfl: "SW5E.WeaponLightFoilProficiency",
+    lrg: "SW5E.WeaponLightRingProficiency",
+    mar: "SW5E.WeaponMartialProficiency",
+    mrb: "SW5E.WeaponMartialBlasterProficiency",
     mlw: "SW5E.WeaponMartialLightweaponProficiency",
-    mvw: "SW5E.WeaponMartialVibroweaponProficiency",
+    mvb: "SW5E.WeaponMartialVibroweaponProficiency",
+    ntl: "SW5E.WeaponNaturalProficiency",
+    swh: "SW5E.WeaponSaberWhipProficiency",
+    sim: "SW5E.WeaponSimpleProficiency",
+    smb: "SW5E.WeaponSimpleBlasterProficiency",
+    slw: "SW5E.WeaponSimpleLightweaponProficiency",
+    svb: "SW5E.WeaponSimpleVibroweaponProficiency",
+    tch: "SW5E.WeaponTechbladeProficiency",
+    vbr: "SW5E.WeaponVibrorapierProficiency",
+    vbw: "SW5E.WeaponVibrowhipProficiency"
 };
 
 /**
@@ -104,12 +117,12 @@ SW5E.weaponProficiencies = {
  */
 SW5E.weaponProficienciesMap = {
     natural: true,
-    simpleB: "sb",
-    simpleLW: "slw",
-    simpleVW: "svw",
-    martialB: "mb",
-    martialLW: "mlw",
-    martialVW: "mvw",
+    simpleVW: "sim",
+    simpleB: "sim",
+    simpleLW: "sim",
+    martialVW: "mar",
+    martialB: "mar",
+    martialLW: "mar"
 };
 
 /* -------------------------------------------- */
@@ -274,16 +287,16 @@ SW5E.weaponIds = {
  * @enum {string}
  **/
 SW5E.armorIds = {
-    "combatsuit": "sw5e.armor.iJXWiOLOQcVohJBN",
-    "fiberarmor": "sw5e.armor.zAkvWO8lEohqewbB",
+    combatsuit: "sw5e.armor.iJXWiOLOQcVohJBN",
+    fiberarmor: "sw5e.armor.zAkvWO8lEohqewbB",
 
-    "mesharmor": "sw5e.armor.WalIq3DWny0Ud4Vn",
-    "weavearmor": "sw5e.armor.hpN14Vhgw82PHeEz",
-    "compositearmor": "sw5e.armor.mToMe4McIkZRIeCN",
+    mesharmor: "sw5e.armor.WalIq3DWny0Ud4Vn",
+    weavearmor: "sw5e.armor.hpN14Vhgw82PHeEz",
+    compositearmor: "sw5e.armor.mToMe4McIkZRIeCN",
 
-    "battlearmor": "sw5e.armor.wafF3SF4zQBOs34y",
-    "assaultarmor": "sw5e.armor.GO4yvhWLgLTrU0xb",
-    "heavyexoskeleton": "sw5e.armor.ggFMzbQrwkGZCoaQ",
+    battlearmor: "sw5e.armor.wafF3SF4zQBOs34y",
+    assaultarmor: "sw5e.armor.GO4yvhWLgLTrU0xb",
+    heavyexoskeleton: "sw5e.armor.ggFMzbQrwkGZCoaQ"
 };
 /**
  * The basic shield types in sw5e. This enables specific shield proficiencies,
@@ -291,73 +304,73 @@ SW5E.armorIds = {
  * @enum {string}
  **/
 SW5E.shieldIds = {
-    "lightshieldgenerator": "sw5e.armor.eMXpw3HIVMnaNFQ1",
-    "mediumshieldgenerator": "sw5e.armor.R2GRWrNHmAZzksg5",
-    "heavyshieldgenerator": "sw5e.armor.2u9493AUhrh2AfES",
+    lightshieldgenerator: "sw5e.armor.eMXpw3HIVMnaNFQ1",
+    mediumshieldgenerator: "sw5e.armor.R2GRWrNHmAZzksg5",
+    heavyshieldgenerator: "sw5e.armor.2u9493AUhrh2AfES",
 
-    "lightphysicalshield": "sw5e.armor.k1pOOCzZoWEr5Dia",
-    "mediumphysicalshield": "sw5e.armor.4vGeVWgLIUfN9YiB",
-    "heavyphysicalshield": "sw5e.armor.KvzKRKNWATwdzxjz",
-}
+    lightphysicalshield: "sw5e.armor.k1pOOCzZoWEr5Dia",
+    mediumphysicalshield: "sw5e.armor.4vGeVWgLIUfN9YiB",
+    heavyphysicalshield: "sw5e.armor.KvzKRKNWATwdzxjz"
+};
 /**
  * The basic tool types in sw5e. This enables specific tool proficiencies or
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
  **/
 SW5E.toolIds = {
-    "constructorsimplements": "sw5e.implements.5HKxptQKBFED544u",
-    "geneticistsimplements": "sw5e.implements.80xuLufR1m7kpNRs",
-    "cybertechsimplements": "sw5e.implements.9w7V1PCf2aD4caVP",
-    "jewelersimplements": "sw5e.implements.EYpkyPlywQaH9Ivy",
-    "gadgeteersimplements": "sw5e.implements.GJrYc9KQ22o7qTlz",
-    "tinkersimplements": "sw5e.implements.IkmQFQjGc4xq0Czd",
-    "armstechsimplements": "sw5e.implements.Mrwh3CEneCPnPP1T",
-    "artistsimplements": "sw5e.implements.OXlKtbL29bLUluf2",
-    "biotechsimplements": "sw5e.implements.QTg2sCpSdPfyUoCq",
-    "astrotechsimplements": "sw5e.implements.RlQ4zlWA7EdohcEh",
-    "surveyorsimplements": "sw5e.implements.SvureMOX5qo6LqGt",
-    "audiotechsimplements": "sw5e.implements.VNto9t3diElKRHWG",
-    "armormechsimplements": "sw5e.implements.sjsX3NYk7eZ4udlw",
-    "synthweaversimplements": "sw5e.implements.uP1rZHmbOmg8BUaX",
-    "artificersimplements": "sw5e.implements.w7lWDrGgZeYbwiSH",
+    constructorsimplements: "sw5e.implements.5HKxptQKBFED544u",
+    geneticistsimplements: "sw5e.implements.80xuLufR1m7kpNRs",
+    cybertechsimplements: "sw5e.implements.9w7V1PCf2aD4caVP",
+    jewelersimplements: "sw5e.implements.EYpkyPlywQaH9Ivy",
+    gadgeteersimplements: "sw5e.implements.GJrYc9KQ22o7qTlz",
+    tinkersimplements: "sw5e.implements.IkmQFQjGc4xq0Czd",
+    armstechsimplements: "sw5e.implements.Mrwh3CEneCPnPP1T",
+    artistsimplements: "sw5e.implements.OXlKtbL29bLUluf2",
+    biotechsimplements: "sw5e.implements.QTg2sCpSdPfyUoCq",
+    astrotechsimplements: "sw5e.implements.RlQ4zlWA7EdohcEh",
+    surveyorsimplements: "sw5e.implements.SvureMOX5qo6LqGt",
+    audiotechsimplements: "sw5e.implements.VNto9t3diElKRHWG",
+    armormechsimplements: "sw5e.implements.sjsX3NYk7eZ4udlw",
+    synthweaversimplements: "sw5e.implements.uP1rZHmbOmg8BUaX",
+    artificersimplements: "sw5e.implements.w7lWDrGgZeYbwiSH",
 
-    "chefskit": "sw5e.kits.BnhGtUc9G7issUcW",
-    "disguisekit": "sw5e.kits.ChmVrypurts3VY7i",
-    "scavengingkit": "sw5e.kits.NVxy5wBSpJcHxPEm",
-    "spicerskit": "sw5e.kits.NlppEcEGpDVDyPiH",
-    "mechanicskit": "sw5e.kits.NubaMVVv3vNwbtuj",
-    "brewerskit": "sw5e.kits.OAt131yAvZYPlUmO",
-    "munitionskit": "sw5e.kits.VJL0ue7Bpl3s0MHx",
-    "archaeologistkit": "sw5e.kits.WrJhpfymps4yRBdk",
-    "slicerskit": "sw5e.kits.Yonb0zHFV9asPJHq",
-    "bioanalysiskit": "sw5e.kits.fWoNUuZCNLG8W67s",
-    "demolitionskit": "sw5e.kits.gyhyVW4PEUWLpZTL",
-    "artilleristskit": "sw5e.kits.jJ1CiyKVXOlyjn8h",
-    "forgerykit": "sw5e.kits.ksrKs7yvm7X7CMxA",
-    "securitykit": "sw5e.kits.nqf9reJDGplVaeac",
-    "poisonerskit": "sw5e.kits.ofea5VziX4jBg5So",
-    "biochemistskit": "sw5e.kits.pq0o4lUKg8Nl08yf",
+    chefskit: "sw5e.kits.BnhGtUc9G7issUcW",
+    disguisekit: "sw5e.kits.ChmVrypurts3VY7i",
+    scavengingkit: "sw5e.kits.NVxy5wBSpJcHxPEm",
+    spicerskit: "sw5e.kits.NlppEcEGpDVDyPiH",
+    mechanicskit: "sw5e.kits.NubaMVVv3vNwbtuj",
+    brewerskit: "sw5e.kits.OAt131yAvZYPlUmO",
+    munitionskit: "sw5e.kits.VJL0ue7Bpl3s0MHx",
+    archaeologistkit: "sw5e.kits.WrJhpfymps4yRBdk",
+    slicerskit: "sw5e.kits.Yonb0zHFV9asPJHq",
+    bioanalysiskit: "sw5e.kits.fWoNUuZCNLG8W67s",
+    demolitionskit: "sw5e.kits.gyhyVW4PEUWLpZTL",
+    artilleristskit: "sw5e.kits.jJ1CiyKVXOlyjn8h",
+    forgerykit: "sw5e.kits.ksrKs7yvm7X7CMxA",
+    securitykit: "sw5e.kits.nqf9reJDGplVaeac",
+    poisonerskit: "sw5e.kits.ofea5VziX4jBg5So",
+    biochemistskit: "sw5e.kits.pq0o4lUKg8Nl08yf",
 
-    "sabaccdeck": "sw5e.gamingsets.RvFP7y8VWPMROQWv",
-    "pazaakdeck": "sw5e.gamingsets.XfClqzNPbjJxHqil",
-    "dejarikset": "sw5e.gamingsets.dKho3HXE7XfS4iRU",
-    "chancecubes": "sw5e.gamingsets.kqt52rtjpaz6jiCf",
+    sabaccdeck: "sw5e.gamingsets.RvFP7y8VWPMROQWv",
+    pazaakdeck: "sw5e.gamingsets.XfClqzNPbjJxHqil",
+    dejarikset: "sw5e.gamingsets.dKho3HXE7XfS4iRU",
+    chancecubes: "sw5e.gamingsets.kqt52rtjpaz6jiCf",
 
-    "mandoviol": "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
-    "lute": "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
-    "shawm": "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
-    "fizzz": "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
-    "chindinkaluhorn": "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
-    "kloohorn": "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
-    "xantha": "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
-    "slitherhorn": "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
-    "traz": "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
-    "ommnibox": "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
-    "bandfill": "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
-    "flute": "sw5e.musicalinstruments.mumHDhvGww117xoq",
-    "valahorn": "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
-    "drum": "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
-    "fanfar": "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
+    mandoviol: "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
+    lute: "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
+    shawm: "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
+    fizzz: "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+    chindinkaluhorn: "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
+    kloohorn: "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
+    xantha: "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
+    slitherhorn: "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
+    traz: "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
+    ommnibox: "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
+    bandfill: "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
+    flute: "sw5e.musicalinstruments.mumHDhvGww117xoq",
+    valahorn: "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
+    drum: "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
+    fanfar: "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
 };
 
 /* -------------------------------------------- */
@@ -872,7 +885,59 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
  * Enumerate the denominations of power dice which can apply to starships in the SW5E system
  * @type {string[]}
  */
-SW5E.powerDieTypes = [1, "d4", "d6", "d8", "d10", "d12"];
+SW5E.powerDieTypes = ["d1", "d4", "d6", "d8", "d10", "d12"];
+
+/* -------------------------------------------- */
+
+/**
+ * Enumerate the upgrade costs as they apply to starships in the SW5E system based on Tier.
+ * @type {number[]}
+ */
+
+SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
+
+/* -------------------------------------------- */
+
+/**
+ * Starship Deployment types
+ * @enum {string}
+ */
+
+SW5E.deploymentTypes = {
+    coord: "SW5E.DeploymentTypeCoordinator",
+    gunner: "SW5E.DeploymentTypeGunner",
+    mechanic: "SW5E.DeploymentTypeMechanic",
+    operator: "SW5E.DeploymentTypeOperator",
+    pilot: "SW5E.DeploymentTypePilot",
+    technician: "SW5E.DeploymentTypeTechnician",
+    crew: "SW5E.DeploymentTypeCrew",
+    passenger: "SW5E.DeploymentTypePassenger"
+};
+
+/**
+ * Starship Deployment types plural
+ * @enum {string}
+ */
+
+SW5E.deploymentTypesPlural = {
+    coord: "SW5E.DeploymentTypeCoordinatorPl",
+    gunner: "SW5E.DeploymentTypeGunnerPl",
+    mechanic: "SW5E.DeploymentTypeMechanicPl",
+    operator: "SW5E.DeploymentTypeOperatorPl",
+    pilot: "SW5E.DeploymentTypePilotPl",
+    technician: "SW5E.DeploymentTypeTechnicianPl",
+    crew: "SW5E.DeploymentTypeCrewPl",
+    passenger: "SW5E.DeploymentTypePassengerPl"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship Deployable actor types
+ * @type {string[]}
+ */
+
+SW5E.deployableTypes = ["character", "npc"];
 
 /* -------------------------------------------- */
 
@@ -918,7 +983,7 @@ SW5E.skills = {
 
 /**
  * The set of starship skills which can be trained in SW5e
- * @type {Object}
+ * @enum {string}
  */
 SW5E.starshipSkills = {
     ast: "SW5E.StarshipSkillAst",
@@ -926,7 +991,7 @@ SW5E.starshipSkills = {
     dat: "SW5E.StarshipSkillDat",
     hid: "SW5E.StarshipSkillHid",
     imp: "SW5E.StarshipSkillImp",
-    int: "SW5E.StarshipSkillInt",
+    inf: "SW5E.StarshipSkillInf",
     man: "SW5E.StarshipSkillMan",
     men: "SW5E.StarshipSkillMen",
     pat: "SW5E.StarshipSkillPat",
@@ -941,6 +1006,7 @@ SW5E.starshipSkills = {
 
 /**
  * Various different ways a power can be prepared.
+ * @enum {string}
  */
 SW5E.powerPreparationModes = {
     prepared: "SW5E.PowerPrepPrepared",
@@ -971,6 +1037,7 @@ SW5E.powerProgression = {
 
 /**
  * The max number of known powers available to each class per level
+ * @type {number[]}  progresstionType[classLevel]
  */
 
 SW5E.powersKnown = {
@@ -984,6 +1051,7 @@ SW5E.powersKnown = {
 
 /**
  * The max number of powers cast for each power level per long rest
+ * @type {number[]} progresstionType[powerLevel]
  */
 
 SW5E.powerLimit = {
@@ -999,6 +1067,7 @@ SW5E.powerLimit = {
 
 /**
  * The max level of a known/overpowered power available to each class per level
+ * @type {number[]} progresstionType[classLevel]
  */
 
 SW5E.powerMaxLevel = {
@@ -1015,6 +1084,7 @@ SW5E.powerMaxLevel = {
 
 /**
  * The number of base force/tech points available to each class per level
+ * @type {number[]} progresstionType[classLevel]
  */
 
 SW5E.powerPoints = {
@@ -1208,7 +1278,7 @@ SW5E.powerLevels = {
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /*
-/**
+// Power Scroll Compendium UUIDs
  * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
  * @enum {string}
  
@@ -1294,7 +1364,10 @@ SW5E.trackableAttributes = [
     "attributes.init.value",
     "attributes.movement",
     "attributes.senses",
-    "attributes.powerdc",
+    "attributes.powerForceLightDC",
+    "attributes.powerForceDarkDC",
+    "attributes.powerForceUnivDC",
+    "attributes.powerTechDC",
     "attributes.powerLevel",
     "details.cr",
     "details.powerLevel",
@@ -1481,6 +1554,15 @@ SW5E.CHARACTER_EXP_LEVELS = [
 SW5E.CR_EXP_LEVELS = [
     10, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000,
     22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
+];
+
+/**
+ * Rank Level Prestige Requirements.
+ * @type {number[]}
+ */
+SW5E.CHARACTER_RANK_LEVELS = [
+    0, 1, 5, 20, 50, 100, 200, 350, 550, 800, 1100, 1450, 1850, 2300, 2800, 3350, 3950, 4600, 5300, 6050, 6850, 7700,
+    8600, 9550, 10550, 11600, 12700, 13850, 15050, 16300, 17600
 ];
 
 /**

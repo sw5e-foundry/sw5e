@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -15,16 +14,19 @@
             </div>
 
             <ul class="summary flexrow">
-                <li style="flex-basis: 80px;">
-                    {{lookup config.weaponTypes data.weaponType }}
-                </li>
+                <li style="flex-basis: 80px">{{lookup config.weaponTypes data.weaponType }}</li>
                 <li>
                     <select name="data.rarity">
                         {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -39,11 +41,8 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
-        {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
-
-        {{!-- Details Tab --}}
+        {{!-- Description Tab --}} {{> "systems/sw5e/templates/items/parts/item-description.html"}} {{!-- Details Tab
+        --}}
         <div class="tab details" data-group="primary" data-tab="details">
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponDetails" }}</h3>
 
@@ -63,7 +62,7 @@
             </div>
 
             {{!-- Starship Weapon Size --}}
-<!--             <div class="form-group">
+            <!--             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
                 <select name="data.weaponSize">
 					<option value="" selected disabled>Select Size</option>
@@ -74,7 +73,7 @@
                     {{/select}}
                 </select>
             </div> -->
-			
+
             {{#unless isMountable}}
             <div class="form-group">
                 <label>{{localize "SW5E.Attunement"}}</label>
@@ -88,24 +87,26 @@
                 <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
                 <div class="form-fields">
                     <label class="checkbox">
-                        <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "SW5E.Proficient" }}
+                        <input type="checkbox" name="data.proficient" {{checked data.proficient}} /> {{ localize
+                        "SW5E.Proficient" }}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "SW5E.Equipped" }}
+                        <input type="checkbox" name="data.equipped" {{checked data.equipped}} /> {{ localize
+                        "SW5E.Equipped" }}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "SW5E.Identified" }}
+                        <input type="checkbox" name="data.identified" {{checked data.identified}} /> {{ localize
+                        "SW5E.Identified" }}
                     </label>
                 </div>
             </div>
-            {{/unless}}
-
-            {{!-- Weapon Properties --}}
+            {{/unless}} {{!-- Weapon Properties --}}
             <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                 {{#each config.weaponProperties as |name prop|}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
+                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties
+                    prop)}}/> {{ name }}
                 </label>
                 {{/each}}
             </div>
@@ -114,23 +115,19 @@
             <div class="form-group">
                 <label>{{localize 'SW5E.ArmorClass'}}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.armor.value" value="{{data.armor.value}}"
-                           data-dtype="Number">
+                    <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number" />
                 </div>
             </div>
 
-            {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
-            {{/if}}
+            {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}} {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponUsage" }}</h3>
 
-            {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{!-- Item Activation Template --}} {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponAttack" }}</h3>
 
-            {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
 
         {{!-- Effects Tab --}}

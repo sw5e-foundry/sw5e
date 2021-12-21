@@ -10,8 +10,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         return "systems/sw5e/templates/actors/newActor/character-sheet.html";
     }
     /**
-   * Define default rendering options for the NPC sheet.
-   * @returns {object}
+     * Define default rendering options for the NPC sheet.
+     * @returns {object}
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -32,8 +32,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
-   * @returns {object}  Prepared copy of the actor data ready to be displayed.
+     * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
+     * @returns {object}  Prepared copy of the actor data ready to be displayed.
      */
     getData() {
         const sheetData = super.getData();
@@ -55,7 +55,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
         // Experience Tracking
         sheetData.disableExperience = game.settings.get("sw5e", "disableExperienceTracking");
-        sheetData.classLabels = this.actor.itemTypes.class.map(c => c.name).join(", ");
+        sheetData.classLabels = this.actor.itemTypes.class.map((c) => c.name).join(", ");
         sheetData.multiclassLabels = this.actor.itemTypes.class
             .map((c) => {
                 return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(" ");
@@ -63,7 +63,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             .join(", ");
         // Weight unit
         sheetData.weightUnit = game.settings.get("sw5e", "metricWeightUnits")
-        ? game.i18n.localize("SW5E.AbbreviationKgs")
+            ? game.i18n.localize("SW5E.AbbreviationKgs")
             : game.i18n.localize("SW5E.AbbreviationLbs");
 
         // Return data for rendering
@@ -73,12 +73,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Organize and classify Owned Items for Character sheets
-   * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
+     * Organize and classify Owned Items for Character sheets
+     * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItems(data) {
-
         // Categorize items as inventory, powerbook, features, and classes
         const inventory = {
             weapon: {label: "SW5E.ItemTypeWeaponPl", items: [], dataset: {type: "weapon"}},
@@ -105,7 +104,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             backgrounds,
             fightingstyles,
             fightingmasteries,
-            lightsaberforms
+            lightsaberforms,
+            ssfeats
         ] = data.items.reduce(
             (arr, item) => {
                 // Item details
@@ -156,7 +156,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
                 return arr;
             },
-            [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+            [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
         );
 
         // Apply active item filters
@@ -164,6 +164,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
         feats = this._filterItems(feats, this._filters.features);
+        ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
 
         // Organize items
         for (let i of items) {
@@ -200,26 +201,12 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 dataset: {type: "archetype"},
                 isArchetype: true
             },
-            deployments: {
-                label: "SW5E.ItemTypeDeploymentPl",
+            starship: {
+                label: "SW5E.ItemTypeStarship",
                 items: [],
                 hasActions: false,
-                dataset: {type: "deployment"},
-                isDeployment: true
-            },
-            deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
-                items: [],
-                hasActions: true,
-                dataset: {type: "deploymentfeature"},
-                isDeploymentfeature: true
-            },
-            ventures: {
-                label: "SW5E.ItemTypeVenturePl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "venture"},
-                isVenture: true
+                dataset: {type: "starship"},
+                isStarship: true
             },
             species: {
                 label: "SW5E.ItemTypeSpecies",
@@ -272,27 +259,65 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         features.classes.items = classes;
         features.classfeatures.items = classfeatures;
         features.archetype.items = archetypes;
-        features.deployments.items = deployments;
-        features.deploymentfeatures.items = deploymentfeatures;
-        features.ventures.items = ventures;
         features.species.items = species;
         features.background.items = backgrounds;
         features.fightingstyles.items = fightingstyles;
         features.fightingmasteries.items = fightingmasteries;
         features.lightsaberforms.items = lightsaberforms;
 
+        // Organize Starship Features
+        const ssfeatures = {
+            deployments: {
+                label: "SW5E.ItemTypeDeploymentPl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "deployment"},
+                isDeployment: true
+            },
+            deploymentfeatures: {
+                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                items: [],
+                hasActions: true,
+                dataset: {type: "deploymentfeature"},
+                isDeploymentfeature: true
+            },
+            ventures: {
+                label: "SW5E.ItemTypeVenturePl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "venture"},
+                isVenture: true
+            },
+            active: {
+                label: "SW5E.FeatureActive",
+                items: [],
+                hasActions: true,
+                dataset: {"type": "feat", "activation.type": "action"}
+            },
+            passive: {label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"}}
+        };
+        for (let ssf of ssfeats) {
+            if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
+            else ssfeatures.passive.items.push(ssf);
+        }
+        deployments.sort((a, b) => b.data.rank - a.data.rank);
+        ssfeatures.deployments.items = deployments;
+        ssfeatures.deploymentfeatures.items = deploymentfeatures;
+        ssfeatures.ventures.items = ventures;
+
         // Assign and return
         data.inventory = Object.values(inventory);
         data.forcePowerbook = forcePowerbook;
         data.techPowerbook = techPowerbook;
         data.features = Object.values(features);
+        data.ssfeatures = Object.values(ssfeatures);
     }
 
     /* -------------------------------------------- */
 
     /**
-   * A helper method to establish the displayed preparation state for an item.
-   * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
+     * A helper method to establish the displayed preparation state for an item.
+     * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItemToggleState(item) {
@@ -313,11 +338,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /**
-   * Activate event listeners using the prepared sheet HTML.
-   * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
+     * Activate event listeners using the prepared sheet HTML.
+     * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -406,9 +431,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Handle mouse click events for character sheet actions.
-   * @param {MouseEvent} event  The originating click event.
-   * @returns {Promise}         Dialog or roll result.
+     * Handle mouse click events for character sheet actions.
+     * @param {MouseEvent} event  The originating click event.
+     * @returns {Promise}         Dialog or roll result.
      * @private
      */
     _onSheetAction(event) {
@@ -425,9 +450,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Item with the updates applied.
+     * Handle toggling the state of an Owned Item within the Actor.
+     * @param {Event} event        The triggering click event.
+     * @returns {Promise<Item5e>}  Item with the updates applied.
      * @private
      */
     _onToggleItem(event) {
@@ -441,9 +466,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Take a short rest, calling the relevant function on the Actor instance.
-   * @param {Event} event             The triggering click event.
-   * @returns {Promise<RestResult>}  Result of the rest action.
+     * Take a short rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onShortRest(event) {
@@ -455,9 +480,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Take a long rest, calling the relevant function on the Actor instance.
-   * @param {Event} event             The triggering click event.
-   * @returns {Promise<RestResult>}  Result of the rest action.
+     * Take a long rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onLongRest(event) {
@@ -484,17 +509,17 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         }
 
         // Increment the number of deployment ranks of a character instead of creating a new item
-        // else if ( itemData.type === "deployment" ) {
-        //  const rnk = this.actor.itemTypes.deployment.find(c => c.name === itemData.name);
-        //  let priorRank = rnk?.data.data.ranks ?? 0;
-        //  if ( !!rnk ) {
-        //    const next = Math.min(priorLevel + 1, 5 + priorRank - this.actor.data.data.details.rank);
-        //    if ( next > priorRank ) {
-        //      itemData.ranks = next;
-        //      return rnk.update({"data.ranks": next});
-        //    }
-        //  }
-        // }
+        else if (itemData.type === "deployment") {
+            const rnk = this.actor.itemTypes.deployment.find((c) => c.name === itemData.name);
+            let priorRank = rnk?.data.data.rank ?? 0;
+            if (!!rnk) {
+                const rnkNext = Math.min(priorRank + 1, 5);
+                if (rnkNext > priorRank) {
+                    itemData.rank = rnkNext;
+                    return rnk.update({"data.rank": rnkNext});
+                }
+            }
+        }
 
         // Default drop handling if levels were not added
         return super._onDropItemCreate(itemData);

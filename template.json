@@ -1,6 +1,6 @@
 {
     "Actor": {
-        "types": ["character", "npc", "vehicle"],
+        "types": ["character", "npc", "starship", "vehicle"],
         "templates": {
             "common": {
                 "abilities": {
@@ -63,8 +63,8 @@
                         "value": 10,
                         "min": 0,
                         "max": 10,
-                        "temp": 0,
-                        "tempmax": 0
+                        "temp": null,
+                        "tempmax": null
                     },
                     "init": {
                         "value": 0,
@@ -115,6 +115,15 @@
             },
             "creature": {
                 "attributes": {
+                    "rank": {
+                        "total": 0,
+                        "coord": 0,
+                        "gunner": 0,
+                        "mechanic": 0,
+                        "operator": 0,
+                        "pilot": 0,
+                        "technician": 0
+                    },
                     "senses": {
                         "darkvision": 0,
                         "blindsight": 0,
@@ -151,6 +160,11 @@
                             "tempmax": 0
                         },
                         "level": 0
+                    },
+                    "deployed": {
+                        "uuid": null,
+                        "name": null,
+                        "deployments": []
                     }
                 },
                 "details": {
@@ -437,6 +451,11 @@
                     "min": 0,
                     "max": 300
                 },
+                "prestige": {
+                    "value": 0,
+                    "min": 0,
+                    "max": 1
+                },
                 "appearance": "",
                 "trait": "",
                 "ideal": "",
@@ -514,31 +533,127 @@
         "starship": {
             "templates": ["common"],
             "attributes": {
-                "cargcap": 0,
-                "crewcap": 0,
-                "cscap": 0,
+                "cost": {
+                    "baseBuild": 0,
+                    "baseUpgrade": 0,
+                    "multEquip": 0,
+                    "multModification": 0,
+                    "multUpgrade": 0
+                },
                 "death": {
                     "failure": 0,
                     "success": 0
                 },
-                "dr": 0,
-                "engpow": 1,
-                "exhaustion": 0,
-                "hsm": 1,
+                "deployment": {
+                    "coord": {
+                        "uuid": null,
+                        "name": null,
+                        "rank": null,
+                        "prof": null
+                    },
+                    "gunner": {
+                        "items": []
+                    },
+                    "mechanic": {
+                        "uuid": null,
+                        "name": null,
+                        "rank": null,
+                        "prof": null
+                    },
+                    "operator": {
+                        "uuid": null,
+                        "name": null,
+                        "rank": null,
+                        "prof": null
+                    },
+                    "pilot": {
+                        "uuid": null,
+                        "name": null,
+                        "rank": null,
+                        "prof": null
+                    },
+                    "technician": {
+                        "uuid": null,
+                        "name": null,
+                        "rank": null,
+                        "prof": null
+                    },
+                    "crew": {
+                        "items": []
+                    },
+                    "passenger": {
+                        "items": []
+                    },
+                    "active": {
+                        "uuid": null,
+                        "name": null,
+                        "maxrank": 0,
+                        "prof": 0,
+                        "deployments": []
+                    }
+                },
+                "equip": {
+                    "armor": {
+                        "dr": 0,
+                        "maxDex": 99,
+                        "stealthDisadv": false
+                    },
+                    "hyperdrive": {
+                        "class": null
+                    },
+                    "powerCoupling": {
+                        "centralCap": 0,
+                        "systemCap": 0
+                    },
+                    "reactor": {
+                        "fuelMult": 1,
+                        "powerRecDie": "1"
+                    },
+                    "size": {
+                        "cargoCap": 0,
+                        "crewMinWorkforce": 0,
+                        "foodCap": 0
+                    },
+                    "shields": {
+                        "capMult": 1,
+                        "regenRateMult": 1
+                    }
+                },
+                "systemDamage": 0,
+                "fuel": {
+                    "cap": 0,
+                    "cost": 0,
+                    "value": 0
+                },
                 "hull": {
                     "die": "",
                     "dice": 0,
+                    "dicemax": 0,
                     "formula": "",
                     "value": null,
                     "max": null
                 },
                 "mods": {
-                    "open": 10,
-                    "max": 10
+                    "capUsed": 0,
+                    "capLimit": 10,
+                    "hardpoints": {
+                        "open": 0,
+                        "max": 0
+                    },
+                    "installed": 0,
+                    "suites": {
+                        "open": 0,
+                        "max": 0,
+                        "cap": 0
+                    }
                 },
-                "pwrdice": {
-                    "pwrdie": "",
-                    "recovery": 1,
+                "power": {
+                    "die": "",
+                    "routing": {
+                        "engines": 1,
+                        "shields": 1,
+                        "weapons": 1
+                    },
                     "central": {
                         "value": 0,
                         "max": 0
@@ -567,21 +682,24 @@
                 "shld": {
                     "die": "",
                     "dice": 0,
+                    "dicemax": 0,
+                    "depleted": false,
                     "formula": "",
                     "value": null,
                     "max": null
                 },
-                "shieldpow": 1,
-                "sscap": 0,
-                "suites": {
-                    "open": 0,
-                    "max": 0
-                },
-                "weaponpow": 1
+                "used": false,
+                "workforce": {
+                    "max": 0,
+                    "minBuild": 0,
+                    "minEquip": 0,
+                    "minModification": 0,
+                    "minUpgrade": 0
+                }
             },
             "details": {
                 "tier": 0,
-                "role": "",
+                "role": [],
                 "source": ""
             },
             "skills": {
@@ -625,7 +743,7 @@
                         "passive": ""
                     }
                 },
-                "int": {
+                "inf": {
                     "value": 0,
                     "ability": "cha",
                     "bonuses": {
@@ -699,7 +817,7 @@
                 }
             },
             "traits": {
-                "size": "med"
+                "size": null
             }
         },
         "vehicle": {
@@ -786,6 +904,7 @@
             "power",
             "species",
             "starship",
+            "starshipaction",
             "starshipfeature",
             "starshipmod",
             "tool",
@@ -860,6 +979,11 @@
                 "source": ""
             },
             "classDescription": {
+                "description": {
+                    "value": ""
+                }
+            },
+            "deploymentDescription": {
                 "description": {
                     "value": ""
                 }
@@ -988,7 +1112,7 @@
                 "capx": {
                     "value": null
                 },
-                "hpperhd": {
+                "dmgred": {
                     "value": null
                 },
                 "regrateco": {
@@ -1058,12 +1182,22 @@
             }
         },
         "deployment": {
-            "templates": ["classDescription"],
+            "templates": ["deploymentDescription"],
+            "rank": 1,
             "flavorText": "",
             "source": ""
         },
         "deploymentfeature": {
             "templates": ["itemDescription", "activatedEffect", "action"],
+            "deployment": {
+                "value": ""
+            },
+            "featureType": {
+                "value": ""
+            },
+            "rank": {
+                "value": ""
+            },
             "recharge": {
                 "charged": false,
                 "value": null
@@ -1166,13 +1300,43 @@
             "size": "",
             "tier": 0,
             "hullDice": "d6",
-            "hullDiceStart": 1,
+            "hullDiceStart": 3,
+            "hullDiceRolled": [6, 4, 4],
             "hullDiceUsed": 0,
             "shldDice": "d6",
-            "shldDiceStart": 1,
+            "shldDiceStart": 3,
+            "shldDiceRolled": [6, 4, 4],
             "shldDiceUsed": 0,
-            "pwrDice": "1",
+            "pwrDice": "d1",
+            "buildBaseCost": 50000,
+            "buildMinWorkforce": 5,
+            "upgrdCostMult": 1,
+            "upgrdMinWorkforce": 1,
+            "baseSpaceSpeed": 300,
+            "baseTurnSpeed": 250,
+            "crewMinWorkforce": 1,
+            "modBaseCap": 20,
+            "modMaxSuitesBase": 0,
+            "modMaxSuitesMult": 1,
+            "modMaxSuiteCap": 1,
+            "modCostMult": 1,
+            "modMinWorkforce": 2,
+            "hardpointMult": 2,
+            "equipCostMult": 1,
+            "equipMinWorkforce": 1,
+            "cargoCap": 2,
+            "fuelCost": 50,
+            "fuelCap": 10,
+            "foodCap": 10,
             "source": "SotG"
+        },
+        "starshipaction": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "deployment": "crew",
+            "recharge": {
+                "charged": false,
+                "value": null
+            }
         },
         "starshipfeature": {
             "templates": ["itemDescription", "activatedEffect", "action"],

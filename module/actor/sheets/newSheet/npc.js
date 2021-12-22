@@ -215,7 +215,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
         event.preventDefault();
         const formula = this.actor.data.data.attributes.hp.formula;
         if (!formula) return;
-        const hp = new Roll(formula).roll().total;
+        const hp = new Roll(formula).roll({async: false}).total;
         AudioHelper.play({src: CONFIG.sounds.dice});
         this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
     }

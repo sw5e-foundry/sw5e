@@ -7,7 +7,7 @@ export default class RechargeRepairDialog extends Dialog {
         super(dialogData, options);
 
         /**
-         * Store a reference to the Actor entity which is repairing
+         * Store a reference to the Actor document which is repairing
          * @type {Actor}
          */
         this.actor = actor;

@@ -19,7 +19,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     constructor(...args) {
         super(...args);
 
-        this._filters.features.add("activeDeploy")
+        this._filters.features.add("activeDeploy");
     }
 
     /* -------------------------------------------- */
@@ -70,10 +70,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 dataset: {type: "starshipmod"}
             }
         };
-        const starshipactions = {}
-        for (const deploy of Object.keys(SW5E.deploymentTypes)) starshipactions[deploy] = {
+        const starshipactions = {};
+        for (const deploy of Object.keys(SW5E.deploymentTypes))
+            starshipactions[deploy] = {
                 items: [],
-                dataset: {"type": "starshipaction", "deployment": deploy}
+                dataset: {type: "starshipaction", deployment: deploy}
             };
 
         // Start by classifying items into groups for rendering
@@ -130,10 +131,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         data.isGargantuan = data.actor.data.traits.size === "grg";
 
         if (!this._filters.features.has("activeDeploy")) data.showAllActions = true;
-        if (Object.entries(this.actor.data.data.attributes.deployment).filter(
+        if (
+            Object.entries(this.actor.data.data.attributes.deployment).filter(
                 ([key, deploy]) => key != "active" && (deploy.uuid || deploy.items?.length)
-            ).length == 0) {
-                data.showAllDeployments = true;
+            ).length == 0
+        ) {
+            data.showAllDeployments = true;
         }
 
         return data;
@@ -216,7 +219,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         event.preventDefault();
         const formula = this.actor.data.data.attributes.hp.formula;
         if (!formula) return;
-        const hp = new Roll(formula).roll().total;
+        const hp = new Roll(formula).roll({async: false}).total;
         AudioHelper.play({src: CONFIG.sounds.dice});
         this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
     }
@@ -328,19 +331,18 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const uuid = li.dataset.uuid;
         const deployments = this.actor.data.data.attributes.deployment;
         const deployment = deployments[key];
-        switch ( a.dataset.action ) {
+        switch (a.dataset.action) {
             case "delete":
                 if (deployment.items) {
-                    const aux1 = deployment.items.filter(e => e.uuid == uuid);
-                    const aux2 = deployment.items.filter(e => e.uuid != uuid);
+                    const aux1 = deployment.items.filter((e) => e.uuid == uuid);
+                    const aux2 = deployment.items.filter((e) => e.uuid != uuid);
                     if (aux1.length && aux1[0].active) deployment.active = false;
                     deployment.items = aux2;
-                }
-                else for (const k in deployment) deployment[k] = null;
+                } else for (const k in deployment) deployment[k] = null;
                 const actor = fromUuidSynchronous(uuid);
                 if (actor) {
                     const deployed = actor.data.data.attributes.deployed;
-                    deployed.deployments = deployed.deployments.filter(e => e != key);
+                    deployed.deployments = deployed.deployments.filter((e) => e != key);
                     if (!deployed.deployments.length) actor.undeployFromStarship();
                 }
                 break;
@@ -353,11 +355,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                             if (deploy.uuid == uuid) {
                                 deploy.active = !deploy.active;
                                 deployment.active = deploy.active;
-                            }
-                            else deploy.active = false;
+                            } else deploy.active = false;
                         }
-                    }
-                    else{
+                    } else {
                         if (deployment.uuid == uuid) deployment.active = !deployment.active;
                         else deployment.active = false;
                     }
@@ -375,30 +375,33 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         let sourceActor = null;
         if (data.pack) {
             const pack = game.packs.find((p) => p.collection === data.pack);
-            sourceActor = await pack.getEntity(data.id);
+            sourceActor = await pack.getDocument(data.id);
         } else {
             sourceActor = game.actors.get(data.id);
         }
         if (!sourceActor) return;
 
-        if (!SW5E.deployableTypes.includes(sourceActor.type)) return ui.notifications.warn(
+        if (!SW5E.deployableTypes.includes(sourceActor.type))
+            return ui.notifications.warn(
                 game.i18n.format("SW5E.DeploymentInvalidActorType", {
-                    actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type]),
+                    actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
                 })
             );
 
         // Pre-select the deployment slot with the highest rank
         const preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
-                (prev, cur) => (cur[0] == "total") ? prev : (cur[1] > prev[1]) ? cur : prev,
-                ["passenger", 0]
-            )[0];
-        const iscrew = (preselected != "passenger") ? "crew" : "";
+            (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
+            ["passenger", 0]
+        )[0];
+        const iscrew = preselected != "passenger" ? "crew" : "";
 
         // Create and render the Dialog
         // Define a function to record starship deployment selections
         const rememberOptions = (html) => {
             let values = [];
-            html.find("input").each((i, el) => { if (el.checked) values.push(el.name); });
+            html.find("input").each((i, el) => {
+                if (el.checked) values.push(el.name);
+            });
             return values;
         };
         return new Dialog(
@@ -413,7 +416,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                     i18n: SW5E.deploymentTypes,
                     isToken: this.actor.isToken,
                     preselected: preselected,
-                    iscrew: iscrew,
+                    iscrew: iscrew
                 },
                 default: "accept",
                 buttons: {

@@ -716,7 +716,7 @@ async function addFavorites(app, html, data) {
                 update._id = u.target.data._id;
                 return update;
             });
-            app.actor.updateEmbeddedEntity("OwnedItem", updateData);
+            app.actor.updateEmbeddedDocuments("OwnedItem", updateData);
         });
     }
     tabContainer.append(favtabHtml);

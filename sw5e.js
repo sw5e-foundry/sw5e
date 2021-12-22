@@ -86,11 +86,12 @@ Hooks.once("init", function () {
         },
         macros: macros,
         migrations: migrations,
-        rollItemMacro: macros.rollItemMacro
+        rollItemMacro: macros.rollItemMacro,
+        isV9: !foundry.utils.isNewerVersion("9.224", game.version ?? game.data.version)
     };
 
     // This will be removed when sw5e minimum core version is updated to v9.
-    if (foundry.utils.isNewerVersion("9.224", game.data.version)) dice.shimIsDeterministic();
+    if (!game.sw5e.isV9) dice.shimIsDeterministic();
 
     // Record Configuration Values
     CONFIG.SW5E = SW5E;
@@ -387,9 +388,9 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.5.5.R1-B1";
+    const NEEDS_MIGRATION_VERSION = "1.5.6.R1-B2";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-B1";
+    const SW5E_NEEDS_MIGRATION_VERSION = "R1-B2";
     const COMPATIBLE_MIGRATION_VERSION = 0.8;
     const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
     if (!currentVersion && totalDocuments === 0)

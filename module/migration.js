@@ -56,7 +56,7 @@ export const migrateWorld = async function () {
     // Migrate World Compendium Packs
     for (let p of game.packs) {
         if (p.metadata.package !== "world") continue;
-        if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+        if (!["Actor", "Item", "Scene"].includes(p.documentName)) continue;
         await migrateCompendium(p);
     }
 
@@ -68,13 +68,13 @@ export const migrateWorld = async function () {
 /* -------------------------------------------- */
 
 /**
- * Apply migration rules to all Entities within a single Compendium pack
- * @param {Compendium} pack  Pack to be migrated.
+ * Apply migration rules to all Documents within a single Compendium pack
+ * @param {CompendiumCollection} pack  Pack to be migrated.
  * @returns {Promise}
  */
 export const migrateCompendium = async function (pack) {
-    const entity = pack.metadata.entity;
-    if (!["Actor", "Item", "Scene"].includes(entity)) return;
+    const documentName = pack.documentName;
+    if (!["Actor", "Item", "Scene"].includes(documentName)) return;
 
     // Unlock the pack for editing
     const wasLocked = pack.locked;
@@ -88,7 +88,7 @@ export const migrateCompendium = async function (pack) {
     for await (let doc of documents) {
         let updateData = {};
         try {
-            switch (entity) {
+            switch (documentName) {
                 case "Actor":
                     updateData = await migrateActorData(doc.toObject());
                     break;
@@ -103,28 +103,28 @@ export const migrateCompendium = async function (pack) {
             // Save the entry, if data was changed
             if (foundry.utils.isObjectEmpty(updateData)) continue;
             await doc.update(updateData);
-            console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
+            console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
         } catch (err) {
             // Handle migration failures
-            err.message = `Failed sw5e system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
+            err.message = `Failed sw5e system migration for document ${doc.name} in pack ${pack.collection}: ${err.message}`;
             console.error(err);
         }
     }
 
     // Apply the original locked status for the pack
     await pack.configure({locked: wasLocked});
-    console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+    console.log(`Migrated all ${documentName} documents from Compendium ${pack.collection}`);
 };
 
 /**
  * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
  * check to see if the actor has armor already equipped, and opt to use that instead.
- * @param {Compendium|string} pack  Pack or name of pack to migrate.
+ * @param {CompendiumCollection|string} pack  Pack or name of pack to migrate.
  * @returns {Promise}
  */
 export const migrateArmorClass = async function (pack) {
     if (typeof pack === "string") pack = game.packs.get(pack);
-    if (pack.metadata.entity !== "Actor") return;
+    if (pack.documentName !== "Actor") return;
     const wasLocked = pack.locked;
     await pack.configure({locked: false});
     const actors = await pack.getDocuments();
@@ -160,11 +160,11 @@ export const migrateArmorClass = async function (pack) {
 };
 
 /* -------------------------------------------- */
-/*  Entity Type Migration Helpers               */
+/*  Document Type Migration Helpers               */
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Actor entity to incorporate latest data model changes
+ * Migrate a single Actor document to incorporate latest data model changes
  * Return an Object of updateData to be applied
  * @param {object} actor    The actor data object to update
  * @returns {object}        The updateData to apply
@@ -250,7 +250,7 @@ function cleanActorData(actorData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Item entity to incorporate latest data model changes
+ * Migrate a single Item document to incorporate latest data model changes
  *
  * @param {object} item  Item data to migrate
  * @returns {object}     The updateData to apply
@@ -268,7 +268,7 @@ export const migrateItemData = function (item) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single owned actor Item entity to incorporate latest data model changes
+ * Migrate a single owned actor Item document to incorporate latest data model changes.
  * @param item
  * @param actor
  */
@@ -806,8 +806,8 @@ function _migrateItemCriticalData(item, updateData) {
 /* -------------------------------------------- */
 
 /**
- * A general tool to purge flags from all entities in a Compendium pack.
- * @param {Compendium} pack   The compendium pack to clean.
+ * A general tool to purge flags from all documents in a Compendium pack.
+ * @param {CompendiumCollection} pack   The compendium pack to clean.
  * @private
  */
 export async function purgeFlags(pack) {
@@ -816,17 +816,17 @@ export async function purgeFlags(pack) {
         return flags5e ? {sw5e: flags5e} : {};
     };
     await pack.configure({locked: false});
-    const content = await pack.getContent();
-    for (let entity of content) {
-        const update = {_id: entity.id, flags: cleanFlags(entity.data.flags)};
-        if (pack.entity === "Actor") {
-            update.items = entity.data.items.map((i) => {
+    const content = await pack.getDocuments();
+    for (let doc of content) {
+        const update = {flags: cleanFlags(doc.data.flags)};
+        if (pack.documentName === "Actor") {
+            update.items = doc.data.items.map((i) => {
                 i.flags = cleanFlags(i.flags);
                 return i;
             });
         }
-        await pack.updateEntity(update, {recursive: false});
-        console.log(`Purged flags from ${entity.name}`);
+        await doc.update(update, {recursive: false});
+        console.log(`Purged flags from ${doc.name}`);
     }
     await pack.configure({locked: true});
 }

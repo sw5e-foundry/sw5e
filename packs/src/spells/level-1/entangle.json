@@ -1,10 +1,7 @@
 {
-  "_id": "gMrWeG8fMDPRFiVe",
   "name": "Entangle",
-  "permission": {
-    "default": 0
-  },
   "type": "power",
+  "img": "systems/sw5e/icons/powers/vines-acid-2.jpg",
   "data": {
     "description": {
       "value": "<p>Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the Duration, these Plants turn the ground in the area into difficult terrain.</p><p>A creature in the area when you cast the power must succeed on a Strength saving throw or be Restrained by the entangling Plants until the power ends. A creature restrained by the plants can use its action to make a Strength check against your power save DC. On a success, it frees itself.</p><p>When the power ends, the conjured Plants wilt away.</p>",
@@ -23,6 +20,7 @@
     },
     "target": {
       "value": 20,
+      "width": null,
       "units": "ft",
       "type": "square"
     },
@@ -32,12 +30,17 @@
       "units": "ft"
     },
     "uses": {
-      "value": 0,
-      "max": 0,
+      "value": null,
+      "max": "",
       "per": ""
     },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
     "ability": "",
-    "actionType": "util",
+    "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -51,7 +54,7 @@
     },
     "formula": "",
     "save": {
-      "ability": "",
+      "ability": "str",
       "dc": null,
       "scaling": "power"
     },
@@ -78,10 +81,10 @@
     "scaling": {
       "mode": "none",
       "formula": ""
-    }
+    },
+    "attunement": null
   },
-  "sort": 100001,
+  "effects": [],
   "flags": {},
-  "img": "systems/sw5e/icons/powers/vines-acid-2.jpg",
-  "effects": []
+  "_id": "gMrWeG8fMDPRFiVe"
 }

@@ -1226,6 +1226,8 @@ export default class Item5e extends Item {
                 let level;
                 if (this.actor.type === "character") level = actorData.details.level;
                 else if (itemData.preparation.mode === "innate") level = Math.ceil(actorData.details.cr);
+                else if (itemData.school === "tec") level = actorData.details.powerTechLevel;
+                else if (["lgt", "drk", "uni"].includes(itemData.school)) level = actorData.details.powerForceLevel;
                 else level = actorData.details.powerLevel;
                 this._scaleAtWillDamage(parts, itemData.scaling.formula, level, rollData);
             } else if (powerLevel && itemData.scaling.mode === "level" && itemData.scaling.formula) {

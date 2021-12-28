@@ -342,7 +342,7 @@ export default class ItemSheet5e extends ItemSheet {
             html.find(".damage-control").click(this._onDamageControl.bind(this));
             html.find(".trait-selector.class-skills").click(this._onConfigureTraits.bind(this));
             html.find(".effect-control").click((ev) => {
-                if (this.item.isOwned)
+                if (this.item.isEmbedded)
                     return ui.notifications.warn(
                         "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
                     );

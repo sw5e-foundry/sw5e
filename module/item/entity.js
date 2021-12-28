@@ -327,7 +327,7 @@ export default class Item5e extends Item {
         }
 
         // If this item is owned, we prepareFinalAttributes() at the end of actor init
-        if (!this.isOwned) this.prepareFinalAttributes();
+        if (!this.isEmbedded) this.prepareFinalAttributes();
     }
 
     /* -------------------------------------------- */
@@ -370,7 +370,7 @@ export default class Item5e extends Item {
      */
     getDerivedDamageLabel() {
         const itemData = this.data.data;
-        if (!this.hasDamage || !itemData || !this.isOwned) return [];
+        if (!this.hasDamage || !itemData || !this.isEmbedded) return [];
         const rollData = this.getRollData();
         const derivedDamage = itemData.damage?.parts?.map((damagePart) => {
             let formula;
@@ -400,19 +400,21 @@ export default class Item5e extends Item {
         if (save.scaling === "power") {
             switch (this.data.data.school) {
                 case "lgt": {
-                    save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceLightDC") : null;
+                    save.dc = this.isEmbedded
+                        ? getProperty(this.actor.data, "data.attributes.powerForceLightDC")
+                        : null;
                     break;
                 }
                 case "uni": {
-                    save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceUnivDC") : null;
+                    save.dc = this.isEmbedded ? getProperty(this.actor.data, "data.attributes.powerForceUnivDC") : null;
                     break;
                 }
                 case "drk": {
-                    save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerForceDarkDC") : null;
+                    save.dc = this.isEmbedded ? getProperty(this.actor.data, "data.attributes.powerForceDarkDC") : null;
                     break;
                 }
                 case "tec": {
-                    save.dc = this.isOwned ? getProperty(this.actor.data, "data.attributes.powerTechDC") : null;
+                    save.dc = this.isEmbedded ? getProperty(this.actor.data, "data.attributes.powerTechDC") : null;
                     break;
                 }
             }
@@ -420,7 +422,7 @@ export default class Item5e extends Item {
 
         // Ability-score based scaling
         else if (save.scaling !== "flat") {
-            save.dc = this.isOwned ? getProperty(this.actor.data, `data.abilities.${save.scaling}.dc`) : null;
+            save.dc = this.isEmbedded ? getProperty(this.actor.data, `data.abilities.${save.scaling}.dc`) : null;
         }
 
         // Update labels
@@ -456,7 +458,7 @@ export default class Item5e extends Item {
         }
 
         // Take no further action for un-owned items
-        if (!this.isOwned) return {rollData, parts};
+        if (!this.isEmbedded) return {rollData, parts};
 
         // Ability score modifier
         parts.push("@mod");
@@ -540,7 +542,7 @@ export default class Item5e extends Item {
         let max = data.uses.max;
 
         // If this is an owned item and the max is not numeric, we need to calculate it
-        if (this.isOwned && !Number.isNumeric(max)) {
+        if (this.isEmbedded && !Number.isNumeric(max)) {
             if (this.actor.data === undefined) return;
             try {
                 max = Roll.replaceFormulaData(max, this.actor.getRollData(), {missing: 0, warn: true});

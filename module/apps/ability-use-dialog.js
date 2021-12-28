@@ -25,7 +25,7 @@ export default class AbilityUseDialog extends Dialog {
      * @returns {Promise}    Promise that is resolved when the use dialog is acted upon.
      */
     static async create(item) {
-        if (!item.isOwned) throw new Error("You cannot display an ability usage dialog for an unowned item");
+        if (!item.isEmbedded) throw new Error("You cannot display an ability usage dialog for an unowned item");
 
         // Prepare data
         const actorData = item.actor.data.data;

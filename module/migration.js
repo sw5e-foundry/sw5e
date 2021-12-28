@@ -357,7 +357,7 @@ function _updateNPCData(actor) {
     if (coreSource === "Compendium.sw5e.monsters") {
         game.packs
             .get("sw5e.monsters")
-            .getEntity(core_id)
+            .getDocument(core_id)
             .then((monster) => {
                 const monsterData = monster.data.data;
                 // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
@@ -389,7 +389,7 @@ function _updateNPCData(actor) {
                 // get actor to create new powers
                 const liveActor = game.actors.get(actor._id);
                 // create the powers on the actor
-                liveActor.createEmbeddedEntity("OwnedItem", newPowers);
+                liveActor.createEmbeddedDocument("Item", newPowers);
 
                 // set flag to check to see if migration has been done so we don't do it again.
                 liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
@@ -721,7 +721,7 @@ async function _migrateItemPower(item, actor, updateData) {
     if (coreSource === "Compendium.sw5e.techpowers") powerType = "sw5e.techpowers";
     if (powerType === "none") return updateData;
 
-    const corePower = duplicate(await game.packs.get(powerType).getEntity(core_id));
+    const corePower = duplicate(await game.packs.get(powerType).getDocument(core_id));
     console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
     const corePowerData = corePower.data;
     // copy Core Power Data over original Power
@@ -729,10 +729,6 @@ async function _migrateItemPower(item, actor, updateData) {
     updateData["flags"] = {sw5e: {dataVersion: "1.2.4"}};
 
     return updateData;
-
-    //game.packs.get(powerType).getEntity(core_id).then(corePower => {
-
-    //})
 }
 
 /* -------------------------------------------- */

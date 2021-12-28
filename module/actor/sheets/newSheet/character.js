@@ -10,8 +10,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         return "systems/sw5e/templates/actors/newActor/character-sheet.html";
     }
     /**
-   * Define default rendering options for the NPC sheet.
-   * @returns {object}
+     * Define default rendering options for the NPC sheet.
+     * @returns {object}
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -32,8 +32,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
-   * @returns {object}  Prepared copy of the actor data ready to be displayed.
+     * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
+     * @returns {object}  Prepared copy of the actor data ready to be displayed.
      */
     getData() {
         const sheetData = super.getData();
@@ -55,7 +55,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
         // Experience Tracking
         sheetData.disableExperience = game.settings.get("sw5e", "disableExperienceTracking");
-        sheetData.classLabels = this.actor.itemTypes.class.map(c => c.name).join(", ");
+        sheetData.classLabels = this.actor.itemTypes.class.map((c) => c.name).join(", ");
         sheetData.multiclassLabels = this.actor.itemTypes.class
             .map((c) => {
                 return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(" ");
@@ -63,7 +63,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             .join(", ");
         // Weight unit
         sheetData.weightUnit = game.settings.get("sw5e", "metricWeightUnits")
-        ? game.i18n.localize("SW5E.AbbreviationKgs")
+            ? game.i18n.localize("SW5E.AbbreviationKgs")
             : game.i18n.localize("SW5E.AbbreviationLbs");
 
         // Return data for rendering
@@ -73,12 +73,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Organize and classify Owned Items for Character sheets
-   * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
+     * Organize and classify Owned Items for Character sheets
+     * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItems(data) {
-
         // Categorize items as inventory, powerbook, features, and classes
         const inventory = {
             weapon: {label: "SW5E.ItemTypeWeaponPl", items: [], dataset: {type: "weapon"}},
@@ -291,8 +290,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * A helper method to establish the displayed preparation state for an item.
-   * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
+     * A helper method to establish the displayed preparation state for an item.
+     * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
      * @private
      */
     _prepareItemToggleState(item) {
@@ -316,8 +315,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
   /* -------------------------------------------- */
 
     /**
-   * Activate event listeners using the prepared sheet HTML.
-   * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
+     * Activate event listeners using the prepared sheet HTML.
+     * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -390,7 +389,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                         icon: '<i class="fa fa-check"></i>',
                         label: "Yes",
                         callback: (dlg) => {
-                            this.actor.deleteOwnedItem(itemId);
+                            this.actor.deleteEmbeddedDocument("Item", itemId);
                         }
                     },
                     cancel: {
@@ -406,9 +405,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Handle mouse click events for character sheet actions.
-   * @param {MouseEvent} event  The originating click event.
-   * @returns {Promise}         Dialog or roll result.
+     * Handle mouse click events for character sheet actions.
+     * @param {MouseEvent} event  The originating click event.
+     * @returns {Promise}         Dialog or roll result.
      * @private
      */
     _onSheetAction(event) {
@@ -425,9 +424,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Item with the updates applied.
+     * Handle toggling the state of an Owned Item within the Actor.
+     * @param {Event} event        The triggering click event.
+     * @returns {Promise<Item5e>}  Item with the updates applied.
      * @private
      */
     _onToggleItem(event) {
@@ -441,9 +440,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Take a short rest, calling the relevant function on the Actor instance.
-   * @param {Event} event             The triggering click event.
-   * @returns {Promise<RestResult>}  Result of the rest action.
+     * Take a short rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onShortRest(event) {
@@ -455,9 +454,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
-   * Take a long rest, calling the relevant function on the Actor instance.
-   * @param {Event} event             The triggering click event.
-   * @returns {Promise<RestResult>}  Result of the rest action.
+     * Take a long rest, calling the relevant function on the Actor instance.
+     * @param {Event} event             The triggering click event.
+     * @returns {Promise<RestResult>}  Result of the rest action.
      * @private
      */
     async _onLongRest(event) {
@@ -691,7 +690,7 @@ async function addFavorites(app, html, data) {
                 update._id = u.target.data._id;
                 return update;
             });
-            app.actor.updateEmbeddedEntity("OwnedItem", updateData);
+            app.actor.updateEmbeddedDocument("Item", updateData);
         });
     }
     tabContainer.append(favtabHtml);

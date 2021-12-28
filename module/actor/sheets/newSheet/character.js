@@ -415,7 +415,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                         icon: '<i class="fa fa-check"></i>',
                         label: "Yes",
                         callback: (dlg) => {
-                            this.actor.deleteOwnedItem(itemId);
+                            this.actor.deleteEmbeddedDocuments("Item", itemId);
                         }
                     },
                     cancel: {
@@ -716,7 +716,7 @@ async function addFavorites(app, html, data) {
                 update._id = u.target.data._id;
                 return update;
             });
-            app.actor.updateEmbeddedDocuments("OwnedItem", updateData);
+            app.actor.updateEmbeddedDocuments("Item", updateData);
         });
     }
     tabContainer.append(favtabHtml);

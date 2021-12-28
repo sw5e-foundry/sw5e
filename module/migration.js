@@ -394,7 +394,7 @@ function _updateNPCData(actor) {
                 // get actor to create new powers
                 const liveActor = game.actors.get(actor._id);
                 // create the powers on the actor
-                liveActor.createEmbeddedDocuments("OwnedItem", newPowers);
+                liveActor.createEmbeddedDocuments("Item", newPowers);
 
                 // set flag to check to see if migration has been done so we don't do it again.
                 liveActor.setFlag("sw5e", "dataVersion", "1.2.4");

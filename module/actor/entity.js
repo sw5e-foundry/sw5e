@@ -2742,8 +2742,7 @@ export default class Actor5e extends Actor {
 
             if (deployment.items) {
                 for (let i = 0; i < deployment.items.length; i++) {
-                    const deploy = deployment.items[i];
-                    if (deploy.uuid == charUUID) {
+                    if (deployment.items[i].uuid == charUUID) {
                         charDeployments.push(key);
                         deployment.items[i] = deploymentData;
                         if (deployments.includes(key)) {
@@ -2757,8 +2756,8 @@ export default class Actor5e extends Actor {
                     }
                 }
                 if (deployments.includes(key) && !charDeployments.includes(key)) {
-                    deployment.items.push(deploymentData);
                     charDeployments.push(key);
+                    deployment.items.push(deploymentData);
                 }
             } else {
                 if (deployment.uuid == charUUID) {
@@ -2772,7 +2771,10 @@ export default class Actor5e extends Actor {
                             })
                         );
                     }
-                } else if (deployments.includes(key)) ssDeploy[key] = deploymentData;
+                } else if (deployments.includes(key)) {
+                    charDeployments.push(key);
+                    ssDeploy[key] = deploymentData;
+                }
             }
         }
 
@@ -3010,8 +3012,9 @@ export default class Actor5e extends Actor {
      */
     undeployFromStarship() {
         const deployed = this.data.data.attributes.deployed;
-        const starship = fromUuidSynchronous(deployed.uuid);
+        let starship = fromUuidSynchronous(deployed.uuid);
 
+        if (starship && starship instanceof TokenDocument) starship = starship.actor;
         if (starship) {
             const ssDeploy = starship.data.data.attributes.deployment;
 

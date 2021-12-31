@@ -790,17 +790,17 @@
     border-right: 2px groove #eeede0;
     border-radius: 0;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute:last-child {
+.sw5e.actor.sheet .swalt-sheet .attributes .attribute:last-child {
     border-right: none;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute .attribute-name {
+.sw5e.actor.sheet .swalt-sheet .attributes .attribute-name {
     position: relative;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute .attribute-value {
+.sw5e.actor.sheet .swalt-sheet .attributes .attribute-value {
     height: 30px;
     line-height: 30px;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute .config-button {
+.sw5e.actor.sheet .swalt-sheet .attributes .attribute .config-button {
     position: absolute;
     display: none;
     right: -6px;
@@ -808,7 +808,7 @@
     font-size: 10px;
     font-weight: normal;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute:hover .config-button {
+.sw5e.actor.sheet .swalt-sheet .attributes .attribute:hover .config-button {
     display: block;
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute input.temphp {
@@ -884,7 +884,7 @@
 .sw5e.sheet.actor .attributable:hover .tooltip {
     display: block;
 }
-.sw5e.sheet.actor .ability-scores {
+.sw5e.sheet.actor .swalt-sheet .ability  {
     flex: 0 0 100px;
     height: 440px;
     list-style: none;
@@ -896,51 +896,51 @@
     border: 2px groove #eeede0;
     border-radius: 3px;
 }
-.sw5e.sheet.actor .ability-scores .ability {
+.sw5e.sheet.actor .swalt-sheet .ability {
     height: 70px;
     text-align: center;
     border-bottom: 2px groove #eeede0;
     position: relative;
 }
-.sw5e.sheet.actor .ability-scores .ability:last-child {
+.sw5e.sheet.actor .swalt-sheet .ability .ability:last-child {
     border-bottom: none;
     margin-bottom: -3px;
 }
-.sw5e.sheet.actor .ability-scores .ability input.ability-score {
+.sw5e.sheet.actor .swalt-sheet .ability input.ability-score {
     height: 30px;
     width: 36px;
     margin: 0 auto;
     line-height: 32px;
     font-size: 24px;
 }
-.sw5e.sheet.actor .ability-scores .ability .config-button {
+.sw5e.sheet.actor .swalt-sheet .ability .config-button {
     right: 2px;
     top: 3px;
     position: absolute;
     display: none;
 }
-.sw5e.sheet.actor .ability-scores .ability:hover .config-button {
+.sw5e.sheet.actor .swalt-sheet .ability:hover .config-button {
     display: block;
 }
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers {
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers {
     height: 24px;
     margin: -8px 0 0;
 }
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod,
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers span.ability-mod,
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers span.ability-save {
     flex: 0 0 24px;
     height: 22px;
     line-height: 22px;
     font-size: 16px;
     border-top: 2px groove #eeede0;
 }
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-mod {
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers span.ability-mod {
     border-right: 2px groove #eeede0;
 }
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers .ability-proficiency {
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers .ability-proficiency {
     line-height: 30px;
 }
-.sw5e.sheet.actor .ability-scores .ability .ability-modifiers span.ability-save {
+.sw5e.sheet.actor .swalt-sheet .ability .ability-modifiers span.ability-save {
     border-left: 2px groove #eeede0;
 }
 .sw5e.sheet.actor .proficiency-toggle {
@@ -982,16 +982,16 @@
     flex: 0 0 16px;
     line-height: 18px;
 }
-.sw5e.sheet.actor ul.skills-list li.skill .skill-name-controls {
+.sw5e.sheet.actor .swalt-sheet .skill .skill-name-controls {
     position: relative;
 }
-.sw5e.sheet.actor ul.skills-list li.skill .skill-name-controls .config-button {
+.sw5e.sheet.actor .swalt-sheet .skill .config-button {
     right: 3px;
     top: 4px;
     position: absolute;
     display: none;
 }
-.sw5e.sheet.actor ul.skills-list li.skill .skill-name-controls:hover .config-button {
+.sw5e.sheet.actor .swalt-sheet .skill .skill-name-controls:hover .config-button {
     display: block;
 }
 .sw5e.sheet.actor ul.skills-list li.skill .skill-ability {

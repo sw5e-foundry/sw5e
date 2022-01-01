@@ -5,13 +5,11 @@ import Actor5e from "../actor/entity.js";
  * @extends {FormApplication}
  */
 export default class ActorTypeConfig extends FormApplication {
-
     /** @inheritdoc */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["sw5e", "actor-type", "trait-selector"],
             template: "systems/sw5e/templates/apps/actor-type.html",
-            title: "SW5E.CreatureTypeTitle",
             width: 280,
             height: "auto",
             choices: {},
@@ -19,6 +17,13 @@ export default class ActorTypeConfig extends FormApplication {
             minimum: 0,
             maximum: null
         });
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    get title() {
+        return `${game.i18n.localize("SW5E.CreatureTypeTitle")}: ${this.object.name}`;
     }
 
     /* -------------------------------------------- */
@@ -32,23 +37,23 @@ export default class ActorTypeConfig extends FormApplication {
 
     /** @override */
     getData(options) {
-
         // Get current value or new default
-        let attr = foundry.utils.getProperty(this.object.data.data, 'details.type');
-        if ( foundry.utils.getType(attr) !== "Object" ) attr = {
-            value: (attr in CONFIG.SW5E.creatureTypes) ? attr : "humanoid",
-            subtype: "",
-            swarm: "",
-            custom: ""
-        };
+        let attr = foundry.utils.getProperty(this.object.data.data, "details.type");
+        if (foundry.utils.getType(attr) !== "Object")
+            attr = {
+                value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
+                subtype: "",
+                swarm: "",
+                custom: ""
+            };
 
         // Populate choices
         const types = {};
-        for ( let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes) ) {
+        for (let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes)) {
             types[k] = {
                 label: game.i18n.localize(v),
                 chosen: attr.value === k
-            }
+            };
         }
 
         // Return data for rendering
@@ -61,12 +66,14 @@ export default class ActorTypeConfig extends FormApplication {
             },
             subtype: attr.subtype,
             swarm: attr.swarm,
-            sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes)).reverse().reduce((obj, e) => {
-                obj[e[0]] = e[1];
-                return obj;
-            }, {}),
+            sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes))
+                .reverse()
+                .reduce((obj, e) => {
+                    obj[e[0]] = e[1];
+                    return obj;
+                }, {}),
             preview: Actor5e.formatCreatureType(attr) || "–"
-        }
+        };
     }
 
     /* -------------------------------------------- */
@@ -74,7 +81,7 @@ export default class ActorTypeConfig extends FormApplication {
     /** @override */
     async _updateObject(event, formData) {
         const typeObject = foundry.utils.expandObject(formData);
-        return this.object.update({ 'data.details.type': typeObject });
+        return this.object.update({"data.details.type": typeObject});
     }
 
     /* -------------------------------------------- */
@@ -93,7 +100,7 @@ export default class ActorTypeConfig extends FormApplication {
     _onChangeInput(event) {
         super._onChangeInput(event);
         const typeObject = foundry.utils.expandObject(this._getSubmitData());
-        this.form["preview"].value = Actor5e.formatCreatureType(typeObject) || "—";
+        this.form.preview.value = Actor5e.formatCreatureType(typeObject) || "—";
     }
 
     /* -------------------------------------------- */

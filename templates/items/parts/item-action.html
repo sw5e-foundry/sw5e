@@ -35,6 +35,26 @@
 </div>
 {{/if}}
 
+{{!-- Critical Hit Threshold --}}
+{{#if hasAttackRoll }}
+<div class="form-group">
+    <label>{{ localize "SW5E.ItemCritThreshold" }}</label>
+    <div class="form-fields">
+        {{ numberInput data.critical.threshold name="data.critical.threshold" placeholder="20" max=20 min=1 step=1 }}
+    </div>
+</div>
+{{/if}}
+
+{{!-- Critical Hit Damage --}}
+{{#if hasAttackRoll }}
+<div class="form-group">
+    <label>{{ localize "SW5E.ItemCritExtraDamage" }}</label>
+    <div class="form-fields">
+        <input type="text" name="data.critical.damage" value="{{data.critical.damage}}">
+    </div>
+</div>
+{{/if}}
+
 {{!-- Damage Formula --}}
 <h4 class="damage-header">
     {{#unless isHealing }}{{ localize "SW5E.Damage" }}{{ else }}{{ localize "SW5E.Healing" }}{{/unless}} {{ localize "SW5E.Formula" }}

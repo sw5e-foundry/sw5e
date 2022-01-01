@@ -19,7 +19,9 @@
                     {{lookup config.weaponTypes data.weaponType }}
                 </li>
                 <li>
-                    <input type="text" name="data.rarity" value="{{data.rarity}}" placeholder="{{ localize 'SW5E.Rarity' }}"/>
+                    <select name="data.rarity">
+                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    </select>
                 </li>
                 <li>
                     <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
@@ -49,15 +51,18 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponType" }}</label>
                 <select name="data.weaponType">
-                    {{#select data.weaponType}}
-                    {{#each config.weaponTypes as |name type|}}
-                    <option value="{{type}}">{{name}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{selectOptions config.weaponTypes selected=data.weaponType}}
                 </select>
             </div>
-			
-			{{!-- Starship Weapon Size --}}
+
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
+                <select name="data.baseItem">
+                    {{selectOptions baseItems selected=data.baseItem blank=""}}
+                </select>
+            </div>
+
+            {{!-- Starship Weapon Size --}}
 <!--             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
                 <select name="data.weaponSize">

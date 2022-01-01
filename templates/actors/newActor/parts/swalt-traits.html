@@ -33,13 +33,13 @@
             <div class="counter-value">
                 <div class="death-success">
                     <i class="fas fa-check"></i>
-                    <input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
-                        value="{{data.attributes.death.success}}" />
+                    <input name="data.attributes.death.success" type="number" placeholder="0"
+                        value="{{data.attributes.death.success}}">
                 </div>
                 <div class="death-fail">
                     <i class="fas fa-times"></i>
-                    <input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
-                        value="{{data.attributes.death.failure}}" />
+                    <input name="data.attributes.death.failure" type="number" placeholder="0"
+                        value="{{data.attributes.death.failure}}">
                 </div>
             </div>
         </div>
@@ -84,7 +84,9 @@
         <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
             {{#unless isVehicle}}
             <label>{{localize "SW5E.Senses"}}</label>
-            <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}"><i class="fas fa-cog"></i></a>
+            <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}">
+                <i class="fas fa-cog"></i>
+            </a>
             <ul class="traits-list">
             {{#each senses as |v k|}}
                 <li class="tag {{k}}">{{v}}</li>
@@ -94,7 +96,8 @@
         </label>
         <div class="languages">
             <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
-            <a class="trait-selector" data-options="languages" data-target="data.traits.languages">
+            <a class="trait-selector" data-options="languages" data-target="data.traits.languages"
+            title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.Languages')}}" tabindex="0">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -106,13 +109,17 @@
         {{#unless isVehicle}}
         <div class="form-group ">
             <label>{{localize "SW5E.SpecialTraits"}}</label>
-            <a class="config-button" data-action="flags" title="{{localize 'SW5E.SpecialTraits'}}"><i class="fas fa-cog"></i></a>
+            <a class="config-button" data-action="flags" 
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.SpecialTraits')}}">
+                <i class="fas fa-cog"></i>
+            </a>
         </div>
         {{/unless}}
 
         <div>
             <label>{{localize "SW5E.TraitArmorProf"}}</label>
-            <a class="trait-selector" data-options="armorProficiencies" data-target="data.traits.armorProf">
+            <a class="proficiency-selector" data-type="armor" data-target="data.traits.armorProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitArmorProf')}}">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -123,7 +130,8 @@
         </div>
         <div>
             <label>{{localize "SW5E.TraitToolProf"}}</label>
-            <a class="trait-selector" data-options="toolProficiencies" data-target="data.traits.toolProf">
+            <a class="proficiency-selector" data-type="tool" data-target="data.traits.toolProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitToolProf')}}">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -134,7 +142,8 @@
         </div>
         <div>
             <label>{{localize "SW5E.TraitWeaponProf"}}</label>
-            <a class="trait-selector" data-options="weaponProficiencies" data-target="data.traits.weaponProf">
+            <a class="proficiency-selector" data-type="weapon" data-target="data.traits.weaponProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitWeaponProf')}}">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -145,7 +154,8 @@
         </div>
         <div>
             <label>{{localize "SW5E.DamImm"}}</label>
-            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.di">
+            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.di"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamImm')}}" tabindex="0">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -156,7 +166,8 @@
         </div>
         <div>
             <label>{{localize "SW5E.DamRes"}}</label>
-            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.dr">
+            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.dr"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamRes')}}" tabindex="0">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -167,7 +178,8 @@
         </div>
         <div>
             <label>{{localize "SW5E.DamVuln"}}</label>
-            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.dv">
+            <a class="trait-selector" data-options="damageResistanceTypes" data-target="data.traits.dv"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamVuln')}}">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
@@ -179,7 +191,8 @@
 
         <div>
             <label>{{localize "SW5E.ConImm"}}</label>
-            <a class="trait-selector" data-options="conditionTypes" data-target="data.traits.ci">
+            <a class="trait-selector" data-options="conditionTypes" data-target="data.traits.ci"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ConImm')}}">
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">

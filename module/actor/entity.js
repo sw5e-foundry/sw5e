@@ -5,6 +5,8 @@ import ShortRestDialog from "../apps/short-rest.js";
 import LongRestDialog from "../apps/long-rest.js";
 import RechargeRepairDialog from "../apps/recharge-repair.js";
 import RefittingRepairDialog from "../apps/refitting-repair.js";
+import RegenRepairDialog from "../apps/regen-repair.js";
+import AllocatePowerDice from "../apps/allocate-power-dice.js";
 import ProficiencySelector from "../apps/proficiency-selector.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
@@ -2371,6 +2373,121 @@ export default class Actor5e extends Actor {
         }
 
         return this._repair(chat, newDay, true, 0, 0, true);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a regen repair, recovering shield points, and power dice.
+     *
+     * @param {object} [options]
+     * @param {boolean} [options.dialog=true]        Present a confirmation dialog window whether or not to regen.
+     * @param {boolean} [options.chat=true]          Summarize the results of the regen workflow as a chat message.
+     * @param {boolean} [options.useShieldDie=true]  Whether to expend a shield die for automatic regen.
+     * @return {Promise.<RepairResult>}              A Promise which resolves once the regen workflow has completed.
+     */
+    async regenRepair({dialog = true, chat = true, useShieldDie = true} = {}) {
+        // Maybe present a confirmation dialog
+        if (dialog) {
+            try {
+                useShieldDie = await RegenRepairDialog.regenRepairDialog({actor: this});
+            } catch (err) {
+                return;
+            }
+        }
+
+        const attr = this.data.data.attributes;
+        const equip = attr.equip;
+        const roll = new Roll(equip?.reactor?.powerRecDie ?? '');
+        const size = this.data.items.filter((i) => i.type === "starship");
+
+        const update = {};
+        const itemUpdate = {};
+        const messageData = {};
+
+        if (useShieldDie) {
+            if (!size) return ui.notifications.error(game.i18n.localize("SW5E.NoStarshipSize"));
+            const sizeData = size[0].data.data;
+            const shields = attr.shld;
+            if (!shields.depleted && attr.hp.temp < attr.hp.tempmax && shields.dice) {
+                const dieMax = Number(shields.die.substring(1));
+                const regenRate = equip?.shields?.regenRateMult ?? 1;
+                const regen = Math.floor(dieMax * regenRate);
+                const actualRegen = Math.min(regen, attr.hp.tempmax - attr.hp.temp);
+
+                update['data.attributes.hp.temp'] = attr.hp.temp + actualRegen;
+                itemUpdate['data.shldDiceUsed'] = (sizeData.shldDiceUsed ?? 0) + 1;
+                update['data.attributes.shld.dice'] = shields.dice - 1;
+                messageData.sp = actualRegen;
+            }
+        }
+
+        const pd = attr.power;
+        const pdMissing = {};
+        const slots = ['central', 'comms', 'engines', 'sensors', 'shields', 'weapons'];
+        for (const slot of slots) {
+            pdMissing[slot] = pd[slot].max - Number(pd[slot].value);
+            pdMissing.total = (pdMissing.total ?? 0) + pdMissing[slot];
+        }
+
+        if (pdMissing.total) {
+            const minRegen = (await roll.clone().evaluate({minimize: true})).total;
+            if (pdMissing.total <= minRegen) {
+                for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
+                messageData.pd = pdMissing.total;
+            } else {
+                const regen = (await roll.evaluate()).total;
+                if (pdMissing.total <= regen) {
+                    for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
+                    messageData.pd = pdMissing.total;
+                } else if (pdMissing.central >= regen){
+                    update['data.attributes.power.central.value'] = String(Number(pd.central.value) + regen);
+                    messageData.pd = regen;
+                } else {
+                    update['data.attributes.power.central.value'] = pd.central.max;
+                    try {
+                        const allocation = await AllocatePowerDice.allocatePowerDice(this, regen - pdMissing.central, slots);
+                        for (const slot of allocation) update[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
+                        messageData.pd = allocation.length + pdMissing.central;
+                    } catch (err) {
+                        return;
+                    }
+                }
+            }
+        }
+
+        if (foundry.utils.isObjectEmpty(update) && foundry.utils.isObjectEmpty(itemUpdate)) return;
+
+        if (!foundry.utils.isObjectEmpty(update)) this.update(update);
+        if (!foundry.utils.isObjectEmpty(itemUpdate) && size) size[0].update(itemUpdate);
+
+        let message = "SW5E.RegenRepairResult";
+        if (messageData.sp) message += "S";
+        if (messageData.pd) message += "P";
+
+        // Create a chat message
+        let chatData = {
+            user: game.user.id,
+            speaker: {actor: this, alias: this.name}
+        };
+        ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+
+        if (roll._evaluated && !roll.isDeterministic) {
+            chatData.flavor = game.i18n.format(message, {
+                name: this.name,
+                shieldPoints: messageData.sp,
+                powerDice: messageData.pd,
+            });
+            return roll.toMessage(chatData);
+        }
+
+        chatData.flavor = game.i18n.localize("SW5E.RegenRepair");
+        chatData.content = game.i18n.format(message, {
+                name: this.name,
+                shieldPoints: messageData.sp,
+                powerDice: messageData.pd,
+            })
+        return ChatMessage.create(chatData);
     }
 
     /* -------------------------------------------- */

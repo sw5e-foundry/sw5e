@@ -1,0 +1,19 @@
+<form id="regen-repair" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>Regen your starship? At the beginning of it's turn, the starship can expend a shield die to recover shield points, and automatically recovers power dice.</p>
+
+    <div class="form-group">
+        <label>Expend shield die?</label>
+        {{#if useShieldDie}}
+            <input type="checkbox" name="useShieldDie" {{checked useShieldDie}} />
+        {{else}}
+            <input type="checkbox" name="useShieldDie" {{checked useShieldDie}} disabled title="Shield is either depleted, full, or there are no shield dice remaining."/>
+        {{/if}}
+        <p class="hint">Recover shield points?</p>
+    </div>
+
+    <div class="dialog-buttons">
+        {{#each buttons as |button id|}}
+        <button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button>
+        {{/each}}
+    </div>
+</form>

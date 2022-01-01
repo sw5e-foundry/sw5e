@@ -155,9 +155,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         html.find("#engineslidervalue")[0].addEventListener("input", this._engineSliderUpdate.bind(this));
         html.find("#shieldslidervalue")[0].addEventListener("input", this._shieldSliderUpdate.bind(this));
         html.find("#weaponslidervalue")[0].addEventListener("input", this._weaponSliderUpdate.bind(this));
-        // Recharge and Refitting Repairs
+        // Recharge, Refitting and Regen Repairs
         html.find(".recharge-repair").click(this._onRechargeRepair.bind(this));
         html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
+        html.find(".regen-repair").click(this._onRegenRepair.bind(this));
         // Rollable sheet actions
         html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
         // Deployment controls
@@ -206,6 +207,19 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         event.preventDefault();
         await this._onSubmit(event);
         return this.actor.refittingRepair();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Take a regen repair, calling the relevant function on the Actor instance
+     * @param {Event} event   The triggering click event
+     * @private
+     */
+    async _onRegenRepair(event) {
+        event.preventDefault();
+        await this._onSubmit(event);
+        return this.actor.regenRepair();
     }
 
     /* -------------------------------------------- */

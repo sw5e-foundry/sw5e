@@ -1044,6 +1044,12 @@ export default class Actor5e extends Actor {
         if (!(actorData.type === "character" || actorData.type === "npc")) return;
 
         const ad = actorData.data;
+        const bonusData = this.getRollData();
+        const bonusAll = this._simplifyBonus(ad.bonuses?.power?.dc, bonusData);
+        const bonusLight = this._simplifyBonus(ad.bonuses?.power?.forceLightDC, bonusData) + bonusAll;
+        const bonusDark = this._simplifyBonus(ad.bonuses?.power?.forceDarkDC, bonusData) + bonusAll;
+        const bonusUniv = this._simplifyBonus(ad.bonuses?.power?.forceUnivDC, bonusData) + bonusAll;
+        const bonusTech = this._simplifyBonus(ad.bonuses?.power?.techDC, bonusData) + bonusAll;
 
         // Powercasting DC for Actors and NPCs
         // TODO: Consider an option for using the variant rule of all powers use the same value
@@ -1052,6 +1058,11 @@ export default class Actor5e extends Actor {
         ad.attributes.powerForceUnivDC =
             Math.max(ad.attributes.powerForceLightDC, ad.attributes.powerForceDarkDC) ?? 10;
         ad.attributes.powerTechDC = 8 + ad.abilities.int.mod + ad.attributes.prof ?? 10;
+
+        ad.attributes.powerForceLightDC += bonusLight;
+        ad.attributes.powerForceDarkDC += bonusDark;
+        ad.attributes.powerForceUnivDC += bonusUniv;
+        ad.attributes.powerTechDC += bonusTech;
 
         if (game.settings.get("sw5e", "simplifiedForcecasting")) {
             ad.attributes.powerForceLightDC = ad.attributes.powerForceUnivDC;

@@ -247,10 +247,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      */
     _onIncrementFuelLevel(event) {
         // event.preventDefault();
-        // const fuelcaparray = this.actor.data.effects.changes;
-        // var fuelcappos = fuelcaparray.indexOf('fuel.cap');
-        // const refuel = this.actor.data.effect.changes[fuelcappos].value;
-        this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.cap});
+        this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.fuelCap});
     }
 
     /* -------------------------------------------- */
@@ -262,9 +259,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      */
     _onDecrementFuelLevel(event) {
         // event.preventDefault();
-        // const fuelcaparray = this.actor.data.effects.changes;
-        // var fuelcappos = fuelcaparray.indexOf('fuel.cap');
-        // const refuel = this.actor.data.effect.changes[fuelcappos].value;
         this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.value - 1});
     }
     _engineSliderUpdate(input) {

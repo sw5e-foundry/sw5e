@@ -448,6 +448,9 @@ export default class Item5e extends Item {
         if (!this.hasAttack || !itemData) return;
         const rollData = this.getRollData();
 
+        // Use wisdom on attack rolls for starship weapons, unless an item specific ability is set
+        if (!itemData.ability && (itemData.weaponType ?? "").search("(starship)") != -1) rollData.mod = rollData.abilities.wis?.mod;
+
         // Define Roll bonuses
         const parts = [];
 

@@ -349,6 +349,19 @@ export default class Actor5e extends Actor {
     }
 
     /* -------------------------------------------- */
+
+    /**
+     */
+    async addStarshipActions() {
+        const compendium = game.packs.get('sw5e.starshipactions');
+        const index = compendium.index;
+        const ids = index.map(a => 'Compendium.sw5e.starshipactions.' + a._id);
+        const items = [];
+        for (const id of ids) items.push(await fromUuid(id));
+        this.addEmbeddedItems(items, false);
+    }
+
+    /* -------------------------------------------- */
     /*  Data Preparation Helpers                    */
     /* -------------------------------------------- */
 
@@ -1212,6 +1225,16 @@ export default class Actor5e extends Actor {
         if (this.type === "character") {
             this.data.token.update({vision: true, actorLink: true, disposition: 1});
         }
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
+
+        // Add starship actions
+        if (this.type == "starship") this.addStarshipActions();
     }
 
     /* -------------------------------------------- */

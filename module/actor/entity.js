@@ -514,14 +514,14 @@ export default class Actor5e extends Actor {
             data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
             data.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
             data.attributes.mods.capLimit = sizeData.modBaseCap;
-            data.attributes.mods.suites.cap = sizeData.modMaxSuiteCap;
+            data.attributes.mods.suites.suiteCap = sizeData.modMaxSuiteCap;
             data.attributes.cost.multModification = sizeData.modCostMult;
             data.attributes.workforce.minModification = sizeData.modMinWorkforce;
             data.attributes.cost.multEquip = sizeData.equipCostMult;
             data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
             data.attributes.equip.size.cargoCap = sizeData.cargoCap;
             data.attributes.fuel.cost = sizeData.fuelCost;
-            data.attributes.fuel.cap = sizeData.fuelCap;
+            data.attributes.fuel.fuelCap = sizeData.fuelCap;
             data.attributes.equip.size.foodCap = sizeData.foodCap;
         }
 
@@ -588,8 +588,8 @@ export default class Actor5e extends Actor {
             data.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.regrateco.value) || 1;
         } else {
             // no shields installed
-            data.attributes.equip.shields.capMult = 1;
-            data.attributes.equip.shields.regenRateMult = 1;
+            data.attributes.equip.shields.capMult = 0;
+            data.attributes.equip.shields.regenRateMult = 0;
         }
     }
 
@@ -1206,7 +1206,7 @@ export default class Actor5e extends Actor {
     _computeFuel(actorData) {
         const fuel = actorData.data.attributes.fuel;
         // Compute Fuel percentage
-        const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.cap, 0, 100);
+        const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.fuelCap, 0, 100);
         return {...fuel, pct, fueled: pct > 0};
     }
 
@@ -2432,7 +2432,7 @@ export default class Actor5e extends Actor {
 
         const attr = this.data.data.attributes;
         const equip = attr.equip;
-        const roll = new Roll(equip?.reactor?.powerRecDie ?? '');
+        const roll = new Roll(equip?.reactor?.powerRecDie ?? "");
         const size = this.data.items.filter((i) => i.type === "starship");
 
         const update = {};
@@ -2449,16 +2449,16 @@ export default class Actor5e extends Actor {
                 const regen = Math.floor(dieMax * regenRate);
                 const actualRegen = Math.min(regen, attr.hp.tempmax - attr.hp.temp);
 
-                update['data.attributes.hp.temp'] = attr.hp.temp + actualRegen;
-                itemUpdate['data.shldDiceUsed'] = (sizeData.shldDiceUsed ?? 0) + 1;
-                update['data.attributes.shld.dice'] = shields.dice - 1;
+                update["data.attributes.hp.temp"] = attr.hp.temp + actualRegen;
+                itemUpdate["data.shldDiceUsed"] = (sizeData.shldDiceUsed ?? 0) + 1;
+                update["data.attributes.shld.dice"] = shields.dice - 1;
                 messageData.sp = actualRegen;
             }
         }
 
         const pd = attr.power;
         const pdMissing = {};
-        const slots = ['central', 'comms', 'engines', 'sensors', 'shields', 'weapons'];
+        const slots = ["central", "comms", "engines", "sensors", "shields", "weapons"];
         for (const slot of slots) {
             pdMissing[slot] = pd[slot].max - Number(pd[slot].value);
             pdMissing.total = (pdMissing.total ?? 0) + pdMissing[slot];
@@ -2474,14 +2474,19 @@ export default class Actor5e extends Actor {
                 if (pdMissing.total <= regen) {
                     for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
                     messageData.pd = pdMissing.total;
-                } else if (pdMissing.central >= regen){
-                    update['data.attributes.power.central.value'] = String(Number(pd.central.value) + regen);
+                } else if (pdMissing.central >= regen) {
+                    update["data.attributes.power.central.value"] = String(Number(pd.central.value) + regen);
                     messageData.pd = regen;
                 } else {
-                    update['data.attributes.power.central.value'] = pd.central.max;
+                    update["data.attributes.power.central.value"] = pd.central.max;
                     try {
-                        const allocation = await AllocatePowerDice.allocatePowerDice(this, regen - pdMissing.central, slots);
-                        for (const slot of allocation) update[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
+                        const allocation = await AllocatePowerDice.allocatePowerDice(
+                            this,
+                            regen - pdMissing.central,
+                            slots
+                        );
+                        for (const slot of allocation)
+                            update[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
                         messageData.pd = allocation.length + pdMissing.central;
                     } catch (err) {
                         return;
@@ -2510,17 +2515,17 @@ export default class Actor5e extends Actor {
             chatData.flavor = game.i18n.format(message, {
                 name: this.name,
                 shieldPoints: messageData.sp,
-                powerDice: messageData.pd,
+                powerDice: messageData.pd
             });
             return roll.toMessage(chatData);
         }
 
         chatData.flavor = game.i18n.localize("SW5E.RegenRepair");
         chatData.content = game.i18n.format(message, {
-                name: this.name,
-                shieldPoints: messageData.sp,
-                powerDice: messageData.pd,
-            })
+            name: this.name,
+            shieldPoints: messageData.sp,
+            powerDice: messageData.pd
+        });
         return ChatMessage.create(chatData);
     }
 

@@ -226,7 +226,7 @@
                                 <i class="fuel-breakpoint fuel-80 arrow-up"></i>
                                 <i class="fuel-breakpoint fuel-80 arrow-down"></i>
                             </div>
-                            <span class="fuel-label">{{value}} / {{cap}} units</span>
+                            <span class="fuel-label">{{value}} / {{fuelCap}} units</span>
                         </div>
                     {{/with}}
 <!--                    <label>
@@ -333,7 +333,7 @@
                         {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.capUsed" value="{{data.attributes.mods.capUsed}}" placeholder="10" />/ {{data.attributes.mods.capLimit}}
                     </label>
                    <label>
-                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}} - Occupancy: {{data.attributes.mods.suites.cap}}
+                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}} - Occupancy: {{data.attributes.mods.suites.suiteCap}}
                     </label>
 					<br />
                    <label>

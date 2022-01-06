@@ -415,7 +415,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                         icon: '<i class="fa fa-check"></i>',
                         label: "Yes",
                         callback: (dlg) => {
-                            this.actor.deleteEmbeddedDocuments("Item", itemId);
+                            item.delete();
                         }
                     },
                     cancel: {

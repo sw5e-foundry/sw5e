@@ -939,6 +939,21 @@ SW5E.deploymentTypesPlural = {
 
 SW5E.deployableTypes = ["character", "npc"];
 
+
+/* -------------------------------------------- */
+
+/**
+ * Default equipments to be added on starship creation
+ */
+SW5E.defaultStarshipEquipment = [
+    "Compendium.sw5e.starshipequipment.oqB8RltTDjHnaS1Y",
+    "Compendium.sw5e.starshipequipment.jk7zL3cqhufDKsuh",
+    "Compendium.sw5e.starshipequipment.InvkgxmcbufkjOUR",
+    "Compendium.sw5e.starshiparmor.RvtLP3FgKLBYBHSf",
+    "Compendium.sw5e.starshiparmor.aG6mKPerYCFmkI00",
+    "Compendium.sw5e.starships.6liD1m4hqKSeS5sp"
+]
+
 /* -------------------------------------------- */
 
 /**

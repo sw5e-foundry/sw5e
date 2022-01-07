@@ -349,6 +349,22 @@ export default class Actor5e extends Actor {
     }
 
     /* -------------------------------------------- */
+
+    /**
+     */
+    async addStarshipDefaults() {
+        const items = [];
+
+        const actions = await game.packs.get('sw5e.starshipactions').getIndex();
+        const action_ids = actions.map(a => 'Compendium.sw5e.starshipactions.' + a._id);
+        for (const id of action_ids) items.push(await fromUuid(id));
+
+        for (const id of SW5E.defaultStarshipEquipment) items.push(await fromUuid(id));
+
+        this.addEmbeddedItems(items, false);
+    }
+
+    /* -------------------------------------------- */
     /*  Data Preparation Helpers                    */
     /* -------------------------------------------- */
 
@@ -1212,6 +1228,16 @@ export default class Actor5e extends Actor {
         if (this.type === "character") {
             this.data.token.update({vision: true, actorLink: true, disposition: 1});
         }
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    _onCreate(data, options, userId) {
+        super._onCreate(data, options, userId);
+
+        // Add starship actions
+        if (this.type == "starship") this.addStarshipDefaults();
     }
 
     /* -------------------------------------------- */
@@ -3381,6 +3407,44 @@ export default class Actor5e extends Actor {
                     break;
                 }
             }
+        }
+    }
+
+    /* -------------------------------------------- */
+    /**
+     * Follow-up actions taken after a set of embedded Documents in this parent Document are created.
+     * @param {string} embeddedName   The name of the embedded Document type
+     * @param {Document[]} documents  An Array of created Documents
+     * @param {object[]} result       An Array of created data objects
+     * @param {object} options        Options which modified the creation operation
+     * @param {string} userId         The ID of the User who triggered the operation
+     * @memberof ClientDocumentMixin#
+     */
+    _onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
+        super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+
+        // Delete starship actions when adding a new one of the same type
+        if (this.data.type == "starship") {
+            const toDelete = [];
+            for (const doc of documents) {
+                const docData = doc.data.data;
+                if (
+                    (doc.type === "starship") ||
+                    (doc.type === "equipment" && ["ssarmor","hyper","powerc","reactor","ssshield"].includes(docData.armor?.type))
+                ) {
+                    for (const item of this.items) {
+                        const itemData = item.data.data;
+                        if (doc.id === item.id) continue;
+                        if (
+                            (doc.type === "starship" && item.type === "starship") ||
+                            (doc.type === item.type && docData.armor?.type === itemData.armor?.type)
+                        ) {
+                            toDelete.push(item.id);
+                        }
+                    }
+                }
+            }
+            this.deleteEmbeddedDocuments('Item', toDelete);
         }
     }
 

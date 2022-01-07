@@ -487,7 +487,7 @@ export default class Actor5e extends Actor {
      */
     _prepareStarshipData(actorData) {
         const data = actorData.data;
-        data.attributes.prof = 0;
+        data.attributes.prof = data.attributes.deployment.active.prof;
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
         if (size.length !== 0) {

@@ -355,8 +355,8 @@ export default class Actor5e extends Actor {
     async addStarshipDefaults() {
         const items = [];
 
-        const actions = await game.packs.get('sw5e.starshipactions').getIndex();
-        const action_ids = actions.map(a => 'Compendium.sw5e.starshipactions.' + a._id);
+        const actions = await game.packs.get("sw5e.starshipactions").getIndex();
+        const action_ids = actions.map((a) => "Compendium.sw5e.starshipactions." + a._id);
         for (const id of action_ids) items.push(await fromUuid(id));
 
         for (const id of SW5E.defaultStarshipEquipment) items.push(await fromUuid(id));
@@ -1653,6 +1653,102 @@ export default class Actor5e extends Actor {
             if (failures >= 3) {
                 // 3 Failures = death
                 chatString = "SW5E.DeathSaveFailure";
+            }
+        }
+
+        // Display success/failure chat message
+        if (chatString) {
+            let chatData = {content: game.i18n.format(chatString, {name: this.name}), speaker};
+            ChatMessage.applyRollMode(chatData, roll.options.rollMode);
+            await ChatMessage.create(chatData);
+        }
+
+        // Return the rolled result
+        return roll;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Perform a destruction saving throw, rolling a d20 plus any global save bonuses
+     * @param {object} options        Additional options which modify the roll
+     * @returns {Promise<Roll|null>}  A Promise which resolves to the Roll instance
+     */
+    async rollDestructionSave(options = {}) {
+        // Display a warning if we are not at zero HP or if we already have reached 3
+        const death = this.data.data.attributes.death;
+        if (this.data.data.attributes.hp.value > 0 || death.failure >= 3 || death.success >= 3) {
+            ui.notifications.warn(game.i18n.localize("SW5E.DestructionSaveUnnecessary"));
+            return null;
+        }
+
+        // Evaluate a global saving throw bonus
+        const parts = [];
+        const data = this.getRollData();
+        const speaker = options.speaker || ChatMessage.getSpeaker({actor: this});
+
+        // Include a global actor ability save bonus
+        const bonuses = foundry.utils.getProperty(this.data.data, "bonuses.abilities") || {};
+        if (bonuses.save) {
+            parts.push("@saveBonus");
+            data.saveBonus = Roll.replaceFormulaData(bonuses.save, data);
+        }
+
+        // Evaluate the roll
+        const rollData = foundry.utils.mergeObject(options, {
+            parts: parts,
+            data: data,
+            title: `${game.i18n.localize("SW5E.DestructionSavingThrow")}: ${this.name}`,
+            halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+            targetValue: 10,
+            messageData: {
+                "speaker": speaker,
+                "flags.sw5e.roll": {type: "destruction"}
+            }
+        });
+        const roll = await d20Roll(rollData);
+        if (!roll) return null;
+
+        // Take action depending on the result
+        const success = roll.total >= 10;
+        const d20 = roll.dice[0].total;
+
+        let chatString;
+
+        // Save success
+        if (success) {
+            let successes = (death.success || 0) + 1;
+
+            // Critical Success = revive with 1hp
+            if (d20 === 20) {
+                await this.update({
+                    "data.attributes.death.success": 0,
+                    "data.attributes.death.failure": 0,
+                    "data.attributes.hp.value": 1
+                });
+                chatString = "SW5E.DestructionSaveCriticalSuccess";
+            }
+
+            // 3 Successes = survive and reset checks
+            else if (successes === 3) {
+                await this.update({
+                    "data.attributes.death.success": 0,
+                    "data.attributes.death.failure": 0
+                });
+                chatString = "SW5E.DestructionSaveSuccess";
+            }
+
+            // Increment successes
+            else await this.update({"data.attributes.death.success": Math.clamped(successes, 0, 3)});
+        }
+
+        // Save failure
+        else {
+            let failures = (death.failure || 0) + (d20 === 1 ? 2 : 1);
+            await this.update({"data.attributes.death.failure": Math.clamped(failures, 0, 3)});
+            if (failures >= 3) {
+                // 3 Failures = destruction
+                chatString = "SW5E.DestructionSaveFailure";
             }
         }
 
@@ -3429,8 +3525,9 @@ export default class Actor5e extends Actor {
             for (const doc of documents) {
                 const docData = doc.data.data;
                 if (
-                    (doc.type === "starship") ||
-                    (doc.type === "equipment" && ["ssarmor","hyper","powerc","reactor","ssshield"].includes(docData.armor?.type))
+                    doc.type === "starship" ||
+                    (doc.type === "equipment" &&
+                        ["ssarmor", "hyper", "powerc", "reactor", "ssshield"].includes(docData.armor?.type))
                 ) {
                     for (const item of this.items) {
                         const itemData = item.data.data;
@@ -3444,7 +3541,7 @@ export default class Actor5e extends Actor {
                     }
                 }
             }
-            this.deleteEmbeddedDocuments('Item', toDelete);
+            this.deleteEmbeddedDocuments("Item", toDelete);
         }
     }
 

@@ -487,6 +487,7 @@ export default class Actor5e extends Actor {
      */
     _prepareStarshipData(actorData) {
         const data = actorData.data;
+        // Set starship's proficiency bonus to be equal to the active crew member's proficiency
         data.attributes.prof = data.attributes.deployment.active.prof;
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
@@ -1155,6 +1156,11 @@ export default class Actor5e extends Actor {
     }
 
     _computeStarshipData(actorData, data) {
+        // Find Size info of Starship
+        const size = actorData.items.filter((i) => i.type === "starship");
+        if (size.length === 0) return;
+        const sizeData = size[0].data.data;
+
         // Calculate AC
         data.attributes.ac.value += Math.min(data.abilities.dex.mod, data.attributes.equip.armor.maxDex);
 
@@ -1165,11 +1171,6 @@ export default class Actor5e extends Actor {
         data.attributes.power.shields.max += data.attributes.equip.powerCoupling.systemCap;
         data.attributes.power.sensors.max += data.attributes.equip.powerCoupling.systemCap;
         data.attributes.power.weapons.max += data.attributes.equip.powerCoupling.systemCap;
-
-        // Find Size info of Starship
-        const size = actorData.items.filter((i) => i.type === "starship");
-        if (size.length === 0) return;
-        const sizeData = size[0].data.data;
 
         // Prepare Hull Points
         data.attributes.hp.max =

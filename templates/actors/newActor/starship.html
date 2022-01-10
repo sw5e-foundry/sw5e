@@ -304,29 +304,42 @@
 					</table>
 					</label>
 				</div>
-				<section class="counters" style="border: none; margin: 8px 0; display: grid; grid-template-columns: repeat(2, 1fr);">
-				<div class="counter">
-					<h4 class="death-save rollable" data-action="rollDestructionSave">{{ localize "SW5E.DestructionSave" }}</h4>
-					<div class="counter-value" style="text-align: left;">
-						<div class="death-success" style="color: #0dce0d;">
-							<i class="fas fa-check"></i>
-							<input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
-								value="{{data.attributes.death.success}}" />
-						</div>
-						<div class="death-fail" style="color: #c40f0f;">
-							<i class="fas fa-times"></i>
-							<input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
-								value="{{data.attributes.death.failure}}" />
-						</div>
-					</div>
-				</div>
-				<div class="counter">
-					<h4>{{ localize "SW5E.SystemDrainage" }}</h4>
-					<div class="counter-value" style="text-align: left;">
-						<input type="text" name="data.attributes.systemDamage" data-dtype="Number" placeholder="0"
-							value="{{data.attributes.systemDamage}}" />
-					</div>
-				</div></section>
+				<section class="counters" style="border: none; margin: 8px 0; display: grid; grid-template-columns: repeat(3, 1fr);">
+                    <div class="counter">
+                        <h4 class="death-save rollable" data-action="rollDestructionSave">{{ localize "SW5E.DestructionSave" }}</h4>
+                        <div class="counter-value" style="text-align: left;">
+                            <div class="death-success" style="color: #0dce0d;">
+                                <i class="fas fa-check"></i>
+                                <input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
+                                    value="{{data.attributes.death.success}}" />
+                            </div>
+                            <div class="death-fail" style="color: #c40f0f;">
+                                <i class="fas fa-times"></i>
+                                <input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
+                                    value="{{data.attributes.death.failure}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <h4>{{ localize "SW5E.SystemDamage" }}</h4>
+                        <div class="counter-value" style="text-align: left;">
+                            <input type="text" name="data.attributes.systemDamage" data-dtype="Number" placeholder="0"
+                                value="{{data.attributes.systemDamage}}" />
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <h4>{{ localize "SW5E.SystemDamageUsed" }}</h4>
+                        <div class="counter-value">
+                            <input
+                                type="checkbox"
+                                name="data.attributes.used"
+                                data-dtype="Boolean"
+                                {{checked
+                                data.attributes.used}}
+                            />
+                        </div>
+                    </div>
+                </section>
 				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
 				<div class="traits">
                     <label>

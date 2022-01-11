@@ -576,6 +576,7 @@ SW5E.armorTypes = {
     medium: "SW5E.EquipmentMedium",
     heavy: "SW5E.EquipmentHeavy",
     natural: "SW5E.EquipmentNatural",
+    starship: "SW5E.EquipmentStarshipArmor",
     shield: "SW5E.EquipmentShield"
 };
 
@@ -591,7 +592,6 @@ SW5E.miscEquipmentTypes = {
     reactor: "SW5E.EquipmentReactor",
     clothing: "SW5E.EquipmentClothing",
     trinket: "SW5E.EquipmentTrinket",
-    ssarmor: "SW5E.EquipmentStarshipArmor",
     ssshield: "SW5E.EquipmentStarshipShield",
     vehicle: "SW5E.EquipmentVehicle"
 };
@@ -661,6 +661,10 @@ SW5E.armorClasses = {
     },
     default: {
         label: "SW5E.ArmorClassEquipment",
+        formula: "@attributes.ac.base + @abilities.dex.mod"
+    },
+    starship: {
+        label: "SW5E.ArmorClassStarshipEquipment",
         formula: "@attributes.ac.base + @abilities.dex.mod"
     },
     mage: {
@@ -939,7 +943,6 @@ SW5E.deploymentTypesPlural = {
 
 SW5E.deployableTypes = ["character", "npc"];
 
-
 /* -------------------------------------------- */
 
 /**
@@ -952,7 +955,7 @@ SW5E.defaultStarshipEquipment = [
     "Compendium.sw5e.starshiparmor.RvtLP3FgKLBYBHSf",
     "Compendium.sw5e.starshiparmor.aG6mKPerYCFmkI00",
     "Compendium.sw5e.starships.6liD1m4hqKSeS5sp"
-]
+];
 
 /* -------------------------------------------- */
 

@@ -533,6 +533,9 @@
         "starship": {
             "templates": ["common"],
             "attributes": {
+                "ac": {
+                    "calc": "starship"
+                },
                 "cost": {
                     "baseBuild": 0,
                     "baseUpgrade": 0,
@@ -1026,7 +1029,6 @@
                 "weight": 0,
                 "price": 0,
                 "attunement": 0,
-                "equipped": false,
                 "rarity": "",
                 "identified": true
             },
@@ -1232,8 +1234,7 @@
                 "conditions": ""
             },
             "strength": 0,
-            "stealth": false,
-            "proficient": true
+            "stealth": false
         },
         "feat": {
             "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1356,8 +1357,7 @@
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
             "weaponType": "simpleVW",
             "baseItem": "",
-            "properties": {},
-            "proficient": true
+            "properties": {}
         }
     }
 }

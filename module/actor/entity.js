@@ -496,7 +496,6 @@ export default class Actor5e extends Actor {
             const tiers = parseInt(sizeData.tier) || 0;
             data.traits.size = sizeData.size; // needs to be the short code
             data.details.tier = tiers;
-            data.attributes.ac.value = 10 + Math.max(tiers - 1, 0);
             data.attributes.hull.die = sizeData.hullDice;
             if (["huge", "grg"].includes(sizeData.size)) {
                 data.attributes.hull.dicemax = sizeData.hullDiceStart + 2 * tiers;
@@ -530,7 +529,7 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship armor-based properties based on owned Starship item
-        const armor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "ssarmor"); // && (i.data.equipped === true)));
+        const armor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "starship"); // && (i.data.equipped === true)));
         if (armor.length !== 0) {
             const armorData = armor[0].data.data;
             data.attributes.equip.armor.dr = parseInt(armorData.dmgred.value) || 0;
@@ -1009,6 +1008,22 @@ export default class Actor5e extends Actor {
                 ac.base = Number(ac.flat);
                 break;
 
+            // Starship-Based AC
+            case "starship":
+                const tier = data.details.tier;
+                ac.tier = Math.max(tier - 1, 0);
+                if (armors.length) {
+                    if (armors.length > 1) ac.warnings.push("SW5E.WarnMultipleArmor");
+                    const armorData = armors[0].data.data.armor;
+                    ac.dex = Math.min(armorData.dex ?? Infinity, data.abilities.dex.mod);
+                    ac.base = (armorData.value ?? 0) + ac.tier + ac.dex;
+                    ac.equippedArmor = armors[0];
+                } else {
+                    ac.dex = data.abilities.dex.mod;
+                    ac.base = 10 + ac.tier + ac.dex;
+                }
+                break;
+
             // Equipment-based AC
             case "default":
                 if (armors.length) {
@@ -1160,9 +1175,6 @@ export default class Actor5e extends Actor {
         const size = actorData.items.filter((i) => i.type === "starship");
         if (size.length === 0) return;
         const sizeData = size[0].data.data;
-
-        // Calculate AC
-        data.attributes.ac.value += Math.min(data.abilities.dex.mod, data.attributes.equip.armor.maxDex);
 
         // Set Power Die Storage
         data.attributes.power.central.max += data.attributes.equip.powerCoupling.centralCap;
@@ -3528,7 +3540,7 @@ export default class Actor5e extends Actor {
                 if (
                     doc.type === "starship" ||
                     (doc.type === "equipment" &&
-                        ["ssarmor", "hyper", "powerc", "reactor", "ssshield"].includes(docData.armor?.type))
+                        ["starship", "hyper", "powerc", "reactor", "ssshield"].includes(docData.armor?.type))
                 ) {
                     for (const item of this.items) {
                         const itemData = item.data.data;

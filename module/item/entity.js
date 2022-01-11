@@ -1654,10 +1654,11 @@ export default class Item5e extends Item {
         if (!this.isEmbedded || this.parent.type === "vehicle") return;
         const actorData = this.parent.data;
         const isNPC = this.parent.type === "npc";
+        const isStarship = this.parent.type === "starship";
         let updates;
         switch (data.type) {
             case "equipment":
-                updates = this._onCreateOwnedEquipment(data, actorData, isNPC);
+                updates = this._onCreateOwnedEquipment(data, actorData, isNPC || isStarship);
                 break;
             case "power":
                 updates = this._onCreateOwnedPower(data, actorData, isNPC);
@@ -1743,20 +1744,21 @@ export default class Item5e extends Item {
     /**
      * Pre-creation logic for the automatic configuration of owned equipment type Items.
      *
-     * @param {object} data       Data for the newly created item.
-     * @param {object} actorData  Data for the actor to which the item is being added.
-     * @param {boolean} isNPC     Is this actor an NPC?
-     * @returns {object}          Updates to apply to the item data.
+     * @param {object} data           Data for the newly created item.
+     * @param {object} actorData      Data for the actor to which the item is being added.
+     * @param {boolean} isNPCorSS     Is this actor an NPC or Starship?
+     * @returns {object}              Updates to apply to the item data.
      * @private
      */
-    _onCreateOwnedEquipment(data, actorData, isNPC) {
+    _onCreateOwnedEquipment(data, actorData, isNPCorSS) {
         const updates = {};
         if (foundry.utils.getProperty(data, "data.equipped") === undefined) {
-            updates["data.equipped"] = isNPC; // NPCs automatically equip equipment
+            updates["data.equipped"] = isNPCorSS; // NPCs and Starships automatically equip equipment
         }
+
         if (foundry.utils.getProperty(data, "data.proficient") === undefined) {
-            if (isNPC) {
-                updates["data.proficient"] = true; // NPCs automatically have equipment proficiency
+            if (isNPCorSS) {
+                updates["data.proficient"] = true; // NPCs and Starships automatically have equipment proficiency
             } else {
                 const armorProf = CONFIG.SW5E.armorProficienciesMap[this.data.data.armor?.type]; // Player characters check proficiency
                 const actorArmorProfs = actorData.data.traits?.armorProf?.value || [];

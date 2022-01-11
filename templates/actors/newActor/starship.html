@@ -16,14 +16,18 @@
         <div class="summary">
 			<span class="summary-input" style="text-transform: capitalize;font-family: 'Russo One';display: inline; height: auto; font-size: 17px; font-weight: 400; letter-spacing: 0.5px; line-height: 24px; color: #4f4f4f;">{{lookup config.actorSizes data.traits.size}}</span>
             <input type="text" name="data.details.source" value="{{data.details.source}}" placeholder="{{ localize 'SW5E.Source' }}" />
+            <div class="proficiency">{{ localize "SW5E.Proficiency" }} {{labels.proficiency}}</div>
         </div>
         <div class="attributes">
 			{{!-- ARMOR CLASS --}}
 			<section style="box-sizing: border-box; width: 150px;">
-                <h1 class="attribute-name armor">{{ localize "SW5E.ArmorClass" }}</h1>
-				<div class="attribute-value">
-					<input class="ac-display" name="data.attributes.ac.value" type="text"
-						value="{{data.attributes.ac.value}}" data-dtype="Number" placeholder="10" />
+                <h1 class="attribute-name armor">{{ localize "SW5E.ArmorClass" }}
+                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
+                    ><i class="fas fa-cog"></i
+                ></a>
+                </h1>
+                <div class="attribute-value attributable" data-property="attributes.ac">
+                    <span>{{data.attributes.ac.value}}</span>
                 </div>
 				<footer class="attribute-footer hit-dice" style="grid-template-columns: 1fr 1fr 1fr; column-gap: 4px;">
 					<button type="button" class="rest recharge-repair">{{ localize "SW5E.Recharge" }}</button>

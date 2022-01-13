@@ -1,24 +1,24 @@
 name: Gulp build and commit updated stylesheets
 
 on:
-  push:
-    branches: [master, Develop]
-  pull_request:
-    branches: [master, Develop]
+    push:
+        branches: [master, Develop*]
+    pull_request:
+        branches: [master, Develop*]
 
 jobs:
-  gulp-build:
-    runs-on: ubuntu-latest
+    gulp-build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Compile with Gulp
-        uses: elstudio/actions-js-build/build@v2
+            - name: Compile with Gulp
+              uses: elstudio/actions-js-build/build@v2
 
-      - name: Commit changes
-        uses: elstudio/actions-js-build/commit@v3
-        with:
-          commitMessage: Regenerate css
+            - name: Commit changes
+              uses: elstudio/actions-js-build/commit@v3
+              with:
+                  commitMessage: Regenerate css

@@ -2,9 +2,9 @@ name: Gulp build and commit updated stylesheets
 
 on:
   push:
-    branches: [master, Develop]
+    branches: [master, Develop*]
   pull_request:
-    branches: [master, Develop]
+    branches: [master, Develop*]
 
 jobs:
   gulp-build:

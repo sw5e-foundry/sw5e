@@ -2,9 +2,9 @@
     {{!-- Ability Scores --}}
     <section class="scores">
         <h1>{{localize "SW5E.AbilityScores"}}</h1>
-        <ol>
+        <ol class="score-list">
             {{#each data.abilities as |ability id|}}
-            <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
+            <li class="score{{#if ability.proficient}} proficient{{/if}}" data-ability="{{id}}">
                 <h2 class="ability-name rollable">{{ability.label}}</h2>
                 <input
                     class="ability-score"

@@ -20,7 +20,7 @@
         </div>
         <div class="attributes">
 			{{!-- ARMOR CLASS --}}
-			<section style="box-sizing: border-box; width: 150px;">
+			<section class="attrib armor" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name armor">{{ localize "SW5E.ArmorClass" }}
                     <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
                     ><i class="fas fa-cog"></i
@@ -37,7 +37,7 @@
 			</section>
 
 			{{!-- HULL POINTS --}}
-			<section class="attribute health" style="box-sizing: border-box; width: 150px;">
+			<section class="attrib health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.HullPoints" }}</h1>
                 <div class="attribute-value multiple">
                     <input name="data.attributes.hp.value" type="text"
@@ -58,7 +58,7 @@
             </section>
 			
 			{{!-- SHIELD POINTS --}}
-			<section class="attribute health" style="box-sizing: border-box; width: 150px;">
+			<section class="attrib health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.ShieldPoints" }}</h1>
                 <div class="attribute-value multiple">
                     <input name="data.attributes.hp.temp" type="text" 
@@ -78,7 +78,7 @@
                 </footer>
             </section>			
 			
-            <section style="box-sizing: border-box; width: 150px;">
+            <section class="attrib movement" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name movement">{{ localize "SW5E.Movement" }}
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
@@ -103,14 +103,14 @@
 
     {{!-- Starship Sheet Body --}}
     <section class="sheet-body">
-        <section class="tab attributes core" data-group="primary" data-tab="attributes">
+        <section class="tab core" data-group="primary" data-tab="attributes">
             <section class="panel abilities">
                 {{!-- Ability Scores --}}
                 <section class="scores">
                     <h1>{{localize "SW5E.AbilityScores"}}</h1>
-                    <ol>
+                    <div class="score-list">
                         {{#each data.abilities as |ability id|}}
-                        <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
+                        <div class="score" data-ability="{{id}}">
                             <h2 class="ability-name rollable">{{ability.label}}</h2>
                             <input
                                 class="ability-score"
@@ -137,12 +137,12 @@
                                     >{{numberFormat ability.save decimals=0 sign=true}}</span
                                 >
                             </div>
-                            <a class="config-button" data-action="ability" title="{{localize 'SW5E.AbilityConfigure'}}"
-                                ><i class="fas fa-cog"></i
-                            ></a>
-                        </li>
+                            <a class="config-button" data-action="ability" title="{{localize 'SW5E.AbilityConfigure'}}">
+                                <i class="fas fa-cog"></i>
+                            </a>
+                        </div>
                         {{/each}}
-                    </ol>
+                    </div>
                 </section>
                 {{!-- Skills --}}
                 <section class="skills">
@@ -346,19 +346,25 @@
                 </section>
 				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
 				<div class="traits">
-                    <label>
+                    <div><label>
                         {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.capUsed" value="{{data.attributes.mods.capUsed}}" placeholder="10" />/ {{data.attributes.mods.capLimit}}
                     </label>
+                    </div>
+                    <div>
                    <label>
                         {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}} - Occupancy: {{data.attributes.mods.suites.suiteCap}}
                     </label>
-					<br />
+                    </div>
+                    <div>
                    <label>
                         {{localize "SW5E.HardpointsPerRound"}}: {{data.attributes.mods.hardpoints.max}}
                     </label>
+                    </div>
+                    <div>
                     <label>
                         {{localize "SW5E.DmgRed"}}: {{data.attributes.equip.armor.dr}}
                     </label>
+                    </div>
                 </div>
 		    </section>
 		</section>

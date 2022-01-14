@@ -51,7 +51,7 @@
         {{!-- Header Attributes --}}
         <div class="attributes">
             {{!-- ARMOR CLASS --}}
-            <section>
+            <section class="attrib armor">
                 <h1 class="attribute-name armor">
                     {{ localize "SW5E.ArmorClass" }}
                     <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
@@ -67,7 +67,7 @@
             </section>
 
             {{!-- HIT POINTS --}}
-            <section>
+            <section class="attrib health">
                 <h1>{{ localize "SW5E.HP" }}</h1>
                 <div class="attribute-value multiple">
                     <input
@@ -111,7 +111,7 @@
             </section>
 
             {{!-- HIT DICE / SHORT & LONG REST BUTTONS --}}
-            <section>
+            <section class="attrib hit-dice">
                 <h1 class="attribute-name hit-dice">
                     {{ localize "SW5E.HitDice" }}
                     <a class="config-button" data-action="hit-dice" title="{{localize 'SW5E.HitDiceConfig'}}"
@@ -136,7 +136,7 @@
             </section>
 
             {{!-- INITIATIVE --}}
-            <section>
+            <section class="attrib initiative">
                 <h1 class="attribute-name box-title rollable" data-action="rollInitiative">
                     {{ localize "SW5E.Initiative" }}
                 </h1>
@@ -156,7 +156,7 @@
             </section>
 
             {{!-- SPEED / MOVEMENT TYPES --}}
-            <section>
+            <section class="attrib movement">
                 <h1 class="attribute-name movement">
                     {{ localize "SW5E.Movement" }}
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"
@@ -186,7 +186,7 @@
     {{!-- PC Sheet Body --}}
     <section class="sheet-body">
         {{!-- Core Tab --}}
-        <section class="tab attributes core" data-group="primary" data-tab="attributes">
+        <section class="tab core" data-group="primary" data-tab="attributes">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-core.html" sections=attributes}}
         </section>
         {{!-- Inventory Tab --}}

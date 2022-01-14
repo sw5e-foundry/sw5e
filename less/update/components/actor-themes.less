@@ -70,35 +70,37 @@
             }
 
             .attributes {
-                .attribute-value,
-                .attribute-value input {
-                    color: @actorAttributeInputColor;
-                }
-
-                .attribute-value {
-                    .value-separator {
-                        color: @actorSeparatorColor;
+                .attrib {
+                    .attribute-value,
+                    .attribute-value input {
+                        color: @actorAttributeInputColor;
                     }
-                }
 
-                footer {
-                    button {
-                        border: 1px solid @actorAttributeButtonBorder;
-
-                        &:hover {
-                            color: @actorAttributeButtonBorderHover;
+                    .attribute-value {
+                        .value-separator {
+                            color: @actorSeparatorColor;
                         }
                     }
 
-                    &.hit-points,
-                    &.hit-dice,
-                    &.initiative {
+                    footer {
                         button {
                             border: 1px solid @actorAttributeButtonBorder;
-                            color: @colorRed;
 
                             &:hover {
-                                border-color: @actorAttributeButtonBorderHover;
+                                color: @actorAttributeButtonBorderHover;
+                            }
+                        }
+
+                        &.hit-points,
+                        &.hit-dice,
+                        &.initiative {
+                            button {
+                                border: 1px solid @actorAttributeButtonBorder;
+                                color: @colorRed;
+
+                                &:hover {
+                                    border-color: @actorAttributeButtonBorderHover;
+                                }
                             }
                         }
                     }
@@ -201,32 +203,30 @@
                 }
             }
         }
+        .score-list {
+            .score {
+                border: 1px solid @actorAbilityBorderColor;
 
-        .tab.attributes {
-            .abilities {
-                .scores {
-                    li {
-                        border: 1px solid @actorAbilityBorderColor;
-
-                        h2 {
-                            &:hover {
-                                color: @linkColor;
-                            }
-                        }
-
-                        .ability-score {
-                            color: @actorAbilityScoreColor;
-                        }
-
-                        .ability-modifiers {
-                            .ability-mod,
-                            .ability-save {
-                                border-color: @actorAbilityBorderColor;
-                            }
-                        }
+                h2 {
+                    &:hover {
+                        color: @linkColor;
                     }
                 }
 
+                .ability-score {
+                    color: @actorAbilityScoreColor;
+                }
+
+                .ability-modifiers {
+                    .ability-mod,
+                    .ability-save {
+                        border-color: @actorAbilityBorderColor;
+                    }
+                }
+            }
+        }
+        .tab.core {
+            .abilities {
                 .skills {
                     li {
                         &:nth-child(even) {

@@ -43,7 +43,7 @@
         </div>
         <div class="attributes">
             {{!-- ARMOR CLASS --}}
-            <section>
+            <section class="attrib armor">
                 <h1 class="attribute-name armor">
                     {{ localize "SW5E.ArmorClass" }}
                     <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
@@ -59,7 +59,7 @@
             </section>
 
             {{!-- HIT POINTS --}}
-            <section class="attribute health">
+            <section class="attrib health">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.Health" }}</h1>
                 <div class="attribute-value multiple">
                     <input
@@ -92,7 +92,7 @@
                     />
                 </footer>
             </section>
-            <section>
+            <section class="attrib movement">
                 <h1 class="attribute-name movement">
                     {{ localize "SW5E.Movement" }}
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"
@@ -122,14 +122,14 @@
 
     {{!-- NPC Sheet Body --}}
     <section class="sheet-body">
-        <section class="tab attributes core" data-group="primary" data-tab="attributes">
+        <section class="tab core" data-group="primary" data-tab="attributes">
             <section class="panel abilities">
                 {{!-- Ability Scores --}}
                 <section class="scores">
                     <h1>{{localize "SW5E.AbilityScores" }}</h1>
-                    <ol>
+                    <ol class="score-list">
                         {{#each data.abilities as |ability id|}}
-                        <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
+                        <li class="score" data-ability="{{id}}">
                             <h2 class="ability-name rollable">{{ability.label}}</h2>
                             <input
                                 class="ability-score"

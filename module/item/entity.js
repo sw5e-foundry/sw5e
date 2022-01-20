@@ -281,7 +281,8 @@ export default class Item5e extends Item {
    */
   prepareFinalAttributes() {
     // Proficiency
-    this.data.data.prof = new Proficiency(this.actor?.data.data.attributes.prof, this.data.data.proficient);
+    const isProficient = (this.type === "power") || this.data.data.proficient; // Always proficient in power attacks.
+    this.data.data.prof = new Proficiency(this.actor?.data.data.attributes.prof, isProficient);
 
     if ( this.data.data.hasOwnProperty("actionType") ) {
       // Ability checks
@@ -505,7 +506,7 @@ export default class Item5e extends Item {
     // Define follow-up actions resulting from the item usage
     let createMeasuredTemplate = hasArea;       // Trigger a template creation
     let consumeRecharge = !!recharge.value;     // Consume recharge
-    let consumeResource = !!resource.target && (resource.type !== "ammo"); // Consume a linked (non-ammo) resource
+    let consumeResource = !!resource.target && (!item.hasAttack || (resource.type !== "ammo")); // Consume a linked (non-ammo) resource
     let consumePowerSlot = requirePowerSlot;    // Consume a power slot
     let consumeUsage = !!uses.per;              // Consume limited uses
     let consumeQuantity = uses.autoDestroy;     // Consume quantity of the item in lieu of uses
@@ -1020,10 +1021,10 @@ export default class Item5e extends Item {
 
     // Invoke the d20 roll helper
     const roll = await d20Roll(rollConfig);
-    if ( roll === false ) return null;
+    if ( roll === null ) return null;
 
     // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
-    if ( ammo && !isObjectEmpty(ammoUpdate) ) await ammo.update(ammoUpdate);
+    if ( ammo && !foundry.utils.isObjectEmpty(ammoUpdate) ) await ammo.update(ammoUpdate);
     return roll;
   }
 
@@ -1038,13 +1039,17 @@ export default class Item5e extends Item {
    * @param {number} [config.powerLevel]   If the item is a power, override the level for damage scaling
    * @param {boolean} [config.versatile]   If the item is a weapon, roll damage using the versatile formula
    * @param {object} [config.options]      Additional options passed to the damageRoll function
-   * @returns {Promise<Roll>}        A Promise which resolves to the created Roll instance
+   * @returns {Promise<Roll>}              A Promise which resolves to the created Roll instance, or null if the action
+   *                                       cannot be performed.
    */
   rollDamage({critical=false, event=null, powerLevel=null, versatile=false, options={}}={}) {
     if ( !this.hasDamage ) throw new Error("You may not make a Damage Roll with this Item.");
     const itemData = this.data.data;
     const actorData = this.actor.data.data;
-    const messageData = {"flags.sw5e.roll": {type: "damage", itemId: this.id }};
+    const messageData = {
+      "flags.sw5e.roll": {type: "damage", itemId: this.id},
+      speaker: ChatMessage.getSpeaker({actor: this.actor})
+    };
 
     // Get roll data
     const parts = itemData.damage.parts.map(d => d[0]);
@@ -1066,10 +1071,9 @@ export default class Item5e extends Item {
       dialogOptions: {
         width: 400,
         top: event ? event.clientY - 80 : null,
-        left: window.innerWidth - 710,
-        speaker: ChatMessage.getSpeaker({actor: this.actor})
+        left: window.innerWidth - 710
       },
-      messageData: messageData
+      messageData
     };
 
     // Adjust damage from versatile usage
@@ -1121,7 +1125,7 @@ export default class Item5e extends Item {
     }
 
     // Call the roll helper utility
-    return damageRoll(mergeObject(rollConfig, options));
+    return damageRoll(foundry.utils.mergeObject(rollConfig, options));
   }
 
   /* -------------------------------------------- */

@@ -388,7 +388,7 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.5.6.R1-B2";
+    const NEEDS_MIGRATION_VERSION = "1.5.7.R1-B2";
     // Check for R1 SW5E versions
     const SW5E_NEEDS_MIGRATION_VERSION = "R1-B2";
     const COMPATIBLE_MIGRATION_VERSION = 0.8;

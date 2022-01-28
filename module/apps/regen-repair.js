@@ -5,6 +5,11 @@
 export default class RegenRepairDialog extends Dialog {
     constructor(actor, dialogData = {}, options = {}) {
         super(dialogData, options);
+
+        /**
+         * Store a reference to the Actor document which is repairing
+         * @type {Actor}
+         */
         this.actor = actor;
     }
 
@@ -23,7 +28,7 @@ export default class RegenRepairDialog extends Dialog {
     /** @override */
     getData() {
         const data = super.getData();
-        const attr = this.actor.data.data.attributes
+        const attr = this.actor.data.data.attributes;
         if (attr.hp.temp == attr.hp.tempmax || attr.shld.depleted || Number(attr.shld.dice) == 0) {
             data.useShieldDie = false;
         } else {

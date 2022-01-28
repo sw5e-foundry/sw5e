@@ -1926,6 +1926,17 @@ export default class Actor5e extends Actor {
      * @return {Promise<Roll|null>}     The created Roll instance, or null if no shield die was rolled
      */
     async rollShieldDie(denomination, natural = false, numDice = "1", keep = "", {dialog = true} = {}) {
+        // If shields are depleted exit because you are unable to regen shields
+        const depleted = this.data.data.attributes.shld.depleted;
+        // If shields are depleted, display an error notification
+        if (depleted) {
+            ui.notifications.error(
+                game.i18n.format("SW5E.ShieldDepletedWarn", {
+                    name: this.name
+                })
+            );
+            return null;
+        }
         // If no denomination was provided, choose the first available
         let sship = null;
         const shldMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
@@ -1950,9 +1961,20 @@ export default class Actor5e extends Actor {
         // If no starship is available, display an error notification
         if (!sship) {
             ui.notifications.error(
-                game.i18n.format("SW5E.ShldDiceWarn", {
+                game.i18n.format("SW5E.ShieldDiceWarn", {
                     name: this.name,
                     formula: denomination
+                })
+            );
+            return null;
+        }
+
+        const hp = this.data.data.attributes.hp;
+        // If shields are full, display an error notification
+        if (hp.temp >= hp.tempmax) {
+            ui.notifications.error(
+                game.i18n.format("SW5E.ShieldFullWarn", {
+                    name: this.name
                 })
             );
             return null;
@@ -1966,7 +1988,7 @@ export default class Actor5e extends Actor {
         }
 
         // Prepare roll data
-        const parts = [`${numDice}${denomination}${keep} * @attributes.regenRate`];
+        const parts = [`${numDice}${denomination}${keep} * @attributes.equip.shields.regenRateMult`];
         const title = game.i18n.localize("SW5E.ShieldDiceRoll");
         const rollData = foundry.utils.deepClone(this.data.data);
 
@@ -1990,7 +2012,6 @@ export default class Actor5e extends Actor {
         await sship.update({
             "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1
         });
-        const hp = this.data.data.attributes.hp;
         const dhp = Math.min(hp.tempmax - hp.temp, roll.total);
         await this.update({"data.attributes.hp.temp": hp.temp + dhp});
         return roll;
@@ -2544,7 +2565,7 @@ export default class Actor5e extends Actor {
 
         const attr = this.data.data.attributes;
         const equip = attr.equip;
-        const roll = new Roll(equip?.reactor?.powerRecDie ?? "");
+        const powerRoll = this.rollPowerDieRecovery;
         const size = this.data.items.filter((i) => i.type === "starship");
 
         const update = {};
@@ -2552,6 +2573,7 @@ export default class Actor5e extends Actor {
         const messageData = {};
 
         if (useShieldDie) {
+            const shieldRoll = this.rollShieldDie((natural = true));
             if (!size) return ui.notifications.error(game.i18n.localize("SW5E.NoStarshipSize"));
             const sizeData = size[0].data.data;
             const shields = attr.shld;
@@ -2577,7 +2599,7 @@ export default class Actor5e extends Actor {
         }
 
         if (pdMissing.total) {
-            const minRegen = (await roll.clone().evaluate({minimize: true})).total;
+            const minRegen = (await powerRoll.clone().evaluate({minimize: true})).total;
             if (pdMissing.total <= minRegen) {
                 for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
                 messageData.pd = pdMissing.total;

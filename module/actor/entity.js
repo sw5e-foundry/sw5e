@@ -1915,17 +1915,50 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
+     * Results from a roll shield die operation.
+     *
+     * @typedef {object} SDRollResult
+     * @property {number} sp             Shield Points recovered.
+     * @property {object} actorUpdates   Updates applied to the actor.
+     * @property {object} itemUpdates    Updates applied to the actor's items.
+     * @property {Roll} roll             The created Roll instance, or null if no shield die was rolled
+     */
+
+    /* -------------------------------------------- */
+
+    /**
      * Roll a shield die of the appropriate type, gaining shield points equal to the die roll
      * multiplied by the shield regeneration coefficient
-     * @param {string} [denomination]   The denomination of shield die to roll. Example "d8".
-     *                                  If no denomination is provided, the first available SD will be used
-     * @param {boolean} [natural]       Natural ship shield regeneration (true) or user action (false)?
-     * @param {string} [numDice]        How many dice to roll?
-     * @param {string} [keep]           Which dice to keep? Example "kh1".
-     * @param {boolean} [dialog]        Show a dialog prompt for configuring the shield die roll?
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no shield die was rolled
+     * @param {string} [denomination]        The denomination of shield die to roll. Example "d8".
+     *                                       If no denomination is provided, the first available SD will be used
+     * @param {boolean} [natural]            Natural ship shield regeneration (true) or user action (false)?
+     * @param {string} [numDice]             How many dice to roll?
+     * @param {string} [keep]                Which dice to keep? Example "kh1".
+     * @param {boolean} [dialog]             Show a dialog prompt for configuring the shield die roll?
+     * @return {Promise<SDRollResult|null>}  A Promise which resolves once the shield die roll workflow has completed.
      */
-    async rollShieldDie(denomination, natural = false, numDice = "1", keep = "", {dialog = true} = {}) {
+    async rollShieldDie({denomination, natural = false, numDice = "1", keep = "", dialog = true, update = true} = {}) {
+        const result = {
+            sp: 0,
+            actorUpdates: {},
+            itemUpdates: [],
+            roll: null,
+        }
+
+        const attr = this.data.data.attributes
+        const shld = attr.shld;
+        const hp = attr.hp;
+
+        // If shields are depleted, display an error notification and exit
+        if (shld.depleted) {
+            ui.notifications.error(
+                game.i18n.format("SW5E.ShieldDepletedWarn", {
+                    name: this.name
+                })
+            );
+            return result;
+        }
+
         // If no denomination was provided, choose the first available
         let sship = null;
         const shldMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
@@ -1933,10 +1966,9 @@ export default class Actor5e extends Actor {
             sship = this.itemTypes.starship.find(
                 (s) => s.data.data.shldDiceUsed < s.data.data.tier * shldMult + s.data.data.shldDiceStart
             );
-            if (!sship) return null;
+            if (!sship) return result;
             denomination = sship.data.data.shldDice;
         }
-
         // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
         else {
             sship = this.items.find((i) => {
@@ -1950,71 +1982,117 @@ export default class Actor5e extends Actor {
         // If no starship is available, display an error notification
         if (!sship) {
             ui.notifications.error(
-                game.i18n.format("SW5E.ShldDiceWarn", {
+                game.i18n.format("SW5E.ShieldDiceWarn", {
                     name: this.name,
                     formula: denomination
                 })
             );
-            return null;
+            return result;
+        }
+
+
+        // If shields are full, display an error notification
+        if (hp.temp >= hp.tempmax) {
+            ui.notifications.error(
+                game.i18n.format("SW5E.ShieldFullWarn", {
+                    name: this.name
+                })
+            );
+            return result;
         }
 
         // if natural regeneration roll max
-        if (natural) {
-            numdice = denomination.substring(1);
-            denomination = "";
-            keep = "";
+        if (natural) result.sp = Math.floor(denomination.substring(1) * attr.equip.shields.regenRateMult);
+        else {
+            // Prepare roll data
+            const parts = [`${numDice}${denomination}${keep} * @attributes.equip.shields.regenRateMult`];
+            const title = game.i18n.localize("SW5E.ShieldDiceRoll");
+            const rollData = foundry.utils.deepClone(this.data.data);
+
+            // Call the roll helper utility
+            const roll = await attribDieRoll({
+                event: new Event("shldDie"),
+                parts: parts,
+                data: rollData,
+                title: title,
+                fastForward: !dialog,
+                dialogOptions: {width: 350},
+                messageData: {
+                    "speaker": ChatMessage.getSpeaker({actor: this}),
+                    "flags.sw5e.roll": {type: "shldDie"}
+                }
+            });
+            if (!roll) return result;
+            result.roll = roll;
+            result.sp = roll.total;
         }
 
-        // Prepare roll data
-        const parts = [`${numDice}${denomination}${keep} * @attributes.regenRate`];
-        const title = game.i18n.localize("SW5E.ShieldDiceRoll");
-        const rollData = foundry.utils.deepClone(this.data.data);
-
-        // Call the roll helper utility
-        const roll = await attribDieRoll({
-            event: new Event("shldDie"),
-            parts: parts,
-            data: rollData,
-            title: title,
-            fastForward: !dialog,
-            dialogOptions: {width: 350},
-            messageData: {
-                "speaker": ChatMessage.getSpeaker({actor: this}),
-                "flags.sw5e.roll": {type: "shldDie"}
-            }
+        // Prepare actor updates
+        result.sp = Math.min(hp.tempmax - hp.temp, result.sp);
+        result.actorUpdates["data.attributes.hp.temp"] = hp.temp + result.sp;
+        // Prepare item updates
+        result.itemUpdates.push({
+            "_id": sship.id,
+            "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1,
         });
 
-        if (!roll) return null;
+        // Apply the updates
+        if (update) {
+            await this.update(result.actorUpdates);
+            await this.updateEmbeddedDocuments(result.itemUpdates);
+        }
 
-        // Adjust actor data
-        await sship.update({
-            "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1
-        });
-        const hp = this.data.data.attributes.hp;
-        const dhp = Math.min(hp.tempmax - hp.temp, roll.total);
-        await this.update({"data.attributes.hp.temp": hp.temp + dhp});
-        return roll;
+        return result;
     }
+
+    /**
+     * Results from a power die recovery operation.
+     *
+     * @typedef {object} PDRecoveryResult
+     * @property {number} pd             Power die recovered.
+     * @property {object} actorUpdates   Updates applied to the actor.
+     * @property {object} itemUpdates    Updates applied to the actor's items.
+     * @property {Roll} roll             The created Roll instance, or null if no power die was rolled
+     */
 
     /* -------------------------------------------- */
 
     /**
      * Roll a power die recovery of the appropriate type, gaining power dice equal to the roll
      *
-     * @param {string} [formula]        Formula from reactor to use for power die recovery
-     * @param {boolean} [dialog]        Show a dialog prompt for configuring the power die roll?
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no power die was rolled
+     * @param {string} [formula]                Formula from reactor to use for power die recovery
+     * @return {Promise<PDRecoveryResult|null>} A Promise which resolves once the power die recovery workflow has completed.
      */
-    async rollPowerDieRecovery(formula, {dialog = true} = {}) {
-        // if no formula check starship for equipped reactor
-        if (!formula) {
-            formula = this.data.data.attributes.equip.reactor.powerRecDie;
-        }
+    async rollPowerDieRecovery({formula, update = true} = {}) {
+        const result = {
+            pd: 0,
+            actorUpdates: {},
+            itemUpdates: [],
+            roll: null,
+        };
+
+        // Prepare helper data
+        const attr = this.data.data.attributes;
+        const pd = attr.power;
 
         // Prepare roll data
+        // if no formula check starship for equipped reactor
+        if (!formula) formula = attr.equip.reactor.powerRecDie;
         const parts = [formula];
         const title = game.i18n.localize("SW5E.PowerDiceRecovery");
         const rollData = foundry.utils.deepClone(this.data.data);
+
+
+        // Calculate how many available slots for power die the ship has
+        const pdMissing = {};
+        const slots = ["central", "comms", "engines", "sensors", "shields", "weapons"];
+        for (const slot of slots) {
+            pdMissing[slot] = pd[slot].max - Number(pd[slot].value);
+            pdMissing.total = (pdMissing.total ?? 0) + pdMissing[slot];
+        }
+
+        // Don't roll it there are no available slots
+        if (!pdMissing.total) return result;
 
         // Call the roll helper utility
         const roll = await attribDieRoll({
@@ -2022,19 +2100,50 @@ export default class Actor5e extends Actor {
             parts: parts,
             data: rollData,
             title: title,
-            fastForward: !dialog,
+            fastForward: true,
             dialogOptions: {width: 350},
             messageData: {
                 "speaker": ChatMessage.getSpeaker({actor: this}),
                 "flags.sw5e.roll": {type: "pwrDieRec"}
             }
         });
+        if (!roll) return result;
+        else result.roll = roll;
 
-        if (!roll) return null;
+        // If the roll is enough to fill all available slots
+        if (pdMissing.total <= roll.total) {
+            for (const slot of slots) result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
+            result.pd = pdMissing.total;
+        }
+        // If all new power die can fit into the central storage
+        else if (pdMissing.central >= roll.total) {
+            result.actorUpdates["data.attributes.power.central.value"] = String(Number(pd.central.value) + roll.total);
+            result.pd = roll.total;
+        }
+        // Otherwise, create an allocation dialog popup
+        else {
+            result.actorUpdates["data.attributes.power.central.value"] = pd.central.max;
+            try {
+                const allocation = await AllocatePowerDice.allocatePowerDice(
+                    this,
+                    roll.total - pdMissing.central,
+                    slots
+                );
+                for (const slot of allocation)
+                    result.actorUpdates[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
+                result.pd = allocation.length + pdMissing.central;
+            } catch (err) {
+                return result;
+            }
+        }
 
-        // Adjust actor data
-        //TODO: Make a new dialog box to allocate power dice
-        return roll;
+        // Apply the updates
+        if (update) {
+            await this.update(result.actorUpdates);
+            await this.updateEmbeddedDocuments(result.itemUpdates);
+        }
+
+        return result;
     }
 
     /* -------------------------------------------- */
@@ -2544,101 +2653,40 @@ export default class Actor5e extends Actor {
 
         const attr = this.data.data.attributes;
         const equip = attr.equip;
-        const roll = new Roll(equip?.reactor?.powerRecDie ?? "");
         const size = this.data.items.filter((i) => i.type === "starship");
 
-        const update = {};
-        const itemUpdate = {};
-        const messageData = {};
+        // Prepare shield point recovery
+        let shldRecovery = null;
+        if (useShieldDie) shldRecovery = await this.rollShieldDie({natural: true, update: false});
 
-        if (useShieldDie) {
-            if (!size) return ui.notifications.error(game.i18n.localize("SW5E.NoStarshipSize"));
-            const sizeData = size[0].data.data;
-            const shields = attr.shld;
-            if (!shields.depleted && attr.hp.temp < attr.hp.tempmax && shields.dice) {
-                const dieMax = Number(shields.die.substring(1));
-                const regenRate = equip?.shields?.regenRateMult ?? 1;
-                const regen = Math.floor(dieMax * regenRate);
-                const actualRegen = Math.min(regen, attr.hp.tempmax - attr.hp.temp);
+        // Prepare power die recovery
+        const pdRecovery = await this.rollPowerDieRecovery({update: false});
 
-                update["data.attributes.hp.temp"] = attr.hp.temp + actualRegen;
-                itemUpdate["data.shldDiceUsed"] = (sizeData.shldDiceUsed ?? 0) + 1;
-                update["data.attributes.shld.dice"] = shields.dice - 1;
-                messageData.sp = actualRegen;
-            }
-        }
+        // Consolidate the changes
+        const result = {
+            sp: shldRecovery?.sp ?? 0,
+            pd: pdRecovery.pd,
 
-        const pd = attr.power;
-        const pdMissing = {};
-        const slots = ["central", "comms", "engines", "sensors", "shields", "weapons"];
-        for (const slot of slots) {
-            pdMissing[slot] = pd[slot].max - Number(pd[slot].value);
-            pdMissing.total = (pdMissing.total ?? 0) + pdMissing[slot];
-        }
-
-        if (pdMissing.total) {
-            const minRegen = (await roll.clone().evaluate({minimize: true})).total;
-            if (pdMissing.total <= minRegen) {
-                for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
-                messageData.pd = pdMissing.total;
-            } else {
-                const regen = (await roll.evaluate()).total;
-                if (pdMissing.total <= regen) {
-                    for (const slot of slots) update[`data.attributes.power.${slot}.value`] = pd[slot].max;
-                    messageData.pd = pdMissing.total;
-                } else if (pdMissing.central >= regen) {
-                    update["data.attributes.power.central.value"] = String(Number(pd.central.value) + regen);
-                    messageData.pd = regen;
-                } else {
-                    update["data.attributes.power.central.value"] = pd.central.max;
-                    try {
-                        const allocation = await AllocatePowerDice.allocatePowerDice(
-                            this,
-                            regen - pdMissing.central,
-                            slots
-                        );
-                        for (const slot of allocation)
-                            update[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
-                        messageData.pd = allocation.length + pdMissing.central;
-                    } catch (err) {
-                        return;
-                    }
-                }
-            }
-        }
-
-        if (foundry.utils.isObjectEmpty(update) && foundry.utils.isObjectEmpty(itemUpdate)) return;
-
-        if (!foundry.utils.isObjectEmpty(update)) this.update(update);
-        if (!foundry.utils.isObjectEmpty(itemUpdate) && size) size[0].update(itemUpdate);
-
-        let message = "SW5E.RegenRepairResult";
-        if (messageData.sp) message += "S";
-        if (messageData.pd) message += "P";
-
-        // Create a chat message
-        let chatData = {
-            user: game.user.id,
-            speaker: {actor: this, alias: this.name}
+            actorUpdates: {
+                ...shldRecovery?.actorUpdates ?? {},
+                ...pdRecovery.actorUpdates,
+            },
+            itemUpdates: [
+                ...shldRecovery?.itemUpdates ?? [],
+                ...pdRecovery.itemUpdates,
+            ],
         };
-        ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
 
-        if (roll._evaluated && !roll.isDeterministic) {
-            chatData.flavor = game.i18n.format(message, {
-                name: this.name,
-                shieldPoints: messageData.sp,
-                powerDice: messageData.pd
-            });
-            return roll.toMessage(chatData);
-        }
+        if (foundry.utils.isObjectEmpty(result.actorUpdates) && foundry.utils.isObjectEmpty(result.itemUpdates)) return result;
 
-        chatData.flavor = game.i18n.localize("SW5E.RegenRepair");
-        chatData.content = game.i18n.format(message, {
-            name: this.name,
-            shieldPoints: messageData.sp,
-            powerDice: messageData.pd
-        });
-        return ChatMessage.create(chatData);
+        // Perform updates
+        await this.update(result.actorUpdates);
+        await this.updateEmbeddedDocuments("Item", result.itemUpdates);
+
+        // Display a Chat Message summarizing the repair effects
+        if (chat) await this._displayRegenResultMessage(result);
+
+        return result;
     }
 
     /* -------------------------------------------- */
@@ -2725,7 +2773,7 @@ export default class Actor5e extends Actor {
      * @return {Promise.<ChatMessage>}           Chat message that was created.
      * @protected
      */
-    async _displayRepairResultMessage(result, refittingRepair = false) {
+    async _displayRepairResultMessage(result, refittingRepair) {
         const {dhd, dhp, shd, shp, newDay} = result;
         const hullDiceRestored = dhd !== 0;
         const hullPointsRestored = dhp !== 0;
@@ -2779,6 +2827,37 @@ export default class Actor5e extends Actor {
                 hullPoints: dhp,
                 shldDice: shd,
                 shldPoints: shp
+            })
+        };
+        ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));
+        return ChatMessage.create(chatData);
+    }
+
+    /**
+     * Display a chat message with the result of a regen.
+     *
+     * @param {RepairResult} result              Result of the regen operation.
+     * @return {Promise.<ChatMessage>}           Chat message that was created.
+     * @protected
+     */
+    async _displayRegenResultMessage(result) {
+        const {sp, pd} = result;
+        const shldPointsRestored = sp !== 0;
+        const powerDiceRestored = pd !== 0;
+
+        let message = "SW5E.RegenRepairResult";
+
+        if (shldPointsRestored) message += "S";
+        if (powerDiceRestored) message += "P";
+
+        // Create a chat message
+        let chatData = {
+            user: game.user.id,
+            speaker: {actor: this, alias: this.name},
+            content: game.i18n.format(message, {
+                name: this.name,
+                shieldPoints: sp,
+                powerDice: pd
             })
         };
         ChatMessage.applyRollMode(chatData, game.settings.get("core", "rollMode"));

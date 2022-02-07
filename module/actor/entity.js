@@ -1186,12 +1186,15 @@ export default class Actor5e extends Actor {
 
         // Prepare Hull Points
         data.attributes.hp.max =
-            sizeData.hullDiceRolled.reduce((a, b) => a + b, 0) + data.abilities.con.mod * data.attributes.hull.dicemax;
+            sizeData.hullDiceRolled.reduce((a, b) => a + b, 0) +
+            (data.attributes.hull.dicemax - sizeData.hullDiceRolled.length) * SW5E.hitDieAvg[sizeData.hullDice] +
+            data.abilities.con.mod * data.attributes.hull.dicemax;
         if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
 
         // Prepare Shield Points
         data.attributes.hp.tempmax =
             (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) +
+                (data.attributes.shld.dicemax - sizeData.shldDiceRolled.length) * SW5E.hitDieAvg[sizeData.shldDice] +
                 data.abilities.str.mod * data.attributes.shld.dicemax) *
             data.attributes.equip.shields.capMult;
         if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
@@ -1942,10 +1945,10 @@ export default class Actor5e extends Actor {
             sp: 0,
             actorUpdates: {},
             itemUpdates: [],
-            roll: null,
-        }
+            roll: null
+        };
 
-        const attr = this.data.data.attributes
+        const attr = this.data.data.attributes;
         const shld = attr.shld;
         const hp = attr.hp;
 
@@ -1990,7 +1993,6 @@ export default class Actor5e extends Actor {
             return result;
         }
 
-
         // If shields are full, display an error notification
         if (hp.temp >= hp.tempmax) {
             ui.notifications.error(
@@ -2033,7 +2035,7 @@ export default class Actor5e extends Actor {
         // Prepare item updates
         result.itemUpdates.push({
             "_id": sship.id,
-            "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1,
+            "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1
         });
 
         // Apply the updates
@@ -2068,7 +2070,7 @@ export default class Actor5e extends Actor {
             pd: 0,
             actorUpdates: {},
             itemUpdates: [],
-            roll: null,
+            roll: null
         };
 
         // Prepare helper data
@@ -2081,7 +2083,6 @@ export default class Actor5e extends Actor {
         const parts = [formula];
         const title = game.i18n.localize("SW5E.PowerDiceRecovery");
         const rollData = foundry.utils.deepClone(this.data.data);
-
 
         // Calculate how many available slots for power die the ship has
         const pdMissing = {};
@@ -2668,16 +2669,14 @@ export default class Actor5e extends Actor {
             pd: pdRecovery.pd,
 
             actorUpdates: {
-                ...shldRecovery?.actorUpdates ?? {},
-                ...pdRecovery.actorUpdates,
+                ...(shldRecovery?.actorUpdates ?? {}),
+                ...pdRecovery.actorUpdates
             },
-            itemUpdates: [
-                ...shldRecovery?.itemUpdates ?? [],
-                ...pdRecovery.itemUpdates,
-            ],
+            itemUpdates: [...(shldRecovery?.itemUpdates ?? []), ...pdRecovery.itemUpdates]
         };
 
-        if (foundry.utils.isObjectEmpty(result.actorUpdates) && foundry.utils.isObjectEmpty(result.itemUpdates)) return result;
+        if (foundry.utils.isObjectEmpty(result.actorUpdates) && foundry.utils.isObjectEmpty(result.itemUpdates))
+            return result;
 
         // Perform updates
         await this.update(result.actorUpdates);

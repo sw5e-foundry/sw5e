@@ -886,6 +886,19 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
 /* -------------------------------------------- */
 
 /**
+ * Default average roll for hit dice each hit die size for the values of `SW5E.hitDieTypes`.
+ * @enum {number}
+ */
+SW5E.hitDieAvg = {
+    d4: 3,
+    d6: 4,
+    d8: 5,
+    d10: 6,
+    d12: 7,
+    d20: 11
+};
+
+/**
  * Enumerate the denominations of power dice which can apply to starships in the SW5E system
  * @type {string[]}
  */

@@ -542,10 +542,10 @@ SW5E.itemCapacityTypes = {
  * @enum {string}
  */
 SW5E.itemRarity = {
-    common: "SW5E.ItemRarityCommon",
-    uncommon: "SW5E.ItemRarityUncommon",
-    rare: "SW5E.ItemRarityRare",
-    veryRare: "SW5E.ItemRarityVeryRare",
+    standard: "SW5E.ItemRarityStandard",
+    premium: "SW5E.ItemRarityPremium",
+    prototype: "SW5E.ItemRarityPrototype",
+    advanced: "SW5E.ItemRarityAdvanced",
     legendary: "SW5E.ItemRarityLegendary",
     artifact: "SW5E.ItemRarityArtifact"
 };

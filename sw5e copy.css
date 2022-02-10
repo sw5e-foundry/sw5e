@@ -133,6 +133,7 @@ body {
     background: rgba(0, 0, 0, 0.1);
     border: 2px groove #eeede0;
 }
+.sw5e label.number,
 .sw5e label.checkbox {
     flex: auto;
     margin: 0;
@@ -140,6 +141,7 @@ body {
     font-size: 10px;
     text-align: right;
 }
+.sw5e label.number input[type="text"],
 .sw5e label.checkbox input[type="checkbox"] {
     height: auto;
     margin: 0 5px 0;
@@ -182,6 +184,7 @@ body {
     flex: 0 0 100%;
     margin: 0;
 }
+.sw5e .form-group.stacked label.number,
 .sw5e .form-group.stacked label.checkbox {
     flex: auto;
     text-align: left;
@@ -1285,6 +1288,7 @@ body {
     flex: 0 0 80px;
     text-align: right;
 }
+.sw5e.sheet.item .weapon-properties label.number,
 .sw5e.sheet.item .weapon-properties label.checkbox {
     flex: 0 0 98px;
 }
@@ -1495,9 +1499,11 @@ body {
     margin: 2px 0 -2px;
     line-height: 24px;
 }
+.sw5e.sheet.actor.character .attributes .resource label.number,
 .sw5e.sheet.actor.character .attributes .resource label.checkbox {
     margin: 0 3px;
 }
+.sw5e.sheet.actor.character .attributes .resource label.number input[type="text"],
 .sw5e.sheet.actor.character .attributes .resource label.checkbox input[type="checkbox"] {
     transform: scale(1.2);
 }

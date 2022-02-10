@@ -179,4 +179,14 @@ export const registerSystemSettings = function () {
         type: Boolean,
         default: false
     });
+
+    // Disable Item Modification Effects
+    game.settings.register("sw5e", "disableItemMods", {
+        name: "SETTINGS.SWdisableModsN",
+        hint: "SETTINGS.SWdisableModsL",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false
+    });
 };

@@ -27,7 +27,8 @@ export default class ItemSheet5e extends ItemSheet {
             classes: ["sw5e", "sheet", "item"],
             resizable: true,
             scrollY: [".tab.details"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
+            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
+            dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
         });
     }
 
@@ -63,12 +64,14 @@ export default class ItemSheet5e extends ItemSheet {
         data.isHealing = itemData.data.actionType === "heal";
         data.isFlatDC = getProperty(itemData, "data.save.scaling") === "flat";
         data.isLine = ["line", "wall"].includes(itemData.data.target?.type);
+        if (itemData.data.critical) itemData.data.critical.baseTreshold = String(Math.max(20 - itemData.data?.properties?.ken ?? 0, 1));
 
         // Original maximum uses formula
         const sourceMax = foundry.utils.getProperty(this.item.data._source, "data.uses.max");
         if (sourceMax) itemData.data.uses.max = sourceMax;
 
         // Vehicles
+        data.isStarshipWeapon = (itemData.data?.weaponType ?? '').search("(starship)") != -1;
         data.isCrewed = itemData.data.activation?.type === "crew";
         data.isMountable = this._isItemMountable(itemData);
 
@@ -76,6 +79,16 @@ export default class ItemSheet5e extends ItemSheet {
         data.isArmor = this.item.isArmor;
         data.hasAC = data.isArmor || data.isMountable;
         data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
+
+        // Modification Slot Names
+        if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
+
+        // Modification Properties
+        data.isEquipment = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
+        data.isWeapon = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+
+        // Modification Slot Names
+        if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
 
         // Prepare Active Effects
         data.effects = ActiveEffect5e.prepareActiveEffectCategories(this.item.effects);
@@ -225,8 +238,8 @@ export default class ItemSheet5e extends ItemSheet {
         if (item.type === "weapon") {
             props.push(
                 ...Object.entries(item.data.properties)
-                    .filter((e) => e[1] === true)
-                    .map((e) => CONFIG.SW5E.weaponProperties[e[0]])
+                    .filter((e) => ![false, undefined, null].includes(e[1]))
+                    .map((e) => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]].full, { value: e[1] }))
             );
         } else if (item.type === "power") {
             props.push(
@@ -237,6 +250,11 @@ export default class ItemSheet5e extends ItemSheet {
         } else if (item.type === "equipment") {
             props.push(CONFIG.SW5E.equipmentTypes[item.data.armor.type]);
             if (this.item.isArmor || this._isItemMountable(item)) props.push(labels.armor);
+            if (item.data.properties) props.push(
+                ...Object.entries(item.data.properties)
+                    .filter((e) => ![false, undefined, null].includes(e[1]))
+                    .map((e) => game.i18n.format(CONFIG.SW5E.armorPropertiesTypes[e[0]].full, { value: e[1] }))
+            );
         } else if (item.type === "feat") {
             props.push(labels.featType);
             //TODO: Work out these
@@ -329,8 +347,29 @@ export default class ItemSheet5e extends ItemSheet {
             }
         }
 
-        // Return the flattened submission data
-        return flattenObject(data);
+        // Flatten the submission data
+        data = flattenObject(data);
+
+        // Prevent submitting overridden values
+        const overrides = foundry.utils.flattenObject(this.item.overrides);
+        for ( let k of Object.keys(overrides) ) {
+            delete data[k];
+        }
+
+        return data;
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    async _renderInner(...args) {
+        const html = await super._renderInner(...args);
+        const els = this.form.getElementsByClassName("tristate-checkbox");
+        for (const el of els) {
+            const indet_path = el.name.replace(/(\w+)[.](\w+)$/, '$1.indeterminate.$2');
+            el.indeterminate = (foundry.utils.getProperty(this.item.data, indet_path) != false);
+        }
+        return html;
     }
 
     /* -------------------------------------------- */
@@ -348,6 +387,29 @@ export default class ItemSheet5e extends ItemSheet {
                     );
                 ActiveEffect5e.onManageActiveEffect(ev, this.item);
             });
+            html.find(".tristate-checkbox").click(async (ev) => {
+                ev.preventDefault();
+
+                const update = {};
+
+                const path = ev.target.name;
+                const indet_path = path.replace(/(\w+)[.](\w+)$/, '$1.indeterminate.$2');
+
+                const val = foundry.utils.getProperty(this.item.data, path);
+                const indet_val = foundry.utils.getProperty(this.item.data, indet_path) != false;
+
+                if ( indet_val ) {
+                    update[path] = false;
+                    update[indet_path] = false;
+                }
+                else {
+                    update[path] = !val;
+                    update[indet_path] = val;
+                }
+
+                await this.item.update(update);
+            });
+            html.find(".modification-control").click(this._onManageItemModification.bind(this));
         }
     }
 
@@ -362,6 +424,11 @@ export default class ItemSheet5e extends ItemSheet {
     async _onDamageControl(event) {
         event.preventDefault();
         const a = event.currentTarget;
+
+        // Don't allow adding or removing damage parts while there is a mod affecting those, to avoid duplication
+        if ("data.damage.parts" in flattenObject(this.item.overrides)) return ui.notifications.warn(
+            `Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`
+        );
 
         // Add new damage component
         if (a.classList.contains("add-damage")) {
@@ -421,9 +488,159 @@ export default class ItemSheet5e extends ItemSheet {
 
     /* -------------------------------------------- */
 
+    /**
+     * Handle deleting and toggling item modifications.
+     * @param {Event} event   The click event
+     * @private
+     */
+    _onManageItemModification(event) {
+        event.preventDefault();
+        const a = event.currentTarget;
+        const li = a.closest("li");
+        switch ( li.dataset.modificationType ) {
+            case "mod":
+                const slot = li.dataset.modificationSlot;
+                const mod = {...this.item.data.data.modifications.mods[slot]};
+                switch ( a.dataset.action ) {
+                    case "delete":
+                        mod.uuid = null;
+                        break;
+                    case "toggle":
+                        mod.disabled = !mod.disabled;
+                        break;
+                }
+                const update = {};
+                update[`data.modifications.mods.${slot}`] = mod;
+                return this.item.update(update);
+            case "augment":
+                const index = li.dataset.augmentIndex;
+                const augments = [...this.item.data.data.modifications.augments];
+                switch ( a.dataset.action ) {
+                    case "delete":
+                        augments.splice(index, 1);
+                        break;
+                    case "toggle":
+                        augments[index].disabled = !augments[index].disabled;
+                        break;
+                }
+                return this.item.update({'data.modifications.augments': augments});
+        }
+    }
+
+    /* -------------------------------------------- */
+
     /** @inheritdoc */
     async _onSubmit(...args) {
         if (this._tabs[0].active === "details") this.position.height = "auto";
         await super._onSubmit(...args);
     }
+
+    /* -------------------------------------------- */
+    /*  Drag and Drop                               */
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    _canDragDrop(selector) {
+        return this.isEditable;
+    }
+
+    /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    async _onDrop(event) {
+        // Try to extract the data
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData('text/plain'));
+        } catch (err) {
+            return false;
+        }
+        const item = this.item;
+
+        /**
+         * A hook event that fires when some useful data is dropped onto an ItemSheet.
+         * @function dropItemSheetData
+         * @memberof hookEvents
+         * @param {Item} item        The Item
+         * @param {ItemSheet} sheet  The ItemSheet application
+         * @param {object} data      The data that has been dropped onto the sheet
+         * @param {event} event      The event that triggered the drop
+         */
+        const allowed = Hooks.call("dropItemSheetData", item, this, data, event);
+        if ( allowed === false ) return;
+
+        // Handle different data types
+        switch ( data.type ) {
+            case "Item":
+                return await this._onDropItem(event, data);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle dropping of an item reference or item data onto an Item Sheet
+     * @param {DragEvent} event     The concluding DragEvent which contains drop data
+     * @param {Object} data         The data transfer extracted from the event
+     * @return {Promise<Object>}    A data object which describes the result of the drop
+     * @private
+     */
+    async _onDropItem(event, data) {
+        const item = this.item.data;
+        const itemMods = item.data.modifications;
+
+        const entity = await Item.fromDropData(data, {importWorld: true});
+        if (!entity) return false;
+
+        if (itemMods && entity.type == "modification"){
+            const mod = entity.data;
+
+            const rarityMap = {
+                "common": 1,
+                "uncommon": 2,
+                "rare": 3,
+                "veryRare": 4,
+                "legendary": 5,
+                "artifact": 6
+            }
+
+            if (["none", "enhanced"].includes(itemMods.chassisType)) return ui.notifications.warn(
+                `${item.name}'s does not have a chassis that support modifications.`
+            );
+            if (itemMods.chassisType == "chassis" && (rarityMap[item.data.rarity]??0) < (rarityMap[mod.data.rarity]??0)) return ui.notifications.warn(
+                `${item.name}'s chassis only supports modifications of rarity up to ${item.data.rarity ?? "common"}.`
+            );
+
+            if (mod.data.modificationType == "augment") {
+                const augments = itemMods.augments;
+                if (augments.length >= itemMods.augmentSlots) return ui.notifications.warn(
+                    `${item.name} has no empty augment slots for ${mod.name}.`
+                );
+                if (augments.filter(e => e.uuid == entity.uuid).length) return ui.notifications.warn(
+                    `${item.name} already has an augment called ${mod.name}.`
+                );
+                augments.push({
+                    uuid: entity.uuid,
+                    disabled: false,
+                });
+                this.item.update({"data.modifications.augments": augments});
+            }
+            else {
+                if (itemMods.type != mod.data.modificationType) return ui.notifications.warn(
+                    `${mod.name}'s mod type ${mod.data.modificationType} is incompatible with ${item.name}, which only accepts ${itemMods.type}.`
+                );
+                const slot = mod.data.modificationSlot;
+
+                const update = {}
+                update[`data.modifications.mods.${slot}.uuid`] = entity.uuid;
+                update[`data.modifications.mods.${slot}.disabled`] = false;
+                this.item.update(update);
+            }
+
+            if (this.item.sheet?.rendered) this.item.sheet.render(true);
+            return true
+        }
+    }
+
+    /* -------------------------------------------- */
 }

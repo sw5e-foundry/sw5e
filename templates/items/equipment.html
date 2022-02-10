@@ -36,6 +36,7 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="modifications">{{ localize "SW5E.ModificationPl" }}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
@@ -93,10 +94,20 @@
             {{!-- Armor Properties --}}
             <div class="form-group stacked armor-properties">
                 <label>{{ localize "SW5E.ArmorProperties" }}</label>
-                {{#each config.armorPropertiesTypes as |name prop|}}
+                {{#each config.armorPropertiesTypes as |property key|}}
+                {{#if (eq property.type "Boolean")}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
+                    <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/> {{ localize property.name }}
                 </label>
+                {{/if}}
+                {{/each}}
+
+                {{#each config.armorPropertiesTypes as |property key|}}
+                {{#if (eq property.type "Number")}}
+                <label class="number">
+                    {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                </label>
+                {{/if}}
                 {{/each}}
             </div>
 
@@ -257,6 +268,11 @@
 
             {{!-- Item Action Template --}}
             {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+        </div>
+
+        {{!-- Modifications Tab --}}
+        <div class="tab modifications" data-group="primary" data-tab="modifications">
+            {{> "systems/sw5e/templates/items/parts/item-modifications.html"}}
         </div>
 
         {{!-- Effects Tab --}}

@@ -1,5 +1,5 @@
 /**
- * Syncronous version of fromUuid. Returns null when the uuid is of a compendium item.
+ * Syncronous version of fromUuid. Returns null when the uuid is of a compendium item, or a collection that isn't ready yet.
  * Retrieve a Document by its Universally Unique Identifier (uuid).
  * @param {string} uuid   The uuid of the Document to retrieve
  * @return {Document|null}
@@ -15,8 +15,8 @@ export function fromUuidSynchronous(uuid) {
   else {
     const [docName, docId] = parts.slice(0, 2);
     parts = parts.slice(2);
-    const collection = CONFIG[docName].collection.instance;
-    doc = collection.get(docId);
+    const collection = CONFIG[docName]?.collection?.instance;
+    doc = collection?.get(docId);
   }
 
   // Embedded Documents

@@ -85,6 +85,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             consumable: {label: "SW5E.ItemTypeConsumablePl", items: [], dataset: {type: "consumable"}},
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
+            modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
             loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
         };
 

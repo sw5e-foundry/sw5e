@@ -904,6 +904,7 @@
             "fightingstyle",
             "lightsaberform",
             "loot",
+            "modification",
             "power",
             "species",
             "starship",
@@ -1125,6 +1126,33 @@
                 "hdclass": {
                     "value": null
                 }
+            },
+            "moddable": {
+                "modifications": {
+                    "chassisType": "none",
+                    "augmentSlots": 0,
+                    "mods": {
+                        "slot1": {
+                            "uuid": null,
+                            "disabled": false
+                        },
+                        "slot2": {
+                            "uuid": null,
+                            "disabled": false
+                        },
+                        "slot3": {
+                            "uuid": null,
+                            "disabled": false
+                        },
+                        "slot4": {
+                            "uuid": null,
+                            "disabled": false
+                        }
+                    },
+                    "augments": [],
+                    "type": null,
+                    "overrides": {}
+                }
             }
         },
         "htmlFields": ["description.value", "description.chat", "description.unidentified"],
@@ -1221,7 +1249,8 @@
                 "activatedEffect",
                 "action",
                 "mountable",
-                "starshipEquipment"
+                "starshipEquipment",
+                "moddable"
             ],
             "armor": {
                 "type": "light",
@@ -1234,7 +1263,8 @@
                 "conditions": ""
             },
             "strength": 0,
-            "stealth": false
+            "stealth": false,
+            "properties": {}
         },
         "feat": {
             "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1258,6 +1288,12 @@
             "chatFlavor": "",
             "proficient": 0,
             "bonus": ""
+        },
+        "modification": {
+            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
+            "modificationType": "vibroweapon",
+            "modificationSlot": "slot1",
+            "modified": []
         },
         "power": {
             "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1354,7 +1390,7 @@
             }
         },
         "weapon": {
-            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
+            "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable", "moddable"],
             "weaponType": "simpleVW",
             "baseItem": "",
             "properties": {}

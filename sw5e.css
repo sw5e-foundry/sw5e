@@ -167,6 +167,7 @@
   flex: 0 0 100%;
   margin: 0;
 }
+.sw5e .form-group.stacked label.number,
 .sw5e .form-group.stacked label.checkbox,
 .sw5e .form-group.stacked label.radio {
   flex: auto;
@@ -520,6 +521,8 @@
   text-align: left;
   font-size: 16px;
 }
+.modifications .item .modification-controls,
+.modifications .item .modification-control,
 .sw5e.sheet .effects .item .effect-source,
 .sw5e.sheet .effects .item .effect-duration,
 .sw5e.sheet .effects .item .effect-controls {
@@ -528,6 +531,8 @@
   border-right: 1px solid #c9c7b8;
   font-size: 12px;
 }
+.modifications .item .modification-controls,
+.modifications .item .modification-control,
 .sw5e.sheet .effects .item .effect-controls {
   border: none;
 }
@@ -1833,19 +1838,34 @@
   flex: 0 0 32px;
   text-align: center;
 }
+.sw5e.sheet.item .recharge.form-group label.number,
 .sw5e.sheet.item .recharge.form-group label.checkbox {
   flex: none;
 }
+.sw5e.sheet.item .recharge.form-group label.number input,
 .sw5e.sheet.item .recharge.form-group label.checkbox input {
   width: 16px;
   height: 16px;
   top: 4px;
 }
+.sw5e.sheet.item .weapon-properties label.number,
 .sw5e.sheet.item .weapon-properties label.checkbox {
   flex: 0 0 98px;
 }
 .sw5e.sheet.item .loot-header {
   margin-bottom: 10px;
+}
+.sw5e.sheet.item .modifications .modification {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 100px 50% 40px;
+  justify-content: space-between;
+}
+.sw5e.sheet.item .modifications .modification-slot {
+  height: 25px;
+}
+.sw5e.sheet.item .modifications .mod-disabled {
+  background: #c4c4c4;
 }
 /* ----------------------------------------- */
 /*  Chat Cards

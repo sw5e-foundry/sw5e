@@ -184,7 +184,8 @@ Hooks.once("init", function () {
             "starshipaction",
             "starshipfeature",
             "starshipmod",
-            "venture"
+            "venture",
+            "modification"
         ],
         makeDefault: true,
         label: "SW5E.SheetClassItem"
@@ -211,7 +212,7 @@ Hooks.once("setup", function () {
         "alignments",
         "armorClasses.label",
         "armorProficiencies",
-        "armorPropertiesTypes",
+        // "armorPropertiesTypes",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
@@ -247,7 +248,7 @@ Hooks.once("setup", function () {
         "toolTypes",
         "vehicleTypes",
         "weaponProficiencies",
-        "weaponProperties",
+        // "weaponProperties",
         "weaponSizes",
         "weaponTypes"
     ];
@@ -256,7 +257,7 @@ Hooks.once("setup", function () {
         "abilityActivationTypes",
         "abilityConsumptionTypes",
         "actorSizes",
-        "armorPropertiesTypes",
+        // "armorPropertiesTypes",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
@@ -337,7 +338,8 @@ function _localizeObject(obj, key) {
         }
 
         // Inner object
-        if (typeof v !== "object" || !(key in v)) {
+        if ( (typeof v !== "object") || !(key in v) ) {
+            console.debug(v);
             console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
             continue;
         }

@@ -34,6 +34,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/items/parts/item-action.html",
         "systems/sw5e/templates/items/parts/item-activation.html",
         "systems/sw5e/templates/items/parts/item-description.html",
-        "systems/sw5e/templates/items/parts/item-mountable.html"
+        "systems/sw5e/templates/items/parts/item-mountable.html",
+        "systems/sw5e/templates/items/parts/item-modifications.html"
     ]);
 };

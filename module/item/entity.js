@@ -2233,7 +2233,7 @@ export default class Item5e extends Item {
                     else overrides[`properties.${prop}`] = Number(overrides[`properties.${prop}`]);
                     overrides[`properties.${prop}`] += entityData.properties[prop];
                 }
-                else if (propData.type == "Boolean" && entityData.properties.indeterminate && entityData.properties.indeterminate[prop]) {
+                else if (propData.type == "Boolean" && entityData.properties.indeterminate && entityData.properties.indeterminate[prop] == false) {
                     overrides[`properties.${prop}`] = entityData.properties[prop];
                 }
             }

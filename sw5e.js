@@ -50,7 +50,7 @@ import ActorSkillConfig from "./module/apps/skill-config.js";
 /* -------------------------------------------- */
 
 // Keep on while testing new SW5e build
-CONFIG.debug.hooks = true;
+CONFIG.debug.hooks = false;
 
 Hooks.once("init", function () {
     console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
@@ -281,7 +281,7 @@ Hooks.once("setup", function () {
         "toolProficiencies",
         "toolTypes",
         "vehicleTypes",
-        "weaponProperties",
+        // "weaponProperties",
         "weaponSizes"
     ];
     preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);

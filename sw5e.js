@@ -50,7 +50,7 @@ import ActorSkillConfig from "./module/apps/skill-config.js";
 /* -------------------------------------------- */
 
 // Keep on while testing new SW5e build
-CONFIG.debug.hooks = true;
+CONFIG.debug.hooks = false;
 
 Hooks.once("init", function () {
     console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
@@ -184,7 +184,8 @@ Hooks.once("init", function () {
             "starshipaction",
             "starshipfeature",
             "starshipmod",
-            "venture"
+            "venture",
+            "modification"
         ],
         makeDefault: true,
         label: "SW5E.SheetClassItem"
@@ -211,7 +212,7 @@ Hooks.once("setup", function () {
         "alignments",
         "armorClasses.label",
         "armorProficiencies",
-        "armorPropertiesTypes",
+        // "armorPropertiesTypes",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
@@ -247,7 +248,7 @@ Hooks.once("setup", function () {
         "toolTypes",
         "vehicleTypes",
         "weaponProficiencies",
-        "weaponProperties",
+        // "weaponProperties",
         "weaponSizes",
         "weaponTypes"
     ];
@@ -256,7 +257,7 @@ Hooks.once("setup", function () {
         "abilityActivationTypes",
         "abilityConsumptionTypes",
         "actorSizes",
-        "armorPropertiesTypes",
+        // "armorPropertiesTypes",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
@@ -280,7 +281,7 @@ Hooks.once("setup", function () {
         "toolProficiencies",
         "toolTypes",
         "vehicleTypes",
-        "weaponProperties",
+        // "weaponProperties",
         "weaponSizes"
     ];
     preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);
@@ -337,7 +338,8 @@ function _localizeObject(obj, key) {
         }
 
         // Inner object
-        if (typeof v !== "object" || !(key in v)) {
+        if ( (typeof v !== "object") || !(key in v) ) {
+            console.debug(v);
             console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
             continue;
         }

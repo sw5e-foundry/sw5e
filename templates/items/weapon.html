@@ -36,6 +36,7 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="modifications">{{ localize "SW5E.ModificationPl" }}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
@@ -62,10 +63,10 @@
             </div>
 
             {{!-- Starship Weapon Size --}}
-            <!--             <div class="form-group">
+            <!-- <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
                 <select name="data.weaponSize">
-					<option value="" selected disabled>Select Size</option>
+                    <option value="" selected disabled>Select Size</option>
                     {{#select data.weaponSize}}
                     {{#each config.weaponSizes as |name size|}}
                     <option value="{{size}}">{{name}}</option>
@@ -103,17 +104,26 @@
             {{/unless}} {{!-- Weapon Properties --}}
             <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
-                {{#each config.weaponProperties as |name prop|}}
+                {{#each config.weaponProperties as |property key|}}
+                {{#if (and (eq property.type "Boolean") (eq ../data.isStarshipWeapon property.ship))}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties
-                    prop)}}/> {{ name }}
+                    <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/> {{ localize property.name }}
                 </label>
+                {{/if}}
+                {{/each}}
+
+                {{#each config.weaponProperties as |property key|}}
+                {{#if (and (eq property.type "Number") (eq ../data.isStarshipWeapon property.ship))}}
+                <label class="number">
+                    {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                </label>
+                {{/if}}
                 {{/each}}
             </div>
 
             {{#if isMountable}}
             <div class="form-group">
-                <label>{{localize 'SW5E.ArmorClass'}}</label>
+                <label>{{localize "SW5E.ArmorClass"}}</label>
                 <div class="form-fields">
                     <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number" />
                 </div>
@@ -128,6 +138,11 @@
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponAttack" }}</h3>
 
             {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+        </div>
+
+        {{!-- Modifications Tab --}}
+        <div class="tab modifications" data-group="primary" data-tab="modifications">
+            {{> "systems/sw5e/templates/items/parts/item-modifications.html"}}
         </div>
 
         {{!-- Effects Tab --}}

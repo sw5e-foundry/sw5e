@@ -337,16 +337,10 @@ export default class Item5e extends Item {
             }
         }
 
+        this.applyModifications();
+
         // If this item is owned, we prepareFinalAttributes() at the end of actor init
         if (!this.isEmbedded) this.prepareFinalAttributes();
-    }
-
-    /* -------------------------------------------- */
-
-    /** @inheritdoc */
-    prepareEmbeddedEntities() {
-        super.prepareEmbeddedEntities();
-        this.applyModifications();
     }
 
     /* -------------------------------------------- */

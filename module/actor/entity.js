@@ -1192,11 +1192,12 @@ export default class Actor5e extends Actor {
         if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
 
         // Prepare Shield Points
-        data.attributes.hp.tempmax =
+        data.attributes.hp.tempmax = Math.floor(
             (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) +
                 (data.attributes.shld.dicemax - sizeData.shldDiceRolled.length) * SW5E.hitDieAvg[sizeData.shldDice] +
                 data.abilities.str.mod * data.attributes.shld.dicemax) *
-            data.attributes.equip.shields.capMult;
+                data.attributes.equip.shields.capMult
+        );
         if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
 
         // Prepare Speeds

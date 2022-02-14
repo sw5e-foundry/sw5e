@@ -1318,12 +1318,19 @@ export default class Actor5e extends Actor {
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1) {
+        const dr = this.data.data.equip.armor.dr || 0;
         amount = Math.floor(parseInt(amount) * multiplier);
+
+        //TODO: Popup for DR enable and Hull Direct Damage
+        let drEnable = true;
+        let hullDirect = false;
+
+        if (drEnable && amount > 0) amount = math.max(1, amount - dr);
         const hp = this.data.data.attributes.hp;
 
         // Deduct damage from temp HP first
         const tmp = parseInt(hp.temp) || 0;
-        const dt = amount > 0 ? Math.min(tmp, amount) : 0;
+        const dt = !hullDirect && amount > 0 ? Math.min(tmp, amount) : 0;
 
         // Remaining goes to health
         const tmpMax = parseInt(hp.tempmax) || 0;

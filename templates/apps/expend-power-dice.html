@@ -1,0 +1,21 @@
+<form id="expend-power-dice" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>Choose which power dice to expend.</p>
+
+    <div class="form-group">
+        <select name="slot">
+            {{#each slots as |slot __|}}
+                {{#if slot.disabled}}
+                    <option value={{slot.id}} disabled>{{localize slot.str}}</option>
+                {{else}}
+                    <option value={{slot.id}}>{{localize slot.str}}</option>
+                {{/if}}
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="dialog-buttons">
+        {{#each buttons as |button id|}}
+        <button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button>
+        {{/each}}
+    </div>
+</form>

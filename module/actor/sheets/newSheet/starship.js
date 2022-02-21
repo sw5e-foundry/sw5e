@@ -180,6 +180,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 return this.actor.rollDestructionSave({event: event});
             case "rollInitiative":
                 return this.actor.rollInitiative({createCombatants: true});
+            case "rollPowerDie":
+                return this.actor.rollPowerDie({slot: event.target.dataset.location});
         }
     }
 

@@ -292,18 +292,24 @@
 					<br /> -->
 					<table style="border: none; width: 400px;">
 					  <tr><th colspan=3 align="left">{{localize "SW5E.PowerDieAlloc"}}</th><th colspan=3 align="right">
-					  	<label>
+					  	<label class="rollPowerDie rollable" data-action="rollPowerDie">
                             {{localize "SW5E.PowerDie"}}: {{data.attributes.power.die}}
-                          </label>
+                        </label>
 				      </tr>
- 					  <tr><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Central</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Comms</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Engines</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Sensors</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Shields</th><th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">Weapons</th>
+ 					  <tr>
+                        {{#each config.powerDieSlots as | text val |}}
+                        <th style="border-top: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">
+                            <div class="rollPowerDie rollable" data-action="rollPowerDie" data-location={{val}}>{{ localize text }}</div>
+                        </th>
+                        {{/each}}
                       <tr>
-					    <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.central.value" value="{{data.attributes.power.central.value}}" placeholder="{{data.attributes.power.central.max}}" /> / {{data.attributes.power.central.max}}</td>
-                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.comms.value" value="{{data.attributes.power.comms.value}}" placeholder="{{data.attributes.power.comms.max}}" /> / {{data.attributes.power.comms.max}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.engines.value" value="{{data.attributes.power.engines.value}}" placeholder="{{data.attributes.power.engines.max}}" /> / {{data.attributes.power.engines.max}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.sensors.value" value="{{data.attributes.power.sensors.value}}" placeholder="{{data.attributes.power.sensors.max}}" /> / {{data.attributes.power.sensors.max}}</td>
-                      	<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.shields.value" value="{{data.attributes.power.shields.value}}" placeholder="{{data.attributes.power.shields.max}}" /> / {{data.attributes.power.shields.max}}</td>
-						<td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;"><input class="hpformula" style="max-width:25px;" name="data.attributes.power.weapons.value" value="{{data.attributes.power.weapons.value}}" placeholder="{{data.attributes.power.weapons.max}}" /> / {{data.attributes.power.weapons.max}}</td>
+                        {{#each config.powerDieSlots as | text val |}}
+                        {{#with (lookup ../data.attributes.power val) as |slot|}}
+                        <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">
+                            <input class="hpformula" style="max-width:25px;" name="data.attributes.power.{{val}}.value" value="{{slot.value}}" placeholder="0" /> / {{slot.max}}
+                        </td>
+                        {{/with}}
+                        {{/each}}
                       </tr>
 					</table>
 					</label>

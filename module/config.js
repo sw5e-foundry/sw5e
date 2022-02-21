@@ -1002,6 +1002,19 @@ SW5E.hitDieAvg = {
  */
 SW5E.powerDieTypes = ["d1", "d4", "d6", "d8", "d10", "d12"];
 
+/**
+ * Starship power die slots
+ * @enum {string}
+ */
+SW5E.powerDieSlots = {
+    central: "SW5E.PowerDieSlotCentral",
+    comms: "SW5E.PowerDieSlotComms",
+    engines: "SW5E.PowerDieSlotEngines",
+    sensors: "SW5E.PowerDieSlotSensors",
+    shields: "SW5E.PowerDieSlotShields",
+    weapons: "SW5E.PowerDieSlotWeapons",
+}
+
 /* -------------------------------------------- */
 
 /**

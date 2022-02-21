@@ -1,13 +1,13 @@
 <form id="allocate-power-dice" class="dialog-content" onsubmit="event.preventDefault();">
     <p>Allocate {{powerDice}} power dice.</p>
 
-    {{#each slots as |slot id|}}
+    {{#each slots as |slot _|}}
     <div class="form-group">
-        <label>{{id}}</label>
-        {{#if slot}}
-            <input type="checkbox" name="{{id}}" {{checked slot}} disabled title="This slot is already full of power dice."/>
+        <label>{{localize slot.str}}</label>
+        {{#if slot.full}}
+            <input type="checkbox" name="{{slot.id}}" {{checked slot.full}} disabled title="This slot is already full of power dice."/>
         {{else}}
-            <input type="checkbox" name="{{id}}" {{checked slot}} />
+            <input type="checkbox" name="{{slot.id}}" {{checked slot.full}}/>
         {{/if}}
     </div>
     {{/each}}

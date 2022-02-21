@@ -7,6 +7,7 @@ import RechargeRepairDialog from "../apps/recharge-repair.js";
 import RefittingRepairDialog from "../apps/refitting-repair.js";
 import RegenRepairDialog from "../apps/regen-repair.js";
 import AllocatePowerDice from "../apps/allocate-power-dice.js";
+import ExpendPowerDice from "../apps/expend-power-dice.js";
 import ProficiencySelector from "../apps/proficiency-selector.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
@@ -2086,8 +2087,8 @@ export default class Actor5e extends Actor {
 
         // Calculate how many available slots for power die the ship has
         const pdMissing = {};
-        const slots = ["central", "comms", "engines", "sensors", "shields", "weapons"];
-        for (const slot of slots) {
+        const slots = CONFIG.SW5E.powerDieSlots;
+        for (const slot of Object.keys(slots)) {
             pdMissing[slot] = pd[slot].max - Number(pd[slot].value);
             pdMissing.total = (pdMissing.total ?? 0) + pdMissing[slot];
         }
@@ -2125,11 +2126,7 @@ export default class Actor5e extends Actor {
         else {
             result.actorUpdates["data.attributes.power.central.value"] = pd.central.max;
             try {
-                const allocation = await AllocatePowerDice.allocatePowerDice(
-                    this,
-                    roll.total - pdMissing.central,
-                    slots
-                );
+                const allocation = await AllocatePowerDice.allocatePowerDice(this, roll.total - pdMissing.central);
                 for (const slot of allocation)
                     result.actorUpdates[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
                 result.pd = allocation.length + pdMissing.central;
@@ -2145,6 +2142,73 @@ export default class Actor5e extends Actor {
         }
 
         return result;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Roll a power die
+     *
+     * @param {string} [slot]           Where to draw the power die from, if empty, opens a popup to select
+     * @return {Promise<Roll|null>}     The created Roll instance, or null if no power die was rolled
+     */
+    async rollPowerDie({slot = null} = {}) {
+        // Prepare helper data
+        const attr = this.data.data.attributes;
+        const pd = attr.power;
+        const slots = CONFIG.SW5E.powerDieSlots;
+        const updates = {};
+
+
+        // Validate the slot
+        if (slot === null) {
+            try {
+                slot = await ExpendPowerDice.expendPowerDice(this);
+            } catch (err) {
+                return result;
+            }
+        }
+        if (!Object.keys(slots).includes(slot)) {
+            ui.notifications.warn(
+                game.i18n.format("SW5E.PowerDieInvalidSlot", {
+                    slot: slot
+                })
+            );
+            return null;
+        }
+        if (pd[slot].value < 1) {
+            ui.notifications.warn(
+                game.i18n.format("SW5E.PowerDieUnavailable", {
+                    slot: game.i18n.localize(CONFIG.SW5E.powerDieSlots[slot])
+                })
+            );
+            return null;
+        }
+
+        // Update the power dice count
+        updates[`data.attributes.power.${slot}.value`] = pd[slot].value - 1;
+        await this.update(updates);
+
+        // Prepare the roll data
+        const parts = [pd.die];
+        const title = game.i18n.localize("SW5E.PowerDiceRoll");
+        const rollData = foundry.utils.deepClone(this.data.data);
+
+        // Call the roll helper utility
+        const roll = await attribDieRoll({
+            event: new Event("pwrDieRoll"),
+            parts: parts,
+            data: rollData,
+            title: title,
+            fastForward: true,
+            dialogOptions: {width: 350},
+            messageData: {
+                "speaker": ChatMessage.getSpeaker({actor: this}),
+                "flags.sw5e.roll": {type: "pwrDieRoll"}
+            }
+        });
+
+        return roll;
     }
 
     /* -------------------------------------------- */

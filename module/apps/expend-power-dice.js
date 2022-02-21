@@ -1,12 +1,13 @@
+import {SW5E} from "../config.js";
+
 /**
  * A helper Dialog subclass for allocating power dice
  * @extends {Dialog}
  */
-export default class AllocatePowerDice extends Dialog {
-    constructor(actor, powerDice, dialogData = {}, options = {}) {
+export default class ExpendPowerDice extends Dialog {
+    constructor(actor, dialogData = {}, options = {}) {
         super(dialogData, options);
         this.actor = actor;
-        this.powerDice = powerDice;
     }
 
     /* -------------------------------------------- */
@@ -14,7 +15,7 @@ export default class AllocatePowerDice extends Dialog {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/allocate-power-dice.html",
+            template: "systems/sw5e/templates/apps/expend-power-dice.html",
             classes: ["sw5e", "dialog"]
         });
     }
@@ -27,18 +28,15 @@ export default class AllocatePowerDice extends Dialog {
         const power = this.actor.data.data.attributes.power;
         const slots = CONFIG.SW5E.powerDieSlots;
 
-        data.powerDice = this.powerDice;
         data.slots = {};
 
         for (const [id, str] of Object.entries(slots)) {
             data.slots[id] = {
                 id: id,
                 str: str,
-                full: power[id].value == power[id].max
+                disabled: power[id].value < 1
             }
-        };
-        console.debug('data.slots', data.slots);
-        console.debug('power', power);
+        }
 
         return data;
     }
@@ -50,27 +48,17 @@ export default class AllocatePowerDice extends Dialog {
      * workflow has been resolved.
      * @returns {Promise}
      */
-    static async allocatePowerDice(actor, powerDice) {
+    static async expendPowerDice(actor) {
         return new Promise((resolve, reject) => {
-            const dlg = new this(actor, powerDice, {
-                title: `${game.i18n.localize("SW5E.AllocatePowerDice")}: ${actor.name}`,
+            const dlg = new this(actor, {
+                title: `${game.i18n.localize("SW5E.ExpendPowerDice")}: ${actor.name}`,
                 buttons: {
-                    allocate: {
+                    expend: {
                         icon: '<i class="fas fa-wrench"></i>',
-                        label: game.i18n.localize("SW5E.AllocatePowerDice"),
+                        label: game.i18n.localize("SW5E.ExpendPowerDice"),
                         callback: (html) => {
-                            const power = actor.data.data.attributes.power;
-                            const slots = CONFIG.SW5E.powerDieSlots;
-
-                            const allocation = [];
-
-                            for (const slot of Object.keys(slots)) {
-                                const wasAllocated = power[slot].value == power[slot].max;
-                                const allocated = html.find(`input[name="${slot}"]`)[0].checked;
-                                if (allocated && !wasAllocated) allocation.push(slot);
-                            }
-                            if (allocation.length == powerDice) resolve(allocation);
-                            else throw Error(`You need to allocate ${powerDice} power dice.`);
+                            const chosen = html.find(`select[name="slot"]`)[0];
+                            resolve(chosen.value);
                         }
                     },
                     cancel: {
@@ -79,7 +67,7 @@ export default class AllocatePowerDice extends Dialog {
                         callback: reject
                     }
                 },
-                default: "allocate",
+                default: "expend",
                 close: reject
             });
             dlg.render(true);

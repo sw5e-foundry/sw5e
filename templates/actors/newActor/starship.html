@@ -244,17 +244,15 @@
                     <div class="traits">
                     <table style="border:none;">
                         <tr>
-                            <td align="center"><strong>{{localize "SW5E.EnginePl"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="engineslidervalue" class="vertslider" value={{data.attributes.power.routing.engines}} step="1" min="0" max="2" ></td>
-                            <td align="center"><strong>{{localize "SW5E.EquipmentShieldProficiency"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="shieldslidervalue" class="vertslider" value={{data.attributes.power.routing.shields}} step="1" min="0" max="2" ></td>
-                            <td align="center"><strong>{{localize "SW5E.ItemTypeWeaponPl"}}</strong></td>
-                            <td rowspan=3><input type="range" orient="vertical" id="weaponslidervalue" class="vertslider" value={{data.attributes.power.routing.weapons}} step="1" min="0" max="2" ></td>
+                            {{#each config.powerRoutingOpts as | text id |}}
+                                <td align="center"><strong>{{localize text}}</strong></td>
+                                <td rowspan=3><input type="range" orient="vertical" class="vertslider powerslider {{id}}" data-id="{{id}}" value={{lookup data.attributes.power.routing id}} step="1" min="0" max="2" ></td>
+                            {{/each}}
                         </tr>
                         <tr>
-                            <td rowspan=2 align="center"><strong><output for=value id="engineslideroutput">=</output></td>
-                            <td rowspan=2 align="center"><strong><output for=value id="shieldslideroutput">=</output></td>
-                            <td rowspan=2 align="center"><strong><output for=value id="weaponslideroutput">=</output></td>
+                            {{#each config.powerRoutingOpts as | text id |}}
+                                <td rowspan=2 align="center"><strong><output for=value id="{{id}}slideroutput">=</output></td>
+                            {{/each}}
                         </tr>
                         <tr></tr>
                     </table>

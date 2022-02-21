@@ -1015,6 +1015,16 @@ SW5E.powerDieSlots = {
     weapons: "SW5E.PowerDieSlotWeapons",
 }
 
+/**
+ * Starship power routing options
+ * @enum {string}
+ */
+SW5E.powerRoutingOpts = {
+    engines: "SW5E.PowerRoutingEngines",
+    shields: "SW5E.PowerRoutingShields",
+    weapons: "SW5E.PowerRoutingWeapons",
+}
+
 /* -------------------------------------------- */
 
 /**

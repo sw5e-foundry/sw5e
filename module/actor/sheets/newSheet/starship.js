@@ -152,9 +152,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
         html.find(".refuel").click(this._onIncrementFuelLevel.bind(this));
         html.find(".burnfuel").click(this._onDecrementFuelLevel.bind(this));
-        html.find("#engineslidervalue")[0].addEventListener("input", this._engineSliderUpdate.bind(this));
-        html.find("#shieldslidervalue")[0].addEventListener("input", this._shieldSliderUpdate.bind(this));
-        html.find("#weaponslidervalue")[0].addEventListener("input", this._weaponSliderUpdate.bind(this));
+        html.find(".powerslider").change("input", this._powerRoutingSliderUpdate.bind(this));
         // Recharge, Refitting and Regen Repairs
         html.find(".recharge-repair").click(this._onRechargeRepair.bind(this));
         html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
@@ -263,67 +261,33 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         // event.preventDefault();
         this.actor.update({"data.attributes.fuel.value": this.actor.data.data.attributes.fuel.value - 1});
     }
-    _engineSliderUpdate(input) {
-        var symbol;
-        var coefficient;
+    _powerRoutingSliderUpdate(input) {
+        let symbol1 = "=";
+        let symbol2 = "=";
+        let coefficient = 1;
         switch (input.target.value) {
             case "0":
-                symbol = "↓";
-                coefficient = 0.5;
-                break;
-            case "1":
-                symbol = "=";
-                coefficient = 1;
+                input.target.value = 1;
                 break;
             case "2":
-                symbol = "↑";
+                symbol1 = "↑";
+                symbol2 = "↓";
                 coefficient = 2;
+                break;
         }
-        let slideroutput = symbol;
-        document.querySelector("#engineslideroutput").value = slideroutput;
-        this.actor.update({"data.attributes.power.routing.engines": coefficient});
-    }
+        const updates = {};
 
-    _shieldSliderUpdate(input) {
-        var symbol;
-        var coefficient;
-        switch (input.target.value) {
-            case "0":
-                symbol = "↓";
-                coefficient = 0.5;
-                break;
-            case "1":
-                symbol = "=";
-                coefficient = 1;
-                break;
-            case "2":
-                symbol = "↑";
-                coefficient = 2;
+        for (const routing of Object.keys(CONFIG.SW5E.powerRoutingOpts)) {
+            if (routing === input.target.dataset.id) {
+                document.querySelector(`#${routing}slideroutput`).value = symbol1;
+                updates[`data.attributes.power.routing.${routing}`] =  coefficient;
+            } else {
+                document.querySelector(`.powerslider.${routing}`).value = 2 - coefficient;
+                document.querySelector(`#${routing}slideroutput`).value = symbol2;
+                updates[`data.attributes.power.routing.${routing}`] =  1 / coefficient;
+            }
         }
-        let slideroutput = symbol;
-        document.querySelector("#shieldslideroutput").value = slideroutput;
-        this.actor.update({"data.attributes.power.routing.shields": coefficient});
-    }
-
-    _weaponSliderUpdate(input) {
-        var symbol;
-        var coefficient;
-        switch (input.target.value) {
-            case "0":
-                symbol = "↓";
-                coefficient = 0.5;
-                break;
-            case "1":
-                symbol = "=";
-                coefficient = 1;
-                break;
-            case "2":
-                symbol = "↑";
-                coefficient = 2;
-        }
-        let slideroutput = symbol;
-        document.querySelector("#weaponslideroutput").value = slideroutput;
-        this.actor.update({"data.attributes.power.routing.weapons": coefficient});
+        this.actor.update(updates);
     }
 
     /* -------------------------------------------- */

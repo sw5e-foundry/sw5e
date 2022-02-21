@@ -84,6 +84,7 @@ export class Token5e extends Token {
         // Differentiate between effective maximum and displayed maximum
         const effectiveMax = Math.max(0, max + tempmax);
         let displayMax = max + (tempmax > 0 ? tempmax : 0);
+        if (this.document.actor.data.type === "starship") displayMax = Math.max(max, tempmax);
 
         // Allocate percentages of the total
         const tempPct = Math.clamped(temp, 0, displayMax) / displayMax;

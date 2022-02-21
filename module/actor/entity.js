@@ -1193,11 +1193,12 @@ export default class Actor5e extends Actor {
         if (data.attributes.hp.value === null) data.attributes.hp.value = data.attributes.hp.max;
 
         // Prepare Shield Points
-        data.attributes.hp.tempmax =
+        data.attributes.hp.tempmax = Math.floor(
             (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) +
                 (data.attributes.shld.dicemax - sizeData.shldDiceRolled.length) * SW5E.hitDieAvg[sizeData.shldDice] +
                 data.abilities.str.mod * data.attributes.shld.dicemax) *
-            data.attributes.equip.shields.capMult;
+                data.attributes.equip.shields.capMult
+        );
         if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
 
         // Prepare Speeds
@@ -1318,12 +1319,19 @@ export default class Actor5e extends Actor {
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1) {
+        const dr = this.data.data.equip.armor.dr || 0;
         amount = Math.floor(parseInt(amount) * multiplier);
+
+        //TODO: Popup for DR enable and Hull Direct Damage
+        let drEnable = true;
+        let hullDirect = false;
+
+        if (drEnable && amount > 0) amount = math.max(1, amount - dr);
         const hp = this.data.data.attributes.hp;
 
         // Deduct damage from temp HP first
         const tmp = parseInt(hp.temp) || 0;
-        const dt = amount > 0 ? Math.min(tmp, amount) : 0;
+        const dt = !hullDirect && amount > 0 ? Math.min(tmp, amount) : 0;
 
         // Remaining goes to health
         const tmpMax = parseInt(hp.tempmax) || 0;

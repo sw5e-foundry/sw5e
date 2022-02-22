@@ -1025,6 +1025,28 @@ SW5E.powerRoutingOpts = {
     weapons: "SW5E.PowerRoutingWeapons",
 }
 
+/**
+ * Starship power routing effects
+ * @enum {string}
+ */
+SW5E.powerRoutingEffects = {
+    engines: {
+        positive: "SW5E.PowerRoutingEnginesPositive",
+        neutral: "SW5E.PowerRoutingEnginesNeutral",
+        negative: "SW5E.PowerRoutingEnginesNegative",
+    },
+    shields: {
+        positive: "SW5E.PowerRoutingShieldsPositive",
+        neutral: "SW5E.PowerRoutingShieldsNeutral",
+        negative: "SW5E.PowerRoutingShieldsNegative",
+    },
+    weapons: {
+        positive: "SW5E.PowerRoutingWeaponsPositive",
+        neutral: "SW5E.PowerRoutingWeaponsNeutral",
+        negative: "SW5E.PowerRoutingWeaponsNegative",
+    },
+}
+
 /* -------------------------------------------- */
 
 /**

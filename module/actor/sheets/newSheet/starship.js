@@ -264,6 +264,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     _powerRoutingSliderUpdate(input) {
         let symbol1 = "=";
         let symbol2 = "=";
+        let effect1 = "neutral";
+        let effect2 = "neutral";
         let coefficient = 1;
         switch (input.target.value) {
             case "0":
@@ -272,6 +274,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             case "2":
                 symbol1 = "↑";
                 symbol2 = "↓";
+                effect1 = "positive";
+                effect2 = "negative";
                 coefficient = 2;
                 break;
         }
@@ -280,10 +284,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         for (const routing of Object.keys(CONFIG.SW5E.powerRoutingOpts)) {
             if (routing === input.target.dataset.id) {
                 document.querySelector(`#${routing}slideroutput`).value = symbol1;
+                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(CONFIG.SW5E.powerRoutingEffects[routing][effect1]);
                 updates[`data.attributes.power.routing.${routing}`] =  coefficient;
             } else {
                 document.querySelector(`.powerslider.${routing}`).value = 2 - coefficient;
                 document.querySelector(`#${routing}slideroutput`).value = symbol2;
+                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(CONFIG.SW5E.powerRoutingEffects[routing][effect2]);
                 updates[`data.attributes.power.routing.${routing}`] =  1 / coefficient;
             }
         }

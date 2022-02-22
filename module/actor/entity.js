@@ -518,7 +518,7 @@ export default class Actor5e extends Actor {
             data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
             data.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
             data.attributes.mods.capLimit = sizeData.modBaseCap;
-            data.attributes.mods.suites.suiteCap = sizeData.modMaxSuiteCap;
+            data.attributes.mods.suites.suiteCap = Math.max(0, sizeData.modMaxSuiteBase + (sizeData.modMaxSuiteMult * data.abilities.con.mod));
             data.attributes.cost.multModification = sizeData.modCostMult;
             data.attributes.workforce.minModification = sizeData.modMinWorkforce;
             data.attributes.cost.multEquip = sizeData.equipCostMult;
@@ -1319,7 +1319,7 @@ export default class Actor5e extends Actor {
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1) {
-        const dr = this.data.data.equip.armor.dr || 0;
+        const dr = this.data.data?.equip?.armor?.dr || 0;
         amount = Math.floor(parseInt(amount) * multiplier);
 
         //TODO: Popup for DR enable and Hull Direct Damage

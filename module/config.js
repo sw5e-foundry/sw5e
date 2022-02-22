@@ -1179,6 +1179,50 @@ SW5E.starshipSkills = {
 /* -------------------------------------------- */
 
 /**
+ * The fields of the details tab of a starship type
+ * @enum {{
+ *   field: string,
+ *   name: string,
+ *   [select]: string
+ * }}
+ */
+SW5E.starshipTypeDetails = {
+    tier:              { name: "SW5E.StarshipTier" },
+    hullDice: {
+        name: "SW5E.HullDice",
+        select: "hitDieTypes"
+    },
+    hullDiceStart:     { name: "SW5E.HullDiceStart" },
+    hullDiceUsed:      { name: "SW5E.HullDiceUsed" },
+    shldDice: {
+        name: "SW5E.ShieldDice",
+        select: "hitDieTypes"
+    },
+    shldDiceStart:   { name: "SW5E.ShieldDiceStart" },
+    shldDiceUsed:    { name: "SW5E.ShieldDiceUsed" },
+    buildBaseCost:     { name: "SW5E.StockCost" },
+    buildMinWorkforce: { name: "SW5E.MinConstWorkforce" },
+    upgrdCostMult:     { name: "SW5E.UpgradeCostMult" },
+    upgrdMinWorkforce: { name: "SW5E.UpgradeMinWorkforce" },
+    baseSpaceSpeed:    { name: "SW5E.BaseSpaceSpeed" },
+    baseTurnSpeed:     { name: "SW5E.BaseTurnSpeed" },
+    crewMinWorkforce:  { name: "SW5E.MinCrew" },
+    modBaseCap:        { name: "SW5E.ModCap" },
+    modMaxSuitesBase:  { name: "SW5E.ModMaxSuitesBase" },
+    modMaxSuitesMult:  { name: "SW5E.ModMaxSuitesMult" },
+    modCostMult:       { name: "SW5E.ModCostMult" },
+    modMinWorkforce:   { name: "SW5E.ModMinWorkforce" },
+    hardpointMult:     { name: "SW5E.HardpointStrMult" },
+    equipCostMult:     { name: "SW5E.EquipCostMult" },
+    equipMinWorkforce: { name: "SW5E.EquipMinWorkforce" },
+    cargoCap:          { name: "SW5E.CargoCap" },
+    fuelCost:          { name: "SW5E.FuelCostPerUnit" },
+    fuelCap:           { name: "SW5E.FuelCapacity" },
+    foodCap:           { name: "SW5E.FoodCap" }
+};
+
+/* -------------------------------------------- */
+/**
  * Various different ways a power can be prepared.
  * @enum {string}
  */

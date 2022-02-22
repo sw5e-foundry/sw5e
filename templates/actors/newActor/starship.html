@@ -251,7 +251,9 @@
                         </tr>
                         <tr>
                             {{#each config.powerRoutingOpts as | text id |}}
-                                <td rowspan=2 align="center"><strong><output for=value id="{{id}}slideroutput">=</output></td>
+                                {{#with (lookup ../config.powerRoutingEffects id) as |effects|}}
+                                <td rowspan=2 align="center"><strong><output for=value id="{{id}}slideroutput" title="{{effects.neutral}}">=</output></td>
+                                {{/with}}
                             {{/each}}
                         </tr>
                         <tr></tr>

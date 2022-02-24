@@ -62,7 +62,12 @@
                 <h1 class="attribute-name rollable">{{ localize "SW5E.ShieldPoints" }}</h1>
                 <div class="attribute-value multiple">
                     <input name="data.attributes.hp.temp" type="text" 
-                    value="{{round data.attributes.hp.temp}}" placeholder="0"
+                    {{#if isShieldDepleted}}
+                        value="depleted" 
+                    {{else}}
+                        value="{{round data.attributes.hp.temp}}" 
+                    {{/if}}
+                    placeholder="0"
                     data-dtype="Number" title="{{localize 'SW5E.ShieldPointsCurrent'}}"
                     class="value-number" />
                     <span class="value-separator">/</span>

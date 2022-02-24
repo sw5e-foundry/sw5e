@@ -97,6 +97,9 @@ export default class ActorSheet5e extends ActorSheet {
         data.actor = actorData;
         data.data = actorData.data;
 
+        // Check for Starship Shield Depletion
+        if (data.isStarship) data.isShieldDepleted = data.data.attributes.shld.depleted;
+
         // Owned Items
         data.items = actorData.items;
         for (let i of data.items) {

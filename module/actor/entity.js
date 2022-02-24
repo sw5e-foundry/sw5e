@@ -518,7 +518,10 @@ export default class Actor5e extends Actor {
             data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
             data.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
             data.attributes.mods.capLimit = sizeData.modBaseCap;
-            data.attributes.mods.suites.suiteCap = Math.max(0, sizeData.modMaxSuiteBase + (sizeData.modMaxSuiteMult * data.abilities.con.mod));
+            data.attributes.mods.suites.suiteCap = Math.max(
+                0,
+                sizeData.modMaxSuiteBase + sizeData.modMaxSuiteMult * data.abilities.con.mod
+            );
             data.attributes.cost.multModification = sizeData.modCostMult;
             data.attributes.workforce.minModification = sizeData.modMinWorkforce;
             data.attributes.cost.multEquip = sizeData.equipCostMult;
@@ -1200,6 +1203,10 @@ export default class Actor5e extends Actor {
                 data.attributes.equip.shields.capMult
         );
         if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
+
+        // Disable Shields
+        data.attributes.equip.shields.depleted =
+            data.attributes.hp.temp === 0 && data.attributes.equip.shields.capMult !== 0 ? true : false;
 
         // Prepare Speeds
         data.attributes.movement.space =
@@ -2166,7 +2173,6 @@ export default class Actor5e extends Actor {
         const pd = attr.power;
         const slots = CONFIG.SW5E.powerDieSlots;
         const updates = {};
-
 
         // Validate the slot
         if (slot === null) {

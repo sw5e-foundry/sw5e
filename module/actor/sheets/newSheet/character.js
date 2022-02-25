@@ -202,13 +202,6 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 dataset: {type: "archetype"},
                 isArchetype: true
             },
-            starship: {
-                label: "SW5E.ItemTypeStarship",
-                items: [],
-                hasActions: false,
-                dataset: {type: "starship"},
-                isStarship: true
-            },
             species: {
                 label: "SW5E.ItemTypeSpecies",
                 items: [],

@@ -1251,7 +1251,7 @@ export default class ActorSheet5e extends ActorSheet {
     _onIncrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
+        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
 
         const actorId = div.id.split("-")[1];
@@ -1261,6 +1261,7 @@ export default class ActorSheet5e extends ActorSheet {
         const item = actor.items.get(itemId);
 
         let tier = item.data.data.tier;
+        if (tier === 5) return;
         const update = {_id: item.data._id, data: {tier: tier + 1}};
 
         actor.updateEmbeddedDocuments("Item", [update]);
@@ -1275,7 +1276,7 @@ export default class ActorSheet5e extends ActorSheet {
     _onDecrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
+        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
 
         const actorId = div.id.split("-")[1];
@@ -1285,6 +1286,7 @@ export default class ActorSheet5e extends ActorSheet {
         const item = actor.items.get(itemId);
 
         let tier = item.data.data.tier;
+        if (tier === 0) return;
         const update = {_id: item.data._id, data: {tier: tier - 1}};
 
         actor.updateEmbeddedDocuments("Item", [update]);

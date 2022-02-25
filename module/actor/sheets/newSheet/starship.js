@@ -49,6 +49,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     _prepareItems(data) {
         // Categorize Items as Features and Powers
         const features = {
+            starshiptype: {
+                label: "SW5E.ItemTypeStarship",
+                items: [],
+                hasActions: false,
+                dataset: {type: "starship"},
+                isStarship: true
+            },
             weapons: {
                 label: game.i18n.localize("SW5E.ItemTypeWeaponPl"),
                 items: [],
@@ -104,6 +111,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 else features.passive.items.push(item);
             } else if (item.type === "starshipaction") {
                 starshipactions[item.data.deployment].items.push(item);
+            } else if (item.type === "starship") {
+                features.starshiptype.items.push(item);
             } else if (item.type === "starshipfeature") {
                 features.starshipfeatures.items.push(item);
             } else if (item.type === "starshipmod") {
@@ -284,13 +293,17 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         for (const routing of Object.keys(CONFIG.SW5E.powerRoutingOpts)) {
             if (routing === input.target.dataset.id) {
                 document.querySelector(`#${routing}slideroutput`).value = symbol1;
-                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(CONFIG.SW5E.powerRoutingEffects[routing][effect1]);
-                updates[`data.attributes.power.routing.${routing}`] =  coefficient;
+                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(
+                    CONFIG.SW5E.powerRoutingEffects[routing][effect1]
+                );
+                updates[`data.attributes.power.routing.${routing}`] = coefficient;
             } else {
                 document.querySelector(`.powerslider.${routing}`).value = 2 - coefficient;
                 document.querySelector(`#${routing}slideroutput`).value = symbol2;
-                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(CONFIG.SW5E.powerRoutingEffects[routing][effect2]);
-                updates[`data.attributes.power.routing.${routing}`] =  1 / coefficient;
+                document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(
+                    CONFIG.SW5E.powerRoutingEffects[routing][effect2]
+                );
+                updates[`data.attributes.power.routing.${routing}`] = 1 / coefficient;
             }
         }
         this.actor.update(updates);

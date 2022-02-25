@@ -1205,7 +1205,7 @@ export default class Actor5e extends Actor {
         if (data.attributes.hp.temp === null) data.attributes.hp.temp = data.attributes.hp.tempmax;
 
         // Disable Shields
-        data.attributes.equip.shields.depleted =
+        data.attributes.shld.depleted =
             data.attributes.hp.temp === 0 && data.attributes.equip.shields.capMult !== 0 ? true : false;
 
         // Prepare Speeds
@@ -1333,7 +1333,7 @@ export default class Actor5e extends Actor {
         let drEnable = true;
         let hullDirect = false;
 
-        if (drEnable && amount > 0) amount = math.max(1, amount - dr);
+        if (drEnable && amount > 0) amount = Math.max(1, amount - dr);
         const hp = this.data.data.attributes.hp;
 
         // Deduct damage from temp HP first

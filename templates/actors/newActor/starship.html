@@ -62,12 +62,7 @@
                 <h1 class="attribute-name rollable">{{ localize "SW5E.ShieldPoints" }}</h1>
                 <div class="attribute-value multiple">
                     <input name="data.attributes.hp.temp" type="text" 
-                    {{#if isShieldDepleted}}
-                        value="depleted" 
-                    {{else}}
-                        value="{{round data.attributes.hp.temp}}" 
-                    {{/if}}
-                    placeholder="0"
+                    value="{{round data.attributes.hp.temp}}" placeholder="0"
                     data-dtype="Number" title="{{localize 'SW5E.ShieldPointsCurrent'}}"
                     class="value-number" />
                     <span class="value-separator">/</span>
@@ -76,10 +71,11 @@
                     data-dtype="Number"  title="{{localize 'SW5E.ShieldPointsMax'}}"
                     class="value-number" />
                 </div>
-                <footer class="attribute-footer" style="line-height: 12px; height: 12px; text-align: center; font-family: 'Russo One';">
-<!--                    <input name="data.attributes.shld.formula" class="hpformula" type="text"
-                            placeholder="{{ localize 'SW5E.ShieldPointsFormula' }}" value="{{data.attributes.shld.formula}}" style="min-width: 150px;" /> -->
-						<strong>{{localize "SW5E.ShieldDice"}}: </strong> {{data.attributes.shld.dice}} of {{data.attributes.shld.dicemax}}{{data.attributes.shld.die}}
+                <footer class="attribute-footer" style="line-height: 12px; height: 12px; text-align: center; font-family: 'Russo One';{{#if isShieldDepleted}} color: #c40f0f;"> 
+                            <strong> {{localize "SW5E.ShieldDepleted"}} </strong>
+                        {{else}}
+                            "><strong>{{localize "SW5E.ShieldDice"}}: </strong> {{data.attributes.shld.dice}} of {{data.attributes.shld.dicemax}}{{data.attributes.shld.die}}
+                        {{/if}}
                 </footer>
             </section>			
 			

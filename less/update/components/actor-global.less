@@ -1204,13 +1204,15 @@
                 .attributes {
                     grid-template-columns: repeat(3, 1fr);
                     footer {
-                        &.proficiency {
-                            margin-top: 0;
-                            line-height: 24px;
-                            text-align: center;
-                        }
+                        text-align: center;
+                        margin-top: -2px;
                         &.hit-points {
                             display: block;
+                            margin-top: -3px;
+                            input {
+                                height: 16px; 
+                                vertical-align: text-top;
+                            }
                         }
                     }
                 }
@@ -1218,14 +1220,15 @@
             nav.sheet-navigation {
                 grid-template-columns: repeat(6, 1fr);
             }
-            .tab.attributes {
-                .traits-resources {
-                    display: block;
-
-                    .counter {
-                        display: flex;
-                        .counter-value {
-                            margin-left: auto;
+            .traits-resources {
+                display: block;
+                .counter {
+                    display: inline;
+                    .counter-value {
+                        display: inline;
+                        span {
+                            margin-left: -3px;
+                            margin-right: -3px;
                         }
                     }
                 }

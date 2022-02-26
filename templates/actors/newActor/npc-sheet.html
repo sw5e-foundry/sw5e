@@ -53,7 +53,7 @@
                 <div class="attribute-value attributable" data-property="attributes.ac">
                     <span>{{data.attributes.ac.value}}</span>
                 </div>
-                <footer class="attribute-footer">
+                <footer>
                     <span>{{labels.armorType}}</span>
                 </footer>
             </section>
@@ -82,10 +82,11 @@
                         title="{{localize 'SW5E.HitPointsMax'}}"
                     />
                 </div>
-                <footer class="attribute-footer hit-points">
+                <footer>
                     <input
                         name="data.attributes.hp.formula"
                         class="hpformula"
+                        style="height:16px; vertical-align: text-top;"
                         type="text"
                         placeholder="{{ localize 'SW5E.HealthFormula' }}"
                         value="{{data.attributes.hp.formula}}"

@@ -1822,25 +1822,33 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor.npc .swalt-sheet header .attributes {
   grid-template-columns: repeat(3, 1fr);
 }
-.sw5e.sheet.actor.npc .swalt-sheet header .attributes footer.proficiency {
-  margin-top: 0;
-  line-height: 24px;
+.sw5e.sheet.actor.npc .swalt-sheet header .attributes footer {
   text-align: center;
+  margin-top: -2px;
 }
 .sw5e.sheet.actor.npc .swalt-sheet header .attributes footer.hit-points {
   display: block;
+  margin-top: -3px;
+}
+.sw5e.sheet.actor.npc .swalt-sheet header .attributes footer.hit-points input {
+  height: 16px;
+  vertical-align: text-top;
 }
 .sw5e.sheet.actor.npc .swalt-sheet nav.sheet-navigation {
   grid-template-columns: repeat(6, 1fr);
 }
-.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources {
+.sw5e.sheet.actor.npc .swalt-sheet .traits-resources {
   display: block;
 }
-.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources .counter {
-  display: flex;
+.sw5e.sheet.actor.npc .swalt-sheet .traits-resources .counter {
+  display: inline;
 }
-.sw5e.sheet.actor.npc .swalt-sheet .tab.attributes .traits-resources .counter .counter-value {
-  margin-left: auto;
+.sw5e.sheet.actor.npc .swalt-sheet .traits-resources .counter .counter-value {
+  display: inline;
+}
+.sw5e.sheet.actor.npc .swalt-sheet .traits-resources .counter .counter-value span {
+  margin-left: -3px;
+  margin-right: -3px;
 }
 .sw5e.sheet.actor.npc .swalt-sheet .tab.force-powerbook input.powercasting-level,
 .sw5e.sheet.actor.npc .swalt-sheet .tab.tech-powerbook input.powercasting-level {

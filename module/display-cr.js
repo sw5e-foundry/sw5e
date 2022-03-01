@@ -12,6 +12,7 @@ export default function DisplayCR(html) {
         console.log(cr);
         if (typeof cr !== "undefined") {
             let p = document.createElement("h4");
+            p.classList.add("document-name");
             p.style.textAlign = "right";
             p.style.marginRight = "10px";
             p.textContent = "CR: " + cr;

@@ -19,6 +19,7 @@ import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
 import CharacterImporter from "./module/characterImporter.js";
 import {TokenDocument5e, Token5e} from "./module/token.js";
+import DisplayCR from "./module/display-cr.js";
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -447,6 +448,7 @@ Hooks.on("renderSceneDirectory", (app, html, data) => {
 Hooks.on("renderActorDirectory", (app, html, data) => {
     setFolderBackground(html);
     CharacterImporter.addImportButton(html);
+    DisplayCR(html);
 });
 Hooks.on("renderItemDirectory", (app, html, data) => {
     setFolderBackground(html);

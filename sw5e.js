@@ -450,6 +450,9 @@ Hooks.on("renderActorDirectory", (app, html, data) => {
     CharacterImporter.addImportButton(html);
     DisplayCR(html);
 });
+Hooks.on("renderCompendium", (compendium, html, data) => {
+    DisplayCR(html, compendium);
+});
 Hooks.on("renderItemDirectory", (app, html, data) => {
     setFolderBackground(html);
 });

@@ -51,7 +51,6 @@ async function addItems() {
             let actorid = p.split('.');
             let actor = game.actors.get(actorid[1]);
             let itemsFromActor = actor.data.items.filter(t => t.data.type == "deploymentfeature");
-            console.log(itemsFromActor);
             for(let i of itemsFromActor) {
                 if (values.some(n => n.data.name === i.data.name)) {
                     continue;
@@ -59,7 +58,6 @@ async function addItems() {
                 else {
                     let newItem = [];
                     newItem.push(i);
-                    console.log(newItem)
                     await ship.createEmbeddedDocuments("Item", newItem.map(m => m.toObject()));
                 }
             }

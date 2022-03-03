@@ -12,6 +12,7 @@ import ProficiencySelector from "../apps/proficiency-selector.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
 import {fromUuidSynchronous} from "../helpers.js";
+import CrewDeployment from "../crew-deployment.js"
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
@@ -3215,6 +3216,7 @@ export default class Actor5e extends Actor {
         });
 
         this.updateActiveDeployment();
+        CrewDeployment(ssDeploy, this);
     }
 
     /**
@@ -3712,6 +3714,7 @@ export default class Actor5e extends Actor {
             }
             this.deleteEmbeddedDocuments("Item", toDelete);
         }
+
     }
 
     /* -------------------------------------------- */

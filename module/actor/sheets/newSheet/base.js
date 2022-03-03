@@ -144,7 +144,7 @@ export default class ActorSheet5e extends ActorSheet {
                 } else {
                     skl.label = CONFIG.SW5E.skills[s];
                 }
-                skl.baseValue = source.skills[s].value;
+                skl.baseValue = source.skills[s]?.value;
             }
         }
 

@@ -255,6 +255,34 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
+     * Return data related to the installation of an item in a starship.
+     * @param {string} itemId       The id of the item.
+     * @return [
+     *           {Number} minCrew      The minimum crew required to install.
+     *           {Number} installCost  The credits cost to install.
+     *           {Number} installTime  The time taken to install.
+     *         ]
+     */
+    getInstallationData(itemId) {
+        if (this.type !== "starship") return [0, 0, 0];
+
+        const item = this.items.get(itemId);
+        const size = this.items.filter((i) => i.type === "starship")[0];
+
+        const id = item.data.data;
+        const sd = size.data.data;
+        const cond = item.type == "equipment";
+
+        const minCrew = cond ? sd.equipMinWorkforce : sd.modMinWorkforce;
+        const installCost = cond ? (id.price * sd.equipCostMult) : ((id.basecost.value / 2) * sd.modCostMult * (Number(id.grade) || 1));
+        const installTime = cond ? (installCost / (500 * minCrew)) : modMinWorkforce;
+
+        return {minCrew, installCost, installTime};
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Given a list of items to add to the Actor, optionally prompt the
      * user for which they would like to add.
      * @param {Item5e[]} items         The items being added to the Actor.
@@ -363,7 +391,11 @@ export default class Actor5e extends Actor {
 
         for (const id of SW5E.defaultStarshipEquipment) items.push(await fromUuid(id));
 
-        this.addEmbeddedItems(items, false);
+        const result = await this.addEmbeddedItems(items, false);
+
+        const updates = [];
+        for (const item of result) updates.push({"_id": item.id, "data.equipped": true});
+        await this.updateEmbeddedDocuments("Item", updates);
     }
 
     /* -------------------------------------------- */
@@ -647,7 +679,7 @@ export default class Actor5e extends Actor {
             // Compute modifier
             const checkBonusAbl = this._simplifyBonus(data.abilities[skl.ability]?.bonuses?.check, bonusData);
             skl.bonus = baseBonus + checkBonus + checkBonusAbl + skillBonus;
-            skl.mod = data.abilities[skl.ability].mod;
+            skl.mod = data.abilities[skl.ability]?.mod;
             skl.prof = new Proficiency(data.attributes.prof, skl.value, roundDown);
             skl.proficient = skl.value;
             skl.total = skl.mod + skl.bonus;
@@ -3675,46 +3707,6 @@ export default class Actor5e extends Actor {
                 }
             }
         }
-    }
-
-    /* -------------------------------------------- */
-    /**
-     * Follow-up actions taken after a set of embedded Documents in this parent Document are created.
-     * @param {string} embeddedName   The name of the embedded Document type
-     * @param {Document[]} documents  An Array of created Documents
-     * @param {object[]} result       An Array of created data objects
-     * @param {object} options        Options which modified the creation operation
-     * @param {string} userId         The ID of the User who triggered the operation
-     * @memberof ClientDocumentMixin#
-     */
-    _onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        super._onCreateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-
-        // Delete starship actions when adding a new one of the same type
-        if (this.data.type == "starship") {
-            const toDelete = [];
-            for (const doc of documents) {
-                const docData = doc.data.data;
-                if (
-                    doc.type === "starship" ||
-                    (doc.type === "equipment" &&
-                        ["starship", "hyper", "powerc", "reactor", "ssshield"].includes(docData.armor?.type))
-                ) {
-                    for (const item of this.items) {
-                        const itemData = item.data.data;
-                        if (doc.id === item.id) continue;
-                        if (
-                            (doc.type === "starship" && item.type === "starship") ||
-                            (doc.type === item.type && docData.armor?.type === itemData.armor?.type)
-                        ) {
-                            toDelete.push(item.id);
-                        }
-                    }
-                }
-            }
-            this.deleteEmbeddedDocuments("Item", toDelete);
-        }
-
     }
 
     /* -------------------------------------------- */

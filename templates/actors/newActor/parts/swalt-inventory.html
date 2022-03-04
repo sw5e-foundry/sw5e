@@ -30,7 +30,9 @@
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+        {{#if isCharacter }}
         <li class="filter-item" data-filter="equipped">{{localize "SW5E.Equipped"}}</li>
+        {{/if}}
     </ul>
 
     <div class="group-list-header group-grid-inventory">

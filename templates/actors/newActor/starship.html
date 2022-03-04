@@ -51,7 +51,7 @@
                         class="value-number" />
                 </div>
                 <footer class="attribute-footer" style="line-height: 12px; height: 12px; text-align: center; font-family: 'Russo One';">
-<!--                    <input name="data.attributes.hull.formula" class="hpformula" type="text"
+                    <!--<input name="data.attributes.hull.formula" class="hpformula" type="text"
                             placeholder="{{ localize 'SW5E.HullPointsFormula' }}" value="{{data.attributes.hull.formula}}" style="min-width: 150px;" /> -->
 						 <strong>{{localize "SW5E.HullDice"}}:</strong> {{data.attributes.hull.dice}} of {{data.attributes.hull.dicemax}}{{data.attributes.hull.die}}
                 </footer>
@@ -91,13 +91,15 @@
                 </footer>
             </section>
         </div>
-        
+
     </header>
 
     {{!-- Starship Sheet Navigation --}}
-    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(4, 1fr);" data-group="primary">
+    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(6, 1fr);" data-group="primary">
         <button class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</button>
-        <button class="item" data-tab="cargo">{{localize 'SW5E.VehicleCargoCrew'}}</button>
+        <button class="item" data-tab="cargo">{{ localize "SW5E.VehicleCargo" }}</button>
+        <button class="item" data-tab="equipment">{{ localize "SW5E.Equipment" }}</button>
+        <button class="item" data-tab="crew">{{localize 'SW5E.VehicleCrew'}}</button>
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
     </nav>
@@ -234,7 +236,7 @@
                             <span class="fuel-label">{{value}} / {{fuelCap}} units</span>
                         </div>
                     {{/with}}
-<!--                    <label>
+                    <!--<label>
                         {{localize "SW5E.CentStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.cscap" value="{{data.attributes.cscap}}" placeholder="0" />
                     </label>
                     <label>
@@ -260,7 +262,7 @@
                         <tr></tr>
                     </table>
 
-<!--                    <label>
+                    <!--<label>
                         {{localize "SW5E.EnginePl"}}: 
 						<select name="data.attributes.engpow">
 						{{#select data.attributes.engpow}}					
@@ -373,13 +375,23 @@
                     </label>
                     </div>
                 </div>
-		    </section>
-		</section>
-		{{!-- Cargo & Crew --}}
-		<div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
+            </section>
+        </section>
+        {{!-- Cargo --}}
+        <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html" sections=inventory}}
+        </div>
+        
+        {{!-- Equipment Tab --}}
+        <div class="tab equipment flexcol" data-group="primary" data-tab="equipment">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=equipment isStarshipEquipment="true"}}
+        </div>
+
+        {{!-- Crew --}}
+        <div class="tab crew flexcol" data-group="primary" data-tab="crew">
             {{> 'systems/sw5e/templates/actors/newActor/parts/swalt-crew.html'}}
         </div>
-		
+        
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}

@@ -1,5 +1,5 @@
 <div class="panel">
-    <ul class="filter-list" data-filter="features">
+    <ul class="filter-list" data-filter="ssactions">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
@@ -64,7 +64,7 @@
                 </li>
                 {{/if}}
             </ol>
-            {{#with (lookup @root.starshipactions key) as | actions |}} {{#if (and (or deployment.active
+            {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active
             @root.showAllActions) (not (eq actions.items.length 0)))}} {{>
             'systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html' actions=actions owner=../../../owner
             name=name}} {{/if}} {{/with}} {{/if}} {{/with}}

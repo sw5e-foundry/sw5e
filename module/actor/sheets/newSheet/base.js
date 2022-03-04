@@ -29,10 +29,12 @@ export default class ActorSheet5e extends ActorSheet {
          */
         this._filters = {
             inventory: new Set(),
+            ssactions: new Set(),
             forcePowerbook: new Set(),
             techPowerbook: new Set(),
             features: new Set(),
             ssfeatures: new Set(),
+            ssequipment: new Set(),
             effects: new Set()
         };
     }
@@ -44,6 +46,7 @@ export default class ActorSheet5e extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             scrollY: [
                 ".inventory .group-list",
+                ".cargo .group-list",
                 ".features .group-list",
                 ".ssfeatures .group-list",
                 ".force-powerbook .group-list",
@@ -566,7 +569,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /** @inheritdoc */
     activateListeners(html) {
@@ -659,10 +662,6 @@ export default class ActorSheet5e extends ActorSheet {
             if (set.has(li.dataset.filter)) li.classList.add("active");
         }
     }
-
-    /* -------------------------------------------- */
-    /*  Event Listeners and Handlers                */
-    /* -------------------------------------------- */
 
     /**
      * Handle input changes to numeric form fields, allowing them to accept delta-typed inputs

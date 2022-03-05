@@ -194,9 +194,21 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      * @private
      */
     _prepareItemToggleState(item) {
-        const isActive = getProperty(item.data, "equipped");
-        item.toggleClass = isActive ? "active" : "";
-        item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Installed" : "SW5E.NotInstalled");
+        if (
+            (
+                item.type === "equipment" &&
+                ["starship", "hyper", "powerc", "reactor", "ssshield"].includes(item.data.armor.type)
+            ) || (
+                item.type === "weapon" &&
+                ["primary (starship)", "secondary (starship)", "tertiary (starship)", "quaternary (starship)"].includes(item.data.weaponType)
+            ) || (
+                item.type === "starshipmod"
+            )
+        ) {
+            const isActive = getProperty(item.data, "equipped");
+            item.toggleClass = isActive ? "active" : "";
+            item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Installed" : "SW5E.NotInstalled");
+        }
     }
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */

@@ -202,7 +202,17 @@ export default class ItemSheet5e extends ItemSheet {
                 if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
                 return obj;
             }, {});
-        } else return {};
+        }
+
+        // Power Dice
+        else if (consume.type === "powerdice") {
+            return Object.keys(CONFIG.SW5E.powerDieSlots).reduce((obj, pd) => {
+                obj[`attributes.power.${pd}.value`] = game.i18n.localize(CONFIG.SW5E.powerDieSlots[pd]);
+                return obj;
+            }, {});
+        }
+
+        else return {};
     }
 
     /* -------------------------------------------- */

@@ -5,6 +5,7 @@
  * @return {Document|null}
  */
 export function fromUuidSynchronous(uuid) {
+  if (!uuid) return null;
   let parts = uuid.split(".");
   let doc;
 

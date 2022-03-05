@@ -689,6 +689,7 @@ export default class Item5e extends Item {
         let item = this;
         const id = this.data.data; // Item system data
         const actor = this.actor;
+        const starship = actor.type === "starship" ? actor : fromUuidSynchronous(actor?.data?.data?.attributes?.deployed?.uuid);
         const ad = actor.data.data; // Actor system data
 
         // Reference aspects of the item data necessary for usage
@@ -757,12 +758,13 @@ export default class Item5e extends Item {
         });
         if (!usage) return;
 
-        const {actorUpdates, itemUpdates, resourceUpdates} = usage;
+        const {actorUpdates, itemUpdates, resourceUpdates, starshipUpdates} = usage;
 
         // Commit pending data updates
         if (!foundry.utils.isObjectEmpty(itemUpdates)) await item.update(itemUpdates);
         if (consumeQuantity && item.data.data.quantity === 0) await item.delete();
         if (!foundry.utils.isObjectEmpty(actorUpdates)) await actor.update(actorUpdates);
+        if (starship && !foundry.utils.isObjectEmpty(starshipUpdates)) await starship.update(starshipUpdates);
         if (!foundry.utils.isObjectEmpty(resourceUpdates)) {
             const resource = actor.items.get(id.consume?.target);
             if (resource) await resource.update(resourceUpdates);
@@ -799,6 +801,7 @@ export default class Item5e extends Item {
         const actorUpdates = {};
         const itemUpdates = {};
         const resourceUpdates = {};
+        const starshipUpdates = {};
 
         // Consume Recharge
         if (consumeRecharge) {
@@ -812,7 +815,7 @@ export default class Item5e extends Item {
 
         // Consume Limited Resource
         if (consumeResource) {
-            const canConsume = this._handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates);
+            const canConsume = this._handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates);
             if (canConsume === false) return false;
         }
 
@@ -899,7 +902,7 @@ export default class Item5e extends Item {
         }
 
         // Return the configured usage
-        return {itemUpdates, actorUpdates, resourceUpdates};
+        return {itemUpdates, actorUpdates, resourceUpdates, starshipUpdates};
     }
 
     /* -------------------------------------------- */
@@ -909,13 +912,16 @@ export default class Item5e extends Item {
      * @param {object} itemUpdates        An object of data updates applied to this item
      * @param {object} actorUpdates       An object of data updates applied to the item owner (Actor)
      * @param {object} resourceUpdates    An object of data updates applied to a different resource item (Item)
+     * @param {object} starshipUpdates    An object of data updates applied to the item owner's deployed starship (Actor)
      * @returns {boolean|void}            Return false to block further progress, or return nothing to continue
      * @private
      */
-    _handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates) {
+    _handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates) {
         const actor = this.actor;
+        const starship = actor.type === "starship" ? actor : fromUuidSynchronous(actor?.data?.data?.attributes?.deployed?.uuid);
+        console.debug('starship', starship, actor.type, actor.data.data);
         const itemData = this.data.data;
-        const consume = itemData.consume || {};
+        let consume = itemData.consume || {};
         if (!consume.type) return;
 
         // No consumed target
@@ -951,6 +957,14 @@ export default class Item5e extends Item {
                     amount = 1;
                 }
                 break;
+            case "powerdice":
+                if (!starship) {
+                    ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNotDeployed", {name: this.name, actor: actor.name}));
+                    return false;
+                }
+                resource = getProperty(starship.data.data, consume.target);
+                quantity = resource || 0;
+                break;
         }
 
         // Verify that a consumed resource is available
@@ -961,6 +975,15 @@ export default class Item5e extends Item {
 
         // Verify that the required quantity is available
         let remaining = quantity - amount;
+        if (remaining < 0 && consume.type === "powerdice") {
+            consume = {
+                target: "attributes.power.central.value",
+                type: "powerdice"
+            }
+            resource = getProperty(starship.data.data, consume.target);
+            quantity = resource || 0;
+            remaining = quantity - amount;
+        }
         if (remaining < 0) {
             ui.notifications.warn(
                 game.i18n.format("SW5E.ConsumeWarningNoQuantity", {name: this.name, type: typeLabel})
@@ -982,6 +1005,9 @@ export default class Item5e extends Item {
                 const recharge = resource.data.data.recharge || {};
                 if (uses.per && uses.max) resourceUpdates["data.uses.value"] = remaining;
                 else if (recharge.value) resourceUpdates["data.recharge.charged"] = false;
+                break;
+            case "powerdice":
+                starshipUpdates[`data.${consume.target}`] = remaining;
                 break;
         }
     }

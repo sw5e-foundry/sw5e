@@ -97,9 +97,9 @@
     {{!-- Starship Sheet Navigation --}}
     <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(6, 1fr);" data-group="primary">
         <button class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</button>
+        <button class="item" data-tab="crew">{{localize 'SW5E.VehicleCrew'}}</button>
         <button class="item" data-tab="cargo">{{ localize "SW5E.VehicleCargo" }}</button>
         <button class="item" data-tab="equipment">{{ localize "SW5E.Equipment" }}</button>
-        <button class="item" data-tab="crew">{{localize 'SW5E.VehicleCrew'}}</button>
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
     </nav>
@@ -377,6 +377,12 @@
                 </div>
             </section>
         </section>
+
+        {{!-- Crew --}}
+        <div class="tab crew flexcol" data-group="primary" data-tab="crew">
+            {{> 'systems/sw5e/templates/actors/newActor/parts/swalt-crew.html'}}
+        </div>
+        
         {{!-- Cargo --}}
         <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html" sections=inventory}}
@@ -387,11 +393,6 @@
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=equipment isStarshipEquipment="true"}}
         </div>
 
-        {{!-- Crew --}}
-        <div class="tab crew flexcol" data-group="primary" data-tab="crew">
-            {{> 'systems/sw5e/templates/actors/newActor/parts/swalt-crew.html'}}
-        </div>
-        
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}

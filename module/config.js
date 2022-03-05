@@ -445,7 +445,8 @@ SW5E.abilityConsumptionTypes = {
     ammo: "SW5E.ConsumeAmmunition",
     attribute: "SW5E.ConsumeAttribute",
     material: "SW5E.ConsumeMaterial",
-    charges: "SW5E.ConsumeCharges"
+    charges: "SW5E.ConsumeCharges",
+    powerdice: "SW5E.PowerDiePl"
 };
 
 /* -------------------------------------------- */

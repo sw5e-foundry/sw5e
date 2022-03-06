@@ -60,9 +60,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 dataset: {type: "starship"},
                 isStarship: true
             },
-            passive: {label: game.i18n.localize("SW5E.Features"), items: [], dataset: {type: "feat"}},
+            passive: {label: "SW5E.Features", items: [], dataset: {type: "feat"}},
             starshipfeatures: {
-                label: game.i18n.localize("SW5E.StarshipfeaturePl"),
+                label: "SW5E.ItemTypeStarshipFeaturePl",
                 items: [],
                 hasActions: true,
                 dataset: {type: "starshipfeature"}
@@ -70,14 +70,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         };
         const ssEquipment = {
             weapons: {
-                label: game.i18n.localize("SW5E.ItemTypeWeaponPl"),
+                label: "SW5E.ItemTypeWeaponPl",
                 items: [],
                 hasActions: true,
                 dataset: {"type": "weapon", "weapon-type": "natural"}
             },
-            equipment: {label: game.i18n.localize("SW5E.StarshipEquipment"), items: [], dataset: {type: "equipment"}},
+            equipment: {label: "SW5E.StarshipEquipment", items: [], dataset: {type: "equipment"}},
             starshipmods: {
-                label: game.i18n.localize("SW5E.StarshipmodPl"),
+                label: "SW5E.ItemTypeStarshipmodPl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "starshipmod"}
@@ -90,7 +90,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
             modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
-            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
+            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}},
+            starshipmod: {label: "SW5E.ItemTypeStarshipmodPl", items: [], dataset: {type: "starshipmod"}},
         };
 
         // Start by classifying items into groups for rendering

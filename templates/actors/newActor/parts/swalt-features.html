@@ -17,10 +17,13 @@
 
                     <h3 class="item-name">{{localize section.label}}</h3>
                     {{#if ../owner}}
+                    {{#if (not (or ../isStarshipEquipment section.isStarship))}}
                     <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
                         {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
 						<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
-                    </a>&nbsp;
+                    </a>
+                    {{/if}}
+                    &nbsp;
                     <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
                         {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>					
                         <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
@@ -98,7 +101,9 @@
                         </a>
                         {{/if}}
                         <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                        {{#if (not section.isStarship)}}
                         <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                        {{/if}}
                     </div>
                     {{/if}}
                 </li>

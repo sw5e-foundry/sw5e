@@ -271,11 +271,11 @@ export default class Actor5e extends Actor {
 
         const id = item.data.data;
         const sd = size.data.data;
-        const cond = item.type == "equipment" || item.type == "starshipmod";
+        const cond = item.type == "equipment" || item.type == "starshipmod" || item.type == "weapon";
         const minCrew = cond ? sd.equipMinWorkforce : sd.modMinWorkforce;
         let installCost = 0;
 
-        if (item.type == "equipment") {
+        if (item.type == "equipment" || item.type == "weapon") {
             installCost = id.price * sd.equipCostMult;
         }
         else {

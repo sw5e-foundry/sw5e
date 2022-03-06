@@ -389,7 +389,12 @@ export default class Actor5e extends Actor {
         const action_ids = actions.map((a) => "Compendium.sw5e.starshipactions." + a._id);
         for (const id of action_ids) items.push(await fromUuid(id));
 
-        for (const id of SW5E.defaultStarshipEquipment) items.push(await fromUuid(id));
+        for (const id of SW5E.defaultStarshipEquipment) {
+            const item = await fromUuid(id);
+            if (item.type === "equipment" && this.items.filter(i => i.type === "equipment" && item.data.data.armor.type === i.data.data.armor.type).length) continue;
+            if (item.type === "starship" && this.items.filter(i => i.type === "starship").length) continue;
+            items.push(item);
+        }
 
         const result = await this.addEmbeddedItems(items, false);
 
@@ -2162,7 +2167,7 @@ export default class Actor5e extends Actor {
 
         // If the roll is enough to fill all available slots
         if (pdMissing.total <= roll.total) {
-            for (const slot of slots) result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
+            for (const slot of Object.keys(slots)) result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
             result.pd = pdMissing.total;
         }
         // If all new power die can fit into the central storage
@@ -2786,7 +2791,7 @@ export default class Actor5e extends Actor {
             itemUpdates: [...(shldRecovery?.itemUpdates ?? []), ...pdRecovery.itemUpdates]
         };
 
-        if (foundry.utils.isObjectEmpty(result.actorUpdates) && foundry.utils.isObjectEmpty(result.itemUpdates))
+        if (foundry.utils.isObjectEmpty(result.actorUpdates) && !result.itemUpdates.length)
             return result;
 
         // Perform updates

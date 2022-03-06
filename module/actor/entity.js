@@ -389,7 +389,12 @@ export default class Actor5e extends Actor {
         const action_ids = actions.map((a) => "Compendium.sw5e.starshipactions." + a._id);
         for (const id of action_ids) items.push(await fromUuid(id));
 
-        for (const id of SW5E.defaultStarshipEquipment) items.push(await fromUuid(id));
+        for (const id of SW5E.defaultStarshipEquipment) {
+            const item = await fromUuid(id);
+            if (item.type === "equipment" && this.items.filter(i => i.type === "equipment" && item.data.data.armor.type === i.data.data.armor.type).length) continue;
+            if (item.type === "starship" && this.items.filter(i => i.type === "starship").length) continue;
+            items.push(item);
+        }
 
         const result = await this.addEmbeddedItems(items, false);
 

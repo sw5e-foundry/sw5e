@@ -2162,7 +2162,7 @@ export default class Actor5e extends Actor {
 
         // If the roll is enough to fill all available slots
         if (pdMissing.total <= roll.total) {
-            for (const slot of slots) result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
+            for (const slot of Object.keys(slots)) result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
             result.pd = pdMissing.total;
         }
         // If all new power die can fit into the central storage
@@ -2786,7 +2786,7 @@ export default class Actor5e extends Actor {
             itemUpdates: [...(shldRecovery?.itemUpdates ?? []), ...pdRecovery.itemUpdates]
         };
 
-        if (foundry.utils.isObjectEmpty(result.actorUpdates) && foundry.utils.isObjectEmpty(result.itemUpdates))
+        if (foundry.utils.isObjectEmpty(result.actorUpdates) && !result.itemUpdates.length)
             return result;
 
         // Perform updates

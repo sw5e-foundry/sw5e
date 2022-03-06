@@ -271,10 +271,17 @@ export default class Actor5e extends Actor {
 
         const id = item.data.data;
         const sd = size.data.data;
-        const cond = item.type == "equipment";
-
+        const cond = item.type == "equipment" || item.type == "starshipmod";
         const minCrew = cond ? sd.equipMinWorkforce : sd.modMinWorkforce;
-        const installCost = cond ? (id.price * sd.equipCostMult) : ((id.basecost.value / 2) * sd.modCostMult * (Number(id.grade) || 1));
+        let installCost = 0;
+
+        if (item.type == "equipment") {
+            installCost = id.price * sd.equipCostMult;
+        }
+        else {
+            installCost = Number(id.basecost.value * sd.modCostMult * (Number(id.grade) || 1));    
+        }
+        
         const installTime = cond ? (installCost / (500 * minCrew)) : modMinWorkforce;
 
         return {minCrew, installCost, installTime};

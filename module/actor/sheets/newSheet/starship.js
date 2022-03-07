@@ -83,6 +83,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 dataset: {type: "starshipmod"}
             }
         };
+
         const ssCargo = {
             weapon: {label: "SW5E.ItemTypeWeaponPl", items: [], dataset: {type: "weapon"}},
             equipment: {label: "SW5E.ItemTypeEquipmentPl", items: [], dataset: {type: "equipment"}},
@@ -108,7 +109,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
-                if (item.type === "starshipaction") arr[0].push(item);
+                if (item.type === "starshipaction" || item.type === "deploymentfeature") arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
                 else arr[3].push(item);
@@ -125,7 +126,16 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         cargo = this._filterItems(cargo, this._filters.inventory);
 
         // Organize Starship Actions
-        for (const action of actions) ssActions[action.data.deployment].items.push(action);
+        for (const action of actions) {
+            if (action.type === "starshipaction") {
+                ssActions[action.data.deployment].items.push(action);    
+            }
+            // Deployment names don't match up with what Starship Actions call them. Need to call out "Coordinator" explicitly and push to "coord".
+            else if (action.data.deployment.value.toLowerCase() == "coordinator") ssActions.coord.items.push(action);
+            else {
+                ssActions[action.data.deployment.value.toLowerCase()].items.push(action);
+            }
+        }
 
         // Organize Starship Items and Features
         for (const feature of features) {

@@ -131,9 +131,32 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 ssActions[action.data.deployment].items.push(action);    
             }
             // Deployment names don't match up with what Starship Actions call them. Need to call out "Coordinator" explicitly and push to "coord".
-            else if (action.data.deployment.value.toLowerCase() == "coordinator") ssActions.coord.items.push(action);
+            // For each item, find the item in the deployed character's features and add it.
             else {
-                ssActions[action.data.deployment.value.toLowerCase()].items.push(action);
+                if (action.data.deployment.value.toLowerCase() === "coordinator") { 
+                    if(data.data.attributes.deployment.coord.uuid !== null) {
+                        let uuid = data.data.attributes.deployment.coord.uuid.split('.')[1];
+                        let actor = game.actors.get(uuid);
+                        let item = actor.items.find(i => i.name == action.name);
+                        if (item) ssActions.coord.items.push(action);
+                    }
+                }
+                else if (action.data.deployment.value.toLowerCase() === "gunner") {
+                    for (let gunner of data.data.attributes.deployment.gunner.items) {
+                        let uuid = gunner.uuid.split('.')[1];
+                        let actor =  game.actors.get(gunner.uuid.split('.')[1]);
+                        let item = actor.items.find(i => i.name == action.name);
+                            if (item) ssActions.gunner.items.push(action);
+                    }
+                }
+                else {
+                    if(data.data.attributes.deployment[action.data.deployment.value.toLowerCase()].uuid !== null) { 
+                        let uuid = data.data.attributes.deployment[action.data.deployment.value.toLowerCase()].uuid.split('.')[1];
+                        let actor = game.actors.get(uuid);
+                        let item = actor.items.find(i => i.name == action.name);
+                        if (item) ssActions[action.data.deployment.value.toLowerCase()].items.push(action);
+                    }
+                }
             }
         }
 

@@ -46,7 +46,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      */
     _prepareItems(data) {
         // Categorize Items as actions, features, equipment and cargo
-        const ssActions = {};
+        const ssActions = {
+            deploymentFeatures: {
+                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                items: [],
+                derived: true
+            }
+        };
         for (const deploy of Object.keys(SW5E.deploymentTypes))
             ssActions[deploy] = {
                 items: [],
@@ -109,10 +115,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
-                if (["starshipaction", "deploymentfeature"].includes(item.type)) arr[0].push(item);
+                if (item.type === "starshipaction") arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
-                else arr[3].push(item);
+                else if (Object.keys(ssCargo).includes(item.type))arr[3].push(item);
 
                 return arr;
             },
@@ -126,13 +132,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         cargo = this._filterItems(cargo, this._filters.inventory);
 
         // Organize Starship Actions
-        for (const action of actions) {
-            if (action.type === "starshipaction") {
-                ssActions[action.data.deployment].items.push(action);
-            }
-            else if (action.type === "deploymentfeature") {
-                (ssActions[action.data.deployment.value] || ssActions.crew).items.push(action);
-            }
+        for (const action of actions) ssActions[action.data.deployment].items.push(action);
+        // Add derived actions from active deployed actors
+        if (this.actor.data.data.attributes.deployment?.active?.uuid) {
+            const actor = fromUuidSynchronous(this.actor.data.data.attributes.deployment.active.uuid);
+            ssActions.deploymentFeatures.items = actor.data.items.filter(item => item.type === "deploymentfeature");
         }
 
         // Organize Starship Items and Features
@@ -428,6 +432,53 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         }
         this.actor.update({"data.attributes.deployment": deployments});
         this.actor.updateActiveDeployment();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle editing an existing Owned Item for the Actor.
+     * @param {Event} event    The originating click event.
+     * @returns {ItemSheet5e}  The rendered item sheet.
+     * @private
+     */
+    _onItemEdit(event) {
+        const li = event.currentTarget.closest(".item");
+        if (li.dataset.derived) {
+            event.preventDefault();
+            const uuid = this.actor.data.data.attributes.deployment?.active?.uuid;
+            if (uuid) {
+                const actor = fromUuidSynchronous(uuid);
+                const item = actor.items.get(li.dataset.itemId);
+                if (item) item.sheet.render(true);
+            }
+        } else {
+            return super._onItemEdit(event);
+        }
+    }
+
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle rolling an item from the Actor sheet, obtaining the Item instance, and dispatching to its roll method.
+     * @param {Event} event  The triggering click event.
+     * @returns {Promise}    Results of the roll.
+     * @private
+     */
+    _onItemRoll(event) {
+        const li = event.currentTarget.closest(".item");
+        if (li.dataset.derived) {
+            event.preventDefault();
+            const uuid = this.actor.data.data.attributes.deployment?.active?.uuid;
+            if (uuid) {
+                const actor = fromUuidSynchronous(uuid);
+                const item = actor.items.get(li.dataset.itemId);
+                if (item) return item.roll();
+            }
+        } else { 
+            return super._onItemRoll(event);
+        }
     }
 
     /* -------------------------------------------- */

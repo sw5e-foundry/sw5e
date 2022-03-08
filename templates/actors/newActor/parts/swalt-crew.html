@@ -8,67 +8,77 @@
     </ul>
 
     <ol class="group-list">
+        <!-- Deployment Features -->
+        {{#with actions.deploymentFeatures as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
+        {{/if}} {{/with}}
+
+        <!-- Deployments (pilot, crew, passenger) -->
         {{#each config.deploymentTypes as | name key |}}
         <li>
+            <!-- Only show if there is at least one character on that deployment, or all deployments are being shown -->
             {{#with (lookup @root.data.attributes.deployment key) as | deployment |}} {{#if (or (and deployment.items
             deployment.items.length) deployment.uuid @root.showAllDeployments)}}
-            <div class="group-list-title">
-                <h3 class="item-name">
-                    {{#if (lookup @root.data.attributes.deployment key)}} {{#with (lookup
-                    @root.data.attributes.deployment key) as | deployment |}} {{#if deployment.items}} {{localize
-                    (lookup @root.config.deploymentTypesPlural key)}} {{else}} {{localize name}} {{/if}} {{/with}}
-                    {{else}} {{localize (lookup @root.config.deploymentTypesPlural key)}} {{/if}}
-                </h3>
-            </div>
-            <ol class="group-items item-list">
-                {{#if deployment.items}} {{#each deployment.items as | deploy |}}
-                <li
-                    class="item group-grid-deployments {{#if deploy.active}}active-deployment{{/if}}"
-                    data-key="{{key}}"
-                    data-uuid="{{deploy.uuid}}"
-                >
-                    <div class="group-item-title">
-                        <h4>{{ contentLink deploy.uuid }}</h4>
-                    </div>
-                    <div class="item-detail item-controls">
-                        {{#if (and @root.owner deploy.uuid)}}
-                        <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
-                            <i class="fas {{#if deploy.active}}fa-check{{else}}fa-times{{/if}}"></i>
-                        </a>
-                        <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                        {{/if}}
-                    </div>
-                </li>
-                {{/each}} {{else}}
-                <li
-                    class="item group-grid-deployments {{#if deployment.active}}active-deployment{{/if}}"
-                    data-key="{{key}}"
-                    data-uuid="{{deployment.uuid}}"
-                >
-                    <div class="group-item-title">
-                        <h4>{{ contentLink deployment.uuid }}</h4>
-                    </div>
+                <div class="group-list-title">
+                    <h3 class="item-name">
+                        {{#if (lookup @root.data.attributes.deployment key)}} {{#with (lookup
+                        @root.data.attributes.deployment key) as | deployment |}} {{#if deployment.items}} {{localize
+                        (lookup @root.config.deploymentTypesPlural key)}} {{else}} {{localize name}} {{/if}} {{/with}}
+                        {{else}} {{localize (lookup @root.config.deploymentTypesPlural key)}} {{/if}}
+                    </h3>
+                </div>
+                <ol class="group-items item-list">
+                    {{#if deployment.items}} {{#each deployment.items as | deploy |}}
+                    <li
+                        class="item group-grid-deployments {{#if deploy.active}}active-deployment{{/if}}"
+                        data-key="{{key}}"
+                        data-uuid="{{deploy.uuid}}"
+                    >
+                        <div class="group-item-title">
+                            <h4>{{ contentLink deploy.uuid }}</h4>
+                        </div>
+                        <div class="item-detail item-controls">
+                            {{#if (and @root.owner deploy.uuid)}}
+                            <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
+                                <i class="fas {{#if deploy.active}}fa-check{{else}}fa-times{{/if}}"></i>
+                            </a>
+                            <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            {{/if}}
+                        </div>
+                    </li>
+                    {{/each}} {{else}}
+                    <li
+                        class="item group-grid-deployments {{#if deployment.active}}active-deployment{{/if}}"
+                        data-key="{{key}}"
+                        data-uuid="{{deployment.uuid}}"
+                    >
+                        <div class="group-item-title">
+                            <h4>{{ contentLink deployment.uuid }}</h4>
+                        </div>
 
-                    <div class="item-detail item-controls">
-                        {{#if (and @root.owner deployment.uuid)}}
-                        <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
-                            <i class="fas {{#if deployment.active}}fa-check{{else}}fa-times{{/if}}"></i>
-                        </a>
-                        <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                        {{/if}}
-                    </div>
-                </li>
-                {{/if}}
-            </ol>
-            {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active
-            @root.showAllActions) (not (eq actions.items.length 0)))}} {{>
-            'systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html' actions=actions owner=../../../owner
-            name=name}} {{/if}} {{/with}} {{/if}} {{/with}}
+                        <div class="item-detail item-controls">
+                            {{#if (and @root.owner deployment.uuid)}}
+                            <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
+                                <i class="fas {{#if deployment.active}}fa-check{{else}}fa-times{{/if}}"></i>
+                            </a>
+                            <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            {{/if}}
+                        </div>
+                    </li>
+                    {{/if}}
+                </ol>
+                <!-- Deployment actions, only show is active character is deployed here, or all actions are being shown -->
+                {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active @root.showAllActions) (not (eq actions.items.length 0)))}}
+                    {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}
+                {{/if}} {{/with}}
+            {{/if}} {{/with}}
         </li>
         {{/each}}
+        <li>
+    </li>
     </ol>
 </div>

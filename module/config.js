@@ -1065,12 +1065,7 @@ SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
  */
 
 SW5E.deploymentTypes = {
-    coord: "SW5E.DeploymentTypeCoordinator",
-    gunner: "SW5E.DeploymentTypeGunner",
-    mechanic: "SW5E.DeploymentTypeMechanic",
-    operator: "SW5E.DeploymentTypeOperator",
     pilot: "SW5E.DeploymentTypePilot",
-    technician: "SW5E.DeploymentTypeTechnician",
     crew: "SW5E.DeploymentTypeCrew",
     passenger: "SW5E.DeploymentTypePassenger"
 };
@@ -1081,12 +1076,7 @@ SW5E.deploymentTypes = {
  */
 
 SW5E.deploymentTypesPlural = {
-    coord: "SW5E.DeploymentTypeCoordinatorPl",
-    gunner: "SW5E.DeploymentTypeGunnerPl",
-    mechanic: "SW5E.DeploymentTypeMechanicPl",
-    operator: "SW5E.DeploymentTypeOperatorPl",
     pilot: "SW5E.DeploymentTypePilotPl",
-    technician: "SW5E.DeploymentTypeTechnicianPl",
     crew: "SW5E.DeploymentTypeCrewPl",
     passenger: "SW5E.DeploymentTypePassengerPl"
 };

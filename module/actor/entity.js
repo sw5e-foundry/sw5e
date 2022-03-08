@@ -12,7 +12,6 @@ import ProficiencySelector from "../apps/proficiency-selector.js";
 import {SW5E} from "../config.js";
 import Item5e from "../item/entity.js";
 import {fromUuidSynchronous} from "../helpers.js";
-import CrewDeployment from "../crew-deployment.js"
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
@@ -267,22 +266,23 @@ export default class Actor5e extends Actor {
         if (this.type !== "starship") return [0, 0, 0];
 
         const item = this.items.get(itemId);
-        const size = this.items.filter((i) => i.type === "starship")[0];
+        const ship = this.items.filter((i) => i.type === "starship")[0];
 
-        const id = item.data.data;
-        const sd = size.data.data;
-        const cond = item.type == "equipment" || item.type == "starshipmod" || item.type == "weapon";
-        const minCrew = cond ? sd.equipMinWorkforce : sd.modMinWorkforce;
-        let installCost = 0;
+        const itemData = item.data.data;
+        const shipData = ship.data.data;
 
-        if (item.type == "equipment" || item.type == "weapon") {
-            installCost = id.price * sd.equipCostMult;
-        }
-        else {
-            installCost = Number(id.basecost.value * sd.modCostMult * (Number(id.grade) || 1));    
-        }
-        
-        const installTime = cond ? (installCost / (500 * minCrew)) : modMinWorkforce;
+        const isMod = (item.type === "starshipmod");
+        const isWpn = (item.type === "weapon");
+
+        const baseCost = isMod ? itemData.basecost.value : itemData.price;
+        const sizeMult = isMod ? shipData.modCostMult : isWpn ? 1 : shipData.equipCostMult;
+        const gradeMult = isMod ? (Number(itemData.grade) || 1) : 1;
+        const fullCost = baseCost * sizeMult * gradeMult;
+
+        const minCrew = isMod ? shipData.modMinWorkforce : shipData.equipMinWorkforce;
+        const installCost = Math.ceil(fullCost / 2);
+        const installTime = fullCost / (500 * minCrew);
+        // TODO: accept a 'crew' parameter to use instead of minCrew in the install time calculation
 
         return {minCrew, installCost, installTime};
     }
@@ -3260,7 +3260,6 @@ export default class Actor5e extends Actor {
         });
 
         this.updateActiveDeployment();
-        CrewDeployment(ssDeploy, this);
     }
 
     /**

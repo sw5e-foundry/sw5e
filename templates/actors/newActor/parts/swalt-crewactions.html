@@ -2,12 +2,14 @@
     <li>
         <div class="group-list-title group-grid-features">
             <div class="title">
-                <h3 class="item-name">{{localize name}} {{localize "SW5E.ActionPl"}}</h3>
+                <h3 class="item-name">{{localize name}}{{#if (not actions.derived)}} {{localize "SW5E.ActionPl"}} {{/if}}</h3>
                 {{#if owner}}
+                {{#if (not actions.derived)}}
                 <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
                     {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
         			<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                 </a>&nbsp;
+                {{/if}}
                 <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
                     {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>					
                     <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
@@ -20,7 +22,7 @@
 
         <ol class="item-list content" style="display: block">
             {{#each actions.items as |item iid|}}
-            <li class="item group-grid-features" data-item-id="{{item._id}}">
+            <li class="item group-grid-features" data-item-id="{{item._id}}" data-derived="{{../actions.derived}}">
                 <div class="item-name rollable">
                     <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                     <h4>
@@ -48,7 +50,9 @@
                 {{#if ../owner}}
                 <div class="item-controls item-detail">
                     <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                    {{#if (not ../actions.derived)}}
                     <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                    {{/if}}
                 </div>
                 {{/if}}
             </li>

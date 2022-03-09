@@ -394,41 +394,18 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         event.preventDefault();
         const a = event.currentTarget;
         const li = a.closest("li");
-        const key = li.dataset.key;
+
         const uuid = li.dataset.uuid;
+        const actor = fromUuidSynchronous(uuid);
         const deployments = this.actor.data.data.attributes.deployment;
-        const deployment = deployments[key];
+
         switch (a.dataset.action) {
             case "delete":
-                if (deployment.items) {
-                    const aux1 = deployment.items.filter((e) => e.uuid == uuid);
-                    const aux2 = deployment.items.filter((e) => e.uuid != uuid);
-                    if (aux1.length && aux1[0].active) deployment.active = false;
-                    deployment.items = aux2;
-                } else for (const k in deployment) deployment[k] = null;
-                const actor = fromUuidSynchronous(uuid);
-                if (actor) {
-                    const deployed = actor.data.data.attributes.deployed;
-                    deployed.deployments = deployed.deployments.filter((e) => e != key);
-                    if (!deployed.deployments.length) actor.undeployFromStarship();
-                }
+                this.actor.ssUndeployCrew(actor);
                 break;
             case "toggle":
-                for (const [key, deployment] of Object.entries(deployments)) {
-                    if (key == "active") continue;
-                    if (deployment.items) {
-                        deployment.active = false;
-                        for (const deploy of Object.values(deployment.items)) {
-                            if (deploy.uuid == uuid) {
-                                deploy.active = !deploy.active;
-                                deployment.active = deploy.active;
-                            } else deploy.active = false;
-                        }
-                    } else {
-                        if (deployment.uuid == uuid) deployment.active = !deployment.active;
-                        else deployment.active = false;
-                    }
-                }
+                this.actor.toggleActiveCrew(uuid);
+                break;
         }
         this.actor.update({"data.attributes.deployment": deployments});
         this.actor.updateActiveDeployment();
@@ -538,41 +515,39 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             );
 
         // Pre-select the deployment slot with the highest rank
-        const preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
+        let preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
             (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
             ["passenger", 0]
         )[0];
-        const iscrew = preselected != "passenger" ? "crew" : "";
+        if (!Object.keys(SW5E.deploymentTypes).includes(preselected)) preselected = "crew";
 
         // Create and render the Dialog
-        // Define a function to record starship deployment selections
+        // Define a function to record starship deployment selection
         const rememberOptions = (html) => {
-            let values = [];
+            let value = null;
             html.find("input").each((i, el) => {
-                if (el.checked) values.push(el.name);
+                if (el.checked) value = el.value;
             });
-            return values;
+            return value;
         };
         return new Dialog(
             {
                 title:
-                    game.i18n.localize("SW5E.DeploymentPromptTitle") +
-                    " " +
-                    sourceActor.data.name +
-                    " into " +
-                    this.actor.data.name,
+                    game.i18n.format("SW5E.DeploymentPromptTitle", {
+                        crew: sourceActor.data.name,
+                        starship: this.actor.data.name
+                    }),
                 content: {
                     i18n: SW5E.deploymentTypes,
                     isToken: this.actor.isToken,
-                    preselected: preselected,
-                    iscrew: iscrew
+                    preselected: preselected
                 },
                 default: "accept",
                 buttons: {
                     deploy: {
                         icon: '<i class="fas fa-check"></i>',
                         label: game.i18n.localize("SW5E.DeploymentAcceptSettings"),
-                        callback: (html) => this.actor.deployInto(sourceActor, rememberOptions(html))
+                        callback: (html) => this.actor.ssDeployCrew(sourceActor, rememberOptions(html))
                     },
                     cancel: {
                         icon: '<i class="fas fa-times"></i>',
@@ -582,7 +557,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             },
             {
                 classes: ["dialog", "sw5e"],
-                width: 600,
+                width: 400,
                 template: "systems/sw5e/templates/apps/deployment-prompt.html"
             }
         ).render(true);

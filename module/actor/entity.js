@@ -534,7 +534,10 @@ export default class Actor5e extends Actor {
     _prepareStarshipData(actorData) {
         const data = actorData.data;
         // Set starship's proficiency bonus to be equal to the active crew member's proficiency
-        data.attributes.prof = data.attributes.deployment.active.prof;
+        const active = data.attributes.deployment.active;
+        const actor = fromUuidSynchronous(active.value);
+        if (actor) active.prof = actor.data.data.attributes.prof;
+        data.attributes.prof = active.prof ?? 0;
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
         if (size.length !== 0) {

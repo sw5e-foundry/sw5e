@@ -115,7 +115,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
-                if (item.type === "starshipaction") arr[0].push(item);
+                if (["starshipaction","deploymentfeature"].includes(item.type)) arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
                 else if (Object.keys(ssCargo).includes(item.type))arr[3].push(item);
@@ -133,10 +133,18 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Organize Starship Actions
         for (const action of actions) ssActions[action.data.deployment].items.push(action);
+
         // Add derived actions from active deployed actors
-        if (this.actor.data.data.attributes.deployment?.active?.uuid) {
-            const actor = fromUuidSynchronous(this.actor.data.data.attributes.deployment.active.uuid);
-            ssActions.deploymentFeatures.items = actor.data.items.filter(item => item.type === "deploymentfeature");
+        if (this.actor.data.data.attributes.deployment?.pilot?.uuid || this.actor.data.data.attributes.deployment?.crew?.items[0]?.uuid) {
+            const pilotActor = fromUuidSynchronous(this.actor.data.data.attributes.deployment.pilot.uuid);
+            const pilotActions = pilotActor.data.items.filter(item => item.type === "deploymentfeature" && item.data.data.deployment?.value == "Pilot");
+            for (const pilotAction of pilotActions) ssActions.pilot.items.push(pilotAction);
+            const crewActors = this.actor.data.data.attributes.deployment.crew.items;
+            for (let crewActor of crewActors) {
+                crewActor = game.actors.get(crewActor.uuid.split('.')[1]);
+                const crewActions = crewActor.data.items.filter(item => item.type === "deploymentfeature" && item.data.data.deployment?.value != "Pilot");
+                for (const crewAction of crewActions) ssActions.crew.items.push(crewAction);
+            }
         }
 
         // Organize Starship Items and Features

@@ -22,7 +22,8 @@
 
         <ol class="item-list content" style="display: block">
             {{#each actions.items as |item iid|}}
-            <li class="item group-grid-features" data-item-id="{{item._id}}" data-derived="{{../actions.derived}}">
+            {{#if (or item.active @root.showAllActions)}}
+            <li class="item group-grid-features" data-item-id="{{item._id}}" data-derived="{{item.derived}}">
                 <div class="item-name rollable">
                     <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                     <h4>
@@ -56,6 +57,7 @@
                 </div>
                 {{/if}}
             </li>
+            {{/if}}
             {{/each}}
         </ol>
     </li>

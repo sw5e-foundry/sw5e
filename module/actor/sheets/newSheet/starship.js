@@ -115,7 +115,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
-                if (["starshipaction","deploymentfeature"].includes(item.type)) arr[0].push(item);
+                if ("starshipaction" === item.type) arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
                 else if (Object.keys(ssCargo).includes(item.type))arr[3].push(item);
@@ -132,18 +132,33 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         cargo = this._filterItems(cargo, this._filters.inventory);
 
         // Organize Starship Actions
-        for (const action of actions) ssActions[action.data.deployment].items.push(action);
+        for (const action of actions) {
+            const deployment = this.actor.data.data.attributes.deployment[action.data.deployment];
+            action.active = deployment.active;
+            ssActions[action.data.deployment].items.push(action);
+        }
 
-        // Add derived actions from active deployed actors
-        if (this.actor.data.data.attributes.deployment?.pilot?.uuid || this.actor.data.data.attributes.deployment?.crew?.items[0]?.uuid) {
-            const pilotActor = fromUuidSynchronous(this.actor.data.data.attributes.deployment.pilot.uuid);
-            const pilotActions = pilotActor.data.items.filter(item => item.type === "deploymentfeature" && item.data.data.deployment?.value == "Pilot");
-            for (const pilotAction of pilotActions) ssActions.pilot.items.push(pilotAction);
-            const crewActors = this.actor.data.data.attributes.deployment.crew.items;
-            for (let crewActor of crewActors) {
-                crewActor = game.actors.get(crewActor.uuid.split('.')[1]);
-                const crewActions = crewActor.data.items.filter(item => item.type === "deploymentfeature" && item.data.data.deployment?.value != "Pilot");
-                for (const crewAction of crewActions) ssActions.crew.items.push(crewAction);
+        // Add derived actions from deployed actors
+        for (const key of Object.keys(SW5E.deploymentTypes)) {
+            const deployment = this.actor.data.data.attributes.deployment[key];
+            if (deployment.items) {
+                for (const uuid of deployment.items) {
+                    const actor = fromUuidSynchronous(uuid);
+                    const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
+                    for (const action of (actions ?? [])) {
+                        action.active = deployment.active;
+                        action.derived = uuid;
+                        ssActions.deploymentFeatures.items.push(action);
+                    }
+                }
+            } else {
+                const actor = fromUuidSynchronous(deployment.value);
+                const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
+                for (const action of (actions ?? [])) {
+                    action.derived = deployment.value;
+                    action.active = deployment.active;
+                    ssActions.deploymentFeatures.items.push(action);
+                }
             }
         }
 
@@ -197,9 +212,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         if (!this._filters.ssactions.has("activeDeploy")) data.showAllActions = true;
         if (
-            Object.entries(this.actor.data.data.attributes.deployment).filter(
-                ([key, deploy]) => key != "active" && (deploy.uuid || deploy.items?.length)
-            ).length == 0
+            Object.entries(this.actor.data.data.attributes.deployment).every(
+                ([key, deploy]) => key === "active" || !(deploy.value || deploy.items?.length)
+            )
         ) {
             data.showAllDeployments = true;
         }
@@ -415,8 +430,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 this.actor.toggleActiveCrew(uuid);
                 break;
         }
-        this.actor.update({"data.attributes.deployment": deployments});
-        this.actor.updateActiveDeployment();
     }
 
     /* -------------------------------------------- */
@@ -431,11 +444,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const li = event.currentTarget.closest(".item");
         if (li.dataset.derived) {
             event.preventDefault();
-            const uuid = this.actor.data.data.attributes.deployment?.active?.uuid;
+            const uuid = li.dataset.derived;
             if (uuid) {
                 const actor = fromUuidSynchronous(uuid);
-                const item = actor.items.get(li.dataset.itemId);
-                if (item) item.sheet.render(true);
+                const item = actor?.items?.get(li.dataset.itemId);
+                item?.sheet?.render(true);
             }
         } else {
             return super._onItemEdit(event);
@@ -455,11 +468,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const li = event.currentTarget.closest(".item");
         if (li.dataset.derived) {
             event.preventDefault();
-            const uuid = this.actor.data.data.attributes.deployment?.active?.uuid;
+            const uuid = li.dataset.derived;
             if (uuid) {
                 const actor = fromUuidSynchronous(uuid);
-                const item = actor.items.get(li.dataset.itemId);
-                if (item) return item.roll();
+                const item = actor?.items?.get(li.dataset.itemId);
+                item?.roll();
             }
         } else { 
             return super._onItemRoll(event);

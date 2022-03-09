@@ -3449,9 +3449,8 @@ export default class Actor5e extends Actor {
         const charName = target.data.name;
 
         const deployment = ssDeploy[toDeploy];
-        if (deployment.items !== undefined) {
-            if (deployment.items === null) deployment.items = new Set();
-            deployment.items.add(charUUID);
+        if (deployment.items) {
+            deployment.items.push(charUUID);
         } else {
             if (deployment.value !== null) {
                 const otherCrew = fromUuidSynchronous(deployment.value);
@@ -3488,9 +3487,8 @@ export default class Actor5e extends Actor {
         else if (toUndeploy !== deployed.deployment) return;
 
         const deployment = ssDeploy[toUndeploy];
-        if (deployment.items !== undefined) {
-            if (deployment.items === null) deployment.items = new Set();
-            deployment.items.delete(charUUID);
+        if (deployment.items) {
+            deployment.items = deployment.items.filter(i => i !== charUUID);
         } else {
             deployment.value = null;
         }
@@ -3514,7 +3512,7 @@ export default class Actor5e extends Actor {
      * 
      * @param {string} target UUID of the target, if empty will set everyone as inactive
      */
-    toggleActiveCrew({target = null}) {
+    toggleActiveCrew(target) {
         const deployments = this.data.data.attributes.deployment;
         const active = deployments.active;
 
@@ -3523,11 +3521,10 @@ export default class Actor5e extends Actor {
         active.value = target;
         for (const key of Object.keys(SW5E.deploymentTypes)) {
             const deployment = deployments[key];
-            if (target === null) {
+            if (!target) {
                 deployment.active = false;
-            } else if (deployment.items !== undefined) {
-                if (deployment.items === null) deployment.items = new Set();
-                deployment.active = deployment.items.has(target);
+            } else if (deployment.items) {
+                deployment.active = deployment.items.includes(target);
             } else {
                 deployment.active = deployment.value === target;
             }

@@ -533,55 +533,66 @@ export default class Actor5e extends Actor {
      */
     _prepareStarshipData(actorData) {
         const data = actorData.data;
-        // Set starship's proficiency bonus to be equal to the active crew member's proficiency
+
+        // Determine starship's proficiency bonus based on active deployed crew member
         const active = data.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
-        if (actor) active.prof = actor.data.data.attributes.prof;
+        if (actor && actor.data.data.attributes.rank.total)
+            active.prof = actor.data.data.attributes.prof;
         data.attributes.prof = active.prof ?? 0;
+
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
         if (size.length !== 0) {
             const sizeData = size[0].data.data;
+            const hugeOrGrg = ["huge", "grg"].includes(sizeData.size);
             const tiers = parseInt(sizeData.tier) || 0;
+
             data.traits.size = sizeData.size; // needs to be the short code
             data.details.tier = tiers;
-            data.attributes.hull.die = sizeData.hullDice;
-            if (["huge", "grg"].includes(sizeData.size)) {
-                data.attributes.hull.dicemax = sizeData.hullDiceStart + 2 * tiers;
-                data.attributes.shld.dicemax = sizeData.shldDiceStart + 2 * tiers;
-            } else {
-                data.attributes.hull.dicemax = sizeData.hullDiceStart + tiers;
-                data.attributes.shld.dicemax = sizeData.shldDiceStart + tiers;
-            }
-            data.attributes.hull.dice = data.attributes.hull.dicemax - (parseInt(sizeData.hullDiceUsed) || 0);
-            data.attributes.shld.die = sizeData.shldDice;
-            data.attributes.shld.dice = data.attributes.shld.dicemax - (parseInt(sizeData.shldDiceUsed) || 0);
-            sizeData.pwrDice = SW5E.powerDieTypes[tiers];
-            data.attributes.power.die = sizeData.pwrDice;
+
             data.attributes.cost.baseBuild = sizeData.buildBaseCost;
-            data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
-            data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
             data.attributes.cost.baseUpgrade = SW5E.baseUpgradeCost[tiers];
-            data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
-            data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
-            data.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
-            data.attributes.mods.capLimit = sizeData.modBaseCap;
-            data.attributes.mods.suites.suiteCap = Math.max(
-                0,
-                sizeData.modMaxSuiteBase + sizeData.modMaxSuiteMult * data.abilities.con.mod
-            );
-            data.attributes.cost.multModification = sizeData.modCostMult;
-            data.attributes.workforce.minModification = sizeData.modMinWorkforce;
             data.attributes.cost.multEquip = sizeData.equipCostMult;
-            data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
+            data.attributes.cost.multModification = sizeData.modCostMult;
+            data.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
+
             data.attributes.equip.size.cargoCap = sizeData.cargoCap;
+            data.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
+            data.attributes.equip.size.foodCap = sizeData.foodCap;
+
             data.attributes.fuel.cost = sizeData.fuelCost;
             data.attributes.fuel.fuelCap = sizeData.fuelCap;
-            data.attributes.equip.size.foodCap = sizeData.foodCap;
+
+            const hullmax = sizeData.hullDiceStart + (hugeOrGrg ? 2 : 1) * tiers;
+            data.attributes.hull = {
+                die: sizeData.hullDice,
+                dicemax: hullmax,
+                dice: hullmax - (parseInt(sizeData.hullDiceUsed) || 0),
+            };
+
+            const shldmax = sizeData.shldDiceStart + (hugeOrGrg ? 2 : 1) * tiers;
+            data.attributes.shld = {
+                die: sizeData.shldDice,
+                dicemax: shldmax,
+                dice: shldmax - (parseInt(sizeData.shldDiceUsed) || 0),
+            };
+
+            data.attributes.mods.cap.max = sizeData.modBaseCap;
+            data.attributes.mods.suite.max = sizeData.modMaxSuitesBase;
+            data.attributes.mods.hardpoint.max = 0;
+
+            data.attributes.power.die = SW5E.powerDieTypes[tiers];
+
+            data.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
+            data.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
+            data.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
+            data.attributes.workforce.minModification = sizeData.modMinWorkforce;
+            data.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
         }
 
         // Determine Starship armor-based properties based on owned Starship item
-        const armor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "starship"); // && (i.data.equipped === true)));
+        const armor = this._getEquipment("starship", {equipped: true});
         if (armor.length !== 0) {
             const armorData = armor[0].data.data;
             data.attributes.equip.armor.dr = parseInt(armorData.dmgred.value) || 0;
@@ -595,7 +606,7 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship hyperdrive-based properties based on owned Starship item
-        const hyperdrive = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "hyper"); // && (i.data.equipped === true)));
+        const hyperdrive = this._getEquipment("hyper", {equipped: true});
         if (hyperdrive.length !== 0) {
             const hdData = hyperdrive[0].data.data;
             data.attributes.equip.hyperdrive.class = parseFloat(hdData.hdclass.value) || null;
@@ -605,7 +616,7 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship power coupling-based properties based on owned Starship item
-        const pwrcpl = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "powerc"); // && (i.data.equipped === true)));
+        const pwrcpl = this._getEquipment("powerc", {equipped: true});
         if (pwrcpl.length !== 0) {
             const pwrcplData = pwrcpl[0].data.data;
             data.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.cscap.value) || 0;
@@ -624,7 +635,7 @@ export default class Actor5e extends Actor {
         data.attributes.power.weapons.max = 0;
 
         // Determine Starship reactor-based properties based on owned Starship item
-        const reactor = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "reactor"); // && (i.data.equipped === true)));
+        const reactor = this._getEquipment("reactor", {equipped: true});
         if (reactor.length !== 0) {
             const reactorData = reactor[0].data.data;
             data.attributes.equip.reactor.fuelMult = parseFloat(reactorData.fuelcostsmod.value) || 0;
@@ -636,7 +647,7 @@ export default class Actor5e extends Actor {
         }
 
         // Determine Starship shield-based properties based on owned Starship item
-        const shields = actorData.items.filter((i) => i.type === "equipment" && i.data.data.armor.type === "ssshield"); // && (i.data.equipped === true)));
+        const shields = this._getEquipment("ssshield", {equipped: true});
         if (shields.length !== 0) {
             const shieldsData = shields[0].data.data;
             data.attributes.equip.shields.capMult = parseFloat(shieldsData.capx.value) || 1;
@@ -772,6 +783,8 @@ export default class Actor5e extends Actor {
         init.total = init.mod + init.bonus + dexCheckBonus + globalCheckBonus;
         if (Number.isNumeric(init.prof.term)) init.total += init.prof.flat;
     }
+
+    /* -------------------------------------------- */
 
     /**
      * Prepare data related to the power-casting capabilities of the Actor.
@@ -1222,6 +1235,8 @@ export default class Actor5e extends Actor {
         return {value: weight.toNearest(0.1), max, pct, encumbered: pct > 200 / 3};
     }
 
+    /* -------------------------------------------- */
+
     _computeStarshipData(actorData, data) {
         // Find Size info of Starship
         const size = actorData.items.filter((i) => i.type === "starship");
@@ -1265,14 +1280,29 @@ export default class Actor5e extends Actor {
         );
 
         // Prepare Max Suites
-        data.attributes.mods.suites.max =
-            sizeData.modMaxSuitesBase + sizeData.modMaxSuitesMult * data.abilities.con.mod;
+        data.attributes.mods.suite.max += sizeData.modMaxSuitesMult * data.abilities.con.mod;
 
         // Prepare Hardpoints
-        data.attributes.mods.hardpoints.max = sizeData.hardpointMult * Math.max(1, data.abilities.str.mod);
+        data.attributes.mods.hardpoint.max += sizeData.hardpointMult * Math.max(1, data.abilities.str.mod);
 
         //Prepare Fuel
         data.attributes.fuel = this._computeFuel(actorData);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Get a list of all equipment of a certain type.
+     * @param {string} type       The type of equipment to return, empty for all.
+     * @param {boolean} equipped  Ignore non-equipped items
+     * @type {object}             Array of items of that type
+     */
+    _getEquipment(type, {equipped = false} = {}) {
+        return this.items.filter((item) =>
+            item.type === "equipment" &&
+            type === item.data.data.armor.type &&
+            (!equipped || item.data.data.equipped)
+        );
     }
 
     /* -------------------------------------------- */

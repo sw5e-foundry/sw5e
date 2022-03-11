@@ -356,24 +356,18 @@
 				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
 				<div class="traits">
                     <div><label>
-                        {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.capUsed" value="{{data.attributes.mods.capUsed}}" placeholder="10" />/ {{data.attributes.mods.capLimit}}
+                        {{localize "SW5E.ModCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.cap.value" value="{{data.attributes.mods.cap.value}}" placeholder="10" />/ {{data.attributes.mods.cap.max}}
                     </label>
                     </div>
-                    <div>
-                   <label>
-                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.suites.open" value="{{data.attributes.mods.suites.open}}" placeholder="0" />/ {{data.attributes.mods.suites.max}}
-                    </label>
-                    </div>
-                    <div>
-                   <label>
-                        {{localize "SW5E.HardpointsPerRound"}}: {{data.attributes.mods.hardpoints.max}}
-                    </label>
-                    </div>
-                    <div>
-                    <label>
+                    <div><label>
+                        {{localize "SW5E.SuiteCap"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.mods.suite.value" value="{{data.attributes.mods.suite.value}}" placeholder="0" />/ {{data.attributes.mods.suite.max}}
+                    </label></div>
+                    <div><label>
+                        {{localize "SW5E.HardpointsPerRound"}}: {{data.attributes.mods.hardpoint.max}}
+                    </label></div>
+                    <div><label>
                         {{localize "SW5E.DmgRed"}}: {{data.attributes.equip.armor.dr}}
-                    </label>
-                    </div>
+                    </label></div>
                 </div>
             </section>
         </section>

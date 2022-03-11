@@ -587,13 +587,22 @@ SW5E.armorTypes = {
  * @enum {string}
  */
 SW5E.miscEquipmentTypes = {
+    clothing: "SW5E.EquipmentClothing",
+    trinket: "SW5E.EquipmentTrinket",
+    vehicle: "SW5E.EquipmentVehicle",
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship specific equipment types that aren't armor.
+ * @enum {string}
+ */
+SW5E.ssEquipmentTypes = {
     hyper: "SW5E.EquipmentHyperdrive",
     powerc: "SW5E.EquipmentPowerCoupling",
     reactor: "SW5E.EquipmentReactor",
-    clothing: "SW5E.EquipmentClothing",
-    trinket: "SW5E.EquipmentTrinket",
     ssshield: "SW5E.EquipmentStarshipShield",
-    vehicle: "SW5E.EquipmentVehicle"
 };
 
 /* -------------------------------------------- */
@@ -604,7 +613,8 @@ SW5E.miscEquipmentTypes = {
  */
 SW5E.equipmentTypes = {
     ...SW5E.miscEquipmentTypes,
-    ...SW5E.armorTypes
+    ...SW5E.ssEquipmentTypes,
+    ...SW5E.armorTypes,
 };
 
 /* -------------------------------------------- */

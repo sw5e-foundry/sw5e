@@ -1,9 +1,8 @@
 <div class="dialog-content">
     {{#each content.i18n}}
     <div>
-        <label class="checkbox" for="{{@key}}">
-            <input type="checkbox" id="{{@key}}" name="{{@key}}" {{checked (or (eq ../content.preselected @key) (eq
-            ../content.iscrew @key))}}> {{this}}
+        <label class="radio">
+            <input type="radio" name="value" value="{{@key}}" {{checked (eq ../content.preselected @key)}}> {{this}}
         </label>
     </div>
     {{/each}}

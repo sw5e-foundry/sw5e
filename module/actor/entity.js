@@ -534,7 +534,10 @@ export default class Actor5e extends Actor {
     _prepareStarshipData(actorData) {
         const data = actorData.data;
         // Set starship's proficiency bonus to be equal to the active crew member's proficiency
-        data.attributes.prof = data.attributes.deployment.active.prof;
+        const active = data.attributes.deployment.active;
+        const actor = fromUuidSynchronous(active.value);
+        if (actor) active.prof = actor.data.data.attributes.prof;
+        data.attributes.prof = active.prof ?? 0;
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
         if (size.length !== 0) {
@@ -3187,82 +3190,6 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Deploy an Actor into this one.
-     *
-     * @param {Actor} target The Actor to be deployed.
-     * @param {array} deployments Array of the positions to deploy in
-     */
-    deployInto(target, deployments) {
-        // Get the starship Actor data and the new char data
-        const ssDeploy = this.data.data.attributes.deployment;
-        const charUUID = target.uuid;
-        const charName = target.data.name;
-        const charDeployments = [];
-
-        for (const [key, name] of Object.entries(SW5E.deploymentTypes)) {
-            const deployment = ssDeploy[key];
-            let charRank = target.data.data.attributes.rank;
-            let charProf = 0;
-
-            if (charRank === undefined || charRank.total > 0) charProf = target.data.data.attributes.prof;
-            if (!["active", "crew", "passenger"].includes(deployment)) charRank = charRank ? charRank[deployment] : 0;
-
-            const deploymentData = {uuid: charUUID, name: charName, rank: charRank, prof: charProf};
-
-            if (deployment.items) {
-                for (let i = 0; i < deployment.items.length; i++) {
-                    if (deployment.items[i].uuid == charUUID) {
-                        charDeployments.push(key);
-                        deployment.items[i] = deploymentData;
-                        if (deployments.includes(key)) {
-                            ui.notifications.warn(
-                                game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
-                                    actor: charName,
-                                    deployment: game.i18n.localize(name)
-                                })
-                            );
-                        }
-                    }
-                }
-                if (deployments.includes(key) && !charDeployments.includes(key)) {
-                    charDeployments.push(key);
-                    deployment.items.push(deploymentData);
-                }
-            } else {
-                if (deployment.uuid == charUUID) {
-                    charDeployments.push(key);
-                    ssDeploy[key] = deploymentData;
-                    if (deployments.includes(key)) {
-                        ui.notifications.warn(
-                            game.i18n.format("SW5E.DeploymentAlreadyDeployed", {
-                                actor: charName,
-                                deployment: game.i18n.localize(name)
-                            })
-                        );
-                    }
-                } else if (deployments.includes(key)) {
-                    charDeployments.push(key);
-                    ssDeploy[key] = deploymentData;
-                }
-            }
-        }
-
-        this.update({"data.attributes.deployment": ssDeploy});
-
-        if (target.data.data.attributes.deployed?.uuid && target.data.data.attributes.deployed?.uuid != this.uuid)
-            target.undeployFromStarship();
-        target.update({
-            "data.attributes.deployed": {
-                uuid: this.uuid,
-                name: this.data.name,
-                deployments: charDeployments
-            }
-        });
-
-        this.updateActiveDeployment();
-    }
-
-    /**
      * Transform this Actor into another one.
      *
      * @param {Actor5e} target            The target Actor.
@@ -3442,72 +3369,6 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Updates a starship's record of it's active deployed character.
-     */
-    updateActiveDeployment() {
-        const deployments = this.data.data.attributes.deployment;
-        const active = {};
-        for (const [key, deployment] of Object.entries(deployments)) {
-            if (key == "active") continue;
-            if (deployment.items) {
-                for (const deploy of Object.values(deployment.items)) {
-                    if (deploy.active) active[key] = deploy;
-                }
-            } else if (deployment.active) active[key] = deployment;
-        }
-        deployments.active = {
-            uuid: null,
-            name: null,
-            maxrank: 0,
-            prof: 0,
-            deployments: []
-        };
-        for (const [key, deploy] of Object.entries(active)) {
-            deployments.active.uuid = deploy.uuid;
-            deployments.active.name = deploy.name;
-            if (typeof deploy.rank == typeof 0)
-                deployments.active.maxrank = Math.max(deployments.active.maxrank, deploy.rank);
-            deployments.active.prof = deploy.prof;
-            deployments.active.deployments.push(key);
-        }
-        this.update({"data.attributes.deployment": deployments});
-        return deployments.active;
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Undeploys the actor from it's currently deployed starship
-     */
-    undeployFromStarship() {
-        const deployed = this.data.data.attributes.deployed;
-        let starship = fromUuidSynchronous(deployed.uuid);
-
-        if (starship && starship instanceof TokenDocument) starship = starship.actor;
-        if (starship) {
-            const ssDeploy = starship.data.data.attributes.deployment;
-
-            for (const [key, deployment] of Object.entries(ssDeploy)) {
-                if (key == "active") continue;
-                if (deployment.items) deployment.items = deployment.items.filter((e) => e.uuid != this.uuid);
-                else if (deployment.uuid == this.uuid) for (const k in deployment) deployment[k] = null;
-            }
-            starship.update({"data.attributes.deployment": ssDeploy});
-            starship.updateActiveDeployment();
-        }
-
-        this.update({
-            "data.attributes.deployed": {
-                uuid: null,
-                name: null,
-                deployments: []
-            }
-        });
-    }
-
-    /* -------------------------------------------- */
-
-    /**
      * If this actor was transformed with transformTokens enabled, then its
      * active tokens need to be returned to their original state. If not, then
      * we can safely just delete this actor.
@@ -3569,6 +3430,111 @@ export default class Actor5e extends Actor {
         else if (isRendered) this.sheet.close();
         if (isRendered) original.sheet.render(isRendered);
         return original;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Deploy an Actor into this one.
+     *
+     * @param {Actor} target The Actor to be deployed.
+     * @param {string} toDeploy ID of the position to deploy in
+     */
+    ssDeployCrew(target, toDeploy) {
+        if (!target) return;
+
+        const otherShip = fromUuidSynchronous(target.data.data.attributes.deployed?.uuid);
+        otherShip?.ssUndeployCrew(target);
+
+        // Get the starship Actor data and the new crewmember data
+        const ssDeploy = this.data.data.attributes.deployment;
+        const charUUID = target.uuid;
+        const charName = target.data.name;
+
+        const deployment = ssDeploy[toDeploy];
+        if (deployment.items) {
+            deployment.items.push(charUUID);
+        } else {
+            if (deployment.value !== null) {
+                const otherCrew = fromUuidSynchronous(deployment.value);
+                if (otherCrew) this.ssUndeployCrew(otherCrew);
+            }
+            deployment.value = charUUID;
+        }
+
+        this.update({"data.attributes.deployment": ssDeploy});
+
+        target.update({
+            "data.attributes.deployed": {
+                uuid: this.uuid,
+                deployment: toDeploy
+            }
+        });
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Undeploys an actor from this starship
+     * 
+     * @param {Actor} target The Actor to be undeployed.
+     * @param {string} toUndeploy ID of the position to undeploy from, empty for any
+     */
+    ssUndeployCrew(target, toUndeploy) {
+        if (!target) return;
+
+        const ssDeploy = this.data.data.attributes.deployment;
+        const deployed = target.data.data.attributes.deployed;
+
+        if (!toUndeploy) toUndeploy = deployed.deployment;
+        else if (toUndeploy !== deployed.deployment) return;
+
+        const deployment = ssDeploy[toUndeploy];
+        if (deployment.items) {
+            deployment.items = deployment.items.filter(i => i !== charUUID);
+        } else {
+            deployment.value = null;
+        }
+
+        this.update({"data.attributes.deployment": ssDeploy});
+
+        if (ssDeploy.active.value === this.uuid) this.toggleActiveCrew();
+
+        target.update({
+            "data.attributes.deployed": {
+                uuid: null,
+                deployment: null
+            }
+        });
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Toggles if a crew member is active
+     * 
+     * @param {string} target UUID of the target, if empty will set everyone as inactive
+     */
+    toggleActiveCrew(target) {
+        const deployments = this.data.data.attributes.deployment;
+        const active = deployments.active;
+
+        if (target === active.value) target = null;
+
+        active.value = target;
+        for (const key of Object.keys(SW5E.deploymentTypes)) {
+            const deployment = deployments[key];
+            if (!target) {
+                deployment.active = false;
+            } else if (deployment.items) {
+                deployment.active = deployment.items.includes(target);
+            } else {
+                deployment.active = deployment.value === target;
+            }
+        }
+
+        this.update({"data.attributes.deployment": deployments});
+        return active.value;
     }
 
     /* -------------------------------------------- */
@@ -3677,19 +3643,6 @@ export default class Actor5e extends Actor {
 
         // Additional options only apply to Actors which are not synthetic Tokens
         if (this.isToken) return;
-
-        // Check for updates on deployed actors
-        const uuid = this.data.data.attributes.deployed?.uuid;
-        if (uuid) {
-            for (const change of changed) {
-                const arr = change.split(".");
-                if (change == "name" || (arr[0] == "data" && arr[1] == "attributes" && arr[2] == "rank")) {
-                    const starship = fromUuidSynchronous(uuid);
-                    starship.deployInto(this, []);
-                    break;
-                }
-            }
-        }
     }
 
     /* -------------------------------------------- */
@@ -3704,20 +3657,6 @@ export default class Actor5e extends Actor {
      */
     _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
-
-        // Check for leveling up actors that are deployed
-        const uuid = this.data.data.attributes.deployed?.uuid;
-        if (uuid) {
-            for (let i = 0; i < documents.length; i++) {
-                const doc = documents[i];
-                const changes = result[i];
-                if (doc.data.type == "class" && "data" in changes && "levels" in changes.data) {
-                    const starship = fromUuidSynchronous(uuid);
-                    starship.deployInto(this, []);
-                    break;
-                }
-            }
-        }
     }
 
     /* -------------------------------------------- */

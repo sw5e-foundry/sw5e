@@ -163,8 +163,7 @@
                     },
                     "deployed": {
                         "uuid": null,
-                        "name": null,
-                        "deployments": []
+                        "deployment": null
                     }
                 },
                 "details": {
@@ -549,23 +548,19 @@
                 },
                 "deployment": {
                     "pilot": {
-                        "uuid": null,
-                        "name": null,
-                        "rank": null,
-                        "prof": null
+                        "value": null,
+                        "active": false
                     },
                     "crew": {
-                        "items": []
+                        "items": [],
+                        "active": false
                     },
                     "passenger": {
-                        "items": []
+                        "items": [],
+                        "active": false
                     },
                     "active": {
-                        "uuid": null,
-                        "name": null,
-                        "maxrank": 0,
-                        "prof": 0,
-                        "deployments": []
+                        "value": null
                     }
                 },
                 "equip": {

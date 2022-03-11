@@ -2077,7 +2077,7 @@ export default class Item5e extends Item {
         if (data.data?.proficient === undefined) {
             if (isNPC) {
                 updates["data.proficient"] = 1;
-            } else {
+            } else if (actorData.type !== "starship") {
                 const actorToolProfs = actorData.data.traits?.toolProf?.value;
                 const proficient =
                     actorToolProfs.includes(this.data.data.toolType) ||

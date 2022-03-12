@@ -289,6 +289,11 @@ export default class Item5e extends Item {
             labels.armor = data.armor.value ? `${data.armor.value} ${game.i18n.localize("SW5E.AC")}` : "";
         }
 
+        // Starship Modification Items
+        else if (itemData.type === "equipment") {
+            data.baseCost.value = data.baseCost.value || SW5E.ssModSystemsBaseCost[data.system.value];
+        }
+
         // Activated Items
         if (data.hasOwnProperty("activation")) {
             // Ability Activation Label

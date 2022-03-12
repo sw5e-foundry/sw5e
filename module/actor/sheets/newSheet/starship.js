@@ -200,6 +200,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
     /** @override */
     getData(options) {
+        console.debug('starship getData', this.actor.name);
         const data = super.getData(options);
 
         // Add Size info
@@ -423,6 +424,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const deployments = this.actor.data.data.attributes.deployment;
 
         switch (a.dataset.action) {
+            case "pilot-toggle":
+                this.actor.ssDeployCrew(actor, (deployments.pilot.value === uuid) ? "crew" : "pilot");
+                break;
             case "delete":
                 this.actor.ssUndeployCrew(actor);
                 break;

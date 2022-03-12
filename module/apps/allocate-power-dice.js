@@ -37,8 +37,6 @@ export default class AllocatePowerDice extends Dialog {
                 full: power[id].value == power[id].max
             }
         };
-        console.debug('data.slots', data.slots);
-        console.debug('power', power);
 
         return data;
     }

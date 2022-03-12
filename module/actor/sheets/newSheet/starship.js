@@ -200,7 +200,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
     /** @override */
     getData(options) {
-        console.debug('starship getData', this.actor.name);
         const data = super.getData(options);
 
         // Add Size info

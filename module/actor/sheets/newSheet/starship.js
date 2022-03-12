@@ -485,6 +485,47 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
+     * Handle toggling and items expanded description.
+     * @param {Event} event   Triggering event.
+     * @private
+     */
+    _onItemSummary(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+
+        if (li[0].dataset.derived) {
+            event.preventDefault();
+            const uuid = li[0].dataset.derived;
+            if (uuid) {
+                const actor = fromUuidSynchronous(uuid);
+                const item = actor?.items?.get(li[0].dataset.itemId);
+
+                if (item) {
+                    const chatData = item.getChatData({secrets: this.actor.isOwner});
+
+                    // Toggle summary
+                    if (li.hasClass("expanded")) {
+                        let summary = li.children(".item-summary");
+                        summary.slideUp(200, () => summary.remove());
+                    } else {
+                        let div = $(`<div class="item-summary">${chatData.description.value}</div>`);
+                        let props = $('<div class="item-properties"></div>');
+                        chatData.properties.forEach((p) => props.append(`<span class="tag">${p}</span>`));
+                        div.append(props);
+                        li.append(div.hide());
+                        div.slideDown(200);
+                    }
+                    li.toggleClass("expanded");
+                }
+            }
+        } else { 
+            return super._onItemSummary(event);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Handle toggling the state of an Owned Item within the Actor.
      * @param {Event} event        The triggering click event.
      * @returns {Promise<Item5e>}  Item with the updates applied.

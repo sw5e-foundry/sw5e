@@ -657,6 +657,10 @@ export default class Actor5e extends Actor {
             data.attributes.equip.shields.capMult = 0;
             data.attributes.equip.shields.regenRateMult = 0;
         }
+
+        // Inherit deployed pilot's proficiency in piloting
+        const pilot = fromUuidSynchronous(data.attributes.deployment.pilot.value);
+        if (pilot) data.skills.man.value = Math.max(data.skills.man.value, pilot.data.data.skills.pil.value);
     }
 
     /* -------------------------------------------- */
@@ -1289,7 +1293,7 @@ export default class Actor5e extends Actor {
         // Prepare Hardpoints
         data.attributes.mods.hardpoint.max += sizeData.hardpointMult * Math.max(1, data.abilities.str.mod);
 
-        //Prepare Fuel
+        // Prepare Fuel
         data.attributes.fuel = this._computeFuel(actorData);
     }
 

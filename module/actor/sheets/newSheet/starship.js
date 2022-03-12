@@ -47,8 +47,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     _prepareItems(data) {
         // Categorize Items as actions, features, equipment and cargo
         const ssActions = {
-            deploymentFeatures: {
+            deploymentfeature: {
                 label: "SW5E.ItemTypeDeploymentFeaturePl",
+                items: [],
+                derived: true
+            },
+            venture: {
+                label: "SW5E.ItemTypeVenturePl",
                 items: [],
                 derived: true
             }
@@ -135,6 +140,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         for (const action of actions) {
             const deployment = this.actor.data.data.attributes.deployment[action.data.deployment];
             action.active = deployment.active;
+            action.id = action._id;
             ssActions[action.data.deployment].items.push(action);
         }
 
@@ -144,20 +150,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             if (deployment.items) {
                 for (const uuid of deployment.items) {
                     const actor = fromUuidSynchronous(uuid);
-                    const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
+                    const actions = actor?.data?.items?.filter(item => ["deploymentfeature", "venture"].includes(item.type));
                     for (const action of (actions ?? [])) {
                         action.active = deployment.active;
                         action.derived = uuid;
-                        ssActions.deploymentFeatures.items.push(action);
+                        ssActions[action.type].items.push(action);
                     }
-                }
-            } else {
-                const actor = fromUuidSynchronous(deployment.value);
-                const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
-                for (const action of (actions ?? [])) {
-                    action.derived = deployment.value;
-                    action.active = deployment.active;
-                    ssActions.deploymentFeatures.items.push(action);
                 }
             }
         }
@@ -558,6 +556,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         return this.actor.updateEmbeddedDocuments("Item", updates);
     }
+
     /* -------------------------------------------- */
 
     /** @override */

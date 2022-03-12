@@ -1279,8 +1279,12 @@ export default class Actor5e extends Actor {
             Math.max(50, sizeData.baseTurnSpeed - 50 * (data.abilities.dex.mod - data.abilities.con.mod))
         );
 
-        // Prepare Max Suites
+        // Prepare Mods
+        data.attributes.mods.cap.value = this.items.filter(i => i.type === "starshipmod" && i.data.data.equipped && !i.data.data.free.slot).length;
+
+        // Prepare Suites
         data.attributes.mods.suite.max += sizeData.modMaxSuitesMult * data.abilities.con.mod;
+        data.attributes.mods.suite.value = this.items.filter(i => i.type === "starshipmod" && i.data.data.equipped && !i.data.data.free.suite && i.data.data.system.value === "Suite").length;
 
         // Prepare Hardpoints
         data.attributes.mods.hardpoint.max += sizeData.hardpointMult * Math.max(1, data.abilities.str.mod);

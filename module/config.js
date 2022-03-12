@@ -1007,6 +1007,8 @@ SW5E.hitDieAvg = {
     d20: 11
 };
 
+/* -------------------------------------------- */
+
 /**
  * Enumerate the denominations of power dice which can apply to starships in the SW5E system
  * @type {string[]}
@@ -1057,6 +1059,33 @@ SW5E.powerRoutingEffects = {
         negative: "SW5E.PowerRoutingWeaponsNegative",
     },
 }
+
+/* -------------------------------------------- */
+
+/**
+ * Starship modification system
+ * @enum {string}
+ */
+SW5E.ssModSystems = {
+    Engineering: "SW5E.ModSystemEngineering",
+    Operation: "SW5E.ModSystemOperation",
+    Suite: "SW5E.ModSystemSuite",
+    Universal: "SW5E.ModSystemUniversal",
+    Weapon: "SW5E.ModSystemWeapon"
+}
+
+/**
+ * Starship modification system base cost
+ * @enum {string}
+ */
+SW5E.ssModSystemsBaseCost = {
+    engineering: 3500,
+    operation: 3500,
+    suite: 5000,
+    universal: 4000,
+    weapon: 3000
+}
+
 
 /* -------------------------------------------- */
 

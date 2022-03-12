@@ -423,6 +423,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const deployments = this.actor.data.data.attributes.deployment;
 
         switch (a.dataset.action) {
+            case "pilot-toggle":
+                this.actor.ssDeployCrew(actor, (deployments.pilot.value === uuid) ? "crew" : "pilot");
+                break;
             case "delete":
                 this.actor.ssUndeployCrew(actor);
                 break;

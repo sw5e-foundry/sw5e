@@ -537,9 +537,9 @@ export default class Actor5e extends Actor {
         // Determine starship's proficiency bonus based on active deployed crew member
         const active = data.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
+        data.attributes.prof = 0;
         if (actor && actor.data.data.attributes.rank.total)
-            active.prof = actor.data.data.attributes.prof;
-        data.attributes.prof = active.prof ?? 0;
+            data.attributes.prof = actor.data.data.attributes.prof ?? 0;
 
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
@@ -3481,13 +3481,11 @@ export default class Actor5e extends Actor {
                 else if (["crew", "passenger"].includes(toDeploy)) {
                     await this.ssUndeployCrew(target, deployed.deployment);
                 }
-                else {
-                    await this.ssDeployCrew(target, "crew");
-                }
             } else {
                 await otherShip?.ssUndeployCrew(target, deployed.deployment);
             }
         }
+        if (!["crew", "passenger"].includes(toDeploy)) await this.ssDeployCrew(target, "crew");
  
 
         // Get the starship Actor data and the new crewmember data
@@ -3685,6 +3683,16 @@ export default class Actor5e extends Actor {
         const keys = Object.keys(foundry.utils.flattenObject(data)).filter((k) => k !== "_id");
         const changed = new Set(keys);
 
+        const deployed = this.data.data.attributes.deployed;
+        const starship = fromUuidSynchronous(deployed?.uuid);
+        if (starship) {
+            const app = starship.apps[starship.sheet.appId];
+            if (app) {
+                starship.prepareData();
+                app.render(true);
+            }
+        }
+
         // Additional options only apply to Actors which are not synthetic Tokens
         if (this.isToken) return;
     }
@@ -3701,6 +3709,16 @@ export default class Actor5e extends Actor {
      */
     _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+
+        const deployed = this.data.data.attributes.deployed;
+        const starship = fromUuidSynchronous(deployed?.uuid);
+        if (starship) {
+            const app = starship.apps[starship.sheet.appId];
+            if (app) {
+                starship.prepareData();
+                app.render(true);
+            }
+        }
     }
 
     /* -------------------------------------------- */

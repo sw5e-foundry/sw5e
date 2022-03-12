@@ -9,7 +9,10 @@
 
     <ol class="group-list">
         <!-- Deployment Features -->
-        {{#with actions.deploymentFeatures as | actions |}} {{#if (not (eq actions.items.length 0))}}
+        {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
+        {{/if}} {{/with}}
+        {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
         {{/if}} {{/with}}
 

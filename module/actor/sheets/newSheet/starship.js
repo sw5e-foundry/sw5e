@@ -135,6 +135,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         for (const action of actions) {
             const deployment = this.actor.data.data.attributes.deployment[action.data.deployment];
             action.active = deployment.active;
+            action.id = action._id;
             ssActions[action.data.deployment].items.push(action);
         }
 

@@ -149,11 +149,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             const deployment = this.actor.data.data.attributes.deployment[key];
             if (deployment.items) {
                 for (const uuid of deployment.items) {
-                    console.log("PETE Deploying item");
                     const actor = fromUuidSynchronous(uuid);
                     const actions = actor?.data?.items?.filter(item => ["deploymentfeature", "venture"].includes(item.type));
                     for (const action of (actions ?? [])) {
-                        console.log(action);
                         action.active = deployment.active;
                         action.derived = uuid;
                         ssActions[action.type].items.push(action);

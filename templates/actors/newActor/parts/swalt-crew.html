@@ -8,14 +8,6 @@
     </ul>
 
     <ol class="group-list">
-        <!-- Deployment Features -->
-        {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
-        {{/if}} {{/with}}
-        {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
-        {{/if}} {{/with}}
-
         <!-- Deployments (pilot, crew, passenger) -->
         {{#each config.deploymentTypes as | name key |}}
         <!-- Only show if there is at least one character on that deployment, or all deployments are being shown -->
@@ -33,7 +25,7 @@
             <ol class="group-items item-list">
                 {{#each deployment.items as | deploy |}}
                 <li
-                    class="item group-grid-deployments{{#if (eq deploy @root.data.attributes.deployment.active.value)}} active-deployment{{/if}}"
+                    class="item group-grid-deployments {{#if (eq deploy @root.data.attributes.deployment.active.value)}}active-deployment{{/if}}"
                     data-key="{{key}}"
                     data-uuid="{{deploy}}"
                     >
@@ -53,7 +45,7 @@
                     <div class="item-detail item-controls">
                         {{#if (and @root.owner deploy)}}
                         <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
-                            <i class="fas {{#if (eq deploy @root.data.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
+                            <i class="fas {{#if deploy.active}}fa-check{{else}}fa-times{{/if}}"></i>
                         </a>
                         <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
                             <i class="fas fa-trash"></i>
@@ -63,20 +55,31 @@
                 </li>
                 {{/each}}
             </ol>
-            <!-- Deployment actions, only show is active character is deployed here, or all actions are being shown -->
-            {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active @root.showAllActions) (not (eq actions.items.length 0)))}}
-                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}
+
             {{/if}} {{/with}}
+            {{/each}}
+
+
+            <!-- Deployment Features -->
+            {{#with actions.deploymentFeatures as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label actor=actor ship=this.actor }}
+            {{/if}} {{/with}}
+
+            <!-- Deployments (pilot, crew, passenger) -->
+            {{#each config.deploymentTypes as | name key |}}
+                
+                <!-- Only show if there is at least one character on that deployment, or all deployments are being shown -->
+                {{#with (lookup @root.data.attributes.deployment key) as | deployment |}}
+                {{#if (or (and deployment.items deployment.items.length) deployment.value @root.showAllDeployments)}}
+
+                    <!-- Deployment actions, only show is active character is deployed here, or all actions are being shown -->
+                    {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active @root.showAllActions) (not (eq actions.items.length 0)))}}
+                        {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}
+                    {{/if}} {{/with}}
+                {{/if}} {{/with}}
+            {{/each}} 
+
         </li>
-        {{else if (or deployment.value @root.showAllDeployments)}}
-            <!-- Deployment actions, only show is active character is deployed here, or all actions are being shown -->
-            {{#with (lookup @root.actions key) as | actions |}} {{#if (and (or deployment.active @root.showAllActions) (not (eq actions.items.length 0)))}}
-                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}
-            {{/if}} {{/with}}
-        {{/if}}
-        {{/with}}
-        {{/each}}
-        <li>
-    </li>
+
     </ol>
 </div>

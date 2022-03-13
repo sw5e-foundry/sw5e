@@ -3481,18 +3481,23 @@ export default class Actor5e extends Actor {
     async ssDeployCrew(target, toDeploy) {
         if (!target) return;
 
+        console.log("DEPLOYING CREW!");
+        console.log(target);
+        console.log(toDeploy);
         const deployed = target.data.data.attributes.deployed;
         const otherShip = fromUuidSynchronous(deployed?.uuid);
-        if (otherShip) {
+        /* if (otherShip) {
             if (otherShip.uuid === this.uuid) {
                 if (toDeploy === deployed.deployment) return;
                 else if (["crew", "passenger"].includes(toDeploy)) {
                     await this.ssUndeployCrew(target, deployed.deployment);
                 }
             } else {
+                console.log("UNDEPLOYING FROM OTHERSHIP");
                 await otherShip?.ssUndeployCrew(target, deployed.deployment);
             }
-        }
+        } */
+
         if (!["crew", "passenger"].includes(toDeploy)) await this.ssDeployCrew(target, "crew");
  
 
@@ -3502,9 +3507,16 @@ export default class Actor5e extends Actor {
         const charName = target.data.name;
 
         const deployment = ssDeploy[toDeploy];
-        if (deployment.items) {
-            if (!deployment.items.includes(charUUID)) deployment.items.push(charUUID);
-        } else {
+
+        if (ssDeploy.pilot.value === charUUID) {
+            ssDeploy.pilot.value = null;
+        }
+        else if (deployment.items) {
+            if (!deployment.items.includes(charUUID)) {
+                deployment.items.push(charUUID);
+            }
+        } 
+        else {
             if (deployment.value !== null) {
                 const otherCrew = fromUuidSynchronous(deployment.value);
                 if (otherCrew) await this.ssDeployCrew(otherCrew, "crew");
@@ -3538,12 +3550,14 @@ export default class Actor5e extends Actor {
 
         if (!toUndeploy) toUndeploy = deployed.deployment;
         else if (toUndeploy !== deployed.deployment) return;
-
-        const deployment = ssDeploy[toUndeploy];
-        if (deployment.items) {
-            deployment.items = deployment.items.filter(i => i !== target.uuid);
+        const crewDeployment = ssDeploy.crew;
+        const pilotDeployment = ssDeploy.pilot;
+        
+        if (toUndeploy == "pilot") {
+            pilotDeployment.value = null;
+            crewDeployment.items = crewDeployment.items.filter(i => i !== target.uuid);
         } else {
-            deployment.value = null;
+            crewDeployment.items = crewDeployment.items.filter(i => i !== target.uuid);
         }
 
         await this.update({"data.attributes.deployment": ssDeploy});
@@ -3566,14 +3580,19 @@ export default class Actor5e extends Actor {
      * @param {string} target UUID of the target, if empty will set everyone as inactive
      */
     toggleActiveCrew(target) {
+        console.log("TOGGLING");
         const deployments = this.data.data.attributes.deployment;
+        console.log(deployments);
         const active = deployments.active;
+        console.log(active);
 
         if (target === active.value) target = null;
 
         active.value = target;
         for (const key of Object.keys(SW5E.deploymentTypes)) {
             const deployment = deployments[key];
+            console.log("DEPLOYMENT TYPE");
+            console.log(deployment);
             if (!target) {
                 deployment.active = false;
             } else if (deployment.items) {
@@ -3583,6 +3602,8 @@ export default class Actor5e extends Actor {
             }
         }
 
+        console.log("UPDATING DEPLOYMENT");
+        console.log(deployments);
         this.update({"data.attributes.deployment": deployments});
         return active.value;
     }

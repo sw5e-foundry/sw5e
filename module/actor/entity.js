@@ -3481,12 +3481,9 @@ export default class Actor5e extends Actor {
     async ssDeployCrew(target, toDeploy) {
         if (!target) return;
 
-        console.log("DEPLOYING CREW!");
-        console.log(target);
-        console.log(toDeploy);
         const deployed = target.data.data.attributes.deployed;
         const otherShip = fromUuidSynchronous(deployed?.uuid);
-        /* if (otherShip) {
+        /*if (otherShip) {
             if (otherShip.uuid === this.uuid) {
                 if (toDeploy === deployed.deployment) return;
                 else if (["crew", "passenger"].includes(toDeploy)) {
@@ -3580,19 +3577,14 @@ export default class Actor5e extends Actor {
      * @param {string} target UUID of the target, if empty will set everyone as inactive
      */
     toggleActiveCrew(target) {
-        console.log("TOGGLING");
         const deployments = this.data.data.attributes.deployment;
-        console.log(deployments);
         const active = deployments.active;
-        console.log(active);
 
         if (target === active.value) target = null;
 
         active.value = target;
         for (const key of Object.keys(SW5E.deploymentTypes)) {
             const deployment = deployments[key];
-            console.log("DEPLOYMENT TYPE");
-            console.log(deployment);
             if (!target) {
                 deployment.active = false;
             } else if (deployment.items) {
@@ -3602,8 +3594,6 @@ export default class Actor5e extends Actor {
             }
         }
 
-        console.log("UPDATING DEPLOYMENT");
-        console.log(deployments);
         this.update({"data.attributes.deployment": deployments});
         return active.value;
     }

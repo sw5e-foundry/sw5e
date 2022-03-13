@@ -47,8 +47,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     _prepareItems(data) {
         // Categorize Items as actions, features, equipment and cargo
         const ssActions = {
-            deploymentFeatures: {
+            deploymentfeature: {
                 label: "SW5E.ItemTypeDeploymentFeaturePl",
+                items: [],
+                derived: true
+            },
+            venture: {
+                label: "SW5E.ItemTypeVenturePl",
                 items: [],
                 derived: true
             }
@@ -146,15 +151,16 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 for (const uuid of deployment.items) {
                     console.log("PETE Deploying item");
                     const actor = fromUuidSynchronous(uuid);
-                    const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
+                    const actions = actor?.data?.items?.filter(item => ["deploymentfeature", "venture"].includes(item.type));
                     for (const action of (actions ?? [])) {
                         console.log(action);
                         action.active = deployment.active;
                         action.derived = uuid;
-                        ssActions.deploymentFeatures.items.push(action);
+                        ssActions[action.type].items.push(action);
                     }
                 }
-            } 
+
+            }
         }
 
         // Organize Starship Items and Features
@@ -553,6 +559,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         return this.actor.updateEmbeddedDocuments("Item", updates);
     }
+
     /* -------------------------------------------- */
 
     /** @override */

@@ -157,6 +157,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                         ssActions[action.type].items.push(action);
                     }
                 }
+
             }
         }
 

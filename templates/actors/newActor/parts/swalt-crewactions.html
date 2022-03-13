@@ -26,10 +26,8 @@
             {{log @root.actor.data.attributes.deployment.active.value}}
             {{#each actions.items as |item iid|}}
             {{log item}}
-            {{log item.derived}}
-            {{log actor}}
-            {{log actor.uuid}}
-            {{#if (or (and (or (item.active @root.showAllActions) eq item.derived @root.actor.data.attributes.deployment.active.value)) eq item.type "starshipaction")}}
+            {{log @root.showAllActions}}
+            {{#if (eq item.derived @root.actor.data.attributes.deployment.active.value)}}
             <li class="item group-grid-features" data-item-id="{{item.id}}" data-derived="{{item.derived}}">
                 <div class="item-name rollable">
                     <div class="item-image" style="background-image: url('{{item.img}}')"></div>
@@ -65,6 +63,45 @@
                 {{/if}}
             </li>
             {{/if}}
+
+            <!-- Add Starship Actions -->
+            {{#if (eq item.type "starshipaction")}}
+            <li class="item group-grid-features" data-item-id="{{item.id}}" data-derived="{{item.derived}}">
+                <div class="item-name rollable">
+                    <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+                    <h4>
+                        {{item.name}}
+                    </h4>
+                </div>
+
+                <div class="item-detail item-uses">
+                    {{#if item.isOnCooldown}}
+                    <a class="item-recharge rollable">{{item.labels.recharge}}</a>
+                    {{else if item.data.recharge.value}}
+                    {{localize "SW5E.Charged"}}
+
+                    {{else if item.hasUses}}
+                    <input type="text" value="{{item.data.uses.value}}" placeholder="0" />/<span>{{item.data.uses.max}}</span>
+                    {{/if}}
+                </div>
+
+                <div class="item-detail item-action">
+                    {{#if item.data.activation.type }}
+                    {{item.labels.activation}}
+                    {{/if}}
+                </div>
+
+                {{#if ../owner}}
+                <div class="item-controls item-detail">
+                    <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                    {{#if (not ../actions.derived)}}
+                    <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                    {{/if}}
+                </div>
+                {{/if}}
+            </li>
+            {{/if}}
+
             {{/each}}
         </ol>
     </li>

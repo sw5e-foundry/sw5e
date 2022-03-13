@@ -61,8 +61,6 @@
 
 
             <!-- Deployment Features -->
-            {{log "DEPLOYMENT FEATURES"}}
-            {{log this.actor}}
             {{#with actions.deploymentFeatures as | actions |}} {{#if (not (eq actions.items.length 0))}}
                 {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label actor=actor ship=this.actor }}
             {{/if}} {{/with}}

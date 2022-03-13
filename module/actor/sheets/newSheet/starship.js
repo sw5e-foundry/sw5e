@@ -144,23 +144,17 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             const deployment = this.actor.data.data.attributes.deployment[key];
             if (deployment.items) {
                 for (const uuid of deployment.items) {
+                    console.log("PETE Deploying item");
                     const actor = fromUuidSynchronous(uuid);
                     const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
                     for (const action of (actions ?? [])) {
+                        console.log(action);
                         action.active = deployment.active;
                         action.derived = uuid;
                         ssActions.deploymentFeatures.items.push(action);
                     }
                 }
-            } else {
-                const actor = fromUuidSynchronous(deployment.value);
-                const actions = actor?.data?.items?.filter(item => item.type === "deploymentfeature");
-                for (const action of (actions ?? [])) {
-                    action.derived = deployment.value;
-                    action.active = deployment.active;
-                    ssActions.deploymentFeatures.items.push(action);
-                }
-            }
+            } 
         }
 
         // Organize Starship Items and Features

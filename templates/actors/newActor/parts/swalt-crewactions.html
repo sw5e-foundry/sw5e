@@ -1,3 +1,4 @@
+{{log "AAAAAAAAA TEST"}}
 <ol>
     <li>
         <div class="group-list-title group-grid-features">
@@ -21,8 +22,14 @@
         </div>
 
         <ol class="item-list content" style="display: block">
+            {{log "HOW MANY TIMES DO I SHOW UPPPPPP"}}
+            {{log @root.actor.data.attributes.deployment.active.value}}
             {{#each actions.items as |item iid|}}
-            {{#if (or item.active @root.showAllActions)}}
+            {{log item}}
+            {{log item.derived}}
+            {{log actor}}
+            {{log actor.uuid}}
+            {{#if (or (and (or (item.active @root.showAllActions) eq item.derived @root.actor.data.attributes.deployment.active.value)) eq item.type "starshipaction")}}
             <li class="item group-grid-features" data-item-id="{{item.id}}" data-derived="{{item.derived}}">
                 <div class="item-name rollable">
                     <div class="item-image" style="background-image: url('{{item.img}}')"></div>

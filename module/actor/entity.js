@@ -3507,9 +3507,16 @@ export default class Actor5e extends Actor {
         const charName = target.data.name;
 
         const deployment = ssDeploy[toDeploy];
-        if (deployment.items) {
-            if (!deployment.items.includes(charUUID)) deployment.items.push(charUUID);
-        } else {
+
+        if (ssDeploy.pilot.value === charUUID) {
+            ssDeploy.pilot.value = null;
+        }
+        else if (deployment.items) {
+            if (!deployment.items.includes(charUUID)) {
+                deployment.items.push(charUUID);
+            }
+        } 
+        else {
             if (deployment.value !== null) {
                 const otherCrew = fromUuidSynchronous(deployment.value);
                 if (otherCrew) await this.ssDeployCrew(otherCrew, "crew");

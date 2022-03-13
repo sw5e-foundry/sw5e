@@ -61,8 +61,13 @@
 
 
             <!-- Deployment Features -->
-            {{#with actions.deploymentFeatures as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
                 {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label actor=actor ship=this.actor }}
+            {{/if}} {{/with}}
+
+            <!-- Ventures -->
+            {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
             {{/if}} {{/with}}
 
             <!-- Deployments (pilot, crew, passenger) -->

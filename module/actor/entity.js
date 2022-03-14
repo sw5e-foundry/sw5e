@@ -1418,8 +1418,6 @@ export default class Actor5e extends Actor {
         const hp = this.data.data.attributes.hp;
         const updates = {};
 
-        console.debug('applyDamage', amount, multiplier, damageType || 'no type', itemUuid || 'no uuid');
-
         amount = parseInt(amount) || 0;
         if (amount <= 0) return this;
 
@@ -1431,7 +1429,6 @@ export default class Actor5e extends Actor {
                 // Starship damage resistance applies only to attacks
                 const item = fromUuidSynchronous(itemUuid);
                 if (item && ["mwak", "rwak"].includes(item.data.data.actionType)) {
-                    console.debug('applying dr', dr);
                     amount = Math.max(1, amount - dr);
                 }
              }
@@ -1445,9 +1442,7 @@ export default class Actor5e extends Actor {
                 else if (traits[prefix+"r"]?.value?.includes(damageType)) tmpMult = 0.5;
                 else if (traits[prefix+"v"]?.value?.includes(damageType)) tmpMult = 2;
                 else tmpMult = 1;
-                console.debug('dr', prefix, traits, traits[prefix+"r"]);
             }
-            console.debug('thp mult', tmpMult);
             const tmpDamage = Math.floor(Math.min(tmp, amount * tmpMult));
             amount = tmpMult ? amount - Math.min(tmp / tmpMult, amount) : 0;
 
@@ -1460,7 +1455,6 @@ export default class Actor5e extends Actor {
                 else if (traits.dv.value.includes(damageType)) mult = 2;
                 else mult = 1;
             }
-            console.debug('hp mult', mult);
             const hpDamage = Math.floor(Math.min(hpCur, amount * mult));
 
             // Prepare updates
@@ -1468,7 +1462,6 @@ export default class Actor5e extends Actor {
             updates["data.attributes.hp.value"] = hpCur - hpDamage;
 
             amount = tmpDamage + hpDamage;
-            console.debug('tmpDamage', tmpDamage, 'hpDamage', hpDamage);
         } else {
             // Calculate healing
             const hpMax = (parseInt(hp.max) || 0) + (parseInt(hp.tempmax) || 0);
@@ -1478,7 +1471,6 @@ export default class Actor5e extends Actor {
             // Prepare updates
             updates["data.attributes.hp.value"] = Math.min(hpCur + heal, hpMax);
             amount = -heal;
-            console.debug(heal);
         }
 
         // Delegate damage application to a hook

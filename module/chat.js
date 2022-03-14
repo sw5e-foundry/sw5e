@@ -125,7 +125,7 @@ function applyChatCardDamage(li, multiplier) {
     const roll = message.roll;
 
     const extraData = {
-        extraData.damageType: message.data.flavor.replace(/.*[(](.*)[)]$/g, '$1')
+        damageType: message.data.flavor.replace(/.*[(](.*)[)]$/g, '$1').toLowerCase()
     };
     if (multiplier === null) {
         multiplier = 1;

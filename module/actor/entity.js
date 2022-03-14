@@ -1440,16 +1440,15 @@ export default class Actor5e extends Actor {
             const tmp = parseInt(hp.temp) || 0;
             let tmpMult = multiplier;
             if (damageType) {
-                // TODO: uncomment this when shield resistances are implemented
-                // const prefix = (this.type === "starship") ? "sd" : "d";
-                const prefix = "d";
+                const prefix = (this.type === "starship") ? "sd" : "d";
                 if (traits[prefix+"i"]?.value?.includes(damageType)) tmpMult = 0;
                 else if (traits[prefix+"r"]?.value?.includes(damageType)) tmpMult = 0.5;
                 else if (traits[prefix+"v"]?.value?.includes(damageType)) tmpMult = 2;
                 else tmpMult = 1;
+                console.debug('dr', prefix, traits, traits[prefix+"r"]);
             }
             console.debug('thp mult', tmpMult);
-            const tmpDamage = Math.ceil(Math.min(tmp, amount * tmpMult));
+            const tmpDamage = Math.floor(Math.min(tmp, amount * tmpMult));
             amount = tmpMult ? amount - Math.min(tmp / tmpMult, amount) : 0;
 
             // Remaining goes to health
@@ -1462,7 +1461,7 @@ export default class Actor5e extends Actor {
                 else mult = 1;
             }
             console.debug('hp mult', mult);
-            const hpDamage = Math.ceil(Math.min(hpCur, amount * mult));
+            const hpDamage = Math.floor(Math.min(hpCur, amount * mult));
 
             // Prepare updates
             updates["data.attributes.hp.temp"] = tmp - tmpDamage;

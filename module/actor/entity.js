@@ -1409,32 +1409,78 @@ export default class Actor5e extends Actor {
      * Apply a certain amount of damage or healing to the health pool for Actor
      * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
      * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
+     * @param {string} [damageType] The damage type, will override multiplier if defined
+     * @param {string} [itemUuid]   The uuid of the item dealing the damage, will be used to determine if damage reduction should be applied
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
-    async applyDamage(amount = 0, multiplier = 1) {
-        const dr = this.data.data?.equip?.armor?.dr || 0;
-        amount = Math.floor(parseInt(amount) * multiplier);
-
-        //TODO: Popup for DR enable and Hull Direct Damage
-        let drEnable = true;
-        let hullDirect = false;
-
-        if (drEnable && amount > 0) amount = Math.max(1, amount - dr);
+    async applyDamage(amount = 0, multiplier = 1, {damageType=null, itemUuid=null}={}) {
+        const traits = this.data.data.traits;
         const hp = this.data.data.attributes.hp;
+        const updates = {};
 
-        // Deduct damage from temp HP first
-        const tmp = parseInt(hp.temp) || 0;
-        const dt = !hullDirect && amount > 0 ? Math.min(tmp, amount) : 0;
+        console.debug('applyDamage', amount, multiplier, damageType || 'no type', itemUuid || 'no uuid');
 
-        // Remaining goes to health
-        const tmpMax = parseInt(hp.tempmax) || 0;
-        const dh = Math.clamped(hp.value - (amount - dt), 0, hp.max + tmpMax);
+        amount = parseInt(amount) || 0;
+        if (amount <= 0) return this;
 
-        // Update the Actor
-        const updates = {
-            "data.attributes.hp.temp": tmp - dt,
-            "data.attributes.hp.value": dh
-        };
+        if (multiplier > 0) {
+            // Apply Damage Reduction
+            if (this.type === "starship" && itemUuid) {
+                // TODO: maybe expand this to work with characters as well?
+                const dr = this.data.data?.attributes?.equip?.armor?.dr || 0;
+                // Starship damage resistance applies only to attacks
+                const item = fromUuidSynchronous(itemUuid);
+                if (item && ["mwak", "rwak"].includes(item.data.data.actionType)) {
+                    console.debug('applying dr', dr);
+                    amount = Math.max(1, amount - dr);
+                }
+             }
+
+            // Deduct damage from temp HP first
+            const tmp = parseInt(hp.temp) || 0;
+            let tmpMult = multiplier;
+            if (damageType) {
+                // TODO: uncomment this when shield resistances are implemented
+                // const prefix = (this.type === "starship") ? "sd" : "d";
+                const prefix = "d";
+                if (traits[prefix+"i"]?.value?.includes(damageType)) tmpMult = 0;
+                else if (traits[prefix+"r"]?.value?.includes(damageType)) tmpMult = 0.5;
+                else if (traits[prefix+"v"]?.value?.includes(damageType)) tmpMult = 2;
+                else tmpMult = 1;
+            }
+            console.debug('thp mult', tmpMult);
+            const tmpDamage = Math.ceil(Math.min(tmp, amount * tmpMult));
+            amount = tmpMult ? amount - Math.min(tmp / tmpMult, amount) : 0;
+
+            // Remaining goes to health
+            const hpCur = (parseInt(hp.value) || 0);
+            let mult = multiplier;
+            if (damageType) {
+                if (traits.di.value.includes(damageType)) mult = 0;
+                else if (traits.dr.value.includes(damageType)) mult = 0.5;
+                else if (traits.dv.value.includes(damageType)) mult = 2;
+                else mult = 1;
+            }
+            console.debug('hp mult', mult);
+            const hpDamage = Math.ceil(Math.min(hpCur, amount * mult));
+
+            // Prepare updates
+            updates["data.attributes.hp.temp"] = tmp - tmpDamage;
+            updates["data.attributes.hp.value"] = hpCur - hpDamage;
+
+            amount = tmpDamage + hpDamage;
+            console.debug('tmpDamage', tmpDamage, 'hpDamage', hpDamage);
+        } else {
+            // Calculate healing
+            const hpMax = (parseInt(hp.max) || 0) + (parseInt(hp.tempmax) || 0);
+            const hpCur = parseInt(hp.value) || 0;
+            const heal = Math.floor(amount * -multiplier);
+
+            // Prepare updates
+            updates["data.attributes.hp.value"] = Math.min(hpCur + heal, hpMax);
+            amount = -heal;
+            console.debug(heal);
+        }
 
         // Delegate damage application to a hook
         // TODO replace this in the future with a better modifyTokenAttribute function in the core

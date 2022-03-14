@@ -3573,19 +3573,22 @@ export default class Actor5e extends Actor {
         const ssDeploy = this.data.data.attributes.deployment;
         const deployed = target.data.data.attributes.deployed;
 
-        if (!toUndeploy) toUndeploy = deployed.deployment;
+        if (!toUndeploy) toUndeploy = SW5E.deploymentTypes;
         else if (toUndeploy !== deployed.deployment) return;
+        else toUndeploy = [toUndeploy];
 
-        const deployment = ssDeploy[toUndeploy];
-        if (deployment.items) {
-            deployment.items = deployment.items.filter(i => i !== target.uuid);
-        } else {
-            deployment.value = null;
+        if (ssDeploy.active.value === this.uuid) this.toggleActiveCrew();
+
+        for (const key of Object.keys(toUndeploy)) {
+            const deployment = ssDeploy[key];
+            if (deployment.items) {
+                deployment.items = deployment.items.filter(i => i !== target.uuid);
+            } else {
+                deployment.value = null;
+            }
         }
 
         await this.update({"data.attributes.deployment": ssDeploy});
-
-        if (ssDeploy.active.value === this.uuid) this.toggleActiveCrew();
 
         await target.update({
             "data.attributes.deployed": {

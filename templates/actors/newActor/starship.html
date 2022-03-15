@@ -182,8 +182,109 @@
                         </li>
                         {{/with}} {{/each}}
                     </ol>
+                    <section class="traits">
+                        <div>
+                            <label>{{localize "SW5E.HullDamImm"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.di"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamImm')}}"
+                                tabindex="0"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.di.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                        <div>
+                            <label>{{localize "SW5E.HullDamRes"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.dr"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamRes')}}"
+                                tabindex="0"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.dr.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                        <div>
+                            <label>{{localize "SW5E.HullDamVuln"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.dv"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamVuln')}}"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.dv.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                        <div>
+                            <label>{{localize "SW5E.ShldDamImm"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.sdi"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamImm')}}"
+                                tabindex="0"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.sdi.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                        <div>
+                            <label>{{localize "SW5E.ShldDamRes"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.sdr"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamRes')}}"
+                                tabindex="0"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.sdr.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                        <div>
+                            <label>{{localize "SW5E.ShldDamVuln"}}</label>
+                            <a
+                                class="trait-selector"
+                                data-options="damageResistanceTypes"
+                                data-target="data.traits.sdv"
+                                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamVuln')}}"
+                            >
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- <ul class="traits-list">
+                                {{#each data.traits.sdv.selected as |v k|}}
+                                <li>{{v}}</li>
+                                {{/each}}
+                            </ul> -->
+                        </div>
+                    </section>
                 </section>
-            
             </section>
 
             <section class="panel resources">

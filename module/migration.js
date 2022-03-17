@@ -899,6 +899,7 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
     if (foundry.utils.getType(prop?.shk) === "boolean") updateData["data.properties.shk"] = prop.shk ? 13 : 0;
     if (foundry.utils.getType(prop?.son) === "boolean") updateData["data.properties.son"] = prop.son ? 13 : 0;
     if (foundry.utils.getType(prop?.str) === "boolean") updateData["data.properties.str"] = prop.str ? 10 : 0;
+    if (foundry.utils.getType(prop?.vic) === "boolean") updateData["data.properties.vic"] = prop.vic ? 1 : 0;
 
     return updateData;
 }

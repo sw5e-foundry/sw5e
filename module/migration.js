@@ -845,26 +845,26 @@ function _migrateItemArmorPropertiesData(item, updateData) {
     let hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const prop = item.data.properties;
-    if (foundry.utils.getType(prop?.Absorptive) === "Boolean")
+    if (foundry.utils.getType(prop?.Absorptive) === "boolean")
         updateData["data.properties.Absorptive"] = prop.Absorptive ? 1 : 0;
-    if (foundry.utils.getType(prop?.Agile) === "Boolean") updateData["data.properties.Agile"] = prop.Agile ? 1 : 0;
-    if (foundry.utils.getType(prop?.Avoidant) === "Boolean")
+    if (foundry.utils.getType(prop?.Agile) === "boolean") updateData["data.properties.Agile"] = prop.Agile ? 1 : 0;
+    if (foundry.utils.getType(prop?.Avoidant) === "boolean")
         updateData["data.properties.Avoidant"] = prop.Avoidant ? 1 : 0;
-    if (foundry.utils.getType(prop?.Charging) === "Boolean")
+    if (foundry.utils.getType(prop?.Charging) === "boolean")
         updateData["data.properties.Charging"] = prop.Charging ? 1 : 0;
-    if (foundry.utils.getType(prop?.Insulated) === "Boolean")
+    if (foundry.utils.getType(prop?.Insulated) === "boolean")
         updateData["data.properties.Insulated"] = prop.Insulated ? 1 : 0;
-    if (foundry.utils.getType(prop?.Magnetic) === "Boolean")
+    if (foundry.utils.getType(prop?.Magnetic) === "boolean")
         updateData["data.properties.Magnetic"] = prop.Magnetic ? 13 : 0;
-    if (foundry.utils.getType(prop?.Powered) === "Boolean")
+    if (foundry.utils.getType(prop?.Powered) === "boolean")
         updateData["data.properties.Powered"] = prop.Powered ? 1 : 0;
-    if (foundry.utils.getType(prop?.Reactive) === "Boolean")
+    if (foundry.utils.getType(prop?.Reactive) === "boolean")
         updateData["data.properties.Reactive"] = prop.Reactive ? 1 : 0;
-    if (foundry.utils.getType(prop?.Responsive) === "Boolean")
+    if (foundry.utils.getType(prop?.Responsive) === "boolean")
         updateData["data.properties.Responsive"] = prop.Responsive ? 1 : 0;
-    if (foundry.utils.getType(prop?.Strength) === "Boolean")
+    if (foundry.utils.getType(prop?.Strength) === "boolean")
         updateData["data.properties.Strength"] = prop.Strength ? 10 : 0;
-    if (foundry.utils.getType(prop?.Versatile) === "Boolean")
+    if (foundry.utils.getType(prop?.Versatile) === "boolean")
         updateData["data.properties.Versatile"] = prop.Versatile ? 1 : 0;
 
     return updateData;
@@ -884,21 +884,21 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
     let hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const prop = item.data.properties;
-    if (foundry.utils.getType(prop?.bur) === "Boolean") updateData["data.properties.bur"] = prop.bur ? 2 : 0;
-    if (foundry.utils.getType(prop?.bru) === "Boolean") updateData["data.properties.bru"] = prop.bru ? 1 : 0;
-    if (foundry.utils.getType(prop?.con) === "Boolean") updateData["data.properties.con"] = prop.con ? 10 : 0;
-    if (foundry.utils.getType(prop?.def) === "Boolean") updateData["data.properties.def"] = prop.def ? 1 : 0;
-    if (foundry.utils.getType(prop?.dex) === "Boolean") updateData["data.properties.dex"] = prop.dex ? 10 : 0;
-    if (foundry.utils.getType(prop?.dir) === "Boolean") updateData["data.properties.dir"] = prop.dir ? 1 : 0;
-    if (foundry.utils.getType(prop?.dis) === "Boolean") updateData["data.properties.dis"] = prop.dis ? 13 : 0;
-    if (foundry.utils.getType(prop?.ken) === "Boolean") updateData["data.properties.ken"] = prop.ken ? 1 : 0;
-    if (foundry.utils.getType(prop?.neu) === "Boolean") updateData["data.properties.neu"] = prop.neu ? 13 : 0;
-    if (foundry.utils.getType(prop?.pic) === "Boolean") updateData["data.properties.pic"] = prop.pic ? 1 : 0;
-    if (foundry.utils.getType(prop?.rap) === "Boolean") updateData["data.properties.rap"] = prop.rap ? 1 : 0;
-    if (foundry.utils.getType(prop?.rel) === "Boolean") updateData["data.properties.rel"] = prop.rel ? 1 : 0;
-    if (foundry.utils.getType(prop?.shk) === "Boolean") updateData["data.properties.shk"] = prop.shk ? 13 : 0;
-    if (foundry.utils.getType(prop?.son) === "Boolean") updateData["data.properties.son"] = prop.son ? 13 : 0;
-    if (foundry.utils.getType(prop?.str) === "Boolean") updateData["data.properties.str"] = prop.str ? 10 : 0;
+    if (foundry.utils.getType(prop?.bur) === "boolean") updateData["data.properties.bur"] = prop.bur ? 2 : 0;
+    if (foundry.utils.getType(prop?.bru) === "boolean") updateData["data.properties.bru"] = prop.bru ? 1 : 0;
+    if (foundry.utils.getType(prop?.con) === "boolean") updateData["data.properties.con"] = prop.con ? 10 : 0;
+    if (foundry.utils.getType(prop?.def) === "boolean") updateData["data.properties.def"] = prop.def ? 1 : 0;
+    if (foundry.utils.getType(prop?.dex) === "boolean") updateData["data.properties.dex"] = prop.dex ? 10 : 0;
+    if (foundry.utils.getType(prop?.dir) === "boolean") updateData["data.properties.dir"] = prop.dir ? 1 : 0;
+    if (foundry.utils.getType(prop?.dis) === "boolean") updateData["data.properties.dis"] = prop.dis ? 13 : 0;
+    if (foundry.utils.getType(prop?.ken) === "boolean") updateData["data.properties.ken"] = prop.ken ? 1 : 0;
+    if (foundry.utils.getType(prop?.neu) === "boolean") updateData["data.properties.neu"] = prop.neu ? 13 : 0;
+    if (foundry.utils.getType(prop?.pic) === "boolean") updateData["data.properties.pic"] = prop.pic ? 1 : 0;
+    if (foundry.utils.getType(prop?.rap) === "boolean") updateData["data.properties.rap"] = prop.rap ? 1 : 0;
+    if (foundry.utils.getType(prop?.rel) === "boolean") updateData["data.properties.rel"] = prop.rel ? 1 : 0;
+    if (foundry.utils.getType(prop?.shk) === "boolean") updateData["data.properties.shk"] = prop.shk ? 13 : 0;
+    if (foundry.utils.getType(prop?.son) === "boolean") updateData["data.properties.son"] = prop.son ? 13 : 0;
+    if (foundry.utils.getType(prop?.str) === "boolean") updateData["data.properties.str"] = prop.str ? 10 : 0;
 
     return updateData;
 }

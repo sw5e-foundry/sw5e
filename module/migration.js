@@ -267,6 +267,8 @@ export const migrateItemData = function (item) {
     _migrateItemRarity(item, updateData);
     _migrateArmorType(item, updateData);
     _migrateItemCriticalData(item, updateData);
+    _migrateItemArmorPropertiesData(item, updateData);
+    _migrateItemWeaponPropertiesData(item, updateData);
     return updateData;
 };
 
@@ -285,7 +287,8 @@ export const migrateActorItemData = async function (item, actor) {
     await _migrateItemPower(item, actor, updateData);
     _migrateArmorType(item, updateData);
     _migrateItemCriticalData(item, updateData);
-
+    _migrateItemArmorPropertiesData(item, updateData);
+    _migrateItemWeaponPropertiesData(item, updateData);
     return updateData;
 };
 
@@ -825,6 +828,78 @@ function _migrateItemCriticalData(item, updateData) {
         threshold: null,
         damage: null
     };
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Set the item's armor properties to a proper object value.
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+function _migrateItemArmorPropertiesData(item, updateData) {
+    if (item.type !== "equipment") return updateData;
+    let hasProperties = item.data?.properties !== undefined;
+    if (!hasProperties) return updateData;
+    const prop = item.data.properties;
+    if (foundry.utils.getType(prop?.Absorptive) === "Boolean")
+        updateData["data.properties.Absorptive"] = prop.Absorptive ? 1 : 0;
+    if (foundry.utils.getType(prop?.Agile) === "Boolean") updateData["data.properties.Agile"] = prop.Agile ? 1 : 0;
+    if (foundry.utils.getType(prop?.Avoidant) === "Boolean")
+        updateData["data.properties.Avoidant"] = prop.Avoidant ? 1 : 0;
+    if (foundry.utils.getType(prop?.Charging) === "Boolean")
+        updateData["data.properties.Charging"] = prop.Charging ? 1 : 0;
+    if (foundry.utils.getType(prop?.Insulated) === "Boolean")
+        updateData["data.properties.Insulated"] = prop.Insulated ? 1 : 0;
+    if (foundry.utils.getType(prop?.Magnetic) === "Boolean")
+        updateData["data.properties.Magnetic"] = prop.Magnetic ? 13 : 0;
+    if (foundry.utils.getType(prop?.Powered) === "Boolean")
+        updateData["data.properties.Powered"] = prop.Powered ? 1 : 0;
+    if (foundry.utils.getType(prop?.Reactive) === "Boolean")
+        updateData["data.properties.Reactive"] = prop.Reactive ? 1 : 0;
+    if (foundry.utils.getType(prop?.Responsive) === "Boolean")
+        updateData["data.properties.Responsive"] = prop.Responsive ? 1 : 0;
+    if (foundry.utils.getType(prop?.Strength) === "Boolean")
+        updateData["data.properties.Strength"] = prop.Strength ? 10 : 0;
+    if (foundry.utils.getType(prop?.Versatile) === "Boolean")
+        updateData["data.properties.Versatile"] = prop.Versatile ? 1 : 0;
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Set the item's weapon properties to a proper object value.
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+function _migrateItemWeaponPropertiesData(item, updateData) {
+    if (item.type !== "weapon") return updateData;
+    let hasProperties = item.data?.properties !== undefined;
+    if (!hasProperties) return updateData;
+    const prop = item.data.properties;
+    if (foundry.utils.getType(prop?.bur) === "Boolean") updateData["data.properties.bur"] = prop.bur ? 2 : 0;
+    if (foundry.utils.getType(prop?.bru) === "Boolean") updateData["data.properties.bru"] = prop.bru ? 1 : 0;
+    if (foundry.utils.getType(prop?.con) === "Boolean") updateData["data.properties.con"] = prop.con ? 10 : 0;
+    if (foundry.utils.getType(prop?.def) === "Boolean") updateData["data.properties.def"] = prop.def ? 1 : 0;
+    if (foundry.utils.getType(prop?.dex) === "Boolean") updateData["data.properties.dex"] = prop.dex ? 10 : 0;
+    if (foundry.utils.getType(prop?.dir) === "Boolean") updateData["data.properties.dir"] = prop.dir ? 1 : 0;
+    if (foundry.utils.getType(prop?.dis) === "Boolean") updateData["data.properties.dis"] = prop.dis ? 13 : 0;
+    if (foundry.utils.getType(prop?.ken) === "Boolean") updateData["data.properties.ken"] = prop.ken ? 1 : 0;
+    if (foundry.utils.getType(prop?.neu) === "Boolean") updateData["data.properties.neu"] = prop.neu ? 13 : 0;
+    if (foundry.utils.getType(prop?.pic) === "Boolean") updateData["data.properties.pic"] = prop.pic ? 1 : 0;
+    if (foundry.utils.getType(prop?.rap) === "Boolean") updateData["data.properties.rap"] = prop.rap ? 1 : 0;
+    if (foundry.utils.getType(prop?.rel) === "Boolean") updateData["data.properties.rel"] = prop.rel ? 1 : 0;
+    if (foundry.utils.getType(prop?.shk) === "Boolean") updateData["data.properties.shk"] = prop.shk ? 13 : 0;
+    if (foundry.utils.getType(prop?.son) === "Boolean") updateData["data.properties.son"] = prop.son ? 13 : 0;
+    if (foundry.utils.getType(prop?.str) === "Boolean") updateData["data.properties.str"] = prop.str ? 10 : 0;
+
     return updateData;
 }
 

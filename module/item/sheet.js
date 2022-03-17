@@ -71,7 +71,15 @@ export default class ItemSheet5e extends ItemSheet {
         if (sourceMax) itemData.data.uses.max = sourceMax;
 
         // Vehicles
-        data.isStarshipWeapon = (itemData.data?.weaponType ?? '').search("(starship)") != -1;
+        const wpnType = (itemData.data?.weaponType ?? '');
+        const armorType = (itemData.data?.armor?.type ?? '');
+        data.isStarshipWeapon = wpnType.search("(starship)") != -1;
+        data.isStarshipArmor = armorType === "starship";
+        data.isStarshipShield = armorType === "ssshield";
+        data.isStarshipHyperdrive = armorType === "hyper";
+        data.isStarshipPowerCoupling = armorType === "powerc";
+        data.isStarshipReactor = armorType === "reactor";
+        data.isStarshipEquipment = data.isStarshipArmor || data.isStarshipShield || data.isStarshipHyperdrive || data.isStarshipPowerCoupling || data.isStarshipReactor;
         data.isCrewed = itemData.data.activation?.type === "crew";
         data.isMountable = this._isItemMountable(itemData);
 

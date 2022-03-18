@@ -479,6 +479,14 @@ Handlebars.registerHelper("debug", function (value) {
     return value;
 });
 
+Handlebars.registerHelper("isUndefined", function (value) {
+    return value === undefined;
+});
+
+Handlebars.registerHelper("isNull", function (value) {
+    return value === null;
+});
+
 Handlebars.registerHelper("contentLink", function (uuid, placeholdertext) {
     if (!uuid) {
         if (!placeholdertext || typeof placeholdertext != String) return new Handlebars.SafeString("");

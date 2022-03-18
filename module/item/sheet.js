@@ -73,7 +73,7 @@ export default class ItemSheet5e extends ItemSheet {
         // Vehicles
         const wpnType = (itemData.data?.weaponType ?? '');
         const armorType = (itemData.data?.armor?.type ?? '');
-        data.isStarshipWeapon = wpnType.search("(starship)") != -1;
+        data.isStarshipWeapon = wpnType.search("(starship)") !== -1;
         data.isStarshipArmor = armorType === "starship";
         data.isStarshipShield = armorType === "ssshield";
         data.isStarshipHyperdrive = armorType === "hyper";

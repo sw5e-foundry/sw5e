@@ -1,3 +1,5 @@
+import {SW5E} from "./config.js";
+
 /**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @returns {Promise}      A Promise which resolves once the migration is completed
@@ -845,6 +847,16 @@ function _migrateItemArmorPropertiesData(item, updateData) {
     let hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const prop = item.data.properties;
+    const configProp = SW5E.armorPropertiesTypes;
+    // Remove existing properties not in current template
+    for (let key in prop) {
+        if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;
+    }
+    // Add template properties that don't exist yet on current armor
+    for (let [key, val] of Object.entries(configProp)) {
+        if (!(key in prop)) updateData[`data.properties.${key}`] = val.type === "Boolean" ? false : 0;
+    }
+    // Migrate from boolean to number
     if (foundry.utils.getType(prop?.Absorptive) === "boolean")
         updateData["data.properties.Absorptive"] = prop.Absorptive ? 1 : 0;
     if (foundry.utils.getType(prop?.Agile) === "boolean") updateData["data.properties.Agile"] = prop.Agile ? 1 : 0;
@@ -884,6 +896,17 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
     let hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const prop = item.data.properties;
+    const isStarship = item.data.weaponType in SW5E.weaponStarshipTypes;
+    const configProp = isStarship ? SW5E.weaponFullStarshipProperties : SW5E.weaponFullCharacterProperties;
+    // Remove existing properties not in current template
+    for (let key in prop) {
+        if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;
+    }
+    // Add template properties that don't exist yet on current weapon
+    for (let [key, val] of Object.entries(configProp)) {
+        if (!(key in prop)) updateData[`data.properties.${key}`] = val.type === "Boolean" ? false : 0;
+    }
+    // Migrate from boolean to number
     if (foundry.utils.getType(prop?.bur) === "boolean") updateData["data.properties.bur"] = prop.bur ? 2 : 0;
     if (foundry.utils.getType(prop?.bru) === "boolean") updateData["data.properties.bru"] = prop.bru ? 1 : 0;
     if (foundry.utils.getType(prop?.con) === "boolean") updateData["data.properties.con"] = prop.con ? 10 : 0;

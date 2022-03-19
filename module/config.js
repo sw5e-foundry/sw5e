@@ -1358,24 +1358,34 @@ SW5E.powerScalingModes = {
 /* -------------------------------------------- */
 
 /**
- * The set of types which a weapon item can take.
+ * The set of types which a starship weapon item can take.
  * @enum {string}
  */
-SW5E.weaponTypes = {
-    "ammo": "SW5E.WeaponAmmo",
-    "improv": "SW5E.WeaponImprov",
-    "martialVW": "SW5E.WeaponMartialVW",
-    "martialB": "SW5E.WeaponMartialB",
-    "martialLW": "SW5E.WeaponMartialLW",
-    "natural": "SW5E.WeaponNatural",
-    "siege": "SW5E.WeaponSiege",
-    "simpleVW": "SW5E.WeaponSimpleVW",
-    "simpleB": "SW5E.WeaponSimpleB",
-    "simpleLW": "SW5E.WeaponSimpleLW",
+SW5E.weaponStarshipTypes = {
     "primary (starship)": "SW5E.WeaponPrimarySW",
     "secondary (starship)": "SW5E.WeaponSecondarySW",
     "tertiary (starship)": "SW5E.WeaponTertiarySW",
     "quaternary (starship)": "SW5E.WeaponQuaternarySW"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of types which a weapon item can take.
+ * @enum {string}
+ */
+SW5E.weaponTypes = {
+    ammo: "SW5E.WeaponAmmo",
+    improv: "SW5E.WeaponImprov",
+    martialVW: "SW5E.WeaponMartialVW",
+    martialB: "SW5E.WeaponMartialB",
+    martialLW: "SW5E.WeaponMartialLW",
+    natural: "SW5E.WeaponNatural",
+    siege: "SW5E.WeaponSiege",
+    simpleVW: "SW5E.WeaponSimpleVW",
+    simpleB: "SW5E.WeaponSimpleB",
+    simpleLW: "SW5E.WeaponSimpleLW",
+    ...SW5E.weaponStarshipTypes
 };
 
 /* -------------------------------------------- */
@@ -1567,6 +1577,356 @@ SW5E.armorPropertiesTypes = {
 /* -------------------------------------------- */
 
 /**
+ * The set of weapon property flags which can exist on any weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ * }}
+ */
+SW5E.weaponCommonProperties = {
+    amm: {
+        name: "SW5E.WeaponPropertiesAmm",
+        full: "SW5E.WeaponPropertiesAmmFull",
+        type: "Boolean"
+    },
+    aut: {
+        name: "SW5E.WeaponPropertiesAut",
+        full: "SW5E.WeaponPropertiesAutFull",
+        type: "Boolean"
+    },
+    bur: {
+        name: "SW5E.WeaponPropertiesBur",
+        full: "SW5E.WeaponPropertiesBurFull",
+        type: "Number",
+        min: 2
+        // max: 0,
+    },
+    dir: {
+        name: "SW5E.WeaponPropertiesDir",
+        full: "SW5E.WeaponPropertiesDirFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    hvy: {
+        name: "SW5E.WeaponPropertiesHvy",
+        full: "SW5E.WeaponPropertiesHvyFull",
+        type: "Boolean"
+    },
+    hid: {
+        name: "SW5E.WeaponPropertiesHid",
+        full: "SW5E.WeaponPropertiesHidFull",
+        type: "Boolean"
+    },
+    ken: {
+        name: "SW5E.WeaponPropertiesKen",
+        full: "SW5E.WeaponPropertiesKenFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    pic: {
+        name: "SW5E.WeaponPropertiesPic",
+        full: "SW5E.WeaponPropertiesPicFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    ran: {
+        name: "SW5E.WeaponPropertiesRan",
+        full: "SW5E.WeaponPropertiesRanFull",
+        type: "Boolean"
+    },
+    rap: {
+        name: "SW5E.WeaponPropertiesRap",
+        full: "SW5E.WeaponPropertiesRapFull",
+        type: "Number",
+        min: 2
+        // max: 0,
+    },
+    rel: {
+        name: "SW5E.WeaponPropertiesRel",
+        full: "SW5E.WeaponPropertiesRelFull",
+        type: "Number",
+        min: 0
+        // max: 0,
+    },
+    spc: {
+        name: "SW5E.WeaponPropertiesSpc",
+        full: "SW5E.WeaponPropertiesSpcFull",
+        type: "Boolean"
+    },
+    vic: {
+        name: "SW5E.WeaponPropertiesVic",
+        full: "SW5E.WeaponPropertiesVicFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist only on a character (non-starship) weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponCharacterProperties = {
+    bru: {
+        name: "SW5E.WeaponPropertiesBru",
+        full: "SW5E.WeaponPropertiesBruFull",
+        type: "Number",
+        min: 0,
+        max: 3,
+        ship: false
+    },
+    def: {
+        name: "SW5E.WeaponPropertiesDef",
+        full: "SW5E.WeaponPropertiesDefFull",
+        type: "Number",
+        min: 0,
+        max: 3,
+        ship: false
+    },
+    dex: {
+        name: "SW5E.WeaponPropertiesDex",
+        full: "SW5E.WeaponPropertiesDexFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    drm: {
+        name: "SW5E.WeaponPropertiesDrm",
+        full: "SW5E.WeaponPropertiesDrmFull",
+        type: "Boolean",
+        ship: false
+    },
+    dgd: {
+        name: "SW5E.WeaponPropertiesDgd",
+        full: "SW5E.WeaponPropertiesDgdFull",
+        type: "Boolean",
+        ship: false
+    },
+    dis: {
+        name: "SW5E.WeaponPropertiesDis",
+        full: "SW5E.WeaponPropertiesDisFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    dpt: {
+        name: "SW5E.WeaponPropertiesDpt",
+        full: "SW5E.WeaponPropertiesDptFull",
+        type: "Boolean",
+        ship: false
+    },
+    dou: {
+        name: "SW5E.WeaponPropertiesDou",
+        full: "SW5E.WeaponPropertiesDouFull",
+        type: "Boolean",
+        ship: false
+    },
+    fin: {
+        name: "SW5E.WeaponPropertiesFin",
+        full: "SW5E.WeaponPropertiesFinFull",
+        type: "Boolean",
+        ship: false
+    },
+    fix: {
+        name: "SW5E.WeaponPropertiesFix",
+        full: "SW5E.WeaponPropertiesFixFull",
+        type: "Boolean",
+        ship: false
+    },
+    lgt: {
+        name: "SW5E.WeaponPropertiesLgt",
+        full: "SW5E.WeaponPropertiesLgtFull",
+        type: "Boolean",
+        ship: false
+    },
+    lum: {
+        name: "SW5E.WeaponPropertiesLum",
+        full: "SW5E.WeaponPropertiesLumFull",
+        type: "Boolean",
+        ship: false
+    },
+    mig: {
+        name: "SW5E.WeaponPropertiesMig",
+        full: "SW5E.WeaponPropertiesMigFull",
+        type: "Boolean",
+        ship: false
+    },
+    neu: {
+        name: "SW5E.WeaponPropertiesNeu",
+        full: "SW5E.WeaponPropertiesNeuFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    rch: {
+        name: "SW5E.WeaponPropertiesRch",
+        full: "SW5E.WeaponPropertiesRchFull",
+        type: "Boolean",
+        ship: false
+    },
+    ret: {
+        name: "SW5E.WeaponPropertiesRet",
+        full: "SW5E.WeaponPropertiesRetFull",
+        type: "Boolean",
+        ship: false
+    },
+    shk: {
+        name: "SW5E.WeaponPropertiesShk",
+        full: "SW5E.WeaponPropertiesShkFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    sil: {
+        name: "SW5E.WeaponPropertiesSil",
+        full: "SW5E.WeaponPropertiesSilFull",
+        type: "Boolean",
+        ship: false
+    },
+    son: {
+        name: "SW5E.WeaponPropertiesSon",
+        full: "SW5E.WeaponPropertiesSonFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    str: {
+        name: "SW5E.WeaponPropertiesStr",
+        full: "SW5E.WeaponPropertiesStrFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: false
+    },
+    swi: {
+        name: "SW5E.WeaponPropertiesSwi",
+        full: "SW5E.WeaponPropertiesSwiFull",
+        type: "Boolean",
+        ship: false
+    },
+    thr: {
+        name: "SW5E.WeaponPropertiesThr",
+        full: "SW5E.WeaponPropertiesThrFull",
+        type: "Boolean",
+        ship: false
+    },
+    two: {
+        name: "SW5E.WeaponPropertiesTwo",
+        full: "SW5E.WeaponPropertiesTwoFull",
+        type: "Boolean",
+        ship: false
+    },
+    ver: {
+        name: "SW5E.WeaponPropertiesVer",
+        full: "SW5E.WeaponPropertiesVerFull",
+        type: "Boolean",
+        ship: false
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist only on a starship weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponStarshipProperties = {
+    con: {
+        name: "SW5E.WeaponPropertiesCon",
+        full: "SW5E.WeaponPropertiesConFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: true
+    },
+    exp: {
+        name: "SW5E.WeaponPropertiesExp",
+        full: "SW5E.WeaponPropertiesExpFull",
+        type: "Boolean",
+        ship: true
+    },
+    foc: {
+        name: "SW5E.WeaponPropertiesFoc",
+        full: "SW5E.WeaponPropertiesFocFull",
+        type: "Boolean",
+        ship: true
+    },
+    hom: {
+        name: "SW5E.WeaponPropertiesHom",
+        full: "SW5E.WeaponPropertiesHomFull",
+        type: "Boolean",
+        ship: true
+    },
+    ion: {
+        name: "SW5E.WeaponPropertiesIon",
+        full: "SW5E.WeaponPropertiesIonFull",
+        type: "Boolean",
+        ship: true
+    },
+    mlt: {
+        name: "SW5E.WeaponPropertiesMlt",
+        full: "SW5E.WeaponPropertiesMltFull",
+        type: "Boolean",
+        ship: true
+    },
+    ovr: {
+        name: "SW5E.WeaponPropertiesOvr",
+        full: "SW5E.WeaponPropertiesOvrFull",
+        type: "Number",
+        min: 0,
+        // max: 0,
+        ship: true
+    },
+    pow: {
+        name: "SW5E.WeaponPropertiesPow",
+        full: "SW5E.WeaponPropertiesPowFull",
+        type: "Boolean",
+        ship: true
+    },
+    sat: {
+        name: "SW5E.WeaponPropertiesSat",
+        full: "SW5E.WeaponPropertiesSatFull",
+        type: "Boolean",
+        ship: true
+    },
+    zon: {
+        name: "SW5E.WeaponPropertiesZon",
+        full: "SW5E.WeaponPropertiesZonFull",
+        type: "Boolean",
+        ship: true
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
  * The set of weapon property flags which can exist on a weapon.
  * @enum {{
  *   name: string,
@@ -1578,309 +1938,45 @@ SW5E.armorPropertiesTypes = {
  * }}
  */
 SW5E.weaponProperties = {
-    amm: {
-        name: "SW5E.WeaponPropertiesAmm",
-        full: "SW5E.WeaponPropertiesAmmFull",
-        type: "Boolean",
-    },
-    aut: {
-        name: "SW5E.WeaponPropertiesAut",
-        full: "SW5E.WeaponPropertiesAutFull",
-        type: "Boolean",
-    },
-    bur: {
-        name: "SW5E.WeaponPropertiesBur",
-        full: "SW5E.WeaponPropertiesBurFull",
-        type: "Number",
-        min: 2,
-        // max: 0,
-    },
-    bru: {
-        name: "SW5E.WeaponPropertiesBru",
-        full: "SW5E.WeaponPropertiesBruFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-        ship: false,
-    },
-    con: {
-        name: "SW5E.WeaponPropertiesCon",
-        full: "SW5E.WeaponPropertiesConFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: true,
-    },
-    def: {
-        name: "SW5E.WeaponPropertiesDef",
-        full: "SW5E.WeaponPropertiesDefFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-        ship: false,
-    },
-    dex: {
-        name: "SW5E.WeaponPropertiesDex",
-        full: "SW5E.WeaponPropertiesDexFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    dir: {
-        name: "SW5E.WeaponPropertiesDir",
-        full: "SW5E.WeaponPropertiesDirFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-    },
-    drm: {
-        name: "SW5E.WeaponPropertiesDrm",
-        full: "SW5E.WeaponPropertiesDrmFull",
-        type: "Boolean",
-        ship: false,
-    },
-    dgd: {
-        name: "SW5E.WeaponPropertiesDgd",
-        full: "SW5E.WeaponPropertiesDgdFull",
-        type: "Boolean",
-        ship: false,
-    },
-    dis: {
-        name: "SW5E.WeaponPropertiesDis",
-        full: "SW5E.WeaponPropertiesDisFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    dpt: {
-        name: "SW5E.WeaponPropertiesDpt",
-        full: "SW5E.WeaponPropertiesDptFull",
-        type: "Boolean",
-        ship: false,
-    },
-    dou: {
-        name: "SW5E.WeaponPropertiesDou",
-        full: "SW5E.WeaponPropertiesDouFull",
-        type: "Boolean",
-        ship: false,
-    },
-    exp: {
-        name: "SW5E.WeaponPropertiesExp",
-        full: "SW5E.WeaponPropertiesExpFull",
-        type: "Boolean",
-        ship: true,
-    },
-    fin: {
-        name: "SW5E.WeaponPropertiesFin",
-        full: "SW5E.WeaponPropertiesFinFull",
-        type: "Boolean",
-        ship: false,
-    },
-    fix: {
-        name: "SW5E.WeaponPropertiesFix",
-        full: "SW5E.WeaponPropertiesFixFull",
-        type: "Boolean",
-        ship: false,
-    },
-    foc: {
-        name: "SW5E.WeaponPropertiesFoc",
-        full: "SW5E.WeaponPropertiesFocFull",
-        type: "Boolean",
-        ship: true,
-    },
-    hvy: {
-        name: "SW5E.WeaponPropertiesHvy",
-        full: "SW5E.WeaponPropertiesHvyFull",
-        type: "Boolean",
-    },
-    hid: {
-        name: "SW5E.WeaponPropertiesHid",
-        full: "SW5E.WeaponPropertiesHidFull",
-        type: "Boolean",
-    },
-    hom: {
-        name: "SW5E.WeaponPropertiesHom",
-        full: "SW5E.WeaponPropertiesHomFull",
-        type: "Boolean",
-        ship: true,
-    },
-    ion: {
-        name: "SW5E.WeaponPropertiesIon",
-        full: "SW5E.WeaponPropertiesIonFull",
-        type: "Boolean",
-        ship: true,
-    },
-    ken: {
-        name: "SW5E.WeaponPropertiesKen",
-        full: "SW5E.WeaponPropertiesKenFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-    },
-    lgt: {
-        name: "SW5E.WeaponPropertiesLgt",
-        full: "SW5E.WeaponPropertiesLgtFull",
-        type: "Boolean",
-        ship: false,
-    },
-    lum: {
-        name: "SW5E.WeaponPropertiesLum",
-        full: "SW5E.WeaponPropertiesLumFull",
-        type: "Boolean",
-        ship: false,
-    },
-    mlt: {
-        name: "SW5E.WeaponPropertiesMlt",
-        full: "SW5E.WeaponPropertiesMltFull",
-        type: "Boolean",
-        ship: true,
-    },
-    mig: {
-        name: "SW5E.WeaponPropertiesMig",
-        full: "SW5E.WeaponPropertiesMigFull",
-        type: "Boolean",
-        ship: false,
-    },
-    neu: {
-        name: "SW5E.WeaponPropertiesNeu",
-        full: "SW5E.WeaponPropertiesNeuFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    ovr: {
-        name: "SW5E.WeaponPropertiesOvr",
-        full: "SW5E.WeaponPropertiesOvrFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: true,
-    },
-    pic: {
-        name: "SW5E.WeaponPropertiesPic",
-        full: "SW5E.WeaponPropertiesPicFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-    },
-    pow: {
-        name: "SW5E.WeaponPropertiesPow",
-        full: "SW5E.WeaponPropertiesPowFull",
-        type: "Boolean",
-        ship: true,
-    },
-    ran: {
-        name: "SW5E.WeaponPropertiesRan",
-        full: "SW5E.WeaponPropertiesRanFull",
-        type: "Boolean",
-    },
-    rap: {
-        name: "SW5E.WeaponPropertiesRap",
-        full: "SW5E.WeaponPropertiesRapFull",
-        type: "Number",
-        min: 2,
-        // max: 0,
-    },
-    rch: {
-        name: "SW5E.WeaponPropertiesRch",
-        full: "SW5E.WeaponPropertiesRchFull",
-        type: "Boolean",
-        ship: false,
-    },
-    rel: {
-        name: "SW5E.WeaponPropertiesRel",
-        full: "SW5E.WeaponPropertiesRelFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-    },
-    ret: {
-        name: "SW5E.WeaponPropertiesRet",
-        full: "SW5E.WeaponPropertiesRetFull",
-        type: "Boolean",
-        ship: false,
-    },
-    sat: {
-        name: "SW5E.WeaponPropertiesSat",
-        full: "SW5E.WeaponPropertiesSatFull",
-        type: "Boolean",
-        ship: true,
-    },
-    shk: {
-        name: "SW5E.WeaponPropertiesShk",
-        full: "SW5E.WeaponPropertiesShkFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    sil: {
-        name: "SW5E.WeaponPropertiesSil",
-        full: "SW5E.WeaponPropertiesSilFull",
-        type: "Boolean",
-        ship: false,
-    },
-    son: {
-        name: "SW5E.WeaponPropertiesSon",
-        full: "SW5E.WeaponPropertiesSonFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    spc: {
-        name: "SW5E.WeaponPropertiesSpc",
-        full: "SW5E.WeaponPropertiesSpcFull",
-        type: "Boolean",
-    },
-    str: {
-        name: "SW5E.WeaponPropertiesStr",
-        full: "SW5E.WeaponPropertiesStrFull",
-        type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false,
-    },
-    swi: {
-        name: "SW5E.WeaponPropertiesSwi",
-        full: "SW5E.WeaponPropertiesSwiFull",
-        type: "Boolean",
-        ship: false,
-    },
-    thr: {
-        name: "SW5E.WeaponPropertiesThr",
-        full: "SW5E.WeaponPropertiesThrFull",
-        type: "Boolean",
-        ship: false,
-    },
-    two: {
-        name: "SW5E.WeaponPropertiesTwo",
-        full: "SW5E.WeaponPropertiesTwoFull",
-        type: "Boolean",
-        ship: false,
-    },
-    ver: {
-        name: "SW5E.WeaponPropertiesVer",
-        full: "SW5E.WeaponPropertiesVerFull",
-        type: "Boolean",
-        ship: false,
-    },
-    vic: {
-        name: "SW5E.WeaponPropertiesVic",
-        full: "SW5E.WeaponPropertiesVicFull",
-        type: "Number",
-        min: 0,
-        max: 3,
-    },
-    zon: {
-        name: "SW5E.WeaponPropertiesZon",
-        full: "SW5E.WeaponPropertiesZonFull",
-        type: "Boolean",
-        ship: true,
-    }
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponCharacterProperties,
+    ...SW5E.weaponStarshipProperties
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The full set of weapon property flags which can exist on a character (non-starship) weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponFullCharacterProperties = {
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponCharacterProperties
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The full set of weapon property flags which can exist on a starship weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponFullStarshipProperties = {
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponStarshipProperties
 };
 
 /* -------------------------------------------- */

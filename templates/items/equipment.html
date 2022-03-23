@@ -103,21 +103,17 @@
                 {{!-- Armor Properties --}}
                 <div class="form-group stacked armor-properties">
                     <label>{{ localize "SW5E.ArmorProperties" }}</label>
-                    {{#each config.armorPropertiesTypes as |property key|}}
-                    {{#if (eq property.type "Boolean")}}
+                    {{#each config.armorPropertiesTypes as |property key|}} {{#if (eq property.type "Boolean")}}
                     <label class="checkbox">
                         <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/> {{ localize property.name }}
                     </label>
-                    {{/if}}
-                    {{/each}}
+                    {{/if}} {{/each}}
 
-                    {{#each config.armorPropertiesTypes as |property key|}}
-                    {{#if (eq property.type "Number")}}
+                    {{#each config.armorPropertiesTypes as |property key|}} {{#if (eq property.type "Number")}}
                     <label class="number">
                         {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
                     </label>
-                    {{/if}}
-                    {{/each}}
+                    {{/if}} {{/each}}
                 </div>
             {{/unless}}
 
@@ -289,8 +285,8 @@
             {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
 
+        {{!-- Modifications Tab --}}
         {{#unless isStarshipEquipment}}
-            {{!-- Modifications Tab --}}
             <div class="tab modifications" data-group="primary" data-tab="modifications">
                 {{> "systems/sw5e/templates/items/parts/item-modifications.html"}}
             </div>

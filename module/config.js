@@ -1495,8 +1495,6 @@ SW5E.armorPropertiesTypes = {
         name: "SW5E.ArmorProperMagnetic",
         full: "SW5E.ArmorProperMagneticFull",
         type: "Number"
-        // min: 0,
-        // max: 3,
     },
     Obscured: {
         name: "SW5E.ArmorProperObscured",
@@ -1513,7 +1511,6 @@ SW5E.armorPropertiesTypes = {
         full: "SW5E.ArmorProperPoweredFull",
         type: "Number",
         min: 0
-        // max: 3,
     },
     Reactive: {
         name: "SW5E.ArmorProperReactive",
@@ -1569,8 +1566,6 @@ SW5E.armorPropertiesTypes = {
         name: "SW5E.ArmorProperVersatile",
         full: "SW5E.ArmorProperVersatileFull",
         type: "Number"
-        // min: 0,
-        // max: 3,
     }
 };
 
@@ -1602,7 +1597,6 @@ SW5E.weaponCommonProperties = {
         full: "SW5E.WeaponPropertiesBurFull",
         type: "Number",
         min: 2
-        // max: 0,
     },
     dir: {
         name: "SW5E.WeaponPropertiesDir",
@@ -1645,14 +1639,12 @@ SW5E.weaponCommonProperties = {
         full: "SW5E.WeaponPropertiesRapFull",
         type: "Number",
         min: 2
-        // max: 0,
     },
     rel: {
         name: "SW5E.WeaponPropertiesRel",
         full: "SW5E.WeaponPropertiesRelFull",
         type: "Number",
         min: 0
-        // max: 0,
     },
     spc: {
         name: "SW5E.WeaponPropertiesSpc",
@@ -1687,160 +1679,130 @@ SW5E.weaponCharacterProperties = {
         full: "SW5E.WeaponPropertiesBruFull",
         type: "Number",
         min: 0,
-        max: 3,
-        ship: false
+        max: 3
     },
     def: {
         name: "SW5E.WeaponPropertiesDef",
         full: "SW5E.WeaponPropertiesDefFull",
         type: "Number",
         min: 0,
-        max: 3,
-        ship: false
+        max: 3
     },
     dex: {
         name: "SW5E.WeaponPropertiesDex",
         full: "SW5E.WeaponPropertiesDexFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     drm: {
         name: "SW5E.WeaponPropertiesDrm",
         full: "SW5E.WeaponPropertiesDrmFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     dgd: {
         name: "SW5E.WeaponPropertiesDgd",
         full: "SW5E.WeaponPropertiesDgdFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     dis: {
         name: "SW5E.WeaponPropertiesDis",
         full: "SW5E.WeaponPropertiesDisFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     dpt: {
         name: "SW5E.WeaponPropertiesDpt",
         full: "SW5E.WeaponPropertiesDptFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     dou: {
         name: "SW5E.WeaponPropertiesDou",
         full: "SW5E.WeaponPropertiesDouFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     fin: {
         name: "SW5E.WeaponPropertiesFin",
         full: "SW5E.WeaponPropertiesFinFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     fix: {
         name: "SW5E.WeaponPropertiesFix",
         full: "SW5E.WeaponPropertiesFixFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     lgt: {
         name: "SW5E.WeaponPropertiesLgt",
         full: "SW5E.WeaponPropertiesLgtFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     lum: {
         name: "SW5E.WeaponPropertiesLum",
         full: "SW5E.WeaponPropertiesLumFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     mig: {
         name: "SW5E.WeaponPropertiesMig",
         full: "SW5E.WeaponPropertiesMigFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     neu: {
         name: "SW5E.WeaponPropertiesNeu",
         full: "SW5E.WeaponPropertiesNeuFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     rch: {
         name: "SW5E.WeaponPropertiesRch",
         full: "SW5E.WeaponPropertiesRchFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     ret: {
         name: "SW5E.WeaponPropertiesRet",
         full: "SW5E.WeaponPropertiesRetFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     shk: {
         name: "SW5E.WeaponPropertiesShk",
         full: "SW5E.WeaponPropertiesShkFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     sil: {
         name: "SW5E.WeaponPropertiesSil",
         full: "SW5E.WeaponPropertiesSilFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     son: {
         name: "SW5E.WeaponPropertiesSon",
         full: "SW5E.WeaponPropertiesSonFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     str: {
         name: "SW5E.WeaponPropertiesStr",
         full: "SW5E.WeaponPropertiesStrFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: false
+        min: 0
     },
     swi: {
         name: "SW5E.WeaponPropertiesSwi",
         full: "SW5E.WeaponPropertiesSwiFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     thr: {
         name: "SW5E.WeaponPropertiesThr",
         full: "SW5E.WeaponPropertiesThrFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     two: {
         name: "SW5E.WeaponPropertiesTwo",
         full: "SW5E.WeaponPropertiesTwoFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     },
     ver: {
         name: "SW5E.WeaponPropertiesVer",
         full: "SW5E.WeaponPropertiesVerFull",
-        type: "Boolean",
-        ship: false
+        type: "Boolean"
     }
 };
 
@@ -1862,65 +1824,53 @@ SW5E.weaponStarshipProperties = {
         name: "SW5E.WeaponPropertiesCon",
         full: "SW5E.WeaponPropertiesConFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: true
+        min: 0
     },
     exp: {
         name: "SW5E.WeaponPropertiesExp",
         full: "SW5E.WeaponPropertiesExpFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     foc: {
         name: "SW5E.WeaponPropertiesFoc",
         full: "SW5E.WeaponPropertiesFocFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     hom: {
         name: "SW5E.WeaponPropertiesHom",
         full: "SW5E.WeaponPropertiesHomFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     ion: {
         name: "SW5E.WeaponPropertiesIon",
         full: "SW5E.WeaponPropertiesIonFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     mlt: {
         name: "SW5E.WeaponPropertiesMlt",
         full: "SW5E.WeaponPropertiesMltFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     ovr: {
         name: "SW5E.WeaponPropertiesOvr",
         full: "SW5E.WeaponPropertiesOvrFull",
         type: "Number",
-        min: 0,
-        // max: 0,
-        ship: true
+        min: 0
     },
     pow: {
         name: "SW5E.WeaponPropertiesPow",
         full: "SW5E.WeaponPropertiesPowFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     sat: {
         name: "SW5E.WeaponPropertiesSat",
         full: "SW5E.WeaponPropertiesSatFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     },
     zon: {
         name: "SW5E.WeaponPropertiesZon",
         full: "SW5E.WeaponPropertiesZonFull",
-        type: "Boolean",
-        ship: true
+        type: "Boolean"
     }
 };
 

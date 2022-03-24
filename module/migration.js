@@ -861,7 +861,7 @@ function _migrateItemArmorPropertiesData(item, updateData) {
     const hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const props = item.data.properties;
-    const configProp = SW5E.armorPropertiesTypes;
+    const configProp = SW5E.armorProperties;
     // Remove existing properties not in current template
     for (const key in props) {
         if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;

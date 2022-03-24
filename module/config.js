@@ -1400,7 +1400,7 @@ SW5E.weaponTypes = {
  *   [max]: number,
  * }}
  */
-SW5E.armorPropertiesTypes = {
+SW5E.armorProperties = {
     Absorptive: {
         name: "SW5E.ArmorProperAbsorptive",
         full: "SW5E.ArmorProperAbsorptiveFull",

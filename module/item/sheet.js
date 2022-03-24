@@ -274,7 +274,7 @@ export default class ItemSheet5e extends ItemSheet {
             if (item.data.properties) props.push(
                 ...Object.entries(item.data.properties)
                     .filter((e) => ![false, undefined, null].includes(e[1]))
-                    .map((e) => game.i18n.format(CONFIG.SW5E.armorPropertiesTypes[e[0]].full, { value: e[1] }))
+                    .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, { value: e[1] }))
             );
         } else if (item.type === "feat") {
             props.push(labels.featType);

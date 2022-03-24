@@ -73,7 +73,7 @@ export default class ItemSheet5e extends ItemSheet {
         // Vehicles
         const wpnType = (itemData.data?.weaponType ?? '');
         const armorType = (itemData.data?.armor?.type ?? '');
-        data.isStarshipWeapon = wpnType.search("(starship)") !== -1;
+        data.isStarshipWeapon = wpnType in CONFIG.SW5E.weaponStarshipTypes;
         data.isStarshipArmor = armorType === "starship";
         data.isStarshipShield = armorType === "ssshield";
         data.isStarshipHyperdrive = armorType === "hyper";
@@ -82,6 +82,9 @@ export default class ItemSheet5e extends ItemSheet {
         data.isStarshipEquipment = data.isStarshipArmor || data.isStarshipShield || data.isStarshipHyperdrive || data.isStarshipPowerCoupling || data.isStarshipReactor;
         data.isCrewed = itemData.data.activation?.type === "crew";
         data.isMountable = this._isItemMountable(itemData);
+
+        // Weapon Properties
+        if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
 
         // Armor Class
         data.isArmor = this.item.isArmor;
@@ -271,7 +274,7 @@ export default class ItemSheet5e extends ItemSheet {
             if (item.data.properties) props.push(
                 ...Object.entries(item.data.properties)
                     .filter((e) => ![false, undefined, null].includes(e[1]))
-                    .map((e) => game.i18n.format(CONFIG.SW5E.armorPropertiesTypes[e[0]].full, { value: e[1] }))
+                    .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, { value: e[1] }))
             );
         } else if (item.type === "feat") {
             props.push(labels.featType);

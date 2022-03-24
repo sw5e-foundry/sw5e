@@ -405,7 +405,7 @@ export default class Item5e extends Item {
         if (data.armor?.value && overrides['data.armor.value']) overrides['data.armor.value'] += data.armor.value;
         let props = null;
         if (itemData.type == 'weapon') props = CONFIG.SW5E.weaponProperties;
-        if (itemData.type == 'equipment') props = CONFIG.SW5E.armorPropertiesTypes;
+        if (itemData.type == 'equipment') props = CONFIG.SW5E.armorProperties;
         if (props) {
             for (const [prop, propData] of Object.entries(props)) {
                 if (propData.type == "Number" && overrides[`data.properties.${prop}`]) {
@@ -2249,7 +2249,7 @@ export default class Item5e extends Item {
 
         let props = null;
         if (itemData.type == 'weapon') props = CONFIG.SW5E.weaponProperties;
-        if (itemData.type == 'equipment') props = CONFIG.SW5E.armorPropertiesTypes;
+        if (itemData.type == 'equipment') props = CONFIG.SW5E.armorProperties;
         if (props) {
             for (const [prop, propData] of Object.entries(props)) {
                 if (propData.type == "Number" && entityData.properties[prop]) {

@@ -339,7 +339,7 @@ function _localizeObject(obj, key) {
         }
 
         // Inner object
-        if ( (typeof v !== "object") || !(key in v) ) {
+        if (typeof v !== "object" || !(key in v)) {
             console.debug(v);
             console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
             continue;
@@ -391,9 +391,9 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.5.7.R1-B2";
+    const NEEDS_MIGRATION_VERSION = "1.5.7.2.1";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-B2";
+    const SW5E_NEEDS_MIGRATION_VERSION = "1.5.7.Z";
     const COMPATIBLE_MIGRATION_VERSION = 0.8;
     const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
     if (!currentVersion && totalDocuments === 0)

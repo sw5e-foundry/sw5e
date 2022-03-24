@@ -259,7 +259,7 @@ export default class ItemSheet5e extends ItemSheet {
         if (item.type === "weapon") {
             props.push(
                 ...Object.entries(item.data.properties)
-                    .filter((e) => ![false, undefined, null].includes(e[1]))
+                    .filter((e) => ![false, undefined, null, 0].includes(e[1]))
                     .map((e) => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]].full, { value: e[1] }))
             );
         } else if (item.type === "power") {
@@ -273,7 +273,7 @@ export default class ItemSheet5e extends ItemSheet {
             if (this.item.isArmor || this._isItemMountable(item)) props.push(labels.armor);
             if (item.data.properties) props.push(
                 ...Object.entries(item.data.properties)
-                    .filter((e) => ![false, undefined, null].includes(e[1]))
+                    .filter((e) => ![false, undefined, null, 0].includes(e[1]))
                     .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, { value: e[1] }))
             );
         } else if (item.type === "feat") {

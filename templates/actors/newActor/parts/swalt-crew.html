@@ -21,7 +21,7 @@
                 <ol class="group-items item-list">
                     {{#each deployment.items as | deploy |}}
                     <li
-                        class="item group-grid-deployments {{#if (eq deploy @root.data.attributes.deployment.active.value)}}active-deployment{{/if}}"
+                        class="item group-grid-deployments"
                         data-key="{{key}}"
                         data-uuid="{{deploy}}"
                     >
@@ -47,7 +47,7 @@
                                     <a/>
                                 {{else}}
                                     <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
-                                        <i class="fas {{#if deploy.active}}fa-check{{else}}fa-times{{/if}}"></i>
+                                        <i class="fas {{#if (eq deploy @root.data.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
                                     </a>
                                 {{/if}}
                                 <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">

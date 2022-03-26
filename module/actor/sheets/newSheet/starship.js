@@ -141,23 +141,21 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             const deployment = this.actor.data.data.attributes.deployment[action.data.deployment];
             action.active = deployment.active;
             action.id = action._id;
+            if (this._filters.ssactions.has("activeDeploy") && !action.active) continue;
             ssActions[action.data.deployment].items.push(action);
         }
 
-        // Add derived actions from deployed actors
-        for (const key of Object.keys(SW5E.deploymentTypes)) {
-            const deployment = this.actor.data.data.attributes.deployment[key];
-            if (deployment.items) {
-                for (const uuid of deployment.items) {
-                    const actor = fromUuidSynchronous(uuid);
-                    const actions = actor?.data?.items?.filter(item => ["deploymentfeature", "venture"].includes(item.type));
-                    for (const action of (actions ?? [])) {
-                        action.active = deployment.active;
-                        action.derived = uuid;
-                        ssActions[action.type].items.push(action);
-                    }
-                }
-
+        // Add derived actions from crew members
+        const ssDeploy = this.actor.data.data.attributes.deployment;
+        for (const uuid of ssDeploy.crew.items) {
+            const actor = fromUuidSynchronous(uuid);
+            if (!actor) continue;
+            const actions = actor.data.items.filter(item => ["deploymentfeature", "venture"].includes(item.type));
+            for (const action of actions) {
+                action.active = ssDeploy.active.uuid === uuid;
+                action.derived = uuid;
+                if (this._filters.ssactions.has("activeDeploy") && !action.active) continue;
+                ssActions[action.type].items.push(action);
             }
         }
 
@@ -209,13 +207,15 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         data.isHuge = data.actor.data.traits.size === "huge";
         data.isGargantuan = data.actor.data.traits.size === "grg";
 
-        if (!this._filters.ssactions.has("activeDeploy")) data.showAllActions = true;
-        if (
-            Object.entries(this.actor.data.data.attributes.deployment).every(
-                ([key, deploy]) => key === "active" || !(deploy.value || deploy.items?.length)
-            )
-        ) {
-            data.showAllDeployments = true;
+        // Decide if deployment is visible
+        const ssDeploy = data.data.attributes.deployment;
+        const anyDeployed = Object.keys(CONFIG.SW5E.deploymentTypes).some(k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value);
+        const anyActive = !!(ssDeploy.active.value);
+        for (const key of Object.keys(CONFIG.SW5E.deploymentTypes)) {
+            const deployment = ssDeploy[key];
+            deployment.actorsVisible = !!(!anyDeployed || deployment.items?.length);
+            if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = deployment.active;
+            else deployment.actionsVisible = !!(!anyDeployed || deployment.items?.length || deployment.value);
         }
 
         return data;
@@ -423,7 +423,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         switch (a.dataset.action) {
             case "pilot-toggle":
-                this.actor.ssDeployCrew(actor, (deployments.pilot.value === uuid) ? "crew" : "pilot");
+                if (deployments.pilot.value === uuid) this.actor.ssUndeployCrew(actor, ["pilot"]);
+                else this.actor.ssDeployCrew(actor, "pilot");
                 break;
             case "delete":
                 this.actor.ssUndeployCrew(actor);
@@ -612,7 +613,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                     deploy: {
                         icon: '<i class="fas fa-check"></i>',
                         label: game.i18n.localize("SW5E.DeploymentAcceptSettings"),
-                        callback: (html) => this.actor.ssDeployCrew(sourceActor, rememberOptions(html))
+                        callback: (html) => {
+                            const choice = rememberOptions(html);
+                            if (!["passenger", "crew"].includes(choice)) this.actor.ssDeployCrew(sourceActor, "crew");
+                            this.actor.ssDeployCrew(sourceActor, choice);
+                        }
                     },
                     cancel: {
                         icon: '<i class="fas fa-times"></i>',

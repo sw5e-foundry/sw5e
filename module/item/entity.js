@@ -695,7 +695,7 @@ export default class Item5e extends Item {
         let item = this;
         const id = this.data.data; // Item system data
         const actor = this.actor;
-        const starship = actor.type === "starship" ? actor : fromUuidSynchronous(actor?.data?.data?.attributes?.deployed?.uuid);
+        const starship = actor.getStarship();
         const ad = actor.data.data; // Actor system data
 
         // Reference aspects of the item data necessary for usage
@@ -924,7 +924,7 @@ export default class Item5e extends Item {
      */
     _handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates) {
         const actor = this.actor;
-        const starship = actor.type === "starship" ? actor : fromUuidSynchronous(actor?.data?.data?.attributes?.deployed?.uuid);
+        const starship = actor.getStarship();
         const itemData = this.data.data;
         let consume = itemData.consume || {};
         if (!consume.type) return;

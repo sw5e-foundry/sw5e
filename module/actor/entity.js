@@ -3519,7 +3519,7 @@ export default class Actor5e extends Actor {
         if (!target) return;
 
         const deployed = target.data.data.attributes.deployed;
-        const otherShip = fromUuidSynchronous(deployed?.uuid);
+        const otherShip = target.getStarship();
         if (otherShip) {
             if (otherShip.uuid === this.uuid) {
                 if (deployed.deployments.includes(toDeploy)) return;
@@ -3618,6 +3618,19 @@ export default class Actor5e extends Actor {
 
         await this.update({"data.attributes.deployment": deployments});
         return active.value;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Gets the starship the actor is deployed into
+     * 
+     * @returns Actor>|null  Original actor if it was reverted.
+     */
+    getStarship() {
+        const starship = fromUuidSynchronous(this?.data?.data?.attributes?.deployed?.uuid);
+        if (starship && starship instanceof TokenDocument) return starship.actor;
+        return starship;
     }
 
     /* -------------------------------------------- */
@@ -3725,7 +3738,7 @@ export default class Actor5e extends Actor {
         const changed = new Set(keys);
 
         const deployed = this.data.data.attributes.deployed;
-        const starship = fromUuidSynchronous(deployed?.uuid);
+        const starship = this.getStarship();
         if (starship) {
             const app = starship.apps[starship.sheet.appId];
             if (app) {
@@ -3752,7 +3765,7 @@ export default class Actor5e extends Actor {
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
 
         const deployed = this.data.data.attributes.deployed;
-        const starship = fromUuidSynchronous(deployed?.uuid);
+        const starship = this.getStarship();
         if (starship) {
             const app = starship.apps[starship.sheet.appId];
             if (app) {

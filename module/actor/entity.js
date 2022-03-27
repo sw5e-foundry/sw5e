@@ -595,7 +595,7 @@ export default class Actor5e extends Actor {
         const armor = this._getEquipment("starship", {equipped: true});
         if (armor.length !== 0) {
             const armorData = armor[0].data.data;
-            data.attributes.equip.armor.dr = parseInt(armorData.dmgred.value) || 0;
+            data.attributes.equip.armor.dr = parseInt(armorData.attributes.dmgred.value) || 0;
             data.attributes.equip.armor.maxDex = armorData.armor.dex;
             data.attributes.equip.armor.stealthDisadv = armorData.stealth;
         } else {

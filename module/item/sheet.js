@@ -155,8 +155,21 @@ export default class ItemSheet5e extends ItemSheet {
     _getItemConsumptionTargets(item) {
         const consume = item.data.consume || {};
         if (!consume.type) return [];
+
+        // Consume types not reliant on actor
+
+        // Power Dice
+        if (consume.type === "powerdice") {
+            return Object.keys(CONFIG.SW5E.powerDieSlots).reduce((obj, pd) => {
+                obj[`attributes.power.${pd}.value`] = game.i18n.localize(CONFIG.SW5E.powerDieSlots[pd]);
+                return obj;
+            }, {});
+        }
+
         const actor = this.item.actor;
         if (!actor) return {};
+
+        // Consume types reliant on actor
 
         // Ammunition
         if (consume.type === "ammo") {
@@ -211,14 +224,6 @@ export default class ItemSheet5e extends ItemSheet {
                 // Recharging items
                 const recharge = i.data.data.recharge || {};
                 if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
-                return obj;
-            }, {});
-        }
-
-        // Power Dice
-        else if (consume.type === "powerdice") {
-            return Object.keys(CONFIG.SW5E.powerDieSlots).reduce((obj, pd) => {
-                obj[`attributes.power.${pd}.value`] = game.i18n.localize(CONFIG.SW5E.powerDieSlots[pd]);
                 return obj;
             }, {});
         }

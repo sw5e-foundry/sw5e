@@ -87,16 +87,18 @@ export default class ItemSheet5e extends ItemSheet {
         if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
 
         // Armor Class
-        data.isArmor = this.item.isArmor;
-        data.hasAC = data.isArmor || data.isMountable;
-        data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
-
-        // Modification Slot Names
-        if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
+        if (this.item.type === "equipment") {
+            data.isArmor = this.item.isArmor;
+            data.hasAC = data.isArmor || data.isMountable;
+            data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
+        }
 
         // Modification Properties
-        data.isEquipment = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
-        data.isWeapon = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+        if (this.item.type === "modification") {
+            data.isEquipMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
+            data.isWpnMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+            data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
+        }
 
         // Modification Slot Names
         if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];

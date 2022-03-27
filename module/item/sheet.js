@@ -87,16 +87,18 @@ export default class ItemSheet5e extends ItemSheet {
         if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
 
         // Armor Class
-        data.isArmor = this.item.isArmor;
-        data.hasAC = data.isArmor || data.isMountable;
-        data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
-
-        // Modification Slot Names
-        if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
+        if (this.item.type === "equipment") {
+            data.isArmor = this.item.isArmor;
+            data.hasAC = data.isArmor || data.isMountable;
+            data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
+        }
 
         // Modification Properties
-        data.isEquipment = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
-        data.isWeapon = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+        if (this.item.type === "modification") {
+            data.isEquipMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
+            data.isWpnMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+            data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
+        }
 
         // Modification Slot Names
         if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
@@ -155,8 +157,21 @@ export default class ItemSheet5e extends ItemSheet {
     _getItemConsumptionTargets(item) {
         const consume = item.data.consume || {};
         if (!consume.type) return [];
+
+        // Consume types not reliant on actor
+
+        // Power Dice
+        if (consume.type === "powerdice") {
+            return Object.keys(CONFIG.SW5E.powerDieSlots).reduce((obj, pd) => {
+                obj[`attributes.power.${pd}.value`] = game.i18n.localize(CONFIG.SW5E.powerDieSlots[pd]);
+                return obj;
+            }, {});
+        }
+
         const actor = this.item.actor;
         if (!actor) return {};
+
+        // Consume types reliant on actor
 
         // Ammunition
         if (consume.type === "ammo") {
@@ -211,14 +226,6 @@ export default class ItemSheet5e extends ItemSheet {
                 // Recharging items
                 const recharge = i.data.data.recharge || {};
                 if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
-                return obj;
-            }, {});
-        }
-
-        // Power Dice
-        else if (consume.type === "powerdice") {
-            return Object.keys(CONFIG.SW5E.powerDieSlots).reduce((obj, pd) => {
-                obj[`attributes.power.${pd}.value`] = game.i18n.localize(CONFIG.SW5E.powerDieSlots[pd]);
                 return obj;
             }, {});
         }

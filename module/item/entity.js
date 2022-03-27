@@ -431,6 +431,7 @@ export default class Item5e extends Item {
      */
     prepareFinalAttributes() {
         // Proficiency
+        if (this.type === "weapon" && this.data.data.weaponType in CONFIG.SW5E.weaponStarshipTypes) this.data.data.proficient = true;
         const isProficient = this.type === "power" || this.data.data.proficient; // Always proficient in power attacks.
         this.data.data.prof = new Proficiency(this.actor?.data.data.attributes.prof, isProficient);
 

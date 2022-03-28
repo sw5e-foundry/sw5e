@@ -68,10 +68,10 @@
             </div>
 
             {{!-- Weapon/Equipment Properties --}}
-            {{#if (or isWeapon isEquipment)}}
+            {{#if (or isWpnMod isEquipMod)}}
                 <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
 
-                {{#if isWeapon}}
+                {{#if isWpnMod}}
                     {{!-- Weapon Properties --}}
                     <div class="form-group stacked weapon-properties">
                         <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
@@ -122,7 +122,7 @@
                     </ol>
                 {{/if}}
 
-                {{#if isEquipment}}
+                {{#if isEquipMod}}
                     {{!-- Armor Properties --}}
                     <div class="form-group stacked armor-properties">
                         <label>{{ localize "SW5E.ArmorProperties" }}</label>

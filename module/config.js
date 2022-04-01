@@ -85,29 +85,14 @@ SW5E.attunements = {
  * @enum {string}
  */
 SW5E.weaponProficiencies = {
-    blp: "SW5E.WeaponBlasterPistolProficiency",
-    chk: "SW5E.WeaponChakramProficiency",
-    dbb: "SW5E.WeaponDoubleBladeProficiency",
-    dbs: "SW5E.WeaponDoubleSaberProficiency",
-    dsh: "SW5E.WeaponDoubleShotoProficiency",
-    dsw: "SW5E.WeaponDoubleSwordProficiency",
-    hid: "SW5E.WeaponHiddenBladeProficiency",
     imp: "SW5E.WeaponImprovisedProficiency",
-    lfl: "SW5E.WeaponLightFoilProficiency",
-    lrg: "SW5E.WeaponLightRingProficiency",
-    mar: "SW5E.WeaponMartialProficiency",
     mrb: "SW5E.WeaponMartialBlasterProficiency",
     mlw: "SW5E.WeaponMartialLightweaponProficiency",
     mvb: "SW5E.WeaponMartialVibroweaponProficiency",
     ntl: "SW5E.WeaponNaturalProficiency",
-    swh: "SW5E.WeaponSaberWhipProficiency",
-    sim: "SW5E.WeaponSimpleProficiency",
     smb: "SW5E.WeaponSimpleBlasterProficiency",
     slw: "SW5E.WeaponSimpleLightweaponProficiency",
-    svb: "SW5E.WeaponSimpleVibroweaponProficiency",
-    tch: "SW5E.WeaponTechbladeProficiency",
-    vbr: "SW5E.WeaponVibrorapierProficiency",
-    vbw: "SW5E.WeaponVibrowhipProficiency"
+    svb: "SW5E.WeaponSimpleVibroweaponProficiency"
 };
 
 /**
@@ -117,12 +102,12 @@ SW5E.weaponProficiencies = {
  */
 SW5E.weaponProficienciesMap = {
     natural: true,
-    simpleVW: "sim",
-    simpleB: "sim",
-    simpleLW: "sim",
-    martialVW: "mar",
-    martialB: "mar",
-    martialLW: "mar"
+    simpleVW: "svb",
+    simpleB: "smb",
+    simpleLW: "slw",
+    martialVW: "mvb",
+    martialB: "mrb",
+    martialLW: "mlw"
 };
 
 /* -------------------------------------------- */

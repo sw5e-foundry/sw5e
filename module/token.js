@@ -76,6 +76,7 @@ export class Token5e extends Token {
      * @private
      */
     _drawHPBar(number, bar, data) {
+        const isStarship = this.document.actor.data.type === "starship";
         // Extract health data
         let {value, max, temp, tempmax} = this.document.actor.data.data.attributes.hp;
         temp = Number(temp || 0);
@@ -83,13 +84,16 @@ export class Token5e extends Token {
 
         // Differentiate between effective maximum and displayed maximum
         const effectiveMax = Math.max(0, max + tempmax);
-        let displayMax = max + (tempmax > 0 ? tempmax : 0);
-        if (this.document.actor.data.type === "starship") displayMax = Math.max(max, tempmax);
+        const displayMax = isStarship ? Math.max(max, tempmax) : max + (tempmax > 0 ? tempmax : 0);
 
         // Allocate percentages of the total
         const tempPct = Math.clamped(temp, 0, displayMax) / displayMax;
-        const valuePct = Math.clamped(value, 0, effectiveMax) / displayMax;
-        const colorPct = Math.clamped(value, 0, effectiveMax) / displayMax;
+        const valuePct = isStarship
+            ? Math.clamped(value, 0, displayMax) / displayMax
+            : Math.clamped(value, 0, effectiveMax) / displayMax;
+        const colorPct = isStarship
+            ? Math.clamped(value, 0, max) / max
+            : Math.clamped(value, 0, effectiveMax) / displayMax;
 
         // Determine colors to use
         const blk = 0x000000;

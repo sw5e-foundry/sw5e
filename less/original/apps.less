@@ -498,6 +498,47 @@
     }
 
     /* ----------------------------------------- */
+    /*  Modifications                            */
+    /* ----------------------------------------- */
+
+    .modification {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+
+        // Slot
+        .modification-slot {
+            flex: 0 1 100px;
+            color: @colorDark;
+        }
+
+        // Name
+        .modification-name {
+            flex: 1 1 auto;
+            .entity-link {
+                background-color: transparent !important;
+                border: groove !important;
+            }
+        }
+
+        // Control Buttons
+        .modification-controls {
+            flex: 0 0 40px;
+            display: flex;
+            justify-content: space-between;
+            a {
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+
+    .modification.disabled .modification-name .entity-link{
+        color: @colorTan !important;
+        outline: none !important;
+    }
+
+    /* ----------------------------------------- */
     /*  Active Effects                           */
     /* ----------------------------------------- */
 

@@ -521,6 +521,35 @@
   text-align: left;
   font-size: 16px;
 }
+.sw5e.sheet .modification {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.sw5e.sheet .modification .modification-slot {
+  flex: 0 1 100px;
+  color: #191813;
+}
+.sw5e.sheet .modification .modification-name {
+  flex: 1 1 auto;
+}
+.sw5e.sheet .modification .modification-name .entity-link {
+  background-color: transparent !important;
+  border: groove !important;
+}
+.sw5e.sheet .modification .modification-controls {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.sw5e.sheet .modification .modification-controls a {
+  font-size: 12px;
+  text-align: center;
+}
+.sw5e.sheet .modification.disabled .modification-name .entity-link{
+  color: #7a7971 !important;
+  outline: none !important;
+}
 .sw5e.sheet .effects .item .effect-source,
 .sw5e.sheet .effects .item .effect-duration,
 .sw5e.sheet .effects .item .effect-controls {

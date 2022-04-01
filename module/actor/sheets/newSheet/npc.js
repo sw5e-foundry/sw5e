@@ -105,7 +105,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
                 isDeployment: true
             },
             deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
                 items: [],
                 hasActions: true,
                 dataset: {type: "deploymentfeature"},

@@ -269,7 +269,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 isDeployment: true
             },
             deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
                 items: [],
                 hasActions: true,
                 dataset: {type: "deploymentfeature"},
@@ -281,14 +281,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 hasActions: false,
                 dataset: {type: "venture"},
                 isVenture: true
-            },
-            active: {
-                label: "SW5E.FeatureActive",
-                items: [],
-                hasActions: true,
-                dataset: {"type": "feat", "activation.type": "action"}
-            },
-            passive: {label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"}}
+            }
         };
         for (let ssf of ssfeats) {
             if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);

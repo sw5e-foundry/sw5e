@@ -189,7 +189,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 isClass: true
             },
             classfeatures: {
-                label: "SW5E.ItemTypeClassFeats",
+                label: "SW5E.ItemTypeClassfeaturePL",
                 items: [],
                 hasActions: true,
                 dataset: {type: "classfeature"},
@@ -217,21 +217,21 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 isBackground: true
             },
             fightingstyles: {
-                label: "SW5E.ItemTypeFightingStylePl",
+                label: "SW5E.ItemTypeFightingstylePl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "fightingstyle"},
                 isFightingstyle: true
             },
             fightingmasteries: {
-                label: "SW5E.ItemTypeFightingMasteryPl",
+                label: "SW5E.ItemTypeFightingmasteryPl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "fightingmastery"},
                 isFightingmastery: true
             },
             lightsaberforms: {
-                label: "SW5E.ItemTypeLightsaberFormPl",
+                label: "SW5E.ItemTypeLightsaberformPl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "lightsaberform"},

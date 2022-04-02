@@ -48,7 +48,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         // Categorize Items as actions, features, equipment and cargo
         const ssActions = {
             deploymentfeature: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
                 items: [],
                 derived: true
             },

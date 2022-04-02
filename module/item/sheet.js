@@ -64,7 +64,7 @@ export default class ItemSheet5e extends ItemSheet {
         data.isHealing = itemData.data.actionType === "heal";
         data.isFlatDC = getProperty(itemData, "data.save.scaling") === "flat";
         data.isLine = ["line", "wall"].includes(itemData.data.target?.type);
-        if (itemData.data.critical) itemData.data.critical.baseTreshold = String(Math.max(20 - itemData.data?.properties?.ken ?? 0, 1));
+        if (itemData.data.critical) itemData.data.critical.baseThreshold = String(Math.max(20 - (itemData.data?.properties?.ken ?? 0), 1));
 
         // Original maximum uses formula
         const sourceMax = foundry.utils.getProperty(this.item.data._source, "data.uses.max");

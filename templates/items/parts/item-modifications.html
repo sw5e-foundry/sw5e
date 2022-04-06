@@ -9,51 +9,49 @@
 </div>
 <div class="form-group">
     <label>{{ localize "SW5E.ItemChassisAugmentCount" }}</label>
-    {{#if data.rarity}}
-    <input type="number" name="data.modifications.augmentSlots" value="{{data.modifications.augmentSlots}}" min="{{lookup config.chassisAugmentSlotsByRarity data.rarity}}" max="2" data-dType="Number"/>
-    {{else}}
-    <input type="number" name="data.modifications.augmentSlots" value="{{data.modifications.augmentSlots}}" min="0" max="2" data-dType="Number"/>
-    {{/if}}
+    <input type="number" name="data.modifications.augmentSlots" value="{{data.modifications.augmentSlots}}" data-dType="Number"/>
 </div>
 
 {{!-- Modification Slots --}}
-<h4>{{ localize "SW5E.ItemModificationSlotPl" }}</h4>
-<ol class="item-list">
-    {{#each config.modSlots as |name prop|}}
-    {{#with (lookup ../data.modifications.mods prop) as |mod| }}
-    <li class="item modification{{#if (or @root.data.modsdisabled mod.disabled)}} mod-disabled{{/if}}" data-modification-type="mod" data-modification-slot="{{prop}}">
-        <div class="item-name modification-slot flexrow">
-            <strong>{{ localize name }}</strong>
-        </div>
-        <div class="item-name modification-name flexrow">
-            {{contentLink mod.uuid (localize "SW5E.DragModification")}}
-        </div>
-        <div class="item-controls modification-controls flexrow">
-            {{#if mod.uuid}}
-                <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
-                    <i class="fas {{#if mod.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
-                </a>
-                <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
-                    <i class="fas fa-trash"></i>
-                </a>
-            {{/if}}
-        </div>
-    </li>
-    {{/with}}
-    {{/each}}
-</ol>
+{{#unless (eq data.modifications.chassisType "none")}}
+    <h4>{{ localize "SW5E.ItemModificationSlotPl" }}</h4>
+    <ol class="items-list">
+        {{#each config.modSlots as |name prop|}}
+        {{#with (lookup ../data.modifications.mods prop) as |mod| }}
+        <li class="modification{{#if (or @root.data.modsdisabled mod.disabled)}} disabled{{/if}}" data-modification-type="mod" data-modification-slot="{{prop}}">
+            <div class="modification-slot">
+                <strong>{{ localize name }}</strong>
+            </div>
+            <div class="modification-name">
+                {{contentLink mod.uuid (localize "SW5E.DragModification")}}
+            </div>
+            <div class="modification-controls">
+                {{#if mod.uuid}}
+                    <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+                        <i class="fas {{#if mod.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                    </a>
+                    <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                {{/if}}
+            </div>
+        </li>
+        {{/with}}
+        {{/each}}
+    </ol>
+{{/unless}}
 
 {{#if (gt data.modifications.augmentSlots 0)}}
 <h4>{{ localize "SW5E.ItemAugmentPl" }}</h4>
-<ol class="item-list">
+<ol class="items-list">
     {{#each data.modifications.augments as | augment |}}
     {{#unless augment.hidden}}
-    <li class="item modification{{#if (or @root.data.modsdisabled augment.disabled)}} mod-disabled{{/if}}" data-modification-type="augment" data-augment-index="{{@index}}">
+    <li class="modification{{#if (or @root.data.modsdisabled augment.disabled)}} disabled{{/if}}" data-modification-type="augment" data-augment-index="{{@index}}">
         <div></div>
-        <div class="item-name modification-name flexrow">
+        <div class="modification-name">
             {{contentLink augment.uuid (localize "SW5E.DragModification")}}
         </div>
-        <div class="item-controls modification-controls flexrow">
+        <div class="modification-controls">
             {{#if augment.uuid}}
                 <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
                     <i class="fas {{#if augment.disabled}}fa-check{{else}}fa-times{{/if}}"></i>

@@ -625,7 +625,7 @@ export default class Item5e extends Item {
         }
 
         // Return the lowest of the the item and actor thresholds
-        return Math.min(itemData.critical?.threshold ?? Math.max(20 - itemData?.properties?.ken ?? 0, 1), actorThreshold ?? 20);
+        return Math.min(itemData.critical?.threshold ?? Math.max(20 - (itemData?.properties?.ken ?? 0), 1), actorThreshold ?? 20);
     }
 
     /* -------------------------------------------- */

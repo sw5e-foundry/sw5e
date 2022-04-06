@@ -48,7 +48,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         // Categorize Items as actions, features, equipment and cargo
         const ssActions = {
             deploymentfeature: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
                 items: [],
                 derived: true
             },
@@ -141,6 +141,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             const deployment = this.actor.data.data.attributes.deployment[action.data.deployment];
             action.active = deployment.active;
             action.id = action._id;
+            action.the_name = action.name;
             if (this._filters.ssactions.has("activeDeploy") && !action.active) continue;
             ssActions[action.data.deployment].items.push(action);
         }
@@ -152,9 +153,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             if (!actor) continue;
             const actions = actor.data.items.filter(item => ["deploymentfeature", "venture"].includes(item.type));
             for (const action of actions) {
-                action.active = ssDeploy.active.uuid === uuid;
+                action.active = ssDeploy.active.value === uuid;
                 action.derived = uuid;
-                if (this._filters.ssactions.has("activeDeploy") && !action.active) continue;
+                action.the_name = action.name;
+                if (this._filters.ssactions.has("activeDeploy")) {
+                    if (!action.active) continue;
+                } else action.the_name += ` (${actor.name})`;
                 ssActions[action.type].items.push(action);
             }
         }

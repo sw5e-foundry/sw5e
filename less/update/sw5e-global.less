@@ -1,194 +1,201 @@
 /* open-sans-regular - latin */
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/OpenSans-Regular.ttf');
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/OpenSans-Regular.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: url('./fonts/OpenSans-Italic.ttf');
+    font-family: "Open Sans";
+    font-style: italic;
+    font-weight: 400;
+    src: url("./fonts/OpenSans-Italic.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: url('./fonts/OpenSans-Bold.ttf');
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("./fonts/OpenSans-Bold.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: url('./fonts/OpenSans-BoldItalic.ttf');
+    font-family: "Open Sans";
+    font-style: italic;
+    font-weight: 700;
+    src: url("./fonts/OpenSans-BoldItalic.ttf");
 }
 /* russo-one-regular - latin */
 @font-face {
-  font-family: 'Russo One';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/RussoOne.ttf');
+    font-family: "Russo One";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/RussoOne.ttf");
 }
 @font-face {
-  font-family: 'Russo One';
-  font-style: italic;
-  font-weight: 400;
-  src: url('./fonts/RussoOne.ttf');
+    font-family: "Russo One";
+    font-style: italic;
+    font-weight: 400;
+    src: url("./fonts/RussoOne.ttf");
 }
 @font-face {
-  font-family: 'Russo One';
-  font-style: normal;
-  font-weight: 700;
-  src: url('./fonts/RussoOne.ttf');
+    font-family: "Russo One";
+    font-style: normal;
+    font-weight: 700;
+    src: url("./fonts/RussoOne.ttf");
 }
 @font-face {
-  font-family: 'Aurebesh';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/Aurebesh.ttf');
+    font-family: "Aurebesh";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/Aurebesh.ttf");
 }
 @font-face {
-  font-family: 'Engli-Besh';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/EngliBesh-KG3W.ttf');
+    font-family: "Engli-Besh";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./fonts/EngliBesh-KG3W.ttf");
 }
 @import "_variables.less";
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 // ::-webkit-scrollbar {
 //   width: 6px;
 //   height: 6px;
 // }
 ::-webkit-scrollbar-track {
-  border: 1px solid @colorBlue;
-  border-radius: 4px;
+    border: 1px solid @colorBlue;
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  outline: none;
-  border-radius: 4px;
-  background: @colorBlue;
-  border: none;
+    outline: none;
+    border-radius: 4px;
+    background: @colorBlue;
+    border: none;
 }
 :root {
-  scrollbar-width: thin;
-  scrollbar-color: @colorBlue @colorPaleBlue;
+    scrollbar-width: thin;
+    scrollbar-color: @colorBlue @colorPaleBlue;
 }
 
 body {
-  .openSans(13px, 400);
-  background-image: url('./ui/SW5e-logo.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
+    .openSans(13px, 400);
+    background-image: url("./ui/SW5e-logo.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
-  .russoOne(34px);
+    .russoOne(34px);
 }
 h2 {
-  .russoOne(27px);
+    .russoOne(27px);
 }
 h3 {
-  .russoOne(21px);
+    .russoOne(21px);
 }
 h4 {
-  .russoOne(17px);
+    .russoOne(17px);
 }
-h5, h6 {
-  .russoOne(13px);
+h5,
+h6 {
+    .russoOne(13px);
 }
 
 a {
-  text-decoration: none;
-  &:hover, &:active {
-    text-shadow: none;
-    text-decoration: underline;
-  }
+    text-decoration: none;
+    &:hover,
+    &:active {
+        text-shadow: none;
+        text-decoration: underline;
+    }
 }
 
 .app {
-  border: none;// 1px solid @colorBlue;
-  .dropShadow1();
+    border: none; // 1px solid @colorBlue;
+    .dropShadow1();
 }
 #pause {
-  img {display: none;}
-  background: none;
-  height: 128px;
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    margin-left: -64px;
-    left: 50%;
-    width: 128px;
-    height: 128px;
-    background: url("ui/pause-inner.svg") no-repeat 50% 50%;
-    animation-name: pause-spin;
-    animation-duration: 10000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    margin-left: -64px;
-    left: 50%;
-    width: 128px;
-    height: 128px;
-    background: url("ui/pause-outer.svg") no-repeat 50% 50%;
-    animation-name: pause-spin;
-    animation-duration: 5000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-direction: reverse;
-  }
-  h3 {
-    border-bottom: 0;
-    line-height: 1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 256px;
-    margin-left: -128px;
-    margin-top: -13px;
-    text-shadow: 0 0 24px @colorBlue;
-    &::before, &::after {
-      position: absolute;
-      font-family: "Aurebesh", sans-serif;
-      font-size: 13px;
-      color: @colorGray;
-      animation: none;
-      opacity: 0.8;
-      text-shadow: 0 0 8px @colorBlue;
+    img {
+        display: none;
     }
+    background: none;
+    height: 128px;
     &::before {
-      content: "GAME";
-      top: -13px;
-      left: 42px;
+        content: "";
+        position: absolute;
+        top: 0;
+        margin-left: -64px;
+        left: 50%;
+        width: 128px;
+        height: 128px;
+        background: url("ui/pause-inner.svg") no-repeat 50% 50%;
+        animation-name: pause-spin;
+        animation-duration: 10000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
     }
     &::after {
-      content: "PAUSED";
-      bottom: -13px;
-      right: 42px;
+        content: "";
+        position: absolute;
+        top: 0;
+        margin-left: -64px;
+        left: 50%;
+        width: 128px;
+        height: 128px;
+        background: url("ui/pause-outer.svg") no-repeat 50% 50%;
+        animation-name: pause-spin;
+        animation-duration: 5000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-direction: reverse;
     }
-  }
+    h3 {
+        border-bottom: 0;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 256px;
+        margin-left: -128px;
+        margin-top: -13px;
+        text-shadow: 0 0 24px @colorBlue;
+        &::before,
+        &::after {
+            position: absolute;
+            font-family: "Aurebesh", sans-serif;
+            font-size: 13px;
+            color: @colorGray;
+            animation: none;
+            opacity: 0.8;
+            text-shadow: 0 0 8px @colorBlue;
+        }
+        &::before {
+            content: "GAME";
+            top: -13px;
+            left: 42px;
+        }
+        &::after {
+            content: "PAUSED";
+            bottom: -13px;
+            right: 42px;
+        }
+    }
 }
 @import "components/forms-global.less";
 @import "components/sidebar-global.less";
 @import "components/actor-global.less";
 
 @keyframes pause-spin {
-  from {
-    transform:rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

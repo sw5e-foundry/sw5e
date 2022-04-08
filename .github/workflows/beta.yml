@@ -1,0 +1,35 @@
+name: Beta Versioning
+
+on:
+  push:
+    branches:
+      - beta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Zip Files
+        working-directory: ./
+        run: zip -r ./system.zip ./*
+
+      - name: Get Version
+        shell: bash
+        id: get-version
+        run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
+
+      - name: Create Release
+        id: create-release
+        uses: ncipollo/release-action@v1
+        with: 
+          allowUpdates: true
+          name: Release ${{ steps.get-version.outputs.version }}
+          draft: false
+          prerelease: true
+          token: ${{secrets.GITHUB_TOKEN}}
+          artifacts: './system.zip, ./system.json'
+          generateReleaseNotes: true
+          tag: ${{ steps.get-version.outputs.version }}
+          

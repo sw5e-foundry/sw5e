@@ -33,6 +33,15 @@
 }
 
 .sw5e.sheet.actor {
+    // Attribute Configuration
+    .config-button {
+        color: @colorOlive;
+        right: -6px;
+        top: -3px;
+        font-size: 10px;
+        font-weight: normal;
+    }
+
     input,
     select,
     textarea {
@@ -168,126 +177,166 @@
                 grid-template-columns: repeat(5, 1fr);
                 column-gap: 12px;
 
-                h1 {
-                    text-align: center;
-                }
-                .attribute-name {
-                    position: relative;
-                }
+                .attrib {
+                    h1 {
+                        text-align: center;
+                    }
+                    .attribute-name {
+                        position: relative;
+                    }
 
-                .attribute-value,
-                .attribute-value input {
-                    .russoOne(22px);
-                    text-align: center;
-                    line-height: 1;
-                }
+                    .attribute-value,
+                    .attribute-value input {
+                        .russoOne(22px);
+                        text-align: center;
+                        line-height: 1;
+                    }
 
-                .attribute-value {
-                    &.multiple {
-                        display: grid;
-                        grid-template-columns: auto 14px auto;
+                    .attribute-value {
+                        &.multiple {
+                            display: grid;
+                            grid-template-columns: auto 14px auto;
+
+                            input {
+                                width: 100%;
+                            }
+                        }
 
                         input {
-                            width: 100%;
+                            display: inline-block;
+                        }
+
+                        .value-number {
+                            display: inline-block;
+                            text-align: right;
+
+                            padding: 0 3px;
+
+                            &:last-child {
+                                text-align: left;
+                            }
+                        }
+
+                        span.value-number {
+                            padding: 1px 4px;
+                        }
+
+                        .initiative {
+                            padding: 1px 4px;
+                            display: block;
                         }
                     }
 
-                    input {
-                        display: inline-block;
+                    // Attribute Configuration
+                    .config-button {
+                        position: absolute;
+                        display: none;
+                        right: -6px;
+                        top: -3px;
+                        font-size: 10px;
+                        font-weight: normal;
                     }
-
-                    .value-number {
-                        display: inline-block;
-                        text-align: right;
-
-                        padding: 0 3px;
-
-                        &:last-child {
-                            text-align: left;
-                        }
-                    }
-
-                    span.value-number {
-                        padding: 1px 4px;
-                    }
-
-                    .initiative {
-                        padding: 1px 4px;
+                    &:hover .config-button {
                         display: block;
                     }
-                }
 
-                // Attribute Configuration
-                .config-button {
-                    position: absolute;
-                    display: none;
-                    right: -6px;
-                    top: -3px;
-                    font-size: 10px;
-                    font-weight: normal;
-                }
-                &:hover .config-button {
-                    display: block;
-                }
-
-                // Temporary HP
-                input.temphp {
-                    width: 48%;
-                }
-
-                // Attribution Tooltip
-                .property-attribution {
-                    min-width: 150px;
-                    top: 50px;
-                    font-family: Signika, sans-serif;
-                    font-size: 14px;
-                    font-weight: normal;
-                    line-height: 1rem;
-                }
-
-                footer {
-                    button {
-                        background: none;
-                        padding: 1px 3px;
-                        font-size: inherit;
-                        line-height: inherit;
-                        display: inline-block;
-                        width: auto;
-
-                        &:hover {
-                            font-weight: 400;
-                        }
+                    // Temporary HP
+                    input.temphp {
+                        width: 48%;
                     }
 
-                    &.hit-points,
-                    &.hit-dice,
-                    &.initiative {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        column-gap: 8px;
-                        margin-top: 0;
-                        input,
-                        button {
-                            //border: 1px solid @colorPaleGray;
-                            width: 100%;
-                            text-align: center;
-                        }
-
-                        button {
-                            font-weight: 400;
-                            margin-top: 2px;
-                        }
-
-                        span {
-                            display: block;
-                            padding: 3px 4px;
-                        }
+                    // Attribution Tooltip
+                    .property-attribution {
+                        min-width: 150px;
+                        top: 50px;
+                        font-family: Signika, sans-serif;
+                        font-size: 14px;
+                        font-weight: normal;
+                        line-height: 1rem;
                     }
 
-                    &.speed {
-                        margin-top: 0;
-                        input {
-                            text-align: center;
+                    footer {
+                        button {
+                            background: none;
+                            padding: 1px 3px;
+                            font-size: inherit;
+                            line-height: inherit;
+                            display: inline-block;
+                            width: auto;
+
+                            &:hover {
+                                font-weight: 400;
+                            }
+                        }
+
+                        &.hit-points,
+                        &.hit-dice,
+                        &.initiative {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            column-gap: 8px;
+                            margin-top: 0;
+                            input,
+                            button {
+                                //border: 1px solid @colorPaleGray;
+                                width: 100%;
+                                text-align: center;
+                            }
+
+                            button {
+                                font-weight: 400;
+                                margin-top: 2px;
+                            }
+
+                            span {
+                                display: block;
+                                padding: 3px 4px;
+                            }
+                        }
+
+                        &.speed {
+                            margin-top: 0;
+                            input {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .panel.resources {
+            .traits {
+                .fuel-wrapper {
+                    display: grid;
+                    grid-template-columns: 300px 100px;
+                    width: 400px;
+                    justify-self: end;
+                    .fuel-label {
+                        font-size: 12px;
+                        line-height: 14px;
+                        width: 100%;
+                        text-shadow: none;
+                        padding: 0;
+                        margin: 0;
+                        height: auto;
+                        text-align: center;
+                        margin-left: -2px;
+                        border-radius: 0 4px 4px 0;
+                    }
+                    .fuel {
+                        position: relative;
+                        border-radius: 4px;
+                        height: 16px;
+                        margin: 0;
+                        width: 100%;
+                        .fuel-bar {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            border-radius: 4px;
+                            border: none;
                         }
                     }
                 }
@@ -560,7 +609,92 @@
             display: grid;
         }
 
-        .tab.attributes {
+        .score-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            .score {
+                border-radius: 0;
+                padding: 4px;
+                & + li {
+                    border-top: 0 !important;
+                }
+                &:first-child {
+                    border-radius: 4px 4px 0 0;
+                }
+
+                &:last-child {
+                    border-bottom-width: 1px;
+                    border-radius: 0 0 4px 4px;
+                }
+
+                h2 {
+                    .russoOne(14px);
+                    border: none;
+                    text-align: center;
+                    margin: 0;
+
+                    &:hover {
+                        text-shadow: none;
+                    }
+                }
+
+                .ability-score {
+                    .russoOne(22px);
+                    text-align: center;
+                    width: 48px;
+                    margin: 0 auto;
+                    height: 24px;
+                    display: block;
+                }
+
+                .config-button {
+                    right: -54px;
+                    top: 3px;
+                    position: relative;
+                    display: none;
+                }
+
+                &:hover .config-button {
+                    display: block;
+                }
+
+                .ability-modifiers {
+                    margin: 0 -4px -4px;
+                    display: grid;
+                    grid-template-columns: 28px auto 28px;
+
+                    .ability-mod,
+                    .ability-save {
+                        padding: 2px 4px;
+                        display: block;
+                        font-weight: bold;
+                        font-size: 13px;
+                        text-align: center;
+                        border-style: solid;
+                    }
+
+                    .ability-mod {
+                        border-width: 1px 1px 0 0;
+                        border-radius: 0 4px 0 0;
+                    }
+
+                    .ability-save {
+                        border-width: 1px 0 0 1px;
+                        border-radius: 4px 0 0 0;
+                    }
+
+                    .proficiency-toggle {
+                        border: none;
+                        background: none;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+
+        .tab.core {
             &.active {
                 display: grid;
             }
@@ -574,82 +708,6 @@
                 grid-template-columns: 128px auto;
                 grid-template-rows: auto;
                 column-gap: 12px;
-
-                ol {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .scores {
-                    li {
-                        border-radius: 0;
-                        padding: 4px;
-                        & + li {
-                            border-top: 0 !important;
-                        }
-                        &:first-child {
-                            border-radius: 4px 4px 0 0;
-                        }
-
-                        &:last-child {
-                            border-bottom-width: 1px;
-                            border-radius: 0 0 4px 4px;
-                        }
-
-                        h2 {
-                            .russoOne(14px);
-                            border: none;
-                            text-align: center;
-                            margin: 0;
-
-                            &:hover {
-                                text-shadow: none;
-                            }
-                        }
-
-                        .ability-score {
-                            .russoOne(22px);
-                            text-align: center;
-                            width: 48px;
-                            margin: 0 auto;
-                            height: 24px;
-                            display: block;
-                        }
-
-                        .ability-modifiers {
-                            margin: 0 -4px -4px;
-                            display: grid;
-                            grid-template-columns: 28px auto 28px;
-
-                            .ability-mod,
-                            .ability-save {
-                                padding: 2px 4px;
-                                display: block;
-                                font-weight: bold;
-                                font-size: 13px;
-                                text-align: center;
-                                border-style: solid;
-                            }
-
-                            .ability-mod {
-                                border-width: 1px 1px 0 0;
-                                border-radius: 0 4px 0 0;
-                            }
-
-                            .ability-save {
-                                border-width: 1px 0 0 1px;
-                                border-radius: 4px 0 0 0;
-                            }
-
-                            .proficiency-toggle {
-                                border: none;
-                                background: none;
-                                line-height: 1;
-                            }
-                        }
-                    }
-                }
 
                 .skills {
                     li {
@@ -668,6 +726,21 @@
                         .skill-name {
                             &:hover {
                                 text-shadow: none;
+                            }
+                        }
+
+                        .skill-name-controls {
+                            position: relative;
+
+                            .config-button {
+                                right: 3px;
+                                top: 4px;
+                                position: absolute;
+                                display: none;
+                            }
+
+                            &:hover .config-button {
+                                display: block;
                             }
                         }
 
@@ -1131,13 +1204,15 @@
                 .attributes {
                     grid-template-columns: repeat(3, 1fr);
                     footer {
-                        &.proficiency {
-                            margin-top: 0;
-                            line-height: 24px;
-                            text-align: center;
-                        }
+                        text-align: center;
+                        margin-top: -2px;
                         &.hit-points {
                             display: block;
+                            margin-top: -3px;
+                            input {
+                                height: 16px; 
+                                vertical-align: text-top;
+                            }
                         }
                     }
                 }
@@ -1145,14 +1220,15 @@
             nav.sheet-navigation {
                 grid-template-columns: repeat(6, 1fr);
             }
-            .tab.attributes {
-                .traits-resources {
-                    display: block;
-
-                    .counter {
-                        display: flex;
-                        .counter-value {
-                            margin-left: auto;
+            .traits-resources {
+                display: block;
+                .counter {
+                    display: inline;
+                    .counter-value {
+                        display: inline;
+                        span {
+                            margin-left: -3px;
+                            margin-right: -3px;
                         }
                     }
                 }
@@ -1166,6 +1242,58 @@
             .tab.biography.active {
                 display: block;
             }
+        }
+    }
+    &.starship .swalt-sheet {
+        .tab .group-grid-deployments {
+            grid-template-columns: auto 100px 100px;
+            .group-item-title {
+                vertical-align: center;
+                margin-left: 10px;
+                margin-top: 10px;
+                margin-bottom: -10px;
+            }
+        }
+    }
+
+    input[type="range"][orient="vertical"] {
+        -webkit-appearance: slider-vertical;
+        width: 10px;
+        height: 60px !important;
+        padding: 0 0 !important;
+        background-color: #c40f0f !important;
+        box-sizing: border-box;
+        &::-webkit-slider-runnable-track {
+            -webkit-appearance: slider-vertical !important;
+            height: 60px !important;
+            width: 10px !important;
+            line-height: 60px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 0 !important;
+            border-radius: 3px !important;
+            background: linear-gradient(to top, #c40f0f 50%, #0dce0d 50%);
+        }
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none !important;
+            background-color: #c40f0f !important;
+            margin-right: -4px !important;
+            margin-top: 0px !important;
+            cursor: grab !important;
+            border-radius: 0 0 0 0 !important;
+            width: 10px !important;
+            height: 5px !important;
+            font-size: 10px;
+        }
+    }
+    output {
+        display: block;
+        margin: 5px auto;
+        font-size: 1.75em;
+    }
+    input {
+        .vertslider {
+            height: 60px;
         }
     }
 }

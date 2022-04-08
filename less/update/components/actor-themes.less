@@ -4,7 +4,7 @@
 
 .sw5e.sheet .window-content {
     color: @colorBlack;
-    background: linear-gradient(90deg,#afc6d6 0,#d6d6d6 30%,#d6d6d6 70%,#afc6d6);
+    background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
     input,
     select {
         color: @colorBlack;
@@ -18,7 +18,6 @@
     }
 
     button {
-
         &:hover,
         &:focus {
             border-color: @inputBorderFocus;
@@ -28,7 +27,9 @@
 
 .sw5e.sheet.actor {
     color: @colorBlack;
-    input, select, textarea {
+    input,
+    select,
+    textarea {
         &:hover {
             border-color: @inputBorderFocus;
         }
@@ -37,12 +38,11 @@
         }
     }
     .swalt-sheet {
-        section>h1 {
+        section > h1 {
             border-bottom: 2px solid @colorBlue;
         }
 
         header {
-            
             h1.character-name {
                 color: @actorNameColor;
 
@@ -52,7 +52,6 @@
             }
 
             .level-experience {
-
                 .xpbar {
                     border: 1px solid @actorXPBarBorder;
                     background-color: @actorXPBarBackground;
@@ -64,7 +63,6 @@
             }
 
             .summary {
-
                 input,
                 .proficiency {
                     color: @actorProficiencyTextColor;
@@ -72,42 +70,40 @@
             }
 
             .attributes {
-
-                .attribute-value,
-                .attribute-value input {
-                    color: @actorAttributeInputColor;
-                }
-
-                .attribute-value {
-
-                    .value-separator {
-                        color: @actorSeparatorColor;
+                .attrib {
+                    .attribute-value,
+                    .attribute-value input {
+                        color: @actorAttributeInputColor;
                     }
-                }
 
-                footer {
-                    button {
-                        border: 1px solid @actorAttributeButtonBorder;
-
-                        &:hover {
-                            color: @actorAttributeButtonBorderHover;
+                    .attribute-value {
+                        .value-separator {
+                            color: @actorSeparatorColor;
                         }
                     }
 
-                    &.hit-points,
-                    &.hit-dice,
-                    &.initiative {
+                    footer {
                         button {
                             border: 1px solid @actorAttributeButtonBorder;
-                            color: @colorRed;
 
                             &:hover {
-                                border-color: @actorAttributeButtonBorderHover;
+                                color: @actorAttributeButtonBorderHover;
                             }
                         }
 
-                    }
+                        &.hit-points,
+                        &.hit-dice,
+                        &.initiative {
+                            button {
+                                border: 1px solid @actorAttributeButtonBorder;
+                                color: @colorRed;
 
+                                &:hover {
+                                    border-color: @actorAttributeButtonBorderHover;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -132,9 +128,7 @@
         }
 
         .tab {
-
             .filter-list {
-
                 .filter-item {
                     border-bottom: 2px solid @actorFilterBorderColor;
 
@@ -175,20 +169,14 @@
                         color: @colorBlack;
                     }
 
-
                     .item-name {
-
                         .item-image {
-
                             &::before {
                                 color: @actorItemRollableD20Color;
                             }
-
                         }
 
-
                         &.rollable:hover {
-
                             .item-image {
                                 &:hover {
                                     &::before {
@@ -201,7 +189,7 @@
 
                     .item-control {
                         &:hover {
-                            color: @linkColor  !important;
+                            color: @linkColor !important;
                         }
 
                         &.item-toggle {
@@ -212,44 +200,33 @@
                             }
                         }
                     }
-
                 }
             }
-
-
-
         }
+        .score-list {
+            .score {
+                border: 1px solid @actorAbilityBorderColor;
 
-
-        .tab.attributes {
-            .abilities {
-
-                .scores {
-                    li {
-                        border: 1px solid @actorAbilityBorderColor;
-
-                        h2 {
-                            &:hover {
-                                color: @linkColor;
-                            }
-                        }
-
-                        .ability-score {
-                            color: @actorAbilityScoreColor;
-                        }
-
-                        .ability-modifiers {
-
-                            .ability-mod,
-                            .ability-save {
-                                border-color: @actorAbilityBorderColor;
-                            }
-
-                        }
-
+                h2 {
+                    &:hover {
+                        color: @linkColor;
                     }
                 }
 
+                .ability-score {
+                    color: @actorAbilityScoreColor;
+                }
+
+                .ability-modifiers {
+                    .ability-mod,
+                    .ability-save {
+                        border-color: @actorAbilityBorderColor;
+                    }
+                }
+            }
+        }
+        .tab.core {
+            .abilities {
                 .skills {
                     li {
                         &:nth-child(even) {
@@ -285,7 +262,6 @@
                         &:hover {
                             background: @actorNavigationTabsHoverBgColor;
                         }
-
                     }
                 }
 
@@ -304,15 +280,12 @@
                             }
                         }
                     }
-
-                    
                 }
 
                 section.resources {
                     .resource-items {
                         .resource {
-                           h1 {
-        
+                            h1 {
                                 input {
                                     color: @headingColor;
                                     border-bottom: 2px solid @headerBorderColor;
@@ -328,7 +301,6 @@
                                 .value-separator {
                                     color: @actorSeparatorColor;
                                 }
-
                             }
                         }
                     }
@@ -343,7 +315,6 @@
                                 }
                             }
 
-                        
                             .death-success {
                                 i {
                                     color: @colorGreen;
@@ -382,7 +353,6 @@
             }
         }
 
-
         .tab.force-powerbook,
         .tab.tech-powerbook {
             .powercasting-ability {
@@ -399,7 +369,7 @@
 
         .tab.notes {
             section {
-                &>input {
+                & > input {
                     color: @headingColor;
                     border-bottom: 2px solid @headerBorderColor;
                 }

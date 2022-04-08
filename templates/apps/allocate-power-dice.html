@@ -1,0 +1,20 @@
+<form id="allocate-power-dice" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>Allocate {{powerDice}} power dice.</p>
+
+    {{#each slots as |slot _|}}
+    <div class="form-group">
+        <label>{{localize slot.str}}</label>
+        {{#if slot.full}}
+            <input type="checkbox" name="{{slot.id}}" {{checked slot.full}} disabled title="This slot is already full of power dice."/>
+        {{else}}
+            <input type="checkbox" name="{{slot.id}}" {{checked slot.full}}/>
+        {{/if}}
+    </div>
+    {{/each}}
+
+    <div class="dialog-buttons">
+        {{#each buttons as |button id|}}
+        <button class="dialog-button" data-button="{{id}}">{{{button.icon}}} {{{button.label}}}</button>
+        {{/each}}
+    </div>
+</form>

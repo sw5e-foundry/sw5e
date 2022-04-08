@@ -1,3 +1,5 @@
+import {fromUuidSynchronous} from "./helpers.js";
+
 /**
  * Highlight critical success or failure on d20 rolls.
  * @param {ChatMessage} message  Message being prepared.
@@ -75,6 +77,12 @@ export const addChatMessageContextOptions = function (html, options) {
     };
     options.push(
         {
+            name: game.i18n.localize("SW5E.ChatContextDamageWithResist"),
+            icon: '<i class="fas fa-user-minus"></i>',
+            condition: canApply,
+            callback: (li) => applyChatCardDamage(li, null)
+        },
+        {
             name: game.i18n.localize("SW5E.ChatContextDamage"),
             icon: '<i class="fas fa-user-minus"></i>',
             condition: canApply,
@@ -115,10 +123,25 @@ export const addChatMessageContextOptions = function (html, options) {
 function applyChatCardDamage(li, multiplier) {
     const message = game.messages.get(li.data("messageId"));
     const roll = message.roll;
+
+    const extraData = {
+        damageType: message.data.flavor.replace(/.*[(](.*)[)]$/g, '$1').toLowerCase()
+    };
+    if (multiplier === null) {
+        multiplier = 1;
+        const actorId = message.data.speaker.actor;
+        const actor = fromUuidSynchronous(`Actor.${actorId}`);
+        if (actor) {
+            const itemId = message.data.flags.sw5e.roll.itemId;
+            const item = actor.data.items.get(itemId);
+            if (item) extraData.itemUuid = item.uuid;
+        }
+    }
+
     return Promise.all(
         canvas.tokens.controlled.map((t) => {
             const a = t.actor;
-            return a.applyDamage(roll.total, multiplier);
+            return a.applyDamage(roll.total, multiplier, extraData);
         })
     );
 }

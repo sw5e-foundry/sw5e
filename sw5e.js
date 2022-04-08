@@ -19,6 +19,7 @@ import Actor5e from "./module/actor/entity.js";
 import Item5e from "./module/item/entity.js";
 import CharacterImporter from "./module/characterImporter.js";
 import {TokenDocument5e, Token5e} from "./module/token.js";
+import DisplayCR from "./module/display-cr.js";
 
 // Import Applications
 import AbilityTemplate from "./module/pixi/ability-template.js";
@@ -49,6 +50,9 @@ import ActorSkillConfig from "./module/apps/skill-config.js";
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
+// Keep on while testing new SW5e build
+CONFIG.debug.hooks = true;
+
 Hooks.once("init", function () {
     console.log(`SW5e | Initializing SW5E System\n${SW5E.ASCII}`);
 
@@ -69,7 +73,7 @@ Hooks.once("init", function () {
             ActorSensesConfig,
             ActorAbilityConfig,
             ActorSkillConfig
-              },
+        },
         canvas: {
             AbilityTemplate
         },
@@ -83,11 +87,12 @@ Hooks.once("init", function () {
         },
         macros: macros,
         migrations: migrations,
-        rollItemMacro: macros.rollItemMacro
+        rollItemMacro: macros.rollItemMacro,
+        isV9: !foundry.utils.isNewerVersion("9.224", game.version ?? game.data.version)
     };
 
-  // This will be removed when sw5e minimum core version is updated to v9.
-  if ( foundry.utils.isNewerVersion("9.224", game.data.version) ) dice.shimIsDeterministic();
+    // This will be removed when sw5e minimum core version is updated to v9.
+    if (!game.sw5e.isV9) dice.shimIsDeterministic();
 
     // Record Configuration Values
     CONFIG.SW5E = SW5E;
@@ -101,6 +106,7 @@ Hooks.once("init", function () {
 
     CONFIG.Dice.DamageRoll = dice.DamageRoll;
     CONFIG.Dice.D20Roll = dice.D20Roll;
+    CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
 
     // 5e cone RAW should be 53.13 degrees
     CONFIG.MeasuredTemplate.defaults.angle = 53.13;
@@ -113,12 +119,14 @@ Hooks.once("init", function () {
     registerSystemSettings();
 
     // Patch Core Functions
-    CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
+    CONFIG.Combat.initiative.formula =
+        "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
     Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
 
     // Register Roll Extensions
     CONFIG.Dice.rolls.push(dice.D20Roll);
     CONFIG.Dice.rolls.push(dice.DamageRoll);
+    CONFIG.Dice.rolls.push(dice.AttribDieRoll);
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
@@ -142,11 +150,11 @@ Hooks.once("init", function () {
         makeDefault: false,
         label: "SW5E.SheetClassNPCOld"
     });
-    // Actors.registerSheet("sw5e", ActorSheet5eStarship, {
-    //   types: ["starship"],
-    //   makeDefault: true,
-    //   label: "SW5E.SheetClassStarship"
-    // });
+    Actors.registerSheet("sw5e", ActorSheet5eStarship, {
+        types: ["starship"],
+        makeDefault: true,
+        label: "SW5E.SheetClassStarship"
+    });
     Actors.registerSheet("sw5e", ActorSheet5eVehicle, {
         types: ["vehicle"],
         makeDefault: true,
@@ -174,9 +182,11 @@ Hooks.once("init", function () {
             "deployment",
             "deploymentfeature",
             "starship",
+            "starshipaction",
             "starshipfeature",
             "starshipmod",
-            "venture"
+            "venture",
+            "modification"
         ],
         makeDefault: true,
         label: "SW5E.SheetClassItem"
@@ -193,7 +203,7 @@ Hooks.once("init", function () {
 /**
  * Perform one-time pre-localization and sorting of some configuration objects
  */
-Hooks.once("setup", function() {
+Hooks.once("setup", function () {
     const localizeKeys = [
         "abilities",
         "abilityAbbreviations",
@@ -203,7 +213,7 @@ Hooks.once("setup", function() {
         "alignments",
         "armorClasses.label",
         "armorProficiencies",
-        "armorPropertiesTypes",
+        // "armorProperties",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
@@ -212,6 +222,7 @@ Hooks.once("setup", function() {
         "currencies.abbreviation",
         "damageResistanceTypes",
         "damageTypes",
+        "deploymentTypes",
         "distanceUnits",
         "equipmentTypes",
         "healingTypes",
@@ -226,11 +237,6 @@ Hooks.once("setup", function() {
         "proficiencyLevels",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerComponents",
         "powerLevels",
@@ -243,7 +249,7 @@ Hooks.once("setup", function() {
         "toolTypes",
         "vehicleTypes",
         "weaponProficiencies",
-        "weaponProperties",
+        // "weaponProperties",
         "weaponSizes",
         "weaponTypes"
     ];
@@ -252,13 +258,14 @@ Hooks.once("setup", function() {
         "abilityActivationTypes",
         "abilityConsumptionTypes",
         "actorSizes",
-        "armorPropertiesTypes",
+        // "armorProperties",
         "armorTypes",
         "conditionTypes",
         "consumableTypes",
         "cover",
         "damageResistanceTypes",
         "damageTypes",
+        "deploymentTypes",
         "equipmentTypes",
         "healingTypes",
         "languages",
@@ -267,11 +274,6 @@ Hooks.once("setup", function() {
         "polymorphSettings",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerScalingModes",
         "powerSchools",
@@ -280,8 +282,8 @@ Hooks.once("setup", function() {
         "toolProficiencies",
         "toolTypes",
         "vehicleTypes",
-        "weaponProperties",
-        "weaponSizes",
+        // "weaponProperties",
+        "weaponSizes"
     ];
     preLocalizeConfig(CONFIG.SW5E, localizeKeys, sortKeys);
     CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
@@ -303,23 +305,20 @@ Hooks.once("setup", function() {
  * @param {string[]} sortKeys       An array of keys to sort
  */
 function preLocalizeConfig(config, localizeKeys, sortKeys) {
-
     // Localize Objects
-    for ( const key of localizeKeys ) {
-        if ( key.includes(".") ) {
+    for (const key of localizeKeys) {
+        if (key.includes(".")) {
             const [inner, label] = key.split(".");
             _localizeObject(config[inner], label);
-        }
-        else _localizeObject(config[key]);
+        } else _localizeObject(config[key]);
     }
 
     // Sort objects
-    for ( const key of sortKeys ) {
-        if ( key.includes(".") ) {
+    for (const key of sortKeys) {
+        if (key.includes(".")) {
             const [configKey, sortKey] = key.split(".");
             config[configKey] = _sortObject(config[configKey], sortKey);
-        }
-        else config[key] = _sortObject(config[key]);
+        } else config[key] = _sortObject(config[key]);
     }
 }
 
@@ -332,16 +331,16 @@ function preLocalizeConfig(config, localizeKeys, sortKeys) {
  * @private
  */
 function _localizeObject(obj, key) {
-    for ( const [k, v] of Object.entries(obj) ) {
-
+    for (const [k, v] of Object.entries(obj)) {
         // String directly
-        if ( typeof v === "string" ) {
+        if (typeof v === "string") {
             obj[k] = game.i18n.localize(v);
             continue;
         }
 
         // Inner object
-        if ( (typeof v !== "object") || !(key in v) ) {
+        if (typeof v !== "object" || !(key in v)) {
+            console.debug(v);
             console.error(new Error("Configuration values must be a string or inner object for pre-localization"));
             continue;
         }
@@ -359,7 +358,7 @@ function _localizeObject(obj, key) {
  */
 function _sortObject(obj, sortKey) {
     let sorted = Object.entries(obj);
-    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+    if (sortKey) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
     else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
     return Object.fromEntries(sorted);
 }
@@ -392,10 +391,10 @@ Hooks.once("ready", function () {
     // Determine whether a system migration is required and feasible
     if (!game.user.isGM) return;
     const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-    const NEEDS_MIGRATION_VERSION = "1.5.2.R1-A9";
+    const NEEDS_MIGRATION_VERSION = "1.5.7.2.0";
     // Check for R1 SW5E versions
-    const SW5E_NEEDS_MIGRATION_VERSION = "R1-A9";
-    const COMPATIBLE_MIGRATION_VERSION = 0.80;
+    const SW5E_NEEDS_MIGRATION_VERSION = "1.5.7.Z";
+    const COMPATIBLE_MIGRATION_VERSION = 0.8;
     const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
     if (!currentVersion && totalDocuments === 0)
         return game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
@@ -407,7 +406,8 @@ Hooks.once("ready", function () {
 
     // Perform the migration
     if (currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion)) {
-        const warning = "Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.";
+        const warning =
+            "Your SW5e system data is from too old a Foundry version and cannot be reliably migrated to the latest version. The process will be attempted, but errors may occur.";
         ui.notifications.error(warning, {permanent: true});
     }
     migrations.migrateWorld();
@@ -448,6 +448,10 @@ Hooks.on("renderSceneDirectory", (app, html, data) => {
 Hooks.on("renderActorDirectory", (app, html, data) => {
     setFolderBackground(html);
     CharacterImporter.addImportButton(html);
+    DisplayCR(html);
+});
+Hooks.on("renderCompendium", (compendium, html, data) => {
+    DisplayCR(html, compendium);
 });
 Hooks.on("renderItemDirectory", (app, html, data) => {
     setFolderBackground(html);
@@ -462,8 +466,35 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
     console.log("renderSwaltSheet");
 });
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
-Handlebars.registerHelper("getProperty", function(data, property) {
+Handlebars.registerHelper("getProperty", function (data, property) {
     return getProperty(data, property);
+});
+
+Handlebars.registerHelper("round", function (value) {
+    return Math.floor(value);
+});
+
+Handlebars.registerHelper("debug", function (value) {
+    console.log(value);
+    return value;
+});
+
+Handlebars.registerHelper("isUndefined", function (value) {
+    return value === undefined;
+});
+
+Handlebars.registerHelper("isNull", function (value) {
+    return value === null;
+});
+
+Handlebars.registerHelper("contentLink", function (uuid, placeholdertext) {
+    if (!uuid) {
+        if (!placeholdertext || typeof placeholdertext != String) return new Handlebars.SafeString("");
+        return new Handlebars.SafeString(placeholdertext);
+    }
+    const [type, target] = uuid.split(".");
+    const html = TextEditor._createContentLink("", type, target);
+    return new Handlebars.SafeString(html.outerHTML);
 });
 
 function setFolderBackground(html) {

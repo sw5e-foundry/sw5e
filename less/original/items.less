@@ -496,6 +496,7 @@
       flex: 0 0 32px;
       text-align: center;
     }
+    label.number,
     label.checkbox {
       flex: none;
       input {
@@ -510,7 +511,10 @@
   /*  Item Actions                             */
   /* ----------------------------------------- */
 
-  .weapon-properties label.checkbox {
+  .weapon-properties label.number,
+  .weapon-properties label.checkbox,
+  .armor-properties label.number,
+  .armor-properties label.checkbox {
     flex: 0 0 98px;
   }
 

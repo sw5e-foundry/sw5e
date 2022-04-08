@@ -1,12 +1,16 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.DeploymentName' }}"/>
+                <input
+                    name="name"
+                    type="text"
+                    value="{{item.name}}"
+                    placeholder="{{ localize 'SW5E.DeploymentName' }}"
+                />
             </h1>
 
             <div class="item-subtitle">
@@ -16,7 +20,12 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -30,7 +39,6 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor content=data.flavorText target="data.flavorText" button=true owner=owner editable=editable}}
@@ -38,12 +46,11 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-			{{!-- Class Levels Table and Features --}}
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-		</div>
-			<!-- {{{data.classFeatures.value}}} -->
-<!--			
+            {{!-- Class Levels Table and Features --}} {{editor content=data.description.value
+            target="data.description.value" button=true owner=owner editable=editable}}
+        </div>
+        <!-- {{{data.classFeatures.value}}} -->
+        <!--			
             {{!-- Class Levels --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ClassLevels" }}</label>

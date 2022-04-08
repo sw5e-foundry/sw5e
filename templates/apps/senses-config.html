@@ -3,7 +3,7 @@
     {{#each senses as |sense name|}}
     <div class="form-group">
         <label>{{sense.label}}</label>
-        <input name="data.attributes.senses.{{name}}" type="number" step="0.1" value="{{sense.value}}"/>
+        <input name="data.attributes.senses.{{name}}" type="number" step="0.1" value="{{sense.value}}" />
     </div>
     {{/each}}
     <div class="form-group">
@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
         <label>{{localize "SW5E.SenseSpecial"}}</label>
-        <input type="text" name="data.attributes.senses.special" value="{{special}}"/>
+        <input type="text" name="data.attributes.senses.special" value="{{special}}" />
     </div>
     <button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
 </form>

@@ -2,56 +2,84 @@
 @import "_variables-dark.less";
 
 body.dark-theme {
-  .app {
-    background: @primaryBackground;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: @headingColor;
-  }
-  h3 {
-    border-bottom: 2px solid @headerBorderColor;
-  }
-
-  a {
-    color: @linkColor;
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      text-shadow: none;
-      text-decoration: underline;
+    .app {
+        background: @primaryBackground;
     }
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: @headingColor;
+    }
+    h3 {
+        border-bottom: 2px solid @headerBorderColor;
+    }
 
-  blockquote {
-    padding: 4px 8px;
-    background-color: @blockquoteBackground;
-    border: 1px solid @blockquoteBorder;
-    box-shadow: @blockquoteShadow;
-  }
+    a {
+        color: @linkColor;
+        text-decoration: none;
 
-  hr {
-    border-width: 0 0 1px 0;
-    border-bottom: 1px solid @hrColor;
-  }
+        &:hover,
+        &:active {
+            text-shadow: none;
+            text-decoration: underline;
+        }
+    }
 
-  select {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+    blockquote {
+        padding: 4px 8px;
+        background-color: @blockquoteBackground;
+        border: 1px solid @blockquoteBorder;
+        box-shadow: @blockquoteShadow;
+    }
 
-  input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea {
-    color: @inputTextColor;
-  }
+    .sw5e.sheet.actor {
+        .swalt-sheet {
+            .panel.resources {
+                .traits {
+                    .fuel-wrapper {
+                        .fuel-label {
+                            background: #d6d6d6;
+                            color: #1c1c1c;
+                            border: 1px solid #1c1c1c;
+                        }
+                        .fuel {
+                            background: #c40f0f;
+                            .fuel-bar {
+                                background: #0dce0d;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-  @import "components/forms-themes.less";
-  @import "components/sidebar-themes.less";
-  @import "components/foundry-nav-themes.less";
-  @import "components/foundry-app-window-themes.less";
-  @import "components/actor-themes.less";
+    hr {
+        border-width: 0 0 1px 0;
+        border-bottom: 1px solid @hrColor;
+    }
+
+    select {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="date"],
+    input[type="time"],
+    select,
+    textarea {
+        color: @inputTextColor;
+    }
+
+    @import "components/forms-themes.less";
+    @import "components/sidebar-themes.less";
+    @import "components/foundry-nav-themes.less";
+    @import "components/foundry-app-window-themes.less";
+    @import "components/actor-themes.less";
 }

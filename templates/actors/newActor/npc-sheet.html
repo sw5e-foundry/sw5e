@@ -1,5 +1,4 @@
 <form class="{{cssClass}} swalt-sheet" autocomplete="off">
-
     {{!-- NPC Sheet Header --}}
     <header class="panel">
         <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
@@ -18,28 +17,38 @@
                 <span class="max">{{data.details.xp.value}} XP</span>
             </div>
             <div class="proficiency">
-                <span>
-                    {{ localize "SW5E.Proficiency" }} {{labels.proficiency}}
-                </span>
+                <span> {{ localize "SW5E.Proficiency" }} {{labels.proficiency}} </span>
             </div>
-    </div>
+        </div>
         <div class="summary">
-			<span class="npc-size">{{lookup config.actorSizes data.traits.size}}</span>
-			<input type="text" name="data.details.alignment" value="{{data.details.alignment}}"
-				placeholder="{{ localize 'SW5E.Alignment' }}" />
-                <div class="creature-type roundTransition">
-                    <span title="{{labels.type}}">{{labels.type}}</span>
-                    <a class="config-button" data-action="type" title="{{localize 'SW5E.CreatureTypeConfig'}}"><i class="fas fa-cog"></i></a>
-                </div>
-                <input type="text" name="data.details.source" value="{{data.details.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}" />
+            <span class="npc-size">{{lookup config.actorSizes data.traits.size}}</span>
+            <input
+                type="text"
+                name="data.details.alignment"
+                value="{{data.details.alignment}}"
+                placeholder="{{ localize 'SW5E.Alignment' }}"
+            />
+            <div class="creature-type roundTransition">
+                <span title="{{labels.type}}">{{labels.type}}</span>
+                <a class="config-button" data-action="type" title="{{localize 'SW5E.CreatureTypeConfig'}}"
+                    ><i class="fas fa-cog"></i
+                ></a>
+            </div>
+            <input
+                type="text"
+                name="data.details.source"
+                value="{{data.details.source}}"
+                placeholder="{{ localize 'SW5E.Source' }}"
+            />
         </div>
         <div class="attributes">
-			{{!-- ARMOR CLASS --}}
-			<section>
+            {{!-- ARMOR CLASS --}}
+            <section class="attrib armor">
                 <h1 class="attribute-name armor">
                     {{ localize "SW5E.ArmorClass" }}
-                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"><i class="fas fa-cog"></i></a>
+                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
+                        ><i class="fas fa-cog"></i
+                    ></a>
                 </h1>
                 <div class="attribute-value attributable" data-property="attributes.ac">
                     <span>{{data.attributes.ac.value}}</span>
@@ -47,27 +56,48 @@
                 <footer class="attribute-footer">
                     <span>{{labels.armorType}}</span>
                 </footer>
-			</section>
+            </section>
 
-			{{!-- HIT POINTS --}}
-			<section class="attribute health">
+            {{!-- HIT POINTS --}}
+            <section class="attrib health">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.Health" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="data.attributes.hp.value" type="text" value="{{data.attributes.hp.value}}"
-                        data-dtype="Number" placeholder="10" class="value-number" />
+                    <input
+                        name="data.attributes.hp.value"
+                        type="text"
+                        value="{{data.attributes.hp.value}}"
+                        placeholder="10"
+                        data-dtype="Number"
+                        class="value-number"
+                        title="{{localize 'SW5E.HitPointsCurrent'}}"
+                    />
                     <span class="value-separator">/</span>
-                    <input name="data.attributes.hp.max" type="text" value="{{data.attributes.hp.max}}"
-                        data-dtype="Number" placeholder="10" class="value-number" />
+                    <input
+                        name="data.attributes.hp.max"
+                        type="text"
+                        value="{{data.attributes.hp.max}}"
+                        placeholder="10"
+                        data-dtype="Number"
+                        class="value-number"
+                        title="{{localize 'SW5E.HitPointsMax'}}"
+                    />
                 </div>
                 <footer class="attribute-footer hit-points">
-                    <input name="data.attributes.hp.formula" class="hpformula" type="text"
-                            placeholder="{{ localize 'SW5E.HealthFormula' }}" value="{{data.attributes.hp.formula}}" />
+                    <input
+                        name="data.attributes.hp.formula"
+                        class="hpformula"
+                        type="text"
+                        placeholder="{{ localize 'SW5E.HealthFormula' }}"
+                        value="{{data.attributes.hp.formula}}"
+                    />
                 </footer>
             </section>
-            <section>
+            <section class="attrib movement">
                 <h1 class="attribute-name movement">
                     {{ localize "SW5E.Movement" }}
-                    <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
+                    <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"
+                        ><i class="fas fa-cog"></i
+                    ></a>
                 </h1>
                 <div class="attribute-value">
                     <span>{{movement.primary}}</span>
@@ -77,7 +107,6 @@
                 </footer>
             </section>
         </div>
-        
     </header>
 
     {{!-- NPC Sheet Navigation --}}
@@ -87,33 +116,49 @@
         <button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
         <button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
+        <button class="item" data-tab="ssfeatures">{{ localize "SW5E.StarshipfeaturePl" }}</button>
         <button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
     </nav>
 
     {{!-- NPC Sheet Body --}}
     <section class="sheet-body">
-        <section class="tab attributes core" data-group="primary" data-tab="attributes">
+        <section class="tab core" data-group="primary" data-tab="attributes">
             <section class="panel abilities">
                 {{!-- Ability Scores --}}
                 <section class="scores">
                     <h1>{{localize "SW5E.AbilityScores" }}</h1>
-                    <ol>
+                    <ol class="score-list">
                         {{#each data.abilities as |ability id|}}
-                        <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
+                        <li class="score" data-ability="{{id}}">
                             <h2 class="ability-name rollable">{{ability.label}}</h2>
-                                <input class="ability-score" name="data.abilities.{{id}}.value" type="text"
-                                    value="{{ability.value}}" data-dtype="Number" placeholder="10" />
-                                <div class="ability-modifiers">
-                                    <span class="ability-mod"
-                                        title="{{ localize 'SW5E.Modifier' }}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
-                                    <input type="hidden" name="data.abilities.{{id}}.proficient"
-                                        value="{{ability.baseProf}}" data-dtype="Number" />
-                                    <button class="proficiency-toggle ability-proficiency"
-                                        title="Proficiency">{{{ability.icon}}}</button>
-                                    <span class="ability-save"
-                                        title="{{ localize 'SW5E.SavingThrow' }}">{{numberFormat ability.save decimals=0 sign=true}}</span>
-                                </div>
-                            <a class="config-button" data-action="ability" title="{{localize 'SW5E.AbilityConfigure'}}"><i class="fas fa-cog"></i></a>
+                            <input
+                                class="ability-score"
+                                name="data.abilities.{{id}}.value"
+                                type="text"
+                                value="{{ability.value}}"
+                                data-dtype="Number"
+                                placeholder="10"
+                            />
+                            <div class="ability-modifiers">
+                                <span class="ability-mod" title="{{ localize 'SW5E.Modifier' }}"
+                                    >{{numberFormat ability.mod decimals=0 sign=true}}</span
+                                >
+                                <input
+                                    type="hidden"
+                                    name="data.abilities.{{id}}.proficient"
+                                    value="{{ability.baseProf}}"
+                                    data-dtype="Number"
+                                />
+                                <button class="proficiency-toggle ability-proficiency" title="Proficiency">
+                                    {{{ability.icon}}}
+                                </button>
+                                <span class="ability-save" title="{{ localize 'SW5E.SavingThrow' }}"
+                                    >{{numberFormat ability.save decimals=0 sign=true}}</span
+                                >
+                            </div>
+                            <a class="config-button" data-action="ability" title="{{localize 'SW5E.AbilityConfigure'}}"
+                                ><i class="fas fa-cog"></i
+                            ></a>
                         </li>
                         {{/each}}
                     </ol>
@@ -122,24 +167,44 @@
                 <section class="skills">
                     <h1>{{localize "SW5E.Skills"}}</h1>
                     <ol>
-                        {{#each config.skills as |label s|}}
-                            {{#with (lookup ../data.skills s) as |skill|}}
-                                <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
-                                    <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.baseValue}}"
-                                        data-dtype="Number" />
-                                    <button class="proficiency-toggle skill-proficiency"
-                                        title="{{skill.hover}}">{{{skill.icon}}}</button>
-                                    <div class="skill-name-controls">
-                                        <span class="skill-name rollable">{{label}}</span>
-                                        <a class="config-button" data-action="skill" title="{{localize 'SW5E.SkillConfigure'}}"><i class="fas fa-cog"></i></a>
-                                    </div>
-                                    <span class="skill-ability">{{skill.ability}}</span>
-                                    <span class="skill-mod">{{numberFormat skill.total decimals=0 sign=true}}</span>
-                                    {{!-- <input class="skill-bonus" name="data.skills.{{s}}.bonus" type="text" value="{{numberFormat skill.bonus decimals=0 sign=true}}" data-dtype="Number" placeholder="0" title="Misc. Modifier"/> --}}
-                                    {{!-- <span class="skill-passive">({{skill.passive}})</span> --}}
-                                </li>
-                            {{/with}}
-                        {{/each}}
+                        {{#each config.skills as |label s|}} {{#with (lookup ../data.skills s) as |skill|}}
+                        <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
+                            <input
+                                type="hidden"
+                                name="data.skills.{{s}}.value"
+                                value="{{skill.baseValue}}"
+                                data-dtype="Number"
+                            />
+                            <button class="proficiency-toggle skill-proficiency" title="{{skill.hover}}">
+                                {{{skill.icon}}}
+                            </button>
+                            <div class="skill-name-controls">
+                                <span class="skill-name rollable">{{label}}</span>
+                                <a class="config-button" data-action="skill" title="{{localize 'SW5E.SkillConfigure'}}"
+                                    ><i class="fas fa-cog"></i
+                                ></a>
+                            </div>
+                            <span class="skill-ability">{{skill.ability}}</span>
+                            <span class="skill-mod" title="{{ localize 'SW5E.SkillModifierHint' skill=label }}"
+                                >{{numberFormat skill.total decimals=0 sign=true}}</span
+                            >
+                            {{!--
+                            <input
+                                class="skill-bonus"
+                                name="data.skills.{{s}}.bonus"
+                                type="text"
+                                value="{{numberFormat skill.bonus decimals=0 sign=true}}"
+                                data-dtype="Number"
+                                placeholder="0"
+                                title="Misc. Modifier"
+                            />
+                            --}} {{!--
+                            <span class="skill-passive" title="{{ localize 'SW5E.SkillPassiveHint' skill=label }}"
+                                >({{skill.passive}})</span
+                            >
+                            --}}
+                        </li>
+                        {{/with}} {{/each}}
                     </ol>
                 </section>
             </section>
@@ -147,41 +212,69 @@
                 {{!-- Legendary Actions --}}
                 <div class="counters">
                     <div class="counter legendary">
-                        <strong>{{ localize "SW5E.LegAct" }}</strong>  
+                        <strong>{{ localize "SW5E.LegAct" }}</strong>
                         <div class="counter-value">
-                            <input name="data.resources.legact.value" type="number"
-                                value="{{data.resources.legact.value}}" placeholder="0" />
+                            <input
+                                name="data.resources.legact.value"
+                                type="number"
+                                value="{{data.resources.legact.value}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegActRemaining'}}"
+                            />
                             <span class="sep">/</span>
-                            <input name="data.resources.legact.max" type="number" value="{{data.resources.legact.max}}"
-                                placeholder="0" />
+                            <input
+                                name="data.resources.legact.max"
+                                type="number"
+                                value="{{data.resources.legact.max}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegActMax'}}"
+                            />
                         </div>
                     </div>
                     <div class="counter legendary">
                         <strong>{{ localize "SW5E.LegRes" }}</strong>
                         <div class="counter-value">
-                            <input name="data.resources.legres.value" type="number"
-                                value="{{data.resources.legres.value}}" placeholder="0" />
+                            <input
+                                name="data.resources.legres.value"
+                                type="number"
+                                value="{{data.resources.legres.value}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegResRemaining'}}"
+                            />
                             <span class="sep">/</span>
-                            <input name="data.resources.legres.max" type="number" value="{{data.resources.legres.max}}"
-                                placeholder="0" />
+                            <input
+                                name="data.resources.legres.max"
+                                type="number"
+                                value="{{data.resources.legres.max}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegResMax'}}"
+                            />
                         </div>
                     </div>
                     <div class="counter lair">
                         <strong>{{ localize "SW5E.LairAct" }}</strong>
                         <div class="counter-value">
-                            <input name="data.resources.lair.value" type="checkbox"
-                                value="{{data.resources.lair.value}}" data-dtype="Boolean"
-                                {{checked data.resources.lair.value}} />
-                            <input name="data.resources.lair.initiative" type="number"
-                                value="{{data.resources.lair.initiative}}" placeholder="20" />
+                            <input
+                                name="data.resources.lair.value"
+                                type="checkbox"
+                                value="{{data.resources.lair.value}}"
+                                data-dtype="Boolean"
+                                {{checked
+                                data.resources.lair.value}}
+                            />
+                            <input
+                                name="data.resources.lair.initiative"
+                                type="number"
+                                value="{{data.resources.lair.initiative}}"
+                                placeholder="20"
+                                title="{{localize 'SW5E.LairActionInitiative' }}"
+                            />
                         </div>
                     </div>
                 </div>
-                <div class="core-traits">
-                    {{> "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html"}}
-                </div>
+                <div class="core-traits">{{> "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html"}}</div>
             </section>
-		</section>
+        </section>
 
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
@@ -197,6 +290,11 @@
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
         </section>
 
+        {{!-- Starships Tab --}}
+        <section class="tab features" data-group="primary" data-tab="ssfeatures">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html" sections=ssfeatures}}
+        </section>
+
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
@@ -207,8 +305,8 @@
             <div class="panel">
                 <section>
                     <h1>{{localize "SW5E.Biography"}}</h1>
-                    {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner editable=editable rollData=rollData}}
-
+                    {{editor content=data.details.biography.value target="data.details.biography.value" button=true
+                    owner=owner editable=editable rollData=rollData}}
                 </section>
             </div>
         </div>

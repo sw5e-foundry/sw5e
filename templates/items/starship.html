@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -16,7 +15,12 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -26,97 +30,39 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+            {{editor content=data.description.value target="data.description.value" button=true owner=owner
+            editable=editable}}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-
-            {{!-- Tier --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.StarshipTier" }}</label>
-                <div class="form-fields">
-                    <input type="text" name="data.tier" value="{{data.tier}}" data-dtype="Number"/>
+            {{#each config.starshipTypeDetails as |detail id|}}
+                <div class="form-group">
+                    <label>{{ localize detail.name }}</label>
+                    <div class="form-fields">
+                        {{#if detail.select}}
+                            <select name="data.{{id}}">
+                                {{#select (lookup ../data id)}} {{#each (lookup ../config detail.select)}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}} {{/select}}
+                            </select>
+                        {{else}}
+                            <input type="text" name="data.{{id}}" value="{{lookup ../data id}}" data-dtype="Number"/>
+                        {{/if}}
+                    </div>
                 </div>
-            </div>
-
-            {{!-- Hull Dice --}}
-            <div class="form-group">
-                <label>{{localize "SW5E.HullDice"}}</label>
-                <div class="form-fields">
-                    <select name="data.hullDice">
-                        {{#select data.hullDice}}
-                        {{#each config.hitDieTypes}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize "SW5E.HullDiceStart"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hullDiceStart" value="{{data.hullDiceStart}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize "SW5E.HullDiceUsed"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hullDiceUsed" value="{{data.hullDiceUsed}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            {{!-- Shield Dice --}}
-            <div class="form-group">
-                <label>{{localize "SW5E.ShieldDice"}}</label>
-                <div class="form-fields">
-                    <select name="data.shldDice">
-                        {{#select data.shldDice}}
-                        {{#each config.hitDieTypes}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize "SW5E.ShieldDiceStart"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.shldDiceStart" value="{{data.shldDiceStart}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize "SW5E.ShieldDiceUsed"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.shldDiceUsed" value="{{data.shldDiceUsed}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            {{!-- Power Dice --}}
-            <div class="form-group">
-                <label>{{localize "SW5E.PowerDice"}}</label>
-                <div class="form-fields">
-                    <select name="data.pwrDice">
-                        {{#select data.pwrDice}}
-                        {{#each config.powerDieTypes}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            </div>
-
+            {{/each}}
+        </div>
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
     </section>
 </form>

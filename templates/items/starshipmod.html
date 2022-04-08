@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -14,22 +13,43 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary" style="line-height: 24px; height: 24px;">
-                <li style="padding: 5px; line-height: 16px; height: 16px; font-size: 16px; align: center;">
-                    <strong>System:</strong> {{data.system.value}}
+            <ul class="summary flexrow">
+                <li>
+                    <select name="data.system.value">
+                        {{selectOptions config.ssModSystems selected=data.system.value localize=true}}
+                    </select>
                 </li>
-                <li style="padding: 5px; line-height: 16px; height: 16px; font-size: 16px; align: center;">
-                    <strong>Grade:</strong> {{data.grade.value}}
+                <li>
+                    <input
+                        type="text"
+                        data-dtype="Number"
+                        name="data.grade.value"
+                        value="{{data.grade.value}}"
+                        placeholder="0"
+                        title="{{localize 'SW5E.ModGrade'}}"
+                    />
                 </li>
-                <li style="padding: 5px; line-height: 16px; height: 16px; font-size: 16px; align: center;">
-                    <strong>Base Cost:</strong> {{data.basecost.value}} cr
+                <li>
+                    <input
+                        type="text"
+                        data-dtype="Number"
+                        name="data.basecost.value"
+                        value="{{data.basecost.value}}"
+                        placeholder="{{ lookup config.ssModSystemsBaseCost data.system.value }}"
+                        title="{{localize 'SW5E.ModBaseCost'}}"
+                    />
                 </li>
             </ul>
-			<ul class="summary" style="line-height: 24px; height: 24px;">
-			    <li style="padding: 5px; font-size: 16px; line-height: 16px; height: 16px; align: center;">
-				<strong>Prerequisites:</strong> {{data.prerequisites.value}}
-				</li>
-			</ul>
+            <ul class="summary flexrow">
+                <li>
+                    <input
+                        type="text"
+                        name="data.prerequisites.value"
+                        value="{{data.prerequisites.value}}"
+                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}"
+                    />
+                </li>
+            </ul>
         </div>
     </header>
 
@@ -42,154 +62,37 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
-        {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
-
+        {{!-- Description Tab --}} {{> "systems/sw5e/templates/items/parts/item-description.html"}}
         {{!-- Details Tab --}}
-       <div class="tab details" data-group="primary" data-tab="details">
-            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentDetails" }}</h3>
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationDetails" }}</h3>
 
-            {{!-- Equipment Type --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
-                <select name="data.armor.type">
-                    {{#select data.armor.type}}
-                    <option value=""></option>
-                    {{#each config.equipmentTypes as |name type|}}
-                    <option value="{{type}}">{{localize name}}</option>
-                    {{/each}}
-                    {{/select}}
-                </select>
-            </div>
-
-            {{#unless isMountable}}
-            <div class="form-group">
-                <label>{{localize "SW5E.Attunement"}}</label>
-                <select name="data.attunement" data-dtype="Number">
-                    {{selectOptions config.attunements selected=data.attunement localize=true}}
-                </select>
-            </div>
-
-            {{!-- Equipment Status --}}
             <div class="form-group stacked">
-                <label>{{ localize "SW5E.ItemEquipmentStatus" }}</label>
                 <label class="checkbox">
-                    <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "SW5E.Proficient" }}
+                    <input type="checkbox" name="data.equipped" {{checked data.equipped}} /> {{ localize "SW5E.Installed"}}
                 </label>
                 <label class="checkbox">
-                    <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "SW5E.Equipped" }}
+                      <input type="checkbox" name="data.free.slot" {{checked data.free.slot}} /> {{ localize "SW5E.ModFreeSlot"}}
                 </label>
+                {{#if (eq data.system.value "Suite")}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "SW5E.Identified" }}
+                      <input type="checkbox" name="data.free.suite" {{checked data.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
                 </label>
-            </div>
-            {{/unless}}
-
-            {{!-- Armor Properties --}}
-            <div class="form-group stacked armor-properties">
-                <label>{{ localize "SW5E.ArmorProperties" }}</label>
-                {{#each config.armorPropertiesTypes as |name prop|}}
-                <label class="checkbox">
-                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
-                </label>
-                {{/each}}
+                {{/if}}
             </div>
 
-            {{!-- Starship Armor and Shield Properties --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.StarshipArmorandShieldProps" }}</label>
-            </div>
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationUsage" }}</h3>
 
-            <div class="form-group" style="width: 60%;">
-                <strong style="color:#4b4a44; font-size: 11px">{{ localize "SW5E.CapacityMultiplier" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.capx.value" value="{{data.capx.value}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.DmgRed" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.attributes.dr" value="{{data.attributes.dr}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.RegenerationRateCoefficient" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.regrateco.value" value="{{data.regrateco.value}}" /> &nbsp;&nbsp;
-            </div>
+            {{!-- Item Activation Template --}} {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
 
-            {{!-- Starship Equipment Properties --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.StarshipEquipmentProps" }}</label>
-            </div>
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationAction" }}</h3>
 
-            <div class="form-group" style="width: 100%;">
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.CentStorageCapacity" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.cscap.value" value="{{data.cscap.value}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.SysStorageCapacity" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.sscap.value" value="{{data.sscap.value}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.FuelCostsMod" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.fuelcostsmod.value" value="{{data.fuelcostsmod.value}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.PowerDiceRecovery" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.powdicerec.value" value="{{data.powdicerec.value}}" /> &nbsp;&nbsp;
-                <strong style="color:#4b4a44; font-size: 11px;">{{ localize "SW5E.HyperdriveClass" }}</strong>
-                <input style="min-width: 5px; max-width: 35px; padding: 0;" type="text" name="data.hdclass.value" value="{{data.hdclass.value}}" /> &nbsp;&nbsp;
-            </div>
-
-            {{!-- Armor Class --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ArmorClass" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            {{#unless isMountable}}
-            {{!-- Dexterity Modifier --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.armor.dex" value="{{data.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unlimited' }}"/>
-                </div>
-            </div>
-
-            {{!-- Required Strength --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
-                <div class="form-fields">
-                   <input type="text" name="data.strength" value="{{data.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
-                </div>
-            </div>
-
-            {{!-- Stealth Disadvantage --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                <input type="checkbox" name="data.stealth" value="1" {{checked data.stealth}}/>
-            </div>
-            {{/unless}}
-
-            {{#if isMountable}}
-            {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
-            <div class="form-group">
-                <label>{{localize 'SW5E.Speed'}}</label>
-                <div class="form-fields">
-                    <input type="text" name="data.speed.value" value="{{data.speed.value}}"
-                           placeholder="0" data-dtype="Number">
-                    <span class="sep">{{localize 'SW5E.FeetAbbr'}}</span>
-                    <input type="text" name="data.speed.conditions"
-                           value="{{data.speed.conditions}}">
-                </div>
-            </div>
-            {{/if}}
-
-            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentUsage" }}</h3>
-
-            {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
-
-            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentAction" }}</h3>
-
-            {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
 
-        
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
-
     </section>
 </form>

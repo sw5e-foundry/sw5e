@@ -29,10 +29,7 @@ export default class ActiveEffect5e extends ActiveEffect {
         if (parentType !== "Actor" || parentId !== this.parent.id || documentType !== "Item") return;
         const item = this.parent.items.get(documentId);
         if (!item) return;
-        const itemData = item.data.data;
-        // If an item is not equipped, or it is equipped but it requires attunement and is not attuned, then disable any
-        // Active Effects that might have originated from it.
-        this.isSuppressed = itemData.equipped === false || itemData.attunement === CONFIG.SW5E.attunementTypes.REQUIRED;
+        this.isSuppressed = item.areEffectsSuppressed;
     }
 
     /* --------------------------------------------- */
@@ -40,7 +37,7 @@ export default class ActiveEffect5e extends ActiveEffect {
     /**
      * Manage Active Effect instances through the Actor Sheet via effect control buttons.
      * @param {MouseEvent} event      The left-click event on the effect control
-     * @param {Actor|Item} owner      The owning entity which manages this effect
+     * @param {Actor|Item} owner      The owning document which manages this effect
      * @returns {Promise|null}        Promise that resolves when the changes are complete.
      */
     static onManageActiveEffect(event, owner) {

@@ -86,15 +86,13 @@ SW5E.attunements = {
  */
 SW5E.weaponProficiencies = {
     imp: "SW5E.WeaponImprovisedProficiency",
-    ntl: "SW5E.WeaponNaturalProficiency",
-
-    sb: "SW5E.WeaponSimpleBlasterProficiency",
-    slw: "SW5E.WeaponSimpleLightweaponProficiency",
-    svw: "SW5E.WeaponSimpleVibroweaponProficiency",
-
-    mb: "SW5E.WeaponMartialBlasterProficiency",
+    mrb: "SW5E.WeaponMartialBlasterProficiency",
     mlw: "SW5E.WeaponMartialLightweaponProficiency",
-    mvw: "SW5E.WeaponMartialVibroweaponProficiency",
+    mvb: "SW5E.WeaponMartialVibroweaponProficiency",
+    ntl: "SW5E.WeaponNaturalProficiency",
+    smb: "SW5E.WeaponSimpleBlasterProficiency",
+    slw: "SW5E.WeaponSimpleLightweaponProficiency",
+    svb: "SW5E.WeaponSimpleVibroweaponProficiency"
 };
 
 /**
@@ -104,12 +102,12 @@ SW5E.weaponProficiencies = {
  */
 SW5E.weaponProficienciesMap = {
     natural: true,
-    simpleB: "sb",
+    simpleVW: "svb",
+    simpleB: "smb",
     simpleLW: "slw",
-    simpleVW: "svw",
-    martialB: "mb",
-    martialLW: "mlw",
-    martialVW: "mvw",
+    martialVW: "mvb",
+    martialB: "mrb",
+    martialLW: "mlw"
 };
 
 /* -------------------------------------------- */
@@ -267,23 +265,22 @@ SW5E.weaponIds = {
     "vibrosword": "sw5e.vibroweapons.u1t2YqPQSOMWPQbs",
     "shockwhip": "sw5e.vibroweapons.wmMxWXgZdlJ8SLXe"
 };
-
 /**
  * The basic armor types in sw5e. This enables specific armor proficiencies,
  * automated AC calculation in NPCs, and starting equipment.
  * @enum {string}
  **/
 SW5E.armorIds = {
-    "combatsuit": "sw5e.armor.iJXWiOLOQcVohJBN",
-    "fiberarmor": "sw5e.armor.zAkvWO8lEohqewbB",
+    combatsuit: "sw5e.armor.iJXWiOLOQcVohJBN",
+    fiberarmor: "sw5e.armor.zAkvWO8lEohqewbB",
 
-    "mesharmor": "sw5e.armor.WalIq3DWny0Ud4Vn",
-    "weavearmor": "sw5e.armor.hpN14Vhgw82PHeEz",
-    "compositearmor": "sw5e.armor.mToMe4McIkZRIeCN",
+    mesharmor: "sw5e.armor.WalIq3DWny0Ud4Vn",
+    weavearmor: "sw5e.armor.hpN14Vhgw82PHeEz",
+    compositearmor: "sw5e.armor.mToMe4McIkZRIeCN",
 
-    "battlearmor": "sw5e.armor.wafF3SF4zQBOs34y",
-    "assaultarmor": "sw5e.armor.GO4yvhWLgLTrU0xb",
-    "heavyexoskeleton": "sw5e.armor.ggFMzbQrwkGZCoaQ",
+    battlearmor: "sw5e.armor.wafF3SF4zQBOs34y",
+    assaultarmor: "sw5e.armor.GO4yvhWLgLTrU0xb",
+    heavyexoskeleton: "sw5e.armor.ggFMzbQrwkGZCoaQ"
 };
 /**
  * The basic shield types in sw5e. This enables specific shield proficiencies,
@@ -291,73 +288,73 @@ SW5E.armorIds = {
  * @enum {string}
  **/
 SW5E.shieldIds = {
-    "lightshieldgenerator": "sw5e.armor.eMXpw3HIVMnaNFQ1",
-    "mediumshieldgenerator": "sw5e.armor.R2GRWrNHmAZzksg5",
-    "heavyshieldgenerator": "sw5e.armor.2u9493AUhrh2AfES",
+    lightshieldgenerator: "sw5e.armor.eMXpw3HIVMnaNFQ1",
+    mediumshieldgenerator: "sw5e.armor.R2GRWrNHmAZzksg5",
+    heavyshieldgenerator: "sw5e.armor.2u9493AUhrh2AfES",
 
-    "lightphysicalshield": "sw5e.armor.k1pOOCzZoWEr5Dia",
-    "mediumphysicalshield": "sw5e.armor.4vGeVWgLIUfN9YiB",
-    "heavyphysicalshield": "sw5e.armor.KvzKRKNWATwdzxjz",
-}
+    lightphysicalshield: "sw5e.armor.k1pOOCzZoWEr5Dia",
+    mediumphysicalshield: "sw5e.armor.4vGeVWgLIUfN9YiB",
+    heavyphysicalshield: "sw5e.armor.KvzKRKNWATwdzxjz"
+};
 /**
  * The basic tool types in sw5e. This enables specific tool proficiencies or
  * starting equipment provided by classes and backgrounds.
  * @enum {string}
  **/
 SW5E.toolIds = {
-    "constructorsimplements": "sw5e.implements.5HKxptQKBFED544u",
-    "geneticistsimplements": "sw5e.implements.80xuLufR1m7kpNRs",
-    "cybertechsimplements": "sw5e.implements.9w7V1PCf2aD4caVP",
-    "jewelersimplements": "sw5e.implements.EYpkyPlywQaH9Ivy",
-    "gadgeteersimplements": "sw5e.implements.GJrYc9KQ22o7qTlz",
-    "tinkersimplements": "sw5e.implements.IkmQFQjGc4xq0Czd",
-    "armstechsimplements": "sw5e.implements.Mrwh3CEneCPnPP1T",
-    "artistsimplements": "sw5e.implements.OXlKtbL29bLUluf2",
-    "biotechsimplements": "sw5e.implements.QTg2sCpSdPfyUoCq",
-    "astrotechsimplements": "sw5e.implements.RlQ4zlWA7EdohcEh",
-    "surveyorsimplements": "sw5e.implements.SvureMOX5qo6LqGt",
-    "audiotechsimplements": "sw5e.implements.VNto9t3diElKRHWG",
-    "armormechsimplements": "sw5e.implements.sjsX3NYk7eZ4udlw",
-    "synthweaversimplements": "sw5e.implements.uP1rZHmbOmg8BUaX",
-    "artificersimplements": "sw5e.implements.w7lWDrGgZeYbwiSH",
+    constructorsimplements: "sw5e.implements.5HKxptQKBFED544u",
+    geneticistsimplements: "sw5e.implements.80xuLufR1m7kpNRs",
+    cybertechsimplements: "sw5e.implements.9w7V1PCf2aD4caVP",
+    jewelersimplements: "sw5e.implements.EYpkyPlywQaH9Ivy",
+    gadgeteersimplements: "sw5e.implements.GJrYc9KQ22o7qTlz",
+    tinkersimplements: "sw5e.implements.IkmQFQjGc4xq0Czd",
+    armstechsimplements: "sw5e.implements.Mrwh3CEneCPnPP1T",
+    artistsimplements: "sw5e.implements.OXlKtbL29bLUluf2",
+    biotechsimplements: "sw5e.implements.QTg2sCpSdPfyUoCq",
+    astrotechsimplements: "sw5e.implements.RlQ4zlWA7EdohcEh",
+    surveyorsimplements: "sw5e.implements.SvureMOX5qo6LqGt",
+    audiotechsimplements: "sw5e.implements.VNto9t3diElKRHWG",
+    armormechsimplements: "sw5e.implements.sjsX3NYk7eZ4udlw",
+    synthweaversimplements: "sw5e.implements.uP1rZHmbOmg8BUaX",
+    artificersimplements: "sw5e.implements.w7lWDrGgZeYbwiSH",
 
-    "chefskit": "sw5e.kits.BnhGtUc9G7issUcW",
-    "disguisekit": "sw5e.kits.ChmVrypurts3VY7i",
-    "scavengingkit": "sw5e.kits.NVxy5wBSpJcHxPEm",
-    "spicerskit": "sw5e.kits.NlppEcEGpDVDyPiH",
-    "mechanicskit": "sw5e.kits.NubaMVVv3vNwbtuj",
-    "brewerskit": "sw5e.kits.OAt131yAvZYPlUmO",
-    "munitionskit": "sw5e.kits.VJL0ue7Bpl3s0MHx",
-    "archaeologistkit": "sw5e.kits.WrJhpfymps4yRBdk",
-    "slicerskit": "sw5e.kits.Yonb0zHFV9asPJHq",
-    "bioanalysiskit": "sw5e.kits.fWoNUuZCNLG8W67s",
-    "demolitionskit": "sw5e.kits.gyhyVW4PEUWLpZTL",
-    "artilleristskit": "sw5e.kits.jJ1CiyKVXOlyjn8h",
-    "forgerykit": "sw5e.kits.ksrKs7yvm7X7CMxA",
-    "securitykit": "sw5e.kits.nqf9reJDGplVaeac",
-    "poisonerskit": "sw5e.kits.ofea5VziX4jBg5So",
-    "biochemistskit": "sw5e.kits.pq0o4lUKg8Nl08yf",
+    chefskit: "sw5e.kits.BnhGtUc9G7issUcW",
+    disguisekit: "sw5e.kits.ChmVrypurts3VY7i",
+    scavengingkit: "sw5e.kits.NVxy5wBSpJcHxPEm",
+    spicerskit: "sw5e.kits.NlppEcEGpDVDyPiH",
+    mechanicskit: "sw5e.kits.NubaMVVv3vNwbtuj",
+    brewerskit: "sw5e.kits.OAt131yAvZYPlUmO",
+    munitionskit: "sw5e.kits.VJL0ue7Bpl3s0MHx",
+    archaeologistkit: "sw5e.kits.WrJhpfymps4yRBdk",
+    slicerskit: "sw5e.kits.Yonb0zHFV9asPJHq",
+    bioanalysiskit: "sw5e.kits.fWoNUuZCNLG8W67s",
+    demolitionskit: "sw5e.kits.gyhyVW4PEUWLpZTL",
+    artilleristskit: "sw5e.kits.jJ1CiyKVXOlyjn8h",
+    forgerykit: "sw5e.kits.ksrKs7yvm7X7CMxA",
+    securitykit: "sw5e.kits.nqf9reJDGplVaeac",
+    poisonerskit: "sw5e.kits.ofea5VziX4jBg5So",
+    biochemistskit: "sw5e.kits.pq0o4lUKg8Nl08yf",
 
-    "sabaccdeck": "sw5e.gamingsets.RvFP7y8VWPMROQWv",
-    "pazaakdeck": "sw5e.gamingsets.XfClqzNPbjJxHqil",
-    "dejarikset": "sw5e.gamingsets.dKho3HXE7XfS4iRU",
-    "chancecubes": "sw5e.gamingsets.kqt52rtjpaz6jiCf",
+    sabaccdeck: "sw5e.gamingsets.RvFP7y8VWPMROQWv",
+    pazaakdeck: "sw5e.gamingsets.XfClqzNPbjJxHqil",
+    dejarikset: "sw5e.gamingsets.dKho3HXE7XfS4iRU",
+    chancecubes: "sw5e.gamingsets.kqt52rtjpaz6jiCf",
 
-    "mandoviol": "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
-    "lute": "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
-    "shawm": "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
-    "fizzz": "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
-    "chindinkaluhorn": "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
-    "kloohorn": "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
-    "xantha": "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
-    "slitherhorn": "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
-    "traz": "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
-    "ommnibox": "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
-    "bandfill": "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
-    "flute": "sw5e.musicalinstruments.mumHDhvGww117xoq",
-    "valahorn": "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
-    "drum": "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
-    "fanfar": "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
+    mandoviol: "sw5e.musicalinstruments.9hYtv8pguNI8aae9",
+    lute: "sw5e.musicalinstruments.BE1Tg7LCM7yfwypT",
+    shawm: "sw5e.musicalinstruments.BLDVxPfj8jQw1DUN",
+    fizzz: "sw5e.musicalinstruments.IZEi9N6YzWFBHpNh",
+    chindinkaluhorn: "sw5e.musicalinstruments.NgKMduBdltQQqgnC",
+    kloohorn: "sw5e.musicalinstruments.PfxeK6e5htdyzDEP",
+    xantha: "sw5e.musicalinstruments.WVSGXxzBoTUoPvi9",
+    slitherhorn: "sw5e.musicalinstruments.WZbBxDVRLynROWbf",
+    traz: "sw5e.musicalinstruments.XwLhLqUJMahD3fo6",
+    ommnibox: "sw5e.musicalinstruments.e9nNVlBmPvPD6cbU",
+    bandfill: "sw5e.musicalinstruments.ic6PBK7VxBLk24rZ",
+    flute: "sw5e.musicalinstruments.mumHDhvGww117xoq",
+    valahorn: "sw5e.musicalinstruments.sNnvwOZrUp5xJuHe",
+    drum: "sw5e.musicalinstruments.sryr7sQ5IeUny6cd",
+    fanfar: "sw5e.musicalinstruments.wASdyFsdQEJHhXeC"
 };
 
 /* -------------------------------------------- */
@@ -433,7 +430,8 @@ SW5E.abilityConsumptionTypes = {
     ammo: "SW5E.ConsumeAmmunition",
     attribute: "SW5E.ConsumeAttribute",
     material: "SW5E.ConsumeMaterial",
-    charges: "SW5E.ConsumeCharges"
+    charges: "SW5E.ConsumeCharges",
+    powerdice: "SW5E.PowerDiePl"
 };
 
 /* -------------------------------------------- */
@@ -529,10 +527,10 @@ SW5E.itemCapacityTypes = {
  * @enum {string}
  */
 SW5E.itemRarity = {
-    common: "SW5E.ItemRarityCommon",
-    uncommon: "SW5E.ItemRarityUncommon",
-    rare: "SW5E.ItemRarityRare",
-    veryRare: "SW5E.ItemRarityVeryRare",
+    standard: "SW5E.ItemRarityStandard",
+    premium: "SW5E.ItemRarityPremium",
+    prototype: "SW5E.ItemRarityPrototype",
+    advanced: "SW5E.ItemRarityAdvanced",
     legendary: "SW5E.ItemRarityLegendary",
     artifact: "SW5E.ItemRarityArtifact"
 };
@@ -563,6 +561,7 @@ SW5E.armorTypes = {
     medium: "SW5E.EquipmentMedium",
     heavy: "SW5E.EquipmentHeavy",
     natural: "SW5E.EquipmentNatural",
+    starship: "SW5E.EquipmentStarshipArmor",
     shield: "SW5E.EquipmentShield"
 };
 
@@ -573,14 +572,22 @@ SW5E.armorTypes = {
  * @enum {string}
  */
 SW5E.miscEquipmentTypes = {
+    clothing: "SW5E.EquipmentClothing",
+    trinket: "SW5E.EquipmentTrinket",
+    vehicle: "SW5E.EquipmentVehicle"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship specific equipment types that aren't armor.
+ * @enum {string}
+ */
+SW5E.ssEquipmentTypes = {
     hyper: "SW5E.EquipmentHyperdrive",
     powerc: "SW5E.EquipmentPowerCoupling",
     reactor: "SW5E.EquipmentReactor",
-    clothing: "SW5E.EquipmentClothing",
-    trinket: "SW5E.EquipmentTrinket",
-    ssarmor: "SW5E.EquipmentStarshipArmor",
-    ssshield: "SW5E.EquipmentStarshipShield",
-    vehicle: "SW5E.EquipmentVehicle"
+    ssshield: "SW5E.EquipmentStarshipShield"
 };
 
 /* -------------------------------------------- */
@@ -591,6 +598,7 @@ SW5E.miscEquipmentTypes = {
  */
 SW5E.equipmentTypes = {
     ...SW5E.miscEquipmentTypes,
+    ...SW5E.ssEquipmentTypes,
     ...SW5E.armorTypes
 };
 
@@ -650,6 +658,10 @@ SW5E.armorClasses = {
         label: "SW5E.ArmorClassEquipment",
         formula: "@attributes.ac.base + @abilities.dex.mod"
     },
+    starship: {
+        label: "SW5E.ArmorClassStarshipEquipment",
+        formula: "@attributes.ac.base + @abilities.dex.mod"
+    },
     mage: {
         label: "SW5E.ArmorClassMage",
         formula: "13 + @abilities.dex.mod"
@@ -688,6 +700,105 @@ SW5E.consumableTypes = {
     trinket: "SW5E.ConsumableTrinket",
     force: "SW5E.ConsumableForce",
     tech: "SW5E.ConsumableTech"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Enumerate the valid modification types which are recognized by the system
+ */
+SW5E.chassisTypes = {
+    none: "SW5E.ItemChassisNone",
+    chassis: "SW5E.ItemChassisChassis",
+    engineer: "SW5E.ItemChassisEngineer"
+};
+
+/**
+ * The number of base augment slots based on chassis rarity.
+ */
+SW5E.chassisAugmentSlotsByRarity = {
+    common: 0,
+    uncommon: 0,
+    rare: 1,
+    veryRare: 1,
+    legendary: 2,
+    artifact: 2
+};
+
+/**
+ * Enumerate the valid modification types which are recognized by the system
+ */
+SW5E.modificationTypesEquipment = {
+    armor: "SW5E.ModTypeArmor",
+    clothing: "SW5E.ModTypeClothing",
+    focusgenerator: "SW5E.ModTypeFocusgenerator",
+    shield: "SW5E.ModTypeShield",
+    wristpad: "SW5E.ModTypeWristpad"
+};
+SW5E.modificationTypesWeapon = {
+    blaster: "SW5E.ModTypeBlaster",
+    lightweapon: "SW5E.ModTypeLightweapon",
+    vibroweapon: "SW5E.ModTypeVibroweapon"
+};
+SW5E.modificationTypes = {
+    ...SW5E.modificationTypesEquipment,
+    ...SW5E.modificationTypesWeapon,
+    augment: "SW5E.ModTypeAugment"
+};
+
+/**
+ * Enumerate the valid modification slots which are recognized by the system
+ * @type {Object}
+ */
+SW5E.modificationSlots = {
+    armor: {
+        slot1: "SW5E.ModSlotOverlay",
+        slot2: "SW5E.ModSlotUnderlay",
+        slot3: "SW5E.ModSlotReinforcement",
+        slot4: "SW5E.ModSlotArmoring"
+    },
+    blaster: {
+        slot1: "SW5E.ModSlotTargeting",
+        slot2: "SW5E.ModSlotBarrel",
+        slot3: "SW5E.ModSlotCore",
+        slot4: "SW5E.ModSlotAttachment"
+    },
+    clothing: {
+        slot1: "SW5E.ModSlotWeave",
+        slot2: "SW5E.ModSlotInlay",
+        slot3: "SW5E.ModSlotPattern",
+        slot4: "SW5E.ModSlotStitching"
+    },
+    focusgenerator: {
+        slot1: "SW5E.ModSlotEmmiter",
+        slot2: "SW5E.ModSlotConductor",
+        slot3: "SW5E.ModSlotChannel",
+        slot4: "SW5E.ModSlotCycler"
+    },
+    lightweapon: {
+        slot1: "SW5E.ModSlotLens",
+        slot2: "SW5E.ModSlotCrystal",
+        slot3: "SW5E.ModSlotCell",
+        slot4: "SW5E.ModSlotHilt"
+    },
+    shield: {
+        slot1: "SW5E.ModSlotOverlay",
+        slot2: "SW5E.ModSlotUnderlay",
+        slot3: "SW5E.ModSlotReinforcement",
+        slot4: "SW5E.ModSlotShielding"
+    },
+    vibroweapon: {
+        slot1: "SW5E.ModSlotGrip",
+        slot2: "SW5E.ModSlotEdge",
+        slot3: "SW5E.ModSlotOscillator",
+        slot4: "SW5E.ModSlotGuard"
+    },
+    wristpad: {
+        slot1: "SW5E.ModSlotProcessor",
+        slot2: "SW5E.ModSlotMotherboard",
+        slot3: "SW5E.ModSlotAmplifier",
+        slot4: "SW5E.ModSlotDataport"
+    }
 };
 
 /* -------------------------------------------- */
@@ -869,10 +980,152 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12", "d20"];
 /* -------------------------------------------- */
 
 /**
+ * Default average roll for hit dice each hit die size for the values of `SW5E.hitDieTypes`.
+ * @enum {number}
+ */
+SW5E.hitDieAvg = {
+    d4: 3,
+    d6: 4,
+    d8: 5,
+    d10: 6,
+    d12: 7,
+    d20: 11
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the denominations of power dice which can apply to starships in the SW5E system
  * @type {string[]}
  */
-SW5E.powerDieTypes = [1, "d4", "d6", "d8", "d10", "d12"];
+SW5E.powerDieTypes = ["d1", "d4", "d6", "d8", "d10", "d12"];
+
+/**
+ * Starship power die slots
+ * @enum {string}
+ */
+SW5E.powerDieSlots = {
+    central: "SW5E.PowerDieSlotCentral",
+    comms: "SW5E.PowerDieSlotComms",
+    engines: "SW5E.PowerDieSlotEngines",
+    sensors: "SW5E.PowerDieSlotSensors",
+    shields: "SW5E.PowerDieSlotShields",
+    weapons: "SW5E.PowerDieSlotWeapons"
+};
+
+/**
+ * Starship power routing options
+ * @enum {string}
+ */
+SW5E.powerRoutingOpts = {
+    engines: "SW5E.PowerRoutingEngines",
+    shields: "SW5E.PowerRoutingShields",
+    weapons: "SW5E.PowerRoutingWeapons"
+};
+
+/**
+ * Starship power routing effects
+ * @enum {string}
+ */
+SW5E.powerRoutingEffects = {
+    engines: {
+        positive: "SW5E.PowerRoutingEnginesPositive",
+        neutral: "SW5E.PowerRoutingEnginesNeutral",
+        negative: "SW5E.PowerRoutingEnginesNegative"
+    },
+    shields: {
+        positive: "SW5E.PowerRoutingShieldsPositive",
+        neutral: "SW5E.PowerRoutingShieldsNeutral",
+        negative: "SW5E.PowerRoutingShieldsNegative"
+    },
+    weapons: {
+        positive: "SW5E.PowerRoutingWeaponsPositive",
+        neutral: "SW5E.PowerRoutingWeaponsNeutral",
+        negative: "SW5E.PowerRoutingWeaponsNegative"
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship modification system
+ * @enum {string}
+ */
+SW5E.ssModSystems = {
+    Engineering: "SW5E.ModSystemEngineering",
+    Operation: "SW5E.ModSystemOperation",
+    Suite: "SW5E.ModSystemSuite",
+    Universal: "SW5E.ModSystemUniversal",
+    Weapon: "SW5E.ModSystemWeapon"
+};
+
+/**
+ * Starship modification system base cost
+ * @enum {string}
+ */
+SW5E.ssModSystemsBaseCost = {
+    engineering: 3500,
+    operation: 3500,
+    suite: 5000,
+    universal: 4000,
+    weapon: 3000
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Enumerate the upgrade costs as they apply to starships in the SW5E system based on Tier.
+ * @type {number[]}
+ */
+
+SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
+
+/* -------------------------------------------- */
+
+/**
+ * Starship Deployment types
+ * @enum {string}
+ */
+
+SW5E.deploymentTypes = {
+    pilot: "SW5E.DeploymentTypePilot",
+    crew: "SW5E.DeploymentTypeCrew",
+    passenger: "SW5E.DeploymentTypePassenger"
+};
+
+/**
+ * Starship Deployment types plural
+ * @enum {string}
+ */
+
+SW5E.deploymentTypesPlural = {
+    pilot: "SW5E.DeploymentTypePilotPl",
+    crew: "SW5E.DeploymentTypeCrewPl",
+    passenger: "SW5E.DeploymentTypePassengerPl"
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Starship Deployable actor types
+ * @type {string[]}
+ */
+
+SW5E.deployableTypes = ["character", "npc"];
+
+/* -------------------------------------------- */
+
+/**
+ * Default equipments to be added on starship creation
+ */
+SW5E.defaultStarshipEquipment = [
+    "Compendium.sw5e.starshipequipment.oqB8RltTDjHnaS1Y",
+    "Compendium.sw5e.starshipequipment.jk7zL3cqhufDKsuh",
+    "Compendium.sw5e.starshipequipment.InvkgxmcbufkjOUR",
+    "Compendium.sw5e.starshiparmor.RvtLP3FgKLBYBHSf",
+    "Compendium.sw5e.starshiparmor.aG6mKPerYCFmkI00",
+    "Compendium.sw5e.starships.6liD1m4hqKSeS5sp"
+];
 
 /* -------------------------------------------- */
 
@@ -918,7 +1171,7 @@ SW5E.skills = {
 
 /**
  * The set of starship skills which can be trained in SW5e
- * @type {Object}
+ * @enum {string}
  */
 SW5E.starshipSkills = {
     ast: "SW5E.StarshipSkillAst",
@@ -926,7 +1179,7 @@ SW5E.starshipSkills = {
     dat: "SW5E.StarshipSkillDat",
     hid: "SW5E.StarshipSkillHid",
     imp: "SW5E.StarshipSkillImp",
-    int: "SW5E.StarshipSkillInt",
+    inf: "SW5E.StarshipSkillInf",
     man: "SW5E.StarshipSkillMan",
     men: "SW5E.StarshipSkillMen",
     pat: "SW5E.StarshipSkillPat",
@@ -940,7 +1193,52 @@ SW5E.starshipSkills = {
 /* -------------------------------------------- */
 
 /**
+ * The fields of the details tab of a starship type
+ * @enum {{
+ *   field: string,
+ *   name: string,
+ *   [select]: string
+ * }}
+ */
+SW5E.starshipTypeDetails = {
+    tier: {name: "SW5E.StarshipTier"},
+    hullDice: {
+        name: "SW5E.HullDice",
+        select: "hitDieTypes"
+    },
+    hullDiceStart: {name: "SW5E.HullDiceStart"},
+    hullDiceUsed: {name: "SW5E.HullDiceUsed"},
+    shldDice: {
+        name: "SW5E.ShieldDice",
+        select: "hitDieTypes"
+    },
+    shldDiceStart: {name: "SW5E.ShieldDiceStart"},
+    shldDiceUsed: {name: "SW5E.ShieldDiceUsed"},
+    buildBaseCost: {name: "SW5E.StockCost"},
+    buildMinWorkforce: {name: "SW5E.MinConstWorkforce"},
+    upgrdCostMult: {name: "SW5E.UpgradeCostMult"},
+    upgrdMinWorkforce: {name: "SW5E.UpgradeMinWorkforce"},
+    baseSpaceSpeed: {name: "SW5E.BaseSpaceSpeed"},
+    baseTurnSpeed: {name: "SW5E.BaseTurnSpeed"},
+    crewMinWorkforce: {name: "SW5E.MinCrew"},
+    modBaseCap: {name: "SW5E.ModCap"},
+    modMaxSuitesBase: {name: "SW5E.ModMaxSuitesBase"},
+    modMaxSuitesMult: {name: "SW5E.ModMaxSuitesMult"},
+    modCostMult: {name: "SW5E.ModCostMult"},
+    modMinWorkforce: {name: "SW5E.ModMinWorkforce"},
+    hardpointMult: {name: "SW5E.HardpointStrMult"},
+    equipCostMult: {name: "SW5E.EquipCostMult"},
+    equipMinWorkforce: {name: "SW5E.EquipMinWorkforce"},
+    cargoCap: {name: "SW5E.CargoCap"},
+    fuelCost: {name: "SW5E.FuelCostPerUnit"},
+    fuelCap: {name: "SW5E.FuelCapacity"},
+    foodCap: {name: "SW5E.FoodCap"}
+};
+
+/* -------------------------------------------- */
+/**
  * Various different ways a power can be prepared.
+ * @enum {string}
  */
 SW5E.powerPreparationModes = {
     prepared: "SW5E.PowerPrepPrepared",
@@ -971,6 +1269,7 @@ SW5E.powerProgression = {
 
 /**
  * The max number of known powers available to each class per level
+ * @type {number[]}  progresstionType[classLevel]
  */
 
 SW5E.powersKnown = {
@@ -984,6 +1283,7 @@ SW5E.powersKnown = {
 
 /**
  * The max number of powers cast for each power level per long rest
+ * @type {number[]} progresstionType[powerLevel]
  */
 
 SW5E.powerLimit = {
@@ -999,6 +1299,7 @@ SW5E.powerLimit = {
 
 /**
  * The max level of a known/overpowered power available to each class per level
+ * @type {number[]} progresstionType[classLevel]
  */
 
 SW5E.powerMaxLevel = {
@@ -1015,6 +1316,7 @@ SW5E.powerMaxLevel = {
 
 /**
  * The number of base force/tech points available to each class per level
+ * @type {number[]} progresstionType[classLevel]
  */
 
 SW5E.powerPoints = {
@@ -1041,20 +1343,10 @@ SW5E.powerScalingModes = {
 /* -------------------------------------------- */
 
 /**
- * The set of types which a weapon item can take.
+ * The set of types which a starship weapon item can take.
  * @enum {string}
  */
-SW5E.weaponTypes = {
-    "ammo": "SW5E.WeaponAmmo",
-    "improv": "SW5E.WeaponImprov",
-    "martialVW": "SW5E.WeaponMartialVW",
-    "martialB": "SW5E.WeaponMartialB",
-    "martialLW": "SW5E.WeaponMartialLW",
-    "natural": "SW5E.WeaponNatural",
-    "siege": "SW5E.WeaponSiege",
-    "simpleVW": "SW5E.WeaponSimpleVW",
-    "simpleB": "SW5E.WeaponSimpleB",
-    "simpleLW": "SW5E.WeaponSimpleLW",
+SW5E.weaponStarshipTypes = {
     "primary (starship)": "SW5E.WeaponPrimarySW",
     "secondary (starship)": "SW5E.WeaponSecondarySW",
     "tertiary (starship)": "SW5E.WeaponTertiarySW",
@@ -1064,91 +1356,562 @@ SW5E.weaponTypes = {
 /* -------------------------------------------- */
 
 /**
- * The set of weapon property flags which can exist on armor.
+ * The set of types which a weapon item can take.
  * @enum {string}
  */
-SW5E.armorPropertiesTypes = {
-    Absorptive: "SW5E.ArmorProperAbsorptive",
-    Agile: "SW5E.ArmorProperAgile",
-    Anchor: "SW5E.ArmorProperAnchor",
-    Avoidant: "SW5E.ArmorProperAvoidant",
-    Barbed: "SW5E.ArmorProperBarbed",
-    Bulky: "SW5E.ArmorProperBulky",
-    Charging: "SW5E.ArmorProperCharging",
-    Concealing: "SW5E.ArmorProperConcealing",
-    Cumbersome: "SW5E.ArmorProperCumbersome",
-    Gauntleted: "SW5E.ArmorProperGauntleted",
-    Imbalanced: "SW5E.ArmorProperImbalanced",
-    Impermeable: "SW5E.ArmorProperImpermeable",
-    Insulated: "SW5E.ArmorProperInsulated",
-    Interlocking: "SW5E.ArmorProperInterlocking",
-    Lambent: "SW5E.ArmorProperLambent",
-    Lightweight: "SW5E.ArmorProperLightweight",
-    Magnetic: "SW5E.ArmorProperMagnetic",
-    Obscured: "SW5E.ArmorProperObscured",
-    Obtrusive: "SW5E.ArmorProperObtrusive",
-    Powered: "SW5E.ArmorProperPowered",
-    Reactive: "SW5E.ArmorProperReactive",
-    Regulated: "SW5E.ArmorProperRegulated",
-    Reinforced: "SW5E.ArmorProperReinforced",
-    Responsive: "SW5E.ArmorProperResponsive",
-    Rigid: "SW5E.ArmorProperRigid",
-    Silent: "SW5E.ArmorProperSilent",
-    Spiked: "SW5E.ArmorProperSpiked",
-    Strength: "SW5E.ArmorProperStrength",
-    Steadfast: "SW5E.ArmorProperSteadfast",
-    Versatile: "SW5E.ArmorProperVersatile"
+SW5E.weaponTypes = {
+    ammo: "SW5E.WeaponAmmo",
+    improv: "SW5E.WeaponImprov",
+    martialVW: "SW5E.WeaponMartialVW",
+    martialB: "SW5E.WeaponMartialB",
+    martialLW: "SW5E.WeaponMartialLW",
+    natural: "SW5E.WeaponNatural",
+    siege: "SW5E.WeaponSiege",
+    simpleVW: "SW5E.WeaponSimpleVW",
+    simpleB: "SW5E.WeaponSimpleB",
+    simpleLW: "SW5E.WeaponSimpleLW",
+    ...SW5E.weaponStarshipTypes
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist on armor.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ * }}
+ */
+SW5E.armorProperties = {
+    Absorptive: {
+        name: "SW5E.ArmorProperAbsorptive",
+        full: "SW5E.ArmorProperAbsorptiveFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Agile: {
+        name: "SW5E.ArmorProperAgile",
+        full: "SW5E.ArmorProperAgileFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Anchor: {
+        name: "SW5E.ArmorProperAnchor",
+        full: "SW5E.ArmorProperAnchorFull",
+        type: "Boolean"
+    },
+    Avoidant: {
+        name: "SW5E.ArmorProperAvoidant",
+        full: "SW5E.ArmorProperAvoidantFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Barbed: {
+        name: "SW5E.ArmorProperBarbed",
+        full: "SW5E.ArmorProperBarbedFull",
+        type: "Boolean"
+    },
+    Bulky: {
+        name: "SW5E.ArmorProperBulky",
+        full: "SW5E.ArmorProperBulkyFull",
+        type: "Boolean"
+    },
+    Charging: {
+        name: "SW5E.ArmorProperCharging",
+        full: "SW5E.ArmorProperChargingFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Concealing: {
+        name: "SW5E.ArmorProperConcealing",
+        full: "SW5E.ArmorProperConcealingFull",
+        type: "Boolean"
+    },
+    Cumbersome: {
+        name: "SW5E.ArmorProperCumbersome",
+        full: "SW5E.ArmorProperCumbersomeFull",
+        type: "Boolean"
+    },
+    Gauntleted: {
+        name: "SW5E.ArmorProperGauntleted",
+        full: "SW5E.ArmorProperGauntletedFull",
+        type: "Boolean"
+    },
+    Imbalanced: {
+        name: "SW5E.ArmorProperImbalanced",
+        full: "SW5E.ArmorProperImbalancedFull",
+        type: "Boolean"
+    },
+    Impermeable: {
+        name: "SW5E.ArmorProperImpermeable",
+        full: "SW5E.ArmorProperImpermeableFull",
+        type: "Boolean"
+    },
+    Insulated: {
+        name: "SW5E.ArmorProperInsulated",
+        full: "SW5E.ArmorProperInsulatedFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Interlocking: {
+        name: "SW5E.ArmorProperInterlocking",
+        full: "SW5E.ArmorProperInterlockingFull",
+        type: "Boolean"
+    },
+    Lambent: {
+        name: "SW5E.ArmorProperLambent",
+        full: "SW5E.ArmorProperLambentFull",
+        type: "Boolean"
+    },
+    Lightweight: {
+        name: "SW5E.ArmorProperLightweight",
+        full: "SW5E.ArmorProperLightweightFull",
+        type: "Boolean"
+    },
+    Magnetic: {
+        name: "SW5E.ArmorProperMagnetic",
+        full: "SW5E.ArmorProperMagneticFull",
+        type: "Number"
+    },
+    Obscured: {
+        name: "SW5E.ArmorProperObscured",
+        full: "SW5E.ArmorProperObscuredFull",
+        type: "Boolean"
+    },
+    Obtrusive: {
+        name: "SW5E.ArmorProperObtrusive",
+        full: "SW5E.ArmorProperObtrusiveFull",
+        type: "Boolean"
+    },
+    Powered: {
+        name: "SW5E.ArmorProperPowered",
+        full: "SW5E.ArmorProperPoweredFull",
+        type: "Number",
+        min: 0
+    },
+    Reactive: {
+        name: "SW5E.ArmorProperReactive",
+        full: "SW5E.ArmorProperReactiveFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Regulated: {
+        name: "SW5E.ArmorProperRegulated",
+        full: "SW5E.ArmorProperRegulatedFull",
+        type: "Boolean"
+    },
+    Reinforced: {
+        name: "SW5E.ArmorProperReinforced",
+        full: "SW5E.ArmorProperReinforcedFull",
+        type: "Boolean"
+    },
+    Responsive: {
+        name: "SW5E.ArmorProperResponsive",
+        full: "SW5E.ArmorProperResponsiveFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    Rigid: {
+        name: "SW5E.ArmorProperRigid",
+        full: "SW5E.ArmorProperRigidFull",
+        type: "Boolean"
+    },
+    Silent: {
+        name: "SW5E.ArmorProperSilent",
+        full: "SW5E.ArmorProperSilentFull",
+        type: "Boolean"
+    },
+    Spiked: {
+        name: "SW5E.ArmorProperSpiked",
+        full: "SW5E.ArmorProperSpikedFull",
+        type: "Boolean"
+    },
+    Strength: {
+        name: "SW5E.ArmorProperStrength",
+        full: "SW5E.ArmorProperStrengthFull",
+        type: "Number",
+        min: 0
+    },
+    Steadfast: {
+        name: "SW5E.ArmorProperSteadfast",
+        full: "SW5E.ArmorProperSteadfastFull",
+        type: "Boolean"
+    },
+    Versatile: {
+        name: "SW5E.ArmorProperVersatile",
+        full: "SW5E.ArmorProperVersatileFull",
+        type: "Number"
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist on any weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ * }}
+ */
+SW5E.weaponCommonProperties = {
+    amm: {
+        name: "SW5E.WeaponPropertiesAmm",
+        full: "SW5E.WeaponPropertiesAmmFull",
+        type: "Boolean"
+    },
+    aut: {
+        name: "SW5E.WeaponPropertiesAut",
+        full: "SW5E.WeaponPropertiesAutFull",
+        type: "Boolean"
+    },
+    bur: {
+        name: "SW5E.WeaponPropertiesBur",
+        full: "SW5E.WeaponPropertiesBurFull",
+        type: "Number",
+        min: 2
+    },
+    dir: {
+        name: "SW5E.WeaponPropertiesDir",
+        full: "SW5E.WeaponPropertiesDirFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    hvy: {
+        name: "SW5E.WeaponPropertiesHvy",
+        full: "SW5E.WeaponPropertiesHvyFull",
+        type: "Boolean"
+    },
+    hid: {
+        name: "SW5E.WeaponPropertiesHid",
+        full: "SW5E.WeaponPropertiesHidFull",
+        type: "Boolean"
+    },
+    ken: {
+        name: "SW5E.WeaponPropertiesKen",
+        full: "SW5E.WeaponPropertiesKenFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    pic: {
+        name: "SW5E.WeaponPropertiesPic",
+        full: "SW5E.WeaponPropertiesPicFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    ran: {
+        name: "SW5E.WeaponPropertiesRan",
+        full: "SW5E.WeaponPropertiesRanFull",
+        type: "Boolean"
+    },
+    rap: {
+        name: "SW5E.WeaponPropertiesRap",
+        full: "SW5E.WeaponPropertiesRapFull",
+        type: "Number",
+        min: 2
+    },
+    rel: {
+        name: "SW5E.WeaponPropertiesRel",
+        full: "SW5E.WeaponPropertiesRelFull",
+        type: "Number",
+        min: 0
+    },
+    spc: {
+        name: "SW5E.WeaponPropertiesSpc",
+        full: "SW5E.WeaponPropertiesSpcFull",
+        type: "Boolean"
+    },
+    vic: {
+        name: "SW5E.WeaponPropertiesVic",
+        full: "SW5E.WeaponPropertiesVicFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist only on a character (non-starship) weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponCharacterProperties = {
+    bru: {
+        name: "SW5E.WeaponPropertiesBru",
+        full: "SW5E.WeaponPropertiesBruFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    def: {
+        name: "SW5E.WeaponPropertiesDef",
+        full: "SW5E.WeaponPropertiesDefFull",
+        type: "Number",
+        min: 0,
+        max: 3
+    },
+    dex: {
+        name: "SW5E.WeaponPropertiesDex",
+        full: "SW5E.WeaponPropertiesDexFull",
+        type: "Number",
+        min: 0
+    },
+    drm: {
+        name: "SW5E.WeaponPropertiesDrm",
+        full: "SW5E.WeaponPropertiesDrmFull",
+        type: "Boolean"
+    },
+    dgd: {
+        name: "SW5E.WeaponPropertiesDgd",
+        full: "SW5E.WeaponPropertiesDgdFull",
+        type: "Boolean"
+    },
+    dis: {
+        name: "SW5E.WeaponPropertiesDis",
+        full: "SW5E.WeaponPropertiesDisFull",
+        type: "Number",
+        min: 0
+    },
+    dpt: {
+        name: "SW5E.WeaponPropertiesDpt",
+        full: "SW5E.WeaponPropertiesDptFull",
+        type: "Boolean"
+    },
+    dou: {
+        name: "SW5E.WeaponPropertiesDou",
+        full: "SW5E.WeaponPropertiesDouFull",
+        type: "Boolean"
+    },
+    fin: {
+        name: "SW5E.WeaponPropertiesFin",
+        full: "SW5E.WeaponPropertiesFinFull",
+        type: "Boolean"
+    },
+    fix: {
+        name: "SW5E.WeaponPropertiesFix",
+        full: "SW5E.WeaponPropertiesFixFull",
+        type: "Boolean"
+    },
+    lgt: {
+        name: "SW5E.WeaponPropertiesLgt",
+        full: "SW5E.WeaponPropertiesLgtFull",
+        type: "Boolean"
+    },
+    lum: {
+        name: "SW5E.WeaponPropertiesLum",
+        full: "SW5E.WeaponPropertiesLumFull",
+        type: "Boolean"
+    },
+    mig: {
+        name: "SW5E.WeaponPropertiesMig",
+        full: "SW5E.WeaponPropertiesMigFull",
+        type: "Boolean"
+    },
+    neu: {
+        name: "SW5E.WeaponPropertiesNeu",
+        full: "SW5E.WeaponPropertiesNeuFull",
+        type: "Number",
+        min: 0
+    },
+    rch: {
+        name: "SW5E.WeaponPropertiesRch",
+        full: "SW5E.WeaponPropertiesRchFull",
+        type: "Boolean"
+    },
+    ret: {
+        name: "SW5E.WeaponPropertiesRet",
+        full: "SW5E.WeaponPropertiesRetFull",
+        type: "Boolean"
+    },
+    shk: {
+        name: "SW5E.WeaponPropertiesShk",
+        full: "SW5E.WeaponPropertiesShkFull",
+        type: "Number",
+        min: 0
+    },
+    sil: {
+        name: "SW5E.WeaponPropertiesSil",
+        full: "SW5E.WeaponPropertiesSilFull",
+        type: "Boolean"
+    },
+    son: {
+        name: "SW5E.WeaponPropertiesSon",
+        full: "SW5E.WeaponPropertiesSonFull",
+        type: "Number",
+        min: 0
+    },
+    str: {
+        name: "SW5E.WeaponPropertiesStr",
+        full: "SW5E.WeaponPropertiesStrFull",
+        type: "Number",
+        min: 0
+    },
+    swi: {
+        name: "SW5E.WeaponPropertiesSwi",
+        full: "SW5E.WeaponPropertiesSwiFull",
+        type: "Boolean"
+    },
+    thr: {
+        name: "SW5E.WeaponPropertiesThr",
+        full: "SW5E.WeaponPropertiesThrFull",
+        type: "Boolean"
+    },
+    two: {
+        name: "SW5E.WeaponPropertiesTwo",
+        full: "SW5E.WeaponPropertiesTwoFull",
+        type: "Boolean"
+    },
+    ver: {
+        name: "SW5E.WeaponPropertiesVer",
+        full: "SW5E.WeaponPropertiesVerFull",
+        type: "Boolean"
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of weapon property flags which can exist only on a starship weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponStarshipProperties = {
+    con: {
+        name: "SW5E.WeaponPropertiesCon",
+        full: "SW5E.WeaponPropertiesConFull",
+        type: "Number",
+        min: 0
+    },
+    exp: {
+        name: "SW5E.WeaponPropertiesExp",
+        full: "SW5E.WeaponPropertiesExpFull",
+        type: "Boolean"
+    },
+    foc: {
+        name: "SW5E.WeaponPropertiesFoc",
+        full: "SW5E.WeaponPropertiesFocFull",
+        type: "Boolean"
+    },
+    hom: {
+        name: "SW5E.WeaponPropertiesHom",
+        full: "SW5E.WeaponPropertiesHomFull",
+        type: "Boolean"
+    },
+    ion: {
+        name: "SW5E.WeaponPropertiesIon",
+        full: "SW5E.WeaponPropertiesIonFull",
+        type: "Boolean"
+    },
+    mlt: {
+        name: "SW5E.WeaponPropertiesMlt",
+        full: "SW5E.WeaponPropertiesMltFull",
+        type: "Boolean"
+    },
+    ovr: {
+        name: "SW5E.WeaponPropertiesOvr",
+        full: "SW5E.WeaponPropertiesOvrFull",
+        type: "Number",
+        min: 0
+    },
+    pow: {
+        name: "SW5E.WeaponPropertiesPow",
+        full: "SW5E.WeaponPropertiesPowFull",
+        type: "Boolean"
+    },
+    sat: {
+        name: "SW5E.WeaponPropertiesSat",
+        full: "SW5E.WeaponPropertiesSatFull",
+        type: "Boolean"
+    },
+    zon: {
+        name: "SW5E.WeaponPropertiesZon",
+        full: "SW5E.WeaponPropertiesZonFull",
+        type: "Boolean"
+    }
 };
 
 /* -------------------------------------------- */
 
 /**
  * The set of weapon property flags which can exist on a weapon.
- * @enum {string}
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
  */
 SW5E.weaponProperties = {
-    amm: "SW5E.WeaponPropertiesAmm",
-    aut: "SW5E.WeaponPropertiesAut",
-    bur: "SW5E.WeaponPropertiesBur",
-    con: "SW5E.WeaponPropertiesCon",
-    def: "SW5E.WeaponPropertiesDef",
-    dex: "SW5E.WeaponPropertiesDex",
-    dir: "SW5E.WeaponPropertiesDir",
-    drm: "SW5E.WeaponPropertiesDrm",
-    dgd: "SW5E.WeaponPropertiesDgd",
-    dis: "SW5E.WeaponPropertiesDis",
-    dpt: "SW5E.WeaponPropertiesDpt",
-    dou: "SW5E.WeaponPropertiesDou",
-    exp: "SW5E.WeaponPropertiesExp",
-    fin: "SW5E.WeaponPropertiesFin",
-    fix: "SW5E.WeaponPropertiesFix",
-    foc: "SW5E.WeaponPropertiesFoc",
-    hvy: "SW5E.WeaponPropertiesHvy",
-    hid: "SW5E.WeaponPropertiesHid",
-    hom: "SW5E.WeaponPropertiesHom",
-    ion: "SW5E.WeaponPropertiesIon",
-    ken: "SW5E.WeaponPropertiesKen",
-    lgt: "SW5E.WeaponPropertiesLgt",
-    lum: "SW5E.WeaponPropertiesLum",
-    mlt: "SW5E.WeaponPropertiesMlt",
-    mig: "SW5E.WeaponPropertiesMig",
-    ovr: "SW5E.WeaponPropertiesOvr",
-    pic: "SW5E.WeaponPropertiesPic",
-    pow: "SW5E.WeaponPropertiesPow",
-    rap: "SW5E.WeaponPropertiesRap",
-    rch: "SW5E.WeaponPropertiesRch",
-    rel: "SW5E.WeaponPropertiesRel",
-    ret: "SW5E.WeaponPropertiesRet",
-    sat: "SW5E.WeaponPropertiesSat",
-    shk: "SW5E.WeaponPropertiesShk",
-    sil: "SW5E.WeaponPropertiesSil",
-    spc: "SW5E.WeaponPropertiesSpc",
-    str: "SW5E.WeaponPropertiesStr",
-    thr: "SW5E.WeaponPropertiesThr",
-    two: "SW5E.WeaponPropertiesTwo",
-    ver: "SW5E.WeaponPropertiesVer",
-    vic: "SW5E.WeaponPropertiesVic",
-    zon: "SW5E.WeaponPropertiesZon"
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponCharacterProperties,
+    ...SW5E.weaponStarshipProperties
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The full set of weapon property flags which can exist on a character (non-starship) weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponFullCharacterProperties = {
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponCharacterProperties
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The full set of weapon property flags which can exist on a starship weapon.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.weaponFullStarshipProperties = {
+    ...SW5E.weaponCommonProperties,
+    ...SW5E.weaponStarshipProperties
 };
 
 /* -------------------------------------------- */
@@ -1208,7 +1971,7 @@ SW5E.powerLevels = {
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /*
-/**
+// Power Scroll Compendium UUIDs
  * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
  * @enum {string}
  
@@ -1294,7 +2057,10 @@ SW5E.trackableAttributes = [
     "attributes.init.value",
     "attributes.movement",
     "attributes.senses",
-    "attributes.powerdc",
+    "attributes.powerForceLightDC",
+    "attributes.powerForceDarkDC",
+    "attributes.powerForceUnivDC",
+    "attributes.powerTechDC",
     "attributes.powerLevel",
     "details.cr",
     "details.powerLevel",
@@ -1481,6 +2247,15 @@ SW5E.CHARACTER_EXP_LEVELS = [
 SW5E.CR_EXP_LEVELS = [
     10, 200, 450, 700, 1100, 1800, 2300, 2900, 3900, 5000, 5900, 7200, 8400, 10000, 11500, 13000, 15000, 18000, 20000,
     22000, 25000, 33000, 41000, 50000, 62000, 75000, 90000, 105000, 120000, 135000, 155000
+];
+
+/**
+ * Rank Level Prestige Requirements.
+ * @type {number[]}
+ */
+SW5E.CHARACTER_RANK_LEVELS = [
+    0, 1, 5, 20, 50, 100, 200, 350, 550, 800, 1100, 1450, 1850, 2300, 2800, 3350, 3950, 4600, 5300, 6050, 6850, 7700,
+    8600, 9550, 10550, 11600, 12700, 13850, 15050, 16300, 17600
 ];
 
 /**

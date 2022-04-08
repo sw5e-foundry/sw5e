@@ -30,7 +30,9 @@
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+        {{#if isCharacter }}
         <li class="filter-item" data-filter="equipped">{{localize "SW5E.Equipped"}}</li>
+        {{/if}}
     </ul>
 
     <div class="group-list-header group-grid-inventory">
@@ -95,9 +97,11 @@
 
                     {{#if ../../owner}}
                     <div class="item-detail item-controls">
+                        {{#if item.toggleTitle}}
                         <a class="item-control item-toggle {{item.toggleClass}}" title='{{item.toggleTitle}}'>
                             <i class="fas fa-shield-alt"></i>
                         </a>
+                        {{/if}}
                         <a class="item-control item-edit" title='{{localize "SW5E.ItemEdit"}}'><i
                                 class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title='{{localize "SW5E.ItemDelete"}}'><i

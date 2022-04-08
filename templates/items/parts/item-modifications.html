@@ -1,0 +1,68 @@
+<h3 class="form-header">{{ localize "SW5E.ItemModificationPl" }}</h3>
+
+{{!-- Chassis Type --}}
+<div class="form-group">
+    <label>{{ localize "SW5E.ItemChassisType" }}</label>
+    <select name="data.modifications.chassisType">
+        {{selectOptions config.chassisTypes selected=data.modifications.chassisType localize=true}}
+    </select>
+</div>
+<div class="form-group">
+    <label>{{ localize "SW5E.ItemChassisAugmentCount" }}</label>
+    <input type="number" name="data.modifications.augmentSlots" value="{{data.modifications.augmentSlots}}" data-dType="Number"/>
+</div>
+
+{{!-- Modification Slots --}}
+{{#unless (eq data.modifications.chassisType "none")}}
+    <h4>{{ localize "SW5E.ItemModificationSlotPl" }}</h4>
+    <ol class="items-list">
+        {{#each config.modSlots as |name prop|}}
+        {{#with (lookup ../data.modifications.mods prop) as |mod| }}
+        <li class="modification{{#if (or @root.data.modsdisabled mod.disabled)}} disabled{{/if}}" data-modification-type="mod" data-modification-slot="{{prop}}">
+            <div class="modification-slot">
+                <strong>{{ localize name }}</strong>
+            </div>
+            <div class="modification-name">
+                {{contentLink mod.uuid (localize "SW5E.DragModification")}}
+            </div>
+            <div class="modification-controls">
+                {{#if mod.uuid}}
+                    <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+                        <i class="fas {{#if mod.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                    </a>
+                    <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                {{/if}}
+            </div>
+        </li>
+        {{/with}}
+        {{/each}}
+    </ol>
+{{/unless}}
+
+{{#if (gt data.modifications.augmentSlots 0)}}
+<h4>{{ localize "SW5E.ItemAugmentPl" }}</h4>
+<ol class="items-list">
+    {{#each data.modifications.augments as | augment |}}
+    {{#unless augment.hidden}}
+    <li class="modification{{#if (or @root.data.modsdisabled augment.disabled)}} disabled{{/if}}" data-modification-type="augment" data-augment-index="{{@index}}">
+        <div></div>
+        <div class="modification-name">
+            {{contentLink augment.uuid (localize "SW5E.DragModification")}}
+        </div>
+        <div class="modification-controls">
+            {{#if augment.uuid}}
+                <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+                    <i class="fas {{#if augment.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
+                </a>
+                <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+                    <i class="fas fa-trash"></i>
+                </a>
+            {{/if}}
+        </div>
+    </li>
+    {{/unless}}
+    {{/each}}
+</ol>
+{{/if}}

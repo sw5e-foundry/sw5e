@@ -29,9 +29,12 @@ export default class ActorSheet5e extends ActorSheet {
          */
         this._filters = {
             inventory: new Set(),
+            ssactions: new Set(),
             forcePowerbook: new Set(),
             techPowerbook: new Set(),
             features: new Set(),
+            ssfeatures: new Set(),
+            ssequipment: new Set(),
             effects: new Set()
         };
     }
@@ -43,7 +46,9 @@ export default class ActorSheet5e extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             scrollY: [
                 ".inventory .group-list",
+                ".cargo .group-list",
                 ".features .group-list",
+                ".ssfeatures .group-list",
                 ".force-powerbook .group-list",
                 ".tech-powerbook .group-list",
                 ".effects .effects-list"
@@ -95,6 +100,9 @@ export default class ActorSheet5e extends ActorSheet {
         data.actor = actorData;
         data.data = actorData.data;
 
+        // Check for Starship Shield Depletion
+        if (data.isStarship) data.isShieldDepleted = data.data.attributes.shld.depleted;
+
         // Owned Items
         data.items = actorData.items;
         for (let i of data.items) {
@@ -138,8 +146,8 @@ export default class ActorSheet5e extends ActorSheet {
                     skl.label = CONFIG.SW5E.starshipSkills[s];
                 } else {
                     skl.label = CONFIG.SW5E.skills[s];
-                    skl.baseValue = source.skills[s].value;
                 }
+                skl.baseValue = source.skills[s]?.value;
             }
         }
 
@@ -402,7 +410,7 @@ export default class ActorSheet5e extends ActorSheet {
      * Insert a power into the powerbook object when rendering the character sheet.
      * @param {object} data      Copy of the Actor data being prepared for display.
      * @param {object[]} powers  Powers to be included in the powerbook.
-     * @param {string}  school  The school of the powerbook being prepared.
+     * @param {string} school    The school of the powerbook being prepared.
      * @returns {object[]}       Powerbook sections in the proper order.
      * @private
      */
@@ -561,7 +569,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /** @inheritdoc */
     activateListeners(html) {
@@ -608,6 +616,10 @@ export default class ActorSheet5e extends ActorSheet {
             html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
             html.find(".increment-class-level").click(this._onIncrementClassLevel.bind(this));
             html.find(".decrement-class-level").click(this._onDecrementClassLevel.bind(this));
+            html.find(".increment-deployment-rank").click(this._onIncrementDeploymentRank.bind(this));
+            html.find(".decrement-deployment-rank").click(this._onDecrementDeploymentRank.bind(this));
+            html.find(".increment-starship-tier").click(this._onIncrementStarshipTier.bind(this));
+            html.find(".decrement-starship-tier").click(this._onDecrementStarshipTier.bind(this));
 
             // Active Effect management
             html.find(".effect-control").click((ev) => ActiveEffect5e.onManageActiveEffect(ev, this.actor));
@@ -650,10 +662,6 @@ export default class ActorSheet5e extends ActorSheet {
             if (set.has(li.dataset.filter)) li.classList.add("active");
         }
     }
-
-    /* -------------------------------------------- */
-    /*  Event Listeners and Handlers                */
-    /* -------------------------------------------- */
 
     /**
      * Handle input changes to numeric form fields, allowing them to accept delta-typed inputs
@@ -751,7 +759,7 @@ export default class ActorSheet5e extends ActorSheet {
         let sourceActor = null;
         if (data.pack) {
             const pack = game.packs.find((p) => p.collection === data.pack);
-            sourceActor = await pack.getEntity(data.id);
+            sourceActor = await pack.getDocument(data.id);
         } else {
             sourceActor = game.actors.get(data.id);
         }
@@ -1089,6 +1097,200 @@ export default class ActorSheet5e extends ActorSheet {
         actor.updateEmbeddedDocuments("Item", [update]);
     }
 
+    /**
+     * Handle incrementing deployment rank on the actor sheet
+     * @param {Event} event   The originating click event
+     * @private
+     */
+
+    async _onIncrementDeploymentRank(event) {
+        event.preventDefault();
+
+        const div = event.currentTarget.closest(".character");
+        const li = event.currentTarget.closest("li");
+
+        const actorId = div.id.split("-")[1];
+        const itemId = li.dataset.itemId;
+
+        const actor = game.actors.get(actorId);
+        const item = actor.items.get(itemId);
+
+        let rank = item.data.data.rank;
+        const update = {_id: item.data._id, data: {rank: rank + 1}};
+
+        actor.updateEmbeddedDocuments("Item", [update]);
+
+        const rankTotal = actor.data.data.attributes.rank.total;
+        let rankDeployment = 0;
+
+        switch (item.data.name) {
+            case "Coordinator":
+                rankDeployment = actor.data.data.attributes.rank.coord;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.coord": rankDeployment + 1
+                });
+                break;
+            case "Gunner":
+                rankDeployment = actor.data.data.attributes.rank.gunner;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.gunner": rankDeployment + 1
+                });
+                break;
+            case "Mechanic":
+                rankDeployment = actor.data.data.attributes.rank.mechanic;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.mechanic": rankDeployment + 1
+                });
+                break;
+            case "Operator":
+                rankDeployment = actor.data.data.attributes.rank.operator;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.operator": rankDeployment + 1
+                });
+                break;
+            case "Pilot":
+                rankDeployment = actor.data.data.attributes.rank.pilot;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.pilot": rankDeployment + 1
+                });
+                break;
+            case "Technician":
+                rankDeployment = actor.data.data.attributes.rank.technician;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal + 1,
+                    "data.attributes.rank.technician": rankDeployment + 1
+                });
+                break;
+        }
+    }
+
+    /**
+     * Handle decrementing deployment rank on the actor sheet
+     * @param {Event} event   The originating click event
+     * @private
+     */
+
+    async _onDecrementDeploymentRank(event) {
+        event.preventDefault();
+
+        const div = event.currentTarget.closest(".character");
+        const li = event.currentTarget.closest("li");
+
+        const actorId = div.id.split("-")[1];
+        const itemId = li.dataset.itemId;
+
+        const actor = game.actors.get(actorId);
+        const item = actor.items.get(itemId);
+
+        let rank = item.data.data.rank;
+        const update = {_id: item.data._id, data: {rank: rank - 1}};
+
+        actor.updateEmbeddedDocuments("Item", [update]);
+
+        const rankTotal = actor.data.data.attributes.rank.total;
+        let rankDeployment = 0;
+
+        switch (item.data.name) {
+            case "Coordinator":
+                rankDeployment = actor.data.data.attributes.rank.coord;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.coord": rankDeployment - 1
+                });
+                break;
+            case "Gunner":
+                rankDeployment = actor.data.data.attributes.rank.gunner;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.gunner": rankDeployment - 1
+                });
+                break;
+            case "Mechanic":
+                rankDeployment = actor.data.data.attributes.rank.mechanic;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.mechanic": rankDeployment - 1
+                });
+                break;
+            case "Operator":
+                rankDeployment = actor.data.data.attributes.rank.operator;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.operator": rankDeployment - 1
+                });
+                break;
+            case "Pilot":
+                rankDeployment = actor.data.data.attributes.rank.pilot;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.pilot": rankDeployment - 1
+                });
+                break;
+            case "Technician":
+                rankDeployment = actor.data.data.attributes.rank.technician;
+                await actor.update({
+                    "data.attributes.rank.total": rankTotal - 1,
+                    "data.attributes.rank.technician": rankDeployment - 1
+                });
+                break;
+        }
+    }
+
+    /**
+     * Handle incrementing starship tier on the actor sheet
+     * @param {Event} event   The originating click event
+     * @private
+     */
+
+    _onIncrementStarshipTier(event) {
+        event.preventDefault();
+
+        const div = event.currentTarget.closest(".starship");
+        const li = event.currentTarget.closest("li");
+
+        const actorId = div.id.split("-")[1];
+        const itemId = li.dataset.itemId;
+
+        const actor = game.actors.get(actorId);
+        const item = actor.items.get(itemId);
+
+        let tier = item.data.data.tier;
+        if (tier === 5) return;
+        const update = {_id: item.data._id, data: {tier: tier + 1}};
+
+        actor.updateEmbeddedDocuments("Item", [update]);
+    }
+
+    /**
+     * Handle decrementing starship tier on the actor sheet
+     * @param {Event} event   The originating click event
+     * @private
+     */
+
+    _onDecrementStarshipTier(event) {
+        event.preventDefault();
+
+        const div = event.currentTarget.closest(".starship");
+        const li = event.currentTarget.closest("li");
+
+        const actorId = div.id.split("-")[1];
+        const itemId = li.dataset.itemId;
+
+        const actor = game.actors.get(actorId);
+        const item = actor.items.get(itemId);
+
+        let tier = item.data.data.tier;
+        if (tier === 0) return;
+        const update = {_id: item.data._id, data: {tier: tier - 1}};
+
+        actor.updateEmbeddedDocuments("Item", [update]);
+    }
+
     /* -------------------------------------------- */
 
     /**
@@ -1183,7 +1385,7 @@ export default class ActorSheet5e extends ActorSheet {
         event.preventDefault();
         const a = event.currentTarget;
         const label = a.parentElement.querySelector("label");
-        const options = {name: a.dataset.target, title: label.innerText, type: a.dataset.type};
+        const options = {name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, type: a.dataset.type};
         return new ProficiencySelector(this.actor, options).render(true);
     }
 
@@ -1200,7 +1402,7 @@ export default class ActorSheet5e extends ActorSheet {
         const a = event.currentTarget;
         const label = a.parentElement.querySelector("label");
         const choices = CONFIG.SW5E[a.dataset.options];
-        const options = {name: a.dataset.target, title: label.innerText, choices};
+        const options = {name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, choices};
         return new TraitSelector(this.actor, options).render(true);
     }
 

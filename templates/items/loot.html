@@ -1,12 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
     {{!-- Item Sheet Header --}}
     <header class="sheet-header loot-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
             </h1>
 
             <div class="item-subtitle">
@@ -21,7 +20,12 @@
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input
+                        type="text"
+                        name="data.source"
+                        value="{{data.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
                 </li>
             </ul>
         </div>
@@ -36,17 +40,14 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-          {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+            {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        </div>
 
-        </div>    
-        
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
-
     </section>
 </form>

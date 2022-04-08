@@ -103,8 +103,10 @@
 }
 .sw5e input[type="text"]:hover,
 .sw5e input[type="number"]:hover,
+.sw5e input[type="checkbox"]:hover,
 .sw5e input[type="text"]:focus,
-.sw5e input[type="number"]:focus {
+.sw5e input[type="number"]:focus,
+.sw5e input[type="checkbox"]:focus {
   border: 1px solid #111;
   box-shadow: 0 0 8px red;
 }
@@ -165,6 +167,7 @@
   flex: 0 0 100%;
   margin: 0;
 }
+.sw5e .form-group.stacked label.number,
 .sw5e .form-group.stacked label.checkbox,
 .sw5e .form-group.stacked label.radio {
   flex: auto;
@@ -239,6 +242,9 @@
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  Items Lists                              */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Modifications                            */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  Active Effects                           */
@@ -517,6 +523,35 @@
   padding-left: 5px;
   text-align: left;
   font-size: 16px;
+}
+.sw5e.sheet .modification {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.sw5e.sheet .modification .modification-slot {
+  flex: 0 1 100px;
+  color: #191813;
+}
+.sw5e.sheet .modification .modification-name {
+  flex: 1 1 auto;
+}
+.sw5e.sheet .modification .modification-name .entity-link {
+  background-color: transparent !important;
+  border: groove !important;
+}
+.sw5e.sheet .modification .modification-controls {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.sw5e.sheet .modification .modification-controls a {
+  font-size: 12px;
+  text-align: center;
+}
+.sw5e.sheet .modification.disabled .modification-name .entity-link {
+  color: #7a7971 !important;
+  outline: none !important;
 }
 .sw5e.sheet .effects .item .effect-source,
 .sw5e.sheet .effects .item .effect-duration,
@@ -801,6 +836,10 @@
 .sw5e.sheet.actor .sheet-header .attributes .attribute .config-button {
   position: absolute;
   display: none;
+  right: -6px;
+  top: -3px;
+  font-size: 10px;
+  font-weight: normal;
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute:hover .config-button {
   display: block;
@@ -1319,6 +1358,75 @@
 .sw5e.sheet.actor .editor {
   padding: 0 8px;
 }
+.sw5e.sheet.actor .fuel {
+  flex: 0 0 12px;
+  background: #7a7971;
+  margin: 1px 15px 0 1px;
+  border: 1px solid #191813;
+  border-radius: 3px;
+  position: relative;
+}
+.sw5e.sheet.actor .fuel .fuel-bar {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background: #6c8aa5;
+  height: 8px;
+  border: 1px solid #cde4ff;
+  border-radius: 2px;
+}
+.sw5e.sheet.actor .fuel .fuel-label {
+  height: 10px;
+  padding: 0 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 13px;
+  line-height: 12px;
+  text-align: right;
+  color: #eee;
+  text-shadow: 0 0 5px #000;
+}
+.sw5e.sheet.actor .fuel .fuel-breakpoint {
+  display: block;
+  position: absolute;
+}
+.sw5e.sheet.actor .fuel .fuel-breakpoint.fuel-20 {
+  left: 20%;
+}
+.sw5e.sheet.actor .fuel .fuel-breakpoint.fuel-40 {
+  left: 40%;
+}
+.sw5e.sheet.actor .fuel .fuel-breakpoint.fuel-60 {
+  left: 60%;
+}
+.sw5e.sheet.actor .fuel .fuel-breakpoint.fuel-80 {
+  left: 80%;
+}
+.sw5e.sheet.actor .fuel .arrow-up {
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #000;
+}
+.sw5e.sheet.actor .fuel .arrow-down {
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+}
+.sw5e.sheet.actor .fuel.fueled .arrow-up {
+  border-bottom: 4px solid #fff;
+  border-bottom: 4px solid #000;
+}
+.sw5e.sheet.actor .fuel.fueled .arrow-down {
+  border-top: 4px solid #fff;
+  border-top: 4px solid #000;
+}
 #actor-flags .window-content {
   overflow-y: hidden;
 }
@@ -1758,15 +1866,20 @@
   flex: 0 0 32px;
   text-align: center;
 }
+.sw5e.sheet.item .recharge.form-group label.number,
 .sw5e.sheet.item .recharge.form-group label.checkbox {
   flex: none;
 }
+.sw5e.sheet.item .recharge.form-group label.number input,
 .sw5e.sheet.item .recharge.form-group label.checkbox input {
   width: 16px;
   height: 16px;
   top: 4px;
 }
-.sw5e.sheet.item .weapon-properties label.checkbox {
+.sw5e.sheet.item .weapon-properties label.number,
+.sw5e.sheet.item .weapon-properties label.checkbox,
+.sw5e.sheet.item .armor-properties label.number,
+.sw5e.sheet.item .armor-properties label.checkbox {
   flex: 0 0 98px;
 }
 .sw5e.sheet.item .loot-header {
@@ -1961,6 +2074,7 @@
   align-items: center;
 }
 .sw5e.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
+  flex-basis: 14px;
   height: 14px;
   width: 14px;
   margin: 0;

@@ -1,3 +1,5 @@
+import {SW5E} from "./config.js";
+
 /**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @returns {Promise}      A Promise which resolves once the migration is completed
@@ -8,12 +10,12 @@ export const migrateWorld = async function () {
         {permanent: true}
     );
     // Migrate World Actors
-    for await (let a of game.actors) {
+    for await (const a of game.actors) {
         try {
-            console.log(`Checking Actor entity ${a.name} for migration needs`);
+            console.log(`Checking Actor document ${a.name} for migration needs`);
             const updateData = await migrateActorData(a.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Actor entity ${a.name}`);
+                console.log(`Migrating Actor document ${a.name}`);
                 await a.update(updateData, {enforceTypes: false});
             }
         } catch (err) {
@@ -23,11 +25,11 @@ export const migrateWorld = async function () {
     }
 
     // Migrate World Items
-    for (let i of game.items) {
+    for (const i of game.items) {
         try {
-            const updateData = migrateItemData(i.toObject());
+            const updateData = await migrateItemData(i.toObject());
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Item entity ${i.name}`);
+                console.log(`Migrating Item document ${i.name}`);
                 await i.update(updateData, {enforceTypes: false});
             }
         } catch (err) {
@@ -37,11 +39,11 @@ export const migrateWorld = async function () {
     }
 
     // Migrate Actor Override Tokens
-    for (let s of game.scenes) {
+    for (const s of game.scenes) {
         try {
             const updateData = await migrateSceneData(s.data);
             if (!foundry.utils.isObjectEmpty(updateData)) {
-                console.log(`Migrating Scene entity ${s.name}`);
+                console.log(`Migrating Scene document ${s.name}`);
                 await s.update(updateData, {enforceTypes: false});
                 // If we do not do this, then synthetic token actors remain in cache
                 // with the un-updated actorData.
@@ -54,9 +56,9 @@ export const migrateWorld = async function () {
     }
 
     // Migrate World Compendium Packs
-    for (let p of game.packs) {
+    for (const p of game.packs) {
         if (p.metadata.package !== "world") continue;
-        if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) continue;
+        if (!["Actor", "Item", "Scene"].includes(p.documentName)) continue;
         await migrateCompendium(p);
     }
 
@@ -68,13 +70,13 @@ export const migrateWorld = async function () {
 /* -------------------------------------------- */
 
 /**
- * Apply migration rules to all Entities within a single Compendium pack
- * @param {Compendium} pack  Pack to be migrated.
+ * Apply migration rules to all Documents within a single Compendium pack
+ * @param {CompendiumCollection} pack  Pack to be migrated.
  * @returns {Promise}
  */
 export const migrateCompendium = async function (pack) {
-    const entity = pack.metadata.entity;
-    if (!["Actor", "Item", "Scene"].includes(entity)) return;
+    const documentName = pack.documentName;
+    if (!["Actor", "Item", "Scene"].includes(documentName)) return;
 
     // Unlock the pack for editing
     const wasLocked = pack.locked;
@@ -85,10 +87,10 @@ export const migrateCompendium = async function (pack) {
     const documents = await pack.getDocuments();
 
     // Iterate over compendium entries - applying fine-tuned migration functions
-    for await (let doc of documents) {
-        let updateData = {};
+    for await (const doc of documents) {
+        const updateData = {};
         try {
-            switch (entity) {
+            switch (documentName) {
                 case "Actor":
                     updateData = await migrateActorData(doc.toObject());
                     break;
@@ -103,28 +105,28 @@ export const migrateCompendium = async function (pack) {
             // Save the entry, if data was changed
             if (foundry.utils.isObjectEmpty(updateData)) continue;
             await doc.update(updateData);
-            console.log(`Migrated ${entity} entity ${doc.name} in Compendium ${pack.collection}`);
+            console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
         } catch (err) {
             // Handle migration failures
-            err.message = `Failed sw5e system migration for entity ${doc.name} in pack ${pack.collection}: ${err.message}`;
+            err.message = `Failed sw5e system migration for document ${doc.name} in pack ${pack.collection}: ${err.message}`;
             console.error(err);
         }
     }
 
     // Apply the original locked status for the pack
     await pack.configure({locked: wasLocked});
-    console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+    console.log(`Migrated all ${documentName} documents from Compendium ${pack.collection}`);
 };
 
 /**
  * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
  * check to see if the actor has armor already equipped, and opt to use that instead.
- * @param {Compendium|string} pack  Pack or name of pack to migrate.
+ * @param {CompendiumCollection|string} pack  Pack or name of pack to migrate.
  * @returns {Promise}
  */
 export const migrateArmorClass = async function (pack) {
     if (typeof pack === "string") pack = game.packs.get(pack);
-    if (pack.metadata.entity !== "Actor") return;
+    if (pack.documentName !== "Actor") return;
     const wasLocked = pack.locked;
     await pack.configure({locked: false});
     const actors = await pack.getDocuments();
@@ -160,11 +162,11 @@ export const migrateArmorClass = async function (pack) {
 };
 
 /* -------------------------------------------- */
-/*  Entity Type Migration Helpers               */
+/*  Document Type Migration Helpers               */
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Actor entity to incorporate latest data model changes
+ * Migrate a single Actor document to incorporate latest data model changes
  * Return an Object of updateData to be applied
  * @param {object} actor    The actor data object to update
  * @returns {object}        The updateData to apply
@@ -178,6 +180,9 @@ export const migrateActorData = async function (actor) {
         _migrateActorSenses(actor, updateData);
         _migrateActorType(actor, updateData);
         _migrateActorAC(actor, updateData);
+        if (["character", "npc"].includes(actor.type)) {
+            _migrateActorAttribRank(actor, updateData);
+        }
     }
 
     // Migrate Owned Items
@@ -187,7 +192,7 @@ export const migrateActorData = async function (actor) {
 
             // Migrate the Owned Item
             const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
-            let itemUpdate = await migrateActorItemData(itemData, actor);
+            const itemUpdate = await migrateActorItemData(itemData, actor);
 
             // Prepared, Equipped, and Proficient for NPC actors
             if (actor.type === "npc") {
@@ -216,7 +221,9 @@ export const migrateActorData = async function (actor) {
     }
 
     // migrate powers last since it relies on item classes being migrated first.
-    _migrateActorPowers(actor, updateData);
+    if (["character", "npc"].includes(actor.type)) {
+        _migrateActorPowers(actor, updateData);
+    }
 
     return updateData;
 };
@@ -250,25 +257,28 @@ function cleanActorData(actorData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Item entity to incorporate latest data model changes
+ * Migrate a single Item document to incorporate latest data model changes
  *
  * @param {object} item  Item data to migrate
  * @returns {object}     The updateData to apply
  */
-export const migrateItemData = function (item) {
+export const migrateItemData = async function (item) {
     const updateData = {};
     _migrateItemClassPowerCasting(item, updateData);
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
-    _migrateArmorType(item, updateData);
+    await _migrateItemPower(item, null, updateData);
+    _migrateItemArmorType(item, updateData);
     _migrateItemCriticalData(item, updateData);
+    _migrateItemArmorPropertiesData(item, updateData);
+    _migrateItemWeaponPropertiesData(item, updateData);
     return updateData;
 };
 
 /* -------------------------------------------- */
 
 /**
- * Migrate a single owned actor Item entity to incorporate latest data model changes
+ * Migrate a single owned actor Item document to incorporate latest data model changes
  * @param item
  * @param actor
  */
@@ -278,16 +288,17 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
     await _migrateItemPower(item, actor, updateData);
-    _migrateArmorType(item, updateData);
+    _migrateItemArmorType(item, updateData);
     _migrateItemCriticalData(item, updateData);
-
+    _migrateItemArmorPropertiesData(item, updateData);
+    _migrateItemWeaponPropertiesData(item, updateData);
     return updateData;
 };
 
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
+ * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
  * @param {object} scene   The Scene data to Update
  * @returns {object}       The updateData to apply
@@ -307,7 +318,8 @@ export const migrateSceneData = async function (scene) {
             } else if (!t.actorLink) {
                 const actorData = duplicate(t.actorData);
                 actorData.type = token.actor?.type;
-                const update = migrateActorData(actorData);
+                actorData.name = t.name;
+                const update = await migrateActorData(actorData);
                 ["items", "effects"].forEach((embeddedName) => {
                     if (!update[embeddedName]?.length) return;
                     const updates = new Map(update[embeddedName].map((u) => [u._id, u]));
@@ -352,47 +364,51 @@ function _updateNPCData(actor) {
         return actor;
     // Check to see what the source of NPC is
     const sourceId = actor.flags.core.sourceId;
-    const coreSource = sourceId.substr(0, sourceId.length - 17);
-    const core_id = sourceId.substr(sourceId.length - 16, 16);
+    const coreSource = sourceId.split(".").slice(0, 2).join(".");
+    const core_id = sourceId.split(".").slice(2).join(".");
     if (coreSource === "Compendium.sw5e.monsters") {
         game.packs
             .get("sw5e.monsters")
-            .getEntity(core_id)
+            .getDocument(core_id)
             .then((monster) => {
-                const monsterData = monster.data.data;
-                // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
-                updateData["data.attributes.movement"] = monsterData.attributes.movement;
-                updateData["data.attributes.senses"] = monsterData.attributes.senses;
-                updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
-                updateData["data.attributes.force"] = monsterData.attributes.force;
-                updateData["data.attributes.tech"] = monsterData.attributes.tech;
-                updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
-                updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
-                // push missing powers onto actor
-                let newPowers = [];
-                for (let i of monster.items) {
-                    const itemData = i.data;
-                    if (itemData.type === "power") {
-                        const itemCompendium_id = itemData.flags?.core?.sourceId.split(".").slice(-1)[0];
-                        let hasPower = !!actor.items.find(
-                            (item) => item.flags?.core?.sourceId.split(".").slice(-1)[0] === itemCompendium_id
-                        );
-                        if (!hasPower) {
-                            // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
-                            const newPower = JSON.parse(JSON.stringify(itemData));
+                if (monster) {
+                    const monsterData = monster.data.data;
+                    // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
+                    updateData["data.attributes.movement"] = monsterData.attributes.movement;
+                    updateData["data.attributes.senses"] = monsterData.attributes.senses;
+                    updateData["data.attributes.powercasting"] = monsterData.attributes.powercasting;
+                    updateData["data.attributes.force"] = monsterData.attributes.force;
+                    updateData["data.attributes.tech"] = monsterData.attributes.tech;
+                    updateData["data.details.powerForceLevel"] = monsterData.details.powerForceLevel;
+                    updateData["data.details.powerTechLevel"] = monsterData.details.powerTechLevel;
+                    // push missing powers onto actor
+                    const newPowers = [];
+                    for (const i of monster.items) {
+                        const itemData = i.data;
+                        if (itemData.type === "power") {
+                            const itemCompendium_id = itemData.flags?.core?.sourceId?.split(".")?.slice(-1)[0];
+                            const hasPower = !!actor.items.find(
+                                (item) => item.flags?.core?.sourceId?.split(".")?.slice(-1)[0] === itemCompendium_id
+                            );
+                            if (!hasPower) {
+                                // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
+                                const newPower = JSON.parse(JSON.stringify(itemData));
 
-                            newPowers.push(newPower);
+                                newPowers.push(newPower);
+                            }
                         }
                     }
+
+                    // get actor to create new powers
+                    const liveActor = game.actors.get(actor._id);
+                    // create the powers on the actor
+                    liveActor.createEmbeddedDocuments("Item", newPowers);
+
+                    // set flag to check to see if migration has been done so we don't do it again.
+                    liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
+                } else {
+                    updateData["flags"] = {core: {"-=sourceId": null}};
                 }
-
-                // get actor to create new powers
-                const liveActor = game.actors.get(actor._id);
-                // create the powers on the actor
-                liveActor.createEmbeddedEntity("OwnedItem", newPowers);
-
-                // set flag to check to see if migration has been done so we don't do it again.
-                liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
             });
     }
 
@@ -440,7 +456,7 @@ function _migrateActorPowers(actorData, updateData) {
     const ad = actorData.data;
 
     // If new Force & Tech data is not present, create it
-    let hasNewAttrib = ad?.attributes?.force?.level !== undefined;
+    const hasNewAttrib = ad?.attributes?.force?.level !== undefined;
     if (!hasNewAttrib) {
         updateData["data.attributes.force.known.value"] = 0;
         updateData["data.attributes.force.known.max"] = 0;
@@ -463,7 +479,7 @@ function _migrateActorPowers(actorData, updateData) {
     // If new Power F/T split data is not present, create it
     const hasNewLimit = ad?.powers?.power1?.foverride !== undefined;
     if (!hasNewLimit) {
-        for (let i = 1; i <= 9; i++) {
+        for (const i = 1; i <= 9; i++) {
             // add new
             updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers, "power" + i + ".value");
             updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers, "power" + i + ".max");
@@ -511,7 +527,7 @@ function _migrateActorSenses(actor, updateData) {
     let wasMatched = false;
 
     // Match each comma-separated term
-    for (let s of original.split(",")) {
+    for (const s of original.split(",")) {
         s = s.trim();
         const match = s.match(pattern);
         if (!match) continue;
@@ -523,7 +539,7 @@ function _migrateActorSenses(actor, updateData) {
     }
 
     // If nothing was matched, but there was an old string - put the whole thing in "special"
-    if (!wasMatched && original) {
+    if (!wasMatched && !!original) {
         updateData["data.attributes.senses.special"] = original;
     }
 
@@ -547,7 +563,7 @@ function _migrateActorType(actor, updateData) {
     if (typeof original !== "string") return;
 
     // New default data structure
-    let data = {
+    const data = {
         value: "",
         subtype: "",
         swarm: "",
@@ -618,6 +634,56 @@ function _migrateActorType(actor, updateData) {
 /* -------------------------------------------- */
 
 /**
+ * Migrate the actor attributes.ac.value to the new ac.flat override field.
+ * @param {object} actorData   Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
+ * @private
+ */
+function _migrateActorAC(actorData, updateData) {
+    const ac = actorData.data?.attributes?.ac;
+    // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
+    if (Number.isNumeric(ac?.value)) {
+        updateData["data.attributes.ac.flat"] = parseInt(ac.value);
+        updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
+        updateData["data.attributes.ac.-=value"] = null;
+        return updateData;
+    }
+
+    if (typeof ac?.flat === "string" && Number.isNumeric(ac.flat)) {
+        updateData["data.attributes.ac.flat"] = parseInt(ac.flat);
+    }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor to have Rank Deployment attributes
+ * @private
+ */
+function _migrateActorAttribRank(actorData, updateData) {
+    const ad = actorData.data;
+
+    // If new Rank data is not present, create it
+    const hasNewAttrib = ad?.attributes?.rank?.total !== undefined;
+    if (!hasNewAttrib) {
+        updateData["data.attributes.rank.total"] = 0;
+        updateData["data.attributes.rank.coord"] = 0;
+        updateData["data.attributes.rank.gunner"] = 0;
+        updateData["data.attributes.rank.mechanic"] = 0;
+        updateData["data.attributes.rank.operator"] = 0;
+        updateData["data.attributes.rank.pilot"] = 0;
+        updateData["data.attributes.rank.technician"] = 0;
+    }
+
+    return updateData;
+}
+
+/* --------------------------------------------- */
+
+/**
  * Migrate the Class item powercasting field to allow powercasting to properly calculate
  * @private
  */
@@ -662,42 +728,17 @@ function _migrateItemClassPowerCasting(item, updateData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate the actor attributes.ac.value to the new ac.flat override field.
- * @param {object} actorData   Actor data being migrated.
- * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
- * @returns {object}           Modified version of update data.
- * @private
- */
-function _migrateActorAC(actorData, updateData) {
-    const ac = actorData.data?.attributes?.ac;
-    // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
-    if (Number.isNumeric(ac?.value)) {
-        updateData["data.attributes.ac.flat"] = parseInt(ac.value);
-        updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
-        updateData["data.attributes.ac.-=value"] = null;
-        return updateData;
-    }
-
-    if (typeof ac?.flat === "string" && Number.isNumeric(ac.flat)) {
-        updateData["data.attributes.ac.flat"] = parseInt(ac.flat);
-    }
-
-    return updateData;
-}
-
-/* -------------------------------------------- */
-
-/**
  * Update an Power Item's data based on compendium
  * @param {Object} item    The data object for an item
- * @param {Object} actor    The data object for the actor owning the item
+ * @param {Object} actor   The data object for the actor owning the item
  * @private
  */
 async function _migrateItemPower(item, actor, updateData) {
     // if item is not a power shortcut out
     if (item.type !== "power") return updateData;
 
-    console.log(`Checking Actor ${actor.name}'s ${item.name} for migration needs`);
+    if (actor) console.log(`Checking Actor ${actor.name}'s ${item.name} for migration needs`);
+    else console.log(`Checking ${item.name} for migration needs`);
     // check for flag.core, if not there is no compendium power so exit
     const hasSource = item?.flags?.core?.sourceId !== undefined;
     if (!hasSource) return updateData;
@@ -712,8 +753,8 @@ async function _migrateItemPower(item, actor, updateData) {
 
     // Check to see what the source of Power is
     const sourceId = item.flags.core.sourceId;
-    const coreSource = sourceId.substr(0, sourceId.length - 17);
-    const core_id = sourceId.substr(sourceId.length - 16, 16);
+    const coreSource = sourceId.split(".").slice(0, 2).join(".");
+    const core_id = sourceId.split(".").slice(2).join(".");
 
     //if power type is not force or tech  exit out
     let powerType = "none";
@@ -721,18 +762,21 @@ async function _migrateItemPower(item, actor, updateData) {
     if (coreSource === "Compendium.sw5e.techpowers") powerType = "sw5e.techpowers";
     if (powerType === "none") return updateData;
 
-    const corePower = duplicate(await game.packs.get(powerType).getEntity(core_id));
-    console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
-    const corePowerData = corePower.data;
-    // copy Core Power Data over original Power
-    updateData["data"] = corePowerData;
-    updateData["flags"] = {sw5e: {dataVersion: "1.2.4"}};
+    const corePower = duplicate(await game.packs.get(powerType).getDocument(core_id));
+    if (corePower) {
+        if (actor) console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
+        else console.log(`Updating ${item.name} from compendium`);
+        const corePowerData = corePower.data;
+        // copy Core Power Data over original Power
+        updateData["data"] = corePowerData;
+        updateData["flags"] = {sw5e: {dataVersion: "1.2.4"}};
+    } else {
+        if (actor) console.error(`Update failed, couldn't find Actor ${actor.name}'s ${item.name} in compendium`);
+        else console.error(`Update failed, couldn't find ${item.name} in compendium`);
+        updateData["flags"] = {core: {"-=sourceId": null}};
+    }
 
     return updateData;
-
-    //game.packs.get(powerType).getEntity(core_id).then(corePower => {
-
-    //})
 }
 
 /* -------------------------------------------- */
@@ -770,7 +814,7 @@ function _migrateItemRarity(item, updateData) {
     return updateData;
 }
 
-/* --------------------------------------------- */
+/* -------------------------------------------- */
 
 /**
  * Convert equipment items of type 'bonus' to 'trinket'.
@@ -779,7 +823,7 @@ function _migrateItemRarity(item, updateData) {
  * @returns {object}           The updateData to apply.
  * @private
  */
-function _migrateArmorType(item, updateData) {
+function _migrateItemArmorType(item, updateData) {
     if (item.type !== "equipment") return updateData;
     if (item.data?.armor?.type === "bonus") updateData["data.armor.type"] = "trinket";
     return updateData;
@@ -806,8 +850,75 @@ function _migrateItemCriticalData(item, updateData) {
 /* -------------------------------------------- */
 
 /**
- * A general tool to purge flags from all entities in a Compendium pack.
- * @param {Compendium} pack   The compendium pack to clean.
+ * Set the item's armor properties to a proper object value.
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+function _migrateItemArmorPropertiesData(item, updateData) {
+    if (item.type !== "equipment") return updateData;
+    const hasProperties = item.data?.properties !== undefined;
+    if (!hasProperties) return updateData;
+    const props = item.data.properties;
+    const configProp = SW5E.armorProperties;
+    // Remove existing properties not in current template
+    for (const key in props) {
+        if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;
+    }
+    // Add template properties that don't exist yet on current armor
+    for (const [key, val] of Object.entries(configProp)) {
+        if (!(key in props)) updateData[`data.properties.${key}`] = val.type === "Boolean" ? false : 0;
+    }
+    // Migrate from boolean to number
+    for (const [key, prop] of Object.entries(configProp)) {
+        if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
+            updateData[`data.properties.${key}`] = props[key] ? 1 : 0;
+        }
+    }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Set the item's weapon properties to a proper object value.
+ * @param {object} item        Item data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+function _migrateItemWeaponPropertiesData(item, updateData) {
+    if (item.type !== "weapon") return updateData;
+    const hasProperties = item.data?.properties !== undefined;
+    if (!hasProperties) return updateData;
+    const props = item.data.properties;
+    const isStarship = item.data.weaponType in SW5E.weaponStarshipTypes;
+    const configProp = isStarship ? SW5E.weaponFullStarshipProperties : SW5E.weaponFullCharacterProperties;
+    // Remove existing properties not in current template
+    for (const key in props) {
+        if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;
+    }
+    // Add template properties that don't exist yet on current weapon
+    for (const [key, prop] of Object.entries(configProp)) {
+        if (!(key in props)) updateData[`data.properties.${key}`] = prop.type === "Boolean" ? false : 0;
+    }
+    // Migrate from boolean to number
+    for (const [key, prop] of Object.entries(configProp)) {
+        if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
+            updateData[`data.properties.${key}`] = props[key] ? (prop.min ?? 1) : 0;
+        }
+    }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * A general tool to purge flags from all documents in a Compendium pack.
+ * @param {CompendiumCollection} pack   The compendium pack to clean.
  * @private
  */
 export async function purgeFlags(pack) {
@@ -816,17 +927,17 @@ export async function purgeFlags(pack) {
         return flags5e ? {sw5e: flags5e} : {};
     };
     await pack.configure({locked: false});
-    const content = await pack.getContent();
-    for (let entity of content) {
-        const update = {_id: entity.id, flags: cleanFlags(entity.data.flags)};
-        if (pack.entity === "Actor") {
-            update.items = entity.data.items.map((i) => {
+    const content = await pack.getDocuments();
+    for (const doc of content) {
+        const update = {flags: cleanFlags(doc.data.flags)};
+        if (pack.documentName === "Actor") {
+            update.items = doc.data.items.map((i) => {
                 i.flags = cleanFlags(i.flags);
                 return i;
             });
         }
-        await pack.updateEntity(update, {recursive: false});
-        console.log(`Purged flags from ${entity.name}`);
+        await doc.update(update, {recursive: false});
+        console.log(`Purged flags from ${doc.name}`);
     }
     await pack.configure({locked: true});
 }
@@ -840,7 +951,7 @@ export async function purgeFlags(pack) {
  * @private
  */
 export function removeDeprecatedObjects(data) {
-    for (let [k, v] of Object.entries(data)) {
+    for (const [k, v] of Object.entries(data)) {
         if (getType(v) === "Object") {
             if (v._deprecated === true) {
                 console.log(`Deleting deprecated object key ${k}`);

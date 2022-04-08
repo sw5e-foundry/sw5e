@@ -29,7 +29,8 @@
 
     // Hovered Fields
     input[type="text"],
-    input[type="number"] {
+    input[type="number"],
+    input[type="checkbox"] {
         &:hover,
         &:focus {
             border: 1px solid #111;
@@ -82,6 +83,7 @@
             flex: 0 0 100%;
             margin: 0;
         }
+        label.number,
         label.checkbox,
         label.radio {
             flex: auto;
@@ -493,6 +495,47 @@
                 font-size: 16px;
             }
         }
+    }
+
+    /* ----------------------------------------- */
+    /*  Modifications                            */
+    /* ----------------------------------------- */
+
+    .modification {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+
+        // Slot
+        .modification-slot {
+            flex: 0 1 100px;
+            color: @colorDark;
+        }
+
+        // Name
+        .modification-name {
+            flex: 1 1 auto;
+            .entity-link {
+                background-color: transparent !important;
+                border: groove !important;
+            }
+        }
+
+        // Control Buttons
+        .modification-controls {
+            flex: 0 0 40px;
+            display: flex;
+            justify-content: space-between;
+            a {
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+
+    .modification.disabled .modification-name .entity-link{
+        color: @colorTan !important;
+        outline: none !important;
     }
 
     /* ----------------------------------------- */

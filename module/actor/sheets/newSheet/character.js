@@ -85,6 +85,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             consumable: {label: "SW5E.ItemTypeConsumablePl", items: [], dataset: {type: "consumable"}},
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
+            modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
             loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
         };
 
@@ -104,7 +105,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             backgrounds,
             fightingstyles,
             fightingmasteries,
-            lightsaberforms
+            lightsaberforms,
+            ssfeats
         ] = data.items.reduce(
             (arr, item) => {
                 // Item details
@@ -155,7 +157,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
                 return arr;
             },
-            [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+            [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
         );
 
         // Apply active item filters
@@ -163,6 +165,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
         feats = this._filterItems(feats, this._filters.features);
+        ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
 
         // Organize items
         for (let i of items) {
@@ -186,7 +189,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 isClass: true
             },
             classfeatures: {
-                label: "SW5E.ItemTypeClassFeats",
+                label: "SW5E.ItemTypeClassfeaturePL",
                 items: [],
                 hasActions: true,
                 dataset: {type: "classfeature"},
@@ -198,27 +201,6 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 hasActions: false,
                 dataset: {type: "archetype"},
                 isArchetype: true
-            },
-            deployments: {
-                label: "SW5E.ItemTypeDeploymentPl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "deployment"},
-                isDeployment: true
-            },
-            deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentFeaturePl",
-                items: [],
-                hasActions: true,
-                dataset: {type: "deploymentfeature"},
-                isDeploymentfeature: true
-            },
-            ventures: {
-                label: "SW5E.ItemTypeVenturePl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "venture"},
-                isVenture: true
             },
             species: {
                 label: "SW5E.ItemTypeSpecies",
@@ -235,21 +217,21 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 isBackground: true
             },
             fightingstyles: {
-                label: "SW5E.ItemTypeFightingStylePl",
+                label: "SW5E.ItemTypeFightingstylePl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "fightingstyle"},
                 isFightingstyle: true
             },
             fightingmasteries: {
-                label: "SW5E.ItemTypeFightingMasteryPl",
+                label: "SW5E.ItemTypeFightingmasteryPl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "fightingmastery"},
                 isFightingmastery: true
             },
             lightsaberforms: {
-                label: "SW5E.ItemTypeLightsaberFormPl",
+                label: "SW5E.ItemTypeLightsaberformPl",
                 items: [],
                 hasActions: false,
                 dataset: {type: "lightsaberform"},
@@ -271,20 +253,51 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         features.classes.items = classes;
         features.classfeatures.items = classfeatures;
         features.archetype.items = archetypes;
-        features.deployments.items = deployments;
-        features.deploymentfeatures.items = deploymentfeatures;
-        features.ventures.items = ventures;
         features.species.items = species;
         features.background.items = backgrounds;
         features.fightingstyles.items = fightingstyles;
         features.fightingmasteries.items = fightingmasteries;
         features.lightsaberforms.items = lightsaberforms;
 
+        // Organize Starship Features
+        const ssfeatures = {
+            deployments: {
+                label: "SW5E.ItemTypeDeploymentPl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "deployment"},
+                isDeployment: true
+            },
+            deploymentfeatures: {
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
+                items: [],
+                hasActions: true,
+                dataset: {type: "deploymentfeature"},
+                isDeploymentfeature: true
+            },
+            ventures: {
+                label: "SW5E.ItemTypeVenturePl",
+                items: [],
+                hasActions: false,
+                dataset: {type: "venture"},
+                isVenture: true
+            }
+        };
+        for (let ssf of ssfeats) {
+            if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
+            else ssfeatures.passive.items.push(ssf);
+        }
+        deployments.sort((a, b) => b.data.rank - a.data.rank);
+        ssfeatures.deployments.items = deployments;
+        ssfeatures.deploymentfeatures.items = deploymentfeatures;
+        ssfeatures.ventures.items = ventures;
+
         // Assign and return
         data.inventory = Object.values(inventory);
         data.forcePowerbook = forcePowerbook;
         data.techPowerbook = techPowerbook;
         data.features = Object.values(features);
+        data.ssfeatures = Object.values(ssfeatures);
     }
 
     /* -------------------------------------------- */
@@ -312,7 +325,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /**
      * Activate event listeners using the prepared sheet HTML.
@@ -483,17 +496,17 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         }
 
         // Increment the number of deployment ranks of a character instead of creating a new item
-        // else if ( itemData.type === "deployment" ) {
-        //  const rnk = this.actor.itemTypes.deployment.find(c => c.name === itemData.name);
-        //  let priorRank = rnk?.data.data.ranks ?? 0;
-        //  if ( !!rnk ) {
-        //    const next = Math.min(priorLevel + 1, 5 + priorRank - this.actor.data.data.details.rank);
-        //    if ( next > priorRank ) {
-        //      itemData.ranks = next;
-        //      return rnk.update({"data.ranks": next});
-        //    }
-        //  }
-        // }
+        else if (itemData.type === "deployment") {
+            const rnk = this.actor.itemTypes.deployment.find((c) => c.name === itemData.name);
+            let priorRank = rnk?.data.data.rank ?? 0;
+            if (!!rnk) {
+                const rnkNext = Math.min(priorRank + 1, 5);
+                if (rnkNext > priorRank) {
+                    itemData.rank = rnkNext;
+                    return rnk.update({"data.rank": rnkNext});
+                }
+            }
+        }
 
         // Default drop handling if levels were not added
         return super._onDropItemCreate(itemData);
@@ -690,7 +703,7 @@ async function addFavorites(app, html, data) {
                 update._id = u.target.data._id;
                 return update;
             });
-            app.actor.updateEmbeddedEntity("OwnedItem", updateData);
+            app.actor.updateEmbeddedDocuments("Item", updateData);
         });
     }
     tabContainer.append(favtabHtml);

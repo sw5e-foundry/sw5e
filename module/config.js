@@ -717,6 +717,27 @@ SW5E.consumableTypes = {
 /* -------------------------------------------- */
 
 /**
+ * Enumerate the valid ammunition types which are recognized by the system.
+ * @enum {string}
+ */
+SW5E.ammoTypes = {
+    cartridge: "SW5E.AmmoCartridge",
+    dart: "SW5E.AmmoDart",
+    flechetteClip: "SW5E.AmmoFlechetteClip",
+    flechetteMag: "SW5E.AmmoFlechetteMag",
+    missile: "SW5E.AmmoMissile",
+    powerCell: "SW5E.AmmoPowerCell",
+    powerGenerator: "SW5E.AmmoPowerGenerator",
+    projectorCanister: "SW5E.AmmoProjectorCanister",
+    projectorTank: "SW5E.AmmoProjectorTank",
+    rocket: "SW5E.AmmoRocket",
+    snare: "SW5E.AmmoSnare",
+    torpedo: "SW5E.AmmoTorpedo"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the valid modification types which are recognized by the system
  */
 SW5E.chassisTypes = {

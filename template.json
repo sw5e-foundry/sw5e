@@ -1211,6 +1211,7 @@
         "consumable": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
             "consumableType": "potion",
+            "ammoType": null,
             "uses": {
                 "autoDestroy": false
             }
@@ -1367,6 +1368,11 @@
         "weapon": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable", "moddable"],
             "weaponType": "simpleVW",
+            "ammo": {
+                "target": null,
+                "value": null,
+                "types": ["powerCell"]
+            },
             "baseItem": "",
             "properties": {}
         }

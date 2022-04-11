@@ -902,6 +902,16 @@ export default class Item5e extends Item {
             }
         }
 
+        // Consume Weapon Reload
+        if (this.type === "weapon" && (id.properties.rel || id.properties.ovr)) {
+            if (id.ammo.value <= 0) {
+                if (id.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", {name: this.name}));
+                else if (id.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", {name: this.name}));
+                return false;
+            }
+            itemUpdates["data.ammo.value"] = id.ammo.value - 1;
+        }
+
         // Return the configured usage
         return {itemUpdates, actorUpdates, resourceUpdates, starshipUpdates};
     }
@@ -2120,6 +2130,61 @@ export default class Item5e extends Item {
                 actorProfs.includes(weaponProf) || actorProfs.includes(this.data.data.baseItem);
         }
         return updates;
+    }
+
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle the weapon reload logic.
+     */
+    reloadWeapon() {
+        console.debug('reloading');
+        if (this.type !== "weapon") return;
+
+        const wpnData = this.data.data;
+        const actor = this.actor;
+        const actorData = actor.data.data;
+        const ammo = wpnData.ammo.target ? actor.items.get(wpnData.ammo.target) : null;
+        const ammoData = ammo?.data?.data;
+
+        const reloadProp = wpnData.properties.rel ? "rel" : wpnData.properties.ovr ? "ovr" : null;
+        const reloadMax = wpnData.properties[reloadProp];
+
+        let toReload = reloadMax - wpnData.ammo.value;
+        const wpnUpdates = {};
+        const ammoUpdates = {};
+
+        if (reloadProp === "rel") {
+            if (!ammo) return;
+            if (!wpnData.ammo.types.includes(ammoData.ammoType)) return;
+            if (ammoData.quantity <= 0) return;
+
+            switch (ammoData.ammoType) {
+                case "cartridge":
+                case "dart":
+                case "missile":
+                case "rocket":
+                case "snare":
+                case "torpedo":
+                    toReload = Math.min(toReload, ammoData.quantity);
+                    ammoUpdates["data.quantity"] = ammoData.quantity - toReload;
+                    break;
+                case "powerCell":
+                case "flechetteClip":
+                case "flechetteMag":
+                case "powerGenerator":
+                case "projectorCanister":
+                case "projectorTank":
+                    ammoUpdates["data.quantity"] = ammoData.quantity - 1;
+                    break;
+            }
+        }
+        if (toReload <= 0) return;
+        wpnUpdates["data.ammo.value"] = wpnData.ammo.value + toReload;
+
+        if (!foundry.utils.isObjectEmpty(ammoUpdates)) ammo?.update(ammoUpdates);
+        if (!foundry.utils.isObjectEmpty(wpnUpdates)) this.update(wpnUpdates);
     }
 
     /* -------------------------------------------- */

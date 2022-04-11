@@ -1,5 +1,6 @@
 import ProficiencySelector from "../apps/proficiency-selector.js";
 import TraitSelector from "../apps/trait-selector.js";
+import CheckboxSelect from "../apps/checkbox-select.js";
 import ActiveEffect5e from "../active-effect.js";
 
 /**
@@ -46,6 +47,7 @@ export default class ItemSheet5e extends ItemSheet {
     async getData(options) {
         const data = super.getData(options);
         const itemData = data.data;
+        const actor = this.item.actor;
         data.labels = this.item.labels;
         data.config = CONFIG.SW5E;
 
@@ -84,7 +86,32 @@ export default class ItemSheet5e extends ItemSheet {
         data.isMountable = this._isItemMountable(itemData);
 
         // Weapon Properties
-        if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+        if (this.item.type === "weapon") {
+            data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+            if (itemData.data?.properties?.rel) {
+                data.hasReload = true;
+                data.reloadProp = "rel";
+                data.reloadActLabel = "SW5E.WeaponReload";
+                data.reloadLabel = "SW5E.WeaponReload";
+                data.reloadFull = !itemData.data?.ammo?.target || itemData.data?.ammo?.value === itemData.data?.properties?.rel;
+                if (actor) {
+                    data.reloadAmmo = actor.itemTypes.consumable.reduce( (ammo, i) => {
+                        if (i.data?.data?.consumableType === "ammo" && itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)) {
+                            ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
+                        }
+                        return ammo;
+                    }, {});
+                } else data.reloadAmmo = {};
+            } else if (data.isStarshipWeapon && itemData.data?.properties?.ovr) {
+                data.hasReload = true;
+                data.reloadProp = "ovr";
+                data.reloadActLabel = "SW5E.WeaponCoolDown";
+                data.reloadLabel = "SW5E.WeaponOverheat";
+                data.reloadFull = itemData.data?.ammo?.value === itemData.data?.properties?.ovr;
+            }
+            data.reloadUsesAmmo = itemData.data?.properties?.amm;
+            data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.properties?.[data.reloadProp]) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
+        }
 
 
         // Armor Class
@@ -442,6 +469,9 @@ export default class ItemSheet5e extends ItemSheet {
                 await this.item.update(update);
             });
             html.find(".modification-control").click(this._onManageItemModification.bind(this));
+            html.find(".weapon-configure-ammo").click(this._onWeaponConfigureAmmo.bind(this));
+            html.find(".weapon-reload").click(this._onWeaponReload.bind(this));
+            html.find(".weapon-select-ammo").change(this._onWeaponSelectAmmo.bind(this));
         }
     }
 
@@ -557,6 +587,92 @@ export default class ItemSheet5e extends ItemSheet {
                 }
                 return this.item.update({'data.modifications.augments': augments});
         }
+    }
+
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle reloading weapons.
+     * @param {Event} event   The click event
+     * @private
+     */
+    _onWeaponReload(event) {
+        event.preventDefault();
+        if (!event.target.attributes.disabled) this.item.reloadWeapon();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle weapon ammo selection.
+     * @param {Event} event   The change event
+     * @private
+     */
+    async _onWeaponSelectAmmo(event) {
+        const wpn = this.item;
+        const wpnData = wpn?.data?.data;
+        const oldLoad = wpnData?.ammo?.value;
+        const ammoID = wpnData?.ammo?.target;
+        const ammo = ammoID ? wpn?.actor?.items?.get(ammoID) : null;
+        const ammoData = ammo?.data?.data;
+
+        if (ammo && oldLoad !== 0) {
+            const ammoUpdates = {};
+            switch (ammoData?.ammoType) {
+                case "cartridge":
+                case "dart":
+                case "missile":
+                case "rocket":
+                case "snare":
+                case "torpedo":
+                    ammoUpdates["data.quantity"] = ammoData?.quantity + oldLoad;
+                    break;
+                case "powerCell":
+                case "flechetteClip":
+                case "flechetteMag":
+                case "powerGenerator":
+                case "projectorCanister":
+                case "projectorTank":
+                    if (oldLoad === wpnData?.properties?.rel) ammoUpdates["data.quantity"] = ammoData?.quantity + 1;
+                    else {
+                        const confirm = await Dialog.confirm({
+                            title: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectTitle"),
+                            content: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectContent"),
+                            defaultYes: true
+                        });
+                        if (!confirm) return await wpn?.update({"data.ammo.target": ammoID});
+                    }
+                    break;
+            }
+            if (!foundry.utils.isObjectEmpty(ammoUpdates)) await ammo?.update(ammoUpdates);
+        }
+        await wpn.update({"data.ammo.value": 0});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle configuration of valid ammo types for a weapon.
+     * @param {Event} event   The click event
+     * @private
+     */
+    async _onWeaponConfigureAmmo(event) {
+        event.preventDefault();
+        const disabled = [];
+        const target = this.item.data?.data?.ammo?.target;
+        if (target) {
+            const ammo = this.item.actor?.items?.get(target);
+            if (ammo) disabled.push(ammo.data?.data.ammoType);
+        }
+        const result = await CheckboxSelect.checkboxSelect({
+            title: game.i18n.localize("SW5E.WeaponAmmoConfigureTitle"),
+            content: game.i18n.localize("SW5E.WeaponAmmoConfigureContent"),
+            checkboxes: CONFIG.SW5E.ammoTypes,
+            defaultSelect: this.item.data?.data?.ammo?.types,
+            disabled: disabled,
+        });
+        if (result) this.item.update({"data.ammo.types": result});
     }
 
     /* -------------------------------------------- */

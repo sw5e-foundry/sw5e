@@ -1,0 +1,20 @@
+<div class="dialog-content">
+    {{{content}}}
+</div>
+<div class="dialog-checkboxes">
+    {{log checkboxes}}
+    {{#each checkboxes as |checkbox id|}}
+        <div class="form-group">
+            <label>{{ localize checkbox.label }}</label>
+            <input type="checkbox" name="{{id}}" {{checked checkbox.selected}}{{#if checkbox.disabled}} disabled{{/if}}/>
+        </div>
+    {{/each}}
+</div>
+<div class="dialog-buttons">
+    {{#each buttons as |button id|}}
+        <button class="dialog-button {{cssClass}}" data-button="{{id}}">
+            {{{button.icon}}}
+            {{{button.label}}}
+        </button>
+    {{/each}}
+</div>

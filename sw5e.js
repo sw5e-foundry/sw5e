@@ -492,7 +492,9 @@ Handlebars.registerHelper("contentLink", function (uuid, placeholdertext) {
         if (!placeholdertext || typeof placeholdertext != String) return new Handlebars.SafeString("");
         return new Handlebars.SafeString(placeholdertext);
     }
-    const [type, target] = uuid.split(".");
+    const parts = uuid.split(".");
+    const type = parts[0];
+    const target = parts.slice(1).join(".");
     const html = TextEditor._createContentLink("", type, target);
     return new Handlebars.SafeString(html.outerHTML);
 });

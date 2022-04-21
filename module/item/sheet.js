@@ -617,7 +617,7 @@ export default class ItemSheet5e extends ItemSheet {
         const item = this.item.data;
         const itemMods = item.data.modifications;
 
-        const entity = await Item.fromDropData(data, {importWorld: true});
+        const entity = await Item.fromDropData(data, {importWorld: !data.pack});
         if (!entity) return false;
 
         if (itemMods && entity.type == "modification"){

@@ -448,42 +448,20 @@ export default class Actor5e extends Actor {
         xp.pct = Math.clamped(pct, 0, 100);
 
         // Determine character rank based on owned Deployment items
-        const [rank] = this.items.reduce(
-            (arr, item) => {
+        data.attributes.ranks = this.items.reduce(
+            (acc, item) => {
                 if (item.type === "deployment") {
                     const rankLevels = parseInt(item.data.data.rank) || 0;
-                    arr[0] += rankLevels;
-                    switch (item.data.name) {
-                        case "Coordinator":
-                            data.attributes.rank.coord = rankLevels;
-                            break;
-                        case "Gunner":
-                            data.attributes.rank.gunner = rankLevels;
-                            break;
-                        case "Mechanic":
-                            data.attributes.rank.mechanic = rankLevels;
-                            break;
-                        case "Operator":
-                            data.attributes.rank.operator = rankLevels;
-                            break;
-                        case "Pilot":
-                            data.attributes.rank.pilot = rankLevels;
-                            break;
-                        case "Technician":
-                            data.attributes.rank.technician = rankLevels;
-                            break;
-                    }
+                    acc += rankLevels;
                 }
-                return arr;
-            },
-            [0]
+                return acc;
+            }, 0
         );
-        data.attributes.rank.total = rank;
 
         // Prestige required for next Rank
         const prestige = data.details.prestige;
-        prestige.max = this.getRankExp(rank + 1 || 0);
-        const rankPrior = this.getRankExp(rank || 0);
+        prestige.max = this.getRankExp(data.attributes.ranks + 1 || 0);
+        const rankPrior = this.getRankExp(data.attributes.ranks || 0);
         const rankRequired = prestige.max - rankPrior;
         const rankPct = Math.round(((prestige.value - rankPrior) * 100) / rankRequired);
         prestige.pct = Math.clamped(rankPct, 0, 100);
@@ -507,6 +485,18 @@ export default class Actor5e extends Actor {
         // Proficiency
         data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
 
+        // Determine npc rank based on owned Deployment items
+        data.attributes.ranks = this.items.reduce(
+            (acc, item) => {
+                if (item.type === "deployment") {
+                    const rankLevels = parseInt(item.data.data.rank) || 0;
+                    acc += rankLevels;
+                }
+                return acc;
+            }, 0
+        );
+
+        // Add base Powercasting attributes
         this._computeBasePowercasting(actorData);
 
         // Powercaster Level
@@ -538,7 +528,7 @@ export default class Actor5e extends Actor {
         const active = data.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
         data.attributes.prof = 0;
-        if (actor && actor.data.data.attributes.rank.total)
+        if (actor && actor.data.data.attributes.ranks)
             data.attributes.prof = actor.data.data.attributes.prof ?? 0;
 
         // Determine Starship size-based properties based on owned Starship item
@@ -3584,7 +3574,7 @@ export default class Actor5e extends Actor {
      */
     async ssUndeployCrew(target, toUndeploy) {
         if (!target) return;
-        if (!toUndeploy) toUndeploy = Object.keys(SW5E.deploymentTypes);
+        if (!toUndeploy) toUndeploy = Object.keys(SW5E.ssCrewStationTypes);
 
         const ssDeploy = this.data.data.attributes.deployment;
         const deployed = target.data.data.attributes.deployed;
@@ -3624,7 +3614,7 @@ export default class Actor5e extends Actor {
         if (target === active.value) target = null;
 
         active.value = target;
-        for (const key of Object.keys(SW5E.deploymentTypes)) {
+        for (const key of Object.keys(SW5E.ssCrewStationTypes)) {
             const deployment = deployments[key];
             if (!target) {
                 deployment.active = false;

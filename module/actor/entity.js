@@ -1398,7 +1398,7 @@ export default class Actor5e extends Actor {
         if (attribute === "attributes.hp") {
             const hp = getProperty(this.data.data, attribute);
             const delta = isDelta ? -1 * value : hp.value + hp.temp - value;
-            return this.applyDamage(delta);
+            return this.applyDamage(Math.abs(delta), delta >= 0 ? 1 : -1);
         }
         return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
     }

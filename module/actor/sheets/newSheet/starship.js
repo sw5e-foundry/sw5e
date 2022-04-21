@@ -58,7 +58,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 derived: true
             }
         };
-        for (const deploy of Object.keys(SW5E.deploymentTypes))
+        for (const deploy of Object.keys(SW5E.ssCrewStationTypes))
             ssActions[deploy] = {
                 items: [],
                 dataset: {type: "starshipaction", deployment: deploy}
@@ -213,9 +213,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Decide if deployment is visible
         const ssDeploy = data.data.attributes.deployment;
-        const anyDeployed = Object.keys(CONFIG.SW5E.deploymentTypes).some(k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value);
+        const anyDeployed = Object.keys(CONFIG.SW5E.ssCrewStationTypes).some(k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value);
         const anyActive = !!(ssDeploy.active.value);
-        for (const key of Object.keys(CONFIG.SW5E.deploymentTypes)) {
+        for (const key of Object.keys(CONFIG.SW5E.ssCrewStationTypes)) {
             const deployment = ssDeploy[key];
             deployment.actorsVisible = !!(!anyDeployed || deployment.items?.length);
             if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = deployment.active;
@@ -585,11 +585,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             );
 
         // Pre-select the deployment slot with the highest rank
-        let preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
+        let preselected = Object.entries(sourceActor.data.data.attributes.ranks ?? {}).reduce(
             (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
             ["passenger", 0]
         )[0];
-        if (!Object.keys(SW5E.deploymentTypes).includes(preselected)) preselected = "crew";
+        if (!Object.keys(SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
 
         // Create and render the Dialog
         // Define a function to record starship deployment selection
@@ -608,7 +608,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                         starship: this.actor.data.name
                     }),
                 content: {
-                    i18n: SW5E.deploymentTypes,
+                    i18n: SW5E.ssCrewStationTypes,
                     isToken: this.actor.isToken,
                     preselected: preselected
                 },

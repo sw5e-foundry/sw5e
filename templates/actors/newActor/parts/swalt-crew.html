@@ -10,12 +10,12 @@
     <ol class="group-list">
         <li>
             <!-- Deployments (pilot, crew, passenger) -->
-            {{#each config.deploymentTypes as | name key |}}
+            {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.data.attributes.deployment key) as | deployment |}}
             {{#if deployment.actorsVisible}}
                 <div class="group-list-title">
                     <h3 class="item-name">
-                        {{localize (lookup @root.config.deploymentTypesPlural key)}}
+                        {{localize (lookup @root.config.ssCrewStationTypesPlural key)}}
                     </h3>
                 </div>
                 <ol class="group-items item-list">
@@ -32,7 +32,7 @@
                             {{#if (eq key "crew")}}
                                 {{#if (eq deploy @root.data.attributes.deployment.pilot.value)}}
                                     <a class="deploy-control pilot" data-action="pilot-toggle">
-                                        {{localize "SW5E.DeploymentTypePilot"}}
+                                        {{localize "SW5E.CrewStationTypePilot"}}
                                     </a>
                                 {{else if (not @root.data.attributes.deployment.pilot.value)}}
                                     <a class="deploy-control" data-action="pilot-toggle">
@@ -71,7 +71,7 @@
             {{/if}} {{/with}}
 
             <!-- Deployments actions -->
-            {{#each config.deploymentTypes as | name key |}}
+            {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.data.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
                 {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}

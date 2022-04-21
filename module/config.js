@@ -1631,6 +1631,11 @@ SW5E.weaponCommonProperties = {
         type: "Number",
         min: 0
     },
+    smr: {
+        name: "SW5E.WeaponPropertiesSmr",
+        full: "SW5E.WeaponPropertiesSmrFull",
+        type: "Boolean"
+    },
     spc: {
         name: "SW5E.WeaponPropertiesSpc",
         full: "SW5E.WeaponPropertiesSpcFull",

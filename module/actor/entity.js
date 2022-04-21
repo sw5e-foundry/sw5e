@@ -1410,7 +1410,7 @@ export default class Actor5e extends Actor {
      * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
      * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
      * @param {string} [damageType] The damage type, will override multiplier if defined
-     * @param {string} [itemUuid]   The uuid of the item dealing the damage, will be used to determine if damage reduction should be applied
+     * @param {string} [itemUuid]   The uuid of the item dealing the damage
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1, {damageType=null, itemUuid=null}={}) {
@@ -1420,6 +1420,8 @@ export default class Actor5e extends Actor {
 
         amount = parseInt(amount) || 0;
         if (amount <= 0) return this;
+
+        if (damageType) damageType = damageType.toLowerCase();
 
         if (multiplier > 0) {
             // Apply Damage Reduction
@@ -1448,14 +1450,14 @@ export default class Actor5e extends Actor {
 
             // Remaining goes to health
             const hpCur = (parseInt(hp.value) || 0);
-            let mult = multiplier;
+            let hpMult = multiplier;
             if (damageType) {
-                if (traits.di.value.includes(damageType)) mult = 0;
-                else if (traits.dr.value.includes(damageType)) mult = 0.5;
-                else if (traits.dv.value.includes(damageType)) mult = 2;
-                else mult = 1;
+                if (traits.di.value.includes(damageType)) hpMult = 0;
+                else if (traits.dr.value.includes(damageType)) hpMult = 0.5;
+                else if (traits.dv.value.includes(damageType)) hpMult = 2;
+                else hpMult = 1;
             }
-            const hpDamage = Math.floor(Math.min(hpCur, amount * mult));
+            const hpDamage = Math.floor(Math.min(hpCur, amount * hpMult));
 
             // Prepare updates
             updates["data.attributes.hp.temp"] = tmp - tmpDamage;
@@ -1485,7 +1487,24 @@ export default class Actor5e extends Actor {
             },
             updates
         );
-        return allowed !== false ? this.update(updates, {dhp: -amount}) : this;
+        return allowed !== false ? (await this.update(updates, {dhp: -amount})) : this;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Apply an array of damages to the health pool of the Actor
+     * @param {{Number: ammount, String: type}[]} damages   Ammount and Types of the damages to apply
+     * @param {string} [itemUuid]                           The uuid of the item dealing the damage
+     */
+    async applyDamages(damages, itemUuid=null) {
+        for (const damage of damages) {
+            await this.applyDamage(Math.abs(damage.ammount), damage.ammount >= 0 ? 1 : -1, {
+                damageType: damage.type,
+                itemUuid: itemUuid
+            });
+        }
+        return this;
     }
 
     /* -------------------------------------------- */

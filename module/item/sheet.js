@@ -624,10 +624,10 @@ export default class ItemSheet5e extends ItemSheet {
             const mod = entity.data;
 
             const rarityMap = {
-                "common": 1,
-                "uncommon": 2,
-                "rare": 3,
-                "veryRare": 4,
+                "standard": 1,
+                "premium": 2,
+                "prototype": 3,
+                "advanced": 4,
                 "legendary": 5,
                 "artifact": 6
             }

@@ -1143,7 +1143,6 @@ export default class Actor5e extends Actor {
         const bonusTech = this._simplifyBonus(ad.bonuses?.power?.techDC, bonusData) + bonusAll;
 
         // Powercasting DC for Actors and NPCs
-        // TODO: Consider an option for using the variant rule of all powers use the same value
         ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
         ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
         ad.attributes.powerForceUnivDC =

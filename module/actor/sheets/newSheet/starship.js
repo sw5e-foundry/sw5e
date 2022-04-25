@@ -536,31 +536,40 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      * @private
      */
     _onToggleItem(event) {
+        console.debug(event);
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
         const item = this.actor.items.get(itemId);
-        const updates = [];
         const val = getProperty(item.data, "data.equipped");
+        const updates = [];
 
         const {minCrew, installCost, installTime} = this.actor.getInstallationData(itemId);
 
-        // TODO: Change this for a popup confirmation
-        ui.notifications.info(game.i18n.format(val ? "SW5E.StarshipUninstallEquip" : "SW5E.StarshipInstallEquip", {
-            minCrew: minCrew,
-            installCost: installCost,
-            installTime: installTime,
-        }), {permanent: true});
-
-        if (!val && item.type === "equipment") {
-            for (const i of this.actor.data.items) {
-                if (i.type === "equipment" && i.data.data.armor.type === item.data.data.armor.type && i.data.data.equipped) {
-                    updates.push({"_id": i.id, "data.equipped": false});
+        const callback = (html) => {
+            if (val !== getProperty(item.data, "data.equipped")) return;
+            if (!val && item.type === "equipment") {
+                for (const i of this.actor.data.items) {
+                    if (i.type === "equipment" && i.data.data.armor.type === item.data.data.armor.type && i.data.data.equipped) {
+                        updates.push({"_id": i.id, "data.equipped": false});
+                    }
                 }
             }
-        }
-        updates.push({"_id": item.id, "data.equipped": !val});
+            updates.push({"_id": item.id, "data.equipped": !val});
 
-        return this.actor.updateEmbeddedDocuments("Item", updates);
+            this.actor.updateEmbeddedDocuments("Item", updates);
+        };
+
+        // Shift click skips the confirmation dialog
+        if (event.shiftKey) callback();
+        else Dialog.confirm({
+            title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
+            content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
+                minCrew: minCrew,
+                installCost: installCost,
+                installTime: installTime,
+            }),
+            yes: callback
+        });
     }
 
     /* -------------------------------------------- */

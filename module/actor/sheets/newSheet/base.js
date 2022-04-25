@@ -1106,67 +1106,14 @@ export default class ActorSheet5e extends ActorSheet {
     async _onIncrementDeploymentRank(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let rank = item.data.data.rank;
-        const update = {_id: item.data._id, data: {rank: rank + 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-
-        const rankTotal = actor.data.data.attributes.rank.total;
-        let rankDeployment = 0;
-
-        switch (item.data.name) {
-            case "Coordinator":
-                rankDeployment = actor.data.data.attributes.rank.coord;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.coord": rankDeployment + 1
-                });
-                break;
-            case "Gunner":
-                rankDeployment = actor.data.data.attributes.rank.gunner;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.gunner": rankDeployment + 1
-                });
-                break;
-            case "Mechanic":
-                rankDeployment = actor.data.data.attributes.rank.mechanic;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.mechanic": rankDeployment + 1
-                });
-                break;
-            case "Operator":
-                rankDeployment = actor.data.data.attributes.rank.operator;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.operator": rankDeployment + 1
-                });
-                break;
-            case "Pilot":
-                rankDeployment = actor.data.data.attributes.rank.pilot;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.pilot": rankDeployment + 1
-                });
-                break;
-            case "Technician":
-                rankDeployment = actor.data.data.attributes.rank.technician;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.technician": rankDeployment + 1
-                });
-                break;
-        }
+        const rnk = item.data.data.rank ?? 99;
+        if (rnk < 5) item.update({ "data.rank": rnk + 1});
     }
 
     /**
@@ -1178,67 +1125,14 @@ export default class ActorSheet5e extends ActorSheet {
     async _onDecrementDeploymentRank(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let rank = item.data.data.rank;
-        const update = {_id: item.data._id, data: {rank: rank - 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-
-        const rankTotal = actor.data.data.attributes.rank.total;
-        let rankDeployment = 0;
-
-        switch (item.data.name) {
-            case "Coordinator":
-                rankDeployment = actor.data.data.attributes.rank.coord;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.coord": rankDeployment - 1
-                });
-                break;
-            case "Gunner":
-                rankDeployment = actor.data.data.attributes.rank.gunner;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.gunner": rankDeployment - 1
-                });
-                break;
-            case "Mechanic":
-                rankDeployment = actor.data.data.attributes.rank.mechanic;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.mechanic": rankDeployment - 1
-                });
-                break;
-            case "Operator":
-                rankDeployment = actor.data.data.attributes.rank.operator;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.operator": rankDeployment - 1
-                });
-                break;
-            case "Pilot":
-                rankDeployment = actor.data.data.attributes.rank.pilot;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.pilot": rankDeployment - 1
-                });
-                break;
-            case "Technician":
-                rankDeployment = actor.data.data.attributes.rank.technician;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.technician": rankDeployment - 1
-                });
-                break;
-        }
+        const rnk = item.data.data.rank ?? 1;
+        if (rnk > 1) item.update({ "data.rank": rnk - 1});
     }
 
     /**
@@ -1250,20 +1144,16 @@ export default class ActorSheet5e extends ActorSheet {
     _onIncrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let tier = item.data.data.tier;
+        const tier = item.data.data.tier;
         if (tier === 5) return;
-        const update = {_id: item.data._id, data: {tier: tier + 1}};
 
-        actor.updateEmbeddedDocuments("Item", [update]);
+        item.update({"data.tier": tier + 1});
     }
 
     /**
@@ -1275,20 +1165,16 @@ export default class ActorSheet5e extends ActorSheet {
     _onDecrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let tier = item.data.data.tier;
+        const tier = item.data.data.tier;
         if (tier === 0) return;
-        const update = {_id: item.data._id, data: {tier: tier - 1}};
 
-        actor.updateEmbeddedDocuments("Item", [update]);
+        item.update({"data.tier": tier - 1});
     }
 
     /* -------------------------------------------- */

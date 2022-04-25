@@ -666,17 +666,12 @@ function _migrateActorAC(actorData, updateData) {
 function _migrateActorAttribRank(actorData, updateData) {
     const ad = actorData.data;
 
+    // If old Rank data is present, remove it
+    const hasOldAttrib = ad?.attributes?.rank !== undefined;
+    if (!hasOldAttrib) updateData["-=data.attributes.rank"] = null;
     // If new Rank data is not present, create it
-    const hasNewAttrib = ad?.attributes?.rank?.total !== undefined;
-    if (!hasNewAttrib) {
-        updateData["data.attributes.rank.total"] = 0;
-        updateData["data.attributes.rank.coord"] = 0;
-        updateData["data.attributes.rank.gunner"] = 0;
-        updateData["data.attributes.rank.mechanic"] = 0;
-        updateData["data.attributes.rank.operator"] = 0;
-        updateData["data.attributes.rank.pilot"] = 0;
-        updateData["data.attributes.rank.technician"] = 0;
-    }
+    const hasNewAttrib = ad?.attributes?.ranks !== undefined;
+    if (!hasNewAttrib) updateData["data.attributes.ranks"] = 0;
 
     return updateData;
 }

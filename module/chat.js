@@ -1,4 +1,5 @@
 import {fromUuidSynchronous} from "./helpers.js";
+import {SW5E} from "./config.js";
 
 /**
  * Highlight critical success or failure on d20 rolls.
@@ -124,17 +125,40 @@ function applyChatCardDamage(li, multiplier) {
     const message = game.messages.get(li.data("messageId"));
     const roll = message.roll;
 
-    const extraData = {
-        damageType: message.data.flavor.replace(/.*[(](.*)[)]$/g, '$1').toLowerCase()
-    };
+    // If no multiplier is received, pass extra data to automatically calculate it based on resistances
+    const extraData = {};
     if (multiplier === null) {
         multiplier = 1;
+        // Get damage type from the roll flavor
+        const flavor = message.roll.options.flavor;
+        const regexp = /[(]([^()]*)[)]/g;
+        const types = [...flavor.matchAll(regexp)].map(i => i[1].split(', ')).flat(1);
+        const damageTypes = types.filter(d => Object.keys(SW5E.damageTypes).includes(d.toLowerCase()));
+        if (damageTypes.length) extraData.damageType = damageTypes[0];
+        // Get item uuid from the message data
         const actorId = message.data.speaker.actor;
         const actor = fromUuidSynchronous(`Actor.${actorId}`);
         if (actor) {
             const itemId = message.data.flags.sw5e.roll.itemId;
             const item = actor.data.items.get(itemId);
             if (item) extraData.itemUuid = item.uuid;
+        }
+        // MRE rolls each damage type separately
+        if (message.data.flags['mre-dnd5e']) {
+            const damages = [];
+            const rolls = message.data.flags['mre-dnd5e'].rolls;
+            for (let i = 0; i < rolls.length; i++) {
+                damages.push({
+                    ammount: rolls[i].total,
+                    type: damageTypes[i]
+                });
+            }
+            return Promise.all(
+                canvas.tokens.controlled.map((t) => {
+                    const a = t.actor;
+                    return a.applyDamages(damages, extraData.itemUuid);
+                })
+            );
         }
     }
 

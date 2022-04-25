@@ -617,17 +617,17 @@ export default class ItemSheet5e extends ItemSheet {
         const item = this.item.data;
         const itemMods = item.data.modifications;
 
-        const entity = await Item.fromDropData(data, {importWorld: true});
+        const entity = await Item.fromDropData(data, {importWorld: !data.pack});
         if (!entity) return false;
 
         if (itemMods && entity.type == "modification"){
             const mod = entity.data;
 
             const rarityMap = {
-                "common": 1,
-                "uncommon": 2,
-                "rare": 3,
-                "veryRare": 4,
+                "standard": 1,
+                "premium": 2,
+                "prototype": 3,
+                "advanced": 4,
                 "legendary": 5,
                 "artifact": 6
             }

@@ -55,11 +55,13 @@
                 <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
                 <select name="data.armor.type">
                     <option value=""></option>
-                    <optgroup label="{{ localize "SW5E.Armor" }}">
+                    <optgroup label="{{ localize 'SW5E.Armor' }}">
                         {{selectOptions config.armorTypes selected=data.armor.type}}
                     </optgroup>
+                    <optgroup label="{{ localize 'SW5E.Starship' }}">
+                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type localize=true}}
+                    </optgroup>
                     {{selectOptions config.miscEquipmentTypes selected=data.armor.type}}
-                    {{selectOptions config.ssEquipmentTypes selected=data.armor.type localize=true}}
                 </select>
             </div>
 

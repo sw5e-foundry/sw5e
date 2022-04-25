@@ -448,42 +448,20 @@ export default class Actor5e extends Actor {
         xp.pct = Math.clamped(pct, 0, 100);
 
         // Determine character rank based on owned Deployment items
-        const [rank] = this.items.reduce(
-            (arr, item) => {
+        data.attributes.ranks = this.items.reduce(
+            (acc, item) => {
                 if (item.type === "deployment") {
                     const rankLevels = parseInt(item.data.data.rank) || 0;
-                    arr[0] += rankLevels;
-                    switch (item.data.name) {
-                        case "Coordinator":
-                            data.attributes.rank.coord = rankLevels;
-                            break;
-                        case "Gunner":
-                            data.attributes.rank.gunner = rankLevels;
-                            break;
-                        case "Mechanic":
-                            data.attributes.rank.mechanic = rankLevels;
-                            break;
-                        case "Operator":
-                            data.attributes.rank.operator = rankLevels;
-                            break;
-                        case "Pilot":
-                            data.attributes.rank.pilot = rankLevels;
-                            break;
-                        case "Technician":
-                            data.attributes.rank.technician = rankLevels;
-                            break;
-                    }
+                    acc += rankLevels;
                 }
-                return arr;
-            },
-            [0]
+                return acc;
+            }, 0
         );
-        data.attributes.rank.total = rank;
 
         // Prestige required for next Rank
         const prestige = data.details.prestige;
-        prestige.max = this.getRankExp(rank + 1 || 0);
-        const rankPrior = this.getRankExp(rank || 0);
+        prestige.max = this.getRankExp(data.attributes.ranks + 1 || 0);
+        const rankPrior = this.getRankExp(data.attributes.ranks || 0);
         const rankRequired = prestige.max - rankPrior;
         const rankPct = Math.round(((prestige.value - rankPrior) * 100) / rankRequired);
         prestige.pct = Math.clamped(rankPct, 0, 100);
@@ -507,6 +485,18 @@ export default class Actor5e extends Actor {
         // Proficiency
         data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
 
+        // Determine npc rank based on owned Deployment items
+        data.attributes.ranks = this.items.reduce(
+            (acc, item) => {
+                if (item.type === "deployment") {
+                    const rankLevels = parseInt(item.data.data.rank) || 0;
+                    acc += rankLevels;
+                }
+                return acc;
+            }, 0
+        );
+
+        // Add base Powercasting attributes
         this._computeBasePowercasting(actorData);
 
         // Powercaster Level
@@ -538,7 +528,7 @@ export default class Actor5e extends Actor {
         const active = data.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
         data.attributes.prof = 0;
-        if (actor && actor.data.data.attributes.rank.total)
+        if (actor && actor.data.data.attributes.ranks)
             data.attributes.prof = actor.data.data.attributes.prof ?? 0;
 
         // Determine Starship size-based properties based on owned Starship item
@@ -1398,7 +1388,7 @@ export default class Actor5e extends Actor {
         if (attribute === "attributes.hp") {
             const hp = getProperty(this.data.data, attribute);
             const delta = isDelta ? -1 * value : hp.value + hp.temp - value;
-            return this.applyDamage(delta);
+            return this.applyDamage(Math.abs(delta), delta >= 0 ? 1 : -1);
         }
         return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
     }
@@ -1410,7 +1400,7 @@ export default class Actor5e extends Actor {
      * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
      * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
      * @param {string} [damageType] The damage type, will override multiplier if defined
-     * @param {string} [itemUuid]   The uuid of the item dealing the damage, will be used to determine if damage reduction should be applied
+     * @param {string} [itemUuid]   The uuid of the item dealing the damage
      * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
      */
     async applyDamage(amount = 0, multiplier = 1, {damageType=null, itemUuid=null}={}) {
@@ -1420,6 +1410,8 @@ export default class Actor5e extends Actor {
 
         amount = parseInt(amount) || 0;
         if (amount <= 0) return this;
+
+        if (damageType) damageType = damageType.toLowerCase();
 
         if (multiplier > 0) {
             // Apply Damage Reduction
@@ -1448,14 +1440,14 @@ export default class Actor5e extends Actor {
 
             // Remaining goes to health
             const hpCur = (parseInt(hp.value) || 0);
-            let mult = multiplier;
+            let hpMult = multiplier;
             if (damageType) {
-                if (traits.di.value.includes(damageType)) mult = 0;
-                else if (traits.dr.value.includes(damageType)) mult = 0.5;
-                else if (traits.dv.value.includes(damageType)) mult = 2;
-                else mult = 1;
+                if (traits.di.value.includes(damageType)) hpMult = 0;
+                else if (traits.dr.value.includes(damageType)) hpMult = 0.5;
+                else if (traits.dv.value.includes(damageType)) hpMult = 2;
+                else hpMult = 1;
             }
-            const hpDamage = Math.floor(Math.min(hpCur, amount * mult));
+            const hpDamage = Math.floor(Math.min(hpCur, amount * hpMult));
 
             // Prepare updates
             updates["data.attributes.hp.temp"] = tmp - tmpDamage;
@@ -1485,7 +1477,24 @@ export default class Actor5e extends Actor {
             },
             updates
         );
-        return allowed !== false ? this.update(updates, {dhp: -amount}) : this;
+        return allowed !== false ? (await this.update(updates, {dhp: -amount})) : this;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Apply an array of damages to the health pool of the Actor
+     * @param {{Number: ammount, String: type}[]} damages   Ammount and Types of the damages to apply
+     * @param {string} [itemUuid]                           The uuid of the item dealing the damage
+     */
+    async applyDamages(damages, itemUuid=null) {
+        for (const damage of damages) {
+            await this.applyDamage(Math.abs(damage.ammount), damage.ammount >= 0 ? 1 : -1, {
+                damageType: damage.type,
+                itemUuid: itemUuid
+            });
+        }
+        return this;
     }
 
     /* -------------------------------------------- */
@@ -3565,7 +3574,7 @@ export default class Actor5e extends Actor {
      */
     async ssUndeployCrew(target, toUndeploy) {
         if (!target) return;
-        if (!toUndeploy) toUndeploy = Object.keys(SW5E.deploymentTypes);
+        if (!toUndeploy) toUndeploy = Object.keys(SW5E.ssCrewStationTypes);
 
         const ssDeploy = this.data.data.attributes.deployment;
         const deployed = target.data.data.attributes.deployed;
@@ -3605,7 +3614,7 @@ export default class Actor5e extends Actor {
         if (target === active.value) target = null;
 
         active.value = target;
-        for (const key of Object.keys(SW5E.deploymentTypes)) {
+        for (const key of Object.keys(SW5E.ssCrewStationTypes)) {
             const deployment = deployments[key];
             if (!target) {
                 deployment.active = false;

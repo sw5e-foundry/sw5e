@@ -574,7 +574,9 @@ SW5E.armorTypes = {
 SW5E.miscEquipmentTypes = {
     clothing: "SW5E.EquipmentClothing",
     trinket: "SW5E.EquipmentTrinket",
-    vehicle: "SW5E.EquipmentVehicle"
+    vehicle: "SW5E.EquipmentVehicle",
+    wristpad: "SW5E.EquipmentWristpad",
+    focusgenerator: "SW5E.EquipmentFocusGenerator"
 };
 
 /* -------------------------------------------- */
@@ -1083,25 +1085,25 @@ SW5E.baseUpgradeCost = [0, 3900, 77500, 297000, 620000, 1150000];
 /* -------------------------------------------- */
 
 /**
- * Starship Deployment types
+ * Starship Crew Station types
  * @enum {string}
  */
 
-SW5E.deploymentTypes = {
-    pilot: "SW5E.DeploymentTypePilot",
-    crew: "SW5E.DeploymentTypeCrew",
-    passenger: "SW5E.DeploymentTypePassenger"
+SW5E.ssCrewStationTypes = {
+    pilot: "SW5E.CrewStationTypePilot",
+    crew: "SW5E.CrewStationTypeCrew",
+    passenger: "SW5E.CrewStationTypePassenger"
 };
 
 /**
- * Starship Deployment types plural
+ * Starship Crew Station types plural
  * @enum {string}
  */
 
-SW5E.deploymentTypesPlural = {
-    pilot: "SW5E.DeploymentTypePilotPl",
-    crew: "SW5E.DeploymentTypeCrewPl",
-    passenger: "SW5E.DeploymentTypePassengerPl"
+SW5E.ssCrewStationTypesPlural = {
+    pilot: "SW5E.CrewStationTypePilotPl",
+    crew: "SW5E.CrewStationTypeCrewPl",
+    passenger: "SW5E.CrewStationTypePassengerPl"
 };
 
 /* -------------------------------------------- */
@@ -1630,6 +1632,11 @@ SW5E.weaponCommonProperties = {
         full: "SW5E.WeaponPropertiesRelFull",
         type: "Number",
         min: 0
+    },
+    smr: {
+        name: "SW5E.WeaponPropertiesSmr",
+        full: "SW5E.WeaponPropertiesSmrFull",
+        type: "Boolean"
     },
     spc: {
         name: "SW5E.WeaponPropertiesSpc",

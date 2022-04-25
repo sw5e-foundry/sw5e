@@ -1,5 +1,5 @@
 import {simplifyRollFormula, d20Roll, damageRoll} from "../dice.js";
-import {fromUuidSynchronous} from "../helpers.js";
+import {fromUuidSynchronous, fromUuidSafe} from "../helpers.js";
 import AbilityUseDialog from "../apps/ability-use-dialog.js";
 import Proficiency from "../actor/proficiency.js";
 
@@ -367,14 +367,9 @@ export default class Item5e extends Item {
 
         // Calculate the type of item modifications accepted
         if (itemData.type == 'equipment') {
-            if (data.armor?.type == 'shield') modsData.type = 'shield';
-            else if (data.armor?.type == 'clothing') modsData.type = 'clothing';
-            else if (data.armor?.type == 'trinket'){
-                if (/focus|force/.test(data.name)) modsData.type = 'focusgenerator';
-                else if (/wristpad/.test(data.name)) modsData.type = 'wristpad';
-                else modsData.type = null;
-            }
-            else modsData.type = 'armor';
+            if (Object.keys(CONFIG.SW5E.miscEquipmentTypes).includes(data.armor?.type)) modsData.type = data.armor?.type;
+            else if (Object.keys(CONFIG.SW5E.armorTypes).includes(data.armor?.type)) modsData.type = 'armor';
+            else modsData.type = null;
         }
         else if (itemData.type == 'weapon') {
             if (data.weaponType?.endsWith('LW')) modsData.type = 'lightweapon';
@@ -1945,8 +1940,7 @@ export default class Item5e extends Item {
             this.data.data.modified &&
             Object.keys(changes).some(e => !e.startsWith('data.modified'));
         if (trackModifications) for (const uuid of this.data.data.modified) {
-            const entity = fromUuidSynchronous(uuid);
-            entity?.updateModifications();
+            fromUuidSafe(uuid).then(entity => { entity?.updateModifications(); });
         }
 
         // The below options are only needed for character classes
@@ -1991,28 +1985,29 @@ export default class Item5e extends Item {
         const modified = this.data.data?.modified;
         if (modified) {
             for (const uuid of modified) {
-                const entity = fromUuidSynchronous(uuid);
-                const entityMods = entity?.data?.data?.modifications;
-                if (this.data.modificationType == 'augment') {
-                    const augments = entityMods?.augments;
-                    const index = augments?.find(e => e.uuid = this.uuid) ?? -1;
-                    if (index != -1){
-                        augments.splice(index);
-                        entity.update({'data.modifications.augments': augments});
-                    }
-                }
-                else {
-                    const mods = entityMods?.mods;
-                    if (mods) {
-                        for (const mod of Object.values(mods)) {
-                            if (mod.uuid === this.uuid) {
-                                mod.uuid = null;
-                                mod.disabled = false;
-                            }
+                fromUuidSafe(uuid).then(entity => {
+                    const entityMods = entity?.data?.data?.modifications;
+                    if (this.data.modificationType == 'augment') {
+                        const augments = entityMods?.augments;
+                        const index = augments?.find(e => e.uuid = this.uuid) ?? -1;
+                        if (index != -1){
+                            augments.splice(index);
+                            entity.update({'data.modifications.augments': augments});
                         }
-                        entity.update({'data.modifications.mods': mods});
                     }
-                }
+                    else {
+                        const mods = entityMods?.mods;
+                        if (mods) {
+                            for (const mod of Object.values(mods)) {
+                                if (mod.uuid === this.uuid) {
+                                    mod.uuid = null;
+                                    mod.disabled = false;
+                                }
+                            }
+                            entity.update({'data.modifications.mods': mods});
+                        }
+                    }
+                });
             }
         }
     }
@@ -2185,21 +2180,24 @@ export default class Item5e extends Item {
 
     addItemModLink(uuid) {
         if (!uuid) return;
-        const entity = fromUuidSynchronous(uuid);
-        if (!entity) return;
-        const modified = entity.data.data.modified;
-        if (!modified) return;
-        modified.push(this.uuid);
-        entity.update({'data.modified': modified});
+        fromUuidSafe(uuid).then(entity => {
+            if (!entity) return;
+            const modified = entity.data.data.modified;
+            if (!modified) return;
+            modified.push(this.uuid);
+            entity.update({'data.modified': modified});
+        });
     }
     removeItemModLink(uuid) {
         if (!uuid) return;
-        const entity = fromUuidSynchronous(uuid);
-        if (!entity) return;
-        const modified = entity.data.data.modified;
-        if (!modified) return;
-        entity.update({'data.modified': modified.filter(e => e !== this.uuid)});
+        fromUuidSafe(uuid).then(entity => {
+            if (!entity) return;
+            const modified = entity.data.data.modified;
+            if (!modified) return;
+            entity.update({'data.modified': modified.filter(e => e !== this.uuid)});
+        });
     }
+
     async updateModifications(){
         const itemData = this.data;
         const data = itemData.data;
@@ -2212,7 +2210,7 @@ export default class Item5e extends Item {
             if (!mod.uuid) continue;
 
             // Find the modification
-            let entity = fromUuidSynchronous(mod.uuid);
+            let entity = await fromUuidSafe(mod.uuid);
 
             if (!entity || mod.disabled) continue;
 
@@ -2227,7 +2225,7 @@ export default class Item5e extends Item {
             if (i > modsData.augmentSlots || !augment.uuid) continue;
 
             // Find the augment
-            let entity = fromUuidSynchronous(augment.uuid);
+            let entity = await fromUuidSafe(augment.uuid);
 
             if (!entity || augment.disabled) continue;
 
@@ -2243,7 +2241,6 @@ export default class Item5e extends Item {
             }
         }
     }
-
     _updateModification(itemData, data, overrides, entity) {
         // Apply changes to properties
         const entityData = entity.data.data;

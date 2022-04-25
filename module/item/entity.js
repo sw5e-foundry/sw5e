@@ -367,14 +367,9 @@ export default class Item5e extends Item {
 
         // Calculate the type of item modifications accepted
         if (itemData.type == 'equipment') {
-            if (data.armor?.type == 'shield') modsData.type = 'shield';
-            else if (data.armor?.type == 'clothing') modsData.type = 'clothing';
-            else if (data.armor?.type == 'trinket'){
-                if (/focus|force/.test(data.name)) modsData.type = 'focusgenerator';
-                else if (/wristpad/.test(data.name)) modsData.type = 'wristpad';
-                else modsData.type = null;
-            }
-            else modsData.type = 'armor';
+            if (Object.keys(CONFIG.SW5E.miscEquipmentTypes).includes(data.armor?.type)) modsData.type = data.armor?.type;
+            else if (Object.keys(CONFIG.SW5E.armorTypes).includes(data.armor?.type)) modsData.type = 'armor';
+            else modsData.type = null;
         }
         else if (itemData.type == 'weapon') {
             if (data.weaponType?.endsWith('LW')) modsData.type = 'lightweapon';

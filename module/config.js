@@ -574,7 +574,9 @@ SW5E.armorTypes = {
 SW5E.miscEquipmentTypes = {
     clothing: "SW5E.EquipmentClothing",
     trinket: "SW5E.EquipmentTrinket",
-    vehicle: "SW5E.EquipmentVehicle"
+    vehicle: "SW5E.EquipmentVehicle",
+    wristpad: "SW5E.EquipmentWristpad",
+    focusgenerator: "SW5E.EquipmentFocusGenerator"
 };
 
 /* -------------------------------------------- */

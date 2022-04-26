@@ -97,6 +97,7 @@ export default class ItemSheet5e extends ItemSheet {
         if (this.item.type === "modification") {
             data.isEquipMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
             data.isWpnMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+            data.isFocusMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesCastingFocus;
             data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
         }
 

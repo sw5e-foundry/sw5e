@@ -733,18 +733,21 @@ SW5E.chassisAugmentSlotsByRarity = {
 SW5E.modificationTypesEquipment = {
     armor: "SW5E.ModTypeArmor",
     clothing: "SW5E.ModTypeClothing",
-    focusgenerator: "SW5E.ModTypeFocusgenerator",
     shield: "SW5E.ModTypeShield",
-    wristpad: "SW5E.ModTypeWristpad"
 };
 SW5E.modificationTypesWeapon = {
     blaster: "SW5E.ModTypeBlaster",
     lightweapon: "SW5E.ModTypeLightweapon",
     vibroweapon: "SW5E.ModTypeVibroweapon"
 };
+SW5E.modificationTypesCastingFocus = {
+    focusgenerator: "SW5E.ModTypeFocusgenerator",
+    wristpad: "SW5E.ModTypeWristpad"
+};
 SW5E.modificationTypes = {
     ...SW5E.modificationTypesEquipment,
     ...SW5E.modificationTypesWeapon,
+    ...SW5E.modificationTypesCastingFocus,
     augment: "SW5E.ModTypeAugment"
 };
 
@@ -1389,169 +1392,199 @@ SW5E.weaponTypes = {
  */
 SW5E.armorProperties = {
     Absorptive: {
-        name: "SW5E.ArmorProperAbsorptive",
-        full: "SW5E.ArmorProperAbsorptiveFull",
+        name: "SW5E.ArmorPropertyAbsorptive",
+        full: "SW5E.ArmorPropertyAbsorptiveFull",
+        desc: "SW5E.ArmorPropertyAbsorptiveDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Agile: {
-        name: "SW5E.ArmorProperAgile",
-        full: "SW5E.ArmorProperAgileFull",
+        name: "SW5E.ArmorPropertyAgile",
+        full: "SW5E.ArmorPropertyAgileFull",
+        desc: "SW5E.ArmorPropertyAgileDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Anchor: {
-        name: "SW5E.ArmorProperAnchor",
-        full: "SW5E.ArmorProperAnchorFull",
+        name: "SW5E.ArmorPropertyAnchor",
+        full: "SW5E.ArmorPropertyAnchorFull",
+        desc: "SW5E.ArmorPropertyAnchorDesc",
         type: "Boolean"
     },
     Avoidant: {
-        name: "SW5E.ArmorProperAvoidant",
-        full: "SW5E.ArmorProperAvoidantFull",
+        name: "SW5E.ArmorPropertyAvoidant",
+        full: "SW5E.ArmorPropertyAvoidantFull",
+        desc: "SW5E.ArmorPropertyAvoidantDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Barbed: {
-        name: "SW5E.ArmorProperBarbed",
-        full: "SW5E.ArmorProperBarbedFull",
+        name: "SW5E.ArmorPropertyBarbed",
+        full: "SW5E.ArmorPropertyBarbedFull",
+        desc: "SW5E.ArmorPropertyBarbedDesc",
         type: "Boolean"
     },
     Bulky: {
-        name: "SW5E.ArmorProperBulky",
-        full: "SW5E.ArmorProperBulkyFull",
+        name: "SW5E.ArmorPropertyBulky",
+        full: "SW5E.ArmorPropertyBulkyFull",
+        desc: "SW5E.ArmorPropertyBulkyDesc",
         type: "Boolean"
     },
     Charging: {
-        name: "SW5E.ArmorProperCharging",
-        full: "SW5E.ArmorProperChargingFull",
+        name: "SW5E.ArmorPropertyCharging",
+        full: "SW5E.ArmorPropertyChargingFull",
+        desc: "SW5E.ArmorPropertyChargingDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Concealing: {
-        name: "SW5E.ArmorProperConcealing",
-        full: "SW5E.ArmorProperConcealingFull",
+        name: "SW5E.ArmorPropertyConcealing",
+        full: "SW5E.ArmorPropertyConcealingFull",
+        desc: "SW5E.ArmorPropertyConcealingDesc",
         type: "Boolean"
     },
     Cumbersome: {
-        name: "SW5E.ArmorProperCumbersome",
-        full: "SW5E.ArmorProperCumbersomeFull",
+        name: "SW5E.ArmorPropertyCumbersome",
+        full: "SW5E.ArmorPropertyCumbersomeFull",
+        desc: "SW5E.ArmorPropertyCumbersomeDesc",
         type: "Boolean"
     },
     Gauntleted: {
-        name: "SW5E.ArmorProperGauntleted",
-        full: "SW5E.ArmorProperGauntletedFull",
+        name: "SW5E.ArmorPropertyGauntleted",
+        full: "SW5E.ArmorPropertyGauntletedFull",
+        desc: "SW5E.ArmorPropertyGauntletedDesc",
         type: "Boolean"
     },
     Imbalanced: {
-        name: "SW5E.ArmorProperImbalanced",
-        full: "SW5E.ArmorProperImbalancedFull",
+        name: "SW5E.ArmorPropertyImbalanced",
+        full: "SW5E.ArmorPropertyImbalancedFull",
+        desc: "SW5E.ArmorPropertyImbalancedDesc",
         type: "Boolean"
     },
     Impermeable: {
-        name: "SW5E.ArmorProperImpermeable",
-        full: "SW5E.ArmorProperImpermeableFull",
+        name: "SW5E.ArmorPropertyImpermeable",
+        full: "SW5E.ArmorPropertyImpermeableFull",
+        desc: "SW5E.ArmorPropertyImpermeableDesc",
         type: "Boolean"
     },
     Insulated: {
-        name: "SW5E.ArmorProperInsulated",
-        full: "SW5E.ArmorProperInsulatedFull",
+        name: "SW5E.ArmorPropertyInsulated",
+        full: "SW5E.ArmorPropertyInsulatedFull",
+        desc: "SW5E.ArmorPropertyInsulatedDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Interlocking: {
-        name: "SW5E.ArmorProperInterlocking",
-        full: "SW5E.ArmorProperInterlockingFull",
+        name: "SW5E.ArmorPropertyInterlocking",
+        full: "SW5E.ArmorPropertyInterlockingFull",
+        desc: "SW5E.ArmorPropertyInterlockingDesc",
         type: "Boolean"
     },
     Lambent: {
-        name: "SW5E.ArmorProperLambent",
-        full: "SW5E.ArmorProperLambentFull",
+        name: "SW5E.ArmorPropertyLambent",
+        full: "SW5E.ArmorPropertyLambentFull",
+        desc: "SW5E.ArmorPropertyLambentDesc",
         type: "Boolean"
     },
     Lightweight: {
-        name: "SW5E.ArmorProperLightweight",
-        full: "SW5E.ArmorProperLightweightFull",
+        name: "SW5E.ArmorPropertyLightweight",
+        full: "SW5E.ArmorPropertyLightweightFull",
+        desc: "SW5E.ArmorPropertyLightweightDesc",
         type: "Boolean"
     },
     Magnetic: {
-        name: "SW5E.ArmorProperMagnetic",
-        full: "SW5E.ArmorProperMagneticFull",
+        name: "SW5E.ArmorPropertyMagnetic",
+        full: "SW5E.ArmorPropertyMagneticFull",
+        desc: "SW5E.ArmorPropertyMagneticDesc",
         type: "Number"
     },
     Obscured: {
-        name: "SW5E.ArmorProperObscured",
-        full: "SW5E.ArmorProperObscuredFull",
+        name: "SW5E.ArmorPropertyObscured",
+        full: "SW5E.ArmorPropertyObscuredFull",
+        desc: "SW5E.ArmorPropertyObscuredDesc",
         type: "Boolean"
     },
     Obtrusive: {
-        name: "SW5E.ArmorProperObtrusive",
-        full: "SW5E.ArmorProperObtrusiveFull",
+        name: "SW5E.ArmorPropertyObtrusive",
+        full: "SW5E.ArmorPropertyObtrusiveFull",
+        desc: "SW5E.ArmorPropertyObtrusiveDesc",
         type: "Boolean"
     },
     Powered: {
-        name: "SW5E.ArmorProperPowered",
-        full: "SW5E.ArmorProperPoweredFull",
+        name: "SW5E.ArmorPropertyPowered",
+        full: "SW5E.ArmorPropertyPoweredFull",
+        desc: "SW5E.ArmorPropertyPoweredDesc",
         type: "Number",
         min: 0
     },
     Reactive: {
-        name: "SW5E.ArmorProperReactive",
-        full: "SW5E.ArmorProperReactiveFull",
+        name: "SW5E.ArmorPropertyReactive",
+        full: "SW5E.ArmorPropertyReactiveFull",
+        desc: "SW5E.ArmorPropertyReactiveDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Regulated: {
-        name: "SW5E.ArmorProperRegulated",
-        full: "SW5E.ArmorProperRegulatedFull",
+        name: "SW5E.ArmorPropertyRegulated",
+        full: "SW5E.ArmorPropertyRegulatedFull",
+        desc: "SW5E.ArmorPropertyRegulatedDesc",
         type: "Boolean"
     },
     Reinforced: {
-        name: "SW5E.ArmorProperReinforced",
-        full: "SW5E.ArmorProperReinforcedFull",
+        name: "SW5E.ArmorPropertyReinforced",
+        full: "SW5E.ArmorPropertyReinforcedFull",
+        desc: "SW5E.ArmorPropertyReinforcedDesc",
         type: "Boolean"
     },
     Responsive: {
-        name: "SW5E.ArmorProperResponsive",
-        full: "SW5E.ArmorProperResponsiveFull",
+        name: "SW5E.ArmorPropertyResponsive",
+        full: "SW5E.ArmorPropertyResponsiveFull",
+        desc: "SW5E.ArmorPropertyResponsiveDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     Rigid: {
-        name: "SW5E.ArmorProperRigid",
-        full: "SW5E.ArmorProperRigidFull",
+        name: "SW5E.ArmorPropertyRigid",
+        full: "SW5E.ArmorPropertyRigidFull",
+        desc: "SW5E.ArmorPropertyRigidDesc",
         type: "Boolean"
     },
     Silent: {
-        name: "SW5E.ArmorProperSilent",
-        full: "SW5E.ArmorProperSilentFull",
+        name: "SW5E.ArmorPropertySilent",
+        full: "SW5E.ArmorPropertySilentFull",
+        desc: "SW5E.ArmorPropertySilentDesc",
         type: "Boolean"
     },
     Spiked: {
-        name: "SW5E.ArmorProperSpiked",
-        full: "SW5E.ArmorProperSpikedFull",
+        name: "SW5E.ArmorPropertySpiked",
+        full: "SW5E.ArmorPropertySpikedFull",
+        desc: "SW5E.ArmorPropertySpikedDesc",
         type: "Boolean"
     },
     Strength: {
-        name: "SW5E.ArmorProperStrength",
-        full: "SW5E.ArmorProperStrengthFull",
+        name: "SW5E.ArmorPropertyStrength",
+        full: "SW5E.ArmorPropertyStrengthFull",
+        desc: "SW5E.ArmorPropertyStrengthDesc",
         type: "Number",
         min: 0
     },
     Steadfast: {
-        name: "SW5E.ArmorProperSteadfast",
-        full: "SW5E.ArmorProperSteadfastFull",
+        name: "SW5E.ArmorPropertySteadfast",
+        full: "SW5E.ArmorPropertySteadfastFull",
+        desc: "SW5E.ArmorPropertySteadfastDesc",
         type: "Boolean"
     },
     Versatile: {
-        name: "SW5E.ArmorProperVersatile",
-        full: "SW5E.ArmorProperVersatileFull",
+        name: "SW5E.ArmorPropertyVersatile",
+        full: "SW5E.ArmorPropertyVersatileFull",
+        desc: "SW5E.ArmorPropertyVersatileDesc",
         type: "Number"
     }
 };
@@ -1570,82 +1603,96 @@ SW5E.armorProperties = {
  */
 SW5E.weaponCommonProperties = {
     amm: {
-        name: "SW5E.WeaponPropertiesAmm",
-        full: "SW5E.WeaponPropertiesAmmFull",
+        name: "SW5E.WeaponPropertyAmm",
+        full: "SW5E.WeaponPropertyAmmFull",
+        desc: "SW5E.WeaponPropertyAmmDesc",
         type: "Boolean"
     },
     aut: {
-        name: "SW5E.WeaponPropertiesAut",
-        full: "SW5E.WeaponPropertiesAutFull",
+        name: "SW5E.WeaponPropertyAut",
+        full: "SW5E.WeaponPropertyAutFull",
+        desc: "SW5E.WeaponPropertyAutDesc",
         type: "Boolean"
     },
     bur: {
-        name: "SW5E.WeaponPropertiesBur",
-        full: "SW5E.WeaponPropertiesBurFull",
+        name: "SW5E.WeaponPropertyBur",
+        full: "SW5E.WeaponPropertyBurFull",
+        desc: "SW5E.WeaponPropertyBurDesc",
         type: "Number",
         min: 2
     },
     dir: {
-        name: "SW5E.WeaponPropertiesDir",
-        full: "SW5E.WeaponPropertiesDirFull",
+        name: "SW5E.WeaponPropertyDir",
+        full: "SW5E.WeaponPropertyDirFull",
+        desc: "SW5E.WeaponPropertyDirDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     hvy: {
-        name: "SW5E.WeaponPropertiesHvy",
-        full: "SW5E.WeaponPropertiesHvyFull",
+        name: "SW5E.WeaponPropertyHvy",
+        full: "SW5E.WeaponPropertyHvyFull",
+        desc: "SW5E.WeaponPropertyHvyDesc",
         type: "Boolean"
     },
     hid: {
-        name: "SW5E.WeaponPropertiesHid",
-        full: "SW5E.WeaponPropertiesHidFull",
+        name: "SW5E.WeaponPropertyHid",
+        full: "SW5E.WeaponPropertyHidFull",
+        desc: "SW5E.WeaponPropertyHidDesc",
         type: "Boolean"
     },
     ken: {
-        name: "SW5E.WeaponPropertiesKen",
-        full: "SW5E.WeaponPropertiesKenFull",
+        name: "SW5E.WeaponPropertyKen",
+        full: "SW5E.WeaponPropertyKenFull",
+        desc: "SW5E.WeaponPropertyKenDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     pic: {
-        name: "SW5E.WeaponPropertiesPic",
-        full: "SW5E.WeaponPropertiesPicFull",
+        name: "SW5E.WeaponPropertyPic",
+        full: "SW5E.WeaponPropertyPicFull",
+        desc: "SW5E.WeaponPropertyPicDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     ran: {
-        name: "SW5E.WeaponPropertiesRan",
-        full: "SW5E.WeaponPropertiesRanFull",
+        name: "SW5E.WeaponPropertyRan",
+        full: "SW5E.WeaponPropertyRanFull",
+        desc: "SW5E.WeaponPropertyRanDesc",
         type: "Boolean"
     },
     rap: {
-        name: "SW5E.WeaponPropertiesRap",
-        full: "SW5E.WeaponPropertiesRapFull",
+        name: "SW5E.WeaponPropertyRap",
+        full: "SW5E.WeaponPropertyRapFull",
+        desc: "SW5E.WeaponPropertyRapDesc",
         type: "Number",
         min: 2
     },
     rel: {
-        name: "SW5E.WeaponPropertiesRel",
-        full: "SW5E.WeaponPropertiesRelFull",
+        name: "SW5E.WeaponPropertyRel",
+        full: "SW5E.WeaponPropertyRelFull",
+        desc: "SW5E.WeaponPropertyRelDesc",
         type: "Number",
         min: 0
     },
     smr: {
-        name: "SW5E.WeaponPropertiesSmr",
-        full: "SW5E.WeaponPropertiesSmrFull",
+        name: "SW5E.WeaponPropertySmr",
+        full: "SW5E.WeaponPropertySmrFull",
+        desc: "SW5E.WeaponPropertySmrDesc",
         type: "Boolean"
     },
     spc: {
-        name: "SW5E.WeaponPropertiesSpc",
-        full: "SW5E.WeaponPropertiesSpcFull",
+        name: "SW5E.WeaponPropertySpc",
+        full: "SW5E.WeaponPropertySpcFull",
+        desc: "SW5E.WeaponPropertySpcDesc",
         type: "Boolean"
     },
     vic: {
-        name: "SW5E.WeaponPropertiesVic",
-        full: "SW5E.WeaponPropertiesVicFull",
+        name: "SW5E.WeaponPropertyVic",
+        full: "SW5E.WeaponPropertyVicFull",
+        desc: "SW5E.WeaponPropertyVicDesc",
         type: "Number",
         min: 0,
         max: 3
@@ -1667,133 +1714,157 @@ SW5E.weaponCommonProperties = {
  */
 SW5E.weaponCharacterProperties = {
     bru: {
-        name: "SW5E.WeaponPropertiesBru",
-        full: "SW5E.WeaponPropertiesBruFull",
+        name: "SW5E.WeaponPropertyBru",
+        full: "SW5E.WeaponPropertyBruFull",
+        desc: "SW5E.WeaponPropertyBruDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     def: {
-        name: "SW5E.WeaponPropertiesDef",
-        full: "SW5E.WeaponPropertiesDefFull",
+        name: "SW5E.WeaponPropertyDef",
+        full: "SW5E.WeaponPropertyDefFull",
+        desc: "SW5E.WeaponPropertyDefDesc",
         type: "Number",
         min: 0,
         max: 3
     },
     dex: {
-        name: "SW5E.WeaponPropertiesDex",
-        full: "SW5E.WeaponPropertiesDexFull",
+        name: "SW5E.WeaponPropertyDex",
+        full: "SW5E.WeaponPropertyDexFull",
+        desc: "SW5E.WeaponPropertyDexDesc",
         type: "Number",
         min: 0
     },
     drm: {
-        name: "SW5E.WeaponPropertiesDrm",
-        full: "SW5E.WeaponPropertiesDrmFull",
+        name: "SW5E.WeaponPropertyDrm",
+        full: "SW5E.WeaponPropertyDrmFull",
+        desc: "SW5E.WeaponPropertyDrmDesc",
         type: "Boolean"
     },
     dgd: {
-        name: "SW5E.WeaponPropertiesDgd",
-        full: "SW5E.WeaponPropertiesDgdFull",
+        name: "SW5E.WeaponPropertyDgd",
+        full: "SW5E.WeaponPropertyDgdFull",
+        desc: "SW5E.WeaponPropertyDgdDesc",
         type: "Boolean"
     },
     dis: {
-        name: "SW5E.WeaponPropertiesDis",
-        full: "SW5E.WeaponPropertiesDisFull",
+        name: "SW5E.WeaponPropertyDis",
+        full: "SW5E.WeaponPropertyDisFull",
+        desc: "SW5E.WeaponPropertyDisDesc",
         type: "Number",
         min: 0
     },
     dpt: {
-        name: "SW5E.WeaponPropertiesDpt",
-        full: "SW5E.WeaponPropertiesDptFull",
+        name: "SW5E.WeaponPropertyDpt",
+        full: "SW5E.WeaponPropertyDptFull",
+        desc: "SW5E.WeaponPropertyDptDesc",
         type: "Boolean"
     },
     dou: {
-        name: "SW5E.WeaponPropertiesDou",
-        full: "SW5E.WeaponPropertiesDouFull",
+        name: "SW5E.WeaponPropertyDou",
+        full: "SW5E.WeaponPropertyDouFull",
+        desc: "SW5E.WeaponPropertyDouDesc",
         type: "Boolean"
     },
     fin: {
-        name: "SW5E.WeaponPropertiesFin",
-        full: "SW5E.WeaponPropertiesFinFull",
+        name: "SW5E.WeaponPropertyFin",
+        full: "SW5E.WeaponPropertyFinFull",
+        desc: "SW5E.WeaponPropertyFinDesc",
         type: "Boolean"
     },
     fix: {
-        name: "SW5E.WeaponPropertiesFix",
-        full: "SW5E.WeaponPropertiesFixFull",
+        name: "SW5E.WeaponPropertyFix",
+        full: "SW5E.WeaponPropertyFixFull",
+        desc: "SW5E.WeaponPropertyFixDesc",
         type: "Boolean"
     },
     lgt: {
-        name: "SW5E.WeaponPropertiesLgt",
-        full: "SW5E.WeaponPropertiesLgtFull",
+        name: "SW5E.WeaponPropertyLgt",
+        full: "SW5E.WeaponPropertyLgtFull",
+        desc: "SW5E.WeaponPropertyLgtDesc",
         type: "Boolean"
     },
     lum: {
-        name: "SW5E.WeaponPropertiesLum",
-        full: "SW5E.WeaponPropertiesLumFull",
+        name: "SW5E.WeaponPropertyLum",
+        full: "SW5E.WeaponPropertyLumFull",
+        desc: "SW5E.WeaponPropertyLumDesc",
         type: "Boolean"
     },
     mig: {
-        name: "SW5E.WeaponPropertiesMig",
-        full: "SW5E.WeaponPropertiesMigFull",
+        name: "SW5E.WeaponPropertyMig",
+        full: "SW5E.WeaponPropertyMigFull",
+        desc: "SW5E.WeaponPropertyMigDesc",
         type: "Boolean"
     },
     neu: {
-        name: "SW5E.WeaponPropertiesNeu",
-        full: "SW5E.WeaponPropertiesNeuFull",
+        name: "SW5E.WeaponPropertyNeu",
+        full: "SW5E.WeaponPropertyNeuFull",
+        desc: "SW5E.WeaponPropertyNeuDesc",
         type: "Number",
         min: 0
     },
     rch: {
-        name: "SW5E.WeaponPropertiesRch",
-        full: "SW5E.WeaponPropertiesRchFull",
+        name: "SW5E.WeaponPropertyRch",
+        full: "SW5E.WeaponPropertyRchFull",
+        desc: "SW5E.WeaponPropertyRchDesc",
         type: "Boolean"
     },
     ret: {
-        name: "SW5E.WeaponPropertiesRet",
-        full: "SW5E.WeaponPropertiesRetFull",
+        name: "SW5E.WeaponPropertyRet",
+        full: "SW5E.WeaponPropertyRetFull",
+        desc: "SW5E.WeaponPropertyRetDesc",
         type: "Boolean"
     },
     shk: {
-        name: "SW5E.WeaponPropertiesShk",
-        full: "SW5E.WeaponPropertiesShkFull",
+        name: "SW5E.WeaponPropertyShk",
+        full: "SW5E.WeaponPropertyShkFull",
+        desc: "SW5E.WeaponPropertyShkDesc",
         type: "Number",
         min: 0
     },
     sil: {
-        name: "SW5E.WeaponPropertiesSil",
-        full: "SW5E.WeaponPropertiesSilFull",
+        name: "SW5E.WeaponPropertySil",
+        full: "SW5E.WeaponPropertySilFull",
+        desc: "SW5E.WeaponPropertySilDesc",
         type: "Boolean"
     },
     son: {
-        name: "SW5E.WeaponPropertiesSon",
-        full: "SW5E.WeaponPropertiesSonFull",
+        name: "SW5E.WeaponPropertySon",
+        full: "SW5E.WeaponPropertySonFull",
+        desc: "SW5E.WeaponPropertySonDesc",
         type: "Number",
         min: 0
     },
     str: {
-        name: "SW5E.WeaponPropertiesStr",
-        full: "SW5E.WeaponPropertiesStrFull",
+        name: "SW5E.WeaponPropertyStr",
+        full: "SW5E.WeaponPropertyStrFull",
+        desc: "SW5E.WeaponPropertyStrDesc",
         type: "Number",
         min: 0
     },
     swi: {
-        name: "SW5E.WeaponPropertiesSwi",
-        full: "SW5E.WeaponPropertiesSwiFull",
+        name: "SW5E.WeaponPropertySwi",
+        full: "SW5E.WeaponPropertySwiFull",
+        desc: "SW5E.WeaponPropertySwiDesc",
         type: "Boolean"
     },
     thr: {
-        name: "SW5E.WeaponPropertiesThr",
-        full: "SW5E.WeaponPropertiesThrFull",
+        name: "SW5E.WeaponPropertyThr",
+        full: "SW5E.WeaponPropertyThrFull",
+        desc: "SW5E.WeaponPropertyThrDesc",
         type: "Boolean"
     },
     two: {
-        name: "SW5E.WeaponPropertiesTwo",
-        full: "SW5E.WeaponPropertiesTwoFull",
+        name: "SW5E.WeaponPropertyTwo",
+        full: "SW5E.WeaponPropertyTwoFull",
+        desc: "SW5E.WeaponPropertyTwoDesc",
         type: "Boolean"
     },
     ver: {
-        name: "SW5E.WeaponPropertiesVer",
-        full: "SW5E.WeaponPropertiesVerFull",
+        name: "SW5E.WeaponPropertyVer",
+        full: "SW5E.WeaponPropertyVerFull",
+        desc: "SW5E.WeaponPropertyVerDesc",
         type: "Boolean"
     }
 };
@@ -1813,55 +1884,65 @@ SW5E.weaponCharacterProperties = {
  */
 SW5E.weaponStarshipProperties = {
     con: {
-        name: "SW5E.WeaponPropertiesCon",
-        full: "SW5E.WeaponPropertiesConFull",
+        name: "SW5E.WeaponPropertyCon",
+        full: "SW5E.WeaponPropertyConFull",
+        desc: "SW5E.WeaponPropertyConDesc",
         type: "Number",
         min: 0
     },
     exp: {
-        name: "SW5E.WeaponPropertiesExp",
-        full: "SW5E.WeaponPropertiesExpFull",
+        name: "SW5E.WeaponPropertyExp",
+        full: "SW5E.WeaponPropertyExpFull",
+        desc: "SW5E.WeaponPropertyExpDesc",
         type: "Boolean"
     },
     foc: {
-        name: "SW5E.WeaponPropertiesFoc",
-        full: "SW5E.WeaponPropertiesFocFull",
+        name: "SW5E.WeaponPropertyFoc",
+        full: "SW5E.WeaponPropertyFocFull",
+        desc: "SW5E.WeaponPropertyFocDesc",
         type: "Boolean"
     },
     hom: {
-        name: "SW5E.WeaponPropertiesHom",
-        full: "SW5E.WeaponPropertiesHomFull",
+        name: "SW5E.WeaponPropertyHom",
+        full: "SW5E.WeaponPropertyHomFull",
+        desc: "SW5E.WeaponPropertyHomDesc",
         type: "Boolean"
     },
     ion: {
-        name: "SW5E.WeaponPropertiesIon",
-        full: "SW5E.WeaponPropertiesIonFull",
+        name: "SW5E.WeaponPropertyIon",
+        full: "SW5E.WeaponPropertyIonFull",
+        desc: "SW5E.WeaponPropertyIonDesc",
         type: "Boolean"
     },
     mlt: {
-        name: "SW5E.WeaponPropertiesMlt",
-        full: "SW5E.WeaponPropertiesMltFull",
+        name: "SW5E.WeaponPropertyMlt",
+        full: "SW5E.WeaponPropertyMltFull",
+        desc: "SW5E.WeaponPropertyMltDesc",
         type: "Boolean"
     },
     ovr: {
-        name: "SW5E.WeaponPropertiesOvr",
-        full: "SW5E.WeaponPropertiesOvrFull",
+        name: "SW5E.WeaponPropertyOvr",
+        full: "SW5E.WeaponPropertyOvrFull",
+        desc: "SW5E.WeaponPropertyOvrDesc",
         type: "Number",
         min: 0
     },
     pow: {
-        name: "SW5E.WeaponPropertiesPow",
-        full: "SW5E.WeaponPropertiesPowFull",
+        name: "SW5E.WeaponPropertyPow",
+        full: "SW5E.WeaponPropertyPowFull",
+        desc: "SW5E.WeaponPropertyPowDesc",
         type: "Boolean"
     },
     sat: {
-        name: "SW5E.WeaponPropertiesSat",
-        full: "SW5E.WeaponPropertiesSatFull",
+        name: "SW5E.WeaponPropertySat",
+        full: "SW5E.WeaponPropertySatFull",
+        desc: "SW5E.WeaponPropertySatDesc",
         type: "Boolean"
     },
     zon: {
-        name: "SW5E.WeaponPropertiesZon",
-        full: "SW5E.WeaponPropertiesZonFull",
+        name: "SW5E.WeaponPropertyZon",
+        full: "SW5E.WeaponPropertyZonFull",
+        desc: "SW5E.WeaponPropertyZonDesc",
         type: "Boolean"
     }
 };

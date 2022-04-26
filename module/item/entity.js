@@ -367,8 +367,8 @@ export default class Item5e extends Item {
 
         // Calculate the type of item modifications accepted
         if (itemData.type == 'equipment') {
-            if (Object.keys(CONFIG.SW5E.miscEquipmentTypes).includes(data.armor?.type)) modsData.type = data.armor?.type;
-            else if (Object.keys(CONFIG.SW5E.armorTypes).includes(data.armor?.type)) modsData.type = 'armor';
+            if (data.armor?.type in CONFIG.SW5E.armorTypes) modsData.type = 'armor';
+            else if (data.armor?.type in CONFIG.SW5E.miscEquipmentTypes) modsData.type = data.armor?.type;
             else modsData.type = null;
         }
         else if (itemData.type == 'weapon') {

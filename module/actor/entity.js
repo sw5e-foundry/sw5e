@@ -1143,7 +1143,6 @@ export default class Actor5e extends Actor {
         const bonusTech = this._simplifyBonus(ad.bonuses?.power?.techDC, bonusData) + bonusAll;
 
         // Powercasting DC for Actors and NPCs
-        // TODO: Consider an option for using the variant rule of all powers use the same value
         ad.attributes.powerForceLightDC = 8 + ad.abilities.wis.mod + ad.attributes.prof ?? 10;
         ad.attributes.powerForceDarkDC = 8 + ad.abilities.cha.mod + ad.attributes.prof ?? 10;
         ad.attributes.powerForceUnivDC =
@@ -1309,6 +1308,7 @@ export default class Actor5e extends Actor {
 
     _computeFuel(actorData) {
         const fuel = actorData.data.attributes.fuel;
+        fuel.cost *= actorData.data.attributes.equip.reactor.fuelMult;
         // Compute Fuel percentage
         const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.fuelCap, 0, 100);
         return {...fuel, pct, fueled: pct > 0};

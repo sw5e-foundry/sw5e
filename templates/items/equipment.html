@@ -101,23 +101,23 @@
                 </div>
             {{/unless}}
 
-            {{#unless isStarshipEquipment}}
-                {{!-- Armor Properties --}}
+            {{#if equipProperties}}
+                {{!-- Equipment Properties --}}
                 <div class="form-group stacked armor-properties">
-                    <label>{{ localize "SW5E.ArmorProperties" }}</label>
-                    {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                    <label>{{ localize "SW5E.EquipmentProperties" }}</label>
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                         <label class="checkbox" title="{{localize property.desc}}">
                             <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
                         </label>
                     {{/if}} {{/each}}
 
-                    {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Number")}}
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Number")}}
                         <label class="number" title="{{localize property.desc}}">
                             {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
                         </label>
                     {{/if}} {{/each}}
                 </div>
-            {{/unless}}
+            {{/if}}
 
             {{#if (or isStarshipArmor isStarshipShield)}}
                 {{!-- Starship Armor and Shield Properties --}}

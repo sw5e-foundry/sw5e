@@ -68,7 +68,7 @@
             </div>
 
             {{!-- Weapon/Equipment Properties --}}
-            {{#if (or isWpnMod isEquipMod)}}
+            {{#if (or isWpnMod isEquipMod isCastMod)}}
                 <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
 
                 {{#if isWpnMod}}
@@ -167,6 +167,24 @@
                     <div class="form-group">
                         <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
                         <input class="tristate-checkbox" type="checkbox" name="data.stealth" value="1" {{checked data.stealth}}/>
+                    </div>
+                {{/if}}
+
+                {{#if isCastMod}}
+                    {{!-- Casting Properties --}}
+                    <div class="form-group stacked casting-properties">
+                        <label>{{ localize "SW5E.CastingProperties" }}</label>
+                        {{#each config.castingProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                        <label class="checkbox" title="{{localize property.desc}}">
+                            <input class="tristate-checkbox" type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                        </label>
+                        {{/if}} {{/each}}
+
+                        {{#each config.castingProperties as |property key|}} {{#if (eq property.type "Number")}}
+                        <label class="number" title="{{localize property.desc}}">
+                            {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                        </label>
+                        {{/if}} {{/each}}
                     </div>
                 {{/if}}
             {{/if}}

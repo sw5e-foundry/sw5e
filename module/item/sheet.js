@@ -86,8 +86,11 @@ export default class ItemSheet5e extends ItemSheet {
         // Weapon Properties
         if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
 
+
         // Armor Class
         if (this.item.type === "equipment") {
+            if (itemData.data.armor.type in CONFIG.SW5E.armorTypes) data.equipProperties = CONFIG.SW5E.armorProperties;
+            if (itemData.data.armor.type in CONFIG.SW5E.castingEquipmentTypes) data.equipProperties = CONFIG.SW5E.castingProperties;
             data.isArmor = this.item.isArmor;
             data.hasAC = data.isArmor || data.isMountable;
             data.hasDexModifier = data.isArmor && itemData.data.armor?.type !== "shield";
@@ -97,7 +100,7 @@ export default class ItemSheet5e extends ItemSheet {
         if (this.item.type === "modification") {
             data.isEquipMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
             data.isWpnMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
-            data.isFocusMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesCastingFocus;
+            data.isCastMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesCasting;
             data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
         }
 

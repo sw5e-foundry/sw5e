@@ -568,6 +568,17 @@ SW5E.armorTypes = {
 /* -------------------------------------------- */
 
 /**
+ * Casting Focus equipment types
+ * @enum {string}
+ */
+SW5E.castingEquipmentTypes = {
+    wristpad: "SW5E.EquipmentWristpad",
+    focusgenerator: "SW5E.EquipmentFocusGenerator"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Equipment types that aren't armor.
  * @enum {string}
  */
@@ -575,8 +586,7 @@ SW5E.miscEquipmentTypes = {
     clothing: "SW5E.EquipmentClothing",
     trinket: "SW5E.EquipmentTrinket",
     vehicle: "SW5E.EquipmentVehicle",
-    wristpad: "SW5E.EquipmentWristpad",
-    focusgenerator: "SW5E.EquipmentFocusGenerator"
+    ...SW5E.castingEquipmentTypes,
 };
 
 /* -------------------------------------------- */
@@ -740,14 +750,14 @@ SW5E.modificationTypesWeapon = {
     lightweapon: "SW5E.ModTypeLightweapon",
     vibroweapon: "SW5E.ModTypeVibroweapon"
 };
-SW5E.modificationTypesCastingFocus = {
+SW5E.modificationTypesCasting = {
     focusgenerator: "SW5E.ModTypeFocusgenerator",
     wristpad: "SW5E.ModTypeWristpad"
 };
 SW5E.modificationTypes = {
     ...SW5E.modificationTypesEquipment,
     ...SW5E.modificationTypesWeapon,
-    ...SW5E.modificationTypesCastingFocus,
+    ...SW5E.modificationTypesCasting,
     augment: "SW5E.ModTypeAugment"
 };
 
@@ -1381,7 +1391,7 @@ SW5E.weaponTypes = {
 /* -------------------------------------------- */
 
 /**
- * The set of weapon property flags which can exist on armor.
+ * The set of armor property flags which can exist on any armor.
  * @enum {{
  *   name: string,
  *   full: string,
@@ -1585,6 +1595,147 @@ SW5E.armorProperties = {
         name: "SW5E.ArmorPropertyVersatile",
         full: "SW5E.ArmorPropertyVersatileFull",
         desc: "SW5E.ArmorPropertyVersatileDesc",
+        type: "Number"
+    }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The set of casting property flags which can exist on any casting focus.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string,
+ *   [min]: number,
+ *   [max]: number,
+ * }}
+ */
+SW5E.castingProperties = {
+    c_Absorbing: {
+        name: "SW5E.CastingPropertyAbsorbing",
+        full: "SW5E.CastingPropertyAbsorbingFull",
+        desc: "SW5E.CastingPropertyAbsorbingDesc",
+        type: "Number"
+    },
+    c_Acessing: {
+        name: "SW5E.CastingPropertyAcessing",
+        full: "SW5E.CastingPropertyAcessingFull",
+        desc: "SW5E.CastingPropertyAcessingDesc",
+        type: "Number"
+    },
+    c_Amplifying: {
+        name: "SW5E.CastingPropertyAmplifying",
+        full: "SW5E.CastingPropertyAmplifyingFull",
+        desc: "SW5E.CastingPropertyAmplifyingDesc",
+        type: "Number"
+    },
+    c_Bolstering: {
+        name: "SW5E.CastingPropertyBolstering",
+        full: "SW5E.CastingPropertyBolsteringFull",
+        desc: "SW5E.CastingPropertyBolsteringDesc",
+        type: "Number"
+    },
+    c_Constitution: {
+        name: "SW5E.CastingPropertyConstitution",
+        full: "SW5E.CastingPropertyConstitutionFull",
+        desc: "SW5E.CastingPropertyConstitutionDesc",
+        type: "Number"
+    },
+    c_Dispelling: {
+        name: "SW5E.CastingPropertyDispelling",
+        full: "SW5E.CastingPropertyDispellingFull",
+        desc: "SW5E.CastingPropertyDispellingDesc",
+        type: "Number"
+    },
+    c_Elongating: {
+        name: "SW5E.CastingPropertyElongating",
+        full: "SW5E.CastingPropertyElongatingFull",
+        desc: "SW5E.CastingPropertyElongatingDesc",
+        type: "Number"
+    },
+    c_Enlarging: {
+        name: "SW5E.CastingPropertyEnlarging",
+        full: "SW5E.CastingPropertyEnlargingFull",
+        desc: "SW5E.CastingPropertyEnlargingDesc",
+        type: "Number"
+    },
+    c_Expanding: {
+        name: "SW5E.CastingPropertyExpanding",
+        full: "SW5E.CastingPropertyExpandingFull",
+        desc: "SW5E.CastingPropertyExpandingDesc",
+        type: "Number"
+    },
+    c_Extending: {
+        name: "SW5E.CastingPropertyExtending",
+        full: "SW5E.CastingPropertyExtendingFull",
+        desc: "SW5E.CastingPropertyExtendingDesc",
+        type: "Number"
+    },
+    c_Fading: {
+        name: "SW5E.CastingPropertyFading",
+        full: "SW5E.CastingPropertyFadingFull",
+        desc: "SW5E.CastingPropertyFadingDesc",
+        type: "Number"
+    },
+    c_Focused: {
+        name: "SW5E.CastingPropertyFocused",
+        full: "SW5E.CastingPropertyFocusedFull",
+        desc: "SW5E.CastingPropertyFocusedDesc",
+        type: "Boolean"
+    },
+    c_Increasing: {
+        name: "SW5E.CastingPropertyIncreasing",
+        full: "SW5E.CastingPropertyIncreasingFull",
+        desc: "SW5E.CastingPropertyIncreasingDesc",
+        type: "Number"
+    },
+    c_Inflating: {
+        name: "SW5E.CastingPropertyInflating",
+        full: "SW5E.CastingPropertyInflatingFull",
+        desc: "SW5E.CastingPropertyInflatingDesc",
+        type: "Number"
+    },
+    c_Mitigating: {
+        name: "SW5E.CastingPropertyMitigating",
+        full: "SW5E.CastingPropertyMitigatingFull",
+        desc: "SW5E.CastingPropertyMitigatingDesc",
+        type: "Number"
+    },
+    c_Ranging: {
+        name: "SW5E.CastingPropertyRanging",
+        full: "SW5E.CastingPropertyRangingFull",
+        desc: "SW5E.CastingPropertyRangingDesc",
+        type: "Number"
+    },
+    c_Rending: {
+        name: "SW5E.CastingPropertyRending",
+        full: "SW5E.CastingPropertyRendingFull",
+        desc: "SW5E.CastingPropertyRendingDesc",
+        type: "Number"
+    },
+    c_Repelling: {
+        name: "SW5E.CastingPropertyRepelling",
+        full: "SW5E.CastingPropertyRepellingFull",
+        desc: "SW5E.CastingPropertyRepellingDesc",
+        type: "Boolean"
+    },
+    c_Storing: {
+        name: "SW5E.CastingPropertyStoring",
+        full: "SW5E.CastingPropertyStoringFull",
+        desc: "SW5E.CastingPropertyStoringDesc",
+        type: "Number"
+    },
+    c_Surging: {
+        name: "SW5E.CastingPropertySurging",
+        full: "SW5E.CastingPropertySurgingFull",
+        desc: "SW5E.CastingPropertySurgingDesc",
+        type: "Number"
+    },
+    c_Withering: {
+        name: "SW5E.CastingPropertyWithering",
+        full: "SW5E.CastingPropertyWitheringFull",
+        desc: "SW5E.CastingPropertyWitheringDesc",
         type: "Number"
     }
 };
@@ -1894,12 +2045,6 @@ SW5E.weaponStarshipProperties = {
         name: "SW5E.WeaponPropertyExp",
         full: "SW5E.WeaponPropertyExpFull",
         desc: "SW5E.WeaponPropertyExpDesc",
-        type: "Boolean"
-    },
-    foc: {
-        name: "SW5E.WeaponPropertyFoc",
-        full: "SW5E.WeaponPropertyFocFull",
-        desc: "SW5E.WeaponPropertyFocDesc",
         type: "Boolean"
     },
     hom: {

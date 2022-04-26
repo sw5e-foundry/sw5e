@@ -1308,6 +1308,7 @@ export default class Actor5e extends Actor {
 
     _computeFuel(actorData) {
         const fuel = actorData.data.attributes.fuel;
+        fuel.cost *= actorData.data.attributes.equip.reactor.fuelMult;
         // Compute Fuel percentage
         const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.fuelCap, 0, 100);
         return {...fuel, pct, fueled: pct > 0};

@@ -1101,28 +1101,11 @@
                 }
             },
             "moddable": {
-                "modifications": {
-                    "chassisType": "none",
+                "modify": {
+                    "chassis": "none",
                     "augmentSlots": 0,
-                    "mods": {
-                        "slot1": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot2": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot3": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot4": {
-                            "uuid": null,
-                            "disabled": false
-                        }
-                    },
-                    "augments": [],
+                    "modSlots": 4,
+                    "items": [],
                     "type": null,
                     "overrides": {}
                 }
@@ -1267,7 +1250,10 @@
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
             "modificationType": "vibroweapon",
             "modificationSlot": "slot1",
-            "modified": []
+            "modifying": {
+                "id": null,
+                "disabled": false
+            }
         },
         "power": {
             "templates": ["itemDescription", "activatedEffect", "action"],

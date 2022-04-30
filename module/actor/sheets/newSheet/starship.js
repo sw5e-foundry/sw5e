@@ -123,7 +123,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 if ("starshipaction" === item.type) arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
-                else if (Object.keys(ssCargo).includes(item.type))arr[3].push(item);
+                else if (Object.keys(ssCargo).includes(item.type)) arr[3].push(item);
 
                 return arr;
             },
@@ -536,7 +536,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
      * @private
      */
     _onToggleItem(event) {
-        console.debug(event);
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
         const item = this.actor.items.get(itemId);

@@ -88,7 +88,7 @@ export const migrateCompendium = async function (pack) {
 
     // Iterate over compendium entries - applying fine-tuned migration functions
     for await (const doc of documents) {
-        const updateData = {};
+        let updateData = {};
         try {
             switch (documentName) {
                 case "Actor":
@@ -272,6 +272,7 @@ export const migrateItemData = async function (item) {
     _migrateItemCriticalData(item, updateData);
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
+    await _migrateItemModificationData(item, null, updateData);
     return updateData;
 };
 
@@ -292,6 +293,7 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemCriticalData(item, updateData);
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
+    await _migrateItemModificationData(item, actor, updateData);
     return updateData;
 };
 
@@ -479,13 +481,13 @@ function _migrateActorPowers(actorData, updateData) {
     // If new Power F/T split data is not present, create it
     const hasNewLimit = ad?.powers?.power1?.foverride !== undefined;
     if (!hasNewLimit) {
-        for (const i = 1; i <= 9; i++) {
+        for (let i = 1; i <= 9; i++) {
             // add new
-            updateData["data.powers.power" + i + ".fvalue"] = getProperty(ad.powers, "power" + i + ".value");
-            updateData["data.powers.power" + i + ".fmax"] = getProperty(ad.powers, "power" + i + ".max");
+            updateData["data.powers.power" + i + ".fvalue"] = ad?.powers?.["power" + i]?.value ?? 0;
+            updateData["data.powers.power" + i + ".fmax"] = ad?.powers?.["power" + i]?.max ?? 0;
             updateData["data.powers.power" + i + ".foverride"] = null;
-            updateData["data.powers.power" + i + ".tvalue"] = getProperty(ad.powers, "power" + i + ".value");
-            updateData["data.powers.power" + i + ".tmax"] = getProperty(ad.powers, "power" + i + ".max");
+            updateData["data.powers.power" + i + ".tvalue"] = ad?.powers?.["power" + i]?.value ?? 0;
+            updateData["data.powers.power" + i + ".tmax"] = ad?.powers?.["power" + i]?.max ?? 0;
             updateData["data.powers.power" + i + ".toverride"] = null;
             //remove old
             updateData["data.powers.power" + i + ".-=value"] = null;
@@ -856,7 +858,9 @@ function _migrateItemArmorPropertiesData(item, updateData) {
     const hasProperties = item.data?.properties !== undefined;
     if (!hasProperties) return updateData;
     const props = item.data.properties;
-    const configProp = SW5E.armorProperties;
+    let configProp = {};
+    if (item.data?.armor?.type in CONFIG.SW5E.armorTypes) configProp = CONFIG.SW5E.armorProperties;
+    if (item.data?.armor?.type in CONFIG.SW5E.castingEquipmentTypes) configProp = CONFIG.SW5E.castingProperties;
     // Remove existing properties not in current template
     for (const key in props) {
         if (!(key in configProp)) updateData[`data.properties.-=${key}`] = null;
@@ -904,6 +908,52 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
         if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
             updateData[`data.properties.${key}`] = props[key] ? (prop.min ?? 1) : 0;
         }
+    }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the item's modifications to the newer system.
+ * @param {object} item        Item data to migrate.
+ * @param {Object} actor       The data object for the actor owning the item
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ * @private
+ */
+async function _migrateItemModificationData(item, actor, updateData) {
+    if (item.type === "modification") {
+        if (item.data.modified !== undefined) updateData["data.-=modified"] = null;
+    } else if (item.data.modifications !== undefined) {
+        const itemMods = item.data.modifications;
+        updateData[`data.-=modifications`] = null;
+
+        if (itemMods.chassisType !== undefined) updateData["data.modify.chassis"] = itemMods.chassisType;
+        if (itemMods.augmentSlots !== undefined) updateData["data.modify.augmentSlots"] = itemMods.augmentSlots;
+        if (itemMods.type !== undefined) updateData["data.modify.type"] = itemMods.type;
+        if (itemMods.overrides !== undefined) updateData["data.modify.overrides"] = itemMods.overrides;
+
+        const items = [];
+        for (const mod_data of Object.values(itemMods.mods).concat(itemMods.augments)) {
+            if (!mod_data?.id) continue;
+            const mod = await fromUuid(mod_data.id);
+            if (!mod) continue;
+            const modType = (mod.data.data.modificationType === "augment") ? "augment" : "mod";
+            const data = mod.toObject();
+            delete data._id;
+            data.data.modifying.id = item.id;
+            const obj = { data: data, name: mod.name, type: modType, disabled: mod_data.disabled };
+
+            if (actor) {
+                const result = await Item5e.createDocuments([data], {parent: actor});
+                if (result?.length) obj.id = result[0].id;
+            }
+
+            items.push(obj);
+        }
+        if (items.length) updateData["data.modify.items"] = modify;
     }
 
     return updateData;

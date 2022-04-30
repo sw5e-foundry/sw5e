@@ -520,6 +520,9 @@ export default class ActorSheet5e extends ActorSheet {
         return items.filter((item) => {
             const data = item.data;
 
+            // Do not display modifications that are applied to an item
+            if (data.modifying?.id) return false;
+
             // Action usage
             for (let f of ["action", "bonus", "reaction"]) {
                 if (filters.has(f)) {

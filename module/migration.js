@@ -212,6 +212,8 @@ export const migrateActorData = async function (actor) {
             return results;
         }, []);
 
+        await _updateActorModificationData(actor, items);
+
         if (items.length > 0) updateData.items = items;
     }
 
@@ -272,7 +274,7 @@ export const migrateItemData = async function (item) {
     _migrateItemCriticalData(item, updateData);
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
-    await _migrateItemModificationData(item, null, updateData);
+    await _migrateItemModificationData(item, updateData);
     return updateData;
 };
 
@@ -293,7 +295,7 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemCriticalData(item, updateData);
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
-    await _migrateItemModificationData(item, actor, updateData);
+    await _migrateItemModificationData(item, updateData);
     return updateData;
 };
 
@@ -670,7 +672,7 @@ function _migrateActorAttribRank(actorData, updateData) {
 
     // If old Rank data is present, remove it
     const hasOldAttrib = ad?.attributes?.rank !== undefined;
-    if (!hasOldAttrib) updateData["-=data.attributes.rank"] = null;
+    if (hasOldAttrib) updateData["-=data.attributes.rank"] = null;
     // If new Rank data is not present, create it
     const hasNewAttrib = ad?.attributes?.ranks !== undefined;
     if (!hasNewAttrib) updateData["data.attributes.ranks"] = 0;
@@ -867,12 +869,12 @@ function _migrateItemArmorPropertiesData(item, updateData) {
     }
     // Add template properties that don't exist yet on current armor
     for (const [key, val] of Object.entries(configProp)) {
-        if (!(key in props)) updateData[`data.properties.${key}`] = val.type === "Boolean" ? false : 0;
+        if (!(key in props)) updateData[`data.properties.${key}`] = val.type === "Boolean" ? false : null;
     }
     // Migrate from boolean to number
     for (const [key, prop] of Object.entries(configProp)) {
         if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
-            updateData[`data.properties.${key}`] = props[key] ? 1 : 0;
+            updateData[`data.properties.${key}`] = props[key] ? 1 : null;
         }
     }
 
@@ -901,12 +903,12 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
     }
     // Add template properties that don't exist yet on current weapon
     for (const [key, prop] of Object.entries(configProp)) {
-        if (!(key in props)) updateData[`data.properties.${key}`] = prop.type === "Boolean" ? false : 0;
+        if (!(key in props)) updateData[`data.properties.${key}`] = prop.type === "Boolean" ? false : null;
     }
     // Migrate from boolean to number
     for (const [key, prop] of Object.entries(configProp)) {
         if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
-            updateData[`data.properties.${key}`] = props[key] ? (prop.min ?? 1) : 0;
+            updateData[`data.properties.${key}`] = props[key] ? (prop.min ?? 1) : null;
         }
     }
 
@@ -923,7 +925,7 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
  * @returns {object}           The updateData to apply.
  * @private
  */
-async function _migrateItemModificationData(item, actor, updateData) {
+async function _migrateItemModificationData(item, updateData) {
     if (item.type === "modification") {
         if (item.data.modified !== undefined) updateData["data.-=modified"] = null;
     } else if (item.data.modifications !== undefined) {
@@ -937,26 +939,45 @@ async function _migrateItemModificationData(item, actor, updateData) {
 
         const items = [];
         for (const mod_data of Object.values(itemMods.mods).concat(itemMods.augments)) {
-            if (!mod_data?.id) continue;
-            const mod = await fromUuid(mod_data.id);
+            if (!mod_data?.uuid) continue;
+            const mod = await fromUuid(mod_data.uuid);
             if (!mod) continue;
             const modType = (mod.data.data.modificationType === "augment") ? "augment" : "mod";
             const data = mod.toObject();
             delete data._id;
-            data.data.modifying.id = item.id;
-            const obj = { data: data, name: mod.name, type: modType, disabled: mod_data.disabled };
-
-            if (actor) {
-                const result = await Item5e.createDocuments([data], {parent: actor});
-                if (result?.length) obj.id = result[0].id;
-            }
-
-            items.push(obj);
+            items.push({
+                data: data,
+                name: mod.name,
+                type: modType,
+                disabled: mod_data.disabled
+            });
         }
-        if (items.length) updateData["data.modify.items"] = modify;
+        if (items.length) updateData["data.modify.items"] = items;
     }
 
     return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Update an actor's item's modifications to new standard
+ * @param {object} actor    The data object for an Actor
+ * @param {object} items    The data object for the updated Items
+ * @returns {object}        The updated Actor
+ */
+async function _updateActorModificationData(actor, items) {
+    const liveActor = game.actors.get(actor._id);
+    for (const item of items) {
+        for (const mod of item?.data?.modify?.items || []) {
+            if (!mod.id && mod.data) {
+                const data = foundry.utils.duplicate(mod.data);
+                data.data.modifying.id = item._id;
+                const result = await liveActor.createEmbeddedDocuments("Item", [data]);
+                if (result.length) mod.id = result[0].id;
+            }
+        }
+    }
 }
 
 /* -------------------------------------------- */

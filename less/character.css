@@ -1,0 +1,222 @@
+/* Deprecated vars */
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+@font-face {
+  font-family: 'Modesto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/modesto-condensed/modesto-condensed.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Modesto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/modesto-condensed/modesto-condensed-bold.woff2') format('woff2');
+}
+.modesto {
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Flexbox                                  */
+/* ----------------------------------------- */
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.flexrow > * {
+  flex: 1;
+}
+.flexrow .flex1 {
+  flex: 1;
+}
+.flexrow .flex2 {
+  flex: 2;
+}
+.flexrow .flex3 {
+  flex: 3;
+}
+.flexrow .flex4 {
+  flex: 4;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.flexcol > * {
+  flex: 1;
+}
+.flexcol .flex1 {
+  flex: 1;
+}
+.flexcol .flex2 {
+  flex: 2;
+}
+.flexcol .flex3 {
+  flex: 3;
+}
+.flexcol .flex4 {
+  flex: 4;
+}
+/* ----------------------------------------- */
+/*  Basic Structure                          */
+/* ----------------------------------------- */
+.sw5e.sheet.actor.character {
+  min-width: 720px;
+  min-height: 680px;
+  /* ----------------------------------------- */
+  /*  Sheet Header                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Sheet Body                               */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Controls                            */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Biography                                */
+  /* ----------------------------------------- */
+}
+.sw5e.sheet.actor.character .sheet-header img.profile {
+  flex: 0 0 160px;
+  max-width: 160px;
+  height: 160px;
+}
+.sw5e.sheet.actor.character .sheet-header .charlevel {
+  flex: 0 0 20px;
+  height: 20px;
+  font-size: 18px;
+  color: #7a7971;
+  white-space: nowrap;
+}
+.sw5e.sheet.actor.character .sheet-header .experience {
+  flex: 0 0 32px;
+  margin-bottom: -5px;
+  align-items: center;
+  font-size: 18px;
+}
+.sw5e.sheet.actor.character .sheet-header .experience span.max {
+  color: #7a7971;
+  flex: none;
+  margin-left: 3px;
+}
+.sw5e.sheet.actor.character .sheet-header .xpbar {
+  flex: 0 0 8px;
+  width: 100%;
+  margin-bottom: 5px;
+  background: #7a7971;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+.sw5e.sheet.actor.character .sheet-header .xpbar .bar {
+  height: 4px;
+  margin: 1px;
+  display: block;
+  background: #afebff;
+  border: 1px solid #000;
+  border-radius: 2px;
+}
+.sw5e.sheet.actor.character .sheet-header .attributes a.rest {
+  border: 1px solid #b5b3a4;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0 3px;
+  margin: 0 3px;
+}
+.sw5e.sheet.actor.character .sheet-header .attributes .hit-dice {
+  font-size: 24px;
+}
+.sw5e.sheet.actor.character .sheet-header .attributes .initiative .attribute-footer input {
+  width: 32px;
+}
+.sw5e.sheet.actor.character .sheet-header .summary .proficiency {
+  text-align: right;
+  padding-right: 5px;
+}
+.sw5e.sheet.actor.character .resource .attribute-value > input {
+  flex: 0 0 25%;
+}
+.sw5e.sheet.actor.character .resource .attribute-value label.recharge {
+  height: 32px;
+  position: relative;
+  font-family: "Signika", sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color: #4b4a44;
+  align-items: center;
+}
+.sw5e.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
+  flex-basis: 14px;
+  height: 14px;
+  width: 14px;
+  margin: 0;
+  top: -6px;
+}
+.sw5e.sheet.actor.character ul.skills-list {
+  flex: 0 0 212px;
+}
+.sw5e.sheet.actor.character ul.skills-list li.skill {
+  padding: 3px;
+}
+.sw5e.sheet.actor.character ul.skills-list li.skill h4 {
+  flex: 1px;
+  margin: 0;
+  font-size: 13px;
+}
+.sw5e.sheet.actor.character .item-detail.player-class {
+  flex: 0 0 180px;
+  text-align: right;
+  padding-right: 10px;
+}
+.sw5e.sheet.actor.character .inventory .item-controls,
+.sw5e.sheet.actor.character .powerbook .item-controls {
+  flex: 0 0 68px;
+}
+.sw5e.sheet.actor.character .inventory .item-controls .item-toggle,
+.sw5e.sheet.actor.character .powerbook .item-controls .item-toggle {
+  color: #b5b3a4;
+}
+.sw5e.sheet.actor.character .inventory .item-controls .item-toggle.active,
+.sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.active {
+  color: #4b4a44;
+}
+.sw5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed,
+.sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.fixed {
+  color: #44191A;
+}
+.sw5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
+.sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.fixed:hover {
+  text-shadow: none;
+}
+.sw5e.sheet.actor.character .characteristics {
+  flex: 0 0 180px;
+  height: 100%;
+  padding: 0 3px 3px;
+}
+.sw5e.sheet.actor.character .characteristics label {
+  flex: 0 0 20px;
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+}
+.sw5e.sheet.actor.character .characteristics textarea {
+  font-family: "Signika", serif;
+  font-size: 13px;
+  border: 1px solid #c9c7b8;
+  resize: none;
+}
+.sw5e.sheet.actor.character .biography {
+  max-width: calc(100% - 180px);
+}

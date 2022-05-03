@@ -76,8 +76,8 @@
                 <div class="item-detail power-uses">Uses {{item.data.uses.value}} / {{item.data.uses.max}}</div>
                 {{/if}}
                 <div class="power-comps">
-                    {{#each labels.components}}
-                    <span class="power-component {{this}}">{{this}}</span>
+                    {{#each labels.components.all}}
+                    <span class="power-component{{#if tag}} tag{{/if}}">{{abbr}}</span>
                     {{/each}}
                 </div>
             </div>

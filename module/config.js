@@ -1,4 +1,5 @@
-import {ClassFeatures} from "./classFeatures.js";
+import { ClassFeatures } from "./classFeatures.js";
+import { preLocalize } from "./utils.js";
 
 // Namespace Configuration Values
 export const SW5E = {};
@@ -24,8 +25,11 @@ SW5E.abilities = {
   con: "SW5E.AbilityCon",
   int: "SW5E.AbilityInt",
   wis: "SW5E.AbilityWis",
-  cha: "SW5E.AbilityCha"
+  cha: "SW5E.AbilityCha",
+  hon: "SW5E.AbilityHon",
+  san: "SW5E.AbilitySan"
 };
+preLocalize("abilities");
 
 /**
  * Localized abbreviations for Ability Scores.
@@ -37,8 +41,11 @@ SW5E.abilityAbbreviations = {
   con: "SW5E.AbilityConAbbr",
   int: "SW5E.AbilityIntAbbr",
   wis: "SW5E.AbilityWisAbbr",
-  cha: "SW5E.AbilityChaAbbr"
+  cha: "SW5E.AbilityChaAbbr",
+  hon: "SW5E.AbilityHonAbbr",
+  san: "SW5E.AbilitySanAbbr"
 };
+preLocalize("abilityAbbreviations");
 
 /* -------------------------------------------- */
 
@@ -57,6 +64,7 @@ SW5E.alignments = {
   ne: "SW5E.AlignmentNE",
   ce: "SW5E.AlignmentCE"
 };
+preLocalize("alignments");
 
 /* -------------------------------------------- */
 
@@ -79,6 +87,7 @@ SW5E.attunements = {
   1: "SW5E.AttunementRequired",
   2: "SW5E.AttunementAttuned"
 };
+preLocalize("attunements");
 
 /* -------------------------------------------- */
 
@@ -90,6 +99,7 @@ SW5E.weaponProficiencies = {
   sim: "SW5E.WeaponSimpleProficiency",
   mar: "SW5E.WeaponMartialProficiency"
 };
+preLocalize("weaponProficiencies");
 
 /**
  * A mapping between `SW5E.weaponTypes` and `SW5E.weaponProficiencies` that
@@ -161,6 +171,7 @@ SW5E.toolTypes = {
   game: "SW5E.ToolGamingSet",
   music: "SW5E.ToolMusicalInstrument"
 };
+preLocalize("toolTypes", { sort: true });
 
 /**
  * The categories of tool proficiencies that a character can gain.
@@ -171,6 +182,7 @@ SW5E.toolProficiencies = {
   ...SW5E.toolTypes,
   vehicle: "SW5E.ToolVehicle"
 };
+preLocalize("toolProficiencies", { sort: true });
 
 /**
  * The basic tool types in 5e. This enables specific tool proficiencies or
@@ -234,6 +246,7 @@ SW5E.timePeriods = {
   perm: "SW5E.TimePerm",
   spec: "SW5E.Special"
 };
+preLocalize("timePeriods");
 
 /* -------------------------------------------- */
 
@@ -254,6 +267,7 @@ SW5E.abilityActivationTypes = {
   lair: "SW5E.LairActionLabel",
   crew: "SW5E.VehicleCrewAction"
 };
+preLocalize("abilityActivationTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -264,9 +278,11 @@ SW5E.abilityActivationTypes = {
 SW5E.abilityConsumptionTypes = {
   ammo: "SW5E.ConsumeAmmunition",
   attribute: "SW5E.ConsumeAttribute",
+  hitDice: "SW5E.ConsumeHitDice",
   material: "SW5E.ConsumeMaterial",
   charges: "SW5E.ConsumeCharges"
 };
+preLocalize("abilityConsumptionTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -282,6 +298,7 @@ SW5E.actorSizes = {
   huge: "SW5E.SizeHuge",
   grg: "SW5E.SizeGargantuan"
 };
+preLocalize("actorSizes");
 
 /**
  * Default token image size for the values of `SW5E.actorSizes`.
@@ -312,6 +329,7 @@ SW5E.tokenHPColors = {
 
 /**
  * Default types of creatures.
+ * *Note: Not pre-localized to allow for easy fetching of pluralized forms.*
  * @enum {string}
  */
 SW5E.creatureTypes = {
@@ -348,6 +366,7 @@ SW5E.itemActionTypes = {
   util: "SW5E.ActionUtil",
   other: "SW5E.ActionOther"
 };
+preLocalize("itemActionTypes");
 
 /* -------------------------------------------- */
 
@@ -359,6 +378,7 @@ SW5E.itemCapacityTypes = {
   items: "SW5E.ItemContainerCapacityItems",
   weight: "SW5E.ItemContainerCapacityWeight"
 };
+preLocalize("itemCapacityTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -374,6 +394,7 @@ SW5E.itemRarity = {
   legendary: "SW5E.ItemRarityLegendary",
   artifact: "SW5E.ItemRarityArtifact"
 };
+preLocalize("itemRarity");
 
 /* -------------------------------------------- */
 
@@ -387,6 +408,7 @@ SW5E.limitedUsePeriods = {
   day: "SW5E.Day",
   charges: "SW5E.Charges"
 };
+preLocalize("limitedUsePeriods");
 
 /* -------------------------------------------- */
 
@@ -401,6 +423,7 @@ SW5E.armorTypes = {
   natural: "SW5E.EquipmentNatural",
   shield: "SW5E.EquipmentShield"
 };
+preLocalize("armorTypes");
 
 /* -------------------------------------------- */
 
@@ -413,6 +436,7 @@ SW5E.miscEquipmentTypes = {
   trinket: "SW5E.EquipmentTrinket",
   vehicle: "SW5E.EquipmentVehicle"
 };
+preLocalize("miscEquipmentTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -424,6 +448,7 @@ SW5E.equipmentTypes = {
   ...SW5E.miscEquipmentTypes,
   ...SW5E.armorTypes
 };
+preLocalize("equipmentTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -436,6 +461,7 @@ SW5E.vehicleTypes = {
   land: "SW5E.VehicleTypeLand",
   water: "SW5E.VehicleTypeWater"
 };
+preLocalize("vehicleTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -449,6 +475,7 @@ SW5E.armorProficiencies = {
   hvy: SW5E.equipmentTypes.heavy,
   shl: "SW5E.EquipmentShieldProficiency"
 };
+preLocalize("armorProficiencies");
 
 /**
  * A mapping between `SW5E.equipmentTypes` and `SW5E.armorProficiencies` that
@@ -507,7 +534,7 @@ SW5E.armorClasses = {
   },
   default: {
     label: "SW5E.ArmorClassEquipment",
-    formula: "@attributes.ac.base + @abilities.dex.mod"
+    formula: "@attributes.ac.armor + @attributes.ac.dex"
   },
   mage: {
     label: "SW5E.ArmorClassMage",
@@ -529,6 +556,7 @@ SW5E.armorClasses = {
     label: "SW5E.ArmorClassCustom"
   }
 };
+preLocalize("armorClasses", { key: "label" });
 
 /* -------------------------------------------- */
 
@@ -546,6 +574,7 @@ SW5E.consumableTypes = {
   rod: "SW5E.ConsumableRod",
   trinket: "SW5E.ConsumableTrinket"
 };
+preLocalize("consumableTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -583,6 +612,7 @@ SW5E.currencies = {
     conversion: {into: "sp", each: 10}
   }
 };
+preLocalize("currencies", { keys: ["label", "abbreviation"] });
 
 /* -------------------------------------------- */
 
@@ -605,6 +635,7 @@ SW5E.damageTypes = {
   slashing: "SW5E.DamageSlashing",
   thunder: "SW5E.DamageThunder"
 };
+preLocalize("damageTypes", { sort: true });
 
 /**
  * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
@@ -614,6 +645,7 @@ SW5E.damageResistanceTypes = {
   ...SW5E.damageTypes,
   physical: "SW5E.DamagePhysical"
 };
+preLocalize("damageResistanceTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -629,6 +661,7 @@ SW5E.movementTypes = {
   swim: "SW5E.MovementSwim",
   walk: "SW5E.MovementWalk"
 };
+preLocalize("movementTypes", { sort: true });
 
 /**
  * The valid units of measure for movement distances in the game system.
@@ -641,6 +674,7 @@ SW5E.movementUnits = {
   m: "SW5E.DistM",
   km: "SW5E.DistKm"
 };
+preLocalize("movementUnits");
 
 /**
  * The valid units of measure for the range of an action or effect.
@@ -655,6 +689,7 @@ SW5E.distanceUnits = {
   any: "SW5E.DistAny",
   ...SW5E.movementUnits
 };
+preLocalize("distanceUnits");
 
 /* -------------------------------------------- */
 
@@ -700,6 +735,7 @@ SW5E.targetTypes = {
   line: "SW5E.TargetLine",
   wall: "SW5E.TargetWall"
 };
+preLocalize("targetTypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -729,6 +765,7 @@ SW5E.healingTypes = {
   healing: "SW5E.Healing",
   temphp: "SW5E.HealingTemp"
 };
+preLocalize("healingTypes");
 
 /* -------------------------------------------- */
 
@@ -750,6 +787,7 @@ SW5E.senses = {
   tremorsense: "SW5E.SenseTremorsense",
   truesight: "SW5E.SenseTruesight"
 };
+preLocalize("senses", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -777,6 +815,7 @@ SW5E.skills = {
   ste: "SW5E.SkillSte",
   sur: "SW5E.SkillSur"
 };
+preLocalize("skills", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -790,6 +829,7 @@ SW5E.powerPreparationModes = {
   atwill: "SW5E.PowerPrepAtWill",
   innate: "SW5E.PowerPrepInnate"
 };
+preLocalize("powerPreparationModes");
 
 /**
  * Subset of `SW5E.powerPreparationModes` that consume power slots.
@@ -809,6 +849,7 @@ SW5E.powerProgression = {
   pact: "SW5E.PowerProgPact",
   artificer: "SW5E.PowerProgArt"
 };
+preLocalize("powerProgression");
 
 /* -------------------------------------------- */
 
@@ -821,6 +862,7 @@ SW5E.powerScalingModes = {
   cantrip: "SW5E.PowerCantrip",
   level: "SW5E.PowerLevel"
 };
+preLocalize("powerScalingModes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -837,6 +879,7 @@ SW5E.weaponTypes = {
   improv: "SW5E.WeaponImprov",
   siege: "SW5E.WeaponSiege"
 };
+preLocalize("weaponTypes");
 
 /* -------------------------------------------- */
 
@@ -863,16 +906,43 @@ SW5E.weaponProperties = {
   two: "SW5E.WeaponPropertiesTwo",
   ver: "SW5E.WeaponPropertiesVer"
 };
+preLocalize("weaponProperties", { sort: true });
 
 /**
  * Types of components that can be required when casting a power.
- * @enum {string}
+ * @enum {object}
  */
 SW5E.powerComponents = {
-  V: "SW5E.ComponentVerbal",
-  S: "SW5E.ComponentSomatic",
-  M: "SW5E.ComponentMaterial"
+  vocal: {
+    label: "SW5E.ComponentVerbal",
+    abbr: "SW5E.ComponentVerbalAbbr"
+  },
+  somatic: {
+    label: "SW5E.ComponentSomatic",
+    abbr: "SW5E.ComponentSomaticAbbr"
+  },
+  material: {
+    label: "SW5E.ComponentMaterial",
+    abbr: "SW5E.ComponentMaterialAbbr"
+  }
 };
+preLocalize("powerComponents", {keys: ["label", "abbr"]});
+
+/**
+ * Supplementary rules keywords that inform a power's use.
+ * @enum {object}
+ */
+SW5E.powerTags = {
+  concentration: {
+    label: "SW5E.Concentration",
+    abbr: "SW5E.ConcentrationAbbr"
+  },
+  ritual: {
+    label: "SW5E.Ritual",
+    abbr: "SW5E.RitualAbbr"
+  }
+};
+preLocalize("powerTags", {keys: ["label", "abbr"]});
 
 /**
  * Schools to which a power can belong.
@@ -888,6 +958,7 @@ SW5E.powerSchools = {
   nec: "SW5E.SchoolNec",
   trs: "SW5E.SchoolTrs"
 };
+preLocalize("powerSchools", { sort: true });
 
 /**
  * Valid power levels.
@@ -905,6 +976,7 @@ SW5E.powerLevels = {
   8: "SW5E.PowerLevel8",
   9: "SW5E.PowerLevel9"
 };
+preLocalize("powerLevels");
 
 /**
  * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
@@ -979,6 +1051,7 @@ SW5E.polymorphSettings = {
   keepBio: "SW5E.PolymorphKeepBio",
   keepVision: "SW5E.PolymorphKeepVision"
 };
+preLocalize("polymorphSettings", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -993,6 +1066,7 @@ SW5E.proficiencyLevels = {
   0.5: "SW5E.HalfProficient",
   2: "SW5E.Expertise"
 };
+preLocalize("proficiencyLevels");
 
 /* -------------------------------------------- */
 
@@ -1007,6 +1081,7 @@ SW5E.cover = {
   .75: "SW5E.CoverThreeQuarters",
   1: "SW5E.CoverTotal"
 };
+preLocalize("cover");
 
 /* -------------------------------------------- */
 
@@ -1056,6 +1131,7 @@ SW5E.conditionTypes = {
   stunned: "SW5E.ConStunned",
   unconscious: "SW5E.ConUnconscious"
 };
+preLocalize("conditionTypes", { sort: true });
 
 /**
  * Languages a character can learn.
@@ -1088,6 +1164,13 @@ SW5E.languages = {
   cant: "SW5E.LanguagesThievesCant",
   undercommon: "SW5E.LanguagesUndercommon"
 };
+preLocalize("languages", { sort: true });
+
+/**
+ * Maximum allowed character level.
+ * @type {number}
+ */
+SW5E.maxLevel = 20;
 
 /**
  * XP required to achieve each character level.
@@ -1110,6 +1193,7 @@ SW5E.CR_EXP_LEVELS = [
 /**
  * Character features automatically granted by classes & archetypes at certain levels.
  * @type {object}
+ * @deprecated since 1.6.0, targeted for removal in 1.8
  */
 SW5E.classFeatures = ClassFeatures;
 
@@ -1119,6 +1203,7 @@ SW5E.classFeatures = ClassFeatures;
  *   name: string,
  *   hint: string,
  *   [abilities]: string[],
+ *   [choices]: object<string, string>,
  *   [skills]: string[],
  *   section: string,
  *   type: any,
@@ -1210,6 +1295,7 @@ SW5E.characterFlags = {
     placeholder: 0
   }
 };
+preLocalize("characterFlags", { keys: ["name", "hint", "section"] });
 
 /**
  * Flags allowed on actors. Any flags not in the list may be deleted during a migration.

@@ -1,0 +1,308 @@
+/* Deprecated vars */
+/* ----------------------------------------- */
+/*  Fonts                                    */
+/* ----------------------------------------- */
+@font-face {
+  font-family: 'Modesto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../fonts/modesto-condensed/modesto-condensed.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Modesto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../fonts/modesto-condensed/modesto-condensed-bold.woff2') format('woff2');
+}
+.modesto {
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Flexbox                                  */
+/* ----------------------------------------- */
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.flexrow > * {
+  flex: 1;
+}
+.flexrow .flex1 {
+  flex: 1;
+}
+.flexrow .flex2 {
+  flex: 2;
+}
+.flexrow .flex3 {
+  flex: 3;
+}
+.flexrow .flex4 {
+  flex: 4;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.flexcol > * {
+  flex: 1;
+}
+.flexcol .flex1 {
+  flex: 1;
+}
+.flexcol .flex2 {
+  flex: 2;
+}
+.flexcol .flex3 {
+  flex: 3;
+}
+.flexcol .flex4 {
+  flex: 4;
+}
+.sw5e.sheet.item {
+  min-height: 400px;
+  max-height: 95%;
+  min-width: 480px;
+  /* ----------------------------------------- */
+  /*  Sheet Header                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Details Form                        */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Actions                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Actions                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Advancement                         */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Loot Sheet (No Tabs)                     */
+  /* ----------------------------------------- */
+}
+.sw5e.sheet.item .sheet-header img.profile {
+  border: 2px solid #000;
+}
+.sw5e.sheet.item .sheet-header .item-subtitle {
+  flex: 0 0 100px;
+  height: 60px;
+  margin: 0;
+  padding: 5px;
+  text-align: right;
+  color: #7a7971;
+}
+.sw5e.sheet.item .sheet-header .item-subtitle .item-type {
+  font-size: 24px;
+  line-height: 26px;
+  margin: 0;
+}
+.sw5e.sheet.item .sheet-header .item-subtitle .item-status {
+  font-size: 16px;
+  line-height: 24px;
+}
+.sw5e.sheet.item .sheet-header .summary .class-level {
+  flex: 0 0 4em;
+  padding: 0 0.25em;
+  text-align: right;
+}
+.sw5e.sheet.item .sheet-navigation {
+  margin-bottom: 5px;
+}
+.sw5e.sheet.item .sheet-navigation .item {
+  font-size: 18px;
+}
+.sw5e.sheet.item .sheet-body {
+  overflow: hidden;
+}
+.sw5e.sheet.item .sheet-body .tab {
+  padding: 0 5px;
+  overflow: hidden auto;
+}
+.sw5e.sheet.item .sheet-body .item-properties {
+  flex: 0 0 120px;
+  margin: 5px 5px 5px 0;
+  padding-right: 5px;
+  border-right: 2px groove #eeede0;
+}
+.sw5e.sheet.item .sheet-body .item-properties .form-group {
+  margin: 0;
+}
+.sw5e.sheet.item .sheet-body .item-properties .form-group label {
+  line-height: 20px;
+}
+.sw5e.sheet.item .sheet-body .item-properties .form-group input {
+  text-align: right;
+}
+.sw5e.sheet.item .sheet-body .item-properties .properties-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sw5e.sheet.item .sheet-body .item-properties .properties-list li {
+  margin: 3px 0;
+  padding: 0 2px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+}
+.sw5e.sheet.item .sheet-body .item-properties .properties-header {
+  font-weight: bold;
+  color: #4b4a44;
+  margin: 0.5em 0 0 0;
+  font-size: 1em;
+}
+.sw5e.sheet.item .details input[type="text"],
+.sw5e.sheet.item .details input[type="number"],
+.sw5e.sheet.item .details select {
+  height: 24px;
+  border: 1px solid #7a7971;
+  background: rgba(0, 0, 0, 0.05);
+}
+.sw5e.sheet.item .details .form-group span {
+  text-align: center;
+  line-height: 24px;
+}
+.sw5e.sheet.item .details .form-group.input-select select {
+  flex: 1.8;
+}
+.sw5e.sheet.item .details .form-group.input-select-select select {
+  flex: 1.5;
+}
+.sw5e.sheet.item .details .form-group.uses-per .form-fields {
+  flex-wrap: nowrap;
+}
+.sw5e.sheet.item .details .form-group.uses-per input {
+  flex: 0 0 32px;
+}
+.sw5e.sheet.item .details .form-group.uses-per span {
+  flex: 0 0 16px;
+  margin: 0 4px 0 0;
+}
+.sw5e.sheet.item .details span.sep {
+  flex: 0 0 8px;
+}
+.sw5e.sheet.item .details .prepared {
+  flex: 1.3 !important;
+  text-align: right;
+  padding-right: 10px;
+}
+.sw5e.sheet.item .details .power-materials {
+  flex: 0 0 100%;
+  margin: 0.25em 0;
+  justify-content: flex-end;
+}
+.sw5e.sheet.item .details .power-materials label {
+  flex: 0 0 64px;
+  text-align: right;
+  margin-right: 5px;
+  font-size: 12px;
+  line-height: 24px;
+}
+.sw5e.sheet.item .details .power-materials input[type="text"] {
+  flex: 0 0 48px;
+  margin-right: 10px;
+}
+.sw5e.sheet.item h4.damage-header {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  line-height: 24px;
+  color: #4b4a44;
+}
+.sw5e.sheet.item .damage-parts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sw5e.sheet.item .damage-parts .damage-part {
+  flex: 0 0 100%;
+  padding: 0;
+}
+.sw5e.sheet.item .damage-parts .damage-part input {
+  flex: 3;
+}
+.sw5e.sheet.item .damage-parts .damage-part select {
+  margin-left: 5px;
+  flex: 1;
+}
+.sw5e.sheet.item .damage-control {
+  width: 18px;
+  flex: 0 0 18px;
+  line-height: 24px;
+  float: right;
+  text-align: right;
+  color: #7a7971;
+}
+.sw5e.sheet.item .recharge.form-group span {
+  text-align: right;
+  padding-right: 3px;
+}
+.sw5e.sheet.item .recharge.form-group input[type="text"] {
+  flex: 0 0 32px;
+  text-align: center;
+}
+.sw5e.sheet.item .recharge.form-group label.checkbox {
+  flex: none;
+}
+.sw5e.sheet.item .recharge.form-group label.checkbox input {
+  width: 16px;
+  height: 16px;
+  top: 4px;
+}
+.sw5e.sheet.item .weapon-properties label.checkbox {
+  flex: 0 0 98px;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control {
+  flex: 1 0;
+  margin-inline-start: 0.5em;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control a {
+  text-align: inline-start;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .item-add {
+  padding-block-start: 0.2em;
+}
+.sw5e.sheet.item .advancement .items-list .items-header .item-checkmark {
+  flex: 0 0 44px;
+  color: #119111;
+}
+.sw5e.sheet.item .advancement .items-list .items-header .item-warning {
+  flex: 0 0 44px;
+  color: #faff23;
+}
+.sw5e.sheet.item .advancement .items-list .item-name {
+  flex: 1 0 10em;
+}
+.sw5e.sheet.item .advancement .items-list .item-controls {
+  border-left: 1px solid #c9c7b8;
+  flex: 0 0 44px;
+}
+.sw5e.sheet.item .advancement .items-list .item-summary {
+  flex: 0 0 100%;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0 0.5em 0.5em 34px;
+  margin-top: -4px;
+  color: #191813;
+}
+.sw5e.sheet.item .advancement .items-list .item-summary .item-list .item-name {
+  display: flex;
+}
+.sw5e.sheet.item .advancement .items-list .tag {
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+}
+.sw5e.sheet.item .loot-header {
+  margin-bottom: 10px;
+}

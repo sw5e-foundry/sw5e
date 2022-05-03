@@ -225,12 +225,6 @@
   /* ----------------------------------------- */
   /*  Trait Lists                              */
   /* ----------------------------------------- */
-  /* ----------------------------------------- */
-  /*  Items Lists                              */
-  /* ----------------------------------------- */
-  /* ----------------------------------------- */
-  /*  Active Effects                           */
-  /* ----------------------------------------- */
 }
 .sw5e.sheet .window-content {
   overflow-y: hidden;
@@ -421,13 +415,6 @@
 .sw5e.sheet .traits {
   margin: 5px 0 0;
 }
-.sw5e.sheet .traits .trait-selector,
-.sw5e.sheet .traits .proficiency-selector {
-  flex: 0 0 16px;
-  padding: 2px 0;
-  color: #999;
-  font-size: 10px;
-}
 .sw5e.sheet .traits .traits-list {
   flex: 0 0 100%;
   line-height: 20px;
@@ -435,7 +422,22 @@
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet .items-list {
+.sw5e.sheet .trait-selector,
+.sw5e.sheet .proficiency-selector {
+  flex: 0 0 16px;
+  padding: 2px 0;
+  color: #999;
+  font-size: 10px;
+}
+/* ----------------------------------------- */
+/*  Items Lists                              */
+/* ----------------------------------------- */
+.sw5e {
+  /* ----------------------------------------- */
+  /*  Active Effects                           */
+  /* ----------------------------------------- */
+}
+.sw5e .items-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -443,12 +445,12 @@
   scrollbar-width: thin;
   color: #7a7971;
 }
-.sw5e.sheet .items-list .item-list {
+.sw5e .items-list .item-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sw5e.sheet .items-list .item-name {
+.sw5e .items-list .item-name {
   flex: 2;
   margin: 0;
   overflow: hidden;
@@ -456,39 +458,39 @@
   text-align: left;
   align-items: center;
 }
-.sw5e.sheet .items-list .item-name h3,
-.sw5e.sheet .items-list .item-name h4 {
+.sw5e .items-list .item-name h3,
+.sw5e .items-list .item-name h4 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
 }
-.sw5e.sheet .items-list .item-controls {
+.sw5e .items-list .item-controls {
   flex: 0 0 60px;
   justify-content: space-between;
 }
-.sw5e.sheet .items-list .item-controls a {
+.sw5e .items-list .item-controls a {
   font-size: 12px;
   text-align: center;
 }
-.sw5e.sheet .items-list .item {
+.sw5e .items-list .item {
   align-items: center;
   padding: 0 2px;
   border-bottom: 1px solid #c9c7b8;
 }
-.sw5e.sheet .items-list .item:last-child {
+.sw5e .items-list .item:last-child {
   border-bottom: none;
 }
-.sw5e.sheet .items-list .item .item-name {
+.sw5e .items-list .item .item-name {
   color: #191813;
 }
-.sw5e.sheet .items-list .item .item-name .item-image {
+.sw5e .items-list .item .item-name .item-image {
   flex: 0 0 30px;
   height: 30px;
   background-size: 30px;
   border: none;
   margin-right: 5px;
 }
-.sw5e.sheet .items-list .items-header {
+.sw5e .items-list .items-header {
   height: 28px;
   margin: 2px 0;
   padding: 0;
@@ -497,11 +499,11 @@
   border: 2px groove #eeede0;
   font-weight: bold;
 }
-.sw5e.sheet .items-list .items-header > * {
+.sw5e .items-list .items-header > * {
   font-size: 12px;
   text-align: center;
 }
-.sw5e.sheet .items-list .items-header h3 {
+.sw5e .items-list .items-header h3 {
   padding-left: 5px;
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
   font-size: 20px;
@@ -509,15 +511,15 @@
   text-align: left;
   font-size: 16px;
 }
-.sw5e.sheet .effects .item .effect-source,
-.sw5e.sheet .effects .item .effect-duration,
-.sw5e.sheet .effects .item .effect-controls {
+.sw5e .effects .item .effect-source,
+.sw5e .effects .item .effect-duration,
+.sw5e .effects .item .effect-controls {
   text-align: center;
   border-left: 1px solid #c9c7b8;
   border-right: 1px solid #c9c7b8;
   font-size: 12px;
 }
-.sw5e.sheet .effects .item .effect-controls {
+.sw5e .effects .item .effect-controls {
   border: none;
 }
 /* ----------------------------------------- */
@@ -724,6 +726,10 @@
   height: 24px;
   line-height: 24px;
 }
+.sw5e.sheet.actor .sheet-header .summary span {
+  margin-inline-start: 4px;
+  border-block-start: 1px solid transparent;
+}
 .sw5e.sheet.actor .sheet-header .summary select {
   position: relative;
   top: -4px;
@@ -781,6 +787,7 @@
 }
 .sw5e.sheet.actor .tab.attributes {
   overflow: hidden;
+  align-items: flex-start;
 }
 .sw5e.sheet.actor ul.attributes {
   flex: 0 0 60px;
@@ -832,7 +839,7 @@
 }
 .sw5e.sheet.actor .ability-scores {
   flex: 0 0 100px;
-  height: 440px;
+  align-content: flex-start;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1240,8 +1247,7 @@
 .sw5e.sheet.actor .power-component {
   line-height: 14px;
 }
-.sw5e.sheet.actor .power-component.C,
-.sw5e.sheet.actor .power-component.R {
+.sw5e.sheet.actor .power-component.tag {
   display: inline-block;
   text-align: center;
   padding-top: 1px;
@@ -1256,6 +1262,9 @@
 }
 .sw5e.sheet.actor .features i.original-class {
   color: #4b4a44;
+}
+.sw5e.sheet.actor .features .item-detail select {
+  max-width: 90%;
 }
 .sw5e.sheet.actor .editor {
   padding: 0 8px;
@@ -1273,6 +1282,160 @@
   overflow-y: auto;
   scrollbar-width: thin;
 }
+.sw5e.advancement {
+  /* ----------------------------------------- */
+  /*  Advancement Selection                    */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Two Column Configurations                */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Scale Value                              */
+  /* ----------------------------------------- */
+}
+.sw5e.advancement input[type="text"],
+.sw5e.advancement input[type="number"],
+.sw5e.advancement select {
+  height: var(--form-field-height);
+}
+.sw5e.advancement .form-group .form-fields button {
+  flex: 0;
+}
+.sw5e.advancement .form-group .form-field-readonly {
+  color: #999;
+}
+.sw5e.advancement .items-list {
+  margin-bottom: 1em;
+  /* Solves the borders being cut off */
+}
+.sw5e.advancement .items-list li.item {
+  padding-top: 0.25em;
+}
+.sw5e.advancement .items-list .item-hint {
+  flex: 0 1 100%;
+  margin-left: 35px;
+  margin-bottom: 0.5em;
+}
+.sw5e.advancement .items-list .entity-link {
+  display: inline-block;
+}
+.sw5e.advancement .centered {
+  text-align: center;
+}
+.sw5e.advancement.two-column {
+  --grid-two-column-left-size: 1fr;
+  --grid-two-column-right-size: 1fr;
+}
+.sw5e.advancement.two-column form {
+  display: grid;
+  grid-template-columns: var(--grid-two-column-left-size) var(--grid-two-column-right-size);
+  grid-template-areas: "left right";
+  grid-gap: 0.4em;
+}
+.sw5e.advancement.two-column form .left-column {
+  grid-area: left;
+}
+.sw5e.advancement.two-column form .right-column {
+  grid-area: right;
+}
+.sw5e.advancement.two-column form button[type="submit"] {
+  grid-column-end: span 2;
+}
+.sw5e.advancement.scale-value {
+  --grid-two-column-right-size: 0.6fr;
+}
+.sw5e.advancement.scale-value .right-column label {
+  flex: 0.5;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+.sw5e.advancement.scale-value input[type="text"]::placeholder {
+  opacity: 0.5;
+}
+.sw5e.advancement.scale-value select.new-scale-value {
+  font-weight: bold;
+}
+.sw5e.advancement.scale-value select option[value=""] {
+  color: var(--color-text-light-6);
+}
+/* ----------------------------------------- */
+/*  Advancement Flow                         */
+/* ----------------------------------------- */
+.sw5e.advancement.flow .step {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.sw5e.advancement.flow .step h1 {
+  flex-grow: 1;
+}
+.sw5e.advancement.flow .step h2 {
+  text-align: right;
+  line-height: 1.8em;
+  border-bottom: 2px solid var(--color-underline-header);
+}
+.sw5e.advancement.flow .step form {
+  flex-basis: 100%;
+}
+.sw5e.advancement.flow h3 {
+  font-size: var(--font-size-20);
+}
+.sw5e.advancement.flow .item-name .item-image {
+  flex: 0 0 30px;
+  height: 30px;
+  background-size: 30px;
+  margin-inline-end: 5px;
+}
+.sw5e.advancement.flow .item-name label {
+  align-items: center;
+}
+.sw5e.advancement.flow .item-name label h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.sw5e.advancement.flow form:not(:last-of-type) {
+  margin-block-end: 0.5em;
+  border-block-end: 2px groove var(--color-border-light-1);
+  padding-block-end: 1em;
+}
+.sw5e.advancement.flow form[data-type="HitPoints"] div {
+  font-size: var(--font-size-14);
+}
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls {
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr;
+  align-items: center;
+  gap: 2px;
+}
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel span,
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel input {
+  vertical-align: middle;
+}
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollResult {
+  text-align: center;
+}
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollButton {
+  height: calc(var(--form-field-height) + 5px);
+  line-height: 1.5em;
+}
+.sw5e.advancement.flow input.error {
+  outline: 2px solid red;
+}
+.sw5e.advancement.flow form[data-type="ScaleValue"] p {
+  margin-block-end: 0;
+  font-size: var(--font-size-18);
+}
+.sw5e.advancement.flow form[data-type="ScaleValue"] span.none {
+  font-style: italic;
+}
+.sw5e.advancement.flow nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: 1em;
+}
+.sw5e.advancement.flow nav button {
+  max-width: 50%;
+}
 .sw5e.sheet.item {
   min-height: 400px;
   max-height: 95%;
@@ -1288,6 +1451,9 @@
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  Item Actions                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Item Advancement                         */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  Loot Sheet (No Tabs)                     */
@@ -1312,6 +1478,11 @@
 .sw5e.sheet.item .sheet-header .item-subtitle .item-status {
   font-size: 16px;
   line-height: 24px;
+}
+.sw5e.sheet.item .sheet-header .summary .class-level {
+  flex: 0 0 4em;
+  padding: 0 0.25em;
+  text-align: right;
 }
 .sw5e.sheet.item .sheet-navigation {
   margin-bottom: 5px;
@@ -1354,6 +1525,12 @@
   text-align: center;
   font-size: 12px;
   line-height: 18px;
+}
+.sw5e.sheet.item .sheet-body .item-properties .properties-header {
+  font-weight: bold;
+  color: #4b4a44;
+  margin: 0.5em 0 0 0;
+  font-size: 1em;
 }
 .sw5e.sheet.item .details input[type="text"],
 .sw5e.sheet.item .details input[type="number"],
@@ -1455,6 +1632,46 @@
 }
 .sw5e.sheet.item .weapon-properties label.checkbox {
   flex: 0 0 98px;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control {
+  flex: 1 0;
+  margin-inline-start: 0.5em;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control a {
+  text-align: inline-start;
+}
+.sw5e.sheet.item .advancement .items-list .main-controls .item-add {
+  padding-block-start: 0.2em;
+}
+.sw5e.sheet.item .advancement .items-list .items-header .item-checkmark {
+  flex: 0 0 44px;
+  color: #119111;
+}
+.sw5e.sheet.item .advancement .items-list .items-header .item-warning {
+  flex: 0 0 44px;
+  color: #faff23;
+}
+.sw5e.sheet.item .advancement .items-list .item-name {
+  flex: 1 0 10em;
+}
+.sw5e.sheet.item .advancement .items-list .item-controls {
+  border-left: 1px solid #c9c7b8;
+  flex: 0 0 44px;
+}
+.sw5e.sheet.item .advancement .items-list .item-summary {
+  flex: 0 0 100%;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0 0.5em 0.5em 34px;
+  margin-top: -4px;
+  color: #191813;
+}
+.sw5e.sheet.item .advancement .items-list .item-summary .item-list .item-name {
+  display: flex;
+}
+.sw5e.sheet.item .advancement .items-list .tag {
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
 }
 .sw5e.sheet.item .loot-header {
   margin-bottom: 10px;

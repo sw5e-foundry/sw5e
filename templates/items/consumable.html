@@ -54,6 +54,16 @@
                 </select>
             </div>
 
+            {{!-- Ammunition Type --}}
+            {{#if (eq data.consumableType "ammo")}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemAmmoType" }}</label>
+                    <select name="data.ammoType">
+                        {{selectOptions config.ammoTypes selected=data.ammoType localize=true}}
+                    </select>
+                </div>
+            {{/if}}
+
             <div class="form-group">
                 <label>{{localize "SW5E.Attunement"}}</label>
                 <select name="data.attunement" data-dtype="Number">

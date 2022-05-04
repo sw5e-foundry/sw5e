@@ -1,6 +1,8 @@
 import ProficiencySelector from "../apps/proficiency-selector.js";
 import TraitSelector from "../apps/trait-selector.js";
+import CheckboxSelect from "../apps/checkbox-select.js";
 import ActiveEffect5e from "../active-effect.js";
+import Item5e from "./entity.js";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types.
@@ -41,11 +43,21 @@ export default class ItemSheet5e extends ItemSheet {
     }
 
     /* -------------------------------------------- */
+   
+    /** @inheritdoc */
+    get isEditable() {
+        // TODO: Remove this and make fake modification items update their data on the modified item
+        if (this.item.data.data.fakeItem) return false;
+        return super.isEditable;
+    }
+
+    /* -------------------------------------------- */
 
     /** @override */
     async getData(options) {
         const data = super.getData(options);
         const itemData = data.data;
+        const actor = this.item.actor;
         data.labels = this.item.labels;
         data.config = CONFIG.SW5E;
 
@@ -84,8 +96,32 @@ export default class ItemSheet5e extends ItemSheet {
         data.isMountable = this._isItemMountable(itemData);
 
         // Weapon Properties
-        if (this.item.type === "weapon") data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
-
+        if (this.item.type === "weapon") {
+            data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+            if (itemData.data?.properties?.rel) {
+                data.hasReload = true;
+                data.reloadProp = "rel";
+                data.reloadActLabel = "SW5E.WeaponReload";
+                data.reloadLabel = "SW5E.WeaponReload";
+                data.reloadFull = !itemData.data?.ammo?.target || itemData.data?.ammo?.value === itemData.data?.properties?.rel;
+                if (actor) {
+                    data.reloadAmmo = actor.itemTypes.consumable.reduce( (ammo, i) => {
+                        if (i.data?.data?.consumableType === "ammo" && itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)) {
+                            ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
+                        }
+                        return ammo;
+                    }, {});
+                } else data.reloadAmmo = {};
+            } else if (data.isStarshipWeapon && itemData.data?.properties?.ovr) {
+                data.hasReload = true;
+                data.reloadProp = "ovr";
+                data.reloadActLabel = "SW5E.WeaponCoolDown";
+                data.reloadLabel = "SW5E.WeaponOverheat";
+                data.reloadFull = itemData.data?.ammo?.value === itemData.data?.properties?.ovr;
+            }
+            data.reloadUsesAmmo = itemData.data?.properties?.amm;
+            data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.properties?.[data.reloadProp]) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
+        }
 
         // Armor Class
         if (this.item.type === "equipment") {
@@ -104,8 +140,11 @@ export default class ItemSheet5e extends ItemSheet {
             data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
         }
 
-        // Modification Slot Names
-        if (itemData.data.modifications?.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modifications.type];
+        // Modifiable items
+        if (itemData.data.modify) {
+            if (itemData.data.modify.type) data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modify.type];
+            data.mods = itemData.data.modify.items;
+        }
 
         // Prepare Active Effects
         data.effects = ActiveEffect5e.prepareActiveEffectCategories(this.item.effects);
@@ -441,7 +480,11 @@ export default class ItemSheet5e extends ItemSheet {
 
                 await this.item.update(update);
             });
+            html.find(".modification-link").click(this._onOpenItemModification.bind(this));
             html.find(".modification-control").click(this._onManageItemModification.bind(this));
+            html.find(".weapon-configure-ammo").click(this._onWeaponConfigureAmmo.bind(this));
+            html.find(".weapon-reload").click(this._onWeaponReload.bind(this));
+            html.find(".weapon-select-ammo").change(this._onWeaponSelectAmmo.bind(this));
         }
     }
 
@@ -521,6 +564,35 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
+     * Handle opening item modifications.
+     * @param {Event} event   The click event
+     * @private
+     */
+    _onOpenItemModification(event) {
+        event.preventDefault();
+        const a = event.currentTarget;
+        const li = a.closest("li");
+        const id = li.dataset.id;
+        const index = li.dataset.index;
+        const item = this.item;
+        const actor = item.actor;
+
+        if (actor && id) {
+            const item = actor.items.get(id)
+            return item?.sheet?.render(true);
+        }
+
+        if (item && index !== null) {
+            const data = foundry.utils.duplicate(item.data.data.modify.items[Number(index)].data);
+            data.data.fakeItem = this.item.uuid;
+            const mod = new Item5e(data);
+            return mod.sheet.render(true);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Handle deleting and toggling item modifications.
      * @param {Event} event   The click event
      * @private
@@ -529,34 +601,106 @@ export default class ItemSheet5e extends ItemSheet {
         event.preventDefault();
         const a = event.currentTarget;
         const li = a.closest("li");
-        switch ( li.dataset.modificationType ) {
-            case "mod":
-                const slot = li.dataset.modificationSlot;
-                const mod = {...this.item.data.data.modifications.mods[slot]};
-                switch ( a.dataset.action ) {
-                    case "delete":
-                        mod.uuid = null;
-                        break;
-                    case "toggle":
-                        mod.disabled = !mod.disabled;
-                        break;
-                }
-                const update = {};
-                update[`data.modifications.mods.${slot}`] = mod;
-                return this.item.update(update);
-            case "augment":
-                const index = li.dataset.augmentIndex;
-                const augments = [...this.item.data.data.modifications.augments];
-                switch ( a.dataset.action ) {
-                    case "delete":
-                        augments.splice(index, 1);
-                        break;
-                    case "toggle":
-                        augments[index].disabled = !augments[index].disabled;
-                        break;
-                }
-                return this.item.update({'data.modifications.augments': augments});
+        const action = a.dataset.action;
+        const id = li.dataset.id;
+        const index = li.dataset.index;
+        const item = this.item;
+        const actor = item.actor;
+
+        switch (action) {
+            case "delete":
+                this.item.delModification(id, index);
+                break;
+            case "toggle":
+                this.item.tglModification(id, index);
+                break;
         }
+    }
+
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle reloading weapons.
+     * @param {Event} event   The click event
+     * @private
+     */
+    _onWeaponReload(event) {
+        event.preventDefault();
+        if (!event.target.attributes.disabled) this.item.reloadWeapon();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle weapon ammo selection.
+     * @param {Event} event   The change event
+     * @private
+     */
+    async _onWeaponSelectAmmo(event) {
+        const wpn = this.item;
+        const wpnData = wpn?.data?.data;
+        const oldLoad = wpnData?.ammo?.value;
+        const ammoID = wpnData?.ammo?.target;
+        const ammo = ammoID ? wpn?.actor?.items?.get(ammoID) : null;
+        const ammoData = ammo?.data?.data;
+
+        if (ammo && oldLoad !== 0) {
+            const ammoUpdates = {};
+            switch (ammoData?.ammoType) {
+                case "cartridge":
+                case "dart":
+                case "missile":
+                case "rocket":
+                case "snare":
+                case "torpedo":
+                    ammoUpdates["data.quantity"] = ammoData?.quantity + oldLoad;
+                    break;
+                case "powerCell":
+                case "flechetteClip":
+                case "flechetteMag":
+                case "powerGenerator":
+                case "projectorCanister":
+                case "projectorTank":
+                    if (oldLoad === wpnData?.properties?.rel) ammoUpdates["data.quantity"] = ammoData?.quantity + 1;
+                    else {
+                        const confirm = await Dialog.confirm({
+                            title: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectTitle"),
+                            content: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectContent"),
+                            defaultYes: true
+                        });
+                        if (!confirm) return await wpn?.update({"data.ammo.target": ammoID});
+                    }
+                    break;
+            }
+            if (!foundry.utils.isObjectEmpty(ammoUpdates)) await ammo?.update(ammoUpdates);
+        }
+        await wpn.update({"data.ammo.value": 0});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle configuration of valid ammo types for a weapon.
+     * @param {Event} event   The click event
+     * @private
+     */
+    async _onWeaponConfigureAmmo(event) {
+        event.preventDefault();
+        const disabled = [];
+        const target = this.item.data?.data?.ammo?.target;
+        if (target) {
+            const ammo = this.item.actor?.items?.get(target);
+            if (ammo) disabled.push(ammo.data?.data.ammoType);
+        }
+        const result = await CheckboxSelect.checkboxSelect({
+            title: game.i18n.localize("SW5E.WeaponAmmoConfigureTitle"),
+            content: game.i18n.localize("SW5E.WeaponAmmoConfigureContent"),
+            checkboxes: CONFIG.SW5E.ammoTypes,
+            defaultSelect: this.item.data?.data?.ammo?.types,
+            disabled: disabled,
+        });
+        if (result) this.item.update({"data.ammo.types": result});
     }
 
     /* -------------------------------------------- */
@@ -618,60 +762,9 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     async _onDropItem(event, data) {
-        const item = this.item.data;
-        const itemMods = item.data.modifications;
-
-        const entity = await Item.fromDropData(data, {importWorld: !data.pack});
-        if (!entity) return false;
-
-        if (itemMods && entity.type == "modification"){
-            const mod = entity.data;
-
-            const rarityMap = {
-                "standard": 1,
-                "premium": 2,
-                "prototype": 3,
-                "advanced": 4,
-                "legendary": 5,
-                "artifact": 6
-            }
-
-            if (["none", "enhanced"].includes(itemMods.chassisType)) return ui.notifications.warn(
-                `${item.name}'s does not have a chassis that support modifications.`
-            );
-            if (itemMods.chassisType == "chassis" && (rarityMap[item.data.rarity]??0) < (rarityMap[mod.data.rarity]??0)) return ui.notifications.warn(
-                `${item.name}'s chassis only supports modifications of rarity up to ${item.data.rarity ?? "common"}.`
-            );
-
-            if (mod.data.modificationType == "augment") {
-                const augments = itemMods.augments;
-                if (augments.length >= itemMods.augmentSlots) return ui.notifications.warn(
-                    `${item.name} has no empty augment slots for ${mod.name}.`
-                );
-                if (augments.filter(e => e.uuid == entity.uuid).length) return ui.notifications.warn(
-                    `${item.name} already has an augment called ${mod.name}.`
-                );
-                augments.push({
-                    uuid: entity.uuid,
-                    disabled: false,
-                });
-                this.item.update({"data.modifications.augments": augments});
-            }
-            else {
-                if (itemMods.type != mod.data.modificationType) return ui.notifications.warn(
-                    `${mod.name}'s mod type ${mod.data.modificationType} is incompatible with ${item.name}, which only accepts ${itemMods.type}.`
-                );
-                const slot = mod.data.modificationSlot;
-
-                const update = {}
-                update[`data.modifications.mods.${slot}.uuid`] = entity.uuid;
-                update[`data.modifications.mods.${slot}.disabled`] = false;
-                this.item.update(update);
-            }
-
-            if (this.item.sheet?.rendered) this.item.sheet.render(true);
-            return true
-        }
+        const entity = await Item.fromDropData(data);
+        if (entity) this.item.addModification(entity.uuid);
+        return;
     }
 
     /* -------------------------------------------- */

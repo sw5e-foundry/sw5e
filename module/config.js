@@ -732,7 +732,11 @@ SW5E.ammoTypes = {
     projectorTank: "SW5E.AmmoProjectorTank",
     rocket: "SW5E.AmmoRocket",
     snare: "SW5E.AmmoSnare",
-    torpedo: "SW5E.AmmoTorpedo"
+    torpedo: "SW5E.AmmoTorpedo",
+    ssmissile: "SW5E.AmmoSsMissile",
+    ssrocket: "SW5E.AmmoSsRocket",
+    sstorpedo: "SW5E.AmmoSsTorpedo",
+    ssbomb: "SW5E.AmmoSsBomb"
 };
 
 /* -------------------------------------------- */
@@ -848,7 +852,7 @@ SW5E.modificationSlots = {
  * }}
  */
 SW5E.currencies = {
-    CR: {
+    gc: {
         label: "SW5E.CurrencyGC",
         abbreviation: "SW5E.CurrencyAbbrGC"
     }

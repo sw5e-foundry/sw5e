@@ -65,3 +65,44 @@ export async function fromUuidSafe(uuid) {
     }
     return doc || null;
 }
+
+/**
+ * Given a partial html string, finds the closing bracket
+ * @param {string} html   The partial html string
+ * @param {int} index     The index to start searching from
+ * @return {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
+ */
+export function htmlFindClosingBracket(html, index=0) {
+    if (!html) return null;
+    let inString = false;
+    let depth = 0;
+    let prev = null;
+    let blockStart = null;
+    let blockEnd = null;
+    let contentStart = null;
+    let contentEnd = null;
+    for (let i = index; i < html.length; i++) {
+        const c = html[i];
+        if (['"', "'", "`"].includes(c)) {
+            if (!inString) inString = c;
+            else if (inString === c && prev !== "\\") inString = false;
+        }
+        else if (inString) continue;
+        else if (prev === '<') {
+            if (blockStart === null) blockStart = i-1;
+            contentEnd = i-1;
+
+            if (c === '/') depth -= 1;
+            else depth += 1;
+        }
+        else if (c === '>') {
+            if (contentStart === null) contentStart = i+1;
+            blockEnd = i+1;
+
+            if (depth === 0) return [blockStart, blockEnd, contentStart, contentEnd];
+        }
+        prev = c;
+    }
+    return null;
+}
+

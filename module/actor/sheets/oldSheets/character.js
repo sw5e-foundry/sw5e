@@ -1,6 +1,6 @@
 import ActorSheet5e from "./base.js";
-import { AdvancementConfirmationDialog } from "../../advancement/advancement-confirmation-dialog.js";
-import { AdvancementManager } from "../../advancement/advancement-manager.js";
+import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
+import { AdvancementManager } from "../../../advancement/advancement-manager.js";
 
 
 /**

@@ -75,7 +75,6 @@ SW5E.attunementTypes = {
     REQUIRED: 1,
     ATTUNED: 2
 };
-preLocalize("attunementTypes");
 
 /**
  * An enumeration of item attunement states.
@@ -120,7 +119,6 @@ SW5E.weaponProficienciesMap = {
     martialB: "mrb",
     martialLW: "mlw"
 };
-preLocalize("weaponProficienciesMap");
 
 /* -------------------------------------------- */
 
@@ -702,11 +700,11 @@ SW5E.armorClasses = {
     },
     default: {
         label: "SW5E.ArmorClassEquipment",
-        formula: "@attributes.ac.armor + @abilities.ac.dex"
+        formula: "@attributes.ac.armor + @attributes.ac.dex"
     },
     starship: {
         label: "SW5E.ArmorClassStarshipEquipment",
-        formula: "@attributes.ac.armor + @abilities.ac.dex"
+        formula: "@attributes.ac.armor + @attributes.ac.dex"
     },
     mage: {
         label: "SW5E.ArmorClassMage",
@@ -2207,7 +2205,6 @@ SW5E.weaponProperties = {
     ...SW5E.weaponCharacterProperties,
     ...SW5E.weaponStarshipProperties
 };
-preLocalize("weaponProperties", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -2226,7 +2223,6 @@ SW5E.weaponFullCharacterProperties = {
     ...SW5E.weaponCommonProperties,
     ...SW5E.weaponCharacterProperties
 };
-preLocalize("weaponFullCharacterProperties", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -2245,7 +2241,6 @@ SW5E.weaponFullStarshipProperties = {
     ...SW5E.weaponCommonProperties,
     ...SW5E.weaponStarshipProperties
 };
-preLocalize("weaponFullStarshipProperties", { sort: true });
 
 /* -------------------------------------------- */
 

@@ -1,7 +1,7 @@
 import Actor5e from "../../entity.js";
 import Item5e from "../../../item/entity.js";
-import { AdvancementConfirmationDialog } from "../../advancement/advancement-confirmation-dialog.js";
-import { AdvancementManager } from "../../advancement/advancement-manager.js";
+import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
+import { AdvancementManager } from "../../../advancement/advancement-manager.js";
 import ProficiencySelector from "../../../apps/proficiency-selector.js";
 import PropertyAttribution from "../../../apps/property-attribution.js";
 import TraitSelector from "../../../apps/trait-selector.js";
@@ -1052,7 +1052,7 @@ export default class ActorSheet5e extends ActorSheet {
      *                                                          advancement manager if advancements need removing.
      * @private
      */
-    _onItemDelete(event) {
+    async _onItemDelete(event) {
         event.preventDefault();
         const li = event.currentTarget.closest(".item");
         const item = this.actor.items.get(li.dataset.itemId);

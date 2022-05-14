@@ -1,7 +1,7 @@
 import Actor5e from "../../entity.js";
 import Item5e from "../../../item/entity.js";
-import { AdvancementConfirmationDialog } from "../../advancement/advancement-confirmation-dialog.js";
-import { AdvancementManager } from "../../advancement/advancement-manager.js";
+import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
+import { AdvancementManager } from "../../../advancement/advancement-manager.js";
 import ProficiencySelector from "../../../apps/proficiency-selector.js";
 import PropertyAttribution from "../../../apps/property-attribution.js";
 import TraitSelector from "../../../apps/trait-selector.js";

@@ -609,8 +609,6 @@ export default class ActorSheet5e extends ActorSheet {
                 .click((ev) => ev.target.select())
                 .change(this._onUsesChange.bind(this));
             html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
-            html.find(".increment-class-level").click(this._onIncrementClassLevel.bind(this));
-            html.find(".decrement-class-level").click(this._onDecrementClassLevel.bind(this));
             html.find(".increment-deployment-rank").click(this._onIncrementDeploymentRank.bind(this));
             html.find(".decrement-deployment-rank").click(this._onDecrementDeploymentRank.bind(this));
             html.find(".increment-starship-tier").click(this._onIncrementStarshipTier.bind(this));
@@ -1097,54 +1095,6 @@ export default class ActorSheet5e extends ActorSheet {
         } else {
             content.style.display = "none";
         }
-    }
-
-    /**
-     * Handle incrementing class level on the actor sheet
-     * @param {Event} event   The originating click event
-     * @private
-     */
-
-    _onIncrementClassLevel(event) {
-        event.preventDefault();
-
-        const div = event.currentTarget.closest(".character");
-        const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
-        const itemId = li.dataset.itemId;
-
-        const actor = game.actors.get(actorId);
-        const item = actor.items.get(itemId);
-
-        let levels = item.data.data.levels;
-        const update = {_id: item.data._id, data: {levels: levels + 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-    }
-
-    /**
-     * Handle decrementing class level on the actor sheet
-     * @param {Event} event   The originating click event
-     * @private
-     */
-
-    _onDecrementClassLevel(event) {
-        event.preventDefault();
-
-        const div = event.currentTarget.closest(".character");
-        const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
-        const itemId = li.dataset.itemId;
-
-        const actor = game.actors.get(actorId);
-        const item = actor.items.get(itemId);
-
-        let levels = item.data.data.levels;
-        const update = {_id: item.data._id, data: {levels: levels - 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
     }
 
     /**

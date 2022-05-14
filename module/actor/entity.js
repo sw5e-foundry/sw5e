@@ -10,7 +10,7 @@ import AllocatePowerDice from "../apps/allocate-power-dice.js";
 import ExpendPowerDice from "../apps/expend-power-dice.js";
 import ProficiencySelector from "../apps/proficiency-selector.js";
 import Item5e from "../item/entity.js";
-import {fromUuidSynchronous} from "../helpers.js";
+import {fromUuidSynchronous} from "../utils.js";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.

@@ -51,7 +51,7 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemModificationType" }}</label>
                 <select name="data.modificationType">
-                    {{selectOptions config.modificationTypes selected=data.modificationType localize=true}}
+                    {{selectOptions config.modificationTypes selected=data.modificationType}}
                 </select>
             </div>
 
@@ -61,7 +61,7 @@
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
                 <select name="data.modificationSlot">
                     {{#with (lookup config.modificationSlots data.modificationType) as |modSlots| }}
-                    {{selectOptions modSlots selected=../data.modificationSlot localize=true}}
+                    {{selectOptions modSlots selected=../data.modificationSlot}}
                     {{/with}}
                 </select>
                 {{/unless}}

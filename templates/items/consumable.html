@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemAmmoType" }}</label>
                     <select name="data.ammoType">
-                        {{selectOptions config.ammoTypes selected=data.ammoType localize=true}}
+                        {{selectOptions config.ammoTypes selected=data.ammoType}}
                     </select>
                 </div>
             {{/if}}
@@ -67,7 +67,7 @@
             <div class="form-group">
                 <label>{{localize "SW5E.Attunement"}}</label>
                 <select name="data.attunement" data-dtype="Number">
-                    {{selectOptions config.attunements selected=data.attunement localize=true}}
+                    {{selectOptions config.attunements selected=data.attunement}}
                 </select>
             </div>
 

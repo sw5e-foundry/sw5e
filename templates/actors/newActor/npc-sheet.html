@@ -82,14 +82,15 @@
                         title="{{localize 'SW5E.HitPointsMax'}}"
                     />
                 </div>
-                <footer class="attribute-footer hit-points">
-                    <input
-                        name="data.attributes.hp.formula"
-                        class="hpformula"
-                        type="text"
-                        placeholder="{{ localize 'SW5E.HealthFormula' }}"
-                        value="{{data.attributes.hp.formula}}"
-                    />
+                <footer class="attribute-footer hit- flexrow">
+                    <input name="data.attributes.hp.formula" type="text" class="hpformula"
+                           placeholder="{{ localize 'SW5E.HPFormula' }}"
+                           value="{{data.attributes.hp.formula}}"
+                           title="{{ localize 'SW5E.HPFormula' }}">
+                    <input name="data.attributes.hp.temp" type="text" class="temphp"
+                           placeholder="+{{ localize 'SW5E.Temp' }}"
+                           value="{{data.attributes.hp.temp}}" data-dtype="Number"
+                           title="{{localize 'SW5E.HitPointsTemp'}}">
                 </footer>
             </section>
             <section class="attrib movement">

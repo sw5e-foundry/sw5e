@@ -34,8 +34,6 @@
                 <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
                 <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
                 {{/if}}
-
-
             </div>
             <ol class="item-list content" style="display: block">
                 {{#each section.items as |item iid|}}
@@ -43,8 +41,9 @@
                     <div class="item-name rollable">
                         <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                         <h4>
+                            {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
                             {{item.name}}
-                            {{#if item.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
+                            {{#if item.data.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
                         </h4>
                     </div>
 
@@ -66,25 +65,35 @@
                         {{/if}}
                     </div>
 
-                    {{else if section.isClass}}
+                    {{else if (eq item.type "class")}}
                     <div class="item-detail player-class"><strong>HD:</strong>
 					    <input style="width:50px;" name="hitdice" type="text" value="{{item.data.hitDice}}" placeholder="{{ localize 'SW5E.HitDice' }}"/>
-<!--                        {{item.data.hitDice}} -->
+                        <!-- {{item.data.hitDice}} -->
+                        <select class="level-selector">
+                            {{#select 0}}
+                            {{#each item.availableLevels}}
+                                <option value="{{this.delta}}" {{disabled this.disabled}}>
+                                    {{localize "SW5E.LevelNumber" level=this.level}}
+                                    {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
+                                </option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
                     </div>
                     <div class="item-detail player-class-levels">
                         <strong>{{localize "SW5E.Level"}} {{item.data.levels}}</strong> &nbsp;&nbsp;<a class="increment-class-level"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-class-level"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
-<!--				    {{#if ../owner}}
+				    <!-- {{#if ../owner}} -->
                     <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
                         {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                         <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}
                     </a>
-                    {{/if}} -->
+                    {{/if}} 
                     </div>
 
                     {{else if section.isStarship}}
                     <div class="item-detail player-starship-tier">
                         <strong>{{localize "SW5E.StarshipTier"}} {{item.data.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
-<!--				    {{#if ../owner}}
+				    <!-- {{#if ../owner}}
                     <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
                         {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                         <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}

@@ -67,8 +67,7 @@
 
                     {{else if (eq item.type "class")}}
                     <div class="item-detail player-class"><strong>HD:</strong>
-					    <input style="width:50px;" name="hitdice" type="text" value="{{item.data.hitDice}}" placeholder="{{ localize 'SW5E.HitDice' }}"/>
-                        <!-- {{item.data.hitDice}} -->
+                        {{item.data.hitDice}}
                     </div>
                     <div class="item-detail player-class-levels">
                         <select class="level-selector">
@@ -81,23 +80,11 @@
                             {{/each}}
                             {{/select}}
                         </select>
-    				    {{#if ../owner}}
-                        <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
-                            {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
-                            <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}
-                        </a>
-                        {{/if}}
                     </div>
 
                     {{else if section.isStarship}}
                     <div class="item-detail player-starship-tier">
                         <strong>{{localize "SW5E.StarshipTier"}} {{item.data.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
-    				    <!-- {{#if ../owner}}
-                        <a class="item-control item-create" title="{{localize 'SW5E.LevelAdd'}}"
-                            {{#each item.data.levels as |v k|}}data-{{k}}="{{v}}" {{/each}}>
-                            <i class="fas fa-arrow-up"></i> {{localize "SW5E.Up"}}
-                        </a>
-                        {{/if}} -->
                     </div>
                     {{/if}}
 

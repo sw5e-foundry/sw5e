@@ -1,11 +1,12 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ArchetypeName' }}"/>
             </h1>
 
             <div class="item-subtitle">
@@ -13,30 +14,9 @@
                 <span class="item-status">{{itemStatus}}</span>
             </div>
 
-            <ul class="summary">
-                <li style="width: 125px">
-                    <input
-                        type="text"
-                        name="data.className"
-                        value="{{data.className}}"
-                        placeholder="{{ localize 'SW5E.ClassName' }}"
-                    />
-                </li>
-                <li style="width: 275px">
-                    <input
-                        type="text"
-                        name="data.classCasterType"
-                        value="{{data.classCasterType}}"
-                        placeholder="{{ localize 'SW5E.ClassCasterType' }}"
-                    />
-                </li>
-                <li style="width: 75px">
-                    <input
-                        type="text"
-                        name="data.source"
-                        value="{{data.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+            <ul class="summary flexrow">
+                <li>
+                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -45,17 +25,49 @@
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{localize "SW5E.Details"}}</a>
+        <a class="item" data-tab="advancement">{{localize "SW5E.AdvancementTitle"}}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
-        <!-- <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a> -->
     </nav>
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
+        <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor content=data.description.value target="data.description.value" button=true owner=owner
             editable=editable}}
         </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+
+            {{!-- Identifier --}}
+            <div class="form-group">
+                <label>{{localize "SW5E.Identifier"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.ClassIdentifier"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="data.classIdentifier" value="{{data.classIdentifier}}">
+                </div>
+                <p class="hint">
+                        {{localize "SW5E.ArchetypeIdentifierHint"}}
+                </p>
+            </div>
+
+            {{!-- Powercasting --}}
+            <h3 class="form-header">{{localize "SW5E.Powercasting"}}</h3>
+            {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
+
+        </div>
+
+        {{!-- Advancement Tab --}}
+        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">

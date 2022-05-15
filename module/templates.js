@@ -42,7 +42,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/items/parts/item-modifications.html",
 
         // Advancement Partials
-        "systems/sw5e/templates/items/parts/item-modifications.html"
+        "systems/sw5e/templates/advancement/parts/advancement-controls.html"
     ]);
 };
 

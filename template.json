@@ -1126,8 +1126,13 @@
         "htmlFields": ["description.value", "description.chat", "description.unidentified"],
         "archetype": {
             "templates": ["archetypeDescription"],
-            "className": "",
-            "classCasterType": ""
+            "identifier": "",
+            "classIdentifier": "",
+            "advancement": [],
+            "powercasting": {
+                "progression": "none",
+                "ability": ""
+            }
         },
         "background": {
             "templates": ["backgroundDescription"]
@@ -1145,11 +1150,12 @@
         },
         "class": {
             "templates": ["classDescription"],
-            "className": "",
+            "identifier": "",
             "levels": 1,
             "archetype": "",
             "hitDice": "d6",
             "hitDiceUsed": 0,
+            "advancement": [],
             "saves": [],
             "skills": {
                 "number": 2,

@@ -1367,7 +1367,7 @@ SW5E.powerProgression = {
     scout: "SW5E.PowerProgSct",
     sentinel: "SW5E.PowerProgSnt"
 };
-preLocalize("powerProgression", { sort: true });
+preLocalize("powerProgression");
 
 /**
  * The max number of known powers available to each class per level

@@ -530,6 +530,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 }));
             }
         }
+
+        // Default drop handling if levels were not added
+        return super._onDropItemCreate(itemData);
     }
 }
 

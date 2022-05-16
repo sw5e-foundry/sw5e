@@ -34,7 +34,7 @@ export class HitPointsAdvancement extends Advancement {
 
   /** @inheritdoc */
   get levels() {
-    return Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1);
+    return Array.fromRange(this.item.maxAdvancementLevel + 1).slice(1);
   }
 
   /* -------------------------------------------- */

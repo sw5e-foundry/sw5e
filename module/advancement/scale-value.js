@@ -26,7 +26,7 @@ export class ScaleValueAdvancement extends Advancement {
       title: game.i18n.localize("SW5E.AdvancementScaleValueTitle"),
       hint: game.i18n.localize("SW5E.AdvancementScaleValueHint"),
       multiLevel: true,
-      validItemTypes: new Set(["class", "archetype"]),
+      validItemTypes: new Set(["class", "archetype", "deployment", "starship"]),
       apps: {
         config: ScaleValueConfig,
         flow: ScaleValueFlow
@@ -182,7 +182,7 @@ export class ScaleValueConfig extends AdvancementConfig {
    */
   _prepareLevelData() {
     let lastValue = null;
-    return Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).reduce((obj, level) => {
+    return Array.fromRange(this.item.maxAdvancementLevel + 1).slice(1).reduce((obj, level) => {
       obj[level] = { placeholder: this._formatPlaceholder(lastValue), value: null };
       const value = this.advancement.data.configuration.scale[level];
       if ( value ) {
@@ -280,7 +280,7 @@ export class ScaleValueConfig extends AdvancementConfig {
       for ( const key in formData ) {
         if ( key.startsWith("data.configuration.scale.") ) delete formData[key];
       }
-      Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).forEach(l =>
+      Array.fromRange(this.item.maxAdvancementLevel + 1).slice(1).forEach(l =>
         formData[`data.configuration.scale.${l}`] = null);
     }
     return super._updateObject(event, formData);

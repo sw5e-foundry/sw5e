@@ -2601,6 +2601,24 @@ preLocalize("languages", { sort: true });
 SW5E.maxLevel = 20;
 
 /**
+ * Maximum allowed character rank.
+ * @type {number}
+ */
+SW5E.maxRank = 20;
+
+/**
+ * Maximum allowed character rank in a single deployment.
+ * @type {number}
+ */
+SW5E.maxIndividualRank = 5;
+
+/**
+ * Maximum allowed starship tier.
+ * @type {number}
+ */
+SW5E.maxTier = 5;
+
+/**
  * XP required to achieve each character level.
  * @type {number[]}
  */

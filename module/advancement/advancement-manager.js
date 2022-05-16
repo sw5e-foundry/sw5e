@@ -156,14 +156,13 @@ export class AdvancementManager extends Application {
     manager.clone.prepareData();
     const clonedItem = manager.clone.items.get(dataClone._id);
 
-    // For class items, prepare level change data
-    if ( itemData.type === "class" ) {
-      return manager.createLevelChangeSteps(clonedItem, itemData.data?.levels ?? 1);
+    // For class, deployment and starship items, prepare level change data
+    if ( ["class", "deployment", "starship"].includes(itemData.type) ) {
+      return manager.createLevelChangeSteps(clonedItem, clonedItem.curAdvancementLevel ?? 1);
     }
 
     // All other items, just create some flows up to current character level (or class level for archetypes)
-    let targetLevel = manager.clone.data.data.details.level;
-    if ( clonedItem.type === "archetype" ) targetLevel = clonedItem.class?.data.data.levels ?? 0;
+    let targetLevel = clonedItem.curAdvancementLevel;
     Array.fromRange(targetLevel + 1)
       .flatMap(l => this.flowsForLevel(clonedItem, l))
       .forEach(flow => manager.steps.push({ type: "forward", flow }));
@@ -186,8 +185,7 @@ export class AdvancementManager extends Application {
     const clonedItem = manager.clone.items.get(itemId);
     if ( !clonedItem ) return manager;
 
-    const currentLevel = clonedItem.data.data.levels ?? clonedItem.class?.data.data.levels
-      ?? manager.clone.data.data.details.level;
+    const currentLevel = clonedItem.curAdvancementLevel;
 
     const flows = Array.fromRange(currentLevel + 1).slice(level)
       .flatMap(l => this.flowsForLevel(clonedItem, l));
@@ -218,9 +216,9 @@ export class AdvancementManager extends Application {
     const clonedItem = manager.clone.items.get(itemId);
     if ( !clonedItem ) return manager;
 
-    // For class items, prepare level change data
-    if ( clonedItem.type === "class" ) {
-      return manager.createLevelChangeSteps(clonedItem, clonedItem.data.data.levels * -1);
+    // For class, deployment and starship items, prepare level change data
+    if ( ["class", "deployment", "starship"].includes(clonedItem.type) ) {
+      return manager.createLevelChangeSteps(clonedItem, clonedItem.curAdvancementLevel * -1);
     }
 
     // All other items, just create some flows down from current character level
@@ -255,37 +253,39 @@ export class AdvancementManager extends Application {
 
   /**
    * Create steps based on the provided level change data.
-   * @param {string} classItem      Class being changed.
+   * @param {string} clonedItem      Item being changed.
    * @param {number} levelDelta     Levels by which to increase or decrease the class.
    * @returns {AdvancementManager}  Manager with new steps.
    * @private
    */
-  createLevelChangeSteps(classItem, levelDelta) {
+  createLevelChangeSteps(clonedItem, levelDelta) {
     const pushSteps = (flows, data) => this.steps.push(...flows.map(flow => ({ flow, ...data })));
-    const getItemFlows = characterLevel => this.clone.items.contents.flatMap(i => {
-      if ( ["class", "archetype"].includes(i.type) ) return [];
-      return this.constructor.flowsForLevel(i, characterLevel);
+    const getItemFlows = advancementCharLevel => this.clone.items.contents.flatMap(i => {
+      if ( clonedItem.type === "class" ) {
+        if ( ["class", "archetype"].includes(i.type) ) return [];
+        return this.constructor.flowsForLevel(i, advancementCharLevel);
+      } else return [];
     });
 
     // Level increased
     for ( let offset = 1; offset <= levelDelta; offset++ ) {
-      const classLevel = classItem.data.data.levels + offset;
-      const characterLevel = this.actor.data.data.details.level + offset;
-      const stepData = { type: "forward", class: {item: classItem, level: classLevel} };
-      pushSteps(this.constructor.flowsForLevel(classItem, classLevel), stepData);
-      pushSteps(this.constructor.flowsForLevel(classItem.archetype, classLevel), stepData);
-      pushSteps(getItemFlows(characterLevel), stepData);
+      const advancementLevel = clonedItem.curAdvancementLevel + offset;
+      const advancementCharLevel = clonedItem.curAdvancementCharLevel + offset;
+      const stepData = { type: "forward", class: {item: clonedItem, level: advancementLevel} };
+      pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel), stepData);
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel), stepData);
+      pushSteps(getItemFlows(advancementCharLevel), stepData);
     }
 
     // Level decreased
     for ( let offset = 0; offset > levelDelta; offset-- ) {
-      const classLevel = classItem.data.data.levels + offset;
-      const characterLevel = this.actor.data.data.details.level + offset;
-      const stepData = { type: "reverse", class: {item: classItem, level: classLevel}, automatic: true };
-      pushSteps(getItemFlows(characterLevel).reverse(), stepData);
-      pushSteps(this.constructor.flowsForLevel(classItem.archetype, classLevel).reverse(), stepData);
-      pushSteps(this.constructor.flowsForLevel(classItem, classLevel).reverse(), stepData);
-      if ( classLevel === 1 ) this.steps.push({ type: "delete", item: classItem, automatic: true });
+      const advancementLevel = clonedItem.curAdvancementLevel + offset;
+      const advancementCharLevel = clonedItem.curAdvancementCharLevel + offset;
+      const stepData = { type: "reverse", class: {item: clonedItem, level: advancementLevel}, automatic: true };
+      pushSteps(getItemFlows(advancementCharLevel).reverse(), stepData);
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel).reverse(), stepData);
+      pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel).reverse(), stepData);
+      if ( advancementLevel === 1 ) this.steps.push({ type: "delete", item: clonedItem, automatic: true });
     }
 
     return this;

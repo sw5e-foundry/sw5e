@@ -19,6 +19,13 @@ export default class ItemSheet5e extends ItemSheet {
 
     /* -------------------------------------------- */
 
+    _replaceHTML(element, html) {
+        console.debug('_replaceHTML');
+        console.debug(element);
+        console.debug(html);
+        return super._replaceHTML(element, html);
+    }
+
     constructor(...args) {
         super(...args);
 
@@ -182,8 +189,7 @@ export default class ItemSheet5e extends ItemSheet {
      */
     _getItemAdvancement(item) {
         const configMode = !item.parent || this.advancementConfigurationMode;
-        const maxLevel = !configMode ? item.data.data.levels ?? item.class?.data.data.levels
-            ?? item.parent.data.data.details.level : -1;
+        const maxLevel = !configMode ? item.curAdvancementLevel : -1;
         const data = {};
 
         // Improperly configured advancements

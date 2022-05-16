@@ -62,7 +62,7 @@ export class Advancement {
       title: game.i18n.localize("SW5E.AdvancementTitle"),
       hint: "",
       multiLevel: false,
-      validItemTypes: new Set(["background", "class", "archetype"]),
+      validItemTypes: new Set(["background", "class", "archetype", "deployment", "starship"]),
       apps: {
         config: AdvancementConfig,
         flow: AdvancementFlow
@@ -168,6 +168,8 @@ export class Advancement {
       || (this.data.classRestriction === "primary" && originalClass)
       || (this.data.classRestriction === "secondary" && !originalClass);
   }
+
+  /* -------------------------------------------- */
 
   /* -------------------------------------------- */
   /*  Display Methods                             */

@@ -50,8 +50,8 @@ export class AdvancementConfig extends FormApplication {
 
   /** @inheritdoc */
   getData() {
-    const levels = Object.fromEntries(Array.fromRange(CONFIG.SW5E.maxLevel + 1).map(l => [l, l]));
-    if ( ["class", "archetype"].includes(this.item.type) ) delete levels[0];
+    const levels = Object.fromEntries(Array.fromRange(this.item.maxAdvancementLevel + 1).map(l => [l, l]));
+    if ( ["class", "archetype", "deployment", "starship"].includes(this.item.type) ) delete levels[0];
     else levels[0] = game.i18n.localize("SW5E.AdvancementLevelAnyHeader");
 
     return {

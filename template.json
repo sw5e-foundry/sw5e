@@ -1135,7 +1135,9 @@
             }
         },
         "background": {
-            "templates": ["backgroundDescription"]
+            "templates": ["backgroundDescription"],
+            "identifier": "",
+            "advancement": []
         },
         "backpack": {
             "templates": ["itemDescription", "physicalItem"],
@@ -1177,8 +1179,10 @@
         },
         "deployment": {
             "templates": ["deploymentDescription"],
+            "identifier": "",
             "rank": 1,
             "flavorText": "",
+            "advancement": [],
             "source": ""
         },
         "deploymentfeature": {
@@ -1303,6 +1307,7 @@
         "starship": {
             "templates": ["starshipDescription"],
             "size": "",
+            "identifier": "",
             "tier": 0,
             "hullDice": "d6",
             "hullDiceStart": 3,
@@ -1312,6 +1317,7 @@
             "shldDiceStart": 3,
             "shldDiceRolled": [6, 4, 4],
             "shldDiceUsed": 0,
+            "advancement": [],
             "buildBaseCost": 50000,
             "buildMinWorkforce": 5,
             "upgrdCostMult": 1,

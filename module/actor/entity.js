@@ -30,6 +30,13 @@ export default class Actor5e extends Actor {
     _classes;
 
     /**
+     * The data source for Actor5e.deployments allowing it to be lazily computed.
+     * @type {object<string, Item5e>}
+     * @private
+     */
+    _deployments;
+
+    /**
      * The data source for Actor5e.starships allowing it to be lazily computed.
      * @type {object<string, Item5e>}
      * @private
@@ -51,6 +58,23 @@ export default class Actor5e extends Actor {
             .filter((item) => item.type === "class")
             .reduce((obj, cls) => {
                 obj[cls.identifier] = cls;
+                return obj;
+            }, {}));
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * A mapping of deployments belonging to this Actor.
+     * @type {object<string, Item5e>}
+     */
+    get deployments() {
+        if (this._deployments !== undefined) return this._deployments;
+        if (!["character", "npc"].includes(this.data.type)) return (this._deployments = {});
+        return (this._deployments = this.items
+            .filter((item) => item.type === "deployment")
+            .reduce((obj, dep) => {
+                obj[dep.identifier] = dep;
                 return obj;
             }, {}));
     }
@@ -193,8 +217,10 @@ export default class Actor5e extends Actor {
         // Prepare skills
         this._prepareSkills(actorData, bonusData, bonuses, checkBonus, originalSkills);
 
-        // Reset class store to ensure it is updated with any changes
+        // Reset class, deployment and starship store to ensure they are updated with any changes
         this._classes = undefined;
+        this._deployments = undefined;
+        this._starships = undefined;
 
         // Determine Initiative Modifier
         this._computeInitiativeModifier(actorData, checkBonus, bonusData);
@@ -265,7 +291,16 @@ export default class Actor5e extends Actor {
             data.classes[identifier] = cls.data.data;
             if (cls.archetype) data.classes[identifier].archetype = cls.archetype.data.data;
         }
-        // TODO: do we need get the starship size and/or deployments
+
+        data.deployments = {};
+        for (const [identifier, dep] of Object.entries(this.deployments)) {
+            data.deployments[identifier] = dep.data.data;
+        }
+
+        data.starships = {};
+        for (const [identifier, ss] of Object.entries(this.starships)) {
+            data.starships[identifier] = ss.data.data;
+        }
         return data;
     }
 
@@ -842,9 +877,17 @@ export default class Actor5e extends Actor {
      */
     _computeScaleValues(data) {
         const scale = (data.scale = {});
-        for (const [identifier, cls] of Object.entries(this.classes)) {
-            scale[identifier] = cls.scaleValues;
-            if (cls.archetype) scale[cls.archetype.identifier] = cls.archetype.scaleValues;
+        for (const [identifier, obj] of Object.entries(this.classes)) {
+            scale[identifier] = obj.scaleValues;
+            if (obj.archetype) scale[obj.archetype.identifier] = obj.archetype.scaleValues;
+        }
+
+        for (const [identifier, obj] of Object.entries(this.deployments)) {
+            scale[identifier] = obj.scaleValues;
+        }
+
+        for (const [identifier, obj] of Object.entries(this.starships)) {
+            scale[identifier] = obj.scaleValues;
         }
     }
 

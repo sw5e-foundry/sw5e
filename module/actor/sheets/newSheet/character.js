@@ -1,4 +1,7 @@
 import ActorSheet5e from "./base.js";
+import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
+import { AdvancementManager } from "../../../advancement/advancement-manager.js";
+
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
@@ -37,11 +40,6 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
      */
     getData() {
         const sheetData = super.getData();
-
-        // Temporary HP
-        let hp = sheetData.data.attributes.hp;
-        if (hp.temp === 0) delete hp.temp;
-        if (hp.tempmax === 0) delete hp.tempmax;
 
         // Resources
         sheetData.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
@@ -90,7 +88,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         };
 
         // Partition items by category
-        let [
+        let {
             items,
             forcepowers,
             techpowers,
@@ -107,8 +105,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             fightingmasteries,
             lightsaberforms,
             ssfeats
-        ] = data.items.reduce(
-            (arr, item) => {
+        } = data.items.reduce(
+            (obj, item) => {
                 // Item details
                 item.img = item.img || CONST.DEFAULT_TOKEN;
                 item.isStack = Number.isNumeric(item.data.quantity) && item.data.quantity !== 1;
@@ -135,29 +133,42 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
-                // Primary Class
-                if (item.type === "class")
-                    item.isOriginalClass = item._id === this.actor.data.data.details.originalClass;
-
                 // Classify items into types
-                if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) arr[1].push(item);
-                else if (item.type === "power" && ["tec"].includes(item.data.school)) arr[2].push(item);
-                else if (item.type === "feat") arr[3].push(item);
-                else if (item.type === "class") arr[4].push(item);
-                else if (item.type === "deployment") arr[5].push(item);
-                else if (item.type === "deploymentfeature") arr[6].push(item);
-                else if (item.type === "venture") arr[7].push(item);
-                else if (item.type === "species") arr[8].push(item);
-                else if (item.type === "archetype") arr[9].push(item);
-                else if (item.type === "classfeature") arr[10].push(item);
-                else if (item.type === "background") arr[11].push(item);
-                else if (item.type === "fightingstyle") arr[12].push(item);
-                else if (item.type === "fightingmastery") arr[13].push(item);
-                else if (item.type === "lightsaberform") arr[14].push(item);
-                else if (Object.keys(inventory).includes(item.type)) arr[0].push(item);
-                return arr;
+                if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) obj.forcepowers.push(item);
+                else if (item.type === "power" && ["tec"].includes(item.data.school)) obj.techpowers.push(item);
+                else if (item.type === "feat") obj.feats.push(item);
+                else if (item.type === "class") obj.classes.push(item);
+                else if (item.type === "deployment") obj.deployments.push(item);
+                else if (item.type === "deploymentfeature") obj.deploymentfeatures.push(item);
+                else if (item.type === "venture") obj.ventures.push(item);
+                else if (item.type === "species") obj.species.push(item);
+                else if (item.type === "archetype") obj.archetypes.push(item);
+                else if (item.type === "classfeature") obj.classfeatures.push(item);
+                else if (item.type === "background") obj.backgrounds.push(item);
+                else if (item.type === "fightingstyle") obj.fightingstyles.push(item);
+                else if (item.type === "fightingmastery") obj.fightingmasteries.push(item);
+                else if (item.type === "lightsaberform") obj.lightsaberforms.push(item);
+                else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
+                return obj;
             },
-            [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+            {
+                items: [],
+                forcepowers: [],
+                techpowers: [],
+                feats: [],
+                classes: [],
+                deployments: [],
+                deploymentfeatures: [],
+                ventures: [],
+                species: [],
+                archetypes: [],
+                classfeatures: [],
+                backgrounds: [],
+                fightingstyles: [],
+                fightingmasteries: [],
+                lightsaberforms: [],
+                ssfeats: [],
+            }
         );
 
         // Apply active item filters
@@ -179,118 +190,88 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
         const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
 
+        // Sort classes and interleave matching archetypes, put unmatched archetypes into features so they don't disappear
+        classes.sort((a, b) => b.data.levels - a.data.levels);
+        const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.data.data.details.level;
+        classes = classes.reduce((arr, cls) => {
+            cls.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
+                const delta = level - cls.data.levels;
+                return { level, delta, disabled: delta > maxLevelDelta };
+            });
+            arr.push(cls);
+            const archetype = archetypes.findSplice(s => s.data.classIdentifier === cls.data.identifier);
+            if ( archetype ) arr.push(archetype);
+            return arr;
+        }, []);
+        for ( const archetype of archetypes ) {
+            feats.push(archetype);
+            this.actor._preparationWarnings.push(game.i18n.format("SW5E.ArchetypeMismatchWarn", {
+                name: archetype.name,
+                class: archetype.data.classIdentifier
+            }));
+        }
+
         // Organize Features
         const features = {
+            background: {
+                label: "SW5E.ItemTypeBackground", items: backgrounds,
+                hasActions: false, dataset: {type: "background"}, isBackground: true
+            },
             classes: {
-                label: "SW5E.ItemTypeClassPl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "class"},
-                isClass: true
+                label: "SW5E.ItemTypeClassPl", items: classes,
+                hasActions: false, dataset: {type: "class"}, isClass: true
             },
             classfeatures: {
-                label: "SW5E.ItemTypeClassfeaturePL",
-                items: [],
-                hasActions: true,
-                dataset: {type: "classfeature"},
-                isClassfeature: true
-            },
-            archetype: {
-                label: "SW5E.ItemTypeArchetype",
-                items: [],
-                hasActions: false,
-                dataset: {type: "archetype"},
-                isArchetype: true
+                label: "SW5E.ItemTypeClassfeaturePL", items: classfeatures,
+                hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true
             },
             species: {
-                label: "SW5E.ItemTypeSpecies",
-                items: [],
-                hasActions: false,
-                dataset: {type: "species"},
-                isSpecies: true
-            },
-            background: {
-                label: "SW5E.ItemTypeBackground",
-                items: [],
-                hasActions: false,
-                dataset: {type: "background"},
-                isBackground: true
+                label: "SW5E.ItemTypeSpecies", items: species,
+                hasActions: false, dataset: {type: "species"}, isSpecies: true
             },
             fightingstyles: {
-                label: "SW5E.ItemTypeFightingstylePl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "fightingstyle"},
-                isFightingstyle: true
+                label: "SW5E.ItemTypeFightingstylePl", items: fightingstyles,
+                hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyle: true
             },
             fightingmasteries: {
-                label: "SW5E.ItemTypeFightingmasteryPl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "fightingmastery"},
-                isFightingmastery: true
+                label: "SW5E.ItemTypeFightingmasteryPl", items: fightingmasteries,
+                hasActions: false, dataset: {type: "fightingmastery"}, isFightingmastery: true
             },
             lightsaberforms: {
-                label: "SW5E.ItemTypeLightsaberformPl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "lightsaberform"},
-                isLightsaberform: true
+                label: "SW5E.ItemTypeLightsaberformPl", items: lightsaberforms,
+                hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true
             },
             active: {
-                label: "SW5E.FeatureActive",
-                items: [],
-                hasActions: true,
-                dataset: {"type": "feat", "activation.type": "action"}
+                label: "SW5E.FeatureActive", items: [],
+                hasActions: true, dataset: {type: "feat", "activation.type": "action"}
             },
-            passive: {label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"}}
-        };
-        for (let f of feats) {
-            if (f.data.activation.type) features.active.items.push(f);
-            else features.passive.items.push(f);
-        }
-        classes.sort((a, b) => b.data.levels - a.data.levels);
-        features.classes.items = classes;
-        features.classfeatures.items = classfeatures;
-        features.archetype.items = archetypes;
-        features.species.items = species;
-        features.background.items = backgrounds;
-        features.fightingstyles.items = fightingstyles;
-        features.fightingmasteries.items = fightingmasteries;
-        features.lightsaberforms.items = lightsaberforms;
-
-        // Organize Starship Features
-        const ssfeatures = {
-            deployments: {
-                label: "SW5E.ItemTypeDeploymentPl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "deployment"},
-                isDeployment: true
-            },
-            deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentfeaturePl",
-                items: [],
-                hasActions: true,
-                dataset: {type: "deploymentfeature"},
-                isDeploymentfeature: true
-            },
-            ventures: {
-                label: "SW5E.ItemTypeVenturePl",
-                items: [],
-                hasActions: false,
-                dataset: {type: "venture"},
-                isVenture: true
+            passive: {
+                label: "SW5E.FeaturePassive", items: [],
+                hasActions: false, dataset: {type: "feat"}
             }
         };
-        for (let ssf of ssfeats) {
-            if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
-            else ssfeatures.passive.items.push(ssf);
+
+        for (let f of feats) {
+            if (f.data.activation?.type) features.active.items.push(f);
+            else features.passive.items.push(f);
         }
+
+        // Organize Starship Features
         deployments.sort((a, b) => b.data.rank - a.data.rank);
-        ssfeatures.deployments.items = deployments;
-        ssfeatures.deploymentfeatures.items = deploymentfeatures;
-        ssfeatures.ventures.items = ventures;
+        const ssfeatures = {
+            deployments: {
+                label: "SW5E.ItemTypeDeploymentPl", items: deployments,
+                hasActions: false, dataset: {type: "deployment"}, isDeployment: true
+            },
+            deploymentfeatures: {
+                label: "SW5E.ItemTypeDeploymentfeaturePl", items: deploymentfeatures,
+                hasActions: true, dataset: {type: "deploymentfeature"}, isDeploymentfeature: true
+            },
+            ventures: {
+                label: "SW5E.ItemTypeVenturePl", items: ventures,
+                hasActions: false, dataset: {type: "venture"}, isVenture: true
+            }
+        };
 
         // Assign and return
         data.inventory = Object.values(inventory);
@@ -298,6 +279,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         data.techPowerbook = techPowerbook;
         data.features = Object.values(features);
         data.ssfeatures = Object.values(ssfeatures);
+
+        // Labels
+        data.labels.background = backgrounds[0]?.name;
     }
 
     /* -------------------------------------------- */
@@ -334,6 +318,9 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     activateListeners(html) {
         super.activateListeners(html);
         if (!this.isEditable) return;
+
+        // Manage Class Levels
+        html.find(".level-selector").change(this._onLevelChange.bind(this));
 
         // Inventory Functions
         // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
@@ -437,6 +424,35 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /**
+     * Respond to a new level being selected from the level selector.
+     * @param {Event} event                           The originating change.
+     * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated class item.
+     * @private
+     */
+    async _onLevelChange(event) {
+        event.preventDefault();
+        const delta = Number(event.target.value);
+        const classId = event.target.closest(".item")?.dataset.itemId;
+        if ( !delta || !classId ) return;
+        const classItem = this.actor.items.get(classId);
+        if ( classItem.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forLevelChange(this.actor, classId, delta);
+            if ( manager.steps.length ) {
+                if ( delta > 0 ) return manager.render(true);
+                try {
+                    const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(classItem);
+                    if ( shouldRemoveAdvancements ) return manager.render(true);
+                } catch(err) {
+                    return;
+                }
+            }
+        }
+        return classItem.update({"data.levels": classItem.data.data.levels + delta});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Handle toggling the state of an Owned Item within the Actor.
      * @param {Event} event        The triggering click event.
      * @returns {Promise<Item5e>}  Item with the updates applied.
@@ -482,29 +498,36 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     /** @override */
     async _onDropItemCreate(itemData) {
-        // Increment the number of class levels of a character instead of creating a new item
-        if (itemData.type === "class") {
-            const cls = this.actor.itemTypes.class.find((c) => c.name === itemData.name);
-            let priorLevel = cls?.data.data.levels ?? 0;
-            if (cls) {
-                const next = Math.min(priorLevel + 1, 20 + priorLevel - this.actor.data.data.details.level);
-                if (next > priorLevel) {
-                    itemData.levels = next;
-                    return cls.update({"data.levels": next});
+        // Increment the number of class levels a character instead of creating a new item
+        if ( itemData.type === "class" ) {
+            itemData.data.levels = Math.min(itemData.data.levels,
+                CONFIG.SW5E.maxLevel - this.actor.data.data.details.level);
+            if ( itemData.data.levels <= 0 ) return ui.notifications.error(
+                game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel})
+            );
+            const cls = this.actor.itemTypes.class.find(c => c.identifier === itemData.data.identifier);
+            if ( cls ) {
+                const priorLevel = cls.data.data.levels;
+                if ( cls.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+                    const manager = AdvancementManager.forLevelChange(this.actor, cls.id, itemData.data.levels);
+                    if ( manager.steps.length ) return manager.render(true);
                 }
+                return cls.update({"data.levels": priorLevel + itemData.data.levels});
             }
         }
-
-        // Increment the number of deployment ranks of a character instead of creating a new item
-        else if (itemData.type === "deployment") {
-            const rnk = this.actor.itemTypes.deployment.find((c) => c.name === itemData.name);
-            let priorRank = rnk?.data.data.rank ?? 0;
-            if (!!rnk) {
-                const rnkNext = Math.min(priorRank + 1, 5);
-                if (rnkNext > priorRank) {
-                    itemData.rank = rnkNext;
-                    return rnk.update({"data.rank": rnkNext});
-                }
+        // If a archetype is dropped, ensure it doesn't match another archetype with the same identifier
+        else if ( itemData.type === "archetype" ) {
+            const other = this.actor.itemTypes.archetype.find(i => i.identifier === itemData.data.identifier);
+            if ( other ) {
+                return ui.notifications.error(game.i18n.format("SW5E.ArchetypeDuplicateError", {
+                    identifier: other.identifier
+                }));
+            }
+            const cls = this.actor.itemTypes.class.find(i => i.identifier === itemData.data.classIdentifier);
+            if ( cls && cls.archetype ) {
+                return ui.notifications.error(game.i18n.format("SW5E.ArchetypeAssignmentError", {
+                    class: cls.name, archetype: cls.archetype.name
+                }));
             }
         }
 
@@ -512,6 +535,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         return super._onDropItemCreate(itemData);
     }
 }
+
+
 async function addFavorites(app, html, data) {
     // Thisfunction is adapted for the SwaltSheet from the Favorites Item
     // Tab Module created for Foundry VTT - by Felix Müller (Felix#6196 on Discord).
@@ -723,6 +748,7 @@ async function addFavorites(app, html, data) {
     // }
     Hooks.callAll("renderedSwaltSheet", app, html, data);
 }
+
 async function addSubTabs(app, html, data) {
     if (data.options.subTabs == null) {
         //let subTabs = []; //{subgroup: '', target: '', active: false}

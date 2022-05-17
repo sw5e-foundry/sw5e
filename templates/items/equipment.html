@@ -59,7 +59,7 @@
                         {{selectOptions config.armorTypes selected=data.armor.type}}
                     </optgroup>
                     <optgroup label="{{ localize 'SW5E.Starship' }}">
-                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type localize=true}}
+                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type}}
                     </optgroup>
                     {{selectOptions config.miscEquipmentTypes selected=data.armor.type}}
                 </select>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
                         <select name="data.attunement" data-dtype="Number">
-                            {{selectOptions config.attunements selected=data.attunement localize=true}}
+                            {{selectOptions config.attunements selected=data.attunement}}
                         </select>
                     </div>
                 {{/unless}}

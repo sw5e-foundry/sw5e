@@ -1,6 +1,6 @@
 import ActorSheet5e from "./base.js";
 import {SW5E} from "../../../config.js";
-import {fromUuidSynchronous} from "../../../helpers.js";
+import {fromUuidSynchronous} from "../../../utils.js";
 
 /**
  * An Actor sheet for starships in the SW5E system.

@@ -115,6 +115,9 @@
             },
             "creature": {
                 "attributes": {
+                    "attunement": {
+                        "max": 3
+                    },
                     "ranks": 0,
                     "senses": {
                         "darkvision": 0,
@@ -423,6 +426,10 @@
         "character": {
             "templates": ["common", "creature"],
             "attributes": {
+                "hp": {
+                    "value": 0,
+                    "max": 0
+                },
                 "death": {
                     "success": 0,
                     "failure": 0
@@ -490,6 +497,11 @@
         },
         "npc": {
             "templates": ["common", "creature"],
+            "attributes": {
+                "hp": {
+                    "formula": ""
+                }
+            },
             "details": {
                 "type": {
                     "value": "",
@@ -1114,11 +1126,18 @@
         "htmlFields": ["description.value", "description.chat", "description.unidentified"],
         "archetype": {
             "templates": ["archetypeDescription"],
-            "className": "",
-            "classCasterType": ""
+            "identifier": "",
+            "classIdentifier": "",
+            "advancement": [],
+            "powercasting": {
+                "progression": "none",
+                "ability": ""
+            }
         },
         "background": {
-            "templates": ["backgroundDescription"]
+            "templates": ["backgroundDescription"],
+            "identifier": "",
+            "advancement": []
         },
         "backpack": {
             "templates": ["itemDescription", "physicalItem"],
@@ -1133,11 +1152,12 @@
         },
         "class": {
             "templates": ["classDescription"],
-            "className": "",
+            "identifier": "",
             "levels": 1,
             "archetype": "",
             "hitDice": "d6",
             "hitDiceUsed": 0,
+            "advancement": [],
             "saves": [],
             "skills": {
                 "number": 2,
@@ -1159,8 +1179,10 @@
         },
         "deployment": {
             "templates": ["deploymentDescription"],
+            "identifier": "",
             "rank": 1,
             "flavorText": "",
+            "advancement": [],
             "source": ""
         },
         "deploymentfeature": {
@@ -1285,6 +1307,7 @@
         "starship": {
             "templates": ["starshipDescription"],
             "size": "",
+            "identifier": "",
             "tier": 0,
             "hullDice": "d6",
             "hullDiceStart": 3,
@@ -1294,6 +1317,7 @@
             "shldDiceStart": 3,
             "shldDiceRolled": [6, 4, 4],
             "shldDiceUsed": 0,
+            "advancement": [],
             "buildBaseCost": 50000,
             "buildMinWorkforce": 5,
             "upgrdCostMult": 1,

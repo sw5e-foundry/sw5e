@@ -1,4 +1,4 @@
-import {fromUuidSynchronous} from "./helpers.js";
+import {fromUuidSynchronous} from "./utils.js";
 import {SW5E} from "./config.js";
 
 /**

@@ -5,10 +5,9 @@ import {SW5E} from "./config.js";
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function () {
-    ui.notifications.info(
-        `Applying SW5e System Migration for version ${game.system.data.version}. Please be patient and do not close your game or shut down your server.`,
-        {permanent: true}
-    );
+    const version = game.system.data.version;
+    ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", {version}), {permanent: true});
+
     // Migrate World Actors
     for await (const a of game.actors) {
         try {
@@ -64,7 +63,7 @@ export const migrateWorld = async function () {
 
     // Set the migration as complete
     game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
-    ui.notifications.info(`SW5e System Migration to version ${game.system.data.version} completed!`, {permanent: true});
+    ui.notifications.info(game.i18n.format("MIGRATION.5eComplete", {version}), {permanent: true});
 };
 
 /* -------------------------------------------- */
@@ -185,6 +184,12 @@ export const migrateActorData = async function (actor) {
         }
     }
 
+    // Migrate embedded effects
+    if ( actor.effects ) {
+        const effects = migrateEffects(actor, migrationData);
+        if ( effects.length > 0 ) updateData.effects = effects;
+    }
+
     // Migrate Owned Items
     if (!!actor.items) {
         const items = await actor.items.reduce(async (memo, i) => {
@@ -215,6 +220,7 @@ export const migrateActorData = async function (actor) {
         await _updateActorModificationData(actor, items);
 
         if (items.length > 0) updateData.items = items;
+
     }
 
     // Update NPC data with new datamodel information
@@ -275,6 +281,47 @@ export const migrateItemData = async function (item) {
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
     await _migrateItemModificationData(item, updateData);
+
+    // Migrate embedded effects
+    if ( item.effects ) {
+        const effects = migrateEffects(item, migrationData);
+        if ( effects.length > 0 ) updateData.effects = effects;
+    }
+
+    return updateData;
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate any active effects attached to the provided parent.
+ * @param {object} parent           Data of the parent being migrated.
+ * @param {object} [migrationData]  Additional data to perform the migration.
+ * @returns {object[]}              Updates to apply on the embedded effects.
+ */
+export const migrateEffects = function(parent, migrationData) {
+    if ( !parent.effects ) return {};
+    return parent.effects.reduce((arr, e) => {
+        const effectData = e instanceof CONFIG.ActiveEffect.documentClass ? e.toObject() : e;
+        let effectUpdate = migrateEffectData(effectData, migrationData);
+        if ( !foundry.utils.isObjectEmpty(effectUpdate) ) {
+            effectUpdate._id = effectData._id;
+            arr.push(foundry.utils.expandObject(effectUpdate));
+        }
+        return arr;
+    }, []);
+};
+
+/* -------------------------------------------- */
+/**
+ * Migrate the provided active effect data.
+ * @param {object} effect           Effect data to migrate.
+ * @param {object} [migrationData]  Additional data to perform the migration.
+ * @returns {object}                The updateData to apply.
+ */
+export const migrateEffectData = function(effect, migrationData) {
+    const updateData = {};
+    _migrateEffectArmorClass(effect, updateData);
     return updateData;
 };
 
@@ -654,7 +701,13 @@ function _migrateActorAC(actorData, updateData) {
         return updateData;
     }
 
-    if (typeof ac?.flat === "string" && Number.isNumeric(ac.flat)) {
+    // Migrate ac.base in custom formulas to ac.armor
+    if ( (typeof ac?.formula === "string") && ac?.formula.includes("@attributes.ac.base") ) {
+        updateData["data.attributes.ac.formula"] = ac.formula.replaceAll("@attributes.ac.base", "@attributes.ac.armor");
+    }
+
+    // Protect against string values created by character sheets or importers that don't enforce data types
+    if ( (typeof ac?.flat === "string") && Number.isNumeric(ac.flat) ) {
         updateData["data.attributes.ac.flat"] = parseInt(ac.flat);
     }
 
@@ -978,6 +1031,27 @@ async function _updateActorModificationData(actor, items) {
             }
         }
     }
+}
+
+
+/* -------------------------------------------- */
+
+/**
+ * Change active effects that target AC.
+ * @param {object} effect      Effect data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ */
+function _migrateEffectArmorClass(effect, updateData) {
+    let containsUpdates = false;
+    const changes = effect.changes.map(c => {
+        if ( c.key !== "data.attributes.ac.base" ) return c;
+        c.key = "data.attributes.ac.armor";
+        containsUpdates = true;
+        return c;
+    });
+    if ( containsUpdates ) updateData.changes = changes;
+    return updateData;
 }
 
 /* -------------------------------------------- */

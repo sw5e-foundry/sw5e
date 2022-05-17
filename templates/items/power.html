@@ -65,15 +65,12 @@
             {{!-- Power Components --}}
             <div class="power-components form-group stacked">
                 <label>{{ localize "SW5E.PowerComponents" }}</label>
+                {{#each config.powerComponents as |component key|}}
                 <label class="checkbox">
-                    <input
-                        type="checkbox"
-                        name="data.components.concentration"
-                        {{checked
-                        data.components.concentration}}
-                    />
-                    {{ localize "SW5E.Concentration" }}
+                    <input type="checkbox" name="data.components.{{key}}" {{checked (lookup ../data.components key)}}>
+                    {{component.label}}
                 </label>
+                {{/each}}
             </div>
 
             {{!-- Material Components --}}

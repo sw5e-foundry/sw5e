@@ -1254,7 +1254,7 @@ export default class Item5e extends Item {
             actor: this.actor.data,
             tokenId: token?.uuid || null,
             item: this.data,
-            data: this.getChatData(),
+            data: this.getChatData(this.actor.owner),
             labels: this.labels,
             hasAttack: this.hasAttack,
             isHealing: this.isHealing,

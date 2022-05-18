@@ -773,6 +773,31 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * Enumerate the valid ammunition types which are recognized by the system.
+ * @enum {string}
+ */
+SW5E.ammoTypes = {
+    cartridge: "SW5E.AmmoCartridge",
+    dart: "SW5E.AmmoDart",
+    flechetteClip: "SW5E.AmmoFlechetteClip",
+    flechetteMag: "SW5E.AmmoFlechetteMag",
+    missile: "SW5E.AmmoMissile",
+    powerCell: "SW5E.AmmoPowerCell",
+    powerGenerator: "SW5E.AmmoPowerGenerator",
+    projectorCanister: "SW5E.AmmoProjectorCanister",
+    projectorTank: "SW5E.AmmoProjectorTank",
+    rocket: "SW5E.AmmoRocket",
+    snare: "SW5E.AmmoSnare",
+    torpedo: "SW5E.AmmoTorpedo",
+    ssmissile: "SW5E.AmmoSsMissile",
+    ssrocket: "SW5E.AmmoSsRocket",
+    sstorpedo: "SW5E.AmmoSsTorpedo",
+    ssbomb: "SW5E.AmmoSsBomb"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the valid modification types which are recognized by the system
  */
 SW5E.chassisTypes = {
@@ -892,7 +917,7 @@ preLocalize("modificationSlots", { keys: ["slot1", "slot2", "slot3", "slot4"] })
  * }}
  */
 SW5E.currencies = {
-    CR: {
+    gc: {
         label: "SW5E.CurrencyGC",
         abbreviation: "SW5E.CurrencyAbbrGC"
     }

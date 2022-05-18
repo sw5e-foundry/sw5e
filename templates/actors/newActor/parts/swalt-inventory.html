@@ -1,5 +1,5 @@
 <section class="panel">
-    {{#if isCharacter }}
+    {{#if (or isCharacter isStarship) }}
     <div class="currency-encumbrance">
 
         <label class="currency">
@@ -9,6 +9,7 @@
             <input type="text" name="data.currency.{{k}}" value="{{v}}" data-dtype="Number" />
             {{/each}}
         </label>
+        {{#if isCharacter}}
         {{#with data.attributes.encumbrance}}
         <div class="encumbrance-wrapper" title="Encumbrance">
             <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
@@ -22,6 +23,7 @@
             <span class="encumbrance-label">{{value}} / {{max}}</span>
         </div>
         {{/with}}
+        {{/if}}
     </div>
     {{/if}}
 

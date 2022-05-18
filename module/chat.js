@@ -1,4 +1,4 @@
-import {fromUuidSynchronous} from "./utils.js";
+import {fromUuidSynchronous, htmlFindClosingBracket} from "./utils.js";
 import {SW5E} from "./config.js";
 
 /**
@@ -72,40 +72,62 @@ export const displayChatActionButtons = function (message, html, data) {
  * @returns {object[]}          The extended options Array including new context choices
  */
 export const addChatMessageContextOptions = function (html, options) {
-    let canApply = (li) => {
+    let canApplyDamage = (li) => {
         const message = game.messages.get(li.data("messageId"));
         return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
+    };
+    let secretsShown = (li) => {
+        const message = game.messages.get(li.data("messageId"));
+        if (!message?.isContentVisible) return null;
+        const actorId = message.data.content.match(/data-actor-id="(?<id>\w+?)"/)[1];
+        const itemId = message.data.content.match(/data-item-id="(?<id>\w+?)"/)[1];
+        if (!(actorId && itemId)) return null;
+        const item = fromUuidSynchronous(`Actor.${actorId}.Item.${itemId}`);
+        if (item?.data?.description?.value?.search(/class=('|")secret('|")/) === -1) return null;
+        return message.getFlag("sw5e", "secretsShown") || false;
     };
     options.push(
         {
             name: game.i18n.localize("SW5E.ChatContextDamageWithResist"),
             icon: '<i class="fas fa-user-minus"></i>',
-            condition: canApply,
+            condition: canApplyDamage,
             callback: (li) => applyChatCardDamage(li, null)
         },
         {
             name: game.i18n.localize("SW5E.ChatContextDamage"),
             icon: '<i class="fas fa-user-minus"></i>',
-            condition: canApply,
+            condition: canApplyDamage,
             callback: (li) => applyChatCardDamage(li, 1)
         },
         {
             name: game.i18n.localize("SW5E.ChatContextHealing"),
             icon: '<i class="fas fa-user-plus"></i>',
-            condition: canApply,
+            condition: canApplyDamage,
             callback: (li) => applyChatCardDamage(li, -1)
         },
         {
             name: game.i18n.localize("SW5E.ChatContextDoubleDamage"),
             icon: '<i class="fas fa-user-injured"></i>',
-            condition: canApply,
+            condition: canApplyDamage,
             callback: (li) => applyChatCardDamage(li, 2)
         },
         {
             name: game.i18n.localize("SW5E.ChatContextHalfDamage"),
             icon: '<i class="fas fa-user-shield"></i>',
-            condition: canApply,
+            condition: canApplyDamage,
             callback: (li) => applyChatCardDamage(li, 0.5)
+        },
+        {
+            name: game.i18n.localize("SW5E.ChatContextShowSecret"),
+            icon: '<i class="fas fa-user-secret"></i>',
+            condition: (li) => { return secretsShown(li) === false },
+            callback: (li) => toggleSecrets(li)
+        },
+        {
+            name: game.i18n.localize("SW5E.ChatContextHideSecret"),
+            icon: '<i class="fas fa-user-secret"></i>',
+            condition: (li) => { return secretsShown(li) === true },
+            callback: (li) => toggleSecrets(li)
         }
     );
     return options;
@@ -168,6 +190,46 @@ function applyChatCardDamage(li, multiplier) {
             return a.applyDamage(roll.total, multiplier, extraData);
         })
     );
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Reveal or Hide secret block in a message
+ *
+ * @param {HTMLElement} li      The chat entry
+ * @returns {Promise}
+ */
+function toggleSecrets(li) {
+    const message = game.messages.get(li.data("messageId"));
+    const secretsShown = message.getFlag("sw5e", "secretsShown");
+
+    const actorId = message.data.content.match(/data-actor-id="(?<id>\w+?)"/)[1];
+    const itemId = message.data.content.match(/data-item-id="(?<id>\w+?)"/)[1];
+    const item = fromUuidSynchronous(`Actor.${actorId || 'invalid'}.Item.${itemId || 'invalid'}`);
+
+    let desc = item?.data?.data?.description?.value;
+    if (!desc) return;
+    let start = desc?.search(/<section class=('|")secret('|")>/);
+    if (start === -1) return;
+    let [blockStart, blockEnd, contentStart, contentEnd] = htmlFindClosingBracket(desc, start);
+    if (secretsShown) {
+        if (blockStart === 0) desc = desc.substring(blockEnd);
+        else desc = desc.substring(0, blockStart) + desc.substring(blockEnd);
+    } else {
+        if (blockStart === 0) desc = desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
+        else desc = desc.substring(0, blockStart) + desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
+    }
+
+
+    let cont = message?.data?.content;
+    if (!cont) return;
+    start = cont?.search(/<div class=('|")card-content('|")>/);
+    if (start === -1) return;
+    [blockStart, blockEnd, contentStart, contentEnd] = htmlFindClosingBracket(cont, start);
+    cont = cont.substring(0, contentStart) + desc + cont.substring(contentEnd);
+    message.update({content: cont});
+    message.setFlag("sw5e", "secretsShown", !secretsShown);
 }
 
 /* -------------------------------------------- */

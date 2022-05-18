@@ -708,7 +708,7 @@ SW5E.armorClasses = {
     },
     mage: {
         label: "SW5E.ArmorClassMage",
-        formula: "13 + @abilities.dex.mod"
+        formula: "12 + @abilities.dex.mod"
     },
     draconic: {
         label: "SW5E.ArmorClassDraconic",

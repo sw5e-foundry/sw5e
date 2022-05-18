@@ -269,7 +269,8 @@ export default class Item5e extends Item {
      * @type {object}
      */
     get scaleValues() {
-        if ( !["class", "archetype", "deployment", "starship"].includes(this.type) || !this.advancement.byType.ScaleValue ) return {};
+        if ( !this.advancement.byType.ScaleValue?.length ) return {};
+        if ( !(this.type in this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes) ) return {};
         const level = this.curAdvancementLevel;
         return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
             obj[advancement.identifier] = advancement.prepareValue(level);
@@ -305,7 +306,7 @@ export default class Item5e extends Item {
       if (this.type === "deployment") return this.data.data?.rank ?? 1;
       if (this.type === "starship") return this.data.data?.tier ?? 1;
       if (this.type === "archetype") return this.class?.data?.data?.levels ?? 0;
-      return this.parent?.data?.data?.details?.level;
+      return this.parent?.data?.data?.details?.level ?? 0;
     }
 
     /* -------------------------------------------- */
@@ -331,6 +332,17 @@ export default class Item5e extends Item {
         if (this.type === "deployment") return CONFIG.SW5E.maxIndividualRank;
         if (this.type === "starship") return CONFIG.SW5E.maxTier;
         return CONFIG.SW5E.maxLevel;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * The min level this item's advancements should apply.
+     * @type {boolean}
+     */
+    get minAdvancementLevel() {
+        if (["class", "archetype", "deployment", "starship"].includes(this.type)) return 1;
+        return 0;
     }
 
     /* -------------------------------------------- */
@@ -482,6 +494,21 @@ export default class Item5e extends Item {
                     .join(" + ")
                     .replace(/\+ -/g, "- ");
                 labels.damageTypes = dam.parts.map((d) => C.damageTypes[d[1]]).join(", ");
+            }
+
+            // Base critical threshold
+            if (data.critical) {
+                // Get the critical treshold based on the item's properties
+                let itemTreshold = 20 - (data?.properties?.ken ?? 0);
+
+                // Get the actor's critical threshold
+                const actorFlags = this.actor?.data?.flags?.sw5e ?? {};
+                let actorThreshold = null;
+                if (this.type === "weapon") actorThreshold = actorFlags.weaponCriticalThreshold;
+                else if (this.type === "power") actorThreshold = actorFlags.powerCriticalThreshold;
+
+                // Use the lowest of the the item and actor thresholds
+                data.critical.baseThreshold = Math.max(Math.min(itemTreshold, actorThreshold ?? 20), 15);
             }
         }
 
@@ -779,30 +806,19 @@ export default class Item5e extends Item {
     /* -------------------------------------------- */
 
     /**
-     * Retrieve an item's critical hit threshold. Uses the smallest value from among the
-     * following sources:
-     * - item document
-     * - item document's actor (if it has one)
+     * Retrieve an item's critical hit threshold.
+     * Uses a custom treshold if the item has one set
+     * Otherwise, uses the smaller value from amongst the following:
+     * - item document's actor's critical threshold (if it has one)
      * - the constant '20' - item document's keen property (if it has one)
      *
      * @returns {number|null}  The minimum value that must be rolled to be considered a critical hit.
      */
     getCriticalThreshold() {
-        const itemData = this.data.data;
-        const actorFlags = this.actor.data.flags.sw5e || {};
-        if (!this.hasAttack || !itemData) return;
+        const critical = this.data.data.critical ?? { baseThreshold: 20 };
 
-        // Get the actor's critical threshold
-        let actorThreshold = null;
-
-        if (this.data.type === "weapon") {
-            actorThreshold = actorFlags.weaponCriticalThreshold;
-        } else if (this.data.type === "power") {
-            actorThreshold = actorFlags.powerCriticalThreshold;
-        }
-
-        // Return the lowest of the the item and actor thresholds
-        return Math.min(itemData.critical?.threshold ?? Math.max(20 - (itemData?.properties?.ken ?? 0), 1), actorThreshold ?? 20);
+        // If the item has a custom threshold, use it. Otherwise, use the precalculated base threshold
+        return critical.threshold ?? critical.baseThreshold;
     }
 
     /* -------------------------------------------- */
@@ -1242,7 +1258,7 @@ export default class Item5e extends Item {
             actor: this.actor.data,
             tokenId: token?.uuid || null,
             item: this.data,
-            data: this.getChatData(),
+            data: this.getChatData(this.actor.owner),
             labels: this.labels,
             hasAttack: this.hasAttack,
             isHealing: this.isHealing,

@@ -9,10 +9,10 @@
  * @returns {object}          A copy of the original object that has been sorted.
  */
 export function sortObjectEntries(obj, sortKey) {
-  let sorted = Object.entries(obj);
-  if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
-  else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
-  return Object.fromEntries(sorted);
+    let sorted = Object.entries(obj);
+    if ( sortKey ) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+    else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
+    return Object.fromEntries(sorted);
 }
 
 /* -------------------------------------------- */
@@ -23,24 +23,24 @@ export function sortObjectEntries(obj, sortKey) {
  * @returns {object}     Document's index if one could be found.
  */
 export function indexFromUuid(uuid) {
-  const parts = uuid.split(".");
-  let index;
+    const parts = uuid.split(".");
+    let index;
 
-  // Compendium Documents
-  if ( parts[0] === "Compendium" ) {
-    const [, scope, packName, id] = parts;
-    const pack = game.packs.get(`${scope}.${packName}`);
-    index = pack?.index.get(id);
-  }
+    // Compendium Documents
+    if ( parts[0] === "Compendium" ) {
+        const [, scope, packName, id] = parts;
+        const pack = game.packs.get(`${scope}.${packName}`);
+        index = pack?.index.get(id);
+    }
 
-  // World Documents
-  else if ( parts.length < 3 ) {
-    const [docName, id] = parts;
-    const collection = CONFIG[docName].collection.instance;
-    index = collection.get(id);
-  }
+    // World Documents
+    else if ( parts.length < 3 ) {
+        const [docName, id] = parts;
+        const collection = CONFIG[docName].collection.instance;
+        index = collection.get(id);
+    }
 
-  return index || null;
+    return index || null;
 }
 
 /* -------------------------------------------- */
@@ -53,20 +53,20 @@ export function indexFromUuid(uuid) {
  * @private
  */
 export function _linkForUuid(uuid) {
-  const index = game.sw5e.utils.indexFromUuid(uuid);
+    const index = game.sw5e.utils.indexFromUuid(uuid);
 
-  let link;
+    let link;
 
-  if ( !index ) {
-    link = `@Item[${uuid}]{${game.i18n.localize("SW5E.Unknown")}}`;
-  } else if ( uuid.startsWith("Compendium.") ) {
-    link = `@Compendium[${uuid.slice(11)}]{${index.name}}`;
-  } else {
-    const [type, id] = uuid.split(".");
-    link = `@${type}[${id}]{${index.name}}`;
-  }
+    if ( !index ) {
+        link = `@Item[${uuid}]{${game.i18n.localize("SW5E.Unknown")}}`;
+    } else if ( uuid.startsWith("Compendium.") ) {
+        link = `@Compendium[${uuid.slice(11)}]{${index.name}}`;
+    } else {
+        const [type, id] = uuid.split(".");
+        link = `@${type}[${id}]{${index.name}}`;
+    }
 
-  return TextEditor.enrichHTML(link);
+    return TextEditor.enrichHTML(link);
 }
 
 /* -------------------------------------------- */
@@ -91,8 +91,8 @@ const _preLocalizationRegistrations = {};
  * @param {boolean} [options.sort=false]  Sort this config enum, using the key if set.
  */
 export function preLocalize(configKey, { key, keys=[], sort=false }={}) {
-  if ( key ) keys.unshift(key);
-  _preLocalizationRegistrations[configKey] = { keys, sort };
+    if ( key ) keys.unshift(key);
+    _preLocalizationRegistrations[configKey] = { keys, sort };
 }
 
 /* -------------------------------------------- */
@@ -102,10 +102,10 @@ export function preLocalize(configKey, { key, keys=[], sort=false }={}) {
  * @param {object} config  The `CONFIG.SW5E` object to localize and sort. *Will be mutated.*
  */
 export function performPreLocalization(config) {
-  for ( const [key, settings] of Object.entries(_preLocalizationRegistrations) ) {
-    _localizeObject(config[key], settings.keys);
-    if ( settings.sort ) config[key] = sortObjectEntries(config[key], settings.keys[0]);
-  }
+    for ( const [key, settings] of Object.entries(_preLocalizationRegistrations) ) {
+        _localizeObject(config[key], settings.keys);
+        if ( settings.sort ) config[key] = sortObjectEntries(config[key], settings.keys[0]);
+    }
 }
 
 /* -------------------------------------------- */
@@ -117,31 +117,31 @@ export function performPreLocalization(config) {
  * @private
  */
 function _localizeObject(obj, keys) {
-  for ( const [k, v] of Object.entries(obj) ) {
-    const type = typeof v;
-    if ( type === "string" ) {
-      obj[k] = game.i18n.localize(v);
-      continue;
-    }
+    for ( const [k, v] of Object.entries(obj) ) {
+        const type = typeof v;
+        if ( type === "string" ) {
+            obj[k] = game.i18n.localize(v);
+            continue;
+        }
 
-    if ( type !== "object" ) {
-      console.error(new Error(
-        `Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`
-      ));
-      continue;
-    }
-    if ( !keys?.length ) {
-      console.error(new Error(
-        "Localization keys must be provided for pre-localizing when target is an object."
-      ));
-      continue;
-    }
+        if ( type !== "object" ) {
+            console.error(new Error(
+                `Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`
+            ));
+            continue;
+        }
+        if ( !keys?.length ) {
+            console.error(new Error(
+                "Localization keys must be provided for pre-localizing when target is an object."
+            ));
+            continue;
+        }
 
-    for ( const key of keys ) {
-      if ( !v[key] ) continue;
-      v[key] = game.i18n.localize(v[key]);
+        for ( const key of keys ) {
+            if ( !v[key] ) continue;
+            v[key] = game.i18n.localize(v[key]);
+        }
     }
-  }
 }
 
 /* -------------------------------------------- */
@@ -216,4 +216,46 @@ export async function fromUuidSafe(uuid) {
         parts = parts.slice(2);
     }
     return doc || null;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Given a partial html string, finds the closing bracket
+ * @param {string} html   The partial html string
+ * @param {int} index     The index to start searching from
+ * @return {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
+ */
+export function htmlFindClosingBracket(html, index=0) {
+    if (!html) return null;
+    let inString = false;
+    let depth = 0;
+    let prev = null;
+    let blockStart = null;
+    let blockEnd = null;
+    let contentStart = null;
+    let contentEnd = null;
+    for (let i = index; i < html.length; i++) {
+        const c = html[i];
+        if (['"', "'", "`"].includes(c)) {
+            if (!inString) inString = c;
+            else if (inString === c && prev !== "\\") inString = false;
+        }
+        else if (inString) continue;
+        else if (prev === '<') {
+            if (blockStart === null) blockStart = i-1;
+            contentEnd = i-1;
+
+            if (c === '/') depth -= 1;
+            else depth += 1;
+        }
+        else if (c === '>') {
+            if (contentStart === null) contentStart = i+1;
+            blockEnd = i+1;
+
+            if (depth === 0) return [blockStart, blockEnd, contentStart, contentEnd];
+        }
+        prev = c;
+    }
+    return null;
 }

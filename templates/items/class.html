@@ -23,6 +23,7 @@
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
         <a class="item" data-tab="archetypes">{{ localize "SW5E.Archetypes" }}</a>
         <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
@@ -42,6 +43,7 @@
                     {{{localize "SW5E.ClassIdentifierHint" identifier=data.identifier}}}
                 </p>
             </div>
+
             {{!-- Class Hit Dice --}}
             <div class="form-group">
                 <label>{{localize "SW5E.HitDice"}}</label>
@@ -61,9 +63,11 @@
                     <input type="text" placeholder="0" name="data.hitDiceUsed" value="{{data.hitDiceUsed}}" data-dtype="Number"/>
                 </div>
             </div>
+
             {{!-- Powercasting --}}
             <h3 class="form-header">{{localize "SW5E.Powercasting"}}</h3>
             {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
+
             {{!-- Proficiencies --}}
             <h3 class="form-header">{{localize "SW5E.Proficiency"}}</h3>
             <div class="form-group">
@@ -83,6 +87,7 @@
                     </ul>
                 </div>
             </div>
+
             {{!-- Level 1 skills --}}
             <div class="form-group">
                 <label>{{localize "SW5E.ClassSkillsNumber"}}</label>
@@ -125,12 +130,18 @@
                 </div>
             </div>
         </div>
+
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="archetypes">
-            {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner
-            editable=editable}}
+            {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner editable=editable}}
         </div>
+
         {{!-- Advancement Tab --}} 
         {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+        </div>
     </section>
 </form>

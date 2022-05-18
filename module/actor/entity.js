@@ -543,12 +543,9 @@ export default class Actor5e extends Actor {
         xp.pct = Math.clamped(pct, 0, 100);
 
         // Determine character rank based on owned Deployment items
-        data.attributes.ranks = this.items.reduce((acc, item) => {
-            if (item.type === "deployment") {
-                const rankLevels = parseInt(item.data.data.rank) || 0;
-                acc += rankLevels;
-            }
-            return acc;
+        data.attributes.ranks = Object.values(this.deployments).reduce((acc, item) => {
+            const rankLevels = parseInt(item.data.data.rank) || 0;
+            return acc + rankLevels;
         }, 0);
 
         // Prestige required for next Rank
@@ -579,12 +576,9 @@ export default class Actor5e extends Actor {
         data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
 
         // Determine npc rank based on owned Deployment items
-        data.attributes.ranks = this.items.reduce((acc, item) => {
-            if (item.type === "deployment") {
-                const rankLevels = parseInt(item.data.data.rank) || 0;
-                acc += rankLevels;
-            }
-            return acc;
+        data.attributes.ranks = Object.values(this.deployments).reduce((acc, item) => {
+            const rankLevels = parseInt(item.data.data.rank) || 0;
+            return acc + rankLevels;
         }, 0);
 
         // Add base Powercasting attributes

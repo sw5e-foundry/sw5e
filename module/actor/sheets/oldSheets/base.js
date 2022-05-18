@@ -1012,6 +1012,12 @@ export default class ActorSheet5e extends ActorSheet {
                 {max: CONFIG.SW5E.maxLevel}));
         }
 
+        // Check to make sure the newly created deployment doesn't take player over rank cap
+        if ( type === "deployment" && (this.actor.data.data.ranks + 1 > CONFIG.SW5E.maxRank) ) {
+            return ui.notifications.error(game.i18n.format("SW5E.MaxCharacterRankExceededWarn",
+                {max: CONFIG.SW5E.maxRank}));
+        }
+
         const itemData = {
             name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(`SW5E.ItemType${type.capitalize()}`)}),
             type: type,

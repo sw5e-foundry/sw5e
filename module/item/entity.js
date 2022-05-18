@@ -269,7 +269,8 @@ export default class Item5e extends Item {
      * @type {object}
      */
     get scaleValues() {
-        if ( !["class", "archetype", "deployment", "starship"].includes(this.type) || !this.advancement.byType.ScaleValue ) return {};
+        if ( !this.advancement.byType.ScaleValue?.length ) return {};
+        if ( !(this.type in this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes) ) return {};
         const level = this.curAdvancementLevel;
         return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
             obj[advancement.identifier] = advancement.prepareValue(level);
@@ -305,7 +306,7 @@ export default class Item5e extends Item {
       if (this.type === "deployment") return this.data.data?.rank ?? 1;
       if (this.type === "starship") return this.data.data?.tier ?? 1;
       if (this.type === "archetype") return this.class?.data?.data?.levels ?? 0;
-      return this.parent?.data?.data?.details?.level;
+      return this.parent?.data?.data?.details?.level ?? 0;
     }
 
     /* -------------------------------------------- */
@@ -331,6 +332,17 @@ export default class Item5e extends Item {
         if (this.type === "deployment") return CONFIG.SW5E.maxIndividualRank;
         if (this.type === "starship") return CONFIG.SW5E.maxTier;
         return CONFIG.SW5E.maxLevel;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * The min level this item's advancements should apply.
+     * @type {boolean}
+     */
+    get minAdvancementLevel() {
+        if (["class", "archetype", "deployment", "starship"].includes(this.type)) return 1;
+        return 0;
     }
 
     /* -------------------------------------------- */

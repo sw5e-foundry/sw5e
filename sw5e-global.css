@@ -921,7 +921,8 @@ input[type="reset"]:disabled {
   text-align: right;
   padding: 0 3px;
 }
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value .value-number:last-child {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value .value-number:last-child,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value .value-number max {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value span.value-number {
@@ -1551,8 +1552,7 @@ input[type="reset"]:disabled {
   text-align: right;
   padding: 0 3px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number .max {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value span.value-number {
@@ -1714,10 +1714,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number:last-child,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number .max,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number .max,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value .value-number .max {
+.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value span.value-number,

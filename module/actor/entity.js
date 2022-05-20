@@ -584,7 +584,7 @@ export default class Actor5e extends Actor {
                 const classLevels = parseInt(item.data.data.levels) || 1;
                 acc += classLevels;
             }
-            return arr;
+            return acc;
         }, 0);
 
         // Add base Powercasting attributes

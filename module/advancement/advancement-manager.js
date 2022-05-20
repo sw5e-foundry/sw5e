@@ -134,6 +134,10 @@ export class AdvancementManager extends Application {
    * @returns {AdvancementManager}  Prepared manager. Steps count can be used to determine if advancements are needed.
    */
   static forNewItem(actor, itemData, options={}) {
+    console.debug('AdvancementManager | forNewItem');
+    console.debug('actor', actor);
+    console.debug('itemData', itemData);
+    console.debug('options', options);
     const manager = new this(actor, options);
 
     // Prepare data for adding to clone
@@ -149,16 +153,25 @@ export class AdvancementManager extends Application {
           manager.clone.data.update({"data.details.originalClass": dataClone._id});
         }
       }
+    } else if ( itemData.type === "deployment" ) {
+      if ( game.release.generation === 10 ) dataClone.system.rank = 0
+      else dataClone.data.rank = 0;
+    } else if ( itemData.type === "starship" ) {
+      if ( game.release.generation === 10 ) dataClone.system.tier = 0
+      else dataClone.data.tier = 0;
     }
 
     // Add item to clone & get new instance from clone
     manager.clone.data.update({items: [dataClone]});
     manager.clone.prepareData();
     const clonedItem = manager.clone.items.get(dataClone._id);
+    console.debug('dataClone', dataClone);
+    console.debug('clonedItem', clonedItem);
+    console.debug('clonedItem.curAdvancementLevel', clonedItem.curAdvancementLevel);
 
     // For class, deployment and starship items, prepare level change data
     if ( ["class", "deployment", "starship"].includes(itemData.type) ) {
-      return manager.createLevelChangeSteps(clonedItem, clonedItem.curAdvancementLevel ?? 1);
+      return manager.createLevelChangeSteps(clonedItem, 1);
     }
 
     // All other items, just create some flows up to current character level (or class level for archetypes)
@@ -317,7 +330,7 @@ export class AdvancementManager extends Application {
     // Prepare information for subheading
     const item = this.step.flow.item;
     let level = this.step.flow.level;
-    if ( (this.step.class) && ["class", "archetype"].includes(item.type) ) level = this.step.class.level;
+    if ( (this.step.class) && ["class", "archetype", "deployment", "starship"].includes(item.type) ) level = this.step.class.level;
 
     const visibleSteps = this.steps.filter(s => !s.automatic);
     const visibleIndex = visibleSteps.indexOf(this.step);
@@ -346,8 +359,16 @@ export class AdvancementManager extends Application {
     if ( this.step?.class ) {
       let level = this.step.class.level;
       if ( this.step.type === "reverse" ) level -= 1;
-      if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
-      else this.step.class.item.data.update({"data.levels": level});
+      if ( this.step.class.item.type === "class" ) {
+        if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
+        else this.step.class.item.data.update({"data.levels": level});
+      } if ( this.step.class.item.type === "deployment" ) {
+        if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.rank": level});
+        else this.step.class.item.data.update({"data.rank": level});
+      } if ( this.step.class.item.type === "starship" ) {
+        if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.tier": level});
+        else this.step.class.item.data.update({"data.tier": level});
+      }
       this.clone.prepareData();
     }
 
@@ -464,8 +485,16 @@ export class AdvancementManager extends Application {
         if ( this.step?.class ) {
           let level = this.step.class.level;
           if ( this.step.type === "reverse" ) level -= 1;
-          if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
-          else this.step.class.item.data.update({"data.levels": level});
+          if ( this.step.class.item.type === "class" ) {
+            if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
+            else this.step.class.item.data.update({"data.levels": level});
+          } if ( this.step.class.item.type === "deployment" ) {
+            if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.rank": level});
+            else this.step.class.item.data.update({"data.rank": level});
+          } if ( this.step.class.item.type === "starship" ) {
+            if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.tier": level});
+            else this.step.class.item.data.update({"data.tier": level});
+          }
         }
 
         this.clone.prepareData();

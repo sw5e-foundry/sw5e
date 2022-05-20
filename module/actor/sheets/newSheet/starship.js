@@ -593,7 +593,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             );
 
         // Pre-select the deployment slot with the highest rank
-        let preselected = Object.entries(sourceActor.data.data.attributes.ranks ?? {}).reduce(
+        let preselected = Object.entries(sourceActor.data.data.details.ranks ?? {}).reduce(
             (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
             ["passenger", 0]
         )[0];

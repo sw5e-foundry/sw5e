@@ -258,6 +258,15 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
         // Organize Starship Features
         deployments.sort((a, b) => b.data.rank - a.data.rank);
+        const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.data.data.details.ranks;
+        deployments = deployments.reduce((arr, dep) => {
+            dep.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1).slice(1).map(rank => {
+                const delta = rank - dep.data.rank;
+                return { rank, delta, disabled: delta > maxRankDelta };
+            });
+            arr.push(dep);
+            return arr;
+        }, []);
         const ssfeatures = {
             deployments: {
                 label: "SW5E.ItemTypeDeploymentPl", items: deployments,
@@ -319,7 +328,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         super.activateListeners(html);
         if (!this.isEditable) return;
 
-        // Manage Class Levels
+        // Manage Class Levels and Deployment Ranks
         html.find(".level-selector").change(this._onLevelChange.bind(this));
 
         // Inventory Functions
@@ -426,28 +435,35 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /**
      * Respond to a new level being selected from the level selector.
      * @param {Event} event                           The originating change.
-     * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated class item.
+     * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
      * @private
      */
     async _onLevelChange(event) {
         event.preventDefault();
+
         const delta = Number(event.target.value);
-        const classId = event.target.closest(".item")?.dataset.itemId;
-        if ( !delta || !classId ) return;
-        const classItem = this.actor.items.get(classId);
-        if ( classItem.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
-            const manager = AdvancementManager.forLevelChange(this.actor, classId, delta);
+        const itemId = event.target.closest(".item")?.dataset.itemId;
+        if ( !delta || !itemId ) return;
+        const item = this.actor.items.get(itemId);
+
+        let attr = null;
+        if (item.type === "class") attr = "levels";
+        else if (item.type === "deployment") attr = "rank";
+        if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
+
+        if ( item.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
             if ( manager.steps.length ) {
                 if ( delta > 0 ) return manager.render(true);
                 try {
-                    const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(classItem);
+                    const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
                     if ( shouldRemoveAdvancements ) return manager.render(true);
                 } catch(err) {
                     return;
                 }
             }
         }
-        return classItem.update({"data.levels": classItem.data.data.levels + delta});
+        return item.update({[`data.${attr}`]: item.data.data[attr] + delta});
     }
 
     /* -------------------------------------------- */
@@ -500,6 +516,10 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     async _onDropItemCreate(itemData) {
         // Increment the number of class levels a character instead of creating a new item
         if ( itemData.type === "class" ) {
+            console.debug('character.js | _onDropItemCreate');
+            console.debug('itemData.data.levels', itemData.data.levels);
+            console.debug('CONFIG.SW5E.maxLevel', CONFIG.SW5E.maxLevel);
+            console.debug('this.actor.data.data.details.level', this.actor.data.data.details.level);
             itemData.data.levels = Math.min(itemData.data.levels,
                 CONFIG.SW5E.maxLevel - this.actor.data.data.details.level);
             if ( itemData.data.levels <= 0 ) return ui.notifications.error(

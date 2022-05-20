@@ -543,15 +543,18 @@ export default class Actor5e extends Actor {
         xp.pct = Math.clamped(pct, 0, 100);
 
         // Determine character rank based on owned Deployment items
-        data.attributes.ranks = Object.values(this.deployments).reduce((acc, item) => {
-            const rankLevels = parseInt(item.data.data.rank) || 0;
-            return acc + rankLevels;
+        data.details.ranks = this.items.reduce((acc, item) => {
+            if (item.type === "deployment") {
+                const classLevels = parseInt(item.data.data.levels) || 1;
+                acc += classLevels;
+            }
+            return acc;
         }, 0);
 
         // Prestige required for next Rank
         const prestige = data.details.prestige;
-        prestige.max = this.getRankExp(data.attributes.ranks + 1 || 0);
-        const rankPrior = this.getRankExp(data.attributes.ranks || 0);
+        prestige.max = this.getRankExp(data.details.ranks + 1 || 0);
+        const rankPrior = this.getRankExp(data.details.ranks || 0);
         const rankRequired = prestige.max - rankPrior;
         const rankPct = Math.round(((prestige.value - rankPrior) * 100) / rankRequired);
         prestige.pct = Math.clamped(rankPct, 0, 100);
@@ -576,9 +579,12 @@ export default class Actor5e extends Actor {
         data.attributes.prof = Math.floor((Math.max(data.details.cr, 1) + 7) / 4);
 
         // Determine npc rank based on owned Deployment items
-        data.attributes.ranks = Object.values(this.deployments).reduce((acc, item) => {
-            const rankLevels = parseInt(item.data.data.rank) || 0;
-            return acc + rankLevels;
+        data.details.ranks = this.items.reduce((acc, item) => {
+            if (item.type === "deployment") {
+                const classLevels = parseInt(item.data.data.levels) || 1;
+                acc += classLevels;
+            }
+            return arr;
         }, 0);
 
         // Add base Powercasting attributes
@@ -613,7 +619,7 @@ export default class Actor5e extends Actor {
         const active = data.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
         data.attributes.prof = 0;
-        if (actor && actor.data.data.attributes.ranks) data.attributes.prof = actor.data.data.attributes.prof ?? 0;
+        if (actor && actor.data.data.details.ranks) data.attributes.prof = actor.data.data.attributes.prof ?? 0;
 
         // Determine Starship size-based properties based on owned Starship item
         const size = actorData.items.filter((i) => i.type === "starship");
@@ -3938,7 +3944,6 @@ export default class Actor5e extends Actor {
         const keys = Object.keys(foundry.utils.flattenObject(data)).filter((k) => k !== "_id");
         const changed = new Set(keys);
 
-        const deployed = this.data.data.attributes.deployed;
         const starship = this.getStarship();
         if (starship) {
             const app = starship.apps[starship.sheet.appId];
@@ -3953,6 +3958,7 @@ export default class Actor5e extends Actor {
     }
 
     /* -------------------------------------------- */
+
     /**
      * Follow-up actions taken after a set of embedded Documents in this parent Document are updated.
      * @param {string} embeddedName   The name of the embedded Document type
@@ -3965,7 +3971,6 @@ export default class Actor5e extends Actor {
     _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
 
-        const deployed = this.data.data.attributes.deployed;
         const starship = this.getStarship();
         if (starship) {
             const app = starship.apps[starship.sheet.appId];
@@ -3977,6 +3982,7 @@ export default class Actor5e extends Actor {
     }
 
     /* -------------------------------------------- */
+
     /**
      * Display changes to health as scrolling combat text.
      * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.

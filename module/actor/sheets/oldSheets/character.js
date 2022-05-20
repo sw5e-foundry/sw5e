@@ -272,7 +272,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         super.activateListeners(html);
         if (!this.isEditable) return;
 
-        // Manage Class Levels
+        // Manage Class Levels and Deployment Ranks
         html.find(".level-selector").change(this._onLevelChange.bind(this));
 
         // Item State Toggling
@@ -310,28 +310,35 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     /**
      * Respond to a new level being selected from the level selector.
      * @param {Event} event                           The originating change.
-     * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated class item.
+     * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
      * @private
      */
     async _onLevelChange(event) {
         event.preventDefault();
+
         const delta = Number(event.target.value);
-        const classId = event.target.closest(".item")?.dataset.itemId;
-        if ( !delta || !classId ) return;
-        const classItem = this.actor.items.get(classId);
-        if ( classItem.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
-            const manager = AdvancementManager.forLevelChange(this.actor, classId, delta);
+        const itemId = event.target.closest(".item")?.dataset.itemId;
+        if ( !delta || !itemId ) return;
+        const item = this.actor.items.get(itemId);
+
+        let attr = null;
+        if (item.type === "class") attr = "levels";
+        else if (item.type === "deployment") attr = "rank";
+        if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
+
+        if ( item.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
             if ( manager.steps.length ) {
                 if ( delta > 0 ) return manager.render(true);
                 try {
-                    const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(classItem);
+                    const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
                     if ( shouldRemoveAdvancements ) return manager.render(true);
                 } catch(err) {
                     return;
                 }
             }
         }
-        return classItem.update({"data.levels": classItem.data.data.levels + delta});
+        return item.update({[`data.${attr}`]: item.data.data[attr] + delta});
     }
 
     /* -------------------------------------------- */

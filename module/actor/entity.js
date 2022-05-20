@@ -225,9 +225,6 @@ export default class Actor5e extends Actor {
         // Determine Initiative Modifier
         this._computeInitiativeModifier(actorData, checkBonus, bonusData);
 
-        // Determine Scale Values
-        this._computeScaleValues(data);
-
         // Cache labels
         this.labels = {};
         if (this.type === "npc") {
@@ -236,6 +233,12 @@ export default class Actor5e extends Actor {
 
         // Prepare power-casting data
         this._computeDerivedPowercasting(this.data);
+
+        // Prepare superiority data
+        this._computeDerivedSuperiority(this.data);
+
+        // Determine Scale Values
+        this._computeScaleValues(data);
 
         // Prepare armor class data
         const ac = this._computeArmorClass(data);
@@ -286,6 +289,8 @@ export default class Actor5e extends Actor {
     getRollData() {
         const data = super.getRollData();
         data.prof = new Proficiency(this.data.data.attributes.prof, 1);
+        data.superiority = this.data.data.super?.die;
+
         data.classes = {};
         for (const [identifier, cls] of Object.entries(this.classes)) {
             data.classes[identifier] = cls.data.data;
@@ -561,6 +566,9 @@ export default class Actor5e extends Actor {
 
         // Add base Powercasting attributes
         this._computeBasePowercasting(actorData);
+
+        // Add base Superiority attributes
+        this._computeBaseSuperiority(actorData);
     }
 
     /* -------------------------------------------- */
@@ -889,6 +897,12 @@ export default class Actor5e extends Actor {
         for (const [identifier, obj] of Object.entries(this.starships)) {
             scale[identifier] = obj.scaleValues;
         }
+
+        const superiority = this.data?.data?.attributes?.super;
+        if (superiority) {
+            if (scale.superiority) ui.notifications.warn("SW5E.SuperiorityIdentifierWarn");
+            scale.superiority = superiority;
+        }
     }
 
     /* -------------------------------------------- */
@@ -1136,6 +1150,43 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
+     * Prepare data related to the superiority capabilities of the Actor.
+     * @param {object} actorData  Copy of the data for the actor being prepared. *Will be mutated.*
+     * @private
+     */
+    _computeBaseSuperiority(actorData) {
+        if (actorData.type === "vehicle" || actorData.type === "starship") return;
+        const ad = actorData.data;
+        const superiority = ad.attributes.super;
+
+        // Determine superiority level based on class items
+        superiority.level ??= this.itemTypes.class.reduce((level, cls) => {
+            const cd = cls?.data?.data;
+            const ad = cls?.archetype?.data?.data;
+
+            const cp = cd?.superiority?.progression ?? 0;
+            const ap = ad?.superiority?.progression ?? 0;
+
+            const progression = Math.max(cp, ap) * (cd?.levels ?? 1);
+
+            return level + progression;
+        }, 0);
+        superiority.level = Math.max(Math.min(superiority.level, CONFIG.SW5E.maxLevel), 0);
+
+        // Calculate derived values
+        superiority.known.value = this.itemTypes.maneuver.length;
+        superiority.known.max = CONFIG.SW5E.maneuversKnownProgression[superiority.level];
+
+        superiority.dice.max = CONFIG.SW5E.superiorityDiceQuantProgression[superiority.level];
+
+        superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[superiority.level];
+
+        actorData.superiority = superiority;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Determine a character's AC value from their equipped armor and shield.
      * @param {object} data  Copy of the data for the actor being prepared. *Will be mutated.*
      * @returns {{
@@ -1284,6 +1335,33 @@ export default class Actor5e extends Actor {
         if (!!ad.attributes.tech.level) {
             ad.attributes.tech.points.max += ad.abilities.int.mod;
         }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare data related to the superiority capabilities of the Actor
+     * @private
+     */
+    _computeDerivedSuperiority(actorData) {
+        if (!(actorData.type === "character" || actorData.type === "npc")) return;
+
+        const ad = actorData.data;
+        const bonusData = this.getRollData();
+
+        const bonusAll = this._simplifyBonus(ad.bonuses?.super?.dc, bonusData);
+        const bonusGeneral = this._simplifyBonus(ad.bonuses?.super?.generalDC, bonusData) + bonusAll;
+        const bonusPhysical = this._simplifyBonus(ad.bonuses?.super?.physicalDC, bonusData) + bonusAll;
+        const bonusMental = this._simplifyBonus(ad.bonuses?.super?.mentalDC, bonusData) + bonusAll;
+
+        // Powercasting DC for Actors and NPCs
+        ad.attributes.super.physicalDC = 8 + Math.max(ad.abilities.str.mod, ad.abilities.dex.mod, ad.abilities.con.mod) + ad.attributes.prof ?? 10;
+        ad.attributes.super.mentalDC = 8 + Math.max(ad.abilities.int.mod, ad.abilities.wis.mod, ad.abilities.cha.mod) + ad.attributes.prof ?? 10;
+        ad.attributes.super.generalDC = Math.max(ad.attributes.super.physicalDC, ad.attributes.super.mentalDC) ?? 10;
+
+        ad.attributes.super.generalDC += bonusGeneral;
+        ad.attributes.super.physicalDC += bonusPhysical;
+        ad.attributes.super.mentalDC += bonusMental;
     }
 
     /* -------------------------------------------- */
@@ -2655,7 +2733,8 @@ export default class Actor5e extends Actor {
                     recoverShortRestResources: !longRest,
                     recoverLongRestResources: longRest
                 }),
-                ...this._getRestPowerRecovery({recoverForcePowers: longRest})
+                ...this._getRestPowerRecovery({recoverForcePowers: longRest}),
+                ...this._getRestSuperiorityRecovery()
             },
             updateItems: [
                 ...hitDiceUpdates,
@@ -2869,6 +2948,22 @@ export default class Actor5e extends Actor {
                 updates[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : v.fmax ?? 0;
             }
         }
+
+        return updates;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Recovers superiority dice.
+     *
+     * @returns {object}       Updates to the actor.
+     * @protected
+     */
+    _getRestSuperiorityRecovery() {
+        let updates = {};
+
+        updates["data.attributes.super.dice.value"] = this.data.data.attributes.super.dice.max;
 
         return updates;
     }

@@ -73,6 +73,7 @@ export default class Item5e extends Item {
 
             // Tools - default to Intelligence
             else if (type === "tool") return "int";
+
             // Weapons
             else if (type === "weapon") {
                 const wt = itemData.weaponType;
@@ -91,6 +92,25 @@ export default class Item5e extends Item {
                 // Ranged weapons - Dex (PH p.194)
                 else if (["simpleB", "martialB"].includes(wt)) return "dex";
             }
+
+            // Maneuvers
+            else if ( type === "maneuver" ) {
+                const type = this.data.data.maneuverType;
+
+                let attrs = [];
+                if ( type === "physical" ) attrs = [ "str", "dex", "con" ];
+                else if ( type === "mental" ) attrs = [ "int", "wis", "cha" ];
+                else attrs = [ "str", "dex", "con", "int", "wis", "cha" ];
+
+                const {attr, mod} = attrs.reduce((acc, attr) => {
+                    const mod = actorData.abilities[attr]?.mod ?? -1001;
+                    if (mod > acc.mod) acc = { attr: attr, mod: mod };
+                    return acc;
+                }, { attr: "str", mod: -1000 });
+
+                return attr;
+            }
+
             // Dex for ranged weapon attacks, otherwise default to strength
             return itemData.actionType === "rwak" ? "dex" : "str";
         }
@@ -437,6 +457,11 @@ export default class Item5e extends Item {
         // Lightsaber Form Items
         else if (itemData.type === "lightsaberform") {
             //  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
+        }
+
+        // Maneuvers
+        else if (itemData.type === "maneuver") {
+            labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[itemData.data.maneuverType]);
         }
 
         // Equipment Items
@@ -911,6 +936,7 @@ export default class Item5e extends Item {
                 (resource.type !== "ammo" &&
                     !(resource.type === "charges" && resourceTarget?.data.data.consumableType === "ammo"))); // Consume a linked (non-ammo) resource
         let consumePowerSlot = requirePowerSlot; // Consume a power slot
+        let consumeSuperiorityDie = item.type === "maneuver"; // Consume a superiority die
         let consumeUsage = !!uses.per; // Consume limited uses
         let consumeQuantity = uses.autoDestroy; // Consume quantity of the item in lieu of uses
         let consumePowerLevel = null; // Consume a specific category of power slot
@@ -922,6 +948,7 @@ export default class Item5e extends Item {
             consumeRecharge ||
             (consumeResource && !["simpleB", "martialB"].includes(id.weaponType)) ||
             consumePowerSlot ||
+            consumeSuperiorityDie ||
             (consumeUsage && !["simpleB", "martialB"].includes(id.weaponType));
         if (configureDialog && needsConfiguration) {
             const configuration = await AbilityUseDialog.create(this);
@@ -933,6 +960,7 @@ export default class Item5e extends Item {
             consumeRecharge = Boolean(configuration.consumeRecharge);
             consumeResource = Boolean(configuration.consumeResource);
             consumePowerSlot = Boolean(configuration.consumeSlot);
+            consumeSuperiorityDie = Boolean(configuration.consumeSuperiorityDie);
 
             // Handle power upcasting
             if (requirePowerSlot) {
@@ -952,6 +980,7 @@ export default class Item5e extends Item {
             consumeRecharge,
             consumeResource,
             consumePowerLevel,
+            consumeSuperiorityDie,
             consumeUsage,
             consumeQuantity
         });
@@ -982,16 +1011,17 @@ export default class Item5e extends Item {
      * Verify that the consumed resources used by an Item are available.
      * Otherwise display an error and return false.
      * @param {object} options
-     * @param {boolean} options.consumeQuantity       Consume quantity of the item if other consumption modes are not
-     *                                                available?
-     * @param {boolean} options.consumeRecharge       Whether the item consumes the recharge mechanic
-     * @param {boolean} options.consumeResource       Whether the item consumes a limited resource
-     * @param {string|null} options.consumePowerLevel The category of power slot to consume, or null
-     * @param {boolean} options.consumeUsage          Whether the item consumes a limited usage
-     * @returns {object|boolean}                      A set of data changes to apply when the item is used, or false
+     * @param {boolean} options.consumeQuantity           Consume quantity of the item if other consumption modes are not
+     *                                                    available?
+     * @param {boolean} options.consumeRecharge           Whether the item consumes the recharge mechanic
+     * @param {boolean} options.consumeResource           Whether the item consumes a limited resource
+     * @param {string|null} options.consumePowerLevel     The category of power slot to consume, or null
+     * @param {boolean} options.consumeSuperiorityDie     Wheter the item consumes a superiority die
+     * @param {boolean} options.consumeUsage              Whether the item consumes a limited usage
+     * @returns {object|boolean}                          A set of data changes to apply when the item is used, or false
      * @private
      */
-    _getUsageUpdates({consumeQuantity, consumeRecharge, consumeResource, consumePowerLevel, consumeUsage}) {
+    _getUsageUpdates({consumeQuantity, consumeRecharge, consumeResource, consumePowerLevel, consumeSuperiorityDie, consumeUsage}) {
         // Reference item data
         const id = this.data.data;
         const actorUpdates = {};
@@ -1065,6 +1095,13 @@ export default class Item5e extends Item {
                     }
                 }
             }
+        }
+
+        // Consume Superiority Die
+        if (consumeSuperiorityDie) {
+            const curDice = this.actor?.data?.data?.attributes?.super?.dice?.value;
+            if (!curDice) return false;
+            actorUpdates["data.attributes.super.dice.value"] = curDice - 1;
         }
 
         // Consume Limited Usage
@@ -1862,8 +1899,6 @@ export default class Item5e extends Item {
             ...actorRollData,
             item: foundry.utils.deepClone(this.data.data)
         };
-
-        rollData.item = foundry.utils.deepClone(this.data.data);
 
         // Include an ability score modifier if one exists
         const abl = this.abilityMod;

@@ -210,7 +210,8 @@ Hooks.once("init", function () {
             "starshipfeature",
             "starshipmod",
             "venture",
-            "modification"
+            "modification",
+            "maneuver"
         ],
         makeDefault: true,
         label: "SW5E.SheetClassItem"

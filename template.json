@@ -155,6 +155,12 @@
                         },
                         "level": 0
                     },
+                    "super": {
+                        "known": {},
+                        "dice": {
+                            "value": 0
+                        }
+                    },
                     "deployed": {
                         "uuid": null,
                         "deployments": []
@@ -890,6 +896,7 @@
             "fightingstyle",
             "lightsaberform",
             "loot",
+            "maneuver",
             "modification",
             "power",
             "species",
@@ -1134,6 +1141,9 @@
             "powercasting": {
                 "progression": "none",
                 "ability": ""
+            },
+            "superiority": {
+                "progression": 0
             }
         },
         "background": {
@@ -1170,6 +1180,9 @@
             "powercasting": {
                 "progression": "none",
                 "ability": ""
+            },
+            "superiority": {
+                "progression": 0
             }
         },
         "classfeature": {
@@ -1271,6 +1284,10 @@
             "chatFlavor": "",
             "proficient": 0,
             "bonus": ""
+        },
+        "maneuver": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "maneuverType": "general"
         },
         "modification": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],

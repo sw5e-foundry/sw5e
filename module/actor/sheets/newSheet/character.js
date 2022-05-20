@@ -34,6 +34,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
     /* -------------------------------------------- */
 
+    /** @override */
+    static unsupportedItemTypes = new Set([ "starship", "starshipaction", "starshipfeature", "starshipmod" ]);
+
+    /* -------------------------------------------- */
+
     /**
      * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
      * @returns {object}  Prepared copy of the actor data ready to be displayed.
@@ -84,7 +89,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
             modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
-            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
+            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}},
         };
 
         // Partition items by category
@@ -92,6 +97,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             items,
             forcepowers,
             techpowers,
+            maneuvers,
             feats,
             classes,
             deployments,
@@ -104,7 +110,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             fightingstyles,
             fightingmasteries,
             lightsaberforms,
-            ssfeats
+            ssfeats,
         } = data.items.reduce(
             (obj, item) => {
                 // Item details
@@ -136,6 +142,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 // Classify items into types
                 if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) obj.forcepowers.push(item);
                 else if (item.type === "power" && ["tec"].includes(item.data.school)) obj.techpowers.push(item);
+                else if (item.type === "maneuver") obj.maneuvers.push(item);
                 else if (item.type === "feat") obj.feats.push(item);
                 else if (item.type === "class") obj.classes.push(item);
                 else if (item.type === "deployment") obj.deployments.push(item);
@@ -155,6 +162,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 items: [],
                 forcepowers: [],
                 techpowers: [],
+                maneuvers: [],
                 feats: [],
                 classes: [],
                 deployments: [],
@@ -175,6 +183,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         items = this._filterItems(items, this._filters.inventory);
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
+        maneuvers = this._filterItems(maneuvers, this._filters.maneuverbook);
         feats = this._filterItems(feats, this._filters.features);
         ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
 
@@ -189,6 +198,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
         const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
         const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
+        const maneuverbook = this._prepareManeuvers(maneuvers);
 
         // Sort classes and interleave matching archetypes, put unmatched archetypes into features so they don't disappear
         classes.sort((a, b) => b.data.levels - a.data.levels);
@@ -286,6 +296,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         data.inventory = Object.values(inventory);
         data.forcePowerbook = forcePowerbook;
         data.techPowerbook = techPowerbook;
+        data.maneuverbook = maneuverbook;
         data.features = Object.values(features);
         data.ssfeatures = Object.values(ssfeatures);
 

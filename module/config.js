@@ -2350,17 +2350,6 @@ SW5E.powerLevels = {
 };
 preLocalize("powerLevels");
 
-/**
- * Types to which a maneuver can belong.
- * @enum {string}
- */
-SW5E.maneuverTypes = {
-    general: "SW5E.ManeuverTypeGeneral",
-    physical: "SW5E.ManeuverTypePhysical",
-    mental: "SW5E.ManeuverTypeMental",
-};
-preLocalize("maneuverTypes");
-
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /*
@@ -2390,6 +2379,54 @@ preLocalize("powerScrollIds");
 SW5E.sourcePacks = {
     ITEMS: "sw5e.items"
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Types to which a maneuver can belong.
+ * @enum {string}
+ */
+SW5E.maneuverTypes = {
+    general: "SW5E.ManeuverTypeGeneral",
+    physical: "SW5E.ManeuverTypePhysical",
+    mental: "SW5E.ManeuverTypeMental",
+};
+preLocalize("maneuverTypes");
+
+/**
+ * Enumerate the denominations of superiority dice which can apply to characters in the SW5E system
+ * @type {string[]}
+ */
+SW5E.superiorityDieTypes = ["d4", "d6", "d8", "d10", "d12"];
+
+/**
+ * Enumerate the types of superiority progression in the SW5E system
+ * @enum {string}
+ */
+SW5E.superiorityProgression = {
+    0: "SW5E.None",
+    0.5: "SW5E.Half",
+    1: "SW5E.Full",
+};
+preLocalize("superiorityProgression");
+
+/**
+ * The max number of superiority dice available per superiority level
+ * @type {number[]}
+ */
+SW5E.superiorityDiceQuantProgression = [0, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12];
+
+/**
+ * The size of the superiority die per superiority level
+ * @type {number[]}
+ */
+SW5E.superiorityDieSizeProgression = ["", "d4", "d4", "d4", "d4", "d6", "d6", "d6", "d6", "d8", "d8", "d8", "d8", "d10", "d10", "d10", "d10", "d12", "d12", "d12", "d12"];
+
+/**
+ * The max number of known maneuvers available per superiority level
+ * @type {number[]}
+ */
+SW5E.maneuversKnownProgression = [0, 1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24];
 
 /* -------------------------------------------- */
 

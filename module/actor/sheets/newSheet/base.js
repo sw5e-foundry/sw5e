@@ -34,6 +34,7 @@ export default class ActorSheet5e extends ActorSheet {
             ssactions: new Set(),
             forcePowerbook: new Set(),
             techPowerbook: new Set(),
+            maneuverbook: new Set(),
             features: new Set(),
             ssfeatures: new Set(),
             ssequipment: new Set(),
@@ -53,6 +54,7 @@ export default class ActorSheet5e extends ActorSheet {
                 ".ssfeatures .group-list",
                 ".force-powerbook .group-list",
                 ".tech-powerbook .group-list",
+                ".maneuverbook .group-list",
                 ".effects .effects-list"
             ],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -495,6 +497,44 @@ export default class ActorSheet5e extends ActorSheet {
 
         // Sort the powerbook by section level
         const sorted = Object.values(powerbook);
+        sorted.sort((a, b) => a.order - b.order);
+        return sorted;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Insert a maneuver into the maneuverbook object when rendering the character sheet.
+     * @param {object} data         Copy of the Actor data being prepared for display.
+     * @param {object[]} maneuvers  Maneuvers to be included in the maneuverbook.
+     * @returns {object[]}          Maneuverbook sections in the proper order.
+     * @private
+     */
+    _prepareManeuvers(maneuvers) {
+        const owner = this.actor.isOwner;
+
+        const maneuverbook = Object.keys(CONFIG.SW5E.maneuverTypes).reduce((obj, t, i) => {
+            obj[t] = {
+                order: i,
+                label: CONFIG.SW5E.maneuverTypes[t],
+                canCreate: owner,
+                maneuvers: [],
+                dataset: {
+                    "type": "maneuver",
+                    "maneuver-type": t
+                }
+            };
+            return obj;
+        }, {});
+
+        // Iterate over every maneuver item, adding maneuvers to the maneuverbook by section
+        maneuvers.forEach((maneuver) => {
+            const type = maneuver.data.maneuverType;
+            maneuverbook[type].maneuvers.push(maneuver);
+        });
+
+        // Sort the maneuverbook
+        const sorted = Object.values(maneuverbook);
         sorted.sort((a, b) => a.order - b.order);
         return sorted;
     }

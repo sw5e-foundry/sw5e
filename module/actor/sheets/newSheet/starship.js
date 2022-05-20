@@ -23,6 +23,26 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
+    static unsupportedItemTypes = new Set([
+        "archetype",
+        "background",
+        "class",
+        "classfeature",
+        "deployment",
+        "deploymentfeature",
+        "feat",
+        "fightingmastery",
+        "fightingstyle",
+        "lightsaberform",
+        "maneuver",
+        "power",
+        "species",
+        "venture"
+    ]);
+
+    /* -------------------------------------------- */
+
+    /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["sw5e", "sheet", "actor", "starship"],

@@ -183,6 +183,7 @@
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
         <button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
         <button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+        <button class="item" data-tab="maneuverbook">{{ localize "SW5E.ManeuverPl" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
         <button class="item" data-tab="ssfeatures">{{ localize "SW5E.StarshipfeaturePl" }}</button>
         <button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
@@ -193,14 +194,17 @@
         <section class="tab core" data-group="primary" data-tab="attributes">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-core.html" sections=attributes}}
         </section>
+
         {{!-- Inventory Tab --}}
         <section class="tab inventory" data-group="primary" data-tab="inventory">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html" sections=inventory}}
         </section>
+
         {{!-- Features Tab --}}
         <section class="tab features" data-group="primary" data-tab="features">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}
         </section>
+
         {{!-- Powerbook Tabs --}}
         <section class="tab force-powerbook" data-group="primary" data-tab="force-powerbook">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html"}}
@@ -209,14 +213,22 @@
         <section class="tab tech-powerbook" data-group="primary" data-tab="tech-powerbook">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
         </section>
+
+        {{!-- Maneuvers Tabs --}}
+        <section class="tab maneuverbook" data-group="primary" data-tab="maneuverbook">
+            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-maneuverbook.html"}}
+        </section>
+
         {{!-- Starships Tab --}}
         <section class="tab features" data-group="primary" data-tab="ssfeatures">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html" sections=ssfeatures}}
         </section>
+
         {{!-- Effects Tab --}}
         <section class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
         </section>
+
         {{!-- Biography Tab --}}
         <section class="tab biography" data-group="primary" data-tab="biography">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html"}}

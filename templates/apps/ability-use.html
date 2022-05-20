@@ -24,6 +24,12 @@
     </div>
     {{/if}}
 
+    {{#if consumeSuperiorityDie}}
+    <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="consumeSuperiorityDie" checked/>{{ localize "SW5E.ConsumeSuperiorityDie" }}</label>
+    </div>
+    {{/if}}
+    
     {{#if consumeUses}}
     <div class="form-group">
         <label class="checkbox"><input type="checkbox" name="consumeUse" checked/>{{ localize "SW5E.AbilityUseConsume" }}</label>

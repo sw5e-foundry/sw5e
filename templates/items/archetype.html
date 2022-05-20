@@ -62,6 +62,16 @@
             {{!-- Powercasting --}}
             <h3 class="form-header">{{localize "SW5E.Powercasting"}}</h3>
             {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
+
+            {{!-- Superiority --}}
+            <div class="form-group">
+                <label>{{localize "SW5E.SuperiorityProgression"}}</label>
+                <div class="form-fields">
+                    <select name="data.superiority.progression">
+                        {{selectOptions config.superiorityProgression selected=data.superiority.progression}}
+                    </select>
+                </div>
+            </div>
         </div>
 
         {{!-- Advancement Tab --}}

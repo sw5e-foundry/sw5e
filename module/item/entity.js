@@ -270,7 +270,7 @@ export default class Item5e extends Item {
      */
     get scaleValues() {
         if ( !this.advancement.byType.ScaleValue?.length ) return {};
-        if ( !(this.type in this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes) ) return {};
+        if ( !(this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes.has(this.type)) ) return {};
         const level = this.curAdvancementLevel;
         return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
             obj[advancement.identifier] = advancement.prepareValue(level);
@@ -317,7 +317,7 @@ export default class Item5e extends Item {
      * @protected
      */
     get curAdvancementCharLevel() {
-      if (this.type === "deployment") return this.parent?.data?.data?.ranks ?? 0;
+      if (this.type === "deployment") return this.parent?.data?.data?.details?.ranks ?? 0;
       if (this.type === "starship") return this.data.data?.tier ?? 0;
       return this.parent?.data?.data?.details?.level ?? 0;
     }

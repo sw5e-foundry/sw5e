@@ -723,12 +723,11 @@ function _migrateActorAC(actorData, updateData) {
 function _migrateActorAttribRank(actorData, updateData) {
     const ad = actorData.data;
 
-    // If old Rank data is present, remove it
-    const hasOldAttrib = ad?.attributes?.rank !== undefined;
-    if (hasOldAttrib) updateData["-=data.attributes.rank"] = null;
-    // If new Rank data is not present, create it
-    const hasNewAttrib = ad?.attributes?.ranks !== undefined;
-    if (!hasNewAttrib) updateData["data.attributes.ranks"] = 0;
+    // If Rank data is present, remove it
+    const v1 = ad?.attributes?.rank !== undefined;
+    const v2 = ad?.attributes?.ranks !== undefined;
+    if (v1) updateData["-=data.attributes.rank"] = null;
+    if (v2) updateData["-=data.attributes.ranks"] = null;
 
     return updateData;
 }

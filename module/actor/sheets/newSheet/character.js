@@ -84,7 +84,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
             modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
-            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
+            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}},
+            maneuver: {label: "SW5E.ItemTypeManeuverPl", items: [], dataset: {type: "maneuver"}},
         };
 
         // Partition items by category
@@ -104,7 +105,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             fightingstyles,
             fightingmasteries,
             lightsaberforms,
-            ssfeats
+            ssfeats,
         } = data.items.reduce(
             (obj, item) => {
                 // Item details

@@ -73,6 +73,7 @@ export default class Item5e extends Item {
 
             // Tools - default to Intelligence
             else if (type === "tool") return "int";
+
             // Weapons
             else if (type === "weapon") {
                 const wt = itemData.weaponType;
@@ -91,6 +92,25 @@ export default class Item5e extends Item {
                 // Ranged weapons - Dex (PH p.194)
                 else if (["simpleB", "martialB"].includes(wt)) return "dex";
             }
+
+            // Maneuvers
+            else if ( type === "maneuver" ) {
+                const type = this.data.data.maneuverType;
+
+                let attrs = [];
+                if ( type === "physical" ) attrs = [ "str", "dex", "con" ];
+                else if ( type === "mental" ) attrs = [ "int", "wis", "cha" ];
+                else attrs = [ "str", "dex", "con", "int", "wis", "cha" ];
+
+                const {attr, mod} = attrs.reduce((acc, attr) => {
+                    const mod = actorData.abilities[attr]?.mod ?? -1001;
+                    if (mod > acc.mod) acc = { attr: attr, mod: mod };
+                    return acc;
+                }, { attr: "str", mod: -1000 });
+
+                return attr;
+            }
+
             // Dex for ranged weapon attacks, otherwise default to strength
             return itemData.actionType === "rwak" ? "dex" : "str";
         }
@@ -437,6 +457,11 @@ export default class Item5e extends Item {
         // Lightsaber Form Items
         else if (itemData.type === "lightsaberform") {
             //  labels.lightsaberform = C.lightsaberform[data.lightsaberform];
+        }
+
+        // Maneuvers
+        else if (itemData.type === "maneuver") {
+            labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[itemData.data.maneuverType]);
         }
 
         // Equipment Items

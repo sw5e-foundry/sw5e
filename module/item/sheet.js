@@ -426,6 +426,8 @@ export default class ItemSheet5e extends ItemSheet {
             //props.push(labels.fightingstyle);
         } else if (item.type === "lightsaberform") {
             //props.push(labels.lightsaberform);
+        } else if (item.type === "maneuver") {
+            // props.push(labels.maneuverType);
         }
 
         // Action type

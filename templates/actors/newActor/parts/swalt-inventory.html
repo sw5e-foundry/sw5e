@@ -71,11 +71,33 @@
                             {{~#if item.isStack}} ({{item.data.quantity}}){{/if}}
                         </h4>
                         {{#if item.attunement}}
-                        <div class="item-detail attunement">
-                            <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" title="{{localize item.attunement.title}}"></i>
-                        </div>
+                            <div class="item-detail attunement">
+                                <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" title="{{localize item.attunement.title}}"></i>
+                            </div>
+                        {{/if}}
+                        {{#if item.hasReload}}
+                            <div class="form-group uses-per">
+                                <div class="form-fields">
+                                    <span> </span>
+                                    {{#if item.reloadUsesAmmo}}
+                                        <select class="weapon-select-ammo" name="item.data.ammo.target">
+                                            {{#select item.data.ammo.target}}
+                                                <option value=""></option>
+                                                {{#each item.reloadAmmo as |name key|}}
+                                                    <option value="{{key}}">{{name}}</option>
+                                                {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    {{/if}}
+                                    <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
+                                    <span class="sep">/</span>
+                                    <span>{{ lookup item.data.properties reloadProp}}</span>
+                                    <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
+                                </div>
+                            </div>
                         {{/if}}
                     </div>
+
 
                     {{#if ../../isCharacter}}
                     <div class="item-detail item-weight">
@@ -117,7 +139,4 @@
         </li>
         {{/each}}
     </ol>
-
-
-
 </section>

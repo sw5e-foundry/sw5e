@@ -2403,8 +2403,7 @@ export default class Item5e extends Item {
 
         const wpnData = this.data.data;
         const actor = this.actor;
-        const actorData = actor.data.data;
-        const ammo = wpnData.ammo.target ? actor.items.get(wpnData.ammo.target) : null;
+        const ammo = wpnData.ammo.target ? actor?.items?.get(wpnData.ammo.target) : null;
         const ammoData = ammo?.data?.data;
 
         const reloadProp = wpnData.properties.rel ? "rel" : wpnData.properties.ovr ? "ovr" : null;

@@ -733,23 +733,32 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     async _onWeaponSelectAmmo(event) {
+        event.preventDefault();
+
         const wpn = this.item;
         const wpnData = wpn?.data?.data;
         const oldLoad = wpnData?.ammo?.value;
-        const ammoID = wpnData?.ammo?.target;
-        const ammo = ammoID ? wpn?.actor?.items?.get(ammoID) : null;
-        const ammoData = ammo?.data?.data;
+        const oldAmmoID = wpnData?.ammo?.target;
 
-        if (ammo && oldLoad !== 0) {
+        const target = event.currentTarget;
+        const index = target.selectedIndex;
+        const newAmmoID = target[index].value;
+
+        if (newAmmoID !== oldAmmoID) await wpn.update({ "data.ammo.target": ammoID });
+
+        const oldAmmo = oldAmmoID ? wpn?.actor?.items?.get(ammoID) : null;
+        const oldAmmoData = oldAmmo?.data?.data;
+
+        if (oldAmmo && oldLoad !== 0) {
             const ammoUpdates = {};
-            switch (ammoData?.ammoType) {
+            switch (oldAmmoData?.ammoType) {
                 case "cartridge":
                 case "dart":
                 case "missile":
                 case "rocket":
                 case "snare":
                 case "torpedo":
-                    ammoUpdates["data.quantity"] = ammoData?.quantity + oldLoad;
+                    ammoUpdates["data.quantity"] = oldAmmoData?.quantity + oldLoad;
                     break;
                 case "powerCell":
                 case "flechetteClip":
@@ -757,7 +766,7 @@ export default class ItemSheet5e extends ItemSheet {
                 case "powerGenerator":
                 case "projectorCanister":
                 case "projectorTank":
-                    if (oldLoad === wpnData?.properties?.rel) ammoUpdates["data.quantity"] = ammoData?.quantity + 1;
+                    if (oldLoad === wpnData?.properties?.rel) ammoUpdates["data.quantity"] = oldAmmoData?.quantity + 1;
                     else {
                         const confirm = await Dialog.confirm({
                             title: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectTitle"),
@@ -768,7 +777,7 @@ export default class ItemSheet5e extends ItemSheet {
                     }
                     break;
             }
-            if (!foundry.utils.isObjectEmpty(ammoUpdates)) await ammo?.update(ammoUpdates);
+            if (!foundry.utils.isObjectEmpty(ammoUpdates)) await oldAmmo?.update(ammoUpdates);
         }
         await wpn.update({"data.ammo.value": 0});
     }

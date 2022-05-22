@@ -192,6 +192,31 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             i.data.quantity = i.data.quantity || 0;
             i.data.weight = i.data.weight || 0;
             i.totalWeight = (i.data.quantity * i.data.weight).toNearest(0.1);
+            if (i.type === "weapon") {
+                i.isStarshipWeapon = i.data.weaponType in CONFIG.SW5E.weaponStarshipTypes;
+                i.wpnProperties = i.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+                if (i.data.properties.rel) {
+                    i.hasReload = true;
+                    i.reloadProp = "rel";
+                    i.reloadActLabel = "SW5E.WeaponReload";
+                    i.reloadLabel = "SW5E.WeaponReload";
+                    i.reloadFull = !i.data.ammo.target || (i.data.ammo.value === i.data.properties.rel);
+                    i.reloadAmmo = this.actor.itemTypes.consumable.reduce( (ammo, amm) => {
+                        if (amm.data.data.consumableType === "ammo" && i.data.ammo.types.includes(amm.data.data.ammoType)) {
+                            ammo[amm.id] = `${amm.name} (${amm.data.data.quantity})`;
+                        }
+                        return ammo;
+                    }, {});
+                } else if (i.isStarshipWeapon && i.data.properties.ovr) {
+                    i.hasReload = true;
+                    i.reloadProp = "ovr";
+                    i.reloadActLabel = "SW5E.WeaponCoolDown";
+                    i.reloadLabel = "SW5E.WeaponOverheat";
+                    i.reloadFull = i.data.ammo.value === i.data.properties.ovr;
+                }
+                i.reloadUsesAmmo = i.data.properties.amm;
+                i.reloadFull = (i.data.ammo.value === i.data.properties[data.reloadProp]) || (i.reloadUsesAmmo && !i.data.ammo.target);
+            }
             inventory[i.type].items.push(i);
         }
 
@@ -419,6 +444,27 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 },
                 default: "cancel"
             }).render(true);
+        });
+
+        html.find(".weapon-select-ammo").change((event) => {
+            event.preventDefault();
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            item.sheet._onWeaponSelectAmmo(event);
+        });
+        html.find(".weapon-reload-count").change((event) => {
+            event.preventDefault();
+            if (event.target.attributes.disabled) return;
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            const value = parseInt(event.currentTarget.value, 10);
+            if (!Number.isNaN(value)) item.update({ "data.ammo.value": value })
+        });
+        html.find(".weapon-reload").click((event) => {
+            event.preventDefault();
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            item.sheet._onWeaponReload(event);
         });
     }
 

@@ -1380,79 +1380,95 @@ preLocalize("powerPreparationModes");
 SW5E.powerUpcastModes = ["always", "prepared"];
 
 /**
- * The available choices for power progression for a character class
+ * The available choices for force power progression for a character class
  * @enum {string}
  */
 
-SW5E.powerProgression = {
-    none: "SW5E.PowerNone",
-    consular: "SW5E.PowerProgCns",
-    engineer: "SW5E.PowerProgEng",
-    guardian: "SW5E.PowerProgGrd",
-    scout: "SW5E.PowerProgSct",
-    sentinel: "SW5E.PowerProgSnt"
+SW5E.powerProgressionForce = {
+    none: "SW5E.PowerProgNone",
+    full: "SW5E.PowerProgFull",
+    "3/4": "SW5E.PowerProg3/4",
+    half: "SW5E.PowerProgHalf",
+    arch: "SW5E.PowerProgArch"
 };
-preLocalize("powerProgression");
+preLocalize("powerProgressionForce");
+
+/**
+ * The available choices for tech power progression for a character class
+ * @enum {string}
+ */
+
+SW5E.powerProgressionTech = {
+    none: "SW5E.PowerProgNone",
+    full: "SW5E.PowerProgFull",
+    half: "SW5E.PowerProgHalf",
+    arch: "SW5E.PowerProgArch"
+};
+preLocalize("powerProgressionTech");
 
 /**
  * The max number of known powers available to each class per level
- * @type {number[]}  progresstionType[classLevel]
+ * @type {number[]}  progressionType[classLevel]
  */
 
 SW5E.powersKnown = {
-    none: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    consular: [9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40],
-    engineer: [6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-    guardian: [5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30],
-    scout: [0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-    sentinel: [7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35]
-};
-
-/**
- * The max number of powers cast for each power level per long rest
- * @type {number[]} progresstionType[powerLevel]
- */
-
-SW5E.powerLimit = {
-    none: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    consular: [1000, 1000, 1000, 1000, 1000, 1, 1, 1, 1],
-    engineer: [1000, 1000, 1000, 1000, 1000, 1, 1, 1, 1],
-    guardian: [1000, 1000, 1000, 1000, 1, 0, 0, 0, 0],
-    scout: [1000, 1000, 1000, 1, 1, 0, 0, 0, 0],
-    sentinel: [1000, 1000, 1000, 1000, 1, 1, 1, 0, 0],
-    innate: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
-    dual: [1000, 1000, 1000, 1000, 1000, 1, 1, 1, 1]
-};
-
-/**
- * The max level of a known/overpowered power available to each class per level
- * @type {number[]} progresstionType[classLevel]
- */
-
-SW5E.powerMaxLevel = {
-    none: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    consular: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
-    engineer: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
-    guardian: [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
-    scout: [0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
-    sentinel: [1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
-    multi: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
-    innate: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
-    dual: [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9]
+    force: {
+        full: [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40],
+        half: [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30],
+        "3/4": [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35],
+        arch: [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
+    },
+    tech: {
+        full: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+        half: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+        arch: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    }
 };
 
 /**
  * The number of base force/tech points available to each class per level
- * @type {number[]} progresstionType[classLevel]
+ * @type {number} progressionType[classLevel]
  */
 
-SW5E.powerPoints = {
-    none: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    consular: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80],
-    engineer: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40],
-    guardian: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40],
-    scout: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    sentinel: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60]
+SW5E.powerPointsBase = {
+    full: 4,
+    "3/4": 3,
+    half: 2,
+    arch: 1
+};
+
+/**
+ * The attributes you can add to your force/tech points maximum
+ * @type {number} progressionType
+ */
+
+SW5E.powerPointsBonus = {
+    force: ["wis", "cha"],
+    tech: ["int"]
+};
+
+/**
+ * The max level of a known/overpowered power available to each class per level
+ * @type {number[]} progressionType[classLevel]
+ */
+
+SW5E.powerMaxLevel = {
+    full: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+    "3/4": [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
+    half: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+    arch: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+};
+
+/**
+ * The first level for which you can only cast once per long rest
+ * @type {number} progressionType[powerLevel]
+ */
+
+SW5E.powerLimit = {
+    full: 6,
+    "3/4": 5,
+    half: 4,
+    arch: 4,
 };
 
 /* -------------------------------------------- */

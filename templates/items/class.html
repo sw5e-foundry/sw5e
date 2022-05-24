@@ -64,13 +64,13 @@
                 </div>
             </div>
 
-            {{!-- Powercasting --}}
-            <h3 class="form-header">{{localize "SW5E.Powercasting"}}</h3>
+            {{!-- Powercasting and Superiority --}}
+            <h3 class="form-header">{{localize "SW5E.Progression"}}</h3>
             {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
 
             {{!-- Superiority --}}
             <div class="form-group">
-                <label>{{localize "SW5E.SuperiorityProgression"}}</label>
+                <label>{{localize "SW5E.Superiority"}}</label>
                 <div class="form-fields">
                     <select name="data.superiority.progression">
                         {{selectOptions config.superiorityProgression selected=data.superiority.progression}}

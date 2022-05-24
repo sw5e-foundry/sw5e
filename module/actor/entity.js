@@ -289,7 +289,6 @@ export default class Actor5e extends Actor {
     getRollData() {
         const data = super.getRollData();
         data.prof = new Proficiency(this.data.data.attributes.prof, 1);
-        data.superiority = this.data.data.super?.die;
 
         data.classes = {};
         for (const [identifier, cls] of Object.entries(this.classes)) {
@@ -1160,18 +1159,23 @@ export default class Actor5e extends Actor {
         const superiority = ad.attributes.super;
 
         // Determine superiority level based on class items
-        superiority.level ??= this.itemTypes.class.reduce((level, cls) => {
+        const {level, levels} = this.itemTypes.class.reduce((obj, cls) => {
             const cd = cls?.data?.data;
             const ad = cls?.archetype?.data?.data;
 
             const cp = cd?.superiority?.progression ?? 0;
             const ap = ad?.superiority?.progression ?? 0;
 
-            const progression = Math.max(cp, ap) * (cd?.levels ?? 1);
+            const progression = Math.max(cp, ap);
+            const levels = (cd?.levels ?? 1);
 
-            return level + progression;
-        }, 0);
-        superiority.level = Math.max(Math.min(superiority.level, CONFIG.SW5E.maxLevel), 0);
+            obj.level += progression * levels;
+            obj.levels += levels;
+
+            return obj;
+        }, { level: 0, levels: 0 });
+        superiority.level = Math.round(Math.max(Math.min(level, CONFIG.SW5E.maxLevel), 0));
+        superiority.levels = Math.max(Math.min(levels, CONFIG.SW5E.maxLevel), 0);
 
         // Calculate derived values
         superiority.known.value = this.itemTypes.maneuver.length;
@@ -1179,7 +1183,7 @@ export default class Actor5e extends Actor {
 
         superiority.dice.max = CONFIG.SW5E.superiorityDiceQuantProgression[superiority.level];
 
-        superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[superiority.level];
+        superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[superiority.levels];
 
         actorData.superiority = superiority;
     }

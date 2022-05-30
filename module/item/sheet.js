@@ -134,7 +134,7 @@ export default class ItemSheet5e extends ItemSheet {
                 data.reloadLabel = "SW5E.WeaponOverheat";
                 data.reloadFull = itemData.data?.ammo?.value === itemData.data?.properties?.ovr;
             }
-            data.reloadUsesAmmo = itemData.data?.properties?.amm;
+            data.reloadUsesAmmo = itemData.data?.ammo?.types?.length;
             data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.properties?.[data.reloadProp]) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
         }
 
@@ -245,9 +245,9 @@ export default class ItemSheet5e extends ItemSheet {
             // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
             if (!baseItem?.data) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}))?.data;
 
+            const obj = await acc;
             if (!baseItem) return obj;
 
-            const obj = await acc;
             if (baseType !== foundry.utils.getProperty(baseItem.data, typeProperty)) return obj;
             obj[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
             return obj;

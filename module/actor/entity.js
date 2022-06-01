@@ -939,6 +939,7 @@ export default class Actor5e extends Actor {
             const cd = cls.data.data;
             const ad = cls?.archetype?.data?.data;
             const levels = cd.levels;
+            if (levels < 1) continue;
             for (const progression of Object.values(charProgression)) {
                 const castType = progression.castType;
 

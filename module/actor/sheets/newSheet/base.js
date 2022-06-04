@@ -34,7 +34,7 @@ export default class ActorSheet5e extends ActorSheet {
             ssactions: new Set(),
             forcePowerbook: new Set(),
             techPowerbook: new Set(),
-            maneuverbook: new Set(),
+            superiorityPowerbook: new Set(),
             features: new Set(),
             ssfeatures: new Set(),
             ssequipment: new Set(),
@@ -54,7 +54,7 @@ export default class ActorSheet5e extends ActorSheet {
                 ".ssfeatures .group-list",
                 ".force-powerbook .group-list",
                 ".tech-powerbook .group-list",
-                ".maneuverbook .group-list",
+                ".superiority-powerbook .group-list",
                 ".effects .effects-list"
             ],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -504,16 +504,16 @@ export default class ActorSheet5e extends ActorSheet {
     /* -------------------------------------------- */
 
     /**
-     * Insert a maneuver into the maneuverbook object when rendering the character sheet.
+     * Insert a maneuver into the superiority powerbook object when rendering the character sheet.
      * @param {object} data         Copy of the Actor data being prepared for display.
-     * @param {object[]} maneuvers  Maneuvers to be included in the maneuverbook.
-     * @returns {object[]}          Maneuverbook sections in the proper order.
+     * @param {object[]} maneuvers  Maneuvers to be included in the superiority powerbook.
+     * @returns {object[]}          Superiority powerbook sections in the proper order.
      * @private
      */
     _prepareManeuvers(maneuvers) {
         const owner = this.actor.isOwner;
 
-        const maneuverbook = Object.keys(CONFIG.SW5E.maneuverTypes).reduce((obj, t, i) => {
+        const superiorityPowerbook = Object.keys(CONFIG.SW5E.maneuverTypes).reduce((obj, t, i) => {
             obj[t] = {
                 order: i,
                 label: CONFIG.SW5E.maneuverTypes[t],
@@ -527,14 +527,14 @@ export default class ActorSheet5e extends ActorSheet {
             return obj;
         }, {});
 
-        // Iterate over every maneuver item, adding maneuvers to the maneuverbook by section
+        // Iterate over every maneuver item, adding maneuvers to the superiorityPowerbook by section
         maneuvers.forEach((maneuver) => {
             const type = maneuver.data.maneuverType;
-            maneuverbook[type].maneuvers.push(maneuver);
+            superiorityPowerbook[type].maneuvers.push(maneuver);
         });
 
-        // Sort the maneuverbook
-        const sorted = Object.values(maneuverbook);
+        // Sort the superiorityPowerbook
+        const sorted = Object.values(superiorityPowerbook);
         sorted.sort((a, b) => a.order - b.order);
         return sorted;
     }

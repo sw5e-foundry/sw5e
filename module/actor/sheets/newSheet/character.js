@@ -183,7 +183,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         items = this._filterItems(items, this._filters.inventory);
         forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
         techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
-        maneuvers = this._filterItems(maneuvers, this._filters.maneuverbook);
+        maneuvers = this._filterItems(maneuvers, this._filters.superiorityPowerbook);
         feats = this._filterItems(feats, this._filters.features);
         ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
 
@@ -223,7 +223,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
         const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
         const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
-        const maneuverbook = this._prepareManeuvers(maneuvers);
+        const superiorityPowerbook = this._prepareManeuvers(maneuvers);
 
         // Sort classes and interleave matching archetypes, put unmatched archetypes into features so they don't disappear
         classes.sort((a, b) => b.data.levels - a.data.levels);
@@ -321,7 +321,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         data.inventory = Object.values(inventory);
         data.forcePowerbook = forcePowerbook;
         data.techPowerbook = techPowerbook;
-        data.maneuverbook = maneuverbook;
+        data.superiorityPowerbook = superiorityPowerbook;
         data.features = Object.values(features);
         data.ssfeatures = Object.values(ssfeatures);
 

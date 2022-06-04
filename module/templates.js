@@ -27,7 +27,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-maneuverbook.html",
+        "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-resources.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html",

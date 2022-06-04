@@ -11,10 +11,10 @@
         <div class="resource">
             <h1>{{localize "SW5E.ConsumableManeuver"}}</h1>
 
-            <div class="attribute-value">
+            <div class="attribute-value multiple">
                 <input name="data.attributes.super.dice.value" type="text" value="{{data.attributes.super.dice.value}}" data-dtype="Number" placeholder="0" class="value-number" />
                 <span class="value-separator">/</span>
-                <span>{{data.attributes.super.dice.max}}{{data.attributes.super.die}}</span>
+                <span class="value-number">{{data.attributes.super.dice.max}}{{#if data.attributes.super.dice.max}}{{data.attributes.super.die}}{{/if}}</span>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
 
             <div class="attribute-value">
                 <div></div>
-                <span>{{data.attributes.super.generalDC}}</span>
+                <span class="value-number">{{data.attributes.super.generalDC}}</span>
             </div>
         </div>
 
@@ -56,7 +56,7 @@
         </div>
     </section>
 
-    <ul class="filter-list" data-filter="maneuverbook">
+    <ul class="filter-list" data-filter="superiorityPowerbook">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
@@ -72,7 +72,7 @@
     </div>
 
     <ol class="group-list">
-        {{#each maneuverbook as |section|}}
+        {{#each superiorityPowerbook as |section|}}
             <li>
                 <div class="group-list-title group-grid-maneuvers">
                     <div class="item-name">
@@ -124,15 +124,16 @@
             </li>
         {{else}}
             {{#if owner}}
-                {{#if filters.maneuverbook.size}}
+                {{#if filters.superiorityPowerbook.size}}
                     <li class="item flexrow">
                         <p class="notes">{{localize "SW5E.FilterNoManeuvers"}}</p>
                     </li>
                 {{else}}
-                    <li class="item flexrow inventory-header maneuverbook-header maneuverbook-empty">
+                    <li class="item flexrow inventory-header powerbook-header powerbook-empty">
                         <div class="item-controls">
-                            <a class="item-control item-create" title="{{localize 'SW5E.ManeuverCreate'}}" data-type="power"
-                                data-type="general"><i class="fas fa-plus"></i> {{localize "SW5E.ManeuverAdd"}}</a>
+                            <a class="item-control item-create" title="{{localize 'SW5E.ManeuverCreate'}}" data-type="power" data-type="general">
+                                <i class="fas fa-plus"></i> {{localize "SW5E.ManeuverAdd"}}
+                            </a>
                         </div>
                     </li>
                     <li class="item flexrow">

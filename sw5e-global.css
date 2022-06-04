@@ -1662,14 +1662,14 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 24px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource h1,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource h1 {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource h1 {
   border: none;
   margin: 0;
   font-family: "Russo One";
@@ -1681,10 +1681,10 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value input {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
   font-family: 'Russo One';
   font-size: 22px;
   font-weight: 400;
@@ -1694,19 +1694,19 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value {
   display: grid;
   grid-template-columns: auto 14px auto;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value input {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
   display: block;
   width: 100%;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value .value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number {
   display: block;
   width: 100%;
   text-align: right;
@@ -1714,17 +1714,17 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number:last-child,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value .value-number:last-child {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value span.value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value span.value-number,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-value span.value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value span.value-number {
   padding: 1px 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-footer {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1738,31 +1738,31 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer input,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer input,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .resource-items .resource .attribute-footer input {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer input {
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook > .panel,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook > .panel,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook > .panel {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook > .panel {
   grid-template-rows: 64px 32px 24px auto;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook h3.power-dc,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook h3.power-dc,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook h3.power-dc {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook h3.power-dc {
   line-height: 24px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .force-powercasting-ability {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .force-powercasting-ability {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability label,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability label,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .force-powercasting-ability label,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .force-powercasting-ability label,
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability h3,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability h3,
-.sw5e.sheet.actor .swalt-sheet .tab.maneuverbook .force-powercasting-ability h3 {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .force-powercasting-ability h3 {
   font-family: 'Russo One';
   font-size: 13px;
   font-weight: 400;
@@ -1879,7 +1879,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor.npc .swalt-sheet .tab.force-powerbook input.powercasting-level,
 .sw5e.sheet.actor.npc .swalt-sheet .tab.tech-powerbook input.powercasting-level,
-.sw5e.sheet.actor.npc .swalt-sheet .tab.maneuverbook input.powercasting-level {
+.sw5e.sheet.actor.npc .swalt-sheet .tab.superiority-powerbook input.powercasting-level {
   width: 48px;
 }
 .sw5e.sheet.actor.npc .swalt-sheet .tab.biography.active {

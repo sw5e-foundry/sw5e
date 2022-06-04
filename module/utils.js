@@ -259,3 +259,35 @@ export function htmlFindClosingBracket(html, index=0) {
     }
     return null;
 }
+
+/**
+ * Given an icon path, slugify it
+ * @param {string} path    The icon path
+ * @return {string}        The slugified name
+ */
+export function slugifyIcon(path) {
+    let folder_index = path.search(/\/[^/]*$/) + 1;
+    let extension_index = path.search(/\.\w+$/);
+    if ( extension_index === -1 ) extension_index = path.length;
+
+    let folder = path.substring(0, folder_index);
+    let icon = path.substring(folder_index, extension_index);
+    let extension = path.substring(extension_index);
+
+    // Replace %20 and underscores with spaces
+    icon = icon.replace(/%20|_/g, ' ');
+    // Capitalize each word
+    icon = icon.replace(/\b\w+\b/g, w => w.capitalize());
+    // Replace slashes and commas with dashes
+    icon = icon.replace(/[/,]/g, '-');
+    // Remove all whitespaces
+    icon = icon.replace(/[\s]/g, '');
+    // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
+    icon = icon.replace(/^\(([^)]*)\)/g, '$1-');
+    // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
+    icon = icon.replace(/-*\(([^)]*)\)/g, '-$1');
+    // Remove all non-word characters but dashes
+    icon = icon.replace(/[^\w-]/g, '');
+
+    return folder + icon + extension;
+}

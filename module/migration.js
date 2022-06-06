@@ -298,6 +298,7 @@ export const migrateItemData = async function(item, migrationData) {
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
     await _migrateItemModificationData(item, updateData);
+    _migrateItemBackgroundDescription(item, updateData);
 
     // Migrate embedded effects
     if ( item.effects ) {
@@ -376,6 +377,7 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
     await _migrateItemModificationData(item, updateData);
+    _migrateItemBackgroundDescription(item, updateData);
     return updateData;
 };
 
@@ -1124,6 +1126,105 @@ async function _migrateItemModificationData(item, updateData) {
         }
         if (items.length) updateData["data.modify.items"] = items;
     }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate background description.
+ * @param {object} item        Background data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ */
+function _migrateItemBackgroundDescription(item, updateData) {
+    if ( item.type !== "background" ) return updateData;
+    if ( [item.data.flavorText, item.data.flavorName, item.data.flavorDescription, item.data.flavorOptions].every(attr => attr === undefined) ) return updateData;
+    if ( item.data.flavorText !== undefined ) updateData["-=data.flavorText"] = null
+    if ( item.data.flavorName !== undefined ) updateData["-=data.flavorName"] = null
+    if ( item.data.flavorDescription !== undefined ) updateData["-=data.flavorDescription"] = null
+    if ( item.data.flavorOptions !== undefined ) updateData["-=data.flavorOptions"] = null
+
+    let text = "";
+
+    if ( item.data.flavorText ) text +=
+        `<div class="background">\n` +
+        `  <p>\n` +
+        `      ${item.data.flavorText.value}\n` +
+        `  </p>\n` +
+        `</div>\n`
+    if ( item.data.skillProficiencies ) text +=
+        `<div class="background">\n` +
+        `  <p><strong>Skill Proficiencies:</strong> ${item.data.skillProficiencies.value}</p>\n` +
+        `</div>\n`
+    if ( item.data.toolProficiencies ) text +=
+        `<div class="background">\n` +
+        `  <p><strong>Tool Proficiencies:</strong> ${item.data.toolProficiencies.value}</p>\n` +
+        `</div>\n`
+    if ( item.data.languages ) text +=
+        `<div class="background">\n` +
+        `  <p><strong>Languages:</strong> ${item.data.languages.value}</p>\n` +
+        `</div>\n`
+    if ( item.data.equipment ) text +=
+        `<div class="background">\n` +
+        `  <p><strong>Equipment:</strong> ${item.data.equipment}</p>\n` +
+        `</div>\n`
+    if ( item.data.flavorName && item.data.flavorDescription && item.data.flavorOptions ) text +=
+        `<div class="background"><h3>${item.data.flavorName.value}</h3></div>\n` +
+        `<div class="background"><p>${item.data.flavorDescription.value}</p></div>\n` +
+        `<div class="smalltable">\n` +
+        `  <p>\n` +
+        `      ${item.data.flavorOptions.value}\n` +
+        `  </p>\n` +
+        `</div>\n`
+    if ( item.data.featureName && item.data.featureText ) text +=
+        `<div class="background"><h2>Feature: ${item.data.featureName.value}</h2></div>\n` +
+        `<div class="background"><p>${item.data.featureText.value}</p></div>`
+    if ( item.data.featOptions ) text +=
+        `<h2>Background Feat</h2>\n` +
+        `<p>\n` +
+        `  As a further embodiment of the experience and training of your background, you can choose from the\n` +
+        `  following feats:\n` +
+        `</p>\n` +
+        `<div class="smalltable">\n` +
+        `  <p>\n` +
+        `      ${item.data.featOptions.value}\n` +
+        `  </p>\n` +
+        `</div>\n`
+    if ( item.data.personalityTraitOptions || item.data.idealOptions || item.data.flawOptions || item.data.bondOptions ) {
+        text +=
+            `<div class="background"><h2>Suggested Characteristics</h2></div>\n`
+        if ( item.data.personalityTraitOptions ) text +=
+            `<div class="medtable">\n` +
+            `  <p>\n` +
+            `      ${item.data.personalityTraitOptions.value}\n` +
+            `  </p>\n` +
+            `</div>\n` +
+            `<p>&nbsp;</p>`
+        if ( item.data.idealOptions ) text +=
+            `<div class="medtable">\n` +
+            `  <p>\n` +
+            `      ${item.data.idealOptions.value}\n` +
+            `  </p>\n` +
+            `</div>\n` +
+            `<p>&nbsp;</p>`
+        if ( item.data.flawOptions ) text +=
+            `<div class="medtable">\n` +
+            `  <p>\n` +
+            `      ${item.data.flawOptions.value}\n` +
+            `  </p>\n` +
+            `</div>\n` +
+            `<p>&nbsp;</p>`
+        if ( item.data.bondOptions ) text +=
+            `<div class="medtable">\n` +
+            `  <p>\n` +
+            `      ${item.data.bondOptions.value}\n` +
+            `  </p>\n` +
+            `</div>\n`
+    }
+
+    if ( text ) updateData["data.description.value"] = text;
 
     return updateData;
 }

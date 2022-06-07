@@ -160,7 +160,7 @@
                         {{/if}}
                         <input type="text" name="data.ammo.value" value="{{data.ammo.value}}" data-dtype="Number"{{#if (and reloadUsesAmmo (not data.ammo.target))}} disabled{{/if}} />
                         <span class="sep">/</span>
-                        <span>{{ lookup data.properties reloadProp}}</span>
+                        <span>{{ data.ammo.max }}</span>
                         <a class="weapon-reload"{{#if reloadFull}} disabled{{/if}}>{{ localize reloadActLabel }}</a>
                     </div>
                 </div>

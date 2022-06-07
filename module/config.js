@@ -813,7 +813,7 @@ preLocalize("consumableTypes", { sort: true });
  * Enumerate the valid ammunition types which are recognized by the system.
  * @enum {string}
  */
-SW5E.ammoTypes = {
+SW5E.ammoStandardTypes = {
     arrow: "SW5E.AmmoArrow",
     bolt: "SW5E.AmmoBolt",
     cartridge: "SW5E.AmmoCartridge",
@@ -828,10 +828,32 @@ SW5E.ammoTypes = {
     rocket: "SW5E.AmmoRocket",
     snare: "SW5E.AmmoSnare",
     torpedo: "SW5E.AmmoTorpedo",
+};
+preLocalize("ammoStandardTypes", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * Enumerate the valid ammunition types which are recognized by the system.
+ * @enum {string}
+ */
+SW5E.ammoStarshipTypes = {
     ssmissile: "SW5E.AmmoSsMissile",
     ssrocket: "SW5E.AmmoSsRocket",
     sstorpedo: "SW5E.AmmoSsTorpedo",
     ssbomb: "SW5E.AmmoSsBomb",
+};
+preLocalize("ammoStarshipTypes", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * Enumerate the valid ammunition types which are recognized by the system.
+ * @enum {string}
+ */
+SW5E.ammoTypes = {
+    ...SW5E.ammoStandardTypes,
+    ...SW5E.ammoStarshipTypes,
 };
 preLocalize("ammoTypes", { sort: true });
 

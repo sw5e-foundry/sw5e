@@ -461,7 +461,7 @@ export default class Item5e extends Item {
 
         // Maneuvers
         else if (itemData.type === "maneuver") {
-            labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[itemData.data.maneuverType]);
+            labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[data.maneuverType]);
         }
 
         // Equipment Items
@@ -472,6 +472,11 @@ export default class Item5e extends Item {
         // Starship Modification Items
         else if (itemData.type === "starshipmod") {
             foundry.utils.setProperty(data, "baseCost.value", data?.baseCost?.value || CONFIG.SW5E.ssModSystemsBaseCost[data.system.value]);
+        }
+
+        // Weapons
+        else if (itemData.type === "weapon") {
+            data.ammo.max = data.properties.rel || data.properties.ovr || 0;
         }
 
         // Activated Items
@@ -803,12 +808,15 @@ export default class Item5e extends Item {
         if (actorBonus.attack) parts.push(actorBonus.attack);
 
         // One-time bonus provided by consumed ammunition
-        if (itemData.consume?.type === "ammo" && this.actor.items) {
-            const ammoItemData = this.actor.items.get(itemData.consume.target)?.data;
+        if ((itemData.ammo?.target || itemData.consume?.type === "ammo") && this.actor.items) {
+            const isReload = itemData.ammo?.target;
+
+            const ammoItemData = this.actor.items.get(itemData.consume?.target || itemData.ammo?.target)?.data;
 
             if (ammoItemData) {
-                const ammoItemQuantity = ammoItemData.data.quantity;
-                const ammoCanBeConsumed = ammoItemQuantity && ammoItemQuantity - (itemData.consume.amount ?? 0) >= 0;
+                const ammoItemQuantity = isReload ? itemData.ammo?.value : ammoItemData.data?.quantity;
+                const ammoConsumeAmmount = isReload ? 1 : (itemData.consume.amount ?? 0);
+                const ammoCanBeConsumed = ammoItemQuantity && (ammoItemQuantity - ammoConsumeAmmount) >= 0;
                 const ammoItemAttackBonus = ammoItemData.data.attackBonus;
                 const ammoIsTypeConsumable =
                     ammoItemData.type === "consumable" && ammoItemData.data.consumableType === "ammo";
@@ -1014,6 +1022,7 @@ export default class Item5e extends Item {
      * @param {boolean} options.consumeQuantity           Consume quantity of the item if other consumption modes are not
      *                                                    available?
      * @param {boolean} options.consumeRecharge           Whether the item consumes the recharge mechanic
+     * @param {boolean} options.consumeReload             Whether the item consumes loaded ammo
      * @param {boolean} options.consumeResource           Whether the item consumes a limited resource
      * @param {string|null} options.consumePowerLevel     The category of power slot to consume, or null
      * @param {boolean} options.consumeSuperiorityDie     Wheter the item consumes a superiority die
@@ -1021,7 +1030,7 @@ export default class Item5e extends Item {
      * @returns {object|boolean}                          A set of data changes to apply when the item is used, or false
      * @private
      */
-    _getUsageUpdates({consumeQuantity, consumeRecharge, consumeResource, consumePowerLevel, consumeSuperiorityDie, consumeUsage}) {
+    _getUsageUpdates({consumeQuantity, consumeRecharge, consumeReload, consumeResource, consumePowerLevel, consumeSuperiorityDie, consumeUsage}) {
         // Reference item data
         const id = this.data.data;
         const actorUpdates = {};
@@ -1037,6 +1046,16 @@ export default class Item5e extends Item {
                 return false;
             }
             itemUpdates["data.recharge.charged"] = false;
+        }
+
+        // Consume Weapon Reload
+        if (consumeReload) {
+            if (id.ammo.value <= 0) {
+                if (id.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", {name: this.name}));
+                else if (id.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", {name: this.name}));
+                return false;
+            }
+            resourceUpdates.push({_id: this.id, "data.ammo.value": id.ammo.value - 1});
         }
 
         // Consume Limited Resource
@@ -1132,16 +1151,6 @@ export default class Item5e extends Item {
                 ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", {name: this.name}));
                 return false;
             }
-        }
-
-        // Consume Weapon Reload
-        if (this.type === "weapon" && (id.properties.rel || id.properties.ovr)) {
-            if (id.ammo.value <= 0) {
-                if (id.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", {name: this.name}));
-                else if (id.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", {name: this.name}));
-                return false;
-            }
-            itemUpdates["data.ammo.value"] = id.ammo.value - 1;
         }
 
         // Return the configured usage
@@ -1510,7 +1519,20 @@ export default class Item5e extends Item {
         let ammo = null;
         let ammoUpdate = null;
         const consume = itemData.consume;
-        if (consume?.type === "ammo") {
+        if (itemData.ammo?.max) {
+            const q = itemData.ammo.value;
+            const consumeAmount = 1;
+            if (q && (q - consumeAmount) >= 0) {
+                ammo = this.actor.items.get(itemData.ammo.target);
+                this._ammo = ammo;
+                title += ` [${ammo.name}]`;
+            }
+
+            // Get pending reload update
+            const usage = this._getUsageUpdates({consumeReload: true});
+            if (usage === false) return null;
+            ammoUpdate = usage.resourceUpdates || [];
+        } else if (consume?.type === "ammo") {
             ammo = this.actor.items.get(consume.target);
             if (ammo?.data) {
                 const q = ammo.data.data.quantity;
@@ -2406,15 +2428,11 @@ export default class Item5e extends Item {
         const ammo = wpnData.ammo.target ? actor?.items?.get(wpnData.ammo.target) : null;
         const ammoData = ammo?.data?.data;
 
-        const reloadProp = wpnData.properties.rel ? "rel" : wpnData.properties.ovr ? "ovr" : null;
-        const reloadMax = wpnData.properties[reloadProp];
-
-        let toReload = reloadMax - wpnData.ammo.value;
+        let toReload = wpnData.ammo.max - wpnData.ammo.value;
         const wpnUpdates = {};
         const ammoUpdates = {};
 
-        if (reloadProp === "rel") {
-            if (!ammo) return;
+        if (ammo) {
             if (!wpnData.ammo.types.includes(ammoData.ammoType)) return;
             if (ammoData.quantity <= 0) return;
 

@@ -98,9 +98,11 @@ export default class ItemSheet5e extends ItemSheet {
         if (sourceMax) itemData.data.uses.max = sourceMax;
 
         // Vehicles
-        const wpnType = (itemData.data?.weaponType ?? '');
-        const armorType = (itemData.data?.armor?.type ?? '');
+        const wpnType = (itemData.data?.weaponType ?? "");
+        const armorType = (itemData.data?.armor?.type ?? "");
+        const ammoType = (itemData.data?.consumableType === "ammo" ? itemData.data?.ammoType ?? "" : "");
         data.isStarshipWeapon = wpnType in CONFIG.SW5E.weaponStarshipTypes;
+        data.isStarshipAmmo = ammoType in CONFIG.SW5E.ammoStarshipTypes;
         data.isStarshipArmor = armorType === "starship";
         data.isStarshipShield = armorType === "ssshield";
         data.isStarshipHyperdrive = armorType === "hyper";
@@ -111,14 +113,15 @@ export default class ItemSheet5e extends ItemSheet {
         data.isMountable = this._isItemMountable(itemData);
 
         // Weapon Properties
+        if (itemData.data?.consumableType === "ammo") {
+            data.wpnProperties = data.isStarshipAmmo ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+        }
         if (this.item.type === "weapon") {
             data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+            data.hasReload = !!itemData.data.ammo.max;
             if (itemData.data?.properties?.rel) {
-                data.hasReload = true;
-                data.reloadProp = "rel";
                 data.reloadActLabel = "SW5E.WeaponReload";
                 data.reloadLabel = "SW5E.WeaponReload";
-                data.reloadFull = !itemData.data?.ammo?.target || itemData.data?.ammo?.value === itemData.data?.properties?.rel;
                 if (actor) {
                     data.reloadAmmo = actor.itemTypes.consumable.reduce( (ammo, i) => {
                         if (i.data?.data?.consumableType === "ammo" && itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)) {
@@ -128,14 +131,11 @@ export default class ItemSheet5e extends ItemSheet {
                     }, {});
                 } else data.reloadAmmo = {};
             } else if (data.isStarshipWeapon && itemData.data?.properties?.ovr) {
-                data.hasReload = true;
-                data.reloadProp = "ovr";
                 data.reloadActLabel = "SW5E.WeaponCoolDown";
                 data.reloadLabel = "SW5E.WeaponOverheat";
-                data.reloadFull = itemData.data?.ammo?.value === itemData.data?.properties?.ovr;
             }
             data.reloadUsesAmmo = itemData.data?.ammo?.types?.length;
-            data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.properties?.[data.reloadProp]) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
+            data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.ammo?.max) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
         }
 
         // Armor Class
@@ -744,9 +744,9 @@ export default class ItemSheet5e extends ItemSheet {
         const index = target.selectedIndex;
         const newAmmoID = target[index].value;
 
-        if (newAmmoID !== oldAmmoID) await wpn.update({ "data.ammo.target": ammoID });
+        if (newAmmoID !== oldAmmoID) await wpn.update({ "data.ammo.target": newAmmoID });
 
-        const oldAmmo = oldAmmoID ? wpn?.actor?.items?.get(ammoID) : null;
+        const oldAmmo = wpn?.actor?.items?.get(oldAmmoID);
         const oldAmmoData = oldAmmo?.data?.data;
 
         if (oldAmmo && oldLoad !== 0) {
@@ -773,7 +773,7 @@ export default class ItemSheet5e extends ItemSheet {
                             content: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectContent"),
                             defaultYes: true
                         });
-                        if (!confirm) return await wpn?.update({"data.ammo.target": ammoID});
+                        if (!confirm) return await wpn?.update({"data.ammo.target": oldAmmoID});
                     }
                     break;
             }

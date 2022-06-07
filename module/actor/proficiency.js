@@ -6,7 +6,7 @@
  * @param {boolean} [roundDown]  Should half-values be rounded up or down?
  */
 export default class Proficiency {
-    constructor(proficiency, multiplier, roundDown = true) {
+    constructor(proficiency, multiplier, roundDown = false) {
         /**
          * Base proficiency value of the actor.
          * @type {number}
@@ -32,7 +32,7 @@ export default class Proficiency {
      * @type {number}
      */
     get flat() {
-        const roundMethod = this.rounding === "down" ? Math.floor : Math.ceil;
+        const roundMethod = this.rounding === "down" ? Math.floor : Math.round;
         return roundMethod(this.multiplier * this._baseProficiency);
     }
 
@@ -42,7 +42,7 @@ export default class Proficiency {
      */
     get dice() {
         if (this._baseProficiency === 0 || this.multiplier === 0) return "0";
-        const roundTerm = this.rounding === "down" ? "floor" : "ceil";
+        const roundTerm = this.rounding === "down" ? "floor" : "round";
         if (this.multiplier === 0.5) {
             return `${roundTerm}(1d${this._baseProficiency * 2} / 2)`;
         } else {

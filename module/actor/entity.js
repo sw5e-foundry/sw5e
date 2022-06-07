@@ -1210,6 +1210,7 @@ export default class Actor5e extends Actor {
 
         // Set Force and tech bonus points for PC Actors
         for (const castType of ["force", "tech"]) {
+            if (ad.attributes[castType].points.level === 0) continue;
             const mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, attr) => {
                 return Math.max(best, ad.abilities?.[attr]?.mod ?? Number.NEGATIVE_INFINITY);
             }, Number.NEGATIVE_INFINITY);

@@ -195,27 +195,22 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             if (i.type === "weapon") {
                 i.isStarshipWeapon = i.data.weaponType in CONFIG.SW5E.weaponStarshipTypes;
                 i.wpnProperties = i.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+                i.hasReload = !!i.data.ammo.max;
                 if (i.data.properties.rel) {
-                    i.hasReload = true;
-                    i.reloadProp = "rel";
                     i.reloadActLabel = "SW5E.WeaponReload";
                     i.reloadLabel = "SW5E.WeaponReload";
-                    i.reloadFull = !i.data.ammo.target || (i.data.ammo.value === i.data.properties.rel);
-                    i.reloadAmmo = this.actor.itemTypes.consumable.reduce( (ammo, amm) => {
+                    i.reloadAmmo = this.actor.itemTypes.consumable.reduce( (obj, amm) => {
                         if (amm.data.data.consumableType === "ammo" && i.data.ammo.types.includes(amm.data.data.ammoType)) {
-                            ammo[amm.id] = `${amm.name} (${amm.data.data.quantity})`;
+                            obj[amm.id] = `${amm.name} (${amm.data.data.quantity})`;
                         }
-                        return ammo;
+                        return obj;
                     }, {});
                 } else if (i.isStarshipWeapon && i.data.properties.ovr) {
-                    i.hasReload = true;
-                    i.reloadProp = "ovr";
                     i.reloadActLabel = "SW5E.WeaponCoolDown";
                     i.reloadLabel = "SW5E.WeaponOverheat";
-                    i.reloadFull = i.data.ammo.value === i.data.properties.ovr;
                 }
-                i.reloadUsesAmmo = i.data.properties.amm;
-                i.reloadFull = (i.data.ammo.value === i.data.properties[data.reloadProp]) || (i.reloadUsesAmmo && !i.data.ammo.target);
+                i.reloadUsesAmmo = i.data.ammo.types.length;
+                i.reloadFull = (i.data.ammo.value === i.data.ammo.max) || (i.reloadUsesAmmo && !i.data.ammo.target);
             }
             inventory[i.type].items.push(i);
         }

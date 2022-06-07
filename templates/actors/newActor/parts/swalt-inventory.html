@@ -91,7 +91,7 @@
                                     {{/if}}
                                     <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
                                     <span class="sep">/</span>
-                                    <span>{{ lookup item.data.properties reloadProp}}</span>
+                                    <span>{{ data.ammo.max }}</span>
                                     <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
                                 </div>
                             </div>

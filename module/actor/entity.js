@@ -184,7 +184,7 @@ export default class Actor5e extends Actor {
         for (let [id, abl] of Object.entries(data.abilities)) {
             abl.mod = Math.floor((abl.value - 10) / 2);
             const isRA = this._isRemarkableAthlete(id);
-            abl.checkProf = new Proficiency(data.attributes.prof, isRA || joat ? 0.5 : 0, !isRA);
+            abl.checkProf = new Proficiency(data.attributes.prof, isRA || joat ? 0.5 : 0);
             const saveBonusAbl = this._simplifyBonus(abl.bonuses?.save, bonusData);
             abl.saveBonus = saveBonusAbl + saveBonus;
 
@@ -775,12 +775,10 @@ export default class Actor5e extends Actor {
         for (let [id, skl] of Object.entries(data.skills)) {
             skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 2) ?? 0;
             const baseBonus = this._simplifyBonus(skl.bonuses?.check, bonusData);
-            let roundDown = true;
 
             // Remarkable Athlete
             if (this._isRemarkableAthlete(skl.ability) && skl.value < 0.5) {
                 skl.value = 0.5;
-                roundDown = false;
             }
 
             // Jack of All Trades
@@ -797,7 +795,7 @@ export default class Actor5e extends Actor {
             const checkBonusAbl = this._simplifyBonus(data.abilities[skl.ability]?.bonuses?.check, bonusData);
             skl.bonus = baseBonus + checkBonus + checkBonusAbl + skillBonus;
             skl.mod = data.abilities[skl.ability]?.mod ?? 0;
-            skl.prof = new Proficiency(data.attributes.prof, skl.value, roundDown);
+            skl.prof = new Proficiency(data.attributes.prof, skl.value);
             skl.proficient = skl.value;
             skl.total = skl.mod + skl.bonus;
             if (Number.isNumeric(skl.prof.term)) skl.total += skl.prof.flat;
@@ -868,7 +866,7 @@ export default class Actor5e extends Actor {
 
         // Compute initiative modifier
         init.mod = data.abilities.dex?.mod ?? 0;
-        init.prof = new Proficiency(data.attributes.prof, joat || athlete ? 0.5 : 0, !athlete);
+        init.prof = new Proficiency(data.attributes.prof, joat || athlete ? 0.5 : 0);
         init.value = init.value ?? 0;
         init.bonus = init.value + (flags.initiativeAlert ? 5 : 0);
         init.total = init.mod + init.bonus + dexCheckBonus + globalCheckBonus;
@@ -2242,7 +2240,7 @@ export default class Actor5e extends Actor {
         }
 
         // if natural regeneration roll max
-        if (natural) result.sp = Math.floor(denomination.substring(1) * attr.equip.shields.regenRateMult);
+        if (natural) result.sp = Math.round(denomination.substring(1) * attr.equip.shields.regenRateMult);
         else {
             // Prepare roll data
             const parts = [`${numDice}${denomination}${keep} * @attributes.equip.shields.regenRateMult`];
@@ -2862,7 +2860,7 @@ export default class Actor5e extends Actor {
     _getRestHitDiceRecovery({maxHitDice = undefined} = {}) {
         // Determine the number of hit dice which may be recovered
         if (maxHitDice === undefined) {
-            maxHitDice = Math.max(Math.floor(this.data.data.details.level / 2), 1);
+            maxHitDice = Math.max(Math.round(this.data.data.details.level / 2), 1);
         }
 
         // Sort classes which can recover HD, assuming players prefer recovering larger HD first.

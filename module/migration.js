@@ -299,6 +299,7 @@ export const migrateItemData = async function(item, migrationData) {
     _migrateItemWeaponPropertiesData(item, updateData);
     await _migrateItemModificationData(item, updateData);
     _migrateItemBackgroundDescription(item, updateData);
+    _migrateItemIdentifier(item, updateData);
 
     // Migrate embedded effects
     if ( item.effects ) {
@@ -378,6 +379,8 @@ export const migrateActorItemData = async function (item, actor) {
     _migrateItemWeaponPropertiesData(item, updateData);
     await _migrateItemModificationData(item, updateData);
     _migrateItemBackgroundDescription(item, updateData);
+    _migrateItemIdentifier(item, updateData);
+
     return updateData;
 };
 
@@ -1225,6 +1228,24 @@ function _migrateItemBackgroundDescription(item, updateData) {
     }
 
     if ( text ) updateData["data.description.value"] = text;
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate archetype className into classIdentifier.
+ * @param {object} item        Archetype data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ */
+function _migrateItemIdentifier(item, updateData) {
+    if ( item.type !== "archetype" ) return updateData;
+    if ( item.data.className === undefined ) return updateData;
+
+    updateData["-=data.className"] = null;
+    updateData["data.classIdentifier"] = item.data.className.slugify({strict: true});
 
     return updateData;
 }

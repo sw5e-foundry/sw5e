@@ -1611,7 +1611,6 @@ SW5E.armorProperties = {
         desc: "SW5E.ArmorPropertyAgileDesc",
         type: "Number",
         min: 0,
-        max: 3
     },
     Anchor: {
         name: "SW5E.ArmorPropertyAnchor",
@@ -2675,11 +2674,13 @@ SW5E.consumableResources = [
 SW5E.conditionTypes = {
     blinded: "SW5E.ConBlinded",
     charmed: "SW5E.ConCharmed",
+    corroded: "SW5E.ConCorroded",
     deafened: "SW5E.ConDeafened",
     diseased: "SW5E.ConDiseased",
     exhaustion: "SW5E.ConExhaustion",
     frightened: "SW5E.ConFrightened",
     grappled: "SW5E.ConGrappled",
+    ignited: "SW5E.ConIgnited",
     incapacitated: "SW5E.ConIncapacitated",
     invisible: "SW5E.ConInvisible",
     paralyzed: "SW5E.ConParalyzed",
@@ -2690,7 +2691,8 @@ SW5E.conditionTypes = {
     shocked: "SW5E.ConShocked",
     slowed: "SW5E.ConSlowed",
     stunned: "SW5E.ConStunned",
-    unconscious: "SW5E.ConUnconscious"
+    unconscious: "SW5E.ConUnconscious",
+    weakened: "SW5E.ConWeakened"
 };
 preLocalize("conditionTypes", { sort: true });
 

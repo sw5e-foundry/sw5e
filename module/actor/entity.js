@@ -773,7 +773,7 @@ export default class Actor5e extends Actor {
         const observant = flags.observantFeat;
         const skillBonus = this._simplifyBonus(bonuses.skill, bonusData);
         for (let [id, skl] of Object.entries(data.skills)) {
-            skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 2) ?? 0;
+            skl.value = Math.clamped(Number(skl.value).toNearest(0.5), 0, 5) ?? 0;
             const baseBonus = this._simplifyBonus(skl.bonuses?.check, bonusData);
 
             // Remarkable Athlete

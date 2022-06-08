@@ -1,4 +1,4 @@
-import {ClassFeatures} from "./classFeatures.js";
+import { ClassFeatures } from "./classFeatures.js";
 import { preLocalize } from "./utils.js";
 
 // Namespace SW5e Configuration Values
@@ -86,6 +86,26 @@ SW5E.attunements = {
     2: "SW5E.AttunementAttuned"
 };
 preLocalize("attunements");
+
+/* -------------------------------------------- */
+
+/**
+ * A mapping between `SW5E.weaponTypes` and `SW5E.weaponProficiencies` that
+ * is used to determine if character has proficiency when adding an item.
+ * @enum {(boolean|string)}
+ */
+SW5E.weaponProficienciesMap = {
+    natural: true,
+    simpleB: "smb",
+    simpleLW: "slw",
+    simpleVW: "svb",
+    martialB: "mrb",
+    martialLW: "mlw",
+    martialVW: "mvb",
+    exoticB: "exb",
+    exoticLW: "elw",
+    exoticVW: "evw",
+};
 
 /* -------------------------------------------- */
 
@@ -2598,12 +2618,52 @@ preLocalize("polymorphSettings", { sort: true });
  * @enum {string}
  */
 SW5E.proficiencyLevels = {
-    0: "SW5E.NotProficient",
-    1: "SW5E.Proficient",
-    0.5: "SW5E.HalfProficient",
-    2: "SW5E.Expertise"
+    0: {
+        label: "SW5E.NotProficient",
+        mult: 0,
+        icon: "far fa-circle",
+        sort: "0",
+    },
+    0.5: {
+        label: "SW5E.Trained",
+        mult: 0.5,
+        icon: "fas fa-adjust",
+        sort: "1",
+    },
+    1: {
+        label: "SW5E.Proficient",
+        mult: 1,
+        icon: "fas fa-check",
+        sort: "2",
+    },
+    2: {
+        label: "SW5E.Expertise",
+        mult: 2,
+        icon: "fas fa-check-double",
+        sort: "3",
+    },
+    3: {
+        label: "SW5E.Mastery",
+        mult: 2,
+        icon: "fas fa-star-half",
+        sort: "4",
+    },
+    4: {
+        label: "SW5E.HighMastery",
+        mult: 2,
+        icon: "fas fa-star-half-alt",
+        sort: "5",
+    },
+    5: {
+        label: "SW5E.GrandMastery",
+        mult: 2,
+        icon: "fas fa-star",
+        sort: "6",
+    }
 };
-preLocalize("proficiencyLevels");
+preLocalize("proficiencyLevels", { key: "label" });
+
+SW5E.proficiencyLevelsOrdered = Object.keys(SW5E.proficiencyLevels).map(p => Number(p)).sort((a, b) => a - b);
 
 /* -------------------------------------------- */
 

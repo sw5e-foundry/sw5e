@@ -129,7 +129,7 @@ export default class ActorSheet5e extends ActorSheet {
         // Ability Scores
         for (let [a, abl] of Object.entries(actorData.data.abilities)) {
             abl.icon = this._getProficiencyIcon(abl.proficient);
-            abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient];
+            abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
             abl.label = CONFIG.SW5E.abilities[a];
             abl.baseProf = source.abilities[a]?.proficient ?? 0;
         }
@@ -139,7 +139,7 @@ export default class ActorSheet5e extends ActorSheet {
             for (let [s, skl] of Object.entries(actorData.data.skills)) {
                 skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
                 skl.icon = this._getProficiencyIcon(skl.value);
-                skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
+                skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value].label;
                 skl.label = CONFIG.SW5E.skills[s];
                 skl.baseValue = source.skills[s].value;
             }
@@ -547,13 +547,9 @@ export default class ActorSheet5e extends ActorSheet {
      * @private
      */
     _getProficiencyIcon(level) {
-        const icons = {
-            0: '<i class="far fa-circle"></i>',
-            0.5: '<i class="fas fa-adjust"></i>',
-            1: '<i class="fas fa-check"></i>',
-            2: '<i class="fas fa-check-double"></i>'
-        };
-        return icons[level] || icons[0];
+        const levels = Object.keys(CONFIG.SW5E.proficiencyLevels);
+        const icon = (levels[level] ?? levels[0]).icon;
+        return `<i class="far ${icon}"></i>`;
     }
 
     /* -------------------------------------------- */
@@ -584,7 +580,7 @@ export default class ActorSheet5e extends ActorSheet {
             inputs.addBack().find('[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
             // Ability Proficiency
-            html.find(".ability-proficiency").click(this._onToggleAbilityProficiency.bind(this));
+            html.find(".ability-proficiency").on("click contextmenu", this._onCycleAbilityProficiency.bind(this));
 
             // Toggle Skill Proficiency
             html.find(".skill-proficiency").on("click contextmenu", this._onCycleSkillProficiency.bind(this));
@@ -725,11 +721,11 @@ export default class ActorSheet5e extends ActorSheet {
         const source = this.actor.data._source.data.skills[skillName];
         if (!source) return;
 
-        // Cycle to the next or previous skill level
-        const levels = [0, 1, 0.5, 2];
-        let idx = levels.indexOf(source.value);
-        const next = idx + (event.type === "click" ? 1 : 3);
-        field.value = levels[next % 4];
+        // Cycle to the next or previous proficiency level
+        const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
+        const idx = levels.indexOf(source.value);
+        const next = (idx + (event.type === "click" ? 1 : levels.length-1)) % levels.length;
+        field.value = levels[next];
 
         // Update the field value and save the form
         return this._onSubmit(event);
@@ -1130,15 +1126,23 @@ export default class ActorSheet5e extends ActorSheet {
     /* -------------------------------------------- */
 
     /**
-     * Handle toggling Ability score proficiency level.
-     * @param {Event} event         The originating click event.
-     * @returns {Promise<Actor5e>}  Updated actor instance.
+     * Handle cycling proficiency in an Ability score.
+     * @param {Event} event   A click or contextmenu event which triggered the handler.
+     * @returns {Promise}     Updated data for this actor after changes are applied.
      * @private
      */
-    _onToggleAbilityProficiency(event) {
+    _onCycleAbilityProficiency(event) {
         event.preventDefault();
         const field = event.currentTarget.previousElementSibling;
-        return this.actor.update({[field.name]: 1 - parseInt(field.value)});
+
+        // Cycle to the next or previous proficiency level
+        const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
+        const idx = levels.indexOf(Number(field.value));
+        const next = (idx + (event.type === "click" ? 1 : levels.length-1)) % levels.length;
+        field.value = levels[next];
+
+        // Update the field value and save the form
+        return this._onSubmit(event);
     }
 
     /* -------------------------------------------- */

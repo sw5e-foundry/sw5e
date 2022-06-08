@@ -38,10 +38,7 @@ export default class ActorAbilityConfig extends DocumentSheet {
       labelSaves: game.i18n.format("SW5E.AbilitySaveConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
       labelChecks: game.i18n.format("SW5E.AbilityCheckConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
       abilityId: this._abilityId,
-      proficiencyLevels: {
-        0: CONFIG.SW5E.proficiencyLevels[0],
-        1: CONFIG.SW5E.proficiencyLevels[1]
-      },
+      proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
       bonusGlobalSave: getProperty(this.object.data._source, "data.bonuses.abilities.save"),
       bonusGlobalCheck: getProperty(this.object.data._source, "data.bonuses.abilities.check")
     };

@@ -1444,7 +1444,7 @@ export default class Item5e extends Item {
      * @private
      */
     _toolChatData(data, labels, props) {
-        props.push(CONFIG.SW5E.abilities[data.ability] || null, CONFIG.SW5E.proficiencyLevels[data.proficient || 0]);
+        props.push(CONFIG.SW5E.abilities[data.ability] || null, CONFIG.SW5E.proficiencyLevels[data.proficient || 0].label);
     }
 
     /* -------------------------------------------- */

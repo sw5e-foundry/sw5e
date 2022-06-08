@@ -18,7 +18,7 @@ export default class Proficiency {
          * Value by which to multiply the actor's base proficiency value.
          * @type {number}
          */
-        this.multiplier = Number(multiplier ?? 0);
+        this.multiplier = Number(CONFIG.SW5E.proficiencyLevels[multiplier]?.mult ?? 0);
 
         /**
          * Direction decimal results should be rounded ("up" or "down").

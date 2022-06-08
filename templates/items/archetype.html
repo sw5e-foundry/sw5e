@@ -25,8 +25,9 @@
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
-        <a class="item" data-tab="details">{{localize "SW5E.Details"}}</a>
-        <a class="item" data-tab="advancement">{{localize "SW5E.AdvancementTitle"}}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="invocations">{{ localize "SW5E.Invocations" }}</a>
+        <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
@@ -72,6 +73,11 @@
                     </select>
                 </div>
             </div>
+        </div>
+
+        {{!-- Invocations Tab --}}
+        <div class="tab flexrow" data-group="primary" data-tab="invocations">
+            {{editor content=data.invocations.value target="data.invocations.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Advancement Tab --}}

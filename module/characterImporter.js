@@ -267,15 +267,51 @@ export default class CharacterImporter {
     }
 
     static async addItems(items, actor) {
-        const weapons = await game.packs.get("sw5e.weapons").getDocuments();
+        const weapons = [
+            ...(await game.packs.get("sw5e.lightweapons").getDocuments()),
+            ...(await game.packs.get("sw5e.vibroweapons").getDocuments()),
+            ...(await game.packs.get("sw5e.blasters").getDocuments()),
+          ];
         const armors = await game.packs.get("sw5e.armor").getDocuments();
         const adventuringGear = await game.packs.get("sw5e.adventuringgear").getDocuments();
+        const ammo = await game.packs.get("sw5e.ammo").getDocuments();
+        const archetypes = await game.packs.get("sw5e.archetypes").getDocuments();
+        const specialistsImplements = await game.packs.get("sw5e.implements").getDocuments();
+        const backgrounds = await game.packs.get("sw5e.backgrounds").getDocuments();
+        const invocations = await game.packs.get("sw5e.invocations").getDocuments();
+        const consumables = await game.packs.get("sw5e.consumables").getDocuments();
+        const enhancedItems = await game.packs.get("sw5e.enhanceditems").getDocuments();
+        const explosives = await game.packs.get("sw5e.explosives").getDocuments();
+        const feats = await game.packs.get("sw5e.feats").getDocuments();
+        const fightingStyles = await game.packs.get("sw5e.fightingstyles").getDocuments();
+        const fightingMasteries = await game.packs.get("sw5e.fightingmasteries").getDocuments();
+        const gamingSets = await game.packs.get("sw5e.gamingsets").getDocuments();
+        const lightsaberForm = await game.packs.get("sw5e.lightsaberform").getDocuments();
+        const modifications = await game.packs.get("sw5e.modifications").getDocuments();
+        const specialistsKits = await game.packs.get("sw5e.kits").getDocuments();
+        const maneuvers = await game.packs.get("sw5e.maneuvers").getDocuments();
 
         for (const item of items) {
             const createdItem =
                 weapons.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
                 armors.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
-                adventuringGear.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
+                adventuringGear.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                ammo.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                archetypes.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                specialistsImplements.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                backgrounds.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                invocations.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                consumables.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                enhancedItems.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                explosives.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                feats.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                fightingStyles.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                fightingMasteries.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                gamingSets.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                lightsaberForm.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                modifications.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                specialistsKits.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
+                maneuvers.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
 
             if (createdItem) {
                 if (item.quantity != 1) {

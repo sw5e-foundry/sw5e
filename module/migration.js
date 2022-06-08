@@ -927,35 +927,37 @@ function _migrateItemRarity(item, updateData) {
  * @private
  */
 function _migrateItemClassPowerCasting(item, updateData) {
-    if ( item.type !== "class") return updateData;
-    const powercasting = item.data.powercasting;
-    if ( foundry.utils.getType(powercasting) === "Object" ) {
-        if (powercasting.progression === undefined) return updateData;
-        switch (powercasting.progression) {
-            case "consular":
-                updateData["data.powercasting.force"] = "full";
-                break;
-            case "engineer":
-                updateData["data.powercasting.tech"] = "full";
-                break;
-            case "guardian":
-                updateData["data.powercasting.force"] = "half";
-                break;
-            case "scout":
-                updateData["data.powercasting.tech"] = "half";
-                break;
-            case "sentinel":
-                updateData["data.powercasting.force"] = "3/4";
-                break;
+    if ( !["class", "archetype"].includes(item.type) ) {
+        const powercasting = item.data.powercasting;
+        if ( item.data.classCasterType !== undefined ) updateData["data.-=classCasterType"] = null;
+        if ( foundry.utils.getType(powercasting) === "Object" ) {
+            if (powercasting.progression === undefined) return updateData;
+            switch (powercasting.progression) {
+                case "consular":
+                    updateData["data.powercasting.force"] = "full";
+                    break;
+                case "engineer":
+                    updateData["data.powercasting.tech"] = "full";
+                    break;
+                case "guardian":
+                    updateData["data.powercasting.force"] = "half";
+                    break;
+                case "scout":
+                    updateData["data.powercasting.tech"] = "half";
+                    break;
+                case "sentinel":
+                    updateData["data.powercasting.force"] = "3/4";
+                    break;
+            }
+            updateData["data.powercasting.-=progression"] = null;
+            updateData["data.powercasting.-=ability"] = null;
         }
-        updateData["data.powercasting.-=progression"] = null;
-        updateData["data.powercasting.-=ability"] = null;
-    }
-    else {
-        updateData["data.powercasting"] = {
-            force: "none",
-            tech: "none"
-        };
+        else {
+            updateData["data.powercasting"] = {
+                force: "none",
+                tech: "none"
+            };
+        }
     }
     return updateData;
 }

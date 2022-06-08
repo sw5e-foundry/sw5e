@@ -22,6 +22,7 @@
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
         <a class="item" data-tab="archetypes">{{ localize "SW5E.Archetypes" }}</a>
+        <a class="item" data-tab="invocations">{{ localize "SW5E.Invocations" }}</a>
         <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
@@ -142,8 +143,13 @@
         </div>
 
         {{!-- Archetypes Tab --}}
-        <div class="tab flexrow active" data-group="primary" data-tab="archetypes">
+        <div class="tab flexrow" data-group="primary" data-tab="archetypes">
             {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- Invocations Tab --}}
+        <div class="tab flexrow" data-group="primary" data-tab="invocations">
+            {{editor content=data.invocations.value target="data.invocations.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Advancement Tab --}} 

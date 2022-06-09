@@ -215,9 +215,10 @@ export const migrateActorData = async function(actor, migrationData) {
     // Migrate Owned Items
     if ( !actor.items ) return updateData;
     const items = await actor.items.reduce(async (memo, i) => {
+        const arr = await memo;
         // Migrate the Owned Item
         const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
-        let itemUpdate = await migrateActorItemData(itemData, actor, migrationData);
+        let itemUpdate = await migrateItemData(itemData, migrationData);
 
         // Prepared, Equipped, and Proficient for NPC actors
         if ( actor.type === "npc" ) {
@@ -229,10 +230,10 @@ export const migrateActorData = async function(actor, migrationData) {
             // Update the Owned Item
         if ( !isObjectEmpty(itemUpdate) ) {
             itemUpdate._id = itemData._id;
-            memo.push(expandObject(itemUpdate));
+            arr.push(expandObject(itemUpdate));
         }
 
-        return memo;
+        return arr;
     }, []);
     if ( items.length > 0 ) updateData.items = items;
 
@@ -291,13 +292,13 @@ export const migrateItemData = async function(item, migrationData) {
     _migrateItemAttunement(item, updateData);
     _migrateItemRarity(item, updateData);
     _migrateItemClassPowerCasting(item, updateData);
-    await _migrateItemPower(item, null, updateData);
+    await _migrateItemPower(item, updateData);
     _migrateItemArmorType(item, updateData);
     _migrateItemCriticalData(item, updateData);
     await _migrateItemIcon(item, updateData, migrationData);
     _migrateItemArmorPropertiesData(item, updateData);
     _migrateItemWeaponPropertiesData(item, updateData);
-    await _migrateItemModificationData(item, updateData);
+    await _migrateItemModificationData(item, updateData, migrationData);
     _migrateItemBackgroundDescription(item, updateData);
     _migrateItemIdentifier(item, updateData);
 
@@ -362,31 +363,6 @@ export const migrateMacroData = async function(macro, migrationData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single owned actor Item document to incorporate latest data model changes
- * @param item
- * @param actor
- */
-export const migrateActorItemData = async function (item, actor) {
-    const updateData = {};
-    _migrateItemAttunement(item, updateData);
-    _migrateItemRarity(item, updateData);
-    _migrateItemClassPowerCasting(item, updateData);
-    await _migrateItemPower(item, actor, updateData);
-    _migrateItemArmorType(item, updateData);
-    _migrateItemCriticalData(item, updateData);
-    await _migrateItemIcon(item, updateData, migrationData);
-    _migrateItemArmorPropertiesData(item, updateData);
-    _migrateItemWeaponPropertiesData(item, updateData);
-    await _migrateItemModificationData(item, updateData);
-    _migrateItemBackgroundDescription(item, updateData);
-    _migrateItemIdentifier(item, updateData);
-
-    return updateData;
-};
-
-/* -------------------------------------------- */
-
-/**
  * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
  * @param {object} scene   The Scene data to Update
@@ -413,7 +389,7 @@ export const migrateSceneData = async function(scene, migrationData) {
                 const actorData = duplicate(t.actorData);
                 actorData.type = token.actor?.type;
                 actorData.name = t.name;
-                const update = await migrateActorData(actorData);
+                const update = await migrateActorData(actorData, migrationData);
                 ["items", "effects"].forEach((embeddedName) => {
                     if (!update[embeddedName]?.length) return;
                     const updates = new Map(update[embeddedName].map(u => [u._id, u]));
@@ -447,8 +423,12 @@ export const getMigrationData = async function() {
             const slug = slugifyIcon(old_path);
             data.iconMap[slug] = new_path;
         }
+
+        data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
+        data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
+        data.modifications = await (await game.packs.get("sw5e.modifications")).getDocuments();
     } catch(err) {
-        console.warn(`Failed to retrieve icon migration data: ${err.message}`);
+        console.warn(`Failed to retrieve migration data: ${err.message}`);
     }
     return data;
 };
@@ -788,8 +768,8 @@ function _migrateActorAttribRank(actorData, updateData) {
     // If Rank data is present, remove it
     const v1 = ad?.attributes?.rank !== undefined;
     const v2 = ad?.attributes?.ranks !== undefined;
-    if ( v1 ) updateData["-=data.attributes.rank"] = null;
-    if ( v2 ) updateData["-=data.attributes.ranks"] = null;
+    if ( v1 ) updateData["data.attributes.-=rank"] = null;
+    if ( v2 ) updateData["data.attributes.-=ranks"] = null;
 
     return updateData;
 }
@@ -801,13 +781,13 @@ function _migrateActorAttribRank(actorData, updateData) {
 /**
  * Update an Power Item's data based on compendium
  * @param {Object} item    The data object for an item
- * @param {Object} actor   The data object for the actor owning the item
  * @private
  */
-async function _migrateItemPower(item, actor, updateData) {
+async function _migrateItemPower(item, updateData) {
     // if item is not a power shortcut out
     if (item.type !== "power") return updateData;
 
+    const actor = item.parent;
     if (actor) console.log(`Checking Actor ${actor.name}'s ${item.name} for migration needs`);
     else console.log(`Checking ${item.name} for migration needs`);
     // check for flag.core, if not there is no compendium power so exit
@@ -829,11 +809,11 @@ async function _migrateItemPower(item, actor, updateData) {
 
     //if power type is not force or tech  exit out
     let powerType = "none";
-    if (coreSource === "Compendium.sw5e.forcepowers") powerType = "sw5e.forcepowers";
-    if (coreSource === "Compendium.sw5e.techpowers") powerType = "sw5e.techpowers";
+    if (coreSource === "Compendium.sw5e.forcepowers") powerType = "forcepowers";
+    if (coreSource === "Compendium.sw5e.techpowers") powerType = "techpowers";
     if (powerType === "none") return updateData;
 
-    const corePower = duplicate(await game.packs.get(powerType).getDocument(core_id));
+    const corePower = duplicate(updateData[coreSource].find((p) => p.id === core_id));
     if (corePower) {
         if (actor) console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
         else console.log(`Updating ${item.name} from compendium`);
@@ -1105,13 +1085,14 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
 
 /**
  * Migrate the item's modifications to the newer system.
- * @param {object} item        Item data to migrate.
- * @param {Object} actor       The data object for the actor owning the item
- * @param {object} updateData  Existing update to expand upon.
- * @returns {object}           The updateData to apply.
+ * @param {object} item             Item data to migrate.
+ * @param {Object} actor            The data object for the actor owning the item
+ * @param {object} updateData       Existing update to expand upon.
+ * @param {object} [migrationData]  Additional data to perform the migration
+ * @returns {object}                The updateData to apply.
  * @private
  */
-async function _migrateItemModificationData(item, updateData) {
+async function _migrateItemModificationData(item, updateData, migrationData) {
     if (item.type === "modification") {
         if (item.data.modified !== undefined) updateData["data.-=modified"] = null;
     } else if (item.data.modifications !== undefined) {
@@ -1126,7 +1107,7 @@ async function _migrateItemModificationData(item, updateData) {
         const items = [];
         for (const mod_data of Object.values(itemMods.mods).concat(itemMods.augments)) {
             if (!mod_data?.uuid) continue;
-            const mod = await fromUuid(mod_data.uuid);
+            const mod = migrationData.modifications.find((m) => m.uuid === mod_data.uuid);
             if (!mod) continue;
             const modType = (mod.data.data.modificationType === "augment") ? "augment" : "mod";
             const data = mod.toObject();
@@ -1155,10 +1136,10 @@ async function _migrateItemModificationData(item, updateData) {
 function _migrateItemBackgroundDescription(item, updateData) {
     if ( item.type !== "background" ) return updateData;
     if ( [item.data.flavorText, item.data.flavorName, item.data.flavorDescription, item.data.flavorOptions].every(attr => attr === undefined) ) return updateData;
-    if ( item.data.flavorText !== undefined ) updateData["-=data.flavorText"] = null
-    if ( item.data.flavorName !== undefined ) updateData["-=data.flavorName"] = null
-    if ( item.data.flavorDescription !== undefined ) updateData["-=data.flavorDescription"] = null
-    if ( item.data.flavorOptions !== undefined ) updateData["-=data.flavorOptions"] = null
+    if ( item.data.flavorText !== undefined ) updateData["data.-=flavorText"] = null
+    if ( item.data.flavorName !== undefined ) updateData["data.-=flavorName"] = null
+    if ( item.data.flavorDescription !== undefined ) updateData["data.-=flavorDescription"] = null
+    if ( item.data.flavorOptions !== undefined ) updateData["data.-=flavorOptions"] = null
 
     let text = "";
 
@@ -1255,7 +1236,7 @@ function _migrateItemIdentifier(item, updateData) {
     if ( item.type !== "archetype" ) return updateData;
     if ( item.data.className === undefined ) return updateData;
 
-    updateData["-=data.className"] = null;
+    updateData["data.-=className"] = null;
     updateData["data.classIdentifier"] = item.data.className.slugify({strict: true});
 
     return updateData;

@@ -568,10 +568,6 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     async _onDropItemCreate(itemData) {
         // Increment the number of class levels a character instead of creating a new item
         if ( itemData.type === "class" ) {
-            console.debug('character.js | _onDropItemCreate');
-            console.debug('itemData.data.levels', itemData.data.levels);
-            console.debug('CONFIG.SW5E.maxLevel', CONFIG.SW5E.maxLevel);
-            console.debug('this.actor.data.data.details.level', this.actor.data.data.details.level);
             itemData.data.levels = Math.min(itemData.data.levels,
                 CONFIG.SW5E.maxLevel - this.actor.data.data.details.level);
             if ( itemData.data.levels <= 0 ) return ui.notifications.error(

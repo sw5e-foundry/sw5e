@@ -134,10 +134,6 @@ export class AdvancementManager extends Application {
    * @returns {AdvancementManager}  Prepared manager. Steps count can be used to determine if advancements are needed.
    */
   static forNewItem(actor, itemData, options={}) {
-    console.debug('AdvancementManager | forNewItem');
-    console.debug('actor', actor);
-    console.debug('itemData', itemData);
-    console.debug('options', options);
     const manager = new this(actor, options);
 
     // Prepare data for adding to clone
@@ -165,9 +161,6 @@ export class AdvancementManager extends Application {
     manager.clone.data.update({items: [dataClone]});
     manager.clone.prepareData();
     const clonedItem = manager.clone.items.get(dataClone._id);
-    console.debug('dataClone', dataClone);
-    console.debug('clonedItem', clonedItem);
-    console.debug('clonedItem.curAdvancementLevel', clonedItem.curAdvancementLevel);
 
     // For class, deployment and starship items, prepare level change data
     if ( ["class", "deployment", "starship"].includes(itemData.type) ) {

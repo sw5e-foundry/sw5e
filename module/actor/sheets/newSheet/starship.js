@@ -1,6 +1,6 @@
 import ActorSheet5e from "./base.js";
 import {SW5E} from "../../../config.js";
-import {fromUuidSynchronous} from "../../../helpers.js";
+import {fromUuidSynchronous} from "../../../utils.js";
 
 /**
  * An Actor sheet for starships in the SW5E system.
@@ -19,6 +19,26 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     constructor(...args) {
         super(...args);
     }
+
+    /* -------------------------------------------- */
+
+    /** @override */
+    static unsupportedItemTypes = new Set([
+        "archetype",
+        "background",
+        "class",
+        "classfeature",
+        "deployment",
+        "deploymentfeature",
+        "feat",
+        "fightingmastery",
+        "fightingstyle",
+        "lightsaberform",
+        "maneuver",
+        "power",
+        "species",
+        "venture"
+    ]);
 
     /* -------------------------------------------- */
 
@@ -58,7 +78,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 derived: true
             }
         };
-        for (const deploy of Object.keys(SW5E.deploymentTypes))
+        for (const deploy of Object.keys(SW5E.ssCrewStationTypes))
             ssActions[deploy] = {
                 items: [],
                 dataset: {type: "starshipaction", deployment: deploy}
@@ -123,7 +143,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 if ("starshipaction" === item.type) arr[0].push(item);
                 else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
                 else if (item.data.equipped) arr[2].push(item);
-                else if (Object.keys(ssCargo).includes(item.type))arr[3].push(item);
+                else if (Object.keys(ssCargo).includes(item.type)) arr[3].push(item);
 
                 return arr;
             },
@@ -213,9 +233,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Decide if deployment is visible
         const ssDeploy = data.data.attributes.deployment;
-        const anyDeployed = Object.keys(CONFIG.SW5E.deploymentTypes).some(k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value);
+        const anyDeployed = Object.keys(CONFIG.SW5E.ssCrewStationTypes).some(k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value);
         const anyActive = !!(ssDeploy.active.value);
-        for (const key of Object.keys(CONFIG.SW5E.deploymentTypes)) {
+        for (const key of Object.keys(CONFIG.SW5E.ssCrewStationTypes)) {
             const deployment = ssDeploy[key];
             deployment.actorsVisible = !!(!anyDeployed || deployment.items?.length);
             if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = deployment.active;
@@ -539,28 +559,36 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
         const item = this.actor.items.get(itemId);
-        const updates = [];
         const val = getProperty(item.data, "data.equipped");
+        const updates = [];
 
         const {minCrew, installCost, installTime} = this.actor.getInstallationData(itemId);
 
-        // TODO: Change this for a popup confirmation
-        ui.notifications.info(game.i18n.format(val ? "SW5E.StarshipUninstallEquip" : "SW5E.StarshipInstallEquip", {
-            minCrew: minCrew,
-            installCost: installCost,
-            installTime: installTime,
-        }), {permanent: true});
-
-        if (!val && item.type === "equipment") {
-            for (const i of this.actor.data.items) {
-                if (i.type === "equipment" && i.data.data.armor.type === item.data.data.armor.type && i.data.data.equipped) {
-                    updates.push({"_id": i.id, "data.equipped": false});
+        const callback = (html) => {
+            if (val !== getProperty(item.data, "data.equipped")) return;
+            if (!val && item.type === "equipment") {
+                for (const i of this.actor.data.items) {
+                    if (i.type === "equipment" && i.data.data.armor.type === item.data.data.armor.type && i.data.data.equipped) {
+                        updates.push({"_id": i.id, "data.equipped": false});
+                    }
                 }
             }
-        }
-        updates.push({"_id": item.id, "data.equipped": !val});
+            updates.push({"_id": item.id, "data.equipped": !val});
 
-        return this.actor.updateEmbeddedDocuments("Item", updates);
+            this.actor.updateEmbeddedDocuments("Item", updates);
+        };
+
+        // Shift click skips the confirmation dialog
+        if (event.shiftKey) callback();
+        else Dialog.confirm({
+            title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
+            content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
+                minCrew: minCrew,
+                installCost: installCost,
+                installTime: installTime,
+            }),
+            yes: callback
+        });
     }
 
     /* -------------------------------------------- */
@@ -585,11 +613,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             );
 
         // Pre-select the deployment slot with the highest rank
-        let preselected = Object.entries(sourceActor.data.data.attributes.rank ?? {}).reduce(
+        let preselected = Object.entries(sourceActor.data.data.details.ranks ?? {}).reduce(
             (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
             ["passenger", 0]
         )[0];
-        if (!Object.keys(SW5E.deploymentTypes).includes(preselected)) preselected = "crew";
+        if (!Object.keys(SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
 
         // Create and render the Dialog
         // Define a function to record starship deployment selection
@@ -608,7 +636,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                         starship: this.actor.data.name
                     }),
                 content: {
-                    i18n: SW5E.deploymentTypes,
+                    i18n: SW5E.ssCrewStationTypes,
                     isToken: this.actor.isToken,
                     preselected: preselected
                 },

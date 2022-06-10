@@ -35,6 +35,7 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
@@ -46,85 +47,19 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-            {{!-- Class Levels Table and Features --}} {{editor content=data.description.value
-            target="data.description.value" button=true owner=owner editable=editable}}
+            {{!-- Identifier --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.Identifier" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                </div>
+                <p class="hint">
+                    {{{localize "SW5E.DeploymentIdentifierHint" identifier=data.identifier}}}
+                </p>
+            </div>
         </div>
-        <!-- {{{data.classFeatures.value}}} -->
-        <!--			
-            {{!-- Class Levels --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ClassLevels" }}</label>
-                <div class="form-fields">
-                    <input type="text" name="data.levels" value="{{data.levels}}" data-dtype="Number"/>
-                </div>
-            </div>
 
-            {{!-- Archetype Name --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ArchetypeName" }}</label>
-                <div class="form-fields">
-                    <input type="text" name="data.archetype" value="{{data.archetype}}"/>
-                </div>
-            </div>
-
-            {{!-- Class Hit Dice --}}
-            <div class="form-group">
-                <label>{{localize "SW5E.HitDice"}}</label>
-                <div class="form-fields">
-                    <select name="data.hitDice">
-                        {{#select data.hitDice}}
-                        {{#each config.hitDieTypes}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize "SW5E.HitDiceUsed"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hitDiceUsed" value="{{data.hitDiceUsed}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>{{localize 'SW5E.PowerProgression'}}</label>
-                <div class="form-fields">
-                    <select name="data.powercasting">
-                        {{#select data.powercasting}}
-                            {{#each config.powerProgression}}
-                                <option value="{{@key}}">{{localize this}}</option>
-                            {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            </div>
-
-            {{!-- Level 1 skills --}}
-            <div class="form-group">
-                <label>{{localize "SW5E.ClassSkillsNumber"}}</label>
-                <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.skills.number" value="{{data.skills.number}}" data-dtype="Number"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    {{localize "SW5E.ClassSkillsChosen"}}
-                    {{#if editable }}
-                    <a class="trait-selector class-skills" data-target="data.skills" data-options="skills">
-                        <i class="fas fa-edit"></i></a>
-                    {{/if}}
-                </label>
-                <div class="form-fields">
-                    <ul class="traits-list">
-                        {{#each data.skills.value}}
-                            <li class="tag {{this}}">{{lookup ../config.skills this}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
--->
+        {{!-- Advancement Tab --}} 
+        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
     </section>
 </form>

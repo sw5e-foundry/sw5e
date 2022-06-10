@@ -65,15 +65,12 @@
             {{!-- Power Components --}}
             <div class="power-components form-group stacked">
                 <label>{{ localize "SW5E.PowerComponents" }}</label>
+                {{#each config.powerComponents as |component key|}}
                 <label class="checkbox">
-                    <input
-                        type="checkbox"
-                        name="data.components.concentration"
-                        {{checked
-                        data.components.concentration}}
-                    />
-                    {{ localize "SW5E.Concentration" }}
+                    <input type="checkbox" name="data.components.{{key}}" {{checked (lookup ../data.components key)}}>
+                    {{component.label}}
                 </label>
+                {{/each}}
             </div>
 
             {{!-- Material Components --}}
@@ -120,12 +117,15 @@
 
             <h3 class="form-header">{{ localize "SW5E.PowerCastingHeader" }}</h3>
 
-            {{!-- Item Activation Template --}} {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{!-- Item Activation Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
 
             <h3 class="form-header">{{ localize "SW5E.PowerEffects" }}</h3>
 
-            {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}} {{!-- Power
-            Level Scaling --}}
+            {{!-- Item Action Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+
+            {{!-- Power Level Scaling --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.LevelScaling" }}</label>
                 <div class="form-fields">

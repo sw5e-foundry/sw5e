@@ -3,7 +3,7 @@
     <div class="form-group">
         <label>{{ localize "SW5E.ProficiencyLevel" }}</label>
         <select name="data.skills.{{skillId}}.value">
-            {{selectOptions proficiencyLevels selected=skill.value}}
+            {{selectOptions proficiencyLevels selected=skill.value labelAttr="label"}}
         </select>
     </div>
     <div class="form-group">

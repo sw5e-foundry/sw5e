@@ -115,14 +115,8 @@
             },
             "creature": {
                 "attributes": {
-                    "rank": {
-                        "total": 0,
-                        "coord": 0,
-                        "gunner": 0,
-                        "mechanic": 0,
-                        "operator": 0,
-                        "pilot": 0,
-                        "technician": 0
+                    "attunement": {
+                        "max": 3
                     },
                     "senses": {
                         "darkvision": 0,
@@ -160,6 +154,12 @@
                             "tempmax": 0
                         },
                         "level": 0
+                    },
+                    "super": {
+                        "known": {},
+                        "dice": {
+                            "value": 0
+                        }
                     },
                     "deployed": {
                         "uuid": null,
@@ -419,6 +419,7 @@
                         "skill": ""
                     },
                     "power": {
+                        "dc": "",
                         "forceLightDC": "",
                         "forceUnivDC": "",
                         "forceDarkDC": "",
@@ -431,6 +432,10 @@
         "character": {
             "templates": ["common", "creature"],
             "attributes": {
+                "hp": {
+                    "value": 0,
+                    "max": 0
+                },
                 "death": {
                     "success": 0,
                     "failure": 0
@@ -498,6 +503,11 @@
         },
         "npc": {
             "templates": ["common", "creature"],
+            "attributes": {
+                "hp": {
+                    "formula": ""
+                }
+            },
             "details": {
                 "type": {
                     "value": "",
@@ -801,6 +811,9 @@
                     "value": [],
                     "custom": ""
                 }
+            },
+            "currency": {
+                "gc": 0
             }
         },
         "vehicle": {
@@ -884,6 +897,7 @@
             "fightingstyle",
             "lightsaberform",
             "loot",
+            "maneuver",
             "modification",
             "power",
             "species",
@@ -897,20 +911,16 @@
         ],
         "templates": {
             "archetypeDescription": {
-                "description": "",
+                "description": {
+                    "value": ""
+                },
+                "invocations": {
+                    "value": ""
+                },
                 "source": ""
             },
             "backgroundDescription": {
-                "flavorText": {
-                    "value": ""
-                },
-                "flavorName": {
-                    "value": ""
-                },
-                "flavorDescription": {
-                    "value": ""
-                },
-                "flavorOptions": {
+                "description": {
                     "value": ""
                 },
                 "skillProficiencies": {
@@ -925,9 +935,6 @@
                 "equipment": {
                     "value": ""
                 },
-                "suggestedCharacteristics": {
-                    "value": ""
-                },
                 "featureName": {
                     "value": ""
                 },
@@ -935,18 +942,6 @@
                     "value": ""
                 },
                 "featOptions": {
-                    "value": ""
-                },
-                "personalityTraitOptions": {
-                    "value": ""
-                },
-                "idealOptions": {
-                    "value": ""
-                },
-                "flawOptions": {
-                    "value": ""
-                },
-                "bondOptions": {
                     "value": ""
                 },
                 "source": ""
@@ -962,6 +957,12 @@
             },
             "classDescription": {
                 "description": {
+                    "value": ""
+                },
+                "atFlavorText": {
+                    "value": ""
+                },
+                "invocations": {
                     "value": ""
                 }
             },
@@ -1109,28 +1110,11 @@
                 }
             },
             "moddable": {
-                "modifications": {
-                    "chassisType": "none",
+                "modify": {
+                    "chassis": "none",
                     "augmentSlots": 0,
-                    "mods": {
-                        "slot1": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot2": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot3": {
-                            "uuid": null,
-                            "disabled": false
-                        },
-                        "slot4": {
-                            "uuid": null,
-                            "disabled": false
-                        }
-                    },
-                    "augments": [],
+                    "modSlots": 4,
+                    "items": [],
                     "type": null,
                     "overrides": {}
                 }
@@ -1139,11 +1123,21 @@
         "htmlFields": ["description.value", "description.chat", "description.unidentified"],
         "archetype": {
             "templates": ["archetypeDescription"],
-            "className": "",
-            "classCasterType": ""
+            "identifier": "",
+            "classIdentifier": "",
+            "advancement": [],
+            "powercasting": {
+                "force": "none",
+                "tech": "none"
+            },
+            "superiority": {
+                "progression": 0
+            }
         },
         "background": {
-            "templates": ["backgroundDescription"]
+            "templates": ["backgroundDescription"],
+            "identifier": "",
+            "advancement": []
         },
         "backpack": {
             "templates": ["itemDescription", "physicalItem"],
@@ -1158,11 +1152,12 @@
         },
         "class": {
             "templates": ["classDescription"],
-            "className": "",
+            "identifier": "",
             "levels": 1,
             "archetype": "",
             "hitDice": "d6",
             "hitDiceUsed": 0,
+            "advancement": [],
             "saves": [],
             "skills": {
                 "number": 2,
@@ -1171,8 +1166,11 @@
             },
             "source": "",
             "powercasting": {
-                "progression": "none",
-                "ability": ""
+                "force": "none",
+                "tech": "none"
+            },
+            "superiority": {
+                "progression": 0
             }
         },
         "classfeature": {
@@ -1184,8 +1182,10 @@
         },
         "deployment": {
             "templates": ["deploymentDescription"],
+            "identifier": "",
             "rank": 1,
             "flavorText": "",
+            "advancement": [],
             "source": ""
         },
         "deploymentfeature": {
@@ -1219,9 +1219,11 @@
         "consumable": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
             "consumableType": "potion",
+            "ammoType": null,
             "uses": {
                 "autoDestroy": false
-            }
+            },
+            "properties": {}
         },
         "equipment": {
             "templates": [
@@ -1259,7 +1261,9 @@
             "templates": ["itemDescription", "physicalItem"]
         },
         "species": {
-            "templates": ["speciesDescription"]
+            "templates": ["speciesDescription"],
+            "identifier": "",
+            "advancement": []
         },
         "tool": {
             "templates": ["itemDescription", "physicalItem"],
@@ -1270,11 +1274,18 @@
             "proficient": 0,
             "bonus": ""
         },
+        "maneuver": {
+            "templates": ["itemDescription", "activatedEffect", "action"],
+            "maneuverType": "general"
+        },
         "modification": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
             "modificationType": "vibroweapon",
             "modificationSlot": "slot1",
-            "modified": []
+            "modifying": {
+                "id": null,
+                "disabled": false
+            }
         },
         "power": {
             "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1306,6 +1317,7 @@
         "starship": {
             "templates": ["starshipDescription"],
             "size": "",
+            "identifier": "",
             "tier": 0,
             "hullDice": "d6",
             "hullDiceStart": 3,
@@ -1315,6 +1327,7 @@
             "shldDiceStart": 3,
             "shldDiceRolled": [6, 4, 4],
             "shldDiceUsed": 0,
+            "advancement": [],
             "buildBaseCost": 50000,
             "buildMinWorkforce": 5,
             "upgrdCostMult": 1,
@@ -1375,6 +1388,11 @@
         "weapon": {
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable", "moddable"],
             "weaponType": "simpleVW",
+            "ammo": {
+                "target": null,
+                "value": null,
+                "types": ["powerCell"]
+            },
             "baseItem": "",
             "properties": {}
         }

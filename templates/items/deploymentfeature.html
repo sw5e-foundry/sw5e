@@ -54,13 +54,18 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Description Tab --}} {{> "systems/sw5e/templates/items/parts/item-description.html"}} {{!-- Details Tab
-        --}}
+        {{!-- Description Tab --}}
+        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+
+        {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
             <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
-            {{!-- Item Activation Template --}} {{> "systems/sw5e/templates/items/parts/item-activation.html"}} {{!--
-            Recharge Requirement --}} {{#if data.activation.type}}
+            {{!-- Item Activation Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+
+            {{!-- Recharge Requirement --}}
+            {{#if data.activation.type}}
             <div class="form-group recharge">
                 <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
                 <div class="form-fields">
@@ -82,7 +87,8 @@
 
             <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>
 
-            {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{!-- Item Action Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
 
         {{!-- Effects Tab --}}

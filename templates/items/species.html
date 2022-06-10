@@ -25,13 +25,14 @@
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">Description</a>
         <a class="item" data-tab="species-traits">Species Traits</a>
+        <a class="item" data-tab="details">{{localize "SW5E.Details"}}</a>
+        <a class="item" data-tab="advancement">{{localize "SW5E.AdvancementTitle"}}</a>
         <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
         {{!-- Description Tab --}}
-
         <div class="tab description flexcol" data-group="primary" data-tab="description">
             <div class="speciestable">
                 <blockquote class="block">
@@ -296,7 +297,6 @@
             </div>
             <div id="species-description">
                 <p>
-                    <!--Species Description-->
                     {{editor content=data.description.value target="data.description.value" fontsize=12px button=true
                     editable=editable}}
                 </p>
@@ -304,16 +304,29 @@
         </div>
 
         {{!-- Traits Tab --}}
-
         <div id="species traits" class="tab species-traits flexcol" data-group="primary" data-tab="species-traits">
-            <span id="Traits"
-                ><h2>{{item.name}} Traits</h2>
+            <span id="Traits">
+                <h2>{{item.name}} Traits</h2>
                 <p>
-                    As a/an {{item.name}}, you have the following special traits.<br />
+                    As a/an {{item.name}}, you have the following special traits.<br/>
                     {{editor content=data.traits.value target="data.traits.value" button=true editable=editable}}
-                </p></span
-            >
+                </p>
+            </span>
         </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            {{!-- Identifier --}}
+            <div class="form-group">
+                <label>{{localize "SW5E.Identifier"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                </div>
+            </div>
+        </div>
+
+        {{!-- Advancement Tab --}}
+        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">

@@ -48,7 +48,7 @@ export default class ActorSkillConfig extends DocumentSheet {
     const passive = formData[`data.skills.${this._skillId}.bonuses.passive`];
     const passiveRoll = new Roll(passive);
     if ( !passiveRoll.isDeterministic ) {
-      const message = game.i18n.format("SW5E.FormulaCannotContainDiceWarn", {
+      const message = game.i18n.format("SW5E.FormulaCannotContainDiceError", {
         name: game.i18n.localize("SW5E.SkillBonusPassive")
       });
       ui.notifications.error(message);

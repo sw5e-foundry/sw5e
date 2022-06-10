@@ -1,3 +1,5 @@
+import { _linkForUuid } from "./utils.js";
+
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
@@ -25,6 +27,7 @@ export const preloadHandlebarsTemplates = async function () {
         "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html",
+        "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-resources.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html",
         "systems/sw5e/templates/actors/newActor/parts/swalt-traits.html",
@@ -33,8 +36,25 @@ export const preloadHandlebarsTemplates = async function () {
         // Item Sheet Partials
         "systems/sw5e/templates/items/parts/item-action.html",
         "systems/sw5e/templates/items/parts/item-activation.html",
+        "systems/sw5e/templates/items/parts/item-advancement.html",
         "systems/sw5e/templates/items/parts/item-description.html",
         "systems/sw5e/templates/items/parts/item-mountable.html",
-        "systems/sw5e/templates/items/parts/item-modifications.html"
+        "systems/sw5e/templates/items/parts/item-powercasting.html",
+        "systems/sw5e/templates/items/parts/item-modifications.html",
+
+        // Advancement Partials
+        "systems/sw5e/templates/advancement/parts/advancement-controls.html"
     ]);
+};
+
+
+/* -------------------------------------------- */
+/**
+ * Register custom Handlebars helpers used by 5e.
+ */
+export const registerHandlebarsHelpers = function() {
+  Handlebars.registerHelper({
+    getProperty: foundry.utils.getProperty,
+    "sw5e-linkForUuid": _linkForUuid
+  });
 };

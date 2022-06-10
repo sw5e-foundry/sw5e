@@ -1,67 +1,48 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
-
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}"/>
             </h1>
-
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
                 <span class="item-status">{{itemStatus}}</span>
             </div>
-
             <ul class="summary flexrow">
                 <li>
-                    <input
-                        type="text"
-                        name="data.source"
-                        value="{{data.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
     </header>
-
     {{!-- Item Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
         <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
         <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
         <a class="item" data-tab="archetypes">{{ localize "SW5E.Archetypes" }}</a>
+        <a class="item" data-tab="invocations">{{ localize "SW5E.Invocations" }}</a>
+        <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
     </nav>
-
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner
-            editable=editable}}
+            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
         </div>
-
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
-            {{!-- Class Levels Table and Features --}} {{editor content=data.classFeatures.value
-            target="data.classFeatures.value" button=true owner=owner editable=editable}}
-        </div>
-        <!-- {{{data.classFeatures.value}}} -->
-        <!--			
-            {{!-- Class Levels --}}
+            {{!-- Identifier --}}
             <div class="form-group">
-                <label>{{ localize "SW5E.ClassLevels" }}</label>
+                <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.levels" value="{{data.levels}}" data-dtype="Number"/>
+                    <input type="text" name="data.identifier" value="{{data.identifier}}">
                 </div>
-            </div>
-
-            {{!-- Archetype Name --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ArchetypeName" }}</label>
-                <div class="form-fields">
-                    <input type="text" name="data.archetype" value="{{data.archetype}}"/>
-                </div>
+                <p class="hint">
+                    {{{localize "SW5E.ClassIdentifierHint" identifier=data.identifier}}}
+                </p>
             </div>
 
             {{!-- Class Hit Dice --}}
@@ -77,7 +58,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="form-group">
                 <label>{{localize "SW5E.HitDiceUsed"}}</label>
                 <div class="form-fields">
@@ -85,26 +65,22 @@
                 </div>
             </div>
 
-            {{!-- Powercasting --}}
-            <div class="form-group">
-                <label>{{localize 'SW5E.PowerProgression'}}</label>
-                <div class="form-fields">
-                    <select name="data.powercasting.progression">
-                        {{selectOptions config.powerProgression selected=data.powercasting.progression localize=true}}
-                    </select>
-                </div>
-            </div>
+            {{!-- Powercasting and Superiority --}}
+            <h3 class="form-header">{{localize "SW5E.Progression"}}</h3>
+            {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
 
+            {{!-- Superiority --}}
             <div class="form-group">
-                <label>{{localize "SW5E.PowerAbility"}}</label>
+                <label>{{localize "SW5E.Superiority"}}</label>
                 <div class="form-fields">
-                    <select name="data.powercasting.ability">
-                        {{selectOptions config.abilities selected=data.powercasting.ability blank=""}}
+                    <select name="data.superiority.progression">
+                        {{selectOptions config.superiorityProgression selected=data.superiority.progression}}
                     </select>
                 </div>
             </div>
 
             {{!-- Proficiencies --}}
+            <h3 class="form-header">{{localize "SW5E.Proficiency"}}</h3>
             <div class="form-group">
                 <label>
                     {{ localize "SW5E.ClassSaves" }}
@@ -122,7 +98,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             {{!-- Level 1 skills --}}
             <div class="form-group">
                 <label>{{localize "SW5E.ClassSkillsNumber"}}</label>
@@ -130,7 +106,6 @@
                     <input type="text" placeholder="0" name="data.skills.number" value="{{data.skills.number}}" data-dtype="Number"/>
                 </div>
             </div>
-
             <div class="form-group">
                 <label>
                     {{localize "SW5E.ClassSkillsEligible"}}
@@ -148,7 +123,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="form-group">
                 <label>
                     {{localize "SW5E.ClassSkillsChosen"}}
@@ -166,11 +140,24 @@
                     </ul>
                 </div>
             </div>
--->
+        </div>
+
         {{!-- Archetypes Tab --}}
-        <div class="tab flexrow active" data-group="primary" data-tab="archetypes">
-            {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner
-            editable=editable}}
+        <div class="tab flexrow" data-group="primary" data-tab="archetypes">
+            {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- Invocations Tab --}}
+        <div class="tab flexrow" data-group="primary" data-tab="invocations">
+            {{editor content=data.invocations.value target="data.invocations.value" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- Advancement Tab --}} 
+        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
         </div>
     </section>
 </form>

@@ -1,5 +1,7 @@
 import Actor5e from "../../entity.js";
 import Item5e from "../../../item/entity.js";
+import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
+import { AdvancementManager } from "../../../advancement/advancement-manager.js";
 import ProficiencySelector from "../../../apps/proficiency-selector.js";
 import PropertyAttribution from "../../../apps/property-attribution.js";
 import TraitSelector from "../../../apps/trait-selector.js";
@@ -11,8 +13,8 @@ import ActorSensesConfig from "../../../apps/senses-config.js";
 import ActorSkillConfig from "../../../apps/skill-config.js";
 import ActorAbilityConfig from "../../../apps/ability-config.js";
 import ActorTypeConfig from "../../../apps/actor-type.js";
-import {SW5E} from "../../../config.js";
 import ActiveEffect5e from "../../../active-effect.js";
+
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
@@ -32,6 +34,7 @@ export default class ActorSheet5e extends ActorSheet {
             ssactions: new Set(),
             forcePowerbook: new Set(),
             techPowerbook: new Set(),
+            superiorityPowerbook: new Set(),
             features: new Set(),
             ssfeatures: new Set(),
             ssequipment: new Set(),
@@ -51,6 +54,7 @@ export default class ActorSheet5e extends ActorSheet {
                 ".ssfeatures .group-list",
                 ".force-powerbook .group-list",
                 ".tech-powerbook .group-list",
+                ".superiority-powerbook .group-list",
                 ".effects .effects-list"
             ],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
@@ -121,6 +125,11 @@ export default class ActorSheet5e extends ActorSheet {
             return obj;
         }, {});
 
+        // Temporary HP
+        const hp = data.data.attributes.hp;
+        if ( hp.temp === 0 ) delete hp.temp;
+        if ( hp.tempmax === 0 ) delete hp.tempmax;
+
         // Proficiency
         if (game.settings.get("sw5e", "proficiencyModifier") === "dice") {
             data.labels.proficiency = `d${data.data.attributes.prof * 2}`;
@@ -131,9 +140,9 @@ export default class ActorSheet5e extends ActorSheet {
         // Ability Scores
         for (let [a, abl] of Object.entries(actorData.data.abilities)) {
             abl.icon = this._getProficiencyIcon(abl.proficient);
-            abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient];
+            abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
             abl.label = CONFIG.SW5E.abilities[a];
-            abl.baseProf = source.abilities[a].proficient;
+            abl.baseProf = source.abilities[a]?.proficient ?? 0;
         }
 
         // Skills
@@ -141,13 +150,13 @@ export default class ActorSheet5e extends ActorSheet {
             for (let [s, skl] of Object.entries(actorData.data.skills)) {
                 skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
                 skl.icon = this._getProficiencyIcon(skl.value);
-                skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value];
+                skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value].label;
                 if (data.actor.type === "starship") {
                     skl.label = CONFIG.SW5E.starshipSkills[s];
                 } else {
                     skl.label = CONFIG.SW5E.skills[s];
                 }
-                skl.baseValue = source.skills[s]?.value;
+                skl.baseValue = source.skills[s]?.value ?? 0;
             }
         }
 
@@ -300,40 +309,25 @@ export default class ActorSheet5e extends ActorSheet {
                 });
                 break;
 
-            // Equipment-based AC
-            case "default":
-                const hasArmor = !!this.actor.armor;
-                attribution.push({
-                    label: hasArmor ? this.actor.armor.name : game.i18n.localize("SW5E.ArmorClassUnarmored"),
-                    mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
-                    value: hasArmor ? this.actor.armor.data.data.armor.value : 10
-                });
-                if (ac.dex !== 0) {
-                    attribution.push({
-                        label: game.i18n.localize("SW5E.AbilityDex"),
-                        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-                        value: ac.dex
-                    });
-                }
-                break;
-
-            // Other AC formula
             default:
                 const formula = ac.calc === "custom" ? ac.formula : cfg.formula;
                 let base = ac.base;
                 const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
                 for (const [match, term] of formula.matchAll(dataRgx)) {
-                    const value = foundry.utils.getProperty(data, term);
-                    if (term === "attributes.ac.base" || value === 0) continue;
+                    const value = String(foundry.utils.getProperty(data, term));
+                    if ( (term === "attributes.ac.armor") || (value === "0") ) continue;
                     if (Number.isNumeric(value)) base -= Number(value);
                     attribution.push({
                         label: match,
                         mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-                        value: foundry.utils.getProperty(data, term)
+                        value
                     });
                 }
+                const armorInFormula = formula.includes("@attributes.ac.armor");
+                let label = game.i18n.localize("SW5E.PropertyBase");
+                if ( armorInFormula ) label = this.actor.armor?.name ?? game.i18n.localize("SW5E.ArmorClassUnarmored");
                 attribution.unshift({
-                    label: game.i18n.localize("SW5E.PropertyBase"),
+                    label,
                     mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
                     value: base
                 });
@@ -510,6 +504,44 @@ export default class ActorSheet5e extends ActorSheet {
     /* -------------------------------------------- */
 
     /**
+     * Insert a maneuver into the superiority powerbook object when rendering the character sheet.
+     * @param {object} data         Copy of the Actor data being prepared for display.
+     * @param {object[]} maneuvers  Maneuvers to be included in the superiority powerbook.
+     * @returns {object[]}          Superiority powerbook sections in the proper order.
+     * @private
+     */
+    _prepareManeuvers(maneuvers) {
+        const owner = this.actor.isOwner;
+
+        const superiorityPowerbook = Object.keys(CONFIG.SW5E.maneuverTypes).reduce((obj, t, i) => {
+            obj[t] = {
+                order: i,
+                label: CONFIG.SW5E.maneuverTypes[t],
+                canCreate: owner,
+                maneuvers: [],
+                dataset: {
+                    "type": "maneuver",
+                    "maneuver-type": t
+                }
+            };
+            return obj;
+        }, {});
+
+        // Iterate over every maneuver item, adding maneuvers to the superiorityPowerbook by section
+        maneuvers.forEach((maneuver) => {
+            const type = maneuver.data.maneuverType;
+            superiorityPowerbook[type].maneuvers.push(maneuver);
+        });
+
+        // Sort the superiorityPowerbook
+        const sorted = Object.values(superiorityPowerbook);
+        sorted.sort((a, b) => a.order - b.order);
+        return sorted;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Determine whether an Owned Item will be shown based on the current set of filters.
      * @param {object[]} items       Copies of item data to be filtered.
      * @param {Set<string>} filters  Filters applied to the item list.
@@ -519,6 +551,9 @@ export default class ActorSheet5e extends ActorSheet {
     _filterItems(items, filters) {
         return items.filter((item) => {
             const data = item.data;
+
+            // Do not display modifications that are applied to an item
+            if (data.modifying?.id) return false;
 
             // Action usage
             for (let f of ["action", "bonus", "reaction"]) {
@@ -558,13 +593,9 @@ export default class ActorSheet5e extends ActorSheet {
      * @private
      */
     _getProficiencyIcon(level) {
-        const icons = {
-            0: '<i class="far fa-circle"></i>',
-            0.5: '<i class="fas fa-adjust"></i>',
-            1: '<i class="fas fa-check"></i>',
-            2: '<i class="fas fa-check-double"></i>'
-        };
-        return icons[level] || icons[0];
+        const levels = CONFIG.SW5E.proficiencyLevels;
+        const icon = (levels[level] ?? levels[0]).icon;
+        return `<i class="${icon}"></i>`;
     }
 
     /* -------------------------------------------- */
@@ -594,7 +625,7 @@ export default class ActorSheet5e extends ActorSheet {
             inputs.addBack().find('[data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
             // Ability Proficiency
-            html.find(".ability-proficiency").click(this._onToggleAbilityProficiency.bind(this));
+            html.find(".ability-proficiency").on("click contextmenu", this._onCycleAbilityProficiency.bind(this));
 
             // Toggle Skill Proficiency
             html.find(".skill-proficiency").on("click contextmenu", this._onCycleSkillProficiency.bind(this));
@@ -614,8 +645,6 @@ export default class ActorSheet5e extends ActorSheet {
                 .click((ev) => ev.target.select())
                 .change(this._onUsesChange.bind(this));
             html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
-            html.find(".increment-class-level").click(this._onIncrementClassLevel.bind(this));
-            html.find(".decrement-class-level").click(this._onDecrementClassLevel.bind(this));
             html.find(".increment-deployment-rank").click(this._onIncrementDeploymentRank.bind(this));
             html.find(".decrement-deployment-rank").click(this._onDecrementDeploymentRank.bind(this));
             html.find(".increment-starship-tier").click(this._onIncrementStarshipTier.bind(this));
@@ -738,11 +767,11 @@ export default class ActorSheet5e extends ActorSheet {
         const source = this.actor.data._source.data.skills[skillName];
         if (!source) return;
 
-        // Cycle to the next or previous skill level
-        const levels = [0, 1, 0.5, 2];
-        let idx = levels.indexOf(source.value);
-        const next = idx + (event.type === "click" ? 1 : 3);
-        field.value = levels[next % 4];
+        // Cycle to the next or previous proficiency level
+        const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
+        const idx = levels.indexOf(source.value);
+        const next = (idx + (event.type === "click" ? 1 : levels.length-1)) % levels.length;
+        field.value = levels[next];
 
         // Update the field value and save the form
         return this._onSubmit(event);
@@ -782,7 +811,7 @@ export default class ActorSheet5e extends ActorSheet {
                 title: game.i18n.localize("SW5E.PolymorphPromptTitle"),
                 content: {
                     options: game.settings.get("sw5e", "polymorphSettings"),
-                    i18n: SW5E.polymorphSettings,
+                    i18n: CONFIG.SW5E.polymorphSettings,
                     isToken: this.actor.isToken
                 },
                 default: "accept",
@@ -847,35 +876,63 @@ export default class ActorSheet5e extends ActorSheet {
             itemData = scroll.data;
         }
 
-        if (itemData.data) {
-            // Ignore certain statuses
-            ["equipped", "proficient", "prepared"].forEach((k) => delete itemData.data[k]);
-
-            // Downgrade ATTUNED to REQUIRED
-            itemData.data.attunement = Math.min(itemData.data.attunement, CONFIG.SW5E.attunementTypes.REQUIRED);
-        }
+        // Clean up data
+        this._onDropResetData(itemData);
 
         // Stack identical consumables
-        if (itemData.type === "consumable" && itemData.flags.core?.sourceId) {
-            const similarItem = this.actor.items.find((i) => {
-                const sourceId = i.getFlag("core", "sourceId");
-                return (
-                    sourceId &&
-                    sourceId === itemData.flags.core?.sourceId &&
-                    i.type === "consumable" &&
-                    i.name === itemData.name
-                );
-            });
-            if (similarItem && itemData.name !== "Power Cell") {
-                // Always create a new powercell instead of increasing quantity
-                return similarItem.update({
-                    "data.quantity": similarItem.data.data.quantity + Math.max(itemData.data.quantity, 1)
-                });
-            }
+        const stacked = this._onDropStackConsumables(itemData);
+        if ( stacked ) return stacked;
+   
+        // Bypass normal creation flow for any items with advancement
+        if ( itemData.data.advancement?.length && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forNewItem(this.actor, itemData);
+            if ( manager.steps.length ) return manager.render(true);
         }
 
         // Create the owned item as normal
         return super._onDropItemCreate(itemData);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Reset certain pieces of data stored on items when they are dropped onto the actor.
+     * @param {object} itemData    The item data requested for creation. **Will be mutated.**
+     */
+    _onDropResetData(itemData) {
+        if ( !itemData.data ) return;
+        // Ignore certain statuses
+        ["equipped", "proficient", "prepared"].forEach((k) => delete itemData.data[k]);
+
+        // Downgrade ATTUNED to REQUIRED
+        itemData.data.attunement = Math.min(itemData.data.attunement, CONFIG.SW5E.attunementTypes.REQUIRED);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Stack identical consumables when a new one is dropped rather than creating a duplicate item.
+     * @param {object} itemData         The item data requested for creation.
+     * @returns {Promise<Item5e>|null}  If a duplicate was found, returns the adjusted item stack.
+     */
+    _onDropStackConsumables(itemData) {
+        const droppedSourceId = itemData.flags.core?.sourceId;
+        if ( itemData.type !== "consumable" || !droppedSourceId ) return null;
+
+        const similarItem = this.actor.items.find((i) => {
+            const sourceId = i.getFlag("core", "sourceId");
+            return (
+                sourceId &&
+                sourceId === itemData.flags.core?.sourceId &&
+                i.type === "consumable" &&
+                i.name === itemData.name
+            );
+        });
+        if (similarItem) {
+            return similarItem.update({
+                "data.quantity": similarItem.data.data.quantity + Math.max(itemData.data.quantity, 1)
+            });
+        }
     }
 
     /* -------------------------------------------- */
@@ -989,6 +1046,19 @@ export default class ActorSheet5e extends ActorSheet {
         event.preventDefault();
         const header = event.currentTarget;
         const type = header.dataset.type;
+
+        // Check to make sure the newly created class doesn't take player over level cap
+        if ( type === "class" && (this.actor.data.data.details.level + 1 > CONFIG.SW5E.maxLevel) ) {
+            return ui.notifications.error(game.i18n.format("SW5E.MaxCharacterLevelExceededWarn",
+                {max: CONFIG.SW5E.maxLevel}));
+        }
+
+        // Check to make sure the newly created deployment doesn't take player over rank cap
+        if ( type === "deployment" && (this.actor.data.data.details.ranks + 1 > CONFIG.SW5E.maxRank) ) {
+            return ui.notifications.error(game.i18n.format("SW5E.MaxCharacterRankExceededWarn",
+                {max: CONFIG.SW5E.maxRank}));
+        }
+
         const itemData = {
             name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(`SW5E.ItemType${type.capitalize()}`)}),
             type: type,
@@ -1018,14 +1088,34 @@ export default class ActorSheet5e extends ActorSheet {
     /**
      * Handle deleting an existing Owned Item for the Actor.
      * @param {Event} event  The originating click event.
-     * @returns {Promise<Item5e>|undefined}  The deleted item if something was deleted.
+     * @returns {Promise<Item5e|AdvancementManager>|undefined}  The deleted item if something was deleted or the
+     *                                                          advancement manager if advancements need removing.
      * @private
      */
-    _onItemDelete(event) {
+    async _onItemDelete(event) {
         event.preventDefault();
         const li = event.currentTarget.closest(".item");
         const item = this.actor.items.get(li.dataset.itemId);
-        if (item) return item.delete();
+        if ( !item ) return;
+
+        // If item has advancement, handle it separately
+        if ( item.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forDeletedItem(this.actor, item.id);
+            if ( manager.steps.length ) {
+                if ( ["class", "archetype"].includes(item.type) ) {
+                    try {
+                        const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
+                        if ( shouldRemoveAdvancements ) return manager.render(true);
+                    } catch(err) {
+                        return;
+                    }
+                } else {
+                    return manager.render(true);
+                }
+            }
+        }
+
+        return item.delete();
     }
 
     /**
@@ -1050,54 +1140,6 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     /**
-     * Handle incrementing class level on the actor sheet
-     * @param {Event} event   The originating click event
-     * @private
-     */
-
-    _onIncrementClassLevel(event) {
-        event.preventDefault();
-
-        const div = event.currentTarget.closest(".character");
-        const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
-        const itemId = li.dataset.itemId;
-
-        const actor = game.actors.get(actorId);
-        const item = actor.items.get(itemId);
-
-        let levels = item.data.data.levels;
-        const update = {_id: item.data._id, data: {levels: levels + 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-    }
-
-    /**
-     * Handle decrementing class level on the actor sheet
-     * @param {Event} event   The originating click event
-     * @private
-     */
-
-    _onDecrementClassLevel(event) {
-        event.preventDefault();
-
-        const div = event.currentTarget.closest(".character");
-        const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
-        const itemId = li.dataset.itemId;
-
-        const actor = game.actors.get(actorId);
-        const item = actor.items.get(itemId);
-
-        let levels = item.data.data.levels;
-        const update = {_id: item.data._id, data: {levels: levels - 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-    }
-
-    /**
      * Handle incrementing deployment rank on the actor sheet
      * @param {Event} event   The originating click event
      * @private
@@ -1106,67 +1148,14 @@ export default class ActorSheet5e extends ActorSheet {
     async _onIncrementDeploymentRank(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let rank = item.data.data.rank;
-        const update = {_id: item.data._id, data: {rank: rank + 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-
-        const rankTotal = actor.data.data.attributes.rank.total;
-        let rankDeployment = 0;
-
-        switch (item.data.name) {
-            case "Coordinator":
-                rankDeployment = actor.data.data.attributes.rank.coord;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.coord": rankDeployment + 1
-                });
-                break;
-            case "Gunner":
-                rankDeployment = actor.data.data.attributes.rank.gunner;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.gunner": rankDeployment + 1
-                });
-                break;
-            case "Mechanic":
-                rankDeployment = actor.data.data.attributes.rank.mechanic;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.mechanic": rankDeployment + 1
-                });
-                break;
-            case "Operator":
-                rankDeployment = actor.data.data.attributes.rank.operator;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.operator": rankDeployment + 1
-                });
-                break;
-            case "Pilot":
-                rankDeployment = actor.data.data.attributes.rank.pilot;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.pilot": rankDeployment + 1
-                });
-                break;
-            case "Technician":
-                rankDeployment = actor.data.data.attributes.rank.technician;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal + 1,
-                    "data.attributes.rank.technician": rankDeployment + 1
-                });
-                break;
-        }
+        const rnk = item.data.data.rank ?? 99;
+        if (rnk < 5) item.update({ "data.rank": rnk + 1});
     }
 
     /**
@@ -1178,67 +1167,14 @@ export default class ActorSheet5e extends ActorSheet {
     async _onDecrementDeploymentRank(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".character");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let rank = item.data.data.rank;
-        const update = {_id: item.data._id, data: {rank: rank - 1}};
-
-        actor.updateEmbeddedDocuments("Item", [update]);
-
-        const rankTotal = actor.data.data.attributes.rank.total;
-        let rankDeployment = 0;
-
-        switch (item.data.name) {
-            case "Coordinator":
-                rankDeployment = actor.data.data.attributes.rank.coord;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.coord": rankDeployment - 1
-                });
-                break;
-            case "Gunner":
-                rankDeployment = actor.data.data.attributes.rank.gunner;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.gunner": rankDeployment - 1
-                });
-                break;
-            case "Mechanic":
-                rankDeployment = actor.data.data.attributes.rank.mechanic;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.mechanic": rankDeployment - 1
-                });
-                break;
-            case "Operator":
-                rankDeployment = actor.data.data.attributes.rank.operator;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.operator": rankDeployment - 1
-                });
-                break;
-            case "Pilot":
-                rankDeployment = actor.data.data.attributes.rank.pilot;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.pilot": rankDeployment - 1
-                });
-                break;
-            case "Technician":
-                rankDeployment = actor.data.data.attributes.rank.technician;
-                await actor.update({
-                    "data.attributes.rank.total": rankTotal - 1,
-                    "data.attributes.rank.technician": rankDeployment - 1
-                });
-                break;
-        }
+        const rnk = item.data.data.rank ?? 1;
+        if (rnk > 1) item.update({ "data.rank": rnk - 1});
     }
 
     /**
@@ -1250,20 +1186,16 @@ export default class ActorSheet5e extends ActorSheet {
     _onIncrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let tier = item.data.data.tier;
+        const tier = item.data.data.tier;
         if (tier === 5) return;
-        const update = {_id: item.data._id, data: {tier: tier + 1}};
 
-        actor.updateEmbeddedDocuments("Item", [update]);
+        item.update({"data.tier": tier + 1});
     }
 
     /**
@@ -1275,20 +1207,16 @@ export default class ActorSheet5e extends ActorSheet {
     _onDecrementStarshipTier(event) {
         event.preventDefault();
 
-        const div = event.currentTarget.closest(".starship");
         const li = event.currentTarget.closest("li");
-
-        const actorId = div.id.split("-")[1];
         const itemId = li.dataset.itemId;
 
-        const actor = game.actors.get(actorId);
+        const actor = this.actor;
         const item = actor.items.get(itemId);
 
-        let tier = item.data.data.tier;
+        const tier = item.data.data.tier;
         if (tier === 0) return;
-        const update = {_id: item.data._id, data: {tier: tier - 1}};
 
-        actor.updateEmbeddedDocuments("Item", [update]);
+        item.update({"data.tier": tier - 1});
     }
 
     /* -------------------------------------------- */
@@ -1344,15 +1272,23 @@ export default class ActorSheet5e extends ActorSheet {
     /* -------------------------------------------- */
 
     /**
-     * Handle toggling Ability score proficiency level.
-     * @param {Event} event         The originating click event.
-     * @returns {Promise<Actor5e>}  Updated actor instance.
+     * Handle cycling proficiency in an Ability score.
+     * @param {Event} event   A click or contextmenu event which triggered the handler.
+     * @returns {Promise}     Updated data for this actor after changes are applied.
      * @private
      */
-    _onToggleAbilityProficiency(event) {
+    _onCycleAbilityProficiency(event) {
         event.preventDefault();
         const field = event.currentTarget.previousElementSibling;
-        return this.actor.update({[field.name]: 1 - parseInt(field.value)});
+
+        // Cycle to the next or previous proficiency level
+        const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
+        const idx = levels.indexOf(Number(field.value));
+        const next = (idx + (event.type === "click" ? 1 : levels.length-1)) % levels.length;
+        field.value = levels[next];
+
+        // Update the field value and save the form
+        return this._onSubmit(event);
     }
 
     /* -------------------------------------------- */

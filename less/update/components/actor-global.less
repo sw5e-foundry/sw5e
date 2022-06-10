@@ -212,7 +212,7 @@
 
                             padding: 0 3px;
 
-                            &:last-child {
+                            &:last-child, max {
                                 text-align: left;
                             }
                         }
@@ -582,6 +582,16 @@
                 }
             }
             .group-grid-powers {
+                grid-template-columns: auto repeat(5, 100px);
+                &.group-list-title {
+                    display: grid;
+                    align-items: end;
+                    .item-detail {
+                        padding: 0 4px;
+                    }
+                }
+            }
+            .group-grid-maneuvers {
                 grid-template-columns: auto repeat(5, 100px);
                 &.group-list-title {
                     display: grid;
@@ -1035,7 +1045,8 @@
             }
         }
         .tab.force-powerbook,
-        .tab.tech-powerbook {
+        .tab.tech-powerbook,
+        .tab.superiority-powerbook {
             .resource-items {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
@@ -1234,7 +1245,8 @@
                 }
             }
             .tab.force-powerbook,
-            .tab.tech-powerbook {
+            .tab.tech-powerbook,
+            .tab.superiority-powerbook {
                 input.powercasting-level {
                     width: 48px;
                 }

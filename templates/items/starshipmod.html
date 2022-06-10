@@ -16,7 +16,7 @@
             <ul class="summary flexrow">
                 <li>
                     <select name="data.system.value">
-                        {{selectOptions config.ssModSystems selected=data.system.value localize=true}}
+                        {{selectOptions config.ssModSystems selected=data.system.value}}
                     </select>
                 </li>
                 <li>
@@ -62,7 +62,9 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Description Tab --}} {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{!-- Description Tab --}}
+        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
             <h3 class="form-header">{{ localize "SW5E.ItemModificationDetails" }}</h3>
@@ -83,11 +85,13 @@
 
             <h3 class="form-header">{{ localize "SW5E.ItemModificationUsage" }}</h3>
 
-            {{!-- Item Activation Template --}} {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{!-- Item Activation Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemModificationAction" }}</h3>
 
-            {{!-- Item Action Template --}} {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{!-- Item Action Template --}}
+            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
         </div>
 
         {{!-- Effects Tab --}}

@@ -45,6 +45,7 @@ export default class AbilityUseDialog extends Dialog {
             }),
             note: this._getAbilityUseNote(item.data, uses, recharge),
             consumePowerSlot: false,
+            consumeSuperiorityDie: item.data.type === "maneuver",
             consumeRecharge: recharges,
             consumeResource: !!itemData.consume.target,
             consumeUses: uses.per && uses.max > 0,

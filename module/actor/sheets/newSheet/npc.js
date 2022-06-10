@@ -28,7 +28,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
-    static unsupportedItemTypes = new Set(["class"]);
+    static unsupportedItemTypes = new Set([ "background", "class", "archetype", "starship", "starshipaction", "starshipfeature", "starshipmod" ]);
 
     /* -------------------------------------------- */
 
@@ -218,5 +218,19 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
         const hp = new Roll(formula).roll({async: false}).total;
         AudioHelper.play({src: CONFIG.sounds.dice});
         this.actor.update({"data.attributes.hp.value": hp, "data.attributes.hp.max": hp});
+    }
+
+    /* -------------------------------------------- */
+
+    /** @override */
+    async _onDropItemCreate(itemData) {
+        // Increment the number of deployment ranks of a character instead of creating a new item
+        if (itemData.type === "deployment") {
+            const rnk = this.actor.itemTypes.deployment.find((c) => c.name === itemData.name)?.data?.data?.rank ?? 999;
+            if (rnk < 5) return rnk.update({"data.rank": rnk + 1});
+        }
+
+        // Create the owned item as normal
+        return super._onDropItemCreate(itemData);
     }
 }

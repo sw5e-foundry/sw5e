@@ -1,5 +1,5 @@
 <section class="panel">
-    {{#if isCharacter }}
+    {{#if (or isCharacter isStarship) }}
     <div class="currency-encumbrance">
 
         <label class="currency">
@@ -9,6 +9,7 @@
             <input type="text" name="data.currency.{{k}}" value="{{v}}" data-dtype="Number" />
             {{/each}}
         </label>
+        {{#if isCharacter}}
         {{#with data.attributes.encumbrance}}
         <div class="encumbrance-wrapper" title="Encumbrance">
             <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
@@ -22,6 +23,7 @@
             <span class="encumbrance-label">{{value}} / {{max}}</span>
         </div>
         {{/with}}
+        {{/if}}
     </div>
     {{/if}}
 
@@ -60,7 +62,8 @@
             </div>
             <ol class="group-items item-list">
                 {{#each section.items as |item iid|}}
-                <li class="item group-grid-inventory" data-item-id="{{item._id}}">
+                <li class="item group-grid-inventory"
+                    {{#if section.editableName}}data-item-index="{{iid}}"{{else}}data-item-id="{{item._id}}"{{/if}}>
                     <div class="item-name rollable">
                         <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url({{item.img}})"></div>
                         <h4>
@@ -68,11 +71,33 @@
                             {{~#if item.isStack}} ({{item.data.quantity}}){{/if}}
                         </h4>
                         {{#if item.attunement}}
-                        <div class="item-detail attunement">
-                            <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" title="{{localize item.attunement.title}}"></i>
-                        </div>
+                            <div class="item-detail attunement">
+                                <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" title="{{localize item.attunement.title}}"></i>
+                            </div>
+                        {{/if}}
+                        {{#if item.hasReload}}
+                            <div class="form-group uses-per">
+                                <div class="form-fields">
+                                    <span> </span>
+                                    {{#if item.reloadUsesAmmo}}
+                                        <select class="weapon-select-ammo" name="item.data.ammo.target">
+                                            {{#select item.data.ammo.target}}
+                                                <option value=""></option>
+                                                {{#each item.reloadAmmo as |name key|}}
+                                                    <option value="{{key}}">{{name}}</option>
+                                                {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    {{/if}}
+                                    <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
+                                    <span class="sep">/</span>
+                                    <span>{{ data.ammo.max }}</span>
+                                    <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
+                                </div>
+                            </div>
                         {{/if}}
                     </div>
+
 
                     {{#if ../../isCharacter}}
                     <div class="item-detail item-weight">
@@ -114,7 +139,4 @@
         </li>
         {{/each}}
     </ol>
-
-
-
 </section>

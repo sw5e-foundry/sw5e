@@ -4,7 +4,7 @@
     <div class="form-group">
         <label>{{ localize "SW5E.ProficiencyLevel" }}</label>
         <select name="data.abilities.{{abilityId}}.proficient">
-            {{selectOptions proficiencyLevels selected=ability.proficient}}
+            {{selectOptions proficiencyLevels selected=ability.proficient labelAttr="label"}}
         </select>
     </div>
     <div class="form-group">

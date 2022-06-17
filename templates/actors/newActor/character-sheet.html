@@ -34,12 +34,16 @@
                 value="{{data.details.species}}"
                 placeholder="{{ localize 'SW5E.Species' }}"
             />
-            <input
-                type="text"
-                name="data.details.background"
-                value="{{data.details.background}}"
-                placeholder="{{ localize 'SW5E.Background' }}"
-            />
+            {{#if labels.background}}
+                <span title="{{localize 'SW5E.Background'}}">{{labels.background}}</span>
+            {{else}}
+                <input
+                    type="text"
+                    name="data.details.background"
+                    value="{{data.details.background}}"
+                    placeholder="{{ localize 'SW5E.Background' }}"
+                />
+            {{/if}}
             <input
                 type="text"
                 name="data.details.alignment"
@@ -173,12 +177,11 @@
         </div>
     </header>
     {{!-- PC Sheet Navigation --}}
-    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(8, 1fr);"  data-group="primary">
+    <nav class="sheet-navigation root-tabs" style="grid-template-columns: repeat(7, 1fr);"  data-group="primary">
         <button class="item active" data-tab="attributes">{{localize "SW5E.Core"}}</button>
         <button class="item" data-tab="inventory">{{ localize "SW5E.Inventory" }}</button>
         <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
-        <button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
-        <button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+        <button class="item" data-tab="powerbooks">{{ localize "SW5E.PowerbookPl" }}</button>
         <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
         <button class="item" data-tab="ssfeatures">{{ localize "SW5E.StarshipfeaturePl" }}</button>
         <button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
@@ -189,30 +192,52 @@
         <section class="tab core" data-group="primary" data-tab="attributes">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-core.html" sections=attributes}}
         </section>
+
         {{!-- Inventory Tab --}}
         <section class="tab inventory" data-group="primary" data-tab="inventory">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html" sections=inventory}}
         </section>
+
         {{!-- Features Tab --}}
         <section class="tab features" data-group="primary" data-tab="features">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}
         </section>
-        {{!-- Powerbook Tabs --}}
-        <section class="tab force-powerbook" data-group="primary" data-tab="force-powerbook">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html"}}
+
+        {{!-- Force Powers, Tech Powers and Maneuvers Tab --}}
+        <section class="tab powerbooks" data-group="primary" data-tab="powerbooks">
+            <nav class="sheet-navigation powerbook-tabs tab-list" style="grid-template-columns: repeat(3, 1fr);"  data-subgroup-selection>
+                <button class="item active" data-subgroup="book-tab" data-target="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
+                <button class="item" data-subgroup="book-tab" data-target="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+                <button class="item" data-subgroup="book-tab" data-target="superiority-powerbook">{{ localize "SW5E.SuperiorityPowerbook" }}</button>
+            </nav>
+
+            {{!-- Force Powers Tab --}}
+            <section class="tab force-powerbook active" data-subgroup="book-tab" data-target="force-powerbook">
+                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.html"}}
+            </section>
+
+            {{!-- Tech Powers Tab --}}
+            <section class="tab tech-powerbook" data-subgroup="book-tab" data-target="tech-powerbook">
+                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
+            </section>
+
+            {{!-- Maneuvers Tab --}}
+            <section class="tab superiority-powerbook" data-subgroup="book-tab" data-target="superiority-powerbook">
+                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.html"}}
+            </section>
         </section>
 
-        <section class="tab tech-powerbook" data-group="primary" data-tab="tech-powerbook">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.html"}}
-        </section>
+
         {{!-- Starships Tab --}}
         <section class="tab features" data-group="primary" data-tab="ssfeatures">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-starships.html" sections=ssfeatures}}
         </section>
+
         {{!-- Effects Tab --}}
         <section class="tab effects flexcol" data-group="primary" data-tab="effects">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
         </section>
+
         {{!-- Biography Tab --}}
         <section class="tab biography" data-group="primary" data-tab="biography">
             {{> "systems/sw5e/templates/actors/newActor/parts/swalt-biography.html"}}

@@ -46,13 +46,13 @@ export default class CharacterImporter {
 
         /* ----------------------------------------------------------------- */
         /*  character.data.skills.<skill_name>.value is all that matters
-    /*  values can be 0, 0.5, 1 or 2
-    /*  0 = regular
-    /*  0.5 = half-proficient
-    /*  1 = proficient
-    /*  2 = expertise
-    /*  foundry takes care of calculating the rest
-    /* ----------------------------------------------------------------- */
+        /*  values can be 0, 0.5, 1 or 2
+        /*  0 = regular
+        /*  0.5 = half-proficient
+        /*  1 = proficient
+        /*  2 = expertise
+        /*  foundry takes care of calculating the rest
+        /* ----------------------------------------------------------------- */
         const skills = {
             acr: {
                 value: sourceCharacter.attribs.find((e) => e.name == "acrobatics_type").current
@@ -113,6 +113,7 @@ export default class CharacterImporter {
         const targetCharacter = {
             name: sourceCharacter.name,
             type: "character",
+            img: sourceCharacter.avatar,
             data: {
                 abilities: abilities,
                 details: details,
@@ -124,69 +125,80 @@ export default class CharacterImporter {
         };
 
         let actor = await Actor.create(targetCharacter);
-        CharacterImporter.addProfessions(sourceCharacter, actor);
-    }
 
-    // Parse all classes and add them to already created actor.
-    // "class" is a reserved word, therefore I use profession where I can.
-    static async addProfessions(sourceCharacter, actor) {
-        let result = [];
+        await this.addClasses(
+            sourceCharacter.attribs
+                .filter((e) => this.classOrMulticlass(e.name))
+                .map((e) => {
+                    return {
+                        name: this.capitalize(e.current),
+                        type: this.baseOrMulti(e.name),
+                        level: this.getLevel(e, sourceCharacter),
+                        arch: this.getSubclass(e, sourceCharacter),
+                    }
+                }),
+            actor
+        );
 
-        // parse all class and multiclassX items
-        // couldn't get Array.filter to work here for some reason
-        // result = array of objects. each object is a separate class
-        sourceCharacter.attribs.forEach((e) => {
-            if (CharacterImporter.classOrMulticlass(e.name)) {
-                var t = {
-                    profession: CharacterImporter.capitalize(e.current),
-                    type: CharacterImporter.baseOrMulti(e.name),
-                    level: CharacterImporter.getLevel(e, sourceCharacter)
-                };
-                result.push(t);
-            }
-        });
+        await this.addSpecies(
+            sourceCharacter.attribs
+                .find((e) => e.name == "race")
+                .current,
+            actor
+        );
 
-        // pull classes directly from system compendium and add them to current actor
-        const professionsPack = await game.packs.get("sw5e.classes").getDocuments();
-        result.forEach((prof) => {
-            let assignedProfession = professionsPack.find((o) => o.name === prof.profession);
-            assignedProfession.data.data.levels = prof.level;
-            actor.createEmbeddedDocuments("Item", [assignedProfession.data], {displaySheet: false});
-        });
+        await this.addBackground(
+            sourceCharacter.attribs
+                .find((e) => e.name == "background")
+                .current,
+            actor
+        );
 
-        this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
-
-        this.addPowers(
+        await this.addPowers(
             sourceCharacter.attribs
                 .filter((e) => e.name.search(/repeating_power.+_powername/g) != -1)
                 .map((e) => e.current),
             actor
         );
 
-        const discoveredItems = sourceCharacter.attribs.filter(
-            (e) => e.name.search(/repeating_inventory.+_itemname/g) != -1
+        await this.addItems(
+            sourceCharacter.attribs
+                .filter((e) => e.name.search(/repeating_(?:inventory|traits).+_(?:item)?name/g) != -1)
+                .map((item) => {
+                    const id = item.name.match(/-\w{19}/g);
+                    return {
+                        name: item.current,
+                        quantity: sourceCharacter.attribs.find((e) => e.name === `repeating_inventory_${id}_itemcount`)?.current ?? 1
+                    };
+                }),
+            actor
         );
-        const items = discoveredItems.map((item) => {
-            const id = item.name.match(/-\w{19}/g);
-
-            return {
-                name: item.current,
-                quantity: sourceCharacter.attribs.find((e) => e.name === `repeating_inventory_${id}_itemcount`).current
-            };
-        });
-
-        this.addItems(items, actor);
     }
 
-    static async addClasses(profession, level, actor) {
-        let classes = await game.packs.get("sw5e.classes").getDocuments();
-        let assignedClass = classes.find((c) => c.name === profession);
-        assignedClass.data.data.levels = level;
-        await actor.createEmbeddedDocuments("Item", [assignedClass.data], {displaySheet: false});
+    static async addClasses(classes, actor) {
+        const classesPack = await game.packs.get("sw5e.classes").getDocuments();
+        const archetypesPack = await game.packs.get("sw5e.archetypes").getDocuments();
+
+        // Make sure the base class is added first
+        const firstClassIdx = classes.findIndex(cls => cls.type === "base_class");
+        const firstClass = classes.splice(firstClassIdx, 1)[0];
+        classes.unshift(firstClass);
+
+        for (const cls of classes) {
+            const compendiumClass = classesPack.find((o) => o.name === cls.name);
+            if (compendiumClass) {
+                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass.data]))[0];
+                await createdClass.update({"data.levels": cls.level});
+            }
+            const compendiumArch = archetypesPack.find((o) => o.name === cls.arch);
+            if (compendiumArch) {
+                await actor.createEmbeddedDocuments("Item", [compendiumArch.data]);
+            }
+        }
     }
 
     static classOrMulticlass(name) {
-        return name === "class" || (name.includes("multiclass") && name.length <= 12);
+        return name === "class" || (name.match(/multiclass\d+$/));
     }
 
     static baseOrMulti(name) {
@@ -199,11 +211,21 @@ export default class CharacterImporter {
 
     static getLevel(item, sourceCharacter) {
         if (item.name === "class") {
-            let result = sourceCharacter.attribs.find((e) => e.name === "base_level").current;
+            let result = sourceCharacter.attribs.find((e) => e.name === "base_level")?.current;
             return parseInt(result);
         } else {
-            let result = sourceCharacter.attribs.find((e) => e.name === `${item.name}_lvl`).current;
+            let result = sourceCharacter.attribs.find((e) => e.name === `${item.name}_lvl`)?.current;
             return parseInt(result);
+        }
+    }
+
+    static getSubclass(item, sourceCharacter) {
+        if (item.name === "class") {
+            let result = sourceCharacter.attribs.find((e) => e.name === "subclass")?.current;
+            return result;
+        } else {
+            let result = sourceCharacter.attribs.find((e) => e.name === `${item.name}_subclass`)?.current;
+            return result;
         }
     }
 
@@ -248,9 +270,17 @@ export default class CharacterImporter {
             }
         });
 
-        actor.update(actorData);
+        await actor.update(actorData);
 
-        await actor.createEmbeddedDocuments("Item", [assignedSpecies.data], {displaySheet: false});
+        await actor.createEmbeddedDocuments("Item", [assignedSpecies.data]);
+    }
+
+    static async addBackground(bg, actor) {
+        const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
+        const packBg = bgs.find((c) => c.name === bg);
+        if (packBg) {
+            await actor.createEmbeddedDocuments("Item", [packBg.data]);
+        }
     }
 
     static async addPowers(powers, actor) {
@@ -261,28 +291,45 @@ export default class CharacterImporter {
             const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
 
             if (createdPower) {
-                await actor.createEmbeddedDocuments("Item", [createdPower.data], {displaySheet: false});
+                await actor.createEmbeddedDocuments("Item", [createdPower.data]);
             }
         }
     }
 
     static async addItems(items, actor) {
-        const weapons = await game.packs.get("sw5e.weapons").getDocuments();
-        const armors = await game.packs.get("sw5e.armor").getDocuments();
-        const adventuringGear = await game.packs.get("sw5e.adventuringgear").getDocuments();
+        const packItems = [
+            ...(await game.packs.get("sw5e.lightweapons").getDocuments()),
+            ...(await game.packs.get("sw5e.vibroweapons").getDocuments()),
+            ...(await game.packs.get("sw5e.blasters").getDocuments()),
+            ...(await game.packs.get("sw5e.armor").getDocuments()),
+            ...(await game.packs.get("sw5e.adventuringgear").getDocuments()),
+            ...(await game.packs.get("sw5e.ammo").getDocuments()),
+            ...(await game.packs.get("sw5e.archetypes").getDocuments()),
+            ...(await game.packs.get("sw5e.implements").getDocuments()),
+            ...(await game.packs.get("sw5e.backgrounds").getDocuments()),
+            ...(await game.packs.get("sw5e.invocations").getDocuments()),
+            ...(await game.packs.get("sw5e.consumables").getDocuments()),
+            ...(await game.packs.get("sw5e.enhanceditems").getDocuments()),
+            ...(await game.packs.get("sw5e.explosives").getDocuments()),
+            ...(await game.packs.get("sw5e.feats").getDocuments()),
+            ...(await game.packs.get("sw5e.fightingstyles").getDocuments()),
+            ...(await game.packs.get("sw5e.fightingmasteries").getDocuments()),
+            ...(await game.packs.get("sw5e.gamingsets").getDocuments()),
+            ...(await game.packs.get("sw5e.lightsaberform").getDocuments()),
+            ...(await game.packs.get("sw5e.modifications").getDocuments()),
+            ...(await game.packs.get("sw5e.kits").getDocuments()),
+            ...(await game.packs.get("sw5e.maneuvers").getDocuments()),
+        ];
 
         for (const item of items) {
-            const createdItem =
-                weapons.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
-                armors.find((c) => c.name.toLowerCase() === item.name.toLowerCase()) ||
-                adventuringGear.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
+            const packItem = packItems.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
 
-            if (createdItem) {
+            if (packItem) {
                 if (item.quantity != 1) {
-                    createdItem.data.data.quantity = item.quantity;
+                    packItem.data.data.quantity = item.quantity;
                 }
 
-                await actor.createEmbeddedDocuments("Item", [createdItem.data], {displaySheet: false});
+                await actor.createEmbeddedDocuments("Item", [packItem.data]);
             }
         }
     }

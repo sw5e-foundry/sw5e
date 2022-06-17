@@ -45,12 +45,16 @@
                     />
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        name="data.details.background"
-                        value="{{data.details.background}}"
-                        placeholder="{{ localize 'SW5E.Background' }}"
-                    />
+                    {{#if labels.background}}
+                        <span title="{{localize 'SW5E.Background'}}">{{labels.background}}</span>
+                    {{else}}
+                        <input
+                            type="text"
+                            name="data.details.background"
+                            value="{{data.details.background}}"
+                            placeholder="{{ localize 'SW5E.Background' }}"
+                        />
+                    {{/if}}
                 </li>
                 <li>
                     <input

@@ -89,12 +89,12 @@ export default class ProficiencySelector extends TraitSelector {
                 obj[key] = {label: label, chosen: chosen.includes(key)};
                 return obj;
             }, {});
-            data = this._sortObject(data);
+            data = game.sw5e.utils.sortObjectEntries(data, "label");
         }
 
         for (const category of Object.values(data)) {
             if (!category.children) continue;
-            category.children = this._sortObject(category.children);
+            category.children = game.sw5e.utils.sortObjectEntries(category.children, "label");
         }
 
         return data;
@@ -146,7 +146,9 @@ export default class ProficiencySelector extends TraitSelector {
         // Build the extended index and return a promise for the data
         const promise = packObject
             .getIndex({
-                fields: ["data.armor.type", "data.toolType", "data.weaponType"]
+                // TODO: Remove "img" from this index when v10 is required
+                // see https://gitlab.com/foundrynet/foundryvtt/-/issues/6152
+                fields: ["data.armor.type", "data.toolType", "data.weaponType", "img"]
             })
             .then((index) => {
                 const store = index.reduce((obj, entry) => {
@@ -158,19 +160,6 @@ export default class ProficiencySelector extends TraitSelector {
             });
         this._cachedIndices[pack] = promise;
         return promise;
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Take the provided object and sort by the "label" property.
-     *
-     * @param {object} object  Object to be sorted.
-     * @returns {object}        Sorted object.
-     * @private
-     */
-    static _sortObject(object) {
-        return Object.fromEntries(Object.entries(object).sort((lhs, rhs) => lhs[1].label.localeCompare(rhs[1].label)));
     }
 
     /* -------------------------------------------- */

@@ -28,7 +28,7 @@ export default class ActorSheet5eNPCNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
-    static unsupportedItemTypes = new Set(["class"]);
+    static unsupportedItemTypes = new Set([ "background", "class", "archetype", "starship", "starshipaction", "starshipfeature", "starshipmod" ]);
 
     /* -------------------------------------------- */
 

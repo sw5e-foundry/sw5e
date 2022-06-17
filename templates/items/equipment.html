@@ -59,7 +59,7 @@
                         {{selectOptions config.armorTypes selected=data.armor.type}}
                     </optgroup>
                     <optgroup label="{{ localize 'SW5E.Starship' }}">
-                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type localize=true}}
+                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type}}
                     </optgroup>
                     {{selectOptions config.miscEquipmentTypes selected=data.armor.type}}
                 </select>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
                         <select name="data.attunement" data-dtype="Number">
-                            {{selectOptions config.attunements selected=data.attunement localize=true}}
+                            {{selectOptions config.attunements selected=data.attunement}}
                         </select>
                     </div>
                 {{/unless}}
@@ -101,23 +101,23 @@
                 </div>
             {{/unless}}
 
-            {{#unless isStarshipEquipment}}
-                {{!-- Armor Properties --}}
+            {{#if equipProperties}}
+                {{!-- Equipment Properties --}}
                 <div class="form-group stacked armor-properties">
-                    <label>{{ localize "SW5E.ArmorProperties" }}</label>
-                    {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Boolean")}}
-                    <label class="checkbox">
-                        <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/> {{ localize property.name }}
-                    </label>
+                    <label>{{ localize "SW5E.EquipmentProperties" }}</label>
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                        <label class="checkbox" title="{{localize property.desc}}">
+                            <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                        </label>
                     {{/if}} {{/each}}
 
-                    {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Number")}}
-                    <label class="number">
-                        {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
-                    </label>
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Number")}}
+                        <label class="number" title="{{localize property.desc}}">
+                            {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                        </label>
                     {{/if}} {{/each}}
                 </div>
-            {{/unless}}
+            {{/if}}
 
             {{#if (or isStarshipArmor isStarshipShield)}}
                 {{!-- Starship Armor and Shield Properties --}}

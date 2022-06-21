@@ -1003,7 +1003,7 @@ export default class Actor5e extends Actor {
                 if (Number.isNaN(i)) continue;
 
                 if (Number.isNumeric(lvl[`${p}override`])) lvl[`${p}max`] = Math.max(parseInt(lvl[`${p}override`]), 0);
-                else lvl[`${p}max`] = (i < progression.limit) ? 1000 : 1;
+                else lvl[`${p}max`] = (i > progression.maxPowerLevel) ? 0 : (i >= progression.limit) ? 1 : 1000;
 
                 if (isNPC) {
                     lvl[`${p}value`] = lvl[`${p}max`];

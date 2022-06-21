@@ -342,6 +342,18 @@ Hooks.on("renderJournalDirectory", (app, html, data) => {
 Hooks.on("renderRollTableDirectory", (app, html, data) => {
     setFolderBackground(html);
 });
+// Remigrate button from PF2E
+Hooks.on("renderSettings", async (_app, html) => {
+    if (game.user.hasRole("GAMEMASTER")) {
+        const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
+        const shootButton = $('<button type="button">')
+            .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
+            .on("click", () => migrations.migrateWorld());
+        remigrate.append(shootButton);
+
+        $("#settings-documentation").after("<h2>Star Wars 5e</h2>", remigrate);
+    }
+});
 Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
     console.log("renderSwaltSheet");
 });

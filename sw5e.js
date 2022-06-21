@@ -346,7 +346,7 @@ Hooks.on("renderRollTableDirectory", (app, html, data) => {
 Hooks.on("renderSettings", async (_app, html) => {
     const elements = ["<h2>Star Wars 5e</h2>"];
 
-        const links = {
+    const links = {
         guide: {
             url: "https://github.com/unrealkakeman89/sw5e/wiki",
             label: game.i18n.localize("SW5E.Wiki"),

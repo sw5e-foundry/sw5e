@@ -298,7 +298,6 @@ export function slugifyIcon(path) {
  * @param {string} [style] The style of the icon, defaults to "solid"
  * @return {string}        The slugified name
  */
-/** Generate and return an HTML element for a FontAwesome icon */
 export function fontAwesomeIcon(glyph, style = "solid") {
     const styleClass = style === "regular" ? "far" : "fas";
     const glyphClass = glyph.startsWith("fa-") ? glyph : `fa-${glyph}`;

@@ -45,6 +45,26 @@
                             {{item.name}}
                             {{#if item.data.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
                         </h4>
+                        {{#if item.hasReload}}
+                            <div class="form-group uses-per">
+                                <div class="form-fields">
+                                    {{#if item.reloadUsesAmmo}}
+                                        <select class="weapon-select-ammo" name="item.data.ammo.target">
+                                            {{#select item.data.ammo.target}}
+                                                <option value=""></option>
+                                                {{#each item.reloadAmmo as |name key|}}
+                                                    <option value="{{key}}">{{name}}</option>
+                                                {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    {{/if}}
+                                    <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
+                                    <span class="sep">/</span>
+                                    <span>{{ data.ammo.max }}</span>
+                                    <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
+                                </div>
+                            </div>
+                        {{/if}}
                     </div>
 
                     {{#if section.hasActions}}

@@ -1055,7 +1055,7 @@ export default class Item5e extends Item {
                 else if (id.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", {name: this.name}));
                 return false;
             }
-            resourceUpdates.push({_id: this.id, "data.ammo.value": id.ammo.value - 1});
+            itemUpdates["data.ammo.value"] = id.ammo.value - 1;
         }
 
         // Consume Limited Resource
@@ -1518,11 +1518,13 @@ export default class Item5e extends Item {
         delete this._ammo;
         let ammo = null;
         let ammoUpdate = null;
+        let itemUpdate = null;
         const consume = itemData.consume;
         if (itemData.ammo?.max) {
-            const q = itemData.ammo.value;
+            const quant = itemData.ammo.value;
+            const target = itemData.ammo.target;
             const consumeAmount = 1;
-            if (q && (q - consumeAmount) >= 0) {
+            if (target && quant && (quant - consumeAmount) >= 0) {
                 ammo = this.actor.items.get(itemData.ammo.target);
                 this._ammo = ammo;
                 title += ` [${ammo.name}]`;
@@ -1531,13 +1533,13 @@ export default class Item5e extends Item {
             // Get pending reload update
             const usage = this._getUsageUpdates({consumeReload: true});
             if (usage === false) return null;
-            ammoUpdate = usage.resourceUpdates || [];
+            itemUpdate = usage.itemUpdates || {};
         } else if (consume?.type === "ammo") {
             ammo = this.actor.items.get(consume.target);
             if (ammo?.data) {
-                const q = ammo.data.data.quantity;
+                const quant = ammo.data.data.quantity;
                 const consumeAmount = consume.amount ?? 0;
-                if (q && q - consumeAmount >= 0) {
+                if (quant && quant - consumeAmount >= 0) {
                     this._ammo = ammo;
                     title += ` [${ammo.name}]`;
                 }
@@ -1605,6 +1607,7 @@ export default class Item5e extends Item {
 
         // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
         if ( ammo && ammoUpdate.length ) await this.actor?.updateEmbeddedDocuments("Item", ammoUpdate);
+        if ( !foundry.utils.isObjectEmpty(itemUpdate) ) await this.update(itemUpdate);
         return roll;
     }
 

@@ -128,6 +128,7 @@ export default class Actor5e extends Actor {
         if (!foundry.utils.isObjectEmpty(updates)) this.data.update(updates);
 
         this._prepareBaseArmorClass(this.data);
+        this._computeScaleValues(this.data.data);
         switch (this.data.type) {
             case "character":
                 return this._prepareCharacterData(this.data);
@@ -944,7 +945,7 @@ export default class Actor5e extends Actor {
                 let prog = ad?.powercasting?.[castType] ?? "none";
                 if (prog === "none") prog = cd?.powercasting?.[castType] ?? "none";
 
-                if ( !(prog in CONFIG.SW5E[`powerProgression${castType.capitalize()}`]) || prog === "none") continue;
+                if ( !(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
                 if ( prog === "half" && castType === "tech" && levels < 2 ) continue; // Tech half-casters only get techcasting at lvl 2
 
                 const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
@@ -1033,7 +1034,7 @@ export default class Actor5e extends Actor {
         const superiority = ad.attributes.super;
 
         // Determine superiority level based on class items
-        const {level, levels} = this.itemTypes.class.reduce((obj, cls) => {
+        let {level, levels, known, dice} = this.itemTypes.class.reduce((obj, cls) => {
             const cd = cls?.data?.data;
             const ad = cls?.archetype?.data?.data;
 
@@ -1043,21 +1044,25 @@ export default class Actor5e extends Actor {
             const progression = Math.max(cp, ap);
             const levels = (cd?.levels ?? 1);
 
-            obj.level += progression * levels;
-            obj.levels += progression ? levels : 0;
+            if (progression) {
+                obj.level += levels * progression;
+                obj.levels += levels;
+                obj.known += CONFIG.SW5E.maneuversKnownProgression[Math.round(levels * progression)];
+                obj.dice += Math.round(CONFIG.SW5E.superiorityDiceQuantProgression[levels] * progression);
+            }
 
             return obj;
-        }, { level: 0, levels: 0 });
-        superiority.level = Math.round(Math.max(Math.min(level, CONFIG.SW5E.maxLevel), 0));
-        superiority.levels = Math.max(Math.min(levels, CONFIG.SW5E.maxLevel), 0);
+        }, { level: 0, levels: 0, known: 0, dice: 0 });
+
+        level = Math.round(Math.max(Math.min(level, CONFIG.SW5E.maxLevel), 0));
+        levels = Math.round(Math.max(Math.min(levels, CONFIG.SW5E.maxLevel), 0));
 
         // Calculate derived values
+        superiority.level = level;
         superiority.known.value = this.itemTypes.maneuver.length;
-        superiority.known.max = CONFIG.SW5E.maneuversKnownProgression[superiority.level];
-
-        superiority.dice.max = CONFIG.SW5E.superiorityDiceQuantProgression[superiority.level];
-
-        superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[superiority.levels];
+        superiority.known.max = known;
+        superiority.dice.max = dice;
+        superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[levels];
 
         actorData.superiority = superiority;
     }

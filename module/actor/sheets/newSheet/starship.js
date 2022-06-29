@@ -200,22 +200,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             if (item.type === "weapon") {
                 item.isStarshipWeapon = item.data.weaponType in CONFIG.SW5E.weaponStarshipTypes;
                 item.wpnProperties = item.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
-                item.hasReload = !!item.data.ammo.max;
-                if (item.data.properties.rel) {
-                    item.reloadActLabel = "SW5E.WeaponReload";
-                    item.reloadLabel = "SW5E.WeaponReload";
-                    item.reloadAmmo = this.actor.itemTypes.consumable.reduce( (obj, amm) => {
-                        if (amm.data.data.consumableType === "ammo" && item.data.ammo.types.includes(amm.data.data.ammoType)) {
-                            obj[amm.id] = `${amm.name} (${amm.data.data.quantity})`;
-                        }
-                        return obj;
-                    }, {});
-                } else if (item.isStarshipWeapon && item.data.properties.ovr) {
-                    item.reloadActLabel = "SW5E.WeaponCoolDown";
-                    item.reloadLabel = "SW5E.WeaponOverheat";
+                const i = this.actor.items.get(item._id);
+                const reloadProperties = i.sheet._getWeaponReloadProperties();
+                for (const attr of Object.keys(reloadProperties)) {
+                    item[attr] = reloadProperties[attr];
                 }
-                item.reloadUsesAmmo = item.data.ammo.types.length;
-                item.reloadFull = (item.data.ammo.value === item.data.ammo.max) || (item.reloadUsesAmmo && !item.data.ammo.target);
                 ssEquipment.weapons.items.push(item);
             }
             else if (item.type === "starshipmod") ssEquipment.starshipmods.items.push(item);

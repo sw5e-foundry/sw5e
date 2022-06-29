@@ -1517,17 +1517,18 @@ export default class Item5e extends Item {
         // Handle ammunition consumption
         delete this._ammo;
         let ammo = null;
-        let ammoUpdate = null;
-        let itemUpdate = null;
+        let ammoUpdate = [];
+        let itemUpdate = {};
         const consume = itemData.consume;
         if (itemData.ammo?.max) {
-            const quant = itemData.ammo.value;
-            const target = itemData.ammo.target;
-            const consumeAmount = 1;
-            if (target && quant && (quant - consumeAmount) >= 0) {
-                ammo = this.actor.items.get(itemData.ammo.target);
-                this._ammo = ammo;
-                title += ` [${ammo.name}]`;
+            ammo = this.actor.items.get(itemData.ammo.target);
+            if (ammo) {
+                const q = itemData.ammo.value;
+                const consumeAmount = 1;
+                if (q && (q - consumeAmount) >= 0) {
+                    this._ammo = ammo;
+                    title += ` [${ammo.name}]`;
+                }
             }
 
             // Get pending reload update
@@ -1565,7 +1566,7 @@ export default class Item5e extends Item {
                 // Get pending ammunition update
                 const usage = this._getUsageUpdates({consumeResource: true});
                 if (usage === false) return null;
-                ammoUpdate = usage.resourceUpdates || {};
+                ammoUpdate = usage.resourceUpdates || [];
             }
         }
 
@@ -1606,7 +1607,7 @@ export default class Item5e extends Item {
         if (roll === null) return null;
 
         // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
-        if ( ammo && ammoUpdate.length ) await this.actor?.updateEmbeddedDocuments("Item", ammoUpdate);
+        if ( ammoUpdate.length ) await this.actor?.updateEmbeddedDocuments("Item", ammoUpdate);
         if ( !foundry.utils.isObjectEmpty(itemUpdate) ) await this.update(itemUpdate);
         return roll;
     }
@@ -2432,8 +2433,7 @@ export default class Item5e extends Item {
         const ammoData = ammo?.data?.data;
 
         let toReload = wpnData.ammo.max - wpnData.ammo.value;
-        const wpnUpdates = {};
-        const ammoUpdates = {};
+        const updates = [];
 
         if (ammo) {
             if (!wpnData.ammo.types.includes(ammoData.ammoType)) return;
@@ -2446,8 +2446,15 @@ export default class Item5e extends Item {
                 case "rocket":
                 case "snare":
                 case "torpedo":
+                case "ssmissile":
+                case "ssrocket":
+                case "sstorpedo":
+                case "ssbomb":
                     toReload = Math.min(toReload, ammoData.quantity);
-                    ammoUpdates["data.quantity"] = ammoData.quantity - toReload;
+                    updates.push({
+                        "data.quantity": ammoData.quantity - toReload,
+                        "_id": ammo.id,
+                    });
                     break;
                 case "powerCell":
                 case "flechetteClip":
@@ -2455,15 +2462,21 @@ export default class Item5e extends Item {
                 case "powerGenerator":
                 case "projectorCanister":
                 case "projectorTank":
-                    ammoUpdates["data.quantity"] = ammoData.quantity - 1;
+                    updates.push({
+                        "data.quantity": ammoData.quantity - 1,
+                        "_id": ammo.id,
+                    });
                     break;
             }
         }
-        if (toReload <= 0) return;
-        wpnUpdates["data.ammo.value"] = wpnData.ammo.value + toReload;
 
-        if (!foundry.utils.isObjectEmpty(ammoUpdates)) ammo?.update(ammoUpdates);
-        if (!foundry.utils.isObjectEmpty(wpnUpdates)) this.update(wpnUpdates);
+        if (toReload <= 0) return;
+        updates.push({
+            "data.ammo.value": wpnData.ammo.value + toReload,
+            "_id": this.id,
+        });
+
+        if (updates.length) actor.updateEmbeddedDocuments("Item", updates);
     }
 
     /* -------------------------------------------- */

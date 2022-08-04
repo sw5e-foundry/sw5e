@@ -370,12 +370,12 @@ export default class ItemSheet5e extends ItemSheet {
         const labels = this.item.labels;
 
         if (item.type === "weapon") {
+            const properties = CONFIG.SW5E.weaponProperties;
             props.push(
                 ...Object.entries(item.data.properties)
                     .filter((e) => ![false, undefined, null, 0].includes(e[1]))
                     .map((e) => {
-                        const props = CONFIG.SW5E.weaponProperties;
-                        if (props.includes(e[0])) return game.i18n.format(props[e[0]].full, { value: e[1] });
+                        if (e[0] in properties) return game.i18n.format(properties[e[0]].full, { value: e[1] });
                         else {
                             ui.notifications.warn(game.i18n.format("SW5E.WarnInvalidProperty", { weapon: item.name, property: e[0] }));
                             return e[0];

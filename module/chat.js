@@ -79,8 +79,8 @@ export const addChatMessageContextOptions = function (html, options) {
     let secretsShown = (li) => {
         const message = game.messages.get(li.data("messageId"));
         if (!message?.isContentVisible) return null;
-        const actorId = message.data.content.match(/data-actor-id="(?<id>\w+?)"/)[1];
-        const itemId = message.data.content.match(/data-item-id="(?<id>\w+?)"/)[1];
+        const actorId = message.data.content.match(/data-actor-id="(?<id>\w+?)"/)?.[1];
+        const itemId = message.data.content.match(/data-item-id="(?<id>\w+?)"/)?.[1];
         if (!(actorId && itemId)) return null;
         const item = fromUuidSynchronous(`Actor.${actorId}.Item.${itemId}`);
         if (item?.data?.description?.value?.search(/class=('|")secret('|")/) === -1) return null;

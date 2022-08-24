@@ -342,6 +342,49 @@ Hooks.on("renderJournalDirectory", (app, html, data) => {
 Hooks.on("renderRollTableDirectory", (app, html, data) => {
     setFolderBackground(html);
 });
+// Remigrate button and links, adapted from PF2E
+Hooks.on("renderSettings", async (_app, html) => {
+    const elements = ["<h2>Star Wars 5e</h2>"];
+
+    const links = {
+        guide: {
+            url: "https://github.com/unrealkakeman89/sw5e/wiki",
+            label: game.i18n.localize("SW5E.Wiki"),
+        },
+        changelog: {
+            url: "https://github.com/unrealkakeman89/sw5e/releases",
+            label: game.i18n.localize("SW5E.Changelog"),
+        },
+        discord: {
+            url: "https://discord.gg/HUNHVhDQka",
+            label: game.i18n.localize("SW5E.Discord"),
+        },
+    };
+
+    for (const link of Object.values(links)) {
+        const element = $("<div>").attr({ id: 'sw5e-link' });
+        const lnk = $(`<a href=${link.url}>`)
+            .append(
+                $('<button type="button">')
+                .append(utils.fontAwesomeIcon("link"), link.label)
+            );
+        element.append(lnk);
+
+        elements.push(element);
+    }
+
+    if (game.user.hasRole("GAMEMASTER")) {
+        const remigrate = $("<div>").attr({ id: "sw5e-remigrate" });
+        const shootButton = $('<button type="button">')
+            .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
+            .on("click", () => migrations.migrateWorld());
+        remigrate.append(shootButton);
+
+        elements.push(remigrate);
+    }
+
+    $("#settings-documentation").after(elements);
+});
 Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
     console.log("renderSwaltSheet");
 });

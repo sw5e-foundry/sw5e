@@ -67,7 +67,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     /** @override */
     async getData(options) {
-        const data = super.getData(options);
+        let data = super.getData(options);
         const itemData = data.data;
         const actor = this.item.actor;
         data.labels = this.item.labels;
@@ -118,24 +118,7 @@ export default class ItemSheet5e extends ItemSheet {
         }
         if (this.item.type === "weapon") {
             data.wpnProperties = data.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
-            data.hasReload = !!itemData.data.ammo.max;
-            if (itemData.data?.properties?.rel) {
-                data.reloadActLabel = "SW5E.WeaponReload";
-                data.reloadLabel = "SW5E.WeaponReload";
-                if (actor) {
-                    data.reloadAmmo = actor.itemTypes.consumable.reduce( (ammo, i) => {
-                        if (i.data?.data?.consumableType === "ammo" && itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)) {
-                            ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
-                        }
-                        return ammo;
-                    }, {});
-                } else data.reloadAmmo = {};
-            } else if (data.isStarshipWeapon && itemData.data?.properties?.ovr) {
-                data.reloadActLabel = "SW5E.WeaponCoolDown";
-                data.reloadLabel = "SW5E.WeaponOverheat";
-            }
-            data.reloadUsesAmmo = itemData.data?.ammo?.types?.length;
-            data.reloadFull = (itemData.data?.ammo?.value === itemData.data?.ammo?.max) || (data.reloadUsesAmmo && !itemData.data?.ammo?.target);
+            data = this._getWeaponReloadProperties(data);
         }
 
         // Armor Class
@@ -387,10 +370,17 @@ export default class ItemSheet5e extends ItemSheet {
         const labels = this.item.labels;
 
         if (item.type === "weapon") {
+            const properties = CONFIG.SW5E.weaponProperties;
             props.push(
                 ...Object.entries(item.data.properties)
                     .filter((e) => ![false, undefined, null, 0].includes(e[1]))
-                    .map((e) => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]].full, { value: e[1] }))
+                    .map((e) => {
+                        if (e[0] in properties) return game.i18n.format(properties[e[0]].full, { value: e[1] });
+                        else {
+                            ui.notifications.warn(game.i18n.format("SW5E.WarnInvalidProperty", { weapon: item.name, property: e[0] }));
+                            return e[0];
+                        }
+                    })
             );
         } else if (item.type === "power") {
             props.push(
@@ -440,6 +430,41 @@ export default class ItemSheet5e extends ItemSheet {
             props.push(labels.activation, labels.range, labels.target, labels.duration);
         }
         return props.filter((p) => !!p);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare the weapon reload properties
+     * @param {object}    [obj]   The data object to apply the changes to
+     * @returns {object}          The modified data object
+     * @private
+     */
+    _getWeaponReloadProperties(obj = {}) {
+        const itemData = this.item.data;
+        const actor = this.item.actor;
+
+        obj.hasReload = !!itemData.data.ammo.max;
+        obj.reloadUsesAmmo = itemData.data?.ammo?.types?.length;
+        obj.reloadFull = (itemData.data?.ammo?.value === itemData.data?.ammo?.max) || (obj.reloadUsesAmmo && !itemData.data?.ammo?.target);
+        if (obj.hasReload) {
+            if (actor && obj.reloadUsesAmmo) {
+                obj.reloadAmmo = actor.itemTypes.consumable.reduce( (ammo, i) => {
+                    if (i.data?.data?.consumableType === "ammo" && itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)) {
+                        ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
+                    }
+                    return ammo;
+                }, {});
+            } else obj.reloadAmmo = {};
+            if (itemData.data?.properties?.rel) {
+                obj.reloadActLabel = "SW5E.WeaponReload";
+                obj.reloadLabel = "SW5E.WeaponReload";
+            } else if (itemData.data?.properties?.ovr) {
+                obj.reloadActLabel = "SW5E.WeaponCoolDown";
+                obj.reloadLabel = "SW5E.WeaponOverheat";
+            }
+        }
+        return obj;
     }
 
     /* -------------------------------------------- */

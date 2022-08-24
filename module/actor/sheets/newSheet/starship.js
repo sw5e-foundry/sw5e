@@ -197,7 +197,16 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
         // Organize Starship Equipment
         for (const item of equipment) {
-            if (item.type === "weapon") ssEquipment.weapons.items.push(item);
+            if (item.type === "weapon") {
+                item.isStarshipWeapon = item.data.weaponType in CONFIG.SW5E.weaponStarshipTypes;
+                item.wpnProperties = item.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+                const i = this.actor.items.get(item._id);
+                const reloadProperties = i.sheet._getWeaponReloadProperties();
+                for (const attr of Object.keys(reloadProperties)) {
+                    item[attr] = reloadProperties[attr];
+                }
+                ssEquipment.weapons.items.push(item);
+            }
             else if (item.type === "starshipmod") ssEquipment.starshipmods.items.push(item);
             else ssEquipment.equipment.items.push(item);
         }
@@ -290,6 +299,27 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         html.find(".deploy-control").click(this._onDeployControl.bind(this));
         // Item State Toggling
         html.find(".item-toggle").click(this._onToggleItem.bind(this));
+        // Weapon reload
+        html.find(".weapon-select-ammo").change((event) => {
+            event.preventDefault();
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            item.sheet._onWeaponSelectAmmo(event);
+        });
+        html.find(".weapon-reload-count").change((event) => {
+            event.preventDefault();
+            if (event.target.attributes.disabled) return;
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            const value = parseInt(event.currentTarget.value, 10);
+            if (!Number.isNaN(value)) item.update({ "data.ammo.value": value })
+        });
+        html.find(".weapon-reload").click((event) => {
+            event.preventDefault();
+            const itemId = event.currentTarget.closest(".item").dataset.itemId;
+            const item = this.actor.items.get(itemId);
+            item.sheet._onWeaponReload(event);
+        });
     }
 
     /* -------------------------------------------- */

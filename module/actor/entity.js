@@ -934,33 +934,44 @@ export default class Actor5e extends Actor {
         }, {});
 
         // Translate the list of classes into force and tech power-casting progression
-        for (const cls of this.itemTypes.class) {
-            const cd = cls.data.data;
-            const ad = cls?.archetype?.data?.data;
-            const levels = cd.levels;
-            if (levels < 1) continue;
-            for (const progression of Object.values(charProgression)) {
-                const castType = progression.castType;
+        for (const progression of Object.values(charProgression)) {
+            const castType = progression.castType;
 
-                let prog = ad?.powercasting?.[castType] ?? "none";
-                if (prog === "none") prog = cd?.powercasting?.[castType] ?? "none";
+            // EXCEPTION: NPC with an explicit power-caster level
+            let casterLevel = data?.details?.[""+`power${castType.capitalize()}Level`];
+            if (isNPC && casterLevel) {
+                progression.powersKnownMax = CONFIG.SW5E.powersKnown[castType].full[Math.round(casterLevel)];
+                progression.points = casterLevel * CONFIG.SW5E.powerPointsBase.full;
+                progression.casterLevel = casterLevel;
+                progression.maxClassLevel = casterLevel;
+                progression.maxClassProg = 'full';
+                progression.classes = 1;
+            } else {
+                for (const cls of this.itemTypes.class) {
+                    const cd = cls.data.data;
+                    const ad = cls?.archetype?.data?.data;
+                    const levels = cd.levels;
+                    if (levels < 1) continue;
 
-                if ( !(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
-                if ( prog === "half" && castType === "tech" && levels < 2 ) continue; // Tech half-casters only get techcasting at lvl 2
+                    let prog = ad?.powercasting?.[castType] ?? "none";
+                    if (prog === "none") prog = cd?.powercasting?.[castType] ?? "none";
 
-                const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
-                const points = levels * (CONFIG.SW5E.powerPointsBase[prog]);
-                const casterLevel = levels * (CONFIG.SW5E.powerMaxLevel[prog][20] / 9);
+                    if ( !(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
+                    if ( prog === "half" && castType === "tech" && levels < 2 ) continue; // Tech half-casters only get techcasting at lvl 2
 
+                    const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
+                    const points = levels * (CONFIG.SW5E.powerPointsBase[prog]);
+                    const casterLevel = levels * (CONFIG.SW5E.powerMaxLevel[prog][20] / 9);
 
-                progression.classes++;
-                progression.powersKnownMax += known;
-                progression.points += points;
-                progression.casterLevel += casterLevel;
+                    progression.classes++;
+                    progression.powersKnownMax += known;
+                    progression.points += points;
+                    progression.casterLevel += casterLevel;
 
-                if (levels > progression.maxClassLevel) {
-                    progression.maxClassLevel = levels;
-                    progression.maxClassProg = prog;
+                    if (levels > progression.maxClassLevel) {
+                        progression.maxClassLevel = levels;
+                        progression.maxClassProg = prog;
+                    }
                 }
             }
         }
@@ -973,23 +984,16 @@ export default class Actor5e extends Actor {
         }
 
         // Make final adjustments and apply progression data
-        charProgression.tech.points /= 2;
+        if (!isNPC) charProgression.tech.points /= 2;
         for (const progression of Object.values(charProgression)) {
+            const castType = progression.castType;
+
             // 'Round Appropriately'
             progression.points = Math.round(progression.points);
             progression.casterLevel = Math.round(progression.casterLevel);
 
-            // EXCEPTION: NPC with an explicit power-caster level
-            const npcData = data?.details?.powercasting?.[progression.castType];
-            if (isNPC && npcData?.casterLevel) {
-                progression.classes = -1;
-                progression.casterLevel = npcData.casterlevel;
-                progression.points = npcData.points;
-                progression.limit = 10;
-            } else {
-                // What level is considered 'high level casting'
-                progression.limit = CONFIG.SW5E.powerLimit[progression.maxClassProg];
-            }
+            // What level is considered 'high level casting'
+            progression.limit = CONFIG.SW5E.powerLimit[progression.maxClassProg];
 
             // What is the maximum power level you can cast
             if (progression.classes) {
@@ -1209,9 +1213,7 @@ export default class Actor5e extends Actor {
         ad.attributes.powerForceUnivDC += bonusUniv;
         ad.attributes.powerTechDC += bonusTech;
 
-        if (actorData.type !== "character") return;
-
-        // Set Force and tech bonus points for PC Actors
+        // Set Force and tech bonus points
         for (const castType of ["force", "tech"]) {
             if (ad.attributes[castType].level === 0) continue;
             const mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, attr) => {

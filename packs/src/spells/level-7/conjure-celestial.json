@@ -1,11 +1,11 @@
 {
   "_id": "XT7nzJmVGgv73uaf",
   "name": "Conjure Celestial",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You summon a celestial of challenge rating 4 or lower, which appears in an unoccupied space that you can see within range. The celestial disappears when it drops to 0 hit points or when the power ends.</p><p>The celestial is friendly to you and your companions for the duration. Roll initiative for the celestial, which has its own turns. It obeys any verbal commands that you issue to it (no action required by you), as long as they don't violate its alignment. If you don't issue any commands to the celestial, it defends itself from hostile creatures but otherwise takes no actions.</p><p><strong>Higher Levels.&nbsp;</strong>When you cast this power using a 9th-level power slot, you summon a celestial of challenge rating 5 or lower.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "any",
       "type": "space"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 7,
     "school": "con",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/runes-royal-3.jpg",
-  "effects": []
+  "img": "icons/magic/symbols/runes-star-pentagon-orange-purple.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234156,
+    "modifiedTime": 1661787234156,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

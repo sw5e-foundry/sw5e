@@ -2,8 +2,8 @@
   "_id": "z1mx84ONwkXKUZd7",
   "name": "Shield",
   "type": "power",
-  "img": "systems/sw5e/icons/powers/protect-magenta-1.jpg",
-  "data": {
+  "img": "icons/magic/defensive/shield-barrier-glowing-triangle-magenta.webp",
+  "system": {
     "description": {
       "value": "<p>An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.</p>",
       "chat": "",
@@ -91,17 +91,23 @@
       "flags": {},
       "changes": [
         {
-          "key": "data.attributes.ac.bonus",
+          "key": "system.attributes.ac.bonus",
           "value": "5",
-          "mode": 2
+          "mode": 2,
+          "priority": null
         }
       ],
       "disabled": true,
       "duration": {
         "startTime": null,
-        "rounds": 1
+        "rounds": 1,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
-      "icon": "systems/sw5e/icons/powers/protect-magenta-1.jpg",
+      "icon": "icons/magic/defensive/shield-barrier-glowing-triangle-magenta.webp",
       "label": "Shield",
       "origin": "Item.FlLKKv7bQBlIAs11",
       "tint": null,
@@ -110,8 +116,16 @@
   ],
   "folder": null,
   "sort": 100001,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234244,
+    "modifiedTime": 1661787234244,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

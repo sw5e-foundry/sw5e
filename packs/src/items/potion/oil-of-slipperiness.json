@@ -3,7 +3,7 @@
   "name": "Oil of Slipperiness",
   "type": "consumable",
   "img": "icons/consumables/potions/bottle-circular-corked-labeled-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>This sticky black unguent is thick and heavy in the container, but it flows quickly when poured. </em></p>\n<p>The oil can cover a Medium or smaller creature, along with the equipment it's wearing and carrying (one additional vial is required for each size category above Medium).  Applying the oil takes 10 minutes.  The affected creature then gains the effect of a @Compendium[sw5e.powers.da0a1t2FqaTjRZGT]{Freedom of Movement} power for 8 hours.</p>\n<p>Alternatively, the oil can be poured on the ground as an action, where it covers a 10‑foot square, duplicating the effect of the @Compendium[sw5e.powers.etgcR9wqmrhyZ0tx]{Grease} power in that area for 8 hours.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 1600000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233544,
+    "modifiedTime": 1661787233544,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

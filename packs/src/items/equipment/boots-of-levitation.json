@@ -3,7 +3,7 @@
   "name": "Boots of Levitation",
   "type": "equipment",
   "img": "icons/equipment/feet/boots-collared-rounded-brown.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>While you wear these boots, you can use an action to cast the <em>@Compendium[sw5e.powers.MRxldJd6C4bsBo3O]{Levitate}</em> power on yourself at will.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 3400000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233561,
+    "modifiedTime": 1661787233561,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

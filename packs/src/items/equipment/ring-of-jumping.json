@@ -3,7 +3,7 @@
   "name": "Ring of Jumping",
   "type": "equipment",
   "img": "icons/equipment/finger/ring-band-engraved-scrolls-silver.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement)</em></p>\n<p>While wearing this ring, you can cast the @Compendium[sw5e.powers.ZrTc23tToJ0JpH2h]{Jump} power from it as a bonus action at will, but can target only yourself when you do so.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 700000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233962,
+    "modifiedTime": 1661787233962,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

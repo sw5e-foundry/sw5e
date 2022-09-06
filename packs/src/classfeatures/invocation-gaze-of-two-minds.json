@@ -1,11 +1,11 @@
 {
   "_id": "65ReXU4ZWqcSs3Cm",
   "name": "Invocation: Gaze of Two Minds",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You can use your action to touch a willing humanoid and perceive through its senses until the end of your next turn. As long as the creature is on the same plane of existence as you, you can use your action on subsequent turns to maintain this connection, extending the duration until the end of your next turn. While perceiving through the other creature's senses, you benefit from any special senses possessed by that creature, and you are blinded and deafened to your own surroundings.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/magic/perception/third-eye-blue-red.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234334,
+    "modifiedTime": 1661787234334,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "bojUXmNOZ2rJVujD",
   "name": "Ink Cloud",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<section class=\"secret\">\n<p>A 20-foot-radius cloud of ink extends all around the {creature} if it is underwater. The area is heavily obscured for 1 minute, although a significant current can disperse the ink. After releasing the ink, the {creature} can use the Dash action as a bonus action. Recharges after a Short or Long Rest.</p>\n</section>\n<p>A 20-foot-radius cloud of ink extends all around the {creature} if it is underwater.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 20,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -78,5 +79,15 @@
   },
   "flags": {},
   "img": "icons/magic/unholy/orb-swirling-teal.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234569,
+    "modifiedTime": 1661787234569,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

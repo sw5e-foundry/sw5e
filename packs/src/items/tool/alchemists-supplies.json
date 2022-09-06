@@ -3,7 +3,7 @@
   "name": "Alchemist's Supplies",
   "type": "tool",
   "img": "icons/tools/cooking/mortar-herbs-yellow.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>These special tools include the items needed to pursue a craft or trade in alchemy.</p>\n<p>Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.</p>",
       "chat": "",
@@ -22,6 +22,7 @@
     "ability": "int",
     "chatFlavor": "",
     "proficient": 0,
+    "bonus": "",
     "attributes": {
       "powerdc": 10
     },
@@ -32,8 +33,16 @@
   "effects": [],
   "folder": null,
   "sort": 500000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233668,
+    "modifiedTime": 1661787233668,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

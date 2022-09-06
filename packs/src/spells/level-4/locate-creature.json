@@ -1,11 +1,11 @@
 {
   "_id": "gXtzz9t1DTzJeLr4",
   "name": "Locate Creature",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Describe or name a creature that is familiar to you. You sense the direction to the creature's location, as long as that creature is within 1,000 feet of you. If the creature is moving, you know the direction of its movement.</p><p>The power can locate a specific creature known to you, or the nearest creature of a specific kind (such as a human or a unicorn), so long as you have seen such a creature up close—within 30 feet—at least once. If the creature you described or named is in a different form, such as being under the effects of a polymorph power, this power doesn't locate the creature.</p><p>This power can't locate a creature if running water at least 10 feet wide blocks a direct path between you and the creature.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 0,
+      "width": null,
       "units": "",
       "type": "self"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 4,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/leaf-royal-3.jpg",
-  "effects": []
+  "img": "icons/magic/nature/leaf-glow-maple-orange-purple.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234191,
+    "modifiedTime": 1661787234191,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

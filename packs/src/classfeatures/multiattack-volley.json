@@ -1,11 +1,11 @@
 {
   "_id": "l7W6JB9yWLLLtQKP",
   "name": "Multiattack: Volley",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You can use your action to make a ranged attack against any number of creatures within 10 feet of a point you can see within your weapon's range. You must have ammunition for each target, as normal, and you make a separate attack roll for each target.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 20,
+      "width": null,
       "units": "ft",
       "type": "square"
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/skills/ranged/target-bullseye-arrow-white.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234416,
+    "modifiedTime": 1661787234416,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

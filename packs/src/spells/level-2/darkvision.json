@@ -1,11 +1,11 @@
 {
   "_id": "hJ6ZiA3fpoY8v9cp",
   "name": "Darkvision",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has darkvision out to a range of 60 feet.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 2,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/evil-eye-red-1.jpg",
-  "effects": []
+  "img": "icons/magic/perception/eye-ringed-glow-angry-small-red.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234195,
+    "modifiedTime": 1661787234195,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Potion of Gaseous Form",
   "type": "consumable",
   "img": "icons/consumables/potions/potion-bottle-skull-label-poison-teal.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>This potion's container seems to hold fog that moves and pours like water.</em></p>\n<p>When you drink this potion, you gain the effect of the @Compendium[sw5e.powers.2IWiZAJtOGDoKjiz]{Gaseous Form} power for 1 hour (no concentration required) or until you end the effect as a bonus action. </p>\n<p> </p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 2800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233734,
+    "modifiedTime": 1661787233734,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

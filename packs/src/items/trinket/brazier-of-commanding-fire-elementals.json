@@ -3,7 +3,7 @@
   "name": "Brazier of Commanding Fire Elementals",
   "type": "consumable",
   "img": "icons/magic/fire/blast-jet-stream-splash.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>While a fire burns in this brazier, you can use an action to speak the brazier's command word and summon a @Compendium[sw5e.monsters.8SMQl75HLjhuSeau]{Fire Elemental}, as if you had cast the <em>@Compendium[sw5e.powers.1LkZvINag7KqBmDR]{Conjure Elemental}</em> power. The brazier can't be used this way again until the next dawn.</p>\n<p>The brazier weighs 5 pounds.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 3700000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233638,
+    "modifiedTime": 1661787233638,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

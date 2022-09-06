@@ -3,7 +3,7 @@
   "name": "Magmin",
   "type": "npc",
   "img": "systems/sw5e/tokens/elemental/Magmin.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 7,
@@ -535,51 +535,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Magmin",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 0.8,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/elemental/Magmin.webp",
-    "actorId": "8MD1vRBTcgSXXk3u",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -587,13 +567,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/elemental/Magmin.webp",
+      "tint": null,
+      "scaleX": 0.8,
+      "scaleY": 0.8,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -601,7 +605,7 @@
       "name": "Death Burst",
       "type": "feat",
       "img": "icons/magic/light/explosion-star-glow-yellow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>When the magmin dies, it explodes in a burst of fire and magma. </p><p>Each creature within 10 ft. of it must make a  <strong>DC 11 Dexterity</strong> saving throw, taking <strong>7 (2d6) <em>fire damage</em></strong> on a failed save, or half as much damage on a successful one. Flammable objects that aren't being worn or carried in that area are ignited.</p></section><p>When the magmin dies, it explodes in a burst of fire and magma. Each creature within 10 ft. of it must make a <strong>Dexterity</strong> saving throw. Flammable objects that aren't being worn or carried in that area are ignited.</p>",
           "chat": "",
@@ -671,17 +675,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "rlA41r2MlaqmVjvf",
       "name": "Ignited Illumination",
       "type": "feat",
       "img": "icons/magic/fire/explosion-mushroom-nuke-orange.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>As a bonus action, the magmin can set itself ablaze or extinguish its flames. While ablaze, the magmin sheds bright light in a <strong>10-foot radius</strong> and dim light for an additional <strong>10 ft.</strong></p>",
           "chat": "",
@@ -746,17 +758,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "th3hfRWQ3PT9f3Gs",
       "name": "Touch",
       "type": "weapon",
       "img": "icons/magic/fire/flame-burning-fist-strike.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+4 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>7 (2d6) <em>fire damage</em></strong>. </p><p></p></section><p>The Magmin attacks with its Touch. If the target is a creature or a flammable object, it ignites. Until a target takes an action to douse the fire, the target takes <strong>3 (1d6) <em>fire damage</em></strong> at the end of each of its turns.</p>",
           "chat": "",
@@ -850,23 +870,38 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "AljGyVrrsrPBi1QM",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232626,
+    "modifiedTime": 1661878729615,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,13 +1,13 @@
 {
   "_id": "DGONTFbk5eORs5qv",
   "name": "Black Tentacles",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
-      "value": "<p>Squirming, ebony tentacles fill a 20-foot square on ground that you can see within range. For the Duration, these tentacles turn the ground in the area into difficult terrain.</p><p>When a creature enters the affected area for the first time on a turn or starts its turn there, the creature must succeed on a Dexterity saving throw or take 3d6 bludgeoning damage and be @Compendium[sw5e.rules.QRKWz3p6v9Rl1Tzh]{Restrained} by the tentacles until the power ends. A creature that starts its turn in the area and is already @Compendium[sw5e.rules.QRKWz3p6v9Rl1Tzh]{Restrained} by the tentacles takes 3d6 bludgeoning damage.</p><p>A creature @Compendium[sw5e.rules.QRKWz3p6v9Rl1Tzh]{Restrained} by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your power save DC. On a success, it frees itself.</p>",
+      "value": "<p>Squirming, ebony tentacles fill a 20-foot square on ground that you can see within range. For the Duration, these tentacles turn the ground in the area into difficult terrain.</p><p>When a creature enters the affected area for the first time on a turn or starts its turn there, the creature must succeed on a Dexterity saving throw or take 3d6 bludgeoning damage and be @UUID[Compendium.sw5e.rules.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc]{Restrained} by the tentacles until the power ends. A creature that starts its turn in the area and is already @UUID[Compendium.sw5e.rules.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc]{Restrained} by the tentacles takes 3d6 bludgeoning damage.</p><p>A creature @UUID[Compendium.sw5e.rules.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc]{Restrained} by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your power save DC. On a success, it frees itself.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 20,
+      "width": null,
       "units": "ft",
       "type": "square"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -86,6 +92,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/vines-eerie-2.jpg",
-  "effects": []
+  "img": "icons/magic/nature/vines-thorned-curled-glow-teal-purple.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234098,
+    "modifiedTime": 1661787234098,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

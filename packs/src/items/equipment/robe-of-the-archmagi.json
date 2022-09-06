@@ -3,7 +3,7 @@
   "name": "Robe of the Archmagi",
   "type": "equipment",
   "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement by a sorcerer, warlock, or wizard)</em></p>\n<p>This elegant garment is made from exquisite cloth of white, gray, or black and adorned with silvery runes. The robe's color corresponds to the alignment for which the item was created. A white robe was made for good, gray for neutral, and black for evil. You can't attune to a robe of the archmagi that doesn't correspond to your alignment. You gain these benefits while wearing the robe:</p>\n<ul>\n<li>If you aren't wearing armor, your base Armor Class is 15 + your Dexterity modifier.</li>\n<li>You have advantage on saving throws against powers and other magical effects.</li>\n<li>Your power save DC and power attack bonus each increase by 2.</li>\n</ul>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -92,26 +93,42 @@
       "_id": "x6gy8sik893jvxea",
       "changes": [
         {
-          "key": "data.attributes.ac.armor",
+          "key": "system.attributes.ac.armor",
           "mode": 5,
-          "value": "15"
+          "value": "15",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "icon": "icons/magic/symbols/rune-sigil-black-pink.webp",
       "label": "15 base AC",
       "origin": "Compendium.sw5e.items.mr96Z8YTI490ExhP",
       "transfer": true,
-      "flags": {}
+      "flags": {},
+      "tint": null
     }
   ],
   "folder": null,
   "sort": 800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233856,
+    "modifiedTime": 1661787233856,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "j8S49Rea8b1640Zi",
   "name": "Holy Aura",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Divine light washes out from you and coalesces in a soft radiance in a 30-foot radius around you. Creatures of your choice in that radius when you cast this power shed dim light in a 5-foot radius and have advantage on all Saving Throws, and other creatures have disadvantage on Attack rolls against them until the power ends. In addition, when a fiend or an Undead hits an affected creature with a melee attack, the aura flashes with brilliant light. The attacker must succeed on a Constitution saving throw or be Blinded until the power ends.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 30,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "con",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 8,
     "school": "abj",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/haste-sky-3.jpg",
-  "effects": []
+  "img": "icons/magic/control/buff-flight-wings-runes-blue-white.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234212,
+    "modifiedTime": 1661787234212,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

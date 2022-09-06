@@ -1,11 +1,11 @@
 {
   "_id": "8PJAsHmbu6UgDHC0",
   "name": "Wind Walk",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You and up to ten willing creatures you can see within range assume a gaseous form for the Duration, appearing as wisps of cloud. While in this cloud form, a creature has a flying speed of 300 feet and has resistance to damage from nonmagical weapons. The only Actions a creature can take in this form are the Dash action or to revert to its normal form. Reverting takes 1 minute, during which time a creature is Incapacitated and can't move. Until the power ends, a creature can revert to cloud form, which also requires the 1-minute transformation.</p>\n        <p>If a creature is in cloud form and flying when the effect ends, the creature descends 60 feet per round for 1 minute until it lands, which it does safely. If it can't land after 1 minute, the creature falls the remaining distance.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 11,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 6,
     "school": "trs",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/wind-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/wind-swirl-gray-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234079,
+    "modifiedTime": 1661787234079,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

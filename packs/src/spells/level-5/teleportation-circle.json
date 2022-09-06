@@ -1,11 +1,11 @@
 {
   "_id": "8aWtP5hcrmcEesBW",
   "name": "Teleportation Circle",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>As you cast the power, you draw a 10-foot-diameter circle on the ground inscribed with sigils that link your location to a permanent teleportation circle of your choice whose sigil sequence you know and that is on the same plane of existence as you. A shimmering portal opens within the circle you drew and remains open until the end of your next turn. Any creature that enters the portal instantly appears within 5 feet of the destination circle or in the nearest unoccupied space if that space is occupied.</p><p>Many major temples, guilds, and other important places have permanent teleportation circles inscribed somewhere within their confines. Each such circle includes a unique sigil sequence—a string of magical runes arranged in a particular pattern. When you first gain the ability to cast this power, you learn the sigil sequences for two destinations on The Material Plane, determined by the DM. You can learn additional sigil sequences during your adventures. You can commit a new sigil sequence to memory after studying it for 1 minute.</p><p>You can create a permanent teleportation circle by casting this power in the same location every day for one year. You need not use the circle to Teleport when you cast the power in this way.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 5,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 5,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/runes-magenta-3.jpg",
-  "effects": []
+  "img": "icons/magic/symbols/runes-star-pentagon-magenta.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234080,
+    "modifiedTime": 1661787234080,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

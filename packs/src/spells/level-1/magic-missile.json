@@ -1,11 +1,11 @@
 {
   "_id": "41JIhpDyM9Anm7cs",
   "name": "Magic Missile",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.</p><p><strong>Higher Levels.&nbsp;</strong>When you cast this power using a power slot of 2nd level or higher, the power creates one more dart for each slot level above 1st.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "other",
@@ -57,8 +63,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 1,
     "school": "evo",
@@ -87,6 +93,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fire-arrows-magenta-1.jpg",
-  "effects": []
+  "img": "icons/magic/fire/projectile-meteor-salvo-light-pink.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234065,
+    "modifiedTime": 1661787234065,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

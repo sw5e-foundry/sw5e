@@ -1,11 +1,11 @@
 {
   "_id": "wpx42mtoZ5BmXRs1",
   "name": "Phantom Steed",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A Large quasi-real, horselike creature appears on the ground in an unoccupied space of your choice within range. You decide the creature's appearance, but it is equipped with a saddle, bit, and bridle. Any of the equipment created by the power vanishes in a puff of smoke if it is carried more than 10 feet away from the steed.</p><p>For the duration, you or a creature you choose can ride the steed. The creature uses the statistics for a riding horse, except it has a speed of 100 feet and can travel 10 miles in an hour, or 13 miles at a fast pace. When the power ends, the steed gradually fades, giving the rider 1 minute to dismount. The power ends if you use an action to dismiss it or if the steed takes any damage.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "any",
       "type": "space"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 3,
     "school": "ill",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/wild-jade-2.jpg",
-  "effects": []
+  "img": "icons/magic/nature/wolf-paw-glow-teal-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234238,
+    "modifiedTime": 1661787234238,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -2,7 +2,7 @@
   "name": "Beiro (Half-Elf Bard)",
   "type": "character",
   "img": "systems/sw5e/tokens/heroes/BardLute.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 8,
@@ -569,33 +569,14 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "flags": {},
     "name": "Beiro",
     "displayName": 30,
-    "img": "systems/sw5e/tokens/heroes/BardLute.webp",
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": true,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
-    "actorId": "BnukfoG210lqJ9a2",
     "actorLink": true,
     "disposition": 1,
     "displayBars": 40,
@@ -608,12 +589,11 @@
     "randomImg": false,
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -621,20 +601,44 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/heroes/BardLute.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
       "_id": "66SkRt2mqOrVkiON",
       "name": "Background: Musician",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<ul>\n<li>Skill Proficiencies: Acrobatics, Performance</li>\n<li>Tool Proficiencies: Disguise kit, one type of musical instrument</li>\n<li>Equipment: A musical instrument, a note from an admirer, and a pouch containing 15 gp</li>\n</ul>",
           "chat": "",
@@ -721,15 +725,23 @@
       "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "iWdMYgNBkGiajzc4",
       "name": "Musical Instrument: Lute",
       "type": "tool",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A lute to evoke awe, wonder, or fear in your audience.</p><p>If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a powercasting focus. Each type of musical instrument requires a separate proficiency. </p>",
           "chat": "",
@@ -741,7 +753,7 @@
         "price": 35,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "toolType": "",
         "baseItem": "",
@@ -749,7 +761,6 @@
         "chatFlavor": "",
         "proficient": 1,
         "bonus": "",
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -759,15 +770,23 @@
       "img": "icons/tools/instruments/lute-gold-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "2Ejl2ovEUJg7swzL",
       "name": "Musical Instrument: Flute",
       "type": "tool",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A lute to evoke awe, wonder, or fear in your audience.</p><p>If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a powercasting focus. Each type of musical instrument requires a separate proficiency. </p>",
           "chat": "",
@@ -779,7 +798,7 @@
         "price": 2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "toolType": "",
         "baseItem": "",
@@ -787,7 +806,6 @@
         "chatFlavor": "",
         "proficient": 1,
         "bonus": "",
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -797,15 +815,23 @@
       "img": "icons/tools/instruments/flute-simple-wood.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "TM6CyNpWtV8f0KAw",
       "name": "Chest",
       "type": "backpack",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A chest holds 12 cubic feet or 300 pounds of gear.</p>",
           "chat": "",
@@ -817,7 +843,7 @@
         "price": 5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "capacity": {
           "type": "weight",
@@ -831,7 +857,6 @@
           "gp": 0,
           "pp": 0
         },
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -841,15 +866,23 @@
       "img": "icons/containers/chest/chest-reinforced-steel-walnut-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "Cj6MP46nIu5amhsZ",
       "name": "Map or Scroll Case",
       "type": "backpack",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment.</p>",
           "chat": "",
@@ -861,7 +894,7 @@
         "price": 1,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "capacity": {
           "type": "items",
@@ -875,7 +908,6 @@
           "gp": 0,
           "pp": 0
         },
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -885,15 +917,23 @@
       "img": "icons/containers/bags/case-leather-tan.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "jNOSoW0La7Bk4vXk",
       "name": "Backpack",
       "type": "backpack",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack.</p>",
           "chat": "",
@@ -905,7 +945,7 @@
         "price": 2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "capacity": {
           "type": "weight",
@@ -919,7 +959,6 @@
           "gp": 0,
           "pp": 0
         },
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -929,15 +968,23 @@
       "img": "icons/containers/bags/pack-simple-leather.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "NjSGXfLGqF3ZRlGk",
       "name": "Pouch",
       "type": "backpack",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A cloth or leather pouch can hold up to 20 sling bullets or 50 blowgun needles, among other things. A compartmentalized pouch for holding power components is called a component pouch. A pouch can hold up to ⅕ cubic foot or 6 pounds of gear.</p>",
           "chat": "",
@@ -949,7 +996,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "capacity": {
           "type": "weight",
@@ -963,7 +1010,6 @@
           "gp": 0,
           "pp": 0
         },
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -973,15 +1019,23 @@
       "img": "icons/containers/bags/coinpouch-simple-tan.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "mTNjAEl1w1zwR5BT",
       "name": "Disguise Kit",
       "type": "tool",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This pouch of cosmetics, hair dye, and small props lets you create disguises that change your physical appearance. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise.</p>",
           "chat": "",
@@ -993,7 +1047,7 @@
         "price": 25,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "toolType": "",
         "baseItem": "",
@@ -1001,7 +1055,6 @@
         "chatFlavor": "",
         "proficient": 1,
         "bonus": "",
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1011,15 +1064,23 @@
       "img": "icons/equipment/back/cloak-hooded-blue.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "DPTz84c6sWcBSuQg",
       "name": "Dagger",
       "type": "weapon",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A short metal blade mounted to a small hilt and crossguard. The dagger makes an effective side armament for hardened warriors or a hidden blade for assassins and thieves.</p>",
           "chat": "",
@@ -1031,7 +1092,7 @@
         "price": 2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1113,23 +1174,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 2000000,
       "flags": {},
       "img": "icons/weapons/daggers/dagger-jeweled-purple.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "vRbfWjO0wkfi2EUS",
       "name": "Rapier",
       "type": "weapon",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A thin tensile metal blade, light in weight but long in reach designed for quick darting attacks to target weak points in enemy defenses with lightning swiftness.</p>",
           "chat": "",
@@ -1141,7 +1209,7 @@
         "price": 25,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1223,23 +1291,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 1900000,
       "flags": {},
       "img": "icons/weapons/swords/sword-guard-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "QeJyd2v24zGDwXbq",
       "name": "Leather Armor",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.</p>",
           "chat": "",
@@ -1251,7 +1326,7 @@
         "price": 10,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -1319,23 +1394,30 @@
         },
         "strength": null,
         "stealth": false,
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 200000,
       "flags": {},
       "img": "icons/equipment/chest/breastplate-quilted-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "N3Ya1Qmpj8fmK8eU",
       "name": "Costume Clothes",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A complete costume usually used by performers and artists in all manner of entertainment halls or for those that simply refuse to get out of character.</p>",
           "chat": "",
@@ -1347,7 +1429,7 @@
         "price": 5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "none",
@@ -1415,23 +1497,30 @@
         },
         "strength": 0,
         "stealth": false,
-        "proficient": false,
-        "attuned": false
+        "proficient": false
       },
       "sort": 700000,
       "flags": {},
       "img": "icons/equipment/back/cloak-hooded-pink.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "OoQ9lTEooaOlQQaV",
       "name": "Fine Clothes",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Set of clothes designed specifically to be expensive and show it.</p>",
           "chat": "",
@@ -1443,7 +1532,7 @@
         "price": 15,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "none",
@@ -1511,23 +1600,30 @@
         },
         "strength": 0,
         "stealth": false,
-        "proficient": false,
-        "attuned": false
+        "proficient": false
       },
       "sort": 700000,
       "flags": {},
       "img": "icons/equipment/back/cloak-heavy-fur-blue.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "wvxh8eOWg3RAJFoH",
       "name": "Oil Flask",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon.</p><p>On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level.</p><p>If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn.</p>",
           "chat": "",
@@ -1539,7 +1635,7 @@
         "price": 0.1,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1596,23 +1692,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "trinket",
-        "attuned": false
+        "consumableType": "trinket"
       },
       "sort": 200001,
       "flags": {},
       "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "RXlNK5wqC22ZojbN",
       "name": "Lamp",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil</p>",
           "chat": "",
@@ -1624,7 +1727,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1676,23 +1779,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "trinket",
-        "attuned": false
+        "consumableType": "trinket"
       },
       "sort": 3700000,
       "flags": {},
       "img": "icons/commodities/treasure/lantern-stone-grey.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "6JFzrzKtJyhU12xi",
       "name": "Musical Instrument: Drum",
       "type": "tool",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A drum, of any variety, to evoke awe, wonder, or fear in your audience.</p><p>If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a powercasting focus. Each type of musical instrument requires a separate proficiency. </p>",
           "chat": "",
@@ -1704,7 +1814,7 @@
         "price": 6,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "toolType": "",
         "baseItem": "",
@@ -1712,7 +1822,6 @@
         "chatFlavor": "",
         "proficient": 1,
         "bonus": "",
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1722,15 +1831,23 @@
       "img": "icons/tools/instruments/drum-brown-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "8pii9UucawKvfDsM",
       "name": "Ink Pen",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A deviced used in combination with ink to write or draw on a sheet of paper.</p>",
           "chat": "",
@@ -1742,9 +1859,8 @@
         "price": 0.02,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1754,15 +1870,23 @@
       "img": "icons/commodities/materials/feather-red-.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "9vSJX7VXZLXkXLVs",
       "name": "Ink Bottle",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A small bottle of ink for writing upon parchment.</p>",
           "chat": "",
@@ -1774,9 +1898,8 @@
         "price": 10,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1786,15 +1909,23 @@
       "img": "icons/consumables/potions/bottle-bulb-empty-glass.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "VWdmspSsWBrQ85hx",
       "name": "Paper",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A single sheet of paper.</p>",
           "chat": "",
@@ -1806,9 +1937,8 @@
         "price": 0.2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1818,15 +1948,23 @@
       "img": "icons/sundries/documents/document-bound-white.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "MgZvqEEt5jUtHG5d",
       "name": "Perfume",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A vial of aromatic perfume.</p>",
           "chat": "",
@@ -1838,9 +1976,8 @@
         "price": 5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1850,15 +1987,23 @@
       "img": "icons/consumables/potions/bottle-bulb-corked-purple.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "833SKFj28K9Jzhzf",
       "name": "Soap",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Used to clean and wash.</p>",
           "chat": "",
@@ -1870,9 +2015,8 @@
         "price": 0.02,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1882,15 +2026,23 @@
       "img": "icons/sundries/survival/soap.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "80Gaz3MRLsMImA2r",
       "name": "Sealing Wax",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A wax material of a seal which, after melting, hardens quickly forming a bond that is difficult to separate without noticeable tampering.</p>",
           "chat": "",
@@ -1902,9 +2054,8 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1914,616 +2065,23 @@
       "img": "icons/sundries/lights/candle-unlit-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
-      }
-    },
-    {
-      "_id": "hEUrELgWXKAaJOZ9",
-      "name": "Light",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>You touch one object that is no larger than 10 feet in any dimension. Until the power ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The power ends if you cast it again or dismiss it as an action.</p><p>If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the power.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 255",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "hour"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "object"
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": "touch"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "save",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": "",
-          "value": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "dex",
-          "dc": 13,
-          "scaling": "power"
-        },
-        "level": 0,
-        "school": "evo",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": false,
-          "material": true,
-          "ritual": false,
-          "concentration": false
-        },
-        "materials": {
-          "value": "A firefly or phosphorescent moss.",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "none",
-          "formula": ""
-        },
-        "attunement": 0
       },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.Bnn9Nzajixvow9xi"
-        }
-      },
-      "img": "systems/sw5e/icons/powers/light-sky-1.jpg",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
-      }
-    },
-    {
-      "_id": "KetraWCseV9yIycQ",
-      "name": "Mage Hand",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this power again.</p><p>You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.</p><p>The hand can't attack, activate magic items, or carry more than 10 pounds.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 256",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "minute"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "space"
-        },
-        "range": {
-          "value": 30,
-          "long": 0,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "util",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": "",
-          "value": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power",
-          "value": ""
-        },
-        "level": 0,
-        "school": "con",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": false,
-          "ritual": false,
-          "concentration": false
-        },
-        "materials": {
-          "value": "",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "none",
-          "formula": ""
-        },
-        "attunement": 0
-      },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.Utk1OQRwYkMkFRD3"
-        }
-      },
-      "img": "icons/magic/water/water-hand.webp",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
-      }
-    },
-    {
-      "_id": "nsCHxtON5ZkzjLsT",
-      "name": "Charm Person",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>You attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the power ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the power ends, the creature knows it was charmed by you.</p>\n        <p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 221",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "hour"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "creature"
-        },
-        "range": {
-          "value": 30,
-          "long": 0,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": "",
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "save",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": "",
-          "value": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "wis",
-          "dc": 13,
-          "scaling": "power"
-        },
-        "level": 1,
-        "school": "enc",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": false,
-          "ritual": false,
-          "concentration": false
-        },
-        "materials": {
-          "value": "",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "level",
-          "formula": ""
-        },
-        "attunement": 0
-      },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.eS7XnnApoxRxYXPs"
-        }
-      },
-      "img": "systems/sw5e/icons/powers/explosion-magenta-2.jpg",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
-      }
-    },
-    {
-      "_id": "xgbCmlnGyxeoPgVh",
-      "name": "Disguise Self",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>You make yourself—including your clothing, armor, weapons, and other belongings on your person—look different until the power ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you.</p><p>The changes wrought by this power fail to hold up to physical inspection. For example, if you use this power to add a hat to your outfit, objects pass through the hat, and anyone who touches it would feel nothing or would feel your head and hair. If you use this power to appear thinner than you are, the hand of someone who reaches out to touch you would bump into you while it was seemingly still in midair.</p><p>To discern that you are disguised, a creature can use its action to inspect your appearance and must succeed on an Intelligence (Investigation) check against your power save DC.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 233",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "hour"
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": null,
-          "type": "self"
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": "self"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "util",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": "",
-          "value": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power",
-          "value": ""
-        },
-        "level": 1,
-        "school": "ill",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": false,
-          "ritual": false,
-          "concentration": false
-        },
-        "materials": {
-          "value": "",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "none",
-          "formula": ""
-        },
-        "attunement": 0
-      },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.A3q2gTNqG6fvNGrv"
-        }
-      },
-      "img": "systems/sw5e/icons/powers/wind-grasp-eerie-2.jpg",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
-      }
-    },
-    {
-      "_id": "cCU43lTu78gtSj0H",
-      "name": "Heroism",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being Frightened and gains Temporary Hit Points equal to your Powercasting ability modifier at the start of each of its turns. When the power ends, the target loses any remaining temporary hit points from this power.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 250",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "minute"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "creature"
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": "touch"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "heal",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [
-            [
-              "@mod",
-              "temphp"
-            ]
-          ],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power",
-          "value": ""
-        },
-        "level": 1,
-        "school": "enc",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": false,
-          "ritual": false,
-          "concentration": true
-        },
-        "materials": {
-          "value": "",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "level",
-          "formula": ""
-        },
-        "attunement": 0
-      },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.ge3Saet9zPTDyaoL"
-        }
-      },
-      "img": "systems/sw5e/icons/powers/heal-sky-2.jpg",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
-      }
-    },
-    {
-      "_id": "5tez50g1xWPPfqA8",
-      "name": "Hideous Laughter",
-      "type": "power",
-      "data": {
-        "description": {
-          "value": "<p>A creature of your choice that you can see within range perceives everything as hilariously funny and falls into fits of laughter if this power affects it. The target must succeed on a Wisdom saving throw or fall prone, becoming Incapacitated and unable to stand up for the Duration. A creature with an Intelligence score of 4 or less isn't affected.</p><p>At the end of each of its turns, and each time it takes damage, the target can make another Wisdom saving throw. The target has advantage on the saving throw if it's triggered by damage. On a success, the power ends.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "minute"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "creature"
-        },
-        "range": {
-          "value": 30,
-          "long": 0,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "save",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": "",
-          "value": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "wis",
-          "dc": 13,
-          "scaling": "power"
-        },
-        "level": 1,
-        "school": "enc",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": true,
-          "ritual": false,
-          "concentration": true
-        },
-        "materials": {
-          "value": "Tiny tarts and a feather that is waved in the air",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "prepared",
-          "prepared": false
-        },
-        "scaling": {
-          "mode": "none",
-          "formula": ""
-        },
-        "attunement": 0
-      },
-      "sort": 100001,
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.BQk5Row4NymMnUQl"
-        }
-      },
-      "img": "systems/sw5e/icons/powers/explosion-magenta-2.jpg",
-      "effects": [],
-      "folder": null,
-      "permission": {
-        "default": 0
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "pEDdh0i2HBhReeuU",
       "name": "Love Letter",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A love letter sent by an admirer.</p>",
           "chat": "",
@@ -2536,23 +2094,30 @@
         "attunement": 0,
         "equipped": false,
         "rarity": "",
-        "identified": true,
-        "attuned": false
+        "identified": true
       },
       "sort": 100001,
       "flags": {},
       "img": "icons/sundries/scrolls/scroll-plain-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "IUsB73tFTMjgMbFv",
       "name": "Rations",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.</p>",
           "chat": "",
@@ -2564,7 +2129,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -2616,23 +2181,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "food",
-        "attuned": false
+        "consumableType": "food"
       },
       "sort": 1800000,
       "flags": {},
       "img": "icons/consumables/meat/hock-leg-pink-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "AtTEyddbePRRDUtT",
       "name": "Fey Ancestry",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You have advantage on saving throws against being charmed, and magic can't put you to sleep.</p>",
           "chat": "",
@@ -2719,15 +2291,23 @@
       "img": "icons/creatures/mammals/elk-moose-marked-green.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "qK44BbnaFcoZMhDn",
       "name": "Half-Elf",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<div title=\"Page 6\">\n<div>\n<div>\n<p><em>Your half-­elf character has some qualities in common with elves and some that are unique to half-­elves. </em></p><p><em><strong>Ability Score Increase.</strong></em> Your Charisma score increases by 2, and two other ability scores of your choice increase by 1.</p><p><em><strong>Age.</strong></em> Half-­elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.</p><p><em><strong>Alignment.</strong></em> Half-­elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable, or at least unpredictable.</p>\n<div title=\"Page 7\">\n<div>\n<div>\n<p><em><strong>Size.</strong></em> Half-­elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.</p><p><em><strong>Speed.</strong></em> Your base walking speed is 30 feet.</p><p><em><strong>Darkvision.</strong></em> Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.</p><p><em><strong>Fey Ancestry.</strong></em> @Compendium[sw5e.species.cnTbpPPeGW7vGjOV]{Fey Ancestry} You have advantage on saving throws against being charmed, and magic can't put you to sleep.</p><p><em><strong>Skill Versatility.</strong></em> You gain proficiency in two skills of your choice.</p><p><em><strong>Languages.</strong></em> You can speak, read, and write Common, Elvish, and one extra language of your choice.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>",
           "chat": "",
@@ -2791,11 +2371,19 @@
       },
       "sort": 2700000,
       "flags": {},
-      "img": "systems/sw5e/icons/powers/leaf-jade-2.jpg",
+      "img": "icons/magic/nature/leaf-glow-triple-teal.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -2803,7 +2391,7 @@
       "name": "Bard",
       "type": "class",
       "img": "icons/skills/toxins/cup-goblet-poisoned-spilled.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>As a bard, you gain the following class features.</p>\n<h3>Hit Points</h3>\n<p><strong>Hit Dice:</strong> 1d8 per bard level<br /><strong>Hit Points at 1st Level:</strong> 8 + your Constitution modifier<br /><strong>Hit Points at Higher Levels:</strong> 1d8 (or 5) + your Constitution modifier per bard level after 1st</p>\n<h3>Proficiencies</h3>\n<p><strong>Armor:</strong> Light armor<br /><strong>Weapons:</strong> Simple weapons, hand crossbows, longswords, rapiers, shortswords<br /><strong>Tools:</strong> Three musical instruments of your choice<br /><strong>Saving Throws:</strong> Dexterity, Charisma<br /><strong>Skills:</strong> Choose any three</p>\n<h3>Equipment</h3>\n<p>You start with the following equipment, in addition to the equipment granted by your background:</p>\n<ul>\n<li>(a) a rapier, (b) a longsword, or (c) any simple weapon</li>\n<li>(a) a diplomat's pack or (b) an entertainer's pack</li>\n<li>(a) a lute or (b) any other musical instrument</li>\n<li>Leather armor and a dagger</li>\n</ul>\n<h1>Bard Advancement</h1>\n<table border=\"0\">\n<thead>\n<tr>\n<td>Level</td>\n<td>Proficiency Bonus</td>\n<td>Features</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.u4NLajXETJhJU31v]{Powercasting}, @Compendium[sw5e.classfeatures.hpLNiGq7y67d2EHA]{Bardic Inspiration (d6)}</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.ezWijmCnlnQ9ZRX2]{Jack of All Trades}, @Compendium[sw5e.classfeatures.he8RpPXwSl2lVSIk]{Song of Rest (d6)}</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.ILhzFHiRrqgQ9dFJ]{Bard College} @Compendium[sw5e.classfeatures.aQLg7BWdRnm4Hr9S]{Expertise}</td>\n</tr>\n<tr>\n<td>4th</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>5th</td>\n<td>+3</td>\n<td>@Compendium[sw5e.classfeatures.hpLNiGq7y67d2EHA]{Bardic Inspiration (d8)}, @Compendium[sw5e.classfeatures.3VDZGs5Ug3hIE322]{Font of Inspiration}</td>\n</tr>\n<tr>\n<td>6th</td>\n<td>+3</td>\n<td>@Compendium[sw5e.classfeatures.SEJmsjkEhdAZ90ki]{Countercharm}, Bard College feature</td>\n</tr>\n<tr>\n<td>7th</td>\n<td>+3</td>\n<td>4th Level Power Slot</td>\n</tr>\n<tr>\n<td>8th</td>\n<td>+3</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>9th</td>\n<td>+4</td>\n<td>5th Level Power Slot @Compendium[sw5e.classfeatures.he8RpPXwSl2lVSIk]{Song of Rest (d8)}</td>\n</tr>\n<tr>\n<td>10th</td>\n<td>+4</td>\n<td>@Compendium[sw5e.classfeatures.hpLNiGq7y67d2EHA]{Bardic Inspiration (d10)}, @Compendium[sw5e.classfeatures.aQLg7BWdRnm4Hr9S]{Expertise}, @Compendium[sw5e.classfeatures.aonJ2YjkqkYB9WYB]{Magical Secrets}</td>\n</tr>\n<tr>\n<td>11th</td>\n<td>+4</td>\n<td>6th Level Power Slot</td>\n</tr>\n<tr>\n<td>12th</td>\n<td>+4</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>13th</td>\n<td>+5</td>\n<td>7th Level Power, Slot@Compendium[sw5e.classfeatures.he8RpPXwSl2lVSIk]{Song of Rest (d10)}</td>\n</tr>\n<tr>\n<td>14th</td>\n<td>+5</td>\n<td>@Compendium[sw5e.classfeatures.aonJ2YjkqkYB9WYB]{Magical Secrets}, Bard College feature</td>\n</tr>\n<tr>\n<td>15th</td>\n<td>+5</td>\n<td>8th Level Power Slot, @Compendium[sw5e.classfeatures.hpLNiGq7y67d2EHA]{Bardic Inspiration (d12)}</td>\n</tr>\n<tr>\n<td>16th</td>\n<td>+5</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>17th</td>\n<td>+6</td>\n<td>9th Level Power Slot, @Compendium[sw5e.classfeatures.he8RpPXwSl2lVSIk]{Song of Rest (d12)}</td>\n</tr>\n<tr>\n<td>18th</td>\n<td>+6</td>\n<td>@Compendium[sw5e.classfeatures.aonJ2YjkqkYB9WYB]{Magical Secrets}</td>\n</tr>\n<tr>\n<td>19th</td>\n<td>+6</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>20th</td>\n<td>+6</td>\n<td>@Compendium[sw5e.classfeatures.GBYN5rH4nh1ocRlY]{Superior Inspiration}</td>\n</tr>\n</tbody>\n</table>\n<h1>Bard Colleges</h1>\n<p>@Compendium[sw5e.archetypes.MNvsEc4D2ccX7dQT]{College of Lore}</p>",
           "chat": "",
@@ -3033,13 +2621,21 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.classes.ILvRZGEx3aXqSVUt"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -3047,9 +2643,9 @@
       "name": "Powercasting (Bard)",
       "type": "feat",
       "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
-      "data": {
+      "system": {
         "description": {
-          "value": "<p>You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your powers are part of your vast repertoire, magic that you can tune to different situations.</p>\n<h3>Cantrips</h3>\n<p>You know two cantrips of your choice from the bard power list. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table.</p>\n<h3>Power Slots</h3>\n<p>The Bard table shows how many power slots you have to cast your powers of 1st level and higher. To cast one of these powers, you must expend a slot of the power's level or higher. You regain all expended power slots when you finish a long rest.</p><p>For example, if you know the 1st-level power cure wounds and have a 1st-level and a 2nd-level power slot available, you can cast cure wounds using either slot.</p>\n<h3>Powers Known of 1st Level and Higher</h3>\n<p>You know four 1st-level powers of your choice from the bard power list.</p><p>The Powers Known column of the Bard table shows when you learn more bard powers of your choice. Each of these powers must be of a level for which you have power slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new power of 1st or 2nd level.</p><p>Additionally, when you gain a level in this class, you can choose one of the bard powers you know and replace it with another power from the bard power list, which also must be of a level for which you have power slots.</p>\n<table border=\"1\">\n<thead>\n<tr>\n<td rowspan=\"2\">Level</td>\n<td rowspan=\"2\">Cantrips Known</td>\n<td rowspan=\"2\">Powers Known</td>\n<td colspan=\"9\">—Power Slots per Power Level—</td>\n</tr>\n<tr>\n<td>1st</td>\n<td>2nd</td>\n<td>3rd</td>\n<td>4th</td>\n<td>5th</td>\n<td>6th</td>\n<td>7th</td>\n<td>8th</td>\n<td>9th</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>2</td>\n<td>4</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>2</td>\n<td>5</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>2</td>\n<td>6</td>\n<td>4</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>4th</td>\n<td>3</td>\n<td>7</td>\n<td>4</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>5th</td>\n<td>3</td>\n<td>8</td>\n<td>4</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>6th</td>\n<td>3</td>\n<td>9</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>7th</td>\n<td>3</td>\n<td>10</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>8th</td>\n<td>3</td>\n<td>11</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>9th</td>\n<td>3</td>\n<td>12</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>10th</td>\n<td>4</td>\n<td>14</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>11th</td>\n<td>4</td>\n<td>15</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>12th</td>\n<td>4</td>\n<td>15</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>13th</td>\n<td>4</td>\n<td>16</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>14th</td>\n<td>4</td>\n<td>18</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>15th</td>\n<td>4</td>\n<td>19</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n</tr>\n<tr>\n<td>16th</td>\n<td>4</td>\n<td>19</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n</tr>\n<tr>\n<td>17th</td>\n<td>4</td>\n<td>20</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>18th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>19th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>20th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n</tr>\n</tbody>\n</table>\n<h3>Powercasting Ability</h3>\n<p>Charisma is your powercasting ability for your bard powers. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a power refers to your powercasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard power you cast and when making an attack roll with one.</p><p><strong>Power save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p><p><strong>Power attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>\n<h3>Ritual Casting</h3>\n<p>You can cast any bard power you know as a ritual if that power has the ritual tag.</p>\n<h3>Powercasting Focus</h3>\n<p>You can use a musical instrument (see @Compendium[sw5e.rules.bogWrnJqoNlBd0O8]{Adventuring Gear}) as a powercasting focus for your bard powers.</p>",
+          "value": "<p>You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your powers are part of your vast repertoire, magic that you can tune to different situations.</p>\n<h3>Cantrips</h3>\n<p>You know two cantrips of your choice from the bard power list. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table.</p>\n<h3>Power Slots</h3>\n<p>The Bard table shows how many power slots you have to cast your powers of 1st level and higher. To cast one of these powers, you must expend a slot of the power's level or higher. You regain all expended power slots when you finish a long rest.</p><p>For example, if you know the 1st-level power cure wounds and have a 1st-level and a 2nd-level power slot available, you can cast cure wounds using either slot.</p>\n<h3>Powers Known of 1st Level and Higher</h3>\n<p>You know four 1st-level powers of your choice from the bard power list.</p><p>The Powers Known column of the Bard table shows when you learn more bard powers of your choice. Each of these powers must be of a level for which you have power slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new power of 1st or 2nd level.</p><p>Additionally, when you gain a level in this class, you can choose one of the bard powers you know and replace it with another power from the bard power list, which also must be of a level for which you have power slots.</p>\n<table border=\"1\">\n<thead>\n<tr>\n<td rowspan=\"2\">Level</td>\n<td rowspan=\"2\">Cantrips Known</td>\n<td rowspan=\"2\">Powers Known</td>\n<td colspan=\"9\">—Power Slots per Power Level—</td>\n</tr>\n<tr>\n<td>1st</td>\n<td>2nd</td>\n<td>3rd</td>\n<td>4th</td>\n<td>5th</td>\n<td>6th</td>\n<td>7th</td>\n<td>8th</td>\n<td>9th</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>2</td>\n<td>4</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>2</td>\n<td>5</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>2</td>\n<td>6</td>\n<td>4</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>4th</td>\n<td>3</td>\n<td>7</td>\n<td>4</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>5th</td>\n<td>3</td>\n<td>8</td>\n<td>4</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>6th</td>\n<td>3</td>\n<td>9</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>7th</td>\n<td>3</td>\n<td>10</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>8th</td>\n<td>3</td>\n<td>11</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>9th</td>\n<td>3</td>\n<td>12</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>10th</td>\n<td>4</td>\n<td>14</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>11th</td>\n<td>4</td>\n<td>15</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>12th</td>\n<td>4</td>\n<td>15</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>13th</td>\n<td>4</td>\n<td>16</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>14th</td>\n<td>4</td>\n<td>18</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n<td>-</td>\n</tr>\n<tr>\n<td>15th</td>\n<td>4</td>\n<td>19</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n</tr>\n<tr>\n<td>16th</td>\n<td>4</td>\n<td>19</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>-</td>\n</tr>\n<tr>\n<td>17th</td>\n<td>4</td>\n<td>20</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>18th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>19th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n<td>1</td>\n</tr>\n<tr>\n<td>20th</td>\n<td>4</td>\n<td>22</td>\n<td>4</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>3</td>\n<td>2</td>\n<td>2</td>\n<td>1</td>\n<td>1</td>\n</tr>\n</tbody>\n</table>\n<h3>Powercasting Ability</h3>\n<p>Charisma is your powercasting ability for your bard powers. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a power refers to your powercasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard power you cast and when making an attack roll with one.</p><p><strong>Power save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p><p><strong>Power attack modifier</strong> = your proficiency bonus + your Charisma modifier</p>\n<h3>Ritual Casting</h3>\n<p>You can cast any bard power you know as a ritual if that power has the ritual tag.</p>\n<h3>Powercasting Focus</h3>\n<p>You can use a musical instrument (see @UUID[Compendium.sw5e.rules.BYFd9hiJGo9L5aOM.JournalEntryPage.AjavRU4yPfI9hfaI]{Adventuring Gear}) as a powercasting focus for your bard powers.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -3111,7 +2707,7 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
@@ -3119,6 +2715,14 @@
           "sourceId": "Compendium.sw5e.classfeatures.u4NLajXETJhJU31v",
           "advancementOrigin": "5trn1skegukwezch.rpmaepj0rdbnnrzd"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -3126,7 +2730,7 @@
       "name": "Bardic Inspiration",
       "type": "feat",
       "img": "icons/skills/melee/unarmed-punch-fist.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.</p>\n<p>You can use this feature a number of times equal to your Charisma modifier (a minimum of once).</p>\n<p>You regain any expended uses when you finish a long rest.</p>\n<p>Your Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.</p>\n<p><em>**Foundry note: Recovery is set to long rest (for levels before @Compendium[sw5e.classfeatures.3VDZGs5Ug3hIE322]{Font of Inspiration} is gained). Please manually adjust as required.</em></p>",
           "chat": "",
@@ -3190,7 +2794,7 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
@@ -3198,15 +2802,674 @@
           "sourceId": "Compendium.sw5e.classfeatures.hpLNiGq7y67d2EHA",
           "advancementOrigin": "5trn1skegukwezch.rpmaepj0rdbnnrzd"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "Bnn9Nzajixvow9xi",
+      "name": "Light",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>You touch one object that is no larger than 10 feet in any dimension. Until the power ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The power ends if you cast it again or dismiss it as an action.</p><p>If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the power.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 255",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "hour"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "object"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "touch"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": "",
+          "value": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "dex",
+          "dc": 13,
+          "scaling": "power"
+        },
+        "level": 0,
+        "school": "evo",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": false,
+          "material": true,
+          "ritual": false,
+          "concentration": false
+        },
+        "materials": {
+          "value": "A firefly or phosphorescent moss.",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.Bnn9Nzajixvow9xi"
+        }
+      },
+      "img": "icons/magic/light/explosion-star-small-blue-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486304,
+        "modifiedTime": 1661603486304,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
+    },
+    {
+      "_id": "Utk1OQRwYkMkFRD3",
+      "name": "Mage Hand",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this power again.</p><p>You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.</p><p>The hand can't attack, activate magic items, or carry more than 10 pounds.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 256",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "space"
+        },
+        "range": {
+          "value": 30,
+          "long": 0,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "util",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": "",
+          "value": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power",
+          "value": ""
+        },
+        "level": 0,
+        "school": "con",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": false,
+          "ritual": false,
+          "concentration": false
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.Utk1OQRwYkMkFRD3"
+        }
+      },
+      "img": "icons/magic/water/water-hand.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486305,
+        "modifiedTime": 1661603486305,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
+    },
+    {
+      "_id": "eS7XnnApoxRxYXPs",
+      "name": "Charm Person",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>You attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw, and does so with advantage if you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the power ends or until you or your companions do anything harmful to it. The charmed creature regards you as a friendly acquaintance. When the power ends, the creature knows it was charmed by you.</p>\n        <p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 221",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "hour"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 30,
+          "long": 0,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": "",
+          "value": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "wis",
+          "dc": 13,
+          "scaling": "power"
+        },
+        "level": 1,
+        "school": "enc",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": false,
+          "ritual": false,
+          "concentration": false
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "level",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.eS7XnnApoxRxYXPs"
+        }
+      },
+      "img": "icons/magic/fire/explosion-fireball-medium-purple-pink.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486305,
+        "modifiedTime": 1661603486305,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
+    },
+    {
+      "_id": "A3q2gTNqG6fvNGrv",
+      "name": "Disguise Self",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>You make yourself—including your clothing, armor, weapons, and other belongings on your person—look different until the power ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you.</p><p>The changes wrought by this power fail to hold up to physical inspection. For example, if you use this power to add a hat to your outfit, objects pass through the hat, and anyone who touches it would feel nothing or would feel your head and hair. If you use this power to appear thinner than you are, the hand of someone who reaches out to touch you would bump into you while it was seemingly still in midair.</p><p>To discern that you are disguised, a creature can use its action to inspect your appearance and must succeed on an Intelligence (Investigation) check against your power save DC.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 233",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "hour"
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": null,
+          "type": "self"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "self"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "util",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": "",
+          "value": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power",
+          "value": ""
+        },
+        "level": 1,
+        "school": "ill",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": false,
+          "ritual": false,
+          "concentration": false
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.A3q2gTNqG6fvNGrv"
+        }
+      },
+      "img": "icons/magic/control/debuff-energy-hold-teal-blue.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486305,
+        "modifiedTime": 1661603486305,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
+    },
+    {
+      "_id": "ge3Saet9zPTDyaoL",
+      "name": "Heroism",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being Frightened and gains Temporary Hit Points equal to your Powercasting ability modifier at the start of each of its turns. When the power ends, the target loses any remaining temporary hit points from this power.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 250",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "touch"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "heal",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "@mod",
+              "temphp"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power",
+          "value": ""
+        },
+        "level": 1,
+        "school": "enc",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": false,
+          "ritual": false,
+          "concentration": true
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "level",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.ge3Saet9zPTDyaoL"
+        }
+      },
+      "img": "icons/magic/life/heart-cross-strong-blue.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486306,
+        "modifiedTime": 1661603486306,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
+    },
+    {
+      "_id": "BQk5Row4NymMnUQl",
+      "name": "Hideous Laughter",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>A creature of your choice that you can see within range perceives everything as hilariously funny and falls into fits of laughter if this power affects it. The target must succeed on a Wisdom saving throw or fall prone, becoming Incapacitated and unable to stand up for the Duration. A creature with an Intelligence score of 4 or less isn't affected.</p><p>At the end of each of its turns, and each time it takes damage, the target can make another Wisdom saving throw. The target has advantage on the saving throw if it's triggered by damage. On a success, the power ends.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 30,
+          "long": 0,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": "",
+          "value": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "wis",
+          "dc": 13,
+          "scaling": "power"
+        },
+        "level": 1,
+        "school": "enc",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": true,
+          "ritual": false,
+          "concentration": true
+        },
+        "materials": {
+          "value": "Tiny tarts and a feather that is waved in the air",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "prepared",
+          "prepared": false
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.BQk5Row4NymMnUQl"
+        }
+      },
+      "img": "icons/magic/fire/explosion-fireball-medium-purple-pink.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661603486306,
+        "modifiedTime": 1661603486306,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     }
   ],
   "effects": [],
   "folder": null,
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "flags": {},
-  "_id": "xVmbM44RXyI2Eqq3"
+  "_id": "xVmbM44RXyI2Eqq3",
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232198,
+    "modifiedTime": 1661878142737,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "ODhLKBxLnvvLOnw1",
   "name": "Ray of Enfeeblement",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A black beam of enervating energy springs from your finger toward a creature within range. Make a ranged power attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the power ends.</p><p>At the end of each of the target's turns, it can make a Constitution saving throw against the power. On a success, the power ends.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "rpak",
@@ -82,6 +88,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/beam-jade-2.jpg",
-  "effects": []
+  "img": "icons/magic/light/beam-rays-teal.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234130,
+    "modifiedTime": 1661787234130,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

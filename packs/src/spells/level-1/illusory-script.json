@@ -1,11 +1,11 @@
 {
   "_id": "82jM6qD9axLJsTrH",
   "name": "Illusory Script",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You write on Parchment, paper, or some other suitable writing material and imbue it with a potent Illusion that lasts for the Duration.</p><p>To you and any creatures you designate when you cast the power, the writing appears normal, written in your hand, and conveys whatever meaning you intended when you wrote the text. To all others, the writing appears as if it were written in an unknown or magical script that is unintelligible. Alternatively, you can cause the writing to appear to be an entirely different message, written in a different hand and language, though the language must be one you know.</p><p>Should the power be dipowered, the original script and the Illusion both disappear.</p><p>A creature with Truesight can read the hidden message.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 0,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 1,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fog-magenta-1.jpg",
-  "effects": []
+  "img": "icons/magic/air/fog-gas-smoke-purple.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234078,
+    "modifiedTime": 1661787234078,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

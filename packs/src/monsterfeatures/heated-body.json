@@ -1,11 +1,11 @@
 {
   "_id": "iFNpsEMJT66eLoat",
   "name": "Heated Body",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A creature that touches the {creature} or hits it with a melee attack while within 5 feet of it takes <strong>5 (1d10) <em>fire damage</em></strong>.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "any",
       "type": "creature"
     },
@@ -77,5 +78,15 @@
   },
   "flags": {},
   "img": "icons/magic/earth/volcano-explosion-lava-yellow.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234587,
+    "modifiedTime": 1661787234587,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

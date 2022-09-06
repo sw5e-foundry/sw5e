@@ -1,11 +1,11 @@
 {
   "_id": "JYuRBwxpoFhXduvD",
   "name": "Time Stop",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You briefly stop the flow of time for everyone but yourself. No time passes for other creatures, while you take 1d4 + 1 turns in a row, during which you can use Actions and move as normal.</p><p>This power ends if one of the Actions you use during this period, or any Effects that you create during this period, affects a creature other than you or an object being worn or carried by someone other than you. In addition, the power ends if you move to a place more than 1,000 feet from the location where you cast it.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 0,
+      "width": null,
       "units": "",
       "type": "self"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -52,6 +58,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 9,
@@ -82,5 +89,14 @@
   "sort": 100001,
   "flags": {},
   "img": "icons/magic/time/clock-stopwatch-white-blue.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234114,
+    "modifiedTime": 1661787234114,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

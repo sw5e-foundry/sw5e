@@ -1,11 +1,11 @@
 {
   "_id": "hzK7FQya0BDjSmLE",
   "name": "Sunburst",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Brilliant sunlight flashes in a 60-foot radius centered on a point you choose within range. Each creature in that light must make a Constitution saving throw. On a failed save, a creature takes 12d6 radiant damage and is Blinded for 1 minute. On a successful save, it takes half as much damage and isn't blinded by this power. Undead and oozes have disadvantage on this saving throw.</p><p>A creature Blinded by this power makes another Constitution saving throw at the end of each of its turns. On a successful save, it is no longer blinded.</p><p>This power dispels any Darkness in its area that was created by a power.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 60,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -86,6 +92,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/explosion-royal-3.jpg",
-  "effects": []
+  "img": "icons/magic/fire/explosion-fireball-large-purple-orange.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234209,
+    "modifiedTime": 1661787234209,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Staff of the Magi",
   "type": "weapon",
   "img": "icons/weapons/staves/staff-engraved-red.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement by a sorcerer, warlock, or wizard)</em></p>\n<p>This staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. While you hold it, you gain a +2 bonus to power attack rolls.</p>\n<p>The staff has 50 charges for the following properties. It regains 4d6 + 2 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 20, the staff regains 1d12 + 1 charges.</p>\n<p><strong>Power Absorption</strong>. While holding the staff, you have advantage on saving throws against powers. In addition, you can use your reaction when another creature casts a power that targets only you. If you do, the staff absorbs the magic of the power, canceling its effect and gaining a number of charges equal to the absorbed power's level. However, if doing so brings the staff's total number of charges above 50, the staff explodes as if you activated its <strong>Retributive Strike</strong> (see below).</p>\n<p><strong>Powers</strong>. While holding the staff, you can use an action to expend some of its charges to cast one of the following powers from it, using your power save DC and powercasting ability: @Compendium[sw5e.powers.1LkZvINag7KqBmDR]{Conjure Elemental} (7 charges), @Compendium[sw5e.powers.15Fa6q1nH27XfbR8]{Dispel Magic} (3 charges), @Compendium[sw5e.powers.ztgcdrWPshKRpFd0]{Fireball} (7th-level version, 7 charges), @Compendium[sw5e.powers.FjYE214HTERCRZNm]{Flaming Sphere} (2 charges), @Compendium[sw5e.powers.WN2LWEljYU6QqnRH]{Ice Storm} (4 charges), @Compendium[sw5e.powers.1N8dDMMgZ1h1YJ3B]{Invisibility} (2 charges), @Compendium[sw5e.powers.1nhIxh0DsJsntCfj]{Knock} (2 charges), @Compendium[sw5e.powers.IyikgTEOTv701jgQ]{Lightning Bolt} (7th-level version, 7 charges), @Compendium[sw5e.powers.d9MwcXi7Il3HROXd]{Passwall} (5 charges), @Compendium[sw5e.powers.J6Jpw5XzB5aTeqnz]{Plane Shift} (7 charges), @Compendium[sw5e.powers.HQfd7jJyULIoGxrZ]{Telekinesis} (5 charges), @Compendium[sw5e.powers.X3DrXgxjwI2dvkD6]{Wall of Fire} (4 charges), or @Compendium[sw5e.powers.UJJu9c2UvCzVljiP]{Web} (2 charges).</p>\n<p>You can also use an action to cast one of the following powers from the staff without using any charges: @Compendium[sw5e.powers.8cse7rit0oswRPUP]{Arcane Lock}, @Compendium[sw5e.powers.ghXTfe7sgCbgf1Q8]{Detect Magic}, @Compendium[sw5e.powers.WahI41a3goVUg0x1]{Enlarge/Reduce}, @Compendium[sw5e.powers.Bnn9Nzajixvow9xi]{Light}, @Compendium[sw5e.powers.Utk1OQRwYkMkFRD3]{Mage Hand}, or @Compendium[sw5e.powers.xmDBqZhRVrtLP8h2]{Protection from Evil and Good}.</p>\n<p><strong>Retributive Strike</strong>. You can use an action to break the staff over your knee or against a solid surface, performing a retributive strike. The staff is destroyed and releases its remaining magic in an explosion that expands to fill a 30-foot-radius sphere centered on it.</p>\n<p>You have a 50 percent chance to instantly travel to a random plane of existence, avoiding the explosion. If you fail to avoid the effect, you take force damage equal to 16 × the number of charges in the staff. Every other creature in the area must make a DC 17 Dexterity saving throw. On a failed save, a creature takes an amount of damage based on how far away it is from the point of origin, as shown in the following table. On a successful save, a creature takes half as much damage.</p>\n<table border=\"1\">\n<tbody>\n<tr>\n<td><strong>Distance from Origin</strong></td>\n<td><strong>Damage</strong></td>\n</tr>\n<tr>\n<td>10 ft. away or closer</td>\n<td>8 x the number of charges in the staff</td>\n</tr>\n<tr>\n<td>11 to 20 ft. away</td>\n<td>6 x the number of charges in the staff</td>\n</tr>\n<tr>\n<td>21 to 30 ft. away</td>\n<td>4 x the number of charges in the staff</td>\n</tr>\n</tbody>\n</table>\n<p><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
       "chat": "",
@@ -80,6 +80,7 @@
       "conditions": ""
     },
     "weaponType": "simpleM",
+    "baseItem": "",
     "properties": {
       "amm": false,
       "hvy": false,
@@ -105,8 +106,16 @@
   "effects": [],
   "folder": null,
   "sort": 1100000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233842,
+    "modifiedTime": 1661787233842,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Antitoxin",
   "type": "consumable",
   "img": "icons/consumables/potions/bottle-round-corked-pink.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 100000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233547,
+    "modifiedTime": 1661787233547,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "VzgFzcmocr1X1cp4",
   "name": "Shillelagh",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>The wood of a club or quarterstaff you are holding is imbued with nature's power. For the duration, you can use your powercasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon's damage die becomes a d8. The weapon also becomes magical, if it isn't already. The power ends if you cast it again or if you let go of the weapon.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "spec",
       "type": "object"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -58,8 +64,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 0,
     "school": "trs",
@@ -88,6 +94,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/enchant-jade-1.jpg",
-  "effects": []
+  "img": "icons/magic/fire/dagger-rune-enchant-teal.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234149,
+    "modifiedTime": 1661787234149,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

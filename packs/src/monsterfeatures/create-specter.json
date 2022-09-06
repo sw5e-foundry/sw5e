@@ -1,11 +1,11 @@
 {
   "_id": "SlAF2AE4ZKoUvQql",
   "name": "Create Specter",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<section class=\"secret\"><p>The {creature} targets a humanoid within 10 feet of it that has been dead for no longer than 1 minute and died violently. </p><p>The target's spirit rises as a specter in the space of its corpse or in the nearest unoccupied space. The specter is under the {creature}'s control. The {creature} can have no more than seven specters under its control at one time.</p></section><p>The target's spirit rises as a specter in the space of its corpse or in the nearest unoccupied space. </p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/creatures/abilities/dragon-breath-purple.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234548,
+    "modifiedTime": 1661787234548,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

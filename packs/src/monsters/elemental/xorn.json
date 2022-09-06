@@ -3,7 +3,7 @@
   "name": "Xorn",
   "type": "npc",
   "img": "systems/sw5e/tokens/elemental/Xorn.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 17,
@@ -539,50 +539,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Xorn",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/elemental/Xorn.webp",
-    "actorId": "2MZNHeOZweXAYbv1",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -590,13 +571,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/elemental/Xorn.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -604,7 +609,7 @@
       "name": "Bite",
       "type": "weapon",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+6 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>13 (3d6 + 3) <em>piercing damage</em></strong>.</p><p></p></section><p>The Xorn attacks with its Bite.</p>",
           "chat": "",
@@ -698,23 +703,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "LRjB7lk0aa4TOd16",
       "name": "Claw",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+6 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>6 (1d6 + 3) <em>slashing damage</em></strong>.</p><p></p></section><p>The Xorn attacks with its Claw.</p>",
           "chat": "",
@@ -808,23 +820,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "a5CLV8aL4SowIich",
       "name": "Earth Glide",
       "type": "feat",
       "img": "icons/environment/wilderness/cave-entrance-mountain-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The xorn can burrow through nonmagical, unworked earth and stone. While doing so, the xorn doesn't disturb the material it moves through.</p>",
           "chat": "",
@@ -889,17 +908,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "kRGZU8eMwOBt3kVd",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The xorn makes three claw attacks and one bite attack.</p>",
           "chat": "",
@@ -964,17 +991,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "ryNcNrIgtkYHRKWj",
       "name": "Stone Camouflage",
       "type": "feat",
       "img": "icons/environment/settlement/stone-stairs.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The xorn has<strong> advantage </strong>on Dexterity (Stealth) checks made to hide in rocky terrain.</p>",
           "chat": "",
@@ -1039,17 +1074,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "x6Hd2pSXy7TDwgjR",
       "name": "Treasure Sense",
       "type": "feat",
       "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The xorn can pinpoint, by scent, the location of precious metals and stones, such as coins and gems, within <strong>60 ft.</strong> of it.</p>",
           "chat": "",
@@ -1114,17 +1157,33 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "WqZfJHOMCZYz8ff9",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232563,
+    "modifiedTime": 1661878728734,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

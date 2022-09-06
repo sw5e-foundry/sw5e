@@ -1,11 +1,11 @@
 {
   "_id": "CylBa7jR8DSbo8Z3",
   "name": "Zone of Truth",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the power ends, a creature that enters the power's area for the first time on a turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can't speak a deliberate lie while in the radius. You know whether each creature succeeds or fails on its saving throw.</p>\n        <p>An affected creature is aware of the power and can thus avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive in its answers as long as it remains within the boundaries of the truth.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 15,
+      "width": null,
       "units": "ft",
       "type": "sphere"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -82,6 +88,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/runes-magenta-2.jpg",
-  "effects": []
+  "img": "icons/magic/symbols/runes-star-magenta.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234097,
+    "modifiedTime": 1661787234097,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -2,8 +2,8 @@
   "_id": "CKZTpZlxj7hjjo2H",
   "name": "Mage Armor",
   "type": "power",
-  "img": "systems/sw5e/icons/powers/protect-blue-1.jpg",
-  "data": {
+  "img": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
+  "system": {
     "description": {
       "value": "<p>You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the power ends. The target's base AC becomes 13 + its Dexterity modifier. The power ends if the target dons armor or if you dismiss the power as an action.</p>",
       "chat": "",
@@ -90,26 +90,42 @@
       "_id": "cfwMU7LuOJ619Lny",
       "changes": [
         {
-          "key": "data.attributes.ac.calc",
+          "key": "system.attributes.ac.calc",
           "value": "mage",
-          "mode": 5
+          "mode": 5,
+          "priority": null
         }
       ],
       "disabled": true,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
-      "icon": "systems/sw5e/icons/powers/protect-blue-1.jpg",
+      "icon": "icons/magic/defensive/shield-barrier-glowing-triangle-blue.webp",
       "label": "Mage Armor",
       "origin": "Compendium.sw5e.powers.CKZTpZlxj7hjjo2H",
       "transfer": true,
-      "flags": {}
+      "flags": {},
+      "tint": null
     }
   ],
   "folder": null,
   "sort": 100001,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234095,
+    "modifiedTime": 1661787234095,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

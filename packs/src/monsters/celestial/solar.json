@@ -3,7 +3,7 @@
   "name": "Solar",
   "type": "npc",
   "img": "icons/svg/mystery-man.svg",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 26,
@@ -545,50 +545,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Solar",
     "displayName": 0,
     "actorLink": false,
-    "tint": null,
     "width": 2,
     "height": 2,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 120,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 0,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "icons/svg/mystery-man.svg",
-    "actorId": "lOYt73eaJojBDxAV",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -596,21 +577,45 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
       "_id": "zkNT86Xasjyzk8Df",
       "name": "Angelic Weapons",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/enchant-sky-3.jpg",
-      "data": {
+      "img": "icons/magic/fire/dagger-rune-enchant-flame-strong-blue-yellow.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The solar's weapon attacks are magical. When the solar hits with any weapon, the weapon deals an <strong>extra 6d8 <em>radiant damage</em></strong> (included in the attack).</p></section><p>The solar's weapon attacks are magical. When the solar hits with any weapon, the weapon deals extra <em>radiant damage</em> (included in the attack).</p>",
           "chat": "",
@@ -675,17 +680,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "T8xqterWWFewCoot",
       "name": "Divine Awareness",
       "type": "feat",
       "img": "icons/magic/perception/third-eye-blue-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The solar knows if it hears a lie.</p>",
           "chat": "",
@@ -750,17 +763,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "N5YFwsrzGuUFrblp",
       "name": "Flying Sword",
       "type": "feat",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The solar releases its greatsword to hover magically in an unoccupied space within <strong>5 ft.</strong> of it. If the solar can see the sword, the solar can mentally command it as a bonus action to fly up to <strong>50 ft.</strong> and either make one attack against a target or return to the solar's hands.</p><p>If the hovering sword is targeted by any effect, the solar is considered to be holding it. The hovering sword falls if the solar dies.</p></section><p>The solar releases its greatsword to hover magically in an unoccupied space within <strong>5 ft.</strong> of it. If the hovering sword is targeted by any effect, the solar is considered to be holding it. </p>",
           "chat": "",
@@ -825,17 +846,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "BqJjoHBgnTDTcLbB",
       "name": "Healing Touch",
       "type": "feat",
       "img": "icons/magic/light/explosion-star-glow-blue-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The solar touches another creature. The target magically regains 40 (8d8 + 4) hit points and is freed from any curse, disease, poison, blindness, or deafness.</p>",
           "chat": "",
@@ -905,17 +934,25 @@
       "effects": [],
       "folder": null,
       "sort": 700000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "hWnnOw9zwmvWvFT7",
       "name": "Innate Powercasting",
       "type": "feat",
       "img": "icons/magic/light/projectiles-star-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The solar's power casting ability is Charisma (power save DC 25). It can innately cast the following powers, requiring no material components:</p>\n<p><strong>At will:</strong> detect evil and good, invisibility (self only)</p>\n<p><strong>3/day each:</strong> blade barrier, dispel evil and good, resurrection</p>\n<p><strong>1/day each:</strong> commune, control weather</p>",
           "chat": "",
@@ -980,17 +1017,25 @@
       "effects": [],
       "folder": null,
       "sort": 250000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "WYt9oaIl8PZrMDNl",
       "name": "Magic Resistance",
       "type": "feat",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The solar has<strong> advantage </strong>on saving throws against powers and other magical effects.</p>",
           "chat": "",
@@ -1055,17 +1100,25 @@
       "effects": [],
       "folder": null,
       "sort": 275000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "H0o9gjKN8xSdBHdB",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The solar makes two greatsword attacks.</p>",
           "chat": "",
@@ -1130,17 +1183,25 @@
       "effects": [],
       "folder": null,
       "sort": 1000000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "QssrfCioglFdfd8I",
       "name": "Greatsword",
       "type": "weapon",
       "img": "icons/weapons/swords/greatsword-guard-gem-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+15 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>22 (4d6 + 8) <em>slashing damage</em></strong> plus <strong>27 (6d8) <em>radiant damage</em></strong>.</p></section>\n<p>The Solar attacks with its Greatsword.</p>",
           "chat": "",
@@ -1152,7 +1213,7 @@
         "price": 50,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1238,23 +1299,30 @@
           "thr": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 1000000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "BSLTe0yfltAnguOT",
       "name": "Slaying Longbow",
       "type": "weapon",
       "img": "icons/weapons/bows/longbow-leather-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>Ranged Weapon Attack: +13 to hit, range 150/600 ft., one target. Hit: <strong>15 (2d8 + 6) <em>piercing damage</em></strong> plus <strong>27 (6d8) <em>radiant damage</em></strong>.</p>\n<p>If the target is a creature that has 190 hit points or fewer, it must succeed on a  <strong>DC 15 Constitution</strong> saving throw or die.</p>\n</section>\n<p>The Solar attacks with its Slaying Longbow. If the target is a creature that has 190 hit points or fewer, it must make a <strong>Constitution</strong> saving throw.</p>",
           "chat": "",
@@ -1266,7 +1334,7 @@
         "price": 350,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Rare",
+        "rarity": "rare",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1353,7 +1421,6 @@
           "lod": false
         },
         "proficient": true,
-        "attuned": false,
         "attributes": {
           "powerdc": 10
         }
@@ -1361,17 +1428,534 @@
       "effects": [],
       "folder": null,
       "sort": 1900001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
-      "_id": "i6UkDaSlK1qsMN6i",
+      "_id": "sZjcCRCNcf6m4VoK",
+      "name": "Legendary Actions",
+      "type": "feat",
+      "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p>The solar can take 3 legendary actions. Only one legendary action option can be used at a time and only at the end of another creature's turn. The solar regains spent legendary actions at the start of its turn.</p>\n</section>\n<p>The solar can take 3 legendary actions.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": 0,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": null
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 300000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "H4Qnl5aNwIuOiKvm",
+      "name": "Teleport",
+      "type": "feat",
+      "img": "icons/magic/symbols/runes-star-pentagon-magenta.webp",
+      "system": {
+        "description": {
+          "value": "<p>The solar magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 120,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "attribute",
+          "target": "resources.legact.value",
+          "amount": 1
+        },
+        "ability": null,
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 1100000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "hvLibxV3shPORnBB",
+      "name": "Searing Burst",
+      "type": "feat",
+      "img": "icons/magic/light/explosion-star-glow-yellow.webp",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">The solar emits magical, divine energy. Each creature of its choice in a 10-foot radius must make a  <strong>DC 23 Dexterity</strong> saving throw, taking <strong>14 (4d6) <em>fire damage</em></strong> plus <strong>14 (4d6) <em>radiant damage</em></strong> on a failed save, or half as much damage on a successful one.</section>\n<p>The solar emits magical, divine energy. Each creature of its choice in a 10-foot radius must make a <strong>Dexterity</strong> saving throw.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 2,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": 10,
+          "width": null,
+          "units": "ft",
+          "type": "radius"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "attribute",
+          "target": "resources.legact.value",
+          "amount": 2
+        },
+        "ability": "",
+        "actionType": "other",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "4d6",
+              "fire"
+            ],
+            [
+              "4d6",
+              "radiant"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "dex",
+          "dc": 23,
+          "scaling": "flat"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 1200000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "iXcyU8grGuxZbkYJ",
+      "name": "Blinding Gaze",
+      "type": "feat",
+      "img": "icons/magic/perception/third-eye-blue-red.webp",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must succeed on a  <strong>DC 15 Constitution</strong> saving throw or be blinded until magic such as the lesser restoration power removes the blindness.\n<p>The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must make a <strong>Constitution</strong> saving throw.</p>\n</section>\n<p>The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must succeed on a Constitution saving throw or be blinded.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 3,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 30,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": ""
+        },
+        "consume": {
+          "type": "attribute",
+          "target": "resources.legact.value",
+          "amount": 3
+        },
+        "ability": "",
+        "actionType": "other",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 15,
+          "scaling": "flat"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 1300000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "eNypfn99CwFCi47y",
+      "name": "Regional Effects",
+      "type": "feat",
+      "img": "icons/environment/wilderness/cave-entrance-mountain-blue.webp",
+      "system": {
+        "description": {
+          "value": "<p>The mere presence of a legendary creature can have strange and wondrous effects on its environment. Regional effects end abruptly or dissipate over time when the legendary creature dies.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": 0,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": null
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 500000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "wxR8cWGMfaaMKc1W",
+      "name": "Lair Actions",
+      "type": "feat",
+      "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p>If a legendary creature has lair actions, it can use them to harness the ambient magic in its lair. On initiative count 20 (losing all initiative ties), it can use one of its lair action options. It can't do so while incapacitated or otherwise unable to take actions. If surprised, it can't use one until after its first turn in the combat.</p>\n</section>\n<p>If a legendary creature has lair actions, it can use them to harness the ambient magic in its lair. </p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": 0,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 0,
+          "max": 0,
+          "per": null
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "requirements": "",
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attunement": 0
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 600000,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "Mzh95utKDPIrjiH8",
       "name": "Detect Evil and Good",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/air-burst-sky-2.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated.</p><p>The power can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
           "chat": "",
@@ -1451,27 +2035,34 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.Mzh95utKDPIrjiH8"
         }
+      },
+      "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234128,
+        "modifiedTime": 1661791116764,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "ql5KnEjMF5yaWgbk",
+      "_id": "1N8dDMMgZ1h1YJ3B",
       "name": "Invisibility",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/fog-sky-2.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A creature you touch becomes invisible until the power ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The power ends for a target that attacks or casts a power.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.</p>",
           "chat": "",
@@ -1505,7 +2096,7 @@
         },
         "consume": {
           "type": "",
-          "target": null,
+          "target": "",
           "amount": null
         },
         "ability": "",
@@ -1534,7 +2125,7 @@
           "value": "",
           "vocal": true,
           "somatic": true,
-          "material": false,
+          "material": true,
           "ritual": false,
           "concentration": true
         },
@@ -1551,27 +2142,34 @@
         "scaling": {
           "mode": "level",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.1N8dDMMgZ1h1YJ3B"
         }
+      },
+      "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234056,
+        "modifiedTime": 1661791116765,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "3a272tdusdFnkmtQ",
+      "_id": "dLJhxDfeyOsc3zsY",
       "name": "Blade Barrier",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/needles-sky-3.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You create a vertical wall of whirling, razor-sharp blades made of magical energy. The wall appears within range and lasts for the duration. You can make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides three-quarters cover to creatures behind it, and its space is difficult terrain.</p><p>When a creature enters the wall's area for the first time on a turn or starts its turn there, the creature must make a Dexterity saving throw. On a failed save, the creature takes 6d10 slashing damage. On a successful save, the creature takes half as much damage.</p>",
           "chat": "",
@@ -1654,27 +2252,34 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.dLJhxDfeyOsc3zsY"
         }
+      },
+      "img": "icons/magic/light/projectile-beams-salvo-white.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234179,
+        "modifiedTime": 1661791116765,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "1aPq4fyL2R6lZLbM",
+      "_id": "TkJ8Wtg1L7TZtspm",
       "name": "Dispel Evil and Good",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/air-burst-sky-3.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Shimmering energy surrounds and protects you from fey, Undead, and creatures originating from Beyond the Material Plane. For the Duration, Celestials, Elementals, fey, Fiends, and undead have disadvantage on Attack rolls against you.</p><p>You can end the power early by using either of the following special functions.</p><p><strong>Break Enchantment</strong>. As your action, you touch a creature you can reach that is Charmed, Frightened, or possessed by a Celestial, an elemental, a fey, a fiend, or an Undead. The creature you touch is no longer charmed, frightened, or possessed by such creatures.</p><p><strong>Dismissal</strong>. As your action, make a melee power Attack against a Celestial, an elemental, a fey, a fiend, or an Undead you can reach. On a hit, you attempt to drive the creature back to its home plane. The creature must succeed on a Charisma saving throw or be sent back to its home plane (if it isn't there already). If they aren't on their home plane, undead are sent to the Shadowfell, and fey are sent to the Feywild.</p>",
           "chat": "",
@@ -1737,7 +2342,7 @@
           "value": "",
           "vocal": true,
           "somatic": true,
-          "material": false,
+          "material": true,
           "ritual": false,
           "concentration": true
         },
@@ -1754,27 +2359,34 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.TkJ8Wtg1L7TZtspm"
         }
+      },
+      "img": "icons/magic/air/air-burst-spiral-large-blue.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234146,
+        "modifiedTime": 1661791116765,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "9wis0HWSLp7b6hjC",
+      "_id": "jhhT9PsHy5A7EojO",
       "name": "Resurrection",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/heal-sky-3.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You touch a dead creature that has been dead for no more than a century, that didn't die of old age, and that isn't undead. If its soul is free and willing, the target returns to life with all its hit points.</p><p>This power neutralizes any poisons and cures normal diseases afflicting the creature when it died. It doesn't, however, remove magical diseases, curses, and the like; if such effects aren't removed prior to casting the power, they afflict the target on its return to life.</p><p>This power closes all mortal wounds and restores any missing body parts.</p><p>Coming back from the dead is an ordeal. The target takes a −4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears.</p><p>Casting this power to restore life to a creature that has been dead for one year or longer taxes you greatly. Until you finish a long rest, you can't cast powers again, and you have disadvantage on all attack rolls, ability checks, and saving throws.</p>",
           "chat": "",
@@ -1837,7 +2449,7 @@
           "value": "",
           "vocal": true,
           "somatic": true,
-          "material": false,
+          "material": true,
           "ritual": false,
           "concentration": false
         },
@@ -1854,27 +2466,34 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.jhhT9PsHy5A7EojO"
         }
+      },
+      "img": "icons/magic/life/heart-cross-strong-flame-blue.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234213,
+        "modifiedTime": 1661791116766,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "jQji64imiJ2S55eW",
+      "_id": "d54VDyFulD9xxY7J",
       "name": "Commune",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/wind-grasp-sky-3.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You contact your deity or a divine proxy and ask up to three questions that can be answered with a yes or no. You must ask your questions before the power ends. You receive a correct answer for each question.</p><p>Divine beings aren't necessarily omniscient, so you might receive \"unclear\" as an answer if a question pertains to information that lies beyond the deity's knowledge. In a case where a one-word answer could be misleading or contrary to the deity's interests, the DM might offer a short phrase as an answer instead.</p><p>If you cast the power two or more times before finishing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get no answer. The DM makes this roll in secret.</p>",
           "chat": "",
@@ -1937,7 +2556,7 @@
           "value": "",
           "vocal": true,
           "somatic": true,
-          "material": false,
+          "material": true,
           "ritual": true,
           "concentration": false
         },
@@ -1954,27 +2573,34 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.d54VDyFulD9xxY7J"
         }
+      },
+      "img": "icons/magic/control/debuff-energy-hold-levitate-blue-yellow.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234177,
+        "modifiedTime": 1661791116766,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
-      "_id": "EuVQ52Ol4zBq4VMN",
+      "_id": "ZPd73HtKF3At11jh",
       "name": "Control Weather",
+      "ownership": {
+        "default": 0
+      },
       "type": "power",
-      "img": "systems/sw5e/icons/powers/wind-sky-3.jpg",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this power. Moving to a place where you don't have a clear path to the sky ends the power early.</p><p>When you cast the power, you change the current weather conditions, which are determined by the DM based on the climate and season. You can change precipitation, temperature, and wind. It takes 1d4 x 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the power ends, the weather gradually returns to normal.</p><p>When you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.</p><p><strong>Conditions</strong></p>\n<ol>\n<li>Clear</li>\n<li>Light clouds</li>\n<li>Overcast or ground fog</li>\n<li>Rain, hail, or snow</li>\n<li>Torrential rain, driving hail, or blizzard</li>\n</ol>\n<p><strong>Temperature</strong></p>\n<ol>\n<li>Unbearable heat</li>\n<li>Hot</li>\n<li>Warm</li>\n<li>Cool</li>\n<li>Cold</li>\n<li>Arctic cold</li>\n</ol>\n<p><strong>Wind</strong></p>\n<ol>\n<li>Calm</li>\n<li>Moderate wind</li>\n<li>Strong wind</li>\n<li>Gale</li>\n<li>Storm</li>\n</ol>",
           "chat": "",
@@ -2037,7 +2663,7 @@
           "value": "",
           "vocal": true,
           "somatic": true,
-          "material": false,
+          "material": true,
           "ritual": false,
           "concentration": true
         },
@@ -2054,486 +2680,40 @@
         "scaling": {
           "mode": "none",
           "formula": ""
-        },
-        "attunement": 0
+        }
       },
-      "effects": [],
-      "folder": null,
       "sort": 100001,
-      "permission": {
-        "default": 0
-      },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.powers.ZPd73HtKF3At11jh"
         }
+      },
+      "img": "icons/magic/air/wind-tornado-cyclone-white.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234163,
+        "modifiedTime": 1661791116766,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
-    },
-    {
-      "_id": "sZjcCRCNcf6m4VoK",
-      "name": "Legendary Actions",
-      "type": "feat",
-      "img": "icons/magic/light/hand-sparks-glow-yellow.webp",
-      "data": {
-        "description": {
-          "value": "<section class=\"secret\">\n<p>The solar can take 3 legendary actions. Only one legendary action option can be used at a time and only at the end of another creature's turn. The solar regains spent legendary actions at the start of its turn.</p>\n</section>\n<p>The solar can take 3 legendary actions.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "",
-          "cost": 0,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": ""
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": null,
-        "actionType": "",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 300000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
-    },
-    {
-      "_id": "H4Qnl5aNwIuOiKvm",
-      "name": "Teleport",
-      "type": "feat",
-      "img": "systems/sw5e/icons/powers/runes-magenta-3.jpg",
-      "data": {
-        "description": {
-          "value": "<p>The solar magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "legendary",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": 120,
-          "long": null,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "attribute",
-          "target": "resources.legact.value",
-          "amount": 1
-        },
-        "ability": null,
-        "actionType": "",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 1100000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
-    },
-    {
-      "_id": "hvLibxV3shPORnBB",
-      "name": "Searing Burst",
-      "type": "feat",
-      "img": "icons/magic/light/explosion-star-glow-yellow.webp",
-      "data": {
-        "description": {
-          "value": "<section class=\"secret\">The solar emits magical, divine energy. Each creature of its choice in a 10-foot radius must make a  <strong>DC 23 Dexterity</strong> saving throw, taking <strong>14 (4d6) <em>fire damage</em></strong> plus <strong>14 (4d6) <em>radiant damage</em></strong> on a failed save, or half as much damage on a successful one.</section>\n<p>The solar emits magical, divine energy. Each creature of its choice in a 10-foot radius must make a <strong>Dexterity</strong> saving throw.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "legendary",
-          "cost": 2,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": 10,
-          "width": null,
-          "units": "ft",
-          "type": "radius"
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": ""
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "attribute",
-          "target": "resources.legact.value",
-          "amount": 2
-        },
-        "ability": "",
-        "actionType": "other",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [
-            [
-              "4d6",
-              "fire"
-            ],
-            [
-              "4d6",
-              "radiant"
-            ]
-          ],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "dex",
-          "dc": 23,
-          "scaling": "flat"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 1200000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
-    },
-    {
-      "_id": "iXcyU8grGuxZbkYJ",
-      "name": "Blinding Gaze",
-      "type": "feat",
-      "img": "icons/magic/perception/third-eye-blue-red.webp",
-      "data": {
-        "description": {
-          "value": "<section class=\"secret\">The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must succeed on a  <strong>DC 15 Constitution</strong> saving throw or be blinded until magic such as the lesser restoration power removes the blindness.\n<p>The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must make a <strong>Constitution</strong> saving throw.</p>\n</section>\n<p>The solar targets one creature it can see within 30 feet of it. If the target can see it, the target must succeed on a Constitution saving throw or be blinded.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "legendary",
-          "cost": 3,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": 30,
-          "long": null,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
-        },
-        "consume": {
-          "type": "attribute",
-          "target": "resources.legact.value",
-          "amount": 3
-        },
-        "ability": "",
-        "actionType": "other",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "con",
-          "dc": 15,
-          "scaling": "flat"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 1300000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
-    },
-    {
-      "_id": "eNypfn99CwFCi47y",
-      "name": "Regional Effects",
-      "type": "feat",
-      "img": "icons/environment/wilderness/cave-entrance-mountain-blue.webp",
-      "data": {
-        "description": {
-          "value": "<p>The mere presence of a legendary creature can have strange and wondrous effects on its environment. Regional effects end abruptly or dissipate over time when the legendary creature dies.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "",
-          "cost": 0,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": ""
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": null,
-        "actionType": "",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 500000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
-    },
-    {
-      "_id": "wxR8cWGMfaaMKc1W",
-      "name": "Lair Actions",
-      "type": "feat",
-      "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
-      "data": {
-        "description": {
-          "value": "<section class=\"secret\">\n<p>If a legendary creature has lair actions, it can use them to harness the ambient magic in its lair. On initiative count 20 (losing all initiative ties), it can use one of its lair action options. It can't do so while incapacitated or otherwise unable to take actions. If surprised, it can't use one until after its first turn in the combat.</p>\n</section>\n<p>If a legendary creature has lair actions, it can use them to harness the ambient magic in its lair. </p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "",
-        "activation": {
-          "type": "",
-          "cost": 0,
-          "condition": ""
-        },
-        "duration": {
-          "value": null,
-          "units": ""
-        },
-        "target": {
-          "value": null,
-          "width": null,
-          "units": "",
-          "type": ""
-        },
-        "range": {
-          "value": null,
-          "long": null,
-          "units": ""
-        },
-        "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": null,
-        "actionType": "",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "",
-          "dc": null,
-          "scaling": "power"
-        },
-        "requirements": "",
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 600000,
-      "permission": {
-        "default": 0
-      },
-      "flags": {}
     }
   ],
   "effects": [],
   "folder": "rjehyX85FDoydEwV",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233022,
+    "modifiedTime": 1661878734544,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Will-o'-Wisp",
   "type": "npc",
   "img": "systems/sw5e/tokens/undead/WilloWisp.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 1,
@@ -552,51 +552,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Will-o'-Wisp",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 0.5,
     "height": 0.5,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 120,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/undead/WilloWisp.webp",
-    "actorId": "8KSVpQZyzius93ko",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -604,13 +584,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/undead/WilloWisp.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -618,7 +622,7 @@
       "name": "Consume Life",
       "type": "feat",
       "img": "icons/magic/life/heart-glowing-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>As a bonus action, the will-o'-wisp can target one creature it can see within <strong>5 ft.</strong> of it that has <strong>0 hit points</strong> and is still alive. </p><p>The target must succeed on a <strong>DC 10 Constitution saving throw</strong> against this magic or die. If the target dies, the will-o'-wisp regains 10 (3d6)<strong> hit points</strong>.</p></section><p>The will-o'-wisp can target one creature it can see within <strong>5 ft.</strong> The target must succeed on a Constitution saving throw.</p>",
           "chat": "",
@@ -688,17 +692,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "4wbSkOyE4ZqKLPQ6",
       "name": "Ephemeral",
       "type": "feat",
       "img": "icons/magic/water/orb-ice-web.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The will-o'-wisp can't wear or carry anything.</p>",
           "chat": "",
@@ -763,17 +775,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "MGdIOXhRAQQRrAcO",
       "name": "Incorporeal Movement",
       "type": "feat",
       "img": "icons/skills/movement/feet-winged-boots-brown.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The will-o'-wisp can move through other creatures and objects as if they were difficult terrain.</p><p>It takes <strong>5 (1d10) <em>force damage</em></strong> if it ends its turn inside an object.</p></section><p>The will-o'-wisp can move through other creatures and objects as if they were difficult terrain.</p>",
           "chat": "",
@@ -843,17 +863,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "3Sr6MrVgbTGw66Aa",
       "name": "Variable Illumination",
       "type": "feat",
       "img": "icons/magic/light/explosion-star-glow-blue-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The will-o'-wisp sheds bright light in a 5- to <strong>20-foot radius</strong> and dim light for an additional number of<strong> ft.</strong> equal to the chosen radius. The will-o'-wisp can alter the radius as a bonus action.</p>",
           "chat": "",
@@ -918,17 +946,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "np6oHDOwHQFsSn5B",
       "name": "Shock",
       "type": "weapon",
-      "img": "systems/sw5e/icons/powers/lightning-jade-1.jpg",
-      "data": {
+      "img": "icons/magic/lightning/bolt-forked-teal.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Power Attack:</em><strong>+4 to hit,</strong>, <strong>5 ft.,</strong> one creature. Hit: <strong>9 (2d8) <em>lightning damage</em></strong>.</p><p></p></section><p>The Will-o'-Wisp attacks with its Shock.</p>",
           "chat": "",
@@ -1022,23 +1058,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "vJR81iEOZYNMuAdz",
       "name": "Invisibility",
       "type": "feat",
       "img": "icons/magic/unholy/orb-glowing-yellow-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The will-o'-wisp and its light magically become invisible until it attacks or uses its Consume Life, or until its concentration ends (as if concentrating on a power).</p><p></p></section><p>The will-o'-wisp and its light magically become invisible.</p>",
           "chat": "",
@@ -1103,17 +1146,33 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "Q7qeMxX30iDI2Wbs",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232624,
+    "modifiedTime": 1661878729570,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

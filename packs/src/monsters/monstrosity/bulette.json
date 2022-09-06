@@ -3,7 +3,7 @@
   "name": "Bulette",
   "type": "npc",
   "img": "systems/sw5e/tokens/monstrosity/Bulette.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 19,
@@ -535,50 +535,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Bulette",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 2,
     "height": 2,
-    "scale": 1.5,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/monstrosity/Bulette.webp",
-    "actorId": "1ES45ODWg3pCrkzv",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -586,13 +567,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/monstrosity/Bulette.webp",
+      "tint": null,
+      "scaleX": 1.5,
+      "scaleY": 1.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -600,7 +605,7 @@
       "name": "Bite",
       "type": "weapon",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+7 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>30 (4d12 + 4) <em>piercing damage</em></strong>.</p></section>\n<p>The Bulette attacks with its Bite.</p>",
           "chat": "",
@@ -612,7 +617,7 @@
         "price": null,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -694,23 +699,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "xZeM7pLE9OPzdhBY",
       "name": "Standing Leap",
       "type": "feat",
       "img": "icons/environment/creatures/frog-spotted-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The bulette's long jump is up to <strong>30 ft.</strong> and its high jump is up to <strong>15 ft.</strong>, with or without a running start.</p>",
           "chat": "",
@@ -774,17 +786,25 @@
       "effects": [],
       "folder": null,
       "sort": 200001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "Keg9oouX6Vbl9tms",
       "name": "Deadly leap",
       "type": "feat",
       "img": "icons/magic/fire/projectile-wave-arrow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>If the bulette jumps at least 15 ft. as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures.</p>\n<p>Each of those creatures must succeed on a DC 16 Strength or Dexterity saving throw (target's choice) or be knocked prone and take <strong>14 (3d6 + 4) <em>bludgeoning damage</em></strong> plus <strong>14 (3d6 + 4) <em>slashing damage</em></strong>. On a successful save, the creature takes only half the damage, isn't knocked prone, and is pushed 5 ft. out of the bulette's space into an unoccupied space of the creature's choice. If no unoccupied space is within range, the creature instead falls prone in the bulette's space.</p>\n</section>\n<p>If the bulette jumps at least 15 ft. as part of its movement, it can then use this action to land on its feet in a space that contains one or more other creatures. Each of those creatures must make a Strength or Dexterity saving throw (target's choice) or be knocked prone.</p>",
           "chat": "",
@@ -857,17 +877,33 @@
       "effects": [],
       "folder": null,
       "sort": 300001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "NBkyFFhtTwdmFhsp",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232552,
+    "modifiedTime": 1661878728522,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

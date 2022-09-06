@@ -3,7 +3,7 @@
   "name": "Violet Fungus",
   "type": "npc",
   "img": "systems/sw5e/tokens/plant/VioletFungus.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 3,
@@ -540,50 +540,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Violet Fungus",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 30,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/plant/VioletFungus.webp",
-    "actorId": "7EmUVycEASn7SFL0",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -591,13 +572,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/plant/VioletFungus.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -605,7 +610,7 @@
       "name": "Rotting Touch",
       "type": "weapon",
       "img": "icons/creatures/claws/claw-curved-poison-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+2 to hit,</strong>, <strong>10 ft.,</strong> one creature. Hit: <strong>4 (1d8) <em>necrotic damage</em></strong>.</p><p></p></section><p>The Violet Fungus attacks with its Rotting Touch.</p>",
           "chat": "",
@@ -699,23 +704,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "wjDktLNTUnueuX2X",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The fungus makes 1d4 Rotting Touch attacks.</p>",
           "chat": "",
@@ -780,17 +792,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "fZgfSlczUTtrCNEb",
       "name": "False Appearance",
       "type": "feat",
       "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>While the violet fungus remains motionless, it is indistinguishable from an ordinary fungus.</p>",
           "chat": "",
@@ -855,17 +875,33 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "RCqDAUEk193jomBI",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232610,
+    "modifiedTime": 1661878729419,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

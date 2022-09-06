@@ -2,8 +2,8 @@
   "_id": "8dzaICjGy6mTUaUr",
   "name": "Bless",
   "type": "power",
-  "img": "systems/sw5e/icons/powers/haste-sky-1.jpg",
-  "data": {
+  "img": "icons/magic/control/buff-flight-wings-blue.webp",
+  "system": {
     "description": {
       "value": "<p>You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the power ends, the target can roll 1d4 and add the number rolled to the attack roll or saving throw.</p>\n<p><strong>Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.</p>",
       "chat": "",
@@ -91,38 +91,47 @@
       "flags": {},
       "changes": [
         {
-          "key": "data.bonuses.abilities.save",
+          "key": "system.bonuses.abilities.save",
           "mode": 2,
-          "value": "+1d4"
+          "value": "+1d4",
+          "priority": null
         },
         {
-          "key": "data.bonuses.mwak.attack",
+          "key": "system.bonuses.mwak.attack",
           "mode": 2,
-          "value": "+1d4"
+          "value": "+1d4",
+          "priority": null
         },
         {
-          "key": "data.bonuses.mpak.attack",
+          "key": "system.bonuses.mpak.attack",
           "mode": 2,
-          "value": "+1d4"
+          "value": "+1d4",
+          "priority": null
         },
         {
-          "key": "data.bonuses.rpak.attack",
+          "key": "system.bonuses.rpak.attack",
           "mode": 2,
-          "value": "+1d4"
+          "value": "+1d4",
+          "priority": null
         },
         {
-          "key": "data.bonuses.rwak.attack",
+          "key": "system.bonuses.rwak.attack",
           "mode": 2,
-          "value": "+1d4"
+          "value": "+1d4",
+          "priority": null
         }
       ],
       "disabled": true,
       "duration": {
         "startTime": null,
         "seconds": 60,
-        "rounds": 10
+        "rounds": 10,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
-      "icon": "systems/sw5e/icons/powers/haste-sky-1.jpg",
+      "icon": "icons/magic/control/buff-flight-wings-blue.webp",
       "label": "Bless",
       "origin": "Item.kZZAZ6kp9YzgPQEe",
       "tint": null,
@@ -131,8 +140,16 @@
   ],
   "folder": null,
   "sort": 100001,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234081,
+    "modifiedTime": 1661787234081,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

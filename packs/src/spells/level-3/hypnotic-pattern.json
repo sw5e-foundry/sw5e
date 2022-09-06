@@ -1,11 +1,11 @@
 {
   "_id": "6g3WLOZ2u0EbaLAd",
   "name": "Hypnotic Pattern",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. The pattern appears for a moment and vanishes. Each creature in the area who sees the pattern must make a&nbsp;Wisdom saving throw. On a failed save, the creature becomes charmed for the duration. While charmed by this power, the creature is incapacitated and has a speed of 0.</p><p>The power ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 30,
+      "width": null,
       "units": "ft",
       "type": "cube"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -82,6 +88,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/air-burst-magenta-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/air-burst-spiral-pink.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234072,
+    "modifiedTime": 1661787234072,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

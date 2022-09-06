@@ -1,11 +1,11 @@
 {
   "_id": "bllEWfm9xfEKynhv",
   "name": "Mind Blank",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Until the power ends, one willing creature you touch is immune to psychic damage, any effect that would sense its emotions or read its thoughts, Divination Powers, and the Charmed condition. The power even foils Wish powers and Powers or Effects of similar power used to affect the target's mind or to gain information about the target.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 8,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/air-burst-sky-3.jpg",
-  "effects": []
+  "img": "icons/magic/air/air-burst-spiral-large-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234171,
+    "modifiedTime": 1661787234171,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

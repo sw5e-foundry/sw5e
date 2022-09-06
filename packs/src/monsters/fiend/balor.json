@@ -3,7 +3,7 @@
   "name": "Balor",
   "type": "npc",
   "img": "systems/sw5e/tokens/fiend/Balor.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 26,
@@ -543,50 +543,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Balor",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 3,
     "height": 3,
-    "scale": 2.3,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 120,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/fiend/Balor.webp",
-    "actorId": "uZ8NrRenwYZ4qNf6",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -594,21 +575,45 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/fiend/Balor.webp",
+      "tint": null,
+      "scaleX": 2.3,
+      "scaleY": 2.3,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
       "_id": "nzkZgDrDq0RwWUao",
       "name": "Death Throes",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/explosion-red-3.jpg",
-      "data": {
+      "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>When the balor dies, it explodes, and each creature within 30 feet of it must make a  <strong>DC 20 Dexterity</strong> saving throw, taking <strong>70 (20d6) <em>fire damage</em></strong> on a failed save, or half as much damage on a successful one.</p>\n<p>The explosion ignites flammable objects in that area that aren't being worn or carried, and it destroys the balor's weapons.</p>\n</section>\n<p>When the balor dies, it explodes, and each creature within 30 feet of it must make a <strong>Dexterity</strong> saving throw. The explosion ignites flammable objects in that area that aren't being worn or carried, and it destroys the balor's weapons.</p>",
           "chat": "",
@@ -678,17 +683,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "FWSzSLqeIDq7meXC",
       "name": "Fire Aura",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/fog-orange-3.jpg",
-      "data": {
+      "img": "icons/magic/air/fog-gas-smoke-swirling-orange.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>At the start of each of the balor's turns, each creature within 5 feet of it takes <strong>10 (3d6) <em>fire damage</em></strong>, and flammable objects in the aura that aren't being worn or carried ignite.</p>\n<p>A creature that touches the balor or hits it with a melee attack while within 5 feet of it takes <strong>10 (3d6) <em>fire damage</em></strong>.</p>\n</section>\n<p>At the start of each of the balor's turns, each creature within 5 feet of it takes <em>fire damage</em>, and flammable objects in the aura that aren't being worn or carried ignite. A creature that touches the balor or hits it with a melee attack while within 5 feet of it takes <em>fire damage</em>.</p>",
           "chat": "",
@@ -758,17 +771,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "0Y2ThqWytMPb9RlR",
       "name": "Magic Resistance",
       "type": "feat",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The balor has advantage on saving throws against powers and other magical effects.</p>",
           "chat": "",
@@ -835,17 +856,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "5TGqX6bI8BdLEvTk",
       "name": "Magic Weapons",
       "type": "feat",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The balor's weapon attacks are magical.</p>",
           "chat": "",
@@ -912,17 +941,25 @@
       "effects": [],
       "folder": null,
       "sort": 350000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "qzphlErr2D2mRpxT",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The balor makes two attacks: one with its longsword and one with its whip.</p>",
           "chat": "",
@@ -989,17 +1026,25 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "mw93amZDA4ctKqvQ",
       "name": "Teleport",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/runes-magenta-3.jpg",
-      "data": {
+      "img": "icons/magic/symbols/runes-star-pentagon-magenta.webp",
+      "system": {
         "description": {
           "value": "<p>The balor magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</p>",
           "chat": "",
@@ -1067,17 +1112,25 @@
       "effects": [],
       "folder": null,
       "sort": 700000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "6ZAh5TkiXwQMUfDB",
       "name": "Longsword",
       "type": "weapon",
       "img": "icons/weapons/swords/greatsword-crossguard-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+14 to hit,</strong>, <strong>10 ft.,</strong> one target. Hit: <strong>21 (3d8 + 8) <em>slashing damage</em></strong> plus <strong>13 (3d8) <em>lightning damage</em></strong>.</p>\n<p>If the balor scores a critical hit, it rolls damage dice three times, instead of twice.</p>\n</section>\n<p>The Balor attacks with its Longsword.</p>",
           "chat": "",
@@ -1089,7 +1142,7 @@
         "price": 15,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1175,23 +1228,30 @@
           "thr": false,
           "two": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 800000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "1oGgJQB1ItqyKoZ5",
       "name": "Whip",
       "type": "weapon",
       "img": "icons/weapons/misc/whip-red-yellow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+14 to hit,</strong>, <strong>30 ft.,</strong> one target. Hit: <strong>15 (2d6 + 8) <em>slashing damage</em></strong> plus <strong>10 (3d6) <em>fire damage</em></strong>.</p>\n<p>The target must succeed on a  <strong>DC 20 Strength</strong> saving throw or be pulled up to 25 feet toward the balor.</p>\n</section>\n<p>The Balor attacks with its Whip. The target must make a <strong>Strength</strong> saving throw.</p>",
           "chat": "",
@@ -1203,7 +1263,7 @@
         "price": 2,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1290,7 +1350,6 @@
           "ver": false
         },
         "proficient": true,
-        "attuned": false,
         "attributes": {
           "powerdc": 10
         }
@@ -1298,17 +1357,33 @@
       "effects": [],
       "folder": null,
       "sort": 3900000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "NBkyFFhtTwdmFhsp",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233232,
+    "modifiedTime": 1661878736313,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

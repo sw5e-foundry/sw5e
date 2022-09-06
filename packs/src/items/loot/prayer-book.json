@@ -3,7 +3,7 @@
   "name": "Prayer Book",
   "type": "loot",
   "img": "icons/sundries/books/book-backed-silver-red.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A book containing prayers and incantations dedicated to a specific power for the faithful to follow.</p>",
       "chat": "",
@@ -24,8 +24,16 @@
   "effects": [],
   "folder": null,
   "sort": 4000000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233870,
+    "modifiedTime": 1661787233870,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

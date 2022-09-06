@@ -1,11 +1,11 @@
 {
   "_id": "czXrVRx6XYRWsHAi",
   "name": "Giant Insect",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You transform up to ten centipedes, three spiders, five wasps, or one Scorpion within range into giant versions of their natural forms for the Duration. A centipede becomes a Giant Centipede, a Spider becomes a Giant Spider, a wasp becomes a Giant Wasp, and a Scorpion becomes a Giant Scorpion.</p><p>Each creature obeys your verbal commands, and in Combat, they act on Your Turn each round. The DM has the Statistics for these creatures and resolves their Actions and Movement.</p><p>A creature remains in its giant size for the Duration, until it drops to 0 Hit Points, or until you use an action to dismiss the effect on it.</p><p>The DM might allow you to choose different Targets. For example, if you transform a bee, its giant version might have the same Statistics as a Giant Wasp.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 10,
+      "width": null,
       "units": "spec",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 4,
     "school": "trs",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/leaf-orange-2.jpg",
-  "effects": []
+  "img": "icons/magic/nature/leaf-glow-triple-orange.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234177,
+    "modifiedTime": 1661787234177,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

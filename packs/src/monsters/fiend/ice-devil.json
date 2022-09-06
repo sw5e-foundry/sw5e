@@ -3,7 +3,7 @@
   "name": "Ice Devil",
   "type": "npc",
   "img": "systems/sw5e/tokens/fiend/IceDevil.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 21,
@@ -543,50 +543,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Ice Devil",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 2,
     "height": 2,
-    "scale": 2,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 120,
-    "brightSight": 60,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/fiend/IceDevil.webp",
-    "actorId": "1zzRQps9jZdLZGqI",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -594,13 +575,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/fiend/IceDevil.webp",
+      "tint": null,
+      "scaleX": 2,
+      "scaleY": 2,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -608,7 +613,7 @@
       "name": "Bite",
       "type": "weapon",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+10 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>12 (2d6 + 5) <em>piercing damage</em></strong> plus <strong>10 (3d6) <em>cold damage</em></strong>.</p><p></p></section><p>The Ice Devil attacks with its Bite.</p>",
           "chat": "",
@@ -706,23 +711,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "WAGF3evP6GTYDvM0",
       "name": "Devil's Sight",
       "type": "feat",
       "img": "icons/magic/perception/eye-slit-pink.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Magical darkness doesn't impede the devil's darkvision.</p>",
           "chat": "",
@@ -787,17 +799,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "IKaEdLLHwVL0s9UP",
       "name": "Magic Resistance",
       "type": "feat",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The devil has<strong> advantage </strong>on saving throws against powers and other magical effects.</p>",
           "chat": "",
@@ -862,17 +882,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "nCTze3rZpWcTeuYQ",
       "name": "Wall of Ice",
       "type": "feat",
       "img": "icons/magic/water/barrier-ice-crystal-wall-jagged-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>The devil magically forms an opaque wall of ice on a solid surface it can see within 60 feet of it. The wall is 1 foot thick and up to 30 feet long and 10 feet high, or it's a hemispherical dome up to 20 feet in diameter.</p>\n<p>When the wall appears, each creature in its space is pushed out of it by the shortest route. The creature chooses which side of the wall to end up on, unless the creature is incapacitated. The creature then makes a  <strong>DC 17 Dexterity</strong> saving throw, taking <strong>35 (10d6) <em>cold damage</em></strong> on a failed save, or half as much damage on a successful one.</p>\n<p>The wall lasts for 1 minute or until the devil is incapacitated or dies. The wall can be damaged and breached; each 10-foot section has AC 5, 30 hit points, vulnerability to <em>fire damage</em>, and immunity to acid, cold, necrotic, poison, and <em>psychic damage</em>. If a section is destroyed, it leaves behind a sheet of frigid air in the space the wall occupied. Whenever a creature finishes moving through the frigid air on a turn, willingly or otherwise, the creature must make a  <strong>DC 17 Constitution</strong> saving throw, taking <strong>17 (5d6) <em>cold damage</em></strong> on a failed save, or half as much damage on a successful one. The frigid air dissipates when the rest of the wall vanishes.</p>\n</section>\n<p>The devil magically forms an opaque wall of ice on a solid surface it can see within 60 feet of it. The wall is 1 foot thick and up to 30 feet long and 10 feet high, or it's a hemispherical dome up to 20 feet in diameter.When the wall appears, each creature in its space is pushed out of it by the shortest route. The creature chooses which side of the wall to end up on, unless the creature is incapacitated. The creature then makes a Dexterity saving throw.</p>\n<p>The wall can be damaged and breached. If a section is destroyed, it leaves behind a sheet of frigid air in the space the wall occupied. Whenever a creature finishes moving through the frigid air on a turn, willingly or otherwise, the creature must make a <strong>Constitution</strong> saving throw.</p>",
           "chat": "",
@@ -942,17 +970,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "AQ551xglVn90BdwU",
       "name": "Tail",
       "type": "weapon",
       "img": "icons/skills/wounds/injury-pain-impaled-hand-blood.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+10 to hit,</strong>, <strong>10 ft.,</strong> one target. Hit: <strong>12 (2d6 + 5) <em>bludgeoning damage</em></strong> plus <strong>10 (3d6) <em>cold damage</em></strong>.</p></section>\n<p>The Ice Devil attacks with its Tail.</p>",
           "chat": "",
@@ -964,7 +1000,7 @@
         "price": null,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1050,23 +1086,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "E6iXljYXLdQyfk1l",
       "name": "Claws",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+10 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>10 (2d4 + 5) <em>slashing damage</em></strong> plus <strong>10 (3d6) <em>cold damage</em></strong>.</p></section>\n<p>The Ice Devil attacks with its Claws.</p>",
           "chat": "",
@@ -1078,7 +1121,7 @@
         "price": null,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1164,23 +1207,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "vLQAjoewGE5MAHn2",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The devil makes three attacks: one with its bite, one with its claws, and one with its tail.</p>",
           "chat": "",
@@ -1245,17 +1295,33 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "OvwYcGTa27ZerqL7",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232559,
+    "modifiedTime": 1661878728651,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

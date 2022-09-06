@@ -3,7 +3,7 @@
   "name": "Animated Armor",
   "type": "npc",
   "img": "systems/sw5e/tokens/construct/AnimatedArmor.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 14,
@@ -550,50 +550,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Animated Armor",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 60,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/construct/AnimatedArmor.webp",
-    "actorId": "eORmAXuV5v3nWsQL",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -601,13 +582,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/construct/AnimatedArmor.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -615,7 +620,7 @@
       "name": "Antimagic Susceptibility",
       "type": "feat",
       "img": "icons/magic/lightning/orb-ball-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>The armor is incapacitated while in the area of an antimagic field.</p>\n<p>If targeted by dispel magic, the armor must succeed on a Constitution saving throw against the caster's power save DC or fall unconscious for <strong>1 minute</strong>.</p>\n</section>\n<p>The armor is incapacitated while in the area of an antimagic field.</p>",
           "chat": "",
@@ -683,17 +688,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "Kwed9PPaTkZYr8Jh",
       "name": "False Appearance",
       "type": "feat",
       "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>While the armor remains motionless, it is indistinguishable from a normal suit of armor.</p>",
           "chat": "",
@@ -761,17 +774,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "bdRuWKCO8gXQPu16",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The armor makes two melee attacks.</p>",
           "chat": "",
@@ -839,17 +860,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "vUqKQJ1GGWbKg6cX",
       "name": "Slam",
       "type": "weapon",
       "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+4 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>5 (1d6 + 2) <em>bludgeoning damage</em></strong>.</p></section>\n<p>The Animated Armor makes a slam attack!</p>",
           "chat": "",
@@ -861,7 +890,7 @@
         "price": null,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -944,23 +973,38 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "6DauPtHPdkuwtDcK",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232944,
+    "modifiedTime": 1661878733422,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

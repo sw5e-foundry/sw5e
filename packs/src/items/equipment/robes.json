@@ -2,8 +2,8 @@
   "_id": "8GCEodUsTEEpBlO6",
   "name": "Robes",
   "type": "equipment",
-  "img": "systems/sw5e/icons/items/armor/robe.jpg",
-  "data": {
+  "img": "icons/equipment/back/mantle-collared-black.webp",
+  "system": {
     "description": {
       "value": "<p>Simple or ceremonial wear, often used by priests and other religious figures.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -87,8 +88,16 @@
   "effects": [],
   "folder": null,
   "sort": 3800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233488,
+    "modifiedTime": 1661877576105,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "ohwfuwnvuoBWlSQr",
   "name": "Thieves' Cant",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.</p><p>In addition, you understand a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": "",
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -72,21 +73,38 @@
       "_id": "VN7GnGzVwmBM7YCU",
       "changes": [
         {
-          "key": "data.traits.languages.value",
+          "key": "system.traits.languages.value",
           "mode": 2,
-          "value": "cant"
+          "value": "cant",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "icon": "icons/sundries/documents/document-torn-diagram-tan.webp",
       "label": "Thieves' Cant",
       "origin": "Item.ohwfuwnvuoBWlSQr",
       "transfer": true,
       "flags": {},
-      "tint": ""
+      "tint": null
     }
-  ]
+  ],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234423,
+    "modifiedTime": 1661787234423,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

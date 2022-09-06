@@ -2,7 +2,7 @@
   "name": "Krusk (Half-Orc Paladin)",
   "type": "character",
   "img": "systems/sw5e/tokens/heroes/PaladinHammer.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 17,
@@ -574,33 +574,14 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "flags": {},
     "name": "Krusk",
     "displayName": 30,
-    "img": "systems/sw5e/tokens/heroes/PaladinHammer.webp",
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": true,
-    "dimSight": 30,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
-    "actorId": "yaxOpEDtDzn67I48",
     "actorLink": true,
     "disposition": 1,
     "displayBars": 40,
@@ -608,17 +589,16 @@
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "randomImg": false,
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -626,20 +606,44 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/heroes/PaladinHammer.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
       "_id": "mmNOUJeTSbhakKbO",
       "name": "Amulet (Holy Symbol)",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>An amulet depicting a symbol representing a deity through which a true believer can call forth their power and in doing so spread the faith.</p><p><strong>Powercasting Focus</strong>. A cleric or paladin can use a holy symbol as a powercasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield.</p>",
           "chat": "",
@@ -651,7 +655,7 @@
         "price": 5,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "special",
@@ -720,7 +724,6 @@
         "strength": 0,
         "stealth": false,
         "proficient": false,
-        "attuned": false,
         "armorType": {
           "value": "",
           "_deprecated": true
@@ -734,15 +737,23 @@
       "img": "icons/equipment/neck/pendant-bronze-gem-blue.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "z5rKywjIFzidberh",
       "name": "Background: Local Champion",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<ul>\n<li>Skill Proficiencies: Animal Handling, Survival</li>\n<li>Tool Proficiencies: Artisan&rsquo;s tools, vehicles (land)</li>\n<li>Equipment: A set of artisan&rsquo;s tools, common clothes, and a pouch containing 10 gp</li>\n</ul>",
           "chat": "",
@@ -825,24 +836,27 @@
         "attunement": 0
       },
       "sort": 300000,
-      "flags": {
-        "_sheetTab": "details",
-        "entityorder": {
-          "order": 186
-        }
-      },
+      "flags": {},
       "img": "icons/magic/light/explosion-beam-impact-silhouette.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "wKzMNfJSgCUaqpHG",
       "name": "Javelin (melee)",
       "type": "weapon",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This light and flexible spear is designed for throwing, but is versatile enough to be used in melee combat as well.</p>",
           "chat": "",
@@ -854,7 +868,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -937,7 +951,6 @@
           "lod": false
         },
         "proficient": true,
-        "attuned": false,
         "attributes": {
           "powerdc": 10
         }
@@ -947,15 +960,23 @@
       "img": "icons/weapons/ammunition/arrows-bodkin-yellow-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "PzYFkgoa8KpZwUWe",
       "name": "Javelin (thrown)",
       "type": "weapon",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This light and flexible spear is designed for throwing, but is versatile enough to be used in melee combat as well.</p>",
           "chat": "",
@@ -967,7 +988,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1050,7 +1071,6 @@
           "lod": false
         },
         "proficient": true,
-        "attuned": false,
         "attributes": {
           "powerdc": 10
         }
@@ -1060,15 +1080,23 @@
       "img": "icons/weapons/ammunition/arrows-bodkin-yellow-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "REOAERyAiCBpCA7V",
       "name": "Javelin",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This light and flexible spear is designed for throwing, but is versatile enough to be used in melee combat as well.</p>",
           "chat": "",
@@ -1080,7 +1108,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -1131,23 +1159,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "ammo",
-        "attuned": false
+        "consumableType": "ammo"
       },
       "sort": 100001,
       "flags": {},
       "img": "icons/weapons/ammunition/arrows-bodkin-yellow-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "h9ta6MMHygQtSvhd",
       "name": "Love Letter",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A love letter sent by an admirer.</p>",
           "chat": "",
@@ -1160,23 +1195,30 @@
         "attunement": 0,
         "equipped": false,
         "rarity": "",
-        "identified": true,
-        "attuned": false
+        "identified": true
       },
       "sort": 100001,
       "flags": {},
       "img": "icons/sundries/scrolls/scroll-plain-red.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "7GbdWRRe8GyKGVYk",
       "name": "Chain Mail",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.</p>",
           "chat": "",
@@ -1188,7 +1230,7 @@
         "price": 75,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -1256,23 +1298,30 @@
         },
         "strength": 13,
         "stealth": true,
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 400000,
       "flags": {},
       "img": "icons/equipment/chest/breastplate-metal-scaled-grey.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "jAp8oEZymuFqMEME",
       "name": "Shield",
       "type": "equipment",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by 2. You can benefit from only one shield at a time.</p>",
           "chat": "",
@@ -1284,7 +1333,7 @@
         "price": 10,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -1352,23 +1401,30 @@
         },
         "strength": null,
         "stealth": false,
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 500000,
       "flags": {},
       "img": "icons/equipment/shield/oval-wooden-boss-steel.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "JVygpNYgNviQlQDL",
       "name": "Longsword",
       "type": "weapon",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A lengthy stright blade designed for slashing foes, the longsword is a highly versatile weapon that may also be wielded with two hands for more punishing strikes.</p>",
           "chat": "",
@@ -1380,7 +1436,7 @@
         "price": 15,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1462,23 +1518,30 @@
           "thr": false,
           "two": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "sort": 2100000,
       "flags": {},
       "img": "icons/weapons/swords/greatsword-crossguard-steel.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "QDJj8gNDG3fapNIZ",
       "name": "Hempen Rope (50 ft.)",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check.</p>",
           "chat": "",
@@ -1490,7 +1553,7 @@
         "price": 1,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1542,8 +1605,7 @@
           "dc": 17,
           "scaling": "flat"
         },
-        "consumableType": "trinket",
-        "attuned": false
+        "consumableType": "trinket"
       },
       "sort": 1000000,
       "flags": {
@@ -1557,15 +1619,23 @@
       "img": "icons/sundries/survival/rope-wrapped-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "E0S0CJRUih4rZUTx",
       "name": "Mess Kit",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl.</p>",
           "chat": "",
@@ -1577,9 +1647,8 @@
         "price": 0.2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1596,15 +1665,23 @@
       "img": "icons/tools/cooking/fork-steel-grey.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "XDOhevGrWTwftiiM",
       "name": "Bedroll",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Roll of cloth used by traveller to sleep in.</p>",
           "chat": "",
@@ -1616,9 +1693,8 @@
         "price": 1,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1635,15 +1711,23 @@
       "img": "icons/sundries/flags/banner-worn-blue.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "eIMlGbeDuYjjEGRH",
       "name": "Waterskin",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A leather hide sewn into an enclosed skin which can contain up to 4 pints of liquid. It weighs 5 pounds when full; a pint of water is approximately 1 pound.</p>",
           "chat": "",
@@ -1655,7 +1739,7 @@
         "price": 0.2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1707,23 +1791,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "food",
-        "attuned": false
+        "consumableType": "food"
       },
       "sort": 500000,
       "flags": {},
       "img": "icons/sundries/survival/wetskin-leather-purple.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "XeDU0JtxGcNBjXer",
       "name": "Backpack",
       "type": "backpack",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A backpack can hold one cubic foot or 30 pounds of gear. You can also strap items, such as a bedroll or a coil of rope, to the outside of a backpack.</p>",
           "chat": "",
@@ -1735,7 +1826,7 @@
         "price": 2,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "capacity": {
           "type": "weight",
@@ -1749,7 +1840,6 @@
           "gp": 0,
           "pp": 0
         },
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1759,15 +1849,23 @@
       "img": "icons/containers/bags/pack-simple-leather.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "IPeL1J71CbP6s5y5",
       "name": "Smith's Tools",
       "type": "tool",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>These special tools include the items needed to pursue a craft or trade in smithing.</p><p>Proficiency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each type of artisan's tools requires a separate proficiency.</p>",
           "chat": "",
@@ -1779,7 +1877,7 @@
         "price": 20,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "toolType": "",
         "baseItem": "",
@@ -1787,7 +1885,6 @@
         "chatFlavor": "",
         "proficient": 1,
         "bonus": "",
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1797,15 +1894,23 @@
       "img": "icons/tools/smithing/hammer-sledge-steel-grey.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "zk8hxPzKFTDZWVED",
       "name": "Tinderbox",
       "type": "loot",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch - or anything else with abundant, exposed fuel - takes an action. Lighting any other fire takes 1 minute.</p>",
           "chat": "",
@@ -1817,9 +1922,8 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
-        "attuned": false,
         "damage": {
           "parts": []
         }
@@ -1829,15 +1933,23 @@
       "img": "icons/sundries/lights/torch-black.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "grGg87yIxTTxoPTA",
       "name": "Torch",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage.</p>",
           "chat": "",
@@ -1849,7 +1961,7 @@
         "price": 0.01,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1906,8 +2018,7 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "trinket",
-        "attuned": false
+        "consumableType": "trinket"
       },
       "sort": 4700000,
       "flags": {
@@ -1921,15 +2032,23 @@
       "img": "icons/sundries/lights/torch-black.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "WuNY7UdTCjUEpGlU",
       "name": "Rations",
       "type": "consumable",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts.</p>",
           "chat": "",
@@ -1941,7 +2060,7 @@
         "price": 0.5,
         "attunement": 0,
         "equipped": false,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -1993,23 +2112,30 @@
           "dc": null,
           "scaling": "power"
         },
-        "consumableType": "food",
-        "attuned": false
+        "consumableType": "food"
       },
       "sort": 1800000,
       "flags": {},
       "img": "icons/consumables/meat/hock-leg-pink-brown.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "JdhpBDti3h3tNZai",
       "name": "Relentless Endurance",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.</p>",
           "chat": "",
@@ -2097,23 +2223,27 @@
         "attunement": 0
       },
       "sort": 5000000,
-      "flags": {
-        "entityorder": {
-          "order": 8
-        }
-      },
+      "flags": {},
       "img": "icons/magic/control/control-influence-rally-purple.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "Md0yW4QscE770F7W",
       "name": "Savage Attacks",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.</p><p><em><strong>Foundry Note:</strong> Enable this feature in the Special Traits section of the character sheet.</em></p>",
           "chat": "",
@@ -2196,23 +2326,27 @@
         "attunement": 0
       },
       "sort": 5100000,
-      "flags": {
-        "entityorder": {
-          "order": 118
-        }
-      },
+      "flags": {},
       "img": "icons/skills/melee/weapons-crossed-swords-purple.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
       "_id": "QX131bK0iuunr5uE",
       "name": "Half-Orc",
       "type": "feat",
-      "data": {
+      "system": {
         "description": {
           "value": "<div title=\"Page 7\">\n<div>\n<div>\n<p><em>Your half-­orc character has certain traits deriving from your orc ancestry. </em></p><p><em><strong>Ability Score Increase.</strong></em> Your Strength score increases by 2, and your Constitution score increases by 1.</p><p><em><strong>Age.</strong></em> Half-­orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.</p><p><em><strong>Alignment.</strong></em> Half-­orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-­orcs raised among orcs and willing to live out their lives among them are usually evil.</p><p><em><strong>Size.</strong></em> Half-­orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.</p><p><em><strong>Speed.</strong></em> Your base walking speed is 30 feet.</p><p><em><strong>Darkvision.</strong></em> Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.</p><p><em><strong>Menacing.</strong></em> You gain proficiency in the Intimidation skill.</p><p><em><strong>Relentless Endurance.</strong></em> @Compendium[sw5e.species.97c8i9Z28thvZuA8]{Relentless Endurance} When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.</p>\n<div title=\"Page 7\">\n<div>\n<div>\n<p><em><strong>Savage Attacks.</strong></em> @Compendium[sw5e.species.0kUsT4sMUOr5FcoX]{Savage Attacks} When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra damage of the critical hit.</p><p><em><strong>Languages.</strong></em> You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>",
           "chat": "",
@@ -2279,8 +2413,16 @@
       "img": "icons/magic/unholy/orb-smoking-green.webp",
       "effects": [],
       "folder": null,
-      "permission": {
+      "ownership": {
         "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -2288,7 +2430,7 @@
       "name": "Paladin",
       "type": "class",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>As a paladin, you gain the following class features.</p>\n<h3>Hit Points</h3>\n<p><strong>Hit Dice:</strong> 1d10 per paladin level<br /><strong>Hit Points at 1st Level:</strong> 10 + your Constitution modifier<br /><strong>Hit Points at Higher Levels:</strong> 1d10 (or 6) + your Constitution modifier per paladin level after 1st</p>\n<h3>Proficiencies</h3>\n<p><strong>Armor:</strong> All armor, shields<br /><strong>Weapons:</strong> Simple weapons, martial weapons<br /><strong>Tools:</strong> None<br /><strong>Saving Throws:</strong> Wisdom, Charisma<br /><strong>Skills:</strong> Choose two from Athletics, Insight, Intimidation, Medicine, Persuasion, and Religion</p>\n<h3>Equipment</h3>\n<p>You start with the following equipment, in addition to the equipment granted by your background:</p>\n<ul>\n<li>(a) a martial weapon and a shield or (b) two martial weapons</li>\n<li>(a) five javelins or (b) any simple melee weapon</li>\n<li>(a) a priest's pack or (b) an explorer's pack</li>\n<li>Chain mail and a holy symbol</li>\n</ul>\n<h1>Paladin Advancement</h1>\n<table>\n<thead>\n<tr>\n<td>Level</td>\n<td>Proficiency Bonus</td>\n<td>Features</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.E8ozg8avUVOX9N7u]{Divine Sense}, @Compendium[sw5e.classfeatures.OdrvL3afwLOPeuYZ]{Lay on Hands}</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.fbExzwNwEAl2kW9c]{Fighting Style}, @Compendium[sw5e.classfeatures.ihoQHsmVZlyDbPhX]{Powercasting}, @Compendium[sw5e.classfeatures.ySMPQ6zNSlvkrl2f]{Divine Smite}</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.dY9yrqkyEDuF0CG2]{Divine Health}, @Compendium[sw5e.classfeatures.olAqNsUTIef9x8xC]{Sacred Oath}</td>\n</tr>\n<tr>\n<td>4th</td>\n<td>+2</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>5th</td>\n<td>+3</td>\n<td>2nd Level Power Slot, @Compendium[sw5e.classfeatures.XogoBnFWmCAHXppo]{Extra Attack}</td>\n</tr>\n<tr>\n<td>6th</td>\n<td>+3</td>\n<td>@Compendium[sw5e.classfeatures.carGDhkIdoduTC0I]{Aura of Protection}</td>\n</tr>\n<tr>\n<td>7th</td>\n<td>+3</td>\n<td>Sacred Oath feature</td>\n</tr>\n<tr>\n<td>8th</td>\n<td>+3</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>9th</td>\n<td>+4</td>\n<td>3rd Level Power Slot</td>\n</tr>\n<tr>\n<td>10th</td>\n<td>+4</td>\n<td>@Compendium[sw5e.classfeatures.nahSkBO6LH4HkpaT]{Aura of Courage}</td>\n</tr>\n<tr>\n<td>11th</td>\n<td>+4</td>\n<td>@Compendium[sw5e.classfeatures.FAk41RPCTcvCk6KI]{Improved Divine Smite}</td>\n</tr>\n<tr>\n<td>12th</td>\n<td>+4</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>13th</td>\n<td>+5</td>\n<td>4th Level Power Slot</td>\n</tr>\n<tr>\n<td>14th</td>\n<td>+5</td>\n<td>@Compendium[sw5e.classfeatures.U7BIPVPsptBmwsnV]{Cleansing Touch}</td>\n</tr>\n<tr>\n<td>15th</td>\n<td>+5</td>\n<td>Sacred Oath feature</td>\n</tr>\n<tr>\n<td>16th</td>\n<td>+5</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>17th</td>\n<td>+6</td>\n<td>5th Level Power Slot</td>\n</tr>\n<tr>\n<td>18th</td>\n<td>+6</td>\n<td>Aura improvements</td>\n</tr>\n<tr>\n<td>19th</td>\n<td>+6</td>\n<td>@Compendium[sw5e.classfeatures.s0Cc2zcX0JzIgam5]{Ability Score Improvement}</td>\n</tr>\n<tr>\n<td>20th</td>\n<td>+6</td>\n<td>Sacred Oath feature</td>\n</tr>\n</tbody>\n</table>\n<h1>Sacred Oaths</h1>\n<p>Becoming a paladin involves taking vows that commit the paladin to the cause of righteousness, an active path of fighting wickedness. The final oath, taken when he or she reaches 3rd level, is the culmination of all the paladin's training. Some characters with this class don't consider themselves true paladins until they have reached 3rd level and made this oath. For others, the actual swearing of the oath is a formality, an official stamp on what has always been true in the paladin's heart.</p>\n<p>@Compendium[sw5e.archetypes.sZ86mbX8D5PfYuhl]{Oath of Devotion}</p>\n<h3>Breaking Your Oath</h3>\n<p>A paladin tries to hold to the highest standards of conduct, but even the most virtuous paladin is fallible. Sometimes the right path proves too demanding, sometimes a situation calls for the lesser of two evils, and sometimes the heat of emotion causes a paladin to transgress his or her oath.</p>\n<p>A paladin who has broken a vow typically seeks absolution from a cleric who shares his or her faith or from another paladin of the same order. The paladin might spend an allnight vigil in prayer as a sign of penitence, or undertake a fast or similar act of self-denial. After a rite of confession and forgiveness, the paladin starts fresh.</p>\n<p>If a paladin willfully violates his or her oath and shows no sign of repentance, the consequences can be more serious. At the GM's discretion, an impenitent paladin might be forced to abandon this class and adopt another.</p>",
           "chat": "",
@@ -2461,13 +2603,21 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
         "core": {
           "sourceId": "Compendium.sw5e.classes.gZiUvbXWLs0pOp0c"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -2475,7 +2625,7 @@
       "name": "Divine Sense",
       "type": "feat",
       "img": "icons/creatures/eyes/human-single-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire Count Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the @Compendium[sw5e.powers.SLxA9QhrggTz0taU]{Hallow} power.</p><p>You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.</p>",
           "chat": "",
@@ -2539,7 +2689,7 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
@@ -2547,6 +2697,14 @@
           "sourceId": "Compendium.sw5e.classfeatures.E8ozg8avUVOX9N7u",
           "advancementOrigin": "hp3q5dyegfnxgf5p.z2d0fxi8e24gradq"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -2554,7 +2712,7 @@
       "name": "Lay on Hands",
       "type": "feat",
       "img": "icons/magic/light/orbs-hand-gray.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level × 5.</p><p>As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.</p><p>Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.</p><p>This feature has no effect on undead and constructs.</p>",
           "chat": "",
@@ -2618,7 +2776,7 @@
       "effects": [],
       "folder": null,
       "sort": 0,
-      "permission": {
+      "ownership": {
         "default": 0
       },
       "flags": {
@@ -2626,13 +2784,21 @@
           "sourceId": "Compendium.sw5e.classfeatures.OdrvL3afwLOPeuYZ",
           "advancementOrigin": "hp3q5dyegfnxgf5p.z2d0fxi8e24gradq"
         }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     }
   ],
   "effects": [],
   "folder": null,
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "flags": {
@@ -2640,5 +2806,13 @@
       "savageAttacks": true
     }
   },
-  "_id": "Dh1AA6w104V17V6w"
+  "_id": "Dh1AA6w104V17V6w",
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232161,
+    "modifiedTime": 1661878142329,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

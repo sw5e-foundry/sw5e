@@ -1,11 +1,11 @@
 {
   "_id": "dhqBY4TvVjxVmOZd",
   "name": "Sleet Storm",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Until the power ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.</p><p>The ground in the area is covered with slick ice, making it difficult terrain. When a creature enters the power's area for the first time on a turn or starts its turn there, it must make a Dexterity saving throw. On a failed save, it falls Prone.</p><p>If a creature is concentrating in the power's area, the creature must make a successful Constitution saving throw against your power save DC or lose concentration.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 40,
+      "width": null,
       "units": "ft",
       "type": "cylinder"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -82,6 +88,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/needles-blue-3.jpg",
-  "effects": []
+  "img": "icons/magic/water/projectile-beams-salvo-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234181,
+    "modifiedTime": 1661787234181,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

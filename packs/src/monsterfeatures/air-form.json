@@ -1,11 +1,11 @@
 {
   "_id": "TyDSfYTJeKv7c8lB",
   "name": "Air Form",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>The {type} can enter a hostile creature's space and stop there. It can move through a space as narrow as 1 inch wide without squeezing.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -77,6 +78,16 @@
     }
   },
   "flags": {},
-  "img": "systems/sw5e/icons/powers/wind-grasp-air-3.jpg",
-  "effects": []
+  "img": "icons/magic/control/debuff-energy-hold-levitate-yellow.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234552,
+    "modifiedTime": 1661877433637,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

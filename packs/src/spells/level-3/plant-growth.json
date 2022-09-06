@@ -1,11 +1,11 @@
 {
   "_id": "YWtwzp6ZnQJMEmVW",
   "name": "Plant Growth",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This power channels vitality into plants within a specific area. There are two possible uses for the power, granting either immediate or long-term benefits.</p><p>If you cast this power using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.</p><p>You can exclude one or more areas of any size within the power's area from being affected.</p><p>If you cast this power over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 100,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 3,
     "school": "trs",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/leaf-acid-2.jpg",
-  "effects": []
+  "img": "icons/magic/nature/leaf-glow-triple-green.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234162,
+    "modifiedTime": 1661787234162,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

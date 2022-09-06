@@ -1,11 +1,11 @@
 {
   "_id": "7nbokvWfSckl2iWz",
   "name": "Blind Senses",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>The {creature} can't use its blindsight while deafened and unable to smell.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234507,
+    "modifiedTime": 1661787234507,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

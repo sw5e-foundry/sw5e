@@ -3,7 +3,7 @@
   "name": "Stone of Controlling Earth Elementals",
   "type": "consumable",
   "img": "icons/commodities/treasure/token-runed-os-grey.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>If the stone is touching the ground, you can use an action to speak the stone's command word and summon an @Compendium[sw5e.monsters.sApYLZj9PTZ40wJr]{Earth Elemental}, as if you had cast the @Compendium[sw5e.powers.1LkZvINag7KqBmDR]{Conjure Elemental} power. The stone can't be used this way again until the next dawn.</p>\n<p>The stone weighs 5 pounds.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 3700000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233670,
+    "modifiedTime": 1661787233670,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "EmlE1a0rhucK2UT1",
   "name": "Death Throes",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<section class=\"secret\">\n<p>When the {creature} dies, it explodes, and each creature within 30 feet of it must make a  <strong>DC 20 Dexterity</strong> saving throw, taking <strong>70 (20d6) <em>fire damage</em></strong> on a failed save, or half as much damage on a successful one.</p><p>The explosion ignites flammable objects in that area that aren't being worn or carried, and it destroys the {creature}'s weapons.</p>\n</section>\n<p>When the {creature} dies, it explodes, and each creature within 30 feet of it must make a <strong>Dexterity</strong> saving throw. The explosion ignites flammable objects in that area that aren't being worn or carried, and it destroys the {creature}'s weapons.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 30,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -66,6 +67,16 @@
     }
   },
   "flags": {},
-  "img": "systems/sw5e/icons/powers/explosion-red-3.jpg",
-  "effects": []
+  "img": "icons/magic/fire/explosion-fireball-large-red-orange.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234519,
+    "modifiedTime": 1661877433573,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

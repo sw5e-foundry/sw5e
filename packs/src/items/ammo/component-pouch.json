@@ -3,7 +3,7 @@
   "name": "Component Pouch",
   "type": "consumable",
   "img": "icons/containers/bags/pack-simple-leather-tan.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your powers, except for those components that have a specific cost (as indicated in a power's description).</p>",
       "chat": "",
@@ -71,8 +71,16 @@
   "effects": [],
   "folder": null,
   "sort": 800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233786,
+    "modifiedTime": 1661787233786,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

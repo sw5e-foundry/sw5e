@@ -3,7 +3,7 @@
   "name": "Sahuagin",
   "type": "npc",
   "img": "systems/sw5e/tokens/humanoid/Sahuagin.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 13,
@@ -537,51 +537,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Sahuagin",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 120,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/humanoid/Sahuagin.webp",
-    "actorId": "lyNBFmJdbh4NLRzz",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -589,13 +569,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/humanoid/Sahuagin.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -603,7 +607,7 @@
       "name": "Spear",
       "type": "weapon",
       "img": "icons/weapons/polearms/spear-flared-worn-grey.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A gleaming steel point mouted atop a stout wooden haft, the spear may be wielded in one hand or two and can puncture through the heaviest armor with deadly force.</p>",
           "chat": "",
@@ -615,7 +619,7 @@
         "price": 1,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -698,7 +702,6 @@
           "two": false
         },
         "proficient": true,
-        "attuned": false,
         "attributes": {
           "powerdc": 10
         }
@@ -706,17 +709,25 @@
       "effects": [],
       "folder": null,
       "sort": 2700000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "NSdAR332o65ZE3hC",
       "name": "Bite",
       "type": "weapon",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+3 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>3 (1d4 + 1) <em>piercing damage</em></strong>.</p><p></p></section><p>The Sahuagin attacks with its Bite.</p>",
           "chat": "",
@@ -810,23 +821,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 2800000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "uyWDYVSAJuCfayLE",
       "name": "Blood Frenzy",
       "type": "feat",
       "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The sahuagin has<strong> advantage </strong>on melee attack rolls against any creature that doesn't have all its<strong> hit points</strong>.</p>",
           "chat": "",
@@ -891,17 +909,25 @@
       "effects": [],
       "folder": null,
       "sort": 2900000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "VJlDAg21VwBOjbuR",
       "name": "Claws",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+3 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>3 (1d4 + 1) <em>slashing damage</em></strong>.</p><p></p></section><p>The Sahuagin attacks with its Claws.</p>",
           "chat": "",
@@ -995,23 +1021,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 3000000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "lH49mvA2g5C44yM4",
       "name": "Limited Amphibiousness",
       "type": "feat",
       "img": "icons/environment/creatures/frog-spotted-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The sahuagin can breathe air and water, but it needs to be submerged at least once every 4 hours to avoid suffocating.</p></section><p>The sahuagin can breathe air and water.</p>",
           "chat": "",
@@ -1076,17 +1109,25 @@
       "effects": [],
       "folder": null,
       "sort": 3100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "1aEgtsYuxz12hFn3",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The sahuagin makes two melee attacks: one with its bite and one with its claws or spear.</p>",
           "chat": "",
@@ -1151,17 +1192,25 @@
       "effects": [],
       "folder": null,
       "sort": 3200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "SQqFFwf2ADQmLaVO",
       "name": "Shark Telepathy",
       "type": "feat",
       "img": "icons/magic/unholy/orb-swirling-teal.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The sahuagin can magically command any shark <strong>within 120 feet</strong> of it, using a limited telepathy.</p>",
           "chat": "",
@@ -1226,17 +1275,33 @@
       "effects": [],
       "folder": null,
       "sort": 3300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "rjehyX85FDoydEwV",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233140,
+    "modifiedTime": 1661878734601,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

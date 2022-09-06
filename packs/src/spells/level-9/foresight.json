@@ -1,11 +1,11 @@
 {
   "_id": "6HEEhLdJz32TL4Js",
   "name": "Foresight",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You touch a willing creature and bestow a limited ability to see into the immediate future. For the Duration, the target can't be surprised and has advantage on Attack rolls, Ability Checks, and Saving Throws. Additionally, other creatures have disadvantage on attack rolls against the target for the duration.</p><p>This power immediately ends if you cast it again before its Duration ends.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 9,
     "school": "div",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/evil-eye-eerie-3.jpg",
-  "effects": []
+  "img": "icons/magic/perception/eye-ringed-glow-angry-large-teal.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234072,
+    "modifiedTime": 1661787234072,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

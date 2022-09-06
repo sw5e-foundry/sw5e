@@ -1,11 +1,11 @@
 {
   "_id": "3sN91lT1R3oxcDKd",
   "name": "Invocation: Devil's Sight",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You can see normally in darkness, both magical and nonmagical, to a distance of 120 feet.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": "",
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -72,21 +73,38 @@
       "_id": "3JYlSTG0olbm1FQC",
       "changes": [
         {
-          "key": "data.attributes.senses.darkvision",
+          "key": "system.attributes.senses.darkvision",
           "mode": 4,
-          "value": "120"
+          "value": "120",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "icon": "icons/magic/perception/silhouette-stealth-shadow.webp",
       "label": "Devil's Sight",
       "origin": "Item.3sN91lT1R3oxcDKd",
       "transfer": true,
       "flags": {},
-      "tint": ""
+      "tint": null
     }
-  ]
+  ],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234327,
+    "modifiedTime": 1661787234327,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

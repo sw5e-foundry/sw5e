@@ -3,7 +3,7 @@
   "name": "Oil of Etherealness",
   "type": "consumable",
   "img": "icons/consumables/potions/bottle-conical-corked-labeled-shell-cyan.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Beads of this cloudy gray oil form on the outside of its container and quickly evaporate.  </em></p>\n<p>The oil can cover a Medium or smaller creature, along with the equipment it's wearing and carrying (one additional vial is required for each size category above Medium).  Applying the oil takes 10 minutes.  The affected creature then gains the effect of the @Compendium[sw5e.powers.PQuEgKyCdovOvhqN]{Etherealness} power for 1 hour.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 1400000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233702,
+    "modifiedTime": 1661787233702,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

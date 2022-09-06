@@ -1,11 +1,11 @@
 {
   "_id": "ehvmg9U9fcMEhE4z",
   "name": "Call Lightning",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see 100 feet directly above you. The power fails if you can't see a point in the air where the storm cloud could appear (for example, if you are in a room that can't accommodate the cloud).</p><p>When you cast the power, choose a point you can see within range. A bolt of lightning flashes down from the cloud to that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the power ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.</p><p>If you are outdoors in stormy conditions when you cast this power, the power gives you control over the existing storm instead of creating a new one. Under such conditions, the power's damage increases by 1d10.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 60,
+      "width": null,
       "units": "ft",
       "type": "cylinder"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -86,6 +92,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/lighting-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/lightning/bolt-forked-large-blue-yellow.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234186,
+    "modifiedTime": 1661787234186,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

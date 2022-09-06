@@ -1,11 +1,11 @@
 {
   "_id": "ZU9d6woBdUP8pIPt",
   "name": "Beacon of Hope",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This power bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "any",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 3,
     "school": "abj",
@@ -79,15 +85,19 @@
     "scaling": {
       "mode": "none",
       "formula": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
     }
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/light-sky-3.jpg",
-  "effects": []
+  "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234164,
+    "modifiedTime": 1661787234164,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

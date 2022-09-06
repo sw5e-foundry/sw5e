@@ -3,7 +3,7 @@
   "name": "Healer's Kit",
   "type": "consumable",
   "img": "icons/containers/bags/sack-simple-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check.</p>",
       "chat": "",
@@ -72,8 +72,16 @@
   "effects": [],
   "folder": null,
   "sort": 3900000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233481,
+    "modifiedTime": 1661787233481,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

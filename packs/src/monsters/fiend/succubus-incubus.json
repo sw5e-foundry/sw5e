@@ -3,7 +3,7 @@
   "name": "Succubus/Incubus",
   "type": "npc",
   "img": "systems/sw5e/tokens/fiend/Succubus.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 8,
@@ -531,51 +531,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Succubus/Incubus",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 3,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/fiend/Succubus.webp",
-    "actorId": "VmdyZDjqAc8vdncY",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -583,21 +563,45 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/fiend/Succubus.webp",
+      "tint": null,
+      "scaleX": 3,
+      "scaleY": 3,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
       "_id": "P3P1EukfOip32dtd",
       "name": "Telepathic Bond",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/wind-grasp-magenta-2.jpg",
-      "data": {
+      "img": "icons/magic/control/debuff-energy-hold-levitate-pink.webp",
+      "system": {
         "description": {
           "value": "<p>The fiend ignores the range restriction on its telepathy when communicating with a creature it has charmed. The two don't even need to be on the same plane of existence.</p>",
           "chat": "",
@@ -662,17 +666,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "ZVMVqd01HraMcenH",
       "name": "Shapechanger",
       "type": "feat",
       "img": "icons/magic/control/silhouette-hold-change-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The fiend can use its action to <strong>polymorph</strong> into a Small or Medium humanoid, or back into its true form. Without wings, the fiend loses its flying speed. Other than its size and speed, its statistics are the same in each form.</p><p>Any equipment it is wearing or carrying isn't transformed. It reverts to its true form if it dies.</p></section><p>The fiend can use its action to <strong>polymorph</strong> into a humanoid, or back into its true form.</p>",
           "chat": "",
@@ -737,17 +749,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "oSlFzVMu0fdEfYt1",
       "name": "Claw (Fiend Form Only)",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+5 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>6 (1d6 + 3) <em>slashing damage</em></strong>.</p><p></p></section><p>The Succubus/Incubus attacks with its Claw.</p>",
           "chat": "",
@@ -841,23 +861,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "2bFCfFfjRNmhyE8A",
       "name": "Charm",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/air-burst-magenta-1.jpg",
-      "data": {
+      "img": "icons/magic/air/wind-tornado-spiral-pink-purple.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>One humanoid the fiend can see within 30 feet of it must make a <strong>Wisdom</strong> saving throw or be magically charmed for 1 day. The charmed target obeys the fiend's verbal or telepathic commands.</p><p>If the target suffers any harm or receives a suicidal command, it can repeat the saving throw, ending the effect on a success. If the target successfully saves against the effect, or if the effect on it ends, the target is immune to this fiend's Charm for the next 24 hours.The fiend can have only one target charmed at a time. If it charms another, the effect on the previous target ends.</p></section><p>One humanoid the fiend can see within 30 feet of it must make a <strong>Wisdom</strong> saving throw.</p>",
           "chat": "",
@@ -922,17 +949,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "eb0O9cQ8N6lovLyI",
       "name": "Draining Kiss",
       "type": "feat",
       "img": "icons/magic/air/wind-vortex-swirl-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The fiend kisses a creature charmed by it or a willing creature. The target must make a  <strong>DC 15 Constitution</strong> saving throw against this magic, taking <strong>32 (5d10 + 5) <em>psychic damage</em></strong> on a failed save, or half as much damage on a successful one. </p><p>The target's hit point maximum is reduced by an amount equal to the damage taken. This reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0.</p></section><p>The target must make a <strong>Constitution</strong> saving throw against this magic.</p>",
           "chat": "",
@@ -1002,17 +1037,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "s1s5asgUorljP7SV",
       "name": "Etherealness",
       "type": "feat",
       "img": "icons/magic/unholy/barrier-shield-glowing-pink.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p></p><p></p></section><p>The fiend magically enters the Ethereal Plane from the Material Plane, or vice versa.</p>",
           "chat": "",
@@ -1077,17 +1120,33 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": null,
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232867,
+    "modifiedTime": 1661878732499,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Cape of the Mountebank",
   "type": "equipment",
   "img": "icons/equipment/back/cloak-heavy-fur-blue.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>This cape smells faintly of brimstone. While wearing it, you can use it to cast the @Compendium[sw5e.powers.A4RsPuSvB9wFtz1j]{Dimension Door} power as an action. This property of the cape can't be used again until the next dawn.</p>\n<p>When you disappear, you leave behind a cloud of smoke, and you appear in a similar cloud of smoke at your destination. The smoke lightly obscures the space you left and the space you appear in, and it dissipates at the end of your next turn. A light or stronger wind disperses the smoke.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 2400000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233808,
+    "modifiedTime": 1661787233808,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

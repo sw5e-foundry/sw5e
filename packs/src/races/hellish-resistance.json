@@ -1,11 +1,11 @@
 {
   "_id": "q71Pe1F8RRtEJt8Q",
   "name": "Hellish Resistance",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You have resistance to fire damage.</p>",
       "chat": "",
@@ -67,27 +67,44 @@
     }
   },
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fog-orange-3.jpg",
+  "img": "icons/magic/air/fog-gas-smoke-swirling-orange.webp",
   "effects": [
     {
       "_id": "0rAhv7npcNmDcQ3B",
       "changes": [
         {
-          "key": "data.traits.dr.value",
+          "key": "system.traits.dr.value",
           "mode": 2,
-          "value": "fire"
+          "value": "fire",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
-      "icon": "systems/sw5e/icons/powers/fog-orange-3.jpg",
+      "icon": "icons/magic/air/fog-gas-smoke-swirling-orange.webp",
       "label": "Hellish Resistance",
       "origin": "Item.q71Pe1F8RRtEJt8Q",
       "transfer": true,
       "flags": {},
-      "tint": ""
+      "tint": null
     }
-  ]
+  ],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234473,
+    "modifiedTime": 1661877696684,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

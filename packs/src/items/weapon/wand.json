@@ -3,7 +3,7 @@
   "name": "Wand",
   "type": "weapon",
   "img": "icons/weapons/staves/staff-simple-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A single-handed delicate implement of wood, bone, crystal, or other exotic materials which is commonly used as a focus to assist with arcane powercasting.</p>\n<p><strong>Powercasting Focus</strong>. An arcane focus is a special item designed to channel the power of arcane powers. A sorcerer, warlock, or wizard can use such an item as a powercasting focus, using it in place of any material component which does not list a cost.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "conditions": ""
     },
     "weaponType": "simpleM",
+    "baseItem": "",
     "properties": {
       "value": "",
       "foc": true,
@@ -102,8 +103,16 @@
   "effects": [],
   "folder": null,
   "sort": 900000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233610,
+    "modifiedTime": 1661787233610,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

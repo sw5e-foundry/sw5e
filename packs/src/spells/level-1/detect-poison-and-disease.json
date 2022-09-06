@@ -1,11 +1,11 @@
 {
   "_id": "2skfDtglk1mGrb3l",
   "name": "Detect Poison and Disease",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case.</p><p>The power can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 30,
+      "width": null,
       "units": "ft",
       "type": "radius"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 1,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/air-burst-jade-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/air-burst-spiral-teal-green.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234060,
+    "modifiedTime": 1661787234060,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

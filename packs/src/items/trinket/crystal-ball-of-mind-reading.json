@@ -3,7 +3,7 @@
   "name": "Crystal Ball of Mind Reading",
   "type": "consumable",
   "img": "icons/commodities/gems/pearl-storm.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The Crystal Ball is about 6 inches in diameter. While touching it, you can cast the @Compendium[sw5e.powers.fVbCxFRaORalHB20]{Scrying}power (save DC 17) with it.</p>\n<p>You can use an action to cast the @Compendium[sw5e.powers.ppWAAEul0QHtm4er]{Detect Thoughts} power (save DC 17) while you are Scrying with the Crystal Ball, targeting creatures you can see within 30 feet of the power's sensor. You don't need to concentrate on this Detect Thoughts to maintain it during its duration, but it ends if Scrying ends.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 4000000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233674,
+    "modifiedTime": 1661787233674,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

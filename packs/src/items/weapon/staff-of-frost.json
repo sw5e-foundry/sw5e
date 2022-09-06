@@ -3,7 +3,7 @@
   "name": "Staff of Frost",
   "type": "weapon",
   "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement by a druid, sorcerer, warlock, or wizard)</em></p>\n<p>You have resistance to cold damage while you hold this staff.</p>\n<p>The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following powers from it, using your power save DC: @Compendium[sw5e.powers.RpKjTlYASrfqUPVA]{Cone of Cold} (5 charges), @Compendium[sw5e.powers.IBJmWjzbQGu7M4UX]{Fog Cloud} (1 charge), @Compendium[sw5e.powers.WN2LWEljYU6QqnRH]{Ice Storm} (4 charges), or @Compendium[sw5e.powers.fzZnVKLmBMo2f5up]{Wall of Ice} (4 charges).</p>\n<p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns to water and is destroyed.</p>\n<p><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
       "chat": "",
@@ -75,6 +75,7 @@
       "conditions": ""
     },
     "weaponType": "simpleM",
+    "baseItem": "",
     "properties": {
       "amm": false,
       "hvy": false,
@@ -100,8 +101,16 @@
   "effects": [],
   "folder": null,
   "sort": 1100000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233964,
+    "modifiedTime": 1661787233964,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

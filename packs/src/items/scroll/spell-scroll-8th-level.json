@@ -3,7 +3,7 @@
   "name": "Power Scroll 8th Level",
   "type": "consumable",
   "img": "icons/sundries/scrolls/scroll-bound-sealed-red-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A power scroll bears the words of a single power, written in a mystical cipher. If the power is on your class's power list, you can read the scroll and cast its power without providing any material components. Otherwise, the scroll is unintelligible. Casting the power by reading the scroll requires the power's normal casting time. Once the power is cast, the words on the scroll fade, and it crumbles to dust. If the casting is interrupted, the scroll is not lost.</p>\n<p>If the power is on your class's power list but of a higher level than you can normally cast, you must make a DC 18 ability check using your powercasting ability to determine whether you cast it successfully. On a failed check, the power disappears from the scroll with no other effect.</p>\n<p>The level of the power on the scroll determines the power's saving throw DC and attack bonus, as well as the scroll's rarity.</p>\n<p><strong>Save DC</strong>: 18<br><strong>Attack Bonus</strong>: +10.</p>\n<p>A wizard power on a power scroll can be copied just as powers in powerbooks can be copied. When a power is copied from a power scroll, the copier must succeed on a DC 18 Intelligence (Arcana) check. If the check succeeds, the power is successfully copied. Whether the check succeeds or fails, the power scroll is destroyed.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 600000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233723,
+    "modifiedTime": 1661787233723,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

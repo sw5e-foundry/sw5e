@@ -1,11 +1,11 @@
 {
   "_id": "Z9p1vezIn95jw1Yw",
   "name": "Eldritch Blast",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A beam of crackling energy streaks toward a creature within range. Make a ranged power attack against the target. On a hit, the target takes 1d10 force damage.</p><p>The power creates more than one beam when you reach higher levels: two beams at 5th level, three beams at 11th level, and four beams at 17th level. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "rpak",
@@ -57,6 +63,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 0,
@@ -86,6 +93,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fireball-eerie-1.jpg",
-  "effects": []
+  "img": "icons/magic/fire/projectile-fireball-smoke-teal.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234162,
+    "modifiedTime": 1661787234162,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

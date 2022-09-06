@@ -3,7 +3,7 @@
   "name": "Disguise Kit",
   "type": "tool",
   "img": "icons/equipment/back/cloak-hooded-blue.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This pouch of cosmetics, hair dye, and small props lets you create disguises that change your physical appearance. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise.</p>",
       "chat": "",
@@ -22,6 +22,7 @@
     "ability": "int",
     "chatFlavor": "",
     "proficient": 0,
+    "bonus": "",
     "damage": {
       "parts": []
     }
@@ -29,8 +30,16 @@
   "effects": [],
   "folder": null,
   "sort": 2800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233571,
+    "modifiedTime": 1661787233571,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

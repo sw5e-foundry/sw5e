@@ -3,7 +3,7 @@
   "name": "Potion of Superior Healing",
   "type": "consumable",
   "img": "icons/consumables/potions/bottle-round-corked-red.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>The potion's red liquid glimmers when agitated.</em></p>\n<p>You regain 8d4+8 hit points when you drink this potion.</p>",
       "chat": "",
@@ -100,8 +100,16 @@
   "effects": [],
   "folder": null,
   "sort": 300001,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233471,
+    "modifiedTime": 1661787233471,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

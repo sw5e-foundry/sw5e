@@ -3,7 +3,7 @@
   "name": "Vicious Light Hammer",
   "type": "weapon",
   "img": "icons/weapons/hammers/hammer-war-spiked.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This sturdy hammer is small enough to be nimbly wielded or used in combination with another weapon.</p>\n<p>When you roll a 20 on your attack roll with this magic weapon, your critical hit deals an extra 2d6 damage of the weapon's type.</p>",
       "chat": "",
@@ -106,8 +106,16 @@
   "effects": [],
   "folder": null,
   "sort": 2300000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233464,
+    "modifiedTime": 1661787233464,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

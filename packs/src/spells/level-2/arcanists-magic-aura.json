@@ -1,11 +1,11 @@
 {
   "_id": "RvEqsD89Zvd5yex4",
   "name": "Arcanist's Magic Aura",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You place an Illusion on a creature or an object you touch so that Divination Powers reveal false information about it. The target can be a willing creature or an object that isn't being carried or worn by another creature.</p><p>When you cast the power, choose one or both of the following Effects. The effect lasts for the Duration. If you cast this power on the same creature or object every day for 30 days, placing the same effect on it each time, the illusion lasts until it is dipowered.</p><p><strong>False Aura</strong>. You change the way the target appears to Powers and magical Effects, such as Detect Magic, that detect magical auras. You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object's magical aura so that it appears to belong to a specific school of magic that you choose. When you use this effect on an object, you can make the false magic apparent to any creature that handles the item.</p><p><strong>Mask</strong>. You change the way the target appears to Powers and magical Effects that detect creature types, such as a paladin's Divine Sense or the trigger of a symbol power. You choose a creature type and other Powers and magical Effects treat the target as if it were a creature of that type or of that Alignment.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "object"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 2,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/runes-magenta-2.jpg",
-  "effects": []
+  "img": "icons/magic/symbols/runes-star-magenta.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234138,
+    "modifiedTime": 1661787234138,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

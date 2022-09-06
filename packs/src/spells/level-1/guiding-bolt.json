@@ -1,11 +1,11 @@
 {
   "_id": "7buEm5KhI5lP8m1z",
   "name": "Guiding Bolt",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A flash of light streaks toward a creature of your choice within range. Make a ranged power attack against the target. On a hit, the target takes 4d6 radiant damage, and the next attack roll made against this target before the end of your next turn has advantage, thanks to the mystical dim light glittering on the target until then.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "rpak",
@@ -57,6 +63,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 1,
@@ -86,6 +93,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fireball-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/fire/projectile-fireball-smoke-large-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234075,
+    "modifiedTime": 1661787234075,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

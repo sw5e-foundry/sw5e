@@ -1,11 +1,11 @@
 {
   "_id": "sTIkQK7KuQNOyY0C",
   "name": "Hallucinatory Terrain",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You make natural terrain in a 150-foot cube in range look, sound, and smell like some other sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, Equipment, and creatures within the area aren't changed in appearance.</p><p>The tactile characteristics of the terrain are unchanged, so creatures entering the area are likely to see through the Illusion. If the difference isn't obvious by touch, a creature carefully examining the Illusion can attempt an Intelligence (Investigation) check against your power save DC to disbelieve it. A creature who discerns the Illusion for what it is, sees it as a vague image superimposed on the terrain.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 150,
+      "width": null,
       "units": "ft",
       "type": "cube"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 4,
     "school": "ill",
@@ -83,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/air-burst-jade-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/air-burst-spiral-teal-green.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234233,
+    "modifiedTime": 1661787234233,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -3,7 +3,7 @@
   "name": "Cloak of Elvenkind",
   "type": "equipment",
   "img": "icons/equipment/back/cloak-heavy-fur-blue.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>While you wear this cloak with its hood up, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks made to hide, as the cloak's color shifts to camouflage you. Pulling the hood up or down requires an action.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -87,8 +88,16 @@
   "effects": [],
   "folder": null,
   "sort": 3900000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233580,
+    "modifiedTime": 1661787233580,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

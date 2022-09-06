@@ -1,11 +1,11 @@
 {
   "_id": "AGFMPAmuzwWO6Dfz",
   "name": "Raise Dead",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature's soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point.</p><p>This power also neutralizes any poisons and cures nonmagical diseases that affected the creature at the time it died. This power doesn't, however, remove magical diseases, curses, or similar effects; if these aren't first removed prior to casting the power, they take effect when the creature returns to life. The power can't return an undead creature to life.</p><p>This power closes all mortal wounds, but it doesn't restore missing body parts. If the creature is lacking body parts or organs integral for its survival—its head, for instance—the power automatically fails.</p><p>Coming back from the dead is an ordeal. The target takes a −4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "spec",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "heal",
@@ -58,8 +64,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 5,
     "school": "nec",
@@ -88,6 +94,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/heal-royal-2.jpg",
-  "effects": []
+  "img": "icons/magic/life/heart-cross-strong-purple-orange.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234087,
+    "modifiedTime": 1661787234087,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

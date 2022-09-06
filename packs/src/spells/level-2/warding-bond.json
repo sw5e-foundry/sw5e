@@ -1,11 +1,11 @@
 {
   "_id": "JVhKeanAXZH62DrF",
   "name": "Warding Bond",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This power wards a willing creature you touch and creates a mystic connection between you and the target until the power ends. While the target is within 60 feet of you, it gains a +1 bonus to AC and saving throws, and it has resistance to all damage. Also, each time it takes damage, you take the same amount of damage.</p><p>The power ends if you drop to 0 hit points or if you and the target become separated by more than 60 feet. It also ends if the power is cast again on either of the connected creatures. You can also dismiss the power as an action.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,8 +59,8 @@
     "save": {
       "ability": "",
       "dc": null,
-      "value": "",
-      "scaling": "power"
+      "scaling": "power",
+      "value": ""
     },
     "level": 2,
     "school": "abj",
@@ -79,15 +85,19 @@
     "scaling": {
       "mode": "none",
       "formula": ""
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null
     }
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/protect-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/defensive/shield-barrier-flaming-diamond-blue-yellow.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234114,
+    "modifiedTime": 1661787234114,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

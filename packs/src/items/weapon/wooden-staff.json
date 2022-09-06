@@ -3,7 +3,7 @@
   "name": "Wooden Staff",
   "type": "weapon",
   "img": "icons/weapons/staves/staff-simple-spiral-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A gnarled or naturely smooth staff of wood drawn out from a living tree, those who heed nature's call can use this to harness the incredible power of nature.</p>\n<p><strong>Powercasting Focus</strong>. A druidic focus is a special item designed to channel the power of powers from the druid's power list. A druid can use such an item as a powercasting focus, using it in place of any material component which does not list a cost.</p>",
       "chat": "",
@@ -81,6 +81,7 @@
       "conditions": ""
     },
     "weaponType": "simpleM",
+    "baseItem": "",
     "properties": {
       "value": "",
       "foc": true,
@@ -107,8 +108,16 @@
   "effects": [],
   "folder": null,
   "sort": 800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233543,
+    "modifiedTime": 1661787233543,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

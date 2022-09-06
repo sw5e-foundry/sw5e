@@ -1,11 +1,11 @@
 {
   "_id": "4IHsIcBhAVDt8QjY",
   "name": "Expanded Power List",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>The Fiend lets you choose from an expanded list of powers when you learn a warlock power. The following powers are added to the warlock power list for you.</p>\n<table border=\"1\"><caption>Fiend Expanded Powers</caption>\n<thead>\n<tr>\n<td><strong>Power Level</strong></td>\n<td><strong>Powers</strong></td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>@Compendium[sw5e.powers.5SuJewoa1CRWaj1F]{Burning Hands}, @Compendium[sw5e.powers.arzCrMRgcNiQuh43]{Command}</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>@Compendium[sw5e.powers.zwGsAv6kmwzYGhh3]{Blindness/Deafness}, @Compendium[sw5e.powers.7u2obDvuvtZBkTfq]{Scorching Ray}</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>@Compendium[sw5e.powers.ztgcdrWPshKRpFd0]{Fireball}, @Compendium[sw5e.powers.TwlD4PLcltv7Xh7j]{Stinking Cloud}</td>\n</tr>\n<tr>\n<td>4th</td>\n<td>@Compendium[sw5e.powers.avD5XUtkBPQQR97c]{Fire Shield}, @Compendium[sw5e.powers.X3DrXgxjwI2dvkD6]{Wall of Fire}</td>\n</tr>\n<tr>\n<td>5th</td>\n<td>@Compendium[sw5e.powers.5e1xTohkzqFqbYH4]{Flame Strike}, @Compendium[sw5e.powers.SLxA9QhrggTz0taU]{Hallow}</td>\n</tr>\n</tbody>\n</table>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": "",
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/magic/control/encase-creature-monster-hold.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234328,
+    "modifiedTime": 1661787234328,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

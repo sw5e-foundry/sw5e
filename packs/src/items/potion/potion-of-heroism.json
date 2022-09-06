@@ -3,7 +3,7 @@
   "name": "Potion of Heroism",
   "type": "consumable",
   "img": "icons/consumables/potions/potion-bottle-corked-fancy-orange.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>This blue potion bubbles and steams as if boiling.</em></p>\n<p>For 1 hour after drinking it, you gain 10 temporary hit points that last for 1 hour. For the same duration, you are under the effect of the @Compendium[sw5e.powers.8dzaICjGy6mTUaUr]{Bless} power (no concentration required)  </p>\n<p><em>Foundry note: the Other Formula button can be used to roll the bonus 1d4 received from Bless.</em></p>",
       "chat": "",
@@ -80,8 +80,16 @@
   "effects": [],
   "folder": null,
   "sort": 2800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233957,
+    "modifiedTime": 1661787233957,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

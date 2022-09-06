@@ -1,11 +1,11 @@
 {
   "_id": "NXWWWgHtWb7Nv21F",
   "name": "Tiny Hut",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A 10-foot-radius immobile dome of force springs into existence around and above you and remains stationary for the duration. The power ends if you leave its area.</p><p>Nine creatures of Medium size or smaller can fit inside the dome with you. The power fails if its area includes a larger creature or more than nine creatures. Creatures and objects within the dome when you cast this power can move through it freely. All other creatures and objects are barred from passing through it. Powers and other magical effects can't extend through the dome or be cast through it. The atmosphere inside the space is comfortable and dry, regardless of the weather outside.</p><p>Until the power ends, you can command the interior to become dimly lit or dark. The dome is opaque from the outside, of any color you choose, but it is transparent from the inside.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 10,
+      "width": null,
       "units": "ft",
       "type": "sphere"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 3,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/runes-blue-2.jpg",
-  "effects": []
+  "img": "icons/magic/symbols/runes-star-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234129,
+    "modifiedTime": 1661787234129,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

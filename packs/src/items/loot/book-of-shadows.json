@@ -3,7 +3,7 @@
   "name": "Book of Shadows",
   "type": "loot",
   "img": "icons/sundries/books/book-black-grey.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A grimoire given to you by your patron. Choose three cantrips from any class's power list (the three needn't be from the same list). While the book is on your person, you can cast those cantrips at will. They don't count against your number of cantrips known. If they don't appear on the warlock power list, they are nonetheless warlock powers for you. </p>\n<p>If you lose your Book of Shadows, you can perform a 1-hour ceremony to receive a replacement from your patron. This ceremony can be performed during a short or long rest, and it destroys the previous book. The book turns to ash when you die.</p>",
       "chat": "",
@@ -24,8 +24,16 @@
   "effects": [],
   "folder": null,
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233521,
+    "modifiedTime": 1661787233521,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

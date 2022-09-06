@@ -3,7 +3,7 @@
   "name": "Ring of Free Action",
   "type": "equipment",
   "img": "icons/equipment/finger/ring-cabochon-notched-gold-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement)</em></p>\n<p>While you wear this ring, difficult terrain doesn't cost you extra movement. In addition, magic can neither reduce your speed nor cause you to be paralyzed or restrained.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 700000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233818,
+    "modifiedTime": 1661787233818,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

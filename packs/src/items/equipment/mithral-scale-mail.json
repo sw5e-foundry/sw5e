@@ -3,7 +3,7 @@
   "name": "Mithral Scale Mail",
   "type": "equipment",
   "img": "icons/equipment/chest/breastplate-metal-scaled-grey.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Mithral is a light, flexible metal. A mithral chain shirt or breastplate can be worn under normal clothes. If the armor normally imposes disadvantage on Dexterity (Stealth) checks or has a Strength requirement, the mithral version of the armor doesn't.</p>",
       "chat": "",
@@ -94,8 +94,16 @@
   "effects": [],
   "folder": null,
   "sort": 4000000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233822,
+    "modifiedTime": 1661787233822,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

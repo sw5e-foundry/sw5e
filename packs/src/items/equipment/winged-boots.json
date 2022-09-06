@@ -3,7 +3,7 @@
   "name": "Winged Boots",
   "type": "equipment",
   "img": "icons/equipment/feet/boots-collared-simple-leather.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>While you wear these boots, you have a flying speed equal to your walking speed. You can use the boots to fly for up to 4 hours, all at once or in several shorter flights, each one using a minimum of 1 minute from the duration. If you are flying when the duration expires, you descend at a rate of 30 feet per round until you land.</p>\n<p>The boots regain 2 hours of flying capability for every 12 hours they aren't in use.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 600000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233710,
+    "modifiedTime": 1661787233710,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

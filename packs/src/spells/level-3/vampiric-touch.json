@@ -1,11 +1,11 @@
 {
   "_id": "UfHQhA54M4323gVO",
   "name": "Vampiric Touch",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>The touch of your shadow-wreathed hand can siphon life force from others to heal your wounds. Make a melee power attack against a creature within your reach. On a hit, the target takes 3d6 necrotic damage, and you regain hit points equal to half the amount of necrotic damage dealt. Until the power ends, you can make the attack again on each of your turns as an action.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "mpak",
@@ -57,6 +63,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 3,
@@ -86,6 +93,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/rip-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/unholy/strike-beam-blood-red-gray.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234148,
+    "modifiedTime": 1661787234148,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

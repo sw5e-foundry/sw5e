@@ -1,11 +1,11 @@
 {
   "_id": "LOMdcNAGWh5xpfm4",
   "name": "Lucky",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.</p>",
       "chat": "",
@@ -75,19 +75,36 @@
         {
           "key": "flags.sw5e.halflingLucky",
           "mode": 5,
-          "value": "true"
+          "value": "true",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "icon": "icons/sundries/gaming/dice-runed-brown.webp",
       "label": "Lucky",
       "origin": "Item.LOMdcNAGWh5xpfm4",
       "transfer": true,
       "flags": {},
-      "tint": ""
+      "tint": null
     }
-  ]
+  ],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234467,
+    "modifiedTime": 1661787234467,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

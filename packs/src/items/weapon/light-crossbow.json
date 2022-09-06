@@ -3,7 +3,7 @@
   "name": "Light Crossbow",
   "type": "weapon",
   "img": "icons/weapons/crossbows/crossbow-simple-brown.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A small crossbow with a wooden haft and a tense cord which is capable of firing a single bolt which can puncture even heavy armor at close range.</p>",
       "chat": "",
@@ -102,8 +102,16 @@
   "effects": [],
   "folder": null,
   "sort": 1800001,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233747,
+    "modifiedTime": 1661787233747,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

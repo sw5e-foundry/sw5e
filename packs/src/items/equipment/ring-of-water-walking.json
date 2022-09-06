@@ -3,7 +3,7 @@
   "name": "Ring of Water Walking",
   "type": "equipment",
   "img": "icons/equipment/finger/ring-faceted-gold-purple.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>While wearing this ring, you can stand on and move across any liquid surface as if it were solid ground.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233616,
+    "modifiedTime": 1661787233616,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

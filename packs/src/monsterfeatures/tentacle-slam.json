@@ -1,11 +1,11 @@
 {
   "_id": "QiM1nbPzbLzKnfmP",
   "name": "Tentacle Slam",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<section class=\"secret\"><p>The {creature} slams creatures grappled by it into each other or a solid surface. Each creature must succeed on a  <strong>DC 14 Constitution</strong> saving throw or take <strong>10 (2d6 + 3) <em>bludgeoning damage</em></strong> and be stunned until the end of the {creature}'s next turn. </p><p>On a successful save, the target takes half the <em>bludgeoning damage</em> and isn't stunned.</p></section><p>The {creature} slams creatures grappled by it into each other or a solid surface. Each creature must make a <strong>Constitution</strong> saving throw.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -67,5 +68,15 @@
   },
   "flags": {},
   "img": "icons/magic/death/undead-skeleton-deformed-red.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234548,
+    "modifiedTime": 1661787234548,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

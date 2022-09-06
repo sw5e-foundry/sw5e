@@ -3,7 +3,7 @@
   "name": "Treant",
   "type": "npc",
   "img": "icons/svg/mystery-man.svg",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 23,
@@ -545,50 +545,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Treant",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 3,
     "height": 3,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "icons/svg/mystery-man.svg",
-    "actorId": "NB6wUgVqeOQtsQKu",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -596,13 +577,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -610,7 +615,7 @@
       "name": "Animate Trees",
       "type": "feat",
       "img": "icons/magic/nature/tree-spirit-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The treant magically animates one or two trees it can see <strong>within 60 feet</strong> of it. These trees have the same statistics as a treant, except they have Intelligence and Charisma scores of 1, they can't speak, and they have only the Slam action option. </p><p>An animated tree acts as an ally of the treant. The tree remains animate for 1 day or until it dies; until the treant dies or is more than 120 feet from the tree; or until the treant takes a bonus action to turn it back into an inanimate tree. The tree then takes root if possible.</p></section><p>The treant magically animates one or two trees it can see <strong>within 60 feet</strong> of it.</p>",
           "chat": "",
@@ -675,17 +680,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "skQsBSPby8pLZSLI",
       "name": "False Appearance",
       "type": "feat",
       "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>While the treant remains motionless, it is indistinguishable from a normal tree.</p>",
           "chat": "",
@@ -750,17 +763,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "BLz58sp79C2HvinU",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The treant makes two slam attacks.</p>",
           "chat": "",
@@ -825,17 +846,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "eTROJriR9B5abIZy",
       "name": "Treant - Rock",
       "type": "weapon",
       "img": "icons/magic/earth/projectile-boulder-yellow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>Ranged Weapon Attack: +10 to hit, range 60/180 ft., one target. Hit: <strong>28 (4d10 + 6) <em>bludgeoning damage</em></strong>.</p><p></p></section><p>The Treant attacks with its Rock.</p>",
           "chat": "",
@@ -929,23 +958,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "RMsSkfIx97Hnqf37",
       "name": "Siege Monster",
       "type": "feat",
       "img": "icons/creatures/magical/construct-iron-stomping-yellow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The treant deals double damage to objects and structures.</p>",
           "chat": "",
@@ -1010,17 +1046,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "lisZZTaupqInGEi1",
       "name": "Slam",
       "type": "weapon",
       "img": "icons/magic/nature/tree-animated-strike.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+10 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>16 (3d6 + 6) <em>bludgeoning damage</em></strong>.</p><p></p></section><p>The Treant attacks with its Slam.</p>",
           "chat": "",
@@ -1114,23 +1158,38 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "RcadGAsg9rF7lRq9",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232789,
+    "modifiedTime": 1661878731244,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

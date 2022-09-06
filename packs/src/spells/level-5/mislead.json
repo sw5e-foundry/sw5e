@@ -1,11 +1,11 @@
 {
   "_id": "MBMaQLwoy05qzMJ3",
   "name": "Mislead",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You become Invisible at the same time that an illusory double of you appears where you are standing. The double lasts for the Duration, but the Invisibility ends if you Attack or Cast a Power.</p><p>You can use your action to move your illusory double up to twice your speed and make it gesture, speak, and behave in whatever way you choose.</p><p>You can see through its eyes and hear through its ears as if you were located where it is. On each of your turns as a Bonus Action, you can switch from using its senses to using your own, or back again. While you are using its senses, you are Blinded and Deafened in regard to your own surroundings.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 0,
+      "width": null,
       "units": "",
       "type": "self"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 5,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/wind-grasp-sky-3.jpg",
-  "effects": []
+  "img": "icons/magic/control/debuff-energy-hold-levitate-blue-yellow.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234123,
+    "modifiedTime": 1661787234123,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

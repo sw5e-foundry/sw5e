@@ -1,11 +1,11 @@
 {
   "_id": "Sgjrf8qqv97CCWM4",
   "name": "Magic Weapon",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You touch a nonmagical weapon. Until the power ends, that weapon becomes a magic weapon with a +1 bonus to Attack rolls and Damage Rolls.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 4th level or higher, the bonus increases to +2. When you use a power slot of 6th level or higher, the bonus increases to +3.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 0,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 2,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/enchant-blue-2.jpg",
-  "effects": []
+  "img": "icons/magic/fire/dagger-rune-enchant-flame-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234141,
+    "modifiedTime": 1661787234141,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

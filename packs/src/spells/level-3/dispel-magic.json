@@ -1,11 +1,11 @@
 {
   "_id": "15Fa6q1nH27XfbR8",
   "name": "Dispel Magic",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Choose one creature, object, or magical effect within range. Any power of 3rd level or lower on the target ends. For each power of 4th level or higher on the target, make an ability check using your powercasting ability. The DC equals 10 + the power's level. On a successful check, the power ends.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 4th level or higher, you automatically end the effects of a power on the target if the power's level is equal to or less than the level of the power slot you used.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 3,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/slice-orange-2.jpg",
-  "effects": []
+  "img": "icons/skills/melee/strike-blade-knife-orange-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234054,
+    "modifiedTime": 1661787234054,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

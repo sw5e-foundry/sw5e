@@ -3,7 +3,7 @@
   "name": "Hobgoblin",
   "type": "npc",
   "img": "systems/sw5e/tokens/humanoid/Hobgoblin.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 13,
@@ -538,51 +538,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Hobgoblin",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightColor": null,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/humanoid/Hobgoblin.webp",
-    "actorId": "6qnT52lZtZblgGw8",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -590,13 +570,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "color": null,
+      "attenuation": 0.5
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/humanoid/Hobgoblin.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -604,7 +608,7 @@
       "name": "Martial Advantage",
       "type": "feat",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>Once per turn, the hobgoblin can deal an extra 7 (2d6) damage to a creature it hits with a weapon attack if that creature is within 5 ft. of an ally of the hobgoblin that isn't incapacitated.</p><p></p></section><p>Once per turn, the hobgoblin can deal extra damage to a creature it hits with a weapon attack if that creature is within 5 ft. of an ally of the hobgoblin that isn't incapacitated.</p>",
           "chat": "",
@@ -674,17 +678,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "is4wHu9FG6SPackl",
       "name": "Longsword",
       "type": "weapon",
       "img": "icons/weapons/swords/greatsword-crossguard-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p><em>Melee Weapon Attack:</em><strong>+3 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>5 (1d8 + 1) <em>slashing damage</em></strong>, or <strong>6 (1d10 + 1) <em>slashing damage</em></strong> if used with two hands.</p>\n</section>\n<p>The Hobgoblin attacks with its Longsword.</p>",
           "chat": "",
@@ -696,7 +708,7 @@
         "price": 15,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -778,23 +790,30 @@
           "thr": false,
           "two": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "ahUVLSMfFY5mqJ66",
       "name": "Longbow",
       "type": "weapon",
       "img": "icons/weapons/bows/longbow-leather-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\">\n<p>Ranged Weapon Attack: +3 to hit, range 150/600 ft., one target. Hit: <strong>5 (1d8 + 1) <em>piercing damage</em></strong>.</p>\n</section>\n<p>The Hobgoblin attacks with its Longbow.</p>",
           "chat": "",
@@ -806,7 +825,7 @@
         "price": 50,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "action",
@@ -888,23 +907,30 @@
           "ver": false,
           "lod": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 1900001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "H7NwPMCFCLtZxIh7",
       "name": "Chain Mail",
       "type": "equipment",
       "img": "icons/equipment/chest/breastplate-metal-scaled-grey.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.</p>",
           "chat": "",
@@ -916,7 +942,7 @@
         "price": 75,
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -984,23 +1010,30 @@
         },
         "strength": 13,
         "stealth": true,
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 800000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "sSs3hSzkKBMNBgTs",
       "name": "Shield",
       "type": "equipment",
       "img": "icons/equipment/shield/oval-wooden-boss-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>A shield is made from wood or metal and is carried in one hand. Wielding a shield increases your Armor Class by 2. You can benefit from only one shield at a time.</p>",
           "chat": "",
@@ -1012,7 +1045,7 @@
         "price": "10",
         "attunement": 0,
         "equipped": true,
-        "rarity": "Common",
+        "rarity": "common",
         "identified": true,
         "activation": {
           "type": "",
@@ -1080,23 +1113,38 @@
         },
         "strength": "",
         "stealth": false,
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 2000001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "DuRKNuzI99G8kWWa",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232603,
+    "modifiedTime": 1661878729343,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

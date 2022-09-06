@@ -3,7 +3,7 @@
   "name": "Crystal Ball",
   "type": "consumable",
   "img": "icons/commodities/gems/pearl-natural.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The typical Crystal Ball, a very rare item, is about 6 inches in diameter. While touching it, you can cast the @Compendium[sw5e.powers.fVbCxFRaORalHB20]{Scrying} power (save DC 17) with it.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 4000000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233575,
+    "modifiedTime": 1661787233575,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

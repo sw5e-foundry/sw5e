@@ -3,7 +3,7 @@
   "name": "Magma Mephit",
   "type": "npc",
   "img": "systems/sw5e/tokens/elemental/MagmaMephit.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 8,
@@ -541,50 +541,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Magma Mephit",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/elemental/MagmaMephit.webp",
-    "actorId": "oJCOB9X2BPsBkWW5",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -592,13 +573,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/elemental/MagmaMephit.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -606,7 +611,7 @@
       "name": "Innate Powercasting",
       "type": "feat",
       "img": "icons/magic/light/projectiles-star-purple.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The mephit can innately cast heat metal (power save DC 10), requiring no material components. Its innate powercasting ability is Charisma.</p>",
           "chat": "",
@@ -674,112 +679,17 @@
       "effects": [],
       "folder": null,
       "sort": 600001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
-    },
-    {
-      "_id": "z8ZSCMnA3ZCWBXAz",
-      "name": "Heat Metal",
-      "type": "power",
-      "img": "systems/sw5e/icons/powers/light-air-fire-3.jpg",
-      "data": {
-        "description": {
-          "value": "<p>Choose a manufactured metal object, such as a metal weapon or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-hot. Any creature in physical contact with the object takes 2d8 fire damage when you cast the power. Until the power ends, you can use a bonus action on each of your subsequent turns to cause this damage again.</p><p>If a creature is holding or wearing the object and takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object if it can. If it doesn't drop the object, it has disadvantage on attack rolls and ability checks until the start of your next turn.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.</p>",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": "PHB pg. 250",
-        "activation": {
-          "type": "action",
-          "cost": 1,
-          "condition": ""
-        },
-        "duration": {
-          "value": 1,
-          "units": "minute"
-        },
-        "target": {
-          "value": 1,
-          "width": null,
-          "units": "",
-          "type": "object"
-        },
-        "range": {
-          "value": 60,
-          "long": 0,
-          "units": "ft"
-        },
-        "uses": {
-          "value": 1,
-          "max": 1,
-          "per": "day"
-        },
-        "consume": {
-          "type": "",
-          "target": null,
-          "amount": null
-        },
-        "ability": "",
-        "actionType": "save",
-        "attackBonus": 0,
-        "chatFlavor": "",
-        "critical": {
-          "threshold": null,
-          "damage": ""
-        },
-        "damage": {
-          "parts": [
-            [
-              "2d8",
-              "fire"
-            ]
-          ],
-          "versatile": ""
-        },
-        "formula": "",
-        "save": {
-          "ability": "con",
-          "dc": 10,
-          "scaling": "power"
-        },
-        "level": 2,
-        "school": "trs",
-        "components": {
-          "value": "",
-          "vocal": true,
-          "somatic": true,
-          "material": false,
-          "ritual": false,
-          "concentration": true
-        },
-        "materials": {
-          "value": "",
-          "consumed": false,
-          "cost": 0,
-          "supply": 0
-        },
-        "preparation": {
-          "mode": "innate",
-          "prepared": true
-        },
-        "scaling": {
-          "mode": "level",
-          "formula": "1d8"
-        },
-        "attunement": 0
-      },
-      "effects": [],
-      "folder": null,
-      "sort": 100001,
-      "permission": {
-        "default": 0
-      },
-      "flags": {
-        "core": {
-          "sourceId": "Compendium.sw5e.powers.2yHXEcrRbadZDr5M"
-        }
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
       }
     },
     {
@@ -787,7 +697,7 @@
       "name": "Death Burst",
       "type": "feat",
       "img": "icons/magic/light/explosion-star-glow-yellow.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>When the mephit dies, it explodes in a burst of lava. Each creature within 5 ft. of it must make a  <strong>DC 11 Dexterity</strong> saving throw, taking <strong>7 (2d6) <em>fire damage</em></strong> on a failed save, or half as much damage on a successful one.</p><p></p></section><p>When the mephit dies, it explodes in a burst of lava. Each creature within 5 ft. of it must make a <strong>Dexterity</strong> saving throw.</p>",
           "chat": "",
@@ -857,17 +767,25 @@
       "effects": [],
       "folder": null,
       "sort": 800001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "FEdBqpqpIEyjdO2H",
       "name": "False Appearance",
       "type": "feat",
       "img": "icons/magic/nature/stealth-hide-eyes-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>While the mephit remains motionless, it is indistinguishable from an ordinary mound of magma.</p>",
           "chat": "",
@@ -932,17 +850,25 @@
       "effects": [],
       "folder": null,
       "sort": 900001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "BiAfcjq7C9Wf8R9b",
       "name": "Claws",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>Melee Weapon Attack: +3 to hit, reach 5 ft ., one creature. Hit: <strong>3 (1d4 + 1) <em>slashing damage</em></strong> plus <strong>2 (1d4) <em>fire damage</em></strong>.</p><p></p></section><p>The Magma Mephit attacks with its Claws.</p>",
           "chat": "",
@@ -1040,23 +966,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 1000001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "iXhbFt7gCj3FBM2r",
       "name": "Fire Breath",
       "type": "feat",
       "img": "icons/creatures/abilities/dragon-fire-breath-orange.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The mephit exhales a 15-foot cone of fire. Each creature in that area must make a  <strong>DC 11 Dexterity</strong> saving throw, taking <strong>7 (2d6) <em>fire damage</em></strong> on a failed save, or half as much damage on a successful one.</p><p></p></section><p>The mephit exhales a 15-foot cone of fire. Each creature in that area must make a <strong>Dexterity</strong> saving throw.</p>",
           "chat": "",
@@ -1126,17 +1059,143 @@
       "effects": [],
       "folder": null,
       "sort": 1100001,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "2yHXEcrRbadZDr5M",
+      "name": "Heat Metal",
+      "ownership": {
+        "default": 0
+      },
+      "type": "power",
+      "system": {
+        "description": {
+          "value": "<p>Choose a manufactured metal object, such as a metal weapon or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-hot. Any creature in physical contact with the object takes 2d8 fire damage when you cast the power. Until the power ends, you can use a bonus action on each of your subsequent turns to cause this damage again.</p><p>If a creature is holding or wearing the object and takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object if it can. If it doesn't drop the object, it has disadvantage on attack rolls and ability checks until the start of your next turn.</p><p><strong>Higher Levels.</strong> When you cast this power using a power slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": "PHB pg. 250",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "object"
+        },
+        "range": {
+          "value": 60,
+          "long": 0,
+          "units": "ft"
+        },
+        "uses": {
+          "value": 1,
+          "max": 1,
+          "per": "day"
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "2d8",
+              "fire"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 10,
+          "scaling": "power"
+        },
+        "level": 2,
+        "school": "trs",
+        "components": {
+          "value": "",
+          "vocal": true,
+          "somatic": true,
+          "material": true,
+          "ritual": false,
+          "concentration": true
+        },
+        "materials": {
+          "value": "A piece of iron and a flame.",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "innate",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "level",
+          "formula": "1d8"
+        }
+      },
+      "sort": 100001,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.powers.2yHXEcrRbadZDr5M"
+        }
+      },
+      "img": "icons/magic/light/explosion-star-large-orange.webp",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "systemId": "sw5e",
+        "systemVersion": "2.0.0",
+        "coreVersion": "10.279",
+        "createdTime": 1661787234061,
+        "modifiedTime": 1661791116872,
+        "lastModifiedBy": "sw5ebuilder0000"
+      }
     }
   ],
   "effects": [],
   "folder": "AljGyVrrsrPBi1QM",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233166,
+    "modifiedTime": 1661878735453,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

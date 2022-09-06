@@ -3,7 +3,7 @@
   "name": "Marilith",
   "type": "npc",
   "img": "systems/sw5e/tokens/fiend/Marilith.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 18,
@@ -545,50 +545,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Marilith",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 2,
     "height": 2,
-    "scale": 2,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 0,
-    "brightSight": 120,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/fiend/Marilith.webp",
-    "actorId": "egsSDYbqoLCelb0J",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -596,13 +577,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/fiend/Marilith.webp",
+      "tint": null,
+      "scaleX": 2,
+      "scaleY": 2,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 120,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -610,7 +615,7 @@
       "name": "Magic Resistance",
       "type": "feat",
       "img": "icons/magic/defensive/shield-barrier-glowing-blue.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The marilith has<strong> advantage </strong>on saving throws against powers and other magical effects.</p>",
           "chat": "",
@@ -675,17 +680,25 @@
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "e5syW3Oa9yNGZ09T",
       "name": "Magic Weapons",
       "type": "feat",
       "img": "icons/weapons/swords/sword-runed-glowing.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The marilith's weapon attacks are magical.</p>",
           "chat": "",
@@ -750,17 +763,25 @@
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "rBHEI0gZnnv8h44g",
       "name": "Reactive",
       "type": "feat",
       "img": "icons/magic/symbols/rune-sigil-black-pink.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The marilith can take one reaction on every turn in combat.</p>",
           "chat": "",
@@ -825,17 +846,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "nEKlIbUhhx9akBjK",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The marilith can make seven attacks: six with its longswords and one with its tail.</p>",
           "chat": "",
@@ -900,17 +929,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "VzPNwzlwJ7knJ9MC",
       "name": "Longsword",
       "type": "weapon",
       "img": "icons/weapons/swords/greatsword-crossguard-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+9 to hit,</strong>, <strong>5 ft.,</strong> one target. Hit: <strong>13 (2d8 + 4) <em>slashing damage</em></strong>.</p><p></p></section><p>The Marilith attacks with its Longsword.</p>",
           "chat": "",
@@ -1004,23 +1041,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "BoIambnHLbZXr85T",
       "name": "Tail",
       "type": "weapon",
       "img": "icons/skills/wounds/injury-pain-impaled-hand-blood.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+9 to hit,</strong>, <strong>10 ft.,</strong> one creature. Hit: <strong>15 (2d10 + 4) <em>bludgeoning damage</em></strong>. </p><p>If the target is Medium or smaller, it is grappled (escape DC 19). Until this grapple ends, the target is restrained, the marilith can automatically hit the target with its tail, and the marilith can't make tail attacks against other targets.</p></section><p>The Marilith attacks with its Tail. If the target is Medium or smaller, it is grappled. Until this grapple ends, the target is restrained, the marilith can automatically hit the target with its tail, and the marilith can't make tail attacks against other targets.</p>",
           "chat": "",
@@ -1114,23 +1158,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "EMJe4NIzUdNIQj9S",
       "name": "Teleport",
       "type": "feat",
-      "img": "systems/sw5e/icons/powers/runes-magenta-3.jpg",
-      "data": {
+      "img": "icons/magic/symbols/runes-star-pentagon-magenta.webp",
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p></p><p></p></section><p>The marilith magically teleports, along with any equipment it is wearing or carrying, up to 120 feet to an unoccupied space it can see.</p>",
           "chat": "",
@@ -1195,17 +1246,25 @@
       "effects": [],
       "folder": null,
       "sort": 700000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "lS2o3QOZ2lxKyi0L",
       "name": "Parry",
       "type": "feat",
       "img": "icons/skills/melee/weapons-crossed-swords-yellow-teal.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The marlith adds 5 to its <strong>AC</strong> against one melee Attack that would hit it. To do so, the marlith must see the attacker and be wielding a melee weapon.</p></section><p>The marlith adds 5 to its <strong>AC</strong> against one melee Attack that would hit it.</p>",
           "chat": "",
@@ -1270,17 +1329,33 @@
       "effects": [],
       "folder": null,
       "sort": 800000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "AljGyVrrsrPBi1QM",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787232948,
+    "modifiedTime": 1661878733502,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

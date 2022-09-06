@@ -1,11 +1,11 @@
 {
   "_id": "5SuJewoa1CRWaj1F",
   "name": "Burning Hands",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.</p><p>The fire ignites any flammable objects in the area that aren't being worn or carried.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 15,
+      "width": null,
       "units": "ft",
       "type": "cone"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "save",
@@ -86,6 +92,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fog-orange-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/fog-gas-smoke-dense-orange.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234069,
+    "modifiedTime": 1661787234069,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

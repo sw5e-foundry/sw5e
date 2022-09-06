@@ -3,7 +3,7 @@
   "name": "Vampire Spawn",
   "type": "npc",
   "img": "systems/sw5e/tokens/undead/VampireSpawn.webp",
-  "data": {
+  "system": {
     "abilities": {
       "str": {
         "value": 16,
@@ -540,50 +540,31 @@
       }
     }
   },
-  "token": {
+  "prototypeToken": {
     "name": "Vampire Spawn",
     "displayName": 20,
     "actorLink": false,
-    "tint": null,
     "width": 1,
     "height": 1,
-    "scale": 1,
-    "mirrorX": false,
-    "mirrorY": false,
     "lockRotation": false,
     "rotation": 0,
-    "vision": false,
-    "dimSight": 60,
-    "brightSight": 0,
-    "dimLight": 0,
-    "brightLight": 0,
-    "sightAngle": 0,
-    "lightAngle": 0,
-    "lightAlpha": 1,
-    "lightAnimation": {
-      "speed": 5,
-      "intensity": 5
-    },
     "disposition": -1,
     "displayBars": 40,
     "bar1": {
       "attribute": "attributes.hp"
     },
     "bar2": {
-      "attribute": ""
+      "attribute": null
     },
     "flags": {},
     "randomImg": false,
-    "img": "systems/sw5e/tokens/undead/VampireSpawn.webp",
-    "actorId": "zpaZb7I8alY32vWV",
     "alpha": 1,
     "light": {
-      "alpha": 0.5,
-      "angle": 0,
+      "alpha": 1,
+      "angle": 360,
       "bright": 0,
       "coloration": 1,
       "dim": 0,
-      "gradual": true,
       "luminosity": 0.5,
       "saturation": 0,
       "contrast": 0,
@@ -591,13 +572,37 @@
       "animation": {
         "speed": 5,
         "intensity": 5,
+        "type": null,
         "reverse": false
       },
       "darkness": {
         "min": 0,
         "max": 1
-      }
-    }
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "texture": {
+      "src": "systems/sw5e/tokens/undead/VampireSpawn.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 60,
+      "brightness": 0,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
   },
   "items": [
     {
@@ -605,7 +610,7 @@
       "name": "Bite",
       "type": "weapon",
       "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+6 to hit,</strong>, <strong>5 ft.,</strong> one willing creature, or a creature that is grappled by the vampire, incapacitated, or restrained. Hit: <strong>6 (1d6 + 3) <em>piercing damage</em></strong> plus <strong>7 (2d6) <em>necrotic damage</em></strong>.</p><p>The target's hit point maximum is reduced by an amount equal to the <em>necrotic damage</em> taken, and the vampire regains hit points equal to that amount. The reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0.</p></section><p>The Vampire Spawn attacks with its Bite.</p>",
           "chat": "",
@@ -703,23 +708,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 100000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "DY9MW3aTF5T5zhpo",
       "name": "Claws",
       "type": "weapon",
       "img": "icons/skills/melee/strike-slashes-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p><em>Melee Weapon Attack:</em><strong>+6 to hit,</strong>, <strong>5 ft.,</strong> one creature. Hit: <strong>8 (2d4 + 3) <em>slashing damage</em></strong>. </p><p></p></section><p>The Vampire Spawn attacks with its Claws. Instead of dealing damage, the vampire can grapple the target.</p>",
           "chat": "",
@@ -813,23 +825,30 @@
           "two": false,
           "ver": false
         },
-        "proficient": true,
-        "attuned": false
+        "proficient": true
       },
       "effects": [],
       "folder": null,
       "sort": 200000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "Q9tHfkUiN6f1sguc",
       "name": "Multiattack",
       "type": "feat",
       "img": "icons/skills/melee/blade-tips-triple-steel.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The vampire makes two attacks, only one of which can be a bite attack.</p>",
           "chat": "",
@@ -894,17 +913,25 @@
       "effects": [],
       "folder": null,
       "sort": 300000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "wzRyhY2I1U0ytB7D",
       "name": "Regeneration",
       "type": "feat",
       "img": "icons/skills/wounds/anatomy-organ-heart-red.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<section class=\"secret\"><p>The vampire regains <strong>10 hit points</strong> at the start of its turn if it has at least <strong>1 hit point</strong> and isn't in sunlight or running water. If the vampire takes <em>radiant damage</em> or damage from holy water, this trait doesn't function at the start of the vampire's next turn.</p></section><p>The vampire regains <strong>10 hit points</strong> at the start of its turn.</p>",
           "chat": "",
@@ -974,17 +1001,25 @@
       "effects": [],
       "folder": null,
       "sort": 400000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "FY5L5oISibzOxcRY",
       "name": "Spider Climb",
       "type": "feat",
       "img": "icons/creatures/invertebrates/spider-beetle-runed-green.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The vampire can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.</p>",
           "chat": "",
@@ -1049,17 +1084,25 @@
       "effects": [],
       "folder": null,
       "sort": 500000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     },
     {
       "_id": "lLAigtCvoIuj0TM9",
       "name": "Vampire Weaknesses",
       "type": "feat",
       "img": "icons/magic/time/day-night-sunset-sunrise.webp",
-      "data": {
+      "system": {
         "description": {
           "value": "<p>The vampire has the following flaws:</p>\n<p><strong>Forbiddance</strong>. The vampire can't enter a residence without an invitation from one of the occupants<strong>. </strong></p>\n<p><strong>Harmed by Running Water. </strong>The vampire takes 20 <em>acid damage</em> when it ends its turn in running water<strong>. </strong></p>\n<p><strong>Stake to the Heart. </strong>The vampire is destroyed if a piercing weapon made of wood is driven into its heart while it is incapacitated in its resting place<strong>. </strong></p>\n<p><strong>Sunlight Hypersensitivity.</strong> The vampire takes 20 <em>radiant damage</em> when it starts its turn in sunlight. While in sunlight, it has<strong> disadvantage </strong>on attack rolls and ability checks.</p>",
           "chat": "",
@@ -1124,17 +1167,33 @@
       "effects": [],
       "folder": null,
       "sort": 600000,
-      "permission": {
+      "ownership": {
         "default": 0
       },
-      "flags": {}
+      "flags": {},
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
     }
   ],
   "effects": [],
   "folder": "RCqDAUEk193jomBI",
   "sort": 0,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233265,
+    "modifiedTime": 1661878736823,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

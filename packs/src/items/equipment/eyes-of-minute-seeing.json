@@ -3,7 +3,7 @@
   "name": "Eyes of Minute Seeing",
   "type": "equipment",
   "img": "icons/magic/control/hypnosis-mesmerism-eye.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>These crystal lenses fit over the eyes. While wearing them, you can see much better than normal out to a range of 1 foot. You have advantage on Intelligence (Investigation) checks that rely on sight while searching an area or studying an object within that range.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -90,8 +91,16 @@
   "effects": [],
   "folder": null,
   "sort": 1800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233514,
+    "modifiedTime": 1661787233514,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

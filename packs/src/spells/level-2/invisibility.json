@@ -1,11 +1,11 @@
 {
   "_id": "1N8dDMMgZ1h1YJ3B",
   "name": "Invisibility",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A creature you touch becomes invisible until the power ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The power ends for a target that attacks or casts a power.</p><p><strong>At Higher Levels.</strong> When you cast this power using a power slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -33,8 +34,13 @@
     },
     "uses": {
       "value": 0,
-      "max": 0,
+      "max": "0",
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 2,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/fog-sky-2.jpg",
-  "effects": []
+  "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234056,
+    "modifiedTime": 1661787234056,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

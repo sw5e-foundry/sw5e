@@ -3,7 +3,7 @@
   "name": "Sprig of Mistletoe",
   "type": "weapon",
   "img": "icons/consumables/plants/fern-lady-green.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>A hardy sprig of mistletoe, holly, or some other sacred leaf, picked from a tree whose roots are sunken deep into a ley line. Those who heed nature's call are able to harness this connection to call forth the incredible power of nature.</p>\n<p><strong>Powercasting Focus</strong>. A druidic focus is a special item designed to channel the power of powers from the druid's power list. A druid can use such an item as a powercasting focus, using it in place of any material component which does not list a cost.</p>",
       "chat": "",
@@ -75,6 +75,7 @@
       "conditions": ""
     },
     "weaponType": "natural",
+    "baseItem": "",
     "properties": {
       "amm": false,
       "hvy": false,
@@ -100,8 +101,16 @@
   "effects": [],
   "folder": null,
   "sort": 1000000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233963,
+    "modifiedTime": 1661787233963,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

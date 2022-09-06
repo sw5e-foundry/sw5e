@@ -3,7 +3,7 @@
   "name": "Wand of Binding",
   "type": "consumable",
   "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement by a powercaster)</em></p>\n<p>This wand has 7 charges for the following properties. It regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>\n<p><strong>Powers</strong>. While holding the wand, you can use an action to expend some of its charges to cast one of the following powers (save DC 17): @Compendium[sw5e.powers.l9Ju5KE7bbn3WpTm]{Hold Monster} (5 charges) or @Compendium[sw5e.powers.3Lo9boi7P2ro6QV4]{Hold Person} (2 charges).</p>\n<p><strong>Assisted Escape</strong>. While holding the wand, you can use your reaction to expend 1 charge and gain advantage on a saving throw you make to avoid being paralyzed or restrained, or you can expend 1 charge and gain advantage on any check you make to escape a grapple.</p>",
       "chat": "",
@@ -75,8 +75,16 @@
   "effects": [],
   "folder": null,
   "sort": 400000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233484,
+    "modifiedTime": 1661787233484,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

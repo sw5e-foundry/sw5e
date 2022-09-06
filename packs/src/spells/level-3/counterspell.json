@@ -1,11 +1,11 @@
 {
   "_id": "Ek45cBpVXvJdv1Qy",
   "name": "Counterpower",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>You attempt to interrupt a creature in the process of casting a power. If the creature is casting a power of 3rd level or lower, its power fails and has no effect. If it is casting a power of 4th level or higher, make an ability check using your powercasting ability. The DC equals 10 + the power's level. On a success, the creature's power fails and has no effect.</p><p><strong>Higher Levels.&nbsp;</strong>When you cast this power using a power slot of 4th level or higher, the interrupted power has no effect if its level is less than or equal to the level of the power slot you used.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 1,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 3,
@@ -82,6 +89,15 @@
   },
   "sort": 100001,
   "flags": {},
-  "img": "systems/sw5e/icons/powers/slice-orange-3.jpg",
-  "effects": []
+  "img": "icons/skills/melee/strike-blade-hooked-orange-blue.webp",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234102,
+    "modifiedTime": 1661787234102,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

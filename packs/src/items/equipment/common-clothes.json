@@ -3,7 +3,7 @@
   "name": "Common Clothes",
   "type": "equipment",
   "img": "icons/equipment/chest/shirt-collared-brown.webp",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>Clothes worn by most commoners.</p>",
       "chat": "",
@@ -76,6 +76,7 @@
       "dt": null,
       "conditions": ""
     },
+    "baseItem": "",
     "speed": {
       "value": null,
       "conditions": ""
@@ -87,8 +88,16 @@
   "effects": [],
   "folder": null,
   "sort": 800000,
-  "permission": {
+  "ownership": {
     "default": 0
   },
-  "flags": {}
+  "flags": {},
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787233492,
+    "modifiedTime": 1661787233492,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

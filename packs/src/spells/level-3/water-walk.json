@@ -1,11 +1,11 @@
 {
   "_id": "YBda6nLKjxdT1LbS",
   "name": "Water Walk",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "power",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>This power grants the ability to move across any liquid surface—such as water, acid, mud, snow, quicksand, or lava—as if it were harmless solid ground (creatures crossing molten lava can still take damage from the heat). Up to ten willing creatures you can see within range gain this ability for the duration.</p><p>If you target a creature submerged in a liquid, the power carries the target to the surface of the liquid at a rate of 60 feet per round.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": 10,
+      "width": null,
       "units": "",
       "type": "creature"
     },
@@ -35,6 +36,11 @@
       "value": 0,
       "max": 0,
       "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
     },
     "ability": "",
     "actionType": "util",
@@ -53,6 +59,7 @@
     "save": {
       "ability": "",
       "dc": null,
+      "scaling": "power",
       "value": ""
     },
     "level": 3,
@@ -83,5 +90,14 @@
   "sort": 100001,
   "flags": {},
   "img": "icons/creatures/slimes/slime-movement-swirling-blue.webp",
-  "effects": []
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234161,
+    "modifiedTime": 1661787234161,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_id": "SZbsNbaxFFGwBpNK",
   "name": "Unarmored Defense (Barbarian)",
-  "permission": {
+  "ownership": {
     "default": 0
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p>While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.</p>",
       "chat": "",
@@ -23,6 +23,7 @@
     },
     "target": {
       "value": null,
+      "width": null,
       "units": "",
       "type": ""
     },
@@ -72,21 +73,38 @@
       "_id": "hEgUnQNVxtBo2zkK",
       "changes": [
         {
-          "key": "data.attributes.ac.calc",
+          "key": "system.attributes.ac.calc",
           "mode": 5,
-          "value": "unarmoredBarb"
+          "value": "unarmoredBarb",
+          "priority": null
         }
       ],
       "disabled": false,
       "duration": {
-        "startTime": null
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
       },
       "icon": "icons/magic/control/silhouette-hold-change-blue.webp",
       "label": "Unarmored Defense",
       "origin": "Item.aIMXb43ACIxMItbh",
       "transfer": true,
       "flags": {},
-      "tint": ""
+      "tint": null
     }
-  ]
+  ],
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.0.0",
+    "coreVersion": "10.279",
+    "createdTime": 1661787234378,
+    "modifiedTime": 1661787234378,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
 }

@@ -1,13 +1,12 @@
 /**
  * Dialog to confirm the deletion of an embedded item with advancement or decreasing a class level.
- * @extends {Dialog}
  */
-export class AdvancementConfirmationDialog extends Dialog {
+export default class AdvancementConfirmationDialog extends Dialog {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/advancement-confirmation-dialog.html",
+      template: "systems/sw5e/templates/advancement/advancement-confirmation-dialog.hbs",
       jQuery: false
     });
   }

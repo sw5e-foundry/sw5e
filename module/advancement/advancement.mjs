@@ -1,15 +1,23 @@
-import { AdvancementConfig } from "./advancement-config.js";
-import { AdvancementFlow } from "./advancement-flow.js";
+import AdvancementConfig from "./advancement-config.mjs";
+import AdvancementFlow from "./advancement-flow.mjs";
 
+/**
+ * Error that can be thrown during the advancement update preparation process.
+ */
+class AdvancementError extends Error {
+  constructor(...args) {
+    super(...args);
+    this.name = "AdvancementError";
+  }
+}
 
 /**
  * Abstract base class which various advancement types can archetype.
- *
- * @property {Item5e} item    Item to which this advancement belongs.
- * @property {object} [data]  Raw data stored in the advancement object.
+ * @param {Item5e} item       Item to which this advancement belongs.
+ * @param {object} [data={}]  Raw data stored in the advancement object.
+ * @abstract
  */
-export class Advancement {
-
+export default class Advancement {
   constructor(item, data={}) {
     /**
      * Item to which this advancement belongs.
@@ -23,6 +31,8 @@ export class Advancement {
      */
     this.data = data;
   }
+
+  static ERROR = AdvancementError;
 
   /* -------------------------------------------- */
 
@@ -106,11 +116,21 @@ export class Advancement {
   /* -------------------------------------------- */
 
   /**
-   * Unique identifier for this advancement.
+   * Unique identifier for this advancement within its item.
    * @type {string}
    */
   get id() {
     return this.data._id;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Globally unique identifier for this advancement.
+   * @type {string}
+   */
+  get uuid() {
+    return `${this.item.uuid}.Advancement.${this.id}`;
   }
 
   /* -------------------------------------------- */
@@ -246,15 +266,12 @@ export class Advancement {
    * @returns {Advancement}   This advancement after updates have been applied.
    */
   updateSource(updates) {
-    const advancement = foundry.utils.deepClone(this.item.data.data.advancement);
+    const advancement = foundry.utils.deepClone(this.item.system.advancement);
     const idx = advancement.findIndex(a => a._id === this.id);
     if ( idx < 0 ) throw new Error(`Advancement of ID ${this.id} could not be found to update`);
-
-    foundry.utils.mergeObject(this.data, updates);
-    foundry.utils.mergeObject(advancement[idx], updates);
-    if ( game.release.generation === 10 ) this.item.updateSource({"system.advancement": advancement});
-    else this.item.data.update({"data.advancement": advancement});
-
+    foundry.utils.mergeObject(this.data, updates, { performDeletions: true });
+    foundry.utils.mergeObject(advancement[idx], updates, { performDeletions: true });
+    this.item.updateSource({"system.advancement": advancement});
     return this;
   }
 
@@ -301,5 +318,4 @@ export class Advancement {
    * @abstract
    */
   async reverse(level) { }
-
 }

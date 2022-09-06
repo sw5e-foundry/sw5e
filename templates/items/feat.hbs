@@ -19,10 +19,10 @@
                     {{labels.featType}}
                 </li>
                 <li>
-                    <input type="text" name="data.requirements" value="{{data.requirements}}" placeholder="{{ localize 'SW5E.Requirements' }}"/>
+                    <input type="text" name="system.requirements" value="{{system.requirements}}" placeholder="{{ localize 'SW5E.Requirements' }}"/>
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -39,7 +39,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{> "sw5e.item-description"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -47,19 +47,19 @@
             <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             {{!-- Recharge Requirement --}}
-            {{#if data.activation.type}}
+            {{#if system.activation.type}}
             <div class="form-group recharge">
                 <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
                 <div class="form-fields">
                     <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
-                    <input type="text" name="data.recharge.value" value="{{data.recharge.value}}"
-                           data-dtype="Number" placeholder="{{ localize 'SW5E.FeatureRechargeResult' }}"/>
+                    {{numberInput system.recharge.value name="system.recharge.value"
+                        placeholder=(localize "SW5E.FeatureRechargeResult")}}
                     <label class="checkbox">
                         {{ localize "SW5E.Charged" }}
-                        <input type="checkbox" name="data.recharge.charged" {{checked data.recharge.charged}}/>
+                        <input type="checkbox" name="system.recharge.charged" {{checked system.recharge.charged}}/>
                     </label>
                 </div>
             </div>
@@ -68,12 +68,12 @@
             <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

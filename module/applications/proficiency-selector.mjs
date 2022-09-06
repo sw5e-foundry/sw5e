@@ -1,9 +1,7 @@
-import TraitSelector from "./trait-selector.js";
+import TraitSelector from "./trait-selector.mjs";
 
 /**
  * An application for selecting proficiencies with categories that can contain children.
- *
- * @extends {TraitSelector}
  */
 export default class ProficiencySelector extends TraitSelector {
 
@@ -28,7 +26,7 @@ export default class ProficiencySelector extends TraitSelector {
 
   /** @inheritdoc */
   async getData() {
-    const attr = foundry.utils.getProperty(this.object.data, this.attribute);
+    const attr = foundry.utils.getProperty(this.object, this.attribute);
     const chosen = (this.options.valueKey) ? foundry.utils.getProperty(attr, this.options.valueKey) ?? [] : attr;
 
     const data = super.getData();
@@ -52,7 +50,7 @@ export default class ProficiencySelector extends TraitSelector {
    *
    * @param {string} type               Proficiency type to select, either `armor`, `tool`, or `weapon`.
    * @param {string[]} [chosen]         Optional list of items to be marked as chosen.
-   * @returns {object<string, ProficiencyChoice>}  Object mapping proficiency ids to choice objects.
+   * @returns {Object<string, ProficiencyChoice>}  Object mapping proficiency ids to choice objects.
    */
   static async getChoices(type, chosen=[]) {
     let data = Object.entries(CONFIG.SW5E[`${type}Proficiencies`]).reduce((obj, [key, label]) => {
@@ -68,7 +66,7 @@ export default class ProficiencySelector extends TraitSelector {
         const item = await this.getBaseItem(id);
         if ( !item ) continue;
 
-        let type = foundry.utils.getProperty(item.data, typeProperty);
+        let type = foundry.utils.getProperty(item.system, typeProperty);
         if ( map && map[type] ) type = map[type];
         const entry = {
           label: item.name,
@@ -90,12 +88,12 @@ export default class ProficiencySelector extends TraitSelector {
         obj[key] = { label: label, chosen: chosen.includes(key) };
         return obj;
       }, {});
-      data = game.sw5e.utils.sortObjectEntries(data, "label");
+      data = sw5e.utils.sortObjectEntries(data, "label");
     }
 
     for ( const category of Object.values(data) ) {
       if ( !category.children ) continue;
-      category.children = game.sw5e.utils.sortObjectEntries(category.children, "label");
+      category.children = sw5e.utils.sortObjectEntries(category.children, "label");
     }
 
     return data;
@@ -146,9 +144,7 @@ export default class ProficiencySelector extends TraitSelector {
 
     // Build the extended index and return a promise for the data
     const promise = packObject.getIndex({
-      // TODO: Remove "img" from this index when v10 is required
-      // see https://gitlab.com/foundrynet/foundryvtt/-/issues/6152
-      fields: ["data.armor.type", "data.toolType", "data.weaponType", "img"]
+      fields: ["system.armor.type", "system.toolType", "system.weaponType"]
     }).then(index => {
       const store = index.reduce((obj, entry) => {
         obj[entry._id] = entry;

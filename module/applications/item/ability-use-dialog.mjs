@@ -1,6 +1,9 @@
 /**
  * A specialized Dialog subclass for ability usage.
- * @extends {Dialog}
+ *
+ * @param {Item5e} item             Item that is being used.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
 export default class AbilityUseDialog extends Dialog {
   constructor(item, dialogData={}, options={}) {
@@ -28,31 +31,29 @@ export default class AbilityUseDialog extends Dialog {
     if ( !item.isOwned ) throw new Error("You cannot display an ability usage dialog for an unowned item");
 
     // Prepare data
-    const actorData = item.actor.data.data;
-    const itemData = item.data.data;
-    const uses = itemData.uses || {};
-    const quantity = itemData.quantity || 0;
-    const recharge = itemData.recharge || {};
+    const uses = item.system.uses ?? {};
+    const quantity = item.system.quantity ?? 0;
+    const recharge = item.system.recharge ?? {};
     const recharges = !!recharge.value;
     const sufficientUses = (quantity > 0 && !uses.value) || uses.value > 0;
 
     // Prepare dialog form data
     const data = {
-      item: item.data,
+      item: item,
       title: game.i18n.format("SW5E.AbilityUseHint", {type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`), name: item.name}),
-      note: this._getAbilityUseNote(item.data, uses, recharge),
+      note: this._getAbilityUseNote(item, uses, recharge),
       consumePowerSlot: false,
       consumeRecharge: recharges,
-      consumeResource: !!itemData.consume.target,
+      consumeResource: !!item.system.consume.target,
       consumeUses: uses.per && (uses.max > 0),
       canUse: recharges ? recharge.charged : sufficientUses,
       createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
       errors: []
     };
-    if ( item.data.type === "power" ) this._getPowerData(actorData, itemData, data);
+    if ( item.type === "power" ) this._getPowerData(item.actor.system, item.system, data);
 
     // Render the ability usage template
-    const html = await renderTemplate("systems/sw5e/templates/apps/ability-use.html", data);
+    const html = await renderTemplate("systems/sw5e/templates/apps/ability-use.hbs", data);
 
     // Create the Dialog and return data as a Promise
     const icon = data.isPower ? "fa-magic" : "fa-fist-raised";
@@ -67,7 +68,7 @@ export default class AbilityUseDialog extends Dialog {
             label: label,
             callback: html => {
               const fd = new FormDataExtended(html[0].querySelector("form"));
-              resolve(fd.toObject());
+              resolve(fd.object);
             }
           }
         },
@@ -84,8 +85,8 @@ export default class AbilityUseDialog extends Dialog {
 
   /**
    * Get dialog data related to limited power slots.
-   * @param {object} actorData  Data from the actor using the power.
-   * @param {object} itemData   Data from the power being used.
+   * @param {object} actorData  System data from the actor using the power.
+   * @param {object} itemData   System data from the power being used.
    * @param {object} data       Data for the dialog being presented.
    * @returns {object}          Modified dialog data.
    * @private
@@ -152,7 +153,7 @@ export default class AbilityUseDialog extends Dialog {
   static _getAbilityUseNote(item, uses, recharge) {
 
     // Zero quantity
-    const quantity = item.data.quantity;
+    const quantity = item.system.quantity;
     if ( quantity <= 0 ) return game.i18n.localize("SW5E.AbilityUseUnavailableHint");
 
     // Abilities which use Recharge
@@ -169,12 +170,12 @@ export default class AbilityUseDialog extends Dialog {
     if ( item.type === "consumable" ) {
       let str = "SW5E.AbilityUseNormalHint";
       if ( uses.value > 1 ) str = "SW5E.AbilityUseConsumableChargeHint";
-      else if ( item.data.quantity === 1 && uses.autoDestroy ) str = "SW5E.AbilityUseConsumableDestroyHint";
-      else if ( item.data.quantity > 1 ) str = "SW5E.AbilityUseConsumableQuantityHint";
+      else if ( item.system.quantity === 1 && uses.autoDestroy ) str = "SW5E.AbilityUseConsumableDestroyHint";
+      else if ( item.system.quantity > 1 ) str = "SW5E.AbilityUseConsumableQuantityHint";
       return game.i18n.format(str, {
-        type: game.i18n.localize(`SW5E.Consumable${item.data.consumableType.capitalize()}`),
+        type: game.i18n.localize(`SW5E.Consumable${item.system.consumableType.capitalize()}`),
         value: uses.value,
-        quantity: item.data.quantity,
+        quantity: item.system.quantity,
         max: uses.max,
         per: CONFIG.SW5E.limitedUsePeriods[uses.per]
       });

@@ -1,4 +1,3 @@
-
 /**
  * Override the default Initiative formula to customize special behaviors of the system.
  * Apply advantage, proficiency, or bonuses where appropriate
@@ -6,18 +5,17 @@
  * See Combat._getInitiativeFormula for more detail.
  * @returns {string}  Final initiative formula for the actor.
  */
-export const _getInitiativeFormula = function() {
+export function _getInitiativeFormula() {
   const actor = this.actor;
   if ( !actor ) return "1d20";
-  const actorData = actor.data.data;
-  const init = actorData.attributes.init;
+  const init = actor.system.attributes.init;
   const rollData = actor.getRollData();
 
   // Construct initiative formula parts
   let nd = 1;
   let mods = "";
-  if (actor.getFlag("sw5e", "halflingLucky")) mods += "r1=1";
-  if (actor.getFlag("sw5e", "initiativeAdv")) {
+  if ( actor.getFlag("sw5e", "halflingLucky") ) mods += "r1=1";
+  if ( actor.getFlag("sw5e", "initiativeAdv") ) {
     nd = 2;
     mods += "kh";
   }
@@ -29,13 +27,13 @@ export const _getInitiativeFormula = function() {
   ];
 
   // Ability Check Bonuses
-  const dexCheckBonus = actorData.abilities.dex?.bonuses?.check;
-  const globalCheckBonus = actorData.bonuses?.abilities?.check;
+  const dexCheckBonus = actor.system.abilities.dex?.bonuses?.check;
+  const globalCheckBonus = actor.system.bonuses?.abilities?.check;
   if ( dexCheckBonus ) parts.push(Roll.replaceFormulaData(dexCheckBonus, rollData));
   if ( globalCheckBonus ) parts.push(Roll.replaceFormulaData(globalCheckBonus, rollData));
 
   // Optionally apply Dexterity tiebreaker
   const tiebreaker = game.settings.get("sw5e", "initiativeDexTiebreaker");
-  if ( tiebreaker ) parts.push((actor.data.data.abilities.dex?.value ?? 0) / 100);
+  if ( tiebreaker ) parts.push((actor.system.abilities.dex?.value ?? 0) / 100);
   return parts.filter(p => p !== null).join(" + ");
-};
+}

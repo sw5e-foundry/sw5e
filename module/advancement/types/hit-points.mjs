@@ -1,14 +1,11 @@
-import { Advancement } from "./advancement.js";
-import { AdvancementError, AdvancementFlow } from "./advancement-flow.js";
-import { AdvancementConfig } from "./advancement-config.js";
-
+import Advancement from "../advancement.mjs";
+import AdvancementFlow from "../advancement-flow.mjs";
+import AdvancementConfig from "../advancement-config.mjs";
 
 /**
  * Advancement that presents the player with the option to roll hit points at each level or select the average value.
  * Keeps track of player hit point rolls or selection for each class level. **Can only be added to classes and each
  * class can only have one.**
- *
- * @extends {Advancement}
  */
 export class HitPointsAdvancement extends Advancement {
 
@@ -44,7 +41,7 @@ export class HitPointsAdvancement extends Advancement {
    * @returns {string}
    */
   get hitDie() {
-    return this.item.data.data.hitDice;
+    return this.item.system.hitDice;
   }
 
   /* -------------------------------------------- */
@@ -129,18 +126,14 @@ export class HitPointsAdvancement extends Advancement {
 
   /** @inheritdoc */
   apply(level, data) {
-    const actorData = this.actor.data.data;
     let value = this.constructor.valueForLevel(data, this.hitDieValue, level);
     if ( value === undefined ) return;
-
-    value += actorData.abilities.con?.mod ?? 0;
-    if ( game.release.generation === 10 ) this.actor.updateSource({
-      "system.attributes.hp.max": actorData.attributes.hp.max + value,
-      "system.attributes.hp.value": actorData.attributes.hp.value + value
-    });
-    else this.actor.data.update({
-      "data.attributes.hp.max": actorData.attributes.hp.max + value,
-      "data.attributes.hp.value": actorData.attributes.hp.value + value
+    const con = this.actor.system.abilities.con;
+    const hp = this.actor.system.attributes.hp;
+    value += con?.mod ?? 0;
+    this.actor.updateSource({
+      "system.attributes.hp.max": hp.max + value,
+      "system.attributes.hp.value": hp.value + value
     });
     this.updateSource({ value: data });
   }
@@ -156,36 +149,30 @@ export class HitPointsAdvancement extends Advancement {
 
   /** @inheritdoc */
   reverse(level) {
-    const actorData = this.actor.data.data;
     let value = this.valueForLevel(level);
     if ( value === undefined ) return;
-
-    value += actorData.abilities.con?.mod ?? 0;
-    if ( game.release.generation === 10 ) this.actor.updateSource({
-      "system.attributes.hp.max": actorData.attributes.hp.max - value,
-      "system.attributes.hp.value": actorData.attributes.hp.value - value
-    });
-    else this.actor.data.update({
-      "data.attributes.hp.max": actorData.attributes.hp.max - value,
-      "data.attributes.hp.value": actorData.attributes.hp.value - value
+    const con = this.actor.system.abilities.con;
+    const hp = this.actor.system.attributes.hp;
+    value += con?.mod ?? 0;
+    this.actor.updateSource({
+      "system.attributes.hp.max": hp.max - value,
+      "system.attributes.hp.value": hp.value - value
     });
     const source = { [level]: this.data.value[level] };
     this.updateSource({ [`value.-=${level}`]: null });
     return source;
   }
-
 }
 
 
 /**
  * Configuration application for hit points.
- * @extends {AdvancementConfig}
  */
 export class HitPointsConfig extends AdvancementConfig {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/hit-points-config.html"
+      template: "systems/sw5e/templates/advancement/hit-points-config.hbs"
     });
   }
 
@@ -202,15 +189,13 @@ export class HitPointsConfig extends AdvancementConfig {
 
 /**
  * Inline application that presents hit points selection upon level up.
- *
- * @extends {AdvancementFlow}
  */
 export class HitPointsFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/hit-points-flow.html"
+      template: "systems/sw5e/templates/advancement/hit-points-flow.hbs"
     });
   }
 
@@ -279,7 +264,7 @@ export class HitPointsFlow extends AdvancementFlow {
 
     this.form.querySelector(".rollResult")?.classList.add("error");
     const errorType = formData.value ? "Invalid" : "Empty";
-    throw new AdvancementError(game.i18n.localize(`SW5E.AdvancementHitPoints${errorType}Error`));
+    throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementHitPoints${errorType}Error`));
   }
 
 }

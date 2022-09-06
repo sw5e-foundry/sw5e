@@ -1,22 +1,23 @@
 /**
  * A simple form to set skill configuration for a given skill.
- * @extends {DocumentSheet}
- * @param {Actor} actor                   The Actor instance being displayed within the sheet.
- * @param {ApplicationOptions} options    Additional application configuration options.
- * @param {string} skillId                The skill id (e.g. "ins")
+ *
+ * @param {Actor} actor                 The Actor instance being displayed within the sheet.
+ * @param {ApplicationOptions} options  Additional application configuration options.
+ * @param {string} skillId              The skill key as defined in CONFIG.SW5E.skills.
  */
 export default class ActorSkillConfig extends DocumentSheet {
-
-  constructor(actor, opts, skillId) {
-    super(actor, opts);
+  constructor(actor, options, skillId) {
+    super(actor, options);
     this._skillId = skillId;
   }
+
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e"],
-      template: "systems/sw5e/templates/apps/skill-config.html",
+      template: "systems/sw5e/templates/apps/skill-config.hbs",
       width: 500,
       height: "auto"
     });
@@ -26,18 +27,20 @@ export default class ActorSkillConfig extends DocumentSheet {
 
   /** @inheritdoc */
   get title() {
-    return `${game.i18n.format("SW5E.SkillConfigureTitle", {skill: CONFIG.SW5E.skills[this._skillId]})}: ${this.document.name}`;
+    const label = CONFIG.SW5E.skills[this._skillId].label;
+    return `${game.i18n.format("SW5E.SkillConfigureTitle", {skill: label})}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   getData(options) {
+    const src = this.document.toObject();
     return {
-      skill: foundry.utils.getProperty(this.document.data._source, `data.skills.${this._skillId}`) || {},
+      skill: src.system.skills?.[this._skillId] || {},
       skillId: this._skillId,
       proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
-      bonusGlobal: getProperty(this.object.data._source, "data.bonuses.abilities.skill")
+      bonusGlobal: src.system.bonuses?.skill
     };
   }
 
@@ -45,7 +48,7 @@ export default class ActorSkillConfig extends DocumentSheet {
 
   /** @inheritdoc */
   _updateObject(event, formData) {
-    const passive = formData[`data.skills.${this._skillId}.bonuses.passive`];
+    const passive = formData[`system.skills.${this._skillId}.bonuses.passive`];
     const passiveRoll = new Roll(passive);
     if ( !passiveRoll.isDeterministic ) {
       const message = game.i18n.format("SW5E.FormulaCannotContainDiceError", {
@@ -54,8 +57,6 @@ export default class ActorSkillConfig extends DocumentSheet {
       ui.notifications.error(message);
       throw new Error(message);
     }
-
     super._updateObject(event, formData);
   }
-
 }

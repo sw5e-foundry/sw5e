@@ -1,12 +1,9 @@
-import { Advancement } from "./advancement.js";
-import { AdvancementConfig } from "./advancement-config.js";
-import { AdvancementFlow } from "./advancement-flow.js";
-
+import Advancement from "../advancement.mjs";
+import AdvancementConfig from "../advancement-config.mjs";
+import AdvancementFlow from "../advancement-flow.mjs";
 
 /**
  * Advancement that represents a value that scales with class level. **Can only be added to classes or archetypes.**
- *
- * @extends {Advancement}
  */
 export class ScaleValueAdvancement extends Advancement {
 
@@ -139,8 +136,6 @@ export class ScaleValueAdvancement extends Advancement {
 
 /**
  * Configuration application for scale values.
- *
- * @extends {AdvancementConfig}
  */
 export class ScaleValueConfig extends AdvancementConfig {
 
@@ -148,7 +143,7 @@ export class ScaleValueConfig extends AdvancementConfig {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "advancement", "scale-value", "two-column"],
-      template: "systems/sw5e/templates/advancement/scale-value-config.html",
+      template: "systems/sw5e/templates/advancement/scale-value-config.hbs",
       width: 540
     });
   }
@@ -276,30 +271,27 @@ export class ScaleValueConfig extends AdvancementConfig {
   async _updateObject(event, formData) {
     const typeChange = "data.configuration.type" in formData;
     if ( typeChange && (formData["data.configuration.type"] !== this.advancement.data.configuration.type) ) {
-      // Clear scale values if we're changing type.
-      for ( const key in formData ) {
+      for ( const key in formData ) { // Clear scale values if we're changing type.
         if ( key.startsWith("data.configuration.scale.") ) delete formData[key];
       }
-      Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).forEach(l =>
-        formData[`data.configuration.scale.${l}`] = null);
+      for ( const l of Array.fromRange(CONFIG.SW5E.maxLevel, 1) ) {
+        formData[`data.configuration.scale.${l}`] = null;
+      }
     }
     return super._updateObject(event, formData);
   }
-
 }
 
 
 /**
  * Inline application that displays any changes to a scale value.
- *
- * @extends {AdvancementFlow}
  */
 export class ScaleValueFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/scale-value-flow.html"
+      template: "systems/sw5e/templates/advancement/scale-value-flow.hbs"
     });
   }
 

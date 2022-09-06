@@ -1,18 +1,20 @@
 /**
  * Extend the base TokenDocument class to implement system-specific HP bar logic.
- * @extends {TokenDocument}
  */
-export class TokenDocument5e extends TokenDocument {
+export default class TokenDocument5e extends TokenDocument {
 
   /** @inheritdoc */
   getBarAttribute(...args) {
     const data = super.getBarAttribute(...args);
     if ( data && (data.attribute === "attributes.hp") ) {
-      data.value += parseInt(getProperty(this.actor.data, "data.attributes.hp.temp") || 0);
-      data.max += parseInt(getProperty(this.actor.data, "data.attributes.hp.tempmax") || 0);
+      const hp = this.actor.system.attributes.hp || {};
+      data.value += (hp.temp || 0);
+      data.max += (hp.tempmax || 0);
     }
     return data;
   }
+
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static getTrackedAttributes(data, _path=[]) {
@@ -22,6 +24,8 @@ export class TokenDocument5e extends TokenDocument {
     attributes.value = attributes.value.filter(attrs => this._isAllowedAttribute(allowed, attrs));
     return attributes;
   }
+
+  /* -------------------------------------------- */
 
   /**
    * Get an Array of attribute choices which are suitable for being consumed by an item usage.
@@ -34,6 +38,8 @@ export class TokenDocument5e extends TokenDocument {
     attributes.value = attributes.value.filter(attrs => this._isAllowedAttribute(allowed, attrs));
     return attributes;
   }
+
+  /* -------------------------------------------- */
 
   /**
    * Traverse the configured allowed attributes to see if the provided one matches.
@@ -53,5 +59,3 @@ export class TokenDocument5e extends TokenDocument {
     return allow !== undefined;
   }
 }
-
-

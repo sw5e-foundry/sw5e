@@ -1,7 +1,8 @@
-import { AdvancementError } from "./advancement-flow.js";
-
+import Advancement from "./advancement.mjs";
 
 /**
+ * Internal type used to manage each step within the advancement process.
+ *
  * @typedef {object} AdvancementStep
  * @property {string} type                Step type from "forward", "reverse", "restore", or "delete".
  * @property {AdvancementFlow} [flow]     Flow object for the advancement being applied by this step.
@@ -12,17 +13,13 @@ import { AdvancementError } from "./advancement-flow.js";
  * @property {boolean} [automatic=false]  Should the manager attempt to apply this step without user interaction?
  */
 
-
 /**
  * Application for controlling the advancement workflow and displaying the interface.
  *
- * @property {Actor5e} actor        Actor on which this advancement is being performed.
- * @property {object} [steps=[]]    Any initial steps that should be displayed.
- * @property {object} [options={}]  Additional application options.
- * @extends {Application}
+ * @param {Actor5e} actor        Actor on which this advancement is being performed.
+ * @param {object} [options={}]  Additional application options.
  */
-export class AdvancementManager extends Application {
-
+export default class AdvancementManager extends Application {
   constructor(actor, options={}) {
     super(options);
 
@@ -65,7 +62,7 @@ export class AdvancementManager extends Application {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "advancement", "flow"],
-      template: "systems/sw5e/templates/advancement/advancement-manager.html",
+      template: "systems/sw5e/templates/advancement/advancement-manager.hbs",
       width: 460,
       height: "auto"
     });
@@ -140,30 +137,24 @@ export class AdvancementManager extends Application {
     const dataClone = foundry.utils.deepClone(itemData);
     dataClone._id = foundry.utils.randomID();
     if ( itemData.type === "class" ) {
-      if ( game.release.generation === 10 ) dataClone.system.levels = 0
-      else dataClone.data.levels = 0;
-      if ( !manager.clone.data.data.details.originalClass ) {
-        if ( game.release.generation === 10 ) {
-          manager.clone.updateSource({"system.details.originalClass": dataClone._id});
-        } else {
-          manager.clone.data.update({"data.details.originalClass": dataClone._id});
-        }
+      dataClone.system.levels = 0;
+      if ( !manager.clone.system.details.originalClass ) {
+        manager.clone.updateSource({"system.details.originalClass": dataClone._id});
       }
     }
 
     // Add item to clone & get new instance from clone
-    manager.clone.data.update({items: [dataClone]});
-    manager.clone.prepareData();
+    manager.clone.updateSource({items: [dataClone]});
     const clonedItem = manager.clone.items.get(dataClone._id);
 
     // For class items, prepare level change data
     if ( itemData.type === "class" ) {
-      return manager.createLevelChangeSteps(clonedItem, itemData.data?.levels ?? 1);
+      return manager.createLevelChangeSteps(clonedItem, itemData.system?.levels ?? 1);
     }
 
     // All other items, just create some flows up to current character level (or class level for archetypes)
-    let targetLevel = manager.clone.data.data.details.level;
-    if ( clonedItem.type === "archetype" ) targetLevel = clonedItem.class?.data.data.levels ?? 0;
+    let targetLevel = manager.clone.system.details.level;
+    if ( clonedItem.type === "archetype" ) targetLevel = clonedItem.class?.system.levels ?? 0;
     Array.fromRange(targetLevel + 1)
       .flatMap(l => this.flowsForLevel(clonedItem, l))
       .forEach(flow => manager.steps.push({ type: "forward", flow }));
@@ -186,8 +177,8 @@ export class AdvancementManager extends Application {
     const clonedItem = manager.clone.items.get(itemId);
     if ( !clonedItem ) return manager;
 
-    const currentLevel = clonedItem.data.data.levels ?? clonedItem.class?.data.data.levels
-      ?? manager.clone.data.data.details.level;
+    const currentLevel = clonedItem.system.levels ?? clonedItem.class?.system.levels
+      ?? manager.clone.system.details.level;
 
     const flows = Array.fromRange(currentLevel + 1).slice(level)
       .flatMap(l => this.flowsForLevel(clonedItem, l));
@@ -220,11 +211,11 @@ export class AdvancementManager extends Application {
 
     // For class items, prepare level change data
     if ( clonedItem.type === "class" ) {
-      return manager.createLevelChangeSteps(clonedItem, clonedItem.data.data.levels * -1);
+      return manager.createLevelChangeSteps(clonedItem, clonedItem.system.levels * -1);
     }
 
     // All other items, just create some flows down from current character level
-    Array.fromRange(manager.clone.data.data.details.level + 1)
+    Array.fromRange(manager.clone.system.details.level + 1)
       .flatMap(l => this.flowsForLevel(clonedItem, l))
       .reverse()
       .forEach(flow => manager.steps.push({ type: "reverse", flow, automatic: true }));
@@ -269,8 +260,8 @@ export class AdvancementManager extends Application {
 
     // Level increased
     for ( let offset = 1; offset <= levelDelta; offset++ ) {
-      const classLevel = classItem.data.data.levels + offset;
-      const characterLevel = this.actor.data.data.details.level + offset;
+      const classLevel = classItem.system.levels + offset;
+      const characterLevel = this.actor.system.details.level + offset;
       const stepData = { type: "forward", class: {item: classItem, level: classLevel} };
       pushSteps(this.constructor.flowsForLevel(classItem, classLevel), stepData);
       pushSteps(this.constructor.flowsForLevel(classItem.archetype, classLevel), stepData);
@@ -279,14 +270,20 @@ export class AdvancementManager extends Application {
 
     // Level decreased
     for ( let offset = 0; offset > levelDelta; offset-- ) {
-      const classLevel = classItem.data.data.levels + offset;
-      const characterLevel = this.actor.data.data.details.level + offset;
+      const classLevel = classItem.system.levels + offset;
+      const characterLevel = this.actor.system.details.level + offset;
       const stepData = { type: "reverse", class: {item: classItem, level: classLevel}, automatic: true };
       pushSteps(getItemFlows(characterLevel).reverse(), stepData);
       pushSteps(this.constructor.flowsForLevel(classItem.archetype, classLevel).reverse(), stepData);
       pushSteps(this.constructor.flowsForLevel(classItem, classLevel).reverse(), stepData);
       if ( classLevel === 1 ) this.steps.push({ type: "delete", item: classItem, automatic: true });
     }
+
+    // Ensure the class level ends up at the appropriate point
+    this.steps.push({
+      type: "forward", automatic: true,
+      class: {item: classItem, level: classItem.system.levels += levelDelta}
+    });
 
     return this;
   }
@@ -346,9 +343,8 @@ export class AdvancementManager extends Application {
     if ( this.step?.class ) {
       let level = this.step.class.level;
       if ( this.step.type === "reverse" ) level -= 1;
-      if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
-      else this.step.class.item.data.update({"data.levels": level});
-      this.clone.prepareData();
+      this.step.class.item.updateSource({"system.levels": level});
+      this.clone.reset();
     }
 
     /**
@@ -456,7 +452,7 @@ export class AdvancementManager extends Application {
         if ( this.step.type === "delete" ) this.clone.items.delete(this.step.item.id);
         else if ( this.step.type === "restore" ) await flow.advancement.restore(flow.level, flow.retainedData);
         else if ( this.step.type === "reverse" ) flow.retainedData = await flow.advancement.reverse(flow.level);
-        else await flow._updateObject(event, flow._getSubmitData());
+        else if ( flow ) await flow._updateObject(event, flow._getSubmitData());
 
         this._stepIndex++;
 
@@ -464,14 +460,12 @@ export class AdvancementManager extends Application {
         if ( this.step?.class ) {
           let level = this.step.class.level;
           if ( this.step.type === "reverse" ) level -= 1;
-          if ( game.release.generation === 10 ) this.step.class.item.updateSource({"system.levels": level});
-          else this.step.class.item.data.update({"data.levels": level});
+          this.step.class.item.updateSource({"system.levels": level});
         }
-
-        this.clone.prepareData();
+        this.clone.reset();
       } while ( this.step?.automatic );
     } catch(error) {
-      if ( !(error instanceof AdvancementError) ) throw error;
+      if ( !(error instanceof Advancement.ERROR) ) throw error;
       ui.notifications.error(error.message);
       this.step.automatic = false;
       if ( this.step.type === "restore" ) this.step.type = "forward";
@@ -488,7 +482,7 @@ export class AdvancementManager extends Application {
   /**
    * Reverse through the steps until one requiring user interaction is encountered.
    * @param {Event} [event]                  Triggering click event if one occurred.
-   * @param {object} [options]               Additional options to configure behaviour.
+   * @param {object} [options]               Additional options to configure behavior.
    * @param {boolean} [options.render=true]  Whether to render the Application after the step has been reversed. Used
    *                                         by the restart workflow.
    * @returns {Promise}
@@ -503,14 +497,13 @@ export class AdvancementManager extends Application {
         const flow = this.step.flow;
 
         // Reverse step based on step type
-        if ( this.step.type === "delete" ) this.clone.data.update({items: [this.step.item]});
+        if ( this.step.type === "delete" ) this.clone.updateSource({items: [this.step.item]});
         else if ( this.step.type === "reverse" ) await flow.advancement.restore(flow.level, flow.retainedData);
-        else flow.retainedData = await flow.advancement.reverse(flow.level);
-
-        this.clone.prepareData();
+        else if ( flow ) flow.retainedData = await flow.advancement.reverse(flow.level);
+        this.clone.reset();
       } while ( this.step?.automatic );
     } catch(error) {
-      if ( !(error instanceof AdvancementError) ) throw error;
+      if ( !(error instanceof Advancement.ERROR) ) throw error;
       ui.notifications.error(error.message);
       this.step.automatic = false;
     } finally {

@@ -2,13 +2,12 @@
  * Base class for the advancement interface displayed by the advancement prompt that should be archetypeed by
  * individual advancement types.
  *
- * @property {Item5e} item           Item to which the advancement belongs.
- * @property {string} advancementId  ID of the advancement this flow modifies.
- * @property {number} level          Level for which to configure this flow.
- * @extends {FormApplication}
+ * @param {Item5e} item           Item to which the advancement belongs.
+ * @param {string} advancementId  ID of the advancement this flow modifies.
+ * @param {number} level          Level for which to configure this flow.
+ * @param {object} [options={}]   Application rendering options.
  */
-export class AdvancementFlow extends FormApplication {
-
+export default class AdvancementFlow extends FormApplication {
   constructor(item, advancementId, level, options={}) {
     super({}, options);
 
@@ -44,7 +43,7 @@ export class AdvancementFlow extends FormApplication {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/advancement-flow.html",
+      template: "systems/sw5e/templates/advancement/advancement-flow.hbs",
       popOut: false
     });
   }
@@ -92,22 +91,6 @@ export class AdvancementFlow extends FormApplication {
   /** @inheritdoc */
   async _updateObject(event, formData) {
     await this.advancement.apply(this.level, formData);
-  }
-
-}
-
-
-/**
- * Error that can be thrown during the advancement update preparation process.
- *
- * @extends {Error}
- */
-export class AdvancementError extends Error {
-
-  constructor(...args) {
-    super(...args);
-
-    this.name = "AdvancementError";
   }
 
 }

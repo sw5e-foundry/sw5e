@@ -166,7 +166,7 @@
         font-size: 12px;
         line-height: 24px;
       }
-      input[type="text"] {
+      input[type="number"] {
         flex: 0 0 48px;
         margin-right: 10px;
       }
@@ -217,7 +217,7 @@
       text-align: right;
       padding-right: 3px;
     }
-    input[type="text"] {
+    input[type="number"] {
       flex: 0 0 32px;
       text-align: center;
     }
@@ -245,11 +245,13 @@
 
   .advancement {
     .items-list {
+      height: 100%;
+
       .main-controls {
         .configuration-mode-control {
           flex: 1 0;
           margin-inline-start: 0.5em;
-          a { text-align: inline-start; }
+          a { text-align: start; }
         }
         .item-add {
           padding-block-start: 0.2em;
@@ -259,10 +261,12 @@
         .item-checkmark {
           flex: 0 0 44px;
           color: rgb(17 145 17);
+          text-shadow: white 0 0 1px;
         }
         .item-warning {
           flex: 0 0 44px;
           color: rgb(250 255 35);
+          text-shadow: black 0 0 1px;
         }
       }
       .item-name {

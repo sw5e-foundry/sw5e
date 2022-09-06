@@ -1,34 +1,32 @@
-
 /**
  * Highlight critical success or failure on d20 rolls.
  * @param {ChatMessage} message  Message being prepared.
  * @param {HTMLElement} html     Rendered contents of the message.
  * @param {object} data          Configuration data passed to the message.
  */
-export const highlightCriticalSuccessFailure = function(message, html, data) {
-  if ( !message.isRoll || !message.isContentVisible ) return;
+export function highlightCriticalSuccessFailure(message, html, data) {
+  if ( !message.isRoll || !message.isContentVisible || !message.rolls.length ) return;
 
   // Highlight rolls where the first part is a d20 roll
-  const roll = message.roll;
-  if ( !roll.dice.length ) return;
-  const d = roll.dice[0];
+  let d20Roll = message.rolls.find(r => {
+    const d0 = r.dice[0];
+    return (d0?.faces === 20) && (d0?.values.length === 1);
+  });
+  if ( !d20Roll ) return;
+  d20Roll = sw5e.dice.D20Roll.fromRoll(d20Roll);
+  const d = d20Roll.dice[0];
 
-  // Ensure it is an un-modified d20 roll
-  const isD20 = (d.faces === 20) && ( d.values.length === 1 );
-  if ( !isD20 ) return;
   const isModifiedRoll = ("success" in d.results[0]) || d.options.marginSuccess || d.options.marginFailure;
   if ( isModifiedRoll ) return;
 
   // Highlight successes and failures
-  const critical = d.options.critical || 20;
-  const fumble = d.options.fumble || 1;
-  if ( d.total >= critical ) html.find(".dice-total").addClass("critical");
-  else if ( d.total <= fumble ) html.find(".dice-total").addClass("fumble");
+  if ( d20Roll.isCritical ) html.find(".dice-total").addClass("critical");
+  else if ( d20Roll.isFumble ) html.find(".dice-total").addClass("fumble");
   else if ( d.options.target ) {
-    if ( roll.total >= d.options.target ) html.find(".dice-total").addClass("success");
+    if ( d20Roll.total >= d.options.target ) html.find(".dice-total").addClass("success");
     else html.find(".dice-total").addClass("failure");
   }
-};
+}
 
 /* -------------------------------------------- */
 
@@ -38,7 +36,7 @@ export const highlightCriticalSuccessFailure = function(message, html, data) {
  * @param {HTMLElement} html     Rendered contents of the message.
  * @param {object} data          Configuration data passed to the message.
  */
-export const displayChatActionButtons = function(message, html, data) {
+export function displayChatActionButtons(message, html, data) {
   const chatCard = html.find(".sw5e.chat-card");
   if ( chatCard.length > 0 ) {
     const flavor = html.find(".flavor-text");
@@ -56,7 +54,7 @@ export const displayChatActionButtons = function(message, html, data) {
       btn.style.display = "none";
     });
   }
-};
+}
 
 /* -------------------------------------------- */
 
@@ -69,7 +67,7 @@ export const displayChatActionButtons = function(message, html, data) {
  *
  * @returns {object[]}          The extended options Array including new context choices
  */
-export const addChatMessageContextOptions = function(html, options) {
+export function addChatMessageContextOptions(html, options) {
   let canApply = li => {
     const message = game.messages.get(li.data("messageId"));
     return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
@@ -88,6 +86,12 @@ export const addChatMessageContextOptions = function(html, options) {
       callback: li => applyChatCardDamage(li, -1)
     },
     {
+      name: game.i18n.localize("SW5E.ChatContextTempHP"),
+      icon: '<i class="fas fa-user-clock"></i>',
+      condition: canApply,
+      callback: li => applyChatCardTemp(li)
+    },
+    {
       name: game.i18n.localize("SW5E.ChatContextDoubleDamage"),
       icon: '<i class="fas fa-user-injured"></i>',
       condition: canApply,
@@ -101,7 +105,7 @@ export const addChatMessageContextOptions = function(html, options) {
     }
   );
   return options;
-};
+}
 
 /* -------------------------------------------- */
 
@@ -115,7 +119,7 @@ export const addChatMessageContextOptions = function(html, options) {
  */
 function applyChatCardDamage(li, multiplier) {
   const message = game.messages.get(li.data("messageId"));
-  const roll = message.roll;
+  const roll = message.rolls[0];
   return Promise.all(canvas.tokens.controlled.map(t => {
     const a = t.actor;
     return a.applyDamage(roll.total, multiplier);
@@ -123,3 +127,31 @@ function applyChatCardDamage(li, multiplier) {
 }
 
 /* -------------------------------------------- */
+ 
+/**
+ * Apply rolled dice as temporary hit points to the controlled token(s).
+ * @param {HTMLElement} li  The chat entry which contains the roll data
+ * @returns {Promise}
+ */
+function applyChatCardTemp(li) {
+  const message = game.messages.get(li.data("messageId"));
+  const roll = message.rolls[0];
+  return Promise.all(canvas.tokens.controlled.map(t => {
+    const a = t.actor;
+    return a.applyTempHP(roll.total);
+  }));
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Handle rendering of a chat message to the log
+ * @param {ChatLog} app     The ChatLog instance
+ * @param {jQuery} html     Rendered chat message HTML
+ * @param {object} data     Data passed to the render context
+ */
+export function onRenderChatMessage(app, html, data) {
+  displayChatActionButtons(app, html, data);
+  highlightCriticalSuccessFailure(app, html, data);
+  if (game.settings.get("sw5e", "autoCollapseItemCards")) html.find(".card-content").hide();
+}

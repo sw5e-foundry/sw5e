@@ -16,15 +16,15 @@
 
             <ul class="summary flexrow">
                 <li>
-                    {{lookup config.weaponTypes data.weaponType }}
+                    {{lookup config.weaponTypes system.weaponType }}
                 </li>
                 <li>
-                    <select name="data.rarity">
-                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    <select name="system.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{> "sw5e.item-description"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -50,23 +50,23 @@
             {{!-- Weapon Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponType" }}</label>
-                <select name="data.weaponType">
-                    {{selectOptions config.weaponTypes selected=data.weaponType}}
+                <select name="system.weaponType">
+                    {{selectOptions config.weaponTypes selected=system.weaponType}}
                 </select>
             </div>
 
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
-                <select name="data.baseItem">
-                    {{selectOptions baseItems selected=data.baseItem blank=""}}
+                <select name="system.baseItem">
+                    {{selectOptions baseItems selected=system.baseItem blank=""}}
                 </select>
             </div>
 
             {{#unless isMountable}}
             <div class="form-group">
                 <label>{{localize "SW5E.Attunement"}}</label>
-                <select name="data.attunement" data-dtype="Number">
-                    {{selectOptions config.attunements selected=data.attunement}}
+                <select name="system.attunement" data-dtype="Number">
+                    {{selectOptions config.attunements selected=system.attunement}}
                 </select>
             </div>
 
@@ -75,13 +75,13 @@
                 <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
                 <div class="form-fields">
                     <label class="checkbox">
-                        <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "SW5E.Proficient" }}
+                        <input type="checkbox" name="system.proficient" {{checked system.proficient}}/> {{ localize "SW5E.Proficient" }}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "SW5E.Equipped" }}
+                        <input type="checkbox" name="system.equipped" {{checked system.equipped}}/> {{ localize "SW5E.Equipped" }}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "SW5E.Identified" }}
+                        <input type="checkbox" name="system.identified" {{checked system.identified}}/> {{ localize "SW5E.Identified" }}
                     </label>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                 {{#each config.weaponProperties as |name prop|}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
+                    <input type="checkbox" name="system.properties.{{prop}}" {{checked (lookup ../system.properties prop)}}/> {{ name }}
                 </label>
                 {{/each}}
             </div>
@@ -101,28 +101,27 @@
             <div class="form-group">
                 <label>{{localize 'SW5E.ArmorClass'}}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.armor.value" value="{{data.armor.value}}"
-                           data-dtype="Number">
+                    {{numberInput system.armor.value name="system.armor.value"}}
                 </div>
             </div>
 
-            {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
+            {{> "sw5e.item-mountable"}}
             {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponAttack" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

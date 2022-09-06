@@ -3,29 +3,26 @@
         <img class="profile" src="{{actor.img}}" title="{{actor.name}}" alt="{{actor.name}}"
              data-edit="img">
         <section class="header-details flexrow">
-            {{> "systems/sw5e/templates/actors/parts/actor-warnings.html"}}
+            {{> "sw5e.actor-warnings"}}
 
             <h1 class="charname">
-                <input name="name" type="text" value="{{actor.name}}"
-                       placeholder="{{localize 'SW5E.Name'}}">
+                <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'SW5E.Name'}}">
             </h1>
             <ul class="summary flexrow">
                 <li>
-                    <span>{{lookup config.actorSizes data.traits.size}}</span>
+                    <span>{{lookup config.actorSizes system.traits.size}}</span>
                 </li>
                 <li>
-                    <select name="data.vehicleType">
-                      {{selectOptions config.vehicleTypes selected=data.vehicleType}}
+                    <select name="system.vehicleType">
+                      {{selectOptions config.vehicleTypes selected=system.vehicleType}}
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="data.traits.dimensions"
-                           value="{{data.traits.dimensions}}"
+                    <input type="text" name="system.traits.dimensions" value="{{system.traits.dimensions}}"
                            placeholder="{{localize 'SW5E.Dimensions'}}">
                 </li>
                 <li>
-                    <input type="text" name="data.details.source"
-                           value="{{data.details.source}}"
+                    <input type="text" name="system.details.source" value="{{system.details.source}}"
                            placeholder="{{localize 'SW5E.Source'}}">
                 </li>
             </ul>
@@ -33,34 +30,34 @@
                 <li class="attribute health">
                     <h4 class="attribute-name box-title">{{localize 'SW5E.HitPoints'}}</h4>
                     <div class="attribute-value multiple">
-                        <input name="data.attributes.hp.value" type="text" placeholder="&mdash;"
-                               value="{{data.attributes.hp.value}}" data-dtype="Number"
-                               title="{{localize 'SW5E.HitPointsCurrent'}}">
+                        <input name="system.attributes.hp.value" type="number" step="any"
+                            value="{{system.attributes.hp.value}}" placeholder="&mdash;"
+                            title="{{localize 'SW5E.HitPointsCurrent'}}">
                         <span class="sep"> &sol; </span>
-                        <input name="data.attributes.hp.max" type="text" placeholder="&mdash;"
-                               value="{{data.attributes.hp.max}}" data-dtype="Number"
-                               title="{{localize 'SW5E.HitPointsMax'}}">
+                        <input name="system.attributes.hp.max" type="number" step="any"
+                            value="{{system.attributes.hp.max}}" placeholder="&mdash;"
+                            title="{{localize 'SW5E.HitPointsMax'}}">
                     </div>
                     <footer class="attribute-footer">
-                        <input name="data.attributes.hp.dt" type="text" class="temphp"
-                               placeholder="{{localize 'SW5E.Threshold'}}"
-                               value="{{data.attributes.hp.dt}}" data-dtype="Number"
-                               title="{{localize 'SW5E.DamageThreshold'}}">
-                        <input name="data.attributes.hp.mt" type="text" class="temphp"
-                               placeholder="{{localize 'SW5E.VehicleMishap'}}"
-                               value="{{data.attributes.hp.mt}}" data-dtype="Number"
-                               title="{{localize 'SW5E.VehicleMishapThreshold'}}">
+                        <input class="temphp" name="system.attributes.hp.dt" type="number" step="any"
+                            placeholder="{{localize 'SW5E.Threshold'}}"
+                            value="{{system.attributes.hp.dt}}"
+                            title="{{localize 'SW5E.DamageThreshold'}}">
+                        <input class="temphp" name="system.attributes.hp.mt" type="number" step="any"
+                            placeholder="{{localize 'SW5E.VehicleMishap'}}"
+                            value="{{system.attributes.hp.mt}}"
+                            title="{{localize 'SW5E.VehicleMishapThreshold'}}">
                     </footer>
                 </li>
                 <li class="attribute">
                     <h4 class="attribute-name box-title">{{localize 'SW5E.ArmorClass'}}</h4>
                     <div class="attribute-value">
-                        <input name="data.attributes.ac.flat" type="text" placeholder="&mdash;"
-                               value="{{data.attributes.ac.flat}}" data-dtype="Number">
+                        {{numberInput system.attributes.ac.flat name="system.attributes.ac.flat"
+                            placeholder="&mdash;"}}
                     </div>
                     <footer class="attribute-footer">
-                        <input type="text" name="data.attributes.ac.motionless"
-                               placeholder="&mdash;" value="{{data.attributes.ac.motionless}}"
+                        <input type="text" name="system.attributes.ac.motionless"
+                               placeholder="&mdash;" value="{{system.attributes.ac.motionless}}"
                                title="{{localize 'SW5E.ArmorClassMotionless'}}">
                     </footer>
                 </li>
@@ -91,11 +88,11 @@
     <section class="sheet-body">
         <div class="tab attributes flexrow" data-group="primary" data-tab="attributes">
             <ul class="ability-scores flexrow">
-            {{#each data.abilities as |ability id|}}
+            {{#each system.abilities as |ability id|}}
                 <li class="ability" data-ability="{{id}}">
                     <h4 class="ability-name box-title rollable">{{ability.label}}</h4>
-                    <input class="ability-score" name="data.abilities.{{id}}.value" type="text"
-                           value="{{ability.value}}" data-dtype="Number" placeholder="0">
+                    {{numberInput ability.value name=(concat "system.abilities." id ".value")
+                        class="ability-score" placeholder="0"}}
                     <div class="ability-modifiers flexrow">
                         <span class="ability-mod" title="{{localize 'SW5E.Modifier'}}">
                             {{numberFormat ability.mod decimals=0 sign=true}}
@@ -110,71 +107,68 @@
                         <h4>{{localize 'SW5E.VehicleCreatureCapacity'}}</h4>
                         <div class="counter-value">
                             <input type="text" placeholder="&mdash;"
-                                   name="data.attributes.capacity.creature"
-                                   value="{{data.attributes.capacity.creature}}">
+                                   name="system.attributes.capacity.creature"
+                                   value="{{system.attributes.capacity.creature}}">
                         </div>
                     </div>
                     <div class="counter flexrow cargo-cap">
                         <h4>{{localize 'SW5E.VehicleCargoCapacity'}}</h4>
                         <div class="counter-value">
-                            <input type="text" name="data.attributes.capacity.cargo" placeholder="0"
-                                   data-dtype="Number" value="{{data.attributes.capacity.cargo}}">
+                            {{numberInput system.attributes.capacity.cargo name="system.attributes.capacity.cargo"
+                                placeholder="0"}}
                         </div>
                     </div>
                     <div class="counter flexrow stations">
                         <h4>{{localize 'SW5E.VehicleActionStations'}}</h4>
                         <div class="counter-value">
-                            <input name="data.attributes.actions.stations" type="checkbox"
-                                   data-dtype="Boolean" value="{{data.attributes.actions.stations}}"
-                                   {{checked data.attributes.actions.stations}}>
+                            <input name="system.attributes.actions.stations" type="checkbox"
+                                   data-dtype="Boolean" value="{{system.attributes.actions.stations}}"
+                                   {{checked system.attributes.actions.stations}}>
                         </div>
                     </div>
                     <div class="counter flexrow actions">
                         <h4>{{localize 'SW5E.ActionPl'}}</h4>
                         <div class="counter-value">
-                            <input type="text" name="data.attributes.actions.value" placeholder="0"
-                                   data-dtype="Number" value="{{data.attributes.actions.value}}"
-                                   title="{{localize 'SW5E.VehicleActionsHint'}}">
+                            <input name="system.attributes.actions.value" type="number" step="any"
+                                value="{{system.attributes.actions.value}}" placeholder="0"
+                                title="{{localize 'SW5E.VehicleActionsHint'}}">
                         </div>
                     </div>
                     <div class="counter flexrow action-thresholds">
                         <h4>{{localize 'SW5E.VehicleActionThresholds'}}</h4>
                         <div class="counter-value">
                             <span class="sep">&lt;</span>
-                            <input type="text" placeholder="&mdash;" data-dtype="Number"
-                                   value="{{data.attributes.actions.thresholds.[2]}}"
-                                   name="data.attributes.actions.thresholds.2"
-                                   title="{{localize 'SW5E.VehicleActionThresholdsFull'}}">
+                            <input name="system.attributes.actions.thresholds.2" type="number" step="any"
+                                value="{{system.attributes.actions.thresholds.[2]}}" placeholder="&mdash;"
+                                title="{{localize 'SW5E.VehicleActionThresholdsFull'}}">
                             <span class="sep">&lt;</span>
-                            <input type="text" placeholder="&mdash;" data-dtype="Number"
-                                   value="{{data.attributes.actions.thresholds.[1]}}"
-                                   name="data.attributes.actions.thresholds.1"
-                                   title="{{localize 'SW5E.VehicleActionThresholdsMid'}}">
+                            <input name="system.attributes.actions.thresholds.1" type="number" step="any"
+                                value="{{system.attributes.actions.thresholds.[1]}}" placeholder="&mdash;"
+                                title="{{localize 'SW5E.VehicleActionThresholdsMid'}}">
                             <span class="sep">&lt;</span>
-                            <input type="text" placeholder="&mdash;" data-dtype="Number"
-                                   value="{{data.attributes.actions.thresholds.[0]}}"
-                                   name="data.attributes.actions.thresholds.0"
-                                   title="{{localize 'SW5E.VehicleActionThresholdsMin'}}">
+                            <input name="system.attributes.actions.thresholds.0" type="number" step="any"
+                                value="{{system.attributes.actions.thresholds.[0]}}" placeholder="&mdash;"
+                                title="{{localize 'SW5E.VehicleActionThresholdsMin'}}">
                         </div>
                     </div>
                 </div>
-                {{> 'systems/sw5e/templates/actors/parts/actor-traits.html'}}
+                {{> "sw5e.actor-traits"}}
             </section>
         </div>
 
         <div class="tab features flexcol" data-group="primary" data-tab="features">
-            {{> 'systems/sw5e/templates/actors/parts/actor-features.html' sections=features}}
+            {{> "sw5e.actor-features" sections=features}}
         </div>
 
         <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
-            {{> 'systems/sw5e/templates/actors/parts/actor-inventory.html' sections=cargo}}
+            {{> "sw5e.actor-inventory" sections=cargo}}
         </div>
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
         <div class="tab biography flexcol" data-group="primary" data-tab="biography">
-            {{editor content=data.details.biography.value target='data.details.biography.value'
-                     button=true owner=owner editable=editable rollData=rollData}}
+            {{editor biographyHTML target="system.details.biography.value" button=true editable=editable
+                     engine="prosemirror" collaborate=false}}
         </div>
     </section>
 </form>

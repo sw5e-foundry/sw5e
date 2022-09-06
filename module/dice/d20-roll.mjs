@@ -12,7 +12,6 @@
  * @param {boolean} [options.elvenAccuracy=false]      Allow Elven Accuracy to modify this roll?
  * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
- * @extends {Roll}
  */
 export default class D20Roll extends Roll {
   constructor(formula, data, options) {
@@ -21,6 +20,19 @@ export default class D20Roll extends Roll {
       throw new Error(`Invalid D20Roll formula provided ${this._formula}`);
     }
     if ( !this.options.configured ) this.configureModifiers();
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create a D20Roll from a standard Roll instance.
+   * @param {Roll} roll
+   * @returns {D20Roll}
+   */
+  static fromRoll(roll) {
+    const newRoll = new this(roll.formula, roll.data, roll.options);
+    Object.assign(newRoll, roll);
+    return newRoll;
   }
 
   /* -------------------------------------------- */
@@ -35,11 +47,13 @@ export default class D20Roll extends Roll {
     DISADVANTAGE: -1
   }
 
+  /* -------------------------------------------- */
+
   /**
    * The HTML template path used to configure evaluation of this Roll
    * @type {string}
    */
-  static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.html";
+  static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.hbs";
 
   /* -------------------------------------------- */
 
@@ -51,12 +65,38 @@ export default class D20Roll extends Roll {
     return this.options.advantageMode === D20Roll.ADV_MODE.ADVANTAGE;
   }
 
+  /* -------------------------------------------- */
+
   /**
    * A convenience reference for whether this D20Roll has disadvantage
    * @type {boolean}
    */
   get hasDisadvantage() {
     return this.options.advantageMode === D20Roll.ADV_MODE.DISADVANTAGE;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this roll a critical success? Returns undefined if roll isn't evaluated.
+   * @type {boolean|void}
+   */
+  get isCritical() {
+    if ( !this._evaluated ) return undefined;
+    if ( !Number.isNumeric(this.options.critical) ) return false;
+    return this.dice[0].total >= this.options.critical;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this roll a critical failure? Returns undefined if roll isn't evaluated.
+   * @type {boolean|void}
+   */
+  get isFumble() {
+    if ( !this._evaluated ) return undefined;
+    if ( !Number.isNumeric(this.options.fumble) ) return false;
+    return this.dice[0].total <= this.options.fumble;
   }
 
   /* -------------------------------------------- */
@@ -159,7 +199,7 @@ export default class D20Roll extends Roll {
     });
 
     let defaultButton = "normal";
-    switch (defaultAction) {
+    switch ( defaultAction ) {
       case D20Roll.ADV_MODE.ADVANTAGE: defaultButton = "advantage"; break;
       case D20Roll.ADV_MODE.DISADVANTAGE: defaultButton = "disadvantage"; break;
     }

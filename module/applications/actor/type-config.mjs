@@ -1,16 +1,15 @@
-import Actor5e from "../actor/entity.js";
+import Actor5e from "../../documents/actor/actor.mjs";
 
 /**
  * A specialized form used to select from a checklist of attributes, traits, or properties
- * @extends {FormApplication}
  */
 export default class ActorTypeConfig extends FormApplication {
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "actor-type", "trait-selector"],
-      template: "systems/sw5e/templates/apps/actor-type.html",
+      template: "systems/sw5e/templates/apps/actor-type.hbs",
       width: 280,
       height: "auto",
       choices: {},
@@ -22,7 +21,7 @@ export default class ActorTypeConfig extends FormApplication {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   get title() {
     return `${game.i18n.localize("SW5E.CreatureTypeTitle")}: ${this.object.name}`;
   }
@@ -37,10 +36,10 @@ export default class ActorTypeConfig extends FormApplication {
   /* -------------------------------------------- */
 
   /** @override */
-  getData(options) {
+  getData(options={}) {
 
     // Get current value or new default
-    let attr = foundry.utils.getProperty(this.object.data.data, "details.type");
+    let attr = foundry.utils.getProperty(this.object.system, "details.type");
     if ( foundry.utils.getType(attr) !== "Object" ) attr = {
       value: (attr in CONFIG.SW5E.creatureTypes) ? attr : "humanoid",
       subtype: "",
@@ -80,7 +79,7 @@ export default class ActorTypeConfig extends FormApplication {
   /** @override */
   async _updateObject(event, formData) {
     const typeObject = foundry.utils.expandObject(formData);
-    return this.object.update({ "data.details.type": typeObject });
+    return this.object.update({"system.details.type": typeObject});
   }
 
   /* -------------------------------------------- */

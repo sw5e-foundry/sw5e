@@ -1,3 +1,5 @@
+![](https://github.com/foundryvtt/sw5e/blob/v10-dev/media/repo-sw5e.jpg?raw=true)
+
 # Foundry Virtual Tabletop - SW5e Game System
 
 This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides character sheet and game system 
@@ -21,11 +23,11 @@ The software component of this system is distributed under the MIT license.
 To install and use the SW5e system for Foundry Virtual Tabletop, simply paste the following URL into the 
 **Install System** dialog on the Setup menu of the application.
 
-https://gitlab.com/foundrynet/sw5e/raw/master/system.json
+https://raw.githubusercontent.com/foundryvtt/sw5e/master/system.json
 
 If you wish to manually install the system, you must clone or extract it into the ``Data/systems/sw5e`` folder. You
 may do this by cloning the repository or downloading a zip archive from the
-[Releases Page](https://gitlab.com/foundrynet/sw5e/-/releases).
+[Releases Page](https://github.com/foundryvtt/sw5e/releases).
 
 ## Community Contribution
 

@@ -1,8 +1,8 @@
-import { ClassFeatures } from "./classFeatures.js";
-import { preLocalize } from "./utils.js";
+import ClassFeatures from "./advancement/class-features.mjs";
+import { preLocalize } from "./utils.mjs";
 
 // Namespace Configuration Values
-export const SW5E = {};
+const SW5E = {};
 
 // ASCII Artwork
 SW5E.ASCII = `_______________________________
@@ -46,6 +46,43 @@ SW5E.abilityAbbreviations = {
   san: "SW5E.AbilitySanAbbr"
 };
 preLocalize("abilityAbbreviations");
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for skills.
+ *
+ * @typedef {object} SkillConfiguration
+ * @property {string} label    Localized label.
+ * @property {string} ability  Key for the default ability used by this skill.
+ */
+
+/**
+ * The set of skill which can be trained with their default ability scores.
+ * @enum {SkillConfiguration}
+ */
+SW5E.skills = {
+  acr: { label: "SW5E.SkillAcr", ability: "dex" },
+  ani: { label: "SW5E.SkillAni", ability: "wis" },
+  arc: { label: "SW5E.SkillArc", ability: "int" },
+  ath: { label: "SW5E.SkillAth", ability: "str" },
+  dec: { label: "SW5E.SkillDec", ability: "cha" },
+  his: { label: "SW5E.SkillHis", ability: "int" },
+  ins: { label: "SW5E.SkillIns", ability: "wis" },
+  itm: { label: "SW5E.SkillItm", ability: "cha" },
+  inv: { label: "SW5E.SkillInv", ability: "int" },
+  med: { label: "SW5E.SkillMed", ability: "wis" },
+  nat: { label: "SW5E.SkillNat", ability: "int" },
+  prc: { label: "SW5E.SkillPrc", ability: "wis" },
+  prf: { label: "SW5E.SkillPrf", ability: "cha" },
+  per: { label: "SW5E.SkillPer", ability: "cha" },
+  rel: { label: "SW5E.SkillRel", ability: "int" },
+  slt: { label: "SW5E.SkillSlt", ability: "dex" },
+  ste: { label: "SW5E.SkillSte", ability: "dex" },
+  sur: { label: "SW5E.SkillSur", ability: "wis" }
+};
+preLocalize("skills", { key: "label", sort: true });
+patchConfig("skills", "label", { since: 2.0, until: 2.2 });
 
 /* -------------------------------------------- */
 
@@ -459,6 +496,7 @@ preLocalize("equipmentTypes", { sort: true });
 SW5E.vehicleTypes = {
   air: "SW5E.VehicleTypeAir",
   land: "SW5E.VehicleTypeLand",
+  space: "SW5E.VehicleTypeSpace",
   water: "SW5E.VehicleTypeWater"
 };
 preLocalize("vehicleTypes", { sort: true });
@@ -788,34 +826,6 @@ SW5E.senses = {
   truesight: "SW5E.SenseTruesight"
 };
 preLocalize("senses", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * The set of skill which can be trained.
- * @enum {string}
- */
-SW5E.skills = {
-  acr: "SW5E.SkillAcr",
-  ani: "SW5E.SkillAni",
-  arc: "SW5E.SkillArc",
-  ath: "SW5E.SkillAth",
-  dec: "SW5E.SkillDec",
-  his: "SW5E.SkillHis",
-  ins: "SW5E.SkillIns",
-  itm: "SW5E.SkillItm",
-  inv: "SW5E.SkillInv",
-  med: "SW5E.SkillMed",
-  nat: "SW5E.SkillNat",
-  prc: "SW5E.SkillPrc",
-  prf: "SW5E.SkillPrf",
-  per: "SW5E.SkillPer",
-  rel: "SW5E.SkillRel",
-  slt: "SW5E.SkillSlt",
-  ste: "SW5E.SkillSte",
-  sur: "SW5E.SkillSur"
-};
-preLocalize("skills", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -1193,7 +1203,7 @@ SW5E.CR_EXP_LEVELS = [
 /**
  * Character features automatically granted by classes & archetypes at certain levels.
  * @type {object}
- * @deprecated since 1.6.0, targeted for removal in 1.8
+ * @deprecated since 1.6.0, targeted for removal in 2.1
  */
 SW5E.classFeatures = ClassFeatures;
 
@@ -1221,6 +1231,7 @@ SW5E.characterFlags = {
     name: "SW5E.FlagsElvenAccuracy",
     hint: "SW5E.FlagsElvenAccuracyHint",
     section: "SW5E.RacialTraits",
+    abilities: ["dex", "int", "wis", "cha"],
     type: Boolean
   },
   halflingLucky: {
@@ -1302,3 +1313,28 @@ preLocalize("characterFlags", { keys: ["name", "hint", "section"] });
  * @type {string[]}
  */
 SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(SW5E.characterFlags));
+
+/* -------------------------------------------- */
+
+/**
+ * Patch an existing config enum to allow conversion from string values to object values without
+ * breaking existing modules that are expecting strings.
+ * @param {string} key          Key within SW5E that has been replaced with an enum of objects.
+ * @param {string} fallbackKey  Key within the new config object from which to get the fallback value.
+ * @param {object} [options]    Additional options passed through to logCompatibilityWarning.
+ */
+function patchConfig(key, fallbackKey, options) {
+  /** @override */
+  function toString() {
+    const message = `The value of CONFIG.SW5E.${key} has been changed to an object.`
+      +` The former value can be acccessed from .${fallbackKey}.`;
+    foundry.utils.logCompatibilityWarning(message, options);
+    return this[fallbackKey];
+  }
+
+  Object.values(SW5E[key]).forEach(o => o.toString = toString);
+}
+
+/* -------------------------------------------- */
+
+export default SW5E;

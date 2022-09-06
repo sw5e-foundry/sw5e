@@ -1,4 +1,4 @@
-export const ClassFeatures = {
+export default {
   barbarian: {
     archetypes: {
       "path-of-the-ancestral-guardian": {

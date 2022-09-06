@@ -3,7 +3,7 @@
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
 export const migrateWorld = async function() {
-  const version = game.system.data.version;
+  const version = game.system.version;
   ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", {version}), {permanent: true});
 
   const migrationData = await getMigrationData();
@@ -12,7 +12,7 @@ export const migrateWorld = async function() {
   for ( let a of game.actors ) {
     try {
       const updateData = migrateActorData(a.toObject(), migrationData);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isEmpty(updateData) ) {
         console.log(`Migrating Actor document ${a.name}`);
         await a.update(updateData, {enforceTypes: false});
       }
@@ -26,7 +26,7 @@ export const migrateWorld = async function() {
   for ( let i of game.items ) {
     try {
       const updateData = migrateItemData(i.toObject(), migrationData);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isEmpty(updateData) ) {
         console.log(`Migrating Item document ${i.name}`);
         await i.update(updateData, {enforceTypes: false});
       }
@@ -40,7 +40,7 @@ export const migrateWorld = async function() {
   for ( const m of game.macros ) {
     try {
       const updateData = migrateMacroData(m.toObject(), migrationData);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      if ( !foundry.utils.isEmpty(updateData) ) {
         console.log(`Migrating Macro document ${m.name}`);
         await m.update(updateData, {enforceTypes: false});
       }
@@ -53,8 +53,8 @@ export const migrateWorld = async function() {
   // Migrate Actor Override Tokens
   for ( let s of game.scenes ) {
     try {
-      const updateData = migrateSceneData(s.data, migrationData);
-      if ( !foundry.utils.isObjectEmpty(updateData) ) {
+      const updateData = migrateSceneData(s, migrationData);
+      if ( !foundry.utils.isEmpty(updateData) ) {
         console.log(`Migrating Scene document ${s.name}`);
         await s.update(updateData, {enforceTypes: false});
         // If we do not do this, then synthetic token actors remain in cache
@@ -75,7 +75,7 @@ export const migrateWorld = async function() {
   }
 
   // Set the migration as complete
-  game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
+  game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
   ui.notifications.info(game.i18n.format("MIGRATION.5eComplete", {version}), {permanent: true});
 };
 
@@ -112,12 +112,12 @@ export const migrateCompendium = async function(pack) {
           updateData = migrateItemData(doc.toObject(), migrationData);
           break;
         case "Scene":
-          updateData = migrateSceneData(doc.data, migrationData);
+          updateData = migrateSceneData(doc.toObject(), migrationData);
           break;
       }
 
       // Save the entry, if data was changed
-      if ( foundry.utils.isObjectEmpty(updateData) ) continue;
+      if ( foundry.utils.isEmpty(updateData) ) continue;
       await doc.update(updateData);
       console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
     }
@@ -161,12 +161,12 @@ export const migrateArmorClass = async function(pack) {
 
       // CASE 1: Armor is equipped
       const hasArmorEquipped = actor.itemTypes.equipment.some(e => {
-        return armor.has(e.data.data.armor?.type) && e.data.data.equipped;
+        return armor.has(e.system.armor?.type) && e.system.equipped;
       });
-      if ( hasArmorEquipped ) update["data.attributes.ac.calc"] = "default";
+      if ( hasArmorEquipped ) update["system.attributes.ac.calc"] = "default";
 
       // CASE 2: NPC Natural Armor
-      else if ( src.type === "npc" ) update["data.attributes.ac.calc"] = "natural";
+      else if ( src.type === "npc" ) update["system.attributes.ac.calc"] = "natural";
     } catch(e) {
       console.warn(`Failed to migrate armor class for Actor ${actor.name}`, e);
     }
@@ -194,12 +194,10 @@ export const migrateActorData = function(actor, migrationData) {
   _migrateTokenImage(actor, updateData);
 
   // Actor Data Updates
-  if (actor.data) {
-    _migrateActorMovement(actor, updateData);
-    _migrateActorSenses(actor, updateData);
-    _migrateActorType(actor, updateData);
-    _migrateActorAC(actor, updateData);
-  }
+  _migrateActorMovement(actor, updateData);
+  _migrateActorSenses(actor, updateData);
+  _migrateActorType(actor, updateData);
+  _migrateActorAC(actor, updateData);
 
   // Migrate embedded effects
   if ( actor.effects ) {
@@ -216,15 +214,15 @@ export const migrateActorData = function(actor, migrationData) {
 
     // Prepared, Equipped, and Proficient for NPC actors
     if ( actor.type === "npc" ) {
-      if (getProperty(itemData.data, "preparation.prepared") === false) itemUpdate["data.preparation.prepared"] = true;
-      if (getProperty(itemData.data, "equipped") === false) itemUpdate["data.equipped"] = true;
-      if (getProperty(itemData.data, "proficient") === false) itemUpdate["data.proficient"] = true;
+      if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false) itemUpdate["system.preparation.prepared"] = true;
+      if (foundry.utils.getProperty(itemData.system, "equipped") === false) itemUpdate["system.equipped"] = true;
+      if (foundry.utils.getProperty(itemData.system, "proficient") === false) itemUpdate["system.proficient"] = true;
     }
 
     // Update the Owned Item
-    if ( !isObjectEmpty(itemUpdate) ) {
+    if ( !foundry.utils.isEmpty(itemUpdate) ) {
       itemUpdate._id = itemData._id;
-      arr.push(expandObject(itemUpdate));
+      arr.push(foundry.utils.expandObject(itemUpdate));
     }
 
     return arr;
@@ -241,12 +239,11 @@ export const migrateActorData = function(actor, migrationData) {
  * @param {object} actorData    The data object for an Actor
  * @returns {object}            The scrubbed Actor data
  */
-// eslint-disable-next-line no-unused-vars -- We might want to still use this in later migrations.
 function cleanActorData(actorData) {
 
   // Scrub system data
   const model = game.system.model.Actor[actorData.type];
-  actorData.data = filterObject(actorData.data, model);
+  actorData.system = foundry.utils.filterObject(actorData.system, model);
 
   // Scrub system flags
   const allowedFlags = CONFIG.SW5E.allowedActorFlags.reduce((obj, f) => {
@@ -254,7 +251,7 @@ function cleanActorData(actorData) {
     return obj;
   }, {});
   if ( actorData.flags.sw5e ) {
-    actorData.flags.sw5e = filterObject(actorData.flags.sw5e, allowedFlags);
+    actorData.flags.sw5e = foundry.utils.filterObject(actorData.flags.sw5e, allowedFlags);
   }
 
   // Return the scrubbed data
@@ -278,7 +275,7 @@ export const migrateItemData = function(item, migrationData) {
   _migrateItemPowercasting(item, updateData);
   _migrateArmorType(item, updateData);
   _migrateItemCriticalData(item, updateData);
-  _migrateItemIcon(item, updateData, migrationData);
+  _migrateDocumentIcon(item, updateData, migrationData);
 
   // Migrate embedded effects
   if ( item.effects ) {
@@ -302,7 +299,7 @@ export const migrateEffects = function(parent, migrationData) {
   return parent.effects.reduce((arr, e) => {
     const effectData = e instanceof CONFIG.ActiveEffect.documentClass ? e.toObject() : e;
     let effectUpdate = migrateEffectData(effectData, migrationData);
-    if ( !foundry.utils.isObjectEmpty(effectUpdate) ) {
+    if ( !foundry.utils.isEmpty(effectUpdate) ) {
       effectUpdate._id = effectData._id;
       arr.push(foundry.utils.expandObject(effectUpdate));
     }
@@ -320,6 +317,7 @@ export const migrateEffects = function(parent, migrationData) {
  */
 export const migrateEffectData = function(effect, migrationData) {
   const updateData = {};
+  _migrateDocumentIcon(effect, updateData, {...migrationData, field: "icon"});
   _migrateEffectArmorClass(effect, updateData);
   return updateData;
 };
@@ -334,7 +332,8 @@ export const migrateEffectData = function(effect, migrationData) {
  */
 export const migrateMacroData = function(macro, migrationData) {
   const updateData = {};
-  _migrateItemIcon(macro, updateData, migrationData);
+  _migrateDocumentIcon(macro, updateData, migrationData);
+  _migrateMacroCommands(macro, updateData);
   return updateData;
 };
 
@@ -369,12 +368,12 @@ export const migrateSceneData = function(scene, migrationData) {
         const updates = new Map(update[embeddedName].map(u => [u._id, u]));
         t.actorData[embeddedName].forEach(original => {
           const update = updates.get(original._id);
-          if (update) mergeObject(original, update);
+          if (update) foundry.utils.mergeObject(original, update);
         });
         delete update[embeddedName];
       });
 
-      mergeObject(t.actorData, update);
+      foundry.utils.mergeObject(t.actorData, update);
     }
     return t;
   });
@@ -411,22 +410,22 @@ export const getMigrationData = async function() {
  * @private
  */
 function _migrateActorMovement(actorData, updateData) {
-  const ad = actorData.data;
+  const attrs = actorData.system.attributes || {};
 
   // Work is needed if old data is present
-  const old = actorData.type === "vehicle" ? ad?.attributes?.speed : ad?.attributes?.speed?.value;
+  const old = actorData.type === "vehicle" ? attrs.speed : attrs.speed?.value;
   const hasOld = old !== undefined;
   if ( hasOld ) {
 
     // If new data is not present, migrate the old data
-    const hasNew = ad?.attributes?.movement?.walk !== undefined;
+    const hasNew = attrs.movement?.walk !== undefined;
     if ( !hasNew && (typeof old === "string") ) {
       const s = (old || "").split(" ");
-      if ( s.length > 0 ) updateData["data.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
+      if ( s.length > 0 ) updateData["system.attributes.movement.walk"] = Number.isNumeric(s[0]) ? parseInt(s[0]) : null;
     }
 
     // Remove the old attribute
-    updateData["data.attributes.-=speed"] = null;
+    updateData["system.attributes.-=speed"] = null;
   }
   return updateData;
 }
@@ -441,34 +440,33 @@ function _migrateActorMovement(actorData, updateData) {
  * @private
  */
 function _migrateActorSenses(actor, updateData) {
-  const ad = actor.data;
-  if ( ad?.traits?.senses === undefined ) return;
-  const original = ad.traits.senses || "";
-  if ( typeof original !== "string" ) return;
+  const oldSenses = actor.system.traits?.senses;
+  if ( oldSenses === undefined ) return;
+  if ( typeof oldSenses !== "string" ) return;
 
   // Try to match old senses with the format like "Darkvision 60 ft, Blindsight 30 ft"
   const pattern = /([A-z]+)\s?([0-9]+)\s?([A-z]+)?/;
   let wasMatched = false;
 
   // Match each comma-separated term
-  for ( let s of original.split(",") ) {
+  for ( let s of oldSenses.split(",") ) {
     s = s.trim();
     const match = s.match(pattern);
     if ( !match ) continue;
     const type = match[1].toLowerCase();
     if ( type in CONFIG.SW5E.senses ) {
-      updateData[`data.attributes.senses.${type}`] = Number(match[2]).toNearest(0.5);
+      updateData[`system.attributes.senses.${type}`] = Number(match[2]).toNearest(0.5);
       wasMatched = true;
     }
   }
 
   // If nothing was matched, but there was an old string - put the whole thing in "special"
-  if ( !wasMatched && original ) {
-    updateData["data.attributes.senses.special"] = original;
+  if ( !wasMatched && oldSenses ) {
+    updateData["system.attributes.senses.special"] = oldSenses;
   }
 
   // Remove the old traits.senses string once the migration is complete
-  updateData["data.traits.-=senses"] = null;
+  updateData["system.traits.-=senses"] = null;
   return updateData;
 }
 
@@ -482,12 +480,11 @@ function _migrateActorSenses(actor, updateData) {
  * @private
  */
 function _migrateActorType(actor, updateData) {
-  const ad = actor.data;
-  const original = ad.details?.type;
+  const original = actor.system.details?.type;
   if ( typeof original !== "string" ) return;
 
   // New default data structure
-  let data = {
+  let actorTypeData = {
     value: "",
     subtype: "",
     swarm: "",
@@ -506,12 +503,12 @@ function _migrateActorType(actor, updateData) {
         || (typeLc === game.i18n.localize(v).toLowerCase())
         || (typeLc === game.i18n.localize(`${v}Pl`).toLowerCase());
     });
-    if (typeMatch) data.value = typeMatch[0];
+    if (typeMatch) actorTypeData.value = typeMatch[0];
     else {
-      data.value = "custom";
-      data.custom = match.groups.type.trim().titleCase();
+      actorTypeData.value = "custom";
+      actorTypeData.custom = match.groups.type.trim().titleCase();
     }
-    data.subtype = match.groups.subtype?.trim().titleCase() || "";
+    actorTypeData.subtype = match.groups.subtype?.trim().titleCase() || "";
 
     // Match a swarm
     const isNamedSwarm = actor.name.startsWith(game.i18n.localize("SW5E.CreatureSwarm"));
@@ -520,19 +517,19 @@ function _migrateActorType(actor, updateData) {
       const sizeMatch = Object.entries(CONFIG.SW5E.actorSizes).find(([k, v]) => {
         return (sizeLc === k) || (sizeLc === game.i18n.localize(v).toLowerCase());
       });
-      data.swarm = sizeMatch ? sizeMatch[0] : "tiny";
+      actorTypeData.swarm = sizeMatch ? sizeMatch[0] : "tiny";
     }
-    else data.swarm = "";
+    else actorTypeData.swarm = "";
   }
 
   // No match found
   else {
-    data.value = "custom";
-    data.custom = original;
+    actorTypeData.value = "custom";
+    actorTypeData.custom = original;
   }
 
   // Update the actor data
-  updateData["data.details.type"] = data;
+  updateData["system.details.type"] = actorTypeData;
   return updateData;
 }
 
@@ -546,71 +543,29 @@ function _migrateActorType(actor, updateData) {
  * @private
  */
 function _migrateActorAC(actorData, updateData) {
-  const ac = actorData.data?.attributes?.ac;
+  const ac = actorData.system?.attributes?.ac;
   // If the actor has a numeric ac.value, then their AC has not been migrated to the auto-calculation schema yet.
   if ( Number.isNumeric(ac?.value) ) {
-    updateData["data.attributes.ac.flat"] = parseInt(ac.value);
-    updateData["data.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
-    updateData["data.attributes.ac.-=value"] = null;
+    updateData["system.attributes.ac.flat"] = parseInt(ac.value);
+    updateData["system.attributes.ac.calc"] = actorData.type === "npc" ? "natural" : "flat";
+    updateData["system.attributes.ac.-=value"] = null;
     return updateData;
   }
 
   // Migrate ac.base in custom formulas to ac.armor
   if ( (typeof ac?.formula === "string") && ac?.formula.includes("@attributes.ac.base") ) {
-    updateData["data.attributes.ac.formula"] = ac.formula.replaceAll("@attributes.ac.base", "@attributes.ac.armor");
+    updateData["system.attributes.ac.formula"] = ac.formula.replaceAll("@attributes.ac.base", "@attributes.ac.armor");
   }
 
   // Protect against string values created by character sheets or importers that don't enforce data types
   if ( (typeof ac?.flat === "string") && Number.isNumeric(ac.flat) ) {
-    updateData["data.attributes.ac.flat"] = parseInt(ac.flat);
+    updateData["system.attributes.ac.flat"] = parseInt(ac.flat);
   }
 
   return updateData;
 }
 
 /* -------------------------------------------- */
-
-/**
- * Renamed token images.
- * @type {object<string, string>}
- */
-const TOKEN_IMAGE_RENAME = {
-  "systems/sw5e/tokens/beast/OwlWhite.png": "systems/sw5e/tokens/beast/Owl.webp",
-  "systems/sw5e/tokens/beast/ScorpionSand.png": "systems/sw5e/tokens/beast/Scorpion.webp",
-  "systems/sw5e/tokens/beast/BaboonBlack.png": "systems/sw5e/tokens/beast/Baboon.webp",
-  "systems/sw5e/tokens/humanoid/BanditRedM.png": "systems/sw5e/tokens/humanoid/Bandit.webp",
-  "systems/sw5e/tokens/humanoid/GuardBlueM.png": "systems/sw5e/tokens/humanoid/Guard.webp",
-  "systems/sw5e/tokens/humanoid/HumanBrownM.png": "systems/sw5e/tokens/humanoid/Commoner.webp",
-  "systems/sw5e/tokens/humanoid/NobleSwordM.png": "systems/sw5e/tokens/humanoid/Noble.webp",
-  "systems/sw5e/tokens/humanoid/MerfolkBlue.png": "systems/sw5e/tokens/humanoid/Merfolk.webp",
-  "systems/sw5e/tokens/humanoid/TribalWarriorM.png": "systems/sw5e/tokens/humanoid/TribalWarrior.webp",
-  "systems/sw5e/tokens/devil/Lemure.png": "systems/sw5e/tokens/fiend/Lemure.webp",
-  "systems/sw5e/tokens/humanoid/Satyr.png": "systems/sw5e/tokens/fey/Satyr.webp",
-  "systems/sw5e/tokens/beast/WinterWolf.png": "systems/sw5e/tokens/monstrosity/WinterWolf.webp"
-};
-
-/**
- * Re-scaled token images.
- * @type {object<string, number>}
- */
-const TOKEN_IMAGE_RESCALE = {
-  "systems/sw5e/tokens/beast/HunterShark.png": 1.5,
-  "systems/sw5e/tokens/beast/GiantElk.png": 1.5,
-  "systems/sw5e/tokens/monstrosity/Bulette.png": 1.5,
-  "systems/sw5e/tokens/beast/Wolf.png": 1.5,
-  "systems/sw5e/tokens/beast/Panther.png": 1.5,
-  "systems/sw5e/tokens/beast/Elk.png": 1.5,
-  "systems/sw5e/tokens/beast/AxeBeak.png": 1.5,
-  "systems/sw5e/tokens/beast/GiantVulture.png": 1.5,
-  "systems/sw5e/tokens/beast/GiantSpider.png": 1.5,
-  "systems/sw5e/tokens/beast/DireWolf.png": 1.5,
-  "systems/sw5e/tokens/monstrosity/DeathDog.png": 1.5,
-  "systems/sw5e/tokens/devil/Lemure.png": 1.5,
-  "systems/sw5e/tokens/beast/Deer.png": 1.1,
-  "systems/sw5e/tokens/beast/GiantWeasel.png": 1.5,
-  "systems/sw5e/tokens/beast/Camel.png": 1.2,
-  "systems/sw5e/tokens/beast/BloodHawk.png": 1.5
-};
 
 /**
  * Migrate any system token images from PNG to WEBP.
@@ -620,20 +575,14 @@ const TOKEN_IMAGE_RESCALE = {
  * @private
  */
 function _migrateTokenImage(actorData, updateData) {
-  ["img", "token.img"].forEach(prop => {
-    const img = foundry.utils.getProperty(actorData, prop);
-    // Special fix for a renamed token that we missed the first time.
-    if ( img === "systems/sw5e/tokens/humanoid/HumanBrownM.webp" ) {
-      updateData[prop] = "systems/sw5e/tokens/humanoid/Commoner.webp";
-      return updateData;
+  const oldSystemPNG = /^systems\/sw5e\/tokens\/([a-z]+)\/([A-z]+).png$/;
+  for ( const path of ["texture.src", "prototypeToken.texture.src"] ) {
+    const v = foundry.utils.getProperty(actorData, path);
+    if ( oldSystemPNG.test(v) ) {
+      const [type, fileName] = v.match(oldSystemPNG).slice(1);
+      updateData[path] = `systems/sw5e/tokens/${type}/${fileName}.webp`;
     }
-    if ( !img?.startsWith("systems/sw5e/tokens/") || img?.endsWith(".webp") ) return;
-    updateData[prop] = TOKEN_IMAGE_RENAME[img] ?? img.replace(/\.png$/, ".webp");
-    const scale = `${prop.startsWith("token.") ? "token." : ""}scale`;
-    if ( !foundry.utils.hasProperty(actorData, scale) ) return;
-    const rescale = TOKEN_IMAGE_RESCALE[img];
-    if ( rescale ) updateData[scale] = rescale;
-  });
+  }
   return updateData;
 }
 
@@ -647,9 +596,9 @@ function _migrateTokenImage(actorData, updateData) {
  * @private
  */
 function _migrateItemAttunement(item, updateData) {
-  if ( item.data?.attuned === undefined ) return updateData;
-  updateData["data.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
-  updateData["data.-=attuned"] = null;
+  if ( item.system?.attuned === undefined ) return updateData;
+  updateData["system.attunement"] = CONFIG.SW5E.attunementTypes.NONE;
+  updateData["system.-=attuned"] = null;
   return updateData;
 }
 
@@ -663,11 +612,11 @@ function _migrateItemAttunement(item, updateData) {
  * @private
  */
 function _migrateItemRarity(item, updateData) {
-  if ( item.data?.rarity === undefined ) return updateData;
+  if ( item.system?.rarity === undefined ) return updateData;
   const rarity = Object.keys(CONFIG.SW5E.itemRarity).find(key =>
-    (CONFIG.SW5E.itemRarity[key].toLowerCase() === item.data.rarity.toLowerCase()) || (key === item.data.rarity)
+    (CONFIG.SW5E.itemRarity[key].toLowerCase() === item.system.rarity.toLowerCase()) || (key === item.system.rarity)
   );
-  updateData["data.rarity"] = rarity ?? "";
+  updateData["system.rarity"] = rarity ?? "";
   return updateData;
 }
 
@@ -681,9 +630,9 @@ function _migrateItemRarity(item, updateData) {
  * @private
  */
 function _migrateItemPowercasting(item, updateData) {
-  if ( item.type !== "class" || (foundry.utils.getType(item.data.powercasting) === "Object") ) return updateData;
-  updateData["data.powercasting"] = {
-    progression: item.data.powercasting,
+  if ( item.type !== "class" || (foundry.utils.getType(item.system.powercasting) === "Object") ) return updateData;
+  updateData["system.powercasting"] = {
+    progression: item.system.powercasting,
     ability: ""
   };
   return updateData;
@@ -700,7 +649,7 @@ function _migrateItemPowercasting(item, updateData) {
  */
 function _migrateArmorType(item, updateData) {
   if ( item.type !== "equipment" ) return updateData;
-  if ( item.data?.armor?.type === "bonus" ) updateData["data.armor.type"] = "trinket";
+  if ( item.system?.armor?.type === "bonus" ) updateData["system.armor.type"] = "trinket";
   return updateData;
 }
 
@@ -714,8 +663,9 @@ function _migrateArmorType(item, updateData) {
  * @private
  */
 function _migrateItemCriticalData(item, updateData) {
-  if ( foundry.utils.getType(item.data.critical) === "Object" ) return updateData;
-  updateData["data.critical"] = {
+  const hasCritData = game.system.template.Item[item.type]?.templates?.includes("action");
+  if ( !hasCritData || (foundry.utils.getType(item.system.critical) === "Object") ) return updateData;
+  updateData["system.critical"] = {
     threshold: null,
     damage: null
   };
@@ -726,18 +676,17 @@ function _migrateItemCriticalData(item, updateData) {
 
 /**
  * Convert system icons to use bundled core webp icons.
- * @param {object} item                                     Item data to migrate
+ * @param {object} document                                 Document data to migrate
  * @param {object} updateData                               Existing update to expand upon
  * @param {object} [migrationData={}]                       Additional data to perform the migration
- * @param {object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
+ * @param {Object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
+ * @param {string} [migrationData.field]                    The document field to migrate
  * @returns {object}                                        The updateData to apply
  * @private
  */
-function _migrateItemIcon(item, updateData, {iconMap}={}) {
-  if ( iconMap && item.img?.startsWith("systems/sw5e/icons/") ) {
-    const rename = iconMap[item.img];
-    if ( rename ) updateData.img = rename;
-  }
+function _migrateDocumentIcon(document, updateData, {iconMap, field="img"}={}) {
+  const rename = iconMap?.[document?.[field]];
+  if ( rename ) updateData[field] = rename;
   return updateData;
 }
 
@@ -752,12 +701,29 @@ function _migrateItemIcon(item, updateData, {iconMap}={}) {
 function _migrateEffectArmorClass(effect, updateData) {
   let containsUpdates = false;
   const changes = effect.changes.map(c => {
-    if ( c.key !== "data.attributes.ac.base" ) return c;
-    c.key = "data.attributes.ac.armor";
+    if ( c.key !== "system.attributes.ac.base" ) return c;
+    c.key = "system.attributes.ac.armor";
     containsUpdates = true;
     return c;
   });
   if ( containsUpdates ) updateData.changes = changes;
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate macros from the old 'sw5e.rollItemMacro' and 'sw5e.macros' commands to the new location.
+ * @param {object} macro       Macro data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ */
+function _migrateMacroCommands(macro, updateData) {
+  if ( macro.command.includes("game.sw5e.rollItemMacro") ) {
+    updateData.command = macro.command.replaceAll("game.sw5e.rollItemMacro", "sw5e.documents.macro.rollItem");
+  } else if ( macro.command.includes("game.sw5e.macros.") ) {
+    updateData.command = macro.command.replaceAll("game.sw5e.macros.", "sw5e.documents.macro.");
+  }
   return updateData;
 }
 
@@ -776,9 +742,9 @@ export async function purgeFlags(pack) {
   await pack.configure({locked: false});
   const content = await pack.getDocuments();
   for ( let doc of content ) {
-    const update = {flags: cleanFlags(doc.data.flags)};
+    const update = {flags: cleanFlags(doc.flags)};
     if ( pack.documentName === "Actor" ) {
-      update.items = doc.data.items.map(i => {
+      update.items = doc.items.map(i => {
         i.flags = cleanFlags(i.flags);
         return i;
       });

@@ -2,23 +2,23 @@
   <p class="notes">{{localize "SW5E.SkillConfigurationHint"}}</p>
   <div class="form-group">
     <label>{{ localize "SW5E.ProficiencyLevel" }}</label>
-    <select name="data.skills.{{skillId}}.value">
+    <select name="system.skills.{{skillId}}.value" data-dtype="Number">
       {{selectOptions proficiencyLevels selected=skill.value}}
     </select>
   </div>
   <div class="form-group">
     <label>{{localize "SW5E.SkillBonusCheck"}}</label>
-    <input name="data.skills.{{skillId}}.bonuses.check" type="text" value="{{skill.bonuses.check}}">
+    <input name="system.skills.{{skillId}}.bonuses.check" type="text" value="{{skill.bonuses.check}}">
   </div>
   <div class="form-group">
     <label>{{localize "SW5E.SkillBonusPassive"}}</label>
-    <input name="data.skills.{{skillId}}.bonuses.passive" type="text" value="{{skill.bonuses.passive}}">
+    <input name="system.skills.{{skillId}}.bonuses.passive" type="text" value="{{skill.bonuses.passive}}">
   </div>
   <hr>
   <div class="form-group">
     <label>{{localize "SW5E.BonusAbilitySkill"}}</label>
-    <input name="data.bonuses.abilities.skill" type="text" value="{{bonusGlobal}}">
+    <input name="system.bonuses.abilities.skill" type="text" value="{{bonusGlobal}}">
     <p class="notes">{{localize "SW5E.SkillGlobalBonusCheckHint"}}</p>
   </div>
-  <button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
+  <button type="submit"><i class="far fa-save"></i> {{ localize "Submit"}}</button>
 </form>

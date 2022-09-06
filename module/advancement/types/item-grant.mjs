@@ -1,13 +1,10 @@
-import { Advancement } from "./advancement.js";
-import { AdvancementConfig } from "./advancement-config.js";
-import { AdvancementFlow } from "./advancement-flow.js";
-
+import Advancement from "../advancement.mjs";
+import AdvancementFlow from "../advancement-flow.mjs";
+import AdvancementConfig from "../advancement-config.mjs";
 
 /**
  * Advancement that automatically grants one or more items to the player. Presents the player with the option of
  * skipping any or all of the items.
- *
- * @extends {Advancement}
  */
 export class ItemGrantAdvancement extends Advancement {
 
@@ -34,7 +31,7 @@ export class ItemGrantAdvancement extends Advancement {
 
   /** @inheritdoc */
   configuredForLevel(level) {
-    return !foundry.utils.isObjectEmpty(this.data.value);
+    return !foundry.utils.isEmpty(this.data.value);
   }
 
   /* -------------------------------------------- */
@@ -43,17 +40,14 @@ export class ItemGrantAdvancement extends Advancement {
   summaryForLevel(level, { configMode=false }={}) {
     // Link to compendium items
     if ( !this.data.value.added || configMode ) {
-      return this.data.configuration.items.reduce((html, uuid) => html + game.sw5e.utils._linkForUuid(uuid), "");
+      return this.data.configuration.items.reduce((html, uuid) => html + sw5e.utils.linkForUuid(uuid), "");
     }
 
     // Link to items on the actor
     else {
-      // TODO: Replace with UUID links in core once they are added in v10
       return Object.keys(this.data.value.added).map(id => {
         const item = this.actor.items.get(id);
-        if ( !item ) return "";
-        return `<a class="content-link actor-item-link" data-actor="${this.actor.id}" data-id="${id}">`
-          + `<i class="fas fa-suitcase"></i> ${item.name}</a>`;
+        return item?.toAnchor({classes: ["content-link"]}).outerHTML ?? "";
       }).join("");
     }
   }
@@ -74,18 +68,23 @@ export class ItemGrantAdvancement extends Advancement {
     const updates = {};
     for ( const [uuid, selected] of Object.entries(data) ) {
       if ( !selected ) continue;
-      const item = retainedData[uuid] ? new Item.implementation(retainedData[uuid]) : (await fromUuid(uuid))?.clone();
-      if ( !item ) continue;
-      item.data.update({
-        _id: retainedData[uuid]?._id ?? foundry.utils.randomID(),
-        "flags.sw5e.sourceId": uuid,
-        "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
-      });
-      items.push(item.toObject());
+
+      let itemData = retainedData[uuid];
+      if ( !itemData ) {
+        const source = await fromUuid(uuid);
+        if ( !source ) continue;
+        itemData = source.clone({
+          _id: foundry.utils.randomID(),
+          "flags.sw5e.sourceId": uuid,
+          "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
+        }, {keepId: true}).toObject();
+      }
+
+      items.push(itemData);
       // TODO: Trigger any additional advancement steps for added items
-      updates[item.id] = uuid;
+      updates[itemData._id] = uuid;
     }
-    this.actor.data.update({items});
+    this.actor.updateSource({items});
     this.updateSource({"value.added": updates});
   }
 
@@ -95,7 +94,7 @@ export class ItemGrantAdvancement extends Advancement {
   restore(level, data) {
     const updates = {};
     for ( const item of data.items ) {
-      this.actor.data.update({items: [item]});
+      this.actor.updateSource({items: [item]});
       // TODO: Restore any additional advancement data here
       updates[item._id] = item.flags.sw5e.sourceId;
     }
@@ -123,8 +122,6 @@ export class ItemGrantAdvancement extends Advancement {
 
 /**
  * Configuration application for item grants.
- *
- * @extends {AdvancementConfig}
  */
 export class ItemGrantConfig extends AdvancementConfig {
 
@@ -132,7 +129,7 @@ export class ItemGrantConfig extends AdvancementConfig {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       dragDrop: [{ dropSelector: ".drop-target" }],
-      template: "systems/sw5e/templates/advancement/item-grant-config.html"
+      template: "systems/sw5e/templates/advancement/item-grant-config.hbs"
     });
   }
 
@@ -184,7 +181,6 @@ export class ItemGrantConfig extends AdvancementConfig {
 
     if ( data.type !== "Item" ) return false;
     const item = await Item.implementation.fromDropData(data);
-
     const existingItems = this.advancement.data.configuration.items;
 
     // Abort if this uuid is the parent item
@@ -200,21 +196,18 @@ export class ItemGrantConfig extends AdvancementConfig {
     await this.advancement.update({"configuration.items": [...existingItems, item.uuid]});
     this.render();
   }
-
 }
 
 
 /**
  * Inline application that presents the player with a list of items to be added.
- *
- * @extends {AdvancementFlow}
  */
 export class ItemGrantFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/item-grant-flow.html"
+      template: "systems/sw5e/templates/advancement/item-grant-flow.hbs"
     });
   }
 

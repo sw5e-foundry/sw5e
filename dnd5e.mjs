@@ -1,117 +1,96 @@
 /**
  * The SW5e game system for Foundry Virtual Tabletop
- * A system for playing the fifth edition of the worlds most popular roleplaying game.
+ * A system for playing the fifth edition of the world's most popular role-playing game.
  * Author: Atropos
- * Software License: GNU GPLv3
+ * Software License: MIT
  * Content License: https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf
- * Repository: https://gitlab.com/foundrynet/sw5e
- * Issue Tracker: https://gitlab.com/foundrynet/sw5e/issues
+ * Repository: https://github.com/foundryvtt/sw5e
+ * Issue Tracker: https://github.com/foundryvtt/sw5e/issues
  */
 
-// Import Modules
-import { SW5E } from "./module/config.js";
-import { registerSystemSettings } from "./module/settings.js";
-import { preloadHandlebarsTemplates, registerHandlebarsHelpers } from "./module/templates.js";
-import { _getInitiativeFormula } from "./module/combat.js";
-import { measureDistances } from "./module/canvas.js";
+// Import Configuration
+import SW5E from "./module/config.mjs";
+import registerSystemSettings from "./module/settings.mjs";
 
-// Import Documents
-import Actor5e from "./module/actor/entity.js";
-import Item5e from "./module/item/entity.js";
-import { TokenDocument5e, Token5e } from "./module/token.js";
+// Import Submodules
+import * as advancement from "./module/advancement/_module.mjs";
+import * as applications from "./module/applications/_module.mjs";
+import * as canvas from "./module/canvas/_module.mjs";
+import * as dice from "./module/dice/_module.mjs";
+import * as documents from "./module/documents/_module.mjs";
+import * as migrations from "./module/migration.mjs";
+import * as utils from "./module/utils.mjs";
 
-// Import Applications
-import AbilityTemplate from "./module/pixi/ability-template.js";
-import AbilityUseDialog from "./module/apps/ability-use-dialog.js";
-import ActorAbilityConfig from "./module/apps/ability-config.js";
-import ActorArmorConfig from "./module/apps/actor-armor.js";
-import ActorHitDiceConfig from "./module/apps/hit-dice-config.js";
-import ActorMovementConfig from "./module/apps/movement-config.js";
-import ActorSensesConfig from "./module/apps/senses-config.js";
-import ActorSheetFlags from "./module/apps/actor-flags.js";
-import ActorSheet5eCharacter from "./module/actor/sheets/character.js";
-import ActorSheet5eNPC from "./module/actor/sheets/npc.js";
-import ActorSheet5eVehicle from "./module/actor/sheets/vehicle.js";
-import ActorSkillConfig from "./module/apps/skill-config.js";
-import ActorTypeConfig from "./module/apps/actor-type.js";
-import ItemSheet5e from "./module/item/sheet.js";
-import LongRestDialog from "./module/apps/long-rest.js";
-import ProficiencySelector from "./module/apps/proficiency-selector.js";
-import SelectItemsPrompt from "./module/apps/select-items-prompt.js";
-import ShortRestDialog from "./module/apps/short-rest.js";
-import TraitSelector from "./module/apps/trait-selector.js";
+/* -------------------------------------------- */
+/*  Define Module Structure                     */
+/* -------------------------------------------- */
 
-// Import Helpers
-import advancement from "./module/advancement.js";
-import * as chat from "./module/chat.js";
-import * as dice from "./module/dice.js";
-import * as macros from "./module/macros.js";
-import * as migrations from "./module/migration.js";
-import * as utils from "./module/utils.js";
-import ActiveEffect5e from "./module/active-effect.js";
+globalThis.sw5e = {
+  advancement,
+  applications,
+  canvas,
+  config: SW5E,
+  dice,
+  documents,
+  migrations,
+  utils
+};
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
 Hooks.once("init", function() {
-  console.log(`SW5e | Initializing the SW5e Game System\n${SW5E.ASCII}`);
+  globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
+  console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
-  // Create a namespace within the game global
-  game.sw5e = {
-    advancement,
-    applications: {
-      AbilityUseDialog,
-      ActorAbilityConfig,
-      ActorArmorConfig,
-      ActorHitDiceConfig,
-      ActorMovementConfig,
-      ActorSensesConfig,
-      ActorSheetFlags,
-      ActorSheet5eCharacter,
-      ActorSheet5eNPC,
-      ActorSheet5eVehicle,
-      ActorSkillConfig,
-      ActorTypeConfig,
-      ItemSheet5e,
-      LongRestDialog,
-      ProficiencySelector,
-      SelectItemsPrompt,
-      ShortRestDialog,
-      TraitSelector
-    },
-    canvas: {
-      AbilityTemplate
-    },
-    config: SW5E,
-    dice,
-    entities: {
-      Actor5e,
-      Item5e,
-      TokenDocument5e,
-      Token5e
-    },
-    macros,
-    migrations,
-    rollItemMacro: macros.rollItem,
-    utils,
-    isV9: !foundry.utils.isNewerVersion("9.224", game.version)
-  };
+  /** @deprecated */
+  Object.defineProperty(sw5e, "entities", {
+    get() {
+      foundry.utils.logCompatibilityWarning(
+        "You are referencing the 'sw5e.entities' property which has been deprecated and renamed to "
+        + "'sw5e.documents'. Support for this old path will be removed in a future version.",
+        { since: "SW5e 2.0", until: "SW5e 2.2" }
+      );
+      return sw5e.documents;
+    }
+  });
+
+  /** @deprecated */
+  Object.defineProperty(sw5e, "rollItemMacro", {
+    get() {
+      foundry.utils.logCompatibilityWarning(
+        "You are referencing the 'sw5e.rollItemMacro' method which has been deprecated and renamed to "
+        + "'sw5e.documents.macro.rollItem'. Support for this old path will be removed in a future version.",
+        { since: "SW5e 2.0", until: "SW5e 2.2" }
+      );
+      return sw5e.documents.macro.rollItem;
+    }
+  });
+
+  /** @deprecated */
+  Object.defineProperty(sw5e, "macros", {
+    get() {
+      foundry.utils.logCompatibilityWarning(
+        "You are referencing the 'sw5e.macros' property which has been deprecated and renamed to "
+        + "'sw5e.documents.macro'. Support for this old path will be removed in a future version.",
+        { since: "SW5e 2.0", until: "SW5e 2.2" }
+      );
+      return sw5e.documents.macro;
+    }
+  });
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
-  CONFIG.ActiveEffect.documentClass = ActiveEffect5e;
-  CONFIG.Actor.documentClass = Actor5e;
-  CONFIG.Item.documentClass = Item5e;
-  CONFIG.Token.documentClass = TokenDocument5e;
-  CONFIG.Token.objectClass = Token5e;
+  CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
+  CONFIG.Actor.documentClass = documents.Actor5e;
+  CONFIG.Item.documentClass = documents.Item5e;
+  CONFIG.Token.documentClass = documents.TokenDocument5e;
+  CONFIG.Token.objectClass = canvas.Token5e;
   CONFIG.time.roundTime = 6;
-
   CONFIG.Dice.DamageRoll = dice.DamageRoll;
   CONFIG.Dice.D20Roll = dice.D20Roll;
-
-  // 5e cone RAW should be 53.13 degrees
-  CONFIG.MeasuredTemplate.defaults.angle = 53.13;
+  CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
 
   // Register System Settings
   registerSystemSettings();
@@ -128,7 +107,7 @@ Hooks.once("init", function() {
 
   // Patch Core Functions
   CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
-  Combatant.prototype._getInitiativeFormula = _getInitiativeFormula;
+  Combatant.prototype._getInitiativeFormula = documents.combat._getInitiativeFormula;
 
   // Register Roll Extensions
   CONFIG.Dice.rolls.push(dice.D20Roll);
@@ -136,30 +115,30 @@ Hooks.once("init", function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("sw5e", ActorSheet5eCharacter, {
+  Actors.registerSheet("sw5e", applications.actor.ActorSheet5eCharacter, {
     types: ["character"],
     makeDefault: true,
     label: "SW5E.SheetClassCharacter"
   });
-  Actors.registerSheet("sw5e", ActorSheet5eNPC, {
+  Actors.registerSheet("sw5e", applications.actor.ActorSheet5eNPC, {
     types: ["npc"],
     makeDefault: true,
     label: "SW5E.SheetClassNPC"
   });
-  Actors.registerSheet("sw5e", ActorSheet5eVehicle, {
+  Actors.registerSheet("sw5e", applications.actor.ActorSheet5eVehicle, {
     types: ["vehicle"],
     makeDefault: true,
     label: "SW5E.SheetClassVehicle"
   });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("sw5e", ItemSheet5e, {
+  Items.registerSheet("sw5e", applications.item.ItemSheet5e, {
     makeDefault: true,
     label: "SW5E.SheetClassItem"
   });
 
   // Preload Handlebars helpers & partials
-  registerHandlebarsHelpers();
-  preloadHandlebarsTemplates();
+  utils.registerHandlebarsHelpers();
+  utils.preloadHandlebarsTemplates();
 });
 
 
@@ -204,22 +183,27 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", function() {
+  // Apply custom compendium styles to the SRD rules compendium.
+  const rules = game.packs.get("sw5e.rules");
+  rules.apps = [new applications.SRDCompendium(rules)];
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => macros.create5eMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if ( ["Item", "ActiveEffect"].includes(data.type) ) {
+      documents.macro.create5eMacro(data, slot);
+      return false;
+    }
+  });
 
   // Determine whether a system migration is required and feasible
   if ( !game.user.isGM ) return;
-  const currentVersion = game.settings.get("sw5e", "systemMigrationVersion");
-  const NEEDS_MIGRATION_VERSION = "1.6.0";
-  const COMPATIBLE_MIGRATION_VERSION = 0.80;
+  const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
   const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if ( !currentVersion && totalDocuments === 0 ) return game.settings.set("sw5e", "systemMigrationVersion", game.system.data.version);
-  const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
-  if ( !needsMigration ) return;
+  if ( !cv && totalDocuments === 0 ) return game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
+  if ( cv && !isNewerVersion(game.system.flags.needsMigrationVersion, cv) ) return;
 
   // Perform the migration
-  if ( currentVersion && isNewerVersion(COMPATIBLE_MIGRATION_VERSION, currentVersion) ) {
+  if ( cv && isNewerVersion(game.system.flags.compatibleMigrationVersion, cv) ) {
     ui.notifications.error(game.i18n.localize("MIGRATION.5eVersionTooOldWarning"), {permanent: true});
   }
   migrations.migrateWorld();
@@ -229,29 +213,33 @@ Hooks.once("ready", function() {
 /*  Canvas Initialization                       */
 /* -------------------------------------------- */
 
-Hooks.on("canvasInit", function() {
-  // Extend Diagonal Measurement
-  canvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
-  SquareGrid.prototype.measureDistances = measureDistances;
+Hooks.on("canvasInit", gameCanvas => {
+  gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
+  SquareGrid.prototype.measureDistances = canvas.measureDistances;
 });
-
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
-Hooks.on("renderChatMessage", (app, html, data) => {
+Hooks.on("renderChatMessage", documents.chat.onRenderChatMessage);
+Hooks.on("getChatLogEntryContext", documents.chat.addChatMessageContextOptions);
 
-  // Display action buttons
-  chat.displayChatActionButtons(app, html, data);
+Hooks.on("renderChatLog", (app, html, data) => documents.Item5e.chatListeners(html));
+Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
+Hooks.on("getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextOptions);
 
-  // Highlight critical success or failure die
-  chat.highlightCriticalSuccessFailure(app, html, data);
+/* -------------------------------------------- */
+/*  Bundled Module Exports                      */
+/* -------------------------------------------- */
 
-  // Optionally collapse the content
-  if (game.settings.get("sw5e", "autoCollapseItemCards")) html.find(".card-content").hide();
-});
-Hooks.on("getChatLogEntryContext", chat.addChatMessageContextOptions);
-Hooks.on("renderChatLog", (app, html, data) => Item5e.chatListeners(html));
-Hooks.on("renderChatPopout", (app, html, data) => Item5e.chatListeners(html));
-Hooks.on("getActorDirectoryEntryContext", Actor5e.addDirectoryContextOptions);
+export {
+  advancement,
+  applications,
+  canvas,
+  dice,
+  documents,
+  migrations,
+  utils,
+  SW5E
+};

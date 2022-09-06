@@ -4,18 +4,18 @@
         <label>{{localize "SW5E.Powercasting"}}</label>
         {{else}}
         <label>{{localize "SW5E.Level"}}</label>
-        <input class="powercasting-level" type="text" name="data.details.powerLevel"
-               value="{{data.details.powerLevel}}" data-dtype="Number" placeholder="0"/>
+        {{numberInput system.details.powerLevel name="system.details.powerLevel" class="powercasting-level"
+            placeholder="0"}}
         {{/unless}}
-        <select name="data.attributes.powercasting" data-type="String">
-            {{#select data.attributes.powercasting}}
+        <select name="system.attributes.powercasting" data-type="String">
+            {{#select system.attributes.powercasting}}
             <option value="">{{localize "SW5E.None"}}</option>
-            {{#each data.abilities as |abl a|}}
+            {{#each system.abilities as |abl a|}}
             <option value="{{a}}">{{abl.label}}</option>
             {{/each}}
             {{/select}}
         </select>
-        <span>{{localize "SW5E.AbbreviationDC"}} {{data.attributes.powerdc}}</span>
+        <span>{{localize "SW5E.AbbreviationDC"}} {{system.attributes.powerdc}}</span>
     </div>
 
     <ul class="filter-list flexrow" data-filter="powerbook">
@@ -35,8 +35,7 @@
             <h3>{{section.label}}</h3>
             <div class="power-slots">
                 {{#if section.usesSlots}}
-                <input type="text" name="data.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
-                       data-dtype="Number"/>
+                {{numberInput section.uses name=(concat "system.powers." section.prop ".value") placeholder="0"}}
                 <span class="sep"> / </span>
                 <span class="power-max" data-level="{{section.prop}}" data-slots="{{section.slots}}">
                     {{{section.slots}}}
@@ -72,8 +71,8 @@
             <div class="item-name flexrow rollable">
                 <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                 <h4>{{item.name}}</h4>
-                {{#if item.data.uses.per }}
-                <div class="item-detail power-uses">Uses {{item.data.uses.value}} / {{item.data.uses.max}}</div>
+                {{#if item.system.uses.per }}
+                <div class="item-detail power-uses">Uses {{item.system.uses.value}} / {{item.system.uses.max}}</div>
                 {{/if}}
                 <div class="power-comps">
                     {{#each labels.components.all}}

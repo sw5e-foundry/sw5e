@@ -1,8 +1,9 @@
-import LongRestDialog from "./long-rest.js";
-
 /**
- * A helper Dialog subclass for rolling Hit Dice on short rest
- * @extends {Dialog}
+ * A helper Dialog subclass for rolling Hit Dice on short rest.
+ *
+ * @param {Actor5e} actor           Actor that is taking the short rest.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
 export default class ShortRestDialog extends Dialog {
   constructor(actor, dialogData={}, options={}) {
@@ -23,31 +24,31 @@ export default class ShortRestDialog extends Dialog {
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritDoc */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/apps/short-rest.html",
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      template: "systems/sw5e/templates/apps/short-rest.hbs",
       classes: ["sw5e", "dialog"]
     });
   }
 
   /* -------------------------------------------- */
 
-  /** @override */
+  /** @inheritDoc */
   getData() {
     const data = super.getData();
 
     // Determine Hit Dice
-    data.availableHD = this.actor.data.items.reduce((hd, item) => {
+    data.availableHD = this.actor.items.reduce((hd, item) => {
       if ( item.type === "class" ) {
-        const d = item.data.data;
-        const denom = d.hitDice || "d6";
-        const available = parseInt(d.levels || 1) - parseInt(d.hitDiceUsed || 0);
+        const {levels, hitDice, hitDiceUsed} = item.system;
+        const denom = hitDice ?? "d6";
+        const available = parseInt(levels ?? 1) - parseInt(hitDiceUsed ?? 0);
         hd[denom] = denom in hd ? hd[denom] + available : available;
       }
       return hd;
     }, {});
-    data.canRoll = this.actor.data.data.attributes.hd > 0;
+    data.canRoll = this.actor.system.attributes.hd > 0;
     data.denomination = this._denom;
 
     // Determine rest type
@@ -60,7 +61,7 @@ export default class ShortRestDialog extends Dialog {
   /* -------------------------------------------- */
 
 
-  /** @override */
+  /** @inheritDoc */
   activateListeners(html) {
     super.activateListeners(html);
     let btn = html.find("#roll-hd");
@@ -72,7 +73,7 @@ export default class ShortRestDialog extends Dialog {
   /**
    * Handle rolling a Hit Die as part of a Short Rest action
    * @param {Event} event     The triggering click event
-   * @private
+   * @protected
    */
   async _onRollHitDie(event) {
     event.preventDefault();
@@ -87,8 +88,9 @@ export default class ShortRestDialog extends Dialog {
   /**
    * A helper constructor function which displays the Short Rest dialog and returns a Promise once it's workflow has
    * been resolved.
-   * @param {Actor5e} actor
-   * @returns {Promise}
+   * @param {object} [options={}]
+   * @param {Actor5e} [options.actor]  Actor that is taking the short rest.
+   * @returns {Promise}                Promise that resolves when the rest is completed or rejects when canceled.
    */
   static async shortRestDialog({ actor }={}) {
     return new Promise((resolve, reject) => {
@@ -116,19 +118,5 @@ export default class ShortRestDialog extends Dialog {
       });
       dlg.render(true);
     });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * A helper constructor function which displays the Long Rest confirmation dialog and returns a Promise once it's
-   * workflow has been resolved.
-   * @deprecated
-   * @param {Actor5e} actor
-   * @returns {Promise}
-   */
-  static async longRestDialog({ actor }={}) {
-    console.warn("WARNING! ShortRestDialog.longRestDialog has been deprecated, use LongRestDialog.longRestDialog instead.");
-    return LongRestDialog.longRestDialog(...arguments);
   }
 }

@@ -1,10 +1,14 @@
+import Advancement from "./advancement.mjs";
+
 /**
  * Presents a list of advancement types to create when clicking the new advancement button.
  * Once a type is selected, this hands the process over to the advancement's individual editing interface.
  *
- * @extends {Dialog}
+ * @param {Item5e} item             Item to which this advancement will be added.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
-export class AdvancementSelection extends Dialog {
+export default class AdvancementSelection extends Dialog {
   constructor(item, dialogData={}, options={}) {
     super(dialogData, options);
 
@@ -17,11 +21,11 @@ export class AdvancementSelection extends Dialog {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "advancement"],
-      template: "systems/sw5e/templates/advancement/advancement-selection.html",
+      template: "systems/sw5e/templates/advancement/advancement-selection.hbs",
       title: "SW5E.AdvancementSelectionTitle",
       width: 500,
       height: "auto"
@@ -30,19 +34,19 @@ export class AdvancementSelection extends Dialog {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   get id() {
     return `item-${this.item.id}-advancement-selection`;
   }
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   getData() {
     const data = { types: {} };
-
-    for ( const advancement of Object.values(game.sw5e.advancement.types) ) {
-      if ( !advancement.metadata.validItemTypes.has(this.item.type) ) continue;
+    for ( const advancement of Object.values(sw5e.advancement.types) ) {
+      if ( !(advancement.prototype instanceof Advancement)
+        || !advancement.metadata.validItemTypes.has(this.item.type) ) continue;
       data.types[advancement.typeName] = {
         label: advancement.metadata.title,
         icon: advancement.metadata.icon,
@@ -50,14 +54,13 @@ export class AdvancementSelection extends Dialog {
         disabled: !advancement.availableForItem(this.item)
       };
     }
-    data.types = game.sw5e.utils.sortObjectEntries(data.types, "label");
-
+    data.types = sw5e.utils.sortObjectEntries(data.types, "label");
     return data;
   }
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   activateListeners(html) {
     super.activateListeners(html);
     html.on("change", "input", this._onChangeInput.bind(this));
@@ -65,7 +68,7 @@ export class AdvancementSelection extends Dialog {
 
   /* -------------------------------------------- */
 
-  /** @inheritdoc */
+  /** @inheritDoc */
   _onChangeInput(event) {
     const submit = this.element[0].querySelector("button[data-button='submit']");
     submit.disabled = !this.element[0].querySelector("input[name='type']:checked");

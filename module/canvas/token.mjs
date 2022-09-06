@@ -1,11 +1,7 @@
-/* -------------------------------------------- */
-
-
 /**
  * Extend the base Token class to implement additional system-specific logic.
- * @extends {Token}
  */
-export class Token5e extends Token {
+export default class Token5e extends Token {
 
   /** @inheritdoc */
   _drawBar(number, bar, data) {
@@ -25,7 +21,7 @@ export class Token5e extends Token {
   _drawHPBar(number, bar, data) {
 
     // Extract health data
-    let {value, max, temp, tempmax} = this.document.actor.data.data.attributes.hp;
+    let {value, max, temp, tempmax} = this.document.actor.system.attributes.hp;
     temp = Number(temp || 0);
     tempmax = Number(tempmax || 0);
 
@@ -46,7 +42,7 @@ export class Token5e extends Token {
     // Determine the container size (logic borrowed from core)
     const w = this.w;
     let h = Math.max((canvas.dimensions.size / 12), 8);
-    if ( this.data.height >= 2 ) h *= 1.6;
+    if ( this.height >= 2 ) h *= 1.6;
     const bs = Math.clamped(h / 8, 1, 2);
     const bs1 = bs+1;
 

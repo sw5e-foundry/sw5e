@@ -1,11 +1,24 @@
 {
-  "name": "sw5e",
+  "id": "sw5e",
   "title": "SW5e - Fifth Edition System",
   "description": "A system for playing the fifth edition of the worlds most popular role-playing game in the Foundry Virtual Tabletop environment.",
-  "version": "1.6.1",
-  "author": "Atropos",
+  "version": "2.0.2",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  },
+  "url": "https://github.com/foundryvtt/sw5e/",
+  "manifest": "https://raw.githubusercontent.com/foundryvtt/sw5e/master/system.json",
+  "download": "https://github.com/foundryvtt/sw5e/releases/download/release-2.0.2/sw5e-release-2.0.2.zip",
+  "authors": [
+    {
+      "name": "Atropos",
+      "url": "https://foundryvtt.com"
+    }
+  ],
   "scripts": [],
-  "esmodules": ["sw5e.js"],
+  "esmodules": ["sw5e.mjs"],
   "styles": ["sw5e.css"],
   "packs": [
     {
@@ -48,7 +61,6 @@
       "label": "Backgrounds (SRD)",
       "system": "sw5e",
       "path": "./packs/backgrounds.db",
-      "entity": "Item",
       "type": "Item"
     },
     {
@@ -108,14 +120,19 @@
       "path": "lang/en.json"
     }
   ],
+  "media": [
+    {
+      "type":"cover",
+      "link":"https://github.com/foundryvtt/sw5e/blob/v10-dev/media/repo-sw5e.jpg?raw=true"
+    }
+  ],
   "socket": true,
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
   "secondaryTokenAttribute": null,
-  "minimumCoreVersion": "9.245",
-  "compatibleCoreVersion": "9",
-  "url": "https://gitlab.com/foundrynet/sw5e",
-  "manifest": "https://gitlab.com/api/v4/projects/foundrynet%2Fsw5e/packages/generic/sw5e/latest/system.json",
-  "download": "https://gitlab.com/foundrynet/sw5e/-/releases/release-1.6.1/downloads/sw5e-release-1.6.1.zip"
+  "flags": {
+    "needsMigrationVersion": "2.0.0",
+    "compatibleMigrationVersion": "0.8"
+  }
 }

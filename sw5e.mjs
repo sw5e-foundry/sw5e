@@ -15,11 +15,6 @@ import registerSystemSettings from "./module/settings.mjs";
 import CharacterImporter from "./module/characterImporter.js";
 import DisplayCR from "./module/display-cr.js";
 
-// Import Applications
-import ActorSheet5eStarship from "./module/actor/sheets/newSheet/starship.js";
-import ActorSheet5eCharacterNew from "./module/actor/sheets/newSheet/character.js";
-import ActorSheet5eNPCNew from "./module/actor/sheets/newSheet/npc.js";
-
 // Import Submodules
 import * as advancement from "./module/advancement/_module.mjs";
 import * as applications from "./module/applications/_module.mjs";

@@ -1,4 +1,4 @@
-export const ClassFeatures = {
+export default {
     berserker: {
         archetypes: {
             "ballistic-approach": {

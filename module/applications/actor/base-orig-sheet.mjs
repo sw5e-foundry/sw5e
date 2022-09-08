@@ -533,19 +533,18 @@ export default class ActorSheet5e extends ActorSheet {
      * @param {object[]} items       Copies of item data to be filtered.
      * @param {Set<string>} filters  Filters applied to the item list.
      * @returns {object[]}           Subset of input items limited by the provided filters.
-   * @protected
+     * @protected
      */
     _filterItems(items, filters) {
         return items.filter((item) => {
-
             // Action usage
             for (let f of ["action", "bonus", "reaction"]) {
-                if (filters.has(f) && (item.system.activation?.type !== f) return false;
+                if (filters.has(f) && item.system.activation?.type !== f) return false;
             }
 
             // Power-specific filters
-            if (filters.has("ritual") && (item.system.components.ritual !== true)) return false;
-            if (filters.has("concentration") && (item.system.components.concentration !== true)) return false;
+            if (filters.has("ritual") && item.system.components.ritual !== true) return false;
+            if (filters.has("concentration") && item.system.components.concentration !== true) return false;
             if (filters.has("prepared")) {
                 if (item.system.level === 0 || ["innate", "always"].includes(item.system.preparation.mode)) return true;
                 if (this.actor.type === "npc") return true;
@@ -553,7 +552,7 @@ export default class ActorSheet5e extends ActorSheet {
             }
 
             // Equipment-specific filters
-            if (filters.has("equipped") && (item.system.equipped !== true)) return false;
+            if (filters.has("equipped") && item.system.equipped !== true) return false;
             return true;
         });
     }
@@ -578,7 +577,6 @@ export default class ActorSheet5e extends ActorSheet {
 
     /** @inheritdoc */
     activateListeners(html) {
-
         // Activate Item Filters
         const filterLists = html.find(".filter-list");
         filterLists.each(this._initializeFilterItemList.bind(this));
@@ -678,8 +676,7 @@ export default class ActorSheet5e extends ActorSheet {
         if (["+", "-"].includes(value[0])) {
             let delta = parseFloat(value);
             input.value = foundry.utils.getProperty(this.actor, input.name) + delta;
-        } 
-        else if (value[0] === "=")  input.value = value.slice(1);
+        } else if (value[0] === "=") input.value = value.slice(1);
     }
 
     /* -------------------------------------------- */
@@ -761,8 +758,8 @@ export default class ActorSheet5e extends ActorSheet {
         // Get the target actor
         const cls = getDocumentClass("Actor");
         const sourceActor = await cls.fromDropData(data);
-        if ( !sourceActor ) return;
-    
+        if (!sourceActor) return;
+
         // Define a function to record polymorph settings for future use
         const rememberOptions = (html) => {
             const options = {};
@@ -830,37 +827,37 @@ export default class ActorSheet5e extends ActorSheet {
     /** @override */
     async _onDropItemCreate(itemData) {
         let items = itemData instanceof Array ? itemData : [itemData];
-        const itemsWithoutAdvancement = items.filter(i => !i.system.advancement?.length);
-        const multipleAdvancements = (items.length - itemsWithoutAdvancement.length) > 1;
-        if ( multipleAdvancements && !game.settings.get("sw5e", "disableAdvancements") ) {
-          ui.notifications.warn(game.i18n.format("SW5E.WarnCantAddMultipleAdvancements"));
-          items = itemsWithoutAdvancement;
+        const itemsWithoutAdvancement = items.filter((i) => !i.system.advancement?.length);
+        const multipleAdvancements = items.length - itemsWithoutAdvancement.length > 1;
+        if (multipleAdvancements && !game.settings.get("sw5e", "disableAdvancements")) {
+            ui.notifications.warn(game.i18n.format("SW5E.WarnCantAddMultipleAdvancements"));
+            items = itemsWithoutAdvancement;
         }
-    
+
         const toCreate = [];
-        for ( const item of items ) {
-          const result = await this._onDropSingleItem(item);
-          if ( result ) toCreate.push(result);
+        for (const item of items) {
+            const result = await this._onDropSingleItem(item);
+            if (result) toCreate.push(result);
         }
-    
+
         // Create the owned items as normal
         return this.actor.createEmbeddedDocuments("Item", toCreate);
-      }
-    
-      /* -------------------------------------------- */
-    
-      /**
-       * Handles dropping of a single item onto this character sheet.
-       * @param {object} itemData            The item data to create.
-       * @returns {Promise<object|boolean>}  The item data to create after processing, or false if the item should not be
-       *                                     created or creation has been otherwise handled.
-       * @protected
-       */
-      async _onDropSingleItem(itemData) {
-    
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handles dropping of a single item onto this character sheet.
+     * @param {object} itemData            The item data to create.
+     * @returns {Promise<object|boolean>}  The item data to create after processing, or false if the item should not be
+     *                                     created or creation has been otherwise handled.
+     * @protected
+     */
+    async _onDropSingleItem(itemData) {
         // Check to make sure items of this type are allowed on this actor
-            if (this.constructor.unsupportedItemTypes.has(itemData.type)) {
-            ui.notifications.warn(game.i18n.format("SW5E.ActorWarningInvalidItem", {
+        if (this.constructor.unsupportedItemTypes.has(itemData.type)) {
+            ui.notifications.warn(
+                game.i18n.format("SW5E.ActorWarningInvalidItem", {
                     itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
                     actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
                 })
@@ -880,18 +877,18 @@ export default class ActorSheet5e extends ActorSheet {
 
         // Stack identical consumables
         const stacked = this._onDropStackConsumables(itemData);
-        if ( stacked ) return false;
+        if (stacked) return false;
 
         // Bypass normal creation flow for any items with advancement
         if (itemData.system.advancement?.length && !game.settings.get("sw5e", "disableAdvancements")) {
             const manager = AdvancementManager.forNewItem(this.actor, itemData);
-            if ( manager.steps.length ) {
+            if (manager.steps.length) {
                 manager.render(true);
                 return false;
-              }
-                }
-                return itemData;
             }
+        }
+        return itemData;
+    }
 
     /* -------------------------------------------- */
 
@@ -900,12 +897,12 @@ export default class ActorSheet5e extends ActorSheet {
      * @param {object} itemData    The item data requested for creation. **Will be mutated.**
      */
     _onDropResetData(itemData) {
-        if ( !itemData.system ) return;
-        ["equipped", "proficient", "prepared"].forEach(k => delete itemData.system[k]);
-        if ( "attunement" in itemData.system ) {
-          itemData.system.attunement = Math.min(itemData.system.attunement, CONFIG.SW5E.attunementTypes.REQUIRED);
+        if (!itemData.system) return;
+        ["equipped", "proficient", "prepared"].forEach((k) => delete itemData.system[k]);
+        if ("attunement" in itemData.system) {
+            itemData.system.attunement = Math.min(itemData.system.attunement, CONFIG.SW5E.attunementTypes.REQUIRED);
         }
-        }
+    }
 
     /* -------------------------------------------- */
 
@@ -919,18 +916,13 @@ export default class ActorSheet5e extends ActorSheet {
         if (itemData.type !== "consumable" || !droppedSourceId) return null;
         const similarItem = this.actor.items.find((i) => {
             const sourceId = i.getFlag("core", "sourceId");
-            return (
-                sourceId &&
-                sourceId === droppedSourceId &&
-                i.type === "consumable" &&
-                i.name === itemData.name
-            );
+            return sourceId && sourceId === droppedSourceId && i.type === "consumable" && i.name === itemData.name;
         });
-        if ( !similarItem ) return null;
+        if (!similarItem) return null;
         return similarItem.update({
-                "system.quantity": similarItem.system.quantity + Math.max(itemData.system.quantity, 1)
-            });
-        }
+            "system.quantity": similarItem.system.quantity + Math.max(itemData.system.quantity, 1)
+        });
+    }
 
     /* -------------------------------------------- */
 
@@ -979,9 +971,9 @@ export default class ActorSheet5e extends ActorSheet {
      * Handle using an item from the Actor sheet, obtaining the Item instance, and dispatching to its use method.
      * @param {Event} event  The triggering click event.
      * @returns {Promise}    Results of the usage.
-   * @protected
+     * @protected
      */
-     _onItemUse(event) {
+    _onItemUse(event) {
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
         const item = this.actor.items.get(itemId);
@@ -1010,7 +1002,7 @@ export default class ActorSheet5e extends ActorSheet {
      * @param {Event} event   Triggering event.
      * @private
      */
-     async _onItemSummary(event) {
+    async _onItemSummary(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const item = this.actor.items.get(li.data("item-id"));
@@ -1051,7 +1043,7 @@ export default class ActorSheet5e extends ActorSheet {
         }
 
         // Check to make sure the newly created deployment doesn't take player over rank cap
-        if (type === "deployment" && this.actor.data.data.details.ranks + 1 > CONFIG.SW5E.maxRank) {
+        if (type === "deployment" && this.actor.system.details.ranks + 1 > CONFIG.SW5E.maxRank) {
             const errDeploy = game.i18n.format("SW5E.MaxCharacterRankExceededWarn", {max: CONFIG.SW5E.maxRank});
             return ui.notifications.error(errDeploy);
         }
@@ -1126,7 +1118,7 @@ export default class ActorSheet5e extends ActorSheet {
         const existingTooltip = event.currentTarget.querySelector("div.tooltip");
         const property = event.currentTarget.dataset.property;
         if (existingTooltip || !property) return;
-        const rollData = this.actor.getRollData({ deterministic: true });
+        const rollData = this.actor.getRollData({deterministic: true});
         let attributions;
         switch (property) {
             case "attributes.ac":

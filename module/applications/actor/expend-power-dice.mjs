@@ -4,7 +4,7 @@ import {SW5E} from "../config.js";
  * A helper Dialog subclass for allocating power dice
  * @extends {Dialog}
  */
-export default class ExpendPowerDice extends Dialog {
+export default class ExpendPowerDiceDialog extends Dialog {
     constructor(actor, dialogData = {}, options = {}) {
         super(dialogData, options);
         this.actor = actor;
@@ -15,7 +15,7 @@ export default class ExpendPowerDice extends Dialog {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/expend-power-dice.html",
+            template: "systems/sw5e/templates/apps/expend-power-dice.hbs",
             classes: ["sw5e", "dialog"]
         });
     }
@@ -25,7 +25,7 @@ export default class ExpendPowerDice extends Dialog {
     /** @override */
     getData() {
         const data = super.getData();
-        const power = this.actor.data.data.attributes.power;
+        const power = this.actor.system.attributes.power;
         const slots = CONFIG.SW5E.powerDieSlots;
 
         data.slots = {};
@@ -35,7 +35,7 @@ export default class ExpendPowerDice extends Dialog {
                 id: id,
                 str: str,
                 disabled: power[id].value < 1
-            }
+            };
         }
 
         return data;

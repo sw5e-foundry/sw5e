@@ -1,13 +1,12 @@
 /**
- * A simple form to set actor movement speeds
- * @extends {DocumentSheet}
+ * A simple form to set actor movement speeds.
  */
 export default class ActorMovementConfig extends DocumentSheet {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["sw5e"],
-            template: "systems/sw5e/templates/apps/movement-config.html",
+            template: "systems/sw5e/templates/apps/movement-config.hbs",
             width: 300,
             height: "auto"
         });
@@ -24,9 +23,8 @@ export default class ActorMovementConfig extends DocumentSheet {
 
     /** @override */
     getData(options) {
-        const sourceMovement = foundry.utils.getProperty(this.document.data._source, "data.attributes.movement") || {};
         const data = {
-            movement: foundry.utils.deepClone(sourceMovement),
+            movement: this.document.toObject().system?.attributes?.movement || {},
             units: CONFIG.SW5E.movementUnits
         };
         for (let [k, v] of Object.entries(data.movement)) {

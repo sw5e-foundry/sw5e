@@ -1,23 +1,14 @@
-import ActorSheet5e from "./base.js";
-import { AdvancementConfirmationDialog } from "../../../advancement/advancement-confirmation-dialog.js";
-import { AdvancementManager } from "../../../advancement/advancement-manager.js";
-
+import ActorSheet5e from "./base-sheet.mjs";
+import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
- * @extends {ActorSheet5e}
  */
-export default class ActorSheet5eCharacterNew extends ActorSheet5e {
-    get template() {
-        if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.html";
-        return "systems/sw5e/templates/actors/newActor/character-sheet.html";
-    }
-    /**
-     * Define default rendering options for the NPC sheet.
-     * @returns {object}
-     */
+export default class ActorSheet5eCharacter extends ActorSheet5e {
+    /** @inheritDoc */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["swalt", "sw5e", "sheet", "actor", "character"],
             blockFavTab: true,
             subTabs: null,
@@ -35,20 +26,21 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
-    static unsupportedItemTypes = new Set([ "starship", "starshipaction", "starshipfeature", "starshipmod" ]);
+    static unsupportedItemTypes = new Set(["starship", "starshipaction", "starshipfeature", "starshipmod"]);
 
     /* -------------------------------------------- */
 
-    /**
-     * Add some extra data when rendering the sheet to reduce the amount of logic required within the template.
-     * @returns {object}  Prepared copy of the actor data ready to be displayed.
-     */
-    getData() {
-        const sheetData = super.getData();
+    /* -------------------------------------------- */
+    /*  Context Preparation                         */
+    /* -------------------------------------------- */
+
+    /** @inheritDoc */
+    async getData(options = {}) {
+        const context = await super.getData(options);
 
         // Resources
-        sheetData.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
-            const res = sheetData.data.resources[r] || {};
+        context.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
+            const res = context.actor.system.resources[r] || {};
             res.name = r;
             res.placeholder = game.i18n.localize(`SW5E.Resource${r.titleCase()}`);
             if (res && res.value === 0) delete res.value;
@@ -56,31 +48,23 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             return arr.concat([res]);
         }, []);
 
-        // Experience Tracking
-        sheetData.disableExperience = game.settings.get("sw5e", "disableExperienceTracking");
-        sheetData.classLabels = this.actor.itemTypes.class.map((c) => c.name).join(", ");
-        sheetData.multiclassLabels = this.actor.itemTypes.class
-            .map((c) => {
-                return [c.data.data.archetype, c.name, c.data.data.levels].filterJoin(" ");
-            })
-            .join(", ");
-        // Weight unit
-        sheetData.weightUnit = game.settings.get("sw5e", "metricWeightUnits")
-            ? game.i18n.localize("SW5E.AbbreviationKgs")
-            : game.i18n.localize("SW5E.AbbreviationLbs");
-
-        // Return data for rendering
-        return sheetData;
+        const classes = this.actor.itemTypes.class;
+        return foundry.utils.mergeObject(context, {
+            disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
+            classLabels: classes.map((c) => c.name).join(", "),
+            multiclassLabels: classes
+                .map((c) => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" "))
+                .join(", "),
+            weightUnit: game.i18n.localize(
+                `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kgs" : "Lbs"}`
+            )
+        });
     }
 
     /* -------------------------------------------- */
 
-    /**
-     * Organize and classify Owned Items for Character sheets
-     * @param {object} data  Copy of the actor data being prepared for display. *Will be mutated.*
-     * @private
-     */
-    _prepareItems(data) {
+    /** @override */
+    _prepareItems(context) {
         // Categorize items as inventory, powerbook, features, and classes
         const inventory = {
             weapon: {label: "SW5E.ItemTypeWeaponPl", items: [], dataset: {type: "weapon"}},
@@ -89,7 +73,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             tool: {label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"}},
             backpack: {label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"}},
             modification: {label: "SW5E.ItemTypeModificationPl", items: [], dataset: {type: "modification"}},
-            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}},
+            loot: {label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"}}
         };
 
         // Partition items by category
@@ -110,12 +94,14 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             fightingstyles,
             fightingmasteries,
             lightsaberforms,
-            ssfeats,
-        } = data.items.reduce(
+            ssfeats
+        } = context.items.reduce(
             (obj, item) => {
+                const {quantity, uses, recharge, target} = item.system;
+
                 // Item details
                 item.img = item.img || CONST.DEFAULT_TOKEN;
-                item.isStack = Number.isNumeric(item.data.quantity) && item.data.quantity !== 1;
+                item.isStack = Number.isNumeric(quantity) && quantity !== 1;
                 item.attunement = {
                     [CONFIG.SW5E.attunementTypes.REQUIRED]: {
                         icon: "fa-sun",
@@ -127,21 +113,21 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                         cls: "attuned",
                         title: "SW5E.AttunementAttuned"
                     }
-                }[item.data.attunement];
+                }[item.system.attunement];
 
                 // Item usage
-                item.hasUses = item.data.uses && item.data.uses.max > 0;
-                item.isOnCooldown =
-                    item.data.recharge && !!item.data.recharge.value && item.data.recharge.charged === false;
-                item.isDepleted = item.isOnCooldown && item.data.uses.per && item.data.uses.value > 0;
-                item.hasTarget = !!item.data.target && !["none", ""].includes(item.data.target.type);
+                item.hasUses = uses && uses.max > 0;
+                item.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+                item.isDepleted = item.isOnCooldown && uses.per && uses.value > 0;
+                item.hasTarget = !!target && !["none", ""].includes(target.type);
 
                 // Item toggle state
                 this._prepareItemToggleState(item);
 
                 // Classify items into types
-                if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.data.school)) obj.forcepowers.push(item);
-                else if (item.type === "power" && ["tec"].includes(item.data.school)) obj.techpowers.push(item);
+                if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school))
+                    obj.forcepowers.push(item);
+                else if (item.type === "power" && ["tec"].includes(item.system.school)) obj.techpowers.push(item);
                 else if (item.type === "maneuver") obj.maneuvers.push(item);
                 else if (item.type === "feat") obj.feats.push(item);
                 else if (item.type === "class") obj.classes.push(item);
@@ -175,7 +161,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
                 fightingstyles: [],
                 fightingmasteries: [],
                 lightsaberforms: [],
-                ssfeats: [],
+                ssfeats: []
             }
         );
 
@@ -189,14 +175,16 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
         // Organize items
         for (let i of items) {
-            i.data.quantity = i.data.quantity || 0;
-            i.data.weight = i.data.weight || 0;
-            i.totalWeight = (i.data.quantity * i.data.weight).toNearest(0.1);
+            i.system.quantity = i.system.quantity || 0;
+            i.system.weight = i.system.weight || 0;
+            i.totalWeight = (i.system.quantity * i.system.weight).toNearest(0.1);
             if (i.type === "weapon") {
-                i.isStarshipWeapon = i.data.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-                i.wpnProperties = i.isStarshipWeapon ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
+                i.isStarshipWeapon = i.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
+                i.wpnProperties = i.isStarshipWeapon
+                    ? CONFIG.SW5E.weaponFullStarshipProperties
+                    : CONFIG.SW5E.weaponFullCharacterProperties;
 
-                const item = this.actor.items.get(i._id);
+                const item = this.actor.items.get(i.id);
                 const reloadProperties = item.sheet._getWeaponReloadProperties();
                 for (const attr of Object.keys(reloadProperties)) {
                     i[attr] = reloadProperties[attr];
@@ -206,112 +194,150 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         }
 
         // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
-        const forcePowerbook = this._preparePowerbook(data, forcepowers, "uni");
-        const techPowerbook = this._preparePowerbook(data, techpowers, "tec");
+        const forcePowerbook = this._preparePowerbook(context, forcepowers, "uni");
+        const techPowerbook = this._preparePowerbook(context, techpowers, "tec");
         const superiorityPowerbook = this._prepareManeuvers(maneuvers);
 
         // Sort classes and interleave matching archetypes, put unmatched archetypes into features so they don't disappear
-        classes.sort((a, b) => b.data.levels - a.data.levels);
-        const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.data.data.details.level;
+        classes.sort((a, b) => b.system.levels - a.system.levels);
+        const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.system.details.level;
         classes = classes.reduce((arr, cls) => {
-            cls.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
-                const delta = level - cls.data.levels;
-                return { level, delta, disabled: delta > maxLevelDelta };
-            });
+            cls.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1)
+                .slice(1)
+                .map((level) => {
+                    const delta = level - cls.system.levels;
+                    return {level, delta, disabled: delta > maxLevelDelta};
+                });
             arr.push(cls);
-            const archetype = archetypes.findSplice(s => s.data.classIdentifier === cls.data.identifier);
-            if ( archetype ) arr.push(archetype);
+            const identifier = cls.system.identifier || cls.name.slugify({strict: true});
+            const archetype = archetypes.findSplice((s) => s.system.classIdentifier === identifier);
+            if (archetype) arr.push(archetype);
             return arr;
         }, []);
-        for ( const archetype of archetypes ) {
+        for (const archetype of archetypes) {
             feats.push(archetype);
-            this.actor._preparationWarnings.push(game.i18n.format("SW5E.ArchetypeMismatchWarn", {
-                name: archetype.name,
-                class: archetype.data.classIdentifier
-            }));
+            this.actor._preparationWarnings.push(
+                game.i18n.format("SW5E.ArchetypeMismatchWarn", {
+                    name: archetype.name,
+                    class: archetype.system.classIdentifier
+                })
+            );
         }
 
         // Organize Features
         const features = {
             background: {
-                label: "SW5E.ItemTypeBackground", items: backgrounds,
-                hasActions: false, dataset: {type: "background"}, isBackground: true
+                label: "SW5E.ItemTypeBackground",
+                items: backgrounds,
+                hasActions: false,
+                dataset: {type: "background"},
+                isBackground: true
             },
             classes: {
-                label: "SW5E.ItemTypeClassPl", items: classes,
-                hasActions: false, dataset: {type: "class"}, isClass: true
+                label: "SW5E.ItemTypeClassPl",
+                items: classes,
+                hasActions: false,
+                dataset: {type: "class"},
+                isClass: true
             },
             classfeatures: {
-                label: "SW5E.ItemTypeClassfeaturePL", items: classfeatures,
-                hasActions: true, dataset: {type: "classfeature"}, isClassfeature: true
+                label: "SW5E.ItemTypeClassfeaturePL",
+                items: classfeatures,
+                hasActions: true,
+                dataset: {type: "classfeature"},
+                isClassfeature: true
             },
             species: {
-                label: "SW5E.ItemTypeSpecies", items: species,
-                hasActions: false, dataset: {type: "species"}, isSpecies: true
+                label: "SW5E.ItemTypeSpecies",
+                items: species,
+                hasActions: false,
+                dataset: {type: "species"},
+                isSpecies: true
             },
             fightingstyles: {
-                label: "SW5E.ItemTypeFightingstylePl", items: fightingstyles,
-                hasActions: false, dataset: {type: "fightingstyle"}, isFightingstyle: true
+                label: "SW5E.ItemTypeFightingstylePl",
+                items: fightingstyles,
+                hasActions: false,
+                dataset: {type: "fightingstyle"},
+                isFightingstyle: true
             },
             fightingmasteries: {
-                label: "SW5E.ItemTypeFightingmasteryPl", items: fightingmasteries,
-                hasActions: false, dataset: {type: "fightingmastery"}, isFightingmastery: true
+                label: "SW5E.ItemTypeFightingmasteryPl",
+                items: fightingmasteries,
+                hasActions: false,
+                dataset: {type: "fightingmastery"},
+                isFightingmastery: true
             },
             lightsaberforms: {
-                label: "SW5E.ItemTypeLightsaberformPl", items: lightsaberforms,
-                hasActions: false, dataset: {type: "lightsaberform"}, isLightsaberform: true
+                label: "SW5E.ItemTypeLightsaberformPl",
+                items: lightsaberforms,
+                hasActions: false,
+                dataset: {type: "lightsaberform"},
+                isLightsaberform: true
             },
             active: {
-                label: "SW5E.FeatureActive", items: [],
-                hasActions: true, dataset: {type: "feat", "activation.type": "action"}
+                label: "SW5E.FeatureActive",
+                items: [],
+                hasActions: true,
+                dataset: {"type": "feat", "activation.type": "action"}
             },
             passive: {
-                label: "SW5E.FeaturePassive", items: [],
-                hasActions: false, dataset: {type: "feat"}
+                label: "SW5E.FeaturePassive",
+                items: [],
+                hasActions: false,
+                dataset: {type: "feat"}
             }
         };
-
-        for (let f of feats) {
-            if (f.data.activation?.type) features.active.items.push(f);
-            else features.passive.items.push(f);
+        for (const feat of feats) {
+            if (feat.system.activation?.type) features.active.items.push(feat);
+            else features.passive.items.push(feat);
         }
 
         // Organize Starship Features
-        deployments.sort((a, b) => b.data.rank - a.data.rank);
-        const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.data.data.details.ranks;
+        deployments.sort((a, b) => b.system.rank - a.system.rank);
+        const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.system.details.ranks;
         deployments = deployments.reduce((arr, dep) => {
-            dep.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1).slice(1).map(rank => {
-                const delta = rank - dep.data.rank;
-                return { rank, delta, disabled: delta > maxRankDelta };
-            });
+            dep.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1)
+                .slice(1)
+                .map((rank) => {
+                    const delta = rank - dep.system.rank;
+                    return {rank, delta, disabled: delta > maxRankDelta};
+                });
             arr.push(dep);
             return arr;
         }, []);
         const ssfeatures = {
             deployments: {
-                label: "SW5E.ItemTypeDeploymentPl", items: deployments,
-                hasActions: false, dataset: {type: "deployment"}, isDeployment: true
+                label: "SW5E.ItemTypeDeploymentPl",
+                items: deployments,
+                hasActions: false,
+                dataset: {type: "deployment"},
+                isDeployment: true
             },
             deploymentfeatures: {
-                label: "SW5E.ItemTypeDeploymentfeaturePl", items: deploymentfeatures,
-                hasActions: true, dataset: {type: "deploymentfeature"}, isDeploymentfeature: true
+                label: "SW5E.ItemTypeDeploymentfeaturePl",
+                items: deploymentfeatures,
+                hasActions: true,
+                dataset: {type: "deploymentfeature"},
+                isDeploymentfeature: true
             },
             ventures: {
-                label: "SW5E.ItemTypeVenturePl", items: ventures,
-                hasActions: false, dataset: {type: "venture"}, isVenture: true
+                label: "SW5E.ItemTypeVenturePl",
+                items: ventures,
+                hasActions: false,
+                dataset: {type: "venture"},
+                isVenture: true
             }
         };
 
         // Assign and return
-        data.inventory = Object.values(inventory);
-        data.forcePowerbook = forcePowerbook;
-        data.techPowerbook = techPowerbook;
-        data.superiorityPowerbook = superiorityPowerbook;
-        data.features = Object.values(features);
-        data.ssfeatures = Object.values(ssfeatures);
-
-        // Labels
-        data.labels.background = backgrounds[0]?.name;
+        context.inventory = Object.values(inventory);
+        context.forcePowerbook = forcePowerbook;
+        context.techPowerbook = techPowerbook;
+        context.superiorityPowerbook = superiorityPowerbook;
+        context.features = Object.values(features);
+        context.ssfeatures = Object.values(ssfeatures);
+        context.labels.background = backgrounds[0]?.name;
     }
 
     /* -------------------------------------------- */
@@ -323,60 +349,46 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
      */
     _prepareItemToggleState(item) {
         if (item.type === "power") {
-            const isAlways = getProperty(item.data, "preparation.mode") === "always";
-            const isPrepared = getProperty(item.data, "preparation.prepared");
+            const prep = item.system.preparation || {};
+            const isAlways = prep.mode === "always";
+            const isPrepared = !!prep.prepared;
             item.toggleClass = isPrepared ? "active" : "";
             if (isAlways) item.toggleClass = "fixed";
             if (isAlways) item.toggleTitle = CONFIG.SW5E.powerPreparationModes.always;
             else if (isPrepared) item.toggleTitle = CONFIG.SW5E.powerPreparationModes.prepared;
             else item.toggleTitle = game.i18n.localize("SW5E.PowerUnprepared");
         } else {
-            const isActive = getProperty(item.data, "equipped");
+            const isActive = !!item.system.equipped;
             item.toggleClass = isActive ? "active" : "";
             item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Equipped" : "SW5E.Unequipped");
         }
     }
 
     /* -------------------------------------------- */
-    /*  Event Listeners and Handlers
+    /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    /**
-     * Activate event listeners using the prepared sheet HTML.
-     * @param {jQuery} html   The prepared HTML object ready to be rendered into the DOM.
-     */
+    /** @inheritDoc */
     activateListeners(html) {
         super.activateListeners(html);
         if (!this.isEditable) return;
-
-        // Manage Class Levels and Deployment Ranks
         html.find(".level-selector").change(this._onLevelChange.bind(this));
-
-        // Inventory Functions
-        // html.find(".currency-convert").click(this._onConvertCurrency.bind(this));
-
-        // Item State Toggling
         html.find(".item-toggle").click(this._onToggleItem.bind(this));
-
-        // Short and Long Rest
         html.find(".short-rest").click(this._onShortRest.bind(this));
         html.find(".long-rest").click(this._onLongRest.bind(this));
-
-        // Rollable sheet actions
         html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
 
+        // TODO: Need to check this
         // Send Languages to Chat onClick
         html.find('[data-options="share-languages"]').click((event) => {
             event.preventDefault();
-            let langs = this.actor.data.data.traits.languages.value
-                .map((l) => CONFIG.SW5E.languages[l] || l)
-                .join(", ");
-            let custom = this.actor.data.data.traits.languages.custom;
+            let langs = this.actor.system.traits.languages.value.map((l) => CONFIG.SW5E.languages[l] || l).join(", ");
+            let custom = this.actor.system.traits.languages.custom;
             if (custom) langs += ", " + custom.replace(/;/g, ",");
             let content = `
-        <div class="sw5e chat-card item-card" data-acor-id="${this.actor.data._id}">
+        <div class="sw5e chat-card item-card" data-acor-id="${this.actor.id}">
           <header class="card-header flexrow">
-            <img src="${this.actor.data.token.img}" title="" width="36" height="36" style="border: none;"/>
+            <img src="${this.actor.token.img}" title="" width="36" height="36" style="border: none;"/>
             <h3>Known Languages</h3>
           </header>
           <div class="card-content">${langs}</div>
@@ -388,11 +400,11 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             let rollMode = game.settings.get("core", "rollMode");
             if (rollMode === "blindroll") rollBlind = true;
             let data = {
-                user: game.user.data._id,
+                user: game.user.id,
                 content: content,
                 blind: rollBlind,
                 speaker: {
-                    actor: this.actor.data._id,
+                    actor: this.actor.id,
                     token: this.actor.token,
                     alias: this.actor.name
                 },
@@ -400,7 +412,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             };
 
             if (["gmroll", "blindroll"].includes(rollMode)) data["whisper"] = ChatMessage.getWhisperRecipients("GM");
-            else if (rollMode === "selfroll") data["whisper"] = [game.users.get(game.user.data._id)];
+            else if (rollMode === "selfroll") data["whisper"] = [game.users.get(game.user.id)];
 
             ChatMessage.create(data);
         });
@@ -412,8 +424,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             let itemId = li.attr("data-item-id");
             let item = this.actor.items.get(itemId);
             new Dialog({
-                title: `Deleting ${item.data.name}`,
-                content: `<p>Are you sure you want to delete ${item.data.name}?</p>`,
+                title: `Deleting ${item.system.name}`,
+                content: `<p>Are you sure you want to delete ${item.system.name}?</p>`,
                 buttons: {
                     Yes: {
                         icon: '<i class="fa fa-check"></i>',
@@ -443,7 +455,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
             const itemId = event.currentTarget.closest(".item").dataset.itemId;
             const item = this.actor.items.get(itemId);
             const value = parseInt(event.currentTarget.value, 10);
-            if (!Number.isNaN(value)) item.update({ "data.ammo.value": value })
+            if (!Number.isNaN(value)) item.update({"system.ammo.value": value});
         });
         html.find(".weapon-reload").click((event) => {
             event.preventDefault();
@@ -485,7 +497,7 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
 
         const delta = Number(event.target.value);
         const itemId = event.target.closest(".item")?.dataset.itemId;
-        if ( !delta || !itemId ) return;
+        if (!delta || !itemId) return;
         const item = this.actor.items.get(itemId);
 
         let attr = null;
@@ -493,19 +505,19 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         else if (item.type === "deployment") attr = "rank";
         if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
 
-        if ( item.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
+        if (!game.settings.get("sw5e", "disableAdvancements")) {
             const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
-            if ( manager.steps.length ) {
-                if ( delta > 0 ) return manager.render(true);
+            if (manager.steps.length) {
+                if (delta > 0) return manager.render(true);
                 try {
                     const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
-                    if ( shouldRemoveAdvancements ) return manager.render(true);
-                } catch(err) {
+                    if (shouldRemoveAdvancements) return manager.render(true);
+                } catch (err) {
                     return;
                 }
             }
         }
-        return item.update({[`data.${attr}`]: item.data.data[attr] + delta});
+        return item.update({[`system.${attr}`]: item.system[attr] + delta});
     }
 
     /* -------------------------------------------- */
@@ -520,8 +532,8 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
         const item = this.actor.items.get(itemId);
-        const attr = item.data.type === "power" ? "data.preparation.prepared" : "data.equipped";
-        return item.update({[attr]: !getProperty(item.data, attr)});
+        const attr = item.data.type === "power" ? "system.preparation.prepared" : "system.equipped";
+        return item.update({[attr]: !foundry.utils.getProperty(item, attr)});
     }
 
     /* -------------------------------------------- */
@@ -555,47 +567,56 @@ export default class ActorSheet5eCharacterNew extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
-    async _onDropItemCreate(itemData) {
+    async _onDropSingleItem(itemData) {
         // Increment the number of class levels a character instead of creating a new item
-        if ( itemData.type === "class" ) {
-            itemData.data.levels = Math.min(itemData.data.levels,
-                CONFIG.SW5E.maxLevel - this.actor.data.data.details.level);
-            if ( itemData.data.levels <= 0 ) return ui.notifications.error(
-                game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel})
-            );
-            const cls = this.actor.itemTypes.class.find(c => c.identifier === itemData.data.identifier);
-            if ( cls ) {
-                const priorLevel = cls.data.data.levels;
-                if ( cls.hasAdvancement && !game.settings.get("sw5e", "disableAdvancements") ) {
-                    const manager = AdvancementManager.forLevelChange(this.actor, cls.id, itemData.data.levels);
-                    if ( manager.steps.length ) return manager.render(true);
+        if (itemData.type === "class") {
+            const charLevel = this.actor.system.details.level;
+            itemData.system.levels = Math.min(itemData.system.levels, CONFIG.SW5E.maxLevel - charLevel);
+            if (itemData.system.levels <= 0) {
+                const err = game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel});
+                ui.notifications.error(err);
+                return false;
+            }
+
+            const cls = this.actor.itemTypes.class.find((c) => c.identifier === itemData.system.identifier);
+            if (cls) {
+                const priorLevel = cls.system.levels;
+                if (!game.settings.get("sw5e", "disableAdvancements")) {
+                    const manager = AdvancementManager.forLevelChange(this.actor, cls.id, itemData.system.levels);
+                    if (manager.steps.length) {
+                        manager.render(true);
+                        return false;
+                    }
                 }
-                return cls.update({"data.levels": priorLevel + itemData.data.levels});
-            }
-        }
-        // If a archetype is dropped, ensure it doesn't match another archetype with the same identifier
-        else if ( itemData.type === "archetype" ) {
-            const other = this.actor.itemTypes.archetype.find(i => i.identifier === itemData.data.identifier);
-            if ( other ) {
-                return ui.notifications.error(game.i18n.format("SW5E.ArchetypeDuplicateError", {
-                    identifier: other.identifier
-                }));
-            }
-            const cls = this.actor.itemTypes.class.find(i => i.identifier === itemData.data.classIdentifier);
-            if ( cls && cls.archetype ) {
-                return ui.notifications.error(game.i18n.format("SW5E.ArchetypeAssignmentError", {
-                    class: cls.name, archetype: cls.archetype.name
-                }));
+                cls.update({"system.levels": priorLevel + itemData.system.levels});
+                return false;
             }
         }
 
-        // Default drop handling if levels were not added
-        return super._onDropItemCreate(itemData);
+        // If a archetype is dropped, ensure it doesn't match another archetype with the same identifier
+        else if (itemData.type === "archetype") {
+            const other = this.actor.itemTypes.archetype.find((i) => i.identifier === itemData.system.identifier);
+            if (other) {
+                const err = game.i18n.format("SW5E.ArchetypeDuplicateError", {identifier: other.identifier});
+                ui.notifications.error(err);
+                return false;
+            }
+            const cls = this.actor.itemTypes.class.find((i) => i.identifier === itemData.system.classIdentifier);
+            if (cls && cls.archetype) {
+                const err = game.i18n.format("SW5E.ArchetypeAssignmentError", {
+                    class: cls.name,
+                    archetype: cls.archetype.name
+                });
+                ui.notifications.error(err);
+                return false;
+            }
+        }
+        return super._onDropSingleItem(itemData);
     }
 }
 
-
-async function addFavorites(app, html, data) {
+//TODO: Did not update this stuff
+async function addFavorites(app, html, context) {
     // Thisfunction is adapted for the SwaltSheet from the Favorites Item
     // Tab Module created for Foundry VTT - by Felix Müller (Felix#6196 on Discord).
     // It is licensed under a Creative Commons Attribution 4.0 International License
@@ -609,53 +630,53 @@ async function addFavorites(app, html, data) {
         },
         1: {
             powers: [],
-            value: data.actor.data.powers.power1.value,
-            max: data.actor.data.powers.power1.max
+            value: context.actor.system.powers.power1.value,
+            max: context.actor.system.powers.power1.max
         },
         2: {
             powers: [],
-            value: data.actor.data.powers.power2.value,
-            max: data.actor.data.powers.power2.max
+            value: context.actor.system.powers.power2.value,
+            max: context.actor.system.powers.power2.max
         },
         3: {
             powers: [],
-            value: data.actor.data.powers.power3.value,
-            max: data.actor.data.powers.power3.max
+            value: context.actor.system.powers.power3.value,
+            max: context.actor.system.powers.power3.max
         },
         4: {
             powers: [],
-            value: data.actor.data.powers.power4.value,
-            max: data.actor.data.powers.power4.max
+            value: context.actor.system.powers.power4.value,
+            max: context.actor.system.powers.power4.max
         },
         5: {
             powers: [],
-            value: data.actor.data.powers.power5.value,
-            max: data.actor.data.powers.power5.max
+            value: context.actor.system.powers.power5.value,
+            max: context.actor.system.powers.power5.max
         },
         6: {
             powers: [],
-            value: data.actor.data.powers.power6.value,
-            max: data.actor.data.powers.power6.max
+            value: context.actor.system.powers.power6.value,
+            max: context.actor.system.powers.power6.max
         },
         7: {
             powers: [],
-            value: data.actor.data.powers.power7.value,
-            max: data.actor.data.powers.power7.max
+            value: context.actor.system.powers.power7.value,
+            max: context.actor.system.powers.power7.max
         },
         8: {
             powers: [],
-            value: data.actor.data.powers.power8.value,
-            max: data.actor.data.powers.power8.max
+            value: context.actor.system.powers.power8.value,
+            max: context.actor.system.powers.power8.max
         },
         9: {
             powers: [],
-            value: data.actor.data.powers.power9.value,
-            max: data.actor.data.powers.power9.max
+            value: context.actor.system.powers.power9.value,
+            max: context.actor.system.powers.power9.max
         }
     };
 
     let powerCount = 0;
-    let items = data.actor.items;
+    let items = context.actor.items;
     for (let item of items) {
         if (item.type == "class") continue;
         if (item.flags.favtab === undefined || item.flags.favtab.isFavourite === undefined) {
@@ -671,17 +692,17 @@ async function addFavorites(app, html, data) {
                 }"><i class="fas fa-star"></i></a>`
             );
             favBtn.click((ev) => {
-                app.actor.items.get(item.data._id).update({
+                app.actor.items.get(item.id).update({
                     "flags.favtab.isFavourite": !item.flags.favtab.isFavourite
                 });
             });
-            html.find(`.item[data-item-id="${item.data._id}"]`).find(".item-controls").prepend(favBtn);
+            html.find(`.item[data-item-id="${item.id}"]`).find(".item-controls").prepend(favBtn);
         }
 
         if (isFav) {
             item.powerComps = "";
-            if (item.data.components) {
-                let comps = item.data.components;
+            if (item.system.components) {
+                let comps = item.system.components;
                 let v = comps.vocal ? "V" : "";
                 let s = comps.somatic ? "S" : "";
                 let m = comps.material ? "M" : "";
@@ -701,11 +722,11 @@ async function addFavorites(app, html, data) {
                     favFeats.push(item);
                     break;
                 case "power":
-                    if (item.data.preparation.mode) {
-                        item.powerPrepMode = ` (${CONFIG.SW5E.powerPreparationModes[item.data.preparation.mode]})`;
+                    if (item.system.preparation.mode) {
+                        item.powerPrepMode = ` (${CONFIG.SW5E.powerPreparationModes[item.system.preparation.mode]})`;
                     }
-                    if (item.data.level) {
-                        favPowers[item.data.level].powers.push(item);
+                    if (item.system.level) {
+                        favPowers[item.system.level].powers.push(item);
                     } else {
                         favPowers[0].powers.push(item);
                     }
@@ -768,12 +789,12 @@ async function addFavorites(app, html, data) {
             // if (dropData.actorId !== app.actor.id || dropData.data.type === 'power') return;
             if (dropData.actorId !== app.actor.id) return;
             let list = null;
-            if (dropData.data.type === "feat") list = favFeats;
+            if (dropData.type === "feat") list = favFeats;
             else list = favItems;
-            let dragSource = list.find((i) => i.data._id === dropData.data._id);
-            let siblings = list.filter((i) => i.data._id !== dropData.data._id);
+            let dragSource = list.find((i) => i.id === dropData.id);
+            let siblings = list.filter((i) => i.id !== dropData.id);
             let targetId = ev.target.closest(".item").dataset.itemId;
-            let dragTarget = siblings.find((s) => s.data._id === targetId);
+            let dragTarget = siblings.find((s) => s.id === targetId);
 
             if (dragTarget === undefined) return;
             const sortUpdates = SortingHelpers.performIntegerSort(dragSource, {
@@ -783,7 +804,7 @@ async function addFavorites(app, html, data) {
             });
             const updateData = sortUpdates.map((u) => {
                 const update = u.update;
-                update._id = u.target.data._id;
+                update.id = u.target.id;
                 return update;
             });
             app.actor.updateEmbeddedDocuments("Item", updateData);
@@ -851,7 +872,7 @@ async function addSubTabs(app, html, data) {
         });
 }
 
-Hooks.on("renderActorSheet5eCharacterNew", (app, html, data) => {
+Hooks.on("renderActorSheet5eCharacter", (app, html, data) => {
     addFavorites(app, html, data);
     addSubTabs(app, html, data);
 });

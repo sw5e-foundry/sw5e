@@ -1,11 +1,11 @@
-import ActorSheet5e from "./base-orig-sheet.mjs";
+import ActorSheetOrig5e from "./base-orig-sheet.mjs";
 import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for player character type actors in the SW5E system.
  */
-export default class ActorSheetOrig5eCharacter extends ActorSheet5e {
+export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     /** @inheritDoc */
     static get defaultOptions() {
         return foundry.utilsmergeObject(super.defaultOptions, {

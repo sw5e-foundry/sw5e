@@ -1,6 +1,9 @@
 /**
  * A helper Dialog subclass for rolling Hull Dice on a recharge repair
- * @extends {Dialog}
+ *
+ * @param {Actor5e} actor           Actor that is taking the recharge repair.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
 export default class RechargeRepairDialog extends Dialog {
     constructor(actor, dialogData = {}, options = {}) {
@@ -21,32 +24,35 @@ export default class RechargeRepairDialog extends Dialog {
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/recharge-repair.html",
+            template: "systems/sw5e/templates/apps/recharge-repair.hbs",
             classes: ["sw5e", "dialog"]
         });
     }
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     getData() {
         const data = super.getData();
 
         // Determine Hull Dice
-        data.availableHD = this.actor.data.items.reduce((hulld, item) => {
+        data.availableHD = this.actor.items.reduce((hulld, item) => {
             if (item.type === "starship") {
-                const d = item.data.data;
-                const denom = d.hullDice || "d6";
+                const {tier, size, hullDice, hullDiceStart, hullDiceUsed} = item.system;
+                const denom = hullDice ?? "d6";
+                const hugeOrGrg = ["huge", "grg"].includes(size);
                 const available =
-                    parseInt(d.hullDiceStart || 1) + parseInt(d.tier || 0) - parseInt(d.hullDiceUsed || 0);
+                    parseInt(hullDiceStart ?? 1) +
+                    parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0) -
+                    parseInt(hullDiceUsed ?? 0);
                 hulld[denom] = denom in hulld ? hulld[denom] + available : available;
             }
             return hulld;
         }, {});
-        data.canRoll = this.actor.data.data.attributes.hull.dice > 0;
+        data.canRoll = this.actor.system.attributes.hull.dice > 0;
         data.denomination = this._denom;
 
         // Determine rest type
@@ -58,7 +64,7 @@ export default class RechargeRepairDialog extends Dialog {
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     activateListeners(html) {
         super.activateListeners(html);
         let btn = html.find("#roll-hulld");
@@ -70,7 +76,7 @@ export default class RechargeRepairDialog extends Dialog {
     /**
      * Handle rolling a Hull Die as part of a Recharge Repair action
      * @param {Event} event     The triggering click event
-     * @private
+     * @protected
      */
     async _onRollHullDie(event) {
         event.preventDefault();
@@ -85,8 +91,9 @@ export default class RechargeRepairDialog extends Dialog {
     /**
      * A helper constructor function which displays the Recharge Repair dialog and returns a Promise once it's workflow has
      * been resolved.
-     * @param {Actor5e} actor
-     * @returns {Promise}
+     * @param {object} [options={}]
+     * @param {Actor5e} [options.actor]  Actor that is taking the recharge repair.
+     * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.
      */
     static async rechargeRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {

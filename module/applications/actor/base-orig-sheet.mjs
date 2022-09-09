@@ -22,7 +22,7 @@ import TraitSelector from "../trait-selector.mjs";
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
  * @abstract
  */
-export default class ActorSheet5e extends ActorSheet {
+export default class ActorSheetOrig5e extends ActorSheet {
     /**
      * Track the set of item filters which are applied
      * @type {Object<string, Set>}

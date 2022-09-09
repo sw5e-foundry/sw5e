@@ -1,6 +1,9 @@
 /**
  * A helper Dialog subclass for completing a regen repair
- * @extends {Dialog}
+ *
+ * @param {Actor5e} actor           Actor that is taking the regen repair.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
 export default class RegenRepairDialog extends Dialog {
     constructor(actor, dialogData = {}, options = {}) {
@@ -15,10 +18,10 @@ export default class RegenRepairDialog extends Dialog {
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/regen-repair.html",
+            template: "systems/sw5e/templates/apps/regen-repair.hbs",
             classes: ["sw5e", "dialog"]
         });
     }
@@ -28,7 +31,7 @@ export default class RegenRepairDialog extends Dialog {
     /** @override */
     getData() {
         const data = super.getData();
-        const attr = this.actor.data.data.attributes;
+        const attr = this.actor.system.attributes;
         if (attr.hp.temp == attr.hp.tempmax || attr.shld.depleted || Number(attr.shld.dice) == 0) {
             data.useShieldDie = false;
         } else {
@@ -42,8 +45,9 @@ export default class RegenRepairDialog extends Dialog {
     /**
      * A helper constructor function which displays the regen repair confirmation dialog and returns a Promise once it's
      * workflow has been resolved.
-     * @param {Actor5e} actor
-     * @returns {Promise}
+     * @param {object} [options={}]
+     * @param {Actor5e} [options.actor]  Actor that is taking the regen repair.
+     * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.
      */
     static async regenRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {

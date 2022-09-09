@@ -1,13 +1,13 @@
 /**
- * An application class which provides advanced configuration for special character flags which modify an Actor
- * @implements {DocumentSheet}
+ * An application class which provides advanced configuration for special character flags which modify an Actor.
  */
 export default class ActorSheetFlags extends DocumentSheet {
+    /** @inheritDoc */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             id: "actor-flags",
             classes: ["sw5e"],
-            template: "systems/sw5e/templates/apps/actor-flags.html",
+            template: "systems/sw5e/templates/apps/actor-flags.hbs",
             width: 500,
             closeOnSubmit: true
         });
@@ -15,14 +15,14 @@ export default class ActorSheetFlags extends DocumentSheet {
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     get title() {
         return `${game.i18n.localize("SW5E.FlagsTitle")}: ${this.object.name}`;
     }
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     getData() {
         const data = {};
         data.actor = this.object;
@@ -66,7 +66,7 @@ export default class ActorSheetFlags extends DocumentSheet {
             flag.type = v.type.name;
             flag.isCheckbox = v.type === Boolean;
             flag.isSelect = v.hasOwnProperty("choices");
-            flag.value = getProperty(baseData.flags, `sw5e.${k}`);
+            flag.value = foundry.utils.getProperty(baseData.flags, `sw5e.${k}`);
             flags[v.section][`flags.sw5e.${k}`] = flag;
         }
         return flags;
@@ -80,36 +80,38 @@ export default class ActorSheetFlags extends DocumentSheet {
      * @private
      */
     _getBonuses() {
+        const src = this.object.toObject();
         const bonuses = [
-            {name: "data.bonuses.mwak.attack", label: "SW5E.BonusMWAttack"},
-            {name: "data.bonuses.mwak.damage", label: "SW5E.BonusMWDamage"},
-            {name: "data.bonuses.rwak.attack", label: "SW5E.BonusRWAttack"},
-            {name: "data.bonuses.rwak.damage", label: "SW5E.BonusRWDamage"},
-            {name: "data.bonuses.mpak.attack", label: "SW5E.BonusMPAttack"},
-            {name: "data.bonuses.mpak.damage", label: "SW5E.BonusMPDamage"},
-            {name: "data.bonuses.rpak.attack", label: "SW5E.BonusRPAttack"},
-            {name: "data.bonuses.rpak.damage", label: "SW5E.BonusRPDamage"},
-            {name: "data.bonuses.abilities.check", label: "SW5E.BonusAbilityCheck"},
-            {name: "data.bonuses.abilities.save", label: "SW5E.BonusAbilitySave"},
-            {name: "data.bonuses.abilities.skill", label: "SW5E.BonusAbilitySkill"},
-            {name: "data.bonuses.power.dc", label: "SW5E.BonusPowerDC"},
-            {name: "data.bonuses.power.forceLightDC", label: "SW5E.BonusForceLightPowerDC"},
-            {name: "data.bonuses.power.forceDarkDC", label: "SW5E.BonusForceDarkPowerDC"},
-            {name: "data.bonuses.power.forceUnivDC", label: "SW5E.BonusForceUnivPowerDC"},
-            {name: "data.bonuses.power.techDC", label: "SW5E.BonusTechPowerDC"}
+            {name: "system.bonuses.mwak.attack", label: "SW5E.BonusMWAttack"},
+            {name: "system.bonuses.mwak.damage", label: "SW5E.BonusMWDamage"},
+            {name: "system.bonuses.rwak.attack", label: "SW5E.BonusRWAttack"},
+            {name: "system.bonuses.rwak.damage", label: "SW5E.BonusRWDamage"},
+            {name: "system.bonuses.mpak.attack", label: "SW5E.BonusMPAttack"},
+            {name: "system.bonuses.mpak.damage", label: "SW5E.BonusMPDamage"},
+            {name: "system.bonuses.rpak.attack", label: "SW5E.BonusRPAttack"},
+            {name: "system.bonuses.rpak.damage", label: "SW5E.BonusRPDamage"},
+            {name: "system.bonuses.abilities.check", label: "SW5E.BonusAbilityCheck"},
+            {name: "system.bonuses.abilities.save", label: "SW5E.BonusAbilitySave"},
+            {name: "system.bonuses.abilities.skill", label: "SW5E.BonusAbilitySkill"},
+            {name: "system.bonuses.power.dc", label: "SW5E.BonusPowerDC"},
+            {name: "system.bonuses.power.forceLightDC", label: "SW5E.BonusForceLightPowerDC"},
+            {name: "system.bonuses.power.forceDarkDC", label: "SW5E.BonusForceDarkPowerDC"},
+            {name: "system.bonuses.power.forceUnivDC", label: "SW5E.BonusForceUnivPowerDC"},
+            {name: "system.bonuses.power.techDC", label: "SW5E.BonusTechPowerDC"}
         ];
         for (let b of bonuses) {
-            b.value = getProperty(this.object.data._source, b.name) || "";
+            b.value = foundry.utils.getProperty(src, b.name) || "";
         }
         return bonuses;
     }
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     async _updateObject(event, formData) {
         const actor = this.object;
-        let updateData = expandObject(formData);
+        let updateData = foundry.utils.expandObject(formData);
+        const src = actor.toObject();
 
         // Unset any flags which are "false"
         const flags = updateData.flags.sw5e;
@@ -118,14 +120,12 @@ export default class ActorSheetFlags extends DocumentSheet {
         for (let [k, v] of Object.entries(flags)) {
             if ([undefined, null, "", false, 0].includes(v)) {
                 delete flags[k];
-                if (hasProperty(actor.data._source.flags, `sw5e.${k}`)) {
-                    flags[`-=${k}`] = null;
-                }
+                if (foundry.utils.hasProperty(src.flags, `sw5e.${k}`)) flags[`-=${k}`] = null;
             }
         }
 
         // Clear any bonuses which are whitespace only
-        for (let b of Object.values(updateData.data.bonuses)) {
+        for (let b of Object.values(updateData.system.bonuses)) {
             for (let [k, v] of Object.entries(b)) {
                 b[k] = v.trim();
             }

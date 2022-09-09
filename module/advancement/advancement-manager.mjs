@@ -257,7 +257,7 @@ export default class AdvancementManager extends Application {
 
     /**
      * Create steps based on the provided level change data.
-     * @param {string} clonedItem      Item being changed.
+     * @param {string} clonedItem     Item being changed.
      * @param {number} levelDelta     Levels by which to increase or decrease the class.
      * @returns {AdvancementManager}  Manager with new steps.
      * @private

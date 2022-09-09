@@ -1,6 +1,9 @@
 /**
- * A helper Dialog subclass for completing a refitting repair
- * @extends {Dialog}
+ * A helper Dialog subclass for completing a refitting repair.
+ *
+ * @param {Actor5e} actor           Actor that is taking the refitting repair.
+ * @param {object} [dialogData={}]  An object of dialog data which configures how the modal window is rendered.
+ * @param {object} [options={}]     Dialog rendering options.
  */
 export default class RefittingRepairDialog extends Dialog {
     constructor(actor, dialogData = {}, options = {}) {
@@ -10,22 +13,22 @@ export default class RefittingRepairDialog extends Dialog {
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/refitting-repair.html",
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            template: "systems/sw5e/templates/apps/refitting-repair.hbs",
             classes: ["sw5e", "dialog"]
         });
     }
 
     /* -------------------------------------------- */
 
-    /** @override */
+    /** @inheritDoc */
     getData() {
         const data = super.getData();
         const variant = game.settings.get("sw5e", "restVariant");
-        data.promptNewDay = variant !== "gritty"; // It's always a new day when resting 1 week
-        data.newDay = variant === "normal"; // It's probably a new day when resting normally (8 hours)
+        data.promptNewDay = variant !== "gritty"; // It's always a new day when repairing 1 week
+        data.newDay = variant === "normal"; // It's probably a new day when repaiting normally (8 hours)
         return data;
     }
 
@@ -34,8 +37,9 @@ export default class RefittingRepairDialog extends Dialog {
     /**
      * A helper constructor function which displays the Refitting Repair confirmation dialog and returns a Promise once it's
      * workflow has been resolved.
-     * @param {Actor5e} actor
-     * @returns {Promise}
+     * @param {object} [options={}]
+     * @param {Actor5e} [options.actor]  Actor that is taking the refitting repair.
+     * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.
      */
     static async refittingRepairDialog({actor} = {}) {
         return new Promise((resolve, reject) => {

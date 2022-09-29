@@ -1,13 +1,15 @@
 /**
  * A Dialog to prompt the user to select from a list of items.
- * @type {Dialog}
- * @deprecated since sw5e 1.6, targeted for removal in 1.8
+ * @deprecated since sw5e 1.6, targeted for removal in 2.1
  */
 export default class SelectItemsPrompt extends Dialog {
     constructor(items, dialogData = {}, options = {}) {
         super(dialogData, options);
         this.options.classes = ["sw5e", "dialog", "select-items-prompt", "sheet"];
-        console.warn("SelectItemsPrompt has been deprecated and will be removed in 1.8.");
+        foundry.utils.logCompatibilityWarning("SelectItemsPrompt has been deprecated and will be removed.", {
+            since: "SW5e 1.6",
+            until: "SW5e 2.1"
+        });
 
         /**
          * Store a reference to the Item documents being used
@@ -37,7 +39,7 @@ export default class SelectItemsPrompt extends Dialog {
      */
     static async create(items, {hint}) {
         // Render the ability usage template
-        const html = await renderTemplate("systems/sw5e/templates/apps/select-items-prompt.html", {items, hint});
+        const html = await renderTemplate("systems/sw5e/templates/apps/select-items-prompt.hbs", {items, hint});
 
         return new Promise((resolve) => {
             const dlg = new this(items, {

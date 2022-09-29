@@ -45,7 +45,7 @@ export default class CharacterImporter {
         };
 
         /* ----------------------------------------------------------------- */
-        /*  character.data.skills.<skill_name>.value is all that matters
+        /*  character.system.skills.<skill_name>.value is all that matters
         /*  values can be 0, 0.5, 1 or 2
         /*  0 = regular
         /*  0.5 = half-proficient
@@ -114,7 +114,7 @@ export default class CharacterImporter {
             name: sourceCharacter.name,
             type: "character",
             img: sourceCharacter.avatar,
-            data: {
+            system: {
                 abilities: abilities,
                 details: details,
                 skills: skills,
@@ -134,25 +134,15 @@ export default class CharacterImporter {
                         name: this.capitalize(e.current),
                         type: this.baseOrMulti(e.name),
                         level: this.getLevel(e, sourceCharacter),
-                        arch: this.getSubclass(e, sourceCharacter),
-                    }
+                        arch: this.getSubclass(e, sourceCharacter)
+                    };
                 }),
             actor
         );
 
-        await this.addSpecies(
-            sourceCharacter.attribs
-                .find((e) => e.name == "race")
-                .current,
-            actor
-        );
+        await this.addSpecies(sourceCharacter.attribs.find((e) => e.name == "race").current, actor);
 
-        await this.addBackground(
-            sourceCharacter.attribs
-                .find((e) => e.name == "background")
-                .current,
-            actor
-        );
+        await this.addBackground(sourceCharacter.attribs.find((e) => e.name == "background").current, actor);
 
         await this.addPowers(
             sourceCharacter.attribs
@@ -168,7 +158,9 @@ export default class CharacterImporter {
                     const id = item.name.match(/-\w{19}/g);
                     return {
                         name: item.current,
-                        quantity: sourceCharacter.attribs.find((e) => e.name === `repeating_inventory_${id}_itemcount`)?.current ?? 1
+                        quantity:
+                            sourceCharacter.attribs.find((e) => e.name === `repeating_inventory_${id}_itemcount`)
+                                ?.current ?? 1
                     };
                 }),
             actor
@@ -180,25 +172,25 @@ export default class CharacterImporter {
         const archetypesPack = await game.packs.get("sw5e.archetypes").getDocuments();
 
         // Make sure the base class is added first
-        const firstClassIdx = classes.findIndex(cls => cls.type === "base_class");
+        const firstClassIdx = classes.findIndex((cls) => cls.type === "base_class");
         const firstClass = classes.splice(firstClassIdx, 1)[0];
         classes.unshift(firstClass);
 
         for (const cls of classes) {
             const compendiumClass = classesPack.find((o) => o.name === cls.name);
             if (compendiumClass) {
-                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass.data]))[0];
-                await createdClass.update({"data.levels": cls.level});
+                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass.system]))[0];
+                await createdClass.update({"system.levels": cls.level});
             }
             const compendiumArch = archetypesPack.find((o) => o.name === cls.arch);
             if (compendiumArch) {
-                await actor.createEmbeddedDocuments("Item", [compendiumArch.data]);
+                await actor.createEmbeddedDocuments("Item", [compendiumArch.system]);
             }
         }
     }
 
     static classOrMulticlass(name) {
-        return name === "class" || (name.match(/multiclass\d+$/));
+        return name === "class" || name.match(/multiclass\d+$/);
     }
 
     static baseOrMulti(name) {
@@ -236,33 +228,33 @@ export default class CharacterImporter {
     static async addSpecies(race, actor) {
         const species = await game.packs.get("sw5e.species").getDocuments();
         const assignedSpecies = species.find((c) => c.name === race);
-        const activeEffects = [...assignedSpecies.data.effects][0].data.changes;
-        const actorData = {data: {abilities: {...actor.data.data.abilities}}};
+        const activeEffects = [...assignedSpecies.system.effects][0].system.changes;
+        const actorData = {system: {abilities: {...actor.system.abilities}}};
 
         activeEffects.map((effect) => {
             switch (effect.key) {
-                case "data.abilities.str.value":
-                    actorData.data.abilities.str.value -= effect.value;
+                case "system.abilities.str.value":
+                    actorData.system.abilities.str.value -= effect.value;
                     break;
 
-                case "data.abilities.dex.value":
-                    actorData.data.abilities.dex.value -= effect.value;
+                case "system.abilities.dex.value":
+                    actorData.system.abilities.dex.value -= effect.value;
                     break;
 
-                case "data.abilities.con.value":
-                    actorData.data.abilities.con.value -= effect.value;
+                case "system.abilities.con.value":
+                    actorData.system.abilities.con.value -= effect.value;
                     break;
 
-                case "data.abilities.int.value":
-                    actorData.data.abilities.int.value -= effect.value;
+                case "system.abilities.int.value":
+                    actorData.system.abilities.int.value -= effect.value;
                     break;
 
-                case "data.abilities.wis.value":
-                    actorData.data.abilities.wis.value -= effect.value;
+                case "system.abilities.wis.value":
+                    actorData.system.abilities.wis.value -= effect.value;
                     break;
 
-                case "data.abilities.cha.value":
-                    actorData.data.abilities.cha.value -= effect.value;
+                case "system.abilities.cha.value":
+                    actorData.system.abilities.cha.value -= effect.value;
                     break;
 
                 default:
@@ -272,14 +264,14 @@ export default class CharacterImporter {
 
         await actor.update(actorData);
 
-        await actor.createEmbeddedDocuments("Item", [assignedSpecies.data]);
+        await actor.createEmbeddedDocuments("Item", [assignedSpecies.system]);
     }
 
     static async addBackground(bg, actor) {
         const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
         const packBg = bgs.find((c) => c.name === bg);
         if (packBg) {
-            await actor.createEmbeddedDocuments("Item", [packBg.data]);
+            await actor.createEmbeddedDocuments("Item", [packBg.system]);
         }
     }
 
@@ -291,7 +283,7 @@ export default class CharacterImporter {
             const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
 
             if (createdPower) {
-                await actor.createEmbeddedDocuments("Item", [createdPower.data]);
+                await actor.createEmbeddedDocuments("Item", [createdPower.system]);
             }
         }
     }
@@ -318,7 +310,7 @@ export default class CharacterImporter {
             ...(await game.packs.get("sw5e.lightsaberform").getDocuments()),
             ...(await game.packs.get("sw5e.modifications").getDocuments()),
             ...(await game.packs.get("sw5e.kits").getDocuments()),
-            ...(await game.packs.get("sw5e.maneuvers").getDocuments()),
+            ...(await game.packs.get("sw5e.maneuvers").getDocuments())
         ];
 
         for (const item of items) {
@@ -326,10 +318,10 @@ export default class CharacterImporter {
 
             if (packItem) {
                 if (item.quantity != 1) {
-                    packItem.data.data.quantity = item.quantity;
+                    packItem.system.quantity = item.quantity;
                 }
 
-                await actor.createEmbeddedDocuments("Item", [packItem.data]);
+                await actor.createEmbeddedDocuments("Item", [packItem.system]);
             }
         }
     }

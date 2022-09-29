@@ -134,6 +134,7 @@ export default class ItemSheet5e extends ItemSheet {
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)
         });
 
+        //TODO: See if there is a way to get it into merge object for consistency
         // Weapon Properties
         if (item.consumableType === "ammo") {
             context.wpnProperties = context.isStarshipAmmo
@@ -202,19 +203,19 @@ export default class ItemSheet5e extends ItemSheet {
      * @returns {object}     Object with advancement data grouped by levels.
      */
     _getItemAdvancement(item) {
+        const advancement = {};
         const configMode = !item.parent || this.advancementConfigurationMode;
         const maxLevel = !configMode ? item.curAdvancementLevel : -1;
-        const data = {};
 
         // Improperly configured advancements
         if (item.advancement.needingConfiguration.length) {
-            data.unconfigured = {
-                items: item.advancement.needingConfiguration.map((advancement) => ({
-                    id: advancement.id,
-                    order: advancement.constructor.order,
-                    title: advancement.title,
-                    icon: advancement.icon,
-                    classRestriction: advancement.data.classRestriction,
+            advancement.unconfigured = {
+                items: item.advancement.needingConfiguration.map((a) => ({
+                    id: a.id,
+                    order: a.constructor.order,
+                    title: a.title,
+                    icon: a.icon,
+                    classRestriction: a.data.classRestriction,
                     configured: false
                 })),
                 configured: "partial"
@@ -234,46 +235,42 @@ export default class ItemSheet5e extends ItemSheet {
                 configured: advancement.configuredForLevel(level)
             }));
             if (!items.length) continue;
-            data[level] = {
+            advancement[level] = {
                 items: items.sort((a, b) => a.order.localeCompare(b.order)),
                 configured: level > maxLevel ? false : items.some((a) => !a.configured) ? "partial" : "full"
             };
         }
-
-        return data;
+        return advancement;
     }
 
     /* -------------------------------------------- */
 
     /**
      * Get the base weapons and tools based on the selected type.
-     *
-     * @param {object} item        Item data for the item being displayed
      * @returns {Promise<object>}  Object with base items for this type formatted for selectOptions.
      * @protected
      */
-    async _getItemBaseTypes(item) {
-        const type = item.type === "equipment" ? "armor" : item.type;
+    async _getItemBaseTypes() {
+        const type = this.item.type === "equipment" ? "armor" : this.item.type;
+
         const typeProperty = type === "armor" ? "armor.type" : `${type}Type`;
-        const baseType = foundry.utils.getProperty(item.data, typeProperty);
+        const baseType = foundry.utils.getProperty(this.item.system, typeProperty);
 
-        const ids = CONFIG.SW5E[`${baseType === "shield" ? "shield" : type}Ids`];
-        if (ids === undefined) return {};
+        const baseIds = CONFIG.SW5E[`${baseType === "shield" ? "shield" : type}Ids`];
+        if (baseIds === undefined) return {};
 
-        const items = await Object.entries(ids).reduce(async (acc, [name, id]) => {
+        const items = {};
+        for (const [name, id] of Object.entries(baseIds)) {
             let baseItem = await ProficiencySelector.getBaseItem(id);
-
+            /** */
             // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
-            if (!baseItem?.data) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}))?.data;
+            if (!baseItem?.data) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}))?.system;
 
-            const obj = await acc;
-            if (!baseItem) return obj;
+            if (!baseItem) continue;
 
-            if (baseType !== foundry.utils.getProperty(baseItem.data, typeProperty)) return obj;
-            obj[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
-            return obj;
-        }, {});
-
+            if (baseType !== foundry.utils.getProperty(baseItem.system, typeProperty)) continue;
+            items[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
+        }
         return Object.fromEntries(Object.entries(items).sort((lhs, rhs) => lhs[1].localeCompare(rhs[1])));
     }
 
@@ -281,12 +278,11 @@ export default class ItemSheet5e extends ItemSheet {
 
     /**
      * Get the valid item consumption targets which exist on the actor
-     * @param {object} item          Item data for the item being displayed
-     * @returns {{string: string}}   An object of potential consumption targets
+     * @returns {Object<string>}   An object of potential consumption targets
      * @private
      */
-    _getItemConsumptionTargets(item) {
-        const consume = item.data.consume || {};
+    _getItemConsumptionTargets() {
+        const consume = this.item.system.consume || {};
         if (!consume.type) return [];
 
         // Consume types not reliant on actor
@@ -308,18 +304,16 @@ export default class ItemSheet5e extends ItemSheet {
         if (consume.type === "ammo") {
             return actor.itemTypes.consumable.reduce(
                 (ammo, i) => {
-                    if (i.data.data.consumableType === "ammo") {
-                        ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
-                    }
+                    if (i.system.consumableType === "ammo") ammo[i.id] = `${i.name} (${i.system.quantity})`;
                     return ammo;
                 },
-                {[item._id]: `${item.name} (${item.data.quantity})`}
+                {[this.item.id]: `${this.item.name} (${this.item.system.quantity})`}
             );
         }
 
         // Attributes
         else if (consume.type === "attribute") {
-            const attributes = TokenDocument.implementation.getConsumedAttributes(actor.data.data);
+            const attributes = TokenDocument.implementation.getConsumedAttributes(actor.system);
             attributes.bar.forEach((a) => a.push("value"));
             return attributes.bar.concat(attributes.value).reduce((obj, a) => {
                 let k = a.join(".");
@@ -343,8 +337,8 @@ export default class ItemSheet5e extends ItemSheet {
         // Materials
         else if (consume.type === "material") {
             return actor.items.reduce((obj, i) => {
-                if (["consumable", "loot"].includes(i.data.type) && !i.data.data.activation) {
-                    obj[i.id] = `${i.name} (${i.data.data.quantity})`;
+                if (["consumable", "loot"].includes(i.type) && !i.system.activation) {
+                    obj[i.id] = `${i.name} (${i.system.quantity})`;
                 }
                 return obj;
             }, {});
@@ -354,7 +348,7 @@ export default class ItemSheet5e extends ItemSheet {
         else if (consume.type === "charges") {
             return actor.items.reduce((obj, i) => {
                 // Limited-use items
-                const uses = i.data.data.uses || {};
+                const uses = i.system.uses || {};
                 if (uses.per && uses.max) {
                     const label =
                         uses.per === "charges"
@@ -367,7 +361,7 @@ export default class ItemSheet5e extends ItemSheet {
                 }
 
                 // Recharging items
-                const recharge = i.data.data.recharge || {};
+                const recharge = i.system.recharge || {};
                 if (recharge.value) obj[i.id] = `${i.name} (${game.i18n.format("SW5E.Recharge")})`;
                 return obj;
             }, {});
@@ -378,21 +372,20 @@ export default class ItemSheet5e extends ItemSheet {
 
     /**
      * Get the text item status which is shown beneath the Item type in the top-right corner of the sheet.
-     * @param {object} item    Copy of the item data being prepared for display.
      * @returns {string|null}  Item status string if applicable to item's type.
      * @private
      */
-    _getItemStatus(item) {
-        switch (item.type) {
+    _getItemStatus() {
+        switch (this.item.type) {
             case "class":
-                return game.i18n.format("SW5E.LevelCount", {ordinal: item.data.levels.ordinalString()});
+                return game.i18n.format("SW5E.LevelCount", {ordinal: this.item.system.levels.ordinalString()});
             case "equipment":
             case "weapon":
-                return game.i18n.localize(item.data.equipped ? "SW5E.Equipped" : "SW5E.Unequipped");
+                return game.i18n.localize(this.item.system.equipped ? "SW5E.Equipped" : "SW5E.Unequipped");
             case "power":
-                return CONFIG.SW5E.powerPreparationModes[item.data.preparation];
+                return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation];
             case "tool":
-                return game.i18n.localize(item.data.proficient ? "SW5E.Proficient" : "SW5E.NotProficient");
+                return game.i18n.localize(this.item.system.proficient ? "SW5E.Proficient" : "SW5E.NotProficient");
         }
     }
 
@@ -400,72 +393,75 @@ export default class ItemSheet5e extends ItemSheet {
 
     /**
      * Get the Array of item properties which are used in the small sidebar of the description tab.
-     * @param {object} item  Copy of the item data being prepared for display.
      * @returns {string[]}   List of property labels to be shown.
      * @private
      */
-    _getItemProperties(item) {
+    _getItemProperties() {
         const props = [];
         const labels = this.item.labels;
+        switch (this.item.type) {
+            case "equipment":
+                props.push(CONFIG.SW5E.equipmentTypes[this.item.system.armor.type]);
+                if (this.item.isArmor || this._isItemMountable(this.item)) props.push(labels.armor);
+                if (item.data.properties)
+                    props.push(
+                        ...Object.entries(this.item.system.properties)
+                            .filter((e) => ![false, undefined, null, 0].includes(e[1]))
+                            .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, {value: e[1]}))
+                    );
+                break;
+            case "feat":
+                props.push(labels.featType);
+                break;
+            case "power":
+                props.push(labels.materials, ...labels.components.tags);
+                break;
+            case "weapon":
+                for (const [k, v] of Object.entries(this.item.system.properties)) {
+                    if (v === true) props.push(CONFIG.SW5E.weaponProperties[k]);
+                }
+                break;
 
-        if (item.type === "weapon") {
-            const properties = CONFIG.SW5E.weaponProperties;
-            props.push(
-                ...Object.entries(item.data.properties)
-                    .filter((e) => ![false, undefined, null, 0].includes(e[1]))
-                    .map((e) => {
-                        if (e[0] in properties) return game.i18n.format(properties[e[0]].full, {value: e[1]});
-                        else {
-                            ui.notifications.warn(
-                                game.i18n.format("SW5E.WarnInvalidProperty", {weapon: item.name, property: e[0]})
-                            );
-                            return e[0];
-                        }
-                    })
-            );
-        } else if (item.type === "power") {
-            props.push(labels.materials, ...labels.components.tags);
-        } else if (item.type === "equipment") {
-            props.push(CONFIG.SW5E.equipmentTypes[item.data.armor.type]);
-            if (this.item.isArmor || this._isItemMountable(item)) props.push(labels.armor);
-            if (item.data.properties)
-                props.push(
-                    ...Object.entries(item.data.properties)
-                        .filter((e) => ![false, undefined, null, 0].includes(e[1]))
-                        .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, {value: e[1]}))
-                );
-        } else if (item.type === "feat") {
-            props.push(labels.featType);
             //TODO: Work out these
-        } else if (item.type === "species") {
-            //props.push(labels.species);
-        } else if (item.type === "archetype") {
-            //props.push(labels.archetype);
-        } else if (item.type === "background") {
-            //props.push(labels.background);
-        } else if (item.type === "classfeature") {
-            //props.push(labels.classfeature);
-        } else if (item.type === "deployment") {
-            //props.push(labels.deployment);
-        } else if (item.type === "venture") {
-            //props.push(labels.venture);
-        } else if (item.type === "fightingmastery") {
-            //props.push(labels.fightingmastery);
-        } else if (item.type === "fightingstyle") {
-            //props.push(labels.fightingstyle);
-        } else if (item.type === "lightsaberform") {
-            //props.push(labels.lightsaberform);
-        } else if (item.type === "maneuver") {
-            // props.push(labels.maneuverType);
+            case "species":
+                //props.push(labels.species);
+                break;
+            case "archetype":
+                //props.push(labels.archetype);
+                break;
+            case "background":
+                //props.push(labels.background);
+                break;
+            case "classfeature":
+                //props.push(labels.classfeature);
+                break;
+            case "deployment":
+                //props.push(labels.deployment);
+                break;
+            case "venture":
+                //props.push(labels.venture);
+                break;
+            case "fightingmastery":
+                //props.push(labels.fightingmastery);
+                break;
+            case "fightingstyle":
+                //props.push(labels.fightingstyle);
+                break;
+            case "lightsaberform":
+                //props.push(labels.lightsaberform);
+                break;
+            case "maneuver":
+                // props.push(labels.maneuverType);
+                break;
         }
 
         // Action type
-        if (item.data.actionType) {
-            props.push(CONFIG.SW5E.itemActionTypes[item.data.actionType]);
+        if (this.item.system.actionType) {
+            props.push(CONFIG.SW5E.itemActionTypes[this.item.system.actionType]);
         }
 
         // Action usage
-        if (item.type !== "weapon" && item.data.activation && !isObjectEmpty(item.data.activation)) {
+        if (this.item.type !== "weapon" && !foundry.utils.isEmpty(this.item.system.activation)) {
             props.push(labels.activation, labels.range, labels.target, labels.duration);
         }
         return props.filter((p) => !!p);
@@ -480,30 +476,25 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     _getWeaponReloadProperties(obj = {}) {
-        const itemData = this.item.data;
+        const itemData = this.item.system;
         const actor = this.item.actor;
 
-        obj.hasReload = !!itemData.data.ammo.max;
-        obj.reloadUsesAmmo = itemData.data?.ammo?.types?.length;
-        obj.reloadFull =
-            itemData.data?.ammo?.value === itemData.data?.ammo?.max ||
-            (obj.reloadUsesAmmo && !itemData.data?.ammo?.target);
+        obj.hasReload = !!itemData.ammo.max;
+        obj.reloadUsesAmmo = itemData.ammo?.types?.length;
+        obj.reloadFull = itemData.ammo?.value === itemData.ammo?.max || (obj.reloadUsesAmmo && !itemData.ammo?.target);
         if (obj.hasReload) {
             if (actor && obj.reloadUsesAmmo) {
                 obj.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
-                    if (
-                        i.data?.data?.consumableType === "ammo" &&
-                        itemData.data?.ammo?.types.includes(i.data?.data?.ammoType)
-                    ) {
-                        ammo[i.id] = `${i.name} (${i.data.data.quantity})`;
+                    if (i.system.consumableType === "ammo" && itemData.ammo?.types.includes(i.system.ammoType)) {
+                        ammo[i.id] = `${i.name} (${i.system.quantity})`;
                     }
                     return ammo;
                 }, {});
             } else obj.reloadAmmo = {};
-            if (itemData.data?.properties?.rel) {
+            if (itemData.properties?.rel) {
                 obj.reloadActLabel = "SW5E.WeaponReload";
                 obj.reloadLabel = "SW5E.WeaponReload";
-            } else if (itemData.data?.properties?.ovr) {
+            } else if (itemData.properties?.ovr) {
                 obj.reloadActLabel = "SW5E.WeaponCoolDown";
                 obj.reloadLabel = "SW5E.WeaponOverheat";
             }
@@ -521,16 +512,15 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     _isItemMountable(item) {
-        const data = item.data;
         return (
-            (item.type === "weapon" && data.weaponType === "siege") ||
-            (item.type === "equipment" && data.armor.type === "vehicle")
+            (item.type === "weapon" && item.system.weaponType === "siege") ||
+            (item.type === "equipment" && item.system.armor.type === "vehicle")
         );
     }
 
     /* -------------------------------------------- */
 
-    /** @inheritdoc */
+    /** @inheritDoc */
     setPosition(position = {}) {
         if (!(this._minimized || position.height)) {
             position.height = this._tabs[0].active === "details" ? "auto" : this.options.height;
@@ -539,27 +529,39 @@ export default class ItemSheet5e extends ItemSheet {
     }
 
     /* -------------------------------------------- */
+
+    /** @inheritdoc */
+    async activateEditor(name, options = {}, initialContent = "") {
+        options.relativeLinks = true;
+        options.plugins = {
+            menu: ProseMirror.ProseMirrorMenu.build(ProseMirror.defaultSchema, {
+                compact: true,
+                destroyOnSave: true,
+                onSave: () => this.saveEditor(name, {remove: true})
+            })
+        };
+        return super.activateEditor(name, options, initialContent);
+    }
+
+    /* -------------------------------------------- */
     /*  Form Submission                             */
     /* -------------------------------------------- */
 
-    /** @inheritdoc */
+    /** @inheritDoc */
     _getSubmitData(updateData = {}) {
-        // Create the expanded update data object
-        const fd = new FormDataExtended(this.form, {editors: this.editors});
-        let data = fd.toObject();
-        if (updateData) data = mergeObject(data, updateData);
-        else data = expandObject(data);
+        const formData = foundry.utils.expandObject(super._getSubmitData(updateData));
 
         // Handle Damage array
-        const damage = data.data?.damage;
+        const damage = formData.system?.damage;
         if (damage) damage.parts = Object.values(damage?.parts || {}).map((d) => [d[0] || "", d[1] || ""]);
 
         // Check max uses formula
-        if (data.data?.uses?.max) {
-            const maxRoll = new Roll(data.data.uses.max);
+        const uses = formData.system?.uses;
+        if (uses?.max) {
+            const maxRoll = new Roll(uses.max);
             if (!maxRoll.isDeterministic) {
-                data.data.uses.max = this.object.data._source.data.uses.max;
-                this.form.querySelector("input[name='data.uses.max']").value = data.data.uses.max;
+                uses.max = this.item._source.system.uses.max;
+                this.form.querySelector("input[name='system.uses.max']").value = uses.max;
                 return ui.notifications.error(
                     game.i18n.format("SW5E.FormulaCannotContainDiceError", {
                         name: game.i18n.localize("SW5E.LimitedUses")
@@ -569,18 +571,18 @@ export default class ItemSheet5e extends ItemSheet {
         }
 
         // Check class identifier
-        if (data.data.identifier) {
+        if (formData.system.identifier) {
             const dataRgx = new RegExp(/^([a-z0-9_-]+)$/i);
-            const match = data.data.identifier.match(dataRgx);
+            const match = formData.system.identifier.match(dataRgx);
             if (!match) {
-                data.data.identifier = this.object.data._source.data.identifier;
-                this.form.querySelector("input[name='data.identifier']").value = data.data.identifier;
+                formData.system.identifier = this.item._source.system.identifier;
+                this.form.querySelector("input[name='data.identifier']").value = formData.system.identifier;
                 return ui.notifications.error(game.i18n.localize("SW5E.IdentifierError"));
             }
         }
 
         // Flatten the submission data
-        data = flattenObject(data);
+        data = foundry.utils.flattenObject(formData);
 
         // Prevent submitting overridden values
         const overrides = foundry.utils.flattenObject(this.item.overrides);
@@ -593,13 +595,13 @@ export default class ItemSheet5e extends ItemSheet {
 
     /* -------------------------------------------- */
 
-    /** @inheritdoc */
+    /** @inheritDoc */
     async _renderInner(...args) {
         const html = await super._renderInner(...args);
         const els = this.form.getElementsByClassName("tristate-checkbox");
         for (const el of els) {
             const indet_path = el.name.replace(/(\w+)[.](\w+)$/, "$1.indeterminate.$2");
-            el.indeterminate = foundry.utils.getProperty(this.item.data, indet_path) != false;
+            el.indeterminate = foundry.utils.getProperty(this.item.system, indet_path) != false;
         }
         return html;
     }
@@ -619,9 +621,10 @@ export default class ItemSheet5e extends ItemSheet {
                     );
                 ActiveEffect5e.onManageActiveEffect(ev, this.item);
             });
-            html.find(".advancement .item-control").click(this._onAdvancementAction.bind(this));
-            // TODO: Remove this when UUID links are supported in v10
-            html.find(".actor-item-link").click(this._onClickContentLink.bind(this));
+            html.find(".advancement .item-control").click((event) => {
+                const t = event.currentTarget;
+                if (t.dataset.action) this._onAdvancementAction(t, t.dataset.action);
+            });
             html.find(".tristate-checkbox").click(async (ev) => {
                 ev.preventDefault();
 
@@ -630,8 +633,8 @@ export default class ItemSheet5e extends ItemSheet {
                 const path = ev.target.name;
                 const indet_path = path.replace(/(\w+)[.](\w+)$/, "$1.indeterminate.$2");
 
-                const val = foundry.utils.getProperty(this.item.data, path);
-                const indet_val = foundry.utils.getProperty(this.item.data, indet_path) != false;
+                const val = foundry.utils.getProperty(this.item.system, path);
+                const indet_val = foundry.utils.getProperty(this.item.system, indet_path) != false;
 
                 if (indet_val) {
                     update[path] = false;
@@ -649,6 +652,48 @@ export default class ItemSheet5e extends ItemSheet {
             html.find(".weapon-reload").click(this._onWeaponReload.bind(this));
             html.find(".weapon-select-ammo").change(this._onWeaponSelectAmmo.bind(this));
         }
+        // Advancement context menu
+        const contextOptions = this.#getAdvancementContextMenuOptions();
+        /**
+         * A hook event that fires when the context menu for the advancements list is constructed.
+         * @function sw5e.getItemAdvancementContext
+         * @memberof hookEvents
+         * @param {jQuery} html                      The HTML element to which the context options are attached.
+         * @param {ContextMenuEntry[]} entryOptions  The context menu entries.
+         */
+        Hooks.call("sw5e.getItemAdvancementContext", html, contextOptions);
+        if (contextOptions) new ContextMenu(html, ".advancement-item", contextOptions);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Get the set of ContextMenu options which should be applied for advancement entries.
+     * @returns {ContextMenuEntry[]}  Context menu entries.
+     * @private
+     */
+    #getAdvancementContextMenuOptions() {
+        const condition = (li) => (this.advancementConfigurationMode || !this.isEmbedded) && this.isEditable;
+        return [
+            {
+                name: "SW5E.AdvancementControlEdit",
+                icon: "<i class='fas fa-edit fa-fw'></i>",
+                condition,
+                callback: (li) => this._onAdvancementAction(li[0], "edit")
+            },
+            {
+                name: "SW5E.AdvancementControlDuplicate",
+                icon: "<i class='fas fa-copy fa-fw'></i>",
+                condition,
+                callback: (li) => this._onAdvancementAction(li[0], "duplicate")
+            },
+            {
+                name: "SW5E.AdvancementControlDelete",
+                icon: "<i class='fas fa-trash fa-fw' style='color: rgb(255, 65, 65);'></i>",
+                condition,
+                callback: (li) => this._onAdvancementAction(li[0], "delete")
+            }
+        ];
     }
 
     /* -------------------------------------------- */
@@ -664,7 +709,7 @@ export default class ItemSheet5e extends ItemSheet {
         const a = event.currentTarget;
 
         // Don't allow adding or removing damage parts while there is a mod affecting those, to avoid duplication
-        if ("data.damage.parts" in flattenObject(this.item.overrides))
+        if ("system.damage.parts" in flattenObject(this.item.overrides))
             return ui.notifications.warn(
                 `Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`
             );
@@ -672,17 +717,17 @@ export default class ItemSheet5e extends ItemSheet {
         // Add new damage component
         if (a.classList.contains("add-damage")) {
             await this._onSubmit(event); // Submit any unsaved changes
-            const damage = this.item.data.data.damage;
-            return this.item.update({"data.damage.parts": damage.parts.concat([["", ""]])});
+            const damage = this.item.system.damage;
+            return this.item.update({"system.damage.parts": damage.parts.concat([["", ""]])});
         }
 
         // Remove a damage component
         if (a.classList.contains("delete-damage")) {
             await this._onSubmit(event); // Submit any unsaved changes
             const li = a.closest(".damage-part");
-            const damage = foundry.utils.deepClone(this.item.data.data.damage);
+            const damage = foundry.utils.deepClone(this.item.system.damage);
             damage.parts.splice(Number(li.dataset.damagePart), 1);
-            return this.item.update({"data.damage.parts": damage.parts});
+            return this.item.update({"system.damage.parts": damage.parts});
         }
     }
 
@@ -696,14 +741,12 @@ export default class ItemSheet5e extends ItemSheet {
     _onConfigureTraits(event) {
         event.preventDefault();
         const a = event.currentTarget;
-
         const options = {
             name: a.dataset.target,
             title: a.parentElement.innerText,
             choices: [],
             allowCustom: false
         };
-
         switch (a.dataset.options) {
             case "saves":
                 options.choices = CONFIG.SW5E.abilities;
@@ -712,14 +755,17 @@ export default class ItemSheet5e extends ItemSheet {
             case "skills.choices":
                 options.choices = CONFIG.SW5E.skills;
                 options.valueKey = null;
+                options.labelKey = "label";
                 break;
             case "skills":
-                const skills = this.item.data.data.skills;
-                const choiceSet = skills.choices?.length ? skills.choices : Object.keys(CONFIG.SW5E.skills);
+                //TODO: Add the ability to give starship skills?
+                const skills = this.item.system.skills;
+                const choices = skills.choices?.length ? skills.choices : Object.keys(CONFIG.SW5E.skills);
                 options.choices = Object.fromEntries(
-                    Object.entries(CONFIG.SW5E.skills).filter(([skill]) => choiceSet.includes(skill))
+                    Object.entries(CONFIG.SW5E.skills).filter(([s]) => choices.includes(s))
                 );
                 options.maximum = skills.number;
+                options.labelKey = "label";
                 break;
         }
         new TraitSelector(this.item, options).render(true);
@@ -747,8 +793,8 @@ export default class ItemSheet5e extends ItemSheet {
         }
 
         if (item && index !== null) {
-            const data = foundry.utils.duplicate(item.data.data.modify.items[Number(index)].data);
-            data.data.fakeItem = this.item.uuid;
+            const data = foundry.utils.duplicate(item.system.modify.items[Number(index)].system);
+            data.fakeItem = this.item.uuid;
             const mod = new Item5e(data);
             return mod.sheet.render(true);
         }
@@ -878,51 +924,33 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
-     * Handle creating the advancement selection window when the add button is pressed.
-     * @param {Event} event  The click event which originated the creation.
+     * Handle one of the advancement actions from the buttons or context menu.
+     * @param {Element} target  Button or context menu entry that triggered this action.
+     * @param {string} action   Action being triggered.
      * @returns {Promise}
      */
-    _onAdvancementAction(event) {
-        const cl = event.currentTarget.classList;
-        if (cl.contains("item-add")) return game.sw5e.advancement.AdvancementSelection.createDialog(this.item);
-
-        if (cl.contains("modify-choices")) {
-            const level = event.currentTarget.closest("li")?.dataset.level;
-            const manager = AdvancementManager.forModifyChoices(this.item.actor, this.item.id, Number(level));
-            if (manager.steps.length) manager.render(true);
-            return;
-        }
-
-        if (cl.contains("toggle-configuration")) {
-            this.advancementConfigurationMode = !this.advancementConfigurationMode;
-            return this.render();
-        }
-
-        const id = event.currentTarget.closest("li.item")?.dataset.id;
+    _onAdvancementAction(target, action) {
+        const id = target.closest(".advancement-item")?.dataset.id;
         const advancement = this.item.advancement.byId[id];
-        if (!advancement) return;
-
-        if (cl.contains("item-edit")) {
-            const config = new advancement.constructor.metadata.apps.config(advancement);
-            return config.render(true);
-        } else if (cl.contains("item-delete")) {
-            return this.item.deleteAdvancement(id);
+        if (["edit", "delete", "duplicate"].includes(action) && !advancement) return;
+        switch (action) {
+            case "add":
+                return game.sw5e.advancement.AdvancementSelection.createDialog(this.item);
+            case "edit":
+                return new advancement.constructor.metadata.apps.config(advancement).render(true);
+            case "delete":
+                return this.item.deleteAdvancement(id);
+            case "duplicate":
+                return this.item.duplicateAdvancement(id);
+            case "modify-choices":
+                const level = target.closest("li")?.dataset.level;
+                const manager = AdvancementManager.forModifyChoices(this.item.actor, this.item.id, Number(level));
+                if (manager.steps.length) manager.render(true);
+                return;
+            case "toggle-configuration":
+                this.advancementConfigurationMode = !this.advancementConfigurationMode;
+                return this.render();
         }
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Handle clicking on "actor-item-link" content links. Note: This method will be removed in 1.7 when it can
-     * be replaced by UUID links in core.
-     * @param {Event} event  Triggering click event.
-     * @private
-     */
-    _onClickContentLink(event) {
-        event.stopPropagation();
-        const actor = game.actors.get(event.target.dataset.actor);
-        const item = actor?.items.get(event.target.dataset.id);
-        item?.sheet.render(true);
     }
 
     /* -------------------------------------------- */

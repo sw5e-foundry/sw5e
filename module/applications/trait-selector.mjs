@@ -1,21 +1,21 @@
 /**
  * A specialized form used to select from a checklist of attributes, traits, or properties
- * @extends {DocumentSheet}
  */
 export default class TraitSelector extends DocumentSheet {
-    /** @inheritdoc */
+    /** @inheritDoc */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             id: "trait-selector",
             classes: ["sw5e", "trait-selector", "subconfig"],
             title: "Actor Trait Selection",
-            template: "systems/sw5e/templates/apps/trait-selector.html",
+            template: "systems/sw5e/templates/apps/trait-selector.hbs",
             width: 320,
             height: "auto",
             choices: {},
             allowCustom: true,
             minimum: 0,
             maximum: null,
+            labelKey: null,
             valueKey: "value",
             customKey: "custom"
         });
@@ -42,7 +42,7 @@ export default class TraitSelector extends DocumentSheet {
 
     /** @override */
     getData() {
-        const attr = foundry.utils.getProperty(this.object.data, this.attribute);
+        const attr = foundry.utils.getProperty(this.object, this.attribute);
         const o = this.options;
         const value = o.valueKey ? foundry.utils.getProperty(attr, o.valueKey) ?? [] : attr;
         const custom = o.customKey ? foundry.utils.getProperty(attr, o.customKey) ?? "" : "";
@@ -50,7 +50,8 @@ export default class TraitSelector extends DocumentSheet {
         // Populate choices
         const choices = Object.entries(o.choices).reduce((obj, e) => {
             let [k, v] = e;
-            obj[k] = {label: v, chosen: attr ? value.includes(k) : false};
+            const label = o.labelKey ? foundry.utils.getProperty(v, o.labelKey) ?? v : v;
+            obj[k] = {label, chosen: attr ? value.includes(k) : false};
             return obj;
         }, {});
 

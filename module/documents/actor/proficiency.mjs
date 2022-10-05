@@ -68,10 +68,9 @@ export default class Proficiency {
 
     /**
      * Override the default `toString` method to return flat proficiency for backwards compatibility in formula.
-     *
      * @returns {string}  Flat proficiency value.
      */
     toString() {
-        return this.flat;
+        return this.term;
     }
 }

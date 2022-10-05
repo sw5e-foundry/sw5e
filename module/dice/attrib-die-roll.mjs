@@ -4,14 +4,24 @@
  * @param {object} data                     The data object against which to parse attributes within the formula
  * @param {object} [options={}]             Extra optional arguments which describe or modify the AttribDieRoll
  * @param {number} [options.advantageMode]  What advantage modifier to apply to the roll (none, advantage, disadvantage)
- * @extends {Roll}
  */
-// TODO: Blend D20 Adv/Disadv with damage die roll
-
 export default class AttribDieRoll extends Roll {
     constructor(formula, data, options) {
         super(formula, data, options);
-        this.configureModifiers();
+        if (!this.options.configured) this.configureModifiers();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Create a D20Roll from a standard Roll instance.
+     * @param {Roll} roll
+     * @returns {AttribDieRoll}
+     */
+    static fromRoll(roll) {
+        const newRoll = new this(roll.formula, roll.data, roll.options);
+        Object.assign(newRoll, roll);
+        return newRoll;
     }
 
     /* -------------------------------------------- */
@@ -26,11 +36,13 @@ export default class AttribDieRoll extends Roll {
         DISADVANTAGE: -1
     };
 
+    /* -------------------------------------------- */
+
     /**
      * The HTML template path used to configure evaluation of this Roll
      * @type {string}
      */
-    static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.html";
+    static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.hbs";
 
     /* -------------------------------------------- */
 
@@ -41,6 +53,8 @@ export default class AttribDieRoll extends Roll {
     get hasAdvantage() {
         return this.options.advantageMode === AttribDieRoll.ADV_MODE.ADVANTAGE;
     }
+
+    /* -------------------------------------------- */
 
     /**
      * A convenience reference for whether this AttribDieRoll has disadvantage
@@ -75,6 +89,9 @@ export default class AttribDieRoll extends Roll {
 
         // Re-compile the underlying formula
         this._formula = this.constructor.getFormula(this.terms);
+
+        // Mark configuration as complete
+        this.options.configured = true;
     }
 
     /* -------------------------------------------- */

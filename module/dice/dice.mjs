@@ -1,248 +1,82 @@
-export {default as D20Roll} from "./dice/d20-roll.js";
-export {default as DamageRoll} from "./dice/damage-roll.js";
-export {default as AttribDieRoll} from "./dice/attrib-die-roll.js";
-
-/**
- * A standardized helper function for simplifying the constant parts of a multipart roll formula.
- *
- * @param {string} formula                          The original roll formula
- * @param {object} [options]                        Formatting options
- * @param {boolean} [options.preserveFlavor=false]  Preserve flavor text in the simplified formula
- *
- * @returns {string}                                The resulting simplified formula
- */
-export function simplifyRollFormula(formula, {preserveFlavor = false} = {}) {
-    // Create a new roll and verify that the formula is valid before attempting simplification.
-    let roll;
-    try {
-        roll = new Roll(formula);
-    } catch (err) {
-        console.warn(`Unable to simplify formula '${formula}': ${err}`);
-    }
-    Roll.validate(roll.formula);
-
-    // Optionally stip flavor annotations.
-    if (!preserveFlavor) roll.terms = Roll.parse(roll.formula.replace(RollTerm.FLAVOR_REGEXP, ""));
-
-    // Perform arithmetic simplification on the existing roll terms.
-    roll.terms = _simplifyOperatorTerms(roll.terms);
-
-    if (/[*/]/.test(roll.formula)) {
-        return roll.isDeterministic && (!/\[/.test(roll.formula) || !preserveFlavor)
-            ? roll.evaluate({async: false}).total.toString()
-            : roll.constructor.getFormula(roll.terms);
-    }
-
-    // Flatten the roll formula and eliminate string terms.
-    roll.terms = _expandParentheticalTerms(roll.terms);
-    roll.terms = Roll.simplifyTerms(roll.terms);
-
-    // Group terms by type and perform simplifications on various types of roll term.
-    let {poolTerms, diceTerms, mathTerms, numericTerms} = _groupTermsByType(roll.terms);
-    numericTerms = _simplifyNumericTerms(numericTerms || []);
-    diceTerms = _simplifyDiceTerms(diceTerms || []);
-
-    // Recombine the terms into a single term array and remove an initial + operator if present.
-    const simplifiedTerms = [diceTerms, poolTerms, mathTerms, numericTerms].flat().filter(Boolean);
-    if (simplifiedTerms[0]?.operator === "+") simplifiedTerms.shift();
-    return roll.constructor.getFormula(simplifiedTerms);
-}
-
-/**
- * A helper function to perform arithmetic simplification and remove redundant operator terms.
- * @param {RollTerm[]} terms  An array of roll terms
- * @returns {RollTerm[]}  A new array of roll terms with redundant operators removed.
- */
-function _simplifyOperatorTerms(terms) {
-    return terms.reduce((acc, term) => {
-        const prior = acc[acc.length - 1];
-        const ops = new Set([prior?.operator, term.operator]);
-
-        // If one of the terms is not an operator, add the current term as is.
-        if (ops.has(undefined)) acc.push(term);
-        // Replace consecutive "+ -" operators with a "-" operator.
-        else if (ops.has("+") && ops.has("-")) acc.splice(-1, 1, new OperatorTerm({operator: "-"}));
-        // Replace double "-" operators with a "+" operator.
-        else if (ops.has("-") && ops.size === 1) acc.splice(-1, 1, new OperatorTerm({operator: "+"}));
-        // Don't include "+" operators that directly follow "+", "*", or "/". Otherwise, add the term as is.
-        else if (!ops.has("+")) acc.push(term);
-
-        return acc;
-    }, []);
-}
-
-/**
- * A helper function for combining unannoted numeric terms in an array into a single numeric term.
- * @param {object[]} terms An array of roll terms
- * @returns {object[]} A new array of terms with unannotated numeric terms combined into one.
- */
-function _simplifyNumericTerms(terms) {
-    const simplified = [];
-    const {annotated, unannotated} = _separateAnnotatedTerms(terms);
-
-    // Combine the unannotated numerical bonuses into a single new NumericTerm.
-    if (unannotated.length) {
-        const staticBonus = Roll.safeEval(Roll.getFormula(unannotated));
-        if (staticBonus === 0) return [...annotated];
-
-        // If the staticBonus is greater than 0, add a "+" operator so the formula remains valid.
-        if (staticBonus > 0) simplified.push(new OperatorTerm({operator: "+"}));
-        simplified.push(new NumericTerm({number: staticBonus}));
-    }
-    return [...simplified, ...annotated];
-}
-
-/**
- * A helper function to group dice of the same size and sign into single dice terms.
- * @param {object[]} terms An array of DiceTerms and associated OperatorTerms.
- * @returns {object[]}  A new array of simplified dice terms.
- */
-function _simplifyDiceTerms(terms) {
-    const {annotated, unannotated} = _separateAnnotatedTerms(terms);
-
-    // Split the unannotated terms into different die sizes and signs
-    const diceQuantities = unannotated.reduce((obj, curr, i) => {
-        if (curr instanceof OperatorTerm) return obj;
-        const key = `${unannotated[i - 1].operator}${curr.faces}`;
-        obj[key] = (obj[key] ?? 0) + curr.number;
-        return obj;
-    }, {});
-
-    // Add new die and operator terms to simplified for each die size and sign
-    const simplified = Object.entries(diceQuantities).flatMap(([key, number]) => [
-        new OperatorTerm({operator: key.charAt(0)}),
-        new Die({number, faces: parseInt(key.slice(1))})
-    ]);
-    return [...simplified, ...annotated];
-}
-
-/**
- * A helper function to extract the contents of parenthetical terms into their own terms.
- * @param {object[]} terms An array of roll terms
- * @returns {object[]} A new array of terms with no parenthetical terms.
- */
-function _expandParentheticalTerms(terms) {
-    terms = terms.reduce((acc, term) => {
-        if (term instanceof ParentheticalTerm) {
-            if (term.isDeterministic) term = new NumericTerm({number: Roll.safeEval(term.term)});
-            else {
-                const subterms = new Roll(term.term).terms;
-                term = _expandParentheticalTerms(subterms);
-            }
-        }
-        acc.push(term);
-        return acc;
-    }, []);
-    return _simplifyOperatorTerms(terms.flat());
-}
-
-/**
- * A helper function tp group terms into PoolTerms, DiceTerms, MathTerms, and NumericTerms.
- * MathTerms are included as NumericTerms if they are deterministic.
- * @param {RollTerm[]} terms  An array of roll terms
- * @returns {object} An object mapping term types to arrays containing roll terms of that type.
- */
-function _groupTermsByType(terms) {
-    // Add an initial operator so that terms can be rerranged arbitrarily.
-    if (!(terms[0] instanceof OperatorTerm)) terms.unshift(new OperatorTerm({operator: "+"}));
-
-    return terms.reduce((obj, term, i) => {
-        let type;
-        if (term instanceof DiceTerm) type = DiceTerm;
-        else if (term instanceof MathTerm && term.isDeterministic) type = NumericTerm;
-        else type = term.constructor;
-        const key = `${type.name.charAt(0).toLowerCase()}${type.name.substring(1)}s`;
-
-        // Push the term and the preceding OperatorTerm.
-        (obj[key] = obj[key] ?? []).push(terms[i - 1], term);
-        return obj;
-    }, {});
-}
-
-/**
- * A helper function to separate annotated terms from unannotated terms.
- * @param {object[]} terms An array of DiceTerms and associated OperatorTerms
- * @returns {Array | Array[]} A pair of term arrays, one containing annotated terms.
- */
-function _separateAnnotatedTerms(terms) {
-    return terms.reduce(
-        (obj, curr, i) => {
-            if (curr instanceof OperatorTerm) return obj;
-            obj[curr.flavor ? "annotated" : "unannotated"].push(terms[i - 1], curr);
-            return obj;
-        },
-        {annotated: [], unannotated: []}
-    );
-}
-
 /* -------------------------------------------- */
 /* D20 Roll                                     */
 /* -------------------------------------------- */
+
+/**
+ * Configuration data for a D20 roll.
+ *
+ * @typedef {object} D20RollConfiguration
+ *
+ * @property {string[]} [parts=[]]  The dice roll component parts, excluding the initial d20.
+ * @property {object} [data={}]     Data that will be used when parsing this roll.
+ * @property {Event} [event]        The triggering event for this roll.
+ *
+ * ## D20 Properties
+ * @property {boolean} [advantage]        Apply advantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {boolean} [disadvantage]     Apply disadvantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {number|null} [critical=20]  The value of the d20 result which represents a critical success,
+ *                                        `null` will prevent critical successes.
+ * @property {number|null} [fumble=1]     The value of the d20 result which represents a critical failure,
+ *                                        `null` will prevent critical failures.
+ * @property {number} [targetValue]       The value of the d20 result which should represent a successful roll.
+ *
+ * ## Flags
+ * @property {boolean} [elvenAccuracy]   Allow Elven Accuracy to modify this roll?
+ * @property {boolean} [halflingLucky]   Allow Halfling Luck to modify this roll?
+ * @property {boolean} [reliableTalent]  Allow Reliable Talent to modify this roll?
+ *
+ * ## Roll Configuration Dialog
+ * @property {boolean} [fastForward=false]     Should the roll configuration dialog be skipped?
+ * @property {boolean} [chooseModifier=false]  If the configuration dialog is shown, should the ability modifier be
+ *                                             configurable within that interface?
+ * @property {string} [template]               The HTML template used to display the roll configuration dialog.
+ * @property {string} [title]                  Title of the roll configuration dialog.
+ * @property {object} [dialogOptions]          Additional options passed to the roll configuration dialog.
+ *
+ * ## Chat Message
+ * @property {boolean} [chatMessage=true]  Should a chat message be created for this roll?
+ * @property {object} [messageData={}]     Additional data which is applied to the created chat message.
+ * @property {string} [rollMode]           Value of `CONST.DICE_ROLL_MODES` to apply as default for the chat message.
+ * @property {object} [flavor]             Flavor text to use in the created chat message.
+ */
 
 /**
  * A standardized helper function for managing core 5e d20 rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
  *
- * @param {object} [config]
- * @param {string[]} [config.parts]               The dice roll component parts, excluding the initial d20
- * @param {object} [config.data]                  Actor or item data against which to parse the roll
- *
- * @param {boolean} [config.advantage]            Apply advantage to the roll (unless otherwise specified)
- * @param {boolean} [config.disadvantage]         Apply disadvantage to the roll (unless otherwise specified)
- * @param {number} [config.critical]              The value of d20 result which represents a critical success
- * @param {number} [config.fumble]                The value of d20 result which represents a critical failure
- * @param {number} [config.targetValue]           Assign a target value against which the result of this roll
- *                                                should be compared
- * @param {boolean} [config.elvenAccuracy]        Allow Elven Accuracy to modify this roll?
- * @param {boolean} [config.halflingLucky]        Allow Halfling Luck to modify this roll?
- * @param {boolean} [config.reliableTalent]       Allow Reliable Talent to modify this roll?
-
- * @param {boolean} [config.chooseModifier=false] Choose the ability modifier that should be used when the roll is made
- * @param {boolean} [config.fastForward=false]    Allow fast-forward advantage selection
- * @param {Event} [config.event]                  The triggering event which initiated the roll
- * @param {string} [config.template]              The HTML template used to render the roll dialog
- * @param {string} [config.title]                 The dialog window title
- * @param {object} [config.dialogOptions]         Modal dialog options
- *
- * @param {boolean} [config.chatMessage=true]     Automatically create a Chat Message for the result of this roll
- * @param {object} [config.messageData={}]        Additional data which is applied to the created Chat Message, if any
- * @param {string} [config.rollMode]              A specific roll mode to apply as the default for the resulting roll
- * @param {object} [config.speaker]               The ChatMessage speaker to pass when creating the chat
- * @param {string} [config.flavor]                Flavor text to use in the posted chat message
- *
- * @returns {Promise<D20Roll|null>}               The evaluated D20Roll, or null if the workflow was cancelled
+ * @param {D20RollConfiguration} configuration  Configuration data for the D20 roll.
+ * @returns {Promise<D20Roll|null>}             The evaluated D20Roll, or null if the workflow was cancelled
  */
 export async function d20Roll({
     parts = [],
-    data = {}, // Roll creation
+    data = {},
+    event,
     advantage,
     disadvantage,
-    fumble = 1,
     critical = 20,
+    fumble = 1,
     targetValue,
     elvenAccuracy,
     halflingLucky,
-    reliableTalent, // Roll customization
-    chooseModifier = false,
+    reliableTalent,
     fastForward = false,
-    event,
+    chooseModifier = false,
     template,
     title,
-    dialogOptions, // Dialog configuration
+    dialogOptions,
     chatMessage = true,
     messageData = {},
     rollMode,
-    speaker,
-    flavor // Chat Message customization
+    flavor
 } = {}) {
     // Handle input arguments
     const formula = ["1d20"].concat(parts).join(" + ");
     const {advantageMode, isFF} = _determineAdvantageMode({advantage, disadvantage, fastForward, event});
     const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
-    if ( chooseModifier && !isFF ) {
+    if (chooseModifier && !isFF) {
         data.mod = "@mod";
-        if ( "abilityCheckBonus" in data ) data.abilityCheckBonus = "@abilityCheckBonus";
+        if ("abilityCheckBonus" in data) data.abilityCheckBonus = "@abilityCheckBonus";
     }
 
     // Construct the D20Roll instance
@@ -265,7 +99,7 @@ export async function d20Roll({
             {
                 title,
                 chooseModifier,
-                defaultRollMode: defaultRollMode,
+                defaultRollMode,
                 defaultAction: advantageMode,
                 defaultAbility: data?.item?.ability || data?.defaultAbility,
                 template
@@ -273,18 +107,12 @@ export async function d20Roll({
             dialogOptions
         );
         if (configured === null) return null;
-    }
+    } else roll.options.rollMode ??= defaultRollMode;
 
     // Evaluate the configured roll
     await roll.evaluate({async: true});
 
     // Create a Chat Message
-    if (speaker) {
-        console.warn(
-            "You are passing the speaker argument to the d20Roll function directly which should instead be passed as an internal key of messageData"
-        );
-        messageData.speaker = speaker;
-    }
     if (roll && chatMessage) await roll.toMessage(messageData);
     return roll;
 }
@@ -315,48 +143,56 @@ function _determineAdvantageMode({event, advantage = false, disadvantage = false
 /* -------------------------------------------- */
 
 /**
- * A standardized helper function for managing SW5e attribute aie rolls.
+ * Configuration data for an attribute die roll.
+ *
+ * @typedef {object} AttibDieRollConfiguration
+ *
+ * @property {string[]} [parts=[]]  The dice roll component parts, excluding the initial d20.
+ * @property {object} [data={}]     Data that will be used when parsing this roll.
+ * @property {Event} [event]        The triggering event for this roll.
+ *
+ * ## Attrib Properties
+ * @property {boolean} [advantage]        Apply advantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {boolean} [disadvantage]     Apply disadvantage to this roll (unless overridden by modifier keys or dialog)?
+ *
+ * ## Roll Configuration Dialog
+ * @property {boolean} [fastForward=false]     Should the roll configuration dialog be skipped?
+ * @property {boolean} [chooseModifier=false]  If the configuration dialog is shown, should the ability modifier be
+ *                                             configurable within that interface?
+ * @property {string} [template]               The HTML template used to display the roll configuration dialog.
+ * @property {string} [title]                  Title of the roll configuration dialog.
+ * @property {object} [dialogOptions]          Additional options passed to the roll configuration dialog.
+ *
+ * ## Chat Message
+ * @property {boolean} [chatMessage=true]  Should a chat message be created for this roll?
+ * @property {object} [messageData={}]     Additional data which is applied to the created chat message.
+ * @property {string} [rollMode]           Value of `CONST.DICE_ROLL_MODES` to apply as default for the chat message.
+ * @property {object} [flavor]             Flavor text to use in the created chat message.
+ */
+
+/**
+ * A standardized helper function for managing SW5e attribute die rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
  *
- * @param {object} [config]
- * @param {string[]} [config.parts]                The dice roll component parts
- * @param {object} [config.data]                   Actor or item data against which to parse the roll
- *
- * @param {boolean} [config.advantage]             Apply advantage to the roll (unless otherwise specified)
- * @param {boolean} [config.disadvantage]          Apply disadvantage to the roll (unless otherwise specified)
-
- * @param {boolean} [config.chooseModifier=false]  Choose the ability modifier that should be used when the roll is made
- * @param {boolean} [config.fastForward=false]     Allow fast-forward advantage selection
- * @param {Event} [config.event]                   The triggering event which initiated the roll
- * @param {string} [config.template]               The HTML template used to render the roll dialog
- * @param {string} [config.title]                  The dialog window title
- * @param {Object} [config.dialogOptions]          Modal dialog options
- *
- * @param {boolean} [config.chatMessage=true]      Automatically create a Chat Message for the result of this roll
- * @param {object} [config.messageData={}]         Additional data which is applied to the created Chat Message, if any
- * @param {string} [config.rollMode]               A specific roll mode to apply as the default for the resulting roll
- * @param {object} [config.speaker]                The ChatMessage speaker to pass when creating the chat
- * @param {string} [config.flavor]                 Flavor text to use in the posted chat message
- *
- * @returns {Promise<AttribDieRoll|null>}          The evaluated AttribDieRoll, or null if the workflow was cancelled
+ * @param {AttibDieRollConfiguration} configuration  Configuration data for the attribute die roll.
+ * @returns {Promise<AttribDieRoll|null>}            The evaluated AttribDieRoll, or null if the workflow was cancelled
  */
 export async function attribDieRoll({
     parts = [],
-    data = {}, // Roll creation
-    advantage,
-    disadvantage, // Roll customization
-    chooseModifier = false,
-    fastForward = false,
+    data = {},
     event,
+    advantage,
+    disadvantage,
+    fastForward = false,
+    chooseModifier = false,
     template,
     title,
-    dialogOptions, // Dialog configuration
+    dialogOptions,
     chatMessage = true,
     messageData = {},
     rollMode,
-    speaker,
-    flavor // Chat Message customization
+    flavor
 } = {}) {
     // Handle input arguments
     const formula = parts.join(" + ");
@@ -377,7 +213,7 @@ export async function attribDieRoll({
             {
                 title,
                 chooseModifier,
-                defaultRollMode: defaultRollMode,
+                defaultRollMode,
                 defaultAction: advantageMode,
                 defaultAbility: data?.item?.ability,
                 template
@@ -385,18 +221,12 @@ export async function attribDieRoll({
             dialogOptions
         );
         if (configured === null) return null;
-    }
+    } else roll.options.rollMode ??= defaultRollMode;
 
     // Evaluate the configured roll
     await roll.evaluate({async: true});
 
     // Create a Chat Message
-    if (speaker) {
-        console.warn(
-            "You are passing the speaker argument to the attribRoll function directly which should instead be passed as an internal key of messageData"
-        );
-        messageData.speaker = speaker;
-    }
     if (roll && chatMessage) await roll.toMessage(messageData);
     return roll;
 }
@@ -426,57 +256,63 @@ function _determineAttribDieAdvantageMode({event, advantage = false, disadvantag
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for a damage roll.
+ *
+ * @typedef {object} DamageRollConfiguration
+ *
+ * @property {string[]} [parts=[]]  The dice roll component parts.
+ * @property {object} [data={}]     Data that will be used when parsing this roll.
+ * @property {Event} [event]        The triggering event for this roll.
+ *
+ * ## Critical Handling
+ * @property {boolean} [allowCritical=true]  Is this damage roll allowed to be rolled as critical?
+ * @property {boolean} [critical=false]      Apply critical to this roll (unless overridden by modifier key or dialog)?
+ * @property {number} [criticalBonusDice]    A number of bonus damage dice that are added for critical hits.
+ * @property {number} [criticalMultiplier]   Multiplier to use when calculating critical damage.
+ * @property {boolean} [multiplyNumeric]     Should numeric terms be multiplied when this roll criticals?
+ * @property {boolean} [powerfulCritical]    Should the critical dice be maximized rather than rolled?
+ * @property {string} [criticalBonusDamage]  An extra damage term that is applied only on a critical hit.
+ *
+ * ## Roll Configuration Dialog
+ * @property {boolean} [fastForward=false]  Should the roll configuration dialog be skipped?
+ * @property {string} [template]            The HTML template used to render the roll configuration dialog.
+ * @property {string} [title]               Title of the roll configuration dialog.
+ * @property {object} [dialogOptions]       Additional options passed to the roll configuration dialog.
+ *
+ * ## Chat Message
+ * @property {boolean} [chatMessage=true]  Should a chat message be created for this roll?
+ * @property {object} [messageData={}]     Additional data which is applied to the created chat message.
+ * @property {string} [rollMode]           Value of `CONST.DICE_ROLL_MODES` to apply as default for the chat message.
+ * @property {string} [flavor]             Flavor text to use in the created chat message.
+ */
+
+/**
  * A standardized helper function for managing core 5e damage rolls.
  * Holding SHIFT, ALT, or CTRL when the attack is rolled will "fast-forward".
  * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
  *
- * @param {object} [config]
- * @param {string[]} [config.parts]                 The dice roll component parts, excluding the initial d20
- * @param {object} [config.data]                    Actor or item data against which to parse the roll
- *
- * @param {boolean} [config.critical=false]         Flag this roll as a critical hit for the purposes of
- *                                                  fast-forward or default dialog action
- * @param {number} [config.criticalBonusDice=0]     A number of bonus damage dice that are added for critical hits
- * @param {number} [config.criticalMultiplier=2]    A critical hit multiplier which is applied to critical hits
- * @param {boolean} [config.multiplyNumeric=false]  Multiply numeric terms by the critical multiplier
- * @param {boolean} [config.powerfulCritical=false] Apply the "powerful criticals" house rule to critical hits
- * @param {string} [config.criticalBonusDamage]     An extra damage term that is applied only on a critical hit
- *
- * @param {boolean} [config.fastForward=false]      Allow fast-forward advantage selection
- * @param {Event}[config.event]                     The triggering event which initiated the roll
- * @param {boolean} [config.allowCritical=true]     Allow the opportunity for a critical hit to be rolled
- * @param {string} [config.template]                The HTML template used to render the roll dialog
- * @param {string} [config.title]                   The dice roll UI window title
- * @param {object} [config.dialogOptions]           Configuration dialog options
- *
- * @param {boolean} [config.chatMessage=true]       Automatically create a Chat Message for the result of this roll
- * @param {object} [config.messageData={}]          Additional data which is applied to the created Chat Message, if any
- * @param {string} [config.rollMode]                A specific roll mode to apply as the default for the resulting roll
- * @param {object} [config.speaker]                 The ChatMessage speaker to pass when creating the chat
- * @param {string} [config.flavor]                  Flavor text to use in the posted chat message
- *
- * @returns {Promise<DamageRoll|null>}              The evaluated DamageRoll, or null if the workflow was canceled
+ * @param {DamageRollConfiguration} configuration  Configuration data for the Damage roll.
+ * @returns {Promise<DamageRoll|null>}             The evaluated DamageRoll, or null if the workflow was canceled
  */
 export async function damageRoll({
     parts = [],
-    data, // Roll creation
+    data,
+    event,
+    allowCritical = true,
     critical = false,
     criticalBonusDice,
     criticalMultiplier,
     multiplyNumeric,
     powerfulCritical,
-    criticalBonusDamage, // Damage customization
+    criticalBonusDamage,
     fastForward = false,
-    event,
-    allowCritical = true,
     template,
     title,
-    dialogOptions, // Dialog configuration
+    dialogOptions,
     chatMessage = true,
     messageData = {},
     rollMode,
-    speaker,
-    flavor // Chat Message customization
+    flavor
 } = {}) {
     // Handle input arguments
     const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
@@ -514,12 +350,6 @@ export async function damageRoll({
     await roll.evaluate({async: true});
 
     // Create a Chat Message
-    if (speaker) {
-        console.warn(
-            "You are passing the speaker argument to the damageRoll function directly which should instead be passed as an internal key of messageData"
-        );
-        messageData.speaker = speaker;
-    }
     if (roll && chatMessage) await roll.toMessage(messageData);
     return roll;
 }

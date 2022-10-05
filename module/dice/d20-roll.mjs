@@ -10,7 +10,6 @@
  * @param {boolean} [options.elvenAccuracy=false]      Allow Elven Accuracy to modify this roll?
  * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
- * @extends {Roll}
  */
 // TODO: Check elven accuracy, halfling lucky, and reliable talent are required
 // Elven Accuracy is Supreme accuracy feat, Reliable Talent is operative's Reliable Talent Class Feat
@@ -20,7 +19,20 @@ export default class D20Roll extends Roll {
         if (!(this.terms[0] instanceof Die && this.terms[0].faces === 20)) {
             throw new Error(`Invalid D20Roll formula provided ${this._formula}`);
         }
-        if ( !this.options.configured ) this.configureModifiers();
+        if (!this.options.configured) this.configureModifiers();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Create a D20Roll from a standard Roll instance.
+     * @param {Roll} roll
+     * @returns {D20Roll}
+     */
+    static fromRoll(roll) {
+        const newRoll = new this(roll.formula, roll.data, roll.options);
+        Object.assign(newRoll, roll);
+        return newRoll;
     }
 
     /* -------------------------------------------- */
@@ -35,11 +47,13 @@ export default class D20Roll extends Roll {
         DISADVANTAGE: -1
     };
 
+    /* -------------------------------------------- */
+
     /**
      * The HTML template path used to configure evaluation of this Roll
      * @type {string}
      */
-    static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.html";
+    static EVALUATION_TEMPLATE = "systems/sw5e/templates/chat/roll-dialog.hbs";
 
     /* -------------------------------------------- */
 
@@ -51,12 +65,38 @@ export default class D20Roll extends Roll {
         return this.options.advantageMode === D20Roll.ADV_MODE.ADVANTAGE;
     }
 
+    /* -------------------------------------------- */
+
     /**
      * A convenience reference for whether this D20Roll has disadvantage
      * @type {boolean}
      */
     get hasDisadvantage() {
         return this.options.advantageMode === D20Roll.ADV_MODE.DISADVANTAGE;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Is this roll a critical success? Returns undefined if roll isn't evaluated.
+     * @type {boolean|void}
+     */
+    get isCritical() {
+        if (!this._evaluated) return undefined;
+        if (!Number.isNumeric(this.options.critical)) return false;
+        return this.dice[0].total >= this.options.critical;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Is this roll a critical failure? Returns undefined if roll isn't evaluated.
+     * @type {boolean|void}
+     */
+    get isFumble() {
+        if (!this._evaluated) return undefined;
+        if (!Number.isNumeric(this.options.fumble)) return false;
+        return this.dice[0].total <= this.options.fumble;
     }
 
     /* -------------------------------------------- */
@@ -222,11 +262,11 @@ export default class D20Roll extends Roll {
         // Customize the modifier
         if (form.ability?.value) {
             const abl = this.data.abilities[form.ability.value];
-            this.terms = this.terms.flatMap(t => {
-                if ( t.term === "@mod" ) return new NumericTerm({number: abl.mod});
-                if ( t.term === "@abilityCheckBonus" ) {
+            this.terms = this.terms.flatMap((t) => {
+                if (t.term === "@mod") return new NumericTerm({number: abl.mod});
+                if (t.term === "@abilityCheckBonus") {
                     const bonus = abl.bonuses?.check;
-                    if ( bonus ) return new Roll(bonus, this.data).terms;
+                    if (bonus) return new Roll(bonus, this.data).terms;
                     return new NumericTerm({number: 0});
                 }
                 return t;

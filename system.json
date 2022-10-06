@@ -1,327 +1,344 @@
 {
-    "name": "sw5e",
-    "title": "SW 5th Edition",
-    "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
-    "version": "1.6.2.2.2.3",
-    "author": "Dev Team",
-    "scripts": [],
-    "esmodules": ["sw5e.js"],
-    "styles": ["sw5e.css", "sw5e-global.css", "sw5e-light.css", "sw5e-dark.css"],
-    "packs": [
-        {
-            "name": "adventuringgear",
-            "label": "Adventuring Gear",
-            "path": "./packs/packs/adventuringgear.db",
-            "type": "Item"
-        },
-        {
-            "name": "ammo",
-            "label": "Ammo",
-            "path": "./packs/packs/ammo.db",
-            "type": "Item"
-        },
-        {
-            "name": "archetypefeatures",
-            "label": "Archetype Features",
-            "path": "./packs/packs/archetypefeatures.db",
-            "type": "Item"
-        },
-        {
-            "name": "archetypes",
-            "label": "Archetypes",
-            "path": "./packs/packs/archetypes.db",
-            "type": "Item"
-        },
-        {
-            "name": "armor",
-            "label": "Armor",
-            "path": "./packs/packs/armor.db",
-            "type": "Item"
-        },
-        {
-            "name": "armorproperties",
-            "label": "Armor Properties",
-            "path": "./packs/packs/armorproperties.db",
-            "type": "JournalEntry"
-        },
-        {
-            "name": "backgrounds",
-            "label": "Backgrounds",
-            "path": "./packs/packs/backgrounds.db",
-            "type": "Item"
-        },
-        {
-            "name": "blasters",
-            "label": "Blasters",
-            "path": "./packs/packs/blasters.db",
-            "type": "Item"
-        },
-        {
-            "name": "classes",
-            "label": "Classes",
-            "path": "./packs/packs/classes.db",
-            "type": "Item"
-        },
-        {
-            "name": "classfeatures",
-            "label": "Class Features",
-            "path": "./packs/packs/classfeatures.db",
-            "type": "Item"
-        },
-        {
-            "name": "conditions",
-            "label": "Conditions",
-            "path": "./packs/packs/conditions.db",
-            "type": "JournalEntry"
-        },
-        {
-            "name": "consumables",
-            "label": "Consumables",
-            "path": "./packs/packs/consumables.db",
-            "type": "Item"
-        },
-        {
-            "name": "deploymentfeatures",
-            "label": "Deployment Features",
-            "path": "./packs/packs/deploymentfeatures.db",
-            "type": "Item"
-        },
-        {
-            "name": "deployments",
-            "label": "Deployments",
-            "path": "./packs/packs/deployments.db",
-            "type": "Item"
-        },
-        {
-            "name": "enhanceditems",
-            "label": "Enhanced Items",
-            "path": "./packs/packs/enhanceditems.db",
-            "type": "Item"
-        },
-        {
-            "name": "explosives",
-            "label": "Explosives",
-            "path": "./packs/packs/explosives.db",
-            "type": "Item"
-        },
-        {
-            "name": "feats",
-            "label": "Feats",
-            "path": "./packs/packs/feats.db",
-            "type": "Item"
-        },
-        {
-            "name": "fightingstyles",
-            "label": "Fighting Styles",
-            "path": "./packs/packs/fightingstyles.db",
-            "type": "Item"
-        },
-        {
-            "name": "fightingmasteries",
-            "label": "Fighting Masteries",
-            "path": "./packs/packs/fightingmasteries.db",
-            "type": "Item"
-        },
-                {
-            "name": "fistoscodex",
-            "label": "Fisto's Codex",
-            "path": "./packs/packs/fistoscodex.db",
-            "type": "Actor"
-        },
-        {
-            "name": "forcepowers",
-            "label": "Force Powers",
-            "path": "./packs/packs/forcepowers.db",
-            "type": "Item"
-        },
-        {
-            "name": "gamingsets",
-            "label": "Gaming Sets",
-            "path": "./packs/packs/gamingsets.db",
-            "type": "Item"
-        },
-        {
-            "name": "implements",
-            "label": "Artisan's Implements",
-            "path": "./packs/packs/implements.db",
-            "type": "Item"
-        },
-        {
-            "name": "invocations",
-            "label": "Class Invocations",
-            "path": "./packs/packs/invocations.db",
-            "type": "Item"
-        },
-        {
-            "name": "kits",
-            "label": "Specialist's Kits",
-            "path": "./packs/packs/kits.db",
-            "type": "Item"
-        },
-        {
-            "name": "lightsaberform",
-            "label": "Lightsaber Forms",
-            "path": "./packs/packs/lightsaberforms.db",
-            "type": "Item"
-        },
-        {
-            "name": "lightweapons",
-            "label": "Lightweapons",
-            "path": "./packs/packs/lightweapons.db",
-            "type": "Item"
-        },
-        {
-            "name": "maneuvers",
-            "label": "Maneuvers",
-            "path": "./packs/packs/maneuvers.db",
-            "type": "Item"
-        },
-        {
-            "name": "monsters",
-            "label": "Monsters",
-            "path": "./packs/packs/monsters.db",
-            "type": "Actor"
-        },
-        {
-            "name": "monsters_temp",
-            "label": "Monsters Temp",
-            "path": "./packs/packs/monsters_temp.db",
-            "type": "Actor"
-        },
-        {
-            "name": "modifications",
-            "label": "Modifications",
-            "path": "./packs/packs/modifications.db",
-            "entity": "Item"
-        },
-        {
-            "name": "musicalinstruments",
-            "label": "Musical Instruments",
-            "path": "./packs/packs/musicalinstruments.db",
-            "type": "Item"
-        },
-        {
-            "name": "species",
-            "label": "Species",
-            "path": "./packs/packs/species.db",
-            "type": "Item"
-        },
-        {
-            "name": "speciesfeatures",
-            "label": "Species Features",
-            "path": "./packs/packs/speciesfeatures.db",
-            "type": "Item"
-        },
-        {
-            "name": "drakes-shipyard",
-            "label": "Drakes Shipyard",
-            "path": "./packs/packs/drakes-shipyard.db",
-            "type": "Actor"
-        },
-        {
-            "name": "starshipactions",
-            "label": "Starship Actions",
-            "path": "./packs/packs/starshipactions.db",
-            "type": "Item"
-        },
-        {
-            "name": "starshiparmor",
-            "label": "Starship Armor",
-            "path": "./packs/packs/starshiparmor.db",
-            "type": "Item"
-        },
-        {
-            "name": "starshipequipment",
-            "label": "Starship Equipment",
-            "path": "./packs/packs/starshipequipment.db",
-            "type": "Item"
-        },
-        {
-            "name": "starshipfeatures",
-            "label": "Starship Features",
-            "path": "./packs/packs/starshipfeatures.db",
-            "type": "Item"
-        },
-        {
-            "name": "starshipmodifications",
-            "label": "Starship Modifications",
-            "path": "./packs/packs/starshipmodifications.db",
-            "type": "Item"
-        },
-        {
-            "name": "starships",
-            "label": "Starship Types",
-            "path": "./packs/packs/starships.db",
-            "type": "Item"
-        },
-        {
-            "name": "starshipweapons",
-            "label": "Starship Weapons",
-            "path": "./packs/packs/starshipweapons.db",
-            "type": "Item"
-        },
-        {
-            "name": "tables",
-            "label": "Tables",
-            "path": "./packs/packs/tables.db",
-            "entity": "RollTable",
-            "type": "RollTable"
-        },
-        {
-            "name": "techpowers",
-            "label": "Tech Powers",
-            "path": "./packs/packs/techpowers.db",
-            "type": "Item"
-        },
-        {
-            "name": "ventures",
-            "label": "Ventures",
-            "path": "./packs/packs/ventures.db",
-            "type": "Item"
-        },
-        {
-            "name": "vibroweapons",
-            "label": "Vibroweapons",
-            "path": "./packs/packs/vibroweapons.db",
-            "type": "Item"
-        },
-        {
-            "name": "weaponproperties",
-            "label": "Weapon Properties",
-            "path": "./packs/packs/weaponproperties.db",
-            "type": "JournalEntry"
-        }
-    ],
-    "languages": [
-        {
-            "lang": "en",
-            "name": "English",
-            "path": "lang/en.json"
-        },
-        {
-            "lang": "fr",
-            "name": "French",
-            "path": "lang/fr.json"
-        },
-        {
-            "lang": "it",
-            "name": "Italian",
-            "path": "lang/it.json"
-        },
-        {
-            "lang": "es",
-            "name": "Espanol",
-            "path": "lang/es.json"
-        }
-    ],
-    "socket": true,
-    "gridDistance": 5,
-    "gridUnits": "ft",
-    "primaryTokenAttribute": "attributes.hp",
-    "secondaryTokenAttribute": null,
-    "minimumCoreVersion": "9.245",
-    "compatibleCoreVersion": "9",
-    "url": "https://github.com/unrealkakeman89/sw5e",
-    "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
-    "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"
+	"name": "sw5e",
+	"title": "SW 5th Edition",
+	"description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
+	"version": "1.6.2.2.2.3",
+	"author": "Dev Team",
+	"scripts": [],
+	"esmodules": [
+		"sw5e.js"
+	],
+	"styles": [
+		"sw5e.css",
+		"sw5e-global.css",
+		"sw5e-light.css",
+		"sw5e-dark.css"
+	],
+	"packs": [
+		{
+			"name": "adventuringgear",
+			"label": "Adventuring Gear",
+			"path": "./packs/packs/adventuringgear.db",
+			"type": "Item"
+		},
+		{
+			"name": "ammo",
+			"label": "Ammo",
+			"path": "./packs/packs/ammo.db",
+			"type": "Item"
+		},
+		{
+			"name": "archetypefeatures",
+			"label": "Archetype Features",
+			"path": "./packs/packs/archetypefeatures.db",
+			"type": "Item"
+		},
+		{
+			"name": "archetypes",
+			"label": "Archetypes",
+			"path": "./packs/packs/archetypes.db",
+			"type": "Item"
+		},
+		{
+			"name": "armor",
+			"label": "Armor",
+			"path": "./packs/packs/armor.db",
+			"type": "Item"
+		},
+		{
+			"name": "armorproperties",
+			"label": "Armor Properties",
+			"path": "./packs/packs/armorproperties.db",
+			"type": "JournalEntry"
+		},
+		{
+			"name": "backgrounds",
+			"label": "Backgrounds",
+			"path": "./packs/packs/backgrounds.db",
+			"type": "Item"
+		},
+		{
+			"name": "blasters",
+			"label": "Blasters",
+			"path": "./packs/packs/blasters.db",
+			"type": "Item"
+		},
+		{
+			"name": "classes",
+			"label": "Classes",
+			"path": "./packs/packs/classes.db",
+			"type": "Item"
+		},
+		{
+			"name": "classfeatures",
+			"label": "Class Features",
+			"path": "./packs/packs/classfeatures.db",
+			"type": "Item"
+		},
+		{
+			"name": "conditions",
+			"label": "Conditions",
+			"path": "./packs/packs/conditions.db",
+			"type": "JournalEntry"
+		},
+		{
+			"name": "consumables",
+			"label": "Consumables",
+			"path": "./packs/packs/consumables.db",
+			"type": "Item"
+		},
+		{
+			"name": "deploymentfeatures",
+			"label": "Deployment Features",
+			"path": "./packs/packs/deploymentfeatures.db",
+			"type": "Item"
+		},
+		{
+			"name": "deployments",
+			"label": "Deployments",
+			"path": "./packs/packs/deployments.db",
+			"type": "Item"
+		},
+		{
+			"name": "enhanceditems",
+			"label": "Enhanced Items",
+			"path": "./packs/packs/enhanceditems.db",
+			"type": "Item"
+		},
+		{
+			"name": "explosives",
+			"label": "Explosives",
+			"path": "./packs/packs/explosives.db",
+			"type": "Item"
+		},
+		{
+			"name": "feats",
+			"label": "Feats",
+			"path": "./packs/packs/feats.db",
+			"type": "Item"
+		},
+		{
+			"name": "fightingstyles",
+			"label": "Fighting Styles",
+			"path": "./packs/packs/fightingstyles.db",
+			"type": "Item"
+		},
+		{
+			"name": "fightingmasteries",
+			"label": "Fighting Masteries",
+			"path": "./packs/packs/fightingmasteries.db",
+			"type": "Item"
+		},
+		{
+			"name": "fistoscodex",
+			"label": "Fisto's Codex",
+			"path": "./packs/packs/fistoscodex.db",
+			"type": "Actor"
+		},
+		{
+			"name": "forcepowers",
+			"label": "Force Powers",
+			"path": "./packs/packs/forcepowers.db",
+			"type": "Item"
+		},
+		{
+			"name": "gamingsets",
+			"label": "Gaming Sets",
+			"path": "./packs/packs/gamingsets.db",
+			"type": "Item"
+		},
+		{
+			"name": "implements",
+			"label": "Artisan's Implements",
+			"path": "./packs/packs/implements.db",
+			"type": "Item"
+		},
+		{
+			"name": "invocations",
+			"label": "Class Invocations",
+			"path": "./packs/packs/invocations.db",
+			"type": "Item"
+		},
+		{
+			"name": "kits",
+			"label": "Specialist's Kits",
+			"path": "./packs/packs/kits.db",
+			"type": "Item"
+		},
+		{
+			"name": "lightsaberform",
+			"label": "Lightsaber Forms",
+			"path": "./packs/packs/lightsaberforms.db",
+			"type": "Item"
+		},
+		{
+			"name": "lightweapons",
+			"label": "Lightweapons",
+			"path": "./packs/packs/lightweapons.db",
+			"type": "Item"
+		},
+		{
+			"name": "maneuvers",
+			"label": "Maneuvers",
+			"path": "./packs/packs/maneuvers.db",
+			"type": "Item"
+		},
+		{
+			"name": "monsters",
+			"label": "Monsters",
+			"path": "./packs/packs/monsters.db",
+			"type": "Actor"
+		},
+		{
+			"name": "monsters_temp",
+			"label": "Monsters Temp",
+			"path": "./packs/packs/monsters_temp.db",
+			"type": "Actor"
+		},
+		{
+			"name": "modifications",
+			"label": "Modifications",
+			"path": "./packs/packs/modifications.db",
+			"entity": "Item"
+		},
+		{
+			"name": "musicalinstruments",
+			"label": "Musical Instruments",
+			"path": "./packs/packs/musicalinstruments.db",
+			"type": "Item"
+		},
+		{
+			"name": "species",
+			"label": "Species",
+			"path": "./packs/packs/species.db",
+			"type": "Item"
+		},
+		{
+			"name": "speciesfeatures",
+			"label": "Species Features",
+			"path": "./packs/packs/speciesfeatures.db",
+			"type": "Item"
+		},
+		{
+			"name": "drakes-shipyard",
+			"label": "Drakes Shipyard",
+			"path": "./packs/packs/drakes-shipyard.db",
+			"type": "Actor"
+		},
+		{
+			"name": "starshipactions",
+			"label": "Starship Actions",
+			"path": "./packs/packs/starshipactions.db",
+			"type": "Item"
+		},
+		{
+			"name": "starshiparmor",
+			"label": "Starship Armor",
+			"path": "./packs/packs/starshiparmor.db",
+			"type": "Item"
+		},
+		{
+			"name": "starshipequipment",
+			"label": "Starship Equipment",
+			"path": "./packs/packs/starshipequipment.db",
+			"type": "Item"
+		},
+		{
+			"name": "starshipfeatures",
+			"label": "Starship Features",
+			"path": "./packs/packs/starshipfeatures.db",
+			"type": "Item"
+		},
+		{
+			"name": "starshipmodifications",
+			"label": "Starship Modifications",
+			"path": "./packs/packs/starshipmodifications.db",
+			"type": "Item"
+		},
+		{
+			"name": "starships",
+			"label": "Starship Types",
+			"path": "./packs/packs/starships.db",
+			"type": "Item"
+		},
+		{
+			"name": "starshipweapons",
+			"label": "Starship Weapons",
+			"path": "./packs/packs/starshipweapons.db",
+			"type": "Item"
+		},
+		{
+			"name": "tables",
+			"label": "Tables",
+			"path": "./packs/packs/tables.db",
+			"entity": "RollTable",
+			"type": "RollTable"
+		},
+		{
+			"name": "techpowers",
+			"label": "Tech Powers",
+			"path": "./packs/packs/techpowers.db",
+			"type": "Item"
+		},
+		{
+			"name": "ventures",
+			"label": "Ventures",
+			"path": "./packs/packs/ventures.db",
+			"type": "Item"
+		},
+		{
+			"name": "vibroweapons",
+			"label": "Vibroweapons",
+			"path": "./packs/packs/vibroweapons.db",
+			"type": "Item"
+		},
+		{
+			"name": "weaponproperties",
+			"label": "Weapon Properties",
+			"path": "./packs/packs/weaponproperties.db",
+			"type": "JournalEntry"
+		}
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		},
+		{
+			"lang": "fr",
+			"name": "French",
+			"path": "lang/fr.json"
+		},
+		{
+			"lang": "it",
+			"name": "Italian",
+			"path": "lang/it.json"
+		},
+		{
+			"lang": "es",
+			"name": "Espanol",
+			"path": "lang/es.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português",
+			"path": "lang/pt.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português (Brasil)",
+			"path": "lang/pt_BR.json"
+		}
+	],
+	"socket": true,
+	"gridDistance": 5,
+	"gridUnits": "ft",
+	"primaryTokenAttribute": "attributes.hp",
+	"secondaryTokenAttribute": null,
+	"minimumCoreVersion": "9.245",
+	"compatibleCoreVersion": "9",
+	"url": "https://github.com/unrealkakeman89/sw5e",
+	"manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
+	"download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"
 }

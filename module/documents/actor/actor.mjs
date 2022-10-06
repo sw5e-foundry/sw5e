@@ -2058,27 +2058,25 @@ export default class Actor5e extends Actor {
 
     /**
      * Roll a hit die of the appropriate type, gaining hit points equal to the die roll plus your CON modifier
-     * @param {string} [denomination]   The hit denomination of hit die to roll. Example "d8".
-     *                                  If no denomination is provided, the first available HD will be used
-     * @param {boolean} [dialog]        Show a dialog prompt for configuring the hit die roll?
-     * @returns {Promise<Roll|null>}    The created Roll instance, or null if no hit die was rolled
+     * @param {string} [denomination]       The hit denomination of hit die to roll. Example "d8".
+     *                                      If no denomination is provided, the first available HD will be used
+     * @param {object} options              Additional options which modify the roll.
+     * @returns {Promise<DamageRoll|null>}  The created Roll instance, or null if no hit die was rolled
      */
-    async rollHitDie(denomination, {dialog = true} = {}) {
+    async rollHitDie(denomination, options = {}) {
         // If no denomination was provided, choose the first available
         let cls = null;
         if (!denomination) {
-            cls = this.itemTypes.class.find((c) => c.data.data.hitDiceUsed < c.data.data.levels);
+            cls = this.itemTypes.class.find((c) => c.system.hitDiceUsed < c.system.levels);
             if (!cls) return null;
-            denomination = cls.data.data.hitDice;
+            denomination = cls.system.hitDice;
         }
 
-        // Otherwise locate a class (if any) which has an available hit die of the requested denomination
-        else {
+        // Otherwise, locate a class (if any) which has an available hit die of the requested denomination
+        else
             cls = this.items.find((i) => {
-                const d = i.data.data;
-                return d.hitDice === denomination && (d.hitDiceUsed || 0) < (d.levels || 1);
+                return i.system.hitDice === denomination && (i.system.hitDiceUsed || 0) < (i.system.levels || 1);
             });
-        }
 
         // If no class is available, display an error notification
         if (!cls) {
@@ -2087,33 +2085,63 @@ export default class Actor5e extends Actor {
         }
 
         // Prepare roll data
-        const parts = [`1${denomination}`, "@abilities.con.mod"];
         const flavor = game.i18n.localize("SW5E.HitDiceRoll");
-        const title = `${flavor}: ${this.name}`;
-        const data = foundry.utils.deepClone(this.data.data);
+        if (options.fastForward === undefined) options.fastForward = !options.dialog;
+        const rollData = foundry.utils.mergeObject(
+            {
+                event: new Event("hitDie"),
+                parts: [`1${denomination}`, "@abilities.con.mod"],
+                data: this.getRollData(),
+                title: `${flavor}: ${this.name}`,
+                flavor,
+                allowCritical: false,
+                dialogOptions: {width: 350},
+                messageData: {
+                    "speaker": ChatMessage.getSpeaker({actor: this}),
+                    "flags.sw5e.roll": {type: "hitDie"}
+                }
+            },
+            options
+        );
 
-        // Call the roll helper utility
-        const roll = await damageRoll({
-            event: new Event("hitDie"),
-            parts,
-            data,
-            title,
-            flavor,
-            allowCritical: false,
-            fastForward: !dialog,
-            dialogOptions: {width: 350},
-            messageData: {
-                "speaker": ChatMessage.getSpeaker({actor: this}),
-                "flags.sw5e.roll": {type: "hitDie"}
-            }
-        });
-        if (!roll) return null;
+        /**
+         * A hook event that fires before a hit die is rolled for an Actor.
+         * @function sw5e.preRollHitDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor                   Actor for which the hit die is to be rolled.
+         * @param {DamageRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} denomination             Size of hit die to be rolled.
+         * @returns {boolean}                       Explicitly return `false` to prevent hit die from being rolled.
+         */
+        if (Hooks.call("sw5e.preRollHitDie", this, rollData, denomination) === false) return;
 
-        // Adjust actor data
-        await cls.update({"data.hitDiceUsed": cls.data.data.hitDiceUsed + 1});
-        const hp = this.data.data.attributes.hp;
+        const roll = await damageRoll(rollData);
+        if (!roll) return roll;
+
+        const hp = this.system.attributes.hp;
         const dhp = Math.min(hp.max + (hp.tempmax ?? 0) - hp.value, roll.total);
-        await this.update({"data.attributes.hp.value": hp.value + dhp});
+        const updates = {
+            actor: {"system.attributes.hp.value": hp.value + dhp},
+            class: {"system.hitDiceUsed": cls.system.hitDiceUsed + 1}
+        };
+
+        /**
+         * A hook event that fires after a hit die has been rolled for an Actor, but before updates have been performed.
+         * @function sw5e.rollHitDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor         Actor for which the hit die has been rolled.
+         * @param {DamageRoll} roll       The resulting roll.
+         * @param {object} updates
+         * @param {object} updates.actor  Updates that will be applied to the actor.
+         * @param {object} updates.class  Updates that will be applied to the class.
+         * @returns {boolean}             Explicitly return `false` to prevent updates from being performed.
+         */
+        if (Hooks.call("sw5e.rollHitDie", this, roll, updates) === false) return roll;
+
+        // Perform updates
+        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+        if (!foundry.utils.isEmpty(updates.class)) await cls.update(updates.class);
+
         return roll;
     }
 
@@ -2121,34 +2149,33 @@ export default class Actor5e extends Actor {
 
     /**
      * Roll a hull die of the appropriate type, gaining hull points equal to the die roll plus your CON modifier
-     * @param {string} [denomination]   The hit denomination of hull die to roll. Example "d8".
-     *                                  If no denomination is provided, the first available HD will be used
-     * @param {string} [numDice]        How many dice to roll?
-     * @param {string} [keep]           Which dice to keep? Example "kh1".
-     * @param {boolean} [dialog]        Show a dialog prompt for configuring the hull die roll?
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no hull die was rolled
+     * @param {string} [denomination]          The hit denomination of hull die to roll. Example "d8".
+     *                                         If no denomination is provided, the first available HD will be used
+     * @param {string} [numDice]               How many dice to roll?
+     * @param {string} [keep]                  Which dice to keep? Example "kh1".
+     * @param {object} options                 Additional options which modify the roll.
+     * @returns {Promise<attribDieRoll|null>}  The created Roll instance, or null if no hull die was rolled
      */
-    async rollHullDie(denomination, numDice = "1", keep = "", {dialog = true} = {}) {
+    async rollHullDie(denomination, numDice = "1", keep = "", options = {}) {
         // If no denomination was provided, choose the first available
         let sship = null;
-        const hullMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
+        const hullMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
         if (!denomination) {
             sship = this.itemTypes.starship.find(
-                (s) => s.data.data.hullDiceUsed < s.data.data.tier * hullMult + s.data.data.hullDiceStart
+                (s) => s.system.hullDiceUsed < s.system.tier * hullMult + s.system.hullDiceStart
             );
             if (!sship) return null;
-            denomination = sship.data.data.hullDice;
+            denomination = sship.system.hullDice;
         }
 
         // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
-        else {
+        else
             sship = this.items.find((i) => {
-                const d = i.data.data;
                 return (
-                    d.hullDice === denomination && (d.hullDiceUsed || 0) < (d.tier * hullMult || 0) + d.hullDiceStart
+                    i.system.hullDice === denomination &&
+                    (i.system.hullDiceUsed || 0) < (i.system.tier * hullMult || 0) + i.system.hullDiceStart
                 );
             });
-        }
 
         // If no starship is available, display an error notification
         if (!sship) {
@@ -2162,33 +2189,61 @@ export default class Actor5e extends Actor {
         }
 
         // Prepare roll data
-        const parts = [`${numDice}${denomination}${keep}`, "@abilities.con.mod"];
-        const title = game.i18n.localize("SW5E.HullDiceRoll");
-        const rollData = foundry.utils.deepClone(this.data.data);
+        const flavor = game.i18n.localize("SW5E.HullDiceRoll");
+        if (options.fastForward === undefined) options.fastForward = !options.dialog;
+        const rollData = foundry.utils.mergeObject(
+            {
+                event: new Event("hullDie"),
+                parts: [`${numDice}${denomination}${keep}`, "@abilities.con.mod"],
+                data: this.getRollData(),
+                title: `${flavor}: ${this.name}`,
+                dialogOptions: {width: 350},
+                messageData: {
+                    "speaker": ChatMessage.getSpeaker({actor: this}),
+                    "flags.sw5e.roll": {type: "hullDie"}
+                }
+            },
+            options
+        );
 
-        // Call the roll helper utility
-        const roll = await attribDieRoll({
-            event: new Event("hullDie"),
-            parts: parts,
-            data: rollData,
-            title: title,
-            fastForward: !dialog,
-            dialogOptions: {width: 350},
-            messageData: {
-                "speaker": ChatMessage.getSpeaker({actor: this}),
-                "flags.sw5e.roll": {type: "hullDie"}
-            }
-        });
+        /**
+         * A hook event that fires before a hull die is rolled for an Actor.
+         * @function sw5e.preRollHullDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor                   Actor for which the hull die is to be rolled.
+         * @param {DamageRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} denomination             Size of hull die to be rolled.
+         * @returns {boolean}                       Explicitly return `false` to prevent hull die from being rolled.
+         */
+        if (Hooks.call("sw5e.preRollHullDie", this, rollData, denomination) === false) return;
 
-        if (!roll) return null;
+        const roll = await attribDieRoll(rollData);
+        if (!roll) return roll;
 
-        // Adjust actor data
-        await sship.update({
-            "data.hullDiceUsed": sship.data.data.hullDiceUsed + 1
-        });
-        const hp = this.data.data.attributes.hp;
+        const hp = this.system.attributes.hp;
         const dhp = Math.min(hp.max - hp.value, roll.total);
-        await this.update({"data.attributes.hp.value": hp.value + dhp});
+        const updates = {
+            actor: {"system.attributes.hp.value": hp.value + dhp},
+            starship: {"system.hullDiceUsed": sship.system.hullDiceUsed + 1}
+        };
+
+        /**
+         * A hook event that fires after a hull die has been rolled for an Actor, but before updates have been performed.
+         * @function sw5e.rollHullDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor            Actor for which the hull die has been rolled.
+         * @param {DamageRoll} roll          The resulting roll.
+         * @param {object} updates
+         * @param {object} updates.actor     Updates that will be applied to the actor.
+         * @param {object} updates.starship  Updates that will be applied to the starship size.
+         * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+         */
+        if (Hooks.call("sw5e.rollHullDie", this, roll, updates) === false) return roll;
+
+        // Perform updates
+        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+        if (!foundry.utils.isEmpty(updates.class)) await sship.update(updates.class);
+
         return roll;
     }
 

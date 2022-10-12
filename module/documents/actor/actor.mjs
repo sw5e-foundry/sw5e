@@ -2210,10 +2210,10 @@ export default class Actor5e extends Actor {
          * A hook event that fires before a hull die is rolled for an Actor.
          * @function sw5e.preRollHullDie
          * @memberof hookEvents
-         * @param {Actor5e} actor                   Actor for which the hull die is to be rolled.
-         * @param {DamageRollConfiguration} config  Configuration data for the pending roll.
-         * @param {string} denomination             Size of hull die to be rolled.
-         * @returns {boolean}                       Explicitly return `false` to prevent hull die from being rolled.
+         * @param {Actor5e} actor                      Actor for which the hull die is to be rolled.
+         * @param {AttribDieRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} denomination                Size of hull die to be rolled.
+         * @returns {boolean}                          Explicitly return `false` to prevent hull die from being rolled.
          */
         if (Hooks.call("sw5e.preRollHullDie", this, rollData, denomination) === false) return;
 
@@ -2232,7 +2232,7 @@ export default class Actor5e extends Actor {
          * @function sw5e.rollHullDie
          * @memberof hookEvents
          * @param {Actor5e} actor            Actor for which the hull die has been rolled.
-         * @param {DamageRoll} roll          The resulting roll.
+         * @param {AttribDieRoll} roll       The resulting roll.
          * @param {object} updates
          * @param {object} updates.actor     Updates that will be applied to the actor.
          * @param {object} updates.starship  Updates that will be applied to the starship size.
@@ -2242,7 +2242,7 @@ export default class Actor5e extends Actor {
 
         // Perform updates
         if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
-        if (!foundry.utils.isEmpty(updates.class)) await sship.update(updates.class);
+        if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
 
         return roll;
     }
@@ -2269,18 +2269,18 @@ export default class Actor5e extends Actor {
      * @param {boolean} [natural]            Natural ship shield regeneration (true) or user action (false)?
      * @param {string} [numDice]             How many dice to roll?
      * @param {string} [keep]                Which dice to keep? Example "kh1".
-     * @param {boolean} [dialog]             Show a dialog prompt for configuring the shield die roll?
+     * @param {object} options               Additional options which modify the roll.
      * @return {Promise<SDRollResult|null>}  A Promise which resolves once the shield die roll workflow has completed.
      */
-    async rollShieldDie({denomination, natural = false, numDice = "1", keep = "", dialog = true, update = true} = {}) {
+    async rollShieldDie(denomination, natural = false, numDice = "1", keep = "", options = {}) {
         const result = {
             sp: 0,
             actorUpdates: {},
-            itemUpdates: [],
+            itemUpdates: {},
             roll: null
         };
 
-        const attr = this.data.data.attributes;
+        const attr = this.system.attributes;
         const shld = attr.shld;
         const hp = attr.hp;
 
@@ -2296,20 +2296,20 @@ export default class Actor5e extends Actor {
 
         // If no denomination was provided, choose the first available
         let sship = null;
-        const shldMult = ["huge", "grg"].includes(this.data.data.traits.size) ? 2 : 1;
+        const shldMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
         if (!denomination) {
             sship = this.itemTypes.starship.find(
-                (s) => s.data.data.shldDiceUsed < s.data.data.tier * shldMult + s.data.data.shldDiceStart
+                (s) => s.system.shldDiceUsed < s.system.tier * shldMult + s.system.shldDiceStart
             );
             if (!sship) return result;
-            denomination = sship.data.data.shldDice;
+            denomination = sship.system.shldDice;
         }
         // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
         else {
             sship = this.items.find((i) => {
-                const d = i.data.data;
                 return (
-                    d.shldDice === denomination && (d.shldDiceUsed || 0) < (d.tier * shldMult || 0) + d.shldDiceStart
+                    i.system.shldDice === denomination &&
+                    (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
                 );
             });
         }
@@ -2335,47 +2335,67 @@ export default class Actor5e extends Actor {
             return result;
         }
 
+        // Prepare roll data
         // if natural regeneration roll max
-        if (natural) result.sp = Math.round(denomination.substring(1) * attr.equip.shields.regenRateMult);
-        else {
-            // Prepare roll data
-            const parts = [`${numDice}${denomination}${keep} * @attributes.equip.shields.regenRateMult`];
-            const title = game.i18n.localize("SW5E.ShieldDiceRoll");
-            const rollData = foundry.utils.deepClone(this.data.data);
-
-            // Call the roll helper utility
-            const roll = await attribDieRoll({
+        const dieRoll = natural ? denomination : numDice + denimination + keep;
+        const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
+        if (options.fastForward === undefined) options.fastForward = !options.dialog;
+        const rollData = foundry.utils.mergeObject(
+            {
                 event: new Event("shldDie"),
-                parts: parts,
-                data: rollData,
-                title: title,
-                fastForward: !dialog,
+                parts: [`${dieRoll} * @attributes.equip.shields.regenRateMult`],
+                data: this.getRollData(),
+                title: `${flavor}: ${this.name}`,
                 dialogOptions: {width: 350},
                 messageData: {
                     "speaker": ChatMessage.getSpeaker({actor: this}),
                     "flags.sw5e.roll": {type: "shldDie"}
                 }
-            });
-            if (!roll) return result;
-            result.roll = roll;
-            result.sp = roll.total;
-        }
+            },
+            options
+        );
 
-        // Prepare actor updates
-        result.sp = Math.min(hp.tempmax - hp.temp, result.sp);
-        result.actorUpdates["data.attributes.hp.temp"] = hp.temp + result.sp;
-        // Prepare item updates
-        result.itemUpdates.push({
-            "_id": sship.id,
-            "data.shldDiceUsed": sship.data.data.shldDiceUsed + 1
-        });
+        /**
+         * A hook event that fires before a shield die is rolled for an Actor.
+         * @function sw5e.preRollShieldDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor                      Actor for which the shield die is to be rolled.
+         * @param {AttribDieRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} denomination                Size of shield die to be rolled.
+         * @returns {boolean}                          Explicitly return `false` to prevent shield die from being rolled.
+         */
+        if (Hooks.call("sw5e.preRollShieldDie", this, rollData, denomination) === false) return;
 
-        // Apply the updates
-        if (update) {
-            await this.update(result.actorUpdates);
-            await this.updateEmbeddedDocuments(result.itemUpdates);
-        }
+        const roll = await attribDieRoll(rollData);
+        if (!roll) return result;
 
+        const dsp = Math.min(hp.tempmax - hp.temp, roll.total);
+        const updates = {
+            actor: {"system.attributes.hp.temp": hp.temp + dsp},
+            starship: {"system.shldDiceUsed": sship.system.shldDiceUsed + 1}
+        };
+        result.actorUpdates = updates.actor;
+        result.itemUpdates = updates.starship;
+
+        /**
+         * A hook event that fires after a shield die has been rolled for an Actor, but before updates have been performed.
+         * @function sw5e.rollShieldDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor            Actor for which the shield die has been rolled.
+         * @param {AttribDieRoll} roll       The resulting roll.
+         * @param {object} updates
+         * @param {object} updates.actor     Updates that will be applied to the actor.
+         * @param {object} updates.starship  Updates that will be applied to the starship size.
+         * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+         */
+        if (Hooks.call("sw5e.rollShieldDie", this, roll, updates) === false) return roll;
+
+        // Perform updates
+        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+        if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+
+        result.roll = roll;
+        result.sp = dsp;
         return result;
     }
 
@@ -2395,26 +2415,23 @@ export default class Actor5e extends Actor {
      * Roll a power die recovery of the appropriate type, gaining power dice equal to the roll
      *
      * @param {string} [formula]                Formula from reactor to use for power die recovery
+     * @param {object} options                  Additional options which modify the roll.
      * @return {Promise<PDRecoveryResult|null>} A Promise which resolves once the power die recovery workflow has completed.
      */
-    async rollPowerDieRecovery({formula, update = true} = {}) {
+    async rollPowerDieRecovery(formula, options = {}) {
         const result = {
             pd: 0,
             actorUpdates: {},
-            itemUpdates: [],
+            itemUpdates: {},
             roll: null
         };
 
         // Prepare helper data
-        const attr = this.data.data.attributes;
+        const attr = this.system.attributes;
         const pd = attr.power;
 
-        // Prepare roll data
         // if no formula check starship for equipped reactor
         if (!formula) formula = attr.equip.reactor.powerRecDie;
-        const parts = [formula];
-        const title = game.i18n.localize("SW5E.PowerDiceRecovery");
-        const rollData = foundry.utils.deepClone(this.data.data);
 
         // Calculate how many available slots for power die the ship has
         const pdMissing = {};
@@ -2427,52 +2444,88 @@ export default class Actor5e extends Actor {
         // Don't roll it there are no available slots
         if (!pdMissing.total) return result;
 
+        // Prepare roll data
+        const flavor = game.i18n.localize("SW5E.PowerDiceRecovery");
+
         // Call the roll helper utility
-        const roll = await attribDieRoll({
-            event: new Event("pwrDieRec"),
-            parts: parts,
-            data: rollData,
-            title: title,
-            fastForward: true,
-            dialogOptions: {width: 350},
-            messageData: {
-                "speaker": ChatMessage.getSpeaker({actor: this}),
-                "flags.sw5e.roll": {type: "pwrDieRec"}
-            }
-        });
+        const rollData = foundry.utils.mergeObject(
+            {
+                event: new Event("pwrDieRec"),
+                parts: [formula],
+                data: this.getRollData(),
+                title: `${flavor}: ${this.name}`,
+                fastForward: true,
+                dialogOptions: {width: 350},
+                messageData: {
+                    "speaker": ChatMessage.getSpeaker({actor: this}),
+                    "flags.sw5e.roll": {type: "pwrDieRec"}
+                }
+            },
+            options
+        );
+
+        /**
+         * A hook event that fires before a power recovery die is rolled for an Actor.
+         * @function sw5e.preRollPowerDieRecovery
+         * @memberof hookEvents
+         * @param {Actor5e} actor                      Actor for which the power recovery die is to be rolled.
+         * @param {AttribDieRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} formula                     Formula of power recovery die to be rolled.
+         * @returns {boolean}                          Explicitly return `false` to prevent power recovery die from being rolled.
+         */
+        if (Hooks.call("sw5e.preRollPowerDieRecovery", this, rollData, formula) === false) return;
+
+        const roll = await attribDieRoll(rollData);
         if (!roll) return result;
-        else result.roll = roll;
 
         // If the roll is enough to fill all available slots
         if (pdMissing.total <= roll.total) {
             for (const slot of Object.keys(slots))
-                result.actorUpdates[`data.attributes.power.${slot}.value`] = pd[slot].max;
+                result.actorUpdates[`system.attributes.power.${slot}.value`] = pd[slot].max;
             result.pd = pdMissing.total;
         }
         // If all new power die can fit into the central storage
         else if (pdMissing.central >= roll.total) {
-            result.actorUpdates["data.attributes.power.central.value"] = String(Number(pd.central.value) + roll.total);
+            result.actorUpdates["system.attributes.power.central.value"] = String(
+                Number(pd.central.value) + roll.total
+            );
             result.pd = roll.total;
         }
         // Otherwise, create an allocation dialog popup
         else {
-            result.actorUpdates["data.attributes.power.central.value"] = pd.central.max;
+            result.actorUpdates["system.attributes.power.central.value"] = pd.central.max;
             try {
                 const allocation = await AllocatePowerDice.allocatePowerDice(this, roll.total - pdMissing.central);
                 for (const slot of allocation)
-                    result.actorUpdates[`data.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
+                    result.actorUpdates[`system.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
                 result.pd = allocation.length + pdMissing.central;
             } catch (err) {
                 return result;
             }
         }
+        const updates = {
+            actor: result.actorUpdates,
+            starship: result.itemUpdates
+        };
 
-        // Apply the updates
-        if (update) {
-            await this.update(result.actorUpdates);
-            await this.updateEmbeddedDocuments(result.itemUpdates);
-        }
+        /**
+         * A hook event that fires after a power recovery die has been rolled for an Actor, but before updates have been performed.
+         * @function sw5e.rollPowerDieRecovery
+         * @memberof hookEvents
+         * @param {Actor5e} actor            Actor for which the power recovery die has been rolled.
+         * @param {AttribDieRoll} roll       The resulting roll.
+         * @param {object} updates
+         * @param {object} updates.actor     Updates that will be applied to the actor.
+         * @param {object} updates.starship  Updates that will be applied to the starship size.
+         * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+         */
+        if (Hooks.call("sw5e.rollPowerDieRecovery", this, roll, updates) === false) return roll;
 
+        // Perform updates
+        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+        if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+
+        result.roll = roll;
         return result;
     }
 
@@ -2481,22 +2534,22 @@ export default class Actor5e extends Actor {
     /**
      * Roll a power die
      *
-     * @param {string} [slot]           Where to draw the power die from, if empty, opens a popup to select
-     * @return {Promise<Roll|null>}     The created Roll instance, or null if no power die was rolled
+     * @param {string} [slot]                Where to draw the power die from, if empty, opens a popup to select
+     * @param {object} options               Additional options which modify the roll.
+     * @return {Promise<AttribDieRoll|null>}  The created Roll instance, or null if no power die was rolled
      */
-    async rollPowerDie({slot = null} = {}) {
+    async rollPowerDie(slot = null, options = {}) {
         // Prepare helper data
-        const attr = this.data.data.attributes;
+        const attr = this.system.attributes;
         const pd = attr.power;
         const slots = CONFIG.SW5E.powerDieSlots;
-        const updates = {};
 
         // Validate the slot
         if (slot === null) {
             try {
                 slot = await ExpendPowerDice.expendPowerDice(this);
             } catch (err) {
-                return result;
+                return null;
             }
         }
         if (!Object.keys(slots).includes(slot)) {
@@ -2516,28 +2569,59 @@ export default class Actor5e extends Actor {
             return null;
         }
 
-        // Update the power dice count
-        updates[`data.attributes.power.${slot}.value`] = pd[slot].value - 1;
-        await this.update(updates);
-
         // Prepare the roll data
-        const parts = [pd.die];
-        const title = game.i18n.localize("SW5E.PowerDiceRoll");
-        const rollData = foundry.utils.deepClone(this.data.data);
+        const flavor = game.i18n.localize("SW5E.PowerDiceRoll");
 
         // Call the roll helper utility
-        const roll = await attribDieRoll({
-            event: new Event("pwrDieRoll"),
-            parts: parts,
-            data: rollData,
-            title: title,
-            fastForward: true,
-            dialogOptions: {width: 350},
-            messageData: {
-                "speaker": ChatMessage.getSpeaker({actor: this}),
-                "flags.sw5e.roll": {type: "pwrDieRoll"}
-            }
-        });
+        const rollData = foundry.utils.mergeObject(
+            {
+                event: new Event("pwrDieRoll"),
+                parts: [pd.die],
+                data: this.getRollData(),
+                title: `${flavor}: ${this.name}`,
+                fastForward: true,
+                dialogOptions: {width: 350},
+                messageData: {
+                    "speaker": ChatMessage.getSpeaker({actor: this}),
+                    "flags.sw5e.roll": {type: "pwrDieRoll"}
+                }
+            },
+            options
+        );
+
+        /**
+         * A hook event that fires before a power die is rolled for an Actor.
+         * @function sw5e.preRollPowerDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor                      Actor for which the power die is to be rolled.
+         * @param {AttribDieRollConfiguration} config  Configuration data for the pending roll.
+         * @param {string} denomination                Size of power die to be rolled.
+         * @returns {boolean}                          Explicitly return `false` to prevent power die from being rolled.
+         */
+        if (Hooks.call("sw5e.preRollPowerDie", this, rollData, pd.die) === false) return;
+
+        const roll = await attribDieRoll(rollData);
+        if (!roll) return roll;
+
+        const updates = {
+            actor: {}
+        };
+        updates.actor[`system.attributes.power.${slot}.value`] = pd[slot].value - 1;
+
+        /**
+         * A hook event that fires after a Power die has been rolled for an Actor, but before updates have been performed.
+         * @function sw5e.rollPowerDie
+         * @memberof hookEvents
+         * @param {Actor5e} actor            Actor for which the Power die has been rolled.
+         * @param {AttribDieRoll} roll       The resulting roll.
+         * @param {object} updates
+         * @param {object} updates.actor     Updates that will be applied to the actor.
+         * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
+         */
+        if (Hooks.call("sw5e.rollPowerDie", this, roll, updates) === false) return roll;
+
+        // Perform updates
+        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
 
         return roll;
     }

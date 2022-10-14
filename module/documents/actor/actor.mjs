@@ -2836,6 +2836,16 @@ export default class Actor5e extends Actor {
             newDay
         };
 
+        /**
+         * A hook event that fires after rest result is calculated, but before any updates are performed.
+         * @function sw5e.preRestCompleted
+         * @memberof hookEvents
+         * @param {Actor5e} actor      The actor that is being rested.
+         * @param {RestResult} result  Details on the rest to be completed.
+         * @returns {boolean}          Explicitly return `false` to prevent the rest updates from being performed.
+         */
+        if (Hooks.call("sw5e.preRestCompleted", this, result) === false) return result;
+
         // Perform updates
         await this.update(result.updateData);
         await this.updateEmbeddedDocuments("Item", result.updateItems);
@@ -2843,12 +2853,12 @@ export default class Actor5e extends Actor {
         // Display a Chat Message summarizing the rest effects
         if (chat) await this._displayRestResultMessage(result, longRest);
 
-        if (Hooks._hooks.restCompleted?.length)
-            console.warn(
-                "The restCompleted hook has been deprecated in favor of sw5e.restCompleted. " +
-                    "The original hook will be removed in sw5e 1.8."
+        if (Hooks.events.restCompleted?.length)
+            foundry.utils.logCompatibilityWarning(
+                "The restCompleted hook has been deprecated in favor of sw5e.restCompleted.",
+                {since: "SW5e 1.6", until: "SW5e 2.1"}
             );
-        /** @deprecated since 1.6, targeted for removal in 1.8 */
+        /** @deprecated since 1.6, targeted for removal in 2.1 */
         Hooks.callAll("restCompleted", this, result);
 
         /**
@@ -2880,10 +2890,8 @@ export default class Actor5e extends Actor {
         const healthRestored = dhp !== 0;
         const length = longRest ? "Long" : "Short";
 
-        let restFlavor;
-        let message;
-
         // Summarize the rest duration
+        let restFlavor;
         switch (game.settings.get("sw5e", "restVariant")) {
             case "normal":
                 restFlavor = longRest && newDay ? "SW5E.LongRestOvernight" : `SW5E.${length}RestNormal`;
@@ -2897,6 +2905,7 @@ export default class Actor5e extends Actor {
         }
 
         // Determine the chat message to display
+        let message;
         if (longRest) {
             message = "SW5E.LongRestResult";
             if (healthRestored) message += "HP";
@@ -2939,21 +2948,19 @@ export default class Actor5e extends Actor {
 
     /**
      * Automatically spend hit dice to recover hit points up to a certain threshold.
-     *
      * @param {object} [options]
      * @param {number} [options.threshold=3]  A number of missing hit points which would trigger an automatic HD roll.
      * @returns {Promise<number>}             Number of hit dice spent.
      */
     async autoSpendHitDice({threshold = 3} = {}) {
-        const max = this.data.data.attributes.hp.max + this.data.data.attributes.hp.tempmax;
-
+        const hp = this.system.attributes.hp;
+        const max = hp.max + hp.tempmax;
         let diceRolled = 0;
-        while (this.data.data.attributes.hp.value + threshold <= max) {
+        while (this.system.attributes.hp.value + threshold <= max) {
             const r = await this.rollHitDie(undefined, {dialog: false});
             if (r === null) break;
             diceRolled += 1;
         }
-
         return diceRolled;
     }
 
@@ -2961,7 +2968,6 @@ export default class Actor5e extends Actor {
 
     /**
      * Recovers actor hit points and eliminates any temp HP.
-     *
      * @param {object} [options]
      * @param {boolean} [options.recoverTemp=true]     Reset temp HP to zero.
      * @param {boolean} [options.recoverTempMax=true]  Reset temp max HP to zero.
@@ -2969,21 +2975,14 @@ export default class Actor5e extends Actor {
      * @protected
      */
     _getRestHitPointRecovery({recoverTemp = true, recoverTempMax = true} = {}) {
-        const data = this.data.data;
+        const hp = this.system.attributes.hp;
+        let max = hp.max;
         let updates = {};
-        let max = data.attributes.hp.max;
-
-        if (recoverTempMax) {
-            updates["data.attributes.hp.tempmax"] = 0;
-        } else {
-            max += data.attributes.hp.tempmax;
-        }
-        updates["data.attributes.hp.value"] = max;
-        if (recoverTemp) {
-            updates["data.attributes.hp.temp"] = 0;
-        }
-
-        return {updates, hitPointsRecovered: max - data.attributes.hp.value};
+        if (recoverTempMax) updates["system.attributes.hp.tempmax"] = 0;
+        else max += hp.tempmax;
+        updates["system.attributes.hp.value"] = max;
+        if (recoverTemp) updates["system.attributes.hp.temp"] = 0;
+        return {updates, hitPointsRecovered: max - hp.value};
     }
 
     /* -------------------------------------------- */
@@ -2998,12 +2997,12 @@ export default class Actor5e extends Actor {
      */
     _getRestResourceRecovery({recoverShortRestResources = true, recoverLongRestResources = true} = {}) {
         let updates = {};
-        for (let [k, r] of Object.entries(this.data.data.resources)) {
+        for (let [k, r] of Object.entries(this.system.resources)) {
             if (
                 Number.isNumeric(r.max) &&
                 ((recoverShortRestResources && r.sr) || (recoverLongRestResources && r.lr))
             ) {
-                updates[`data.resources.${k}.value`] = Number(r.max);
+                updates[`system.resources.${k}.value`] = Number(r.max);
             }
         }
         return updates;
@@ -3012,32 +3011,33 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Recovers power slots.
-     *
-     * @param longRest = true  It's a long rest
-     * @returns {object}       Updates to the actor.
+     * Recovers power points and slots.
+     * @param {object} [options]
+     * @param {boolean} [options.recoverTechPowers=true]    Recover all tech power points and slots.
+     * @param {boolean} [options.recoverForcePowers=true]   Recover all force power points and slots.
+     * @returns {object}                                  Updates to the actor.
      * @protected
      */
     _getRestPowerRecovery({recoverTechPowers = true, recoverForcePowers = true} = {}) {
         let updates = {};
 
         if (recoverTechPowers) {
-            updates["data.attributes.tech.points.value"] = this.data.data.attributes.tech.points.max;
-            updates["data.attributes.tech.points.temp"] = 0;
-            updates["data.attributes.tech.points.tempmax"] = 0;
+            updates["system.attributes.tech.points.value"] = this.system.attributes.tech.points.max;
+            updates["system.attributes.tech.points.temp"] = 0;
+            updates["system.attributes.tech.points.tempmax"] = 0;
 
-            for (let [k, v] of Object.entries(this.data.data.powers)) {
-                updates[`data.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : v.tmax ?? 0;
+            for (let [k, v] of Object.entries(this.system.powers)) {
+                updates[`system.powers.${k}.tvalue`] = Number.isNumeric(v.toverride) ? v.toverride : v.tmax ?? 0;
             }
         }
 
         if (recoverForcePowers) {
-            updates["data.attributes.force.points.value"] = this.data.data.attributes.force.points.max;
-            updates["data.attributes.force.points.temp"] = 0;
-            updates["data.attributes.force.points.tempmax"] = 0;
+            updates["system.attributes.force.points.value"] = this.system.attributes.force.points.max;
+            updates["system.attributes.force.points.temp"] = 0;
+            updates["system.attributes.force.points.tempmax"] = 0;
 
-            for (let [k, v] of Object.entries(this.data.data.powers)) {
-                updates[`data.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : v.fmax ?? 0;
+            for (let [k, v] of Object.entries(this.system.powers)) {
+                updates[`system.powers.${k}.fvalue`] = Number.isNumeric(v.foverride) ? v.foverride : v.fmax ?? 0;
             }
         }
 
@@ -3055,7 +3055,7 @@ export default class Actor5e extends Actor {
     _getRestSuperiorityRecovery() {
         let updates = {};
 
-        updates["data.attributes.super.dice.value"] = this.data.data.attributes.super.dice.max;
+        updates["system.attributes.super.dice.value"] = this.system.attributes.super.dice.max;
 
         return updates;
     }
@@ -3072,23 +3072,22 @@ export default class Actor5e extends Actor {
      */
     _getRestHitDiceRecovery({maxHitDice = undefined} = {}) {
         // Determine the number of hit dice which may be recovered
-        if (maxHitDice === undefined) {
-            maxHitDice = Math.max(Math.round(this.data.data.details.level / 2), 1);
-        }
+        if (maxHitDice === undefined) maxHitDice = Math.max(Math.round(this.system.details.level / 2), 1);
 
         // Sort classes which can recover HD, assuming players prefer recovering larger HD first.
         const sortedClasses = Object.values(this.classes).sort((a, b) => {
-            return (parseInt(b.data.data.hitDice.slice(1)) || 0) - (parseInt(a.data.data.hitDice.slice(1)) || 0);
+            return (parseInt(b.system.hitDice.slice(1)) || 0) - (parseInt(a.system.hitDice.slice(1)) || 0);
         });
 
+        // Update hit dice usage
         let updates = [];
         let hitDiceRecovered = 0;
         for (let item of sortedClasses) {
-            const d = item.data.data;
-            if (hitDiceRecovered < maxHitDice && d.hitDiceUsed > 0) {
-                let delta = Math.min(d.hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
+            const hitDiceUsed = item.system.hitDiceUsed;
+            if (hitDiceRecovered < maxHitDice && hitDiceUsed > 0) {
+                let delta = Math.min(hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
                 hitDiceRecovered += delta;
-                updates.push({"_id": item.id, "data.hitDiceUsed": d.hitDiceUsed - delta});
+                updates.push({"_id": item.id, "system.hitDiceUsed": hitDiceUsed - delta});
             }
         }
 
@@ -3115,53 +3114,77 @@ export default class Actor5e extends Actor {
 
         let updates = [];
         for (let item of this.items) {
-            const d = item.data.data;
-            if (d.uses && recovery.includes(d.uses.per)) {
-                updates.push({"_id": item.id, "data.uses.value": d.uses.max});
+            if (recovery.includes(item.system.uses?.per)) {
+                updates.push({"_id": item.id, "system.uses.value": d.uses.max});
             }
-            if (recoverLongRestUses && d.recharge && d.recharge.value) {
-                updates.push({"_id": item.id, "data.recharge.charged": true});
+            if (recoverLongRestUses && item.system.recharge?.value) {
+                updates.push({"_id": item.id, "system.recharge.charged": true});
             }
         }
-
         return updates;
     }
 
     /* -------------------------------------------- */
 
     /**
+     * Configuration options for a repair.
+     *
+     * @typedef {object} RepairConfiguration
+     * @param {boolean} dialog              Present a dialog window which allows for rolling hull dice as part
+     *                                      of the Recharge Repair and selecting whether a new day has occurred.
+     * @param {boolean} chat                Should a chat message be created to summarize the results of the repair?
+     * @param {boolean} [autoHD]            Automatically spend Hull Dice if you are missing 3 or more hit points.
+     * @param {boolean} [autoHDThreshold]   A number of missing hull points which would trigger an automatic HD roll.
+     */
+
+    /**
      * Results from a repair operation.
      *
      * @typedef {object} RepairResult
-     * @property {number} dhp                  Hull points recovered during the repair.
-     * @property {number} dhd                  Hull dice recovered or spent during the repair.
-     * @property {object} updateData           Updates applied to the actor.
-     * @property {Array.<object>} updateItems  Updates applied to actor's items.
-     * @property {boolean} newDay              Whether a new day occurred during the repair.
+     * @property {number} dhp               Hull points recovered during the repair.
+     * @property {number} dhd               Hull dice recovered or spent during the repair.
+     * @property {object} updateData        Updates applied to the actor.
+     * @property {object[]} updateItems     Updates applied to actor's items.
+     * @property {boolean} RefittingRepair  Whether the rest type was a long rest.
+     * @property {boolean} newDay           Whether a new day occurred during the repair.
      */
 
     /* -------------------------------------------- */
 
     /**
      * Take a recharge repair, possibly spending hull dice and recovering resources, and item uses.
-     *
-     * @param {object} [options]
-     * @param {boolean} [options.dialog=true]         Present a dialog window which allows for rolling hull dice as part
-     *                                                of the Recharge Repair and selecting whether a new day has occurred.
-     * @param {boolean} [options.chat=true]           Summarize the results of the repair workflow as a chat message.
-     * @param {boolean} [options.autoHD=false]        Automatically spend Hull Dice if you are missing 3 or more hit points.
-     * @param {boolean} [options.autoHDThreshold=3]   A number of missing hull points which would trigger an automatic HD roll.
-     * @return {Promise.<RepairResult>}               A Promise which resolves once the recharge repair workflow has completed.
+     * @param {RepairConfiguration} [config]  Configuration options for a recharge repair.
+     * @return {Promise.<RepairResult>}       A Promise which resolves once the recharge repair workflow has completed.
      */
-    async rechargeRepair({dialog = true, chat = true, autoHD = false, autoHDThreshold = 3} = {}) {
+    async rechargeRepair(config = {}) {
+        config = foundry.utils.mergeObject(
+            {
+                dialog: true,
+                chat: true,
+                autoHD: false,
+                autoHDThreshold: 3
+            },
+            config
+        );
+
+        /**
+         * A hook event that fires before a recharge repair is started.
+         * @function sw5e.preRechargeRepair
+         * @memberof hookEvents
+         * @param {Actor5e} actor               The actor that is being repaired.
+         * @param {RepairConfiguration} config  Configuration options for the repair.
+         * @returns {boolean}                   Explicitly return `false` to prevent the repair from being started.
+         */
+        if (Hooks.call("sw5e.preRechargeRepair", this, config) === false) return;
+
         // Take note of the initial hull points and number of hull dice the Actor has
-        const hd0 = this.data.data.attributes.hull.dice;
-        const hp0 = this.data.data.attributes.hp.value;
-        const regenShld = !this.data.data.attributes.shld.depleted;
+        const hd0 = this.system.attributes.hull.dice;
+        const hp0 = this.system.attributes.hp.value;
+        const regenShld = !this.system.attributes.shld.depleted;
         let newDay = false;
 
         // Display a Dialog for rolling hull dice
-        if (dialog) {
+        if (config.dialog) {
             try {
                 newDay = await RechargeRepairDialog.rechargeRepairDialog({
                     actor: this,
@@ -3172,19 +3195,14 @@ export default class Actor5e extends Actor {
             }
         }
 
-        // Automatically spend hit dice
-        else if (autoHD) {
-            await this.autoSpendHitDice({threshold: autoHDThreshold});
-        }
+        // Automatically spend hull dice
+        else if (config.autoHD) await this.autoSpendHullDice({threshold: config.autoHDThreshold});
 
-        return this._repair(
-            chat,
-            newDay,
-            false,
-            this.data.data.attributes.hull.dice - hd0,
-            this.data.data.attributes.hp.value - hp0,
-            regenShld
-        );
+        // Return the rest result
+        const dhd = this.system.attributes.hull.dice - hd0;
+        const dhp = this.system.attributes.hp.value - hp0;
+
+        return this._repair(chat, newDay, false, dhd, dhp, regenShld);
     }
 
     /* -------------------------------------------- */
@@ -3192,17 +3210,32 @@ export default class Actor5e extends Actor {
     /**
      * Take a refitting repair, recovering hull points, hull dice, resources, and item uses.
      *
-     * @param {object} [options]
-     * @param {boolean} [options.dialog=true]  Present a confirmation dialog window whether or not to take a refitting repair.
-     * @param {boolean} [options.chat=true]    Summarize the results of the repair workflow as a chat message.
-     * @param {boolean} [options.newDay=true]  Whether the refitting repair carries over to a new day.
-     * @return {Promise.<RepairResult>}        A Promise which resolves once the refitting repair workflow has completed.
+     * @param {RepairConfiguration} [config]  Configuration options for a refitting repair.
+     * @return {Promise.<RepairResult>}       A Promise which resolves once the refitting repair workflow has completed.
      */
-    async refittingRepair({dialog = true, chat = true, newDay = true} = {}) {
-        // Maybe present a confirmation dialog
-        if (dialog) {
+    async refittingRepair(config = {}) {
+        config = foundry.utils.mergeObject(
+            {
+                dialog: true,
+                chat: true,
+                newDay: true
+            },
+            config
+        );
+
+        /**
+         * A hook event that fires before a refitting repair is started.
+         * @function sw5e.preRefittingRepair
+         * @memberof hookEvents
+         * @param {Actor5e} actor               The actor that is being repaired.
+         * @param {RepairConfiguration} config  Configuration options for the repair.
+         * @returns {boolean}                   Explicitly return `false` to prevent the repair from being started.
+         */
+        if (Hooks.call("sw5e.preRefittingRepair", this, config) === false) return;
+
+        if (config.dialog) {
             try {
-                newDay = await RefittingRepairDialog.refittingRepairDialog({actor: this});
+                config.newDay = await RefittingRepairDialog.refittingRepairDialog({actor: this});
             } catch (err) {
                 return;
             }
@@ -3223,7 +3256,6 @@ export default class Actor5e extends Actor {
      * @return {Promise.<RepairResult>}              A Promise which resolves once the regen workflow has completed.
      */
     async regenRepair({dialog = true, chat = true, useShieldDie = true} = {}) {
-        // Maybe present a confirmation dialog
         if (dialog) {
             try {
                 useShieldDie = await RegenRepairDialog.regenRepairDialog({actor: this});
@@ -3231,10 +3263,6 @@ export default class Actor5e extends Actor {
                 return;
             }
         }
-
-        const attr = this.data.data.attributes;
-        const equip = attr.equip;
-        const size = this.data.items.filter((i) => i.type === "starship");
 
         // Prepare shield point recovery
         let shldRecovery = null;
@@ -3275,8 +3303,8 @@ export default class Actor5e extends Actor {
      * @param {boolean} chat             Summarize the results of the repair workflow as a chat message.
      * @param {boolean} newDay           Has a new day occurred during this repair?
      * @param {boolean} refittingRepair  Is this a refitting repair?
-     * @param {number} [dhd=0]           Number of hit dice spent during so far during the repair.
-     * @param {number} [dhp=0]           Number of hit points recovered so far during the repair.
+     * @param {number} [dhd=0]           Number of hull dice spent during so far during the repair.
+     * @param {number} [dhp=0]           Number of hull points recovered so far during the repair.
      * @param {boolean} resetShields     reset shields to max during the repair.
      * @return {Promise.<RepairResult>}  Consolidated results of the repair workflow.
      * @private
@@ -3330,12 +3358,31 @@ export default class Actor5e extends Actor {
             newDay: newDay
         };
 
+        /**
+         * A hook event that fires after repair result is calculated, but before any updates are performed.
+         * @function sw5e.preRepairCompleted
+         * @memberof hookEvents
+         * @param {Actor5e} actor      The actor that is being repaired.
+         * @param {RepairResult} result  Details on the repair to be completed.
+         * @returns {boolean}          Explicitly return `false` to prevent the repair updates from being performed.
+         */
+        if (Hooks.call("sw5e.preRepairCompleted", this, result) === false) return result;
+
         // Perform updates
         await this.update(result.updateData);
         await this.updateEmbeddedDocuments("Item", result.updateItems);
 
         // Display a Chat Message summarizing the repair effects
         if (chat) await this._displayRepairResultMessage(result, refittingRepair);
+
+        /**
+         * A hook event that fires when the repair process is completed for an actor.
+         * @function sw5e.repairCompleted
+         * @memberof hookEvents
+         * @param {Actor5e} actor        The actor that just completed repairing.
+         * @param {RepairResult} result  Details on the repair completed.
+         */
+        Hooks.callAll("sw5e.repairCompleted", this, result);
 
         // Return data summarizing the repair effects
         return result;
@@ -3445,22 +3492,21 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Automatically spend hull dice to recover hit points up to a certain threshold.
+     * Automatically spend hull dice to recover hull points up to a certain threshold.
      *
      * @param {object} [options]
      * @param {number} [options.threshold=3]  A number of missing hull points which would trigger an automatic HD roll.
      * @return {Promise.<number>}             Number of hull dice spent.
      */
     async autoSpendHullDice({threshold = 3} = {}) {
-        const max = this.data.data.attributes.hp.max;
-
+        const hp = this.system.attributes.hp;
+        const max = hp.max + hp.tempmax;
         let diceRolled = 0;
-        while (this.data.data.attributes.hp.value + threshold <= max) {
+        while (this.system.attributes.hp.value + threshold <= max) {
             const r = await this.rollHullDie(undefined, {dialog: false});
             if (r === null) break;
             diceRolled += 1;
         }
-
         return diceRolled;
     }
 
@@ -3474,13 +3520,13 @@ export default class Actor5e extends Actor {
      * @protected
      */
     _getRepairHullPointRecovery() {
-        const data = this.data.data;
+        const hp = this.system.attributes.hp;
+        let max = hp.max;
         let updates = {};
-        const max = data.attributes.hp.max;
 
-        updates["data.attributes.hp.value"] = max;
+        updates["system.attributes.hp.value"] = max;
 
-        return {updates, hullPointsRecovered: max - data.attributes.hp.value};
+        return {updates, hullPointsRecovered: max - hp.value};
     }
 
     /* -------------------------------------------- */
@@ -3493,15 +3539,14 @@ export default class Actor5e extends Actor {
      * @protected
      */
     _getRepairShieldPointRecovery() {
-        const data = this.data.data;
+        const hp = this.system.attributes.hp;
+        let max = hp.tempmax;
         let updates = {};
-        const max = data.attributes.hp.tempmax;
 
-        updates["data.attributes.hp.temp"] = max;
+        updates["system.attributes.hp.temp"] = max;
+        updates["system.attributes.shld.depleted"] = false;
 
-        updates["data.attributes.shld.depleted"] = false;
-
-        return {updates, shldPointsRecovered: max - data.attributes.hp.temp};
+        return {updates, shldPointsRecovered: max - hp.temp};
     }
 
     /* -------------------------------------------- */
@@ -3514,21 +3559,22 @@ export default class Actor5e extends Actor {
      * @protected
      */
     _getRepairPowerDiceRecovery() {
-        const data = this.data.data;
-        let updates = {};
-        const centralMax = data.attributes.power.central.max;
-        const commsMax = data.attributes.power.comms.max;
-        const enginesMax = data.attributes.power.engines.max;
-        const shieldsMax = data.attributes.power.shields.max;
-        const sensorsMax = data.attributes.power.sensors.max;
-        const weaponsMax = data.attributes.power.weapons.max;
+        const power = this.system.attributes.power;
+        const centralMax = power.central.max;
+        const commsMax = power.comms.max;
+        const enginesMax = power.engines.max;
+        const shieldsMax = power.shields.max;
+        const sensorsMax = power.sensors.max;
+        const weaponsMax = power.weapons.max;
 
-        updates["data.attributes.power.central.value"] = centralMax;
-        updates["data.attributes.power.comms.value"] = commsMax;
-        updates["data.attributes.power.engines.value"] = enginesMax;
-        updates["data.attributes.power.shields.value"] = shieldsMax;
-        updates["data.attributes.power.sensors.value"] = sensorsMax;
-        updates["data.attributes.power.weapons.value"] = weaponsMax;
+        let updates = {};
+
+        updates["system.attributes.power.central.value"] = centralMax;
+        updates["system.attributes.power.comms.value"] = commsMax;
+        updates["system.attributes.power.engines.value"] = enginesMax;
+        updates["system.attributes.power.shields.value"] = shieldsMax;
+        updates["system.attributes.power.sensors.value"] = sensorsMax;
+        updates["system.attributes.power.weapons.value"] = weaponsMax;
 
         return {updates};
     }
@@ -3545,25 +3591,24 @@ export default class Actor5e extends Actor {
      */
     _getRepairHullDiceRecovery({maxHullDice = undefined} = {}) {
         // Determine the number of hull dice which may be recovered
-        if (maxHullDice === undefined) {
-            maxHullDice = this.data.data.attributes.hull.dicemax;
-        }
+        if (maxHullDice === undefined) maxHullDice = this.system.attributes.hull.dicemax;
 
         // Sort starship sizes which can recover HD, assuming players prefer recovering larger HD first.
-        const starship = Object.values(this.starships).sort((a, b) => {
-            return (parseInt(b.data.data.hullDice.slice(1)) || 0) - (parseInt(a.data.data.hullDice.slice(1)) || 0);
+        const sortedStarships = Object.values(this.starships).sort((a, b) => {
+            return (parseInt(b.system.hullDice.slice(1)) || 0) - (parseInt(a.system.hullDice.slice(1)) || 0);
         });
 
+        // Update hull dice usage
         let updates = [];
         let hullDiceRecovered = 0;
-        for (let item of starship) {
-            const d = item.data.data;
-            if (hullDiceRecovered < maxHullDice && d.hullDiceUsed > 0) {
-                let delta = Math.min(d.hullDiceUsed || 0, maxHullDice - hullDiceRecovered);
+        for (let item of sortedStarships) {
+            const hullDiceUsed = item.system.hullDiceUsed;
+            if (hullDiceRecovered < maxHullDice && hullDiceUsed > 0) {
+                let delta = Math.min(hullDiceUsed || 0, maxHullDice - hullDiceRecovered);
                 hullDiceRecovered += delta;
                 updates.push({
                     "_id": item.id,
-                    "data.hullDiceUsed": d.hullDiceUsed - delta
+                    "system.hullDiceUsed": hullDiceUsed - delta
                 });
             }
         }
@@ -3580,23 +3625,24 @@ export default class Actor5e extends Actor {
      */
     _getRepairShieldDiceRecovery() {
         // Determine the number of shield dice which may be recovered
-        const maxShldDice = this.data.data.attributes.shld.dicemax;
+        const maxShldDice = this.system.attributes.shld.dicemax;
 
         // Sort starship sizes which can recover SD, assuming players prefer recovering larger SD first.
-        const starship = Object.values(this.starships).sort((a, b) => {
-            return (parseInt(b.data.data.shldDice.slice(1)) || 0) - (parseInt(a.data.data.shldDice.slice(1)) || 0);
+        const sortedStarships = Object.values(this.starships).sort((a, b) => {
+            return (parseInt(b.system.shldDice.slice(1)) || 0) - (parseInt(a.system.shldDice.slice(1)) || 0);
         });
 
+        // Update shield dice usage
         let updates = [];
         let shldDiceRecovered = 0;
-        for (let item of starship) {
-            const d = item.data.data;
-            if (shldDiceRecovered < maxShldDice && d.shldDiceUsed > 0) {
-                let delta = Math.min(d.shldDiceUsed || 0, maxShldDice - shldDiceRecovered);
+        for (let item of sortedStarships) {
+            const shldDiceUsed = item.system.shldDiceUsed;
+            if (shldDiceRecovered < maxShldDice && shldDiceUsed > 0) {
+                let delta = Math.min(shldDiceUsed || 0, maxShldDice - shldDiceRecovered);
                 shldDiceRecovered += delta;
                 updates.push({
                     "_id": item.id,
-                    "data.shldDiceUsed": d.shldDiceUsed - delta
+                    "system.shldDiceUsed": shldDiceUsed - delta
                 });
             }
         }
@@ -3628,12 +3674,11 @@ export default class Actor5e extends Actor {
 
         let updates = [];
         for (let item of this.items) {
-            const d = item.data.data;
-            if (d.uses && recovery.includes(d.uses.per)) {
-                updates.push({"_id": item.id, "data.uses.value": d.uses.max});
+            if (recovery.includes(item.system.uses?.per)) {
+                updates.push({"_id": item.id, "system.uses.value": item.system.uses.max});
             }
-            if (recoverRefittingRepairUses && d.recharge && d.recharge.value) {
-                updates.push({"_id": item.id, "data.recharge.charged": true});
+            if (recoverRefittingRepairUses && item.system.recharge?.value) {
+                updates.push({"_id": item.id, "system.recharge.charged": true});
             }
         }
 
@@ -3663,6 +3708,7 @@ export default class Actor5e extends Actor {
      * @property {boolean} [keepVision=false]      Keep vision
      * @property {boolean} [transformTokens=true]  Transform linked tokens too
      */
+
     /**
      * Transform this Actor into another one.
      *
@@ -3695,54 +3741,57 @@ export default class Actor5e extends Actor {
         }
 
         // Get the original Actor data and the new source data
-        const o = this.toJSON();
+        const o = this.toObject();
         o.flags.sw5e = o.flags.sw5e || {};
         o.flags.sw5e.transformOptions = {mergeSkills, mergeSaves};
-        const source = target.toJSON();
+        const source = target.toObject();
 
         // Prepare new data to merge from the source
         const d = {
             type: o.type, // Remain the same actor type
             name: `${o.name} (${source.name})`, // Append the new shape to your old name
-            data: source.data, // Get the data model of your new form
+            system: source.system, // Get the systemdata model of your new form
             items: source.items, // Get the items of your new form
             effects: o.effects.concat(source.effects), // Combine active effects from both forms
             img: source.img, // New appearance
-            permission: o.permission, // Use the original actor permissions
+            ownership: o.ownership, // Use the original actor permissions
             folder: o.folder, // Be displayed in the same sidebar folder
             flags: o.flags // Use the original actor flags
         };
 
         // Specifically delete some data attributes
-        delete d.data.resources; // Don't change your resource pools
-        delete d.data.currency; // Don't lose currency
-        delete d.data.bonuses; // Don't lose global bonuses
+        delete d.system.resources; // Don't change your resource pools
+        delete d.system.currency; // Don't lose currency
+        delete d.system.bonuses; // Don't lose global bonuses
 
         // Specific additional adjustments
-        d.data.details.alignment = o.data.details.alignment; // Don't change alignment
-        d.data.attributes.exhaustion = o.data.attributes.exhaustion; // Keep your prior exhaustion level
-        d.data.attributes.inspiration = o.data.attributes.inspiration; // Keep inspiration
-        d.data.powers = o.data.powers; // Keep power slots
-        d.data.attributes.ac.flat = target.data.data.attributes.ac.value; // Override AC
+        d.system.details.alignment = o.system.details.alignment; // Don't change alignment
+        d.system.attributes.exhaustion = o.system.attributes.exhaustion; // Keep your prior exhaustion level
+        d.system.attributes.inspiration = o.system.attributes.inspiration; // Keep inspiration
+        d.system.powers = o.system.powers; // Keep power slots
+        d.system.attributes.ac.flat = target.system.attributes.ac.value; // Override AC
 
         // Token appearance updates
-        d.token = {name: d.name};
-        for (let k of ["width", "height", "scale", "img", "mirrorX", "mirrorY", "tint", "alpha", "lockRotation"]) {
-            d.token[k] = source.token[k];
+        d.prototypeToken = {name: d.name, texture: {}};
+        for (const k of ["width", "height", "alpha", "lockRotation"]) {
+            d.prototypeToken[k] = source.prototypeToken[k];
         }
-        const vision = keepVision ? o.token : source.token;
-        for (let k of ["dimSight", "brightSight", "dimLight", "brightLight", "vision", "sightAngle"]) {
-            d.token[k] = vision[k];
+        for (const k of ["offsetX", "offsetY", "scaleX", "scaleY", "src", "tint"]) {
+            d.prototypeToken.texture[k] = source.prototypeToken.texture[k];
         }
-        if (source.token.randomImg) {
+        const vision = keepVision ? o.prototypeToken : source.prototypeToken;
+        for (const k of ["dimSight", "brightSight", "dimLight", "brightLight", "vision", "sightAngle"]) {
+            d.prototypeToken[k] = vision[k];
+        }
+        if (source.prototypeToken.randomImg) {
             const images = await target.getTokenImages();
-            d.token.img = images[Math.floor(Math.random() * images.length)];
+            d.prototypeToken.texture.src = images[Math.floor(Math.random() * images.length)];
         }
 
         // Transfer ability scores
-        const abilities = d.data.abilities;
+        const abilities = d.system.abilities;
         for (let k of Object.keys(abilities)) {
-            const oa = o.data.abilities[k];
+            const oa = o.system.abilities[k];
             const prof = abilities[k].proficient;
             if (keepPhysical && ["str", "dex", "con"].includes(k)) abilities[k] = oa;
             else if (keepMental && ["int", "wis", "cha"].includes(k)) abilities[k] = oa;
@@ -3751,10 +3800,10 @@ export default class Actor5e extends Actor {
         }
 
         // Transfer skills
-        if (keepSkills) d.data.skills = o.data.skills;
+        if (keepSkills) d.system.skills = o.system.skills;
         else if (mergeSkills) {
-            for (let [k, s] of Object.entries(d.data.skills)) {
-                s.value = Math.max(s.value, o.data.skills[k].value);
+            for (let [k, s] of Object.entries(d.system.skills)) {
+                s.value = Math.max(s.value, o.system.skills[k].value);
             }
         }
 
@@ -3769,19 +3818,19 @@ export default class Actor5e extends Actor {
         );
 
         // Transfer classes for NPCs
-        if (!keepClass && d.data.details.cr) {
+        if (!keepClass && d.system.details.cr) {
             d.items.push({
                 type: "class",
                 name: game.i18n.localize("SW5E.PolymorphTmpClass"),
-                data: {levels: d.data.details.cr}
+                data: {levels: d.system.details.cr}
             });
         }
 
         // Keep biography
-        if (keepBio) d.data.details.biography = o.data.details.biography;
+        if (keepBio) d.system.details.biography = o.system.details.biography;
 
         // Keep senses
-        if (keepVision) d.data.traits.senses = o.data.traits.senses;
+        if (keepVision) d.system.traits.senses = o.system.traits.senses;
 
         // Set new data flags
         if (!this.isPolymorphed || !d.flags.sw5e.originalActor) d.flags.sw5e.originalActor = this.id;
@@ -3789,9 +3838,9 @@ export default class Actor5e extends Actor {
 
         // Update unlinked Tokens in place since they can simply be re-dropped from the base actor
         if (this.isToken) {
-            const tokenData = d.token;
+            const tokenData = d.prototypeToken;
+            delete d.prototypeToken;
             tokenData.actorData = d;
-            delete tokenData.actorData.token;
             return this.token.update(tokenData);
         }
 
@@ -3830,8 +3879,8 @@ export default class Actor5e extends Actor {
         if (!transformTokens) return;
         const tokens = this.getActiveTokens(true);
         const updates = tokens.map((t) => {
-            const newTokenData = foundry.utils.deepClone(d.token);
-            newTokenData._id = t.data._id;
+            const newTokenData = foundry.utils.deepClone(d.prototypeToken);
+            newTokenData._id = t.id;
             newTokenData.actorId = newActor.id;
             newTokenData.actorLink = true;
             return newTokenData;
@@ -3855,7 +3904,7 @@ export default class Actor5e extends Actor {
 
         // If we are reverting an unlinked token, simply replace it with the base actor prototype
         if (this.isToken) {
-            const baseActor = game.actors.get(this.token.data.actorId);
+            const baseActor = game.actors.get(this.token.actorId);
             const prototypeTokenData = await baseActor.getTokenData();
             const tokenUpdate = {actorData: {}};
             for (let k of [
@@ -3916,7 +3965,7 @@ export default class Actor5e extends Actor {
     async ssDeployCrew(target, toDeploy) {
         if (!target) return;
 
-        const deployed = target.data.data.attributes.deployed;
+        const deployed = target.system.attributes.deployed;
         const otherShip = target.getStarship();
         if (otherShip) {
             if (otherShip.uuid === this.uuid) {
@@ -3932,9 +3981,8 @@ export default class Actor5e extends Actor {
         }
 
         // Get the starship Actor data and the new crewmember data
-        const ssDeploy = this.data.data.attributes.deployment;
+        const ssDeploy = this.system.attributes.deployment;
         const charUUID = target.uuid;
-        const charName = target.data.name;
         const deployment = ssDeploy[toDeploy];
 
         if (deployment.items) deployment.items.push(charUUID);
@@ -3947,8 +3995,8 @@ export default class Actor5e extends Actor {
         }
         if (ssDeploy.active.value === target.uuid) deployment.active = true;
 
-        await this.update({"data.attributes.deployment": ssDeploy});
-        await target.update({"data.attributes.deployed": deployed});
+        await this.update({"system.attributes.deployment": ssDeploy});
+        await target.update({"system.attributes.deployed": deployed});
     }
 
     /* -------------------------------------------- */
@@ -3963,8 +4011,8 @@ export default class Actor5e extends Actor {
         if (!target) return;
         if (!toUndeploy) toUndeploy = Object.keys(CONFIG.SW5E.ssCrewStationTypes);
 
-        const ssDeploy = this.data.data.attributes.deployment;
-        const deployed = target.data.data.attributes.deployed;
+        const ssDeploy = this.system.attributes.deployment;
+        const deployed = target.system.attributes.deployed;
 
         for (const key of toUndeploy) {
             const deployment = ssDeploy[key];
@@ -3983,8 +4031,8 @@ export default class Actor5e extends Actor {
             if (ssDeploy.active.value === target.uuid) await this.toggleActiveCrew();
         }
 
-        await this.update({"data.attributes.deployment": ssDeploy});
-        await target.update({"data.attributes.deployed": deployed});
+        await this.update({"system.attributes.deployment": ssDeploy});
+        await target.update({"system.attributes.deployed": deployed});
     }
 
     /* -------------------------------------------- */
@@ -3995,7 +4043,7 @@ export default class Actor5e extends Actor {
      * @param {string} target UUID of the target, if empty will set everyone as inactive
      */
     async toggleActiveCrew(target) {
-        const deployments = this.data.data.attributes.deployment;
+        const deployments = this.system.attributes.deployment;
         const active = deployments.active;
 
         if (target === active.value) target = null;
@@ -4012,7 +4060,7 @@ export default class Actor5e extends Actor {
             }
         }
 
-        await this.update({"data.attributes.deployment": deployments});
+        await this.update({"system.attributes.deployment": deployments});
         return active.value;
     }
 
@@ -4024,7 +4072,7 @@ export default class Actor5e extends Actor {
      * @returns Actor>|null  Original actor if it was reverted.
      */
     getStarship() {
-        const starship = fromUuidSynchronous(this?.data?.data?.attributes?.deployed?.uuid);
+        const starship = fromUuidSynchronous(this?.system?.attributes?.deployed?.uuid);
         if (starship && starship instanceof TokenDocument) return starship.actor;
         return starship;
     }
@@ -4096,9 +4144,7 @@ export default class Actor5e extends Actor {
         const itemTypes = CONFIG.SW5E[`${type}Ids`];
 
         let values = [];
-        if (data.value) {
-            values = data.value instanceof Array ? data.value : [data.value];
-        }
+        if (data.value) values = data.value instanceof Array ? data.value : [data.value];
 
         data.selected = {};
         for (const key of values) {
@@ -4113,9 +4159,7 @@ export default class Actor5e extends Actor {
         }
 
         // Add custom entries
-        if (data.custom) {
-            data.custom.split(";").forEach((c, i) => (data.selected[`custom${i + 1}`] = c.trim()));
-        }
+        if (data.custom) data.custom.split(";").forEach((c, i) => (data.selected[`custom${i + 1}`] = c.trim()));
     }
 
     /* -------------------------------------------- */
@@ -4180,9 +4224,9 @@ export default class Actor5e extends Actor {
         if (!dhp) return;
         dhp = Number(dhp);
         const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
-        for (let t of tokens) {
-            const pct = Math.clamped(Math.abs(dhp) / this.data.data.attributes.hp.max, 0, 1);
-            t.hud.createScrollingText(dhp.signedString(), {
+        for (const t of tokens) {
+            const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
+            canvas.interface.createScrollingText(t.center, dhp.signedString(), {
                 anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
                 fontSize: 16 + 32 * pct, // Range between [16, 48]
                 fill: CONFIG.SW5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
@@ -4198,15 +4242,17 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Given a list of items to add to the Actor, optionally prompt the
-     * user for which they would like to add.
+     * Given a list of items to add to the Actor, optionally prompt the user for which they would like to add.
      * @param {Item5e[]} items         The items being added to the Actor.
      * @param {boolean} [prompt=true]  Whether or not to prompt the user.
      * @returns {Promise<Item5e[]>}
-     * @deprecated since sw5e 1.6, targeted for removal in 1.8
+     * @deprecated since sw5e 1.6, targeted for removal in 2.1
      */
     async addEmbeddedItems(items, prompt = true) {
-        console.warn("Actor5e#addEmbeddedItems has been deprecated and will be removed in 1.8.");
+        foundry.utils.logCompatibilityWarning("Actor5e#addEmbeddedItems has been deprecated.", {
+            since: "SW5e 1.6",
+            until: "SW5e 2.1"
+        });
         let itemsToAdd = items;
         if (!items.length) return [];
 
@@ -4219,9 +4265,7 @@ export default class Actor5e extends Actor {
             for (let item of items) {
                 if (itemIdsToAdd.includes(item.id)) toCreate.push(item.toObject());
             }
-        } else {
-            toCreate = items.map((item) => item.toObject());
-        }
+        } else toCreate = items.map((item) => item.toObject());
 
         // Create the requested items
         if (itemsToAdd.length === 0) return [];
@@ -4238,11 +4282,12 @@ export default class Actor5e extends Actor {
      * @param {string} [options.archetypeName]   Name of the selected archetype if it has been changed.
      * @param {number} [options.level]           New class level if it has been changed.
      * @returns {Promise<Item5e[]>}              Any new items that should be added to the actor.
-     * @deprecated since sw5e 1.6, targeted for removal in 1.8
+     * @deprecated since sw5e 1.6, targeted for removal in 2.1
      */
     async getClassFeatures({classIdentifier, archetypeName, level} = {}) {
-        console.warn(
-            "Actor5e#getClassFeatures has been deprecated and will be removed in 1.8. Please refer to the Advancement API for its replacement."
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#getClassFeatures has been deprecated. Please refer to the Advancement API for its replacement.",
+            {since: "SW5e 1.6", until: "SW5e 2.1"}
         );
         const existing = new Set(this.items.map((i) => i.name));
         const features = await Actor5e.loadClassFeatures({classIdentifier, archetypeName, level});
@@ -4259,11 +4304,12 @@ export default class Actor5e extends Actor {
      * @param {number} [options.level]           The number of levels in the added class.
      * @param {number} [options.priorLevel]      The previous level of the added class.
      * @returns {Promise<Item5e[]>}              Items that should be added based on the changes made.
-     * @deprecated since sw5e 1.6, targeted for removal in 1.8
+     * @deprecated since sw5e 1.6, targeted for removal in 2.1
      */
     static async loadClassFeatures({classIdentifier = "", archetypeName = "", level = 1, priorLevel = 0} = {}) {
-        console.warn(
-            "Actor5e#loadClassFeatures has been deprecated and will be removed in 1.8. Please refer to the Advancement API for its replacement."
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#loadClassFeatures has been deprecated. Please refer to the Advancement API for its replacement.",
+            {since: "SW5e 1.6", until: "SW5e 2.1"}
         );
         archetypeName = archetypeName.slugify();
 
@@ -4294,7 +4340,7 @@ export default class Actor5e extends Actor {
         // Class powers should always be prepared
         for (const feature of features) {
             if (feature.type === "power") {
-                const preparation = feature.data.data.preparation;
+                const preparation = feature.system.preparation;
                 preparation.mode = "always";
                 preparation.prepared = true;
             }
@@ -4305,30 +4351,83 @@ export default class Actor5e extends Actor {
     /* -------------------------------------------- */
 
     /**
-     * Retrieve the power save DC for the provided ability.
-     * @param {string} ability  Ability key as defined in `CONFIG.SW5E.abilities`.
-     * @returns {number}        Power save DC for provided ability.
-     * @deprecated since sw5e 0.97
+     * Determine a character's AC value from their equipped armor and shield.
+     * @returns {object}
+     * @private
+     * @deprecated since sw5e 2.0, targeted for removal in 2.2
      */
-    getPowerDC(ability) {
-        console.warn(
-            "The Actor5e#getPowerDC(ability) method has been deprecated in favor of Actor5e#data.data.abilities[ability].dc"
+    _computeArmorClass() {
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#_computeArmorClass has been renamed Actor5e#_prepareArmorClass.",
+            {since: "SW5e 2.0", until: "SW5e 2.2"}
         );
-        return this.data.data.abilities[ability]?.dc;
+        this._prepareArmorClass();
+        return this.system.attributes.ac;
     }
 
     /* -------------------------------------------- */
 
     /**
-     * Cast a Power, consuming a power slot of a certain level
-     * @param {Item5e} item   The power being cast by the actor
-     * @param {Event} event   The originating user interaction which triggered the cast
-     * @returns {Promise<ChatMessage|object|void>}  Dialog if `configureDialog` is true, else prepared dialog data.
-     * @deprecated since sw5e 1.2.0
+     * Compute the level and percentage of encumbrance for an Actor.
+     * @returns {object}  An object describing the character's encumbrance level
+     * @private
+     * @deprecated since sw5e 2.0, targeted for removal in 2.2
      */
-    async usePower(item, {configureDialog = true} = {}) {
-        console.warn("The Actor5e#usePower method has been deprecated in favor of Item5e#roll");
-        if (item.data.type !== "power") throw new Error("Wrong Item type");
-        return item.roll();
+    _computeEncumbrance() {
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#_computeEncumbrance has been renamed Actor5e#_prepareEncumbrance.",
+            {since: "SW5e 2.0", until: "SW5e 2.2"}
+        );
+        this._prepareEncumbrance();
+        return this.system.attributes.encumbrance;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Calculate the initiative bonus to display on a character sheet.
+     * @private
+     * @deprecated since sw5e 2.0, targeted for removal in 2.2
+     */
+    _computeInitiativeModifier() {
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#_computeInitiativeModifier has been renamed Actor5e#_prepareInitiative.",
+            {since: "SW5e 2.0", until: "SW5e 2.2"}
+        );
+        this._prepareInitiative();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare data related to the power-casting capabilities of the Actor.
+     * Mutates the value of the system.powers object.
+     * @private
+     * @deprecated since sw5e 2.0, targeted for removal in 2.2
+     */
+    _computePowercastingProgression() {
+        foundry.utils.logCompatibilityWarning(
+            "Actor5e#_computePowercastingProgression has been renamed Actor5e#_preparePowercasting.",
+            {since: "SW5e 2.0", until: "SW5e 2.2"}
+        );
+        this._preparePowercasting();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Convert a bonus value to a simple integer for displaying on the sheet.
+     * @param {number|string|null} bonus  Actor's bonus value.
+     * @param {object} data               Actor data to use for replacing @ strings.
+     * @returns {number}                  Simplified bonus as an integer.
+     * @protected
+     * @deprecated since sw5e 2.0, targeted for removal in 2.2
+     */
+    _simplifyBonus(bonus, data) {
+        foundry.utils.logCompatibilityWarning(
+            "Actor#_simplifyBonus has been made a utility function and can be accessed at sw5e.utils.simplifyBonus.",
+            {since: "SW5e 2.0", until: "SW5e 2.2"}
+        );
+        return simplifyBonus(bonus, data);
     }
 }

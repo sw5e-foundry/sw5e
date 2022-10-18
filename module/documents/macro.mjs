@@ -1,27 +1,28 @@
 /**
  * Attempt to create a macro from the dropped data. Will use an existing macro if one exists.
- * @param {object} data     The dropped data
- * @param {number} slot     The hotbar slot to use
- * @returns {Promise<boolean>}
+ * @param {object} dropData     The dropped data
+ * @param {number} slot         The hotbar slot to use
  */
-export async function create5eMacro(data, slot) {
-    const macroData = { type: "script", scope: "actor" };
-    switch ( data.type ) {
+export async function create5eMacro(dropData, slot) {
+    const macroData = {type: "script", scope: "actor"};
+    switch (dropData.type) {
         case "Item":
-            if ( !("data" in data) ) return ui.notifications.warn(game.i18n.localize("MACRO.5eUnownedWarn"));
+            const itemData = await Item.implementation.fromDropData(dropData);
+            if (!itemData) return ui.notifications.warn(game.i18n.localize("MACRO.5eUnownedWarn"));
             foundry.utils.mergeObject(macroData, {
-                name: data.data.name,
-                img: data.data.img,
-                command: `game.sw5e.macros.rollItem("${data.data.name}")`,
+                name: itemData.name,
+                img: itemData.img,
+                command: `sw5e.documents.macro.rollItem("${itemData.name}")`,
                 flags: {"sw5e.itemMacro": true}
             });
             break;
         case "ActiveEffect":
-            if ( !("data" in data) ) return ui.notifications.warn(game.i18n.localize("MACRO.5eUnownedWarn"));
+            const effectData = await ActiveEffect.implementation.fromDropData(dropData);
+            if (!effectData) return ui.notifications.warn(game.i18n.localize("MACRO.5eUnownedWarn"));
             foundry.utils.mergeObject(macroData, {
-                name: data.data.label,
-                img: data.data.icon,
-                command: `game.sw5e.macros.toggleEffect("${data.data.label}")`,
+                name: effectData.label,
+                img: effectData.icon,
+                command: `sw5e.documents.macro.toggleEffect("${effectData.label}")`,
                 flags: {"sw5e.effectMacro": true}
             });
             break;
@@ -29,11 +30,11 @@ export async function create5eMacro(data, slot) {
             return;
     }
 
-    let macro = game.macros.find(m => (m.data.name === macroData.name)
-        && (m.data.command === macroData.command) && (m.data.author === game.userId));
-    if ( !macro ) macro = await Macro.create(macroData);
+    // Assign the macro to the hotbar
+    const macro =
+        game.macros.find((m) => m.name === macroData.name && m.command === macroData.command && m.author.isSelf) ||
+        (await Macro.create(macroData));
     game.user.assignHotbarMacro(macro, slot);
-    return false;
 }
 
 /* -------------------------------------------- */
@@ -47,23 +48,22 @@ export async function create5eMacro(data, slot) {
 function getMacroTarget(name, documentType) {
     let actor;
     const speaker = ChatMessage.getSpeaker();
-    if ( speaker.token ) actor = game.actors.tokens[speaker.token];
+    if (speaker.token) actor = game.actors.tokens[speaker.token];
     actor ??= game.actors.get(speaker.actor);
-    if ( !actor ) return ui.notifications.warn(game.i18n.localize("MACRO.5eNoActorSelected"));
+    if (!actor) return ui.notifications.warn(game.i18n.localize("MACRO.5eNoActorSelected"));
 
-    const collection = (documentType === "Item") ? actor.items : actor.effects;
-    const nameKeyPath = (documentType === "Item") ? "name" : "data.label";
+    const collection = documentType === "Item" ? actor.items : actor.effects;
+    const nameKeyPath = documentType === "Item" ? "name" : "label";
 
     // Find item in collection
-    const documents = collection.filter(i => foundry.utils.getProperty(i, nameKeyPath) === name);
+    const documents = collection.filter((i) => foundry.utils.getProperty(i, nameKeyPath) === name);
     const type = game.i18n.localize(`DOCUMENT.${documentType}`);
-    if ( documents.length === 0 ) {
-        return ui.notifications.warn(game.i18n.format("MACRO.5eMissingTargetWarn", { actor: actor.name, type, name }));
+    if (documents.length === 0) {
+        return ui.notifications.warn(game.i18n.format("MACRO.5eMissingTargetWarn", {actor: actor.name, type, name}));
     }
-    if ( documents.length > 1 ) {
-        ui.notifications.warn(game.i18n.format("MACRO.5eMultipleTargetsWarn", { actor: actor.name, type, name }));
+    if (documents.length > 1) {
+        ui.notifications.warn(game.i18n.format("MACRO.5eMultipleTargetsWarn", {actor: actor.name, type, name}));
     }
-
     return documents[0];
 }
 
@@ -75,7 +75,7 @@ function getMacroTarget(name, documentType) {
  * @returns {Promise<ChatMessage|object>}  Roll result.
  */
 export function rollItem(itemName) {
-    return getMacroTarget(itemName, "Item")?.roll();
+    return getMacroTarget(itemName, "Item")?.use();
 }
 
 /* -------------------------------------------- */
@@ -87,6 +87,5 @@ export function rollItem(itemName) {
  */
 export function toggleEffect(effectLabel) {
     const effect = getMacroTarget(effectLabel, "ActiveEffect");
-    if ( !effect ) return;
-    return effect.update({disabled: !effect.data.disabled});
+    return effect?.update({disabled: !effect.disabled});
 }

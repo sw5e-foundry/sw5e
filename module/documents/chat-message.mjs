@@ -7,30 +7,29 @@ import {SW5E} from "./config.js";
  * @param {HTMLElement} html     Rendered contents of the message.
  * @param {object} data          Configuration data passed to the message.
  */
-export const highlightCriticalSuccessFailure = function (message, html, data) {
-    if (!message.isRoll || !message.isContentVisible) return;
+export function highlightCriticalSuccessFailure(message, html, data) {
+    if (!message.isRoll || !message.isContentVisible || !message.rolls.length) return;
 
     // Highlight rolls where the first part is a d20 roll
-    const roll = message.roll;
-    if (!roll.dice.length) return;
-    const d = roll.dice[0];
+    let d20Roll = message.rolls.find((r) => {
+        const d0 = r.dice[0];
+        return d0?.faces === 20 && d0?.values.length === 1;
+    });
+    if (!d20Roll) return;
+    d20Roll = sw5e.dice.D20Roll.fromRoll(d20Roll);
+    const d = d20Roll.dice[0];
 
-    // Ensure it is an un-modified d20 roll
-    const isD20 = d.faces === 20 && d.values.length === 1;
-    if (!isD20) return;
     const isModifiedRoll = "success" in d.results[0] || d.options.marginSuccess || d.options.marginFailure;
     if (isModifiedRoll) return;
 
     // Highlight successes and failures
-    const critical = d.options.critical || 20;
-    const fumble = d.options.fumble || 1;
-    if (d.total >= critical) html.find(".dice-total").addClass("critical");
-    else if (d.total <= fumble) html.find(".dice-total").addClass("fumble");
+    if (d20Roll.isCritical) html.find(".dice-total").addClass("critical");
+    else if (d20Roll.isFumble) html.find(".dice-total").addClass("fumble");
     else if (d.options.target) {
-        if (roll.total >= d.options.target) html.find(".dice-total").addClass("success");
+        if (d20Roll.total >= d.options.target) html.find(".dice-total").addClass("success");
         else html.find(".dice-total").addClass("failure");
     }
-};
+}
 
 /* -------------------------------------------- */
 
@@ -40,7 +39,7 @@ export const highlightCriticalSuccessFailure = function (message, html, data) {
  * @param {HTMLElement} html     Rendered contents of the message.
  * @param {object} data          Configuration data passed to the message.
  */
-export const displayChatActionButtons = function (message, html, data) {
+export function displayChatActionButtons(message, html, data) {
     const chatCard = html.find(".sw5e.chat-card");
     if (chatCard.length > 0) {
         const flavor = html.find(".flavor-text");
@@ -58,7 +57,7 @@ export const displayChatActionButtons = function (message, html, data) {
             btn.style.display = "none";
         });
     }
-};
+}
 
 /* -------------------------------------------- */
 
@@ -71,7 +70,7 @@ export const displayChatActionButtons = function (message, html, data) {
  *
  * @returns {object[]}          The extended options Array including new context choices
  */
-export const addChatMessageContextOptions = function (html, options) {
+export function addChatMessageContextOptions(html, options) {
     let canApplyDamage = (li) => {
         const message = game.messages.get(li.data("messageId"));
         return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
@@ -106,6 +105,12 @@ export const addChatMessageContextOptions = function (html, options) {
             callback: (li) => applyChatCardDamage(li, -1)
         },
         {
+            name: game.i18n.localize("SW5E.ChatContextTempHP"),
+            icon: '<i class="fas fa-user-clock"></i>',
+            condition: canApplyDamage,
+            callback: (li) => applyChatCardTemp(li)
+        },
+        {
             name: game.i18n.localize("SW5E.ChatContextDoubleDamage"),
             icon: '<i class="fas fa-user-injured"></i>',
             condition: canApplyDamage,
@@ -120,18 +125,22 @@ export const addChatMessageContextOptions = function (html, options) {
         {
             name: game.i18n.localize("SW5E.ChatContextShowSecret"),
             icon: '<i class="fas fa-user-secret"></i>',
-            condition: (li) => { return secretsShown(li) === false },
+            condition: (li) => {
+                return secretsShown(li) === false;
+            },
             callback: (li) => toggleSecrets(li)
         },
         {
             name: game.i18n.localize("SW5E.ChatContextHideSecret"),
             icon: '<i class="fas fa-user-secret"></i>',
-            condition: (li) => { return secretsShown(li) === true },
+            condition: (li) => {
+                return secretsShown(li) === true;
+            },
             callback: (li) => toggleSecrets(li)
         }
     );
     return options;
-};
+}
 
 /* -------------------------------------------- */
 
@@ -145,7 +154,7 @@ export const addChatMessageContextOptions = function (html, options) {
  */
 function applyChatCardDamage(li, multiplier) {
     const message = game.messages.get(li.data("messageId"));
-    const roll = message.roll;
+    const roll = message.rolls[0];
 
     // If no multiplier is received, pass extra data to automatically calculate it based on resistances
     const extraData = {};
@@ -154,21 +163,21 @@ function applyChatCardDamage(li, multiplier) {
         // Get damage type from the roll flavor
         const flavor = message.roll.options.flavor;
         const regexp = /[(]([^()]*)[)]/g;
-        const types = [...flavor.matchAll(regexp)].map(i => i[1].split(', ')).flat(1);
-        const damageTypes = types.filter(d => Object.keys(SW5E.damageTypes).includes(d.toLowerCase()));
+        const types = [...flavor.matchAll(regexp)].map((i) => i[1].split(", ")).flat(1);
+        const damageTypes = types.filter((d) => Object.keys(SW5E.damageTypes).includes(d.toLowerCase()));
         if (damageTypes.length) extraData.damageType = damageTypes[0];
         // Get item uuid from the message data
-        const actorId = message.data.speaker.actor;
+        const actorId = message.speaker.actor;
         const actor = fromUuidSynchronous(`Actor.${actorId}`);
         if (actor) {
-            const itemId = message.data.flags.sw5e.roll.itemId;
-            const item = actor.data.items.get(itemId);
+            const itemId = message.flags.sw5e.roll.itemId;
+            const item = actor.items.get(itemId);
             if (item) extraData.itemUuid = item.uuid;
         }
         // MRE rolls each damage type separately
-        if (message.data.flags['mre-dnd5e']) {
+        if (message.flags["mre-dnd5e"]) {
             const damages = [];
-            const rolls = message.data.flags['mre-dnd5e'].rolls;
+            const rolls = message.flags["mre-dnd5e"].rolls;
             for (let i = 0; i < rolls.length; i++) {
                 damages.push({
                     ammount: rolls[i].total,
@@ -195,6 +204,38 @@ function applyChatCardDamage(li, multiplier) {
 /* -------------------------------------------- */
 
 /**
+ * Apply rolled dice as temporary hit points to the controlled token(s).
+ * @param {HTMLElement} li  The chat entry which contains the roll data
+ * @returns {Promise}
+ */
+function applyChatCardTemp(li) {
+    const message = game.messages.get(li.data("messageId"));
+    const roll = message.rolls[0];
+    return Promise.all(
+        canvas.tokens.controlled.map((t) => {
+            const a = t.actor;
+            return a.applyTempHP(roll.total);
+        })
+    );
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Handle rendering of a chat message to the log
+ * @param {ChatLog} app     The ChatLog instance
+ * @param {jQuery} html     Rendered chat message HTML
+ * @param {object} data     Data passed to the render context
+ */
+export function onRenderChatMessage(app, html, data) {
+    displayChatActionButtons(app, html, data);
+    highlightCriticalSuccessFailure(app, html, data);
+    if (game.settings.get("sw5e", "autoCollapseItemCards")) html.find(".card-content").hide();
+}
+
+/* -------------------------------------------- */
+
+/**
  * Reveal or Hide secret block in a message
  *
  * @param {HTMLElement} li      The chat entry
@@ -204,11 +245,11 @@ function toggleSecrets(li) {
     const message = game.messages.get(li.data("messageId"));
     const secretsShown = message.getFlag("sw5e", "secretsShown");
 
-    const actorId = message.data.content.match(/data-actor-id="(?<id>\w+?)"/)[1];
-    const itemId = message.data.content.match(/data-item-id="(?<id>\w+?)"/)[1];
-    const item = fromUuidSynchronous(`Actor.${actorId || 'invalid'}.Item.${itemId || 'invalid'}`);
+    const actorId = message.content.match(/data-actor-id="(?<id>\w+?)"/)[1];
+    const itemId = message.content.match(/data-item-id="(?<id>\w+?)"/)[1];
+    const item = fromUuidSynchronous(`Actor.${actorId || "invalid"}.Item.${itemId || "invalid"}`);
 
-    let desc = item?.data?.data?.description?.value;
+    let desc = item?.system?.description?.value;
     if (!desc) return;
     let start = desc?.search(/<section class=('|")secret('|")>/);
     if (start === -1) return;
@@ -221,8 +262,7 @@ function toggleSecrets(li) {
         else desc = desc.substring(0, blockStart) + desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
     }
 
-
-    let cont = message?.data?.content;
+    let cont = message?.content;
     if (!cont) return;
     start = cont?.search(/<div class=('|")card-content('|")>/);
     if (start === -1) return;
@@ -231,5 +271,3 @@ function toggleSecrets(li) {
     message.update({content: cont});
     message.setFlag("sw5e", "secretsShown", !secretsShown);
 }
-
-/* -------------------------------------------- */

@@ -1,11 +1,19 @@
 {
-    "name": "sw5e",
+    "id": "sw5e",
     "title": "SW 5th Edition",
     "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
-    "version": "1.6.2.2.2.3",
-    "author": "Dev Team",
+    "version": "2.0.2.2.2.3",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10",
+        "maximum": "10"
+    },
+    "url": "https://github.com/unrealkakeman89/sw5e",
+    "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
+    "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip",
+    "authors": "Dev Team",
     "scripts": [],
-    "esmodules": ["sw5e.js"],
+    "esmodules": ["sw5e.mjs"],
     "styles": ["sw5e.css", "sw5e-global.css", "sw5e-light.css", "sw5e-dark.css"],
     "packs": [
         {
@@ -122,7 +130,7 @@
             "path": "./packs/packs/fightingmasteries.db",
             "type": "Item"
         },
-                {
+        {
             "name": "fistoscodex",
             "label": "Fisto's Codex",
             "path": "./packs/packs/fistoscodex.db",
@@ -319,9 +327,8 @@
     "gridUnits": "ft",
     "primaryTokenAttribute": "attributes.hp",
     "secondaryTokenAttribute": null,
-    "minimumCoreVersion": "9.245",
-    "compatibleCoreVersion": "9",
-    "url": "https://github.com/unrealkakeman89/sw5e",
-    "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
-    "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"
+    "flags": {
+        "needsMigrationVersion": "2.0.0",
+        "compatibleMigrationVersion": "0.8"
+    }
 }

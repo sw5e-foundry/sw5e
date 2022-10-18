@@ -16,7 +16,7 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -36,8 +36,8 @@
 
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner
-            editable=editable}}
+            {{editor descriptionHTML target="system.description.value" button=true editable=editable engine="prosemirror"
+               collaborate=false}}
         </div>
 
         {{!-- Details Tab --}}
@@ -46,14 +46,14 @@
             <div class="form-group">
                 <label>{{localize "SW5E.Identifier"}}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label>{{localize "SW5E.ClassIdentifier"}}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.classIdentifier" value="{{data.classIdentifier}}">
+                    <input type="text" name="system.classIdentifier" value="{{system.classIdentifier}}">
                 </div>
                 <p class="hint">
                         {{localize "SW5E.ArchetypeIdentifierHint"}}
@@ -62,14 +62,14 @@
 
             {{!-- Powercasting and Superiority --}}
             <h3 class="form-header">{{localize "SW5E.Progression"}}</h3>
-            {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
+            {{> "sw5e.item-powercasting"}}
 
             {{!-- Superiority --}}
             <div class="form-group">
                 <label>{{localize "SW5E.Superiority"}}</label>
                 <div class="form-fields">
-                    <select name="data.superiority.progression">
-                        {{selectOptions config.superiorityProgression selected=data.superiority.progression}}
+                    <select name="system.superiority.progression">
+                        {{selectOptions config.superiorityProgression selected=system.superiority.progression}}
                     </select>
                 </div>
             </div>
@@ -77,15 +77,15 @@
 
         {{!-- Invocations Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="invocations">
-            {{editor content=data.invocations.value target="data.invocations.value" button=true owner=owner editable=editable}}
+            {{editor content=system.invocations.value target="system.invocations.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Advancement Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

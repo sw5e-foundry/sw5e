@@ -1,6 +1,6 @@
 <form autocomplete="off">
   <div class="left-column">
-    {{> "systems/sw5e/templates/advancement/parts/advancement-controls.html"}}
+    {{> "sw5e.advancement-controls"}}
     <div class="form-group">
       <label>{{localize "SW5E.AdvancementScaleValueTypeLabel"}}</label>
       <div class="form-fields">
@@ -42,9 +42,9 @@
               {{selectOptions @root.faces selected=data.value.die blank=data.placeholder.die}}
             </select>
           {{else}}
-            <input name="data.configuration.scale.{{level}}.value" type="text" value="{{data.value.value}}"
-                   data-level="{{level}}" placeholder="{{data.placeholder.value}}"
-                   {{#if @root.isNumeric}}data-dtype="Number"{{/if}}>
+            <input type="{{#if @root.isNumeric}}number{{else}}text{{/if}}" step="any"
+                   name="data.configuration.scale.{{level}}.value" value="{{data.value.value}}"
+                   data-level="{{level}}" placeholder="{{data.placeholder.value}}">
           {{/if}}
         </div>
       </div>

@@ -15,7 +15,7 @@
 
             <ul class="summary">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="Source" />
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="Source" />
                 </li>
             </ul>
         </div>
@@ -32,6 +32,7 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
         <div class="tab description flexcol" data-group="primary" data-tab="description">
             <div class="speciestable">
@@ -50,9 +51,9 @@
                                 <td>Color Scheme</td>
                                 <td>
                                     <input
-                                        name="data.colorScheme.value"
+                                        name="system.colorScheme.value"
                                         type="text"
-                                        value="{{data.colorScheme.value}}"
+                                        value="{{system.colorScheme.value}}"
                                         placeholder="{{ localize SW5E.colorScheme }}"
                                     />
                                 </td>
@@ -63,9 +64,9 @@
                                 <td>Distinctions</td>
                                 <td>
                                     <input
-                                        name="data.droidDistinctions.value"
+                                        name="system.droidDistinctions.value"
                                         type="text"
-                                        value="{{data.droidDistinctions.value}}"
+                                        value="{{system.droidDistinctions.value}}"
                                         placeholder="{{ localize SW5E.distinctions }}"
                                     />
                                 </td>
@@ -85,17 +86,17 @@
                                 <td>Height</td>
                                 <td>
                                     <input
-                                        name="data.heightAverage.value"
+                                        name="system.heightAverage.value"
                                         type="text"
-                                        value="{{data.heightAverage.value}}"
+                                        value="{{system.heightAverage.value}}"
                                         placeholder="5'2&rdquo;"
                                     />
                                 </td>
                                 <td>
                                     <input
-                                        name="data.heightRollMod.value"
+                                        name="system.heightRollMod.value"
                                         type="text"
-                                        value="{{data.heightRollMod.value}}"
+                                        value="{{system.heightRollMod.value}}"
                                         placeholder="+1d4&rdquo;"
                                     />
                                 </td>
@@ -104,17 +105,17 @@
                                 <td>Weight</td>
                                 <td>
                                     <input
-                                        name="data.weightAverage.value"
+                                        name="system.weightAverage.value"
                                         type="text"
-                                        value="{{data.weightAverage.value}}"
+                                        value="{{system.weightAverage.value}}"
                                         placeholder="100 lb."
                                     />
                                 </td>
                                 <td>
                                     <input
-                                        name="data.weightRollMod.value"
+                                        name="system.weightRollMod.value"
                                         type="text"
-                                        value="{{data.weightRollMod.value}}"
+                                        value="{{system.weightRollMod.value}}"
                                         placeholder="x(1d4) lb."
                                     />
                                 </td>
@@ -132,9 +133,9 @@
                                 <td>Manufacturer</td>
                                 <td>
                                     <input
-                                        name="data.manufacturer.value"
+                                        name="system.manufacturer.value"
                                         type="text"
-                                        value="{{data.manufacturer.value}}"
+                                        value="{{system.manufacturer.value}}"
                                         placeholder="{{ localize SW5E.manufacturer }}"
                                     />
                                 </td>
@@ -143,16 +144,16 @@
                                 <td>Language</td>
                                 <td>
                                     <input
-                                        name="data.droidLanguage.value"
+                                        name="system.droidLanguage.value"
                                         type="text"
-                                        value="{{data.droidLanguage.value}}"
+                                        value="{{system.droidLanguage.value}}"
                                         placeholder="{{ localize SW5E.slanguage }}"
                                     />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    {{else if data.skinColorOptions}}
+                    {{else if system.skinColorOptions}}
                     <table id="visualchar">
                         <thead>
                             <tr>
@@ -164,9 +165,9 @@
                                 <td>Skin Color</td>
                                 <td>
                                     <input
-                                        name="data.skinColorOptions.value"
+                                        name="system.skinColorOptions.value"
                                         type="text"
-                                        value="{{data.skinColorOptions.value}}"
+                                        value="{{system.skinColorOptions.value}}"
                                         placeholder="{{ localize SW5E.skinColorOptions }}"
                                     />
                                 </td>
@@ -177,9 +178,9 @@
                                 <td>Hair Color</td>
                                 <td>
                                     <input
-                                        name="data.hairColorOptions.value"
+                                        name="system.hairColorOptions.value"
                                         type="text"
-                                        value="{{data.hairColorOptions.value}}"
+                                        value="{{system.hairColorOptions.value}}"
                                         placeholder="{{ localize SW5E.hairColorOptions }}"
                                     />
                                 </td>
@@ -190,9 +191,9 @@
                                 <td>Eye Color</td>
                                 <td>
                                     <input
-                                        name="data.eyeColorOptions.value"
+                                        name="system.eyeColorOptions.value"
                                         type="text"
-                                        value="{{data.eyeColorOptions.value}}"
+                                        value="{{system.eyeColorOptions.value}}"
                                         placeholder="{{ localize SW5E.eyeColorOptions }}"
                                     />
                                 </td>
@@ -203,9 +204,9 @@
                                 <td>Distinctions</td>
                                 <td>
                                     <input
-                                        name="data.distinctions.value"
+                                        name="system.distinctions.value"
                                         type="text"
-                                        value="{{data.distinctions.value}}"
+                                        value="{{system.distinctions.value}}"
                                         placeholder="{{ localize SW5E.distinctions }}"
                                     />
                                 </td>
@@ -225,17 +226,17 @@
                                 <td>Height</td>
                                 <td>
                                     <input
-                                        name="data.heightAverage.value"
+                                        name="system.heightAverage.value"
                                         type="text"
-                                        value="{{data.heightAverage.value}}"
+                                        value="{{system.heightAverage.value}}"
                                         placeholder="5'2&rdquo;"
                                     />
                                 </td>
                                 <td>
                                     <input
-                                        name="data.heightRollMod.value"
+                                        name="system.heightRollMod.value"
                                         type="text"
-                                        value="{{data.heightRollMod.value}}"
+                                        value="{{system.heightRollMod.value}}"
                                         placeholder="+1d4&rdquo;"
                                     />
                                 </td>
@@ -244,17 +245,17 @@
                                 <td>Weight</td>
                                 <td>
                                     <input
-                                        name="data.weightAverage.value"
+                                        name="system.weightAverage.value"
                                         type="text"
-                                        value="{{data.weightAverage.value}}"
+                                        value="{{system.weightAverage.value}}"
                                         placeholder="100 lb."
                                     />
                                 </td>
                                 <td>
                                     <input
-                                        name="data.weightRollMod.value"
+                                        name="system.weightRollMod.value"
                                         type="text"
-                                        value="{{data.weightRollMod.value}}"
+                                        value="{{system.weightRollMod.value}}"
                                         placeholder="x(1d4) lb."
                                     />
                                 </td>
@@ -272,9 +273,9 @@
                                 <td>Homeworld</td>
                                 <td>
                                     <input
-                                        name="data.homeworld.value"
+                                        name="system.homeworld.value"
                                         type="text"
-                                        value="{{data.homeworld.value}}"
+                                        value="{{system.homeworld.value}}"
                                         placeholder="{{ localize SW5E.homeworld }}"
                                     />
                                 </td>
@@ -283,9 +284,9 @@
                                 <td>Language</td>
                                 <td>
                                     <input
-                                        name="data.slanguage.value"
+                                        name="system.slanguage.value"
                                         type="text"
-                                        value="{{data.slanguage.value}}"
+                                        value="{{system.slanguage.value}}"
                                         placeholder="{{ localize SW5E.slanguage }}"
                                     />
                                 </td>
@@ -297,7 +298,7 @@
             </div>
             <div id="species-description">
                 <p>
-                    {{editor content=data.description.value target="data.description.value" fontsize=12px button=true
+                    {{editor content=system.description.value target="system.description.value" fontsize=12px button=true
                     editable=editable}}
                 </p>
             </div>
@@ -309,7 +310,7 @@
                 <h2>{{item.name}} Traits</h2>
                 <p>
                     As a/an {{item.name}}, you have the following special traits.<br/>
-                    {{editor content=data.traits.value target="data.traits.value" button=true editable=editable}}
+                    {{editor content=system.traits.value target="system.traits.value" button=true editable=editable}}
                 </p>
             </span>
         </div>
@@ -320,17 +321,17 @@
             <div class="form-group">
                 <label>{{localize "SW5E.Identifier"}}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
             </div>
         </div>
 
         {{!-- Advancement Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

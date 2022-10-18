@@ -14,17 +14,17 @@
             </div>
 
             <ul class="summary flexrow">
-                <li>{{lookup config.equipmentTypes data.armor.type }}</li>
+                <li>{{lookup config.equipmentTypes system.armor.type }}</li>
                 <li>
-                    <select name="data.rarity">
-                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    <select name="system.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -44,7 +44,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{> "sw5e.item-description"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -53,23 +53,23 @@
             {{!-- Equipment Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
-                <select name="data.armor.type">
+                <select name="system.armor.type">
                     <option value=""></option>
                     <optgroup label="{{ localize 'SW5E.Armor' }}">
-                        {{selectOptions config.armorTypes selected=data.armor.type}}
+                        {{selectOptions config.armorTypes selected=system.armor.type}}
                     </optgroup>
                     <optgroup label="{{ localize 'SW5E.Starship' }}">
-                        {{selectOptions config.ssEquipmentTypes selected=data.armor.type}}
+                        {{selectOptions config.ssEquipmentTypes selected=system.armor.type}}
                     </optgroup>
-                    {{selectOptions config.miscEquipmentTypes selected=data.armor.type}}
+                    {{selectOptions config.miscEquipmentTypes selected=system.armor.type}}
                 </select>
             </div>
 
             {{!-- Equipment Base --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemEquipmentBase" }}</label>
-                <select name="data.baseItem">
-                    {{selectOptions baseItems selected=data.baseItem blank=""}}
+                <select name="system.baseItem">
+                    {{selectOptions baseItems selected=system.baseItem blank=""}}
                 </select>
             </div>
 
@@ -78,8 +78,8 @@
                 {{#unless isStarshipEquipment}}
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
-                        <select name="data.attunement" data-dtype="Number">
-                            {{selectOptions config.attunements selected=data.attunement}}
+                        <select name="system.attunement" data-dtype="Number">
+                            {{selectOptions config.attunements selected=system.attunement}}
                         </select>
                     </div>
                 {{/unless}}
@@ -89,14 +89,14 @@
                     <label>{{ localize "SW5E.ItemEquipmentStatus" }}</label>
                     {{#unless isStarshipEquipment}}
                         <label class="checkbox">
-                            <input type="checkbox" name="data.proficient" {{checked data.proficient}} /> {{ localize "SW5E.Proficient" }}
+                            <input type="checkbox" name="system.proficient" {{checked system.proficient}} /> {{ localize "SW5E.Proficient" }}
                         </label>
                     {{/unless}}
                     <label class="checkbox">
-                        <input type="checkbox" name="data.equipped" {{checked data.equipped}} /> {{ localize "SW5E.Equipped" }}
+                        <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Equipped" }}
                     </label>
                     <label class="checkbox">
-                        <input type="checkbox" name="data.identified" {{checked data.identified}} /> {{ localize "SW5E.Identified" }}
+                        <input type="checkbox" name="system.identified" {{checked system.identified}} /> {{ localize "SW5E.Identified" }}
                     </label>
                 </div>
             {{/unless}}
@@ -107,13 +107,13 @@
                     <label>{{ localize "SW5E.EquipmentProperties" }}</label>
                     {{#each equipProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                         <label class="checkbox" title="{{localize property.desc}}">
-                            <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                            <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                         </label>
                     {{/if}} {{/each}}
 
                     {{#each equipProperties as |property key|}} {{#if (eq property.type "Number")}}
                         <label class="number" title="{{localize property.desc}}">
-                            {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                         </label>
                     {{/if}} {{/each}}
                 </div>
@@ -131,16 +131,16 @@
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.capx.value"
-                            value="{{data.capx.value}}"
+                            name="system.capx.value"
+                            value="{{system.capx.value}}"
                         />
                         &nbsp;&nbsp;
                         <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.RegenerationRateCoefficient" }}</strong>
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.attributes.regrateco.value"
-                            value="{{data.regrateco.value}}"
+                            name="system.attributes.regrateco.value"
+                            value="{{system.regrateco.value}}"
                         />
                         &nbsp;&nbsp;
                     {{else}}
@@ -148,8 +148,8 @@
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.attributes.dmgred.value"
-                            value="{{data.attributes.dmgred.value}}"
+                            name="system.attributes.dmgred.value"
+                            value="{{system.attributes.dmgred.value}}"
                         />
                         &nbsp;&nbsp;
                     {{/if}}
@@ -168,16 +168,16 @@
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.cscap.value"
-                            value="{{data.cscap.value}}"
+                            name="system.cscap.value"
+                            value="{{system.cscap.value}}"
                         />
                         &nbsp;&nbsp;
                         <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.SysStorageCapacity" }}</strong>
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.sscap.value"
-                            value="{{data.sscap.value}}"
+                            name="system.sscap.value"
+                            value="{{system.sscap.value}}"
                         />
                         &nbsp;&nbsp;
                     {{else if isStarshipReactor}}
@@ -185,16 +185,16 @@
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.fuelcostsmod.value"
-                            value="{{data.fuelcostsmod.value}}"
+                            name="system.fuelcostsmod.value"
+                            value="{{system.fuelcostsmod.value}}"
                         />
                         &nbsp;&nbsp;
                         <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.PowerDiceRecovery" }}</strong>
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.powdicerec.value"
-                            value="{{data.powdicerec.value}}"
+                            name="system.powdicerec.value"
+                            value="{{system.powdicerec.value}}"
                         />
                         &nbsp;&nbsp;
                     {{else if isStarshipHyperdrive}}
@@ -202,8 +202,8 @@
                         <input
                             style="min-width: 5px; max-width: 35px; padding: 0"
                             type="text"
-                            name="data.hdclass.value"
-                            value="{{data.hdclass.value}}"
+                            name="system.hdclass.value"
+                            value="{{system.hdclass.value}}"
                         />
                         &nbsp;&nbsp;
                     {{/if}}
@@ -215,7 +215,7 @@
                 <div class="form-group">
                     <label>{{ localize "SW5E.ArmorClass" }}</label>
                     <div class="form-fields">
-                        <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number"/>
+                        {{numberInput system.armor.value name="system.armor.value"}}
                     </div>
                 </div>
             {{/if}}
@@ -225,13 +225,7 @@
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
                     <div class="form-fields">
-                        <input
-                            type="text"
-                            name="data.armor.dex"
-                            value="{{data.armor.dex}}"
-                            data-dtype="Number"
-                            placeholder="{{ localize 'SW5E.Unlimited' }}"
-                        />
+                        {{numberInput system.armor.dex name="system.armor.dex" placeholder=(localize "SW5E.Unlimited")}}
                     </div>
                 </div>
             {{/if}}
@@ -241,37 +235,25 @@
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
                     <div class="form-fields">
-                        <input
-                            type="text"
-                            name="data.strength"
-                            value="{{data.strength}}"
-                            data-dtype="Number"
-                            placeholder="{{ localize 'SW5E.None' }}"
-                        />
+                        {{numberInput system.strength name="system.strength" placeholder=(localize "SW5E.None")}}
                     </div>
                 </div>
 
                 {{!-- Stealth Disadvantage --}}
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                    <input type="checkbox" name="data.stealth" value="1" {{checked data.stealth}} />
+                    <input type="checkbox" name="system.stealth" {{checked system.stealth}}/>
                 </div>
             {{/if}}
 
             {{#if isMountable}}
-                {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
+                {{> "sw5e.item-mountable"}}
                 <div class="form-group">
                     <label>{{localize 'SW5E.Speed'}}</label>
                     <div class="form-fields">
-                        <input
-                            type="text"
-                            name="data.speed.value"
-                            value="{{data.speed.value}}"
-                            placeholder="0"
-                            data-dtype="Number"
-                        >
+                        {{numberInput system.speed.value name="system.speed.value" placeholder="0"}}
                         <span class="sep">{{localize 'SW5E.FeetAbbr'}}</span>
-                        <input type="text" name="data.speed.conditions" value="{{data.speed.conditions}}">
+                        <input type="text" name="system.speed.conditions" value="{{system.speed.conditions}}">
                     </div>
                 </div>
             {{/if}}
@@ -279,24 +261,24 @@
             <h3 class="form-header">{{ localize "SW5E.ItemEquipmentUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemEquipmentAction" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
         </div>
 
         {{!-- Modifications Tab --}}
         {{#unless isStarshipEquipment}}
             <div class="tab modifications" data-group="primary" data-tab="modifications">
-                {{> "systems/sw5e/templates/items/parts/item-modifications.html"}}
+                {{> "sw5e.modification"}}
             </div>
         {{/unless}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

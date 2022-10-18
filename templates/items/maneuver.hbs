@@ -17,8 +17,8 @@
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -35,8 +35,9 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{> "sw5e.item-description"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -45,25 +46,25 @@
             {{!-- Maneuver Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ManeuverType" }}</label>
-                <select name="data.maneuverType">
-                    {{#select data.maneuverType}} {{#each config.maneuverTypes as |name type|}}
+                <select name="system.maneuverType">
+                    {{#select system.maneuverType}} {{#each config.maneuverTypes as |name type|}}
                     <option value="{{type}}">{{name}}</option>
                     {{/each}} {{/select}}
                 </select>
             </div>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             <h3 class="form-header">{{ localize "SW5E.ManeuverAttack" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

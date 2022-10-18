@@ -19,8 +19,8 @@
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -37,16 +37,19 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Description Tab --}} {{> "systems/sw5e/templates/items/parts/item-description.html"}} {{!-- Details Tab
-        --}}
+
+        {{!-- Description Tab --}} 
+        {{> "sw5e.item-description"}} 
+
+        {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
             <h3 class="form-header">{{ localize "SW5E.PowerDetails" }}</h3>
 
             {{!-- Power Level --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.PowerLevel" }}</label>
-                <select name="data.level" data-dtype="Number">
-                    {{#select data.level}} {{#each config.powerLevels as |name lvl|}}
+                <select name="system.level" data-dtype="Number">
+                    {{#select system.level}} {{#each config.powerLevels as |name lvl|}}
                     <option value="{{lvl}}">{{name}}</option>
                     {{/each}} {{/select}}
                 </select>
@@ -55,8 +58,8 @@
             {{!-- Power School --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.PowerSchool" }}</label>
-                <select name="data.school">
-                    {{#select data.school}} {{#each config.powerSchools as |name sch|}}
+                <select name="system.school">
+                    {{#select system.school}} {{#each config.powerSchools as |name sch|}}
                     <option value="{{sch}}">{{name}}</option>
                     {{/each}} {{/select}}
                 </select>
@@ -67,7 +70,7 @@
                 <label>{{ localize "SW5E.PowerComponents" }}</label>
                 {{#each config.powerComponents as |component key|}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.components.{{key}}" {{checked (lookup ../data.components key)}}>
+                    <input type="checkbox" name="system.components.{{key}}" {{checked (lookup ../system.components key)}}>
                     {{component.label}}
                 </label>
                 {{/each}}
@@ -76,27 +79,15 @@
             {{!-- Material Components --}}
             <div class="form-group stacked">
                 <label>{{ localize "SW5E.PowerMaterials" }}</label>
-                <input class="materials" type="text" name="data.materials.value" value="{{data.materials.value}}" />
-                {{#if data.materials.value}}
+                <input class="materials" type="text" name="system.materials.value" value="{{system.materials.value}}" />
+                {{#if system.materials.value}}
                 <div class="power-materials flexrow">
                     <label>{{ localize "SW5E.Supply" }}</label>
-                    <input
-                        type="text"
-                        name="data.materials.supply"
-                        value="{{data.materials.supply}}"
-                        data-dtype="Number"
-                        placeholder="0"
-                    />
+                    {{numberInput system.materials.supply name="system.materials.supply" placeholder="0"}}
                     <label>{{ localize "SW5E.CostGP" }}</label>
-                    <input
-                        type="text"
-                        name="data.materials.cost"
-                        value="{{data.materials.cost}}"
-                        data-dtype="Number"
-                        placeholder="-"
-                    />
+                    {{numberInput system.materials.cost name="system.materials.cost" placeholder="&mdash;"}}
                     <label>{{ localize "SW5E.Consumed" }}</label>
-                    <input type="checkbox" name="data.materials.consumed" {{checked data.materials.consumed}} />
+                    <input type="checkbox" name="system.materials.consumed" {{checked system.materials.consumed}} />
                 </div>
                 {{/if}}
             </div>
@@ -107,10 +98,10 @@
                 <div class="form-fields">
                     <label class="checkbox prepared">
                         {{ localize "SW5E.PowerPrepared" }}
-                        <input type="checkbox" name="data.preparation.prepared" {{checked data.preparation.prepared}} />
+                        <input type="checkbox" name="system.preparation.prepared" {{checked system.preparation.prepared}} />
                     </label>
-                    <select name="data.preparation.mode">
-                        {{ selectOptions config.powerPreparationModes selected=data.preparation.mode }}
+                    <select name="system.preparation.mode">
+                        {{ selectOptions config.powerPreparationModes selected=system.preparation.mode }}
                     </select>
                 </div>
             </div>
@@ -118,26 +109,26 @@
             <h3 class="form-header">{{ localize "SW5E.PowerCastingHeader" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             <h3 class="form-header">{{ localize "SW5E.PowerEffects" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
 
             {{!-- Power Level Scaling --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.LevelScaling" }}</label>
                 <div class="form-fields">
-                    <select name="data.scaling.mode">
-                        {{#select data.scaling.mode}} {{#each config.powerScalingModes as |name key|}}
+                    <select name="system.scaling.mode">
+                        {{#select system.scaling.mode}} {{#each config.powerScalingModes as |name key|}}
                         <option value="{{key}}">{{name}}</option>
                         {{/each}} {{/select}}
                     </select>
                     <input
                         type="text"
-                        name="data.scaling.formula"
-                        value="{{data.scaling.formula}}"
+                        name="system.scaling.formula"
+                        value="{{system.scaling.formula}}"
                         placeholder="{{ localize 'SW5E.ScalingFormula' }}"
                     />
                 </div>
@@ -146,7 +137,7 @@
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

@@ -17,8 +17,8 @@
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -37,9 +37,10 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+            {{editor content=system.description.value target="system.description.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Details Tab --}}
@@ -48,10 +49,10 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.StarshipIdentifierHint" identifier=data.identifier}}}
+                    {{{localize "SW5E.StarshipIdentifierHint" identifier=system.identifier}}}
                 </p>
             </div>
             {{#each config.starshipTypeDetails as |detail id|}}
@@ -59,13 +60,13 @@
                     <label>{{ localize detail.name }}</label>
                     <div class="form-fields">
                         {{#if detail.select}}
-                            <select name="data.{{id}}">
-                                {{#select (lookup ../data id)}} {{#each (lookup ../config detail.select)}}
+                            <select name="system.{{id}}">
+                                {{#select (lookup ../system id)}} {{#each (lookup ../config detail.select)}}
                                     <option value="{{this}}">{{this}}</option>
                                 {{/each}} {{/select}}
                             </select>
                         {{else}}
-                            <input type="text" name="data.{{id}}" value="{{lookup ../data id}}" data-dtype="Number"/>
+                            <input type="text" name="system.{{id}}" value="{{lookup ../system id}}" data-dtype="Number"/>
                         {{/if}}
                     </div>
                 </div>
@@ -73,11 +74,11 @@
         </div>
 
         {{!-- Advancement Tab --}} 
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

@@ -12,7 +12,7 @@
             </div>
             <ul class="summary flexrow">
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -28,12 +28,16 @@
     </nav>
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true owner=owner editable=editable}}
+            {{editor descriptionHTML target="system.description.value" button=true editable=editable
+                     engine="prosemirror" collaborate=false}}
         </div>
+
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+
             {{!-- Identifier --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
@@ -49,8 +53,8 @@
             <div class="form-group">
                 <label>{{localize "SW5E.HitDice"}}</label>
                 <div class="form-fields">
-                    <select name="data.hitDice">
-                        {{#select data.hitDice}}
+                    <select name="system.hitDice">
+                        {{#select system.hitDice}}
                         {{#each config.hitDieTypes}}
                         <option value="{{this}}">{{this}}</option>
                         {{/each}}
@@ -61,20 +65,20 @@
             <div class="form-group">
                 <label>{{localize "SW5E.HitDiceUsed"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.hitDiceUsed" value="{{data.hitDiceUsed}}" data-dtype="Number"/>
+                    {{numberInput system.hitDiceUsed name="system.hitDiceUsed" placeholder="0"}}
                 </div>
             </div>
 
             {{!-- Powercasting and Superiority --}}
             <h3 class="form-header">{{localize "SW5E.Progression"}}</h3>
-            {{> "systems/sw5e/templates/items/parts/item-powercasting.html"}}
+            {{> "sw5e.item-powercasting"}}
 
             {{!-- Superiority --}}
             <div class="form-group">
                 <label>{{localize "SW5E.Superiority"}}</label>
                 <div class="form-fields">
-                    <select name="data.superiority.progression">
-                        {{selectOptions config.superiorityProgression selected=data.superiority.progression}}
+                    <select name="system.superiority.progression">
+                        {{selectOptions config.superiorityProgression selected=system.superiority.progression}}
                     </select>
                 </div>
             </div>
@@ -85,14 +89,14 @@
                 <label>
                     {{ localize "SW5E.ClassSaves" }}
                     {{#if editable}}
-                    <a class="trait-selector class-saves" data-target="data.saves" data-options="saves">
+                    <a class="trait-selector class-saves" data-target="system.saves" data-options="saves">
                         <i class="fas fa-edit"></i>
                     </a>
                     {{/if}}
                 </label>
                 <div class="form-fields">
                     <ul class="traits-list">
-                        {{#each data.saves}}
+                        {{#each system.saves}}
                             <li class="tag {{this}}">{{lookup ../config.abilities this}}</li>
                         {{/each}}
                     </ul>
@@ -103,22 +107,22 @@
             <div class="form-group">
                 <label>{{localize "SW5E.ClassSkillsNumber"}}</label>
                 <div class="form-fields">
-                    <input type="text" placeholder="0" name="data.skills.number" value="{{data.skills.number}}" data-dtype="Number"/>
+                    {{numberInput system.skills.number name="system.skills.number" placeholder="0"}}
                 </div>
             </div>
             <div class="form-group">
                 <label>
                     {{localize "SW5E.ClassSkillsEligible"}}
                     {{#if editable }}
-                    <a class="trait-selector class-skills" data-target="data.skills.choices" data-options="skills.choices">
+                    <a class="trait-selector class-skills" data-target="system.skills.choices" data-options="skills.choices">
                         <i class="fas fa-edit"></i>
                     </a>
                     {{/if}}
                 </label>
                 <div class="form-fields">
                     <ul class="traits-list">
-                        {{#each data.skills.choices}}
-                        <li class="tag {{this}}">{{lookup ../config.skills this}}</li>
+                        {{#each system.skills.choices}}
+                        <li class="tag {{this}}">{{lookup (lookup ../config.skills this) "label"}}</li>
                         {{/each}}
                     </ul>
                 </div>
@@ -127,15 +131,15 @@
                 <label>
                     {{localize "SW5E.ClassSkillsChosen"}}
                     {{#if editable }}
-                    <a class="trait-selector class-skills" data-target="data.skills" data-options="skills">
+                    <a class="trait-selector class-skills" data-target="system.skills" data-options="skills">
                         <i class="fas fa-edit"></i>
                     </a>
                     {{/if}}
                 </label>
                 <div class="form-fields">
                     <ul class="traits-list">
-                        {{#each data.skills.value}}
-                            <li class="tag {{this}}">{{lookup ../config.skills this}}</li>
+                        {{#each system.skills.value}}
+                            <li class="tag {{this}}">{{lookup (lookup ../config.skills this) "label"}}</li>
                         {{/each}}
                     </ul>
                 </div>
@@ -144,20 +148,20 @@
 
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="archetypes">
-            {{editor content=data.atFlavorText.value target="data.atFlavorText.value" button=true owner=owner editable=editable}}
+            {{editor content=data.atFlavorText.value target="system.atFlavorText.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Invocations Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="invocations">
-            {{editor content=data.invocations.value target="data.invocations.value" button=true owner=owner editable=editable}}
+            {{editor content=data.invocations.value target="system.invocations.value" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Advancement Tab --}} 
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

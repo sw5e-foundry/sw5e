@@ -16,15 +16,15 @@
 
             <ul class="summary flexrow">
                 <li style="flex-basis: 80px;">
-                    {{ localize (lookup config.modificationTypes data.modificationType) }}
+                    {{ localize (lookup config.modificationTypes system.modificationType) }}
                 </li>
                 <li>
-                    <select name="data.rarity">
-                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    <select name="system.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="data.source" value="{{data.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-description.html"}}
+        {{> "sw5e.item-description"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -50,8 +50,8 @@
             {{!-- Modification Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemModificationType" }}</label>
-                <select name="data.modificationType">
-                    {{selectOptions config.modificationTypes selected=data.modificationType}}
+                <select name="system.modificationType">
+                    {{selectOptions config.modificationTypes selected=system.modificationType}}
                 </select>
             </div>
 
@@ -59,9 +59,9 @@
             <div class="form-group">
                 {{#unless (eq data.modificationType "augment")}}
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
-                <select name="data.modificationSlot">
-                    {{#with (lookup config.modificationSlots data.modificationType) as |modSlots| }}
-                    {{selectOptions modSlots selected=../data.modificationSlot}}
+                <select name="system.modificationSlot">
+                    {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
+                    {{selectOptions modSlots selected=../system.modificationSlot}}
                     {{/with}}
                 </select>
                 {{/unless}}
@@ -77,13 +77,13 @@
                         <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                         {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                             <label class="checkbox" title="{{localize property.desc}}">
-                                <input class="tristate-checkbox" type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                                <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                             </label>
                         {{/if}} {{/each}}
 
                         {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
                             <label class="number" title="{{localize property.desc}}">
-                                {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                                {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                             </label>
                         {{/if}} {{/each}}
                     </div>
@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label>{{ localize "SW5E.ItemAttackBonus" }}</label>
                         <div class="form-fields">
-                            <input type="text" name="data.attackBonus" value="{{data.attackBonus}}"/>
+                            <input type="text" name="system.attackBonus" value="{{system.attackBonus}}"/>
                         </div>
                     </div>
 
@@ -104,8 +104,8 @@
                     <ol class="damage-parts form-group">
                         {{#each data.damage.parts as |part i| }}
                         <li class="damage-part flexrow" data-damage-part="{{i}}">
-                            <input type="text" name="data.damage.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-                            <select name="data.damage.parts.{{i}}.1">
+                            <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this "0"}}"/>
+                            <select name="system.damage.parts.{{i}}.1">
                                 {{#select (lookup this "1") }}
                                 <option value="">{{ localize "SW5E.None" }}</option>
                                 {{#each ../config.damageTypes as |name type|}}
@@ -128,13 +128,13 @@
                         <label>{{ localize "SW5E.ArmorProperties" }}</label>
                         {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                         <label class="checkbox" title="{{localize property.desc}}">
-                            <input class="tristate-checkbox" type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                            <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                         </label>
                         {{/if}} {{/each}}
 
                         {{#each config.armorProperties as |property key|}} {{#if (eq property.type "Number")}}
                         <label class="number" title="{{localize property.desc}}">
-                            {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                         </label>
                         {{/if}} {{/each}}
                     </div>
@@ -143,7 +143,7 @@
                     <div class="form-group">
                         <label>{{ localize "SW5E.ArmorClassBonus" }}</label>
                         <div class="form-fields">
-                            <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
+                            <input type="text" name="system.armor.value" value="{{system.armor.value}}" data-dtype="Number" placeholder="{{ localize 'SW5E.None' }}"/>
                         </div>
                     </div>
 
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
                         <div class="form-fields">
-                            <input type="text" name="data.armor.dex" value="{{data.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
+                            <input type="text" name="system.armor.dex" value="{{system.armor.dex}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
                         </div>
                     </div>
 
@@ -159,14 +159,14 @@
                     <div class="form-group">
                         <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
                         <div class="form-fields">
-                            <input type="text" name="data.strength" value="{{data.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
+                            <input type="text" name="system.strength" value="{{system.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
                         </div>
                     </div>
 
                     {{!-- Stealth Disadvantage --}}
                     <div class="form-group">
                         <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                        <input class="tristate-checkbox" type="checkbox" name="data.stealth" value="1" {{checked data.stealth}}/>
+                        <input class="tristate-checkbox" type="checkbox" name="system.stealth" value="1" {{checked system.stealth}}/>
                     </div>
                 {{/if}}
 
@@ -176,13 +176,13 @@
                         <label>{{ localize "SW5E.CastingProperties" }}</label>
                         {{#each config.castingProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                         <label class="checkbox" title="{{localize property.desc}}">
-                            <input class="tristate-checkbox" type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                            <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                         </label>
                         {{/if}} {{/each}}
 
                         {{#each config.castingProperties as |property key|}} {{#if (eq property.type "Number")}}
                         <label class="number" title="{{localize property.desc}}">
-                            {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                         </label>
                         {{/if}} {{/each}}
                     </div>
@@ -192,7 +192,7 @@
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
     </section>
 </form>

@@ -14,17 +14,17 @@
             </div>
 
             <ul class="summary flexrow">
-                <li style="flex-basis: 80px">{{lookup config.weaponTypes data.weaponType }}</li>
+                <li style="flex-basis: 80px">{{lookup config.weaponTypes system.weaponType }}</li>
                 <li>
-                    <select name="data.rarity">
-                        {{selectOptions config.itemRarity selected=data.rarity blank="&nbsp;"}}
+                    <select name="system.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -52,25 +52,25 @@
             {{!-- Weapon Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponType" }}</label>
-                <select name="data.weaponType">
-                    {{selectOptions config.weaponTypes selected=data.weaponType}}
+                <select name="system.weaponType">
+                    {{selectOptions config.weaponTypes selected=system.weaponType}}
                 </select>
             </div>
 
             {{!-- Base Weapon --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
-                <select name="data.baseItem">
-                    {{selectOptions baseItems selected=data.baseItem blank=""}}
+                <select name="system.baseItem">
+                    {{selectOptions baseItems selected=system.baseItem blank=""}}
                 </select>
             </div>
 
             {{!-- Starship Weapon Size --}}
             <!-- <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
-                <select name="data.weaponSize">
+                <select name="system.weaponSize">
                     <option value="" selected disabled>Select Size</option>
-                    {{#select data.weaponSize}} {{#each config.weaponSizes as |name size|}}
+                    {{#select system.weaponSize}} {{#each config.weaponSizes as |name size|}}
                         <option value="{{size}}">{{name}}</option>
                     {{/each}} {{/select}}
                 </select>
@@ -81,8 +81,8 @@
                 {{#unless isStarshipWeapon}}
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
-                        <select name="data.attunement" data-dtype="Number">
-                            {{selectOptions config.attunements selected=data.attunement}}
+                        <select name="system.attunement" data-dtype="Number">
+                            {{selectOptions config.attunements selected=system.attunement}}
                         </select>
                     </div>
                 {{/unless}}
@@ -92,16 +92,16 @@
                     <div class="form-fields">
                         {{#unless isStarshipWeapon}}
                             <label class="checkbox">
-                                <input type="checkbox" name="data.proficient" {{checked data.proficient}} /> {{ localize
+                                <input type="checkbox" name="system.proficient" {{checked system.proficient}} /> {{ localize
                                 "SW5E.Proficient" }}
                             </label>
                         {{/unless}}
                         <label class="checkbox">
-                            <input type="checkbox" name="data.equipped" {{checked data.equipped}} /> {{ localize
+                            <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize
                             "SW5E.Equipped" }}
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="data.identified" {{checked data.identified}} /> {{ localize
+                            <input type="checkbox" name="system.identified" {{checked system.identified}} /> {{ localize
                             "SW5E.Identified" }}
                         </label>
                     </div>
@@ -113,13 +113,13 @@
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                 {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                     <label class="checkbox" title="{{localize property.desc}}">
-                        <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                        <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                     </label>
                 {{/if}} {{/each}}
 
                 {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
                     <label class="number" title="{{localize property.desc}}">
-                        {{ localize property.name }}<input type="text" name="data.properties.{{key}}" value="{{lookup ../data.properties key}}" data-dtype="Number">
+                        {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                     </label>
                 {{/if}} {{/each}}
             </div>
@@ -128,17 +128,17 @@
                 <div class="form-group">
                     <label>{{localize "SW5E.ArmorClass"}}</label>
                     <div class="form-fields">
-                        <input type="text" name="data.armor.value" value="{{data.armor.value}}" data-dtype="Number" />
+                        {{numberInput system.armor.value name="system.armor.value"}}
                     </div>
                 </div>
 
-                {{> 'systems/sw5e/templates/items/parts/item-mountable.html'}}
+                {{> "sw5e.item-mountable"}}
             {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-activation.html"}}
+            {{> "sw5e.item-activation"}}
 
             {{!-- Weapon Reload --}}
             {{#if hasReload}}
@@ -149,8 +149,8 @@
                     </label>
                     <div class="form-fields">
                         {{#if reloadUsesAmmo}}
-                            <select class="weapon-select-ammo" name="data.ammo.target">
-                                {{#select data.ammo.target}}
+                            <select class="weapon-select-ammo" name="system.ammo.target">
+                                {{#select system.ammo.target}}
                                     <option value=""></option>
                                     {{#each reloadAmmo as |name key|}}
                                         <option value="{{key}}">{{name}}</option>
@@ -158,9 +158,9 @@
                                 {{/select}}
                             </select>
                         {{/if}}
-                        <input type="text" name="data.ammo.value" value="{{data.ammo.value}}" data-dtype="Number"{{#if (and reloadUsesAmmo (not data.ammo.target))}} disabled{{/if}} />
+                        <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number"{{#if (and reloadUsesAmmo (not system.ammo.target))}} disabled{{/if}} />
                         <span class="sep">/</span>
-                        <span>{{ data.ammo.max }}</span>
+                        <span>{{ system.ammo.max }}</span>
                         <a class="weapon-reload"{{#if reloadFull}} disabled{{/if}}>{{ localize reloadActLabel }}</a>
                     </div>
                 </div>
@@ -169,13 +169,13 @@
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponAttack" }}</h3>
 
             {{!-- Item Action Template --}}
-            {{> "systems/sw5e/templates/items/parts/item-action.html"}}
+            {{> "sw5e.item-action"}}
         </div>
 
         {{!-- Modifications Tab --}}
         {{#unless isStarshipWeapon}}
             <div class="tab modifications" data-group="primary" data-tab="modifications">
-                {{> "systems/sw5e/templates/items/parts/item-modifications.html"}}
+                {{> "sw5e.active-effects"}}
             </div>
         {{/unless}}
 

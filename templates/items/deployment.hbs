@@ -22,8 +22,8 @@
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -42,7 +42,7 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=data.flavorText target="data.flavorText" button=true owner=owner editable=editable}}
+            {{editor content=system.flavorText target="system.flavorText" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Details Tab --}}
@@ -51,15 +51,15 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.DeploymentIdentifierHint" identifier=data.identifier}}}
+                    {{{localize "SW5E.DeploymentIdentifierHint" identifier=system.identifier}}}
                 </p>
             </div>
         </div>
 
         {{!-- Advancement Tab --}} 
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
     </section>
 </form>

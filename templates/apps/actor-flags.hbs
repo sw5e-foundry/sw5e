@@ -5,8 +5,8 @@
         <h3 class="form-header">{{localize "SW5E.ItemTypeClass"}}</h3>
         <div class="form-group">
             <label>{{localize "SW5E.ClassMakeOriginal"}}</label>
-            <select name="data.details.originalClass" data-dtype="String">
-                {{selectOptions classes selected=actor.data.data.details.originalClass}}
+            <select name="system.details.originalClass" data-dtype="String">
+                {{selectOptions classes selected=actor.system.details.originalClass}}
             </select>
             <p class="notes">{{localize "SW5E.ClassMakeOriginalHint"}}</p>
         </div>
@@ -47,6 +47,6 @@
     </section>
 
     <footer class="form-footer">
-        <button type="submit" name="submit"><i class="far fa-save"></i> {{localize "SW5E.FlagsSave"}}</button>
+        <button type="submit"><i class="far fa-save"></i> {{localize "SW5E.FlagsSave"}}</button>
     </footer>
 </form>

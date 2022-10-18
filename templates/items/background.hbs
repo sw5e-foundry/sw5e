@@ -17,8 +17,8 @@
                 <li>
                     <input
                         type="text"
-                        name="data.source"
-                        value="{{data.source}}"
+                        name="system.source"
+                        value="{{system.source}}"
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
@@ -36,9 +36,11 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor content=data.description.value target="data.description.value" button=true editable=editable}}
+            {{editor descriptionHTML target="system.description.value" button=true editable=editable engine="prosemirror"
+               collaborate=false}}
         </div>
 
         {{!-- Details Tab --}}
@@ -58,6 +60,6 @@
         </div>
 
         {{!-- Advancement Tab --}}
-        {{> "systems/sw5e/templates/items/parts/item-advancement.html"}}
+        {{> "sw5e.item-advancement"}}
     </section>
 </form>

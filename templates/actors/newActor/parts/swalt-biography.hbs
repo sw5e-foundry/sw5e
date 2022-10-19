@@ -1,34 +1,34 @@
 <div class="panel additional-info">
     <section>
         <h1 class="section-titles biopage">{{localize "SW5E.PersonalityTraits" }}</h1>
-        {{editor content=data.details.trait target="data.details.trait" button=true owner=owner editable=editable
+        {{editor content=system.details.trait target="system.details.trait" button=true owner=owner editable=editable
         rollData=rollData}}
     </section>
     <section>
         <h1 class="section-titles biopage">{{localize "SW5E.Ideals" }}</h1>
-        {{editor content=data.details.ideal target="data.details.ideal" button=true owner=owner editable=editable
+        {{editor content=system.details.ideal target="system.details.ideal" button=true owner=owner editable=editable
         rollData=rollData}}
     </section>
     <section>
         <h1 class="section-titles biopage">{{localize "SW5E.Bonds" }}</h1>
-        {{editor content=data.details.bond target="data.details.bond" button=true owner=owner editable=editable
+        {{editor content=system.details.bond target="system.details.bond" button=true owner=owner editable=editable
         rollData=rollData}}
     </section>
     <section>
         <h1 class="section-titles biopage">{{localize "SW5E.Flaws" }}</h1>
-        {{editor content=data.details.flaw target="data.details.flaw" button=true owner=owner editable=editable
+        {{editor content=system.details.flaw target="system.details.flaw" button=true owner=owner editable=editable
         rollData=rollData}}
     </section>
 </div>
 <div class="panel background">
     <section>
         <h1 class="section-titles biopage">{{localize "SW5E.Description" }}</h1>
-        {{editor content=data.details.description.value target="data.details.description.value" button=true owner=owner
+        {{editor content=system.details.description.value target="system.details.description.value" button=true owner=owner
         editable=editable rollData=rollData}}
     </section>
     <section>
         <h1 class="section-titles">{{localize "SW5E.Background" }}</h1>
-        {{editor content=data.details.biography.value target="data.details.biography.value" button=true owner=owner
+        {{editor content=system.details.biography.value target="system.details.biography.value" button=true owner=owner
         editable=editable rollData=rollData}}
     </section>
 </div>

@@ -1,15 +1,15 @@
 <section class="panel">
     <section class="resource-items">
         <div class="resource">
-            <h1>{{ localize "SW5E.Rank" }}: {{data.details.ranks}}</h1>
+            <h1>{{ localize "SW5E.Rank" }}: {{system.details.ranks}}</h1>
 
             <div class="attribute-value">
-                <span class="value-number">{{data.details.prestige.value}}</span>
+                <span class="value-number">{{system.details.prestige.value}}</span>
                 <span class="value-separator">/</span>
-                <span class="value-number">{{data.details.prestige.max}}</span>
+                <span class="value-number">{{system.details.prestige.max}}</span>
             </div>
             <footer class="xpbar">
-                <span class="bar" style="width: {{data.details.prestige.pct}}%"></span>
+                <span class="bar" style="width: {{system.details.prestige.pct}}%"></span>
             </footer>
         </div>
     </section>
@@ -60,15 +60,15 @@
                                 <div class="item-detail item-uses">
                                     {{#if item.isOnCooldown}}
                                         <a class="item-recharge rollable">{{item.labels.recharge}}</a>
-                                    {{else if item.data.recharge.value}}
+                                    {{else if item.system.recharge.value}}
                                         {{localize "SW5E.Charged"}}
                                     {{else if item.hasUses}}
-                                        <input type="text" value="{{item.data.uses.value}}" placeholder="0" />/<span>{{item.data.uses.max}}</span>
+                                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
                                     {{/if}}
                                 </div>
 
                                 <div class="item-detail item-action">
-                                    {{#if item.data.activation.type }}
+                                    {{#if item.system.activation.type }}
                                     {{item.labels.activation}}
                                     {{/if}}
                                 </div>

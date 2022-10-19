@@ -4,14 +4,14 @@
             <h1>{{localize "SW5E.ConsumableTech"}}</h1>
 
             <div class="attribute-value">
-                <input name="data.attributes.tech.points.value" type="text" value="{{data.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <input name="system.attributes.tech.points.value" type="text" value="{{system.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
                 <span class="value-separator">/</span>
-                <input name="data.attributes.tech.points.max" type="text" value="{{data.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <input name="system.attributes.tech.points.max" type="text" value="{{system.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
             </div>
 
             <footer class="attribute-footer">
-                <input name="data.attributes.tech.points.temp" type="text" placeholder="+Temp" value="{{data.attributes.tech.points.temp}}" data-dtype="Number" />
-                <input name="data.attributes.tech.points.tempmax" type="text" placeholder="+Max" value="{{data.attributes.tech.points.tempmax}}" data-dtype="Number" />
+                <input name="system.attributes.tech.points.temp" type="text" placeholder="+Temp" value="{{system.attributes.tech.points.temp}}" data-dtype="Number" />
+                <input name="system.attributes.tech.points.tempmax" type="text" placeholder="+Max" value="{{system.attributes.tech.points.tempmax}}" data-dtype="Number" />
             </footer>
         </div>
 
@@ -20,7 +20,7 @@
 
             <div class="attribute-value">
                 <div></div>
-                <span>{{data.attributes.powerTechDC}}</span>
+                <span>{{system.attributes.powerTechDC}}</span>
             </div>
         </div>
 
@@ -33,15 +33,15 @@
             <h1>{{localize "SW5E.PowercasterLevel"}}</h1>
 
             <div class="attribute-value">
-                <input class="powercasting-level" type="text" name="data.details.powerTechLevel" value="{{data.details.powerTechLevel}}" data-dtype="Number" placeholder="0" />
+                <input class="powercasting-level" type="text" name="system.details.powerTechLevel" value="{{system.details.powerTechLevel}}" data-dtype="Number" placeholder="0" />
             </div>
         {{else}}
             <h1>{{localize "SW5E.PowersKnown"}}</h1>
 
             <div class="attribute-value multiple">
-                <span class="value-number">{{data.attributes.tech.known.value}}</span>
+                <span class="value-number">{{system.attributes.tech.known.value}}</span>
                 <span class="value-separator">/</span>
-                <span class="value-number">{{data.attributes.tech.known.max}}</span>
+                <span class="value-number">{{system.attributes.tech.known.max}}</span>
             </div>
         {{/if}}
         </div>
@@ -86,8 +86,8 @@
                     </div>
                     
                     <div class="item-detail item-uses">
-                        {{#if item.data.uses.per }}
-                        Uses {{item.data.uses.value}} / {{item.data.uses.max}}
+                        {{#if item.system.uses.per }}
+                        Uses {{item.system.uses.value}} / {{item.system.uses.max}}
                         {{/if}}
                     </div>
 

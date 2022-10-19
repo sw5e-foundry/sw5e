@@ -4,13 +4,13 @@
 
         <label class="currency">
             {{localize "SW5E.Currency"}}
-            {{#each data.currency as |v k|}}
+            {{#each system.currency as |v k|}}
             <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
-            <input type="text" name="data.currency.{{k}}" value="{{v}}" data-dtype="Number" />
+            <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number" />
             {{/each}}
         </label>
         {{#if isCharacter}}
-        {{#with data.attributes.encumbrance}}
+        {{#with system.attributes.encumbrance}}
         <div class="encumbrance-wrapper" title="Encumbrance">
             <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
                 <span class="encumbrance-bar" style="width:{{pct}}%"></span>
@@ -68,7 +68,7 @@
                         <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url({{item.img}})"></div>
                         <h4>
                             {{item.name~}}
-                            {{~#if item.isStack}} ({{item.data.quantity}}){{/if}}
+                            {{~#if item.isStack}} ({{item.system.quantity}}){{/if}}
                         </h4>
                         {{#if item.attunement}}
                             <div class="item-detail attunement">
@@ -80,8 +80,8 @@
                                 <div class="form-fields">
                                     <span> </span>
                                     {{#if item.reloadUsesAmmo}}
-                                        <select class="weapon-select-ammo" name="item.data.ammo.target">
-                                            {{#select item.data.ammo.target}}
+                                        <select class="weapon-select-ammo" name="item.system.ammo.target">
+                                            {{#select item.system.ammo.target}}
                                                 <option value=""></option>
                                                 {{#each item.reloadAmmo as |name key|}}
                                                     <option value="{{key}}">{{name}}</option>
@@ -89,9 +89,9 @@
                                             {{/select}}
                                         </select>
                                     {{/if}}
-                                    <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
+                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
                                     <span class="sep">/</span>
-                                    <span>{{ data.ammo.max }}</span>
+                                    <span>{{ system.ammo.max }}</span>
                                     <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
                                 </div>
                             </div>
@@ -109,13 +109,13 @@
 
                     <div class="item-detail item-uses">
                         {{#if item.hasUses }}
-                        <input type="text" value="{{item.data.uses.value}}" placeholder="0" />
-                        /<span style="padding-left: 8px;">{{item.data.uses.max}}</span>
+                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />
+                        /<span style="padding-left: 8px;">{{item.system.uses.max}}</span>
                         {{/if}}
                     </div>
 
                     <div class="item-detail item-action">
-                        {{#if item.data.activation.type }}
+                        {{#if item.system.activation.type }}
                         {{item.labels.activation}}
                         {{/if}}
                     </div>

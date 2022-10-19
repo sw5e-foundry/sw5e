@@ -43,14 +43,14 @@
                         <h4>
                             {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
                             {{item.name}}
-                            {{#if item.data.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
+                            {{#if item.system.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
                         </h4>
                         {{#if item.hasReload}}
                             <div class="form-group uses-per">
                                 <div class="form-fields">
                                     {{#if item.reloadUsesAmmo}}
-                                        <select class="weapon-select-ammo" name="item.data.ammo.target">
-                                            {{#select item.data.ammo.target}}
+                                        <select class="weapon-select-ammo" name="item.system.ammo.target">
+                                            {{#select item.system.ammo.target}}
                                                 <option value=""></option>
                                                 {{#each item.reloadAmmo as |name key|}}
                                                     <option value="{{key}}">{{name}}</option>
@@ -58,9 +58,9 @@
                                             {{/select}}
                                         </select>
                                     {{/if}}
-                                    <input class="weapon-reload-count" type="text" name="item.data.ammo.value" value="{{item.data.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.data.ammo.target))}} disabled{{/if}} />
+                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
                                     <span class="sep">/</span>
-                                    <span>{{ data.ammo.max }}</span>
+                                    <span>{{ system.ammo.max }}</span>
                                     <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
                                 </div>
                             </div>
@@ -71,23 +71,23 @@
                     <div class="item-detail item-uses">
                         {{#if item.isOnCooldown}}
                         <a class="item-recharge rollable">{{item.labels.recharge}}</a>
-                        {{else if item.data.recharge.value}}
+                        {{else if item.system.recharge.value}}
                         {{localize "SW5E.Charged"}}
 
                         {{else if item.hasUses}}
-                        <input type="text" value="{{item.data.uses.value}}" placeholder="0" />/<span>{{item.data.uses.max}}</span>
+                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
                         {{/if}}
                     </div>
 
                     <div class="item-detail item-action">
-                        {{#if item.data.activation.type }}
+                        {{#if item.system.activation.type }}
                         {{item.labels.activation}}
                         {{/if}}
                     </div>
 
                     {{else if (eq item.type "class")}}
                     <div class="item-detail player-class"><strong>HD:</strong>
-                        {{item.data.hitDice}}
+                        {{item.system.hitDice}}
                     </div>
                     <div class="item-detail player-class-levels">
                         <select class="level-selector">
@@ -104,7 +104,7 @@
 
                     {{else if section.isStarship}}
                     <div class="item-detail player-starship-tier">
-                        <strong>{{localize "SW5E.StarshipTier"}} {{item.data.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
+                        <strong>{{localize "SW5E.StarshipTier"}} {{item.system.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
                     </div>
                     {{/if}}
 

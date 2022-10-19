@@ -4,7 +4,7 @@
         <div class="resource">
             <h1>
                 <input
-                    name="data.resources.{{res.name}}.label"
+                    name="system.resources.{{res.name}}.label"
                     type="text"
                     value="{{res.label}}"
                     placeholder="{{res.placeholder}}"
@@ -12,7 +12,7 @@
             </h1>
             <div class="attribute-value">
                 <input
-                    name="data.resources.{{res.name}}.value"
+                    name="system.resources.{{res.name}}.value"
                     type="text"
                     value="{{res.value}}"
                     data-dtype="Number"
@@ -21,7 +21,7 @@
                 />
                 <span class="value-separator">/</span>
                 <input
-                    name="data.resources.{{res.name}}.max"
+                    name="system.resources.{{res.name}}.max"
                     type="text"
                     value="{{res.max}}"
                     data-dtype="Number"
@@ -32,11 +32,11 @@
             <footer class="attribute-footer">
                 <label class="recharge checkbox flexcol">
                     <span>{{ localize "SW5E.AbbreviationSR" }}</span>
-                    <input name="data.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}} />
+                    <input name="system.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}} />
                 </label>
                 <label class="recharge checkbox flexcol">
                     <span>{{ localize "SW5E.AbbreviationLR" }}</span>
-                    <input name="data.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}} />
+                    <input name="system.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}} />
                 </label>
             </footer>
         </div>
@@ -49,19 +49,19 @@
                 <div class="death-success">
                     <i class="fas fa-check"></i>
                     <input
-                        name="data.attributes.death.success"
+                        name="system.attributes.death.success"
                         type="number"
                         placeholder="0"
-                        value="{{data.attributes.death.success}}"
+                        value="{{system.attributes.death.success}}"
                     />
                 </div>
                 <div class="death-fail">
                     <i class="fas fa-times"></i>
                     <input
-                        name="data.attributes.death.failure"
+                        name="system.attributes.death.failure"
                         type="number"
                         placeholder="0"
-                        value="{{data.attributes.death.failure}}"
+                        value="{{system.attributes.death.failure}}"
                     />
                 </div>
             </div>
@@ -71,10 +71,10 @@
             <div class="counter-value">
                 <input
                     type="text"
-                    name="data.attributes.exhaustion"
+                    name="system.attributes.exhaustion"
                     data-dtype="Number"
                     placeholder="0"
-                    value="{{data.attributes.exhaustion}}"
+                    value="{{system.attributes.exhaustion}}"
                 />
             </div>
         </div>
@@ -83,10 +83,10 @@
             <div class="counter-value">
                 <input
                     type="checkbox"
-                    name="data.attributes.inspiration"
+                    name="system.attributes.inspiration"
                     data-dtype="Boolean"
                     {{checked
-                    data.attributes.inspiration}}
+                    system.attributes.inspiration}}
                 />
             </div>
         </div>
@@ -94,8 +94,8 @@
     <section class="traits">
         <label>
             {{localize "SW5E.Size"}}
-            <select class="actor-size" name="data.traits.size">
-                {{#select data.traits.size}} {{#each config.actorSizes as |label size|}}
+            <select class="actor-size" name="system.traits.size">
+                {{#select system.traits.size}} {{#each config.actorSizes as |label size|}}
                 <option value="{{size}}">{{label}}</option>
                 {{/each}} {{/select}}
             </select>
@@ -103,14 +103,14 @@
         {{#if isNPC}}
         <label>
             {{localize "SW5E.Powercasting"}}
-            <select class="powercasting" name="data.attributes.powercasting">
-                {{#select data.attributes.powercasting}} {{#each config.powerMaxLevel as |id class|}}
+            <select class="powercasting" name="system.attributes.powercasting">
+                {{#select system.attributes.powercasting}} {{#each config.powerMaxLevel as |id class|}}
                 <option value="{{class}}">{{class}}</option>
                 {{/each}} {{/select}}
             </select>
         </label>
         {{/if}}
-        <label class="{{#unless data.traits.senses}}inactive{{/unless}}">
+        <label class="{{#unless system.traits.senses}}inactive{{/unless}}">
             {{#unless isVehicle}}
             <label>{{localize "SW5E.Senses"}}</label>
             <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}">
@@ -128,14 +128,14 @@
             <a
                 class="trait-selector"
                 data-options="languages"
-                data-target="data.traits.languages"
+                data-target="system.traits.languages"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.Languages')}}"
                 tabindex="0"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.languages.selected as |v k|}}
+                {{#each system.traits.languages.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -158,13 +158,13 @@
             <a
                 class="proficiency-selector"
                 data-type="armor"
-                data-target="data.traits.armorProf"
+                data-target="system.traits.armorProf"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitArmorProf')}}"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.armorProf.selected as |v k|}}
+                {{#each system.traits.armorProf.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -174,13 +174,13 @@
             <a
                 class="proficiency-selector"
                 data-type="tool"
-                data-target="data.traits.toolProf"
+                data-target="system.traits.toolProf"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitToolProf')}}"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.toolProf.selected as |v k|}}
+                {{#each system.traits.toolProf.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -190,13 +190,13 @@
             <a
                 class="proficiency-selector"
                 data-type="weapon"
-                data-target="data.traits.weaponProf"
+                data-target="system.traits.weaponProf"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitWeaponProf')}}"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.weaponProf.selected as |v k|}}
+                {{#each system.traits.weaponProf.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -206,14 +206,14 @@
             <a
                 class="trait-selector"
                 data-options="damageResistanceTypes"
-                data-target="data.traits.di"
+                data-target="system.traits.di"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamImm')}}"
                 tabindex="0"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.di.selected as |v k|}}
+                {{#each system.traits.di.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -223,14 +223,14 @@
             <a
                 class="trait-selector"
                 data-options="damageResistanceTypes"
-                data-target="data.traits.dr"
+                data-target="system.traits.dr"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamRes')}}"
                 tabindex="0"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.dr.selected as |v k|}}
+                {{#each system.traits.dr.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -240,13 +240,13 @@
             <a
                 class="trait-selector"
                 data-options="damageResistanceTypes"
-                data-target="data.traits.dv"
+                data-target="system.traits.dv"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamVuln')}}"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.dv.selected as |v k|}}
+                {{#each system.traits.dv.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>
@@ -257,13 +257,13 @@
             <a
                 class="trait-selector"
                 data-options="conditionTypes"
-                data-target="data.traits.ci"
+                data-target="system.traits.ci"
                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ConImm')}}"
             >
                 <i class="fas fa-edit"></i>
             </a>
             <ul class="traits-list">
-                {{#each data.traits.ci.selected as |v k|}}
+                {{#each system.traits.ci.selected as |v k|}}
                 <li>{{v}}</li>
                 {{/each}}
             </ul>

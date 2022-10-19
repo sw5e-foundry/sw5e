@@ -11,7 +11,7 @@
         <li>
             <!-- Deployments (pilot, crew, passenger) -->
             {{#each config.ssCrewStationTypes as | name key |}}
-            {{#with (lookup @root.data.attributes.deployment key) as | deployment |}}
+            {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actorsVisible}}
                 <div class="group-list-title">
                     <h3 class="item-name">
@@ -30,11 +30,11 @@
                         </div>
                         <div class="item-detail item-weight">
                             {{#if (eq key "crew")}}
-                                {{#if (eq deploy @root.data.attributes.deployment.pilot.value)}}
+                                {{#if (eq deploy @root.system.attributes.deployment.pilot.value)}}
                                     <a class="deploy-control pilot" data-action="pilot-toggle">
                                         {{localize "SW5E.CrewStationTypePilot"}}
                                     </a>
-                                {{else if (not @root.data.attributes.deployment.pilot.value)}}
+                                {{else if (not @root.system.attributes.deployment.pilot.value)}}
                                     <a class="deploy-control" data-action="pilot-toggle">
                                         {{localize "SW5E.DeployAsPilot"}}
                                     </a>
@@ -47,7 +47,7 @@
                                     <a/>
                                 {{else}}
                                     <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
-                                        <i class="fas {{#if (eq deploy @root.data.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
+                                        <i class="fas {{#if (eq deploy @root.system.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
                                     </a>
                                 {{/if}}
                                 <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
@@ -72,7 +72,7 @@
 
             <!-- Deployments actions -->
             {{#each config.ssCrewStationTypes as | name key |}}
-            {{#with (lookup @root.data.attributes.deployment key) as | deployment |}}
+            {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
                 {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
                     {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}

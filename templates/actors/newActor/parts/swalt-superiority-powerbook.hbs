@@ -4,7 +4,7 @@
             <h1>{{localize "SW5E.SuperiorityLevel"}}</h1>
 
             <div class="attribute-value">
-                <input name="data.attributes.super.level" type="text" value="{{data.attributes.super.level}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <input name="system.attributes.super.level" type="text" value="{{system.attributes.super.level}}" data-dtype="Number" placeholder="0" class="value-number" />
             </div>
         </div> -->
 
@@ -12,9 +12,9 @@
             <h1>{{localize "SW5E.ConsumableManeuver"}}</h1>
 
             <div class="attribute-value multiple">
-                <input name="data.attributes.super.dice.value" type="text" value="{{data.attributes.super.dice.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <input name="system.attributes.super.dice.value" type="text" value="{{system.attributes.super.dice.value}}" data-dtype="Number" placeholder="0" class="value-number" />
                 <span class="value-separator">/</span>
-                <span class="value-number">{{data.attributes.super.dice.max}}{{#if data.attributes.super.dice.max}}{{data.attributes.super.die}}{{/if}}</span>
+                <span class="value-number">{{system.attributes.super.dice.max}}{{#if system.attributes.super.dice.max}}{{system.attributes.super.die}}{{/if}}</span>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
 
             <div class="attribute-value">
                 <div></div>
-                <span class="value-number">{{data.attributes.super.generalDC}}</span>
+                <span class="value-number">{{system.attributes.super.generalDC}}</span>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
 
             <div class="attribute-value">
                 <div></div>
-                <span>{{data.attributes.super.physicalDC}}</span>
+                <span>{{system.attributes.super.physicalDC}}</span>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 
             <div class="attribute-value">
                 <div></div>
-                <span>{{data.attributes.super.mentalDC}}</span>
+                <span>{{system.attributes.super.mentalDC}}</span>
             </div>
         </div>
 
@@ -49,9 +49,9 @@
             <h1>{{localize "SW5E.ManeuversKnown"}}</h1>
             
             <div class="attribute-value multiple">
-                <span class="value-number">{{data.attributes.super.known.value}}</span>
+                <span class="value-number">{{system.attributes.super.known.value}}</span>
                 <span class="value-separator">/</span>
-                <span class="value-number">{{data.attributes.super.known.max}}</span>
+                <span class="value-number">{{system.attributes.super.known.max}}</span>
             </div>
         </div>
     </section>
@@ -94,8 +94,8 @@
                         </div>
 
                         <div class="item-detail item-uses">
-                            {{#if item.data.uses.per }}
-                            Uses {{item.data.uses.value}} / {{item.data.uses.max}}
+                            {{#if item.system.uses.per }}
+                            Uses {{item.system.uses.value}} / {{item.system.uses.max}}
                             {{/if}}
                         </div>
 

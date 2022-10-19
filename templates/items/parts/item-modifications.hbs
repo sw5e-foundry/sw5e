@@ -3,26 +3,26 @@
 {{!-- Chassis Type --}}
 <div class="form-group">
     <label>{{ localize "SW5E.ItemChassisType" }}</label>
-    <select name="data.modify.chassis">
-        {{selectOptions config.chassisTypes selected=data.modify.chassis}}
+    <select name="system.modify.chassis">
+        {{selectOptions config.chassisTypes selected=system.modify.chassis}}
     </select>
 </div>
 <div class="form-group">
     <label>{{ localize "SW5E.ItemChassisModCount" }}</label>
-    <input type="number" name="data.modify.modSlots" value="{{data.modify.modSlots}}" data-dType="Number" placeholder="4" />
+    <input type="number" name="system.modify.modSlots" value="{{system.modify.modSlots}}" data-dType="Number" placeholder="4" />
 </div>
 <div class="form-group">
     <label>{{ localize "SW5E.ItemChassisAugmentCount" }}</label>
-    <input type="number" name="data.modify.augmentSlots" value="{{data.modify.augmentSlots}}" data-dType="Number"/>
+    <input type="number" name="system.modify.augmentSlots" value="{{system.modify.augmentSlots}}" data-dType="Number"/>
 </div>
 
-{{#if (gt data.modify.modSlots 0)}}
+{{#if (gt system.modify.modSlots 0)}}
 <h4>{{ localize "SW5E.ModificationPl" }}</h4>
 <ol class="items-list">
     {{#each mods as | mod |}}
     {{#unless mod.hidden}}
     {{#if (eq mod.type "mod")}}
-    <li class="modification {{#if (or @root.data.modsdisabled mod.disabled)}}disabled{{/if}}" data-id="{{mod.id}}" data-index="{{@index}}">
+    <li class="modification {{#if (or @root.system.modsdisabled mod.disabled)}}disabled{{/if}}" data-id="{{mod.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i>{{mod.name}}</a>
@@ -42,13 +42,13 @@
 </ol>
 {{/if}}
 
-{{#if (gt data.modify.augmentSlots 0)}}
+{{#if (gt system.modify.augmentSlots 0)}}
 <h4>{{ localize "SW5E.ItemAugmentPl" }}</h4>
 <ol class="items-list">
     {{#each mods as | aug |}}
     {{#unless aug.hidden}}
     {{#if (eq aug.type "augment")}}
-    <li class="modification {{#if (or @root.data.modsdisabled aug.disabled)}}disabled{{/if}}" data-id="{{aug.id}}" data-index="{{@index}}">
+    <li class="modification {{#if (or @root.system.modsdisabled aug.disabled)}}disabled{{/if}}" data-id="{{aug.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i> {{aug.name}}</a>

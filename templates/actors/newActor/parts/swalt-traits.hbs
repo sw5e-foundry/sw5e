@@ -11,23 +11,11 @@
                 />
             </h1>
             <div class="attribute-value">
-                <input
-                    name="system.resources.{{res.name}}.value"
-                    type="text"
-                    value="{{res.value}}"
-                    data-dtype="Number"
-                    placeholder="0"
-                    class="value-number"
-                />
+                            {{numberInput res.value name=(concat "system.resources." res.name ".value")
+                                placeholder="0" class="value-number"}}
+
                 <span class="value-separator">/</span>
-                <input
-                    name="system.resources.{{res.name}}.max"
-                    type="text"
-                    value="{{res.max}}"
-                    data-dtype="Number"
-                    placeholder="0"
-                    class="value-number"
-                />
+                {{numberInput res.max name=(concat "system.resources." res.name ".max") placeholder="0" class="value-number"}}
             </div>
             <footer class="attribute-footer">
                 <label class="recharge checkbox flexcol">
@@ -48,34 +36,21 @@
             <div class="counter-value">
                 <div class="death-success">
                     <i class="fas fa-check"></i>
-                    <input
-                        name="system.attributes.death.success"
-                        type="number"
-                        placeholder="0"
-                        value="{{system.attributes.death.success}}"
-                    />
+                    {{numberInput system.attributes.death.success name="system.attributes.death.success"
+                                placeholder="0"}}
                 </div>
                 <div class="death-fail">
                     <i class="fas fa-times"></i>
-                    <input
-                        name="system.attributes.death.failure"
-                        type="number"
-                        placeholder="0"
-                        value="{{system.attributes.death.failure}}"
-                    />
+                    {{numberInput system.attributes.death.failure name="system.attributes.death.failure"
+                                placeholder="0"}}
                 </div>
             </div>
         </div>
         <div class="counter">
             <h4>{{ localize "SW5E.Exhaustion" }}</h4>
             <div class="counter-value">
-                <input
-                    type="text"
-                    name="system.attributes.exhaustion"
-                    data-dtype="Number"
-                    placeholder="0"
-                    value="{{system.attributes.exhaustion}}"
-                />
+                {{numberInput system.attributes.exhaustion name="system.attributes.exhaustion"
+                                placeholder="0"}}
             </div>
         </div>
         <div class="counter">

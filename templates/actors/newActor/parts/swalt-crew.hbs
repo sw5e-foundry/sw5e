@@ -62,12 +62,12 @@
 
             <!-- Deployment Features -->
             {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
-                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
+                {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
             {{/if}} {{/with}}
 
             <!-- Ventures -->
             {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
-                {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=actions.label}}
+                {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
             {{/if}} {{/with}}
 
             <!-- Deployments actions -->
@@ -75,7 +75,7 @@
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
                 {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
-                    {{> "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.html" actions=actions owner=@root.owner name=name}}
+                    {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
                 {{/if}} {{/with}}
             {{/if}} {{/with}} {{/each}}
         </li>

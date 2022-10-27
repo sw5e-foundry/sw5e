@@ -1,20 +1,20 @@
-<li class="item group-grid-fav-items" data-item-id="{{item.data._id}}">
+<li class="item group-grid-fav-items" data-item-id="{{item.id}}">
     <div class="item-name rollable">
         <div class="item-image" style="background-image: url({{item.img}})"></div>
         <h4>{{item.name}}</h4>
     </div>
 
     <div class="item-detail item-uses">
-        {{#if item.data.uses.max}}
-            {{item.data.uses.value}}
+        {{#if item.system.uses.max}}
+            {{item.system.uses.value}}
             /
-            {{item.data.uses.max}}
+            {{item.system.uses.max}}
         {{/if}}
     </div>
 
     <div class="item-detail item-count">
-        {{#if item.data.quantity}}
-            {{item.data.quantity}}
+        {{#if item.system.quantity}}
+            {{item.system.quantity}}
         {{/if}}
     </div>
 

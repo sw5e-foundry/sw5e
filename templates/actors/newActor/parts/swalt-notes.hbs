@@ -7,8 +7,14 @@
             placeholder="{{localize 'SW5E.Journal'}}"
         />
 
-        {{editor content=system.details.notes.value target="system.details.notes.value" button=true owner=owner
-        editable=editable rollData=rollData}}
+        {{editor
+            notesHTML
+            target="system.details.notes.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
     </section>
     <section>
         <input
@@ -17,8 +23,14 @@
             value="{{system.details.notes1name}}"
             placeholder="{{localize 'SW5E.AdditionalNotes'}}"
         />
-        {{editor content=system.details.notes1.value target="system.details.notes1.value" button=true owner=owner
-        editable=editable rollData=rollData}}
+        {{editor
+            notes1HTML
+            target="system.details.notes1.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
     </section>
 
     <section>
@@ -28,8 +40,14 @@
             value="{{system.details.notes2name}}"
             placeholder="{{localize 'SW5E.AdditionalNotes'}}"
         />
-        {{editor content=system.details.notes2.value target="system.details.notes2.value" button=true owner=owner
-        editable=editable rollData=rollData}}
+        {{editor
+            notes2HTML
+            target="system.details.notes2.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
     </section>
 
     <section>
@@ -39,8 +57,14 @@
             value="{{system.details.notes3name}}"
             placeholder="{{localize 'SW5E.AdditionalNotes'}}"
         />
-        {{editor content=system.details.notes3.value target="system.details.notes3.value" button=true owner=owner
-        editable=editable rollData=rollData}}
+        {{editor
+            notes3HTML
+            target="system.details.notes3.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
     </section>
 
     <section>
@@ -50,7 +74,13 @@
             value="{{system.details.notes4name}}"
             placeholder="{{localize 'SW5E.AdditionalNotes'}}"
         />
-        {{editor content=system.details.notes4.value target="system.details.notes4.value" button=true owner=owner
-        editable=editable rollData=rollData}}
+        {{editor
+            notes4HTML
+            target="system.details.notes4.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
     </section>
 </div>

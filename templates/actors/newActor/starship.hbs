@@ -2,19 +2,19 @@
     {{!-- Starship Sheet Header --}}
     <header class="panel">
         <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
-		{{> "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.html"}}
+		{{> "sw5e.swalt-warnings"}}
         <h1 class="character-name">
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
         <div class="level-experience">
             <div class="charlevel">
                 {{ localize "SW5E.StarshipTier" }}
-                <input name="data.details.tier" type="text" value="{{data.details.tier}}" placeholder="0" />
+                <input name="system.details.tier" type="text" value="{{system.details.tier}}" placeholder="0" />
             </div>
         </div>
         <div class="summary">
-			<span class="summary-input" style="text-transform: capitalize;font-family: 'Russo One';display: inline; height: auto; font-size: 17px; font-weight: 400; letter-spacing: 0.5px; line-height: 24px; color: #4f4f4f;">{{lookup config.actorSizes data.traits.size}}</span>
-            <input type="text" name="data.details.source" value="{{data.details.source}}" placeholder="{{ localize 'SW5E.Source' }}" />
+			<span class="summary-input" style="text-transform: capitalize;font-family: 'Russo One';display: inline; height: auto; font-size: 17px; font-weight: 400; letter-spacing: 0.5px; line-height: 24px; color: #4f4f4f;">{{lookup config.actorSizes system.traits.size}}</span>
+            <input type="text" name="system.details.source" value="{{system.details.source}}" placeholder="{{ localize 'SW5E.Source' }}" />
             <div class="proficiency">{{ localize "SW5E.Proficiency" }} {{labels.proficiency}}</div>
         </div>
         <div class="attributes">
@@ -26,7 +26,7 @@
                 ></a>
                 </h1>
                 <div class="attribute-value attributable" data-property="attributes.ac">
-                    <span>{{data.attributes.ac.value}}</span>
+                    <span>{{system.attributes.ac.value}}</span>
                 </div>
 				<footer class="attribute-footer hit-dice" style="grid-template-columns: 1fr 1fr 1fr; column-gap: 4px;">
 					<button type="button" class="rest recharge-repair">{{ localize "SW5E.Recharge" }}</button>
@@ -39,20 +39,18 @@
 			<section class="attrib health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.HullPoints" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="data.attributes.hp.value" type="text"
-                    value="{{data.attributes.hp.value}}" placeholder="10"
-                        data-dtype="Number" title="{{localize 'SW5E.HullPointsCurrent'}}"
-                        class="value-number" />
+                    <input name="system.attributes.hp.value" type="number" step="any"
+                    value="{{system.attributes.hp.value}}" placeholder="10"
+                        title="{{localize 'SW5E.HullPointsCurrent'}}">
                     <span class="value-separator">/</span>
-                        <input name="data.attributes.hp.max" type="text"
-                        value="{{data.attributes.hp.max}}" placeholder="10"
-                        data-dtype="Number" title="{{localize 'SW5E.HullPointsMax'}}"
-                        class="value-number" />
+                        <input name="system.attributes.hp.max" type="number" step="any"
+                        value="{{system.attributes.hp.max}}" placeholder="10"
+                        title="{{localize 'SW5E.HullPointsMax'}}">
                 </div>
                 <footer class="attribute-footer" style="line-height: 12px; height: 12px; text-align: center; font-family: 'Russo One';">
-                    <!--<input name="data.attributes.hull.formula" class="hpformula" type="text"
-                            placeholder="{{ localize 'SW5E.HullPointsFormula' }}" value="{{data.attributes.hull.formula}}" style="min-width: 150px;" /> -->
-						 <strong>{{localize "SW5E.HullDice"}}:</strong> {{data.attributes.hull.dice}} of {{data.attributes.hull.dicemax}}{{data.attributes.hull.die}}
+                    <!--<input name="system.attributes.hull.formula" class="hpformula" type="text"
+                            placeholder="{{ localize 'SW5E.HullPointsFormula' }}" value="{{system.attributes.hull.formula}}" style="min-width: 150px;" /> -->
+						 <strong>{{localize "SW5E.HullDice"}}:</strong> {{system.attributes.hull.dice}} of {{system.attributes.hull.dicemax}}{{system.attributes.hull.die}}
                 </footer>
             </section>
 			
@@ -60,20 +58,18 @@
 			<section class="attrib health" style="box-sizing: border-box; width: 150px;">
                 <h1 class="attribute-name rollable">{{ localize "SW5E.ShieldPoints" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="data.attributes.hp.temp" type="text" 
-                    value="{{round data.attributes.hp.temp}}" placeholder="0"
-                    data-dtype="Number" title="{{localize 'SW5E.ShieldPointsCurrent'}}"
-                    class="value-number" />
+                    <input name="system.attributes.hp.temp" type="number" step="any" 
+                    value="{{round system.attributes.hp.temp}}" placeholder="0"
+                    title="{{localize 'SW5E.ShieldPointsCurrent'}}">
                     <span class="value-separator">/</span>
-                    <input name="data.attributes.hp.tempmax" type="text"
-                    value="{{round data.attributes.hp.tempmax}}" placeholder="0"
-                    data-dtype="Number"  title="{{localize 'SW5E.ShieldPointsMax'}}"
-                    class="value-number" />
+                    <input name="system.attributes.hp.tempmax" type="number" step="any"
+                    value="{{round system.attributes.hp.tempmax}}" placeholder="0"
+                    title="{{localize 'SW5E.ShieldPointsMax'}}">
                 </div>
                 <footer class="attribute-footer" style="line-height: 12px; height: 12px; text-align: center; font-family: 'Russo One';{{#if isShieldDepleted}} color: #c40f0f;"> 
                             <strong> {{localize "SW5E.ShieldDepleted"}} </strong>
                         {{else}}
-                            "><strong>{{localize "SW5E.ShieldDice"}}: </strong> {{data.attributes.shld.dice}} of {{data.attributes.shld.dicemax}}{{data.attributes.shld.die}}
+                            "><strong>{{localize "SW5E.ShieldDice"}}: </strong> {{system.attributes.shld.dice}} of {{system.attributes.shld.dicemax}}{{system.attributes.shld.die}}
                         {{/if}}
                 </footer>
             </section>			
@@ -83,10 +79,10 @@
                     <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"><i class="fas fa-cog"></i></a>
                 </h1>
                 <div class="attribute-value">
-                    <span>{{data.attributes.movement.space}} {{data.attributes.movement.units}}</span>
+                    <span>{{system.attributes.movement.space}} {{system.attributes.movement.units}}</span>
                 </div>
                 <footer class="attribute-footer" style="font-family: 'Russo One'; text-align: center;">
-                    <span>Turning Speed: {{data.attributes.movement.turn}} {{data.attributes.movement.units}}</span>
+                    <span>Turning Speed: {{system.attributes.movement.turn}} {{system.attributes.movement.units}}</span>
                 </footer>
             </section>
         </div>
@@ -111,24 +107,18 @@
                 <section class="scores">
                     <h1>{{localize "SW5E.AbilityScores"}}</h1>
                     <div class="score-list">
-                        {{#each data.abilities as |ability id|}}
+                        {{#each system.abilities as |ability id|}}
                         <div class="score" data-ability="{{id}}">
                             <h2 class="ability-name rollable">{{ability.label}}</h2>
-                            <input
-                                class="ability-score"
-                                name="data.abilities.{{id}}.value"
-                                type="text"
-                                value="{{ability.value}}"
-                                data-dtype="Number"
-                                placeholder="10"
-                            />
+                            {{numberInput ability.value name=(concat "system.abilities." id ".value")
+                        class="ability-score" placeholder="10"}}
                             <div class="ability-modifiers">
                                 <span class="ability-mod" title="{{ localize 'SW5E.Modifier' }}"
                                     >{{numberFormat ability.mod decimals=0 sign=true}}</span
                                 >
                                 <input
                                     type="hidden"
-                                    name="data.abilities.{{id}}.proficient"
+                                    name="system.abilities.{{id}}.proficient"
                                     value="{{ability.baseProf}}"
                                     data-dtype="Number"
                                 />
@@ -150,12 +140,12 @@
                 <section class="skills">
                     <h1>{{localize "SW5E.Skills" }}</h1>
                     <ol>
-                        {{#each config.starshipSkills as |label s|}} {{#with (lookup ../data.skills s) as |skill|}}
+                        {{#each config.starshipSkills as |obj s|}} {{#with (lookup ../system.skills s) as |skill|}}
                         <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
-                            <input type="hidden" name="data.skills.{{s}}.value" value="{{skill.baseValue}}" data-dtype="Number" />
+                            <input type="hidden" name="system.skills.{{s}}.value" value="{{skill.baseValue}}" data-dtype="Number" />
                             <button class="proficiency-toggle skill-proficiency" title="{{skill.hover}}">{{{skill.icon}}}</button>
                             <div class="skill-name-controls">
-                                <span class="skill-name rollable">{{label}}</span>
+                                <span class="skill-name rollable">{{skill.label}}</span>
                                 <a class="config-button" data-action="skill" title="{{localize 'SW5E.SkillConfigure'}}"
                                     ><i class="fas fa-cog"></i
                                 ></a>
@@ -167,7 +157,7 @@
                             {{!--
                             <input
                                 class="skill-bonus"
-                                name="data.skills.{{s}}.bonus"
+                                name="system.skills.{{s}}.bonus"
                                 type="text"
                                 value="{{numberFormat skill.bonus decimals=0 sign=true}}"
                                 data-dtype="Number"
@@ -188,14 +178,14 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.di"
+                                data-target="system.traits.di"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamImm')}}"
                                 tabindex="0"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.di.selected as |v k|}}
+                                {{#each system.traits.di.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -205,14 +195,14 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.dr"
+                                data-target="system.traits.dr"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamRes')}}"
                                 tabindex="0"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.dr.selected as |v k|}}
+                                {{#each system.traits.dr.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -222,13 +212,13 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.dv"
+                                data-target="system.traits.dv"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.HullDamVuln')}}"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.dv.selected as |v k|}}
+                                {{#each system.traits.dv.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -238,14 +228,14 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.sdi"
+                                data-target="system.traits.sdi"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamImm')}}"
                                 tabindex="0"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.sdi.selected as |v k|}}
+                                {{#each system.traits.sdi.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -255,14 +245,14 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.sdr"
+                                data-target="system.traits.sdr"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamRes')}}"
                                 tabindex="0"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.sdr.selected as |v k|}}
+                                {{#each system.traits.sdr.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -272,13 +262,13 @@
                             <a
                                 class="trait-selector"
                                 data-options="damageResistanceTypes"
-                                data-target="data.traits.sdv"
+                                data-target="system.traits.sdv"
                                 title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ShldDamVuln')}}"
                             >
                                 <i class="fas fa-edit"></i>
                             </a>
                             <!-- <ul class="traits-list">
-                                {{#each data.traits.sdv.selected as |v k|}}
+                                {{#each system.traits.sdv.selected as |v k|}}
                                 <li>{{v}}</li>
                                 {{/each}}
                             </ul> -->
@@ -294,12 +284,12 @@
                         <tr>
                         <td>
                             <label>
-                                {{localize "SW5E.VehicleCargoCapacity"}}: {{data.attributes.equip.size.cargoCap}} tons
+                                {{localize "SW5E.VehicleCargoCapacity"}}: {{system.attributes.equip.size.cargoCap}} tons
                             </label>
                         </td>
                         <td>
                             <label>
-                                {{localize "SW5E.CrewCap"}}: {{data.attributes.equip.size.crewMinWorkforce}}
+                                {{localize "SW5E.CrewCap"}}: {{system.attributes.equip.size.crewMinWorkforce}}
                             </label>
 
                         </td>
@@ -307,7 +297,7 @@
                         <tr>
                         <td>
                             <label>
-                                {{localize "SW5E.FuelCostPerUnit"}}: {{data.attributes.fuel.cost}} cr/unit
+                                {{localize "SW5E.FuelCostPerUnit"}}: {{system.attributes.fuel.cost}} cr/unit
                             </label>
                         </td>
                         <td>
@@ -319,7 +309,7 @@
                         <label>
                             {{localize "SW5E.FuelCapacity"}}
                         </label>
-                    {{#with data.attributes.fuel}}
+                    {{#with system.attributes.fuel}}
                         <div class="fuel-wrapper" title="Fuel">
                             <div class="fuel {{#if fueled}}fueled{{/if}}">
                                 <span class="fuel-bar" style="width:{{pct}}%"></span>
@@ -337,10 +327,10 @@
                         </div>
                     {{/with}}
                     <!--<label>
-                        {{localize "SW5E.CentStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.cscap" value="{{data.attributes.cscap}}" placeholder="0" />
+                        {{localize "SW5E.CentStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="system.attributes.cscap" value="{{data.attributes.cscap}}" placeholder="0" />
                     </label>
                     <label>
-                        {{localize "SW5E.SysStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="data.attributes.sscap" value="{{data.attributes.sscap}}" placeholder="0" />
+                        {{localize "SW5E.SysStorageCapacity"}}: <input class="hpformula" style="max-width:30px;" name="system.attributes.sscap" value="{{data.attributes.sscap}}" placeholder="0" />
                     </label> -->
                     </div>
                         <h1>{{localize "SW5E.PowerRouting"}}</h1>
@@ -349,7 +339,7 @@
                         <tr>
                             {{#each config.powerRoutingOpts as | text id |}}
                                 <td align="center"><strong>{{localize text}}</strong></td>
-                                <td rowspan=3><input type="range" orient="vertical" class="vertslider powerslider {{id}}" data-id="{{id}}" value={{lookup data.attributes.power.routing id}} step="1" min="0" max="2" ></td>
+                                <td rowspan=3><input type="range" orient="vertical" class="vertslider powerslider {{id}}" data-id="{{id}}" value={{lookup system.attributes.power.routing id}} step="1" min="0" max="2" ></td>
                             {{/each}}
                         </tr>
                         <tr>
@@ -364,8 +354,8 @@
 
                     <!--<label>
                         {{localize "SW5E.EnginePl"}}: 
-						<select name="data.attributes.engpow">
-						{{#select data.attributes.engpow}}					
+						<select name="system.attributes.engpow">
+						{{#select system.attributes.engpow}}					
 						  <option value="1">&#61;</option>
 						  <option value="2">&#8593;</option>
 						  <option value="0.5">&#8595;</option>
@@ -374,8 +364,8 @@
                     </label>
                     <label>
                         {{localize "SW5E.EquipmentShieldProficiency"}}: 
-						<select name="data.attributes.shieldpow">
-						{{#select data.attributes.shieldpow}}
+						<select name="system.attributes.shieldpow">
+						{{#select system.attributes.shieldpow}}
 						  <option value="1">&#61;</option>
 						  <option value="2">&#8593;</option>
 						  <option value="0.5">&#8595;</option>
@@ -384,8 +374,8 @@
                     </label>
                     <label>
                         {{localize "SW5E.ItemTypeWeaponPl"}}: 
-						<select name="data.attributes.weaponpow">
-						{{#select data.attributes.weaponpow}}
+						<select name="system.attributes.weaponpow">
+						{{#select system.attributes.weaponpow}}
 						  <option value="1">&#61;</option>
 						  <option value="2">&#8593;</option>
 						  <option value="0.5">&#8595;</option>
@@ -396,7 +386,7 @@
 					<table style="border: none; width: 400px;">
 					  <tr><th colspan=3 align="left">{{localize "SW5E.PowerDieAlloc"}}</th><th colspan=3 align="right">
 					  	<label class="rollPowerDie rollable" data-action="rollPowerDie">
-                            {{localize "SW5E.PowerDie"}}: {{data.attributes.power.die}}
+                            {{localize "SW5E.PowerDie"}}: {{system.attributes.power.die}}
                         </label>
 				      </tr>
  					  <tr>
@@ -407,9 +397,9 @@
                         {{/each}}
                       <tr>
                         {{#each config.powerDieSlots as | text val |}}
-                        {{#with (lookup ../data.attributes.power val) as |slot|}}
+                        {{#with (lookup ../system.attributes.power val) as |slot|}}
                         <td style="border-bottom: 2px solid #0d99cc; border-left: 2px solid #0d99cc; border-right: 2px solid #0d99cc;">
-                            <input class="hpformula" style="max-width:25px;" name="data.attributes.power.{{val}}.value" value="{{slot.value}}" placeholder="0" /> / {{slot.max}}
+                            <input class="hpformula" style="max-width:25px;" name="system.attributes.power.{{val}}.value" value="{{slot.value}}" placeholder="0" /> / {{slot.max}}
                         </td>
                         {{/with}}
                         {{/each}}
@@ -423,21 +413,21 @@
                         <div class="counter-value" style="text-align: left;">
                             <div class="death-success" style="color: #0dce0d;">
                                 <i class="fas fa-check"></i>
-                                <input type="text" name="data.attributes.death.success" data-dtype="Number" placeholder="0"
-                                    value="{{data.attributes.death.success}}" />
+                                  {{numberInput system.attributes.death.success name="system.attributes.death.success"
+                                placeholder="0"}}
                             </div>
                             <div class="death-fail" style="color: #c40f0f;">
                                 <i class="fas fa-times"></i>
-                                <input type="text" name="data.attributes.death.failure" data-dtype="Number" placeholder="0"
-                                    value="{{data.attributes.death.failure}}" />
+                    {{numberInput system.attributes.death.failure name="system.attributes.death.failure"
+                                placeholder="0"}}
                             </div>
                         </div>
                     </div>
                     <div class="counter">
                         <h4>{{ localize "SW5E.SystemDamage" }}</h4>
                         <div class="counter-value" style="text-align: left;">
-                            <input type="text" name="data.attributes.systemDamage" data-dtype="Number" placeholder="0"
-                                value="{{data.attributes.systemDamage}}" />
+                                            {{numberInput system.attributes.systemDamage name="system.attributes.systemDamage"
+                                placeholder="0"}}
                         </div>
                     </div>
                     <div class="counter">
@@ -445,10 +435,10 @@
                         <div class="counter-value">
                             <input
                                 type="checkbox"
-                                name="data.attributes.used"
+                                name="system.attributes.used"
                                 data-dtype="Boolean"
                                 {{checked
-                                data.attributes.used}}
+                                system.attributes.used}}
                             />
                         </div>
                     </div>
@@ -456,17 +446,17 @@
 				  <h1>{{localize "SW5E.StarshipmodPl"}}</h1>
 				<div class="traits">
                     <div><label>
-                        {{localize "SW5E.ModCap"}}: {{data.attributes.mods.cap.value}} / {{data.attributes.mods.cap.max}}
+                        {{localize "SW5E.ModCap"}}: {{system.attributes.mods.cap.value}} / {{system.attributes.mods.cap.max}}
                     </label>
                     </div>
                     <div><label>
-                        {{localize "SW5E.SuiteCap"}}: {{data.attributes.mods.suite.value}} / {{data.attributes.mods.suite.max}}
+                        {{localize "SW5E.SuiteCap"}}: {{system.attributes.mods.suite.value}} / {{system.attributes.mods.suite.max}}
                     </label></div>
                     <div><label>
-                        {{localize "SW5E.HardpointsPerRound"}}: {{data.attributes.mods.hardpoint.max}}
+                        {{localize "SW5E.HardpointsPerRound"}}: {{system.attributes.mods.hardpoint.max}}
                     </label></div>
                     <div><label>
-                        {{localize "SW5E.DmgRed"}}: {{data.attributes.equip.armor.dr}}
+                        {{localize "SW5E.DmgRed"}}: {{system.attributes.equip.armor.dr}}
                     </label></div>
                 </div>
             </section>
@@ -474,27 +464,27 @@
 
         {{!-- Crew --}}
         <div class="tab crew flexcol" data-group="primary" data-tab="crew">
-            {{> 'systems/sw5e/templates/actors/newActor/parts/swalt-crew.html'}}
+            {{> "sw5e.swalt-crew"}}
         </div>
         
         {{!-- Cargo --}}
         <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.html" sections=inventory}}
+            {{> "sw5e.swalt-inventory" sections=inventory}}
         </div>
         
         {{!-- Equipment Tab --}}
         <div class="tab equipment flexcol" data-group="primary" data-tab="equipment">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=equipment isStarshipEquipment="true"}}
+            {{> "sw5e.swalt-features" sections=equipment isStarshipEquipment="true"}}
         </div>
 
         {{!-- Features Tab --}}
         <div class="tab features flexcol" data-group="primary" data-tab="features">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-features.html" sections=features}}
+            {{> "sw5e.swalt-features" sections=features}}
         </div>
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.html"}}
+            {{> "sw5e.swalt-active-effects"}}
         </div>
 
     </section>

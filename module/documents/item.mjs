@@ -473,7 +473,7 @@ export default class Item5e extends Item {
             else itemMods.type = "vibroweapon";
         } else itemMods.type = null;
 
-        if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isObjectEmpty(changes)) return;
+        if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isEmpty(changes)) return;
 
         for (const change in changes) {
             // Handle type specific changes

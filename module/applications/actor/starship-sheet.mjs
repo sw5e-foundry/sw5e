@@ -2,8 +2,7 @@ import ActorSheet5e from "./base-sheet.mjs";
 import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../../advancement/advancement-manager.mjs";
 
-import {SW5E} from "../../../config.mjs";
-import {fromUuidSynchronous} from "../../../utils.mjs";
+import {fromUuidSynchronous} from "../../utils.mjs";
 
 /**
  * An Actor sheet for starships in the SW5E system.

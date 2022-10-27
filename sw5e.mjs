@@ -94,7 +94,8 @@ Hooks.once("init", function () {
     CONFIG.Token.documentClass = documents.TokenDocument5e;
     CONFIG.Token.objectClass = canvas.Token5e;
     CONFIG.time.roundTime = 6;
-    CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
+    // TODO: Figure out if this is still necessary / how to make this work
+    // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
     CONFIG.Dice.DamageRoll = dice.DamageRoll;
     CONFIG.Dice.D20Roll = dice.D20Roll;
     CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
@@ -129,22 +130,22 @@ Hooks.once("init", function () {
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eCharacterNew, {
+    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eCharacter, {
         types: ["character"],
         makeDefault: true,
         label: "SW5E.SheetClassCharacter"
     });
-    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eCharacter, {
+    Actors.registerSheet("sw5e", applications.actor.ActorSheetOrig5eCharacter, {
         types: ["character"],
         makeDefault: false,
         label: "SW5E.SheetClassCharacterOld"
     });
-    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eNPCNew, {
+    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eNPC, {
         types: ["npc"],
         makeDefault: true,
         label: "SW5E.SheetClassNPC"
     });
-    Actors.registerSheet("sw5e", applications.actor.ActorSheet5eNPC, {
+    Actors.registerSheet("sw5e", applications.actor.ActorSheetOrig5eNPC, {
         types: ["npc"],
         makeDefault: false,
         label: "SW5E.SheetClassNPCOld"
@@ -160,7 +161,7 @@ Hooks.once("init", function () {
         label: "SW5E.SheetClassVehicle"
     });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("sw5e", applications.actor.ItemSheet5e, {
+    Items.registerSheet("sw5e", applications.item.ItemSheet5e, {
         types: [
             "weapon",
             "equipment",
@@ -242,9 +243,10 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", function () {
-    // Apply custom compendium styles to the SRD rules compendium.
-    const rules = game.packs.get("sw5e.rules");
-    rules.apps = [new applications.SRDCompendium(rules)];
+    // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
+    // // Apply custom compendium styles to the SRD rules compendium.
+    // const rules = game.packs.get("sw5e.rules");
+    // rules.apps = [new applications.SRDCompendium(rules)];
 
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on("hotbarDrop", (bar, data, slot) => {

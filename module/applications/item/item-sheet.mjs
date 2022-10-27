@@ -1,9 +1,9 @@
 import AdvancementManager from "../../advancement/advancement-manager.mjs";
 import ProficiencySelector from "../proficiency-selector.mjs";
 import TraitSelector from "../trait-selector.mjs";
-import CheckboxSelect from "../actor/checkbox-select.js";
+import CheckboxSelect from "../actor/checkbox-select.mjs";
 import ActiveEffect5e from "../../documents/active-effect.mjs";
-import Item5e from "../../documents/item.js";
+import Item5e from "../../documents/item.mjs";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types.

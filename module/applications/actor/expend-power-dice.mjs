@@ -1,4 +1,4 @@
-import {SW5E} from "../config.js";
+import {SW5E} from "../config.mjs";
 
 /**
  * A helper Dialog subclass for allocating power dice

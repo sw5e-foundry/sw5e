@@ -11,7 +11,7 @@ import ExpendPowerDice from "../../applications/actor/expend-power-dice.mjs";
 import ProficiencySelector from "../../applications/proficiency-selector.mjs";
 import Item5e from "../item.mjs";
 import SelectItemsPrompt from "../../applications/select-items-prompt.mjs";
-import {fromUuidSynchronous} from "../utils.js";
+import {fromUuidSynchronous} from "../utils.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.

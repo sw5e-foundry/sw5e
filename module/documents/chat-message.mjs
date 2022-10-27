@@ -1,5 +1,5 @@
-import {fromUuidSynchronous, htmlFindClosingBracket} from "./utils.js";
-import {SW5E} from "./config.js";
+import {fromUuidSynchronous, htmlFindClosingBracket} from "./utils.mjs";
+import {SW5E} from "./config.mjs";
 
 /**
  * Highlight critical success or failure on d20 rolls.

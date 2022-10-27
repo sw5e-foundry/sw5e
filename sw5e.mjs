@@ -12,8 +12,8 @@ import SW5E from "./module/config.mjs";
 import registerSystemSettings from "./module/settings.mjs";
 
 // Import Documents
-import CharacterImporter from "./module/characterImporter.js";
-import DisplayCR from "./module/display-cr.js";
+import CharacterImporter from "./module/characterImporter.mjs";
+import DisplayCR from "./module/display-cr.mjs";
 
 // Import Submodules
 import * as advancement from "./module/advancement/_module.mjs";

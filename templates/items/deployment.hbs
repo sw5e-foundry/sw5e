@@ -42,7 +42,14 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=system.flavorText target="system.flavorText" button=true owner=owner editable=editable}}
+            {{editor 
+				deploymentflavorHTML
+				content=system.flavorText 
+				target="system.flavorText" 
+				button=true 
+				owner=owner 
+				editable=editable
+			}}
         </div>
 
         {{!-- Details Tab --}}

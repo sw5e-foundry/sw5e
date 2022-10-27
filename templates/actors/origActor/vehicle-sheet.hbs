@@ -174,8 +174,13 @@
             {{> "sw5e.active-effects"}}
         </div>
         <div class="tab biography flexcol" data-group="primary" data-tab="biography">
-            {{editor biographyHTML target="system.details.biography.value" button=true editable=editable
-                     engine="prosemirror" collaborate=false}}
+            {{editor 
+				biographyHTML 
+				target="system.details.biography.value" 
+				button=true editable=editable
+				engine="prosemirror" 
+				collaborate=false
+			}}
         </div>
     </section>
 </form>

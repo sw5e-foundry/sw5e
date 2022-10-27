@@ -591,8 +591,8 @@ export default class Item5e extends Item {
      * Prepare derived data for a maneuver-type item and define labels.
      * @protected
      */
-    _prepareManuever() {
-        labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[this.system.maneuverType]);
+    _prepareManeuver() {
+        this.labels.maneuverType = game.i18n.localize(CONFIG.SW5E.maneuverTypes[this.system.maneuverType]);
     }
 
     /* -------------------------------------------- */

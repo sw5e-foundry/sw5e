@@ -750,13 +750,13 @@ async function addFavorites(app, html, context) {
     // }
 
     let tabContainer = html.find(".favtabtarget");
-    data.favItems = favItems.length > 0 ? favItems.sort((a, b) => a.flags.favtab.sort - b.flags.favtab.sort) : false;
-    data.favFeats = favFeats.length > 0 ? favFeats.sort((a, b) => a.flags.favtab.sort - b.flags.favtab.sort) : false;
-    data.favPowers = powerCount > 0 ? favPowers : false;
-    data.editable = app.options.editable;
+    context.favItems = favItems.length > 0 ? favItems.sort((a, b) => a.flags.favtab.sort - b.flags.favtab.sort) : false;
+    context.favFeats = favFeats.length > 0 ? favFeats.sort((a, b) => a.flags.favtab.sort - b.flags.favtab.sort) : false;
+    context.favPowers = powerCount > 0 ? favPowers : false;
+    context.editable = app.options.editable;
 
     await loadTemplates(["systems/sw5e/templates/actors/newActor/item.hbs"]);
-    let favtabHtml = $(await renderTemplate("systems/sw5e/templates/actors/newActor/template.hbs", data));
+    let favtabHtml = $(await renderTemplate("systems/sw5e/templates/actors/newActor/template.hbs", context));
     favtabHtml.find(".item-name h4").click((event) => app._onItemSummary(event));
 
     if (app.options.editable) {
@@ -825,7 +825,7 @@ async function addFavorites(app, html, context) {
     // catch (err) {
     //   // Better Rolls not found!
     // }
-    Hooks.callAll("renderedSwaltSheet", app, html, data);
+    Hooks.callAll("renderedSwaltSheet", app, html, context);
 }
 
 async function addSubTabs(app, html, data) {

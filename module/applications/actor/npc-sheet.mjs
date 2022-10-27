@@ -6,8 +6,8 @@ import ActorSheet5e from "./base-sheet.mjs";
 export default class ActorSheet5eNPC extends ActorSheet5e {
     /** @override */
     get template() {
-        if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.html";
-        return `systems/sw5e/templates/actors/newActor/npc-sheet.html`;
+        if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
+        return `systems/sw5e/templates/actors/newActor/npc-sheet.hbs`;
     }
 
     /** @inheritDoc */
@@ -84,7 +84,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         // Start by classifying items into groups for rendering
         let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other, ssfeats] = context.items.reduce(
             (arr, item) => {
-                const {quantity, uses, recharge, target} = item.system;
+                const {quantity, uses, recharge, target, school} = item.system;
                 item.img = item.img || CONST.DEFAULT_TOKEN;
                 item.isStack = Number.isNumeric(quantity) && quantity !== 1;
                 item.hasUses = uses && uses.max > 0;

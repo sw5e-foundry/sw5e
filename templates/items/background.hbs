@@ -39,8 +39,14 @@
 
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-            {{editor descriptionHTML target="system.description.value" button=true editable=editable engine="prosemirror"
-               collaborate=false}}
+            {{editor 
+				backgrounddescriptionHTML 
+				target="system.description.value" 
+				button=true 
+				editable=editable 
+				engine="prosemirror"
+                collaborate=false
+			}}
         </div>
 
         {{!-- Details Tab --}}

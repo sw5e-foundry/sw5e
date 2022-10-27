@@ -40,7 +40,14 @@
 
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
-            {{editor content=system.description.value target="system.description.value" button=true owner=owner editable=editable}}
+            {{editor 
+				starshipdescriptionHTML
+				content=system.description.value 
+				target="system.description.value" 
+				button=true 
+				owner=owner 
+				editable=editable
+			}}
         </div>
 
         {{!-- Details Tab --}}

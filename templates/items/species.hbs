@@ -298,8 +298,14 @@
             </div>
             <div id="species-description">
                 <p>
-                    {{editor content=system.description.value target="system.description.value" fontsize=12px button=true
-                    editable=editable}}
+                    {{editor 
+						speciesdescriptionHTML
+						content=system.description.value 
+						target="system.description.value" 
+						fontsize=12px 
+						button=true
+						editable=editable
+					}}
                 </p>
             </div>
         </div>
@@ -310,7 +316,13 @@
                 <h2>{{item.name}} Traits</h2>
                 <p>
                     As a/an {{item.name}}, you have the following special traits.<br/>
-                    {{editor content=system.traits.value target="system.traits.value" button=true editable=editable}}
+                    {{editor 
+						speciestraitsHTML
+						content=system.traits.value 
+						target="system.traits.value" 
+						button=true 
+						editable=editable
+					}}
                 </p>
             </span>
         </div>

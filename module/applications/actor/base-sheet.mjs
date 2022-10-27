@@ -149,7 +149,7 @@ export default class ActorSheet5e extends ActorSheet {
             skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
             skl.icon = this._getProficiencyIcon(skl.value);
             skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value].label;
-            if (data.actor.type === "starship") {
+            if (context.actor.type === "starship") {
                 skl.label = CONFIG.SW5E.starshipSkills[s]?.label;
             } else {
                 skl.label = CONFIG.SW5E.skills[s]?.label;

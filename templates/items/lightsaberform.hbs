@@ -37,7 +37,13 @@
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
             <h3>{{item.name}}</h3>
-            {{editor content=system.description.value target="system.description.value" button=true editable=editable}}
+            {{editor 
+				lfdescriptionHTML
+				content=system.description.value 
+				target="system.description.value" 
+				button=true 
+				editable=editable
+			}}
         </div>
 
         {{!-- Effects Tab --}}

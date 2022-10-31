@@ -18,8 +18,8 @@
 
         <div class="form-group">
             <label>{{ localize "SW5E.WeaponSizeAbb" }}</label>
-            <!--            <input type="text" name="data.weaponSize" value="{{data.weaponSize}}" data-dtype="String"/> -->
-            {{data.weaponSize}}
+            <!--            <input type="text" name="system.weaponSize" value="{{system.weaponSize}}" data-dtype="String"/> -->
+            {{system.weaponSize}}
         </div>
         {{/if}}
 
@@ -54,7 +54,7 @@
     </div>
 
     {{editor 
-		itemdescriptionHTML 
+		descriptionHTML 
 		target="system.description.value" 
 		button=true 
 		editable=editable 

@@ -57,7 +57,7 @@
 
             {{!-- Modification Slot --}}
             <div class="form-group">
-                {{#unless (eq data.modificationType "augment")}}
+                {{#unless (eq system.modificationType "augment")}}
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
                 <select name="system.modificationSlot">
                     {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
@@ -102,7 +102,7 @@
                         <a class="damage-control add-damage"><i class="fas fa-plus"></i></a>
                     </h4>
                     <ol class="damage-parts form-group">
-                        {{#each data.damage.parts as |part i| }}
+                        {{#each system.damage.parts as |part i| }}
                         <li class="damage-part flexrow" data-damage-part="{{i}}">
                             <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this "0"}}"/>
                             <select name="system.damage.parts.{{i}}.1">

@@ -398,7 +398,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         if (itemData.type === "class") {
             const charLevel = this.actor.system.details.level;
             itemData.system.levels = Math.min(itemData.system.levels, CONFIG.SW5E.maxLevel - charLevel);
-            if (itemData.data.levels <= 0) {
+            if (itemData.system.levels <= 0) {
                 const err = game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", {max: CONFIG.SW5E.maxLevel});
                 ui.notifications.error(err);
                 return false;
@@ -421,7 +421,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
 
         // If a archetype is dropped, ensure it doesn't match another archetype with the same identifier
         else if (itemData.type === "archetype") {
-            const other = this.actor.itemTypes.archetype.find((i) => i.identifier === itemData.data.identifier);
+            const other = this.actor.itemTypes.archetype.find((i) => i.identifier === itemData.system.identifier);
             if (other) {
                 const err = game.i18n.format("SW5E.ArchetypeDuplicateError", {identifier: other.identifier});
                 ui.notifications.error(err);

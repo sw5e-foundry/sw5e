@@ -10,8 +10,8 @@ import {fromUuidSynchronous} from "../../utils.mjs";
 export default class ActorSheet5eStarship extends ActorSheet5e {
     /** @override */
     get template() {
-        if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.html";
-        return `systems/sw5e/templates/actors/newActor/starship.html`;
+        if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
+        return `systems/sw5e/templates/actors/newActor/starship.hbs`;
     }
 
     /** @inheritDoc */
@@ -65,12 +65,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         const context = await super.getData(options);
 
         // Add Size info
-        context.isTiny = context.traits.size === "tiny";
-        context.isSmall = context.traits.size === "sm";
-        context.isMedium = context.traits.size === "med";
-        context.isLarge = context.traits.size === "lg";
-        context.isHuge = context.traits.size === "huge";
-        context.isGargantuan = context.traits.size === "grg";
+        context.isTiny = context.system.traits.size === "tiny";
+        context.isSmall = context.system.traits.size === "sm";
+        context.isMedium = context.system.traits.size === "med";
+        context.isLarge = context.system.traits.size === "lg";
+        context.isHuge = context.system.traits.size === "huge";
+        context.isGargantuan = context.system.traits.size === "grg";
 
         // Decide if deployment is visible
         const ssDeploy = context.system.attributes.deployment;
@@ -105,7 +105,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                 derived: true
             }
         };
-        for (const deploy of Object.keys(SW5E.ssCrewStationTypes))
+        for (const deploy of Object.keys(CONFIG.SW5E.ssCrewStationTypes))
             ssActions[deploy] = {
                 items: [],
                 dataset: {type: "starshipaction", deployment: deploy}
@@ -154,7 +154,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         };
 
         // Start by classifying items into groups for rendering
-        let [actions, features, equipment, cargo] = data.items.reduce(
+        let [actions, features, equipment, cargo] = context.items.reduce(
             (arr, item) => {
                 const {quantity, uses, recharge, target} = item.system;
                 item.img = item.img || CONST.DEFAULT_TOKEN;
@@ -248,10 +248,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         }
 
         // Assign and return
-        data.actions = ssActions;
-        data.features = Object.values(ssFeatures);
-        data.inventory = Object.values(ssCargo);
-        data.equipment = Object.values(ssEquipment);
+        context.actions = ssActions;
+        context.features = Object.values(ssFeatures);
+        context.inventory = Object.values(ssCargo);
+        context.equipment = Object.values(ssEquipment);
     }
 
     /* -------------------------------------------- */
@@ -707,16 +707,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     /** @override */
     async _onDropActor(event, data) {
         // Get the target actor
-        let sourceActor = null;
-        if (data.pack) {
-            const pack = game.packs.find((p) => p.collection === data.pack);
-            sourceActor = await pack.getDocument(data.id);
-        } else {
-            sourceActor = game.actors.get(data.id);
-        }
+        const cls = getDocumentClass("Actor");
+        const sourceActor = await cls.fromDropData(data);
         if (!sourceActor) return;
 
-        if (!SW5E.deployableTypes.includes(sourceActor.type))
+        if (!CONFIG.SW5E.deployableTypes.includes(sourceActor.type))
             return ui.notifications.warn(
                 game.i18n.format("SW5E.DeploymentInvalidActorType", {
                     actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
@@ -728,7 +723,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
             (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
             ["passenger", 0]
         )[0];
-        if (!Object.keys(SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
+        if (!Object.keys(CONFIG.SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
 
         // Create and render the Dialog
         // Define a function to record starship deployment selection
@@ -746,7 +741,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
                     starship: this.actor.name
                 }),
                 content: {
-                    i18n: SW5E.ssCrewStationTypes,
+                    i18n: CONFIG.SW5E.ssCrewStationTypes,
                     isToken: this.actor.isToken,
                     preselected: preselected
                 },

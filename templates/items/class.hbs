@@ -32,7 +32,7 @@
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor 
-				classdescriptionHTML 
+				descriptionHTML
 				target="system.description.value" 
 				button=true editable=editable
                 engine="prosemirror" 
@@ -154,8 +154,7 @@
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="archetypes">
             {{editor 
-				classflavorHTML
-				content=data.atFlavorText.value 
+				atFlavorTextHTML
 				target="system.atFlavorText.value" 
 				button=true 
 				owner=owner 
@@ -166,8 +165,7 @@
         {{!-- Invocations Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="invocations">
             {{editor 
-				classinvocationsHTML
-				content=data.invocations.value 
+				invocationsHTML
 				target="system.invocations.value" 
 				button=true 
 				owner=owner 

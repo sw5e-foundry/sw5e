@@ -1097,7 +1097,7 @@ async function _migrateItemModificationData(item, updateData, migrationData) {
         if (itemMods.chassisType !== undefined) updateData["system.modify.chassis"] = itemMods.chassisType;
         if (itemMods.augmentSlots !== undefined) updateData["system.modify.augmentSlots"] = itemMods.augmentSlots;
         if (itemMods.type !== undefined) updateData["system.modify.type"] = itemMods.type;
-        if (itemMods.overrides !== undefined) updateData["system.modify.overrides"] = itemMods.overrides;
+        if (itemMods.overrides !== undefined) updateData["system.modify.changes"] = itemMods.overrides;
 
         const items = [];
         for (const mod_data of Object.values(itemMods.mods).concat(itemMods.augments)) {

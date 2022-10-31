@@ -525,8 +525,6 @@ export default class Item5e extends Item {
                 }
             }
         }
-        console.debug(changes, overrides, this.overrides);
-        console.debug(changes[`properties.bur`], overrides[`system.properties.bur`], this.overrides?.system?.properties?.bur);
 
         // Apply all changes to the Actor data
         foundry.utils.mergeObject(this, overrides);

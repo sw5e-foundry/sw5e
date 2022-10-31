@@ -626,7 +626,7 @@ export default class ItemSheet5e extends ItemSheet {
         const els = this.form.getElementsByClassName("tristate-checkbox");
         for (const el of els) {
             const indet_path = el.name.replace(/(\w+)[.](\w+)$/, "$1.indeterminate.$2");
-            el.indeterminate = foundry.utils.getProperty(this.item.system, indet_path) != false;
+            el.indeterminate = foundry.utils.getProperty(this.item, indet_path) != false;
         }
         return html;
     }
@@ -658,8 +658,8 @@ export default class ItemSheet5e extends ItemSheet {
                 const path = ev.target.name;
                 const indet_path = path.replace(/(\w+)[.](\w+)$/, "$1.indeterminate.$2");
 
-                const val = foundry.utils.getProperty(this.item.system, path);
-                const indet_val = foundry.utils.getProperty(this.item.system, indet_path) != false;
+                const val = foundry.utils.getProperty(this.item, path);
+                const indet_val = foundry.utils.getProperty(this.item, indet_path) != false;
 
                 if (indet_val) {
                     update[path] = false;

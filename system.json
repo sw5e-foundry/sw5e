@@ -11,7 +11,13 @@
     "url": "https://github.com/unrealkakeman89/sw5e",
     "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
     "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip",
-    "authors": "Dev Team",
+    "authors": [
+        {
+            "name": "The Dev Team",
+            "url": "https://github.com/unrealkakeman89/sw5eus",
+            "discord": "https://discord.gg/HUNHVhDQka"
+        }
+    ],
     "scripts": [],
     "esmodules": ["sw5e.mjs"],
     "styles": ["sw5e.css", "sw5e-global.css", "sw5e-light.css", "sw5e-dark.css"],
@@ -200,7 +206,7 @@
             "name": "modifications",
             "label": "Modifications",
             "path": "./packs/packs/modifications.db",
-            "entity": "Item"
+            "type": "Item"
         },
         {
             "name": "musicalinstruments",
@@ -272,7 +278,6 @@
             "name": "tables",
             "label": "Tables",
             "path": "./packs/packs/tables.db",
-            "entity": "RollTable",
             "type": "RollTable"
         },
         {

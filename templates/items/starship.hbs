@@ -1,0 +1,90 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ClassName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary flexrow">
+                <li>
+                    <input
+                        type="text"
+                        name="system.source"
+                        value="{{system.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+        <a class="item" data-tab="advancement">{{ localize "SW5E.AdvancementTitle" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab flexrow active" data-group="primary" data-tab="description">
+            {{editor 
+				descriptionHTML
+				target="system.description.value" 
+				button=true 
+				owner=owner 
+				editable=editable
+			}}
+        </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            {{!-- Identifier --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.Identifier" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
+                </div>
+                <p class="hint">
+                    {{{localize "SW5E.StarshipIdentifierHint" identifier=system.identifier}}}
+                </p>
+            </div>
+            {{#each config.starshipTypeDetails as |detail id|}}
+                <div class="form-group">
+                    <label>{{ localize detail.name }}</label>
+                    <div class="form-fields">
+                        {{#if detail.select}}
+                            <select name="system.{{id}}">
+                                {{#select (lookup ../system id)}} {{#each (lookup ../config detail.select)}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}} {{/select}}
+                            </select>
+                        {{else}}
+                            <input type="text" name="system.{{id}}" value="{{lookup ../system id}}" data-dtype="Number"/>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        {{!-- Advancement Tab --}} 
+        {{> "sw5e.item-advancement"}}
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

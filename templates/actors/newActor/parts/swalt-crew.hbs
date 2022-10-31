@@ -1,0 +1,83 @@
+<div class="panel">
+    <ul class="filter-list" data-filter="ssactions">
+        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
+        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+        <li class="filter-item" data-filter="activeDeploy">{{localize "SW5E.FilterActiveDeploy"}}</li>
+    </ul>
+
+    <ol class="group-list">
+        <li>
+            <!-- Deployments (pilot, crew, passenger) -->
+            {{#each config.ssCrewStationTypes as | name key |}}
+            {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
+            {{#if deployment.actorsVisible}}
+                <div class="group-list-title">
+                    <h3 class="item-name">
+                        {{localize (lookup @root.config.ssCrewStationTypesPlural key)}}
+                    </h3>
+                </div>
+                <ol class="group-items item-list">
+                    {{#each deployment.items as | deploy |}}
+                    <li
+                        class="item group-grid-deployments"
+                        data-key="{{key}}"
+                        data-uuid="{{deploy}}"
+                    >
+                        <div class="item-name">
+                            <h4>{{{ sw5e-linkForUuid deploy }}}</h4>
+                        </div>
+                        <div class="item-detail item-weight">
+                            {{#if (eq key "crew")}}
+                                {{#if (eq deploy @root.system.attributes.deployment.pilot.value)}}
+                                    <a class="deploy-control pilot" data-action="pilot-toggle">
+                                        {{localize "SW5E.CrewStationTypePilot"}}
+                                    </a>
+                                {{else if (not @root.system.attributes.deployment.pilot.value)}}
+                                    <a class="deploy-control" data-action="pilot-toggle">
+                                        {{localize "SW5E.DeployAsPilot"}}
+                                    </a>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                        <div class="item-detail item-controls">
+                            {{#if @root.owner}}
+                                {{#if (eq key "passenger")}}
+                                    <a/>
+                                {{else}}
+                                    <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
+                                        <i class="fas {{#if (eq deploy @root.system.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
+                                    </a>
+                                {{/if}}
+                                <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            {{/if}}
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+            {{/if}} {{/with}} {{/each}}
+
+            <!-- Deployment Features -->
+            {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
+            {{/if}} {{/with}}
+
+            <!-- Ventures -->
+            {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
+            {{/if}} {{/with}}
+
+            <!-- Deployments actions -->
+            {{#each config.ssCrewStationTypes as | name key |}}
+            {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
+            {{#if deployment.actionsVisible}}
+                {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                    {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
+                {{/if}} {{/with}}
+            {{/if}} {{/with}} {{/each}}
+        </li>
+    </ol>
+</div>

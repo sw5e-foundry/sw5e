@@ -1,0 +1,347 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary">
+                <li>
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="Source" />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">Description</a>
+        <a class="item" data-tab="species-traits">Species Traits</a>
+        <a class="item" data-tab="details">{{localize "SW5E.Details"}}</a>
+        <a class="item" data-tab="advancement">{{localize "SW5E.AdvancementTitle"}}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab description flexcol" data-group="primary" data-tab="description">
+            <div class="speciestable">
+                <blockquote class="block">
+                    <br />
+                    <h3>{{item.name}}</h3>
+                    {{#if data.manufacturer}}
+                    <table id="droid-visualchar">
+                        <thead>
+                            <tr>
+                                <th colspan="4"><h3>Visual Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Color Scheme</td>
+                                <td>
+                                    <input
+                                        name="system.colorScheme.value"
+                                        type="text"
+                                        value="{{system.colorScheme.value}}"
+                                        placeholder="{{ localize SW5E.colorScheme }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Distinctions</td>
+                                <td>
+                                    <input
+                                        name="system.droidDistinctions.value"
+                                        type="text"
+                                        value="{{system.droidDistinctions.value}}"
+                                        placeholder="{{ localize SW5E.distinctions }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="physicalchar">
+                        <thead>
+                            <tr>
+                                <th colspan="3"><h3>Physical Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Height</td>
+                                <td>
+                                    <input
+                                        name="system.heightAverage.value"
+                                        type="text"
+                                        value="{{system.heightAverage.value}}"
+                                        placeholder="5'2&rdquo;"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        name="system.heightRollMod.value"
+                                        type="text"
+                                        value="{{system.heightRollMod.value}}"
+                                        placeholder="+1d4&rdquo;"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>
+                                    <input
+                                        name="system.weightAverage.value"
+                                        type="text"
+                                        value="{{system.weightAverage.value}}"
+                                        placeholder="100 lb."
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        name="system.weightRollMod.value"
+                                        type="text"
+                                        value="{{system.weightRollMod.value}}"
+                                        placeholder="x(1d4) lb."
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="droid-sociocultchar">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><h3>Sociocultural Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manufacturer</td>
+                                <td>
+                                    <input
+                                        name="system.manufacturer.value"
+                                        type="text"
+                                        value="{{system.manufacturer.value}}"
+                                        placeholder="{{ localize SW5E.manufacturer }}"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <td>
+                                    <input
+                                        name="system.droidLanguage.value"
+                                        type="text"
+                                        value="{{system.droidLanguage.value}}"
+                                        placeholder="{{ localize SW5E.slanguage }}"
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{else if system.skinColorOptions}}
+                    <table id="visualchar">
+                        <thead>
+                            <tr>
+                                <th colspan="4"><h3>Visual Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Skin Color</td>
+                                <td>
+                                    <input
+                                        name="system.skinColorOptions.value"
+                                        type="text"
+                                        value="{{system.skinColorOptions.value}}"
+                                        placeholder="{{ localize SW5E.skinColorOptions }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Hair Color</td>
+                                <td>
+                                    <input
+                                        name="system.hairColorOptions.value"
+                                        type="text"
+                                        value="{{system.hairColorOptions.value}}"
+                                        placeholder="{{ localize SW5E.hairColorOptions }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Eye Color</td>
+                                <td>
+                                    <input
+                                        name="system.eyeColorOptions.value"
+                                        type="text"
+                                        value="{{system.eyeColorOptions.value}}"
+                                        placeholder="{{ localize SW5E.eyeColorOptions }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Distinctions</td>
+                                <td>
+                                    <input
+                                        name="system.distinctions.value"
+                                        type="text"
+                                        value="{{system.distinctions.value}}"
+                                        placeholder="{{ localize SW5E.distinctions }}"
+                                    />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="physicalchar">
+                        <thead>
+                            <tr>
+                                <th colspan="3"><h3>Physical Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Height</td>
+                                <td>
+                                    <input
+                                        name="system.heightAverage.value"
+                                        type="text"
+                                        value="{{system.heightAverage.value}}"
+                                        placeholder="5'2&rdquo;"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        name="system.heightRollMod.value"
+                                        type="text"
+                                        value="{{system.heightRollMod.value}}"
+                                        placeholder="+1d4&rdquo;"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>
+                                    <input
+                                        name="system.weightAverage.value"
+                                        type="text"
+                                        value="{{system.weightAverage.value}}"
+                                        placeholder="100 lb."
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        name="system.weightRollMod.value"
+                                        type="text"
+                                        value="{{system.weightRollMod.value}}"
+                                        placeholder="x(1d4) lb."
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="sociocultchar">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><h3>Sociocultural Characteristics</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Homeworld</td>
+                                <td>
+                                    <input
+                                        name="system.homeworld.value"
+                                        type="text"
+                                        value="{{system.homeworld.value}}"
+                                        placeholder="{{ localize SW5E.homeworld }}"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Language</td>
+                                <td>
+                                    <input
+                                        name="system.slanguage.value"
+                                        type="text"
+                                        value="{{system.slanguage.value}}"
+                                        placeholder="{{ localize SW5E.slanguage }}"
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{/if}}
+                </blockquote>
+            </div>
+            <div id="species-description">
+                <p>
+                    {{editor 
+						descriptionHTML 
+						target="system.description.value" 
+						fontsize=12px 
+						button=true
+						editable=editable
+					}}
+                </p>
+            </div>
+        </div>
+
+        {{!-- Traits Tab --}}
+        <div id="species traits" class="tab species-traits flexcol" data-group="primary" data-tab="species-traits">
+            <span id="Traits">
+                <h2>{{item.name}} Traits</h2>
+                <p>
+                    As a/an {{item.name}}, you have the following special traits.<br/>
+                    {{editor 
+						traitsHTML 
+						target="system.traits.value" 
+						button=true 
+						editable=editable
+					}}
+                </p>
+            </span>
+        </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            {{!-- Identifier --}}
+            <div class="form-group">
+                <label>{{localize "SW5E.Identifier"}}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
+                </div>
+            </div>
+        </div>
+
+        {{!-- Advancement Tab --}}
+        {{> "sw5e.item-advancement"}}
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

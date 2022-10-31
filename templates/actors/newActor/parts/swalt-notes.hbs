@@ -1,0 +1,86 @@
+<div class="panel">
+    <section class="background">
+        <input
+            type="text"
+            name="system.details.notesname"
+            value="{{system.details.notesname}}"
+            placeholder="{{localize 'SW5E.Journal'}}"
+        />
+
+        {{editor
+            notesHTML
+            target="system.details.notes.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+    <section>
+        <input
+            type="text"
+            name="system.details.notes1name"
+            value="{{system.details.notes1name}}"
+            placeholder="{{localize 'SW5E.AdditionalNotes'}}"
+        />
+        {{editor
+            notes1HTML
+            target="system.details.notes1.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+
+    <section>
+        <input
+            type="text"
+            name="system.details.notes2name"
+            value="{{system.details.notes2name}}"
+            placeholder="{{localize 'SW5E.AdditionalNotes'}}"
+        />
+        {{editor
+            notes2HTML
+            target="system.details.notes2.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+
+    <section>
+        <input
+            type="text"
+            name="system.details.notes3name"
+            value="{{system.details.notes3name}}"
+            placeholder="{{localize 'SW5E.AdditionalNotes'}}"
+        />
+        {{editor
+            notes3HTML
+            target="system.details.notes3.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+
+    <section>
+        <input
+            type="text"
+            name="system.details.notes4name"
+            value="{{system.details.notes4name}}"
+            placeholder="{{localize 'SW5E.AdditionalNotes'}}"
+        />
+        {{editor
+            notes4HTML
+            target="system.details.notes4.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+</div>

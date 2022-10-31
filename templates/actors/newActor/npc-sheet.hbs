@@ -1,0 +1,315 @@
+<form class="{{cssClass}} swalt-sheet" autocomplete="off">
+    {{!-- NPC Sheet Header --}}
+    <header class="panel">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+        {{> "sw5e.swalt-warnings"}}
+
+        <h1 class="character-name">
+            <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
+        </h1>
+        <div class="level-experience">
+            <div class="charlevel">
+                {{ localize "SW5E.AbbreviationCR" }}
+                <input name="system.details.cr" type="text" value="{{labels.cr}}" placeholder="1" />
+            </div>
+
+            <div class="experience">
+                <span class="max">{{system.details.xp.value}} XP</span>
+            </div>
+            <div class="proficiency">
+                <span> {{ localize "SW5E.Proficiency" }} {{labels.proficiency}} </span>
+            </div>
+        </div>
+        <div class="summary">
+            <span class="npc-size">{{lookup config.actorSizes system.traits.size}}</span>
+            <input
+                type="text"
+                name="system.details.alignment"
+                value="{{system.details.alignment}}"
+                placeholder="{{ localize 'SW5E.Alignment' }}"
+            />
+            <div class="creature-type roundTransition">
+                <span title="{{labels.type}}">{{labels.type}}</span>
+                <a class="config-button" data-action="type" title="{{localize 'SW5E.CreatureTypeConfig'}}"
+                    ><i class="fas fa-cog"></i
+                ></a>
+            </div>
+            <input
+                type="text"
+                name="system.details.source"
+                value="{{system.details.source}}"
+                placeholder="{{ localize 'SW5E.Source' }}"
+            />
+        </div>
+        <div class="attributes">
+            {{!-- ARMOR CLASS --}}
+            <section class="attrib armor">
+                <h1 class="attribute-name armor">
+                    {{ localize "SW5E.ArmorClass" }}
+                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
+                        ><i class="fas fa-cog"></i
+                    ></a>
+                </h1>
+                <div class="attribute-value attributable" data-property="attributes.ac">
+                    <span>{{system.attributes.ac.value}}</span>
+                </div>
+                <footer class="attribute-footer">
+                    <span>{{labels.armorType}}</span>
+                </footer>
+            </section>
+
+            {{!-- HIT POINTS --}}
+            <section class="attrib health">
+                <h1 class="attribute-name rollable">{{ localize "SW5E.Health" }}</h1>
+                <div class="attribute-value multiple">
+                    <input
+                        name="system.attributes.hp.value"
+                        type="number"
+                        step="any"
+                        value="{{system.attributes.hp.value}}"
+                        placeholder="10"
+                        class="value-number"
+                        title="{{localize 'SW5E.HitPointsCurrent'}}"
+                    />
+                    <span class="value-separator">/</span>
+                    <input
+                        name="system.attributes.hp.max"
+                        type="number"
+                        step="any"
+                        value="{{system.attributes.hp.max}}"
+                        placeholder="10"
+                        class="value-number"
+                        title="{{localize 'SW5E.HitPointsMax'}}"
+                    />
+                </div>
+                <footer class="attribute-footer hit- flexrow">
+                    <input name="system.attributes.hp.formula" type="text" class="hpformula"
+                           placeholder="{{ localize 'SW5E.HPFormula' }}"
+                           value="{{system.attributes.hp.formula}}"
+                           title="{{ localize 'SW5E.HPFormula' }}">
+                    <input name="system.attributes.hp.temp" type="number" step="any" class="temphp"
+                           placeholder="+{{ localize 'SW5E.Temp' }}"
+                           value="{{system.attributes.hp.temp}}" data-dtype="Number"
+                           title="{{localize 'SW5E.HitPointsTemp'}}">
+                </footer>
+            </section>
+            <section class="attrib movement">
+                <h1 class="attribute-name movement">
+                    {{ localize "SW5E.Movement" }}
+                    <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"
+                        ><i class="fas fa-cog"></i
+                    ></a>
+                </h1>
+                <div class="attribute-value">
+                    <span>{{movement.primary}}</span>
+                </div>
+                <footer class="attribute-footer">
+                    <span>{{movement.special}}</span>
+                </footer>
+            </section>
+        </div>
+    </header>
+
+    {{!-- NPC Sheet Navigation --}}
+    <nav class="sheet-navigation root-tabs" data-group="primary">
+        <button class="item active" data-tab="attributes">{{ localize "SW5E.Attributes" }}</button>
+        <button class="item" data-tab="features">{{ localize "SW5E.Features" }}</button>
+        <button class="item" data-tab="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
+        <button class="item" data-tab="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+        <button class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</button>
+        <button class="item" data-tab="ssfeatures">{{ localize "SW5E.StarshipfeaturePl" }}</button>
+        <button class="item" data-tab="biography">{{ localize "SW5E.Biography" }}</button>
+    </nav>
+
+    {{!-- NPC Sheet Body --}}
+    <section class="sheet-body">
+        <section class="tab core" data-group="primary" data-tab="attributes">
+            <section class="panel abilities">
+                {{!-- Ability Scores --}}
+                <section class="scores">
+                    <h1>{{localize "SW5E.AbilityScores" }}</h1>
+                    <ol class="score-list">
+                        {{#each system.abilities as |ability id|}}
+                        <li class="score" data-ability="{{id}}">
+                            <h2 class="ability-name rollable">{{ability.label}}</h2>
+                    {{numberInput ability.value name=(concat "system.abilities." id ".value")
+                        class="ability-score" placeholder="10"}}
+                            <div class="ability-modifiers">
+                                <span class="ability-mod" title="{{ localize 'SW5E.Modifier' }}"
+                                    >{{numberFormat ability.mod decimals=0 sign=true}}</span
+                                >
+                                <input
+                                    type="hidden"
+                                    name="system.abilities.{{id}}.proficient"
+                                    value="{{ability.baseProf}}"
+                                    data-dtype="Number"
+                                />
+                                <button class="proficiency-toggle ability-proficiency" title="Proficiency">
+                                    {{{ability.icon}}}
+                                </button>
+                                <span class="ability-save" title="{{ localize 'SW5E.SavingThrow' }}"
+                                    >{{numberFormat ability.save decimals=0 sign=true}}</span
+                                >
+                            </div>
+                            <a class="config-button" data-action="ability" title="{{localize 'SW5E.AbilityConfigure'}}"
+                                ><i class="fas fa-cog"></i
+                            ></a>
+                        </li>
+                        {{/each}}
+                    </ol>
+                </section>
+                {{!-- Skills --}}
+                <section class="skills">
+                    <h1>{{localize "SW5E.Skills"}}</h1>
+                    <ol>
+                        {{#each config.skills as |obj s|}} {{#with (lookup ../system.skills s) as |skill|}}
+                        <li class="skill {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
+                            <input
+                                type="hidden"
+                                name="system.skills.{{s}}.value"
+                                value="{{skill.baseValue}}"
+                                data-dtype="Number"
+                            />
+                            <button class="proficiency-toggle skill-proficiency" title="{{skill.hover}}">
+                                {{{skill.icon}}}
+                            </button>
+                            <div class="skill-name-controls">
+                                <span class="skill-name rollable">{{skill.label}}</span>
+                                <a class="config-button" data-action="skill" title="{{localize 'SW5E.SkillConfigure'}}"
+                                    ><i class="fas fa-cog"></i
+                                ></a>
+                            </div>
+                            <span class="skill-ability">{{skill.ability}}</span>
+                            <span class="skill-mod" title="{{ localize 'SW5E.SkillModifierHint' skill=label }}"
+                                >{{numberFormat skill.total decimals=0 sign=true}}</span
+                            >
+                            {{!--
+                            <input
+                                class="skill-bonus"
+                                name="system.skills.{{s}}.bonus"
+                                type="text"
+                                value="{{numberFormat skill.bonus decimals=0 sign=true}}"
+                                data-dtype="Number"
+                                placeholder="0"
+                                title="Misc. Modifier"
+                            />
+                            --}} {{!--
+                            <span class="skill-passive" title="{{ localize 'SW5E.SkillPassiveHint' skill=label }}"
+                                >({{skill.passive}})</span
+                            >
+                            --}}
+                        </li>
+                        {{/with}} {{/each}}
+                    </ol>
+                </section>
+            </section>
+            <section class="panel traits-resources">
+                {{!-- Legendary Actions --}}
+                <div class="counters">
+                    <div class="counter legendary">
+                        <strong>{{ localize "SW5E.LegAct" }}</strong>
+                        <div class="counter-value">
+                            <input
+                                name="system.resources.legact.value"
+                                type="number"
+                                step="any"
+                                value="{{system.resources.legact.value}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegActRemaining'}}"
+                            >
+                            <span class="sep">/</span>
+                            <input
+                                name="system.resources.legact.max"
+                                type="number" step="any"
+                                value="{{system.resources.legact.max}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegActMax'}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="counter legendary">
+                        <strong>{{ localize "SW5E.LegRes" }}</strong>
+                        <div class="counter-value">
+                            <input
+                                name="system.resources.legres.value"
+                                type="number" step="any"
+                                value="{{system.resources.legres.value}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegResRemaining'}}"
+                            >
+                            <span class="sep">/</span>
+                            <input
+                                name="system.resources.legres.max"
+                                type="number" step="any"
+                                value="{{system.resources.legres.max}}"
+                                placeholder="0"
+                                title="{{localize 'SW5E.LegResMax'}}"
+                            >
+                        </div>
+                    </div>
+                    <div class="counter lair">
+                        <strong>{{ localize "SW5E.LairAct" }}</strong>
+                        <div class="counter-value">
+                            <input
+                                name="system.resources.lair.value"
+                                type="checkbox"
+                                value="{{system.resources.lair.value}}"
+                                data-dtype="Boolean"
+                                {{checked
+                                system.resources.lair.value}}
+                            >
+                            <input
+                                name="system.resources.lair.initiative"
+                                type="number" step="any"
+                                value="{{system.resources.lair.initiative}}"
+                                placeholder="20"
+                                title="{{localize 'SW5E.LairActionInitiative' }}"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="core-traits">{{> "sw5e.swalt-traits"}}</div>
+            </section>
+        </section>
+
+        {{!-- Features Tab --}}
+        <div class="tab features flexcol" data-group="primary" data-tab="features">
+            {{> "sw5e.swalt-features" sections=features}}
+        </div>
+
+        {{!-- Powerbook Tabs --}}
+        <section class="tab force-powerbook" data-group="primary" data-tab="force-powerbook">
+            {{> "sw5e.swalt-force-powerbook"}}
+        </section>
+
+        <section class="tab tech-powerbook" data-group="primary" data-tab="tech-powerbook">
+            {{> "sw5e.swalt-tech-powerbook"}}
+        </section>
+
+        {{!-- Starships Tab --}}
+        <section class="tab features" data-group="primary" data-tab="ssfeatures">
+            {{> "sw5e.swalt-starships" sections=ssfeatures}}
+        </section>
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.swalt-active-effects"}}
+        </div>
+
+        {{!-- Biography Tab --}}
+        <div class="tab biography flexcol" data-group="primary" data-tab="biography">
+            <div class="panel">
+                <section>
+                    <h1>{{localize "SW5E.Biography"}}</h1>
+                        {{editor 
+                            biographyHTML 
+                            target="system.details.biography.value" 
+                            button=true editable=editable
+                            engine="prosemirror" 
+                            collaborate=false
+            			}}
+                </section>
+            </div>
+        </div>
+    </section>
+</form>

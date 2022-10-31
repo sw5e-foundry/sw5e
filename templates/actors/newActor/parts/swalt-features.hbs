@@ -1,0 +1,130 @@
+<div class="panel">
+
+
+    <ul class="filter-list" data-filter="features">
+        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
+        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+    </ul>
+
+
+    <ol class="group-list">
+        {{#each sections as |section sid|}}
+        <li>
+            <div class="group-list-title group-grid-features">
+                <div class="title">
+
+                    <h3 class="item-name">{{localize section.label}}</h3>
+                    {{#if ../owner}}
+                    {{#if (not (or ../isStarshipEquipment section.isStarship))}}
+                    <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
+                        {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+						<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                    </a>
+                    {{/if}}
+                    &nbsp;
+                    <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
+                        {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>					
+                        <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
+					</a>
+                    {{/if}}
+                </div>
+                {{#if section.hasActions}}
+                <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
+                <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+                {{/if}}
+            </div>
+            <ol class="item-list content" style="display: block">
+                {{#each section.items as |item iid|}}
+                <li class="item group-grid-features {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
+                    <div class="item-name rollable">
+                        <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
+                        <h4>
+                            {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
+                            {{item.name}}
+                            {{#if item.system.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
+                        </h4>
+                        {{#if item.hasReload}}
+                            <div class="form-group uses-per">
+                                <div class="form-fields">
+                                    {{#if item.reloadUsesAmmo}}
+                                        <select class="weapon-select-ammo" name="item.system.ammo.target">
+                                            {{#select item.system.ammo.target}}
+                                                <option value=""></option>
+                                                {{#each item.reloadAmmo as |name key|}}
+                                                    <option value="{{key}}">{{name}}</option>
+                                                {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    {{/if}}
+                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
+                                    <span class="sep">/</span>
+                                    <span>{{ system.ammo.max }}</span>
+                                    <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+
+                    {{#if section.hasActions}}
+                    <div class="item-detail item-uses">
+                        {{#if item.isOnCooldown}}
+                        <a class="item-recharge rollable">{{item.labels.recharge}}</a>
+                        {{else if item.system.recharge.value}}
+                        {{localize "SW5E.Charged"}}
+
+                        {{else if item.hasUses}}
+                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
+                        {{/if}}
+                    </div>
+
+                    <div class="item-detail item-action">
+                        {{#if item.system.activation.type }}
+                        {{item.labels.activation}}
+                        {{/if}}
+                    </div>
+
+                    {{else if (eq item.type "class")}}
+                    <div class="item-detail player-class"><strong>HD:</strong>
+                        {{item.system.hitDice}}
+                    </div>
+                    <div class="item-detail player-class-levels">
+                        <select class="level-selector">
+                            {{#select 0}}
+                            {{#each item.availableLevels}}
+                                <option value="{{this.delta}}" {{disabled this.disabled}}>
+                                    {{localize "SW5E.LevelNumber" level=this.level}}
+                                    {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
+                                </option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+
+                    {{else if section.isStarship}}
+                    <div class="item-detail player-starship-tier">
+                        <strong>{{localize "SW5E.StarshipTier"}} {{item.system.tier}}</strong> &nbsp;&nbsp;<a class="increment-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray;" class="fas fa-arrow-up"></i></a> &nbsp;&nbsp;<a class="decrement-starship-tier"><i style="color:#c40f0f; text-shadow: 0 1px 2px gray" class="fas fa-arrow-down"></i></a>
+                    </div>
+                    {{/if}}
+
+                    {{#if ../../owner}}
+                    <div class="item-controls item-detail">
+                        {{#if ../../isStarshipEquipment}}
+                        <a class="item-control item-toggle {{item.toggleClass}}" title='{{item.toggleTitle}}'>
+                            <i class="fas fa-shield-alt"></i>
+                        </a>
+                        {{/if}}
+                        <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                        {{#if (not section.isStarship)}}
+                        <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ol>
+        </li>
+        {{/each}}
+    </ol>
+</div>

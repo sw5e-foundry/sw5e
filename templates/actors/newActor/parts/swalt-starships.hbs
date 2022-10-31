@@ -1,0 +1,102 @@
+<section class="panel">
+    <section class="resource-items">
+        <div class="resource">
+            <h1>{{ localize "SW5E.Rank" }}: {{system.details.ranks}}</h1>
+
+            <div class="attribute-value">
+                <span class="value-number">{{system.details.prestige.value}}</span>
+                <span class="value-separator">/</span>
+                <span class="value-number">{{system.details.prestige.max}}</span>
+            </div>
+            <footer class="xpbar">
+                <span class="bar" style="width: {{system.details.prestige.pct}}%"></span>
+            </footer>
+        </div>
+    </section>
+    
+<!--<section class="panel">-->
+<!-- make the sections the deployments with their deployment features under each heading and also a section for ventures -->
+    <ul class="filter-list" data-filter="ssfeatures">
+        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
+        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+    </ul>
+
+    <ol class="group-list">
+        {{#each sections as |section sid|}}
+            <li>
+                <div class="group-list-title group-grid-features">
+                    <div class="title">
+                        <h3 class="item-name">{{localize section.label}}</h3>
+                        {{#if ../owner}}
+                        <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
+                            {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+    						<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                        </a>&nbsp;
+                        <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
+                            {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>					
+                            <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
+    					</a>
+                        {{/if}}
+                    </div>
+                    {{#if section.hasActions}}
+                        <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
+                        <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+                    {{/if}}
+                </div>
+                <ol class="item-list content" style="display: block">
+                    {{#each section.items as |item iid|}}
+                        <li class="item group-grid-features {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
+                            <div class="item-name rollable">
+                                <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+                                <h4>
+                                    {{item.name}}
+                                    {{#if item.isOriginalClass}} <i class="original-class fas fa-sun" title="{{localize 'SW5E.ClassOriginal'}}"></i>{{/if}}
+                                </h4>
+                            </div>
+
+                            {{#if section.hasActions}}
+                                <div class="item-detail item-uses">
+                                    {{#if item.isOnCooldown}}
+                                        <a class="item-recharge rollable">{{item.labels.recharge}}</a>
+                                    {{else if item.system.recharge.value}}
+                                        {{localize "SW5E.Charged"}}
+                                    {{else if item.hasUses}}
+                                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
+                                    {{/if}}
+                                </div>
+
+                                <div class="item-detail item-action">
+                                    {{#if item.system.activation.type }}
+                                    {{item.labels.activation}}
+                                    {{/if}}
+                                </div>
+                            {{else if section.isDeployment}}
+                                <div class="item-detail player-deployment-ranks">
+                                    <select class="level-selector">
+                                        {{#select 0}}
+                                        {{#each item.availableRanks}}
+                                            <option value="{{this.delta}}" {{disabled this.disabled}}>
+                                                {{localize "SW5E.LevelNumber" level=this.rank}}
+                                                {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
+                                            </option>
+                                        {{/each}}
+                                        {{/select}}
+                                    </select>
+                                </div>
+                            {{/if}}
+
+                            {{#if ../../owner}}
+                                <div class="item-controls item-detail">
+                                    <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                                </div>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ol>
+            </li>
+        {{/each}}
+    </ol>
+</section>

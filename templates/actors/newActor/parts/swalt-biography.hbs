@@ -1,0 +1,70 @@
+<div class="panel additional-info">
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.PersonalityTraits"}}</h1>
+        {{editor
+            traitHTML
+            target="system.details.trait"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Ideals"}}</h1>
+        {{editor
+            idealHTML
+            target="system.details.ideal"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Bonds"}}</h1>
+        {{editor
+            bondHTML
+            target="system.details.bond"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Flaws"}}</h1>
+        {{editor
+            flawHTML
+            target="system.details.flaw"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+</div>
+<div class="panel background">
+    <section>
+        <h1 class="section-titles biopage">{{localize "SW5E.Description"}}</h1>
+        {{editor
+            descriptionHTML
+            target="system.details.description.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+        }}
+    </section>
+    <section>
+        <h1 class="section-titles">{{localize "SW5E.Background"}}</h1>
+        {{editor
+            biographyHTML
+            target="system.details.biography.value"
+            button=true
+            owner=owner
+            editable=editable
+            rollData=rollData
+        }}
+    </section>
+</div>

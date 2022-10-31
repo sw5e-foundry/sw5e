@@ -1,0 +1,129 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary flexrow">
+                <li>{{lookup config.consumableTypes system.consumableType }}</li>
+                <li>
+                    <select name="data.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
+                    </select>
+                </li>
+                <li>
+                    <input
+                        type="text"
+                        name="system.source"
+                        value="{{system.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        {{> "sw5e.item-description"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{ localize "SW5E.ItemConsumableDetails" }}</h3>
+
+            {{!-- Consumable Type --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemConsumableType" }}</label>
+                <select name="system.consumableType">
+                    {{selectOptions config.consumableTypes selected=system.consumableType}}
+                </select>
+            </div>
+
+            {{!-- Ammunition Type --}}
+            {{#if (eq data.consumableType "ammo")}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemAmmoType" }}</label>
+                    <select name="system.ammoType">
+                        {{selectOptions config.ammoTypes selected=system.ammoType}}
+                    </select>
+                </div>
+
+                {{!-- Weapon Properties --}}
+                <div class="form-group stacked weapon-properties">
+                    <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
+                    {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                        <label class="checkbox" title="{{localize property.desc}}">
+                            <input type="checkbox" name="data.properties.{{key}}" {{checked (lookup ../data.properties key)}}/>{{ localize property.name }}
+                        </label>
+                    {{/if}} {{/each}}
+
+                    {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
+                        <label class="number" title="{{localize property.desc}}">
+                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
+                        </label>
+                    {{/if}} {{/each}}
+                </div>
+            {{/if}}
+
+            <div class="form-group">
+                <label>{{localize "SW5E.Attunement"}}</label>
+                <select name="system.attunement" data-dtype="Number">
+                    {{selectOptions config.attunements selected=system.attunement}}
+                </select>
+            </div>
+
+            <div class="form-group stacked">
+                <label>{{ localize "SW5E.ItemConsumableStatus" }}</label>
+                <label class="checkbox">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Equipped"
+                    }}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}} /> {{ localize
+                    "SW5E.Identified" }}
+                </label>
+            </div>
+
+            <h3 class="form-header">{{ localize "SW5E.ItemConsumableUsage" }}</h3>
+
+            {{!-- Item Activation Template --}}
+            {{> "sw5e.item-activation"}}
+            {{#if system.activation.type}}
+            <div class="form-group">
+                <label class="checkbox">
+                    <input type="checkbox" name="system.uses.autoDestroy" {{checked system.uses.autoDestroy}} /> {{ localize
+                    "SW5E.ItemDestroyEmpty" }}
+                </label>
+            </div>
+            {{/if}}
+
+            <h3 class="form-header">{{ localize "SW5E.ItemConsumableActivation" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "sw5e.item-action"}}
+        </div>
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

@@ -15,15 +15,11 @@ export default class Item5e extends Item {
      */
     _classLink;
 
-    constructor(data, context) {
-        super(data, context);
-
-        /**
-         * An object that tracks which tracks the changes to the data model which were applied by modifications
-         * @type {object}
-         */
-        this.overrides = this.overrides || {};
-    }
+    /**
+     * An object that tracks which tracks the changes to the data model which were applied by modifications
+     * @type {object}
+     */
+    overrides = {};
 
     /* -------------------------------------------- */
     /*  Item Properties                             */
@@ -283,7 +279,7 @@ export default class Item5e extends Item {
      * @type {object}
      */
     get scaleValues() {
-        if (!this.advancement.byType.ScaleValue?.length) return {};
+        if (!this.advancement?.byType?.ScaleValue?.length) return {};
         if (!this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes.has(this.type)) return {};
         const level = this.curAdvancementLevel;
         return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
@@ -382,6 +378,10 @@ export default class Item5e extends Item {
     /*  Data Preparation                            */
     /* -------------------------------------------- */
 
+    _initialize(options={}) {
+        super._initialize(options);
+    }
+
     /** @inheritDoc */
     prepareDerivedData() {
         super.prepareDerivedData();
@@ -392,9 +392,6 @@ export default class Item5e extends Item {
 
         // Advancement
         this._prepareAdvancement();
-
-        // Modifications
-        this.applyModifications();
 
         // Specialized preparation per Item type
         switch (this.type) {
@@ -446,83 +443,95 @@ export default class Item5e extends Item {
 
     /* -------------------------------------------- */
 
+    /** @inheritdoc */
+    prepareEmbeddedDocuments() {
+        super.prepareEmbeddedDocuments();
+        this.applyModifications();
+    }
+
+    /* -------------------------------------------- */
+
     /**
      * Apply modifications.
      */
     applyModifications() {
-        this.overrides = {};
-
         // Get the Item's data
         const item = this;
         const itemData = item.system;
         const itemMods = itemData.modify;
         const changes = foundry.utils.flattenObject(itemMods?.changes ?? {});
-        const overrides = {};
+        let overrides = {};
 
-        if (!itemMods) return;
+        if (itemMods) {
+            // Calculate the type of item modifications accepted
+            if (item.type === "equipment") {
+                if (itemData.armor?.type in CONFIG.SW5E.armorTypes) itemMods.type = "armor";
+                else if (itemData.armor?.type in CONFIG.SW5E.miscEquipmentTypes) itemMods.type = itemData.armor?.type;
+                else itemMods.type = null;
+            } else if (item.type === "weapon") {
+                if (itemData.weaponType?.endsWith("LW")) itemMods.type = "lightweapon";
+                else if (itemData.weaponType?.endsWith("VW")) itemMods.type = "vibroweapon";
+                else if (itemData.weaponType?.endsWith("B")) itemMods.type = "blaster";
+                else itemMods.type = "vibroweapon";
+            } else itemMods.type = null;
 
-        // Calculate the type of item modifications accepted
-        if (item.type === "equipment") {
-            if (itemData.armor?.type in CONFIG.SW5E.armorTypes) itemMods.type = "armor";
-            else if (itemData.armor?.type in CONFIG.SW5E.miscEquipmentTypes) itemMods.type = itemData.armor?.type;
-            else itemMods.type = null;
-        } else if (item.type === "weapon") {
-            if (itemData.weaponType?.endsWith("LW")) itemMods.type = "lightweapon";
-            else if (itemData.weaponType?.endsWith("VW")) itemMods.type = "vibroweapon";
-            else if (itemData.weaponType?.endsWith("B")) itemMods.type = "blaster";
-            else itemMods.type = "vibroweapon";
-        } else itemMods.type = null;
+            if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isEmpty(changes)) overrides = {};
+            else if (!foundry.utils.isEmpty(this.overrides)) overrides = foundry.utils.flattenObject(this.overrides);
+            else {
+                for (const [prop, val] of Object.entries(changes)) {
+                    // Handle type specific changes
+                    if (
+                        !itemMods.type in CONFIG.SW5E.modificationTypesEquipment &&
+                        change in ["armor.value", "armor.dex", "strength", "stealth"]
+                    )
+                        continue;
+                    overrides[`system.${prop}`] = val;
+                }
 
-        if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isEmpty(changes)) return;
+                // Handle non-overwrite changes
+                if ((itemData.attackBonus || "0") !== "0" && overrides["system.attackBonus"]) {
+                    overrides["system.attackBonus"] = `${itemData.attackBonus} + ${overrides["system.attackBonus"]}`;
+                }
+                if (itemData.damage?.parts && overrides["system.damage.parts"]) {
+                    overrides["system.damage.parts"] = itemData.damage.parts.concat(overrides["system.damage.parts"]);
+                }
+                if (itemData.armor?.value && overrides["system.armor.value"])
+                    overrides["system.armor.value"] += itemData.armor.value;
 
-        for (const change in changes) {
-            // Handle type specific changes
-            if (
-                !itemMods.type in CONFIG.SW5E.modificationTypesEquipment &&
-                change in ["armor.value", "armor.dex", "strength", "stealth"]
-            )
-                continue;
-            overrides[`system.${change}`] = changes[change];
-        }
-
-        // Handle non-overwrite changes
-        if ((itemData.attackBonus || "0") !== "0" && overrides["system.attackBonus"]) {
-            overrides["system.attackBonus"] = `${itemData.attackBonus} + ${overrides["system.attackBonus"]}`;
-        }
-        if (itemData.damage?.parts && overrides["system.damage.parts"]) {
-            overrides["system.damage.parts"] = itemData.damage.parts.concat(overrides["system.damage.parts"]);
-        }
-        if (itemData.armor?.value && overrides["system.armor.value"])
-            overrides["system.armor.value"] += itemData.armor.value;
-
-        let props = null;
-        if (item.type === "weapon") props = CONFIG.SW5E.weaponProperties;
-        if (item.type === "equipment") {
-            if (itemData.armor.type in CONFIG.SW5E.armorTypes) props = CONFIG.SW5E.armorProperties;
-            if (itemData.armor.type in CONFIG.SW5E.castingEquipmentTypes) props = CONFIG.SW5E.castingProperties;
-        }
-        if (props) {
-            for (const [prop, propData] of Object.entries(props)) {
-                if (propData.type === "Number" && overrides[`system.properties.${prop}`]) {
-                    if (itemData.properties[prop])
-                        overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
-                    if (propData.min !== undefined)
-                        overrides[`system.properties.${prop}`] = Math.max(
-                            overrides[`system.properties.${prop}`],
-                            propData.min
-                        );
-                    if (propData.max !== undefined)
-                        overrides[`system.properties.${prop}`] = Math.min(
-                            overrides[`system.properties.${prop}`],
-                            propData.max
-                        );
+                // Handle item properties
+                let props = null;
+                if (item.type === "weapon") props = CONFIG.SW5E.weaponProperties;
+                else if (item.type === "equipment") {
+                    if (itemData.armor.type in CONFIG.SW5E.armorTypes) props = CONFIG.SW5E.armorProperties;
+                    if (itemData.armor.type in CONFIG.SW5E.castingEquipmentTypes) props = CONFIG.SW5E.castingProperties;
+                }
+                if (props) {
+                    for (const [prop, propData] of Object.entries(props)) {
+                        if (propData.type === "Number" && overrides[`system.properties.${prop}`]) {
+                            if (itemData.properties[prop])
+                                overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
+                            if (propData.min !== undefined)
+                                overrides[`system.properties.${prop}`] = Math.max(
+                                    overrides[`system.properties.${prop}`],
+                                    propData.min
+                                );
+                            if (propData.max !== undefined)
+                                overrides[`system.properties.${prop}`] = Math.min(
+                                    overrides[`system.properties.${prop}`],
+                                    propData.max
+                                );
+                        }
+                    }
                 }
             }
         }
+        console.debug(changes, overrides, this.overrides);
+        console.debug(changes[`properties.bur`], overrides[`system.properties.bur`], this.overrides?.system?.properties?.bur);
 
-        for (const prop of Object.keys(overrides)) {
-            foundry.utils.setProperty(this.data, prop, overrides[prop]);
-        }
+        // Apply all changes to the Actor data
+        foundry.utils.mergeObject(this, overrides);
+
+        // Expand the set of final overrides
         this.overrides = foundry.utils.expandObject(overrides);
     }
 
@@ -616,7 +625,7 @@ export default class Item5e extends Item {
      * @protected
      */
     _prepareWeapon() {
-        this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
+        if (this.system.ammo) this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
     }
 
     /* -------------------------------------------- */
@@ -2590,7 +2599,7 @@ export default class Item5e extends Item {
         // If a temporary modification item changes it's data, update the data in the modified item
         if (this.type === "modification" && this.actor && this.system?.modifying?.id) {
             const modType = this.system?.modificationType === "augment" ? "augment" : "mod";
-            this.actor.items.get(this.system.modifying.id)?.updModification(this.id, null, this.data.toObject());
+            this.actor.items.get(this.system.modifying.id)?.updModification(this.id, null, this.toObject());
         }
     }
 
@@ -2860,7 +2869,7 @@ export default class Item5e extends Item {
     async addModification(uuid) {
         const item = this;
         const itemSysData = item.system;
-        const itemMods = itemData.modify;
+        const itemMods = itemSysData.modify;
         if (!itemMods) return;
 
         const mod = await fromUuid(uuid);
@@ -2933,14 +2942,13 @@ export default class Item5e extends Item {
 
         const updates = {};
 
-        //TODO: Likely broke, took a guess
-        const sysdata = mod.toObject();
-        delete sysdata._id;
-        sysdata.modifying.id = item.id;
-        const obj = {system: sysdata, name: mod.name, type: modType};
+        const objData = mod.toObject();
+        delete objData._id;
+        objData.system.modifying.id = item.id;
+        const obj = {objdata: objData, name: mod.name, type: modType};
 
         if (this.actor) {
-            const items = await Item5e.createDocuments([sysdata], {parent: this.actor});
+            const items = await Item5e.createDocuments([objData], {parent: this.actor});
             if (items?.length) obj.id = items[0].id;
         }
 
@@ -2952,19 +2960,19 @@ export default class Item5e extends Item {
         await this.updModificationChanges();
     }
 
-    async updModification(id = null, index = null, sysdata = null) {
+    async updModification(id = null, index = null, objdata = null) {
         if (id === null && index === null) return;
 
         const mods = this.system?.modify?.items;
         if (mods) {
             if (id === null) id = mods[index].id;
-            if (sysdata === null) sysdata = this.actor?.items?.get(id)?.toObject();
-            if (sysdata === null) return;
+            if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
+            if (objdata === null) return;
 
             if (index === null) index = mods.findIndex((m) => m.id === id);
             if (index === -1) return;
-            mods[index].system = sysdata;
-            mods[index].name = sysdata.name;
+            mods[index].objdata = objdata;
+            mods[index].name = objdata.name;
             await this.update({[`system.modify.items`]: mods});
         }
 
@@ -2985,7 +2993,7 @@ export default class Item5e extends Item {
         if (deleteTempItem) {
             if (id === null) id = mods[index].id;
             const item = await this.actor?.items?.get(id);
-            await item.delete();
+            await item?.delete();
         }
 
         await this.updModificationChanges();
@@ -3025,7 +3033,7 @@ export default class Item5e extends Item {
         const mods = itemMods.items;
         for (const mod of mods) {
             if (mod.disabled) continue;
-            this._calcSingleModChanges(mod.system, changes, props);
+            this._calcSingleModChanges(mod.objdata.system, changes, props);
         }
 
         if (itemMods.changes !== changes) {
@@ -3041,52 +3049,52 @@ export default class Item5e extends Item {
             }
         }
     }
-    _calcSingleModChanges(mod, changes, props) {
+    _calcSingleModChanges(modSysData, changes, props) {
         if (props) {
             for (const [prop, propData] of Object.entries(props)) {
-                if (propData.type === "Number" && mod.properties[prop]) {
+                if (propData.type === "Number" && modSysData.properties[prop]) {
                     if (!changes[`properties.${prop}`]) changes[`properties.${prop}`] = 0;
                     else changes[`properties.${prop}`] = Number(changes[`properties.${prop}`]);
-                    changes[`properties.${prop}`] += mod.properties[prop];
+                    changes[`properties.${prop}`] += modSysData.properties[prop];
                 } else if (
                     propData.type === "Boolean" &&
-                    mod.properties.indeterminate &&
-                    mod.properties.indeterminate[prop] === false
+                    modSysData.properties.indeterminate &&
+                    modSysData.properties.indeterminate[prop] === false
                 ) {
-                    changes[`properties.${prop}`] = mod.properties[prop];
+                    changes[`properties.${prop}`] = modSysData.properties[prop];
                 }
             }
-        } else if (mod.properties?.indeterminate) {
-            for (const prop of Object.keys(mod?.properties)) {
+        } else if (modSysData.properties?.indeterminate) {
+            for (const prop of Object.keys(modSysData?.properties)) {
                 if (prop === "indeterminate") continue;
-                if (mod.properties.indeterminate[prop] === false) {
-                    changes[`properties.${prop}`] = mod.properties[prop];
+                if (modSysData.properties.indeterminate[prop] === false) {
+                    changes[`properties.${prop}`] = modSysData.properties[prop];
                 }
             }
         }
 
         // Attack bonus
-        if (mod.attackBonus && mod.attackBonus !== "0") {
+        if (modSysData.attackBonus && modSysData.attackBonus !== "0") {
             if (changes["attackBonus"]) changes["attackBonus"] += " + ";
             else changes["attackBonus"] = "";
-            changes["attackBonus"] += mod.attackBonus.replace(/^\s*[+]\s*/, "");
+            changes["attackBonus"] += modSysData.attackBonus.replace(/^\s*[+]\s*/, "");
         }
         // Damage rolls
-        if (mod.damage?.parts?.length) {
+        if (modSysData.damage?.parts?.length) {
             changes["damage.parts"] ||= [];
-            changes["damage.parts"] = changes["damage.parts"].concat(mod.damage.parts);
+            changes["damage.parts"] = changes["damage.parts"].concat(modSysData.damage.parts);
         }
 
         // Armor Class
-        if (mod.armor?.value) {
+        if (modSysData.armor?.value) {
             changes["armor.value"] ||= 0;
-            changes["armor.value"] += mod.armor.value;
+            changes["armor.value"] += modSysData.armor.value;
         }
         // Dexterity Modifier
-        if (mod.armor?.dex) changes["armor.dex"] = mod.armor.dex;
+        if (modSysData.armor?.dex) changes["armor.dex"] = modSysData.armor.dex;
         // Strength Requirement
-        if (mod.strength) changes["strength"] = mod.strength;
+        if (modSysData.strength) changes["strength"] = modSysData.strength;
         // Stealth Disadvantage
-        if (mod.indeterminate?.stealth === false) changes[`stealth`] = mod.stealth;
+        if (modSysData.indeterminate?.stealth === false) changes[`stealth`] = modSysData.stealth;
     }
 }

@@ -152,10 +152,10 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
             passive: {label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: {type: "feat"}}
         };
         for (let ssf of ssfeats) {
-            if (ssf.data.activation.type) ssfeatures.active.items.push(ssf);
+            if (ssf.system.activation.type) ssfeatures.active.items.push(ssf);
             else ssfeatures.passive.items.push(ssf);
         }
-        deployments.sort((a, b) => b.data.rank - a.data.rank);
+        deployments.sort((a, b) => b.system.rank - a.system.rank);
         ssfeatures.deployments.items = deployments;
         ssfeatures.deploymentfeatures.items = deploymentfeatures;
         ssfeatures.ventures.items = ventures;

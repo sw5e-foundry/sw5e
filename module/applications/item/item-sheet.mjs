@@ -66,13 +66,16 @@ export default class ItemSheet5e extends ItemSheet {
 
     /** @override */
     async getData(options) {
-        const context = await super.getData(options);
+        let context = await super.getData(options);
         const item = context.item;
         const source = item.toObject();
         const isMountable = this._isItemMountable(item);
 
         // Possibly Don't need this?
         const actor = item.actor;
+
+        let wpnType, armorType, ammoType;
+        let isStarshipAmmo, isStarshipArmor, isStarshipShield, isStarshipReactor, isStarshipHyperdrive, isStarshipWeapon, isStarshipEquipment, isStarshipPowerCoupling;
 
         foundry.utils.mergeObject(context, {
             source: source.system,
@@ -89,7 +92,28 @@ export default class ItemSheet5e extends ItemSheet {
             isPhysical: item.system.hasOwnProperty("quantity"),
 
             // Enrich HTML description
-            descriptionHTML: await TextEditor.enrichHTML(item.system.description.value, {
+            descriptionHTML: await TextEditor.enrichHTML(item.system.description?.value, {
+                secrets: item.isOwner,
+                async: true,
+                relativeTo: this.item
+            }),
+
+            // Enrich HTML invocations
+            invocationHTML: await TextEditor.enrichHTML(item.system.invocations?.value, {
+                secrets: item.isOwner,
+                async: true,
+                relativeTo: this.item
+            }),
+
+            // Enrich HTML flavor
+            atFlavorTextHTML: await TextEditor.enrichHTML(item.system.atFlavorText?.value, {
+                secrets: item.isOwner,
+                async: true,
+                relativeTo: this.item
+            }),
+
+            // Enrich HTML Traits
+            traitsHTML: await TextEditor.enrichHTML(item.system.traits?.value, {
                 secrets: item.isOwner,
                 async: true,
                 relativeTo: this.item
@@ -98,21 +122,21 @@ export default class ItemSheet5e extends ItemSheet {
             // Action Details
             hasAttackRoll: item.hasAttack,
             isHealing: item.system.actionType === "heal",
-            isFlatDC: item.system.save.scaling === "flat",
+            isFlatDC: item.system.save?.scaling === "flat",
             isLine: ["line", "wall"].includes(item.system.target?.type),
             critical: item.system.critical,
 
             // Vehicles
-            wpnType: item.system?.weaponType ?? "",
-            armorType: item.system?.armor?.type ?? "",
-            ammoType: item.system?.consumableType === "ammo" ? item.system?.ammoType ?? "" : "",
-            isStarshipWeapon: wpnType in CONFIG.SW5E.weaponStarshipTypes,
-            isStarshipAmmo: ammoType in CONFIG.SW5E.ammoStarshipTypes,
-            isStarshipArmor: armorType === "starship",
-            isStarshipShield: armorType === "ssshield",
-            isStarshipHyperdrive: armorType === "hyper",
-            isStarshipPowerCoupling: armorType === "powerc",
-            isStarshipReactor: armorType === "reactor",
+            wpnType: wpnType = item.system?.weaponType ?? "",
+            armorType: armorType = item.system?.armor?.type ?? "",
+            ammoType: ammoType = item.system?.consumableType === "ammo" ? item.system?.ammoType ?? "" : "",
+            isStarshipWeapon: isStarshipWeapon = (wpnType in CONFIG.SW5E.weaponStarshipTypes),
+            isStarshipAmmo: isStarshipAmmo = (ammoType in CONFIG.SW5E.ammoStarshipTypes),
+            isStarshipArmor: isStarshipArmor = (armorType === "starship"),
+            isStarshipShield: isStarshipShield = (armorType === "ssshield"),
+            isStarshipHyperdrive: isStarshipHyperdrive = (armorType === "hyper"),
+            isStarshipPowerCoupling: isStarshipPowerCoupling = (armorType === "powerc"),
+            isStarshipReactor: isStarshipReactor = (armorType === "reactor"),
             isStarshipEquipment:
                 isStarshipArmor ||
                 isStarshipShield ||
@@ -134,6 +158,15 @@ export default class ItemSheet5e extends ItemSheet {
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)
         });
 
+        // Set up config with proper power components
+        context.config = foundry.utils.mergeObject(
+            CONFIG.SW5E,
+            {
+                powerComponents: {...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags}
+            },
+            {inplace: false}
+        );
+
         //TODO: See if there is a way to get it into merge object for consistency
         // Weapon Properties
         if (item.consumableType === "ammo") {
@@ -150,24 +183,24 @@ export default class ItemSheet5e extends ItemSheet {
 
         // Armor Class
         if (item.type === "equipment") {
-            if (itemData.data.armor.type in CONFIG.SW5E.armorTypes) data.equipProperties = CONFIG.SW5E.armorProperties;
-            if (itemData.data.armor.type in CONFIG.SW5E.castingEquipmentTypes)
-                data.equipProperties = CONFIG.SW5E.castingProperties;
+            if (item.system.armor.type in CONFIG.SW5E.armorTypes) context.equipProperties = CONFIG.SW5E.armorProperties;
+            if (item.system.armor.type in CONFIG.SW5E.castingEquipmentTypes)
+                context.equipProperties = CONFIG.SW5E.castingProperties;
         }
 
         // Modification Properties
         if (this.item.type === "modification") {
-            data.isEquipMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesEquipment;
-            data.isWpnMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesWeapon;
-            data.isCastMod = itemData.data.modificationType in CONFIG.SW5E.modificationTypesCasting;
-            data.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
+            context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;
+            context.isWpnMod = item.system.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+            context.isCastMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCasting;
+            context.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
         }
 
         // Modifiable items
-        if (itemData.data.modify) {
-            if (itemData.data.modify.type)
-                data.config.modSlots = CONFIG.SW5E.modificationSlots[itemData.data.modify.type];
-            data.mods = itemData.data.modify.items;
+        if (item.system.modify) {
+            if (item.system.modify.type)
+                context.config.modSlots = CONFIG.SW5E.modificationSlots[item.system.modify.type];
+            context.mods = item.system.modify.items;
         }
 
         // Potential consumption targets
@@ -182,15 +215,6 @@ export default class ItemSheet5e extends ItemSheet {
                 return context.system;
             }
         });
-
-        // Set up config with proper power components
-        context.config = foundry.utils.mergeObject(
-            CONFIG.SW5E,
-            {
-                powerComponents: {...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags}
-            },
-            {inplace: false}
-        );
 
         return context;
     }
@@ -264,7 +288,7 @@ export default class ItemSheet5e extends ItemSheet {
             let baseItem = await ProficiencySelector.getBaseItem(id);
             /** */
             // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
-            if (!baseItem?.data) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}))?.system;
+            if (!baseItem) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}));
 
             if (!baseItem) continue;
 
@@ -403,11 +427,11 @@ export default class ItemSheet5e extends ItemSheet {
             case "equipment":
                 props.push(CONFIG.SW5E.equipmentTypes[this.item.system.armor.type]);
                 if (this.item.isArmor || this._isItemMountable(this.item)) props.push(labels.armor);
-                if (item.data.properties)
+                if (this.item.system.properties)
                     props.push(
                         ...Object.entries(this.item.system.properties)
                             .filter((e) => ![false, undefined, null, 0].includes(e[1]))
-                            .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]].full, {value: e[1]}))
+                            .map((e) => game.i18n.format(CONFIG.SW5E.armorProperties[e[0]]?.full, {value: e[1]}))
                     );
                 break;
             case "feat":
@@ -476,25 +500,25 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     _getWeaponReloadProperties(obj = {}) {
-        const itemData = this.item.system;
+        const itemSysdata = this.item.system;
         const actor = this.item.actor;
 
-        obj.hasReload = !!itemData.ammo.max;
-        obj.reloadUsesAmmo = itemData.ammo?.types?.length;
-        obj.reloadFull = itemData.ammo?.value === itemData.ammo?.max || (obj.reloadUsesAmmo && !itemData.ammo?.target);
+        obj.hasReload = !!(itemSysdata.ammo?.max);
+        obj.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
+        obj.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || (obj.reloadUsesAmmo && !itemSysdata.ammo?.target);
         if (obj.hasReload) {
             if (actor && obj.reloadUsesAmmo) {
                 obj.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
-                    if (i.system.consumableType === "ammo" && itemData.ammo?.types.includes(i.system.ammoType)) {
+                    if (i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes(i.system.ammoType)) {
                         ammo[i.id] = `${i.name} (${i.system.quantity})`;
                     }
                     return ammo;
                 }, {});
             } else obj.reloadAmmo = {};
-            if (itemData.properties?.rel) {
+            if (itemSysdata.properties?.rel) {
                 obj.reloadActLabel = "SW5E.WeaponReload";
                 obj.reloadLabel = "SW5E.WeaponReload";
-            } else if (itemData.properties?.ovr) {
+            } else if (itemSysdata.properties?.ovr) {
                 obj.reloadActLabel = "SW5E.WeaponCoolDown";
                 obj.reloadLabel = "SW5E.WeaponOverheat";
             }
@@ -549,7 +573,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     /** @inheritDoc */
     _getSubmitData(updateData = {}) {
-        const formData = foundry.utils.expandObject(super._getSubmitData(updateData));
+        let formData = foundry.utils.expandObject(super._getSubmitData(updateData));
 
         // Handle Damage array
         const damage = formData.system?.damage;
@@ -582,15 +606,16 @@ export default class ItemSheet5e extends ItemSheet {
         }
 
         // Flatten the submission data
-        data = foundry.utils.flattenObject(formData);
+        formData = foundry.utils.flattenObject(formData);
 
         // Prevent submitting overridden values
         const overrides = foundry.utils.flattenObject(this.item.overrides);
         for (let k of Object.keys(overrides)) {
-            delete data[k];
+            delete formData[k];
         }
+        delete formData.overridesCalculated;
 
-        return data;
+        return formData;
     }
 
     /* -------------------------------------------- */
@@ -793,9 +818,10 @@ export default class ItemSheet5e extends ItemSheet {
         }
 
         if (item && index !== null) {
-            const data = foundry.utils.duplicate(item.system.modify.items[Number(index)].system);
-            data.fakeItem = this.item.uuid;
-            const mod = new Item5e(data);
+            const fakeItem = foundry.utils.duplicate(item.system.modify.items[Number(index)]);
+            fakeItem.system.fakeItem = this.item.uuid;
+            fakeItem.type = "modification";
+            const mod = new Item5e(fakeItem);
             return mod.sheet.render(true);
         }
     }
@@ -850,29 +876,29 @@ export default class ItemSheet5e extends ItemSheet {
         event.preventDefault();
 
         const wpn = this.item;
-        const wpnData = wpn?.data?.data;
-        const oldLoad = wpnData?.ammo?.value;
-        const oldAmmoID = wpnData?.ammo?.target;
+        const wpnSysdata = wpn?.system;
+        const oldLoad = wpnSysdata?.ammo?.value;
+        const oldAmmoID = wpnSysdata?.ammo?.target;
 
         const target = event.currentTarget;
         const index = target.selectedIndex;
         const newAmmoID = target[index].value;
 
-        if (newAmmoID !== oldAmmoID) await wpn.update({"data.ammo.target": newAmmoID});
+        if (newAmmoID !== oldAmmoID) await wpn.update({"system.ammo.target": newAmmoID});
 
         const oldAmmo = wpn?.actor?.items?.get(oldAmmoID);
-        const oldAmmoData = oldAmmo?.data?.data;
+        const oldAmmoSysdata = oldAmmo?.system;
 
         if (oldAmmo && oldLoad !== 0) {
             const ammoUpdates = {};
-            switch (oldAmmoData?.ammoType) {
+            switch (oldAmmoSysdata?.ammoType) {
                 case "cartridge":
                 case "dart":
                 case "missile":
                 case "rocket":
                 case "snare":
                 case "torpedo":
-                    ammoUpdates["data.quantity"] = oldAmmoData?.quantity + oldLoad;
+                    ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity + oldLoad;
                     break;
                 case "powerCell":
                 case "flechetteClip":
@@ -880,20 +906,20 @@ export default class ItemSheet5e extends ItemSheet {
                 case "powerGenerator":
                 case "projectorCanister":
                 case "projectorTank":
-                    if (oldLoad === wpnData?.properties?.rel) ammoUpdates["data.quantity"] = oldAmmoData?.quantity + 1;
+                    if (oldLoad === wpnSysdata?.properties?.rel) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity + 1;
                     else {
                         const confirm = await Dialog.confirm({
                             title: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectTitle"),
                             content: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectContent"),
                             defaultYes: true
                         });
-                        if (!confirm) return await wpn?.update({"data.ammo.target": oldAmmoID});
+                        if (!confirm) return await wpn?.update({"system.ammo.target": oldAmmoID});
                     }
                     break;
             }
             if (!foundry.utils.isObjectEmpty(ammoUpdates)) await oldAmmo?.update(ammoUpdates);
         }
-        await wpn.update({"data.ammo.value": 0});
+        await wpn.update({"system.ammo.value": 0});
     }
 
     /* -------------------------------------------- */
@@ -906,19 +932,19 @@ export default class ItemSheet5e extends ItemSheet {
     async _onWeaponConfigureAmmo(event) {
         event.preventDefault();
         const disabled = [];
-        const target = this.item.data?.data?.ammo?.target;
+        const target = this.item.system?.ammo?.target;
         if (target) {
             const ammo = this.item.actor?.items?.get(target);
-            if (ammo) disabled.push(ammo.data?.data.ammoType);
+            if (ammo) disabled.push(ammo.system.ammoType);
         }
         const result = await CheckboxSelect.checkboxSelect({
             title: game.i18n.localize("SW5E.WeaponAmmoConfigureTitle"),
             content: game.i18n.localize("SW5E.WeaponAmmoConfigureContent"),
             checkboxes: CONFIG.SW5E.ammoTypes,
-            defaultSelect: this.item.data?.data?.ammo?.types,
+            defaultSelect: this.item.system.ammo?.types,
             disabled: disabled
         });
-        if (result) this.item.update({"data.ammo.types": result});
+        if (result) this.item.update({"system.ammo.types": result});
     }
 
     /* -------------------------------------------- */

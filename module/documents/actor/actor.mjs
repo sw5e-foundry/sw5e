@@ -148,15 +148,14 @@ export default class Actor5e extends Actor {
         }
 
         this._prepareBaseArmorClass();
-        // Is this still needed?
-        //this._computeScaleValues(this.data.data);
+        this._prepareScaleValues();
         switch (this.type) {
             case "character":
                 return this._prepareCharacterData();
             case "npc":
                 return this._prepareNPCData();
             case "starship":
-                return this._prepareStarshipData();
+                return this._prepareBaseStarshipData();
             case "vehicle":
                 return this._prepareVehicleData();
         }
@@ -592,6 +591,7 @@ export default class Actor5e extends Actor {
         this.system.details.level = 0;
         this.system.attributes.hd = 0;
         this.system.attributes.attunement.value = 0;
+        this.system.details.ranks = 0;
 
         for (const item of this.items) {
             // Class levels & hit dice
@@ -695,12 +695,12 @@ export default class Actor5e extends Actor {
      * Mutates several aspects of the system data object.
      * @protected
      */
-    _prepareStarshipData() {
+    _prepareBaseStarshipData() {
         // Determine starship's proficiency bonus based on active deployed crew member
+        this.system.attributes.prof = 0;
         const active = this.system.attributes.deployment.active;
         const actor = fromUuidSynchronous(active.value);
-        this.system.attributes.prof = 0;
-        if (actor && actor.system.details.ranks) this.system.attributes.prof = actor.system.attributes.prof ?? 0;
+        if (actor?.system?.details?.ranks) this.system.attributes.prof = actor.system.attributes?.prof ?? 0;
 
         // Determine Starship size-based properties based on owned Starship item
         const size = this.items.filter((i) => i.type === "starship");
@@ -745,7 +745,7 @@ export default class Actor5e extends Actor {
 
             this.system.attributes.power.die = CONFIG.SW5E.powerDieTypes[tiers];
 
-            this.system.attributes.workforce.max = data.attributes.workforce.minBuild * 5;
+            this.system.attributes.workforce.max = this.system.attributes.workforce.minBuild * 5;
             this.system.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
             this.system.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
             this.system.attributes.workforce.minModification = sizeData.modMinWorkforce;
@@ -756,8 +756,8 @@ export default class Actor5e extends Actor {
         const armor = this._getEquipment("starship", {equipped: true});
         if (armor.length !== 0) {
             const armorData = armor[0].system;
-            ththis.systemis.system.attributes.equip.armor.dr = parseInt(armorData.attributes.dmgred.value) || 0;
-            data.attributes.equip.armor.maxDex = armorData.armor.dex;
+            this.system.attributes.equip.armor.dr = parseInt(armorData.attributes.dmgred.value) || 0;
+            this.system.attributes.equip.armor.maxDex = armorData.armor.dex;
             this.system.attributes.equip.armor.stealthDisadv = armorData.stealth;
         } else {
             // no armor installed
@@ -1199,7 +1199,7 @@ export default class Actor5e extends Actor {
 
     _prepareStarshipData() {
         // Find Size info of Starship
-        const size = actorData.items.filter((i) => i.type === "starship");
+        const size = this.items.filter((i) => i.type === "starship");
         if (size.length === 0) return;
         const sizeData = size[0].system;
 
@@ -2636,7 +2636,7 @@ export default class Actor5e extends Actor {
      */
     async rollClassHitPoints(item) {
         if (item.type !== "class") throw new Error("Hit points can only be rolled for a class item.");
-        const rollData = {formula: `1${item.data.data.hitDice}`, data: item.getRollData()};
+        const rollData = {formula: `1${item.system.hitDice}`, data: item.getRollData()};
         const flavor = game.i18n.format("SW5E.AdvancementHitPointsRollMessage", {class: item.name});
         const messageData = {
             "title": `${flavor}: ${this.name}`,

@@ -40,7 +40,7 @@
         {{!-- Description Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
             {{editor 
-				backgrounddescriptionHTML 
+				descriptionHTML 
 				target="system.description.value" 
 				button=true 
 				editable=editable 
@@ -62,7 +62,7 @@
 
         {{!-- Effects Tab --}}
         <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-            {{> "systems/sw5e/templates/actors/parts/active-effects.html"}}
+            {{> "sw5e.active-effects"}}
         </div>
 
         {{!-- Advancement Tab --}}

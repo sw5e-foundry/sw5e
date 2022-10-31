@@ -14,7 +14,7 @@ export default class AllocatePowerDice extends Dialog {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            template: "systems/sw5e/templates/apps/allocate-power-dice.html",
+            template: "systems/sw5e/templates/apps/allocate-power-dice.hbs",
             classes: ["sw5e", "dialog"]
         });
     }
@@ -24,7 +24,7 @@ export default class AllocatePowerDice extends Dialog {
     /** @override */
     getData() {
         const data = super.getData();
-        const power = this.actor.data.data.attributes.power;
+        const power = this.actor.system.attributes.power;
         const slots = CONFIG.SW5E.powerDieSlots;
 
         data.powerDice = this.powerDice;
@@ -57,7 +57,7 @@ export default class AllocatePowerDice extends Dialog {
                         icon: '<i class="fas fa-wrench"></i>',
                         label: game.i18n.localize("SW5E.AllocatePowerDice"),
                         callback: (html) => {
-                            const power = actor.data.data.attributes.power;
+                            const power = actor.system.attributes.power;
                             const slots = CONFIG.SW5E.powerDieSlots;
 
                             const allocation = [];

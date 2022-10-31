@@ -48,6 +48,17 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
             return arr.concat([res]);
         }, []);
 
+        // HTML enrichment
+        for (const field of ["trait", "ideal", "bond", "flaw", "description", "notes", "notes1", "notes2", "notes3", "notes4"]) {
+            const value = context.system.details[field]?.value ?? context.system.details[field];
+            context[`${field}HTML`] = await TextEditor.enrichHTML(value, {
+                secrets: this.actor.isOwner,
+                rollData: context.rollData,
+                async: true,
+                relativeTo: this.actor
+            });
+        }
+
         const classes = this.actor.itemTypes.class;
         return foundry.utils.mergeObject(context, {
             disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
@@ -184,7 +195,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
                     ? CONFIG.SW5E.weaponFullStarshipProperties
                     : CONFIG.SW5E.weaponFullCharacterProperties;
 
-                const item = this.actor.items.get(i.id);
+                const item = this.actor.items.get(i._id);
                 const reloadProperties = item.sheet._getWeaponReloadProperties();
                 for (const attr of Object.keys(reloadProperties)) {
                     i[attr] = reloadProperties[attr];
@@ -774,7 +785,7 @@ async function addFavorites(app, html, context) {
         });
         favtabHtml.find(".item-fav").click((ev) => {
             let itemId = $(ev.target).parents(".item")[0].dataset.itemId;
-            let val = !app.actor.items.get(itemId).data.flags.favtab.isFavourite;
+            let val = !app.actor.items.get(itemId).flags.favtab.isFavourite;
             app.actor.items.get(itemId).update({
                 "flags.favtab.isFavourite": val
             });
@@ -786,7 +797,7 @@ async function addFavorites(app, html, context) {
             ev.stopPropagation();
 
             let dropData = JSON.parse(ev.originalEvent.dataTransfer.getData("text/plain"));
-            // if (dropData.actorId !== app.actor.id || dropData.data.type === 'power') return;
+            // if (dropData.actorId !== app.actor.id || dropData.type === 'power') return;
             if (dropData.actorId !== app.actor.id) return;
             let list = null;
             if (dropData.type === "feat") list = favFeats;

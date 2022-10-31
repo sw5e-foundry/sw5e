@@ -9,7 +9,7 @@ if(typeof compendium == "undefined") {
         let id = i.getAttribute('data-document-id');
         if(!id) return
         let actor = game.actors.get(id);
-        let cr = actor.data.data.details.cr;
+        let cr = actor.system.details.cr;
         if (typeof cr !== "undefined") {
             let p = document.createElement("h4");
             p.classList.add("document-name");

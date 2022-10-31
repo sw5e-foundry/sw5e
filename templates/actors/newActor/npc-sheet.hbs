@@ -89,7 +89,7 @@
                            title="{{ localize 'SW5E.HPFormula' }}">
                     <input name="system.attributes.hp.temp" type="number" step="any" class="temphp"
                            placeholder="+{{ localize 'SW5E.Temp' }}"
-                           value="{{data.attributes.hp.temp}}" data-dtype="Number"
+                           value="{{system.attributes.hp.temp}}" data-dtype="Number"
                            title="{{localize 'SW5E.HitPointsTemp'}}">
                 </footer>
             </section>
@@ -186,7 +186,7 @@
                             {{!--
                             <input
                                 class="skill-bonus"
-                                name="data.skills.{{s}}.bonus"
+                                name="system.skills.{{s}}.bonus"
                                 type="text"
                                 value="{{numberFormat skill.bonus decimals=0 sign=true}}"
                                 data-dtype="Number"
@@ -301,13 +301,13 @@
             <div class="panel">
                 <section>
                     <h1>{{localize "SW5E.Biography"}}</h1>
-            {{editor 
-				biographyHTML 
-				target="system.details.biography.value" 
-				button=true editable=editable
-				engine="prosemirror" 
-				collaborate=false
-			}}
+                        {{editor 
+                            biographyHTML 
+                            target="system.details.biography.value" 
+                            button=true editable=editable
+                            engine="prosemirror" 
+                            collaborate=false
+            			}}
                 </section>
             </div>
         </div>

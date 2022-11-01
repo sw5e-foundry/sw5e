@@ -1224,7 +1224,7 @@ export default class Item5e extends Item {
 
         // Consume Weapon Reload
         if (consumeReload) {
-            if (id.ammo.value <= 0) {
+            if (is.ammo.value <= 0) {
                 if (is.properties.rel)
                     ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", {name: this.name}));
                 else if (is.properties.ovr)

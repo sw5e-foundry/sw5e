@@ -338,6 +338,19 @@ export default class Item5e extends Item {
         return this.parent?.system?.details?.level ?? 0;
     }
 
+    set curAdvancementLevel(value) {
+        if (this.type === "class")
+            if (this.system?.levels != undefined) this.system.levels = value;
+        else if (this.type === "deployment")
+            if (this.system?.rank != undefined) this.system.rank = value;
+        else if (this.type === "starship")
+            if (this.system?.tier != undefined) this.system.tier = value;
+        else if (this.type === "archetype")
+            if (this.class?.system?.levels != undefined) this.class.system.levels = value;
+        else
+            if (this.parent?.system?.details?.level != undefined) this.parent.system.details.level = value;
+    }
+
     /* -------------------------------------------- */
 
     /**

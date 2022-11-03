@@ -99,7 +99,7 @@ export default class ItemSheet5e extends ItemSheet {
             }),
 
             // Enrich HTML invocations
-            invocationHTML: await TextEditor.enrichHTML(item.system.invocations?.value, {
+            invocationsHTML: await TextEditor.enrichHTML(item.system.invocations?.value, {
                 secrets: item.isOwner,
                 async: true,
                 relativeTo: this.item

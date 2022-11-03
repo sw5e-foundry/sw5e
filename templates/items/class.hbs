@@ -33,9 +33,9 @@
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor 
 				descriptionHTML
-				target="system.description.value" 
+				target="system.description.value"
 				button=true editable=editable
-                engine="prosemirror" 
+                engine="prosemirror"
 				collaborate=false
 			}}
         </div>
@@ -47,10 +47,10 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="data.identifier" value="{{data.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.ClassIdentifierHint" identifier=data.identifier}}}
+                    {{{localize "SW5E.ClassIdentifierHint" identifier=system.identifier}}}
                 </p>
             </div>
 
@@ -155,10 +155,10 @@
         <div class="tab flexrow" data-group="primary" data-tab="archetypes">
             {{editor 
 				atFlavorTextHTML
-				target="system.atFlavorText.value" 
-				button=true 
-				owner=owner 
-				editable=editable
+				target="system.atFlavorText.value"
+                button=true editable=editable
+                engine="prosemirror"
+                collaborate=false
 			}}
         </div>
 
@@ -167,9 +167,9 @@
             {{editor 
 				invocationsHTML
 				target="system.invocations.value" 
-				button=true 
-				owner=owner 
-				editable=editable
+                button=true editable=editable
+                engine="prosemirror"
+                collaborate=false
 			}}
         </div>
 

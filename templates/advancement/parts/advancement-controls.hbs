@@ -1,15 +1,15 @@
 <div class="form-group">
   <label>{{localize "SW5E.AdvancementCustomTitle"}}</label>
   <div class="form-fields">
-    <input type="text" name="system.title" value="{{system.title}}" placeholder="{{default.title}}">
+    <input type="text" name="data.title" value="{{data.title}}" placeholder="{{default.title}}">
   </div>
 </div>
 
 <div class="form-group">
   <label>{{localize "SW5E.AdvancementCustomIcon"}}</label>
   <div class="form-fields">
-    {{filePicker type="image" target="system.icon"}}
-    <input type="text" name="system.icon" value="{{system.icon}}" placeholder="{{default.icon}}">
+    {{filePicker type="image" target="data.icon"}}
+    <input type="text" name="data.icon" value="{{data.icon}}" placeholder="{{default.icon}}">
   </div>
 </div>
 
@@ -17,8 +17,8 @@
   <div class="form-group">
     <label>{{localize "SW5E.AdvancementClassRestriction"}}</label>
     <div class="form-fields">
-      <select name="system.classRestriction">
-        {{#select system.classRestriction}}
+      <select name="data.classRestriction">
+        {{#select data.classRestriction}}
           <option value="">{{localize "SW5E.AdvancementClassRestrictionNone"}}</option>
           <option value="primary">{{localize "SW5E.AdvancementClassRestrictionPrimary"}}</option>
           <option value="secondary">{{localize "SW5E.AdvancementClassRestrictionSecondary"}}</option>
@@ -32,8 +32,8 @@
   <div class="form-group">
     <label>{{localize "SW5E.Level"}}</label>
     <div class="form-fields">
-      <select name="system.level" data-dtype="Number">
-        {{selectOptions levels selected=system.level}}
+      <select name="data.level" data-dtype="Number">
+        {{selectOptions levels selected=data.level}}
       </select>
     </div>
   </div>

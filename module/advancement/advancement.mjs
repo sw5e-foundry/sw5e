@@ -12,7 +12,7 @@ class AdvancementError extends Error {
 }
 
 /**
- * Abstract base class which various advancement types can archetype.
+ * Abstract base class which various advancement types can subclass.
  * @param {Item5e} item       Item to which this advancement belongs.
  * @param {object} [data={}]  Raw data stored in the advancement object.
  * @abstract
@@ -318,4 +318,31 @@ export default class Advancement {
    * @abstract
    */
   async reverse(level) { }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Helper method to prepare power customizations.
+   * @param {object} power  Power configuration object.
+   * @returns {object}      Object of updates to apply to item.
+   * @protected
+   */
+  _preparePowerChanges(power) {
+    const updates = {};
+    if ( power.ability ) updates["system.ability"] = power.ability;
+    if ( power.preparation ) updates["system.preparation.mode"] = power.preparation;
+    if ( power.uses?.max ) {
+      updates["system.uses.max"] = power.uses.max;
+      if ( Number.isNumeric(power.uses.max) ) updates["system.uses.value"] = parseInt(power.uses.max);
+      else {
+        try {
+          const rollData = this.actor.getRollData({ deterministic: true });
+          const formula = Roll.replaceFormulaData(power.uses.max, rollData, {missing: 0});
+          updates["system.uses.value"] = Roll.safeEval(formula);
+        } catch(e) { }
+      }
+    }
+    if ( power.uses?.per ) updates["system.uses.per"] = power.uses.per;
+    return updates;
+  }
 }

@@ -110,7 +110,8 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/items/parts/item-powercasting.hbs",
 
     // Advancement Partials
-    "systems/sw5e/templates/advancement/parts/advancement-controls.hbs"
+    "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
+    "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs"
   ];
 
   const paths = {};

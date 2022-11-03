@@ -29,26 +29,16 @@ export default class SRDCompendium extends Compendium {
   async getData(options) {
     const data = await super.getData(options);
     const documents = await this.collection.getDocuments();
+    const getOrder = o => ({chapter: 0, appendix: 100}[o.flags?.sw5e?.type] ?? 200) + (o.flags?.sw5e?.position ?? 0);
     data.disclaimer = this.collection.get(this.constructor._SPECIAL_PAGES.disclaimer).pages.contents[0].text.content;
     data.chapters = documents.reduce((arr, entry) => {
-      const isChapter = entry.name.startsWith("Chapter");
-      const isAppendix = entry.name.startsWith("Appendix");
-      if ( !isChapter && !isAppendix ) return arr;
+      const type = entry.getFlag("sw5e", "type");
+      if ( !type ) return arr;
       const e = entry.toObject();
-      e.showPages = (e.pages.length > 1) && isChapter;
+      e.showPages = (e.pages.length > 1) && (type === "chapter");
       arr.push(e);
       return arr;
-    }, []).sort((a, b) => {
-      const [, chA] = a.name.match(/^Chapter (\d+)/) || [];
-      const [, chB] = b.name.match(/^Chapter (\d+)/) || [];
-      const [, appA] = a.name.match(/^Appendix ([A-Z])/) || [];
-      const [, appB] = b.name.match(/^Appendix ([A-Z])/) || [];
-      if ( chA && !chB ) return -1;
-      else if ( chB && !chA ) return 1;
-      if ( chA && chB ) return Number(chA) - Number(chB);
-      if ( appA && appB ) return appA.charCodeAt(0) - appB.charCodeAt(0);
-      return 0;
-    });
+    }, []).sort((a, b) => getOrder(a) - getOrder(b));
     // Add powers A-Z to the end of Chapter 10.
     const powerList = this.collection.get(this.constructor._SPECIAL_PAGES.powerList);
     data.chapters[9].pages.push({_id: powerList.id, name: powerList.name, entry: true});

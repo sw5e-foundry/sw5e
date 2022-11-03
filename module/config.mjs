@@ -653,31 +653,47 @@ SW5E.currencies = {
 preLocalize("currencies", { keys: ["label", "abbreviation"] });
 
 /* -------------------------------------------- */
+/*  Damage Types                                */
+/* -------------------------------------------- */
+
+/**
+ * Types of damage that are considered physical.
+ * @enum {string}
+ */
+SW5E.physicalDamageTypes = {
+  bludgeoning: "SW5E.DamageBludgeoning",
+  piercing: "SW5E.DamagePiercing",
+  slashing: "SW5E.DamageSlashing"
+};
+preLocalize("physicalDamageTypes", { sort: true });
+
+/* -------------------------------------------- */
 
 /**
  * Types of damage the can be caused by abilities.
  * @enum {string}
  */
 SW5E.damageTypes = {
+  ...SW5E.physicalDamageTypes,
   acid: "SW5E.DamageAcid",
-  bludgeoning: "SW5E.DamageBludgeoning",
   cold: "SW5E.DamageCold",
   fire: "SW5E.DamageFire",
   force: "SW5E.DamageForce",
   lightning: "SW5E.DamageLightning",
   necrotic: "SW5E.DamageNecrotic",
-  piercing: "SW5E.DamagePiercing",
   poison: "SW5E.DamagePoison",
   psychic: "SW5E.DamagePsychic",
   radiant: "SW5E.DamageRadiant",
-  slashing: "SW5E.DamageSlashing",
   thunder: "SW5E.DamageThunder"
 };
 preLocalize("damageTypes", { sort: true });
 
+/* -------------------------------------------- */
+
 /**
  * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
  * @enum {string}
+ * @deprecated
  */
 SW5E.damageResistanceTypes = {
   ...SW5E.damageTypes,
@@ -685,6 +701,8 @@ SW5E.damageResistanceTypes = {
 };
 preLocalize("damageResistanceTypes", { sort: true });
 
+/* -------------------------------------------- */
+/*  Movement                                    */
 /* -------------------------------------------- */
 
 /**
@@ -811,7 +829,7 @@ preLocalize("healingTypes");
  * Denominations of hit dice which can apply to classes.
  * @type {string[]}
  */
-SW5E.hitDieTypes = ["d6", "d8", "d10", "d12"];
+SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
 
 /* -------------------------------------------- */
 
@@ -875,6 +893,8 @@ SW5E.powerScalingModes = {
 preLocalize("powerScalingModes", { sort: true });
 
 /* -------------------------------------------- */
+/*  Weapon Details                              */
+/* -------------------------------------------- */
 
 /**
  * The set of types which a weapon item can take.
@@ -894,11 +914,25 @@ preLocalize("weaponTypes");
 /* -------------------------------------------- */
 
 /**
+ * A subset of weapon properties that determine the physical characteristics of the weapon.
+ * These properties are used for determining physical resistance bypasses.
+ * @enum {string}
+ */
+SW5E.physicalWeaponProperties = {
+  ada: "SW5E.WeaponPropertiesAda",
+  mgc: "SW5E.WeaponPropertiesMgc",
+  sil: "SW5E.WeaponPropertiesSil"
+};
+preLocalize("physicalWeaponProperties", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
  * The set of weapon property flags which can exist on a weapon.
  * @enum {string}
  */
 SW5E.weaponProperties = {
-  ada: "SW5E.WeaponPropertiesAda",
+  ...SW5E.physicalWeaponProperties,
   amm: "SW5E.WeaponPropertiesAmm",
   fin: "SW5E.WeaponPropertiesFin",
   fir: "SW5E.WeaponPropertiesFir",
@@ -906,17 +940,19 @@ SW5E.weaponProperties = {
   hvy: "SW5E.WeaponPropertiesHvy",
   lgt: "SW5E.WeaponPropertiesLgt",
   lod: "SW5E.WeaponPropertiesLod",
-  mgc: "SW5E.WeaponPropertiesMgc",
   rch: "SW5E.WeaponPropertiesRch",
   rel: "SW5E.WeaponPropertiesRel",
   ret: "SW5E.WeaponPropertiesRet",
-  sil: "SW5E.WeaponPropertiesSil",
   spc: "SW5E.WeaponPropertiesSpc",
   thr: "SW5E.WeaponPropertiesThr",
   two: "SW5E.WeaponPropertiesTwo",
   ver: "SW5E.WeaponPropertiesVer"
 };
 preLocalize("weaponProperties", { sort: true });
+
+/* -------------------------------------------- */
+/*  Power Details                               */
+/* -------------------------------------------- */
 
 /**
  * Types of components that can be required when casting a power.

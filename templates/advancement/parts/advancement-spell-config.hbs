@@ -1,0 +1,27 @@
+<div class="form-group">
+  <label>{{localize "SW5E.AbilityModifier"}}</label>
+  <div class="form-fields">
+    <select name="data.configuration.power.ability">
+      {{selectOptions CONFIG.abilities selected=data.configuration.power.ability blank="&mdash;"}}
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>{{localize "SW5E.PowerPreparationMode"}}</label>
+  <div class="form-fields">
+    <select name="data.configuration.power.preparation">
+      {{selectOptions CONFIG.powerPreparationModes selected=data.configuration.power.preparation blank="&mdash;"}}
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>{{localize "SW5E.LimitedUses"}}</label>
+  <div class="form-fields">
+    <input type="text" name="data.configuration.power.uses.max" value="{{data.configuration.power.uses.max}}">
+    <select name="data.configuration.power.uses.per">
+      {{selectOptions CONFIG.limitedUsePeriods selected=data.configuration.power.uses.per blank="&mdash;"}}
+    </select>
+  </div>
+</div>

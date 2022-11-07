@@ -3115,7 +3115,7 @@ export default class Actor5e extends Actor {
         let updates = [];
         for (let item of this.items) {
             if (recovery.includes(item.system.uses?.per)) {
-                updates.push({"_id": item.id, "system.uses.value": d.uses.max});
+                updates.push({"_id": item.id, "system.uses.value": item.system.uses?.max});
             }
             if (recoverLongRestUses && item.system.recharge?.value) {
                 updates.push({"_id": item.id, "system.recharge.charged": true});

@@ -1067,19 +1067,30 @@ SW5E.currencies = {
 preLocalize("currencies", {keys: ["label", "abbreviation"]});
 
 /* -------------------------------------------- */
+/*  Damage Types                                */
+/* -------------------------------------------- */
+
+/**
+ * Types of damage that are considered physical.
+ * @enum {string}
+ */
+ SW5E.physicalDamageTypes = {
+    kinetic: "SW5E.DamageKinetic",
+  };
+  preLocalize("physicalDamageTypes", { sort: true });
 
 /**
  * Types of damage the can be caused by abilities.
  * @enum {string}
  */
 SW5E.damageTypes = {
+    ...SW5E.physicalDamageTypes,
     acid: "SW5E.DamageAcid",
     cold: "SW5E.DamageCold",
     energy: "SW5E.DamageEnergy",
     fire: "SW5E.DamageFire",
     force: "SW5E.DamageForce",
     ion: "SW5E.DamageIon",
-    kinetic: "SW5E.DamageKinetic",
     lightning: "SW5E.DamageLightning",
     necrotic: "SW5E.DamageNecrotic",
     poison: "SW5E.DamagePoison",
@@ -1088,15 +1099,20 @@ SW5E.damageTypes = {
 };
 preLocalize("damageTypes", {sort: true});
 
+/* -------------------------------------------- */
+
 /**
  * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
  * @enum {string}
+ * @deprecated
  */
 SW5E.damageResistanceTypes = {
     ...SW5E.damageTypes
 };
 preLocalize("damageResistanceTypes", {sort: true});
 
+/* -------------------------------------------- */
+/*  Movement                                    */
 /* -------------------------------------------- */
 
 /**
@@ -1562,6 +1578,9 @@ SW5E.powerScalingModes = {
 };
 preLocalize("powerScalingModes");
 
+
+/* -------------------------------------------- */
+/*  Weapon Details                              */
 /* -------------------------------------------- */
 
 /**
@@ -1956,6 +1975,20 @@ preLocalize("castingProperties", {keys: ["name", "full", "desc"]});
 /* -------------------------------------------- */
 
 /**
+ * A subset of weapon properties that determine the physical characteristics of the weapon.
+ * These properties are used for determining physical resistance bypasses.
+ * @enum {string}
+ */
+ SW5E.physicalWeaponProperties = {
+    ada: "SW5E.WeaponPropertiesAda",
+    mgc: "SW5E.WeaponPropertiesMgc",
+    sil: "SW5E.WeaponPropertiesSil"
+  };
+  preLocalize("physicalWeaponProperties", { sort: true });
+  
+  /* -------------------------------------------- */
+
+/**
  * The set of weapon property flags which can exist on any weapon.
  * @enum {{
  *   name: string,
@@ -1966,6 +1999,7 @@ preLocalize("castingProperties", {keys: ["name", "full", "desc"]});
  * }}
  */
 SW5E.weaponCommonProperties = {
+    ...SW5E.physicalWeaponProperties,
     aut: {
         name: "SW5E.WeaponPropertyAut",
         full: "SW5E.WeaponPropertyAutFull",
@@ -2438,6 +2472,10 @@ SW5E.weaponSizes = {
     grg: "SW5E.SizeGargantuan"
 };
 preLocalize("weaponSizes");
+
+/* -------------------------------------------- */
+/*  Power Details                               */
+/* -------------------------------------------- */
 
 /**
  * Types of components that can be required when casting a power.

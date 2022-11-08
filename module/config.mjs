@@ -304,7 +304,7 @@ SW5E.weaponIds = {
     "lightglaive": "sw5e.lightweapons.A2LrY6YdgNv4JL74",
     "doubleshoto": "sw5e.lightweapons.AVDPyImR6l9E2JEi",
     "sithsaber": "sw5e.lightweapons.AoO7yHMOrYlG67fa",
-    "lightring": "sw5e.lightweapons.CFd2Rv27dH0c7cMt",
+    "lightring": "sw5e.lightweapons.T81gCX274rZCwcUF",
     "sabergauntlet": "sw5e.lightweapons.Fbxbb4X9seaZzpQj",
     "lightfist": "sw5e.lightweapons.I0DFU813iysKiYCj",
     "pikesaber": "sw5e.lightweapons.J0CdF65GSK1tlWr2",

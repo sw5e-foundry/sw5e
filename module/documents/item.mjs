@@ -1126,10 +1126,10 @@ export default class Item5e extends Item {
                 config.createMeasuredTemplate ||
                 config.consumeRecharge ||
                 config.consumeReload ||
-                (config.consumeResource && !["simpleB", "martialB"].includes(id.weaponType)) ||
+                (config.consumeResource && !["simpleB", "martialB"].includes(is.weaponType)) ||
                 config.consumePowerSlot ||
                 config.consumeSuperiorityDie ||
-                (config.consumeUsage && !["simpleB", "martialB"].includes(id.weaponType));
+                (config.consumeUsage && !["simpleB", "martialB"].includes(is.weaponType));
 
         /**
          * A hook event that fires before an item usage is configured.

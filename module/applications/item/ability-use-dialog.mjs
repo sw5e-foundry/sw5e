@@ -44,7 +44,7 @@ export default class AbilityUseDialog extends Dialog {
                 type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
                 name: item.name
             }),
-            note: this._getAbilityUseNote(item.system, uses, recharge),
+            note: this._getAbilityUseNote(item, uses, recharge),
             consumePowerSlot: false,
             consumeSuperiorityDie: item.type === "maneuver",
             consumeRecharge: recharges,
@@ -188,21 +188,21 @@ export default class AbilityUseDialog extends Dialog {
 
     /**
      * Get the ability usage note that is displayed.
-     * @param {object} itemSysdata                              Data for the item being used.
+     * @param {object} item                                     Data for the item being used.
      * @param {{value: number, max: number, per: string}} uses  Object uses and recovery configuration.
      * @param {{charged: boolean, value: string}} recharge      Object recharge configuration.
      * @returns {string}                                        Localized string indicating available uses.
      * @private
      */
-    static _getAbilityUseNote(itemSysdata, uses, recharge) {
+    static _getAbilityUseNote(item, uses, recharge) {
         // Zero quantity
-        const quantity = itemSysdata.quantity;
+        const quantity = item.system.quantity;
         if (quantity <= 0) return game.i18n.localize("SW5E.AbilityUseUnavailableHint");
 
         // Abilities which use Recharge
         if (recharge.value) {
             return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
-                type: game.i18n.localize(`SW5E.ItemType${itemSysdata.type.capitalize()}`)
+                type: game.i18n.localize(`SW5E.ItemType${item.system.type.capitalize()}`)
             });
         }
 
@@ -210,15 +210,15 @@ export default class AbilityUseDialog extends Dialog {
         if (!uses.per || !uses.max) return "";
 
         // Consumables
-        if (itemSysdata.type === "consumable") {
+        if (item.type === "consumable") {
             let str = "SW5E.AbilityUseNormalHint";
             if (uses.value > 1) str = "SW5E.AbilityUseConsumableChargeHint";
-            else if (itemSysdata.quantity === 1 && uses.autoDestroy) str = "SW5E.AbilityUseConsumableDestroyHint";
-            else if (itemSysdata.quantity > 1) str = "SW5E.AbilityUseConsumableQuantityHint";
+            else if (item.system.quantity === 1 && uses.autoDestroy) str = "SW5E.AbilityUseConsumableDestroyHint";
+            else if (item.system.quantity > 1) str = "SW5E.AbilityUseConsumableQuantityHint";
             return game.i18n.format(str, {
-                type: game.i18n.localize(`SW5E.Consumable${itemSysdata.consumableType.capitalize()}`),
+                type: game.i18n.localize(`SW5E.Consumable${item.system.consumableType.capitalize()}`),
                 value: uses.value,
-                quantity: itemSysdata.quantity,
+                quantity: item.system.quantity,
                 max: uses.max,
                 per: CONFIG.SW5E.limitedUsePeriods[uses.per]
             });
@@ -227,7 +227,7 @@ export default class AbilityUseDialog extends Dialog {
         // Other Items
         else {
             return game.i18n.format("SW5E.AbilityUseNormalHint", {
-                type: game.i18n.localize(`SW5E.ItemType${itemSysdata.type.capitalize()}`),
+                type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
                 value: uses.value,
                 max: uses.max,
                 per: CONFIG.SW5E.limitedUsePeriods[uses.per]

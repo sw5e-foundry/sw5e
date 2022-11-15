@@ -71,7 +71,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
             fightingstyles,
             fightingmasteries,
             lightsaberforms
-        } = data.items.reduce(
+        } = context.items.reduce(
             (obj, item) => {
                 const {quantity, uses, recharge, target} = item.system;
 

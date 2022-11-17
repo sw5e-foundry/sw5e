@@ -8,7 +8,7 @@ import AdvancementManager from "../../advancement/advancement-manager.mjs";
 export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     /** @inheritDoc */
     static get defaultOptions() {
-        return foundry.utilsmergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["sw5e", "sheet", "actor", "character"]
         });
     }
@@ -71,7 +71,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
             fightingstyles,
             fightingmasteries,
             lightsaberforms
-        } = data.items.reduce(
+        } = context.items.reduce(
             (obj, item) => {
                 const {quantity, uses, recharge, target} = item.system;
 

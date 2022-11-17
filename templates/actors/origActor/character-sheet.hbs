@@ -349,7 +349,14 @@
 
         {{!-- Notes Tab --}}
         <div class="tab notes flexcol" data-group="primary" data-tab="notes">
-            {{> "sw5e.actor-notes"}}
+            {{editor
+            notesHTML
+            target="system.details.notes.value"
+            button=true
+            editable=editable
+            engine="prosemirror"
+            collaborate=false
+			}}
         </div>
     </section>
 </form>

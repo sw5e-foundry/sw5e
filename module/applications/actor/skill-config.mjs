@@ -43,7 +43,7 @@ export default class ActorSkillConfig extends DocumentSheet {
             skill: src.system.skills?.[this._skillId] || {},
             skillId: this._skillId,
             proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
-            bonusGlobal: src.system.bonuses?.skill
+            bonusGlobal: src.system.bonuses?.abilities.skill
         };
     }
 

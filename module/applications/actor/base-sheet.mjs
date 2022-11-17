@@ -14,6 +14,7 @@ import ActorTypeConfig from "./type-config.mjs";
 import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../../advancement/advancement-manager.mjs";
 
+import DamageTraitSelector from "../damage-trait-selector.mjs";
 import ProficiencySelector from "../proficiency-selector.mjs";
 import PropertyAttribution from "../property-attribution.mjs";
 import TraitSelector from "../trait-selector.mjs";
@@ -96,7 +97,7 @@ export default class ActorSheet5e extends ActorSheet {
             movement: this._getMovementSpeed(actorData.system),
             senses: this._getSenses(actorData.system),
             effects: ActiveEffect5e.prepareActiveEffectCategories(this.actor.effects),
-            warnings: this.actor._preparationWarnings,
+            warnings: foundry.utils.deepClone(this.actor._preparationWarnings),
             filters: this._filters,
             owner: this.actor.isOwner,
             limited: this.actor.limited,
@@ -114,7 +115,7 @@ export default class ActorSheet5e extends ActorSheet {
         /** @deprecated */
         Object.defineProperty(context, "data", {
             get() {
-                const msg = `You are accessing the "data" attribute within the rendering context provided by the ItemSheet5e 
+                const msg = `You are accessing the "data" attribute within the rendering context provided by the ActorSheet5e 
           class. This attribute has been deprecated in favor of "system" and will be removed in a future release`;
                 foundry.utils.logCompatibilityWarning(msg, {since: "SW5e 2.0", until: "SW5e 2.2"});
                 return context.system;
@@ -132,9 +133,11 @@ export default class ActorSheet5e extends ActorSheet {
         context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
         // Temporary HP
-        const hp = context.system.attributes.hp;
-        if (hp.temp === 0) delete hp.temp;
-        if (hp.tempmax === 0) delete hp.tempmax;
+        if (!context.isStarship) {
+            const hp = context.system.attributes.hp;
+            if (hp.temp === 0) delete hp.temp;
+            if (hp.tempmax === 0) delete hp.tempmax;
+        }
 
         // Ability Scores
         for (const [a, abl] of Object.entries(context.system.abilities)) {
@@ -398,15 +401,37 @@ export default class ActorSheet5e extends ActorSheet {
             ci: CONFIG.SW5E.conditionTypes,
             languages: CONFIG.SW5E.languages
         };
-        for (let [t, choices] of Object.entries(map)) {
-            const trait = traits[t];
+        const config = CONFIG.SW5E;
+        for ( const [key, choices] of Object.entries(map) ) {
+          const trait = traits[key];
             if (!trait) continue;
-            let values = [];
-            if (trait.value) values = trait.value instanceof Array ? trait.value : [trait.value];
+            let values = (trait.value ?? []) instanceof Array ? trait.value : [trait.value];
+
+            // Split physical damage types from others if bypasses is set
+            const physical = [];
+            if ( trait.bypasses?.length ) {
+              values = values.filter(t => {
+                if ( !config.physicalDamageTypes[t] ) return true;
+                physical.push(t);
+                return false;
+              });
+            }
+      
+            // Fill out trait values
             trait.selected = values.reduce((obj, t) => {
                 obj[t] = choices[t];
                 return obj;
             }, {});
+
+            // Display bypassed damage types
+            if ( physical.length ) {
+             const damageTypesFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
+             const bypassFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
+             trait.selected.physical = game.i18n.format("SW5E.DamagePhysicalBypasses", {
+              damageTypes: damageTypesFormatter.format(physical.map(t => choices[t])),
+              bypassTypes: bypassFormatter.format(trait.bypasses.map(t => config.physicalWeaponProperties[t]))
+        });
+      }
 
             // Add custom entry
             if (trait.custom) trait.custom.split(";").forEach((c, i) => (trait.selected[`custom${i + 1}`] = c.trim()));
@@ -629,6 +654,9 @@ export default class ActorSheet5e extends ActorSheet {
 
         // Property attributions
         html.find(".attributable").mouseover(this._onPropertyAttribution.bind(this));
+
+        // Preparation Warnings
+        html.find(".warnings").click(this._onWarningLink.bind(this));
 
         // Editable Only Listeners
         if (this.isEditable) {
@@ -1372,7 +1400,33 @@ export default class ActorSheet5e extends ActorSheet {
         const label = a.parentElement.querySelector("label");
         const choices = CONFIG.SW5E[a.dataset.options];
         const options = {name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, choices};
-        return new TraitSelector(this.actor, options).render(true);
+        if ( ["di", "dr", "dv"].some(t => a.dataset.target.endsWith(`.${t}`)) ) {
+            options.bypasses = CONFIG.SW5E.physicalWeaponProperties;
+            return new DamageTraitSelector(this.actor, options).render(true);
+          } else {
+            return new TraitSelector(this.actor, options).render(true);
+          }
+        }
+      
+        /* -------------------------------------------- */
+      
+        /**
+         * Handle links within preparation warnings.
+         * @param {Event} event  The click event on the warning.
+         * @protected
+         */
+        async _onWarningLink(event) {
+          event.preventDefault();
+          const a = event.target;
+          if ( !a || !a.dataset.target ) return;
+          switch ( a.dataset.target ) {
+            case "armor":
+              (new ActorArmorConfig(this.actor)).render(true);
+              return;
+            default:
+              const item = await fromUuid(a.dataset.target);
+              item?.sheet.render(true);
+          }
     }
 
     /* -------------------------------------------- */

@@ -2279,11 +2279,11 @@ export default class Actor5e extends Actor {
      * @param {object} options               Additional options which modify the roll.
      * @return {Promise<SDRollResult|null>}  A Promise which resolves once the shield die roll workflow has completed.
      */
-    async rollShieldDie(denomination, natural = false, numDice = "1", keep = "", options = {}) {
+    async rollShieldDie({denomination, natural = false, numDice = "1", keep = "", update = true, options = {}} = {}) {
         const result = {
             sp: 0,
             actorUpdates: {},
-            itemUpdates: {},
+            itemUpdates: [],
             roll: null
         };
 
@@ -2306,14 +2306,14 @@ export default class Actor5e extends Actor {
         const shldMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
         if (!denomination) {
             sship = this.itemTypes.starship.find(
-                (s) => s.system.shldDiceUsed < s.system.tier * shldMult + s.system.shldDiceStart
+                (i) => (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
             );
             if (!sship) return result;
             denomination = sship.system.shldDice;
         }
         // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
         else {
-            sship = this.items.find((i) => {
+            sship = this.itemTypes.starship.find((i) => {
                 return (
                     i.system.shldDice === denomination &&
                     (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
@@ -2371,18 +2371,21 @@ export default class Actor5e extends Actor {
          * @param {string} denomination                Size of shield die to be rolled.
          * @returns {boolean}                          Explicitly return `false` to prevent shield die from being rolled.
          */
-        if (Hooks.call("sw5e.preRollShieldDie", this, rollData, denomination) === false) return;
+        if (Hooks.call("sw5e.preRollShieldDie", this, rollData, denomination) === false) return result;
 
         const roll = await attribDieRoll(rollData);
         if (!roll) return result;
+        result.roll = roll;
 
         const dsp = Math.min(hp.tempmax - hp.temp, roll.total);
+        result.sp = dsp;
+
         const updates = {
             actor: {"system.attributes.hp.temp": hp.temp + dsp},
             starship: {"system.shldDiceUsed": sship.system.shldDiceUsed + 1}
         };
         result.actorUpdates = updates.actor;
-        result.itemUpdates = updates.starship;
+        result.itemUpdates = [ { ...updates.starship, '_id': sship.id } ];
 
         /**
          * A hook event that fires after a shield die has been rolled for an Actor, but before updates have been performed.
@@ -2395,16 +2398,18 @@ export default class Actor5e extends Actor {
          * @param {object} updates.starship  Updates that will be applied to the starship size.
          * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
          */
-        if (Hooks.call("sw5e.rollShieldDie", this, roll, updates) === false) return roll;
+        if (Hooks.call("sw5e.rollShieldDie", this, roll, updates) === false) return result;
 
         // Perform updates
-        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
-        if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+        if (update) {
+            if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+            if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+        }
 
-        result.roll = roll;
-        result.sp = dsp;
         return result;
     }
+
+    /* -------------------------------------------- */
 
     /**
      * Results from a power die recovery operation.
@@ -2425,11 +2430,11 @@ export default class Actor5e extends Actor {
      * @param {object} options                  Additional options which modify the roll.
      * @return {Promise<PDRecoveryResult|null>} A Promise which resolves once the power die recovery workflow has completed.
      */
-    async rollPowerDieRecovery(formula, options = {}) {
+    async rollPowerDieRecovery({formula, update = false, options = {}} = {}) {
         const result = {
             pd: 0,
             actorUpdates: {},
-            itemUpdates: {},
+            itemUpdates: [],
             roll: null
         };
 
@@ -2480,7 +2485,7 @@ export default class Actor5e extends Actor {
          * @param {string} formula                     Formula of power recovery die to be rolled.
          * @returns {boolean}                          Explicitly return `false` to prevent power recovery die from being rolled.
          */
-        if (Hooks.call("sw5e.preRollPowerDieRecovery", this, rollData, formula) === false) return;
+        if (Hooks.call("sw5e.preRollPowerDieRecovery", this, rollData, formula) === false) return result;
 
         const roll = await attribDieRoll(rollData);
         if (!roll) return result;
@@ -2493,9 +2498,7 @@ export default class Actor5e extends Actor {
         }
         // If all new power die can fit into the central storage
         else if (pdMissing.central >= roll.total) {
-            result.actorUpdates["system.attributes.power.central.value"] = String(
-                Number(pd.central.value) + roll.total
-            );
+            result.actorUpdates["system.attributes.power.central.value"] = String(Number(pd.central.value) + roll.total);
             result.pd = roll.total;
         }
         // Otherwise, create an allocation dialog popup
@@ -2510,6 +2513,7 @@ export default class Actor5e extends Actor {
                 return result;
             }
         }
+
         const updates = {
             actor: result.actorUpdates,
             starship: result.itemUpdates
@@ -2526,11 +2530,13 @@ export default class Actor5e extends Actor {
          * @param {object} updates.starship  Updates that will be applied to the starship size.
          * @returns {boolean}                Explicitly return `false` to prevent updates from being performed.
          */
-        if (Hooks.call("sw5e.rollPowerDieRecovery", this, roll, updates) === false) return roll;
+        if (Hooks.call("sw5e.rollPowerDieRecovery", this, roll, updates) === false) return result;
 
         // Perform updates
-        if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
-        if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+        if (update) {
+            if (!foundry.utils.isEmpty(updates.actor)) await this.update(updates.actor);
+            if (!foundry.utils.isEmpty(updates.starship)) await sship.update(updates.starship);
+        }
 
         result.roll = roll;
         return result;
@@ -3329,7 +3335,7 @@ export default class Actor5e extends Actor {
             itemUpdates: [...(shldRecovery?.itemUpdates ?? []), ...pdRecovery.itemUpdates]
         };
 
-        if (foundry.utils.isObjectEmpty(result.actorUpdates) && !result.itemUpdates.length) return result;
+        if (foundry.utils.isEmpty(result.actorUpdates) && !result.itemUpdates.length) return result;
 
         // Perform updates
         await this.update(result.actorUpdates);

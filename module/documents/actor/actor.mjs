@@ -271,15 +271,28 @@ export default class Actor5e extends Actor {
         }
 
         data.hitDice = {};
+        const hitDice = CONFIG.SW5E.hitDieTypes.reduce((acc, dice) => {
+            acc[dice] = {
+                cur: 0,
+                max: 0,
+                dice: dice,
+                number: parseInt(dice.substring(1)),
+            }
+            return acc;
+        }, {});
         for (const [identifier, cls] of Object.entries(this.classes)) {
-            const hd = parseInt((cls.system.hitDice ?? "d4").substring(1));
-            const count = (cls.system.levels ?? 0) - (cls.system.hitDiceUsed ?? 0);
-            data.hitDice[hd] = (data.hitDice[hd] ?? 0) + count;
-            data.hitDice.largest = Math.max(data.hitDice.largest ?? -Infinity, hd);
-            data.hitDice.smallest = Math.min(data.hitDice.smallest ?? +Infinity, hd);
+            const dice = cls.system.hitDice ?? "d4";
+            const max = (cls.system.levels ?? 0);
+            const cur = max - (cls.system.hitDiceUsed ?? 0);
+            hitDice[dice].cur += cur;
+            hitDice[dice].max += max;
         }
-        data.hitDice.largest = `d${data.hitDice?.largest ?? 1}`
-        data.hitDice.smallest = `d${data.hitDice?.smallest ?? 1}`
+        for (const [identifier, hd] of Object.entries(hitDice)) {
+            if (hd.max === 0) continue;
+            if (data.hitDice.largest === undefined || hd.number > data.hitDice.largest.number) data.hitDice.largest = hd;
+            if (data.hitDice.smallest === undefined || hd.number < data.hitDice.smallest.number) data.hitDice.smallest = hd;
+            if (data.hitDice.predominant === undefined || hd.max > data.hitDice.predominant.max) data.hitDice.predominant = hd;
+        }
 
         return data;
     }

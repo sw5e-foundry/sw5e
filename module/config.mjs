@@ -984,10 +984,17 @@ SW5E.modificationTypesCasting = {
 };
 preLocalize("modificationTypesCasting", {sort: true});
 
+SW5E.modificationTypesCreature = {
+    cybernetic: "SW5E.ModTypeCybernetic",
+    droidcustomization: "SW5E.ModTypeDroidCustomization"
+};
+preLocalize("modificationTypesCreature", {sort: true});
+
 SW5E.modificationTypes = {
     ...SW5E.modificationTypesEquipment,
     ...SW5E.modificationTypesWeapon,
     ...SW5E.modificationTypesCasting,
+    ...SW5E.modificationTypesCreature,
     augment: "SW5E.ModTypeAugment"
 };
 preLocalize("modificationTypes");

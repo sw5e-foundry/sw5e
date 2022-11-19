@@ -57,14 +57,14 @@
 
             {{!-- Modification Slot --}}
             <div class="form-group">
-                {{#unless (eq system.modificationType "augment")}}
+                {{#if usesSlot}}
                 <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
                 <select name="system.modificationSlot">
                     {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
                     {{selectOptions modSlots selected=../system.modificationSlot}}
                     {{/with}}
                 </select>
-                {{/unless}}
+                {{/if}}
             </div>
 
             {{!-- Weapon/Equipment Properties --}}

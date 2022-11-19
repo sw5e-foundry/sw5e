@@ -585,6 +585,7 @@ preLocalize("abilityActivationTypes", {sort: true});
 SW5E.abilityConsumptionTypes = {
     ammo: "SW5E.ConsumeAmmunition",
     attribute: "SW5E.ConsumeAttribute",
+    hitDice: "SW5E.ConsumeHitDice",
     material: "SW5E.ConsumeMaterial",
     charges: "SW5E.ConsumeCharges",
     powerdice: "SW5E.PowerDiePl"

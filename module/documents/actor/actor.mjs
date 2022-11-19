@@ -269,6 +269,18 @@ export default class Actor5e extends Actor {
         for (const [identifier, ss] of Object.entries(this.starships)) {
             data.starships[identifier] = ss.system;
         }
+
+        data.hitDice = {};
+        for (const [identifier, cls] of Object.entries(this.classes)) {
+            const hd = parseInt((cls.system.hitDice ?? "d4").substring(1));
+            const count = (cls.system.levels ?? 0) - (cls.system.hitDiceUsed ?? 0);
+            data.hitDice[hd] = (data.hitDice[hd] ?? 0) + count;
+            data.hitDice.largest = Math.max(data.hitDice.largest ?? -Infinity, hd);
+            data.hitDice.smallest = Math.min(data.hitDice.smallest ?? +Infinity, hd);
+        }
+        data.hitDice.largest = `d${data.hitDice?.largest ?? 1}`
+        data.hitDice.smallest = `d${data.hitDice?.smallest ?? 1}`
+
         return data;
     }
 

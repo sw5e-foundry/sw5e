@@ -1,5 +1,5 @@
 /**
- * Base class for the advancement interface displayed by the advancement prompt that should be archetypeed by
+ * Base class for the advancement interface displayed by the advancement prompt that should be subclassed by
  * individual advancement types.
  *
  * @param {Item5e} item           Item to which the advancement belongs.

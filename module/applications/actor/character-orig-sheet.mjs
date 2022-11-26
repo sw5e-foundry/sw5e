@@ -167,12 +167,10 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         }, []);
         for (const archetype of archetypes) {
             feats.push(archetype);
-            this.actor._preparationWarnings.push(
-                game.i18n.format("SW5E.ArchetypeMismatchWarn", {
-                    name: archetype.name,
-                    class: archetype.system.classIdentifier
-                })
-            );
+            const message = game.i18n.format("SW5E.ArchetypeMismatchWarn", {
+                name: archetype.name, class: archetype.system.classIdentifier
+            });
+            context.warnings.push({ message, type: "warning" });
         }
 
         // Organize Features

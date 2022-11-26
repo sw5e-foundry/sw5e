@@ -269,6 +269,31 @@ export default class Actor5e extends Actor {
         for (const [identifier, ss] of Object.entries(this.starships)) {
             data.starships[identifier] = ss.system;
         }
+
+        data.hitDice = {};
+        const hitDice = CONFIG.SW5E.hitDieTypes.reduce((acc, dice) => {
+            acc[dice] = {
+                cur: 0,
+                max: 0,
+                dice: dice,
+                number: parseInt(dice.substring(1)),
+            }
+            return acc;
+        }, {});
+        for (const [identifier, cls] of Object.entries(this.classes)) {
+            const dice = cls.system.hitDice ?? "d4";
+            const max = (cls.system.levels ?? 0);
+            const cur = max - (cls.system.hitDiceUsed ?? 0);
+            hitDice[dice].cur += cur;
+            hitDice[dice].max += max;
+        }
+        for (const [identifier, hd] of Object.entries(hitDice)) {
+            if (hd.max === 0) continue;
+            if (data.hitDice.largest === undefined || hd.number > data.hitDice.largest.number) data.hitDice.largest = hd;
+            if (data.hitDice.smallest === undefined || hd.number < data.hitDice.smallest.number) data.hitDice.smallest = hd;
+            if (data.hitDice.predominant === undefined || hd.max > data.hitDice.predominant.max) data.hitDice.predominant = hd;
+        }
+
         return data;
     }
 
@@ -966,7 +991,9 @@ export default class Actor5e extends Actor {
                 const tier = this.system.details.tier;
                 ac.tier = Math.max(tier - 1, 0);
                 if (armors.length) {
-                    if (armors.length > 1) this._preparationWarnings.push("SW5E.WarnMultipleArmor");
+                    if ( armors.length > 1 ) this._preparationWarnings.push({
+                        message: game.i18n.localize("SW5E.WarnMultipleArmor"), type: "warning"
+                    });
                     const armorData = armors[0].system.armor;
                     ac.dex = Math.min(armorData.dex ?? Infinity, this.system.abilities.dex.mod);
                     ac.base = (armorData.value ?? 0) + ac.tier + ac.dex;
@@ -998,7 +1025,7 @@ export default class Actor5e extends Actor {
                 } catch (err) {
                     this._preparationWarnings.push({
                         message: game.i18n.localize("SW5E.WarnBadACFormula"), link: "armor", type: "error"
-                      });
+                    });
                     const replaced = Roll.replaceFormulaData(CONFIG.SW5E.armorClasses.default.formula, rollData);
                     ac.base = Roll.safeEval(replaced);
                 }
@@ -1009,7 +1036,7 @@ export default class Actor5e extends Actor {
         if (shields.length) {
             if ( shields.length > 1 ) this._preparationWarnings.push({
                 message: game.i18n.localize("SW5E.WarnMultipleShields"), type: "warning"
-              });
+            });
             ac.shield = shields[0].system.armor.value ?? 0;
             ac.equippedShield = shields[0];
         }
@@ -2137,7 +2164,7 @@ export default class Actor5e extends Actor {
          * @function sw5e.rollHitDie
          * @memberof hookEvents
          * @param {Actor5e} actor         Actor for which the hit die has been rolled.
-         * @param {Roll} roll       The resulting roll.
+         * @param {Roll} roll             The resulting roll.
          * @param {object} updates
          * @param {object} updates.actor  Updates that will be applied to the actor.
          * @param {object} updates.class  Updates that will be applied to the class.
@@ -2912,10 +2939,10 @@ export default class Actor5e extends Actor {
             case "normal":
                 restFlavor = (longRest && newDay) ? "SW5E.LongRestOvernight" : `SW5E.${length}RestNormal`;
                 break;
-        case "gritty":
+            case "gritty":
                 restFlavor = (!longRest && newDay) ? "SW5E.ShortRestOvernight" : `SW5E.${length}RestGritty`;
                 break;
-        case "epic":
+            case "epic":
                 restFlavor = `SW5E.${length}RestEpic`;
                 break;
         }
@@ -3143,35 +3170,35 @@ export default class Actor5e extends Actor {
 
             // Items that roll to gain charges on a new day
             if ( recoverDailyUses && uses?.recovery && (uses?.per === "charges") ) {
-            const roll = new Roll(uses.recovery, this.getRollData());
-            if ( recoverLongRestUses && (game.settings.get("sw5e", "restVariant") === "gritty") ) {
-              roll.alter(7, 0, {multiplyNumeric: true});
-            }
+                const roll = new Roll(uses.recovery, this.getRollData());
+                if ( recoverLongRestUses && (game.settings.get("sw5e", "restVariant") === "gritty") ) {
+                    roll.alter(7, 0, {multiplyNumeric: true});
+                }
 
-            let total = 0;
-            try {
-              total = (await roll.evaluate({async: true})).total;
-            } catch (err) {
-              ui.notifications.warn(game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
-                name: item.name,
-                formula: uses.recovery
-              }));
-            }
+                let total = 0;
+                try {
+                    total = (await roll.evaluate({async: true})).total;
+                } catch (err) {
+                    ui.notifications.warn(game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
+                        name: item.name,
+                        formula: uses.recovery
+                    }));
+                }
 
-            const newValue = Math.clamped(uses.value + total, 0, uses.max);
-            if ( newValue !== uses.value ) {
-              const diff = newValue - uses.value;
-              const isMax = newValue === uses.max;
-              const locKey = `SW5E.Item${diff < 0 ? "Loss" : "Recovery"}Roll${isMax ? "Max" : ""}`;
-              updates.push({_id: item.id, "system.uses.value": newValue});
-              rolls.push(roll);
-              await roll.toMessage({
-                user: game.user.id,
-                speaker: {actor: this, alias: this.name},
-                flavor: game.i18n.format(locKey, {name: item.name, count: Math.abs(diff)})
-              });
+                const newValue = Math.clamped(uses.value + total, 0, uses.max);
+                if ( newValue !== uses.value ) {
+                    const diff = newValue - uses.value;
+                    const isMax = newValue === uses.max;
+                    const locKey = `SW5E.Item${diff < 0 ? "Loss" : "Recovery"}Roll${isMax ? "Max" : ""}`;
+                    updates.push({_id: item.id, "system.uses.value": newValue});
+                    rolls.push(roll);
+                    await roll.toMessage({
+                        user: game.user.id,
+                        speaker: {actor: this, alias: this.name},
+                        flavor: game.i18n.format(locKey, {name: item.name, count: Math.abs(diff)})
+                    });
+                }
             }
-          }
         }
         return updates;
     }

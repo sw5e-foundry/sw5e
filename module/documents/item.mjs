@@ -996,36 +996,36 @@ export default class Item5e extends Item {
     /* -------------------------------------------- */
 
     /**
-   * Replace referenced data attributes in the roll formula with values from the provided data.
-   * If the attribute is not found in the provided data, display a warning on the actor.
-   * @param {string} formula           The original formula within which to replace.
-   * @param {object} data              The data object which provides replacements.
-   * @param {object} options
-   * @param {string} options.property  Name of the property to which this formula belongs.
-   * @returns {string}                 Formula with replaced data.
-   */
-  replaceFormulaData(formula, data, { property }) {
-    const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
-    const missingReferences = new Set();
-    formula = formula.replace(dataRgx, (match, term) => {
-      let value = foundry.utils.getProperty(data, term);
-      if ( value == null ) {
-        missingReferences.add(match);
-        return "0";
-      }
-      return String(value).trim();
-    });
-    if ( (missingReferences.size > 0) && this.actor ) {
-      const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
-      const message = game.i18n.format("SW5E.FormulaMissingReferenceWarn", {
-        property, name: this.name, references: listFormatter.format(missingReferences)
-      });
-      this.actor._preparationWarnings.push({ message, link: this.uuid, type: "warning" });
+     * Replace referenced data attributes in the roll formula with values from the provided data.
+     * If the attribute is not found in the provided data, display a warning on the actor.
+     * @param {string} formula           The original formula within which to replace.
+     * @param {object} data              The data object which provides replacements.
+     * @param {object} options
+     * @param {string} options.property  Name of the property to which this formula belongs.
+     * @returns {string}                 Formula with replaced data.
+     */
+    replaceFormulaData(formula, data, { property }) {
+        const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
+        const missingReferences = new Set();
+        formula = formula.replace(dataRgx, (match, term) => {
+            let value = foundry.utils.getProperty(data, term);
+            if ( value == null ) {
+                missingReferences.add(match);
+                return "0";
+            }
+            return String(value).trim();
+        });
+        if ( (missingReferences.size > 0) && this.actor ) {
+            const listFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
+            const message = game.i18n.format("SW5E.FormulaMissingReferenceWarn", {
+                property, name: this.name, references: listFormatter.format(missingReferences)
+            });
+            this.actor._preparationWarnings.push({ message, link: this.uuid, type: "warning" });
+        }
+        return formula;
     }
-    return formula;
-  }
 
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
 
     /**
      * Configuration data for an item usage being prepared.

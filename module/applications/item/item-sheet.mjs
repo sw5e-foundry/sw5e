@@ -32,7 +32,7 @@ export default class ItemSheet5e extends ItemSheet {
             resizable: true,
             scrollY: [".tab.details"],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-            dragDrop: [{dragSelector: "[data-effect-id]", dropSelector: ".effects-list"}],
+            dragDrop: [{dragSelector: "[data-effect-id]", dropSelector: ".effects-list"}, {dragSelector: ".item-list .item", dropSelector: null}],
         });
     }
 
@@ -806,6 +806,8 @@ export default class ItemSheet5e extends ItemSheet {
         switch ( data.type ) {
             case "ActiveEffect":
                 return this._onDropActiveEffect(event, data);
+            case "Item":
+                return this._onDropItem(event, data);
         }
     }
 
@@ -826,6 +828,21 @@ export default class ItemSheet5e extends ItemSheet {
             ...effect.toObject(),
             origin: this.item.uuid,
         }, {parent: this.item});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handle dropping of an item reference or item data onto an Item Sheet
+     * @param {DragEvent} event     The concluding DragEvent which contains drop data
+     * @param {Object} data         The data transfer extracted from the event
+     * @return {Promise<Object>}    A data object which describes the result of the drop
+     * @private
+     */
+    async _onDropItem(event, data) {
+        const entity = await Item.fromDropData(data);
+        if (entity) this.item.addModification(entity.uuid);
+        return;
     }
 
     /* -------------------------------------------- */
@@ -1059,61 +1076,5 @@ export default class ItemSheet5e extends ItemSheet {
         await super._onSubmit(...args);
     }
 
-    // /* -------------------------------------------- */
-    // /*  Drag and Drop                               */
-    // /* -------------------------------------------- */
-
-    // /** @inheritdoc */
-    // _canDragDrop(selector) {
-    //     return this.isEditable;
-    // }
-
-    // /* -------------------------------------------- */
-
-    // /** @inheritdoc */
-    // async _onDrop(event) {
-    //     // Try to extract the data
-    //     let data;
-    //     try {
-    //         data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    //     } catch (err) {
-    //         return false;
-    //     }
-    //     const item = this.item;
-
-    //     /**
-    //      * A hook event that fires when some useful data is dropped onto an ItemSheet.
-    //      * @function dropItemSheetData
-    //      * @memberof hookEvents
-    //      * @param {Item} item        The Item
-    //      * @param {ItemSheet} sheet  The ItemSheet application
-    //      * @param {object} data      The data that has been dropped onto the sheet
-    //      * @param {event} event      The event that triggered the drop
-    //      */
-    //     const allowed = Hooks.call("dropItemSheetData", item, this, data, event);
-    //     if (allowed === false) return;
-
-    //     // Handle different data types
-    //     switch (data.type) {
-    //         case "Item":
-    //             return await this._onDropItem(event, data);
-    //     }
-    // }
-
-    // /* -------------------------------------------- */
-
-    // /**
-    //  * Handle dropping of an item reference or item data onto an Item Sheet
-    //  * @param {DragEvent} event     The concluding DragEvent which contains drop data
-    //  * @param {Object} data         The data transfer extracted from the event
-    //  * @return {Promise<Object>}    A data object which describes the result of the drop
-    //  * @private
-    //  */
-    // async _onDropItem(event, data) {
-    //     const entity = await Item.fromDropData(data);
-    //     if (entity) this.item.addModification(entity.uuid);
-    //     return;
-    // }
-
-    // /* -------------------------------------------- */
+    /* -------------------------------------------- */
 }

@@ -229,8 +229,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
             feats.push(archetype);
             const message = game.i18n.format("SW5E.ArchetypeMismatchWarn", {
                 name: archetype.name, class: archetype.system.classIdentifier
-              });
-              context.warnings.push({ message, type: "warning" });
+            });
+            context.warnings.push({ message, type: "warning" });
         }
 
         // Organize Features

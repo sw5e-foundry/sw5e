@@ -115,87 +115,87 @@ export default class AdvancementConfig extends FormApplication {
         }, {});
     }
 
-  /* -------------------------------------------- */
-  /*  Drag & Drop for Item Pools                  */
-  /* -------------------------------------------- */
+    /* -------------------------------------------- */
+    /*  Drag & Drop for Item Pools                  */
+    /* -------------------------------------------- */
 
-  /**
-   * Handle deleting an existing Item entry from the Advancement.
-   * @param {Event} event        The originating click event.
-   * @returns {Promise<Item5e>}  The updated parent Item after the application re-renders.
-   * @protected
-   */
-  async _onItemDelete(event) {
-    event.preventDefault();
-    const uuidToDelete = event.currentTarget.closest("[data-item-uuid]")?.dataset.itemUuid;
-    if ( !uuidToDelete ) return;
-    const items = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
-    const updates = { configuration: await this.prepareConfigurationUpdate({
-      [this.options.dropKeyPath]: items.filter(uuid => uuid !== uuidToDelete)
-    }) };
-    await this.advancement.update(updates);
-    this.render();
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  _canDragDrop() {
-    return this.isEditable;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _onDrop(event) {
-    if ( !this.options.dropKeyPath ) throw new Error(
-      "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support"
-      + " drag and drop on advancement config items."
-    );
-
-    // Try to extract the data
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    } catch(err) {
-      return false;
+    /**
+     * Handle deleting an existing Item entry from the Advancement.
+     * @param {Event} event        The originating click event.
+     * @returns {Promise<Item5e>}  The updated parent Item after the application re-renders.
+     * @protected
+     */
+    async _onItemDelete(event) {
+        event.preventDefault();
+        const uuidToDelete = event.currentTarget.closest("[data-item-uuid]")?.dataset.itemUuid;
+        if ( !uuidToDelete ) return;
+        const items = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
+        const updates = { configuration: await this.prepareConfigurationUpdate({
+            [this.options.dropKeyPath]: items.filter(uuid => uuid !== uuidToDelete)
+        }) };
+        await this.advancement.update(updates);
+        this.render();
     }
 
-    if ( data.type !== "Item" ) return false;
-    const item = await Item.implementation.fromDropData(data);
+    /* -------------------------------------------- */
 
-    try {
-      this._validateDroppedItem(event, item);
-    } catch(err) {
-      return ui.notifications.error(err.message);
+    /** @inheritdoc */
+    _canDragDrop() {
+        return this.isEditable;
     }
 
-    const existingItems = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
+    /* -------------------------------------------- */
 
-    // Abort if this uuid is the parent item
-    if ( item.uuid === this.item.uuid ) {
-      return ui.notifications.error(game.i18n.localize("SW5E.AdvancementItemGrantRecursiveWarning"));
+    /** @inheritdoc */
+    async _onDrop(event) {
+        if ( !this.options.dropKeyPath ) throw new Error(
+            "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support"
+            + " drag and drop on advancement config items."
+        );
+
+        // Try to extract the data
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch(err) {
+            return false;
+        }
+
+        if ( data.type !== "Item" ) return false;
+        const item = await Item.implementation.fromDropData(data);
+
+        try {
+            this._validateDroppedItem(event, item);
+        } catch(err) {
+            return ui.notifications.error(err.message);
+        }
+
+        const existingItems = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
+
+        // Abort if this uuid is the parent item
+        if ( item.uuid === this.item.uuid ) {
+            return ui.notifications.error(game.i18n.localize("SW5E.AdvancementItemGrantRecursiveWarning"));
+        }
+
+        // Abort if this uuid exists already
+        if ( existingItems.includes(item.uuid) ) {
+            return ui.notifications.warn(game.i18n.localize("SW5E.AdvancementItemGrantDuplicateWarning"));
+        }
+
+        await this.advancement.update({[`configuration.${this.options.dropKeyPath}`]: [...existingItems, item.uuid]});
+        this.render();
     }
 
-    // Abort if this uuid exists already
-    if ( existingItems.includes(item.uuid) ) {
-      return ui.notifications.warn(game.i18n.localize("SW5E.AdvancementItemGrantDuplicateWarning"));
-    }
+    /* -------------------------------------------- */
 
-    await this.advancement.update({[`configuration.${this.options.dropKeyPath}`]: [...existingItems, item.uuid]});
-    this.render();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Called when an item is dropped to validate the Item before it is saved. An error should be thrown
-   * if the item is invalid.
-   * @param {Event} event  Triggering drop event.
-   * @param {Item5e} item  The materialized Item that was dropped.
-   * @throws An error if the item is invalid.
-   * @protected
-   */
-  _validateDroppedItem(event, item) {}
+    /**
+     * Called when an item is dropped to validate the Item before it is saved. An error should be thrown
+     * if the item is invalid.
+     * @param {Event} event  Triggering drop event.
+     * @param {Item5e} item  The materialized Item that was dropped.
+     * @throws An error if the item is invalid.
+     * @protected
+     */
+    _validateDroppedItem(event, item) {}
 
 }

@@ -34,7 +34,24 @@ export class ItemGrantAdvancement extends Advancement {
      * The item types that are supported in Item Grant.
      * @type {Set<string>}
      */
-     static VALID_TYPES = new Set(["feat", "power", "consumable", "backpack", "equipment", "loot", "tool", "weapon"]);
+     static VALID_TYPES = new Set([
+        "backpack",
+        "classfeature",
+        "consumable",
+        "deploymentfeature",
+        "equipment",
+        "feat",
+        "fightingmastery",
+        "fightingstyle",
+        "lightsaberform",
+        "loot",
+        "maneuver",
+        "modification",
+        "power",
+        "tool",
+        "venture",
+        "weapon"
+     ]);
 
 
     /* -------------------------------------------- */
@@ -152,11 +169,11 @@ export class ItemGrantConfig extends AdvancementConfig {
 
     /* -------------------------------------------- */
 
-        /** @inheritdoc */
-        getData() {
-            const context = super.getData();
-            context.showPowerConfig = context.data.configuration.items.map(fromUuidSync).some(i => i.type === "power");
-            return context;
+    /** @inheritdoc */
+    getData() {
+        const context = super.getData();
+        context.showPowerConfig = context.data.configuration.items.map(fromUuidSync).some(i => i.type === "power");
+        return context;
     }
 
     /* -------------------------------------------- */

@@ -14,19 +14,16 @@
             </div>
 
             <ul class="summary flexrow">
-                <li style="flex-basis: 80px">{{lookup config.weaponTypes system.weaponType }}</li>
+                <li>
+                    {{lookup config.weaponTypes system.weaponType }}
+                </li>
                 <li>
                     <select name="system.rarity">
                         {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
                     </select>
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        name="system.source"
-                        value="{{system.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}" />
                 </li>
             </ul>
         </div>
@@ -45,7 +42,7 @@
         {{!-- Description Tab --}}
         {{> "sw5e.item-description"}}
 
-        {{!-- Details Tab--}}
+        {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponDetails" }}</h3>
 
@@ -92,17 +89,14 @@
                     <div class="form-fields">
                         {{#unless isStarshipWeapon}}
                             <label class="checkbox">
-                                <input type="checkbox" name="system.proficient" {{checked system.proficient}} /> {{ localize
-                                "SW5E.Proficient" }}
+                                <input type="checkbox" name="system.proficient" {{checked system.proficient}}/> {{ localize "SW5E.Proficient" }}
                             </label>
                         {{/unless}}
                         <label class="checkbox">
-                            <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize
-                            "SW5E.Equipped" }}
+                            <input type="checkbox" name="system.equipped" {{checked system.equipped}}/> {{ localize "SW5E.Equipped" }}
                         </label>
                         <label class="checkbox">
-                            <input type="checkbox" name="system.identified" {{checked system.identified}} /> {{ localize
-                            "SW5E.Identified" }}
+                            <input type="checkbox" name="system.identified" {{checked system.identified}}/> {{ localize "SW5E.Identified" }}
                         </label>
                     </div>
                 </div>

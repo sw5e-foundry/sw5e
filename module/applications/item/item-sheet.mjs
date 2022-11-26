@@ -32,7 +32,7 @@ export default class ItemSheet5e extends ItemSheet {
             resizable: true,
             scrollY: [".tab.details"],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-            dragDrop: [{dragSelector: "data-effect-id", dropSelector: ".effects-list"}],
+            dragDrop: [{dragSelector: "[data-effect-id]", dropSelector: ".effects-list"}],
         });
     }
 
@@ -698,7 +698,7 @@ export default class ItemSheet5e extends ItemSheet {
     /**
      * Get the set of ContextMenu options which should be applied for advancement entries.
      * @returns {ContextMenuEntry[]}  Context menu entries.
-     * @private
+     * @protected
      */
     _getAdvancementContextMenuOptions() {
         const condition = (li) => (this.advancementConfigurationMode || !this.isEmbedded) && this.isEditable;
@@ -716,7 +716,7 @@ export default class ItemSheet5e extends ItemSheet {
                     const id = li[0].closest(".advancement-item")?.dataset.id;
                     const advancement = this.item.advancement.byId[id];
                     return condition(li) && advancement?.constructor.availableForItem(this.item);
-                  },
+                },
                 callback: (li) => this._onAdvancementAction(li[0], "duplicate")
             },
             {
@@ -766,23 +766,23 @@ export default class ItemSheet5e extends ItemSheet {
 
     /** @inheritdoc */
     _onDragStart(event) {
-      const li = event.currentTarget;
-      if ( event.target.classList.contains("content-link") ) return;
+        const li = event.currentTarget;
+        if ( event.target.classList.contains("content-link") ) return;
 
-      // Create drag data
-      let dragData;
+        // Create drag data
+        let dragData;
 
-      // Active Effect
-      if ( li.dataset.effectId ) {
-        const effect = this.item.effects.get(li.dataset.effectId);
-        dragData = effect.toDragData();
-      }
+        // Active Effect
+        if ( li.dataset.effectId ) {
+            const effect = this.item.effects.get(li.dataset.effectId);
+            dragData = effect.toDragData();
+        }
 
-      if ( !dragData ) return;
+        if ( !dragData ) return;
 
-      // Set data transfer
-      event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
-  }
+        // Set data transfer
+        event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+    }
 
     /* -------------------------------------------- */
 
@@ -989,7 +989,7 @@ export default class ItemSheet5e extends ItemSheet {
                     }
                     break;
             }
-            if (!foundry.utils.isObjectEmpty(ammoUpdates)) await oldAmmo?.update(ammoUpdates);
+            if (!foundry.utils.isEmpty(ammoUpdates)) await oldAmmo?.update(ammoUpdates);
         }
         await wpn.update({"system.ammo.value": 0});
     }
@@ -1059,61 +1059,61 @@ export default class ItemSheet5e extends ItemSheet {
         await super._onSubmit(...args);
     }
 
-    /* -------------------------------------------- */
-    /*  Drag and Drop                               */
-    /* -------------------------------------------- */
+    // /* -------------------------------------------- */
+    // /*  Drag and Drop                               */
+    // /* -------------------------------------------- */
 
-    /** @inheritdoc */
-    _canDragDrop(selector) {
-        return this.isEditable;
-    }
+    // /** @inheritdoc */
+    // _canDragDrop(selector) {
+    //     return this.isEditable;
+    // }
 
-    /* -------------------------------------------- */
+    // /* -------------------------------------------- */
 
-    /** @inheritdoc */
-    async _onDrop(event) {
-        // Try to extract the data
-        let data;
-        try {
-            data = JSON.parse(event.dataTransfer.getData("text/plain"));
-        } catch (err) {
-            return false;
-        }
-        const item = this.item;
+    // /** @inheritdoc */
+    // async _onDrop(event) {
+    //     // Try to extract the data
+    //     let data;
+    //     try {
+    //         data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    //     } catch (err) {
+    //         return false;
+    //     }
+    //     const item = this.item;
 
-        /**
-         * A hook event that fires when some useful data is dropped onto an ItemSheet.
-         * @function dropItemSheetData
-         * @memberof hookEvents
-         * @param {Item} item        The Item
-         * @param {ItemSheet} sheet  The ItemSheet application
-         * @param {object} data      The data that has been dropped onto the sheet
-         * @param {event} event      The event that triggered the drop
-         */
-        const allowed = Hooks.call("dropItemSheetData", item, this, data, event);
-        if (allowed === false) return;
+    //     /**
+    //      * A hook event that fires when some useful data is dropped onto an ItemSheet.
+    //      * @function dropItemSheetData
+    //      * @memberof hookEvents
+    //      * @param {Item} item        The Item
+    //      * @param {ItemSheet} sheet  The ItemSheet application
+    //      * @param {object} data      The data that has been dropped onto the sheet
+    //      * @param {event} event      The event that triggered the drop
+    //      */
+    //     const allowed = Hooks.call("dropItemSheetData", item, this, data, event);
+    //     if (allowed === false) return;
 
-        // Handle different data types
-        switch (data.type) {
-            case "Item":
-                return await this._onDropItem(event, data);
-        }
-    }
+    //     // Handle different data types
+    //     switch (data.type) {
+    //         case "Item":
+    //             return await this._onDropItem(event, data);
+    //     }
+    // }
 
-    /* -------------------------------------------- */
+    // /* -------------------------------------------- */
 
-    /**
-     * Handle dropping of an item reference or item data onto an Item Sheet
-     * @param {DragEvent} event     The concluding DragEvent which contains drop data
-     * @param {Object} data         The data transfer extracted from the event
-     * @return {Promise<Object>}    A data object which describes the result of the drop
-     * @private
-     */
-    async _onDropItem(event, data) {
-        const entity = await Item.fromDropData(data);
-        if (entity) this.item.addModification(entity.uuid);
-        return;
-    }
+    // /**
+    //  * Handle dropping of an item reference or item data onto an Item Sheet
+    //  * @param {DragEvent} event     The concluding DragEvent which contains drop data
+    //  * @param {Object} data         The data transfer extracted from the event
+    //  * @return {Promise<Object>}    A data object which describes the result of the drop
+    //  * @private
+    //  */
+    // async _onDropItem(event, data) {
+    //     const entity = await Item.fromDropData(data);
+    //     if (entity) this.item.addModification(entity.uuid);
+    //     return;
+    // }
 
-    /* -------------------------------------------- */
+    // /* -------------------------------------------- */
 }

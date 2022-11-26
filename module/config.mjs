@@ -1987,14 +1987,12 @@ preLocalize("castingProperties", {keys: ["name", "full", "desc"]});
  * These properties are used for determining physical resistance bypasses.
  * @enum {string}
  */
- SW5E.physicalWeaponProperties = {
-    ada: "SW5E.WeaponPropertiesAda",
-    mgc: "SW5E.WeaponPropertiesMgc",
-    sil: "SW5E.WeaponPropertiesSil"
-  };
-  preLocalize("physicalWeaponProperties", { sort: true });
-  
-  /* -------------------------------------------- */
+SW5E.physicalWeaponProperties = {
+    mgc: "SW5E.WeaponPropertyEnh",
+};
+preLocalize("physicalWeaponProperties", { sort: true });
+
+/* -------------------------------------------- */
 
 /**
  * The set of weapon property flags which can exist on any weapon.

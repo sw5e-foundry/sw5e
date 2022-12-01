@@ -382,13 +382,13 @@ export default class Actor5e extends Actor {
 
                 // Honor: Charisma for NPC, 0 for vehicles
                 if (key === "hon") {
-                    if (["vehicle", "starship"].includes(actorData.type)) abilities[key].value = 0;
+                    if (["vehicle", "starship"].includes(this.system.type)) abilities[key].value = 0;
                     else if (this.type === "npc") abilities[key].value = this.system.abilities.cha?.value ?? 10;
                 }
 
                 // Sanity: Wisdom for NPC, 0 for vehicles
                 else if (key === "san") {
-                    if (["vehicle", "starship"].includes(actorData.type)) abilities[key].value = 0;
+                    if (["vehicle", "starship"].includes(this.system.type)) abilities[key].value = 0;
                     else if (this.type === "npc") abilities[key].value = this.system.abilities.wis?.value ?? 10;
                 }
 

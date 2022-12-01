@@ -471,35 +471,32 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     /* -------------------------------------------- */
 
     /** @override */
-    async _onDropSingleItemCreate(itemData) {
+    async _onDropSingleItem(itemData) {
         // Increment the number of tier of a starship instead of creating a new item
+        console.debug('_onDropSingleItem', itemData);
         if (itemData.type === "starship") {
-            const tier = this.actor.itemTypes.starship.find((t) => t.name === itemData.name);
-            if (tier) {
-                const shipTier = this.actor.system.details.tier;
-                itemData.system.tier = Math.min(itemData.system.tier, CONFIG.SW5E.maxTier - shipTier);
-                if (itemData.system.levels <= 0) {
-                    const err = game.i18n.format("SW5E.MaxTierExceededWarn", {max: CONFIG.SW5E.maxTier});
+            const currentType = this.actor.itemTypes.starship.find((t) => t.name === itemData.name);
+            if (currentType) {
+                const currentTier = currentType.system.tier;
+                itemData.system.tier = Math.min(itemData.system.tier || 1, CONFIG.SW5E.maxTier - currentTier);
+                if (itemData.system.tier <= 0) {
+                    const err = game.i18n.format("SW5E.MaxTierLevelExceededWarn", {max: CONFIG.SW5E.maxTier});
                     ui.notifications.error(err);
                     return false;
                 }
-                const priorTier = tier.system.tier;
                 if (!game.settings.get("sw5e", "disableAdvancements")) {
-                    const manager = AdvancementManager.forLevelChange(this.actor, tier.id, itemData.system.tier);
+                    const manager = AdvancementManager.forLevelChange(this.actor, currentType.id, itemData.system.tier);
                     if (manager.steps.length) {
                         manager.render(true);
                         return false;
                     }
                 }
-                tier.update({"system.tier": priorTier + itemData.system.tier});
+                currentType.update({"system.tier": currentTier + itemData.system.tier});
                 return false;
             } else {
                 // Only allow 1 starship type per starship
-                const toDelete = [];
-                for (const item of this.actor.items) {
-                    if (item.type === "starship") toDelete.push(item.id);
-                }
-                this.actor.deleteEmbeddedDocuments("Item", toDelete);
+                const toDelete = this.actor.itemTypes.starship.map(item => item.id);
+                await this.actor.deleteEmbeddedDocuments("Item", toDelete);
             }
         }
 
@@ -546,6 +543,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         // event.preventDefault();
         this.actor.update({"system.attributes.fuel.value": this.actor.system.attributes.fuel.value - 1});
     }
+
+    /* -------------------------------------------- */
+
     _powerRoutingSliderUpdate(input) {
         let symbol1 = "=";
         let symbol2 = "=";

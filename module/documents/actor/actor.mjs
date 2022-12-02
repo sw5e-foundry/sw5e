@@ -382,13 +382,13 @@ export default class Actor5e extends Actor {
 
                 // Honor: Charisma for NPC, 0 for vehicles
                 if (key === "hon") {
-                    if (["vehicle", "starship"].includes(actorData.type)) abilities[key].value = 0;
+                    if (["vehicle", "starship"].includes(this.system.type)) abilities[key].value = 0;
                     else if (this.type === "npc") abilities[key].value = this.system.abilities.cha?.value ?? 10;
                 }
 
                 // Sanity: Wisdom for NPC, 0 for vehicles
                 else if (key === "san") {
-                    if (["vehicle", "starship"].includes(actorData.type)) abilities[key].value = 0;
+                    if (["vehicle", "starship"].includes(this.system.type)) abilities[key].value = 0;
                     else if (this.type === "npc") abilities[key].value = this.system.abilities.wis?.value ?? 10;
                 }
 
@@ -3114,7 +3114,7 @@ export default class Actor5e extends Actor {
      * @returns {object}                     Array of item updates and number of hit dice recovered.
      * @protected
      */
-     _getRestHitDiceRecovery({maxHitDice}={}) {
+    _getRestHitDiceRecovery({maxHitDice}={}) {
         // Determine the number of hit dice which may be recovered
         if (maxHitDice === undefined) maxHitDice = Math.max(Math.round(this.system.details.level / 2), 1);
 
@@ -3151,8 +3151,7 @@ export default class Actor5e extends Actor {
      * @returns {Promise<object[]>}                          Array of item updates.
      * @protected
      */
-     async _getRestItemUsesRecovery({recoverShortRestUses=true, recoverLongRestUses=true,
-        recoverDailyUses=true, rolls}={}) {
+    async _getRestItemUsesRecovery({recoverShortRestUses=true, recoverLongRestUses=true, recoverDailyUses=true, rolls}={}) {
         let recovery = [];
         if (recoverShortRestUses) recovery.push("sr");
         if (recoverLongRestUses) recovery.push("lr");
@@ -3537,6 +3536,8 @@ export default class Actor5e extends Actor {
         return ChatMessage.create(chatData);
     }
 
+    /* -------------------------------------------- */
+
     /**
      * Display a chat message with the result of a regen.
      *
@@ -3694,6 +3695,8 @@ export default class Actor5e extends Actor {
 
         return {updates, hullDiceRecovered};
     }
+
+    /* -------------------------------------------- */
 
     /**
      * Recovers shields during a repair.

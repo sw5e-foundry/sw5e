@@ -1780,7 +1780,8 @@ input[type="reset"]:disabled {
   display: grid;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.biography > .panel {
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   overflow-y: auto;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.biography section {

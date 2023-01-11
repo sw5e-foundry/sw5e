@@ -126,10 +126,11 @@ export default class ItemSheet5e extends ItemSheet {
             isLine: ["line", "wall"].includes(item.system.target?.type),
             critical: item.system.critical,
 
-            // Vehicles
             wpnType: wpnType = item.system?.weaponType ?? "",
             armorType: armorType = item.system?.armor?.type ?? "",
             ammoType: ammoType = item.system?.consumableType === "ammo" ? item.system?.ammoType ?? "" : "",
+
+            // Vehicles
             isStarshipWeapon: isStarshipWeapon = (wpnType in CONFIG.SW5E.weaponStarshipTypes),
             isStarshipAmmo: isStarshipAmmo = (ammoType in CONFIG.SW5E.ammoStarshipTypes),
             isStarshipArmor: isStarshipArmor = (armorType === "starship"),
@@ -153,6 +154,10 @@ export default class ItemSheet5e extends ItemSheet {
 
             // Advancement
             advancement: this._getItemAdvancement(item),
+
+            // Powercasting
+            forcecaster: item.system.powercasting.force !== "none",
+            techcaster: item.system.powercasting.tech !== "none",
 
             // Prepare Active Effects
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)

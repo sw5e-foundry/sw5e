@@ -459,7 +459,8 @@ export default class Actor5e extends Actor {
                 maxPowerLevel: 0,
                 maxClassProg: null,
                 maxClassLevel: 0,
-                classes: 0
+                classes: 0,
+                attributeOverride: null
             };
             return obj;
         }, {});
@@ -478,6 +479,16 @@ export default class Actor5e extends Actor {
 
                 if (!(prog in CONFIG.SW5E.powerProgression) || prog === "none") continue;
                 if (prog === "half" && castType === "tech" && levels < 2) continue; // Tech half-casters only get techcasting at lvl 2
+
+                for (let d of [ad, cd]) {
+                    let override = d?.powercasting?.[`${castType}Override`];
+                    if (override in CONFIG.SW5E.abilities) {
+                        if (progression.override) this._preparationWarnings.push({
+                            message: game.i18n.localize("SW5E.WarnMultiplePowercastingOverride"), type: "warning"
+                        });
+                        progression.override = override;
+                    }
+                }
 
                 const known = CONFIG.SW5E.powersKnown[castType][prog][levels];
                 const points = levels * CONFIG.SW5E.powerPointsBase[prog];
@@ -554,6 +565,7 @@ export default class Actor5e extends Actor {
             this.system.attributes[progression.castType].known.max = progression.powersKnownMax;
             this.system.attributes[progression.castType].points.max = progression.points;
             this.system.attributes[progression.castType].level = progression.casterLevel;
+            this.system.attributes[progression.castType].override = progression.override;
         }
     }
 
@@ -1169,11 +1181,13 @@ export default class Actor5e extends Actor {
 
         // Powercasting DC for Actors and NPCs
         this.system.attributes.powerForceLightDC =
-            8 + this.system.abilities.wis.mod + this.system.attributes.prof ?? 10;
-        this.system.attributes.powerForceDarkDC = 8 + this.system.abilities.cha.mod + this.system.attributes.prof ?? 10;
+            8 + this.system.abilities[this.system.attributes.force.override ?? 'wis'].mod + this.system.attributes.prof ?? 10;
+        this.system.attributes.powerForceDarkDC =
+            8 + this.system.abilities[this.system.attributes.force.override ?? 'cha'].mod + this.system.attributes.prof ?? 10;
         this.system.attributes.powerForceUnivDC =
             Math.max(this.system.attributes.powerForceLightDC, this.system.attributes.powerForceDarkDC) ?? 10;
-        this.system.attributes.powerTechDC = 8 + this.system.abilities.int.mod + this.system.attributes.prof ?? 10;
+        this.system.attributes.powerTechDC =
+            8 + this.system.abilities[this.system.attributes.tech.override ?? 'int'].mod + this.system.attributes.prof ?? 10;
 
         if (game.settings.get("sw5e", "simplifiedForcecasting")) {
             this.system.attributes.powerForceLightDC = this.system.attributes.powerForceUnivDC;
@@ -1190,9 +1204,10 @@ export default class Actor5e extends Actor {
         // Set Force and tech bonus points for PC Actors
         for (const castType of ["force", "tech"]) {
             if (this.system.attributes[castType].level === 0) continue;
-            const mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, attr) => {
+            let mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, attr) => {
                 return Math.max(best, this.system.abilities?.[attr]?.mod ?? Number.NEGATIVE_INFINITY);
             }, Number.NEGATIVE_INFINITY);
+            if (this.system.attributes[castType].override) mod = this.system.abilities[this.system.attributes[castType].override].mod;
             if (mod !== Number.NEGATIVE_INFINITY) this.system.attributes[castType].points.max += mod;
         }
     }

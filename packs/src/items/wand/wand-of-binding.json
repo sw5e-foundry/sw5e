@@ -9,10 +9,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 209",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 1,
-    "price": 10000,
+    "price": {
+      "value": 10000,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "rare",
@@ -23,9 +26,10 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -39,11 +43,10 @@
     },
     "uses": {
       "value": 7,
-      "max": 7,
+      "max": "7",
       "per": "charges",
-      "autoDestroy": false,
-      "autoUse": true,
-      "recovery": "1d6 + 1"
+      "recovery": "1d6 + 1",
+      "autoDestroy": false
     },
     "consume": {
       "type": "",
@@ -52,7 +55,7 @@
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -68,24 +71,21 @@
       "dc": 17,
       "scaling": "flat"
     },
-    "consumableType": "wand",
-    "attributes": {
-      "powerdc": 10
-    }
+    "consumableType": "wand"
   },
   "effects": [],
   "folder": null,
-  "sort": 400000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.2",
-    "coreVersion": "10.286",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233484,
-    "modifiedTime": 1663775408532,
+    "modifiedTime": 1671220957573,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

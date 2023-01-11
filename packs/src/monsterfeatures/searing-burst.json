@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "",
+    "source": "SRD 5.1",
     "activation": {
       "type": "legendary",
       "cost": 2,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": 10,
       "width": null,
@@ -33,18 +34,19 @@
       "units": ""
     },
     "uses": {
-      "value": 0,
-      "max": 0,
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "attribute",
-      "target": "resources.legact.value",
+      "target": null,
       "amount": 2
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -69,6 +71,10 @@
       "dc": 23,
       "scaling": "flat"
     },
+    "type": {
+      "value": "monster",
+      "subtype": ""
+    },
     "requirements": "",
     "recharge": {
       "value": null,
@@ -82,10 +88,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234504,
-    "modifiedTime": 1661787234504,
+    "modifiedTime": 1672335991907,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

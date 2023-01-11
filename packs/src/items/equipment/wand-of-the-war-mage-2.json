@@ -9,23 +9,27 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 212",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 1,
-    "price": 4800,
+    "price": {
+      "value": 4800,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "uncommon",
     "identified": true,
     "activation": {
       "type": "",
-      "cost": 0,
+      "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -41,8 +45,7 @@
       "value": null,
       "max": "",
       "per": null,
-      "autoUse": false,
-      "autoDestroy": false
+      "recovery": ""
     },
     "consume": {
       "type": "",
@@ -51,7 +54,7 @@
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -83,26 +86,23 @@
       "value": null,
       "conditions": ""
     },
-    "strength": 0,
+    "strength": null,
     "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "powerdc": 10
-    }
+    "proficient": false
   },
   "effects": [],
   "folder": "oENpm3Crialw50Y1",
-  "sort": 100001,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233834,
-    "modifiedTime": 1661787233834,
+    "modifiedTime": 1671220963233,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

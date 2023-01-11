@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 79",
+    "source": "SRD 5.1",
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": "Also requires 4 ki points (or 8 for Astral Projection)."
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -33,19 +34,19 @@
       "units": "self"
     },
     "uses": {
-      "value": 0,
-      "max": "0",
-      "per": "",
-      "type": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -60,6 +61,10 @@
       "ability": "",
       "dc": null,
       "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "ki"
     },
     "requirements": "Monk 18",
     "recharge": {
@@ -161,17 +166,18 @@
       "label": "Ki: Empty Body",
       "origin": "Item.xqRleciuHDZlYCl6",
       "tint": null,
-      "transfer": true
+      "transfer": true,
+      "sort": 0
     }
   ],
   "folder": null,
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234326,
-    "modifiedTime": 1661787234326,
+    "modifiedTime": 1672334894583,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

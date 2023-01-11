@@ -2,7 +2,7 @@
   "_id": "llSG0Hi4eGlRlQ4o",
   "name": "Phase Spider",
   "type": "npc",
-  "img": "systems/sw5e/tokens/monstrosity/PhaseSpider.webp",
+  "img": "",
   "system": {
     "abilities": {
       "str": {
@@ -11,14 +11,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "dex": {
         "value": 15,
@@ -26,14 +19,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 12,
@@ -41,14 +27,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "int": {
         "value": 6,
@@ -56,14 +35,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "wis": {
         "value": 10,
@@ -71,14 +43,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 6,
@@ -86,22 +51,14 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       }
     },
     "attributes": {
       "ac": {
         "flat": 13,
         "calc": "natural",
-        "formula": "",
-        "min": 12
+        "formula": ""
       },
       "hp": {
         "value": 32,
@@ -112,11 +69,8 @@
         "formula": "5d10 + 5"
       },
       "init": {
-        "value": 0,
-        "bonus": 0,
-        "mod": 2,
-        "total": 2,
-        "prof": 0
+        "ability": "",
+        "bonus": "0"
       },
       "movement": {
         "burrow": 0,
@@ -138,24 +92,15 @@
         "units": "ft",
         "special": ""
       },
-      "powercasting": "",
-      "prof": 2,
-      "powerdc": 10,
-      "powerLevel": 0,
-      "encumbrance": {
-        "value": 0,
-        "max": 450,
-        "pct": 0,
-        "encumbered": false
-      }
+      "powercasting": ""
     },
     "details": {
       "biography": {
-        "value": "<p>A phase spider possesses the magical ability to phase in and out of the Ethereal Plane. It seems to appear out of nowhere and quickly vanishes after attacking. Its movement on the Ethereal Plane before coming back to the Material Plane makes it seem like it can teleport.</p>\n<p></p><p><em>Token artwork by Forgotten Adventures.</em></p>",
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
-      "species": null,
+      "species": "",
       "type": {
         "value": "monstrosity",
         "subtype": "",
@@ -165,24 +110,23 @@
       "environment": "Underdark",
       "cr": 3,
       "powerLevel": 0,
-      "xp": {
-        "value": 700
-      },
-      "source": "MM pg. 334",
-      "class": {}
+      "source": "SRD 5.1"
     },
     "traits": {
       "size": "lg",
       "di": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dv": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "ci": {
@@ -208,12 +152,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ani": {
         "value": 0,
@@ -221,12 +160,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "arc": {
         "value": 0,
@@ -234,12 +168,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ath": {
         "value": 0,
@@ -247,12 +176,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "dec": {
         "value": 0,
@@ -260,12 +184,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "his": {
         "value": 0,
@@ -273,12 +192,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ins": {
         "value": 0,
@@ -286,12 +200,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -299,12 +208,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "inv": {
         "value": 0,
@@ -312,12 +216,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "med": {
         "value": 0,
@@ -325,12 +224,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -338,12 +232,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "prc": {
         "value": 0,
@@ -351,12 +240,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "prf": {
         "value": 0,
@@ -364,12 +248,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "per": {
         "value": 0,
@@ -377,12 +256,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "rel": {
         "value": 0,
@@ -390,12 +264,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "slt": {
         "value": 0,
@@ -403,12 +272,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ste": {
         "value": 2,
@@ -416,12 +280,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 16,
-        "prof": 4,
-        "total": 6
+        }
       },
       "sur": {
         "value": 0,
@@ -429,69 +288,53 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       }
     },
     "powers": {
       "power1": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power2": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power3": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power4": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power5": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power6": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power7": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power8": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power9": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "pact": {
         "value": 0,
-        "override": null,
-        "max": 0,
-        "level": 0
+        "override": null
       },
       "power0": {
         "value": 0,
-        "max": 0
+        "override": null
       }
     },
     "bonuses": {
@@ -531,7 +374,7 @@
       },
       "lair": {
         "value": false,
-        "initiative": 0
+        "initiative": null
       }
     }
   },
@@ -578,7 +421,7 @@
       "color": null
     },
     "texture": {
-      "src": "systems/sw5e/tokens/monstrosity/PhaseSpider.webp",
+      "src": "",
       "tint": null,
       "scaleX": 1,
       "scaleY": 1,
@@ -611,16 +454,17 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "activation": {
           "type": "bonus",
           "cost": 1,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -633,18 +477,19 @@
           "units": ""
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -660,6 +505,10 @@
           "dc": null,
           "scaling": "power"
         },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
         "requirements": "",
         "recharge": {
           "value": null,
@@ -668,11 +517,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 500001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.monsterfeatures.3iLXiqhhOgXOMMg7"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -693,16 +546,17 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -715,9 +569,10 @@
           "units": ""
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
@@ -726,7 +581,7 @@
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -742,6 +597,10 @@
           "dc": null,
           "scaling": "power"
         },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
         "requirements": "",
         "recharge": {
           "value": null,
@@ -750,11 +609,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 600001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.monsterfeatures.FXHEc39G2d19opuE"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -775,16 +638,17 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "activation": {
           "type": "",
           "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -797,9 +661,10 @@
           "units": ""
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": null
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
@@ -808,7 +673,7 @@
         },
         "ability": null,
         "actionType": "",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -824,6 +689,10 @@
           "dc": null,
           "scaling": "power"
         },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
         "requirements": "",
         "recharge": {
           "value": null,
@@ -832,11 +701,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 700001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.monsterfeatures.zITrVwmnPpLoBZI1"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -857,10 +730,13 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "quantity": 1,
         "weight": 0,
-        "price": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": true,
         "rarity": "",
@@ -871,9 +747,10 @@
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -886,18 +763,19 @@
           "units": "ft"
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -949,11 +827,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 800001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.monsterfeatures.WdpSeGqhZpptz37y"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -973,10 +855,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233138,
-    "modifiedTime": 1661878734586,
+    "modifiedTime": 1672596105457,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

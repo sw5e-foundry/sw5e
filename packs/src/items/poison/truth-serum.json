@@ -8,10 +8,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 258",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 0,
-    "price": 150,
+    "price": {
+      "value": 150,
+      "denomination": "gp"
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "",
@@ -22,9 +25,10 @@
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "hour"
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -40,17 +44,17 @@
       "value": 1,
       "max": "1",
       "per": "charges",
-      "autoDestroy": true,
-      "autoUse": true
+      "recovery": "",
+      "autoDestroy": true
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": null,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -66,17 +70,7 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "poison",
-    "hp": {
-      "value": 0,
-      "max": 0,
-      "dt": null,
-      "conditions": ""
-    },
-    "speed": {
-      "value": null,
-      "conditions": ""
-    }
+    "consumableType": "poison"
   },
   "effects": [],
   "sort": 0,
@@ -88,10 +82,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233720,
-    "modifiedTime": 1661787233720,
+    "modifiedTime": 1671220961776,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -9,10 +9,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG. pg 225",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 5,
-    "price": 500000,
+    "price": {
+      "value": 500000,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "artifact",
@@ -23,11 +26,12 @@
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
-      "value": 0,
+      "value": null,
       "width": null,
       "units": "",
       "type": ""
@@ -39,7 +43,7 @@
     },
     "uses": {
       "value": 7,
-      "max": 7,
+      "max": "7",
       "per": "day",
       "recovery": "1d4 + 3"
     },
@@ -50,7 +54,7 @@
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -82,26 +86,23 @@
       "value": null,
       "conditions": ""
     },
-    "strength": 0,
+    "strength": null,
     "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "powerdc": 10
-    }
+    "proficient": false
   },
   "effects": [],
   "folder": null,
-  "sort": 1700000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.2",
-    "coreVersion": "10.286",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233441,
-    "modifiedTime": 1663775408466,
+    "modifiedTime": 1671220957064,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

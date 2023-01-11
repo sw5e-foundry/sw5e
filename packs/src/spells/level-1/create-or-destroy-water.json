@@ -7,20 +7,21 @@
   "type": "power",
   "system": {
     "description": {
-      "value": "<p>You either create or destroy water.</p><p><strong>Create Water.</strong> You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range.</p><p><strong>Destroy Water.</strong> You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range.</p><p><strong>Higher Levels.&nbsp;</strong>When you cast this power using a power slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.</p>",
+      "value": "<p>You either create or destroy water.</p><p><strong>Create Water.</strong> You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range.</p><p><strong>Destroy Water.</strong> You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range.</p><p><strong>Higher Levels. </strong>When you cast this power using a power slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 229",
+    "source": "SRD 5.1",
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
+    "cover": null,
     "target": {
       "value": 30,
       "width": null,
@@ -29,13 +30,14 @@
     },
     "range": {
       "value": 30,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
-      "value": 0,
-      "max": 0,
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
@@ -44,7 +46,7 @@
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -52,20 +54,17 @@
     },
     "damage": {
       "parts": [],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power",
-      "value": ""
+      "scaling": "power"
     },
     "level": 1,
     "school": "trs",
     "components": {
-      "value": "",
       "vocal": true,
       "somatic": true,
       "material": true,
@@ -87,17 +86,17 @@
       "formula": ""
     }
   },
-  "sort": 100001,
+  "sort": 0,
   "flags": {},
   "img": "icons/magic/air/wind-swirl-purple-blue.webp",
   "effects": [],
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234167,
-    "modifiedTime": 1661787234167,
+    "modifiedTime": 1671220970298,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

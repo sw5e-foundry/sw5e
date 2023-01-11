@@ -8,10 +8,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 157",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 10,
-    "price": 12000,
+    "price": {
+      "value": 12000,
+      "denomination": "gp"
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "veryRare",
@@ -22,11 +25,12 @@
       "condition": "Command word."
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
-      "value": 0,
+      "value": null,
       "width": null,
       "units": "",
       "type": ""
@@ -39,18 +43,18 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "autoDestroy": false,
-      "autoUse": false
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -66,20 +70,22 @@
       "dc": null,
       "scaling": "power"
     },
-    "consumableType": "trinket",
-    "attributes": {
-      "powerdc": 10
-    }
+    "consumableType": "trinket"
   },
   "effects": [],
   "flags": {},
   "_id": "XAr1SR4POx5BAArk",
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.1",
-    "coreVersion": "10.284",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233672,
-    "modifiedTime": 1662759453339,
+    "modifiedTime": 1671220961531,
     "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
   }
 }

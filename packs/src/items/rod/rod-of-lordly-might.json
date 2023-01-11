@@ -9,10 +9,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 195",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 5,
-    "price": 28000,
+    "price": {
+      "value": 28000,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "legendary",
@@ -23,26 +26,27 @@
       "condition": "Button presses are a bonus action."
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
-      "value": 0,
+      "value": null,
       "width": null,
       "units": "",
       "type": ""
     },
     "range": {
       "value": 5,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
-      "autoDestroy": false,
-      "autoUse": false
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
     },
     "consume": {
       "type": "",
@@ -51,7 +55,7 @@
     },
     "ability": "str",
     "actionType": "mwak",
-    "attackBonus": 3,
+    "attackBonus": "3",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -72,24 +76,21 @@
       "dc": null,
       "scaling": "flat"
     },
-    "consumableType": "rod",
-    "attributes": {
-      "powerdc": 10
-    }
+    "consumableType": "rod"
   },
   "effects": [],
   "folder": null,
-  "sort": 900000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233740,
-    "modifiedTime": 1661787233740,
+    "modifiedTime": 1671220962010,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

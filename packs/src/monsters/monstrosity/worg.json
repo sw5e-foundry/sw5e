@@ -2,7 +2,7 @@
   "_id": "VBkp2rGQKvMcCOus",
   "name": "Worg",
   "type": "npc",
-  "img": "systems/sw5e/tokens/monstrosity/Worg.webp",
+  "img": "",
   "system": {
     "abilities": {
       "str": {
@@ -11,14 +11,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 3,
-        "save": 3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 13
+        }
       },
       "dex": {
         "value": 13,
@@ -26,14 +19,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "con": {
         "value": 13,
@@ -41,14 +27,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "int": {
         "value": 7,
@@ -56,14 +35,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "wis": {
         "value": 11,
@@ -71,14 +43,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "cha": {
         "value": 8,
@@ -86,22 +51,14 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       }
     },
     "attributes": {
       "ac": {
         "flat": 13,
         "calc": "natural",
-        "formula": "",
-        "min": 11
+        "formula": ""
       },
       "hp": {
         "value": 26,
@@ -112,11 +69,8 @@
         "formula": "4d10 + 4"
       },
       "init": {
-        "value": 0,
-        "bonus": 0,
-        "mod": 1,
-        "total": 1,
-        "prof": 0
+        "ability": "",
+        "bonus": "0"
       },
       "movement": {
         "burrow": 0,
@@ -138,27 +92,15 @@
         "units": "ft",
         "special": ""
       },
-      "powercasting": "",
-      "prof": 2,
-      "powerdc": 10,
-      "powerLevel": 0,
-      "encumbrance": {
-        "value": 0,
-        "max": 480,
-        "pct": 0,
-        "encumbered": false
-      },
-      "speed": {
-        "_deprecated": true
-      }
+      "powercasting": ""
     },
     "details": {
       "biography": {
-        "value": "<p>A worg is an evil predator that delights in hunting and devouring creatures weaker than itself. Cunning and malevolent, worgs roam across the remote wilderness or are raised by goblins and hobgoblins. Those creatures use worgs as mounts, but a worg will turn on its rider if it feels mistreated or malnourished. Worgs speak in their own language and Goblin, and a few learn to speak Common as well.</p>\n<p><em>Token artwork by Forgotten Adventures.</em></p>",
+        "value": "",
         "public": ""
       },
       "alignment": "Neutral Evil",
-      "species": null,
+      "species": "",
       "type": {
         "value": "monstrosity",
         "subtype": "",
@@ -168,24 +110,23 @@
       "environment": "Grassland",
       "cr": 0.5,
       "powerLevel": 0,
-      "xp": {
-        "value": 100
-      },
-      "source": "MM pg. 341",
-      "class": {}
+      "source": "SRD 5.1"
     },
     "traits": {
       "size": "lg",
       "di": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dv": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "ci": {
@@ -214,12 +155,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "ani": {
         "value": 0,
@@ -227,12 +163,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "arc": {
         "value": 0,
@@ -240,12 +171,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ath": {
         "value": 0,
@@ -253,12 +179,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 3,
-        "bonus": 0,
-        "passive": 13,
-        "prof": 0,
-        "total": 3
+        }
       },
       "dec": {
         "value": 0,
@@ -266,12 +187,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "his": {
         "value": 0,
@@ -279,12 +195,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ins": {
         "value": 0,
@@ -292,12 +203,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "itm": {
         "value": 0,
@@ -305,12 +211,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "inv": {
         "value": 0,
@@ -318,12 +219,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "med": {
         "value": 0,
@@ -331,12 +227,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "nat": {
         "value": 0,
@@ -344,12 +235,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "prc": {
         "value": 2,
@@ -357,12 +243,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 14,
-        "prof": 4,
-        "total": 4
+        }
       },
       "prf": {
         "value": 0,
@@ -370,12 +251,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "per": {
         "value": 0,
@@ -383,12 +259,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "rel": {
         "value": 0,
@@ -396,12 +267,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "slt": {
         "value": 0,
@@ -409,12 +275,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "ste": {
         "value": 0,
@@ -422,12 +283,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "sur": {
         "value": 0,
@@ -435,69 +291,53 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       }
     },
     "powers": {
       "power1": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power2": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power3": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power4": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power5": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power6": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power7": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power8": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power9": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "pact": {
         "value": 0,
-        "override": null,
-        "max": 0,
-        "level": 0
+        "override": null
       },
       "power0": {
         "value": 0,
-        "max": 0
+        "override": null
       }
     },
     "bonuses": {
@@ -528,16 +368,16 @@
     },
     "resources": {
       "legact": {
-        "value": null,
+        "value": 0,
         "max": 0
       },
       "legres": {
-        "value": null,
+        "value": 0,
         "max": 0
       },
       "lair": {
         "value": false,
-        "initiative": 0
+        "initiative": null
       }
     }
   },
@@ -584,10 +424,10 @@
       "attenuation": 0.5
     },
     "texture": {
-      "src": "systems/sw5e/tokens/monstrosity/Worg.webp",
+      "src": "",
       "tint": null,
-      "scaleX": 1.5,
-      "scaleY": 1.5,
+      "scaleX": 1,
+      "scaleY": 1,
       "offsetX": 0,
       "offsetY": 0,
       "rotation": 0
@@ -617,16 +457,17 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "activation": {
           "type": "",
-          "cost": 0,
+          "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -639,19 +480,19 @@
           "units": ""
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": "",
-          "type": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "",
         "actionType": "",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -659,26 +500,27 @@
         },
         "damage": {
           "parts": [],
-          "versatile": "",
-          "value": ""
+          "versatile": ""
         },
         "formula": "",
         "save": {
           "ability": "",
           "dc": null,
-          "scaling": "power",
-          "value": ""
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
         },
         "requirements": "",
         "recharge": {
           "value": null,
           "charged": false
-        },
-        "attunement": 0
+        }
       },
       "effects": [],
       "folder": null,
-      "sort": 100000,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
@@ -703,10 +545,13 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "quantity": 1,
         "weight": 0,
-        "price": null,
+        "price": {
+          "value": 0,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": true,
         "rarity": "common",
@@ -717,9 +562,10 @@
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -732,18 +578,19 @@
           "units": "ft"
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "str",
         "actionType": "mwak",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -795,11 +642,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 200000,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.monsterfeatures.WdpSeGqhZpptz37y"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -819,10 +670,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787232858,
-    "modifiedTime": 1661878732384,
+    "modifiedTime": 1672596100623,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

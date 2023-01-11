@@ -2,7 +2,7 @@
   "_id": "hIf83RD3ZVW4Egfi",
   "name": "Cat",
   "type": "npc",
-  "img": "systems/sw5e/tokens/beast/CatOrange.webp",
+  "img": "",
   "system": {
     "abilities": {
       "str": {
@@ -11,14 +11,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -4,
-        "save": -4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 6
+        }
       },
       "dex": {
         "value": 15,
@@ -26,14 +19,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 10,
@@ -41,14 +27,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "int": {
         "value": 3,
@@ -56,14 +35,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -4,
-        "save": -4,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 6
+        }
       },
       "wis": {
         "value": 12,
@@ -71,14 +43,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 1,
-        "save": 1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 11
+        }
       },
       "cha": {
         "value": 7,
@@ -86,22 +51,14 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       }
     },
     "attributes": {
       "ac": {
         "flat": 12,
         "calc": "natural",
-        "formula": "",
-        "min": 12
+        "formula": ""
       },
       "hp": {
         "value": 2,
@@ -112,11 +69,8 @@
         "formula": "1d4"
       },
       "init": {
-        "value": 0,
-        "bonus": 0,
-        "mod": 2,
-        "total": 2,
-        "prof": 0
+        "ability": "",
+        "bonus": "0"
       },
       "movement": {
         "burrow": 0,
@@ -138,24 +92,15 @@
         "units": "ft",
         "special": ""
       },
-      "powercasting": "",
-      "prof": 2,
-      "powerdc": 10,
-      "powerLevel": 0,
-      "encumbrance": {
-        "value": 0,
-        "max": 22.5,
-        "pct": 0,
-        "encumbered": false
-      }
+      "powercasting": ""
     },
     "details": {
       "biography": {
-        "value": "<p>Who amongst our population could deny their lives have not been positively affected by the domesticated house cat. The cat proves time and time again to be a prized companion whether they are keeping your property free of unwanted pests or cuddling up upon their master's lap for a cozy night within the study. Found in a number of varieties from the pure black short-haired cats associated with ill omens to the fluffy coated and absurdly flat-faced cats of the frozen north, there appears to be limitless breeds to select from. (Author's Note: I have recently heard rumor of a cat which produces no hair, requiring its master to simply stroke its flesh without pleasant barriers. More evidence forthcoming of this unfounded discovery). However, our feline compatriots have much more to offer when looked at under the shrewd eye of the adventurer!</p>\n<p><strong>Purrfect Pals.</strong> Be it at the side of the elder potion-maker tucked safely away in their shop or out with the upstart young ranger braving the rolling fields of the hinterlands, cats are found dotted all across our marvelous land. Compact and light in weight, these agile little hunters fit perfectly atop one's shoulder or nestled within a wagon's goods. Cats provide useful utility to the crafty conjurer who binds their familiar to such a form as well; with honed claws able to retract in a lighting's flash back into their paws the cat makes for a deadly hunter against smaller beasts. Cats also have a flexible spine allowing them to squeeze into difficult to reach places should you coax them adequately or even survive a perilous fall. Researchers have discovered that cats seem to have the uncanny ability to land upon their feet regardless of the angle at which they are dropped; surely this is an astonishing advantage over other less agile creatures! Deathly quiet (unless they prefer to pester their master for tasty morsels with a noisome yowl) a cat is an adequate infiltrator should one prefer to observe their surroundings from a safer distance through this familiar's eyes. Be they conjured or corporeal, it is this author's opinion that the common cat is a companion of quality and should be considered when seeking the appropriate animal ally.</p>\n<ul>\n<li><em>Token artwork by Forgotten Adventures.</em></li>\n<li><em>Bestiary entry by Penelope (Vyrnali).</em></li>\n</ul>",
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
-      "species": null,
+      "species": "",
       "type": {
         "value": "beast",
         "subtype": "",
@@ -163,26 +108,25 @@
         "custom": ""
       },
       "environment": "Grassland",
-      "cr": "0",
+      "cr": 0,
       "powerLevel": 0,
-      "xp": {
-        "value": 10
-      },
-      "source": "MM pg. 320",
-      "class": {}
+      "source": "SRD 5.1"
     },
     "traits": {
       "size": "tiny",
       "di": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dv": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "ci": {
@@ -208,12 +152,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ani": {
         "value": 0,
@@ -221,12 +160,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "arc": {
         "value": 0,
@@ -234,12 +168,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "ath": {
         "value": 0,
@@ -247,12 +176,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "dec": {
         "value": 0,
@@ -260,12 +184,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "his": {
         "value": 0,
@@ -273,12 +192,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "ins": {
         "value": 0,
@@ -286,12 +200,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "itm": {
         "value": 0,
@@ -299,12 +208,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "inv": {
         "value": 0,
@@ -312,12 +216,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "med": {
         "value": 0,
@@ -325,12 +224,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       },
       "nat": {
         "value": 0,
@@ -338,12 +232,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "prc": {
         "value": 1,
@@ -351,12 +240,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 13,
-        "prof": 2,
-        "total": 3
+        }
       },
       "prf": {
         "value": 0,
@@ -364,12 +248,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "per": {
         "value": 0,
@@ -377,12 +256,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "rel": {
         "value": 0,
@@ -390,12 +264,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -4,
-        "bonus": 0,
-        "passive": 6,
-        "prof": 0,
-        "total": -4
+        }
       },
       "slt": {
         "value": 0,
@@ -403,12 +272,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ste": {
         "value": 1,
@@ -416,12 +280,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 14,
-        "prof": 2,
-        "total": 4
+        }
       },
       "sur": {
         "value": 0,
@@ -429,69 +288,53 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 1,
-        "bonus": 0,
-        "passive": 11,
-        "prof": 0,
-        "total": 1
+        }
       }
     },
     "powers": {
       "power1": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power2": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power3": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power4": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power5": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power6": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power7": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power8": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power9": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "pact": {
         "value": 0,
-        "override": null,
-        "max": 0,
-        "level": 0
+        "override": null
       },
       "power0": {
         "value": 0,
-        "max": 0
+        "override": null
       }
     },
     "bonuses": {
@@ -531,7 +374,7 @@
       },
       "lair": {
         "value": false,
-        "initiative": 0
+        "initiative": null
       }
     }
   },
@@ -578,10 +421,10 @@
       "color": null
     },
     "texture": {
-      "src": "systems/sw5e/tokens/beast/CatOrange.webp",
+      "src": "",
       "tint": null,
-      "scaleX": 0.7,
-      "scaleY": 0.7,
+      "scaleX": 1,
+      "scaleY": 1,
       "offsetX": 0,
       "offsetY": 0,
       "rotation": 0
@@ -611,10 +454,13 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "quantity": 1,
         "weight": 0,
-        "price": null,
+        "price": {
+          "value": 0,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": true,
         "rarity": "common",
@@ -625,9 +471,10 @@
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -640,18 +487,19 @@
           "units": "ft"
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "",
         "actionType": "mwak",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -703,7 +551,7 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 200000,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
@@ -728,16 +576,17 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
+        "source": "SRD 5.1",
         "activation": {
           "type": "",
-          "cost": 0,
+          "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -750,18 +599,19 @@
           "units": ""
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "wis",
         "actionType": "abil",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "The cat raises its head, sniffing the air.",
         "critical": {
           "threshold": null,
@@ -769,26 +619,27 @@
         },
         "damage": {
           "parts": [],
-          "versatile": "",
-          "value": ""
+          "versatile": ""
         },
         "formula": "2d20kh + @mod",
         "save": {
           "ability": "",
           "dc": null,
-          "scaling": "power",
-          "value": ""
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
         },
         "requirements": "Cat",
         "recharge": {
           "value": null,
           "charged": false
-        },
-        "attunement": 0
+        }
       },
       "effects": [],
       "folder": null,
-      "sort": 100000,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
@@ -812,10 +663,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787232986,
-    "modifiedTime": 1661878734036,
+    "modifiedTime": 1672596103953,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

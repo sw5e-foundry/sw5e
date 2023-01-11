@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 256",
+    "source": "SRD 5.1",
     "activation": {
       "type": "minute",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "@item.level - 2",
       "units": "hour"
     },
+    "cover": null,
     "target": {
       "value": 10,
       "width": null,
@@ -29,13 +30,14 @@
     },
     "range": {
       "value": 10,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
-      "value": 0,
-      "max": 0,
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
@@ -44,7 +46,7 @@
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -52,20 +54,17 @@
     },
     "damage": {
       "parts": [],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "cha",
       "dc": null,
-      "scaling": "power",
-      "value": ""
+      "scaling": "power"
     },
     "level": 3,
     "school": "abj",
     "components": {
-      "value": "",
       "vocal": true,
       "somatic": true,
       "material": true,
@@ -87,17 +86,17 @@
       "formula": ""
     }
   },
-  "sort": 100001,
+  "sort": 0,
   "flags": {},
   "img": "icons/magic/symbols/runes-star-pentagon-blue.webp",
   "effects": [],
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234241,
-    "modifiedTime": 1661787234241,
+    "modifiedTime": 1671220971432,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

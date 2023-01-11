@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 167",
+    "source": "SRD 5.1",
     "activation": {
       "type": "",
-      "cost": 0,
+      "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -35,16 +36,17 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": null
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -60,23 +62,27 @@
       "dc": null,
       "scaling": "power"
     },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
     "requirements": "STR 13 or higher",
     "recharge": {
       "value": null,
       "charged": false
     }
   },
-  "sort": 400000,
+  "sort": 0,
   "flags": {},
   "img": "icons/skills/melee/unarmed-punch-fist.webp",
   "effects": [],
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234351,
-    "modifiedTime": 1661787234351,
+    "modifiedTime": 1672334596059,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

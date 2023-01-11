@@ -9,10 +9,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 150",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 0.075,
-    "price": 25,
+    "price": {
+      "value": 25,
+      "denomination": "gp"
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "uncommon",
@@ -23,34 +26,36 @@
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
-      "value": 0,
+      "value": null,
       "width": null,
       "units": "",
       "type": ""
     },
     "range": {
       "value": 5,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
       "value": null,
       "max": "",
-      "per": "",
+      "per": null,
+      "recovery": "",
       "autoDestroy": false
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "rwak",
-    "attackBonus": 1,
+    "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -63,8 +68,7 @@
           "piercing"
         ]
       ],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
@@ -76,17 +80,17 @@
   },
   "effects": [],
   "folder": null,
-  "sort": 4100000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233718,
-    "modifiedTime": 1661787233718,
+    "modifiedTime": 1671220961758,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

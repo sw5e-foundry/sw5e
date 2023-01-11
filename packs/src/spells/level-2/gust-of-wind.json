@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 248",
+    "source": "SRD 5.1",
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
+    "cover": null,
     "target": {
       "value": 60,
       "width": null,
@@ -33,9 +34,10 @@
       "units": "self"
     },
     "uses": {
-      "value": 0,
-      "max": 0,
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
@@ -44,7 +46,7 @@
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -52,19 +54,17 @@
     },
     "damage": {
       "parts": [],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "str",
-      "dc": 0,
+      "dc": null,
       "scaling": "power"
     },
     "level": 2,
     "school": "evo",
     "components": {
-      "value": "",
       "vocal": true,
       "somatic": true,
       "material": true,
@@ -86,17 +86,17 @@
       "formula": ""
     }
   },
-  "sort": 100001,
+  "sort": 0,
   "flags": {},
   "img": "icons/magic/air/wind-swirl-gray-blue.webp",
   "effects": [],
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234103,
-    "modifiedTime": 1661787234103,
+    "modifiedTime": 1671220969012,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

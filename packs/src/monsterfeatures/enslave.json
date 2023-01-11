@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "MM pg. 13",
+    "source": "SRD 5.1",
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": 1,
       "width": null,
@@ -34,17 +35,18 @@
     },
     "uses": {
       "value": 3,
-      "max": 3,
-      "per": "day"
+      "max": "3",
+      "per": "day",
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -60,22 +62,14 @@
       "dc": null,
       "scaling": "wis"
     },
+    "type": {
+      "value": "monster",
+      "subtype": ""
+    },
     "requirements": "",
     "recharge": {
       "value": null,
       "charged": false
-    },
-    "featType": {
-      "value": "",
-      "_deprecated": true
-    },
-    "time": {
-      "value": "",
-      "_deprecated": true
-    },
-    "damageType": {
-      "value": "",
-      "_deprecated": true
     }
   },
   "flags": {},
@@ -85,10 +79,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234580,
-    "modifiedTime": 1661787234580,
+    "modifiedTime": 1672335696160,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

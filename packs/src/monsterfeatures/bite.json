@@ -11,10 +11,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gp"
+    },
     "attunement": 0,
     "equipped": true,
     "rarity": "",
@@ -25,11 +28,12 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
-      "value": 1,
+      "value": null,
       "width": null,
       "units": "",
       "type": ""
@@ -40,18 +44,19 @@
       "units": "ft"
     },
     "uses": {
-      "value": 0,
-      "max": 0,
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "str",
     "actionType": "mwak",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -92,10 +97,12 @@
       "spc": false,
       "thr": false,
       "two": false,
-      "ver": false
+      "ver": false,
+      "ada": false,
+      "mgc": false,
+      "sil": false
     },
-    "proficient": true,
-    "attuned": false
+    "proficient": true
   },
   "flags": {},
   "img": "icons/creatures/abilities/mouth-teeth-long-red.webp",
@@ -104,10 +111,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234559,
-    "modifiedTime": 1661787234559,
+    "modifiedTime": 1672335563706,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

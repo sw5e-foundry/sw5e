@@ -2,7 +2,7 @@
   "_id": "nU8GN8La8DCt8SDb",
   "name": "Skeleton",
   "type": "npc",
-  "img": "systems/sw5e/tokens/undead/Skeleton.webp",
+  "img": "",
   "system": {
     "abilities": {
       "str": {
@@ -11,14 +11,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 0,
-        "save": 0,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 10
+        }
       },
       "dex": {
         "value": 14,
@@ -26,14 +19,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "con": {
         "value": 15,
@@ -41,14 +27,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": 2,
-        "save": 2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 12
+        }
       },
       "int": {
         "value": 6,
@@ -56,14 +35,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -2,
-        "save": -2,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 8
+        }
       },
       "wis": {
         "value": 8,
@@ -71,14 +43,7 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -1,
-        "save": -1,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 9
+        }
       },
       "cha": {
         "value": 5,
@@ -86,22 +51,14 @@
         "bonuses": {
           "check": "",
           "save": ""
-        },
-        "min": 3,
-        "mod": -3,
-        "save": -3,
-        "prof": 0,
-        "saveBonus": 0,
-        "checkBonus": 0,
-        "dc": 7
+        }
       }
     },
     "attributes": {
       "ac": {
         "flat": 13,
         "calc": "natural",
-        "formula": "",
-        "min": 12
+        "formula": ""
       },
       "hp": {
         "value": 13,
@@ -112,11 +69,8 @@
         "formula": "2d8 + 4"
       },
       "init": {
-        "value": 0,
-        "bonus": 0,
-        "mod": 2,
-        "total": 2,
-        "prof": 0
+        "ability": "",
+        "bonus": "0"
       },
       "movement": {
         "burrow": 0,
@@ -138,24 +92,15 @@
         "units": "ft",
         "special": ""
       },
-      "powercasting": "",
-      "prof": 2,
-      "powerdc": 10,
-      "powerLevel": 0,
-      "encumbrance": {
-        "value": 4,
-        "max": 150,
-        "pct": 2.6666666666666665,
-        "encumbered": true
-      }
+      "powercasting": ""
     },
     "details": {
       "biography": {
-        "value": "<blockquote>\n<p>The first time you see those hollow sockets staring back at you with some semblance of thought inside the skull, I advise to quash any feelings of accomplishment.  The skeletal servant you have raised is little more than a brainless husk.  Without proper, and I mean proper, instruction, the bones in front of you might as well have remained dusty upon the floor.  Explain the orders carefully and lay out the steps of your new servant's tasks with exceeding care.  Also, should you catch your skeletal friend partaking in the activities of their former life, do not scold them.  The mundane routine of chopping wood or swinging a hammer can allow for more malleable servants as time continues.<br /><em>The Book of Dark Servants, Vol III.</em></p>\n</blockquote>\n<p>Skeletons are beings raised into undeath by the will of necromantic magic.  The necromantic magics used within the ritual can either be cast by a trained hand or simply seep into the bones of the skeleton in areas of concentrated death.  Cemeteries, catacombs, and battle fields are all subject to the sporadic rising of skeletons into their new lives.  The magic not only keeps the skeleton “living”, but it also binds joints and bones together like spectral ligaments.  With its second life, the skeleton acts as a semi-mindless creature serving its master's will.</p>\n<p><strong>Spooky Scary.</strong> For the up and coming necromancer, skeletons make worthy guards for a hidden repository of forbidden knowledge.  Skeletons will follow simple to mildly complex orders given (such as forming a protective circle or constructing minor defenses) without the necromancer needing to worry about the durability of their creations.  The skeletons will avoid danger and refuse to injure themselves unless explicitly ordered by their master.  Skeletons do seem to grow rather bored without direction and have been observed ambling around an area performing simple actions from their past lives.  One notable skeleton I recall was still able to cast their fishing line, though clumsily at best, into the nearby lake.  Skeletons, however, are not utilized for their prior skills but as guardians of the necromancer who summoned them back from the hells.  Skeletons are more than capable when swinging a sword or firing a crossbow, finding martial prowess in death that they may have lacked in life thanks to the dark power flowing through their marrow.</p>\n<blockquote>\n<p>Author's Note: Not all skeletal adversaries in an adventurer's journey will be humanoid.  Be wary, as significant magics can summon back more powerful skeletal monsters.</p>\n</blockquote>\n<ul>\n<li><em>Token artwork by Forgotten Adventures.</em></li>\n<li><em>Bestiary entry by Penelope (Vyrnali).</em></li>\n</ul>",
+        "value": "",
         "public": ""
       },
       "alignment": "Lawful Evil",
-      "species": null,
+      "species": "",
       "type": {
         "value": "undead",
         "subtype": "",
@@ -165,12 +110,7 @@
       "environment": "Urban",
       "cr": 0.25,
       "powerLevel": 0,
-      "xp": {
-        "value": 50
-      },
-      "source": "MM pg. 272",
-      "class": {},
-      "size": "med"
+      "source": "SRD 5.1"
     },
     "traits": {
       "size": "med",
@@ -178,16 +118,19 @@
         "value": [
           "poison"
         ],
+        "bypasses": [],
         "custom": ""
       },
       "dr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "dv": {
         "value": [
           "bludgeoning"
         ],
+        "bypasses": [],
         "custom": ""
       },
       "ci": {
@@ -216,12 +159,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ani": {
         "value": 0,
@@ -229,12 +167,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "arc": {
         "value": 0,
@@ -242,12 +175,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ath": {
         "value": 0,
@@ -255,12 +183,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 0,
-        "bonus": 0,
-        "passive": 10,
-        "prof": 0,
-        "total": 0
+        }
       },
       "dec": {
         "value": 0,
@@ -268,12 +191,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -3,
-        "bonus": 0,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        }
       },
       "his": {
         "value": 0,
@@ -281,12 +199,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "ins": {
         "value": 0,
@@ -294,12 +207,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "itm": {
         "value": 0,
@@ -307,12 +215,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -3,
-        "bonus": 0,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        }
       },
       "inv": {
         "value": 0,
@@ -320,12 +223,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "med": {
         "value": 0,
@@ -333,12 +231,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "nat": {
         "value": 0,
@@ -346,12 +239,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "prc": {
         "value": 0,
@@ -359,12 +247,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       },
       "prf": {
         "value": 0,
@@ -372,12 +255,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -3,
-        "bonus": 0,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        }
       },
       "per": {
         "value": 0,
@@ -385,12 +263,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -3,
-        "bonus": 0,
-        "passive": 7,
-        "prof": 0,
-        "total": -3
+        }
       },
       "rel": {
         "value": 0,
@@ -398,12 +271,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -2,
-        "bonus": 0,
-        "passive": 8,
-        "prof": 0,
-        "total": -2
+        }
       },
       "slt": {
         "value": 0,
@@ -411,12 +279,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "ste": {
         "value": 0,
@@ -424,12 +287,7 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": 2,
-        "bonus": 0,
-        "passive": 12,
-        "prof": 0,
-        "total": 2
+        }
       },
       "sur": {
         "value": 0,
@@ -437,69 +295,53 @@
         "bonuses": {
           "check": "",
           "passive": ""
-        },
-        "mod": -1,
-        "bonus": 0,
-        "passive": 9,
-        "prof": 0,
-        "total": -1
+        }
       }
     },
     "powers": {
       "power1": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power2": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power3": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power4": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power5": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power6": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power7": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power8": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "power9": {
         "value": 0,
-        "override": null,
-        "max": 0
+        "override": null
       },
       "pact": {
         "value": 0,
-        "override": null,
-        "max": 0,
-        "level": 0
+        "override": null
       },
       "power0": {
         "value": 0,
-        "max": 0
+        "override": null
       }
     },
     "bonuses": {
@@ -539,7 +381,7 @@
       },
       "lair": {
         "value": false,
-        "initiative": 0
+        "initiative": null
       }
     }
   },
@@ -586,7 +428,7 @@
       "color": null
     },
     "texture": {
-      "src": "systems/sw5e/tokens/undead/Skeleton.webp",
+      "src": "",
       "tint": null,
       "scaleX": 1,
       "scaleY": 1,
@@ -619,10 +461,13 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "PHB pg. 149",
+        "source": "SRD 5.1",
         "quantity": 1,
         "weight": 2,
-        "price": 25,
+        "price": {
+          "value": 25,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": true,
         "rarity": "common",
@@ -633,11 +478,12 @@
           "condition": ""
         },
         "duration": {
-          "value": 0,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
-          "value": 0,
+          "value": null,
           "width": null,
           "units": "",
           "type": ""
@@ -648,18 +494,19 @@
           "units": "ft"
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "",
         "actionType": "rwak",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -711,11 +558,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 2600001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.items.GJv6WkD7D2J6rP6M"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -736,10 +587,13 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "PHB pg. 149",
+        "source": "SRD 5.1",
         "quantity": 1,
         "weight": 2,
-        "price": 10,
+        "price": {
+          "value": 10,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": true,
         "rarity": "common",
@@ -750,9 +604,10 @@
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -765,18 +620,19 @@
           "units": "ft"
         },
         "uses": {
-          "value": 0,
-          "max": 0,
-          "per": ""
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
         },
         "consume": {
           "type": "",
-          "target": "",
+          "target": null,
           "amount": null
         },
         "ability": "",
         "actionType": "mwak",
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -828,11 +684,15 @@
       },
       "effects": [],
       "folder": null,
-      "sort": 2700001,
+      "sort": 0,
       "ownership": {
         "default": 0
       },
-      "flags": {},
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.items.osLzOwQdPtrK3rQH"
+        }
+      },
       "_stats": {
         "systemId": null,
         "systemVersion": null,
@@ -852,10 +712,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233156,
-    "modifiedTime": 1661878735326,
+    "modifiedTime": 1672596106108,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

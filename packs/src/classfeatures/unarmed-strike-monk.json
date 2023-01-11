@@ -5,27 +5,31 @@
   "img": "icons/skills/melee/unarmed-punch-fist-yellow-red.webp",
   "system": {
     "description": {
-      "value": "",
+      "value": "<p></p>",
       "chat": "",
       "unidentified": ""
     },
-    "source": "",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gp"
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "",
     "identified": true,
     "activation": {
-      "type": "",
-      "cost": 0,
+      "type": "action",
+      "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -40,7 +44,8 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": null
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
@@ -49,7 +54,7 @@
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": "0",
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -111,10 +116,10 @@
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234400,
-    "modifiedTime": 1661787234400,
+    "modifiedTime": 1671220976154,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

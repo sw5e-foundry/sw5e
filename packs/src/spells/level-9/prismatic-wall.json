@@ -11,16 +11,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 267",
+    "source": "SRD 5.1",
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 10,
+      "value": "10",
       "units": "minute"
     },
+    "cover": null,
     "target": {
       "value": 90,
       "width": null,
@@ -29,22 +30,23 @@
     },
     "range": {
       "value": 60,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
-      "value": 0,
-      "max": "0",
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -57,8 +59,7 @@
           ""
         ]
       ],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
@@ -69,7 +70,6 @@
     "level": 9,
     "school": "abj",
     "components": {
-      "value": "",
       "vocal": true,
       "somatic": true,
       "material": false,
@@ -91,17 +91,17 @@
       "formula": ""
     }
   },
-  "sort": 100001,
+  "sort": 0,
   "flags": {},
   "img": "icons/magic/light/beams-rays-orange-purple.webp",
   "effects": [],
   "folder": null,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234214,
-    "modifiedTime": 1661787234214,
+    "modifiedTime": 1671220971112,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

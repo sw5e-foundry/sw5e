@@ -9,10 +9,13 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 209",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 4,
-    "price": 800,
+    "price": {
+      "value": 800,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "uncommon",
@@ -23,9 +26,10 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -39,7 +43,7 @@
     },
     "uses": {
       "value": 3,
-      "max": 3,
+      "max": "3",
       "per": "charges",
       "recovery": "1d3"
     },
@@ -50,7 +54,7 @@
     },
     "ability": null,
     "actionType": "mwak",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -99,24 +103,21 @@
       "ver": true,
       "mgc": true
     },
-    "proficient": false,
-    "attributes": {
-      "powerdc": 10
-    }
+    "proficient": false
   },
   "effects": [],
   "folder": null,
-  "sort": 1800000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.2",
-    "coreVersion": "10.286",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233866,
-    "modifiedTime": 1663775408791,
+    "modifiedTime": 1671220964253,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

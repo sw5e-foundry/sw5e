@@ -5,14 +5,17 @@
   "img": "icons/weapons/staves/staff-simple-green.webp",
   "system": {
     "description": {
-      "value": "<p><em>(Requires attunement by a bard, cleric, or druid)</em></p>\n<p>This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following powers from it, using your power save DC and powercasting ability modifier: @Compendium[sw5e.powers.uUWb1wZgtMou0TVP]{Cure Wounds} (1 charge per power level, up to 4th), @Compendium[sw5e.powers.F0GsG0SJzsIOacwV]{Lesser Restoration} (2 charges), or @Compendium[sw5e.powers.Pyzmm8R7rVsNAPsd]{Mass Cure Wounds} (5 charges).</p>\n<p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff vanishes in a flash of light, lost forever.</p>\n<p><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
+      "value": "<p><em>(Requires attunement by a bard, cleric, or druid)</em></p><p>This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following powers from it, using your power save DC and powercasting ability modifier: @Compendium[sw5e.powers.uUWb1wZgtMou0TVP]{Cure Wounds} (1 charge per power level, up to 4th), @Compendium[sw5e.powers.F0GsG0SJzsIOacwV]{Lesser Restoration} (2 charges), or @Compendium[sw5e.powers.Pyzmm8R7rVsNAPsd]{Mass Cure Wounds} (5 charges).</p><p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff vanishes in a flash of light, lost forever.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "source": "DMG pg. 202",
+    "source": "SRD 5.1",
     "quantity": 1,
     "weight": 4,
-    "price": 13000,
+    "price": {
+      "value": 13000,
+      "denomination": "gp"
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "veryRare",
@@ -23,9 +26,10 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -39,7 +43,7 @@
     },
     "uses": {
       "value": 10,
-      "max": 10,
+      "max": "10",
       "per": "charges",
       "recovery": "1d6 + 4"
     },
@@ -48,9 +52,9 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -60,7 +64,7 @@
       "parts": [],
       "versatile": ""
     },
-    "formula": "1d6 +4",
+    "formula": "",
     "save": {
       "ability": "",
       "dc": null,
@@ -92,26 +96,25 @@
       "thr": false,
       "two": false,
       "ver": false,
-      "mgc": true
+      "mgc": true,
+      "ada": false,
+      "sil": false
     },
-    "proficient": false,
-    "attributes": {
-      "powerdc": 10
-    }
+    "proficient": false
   },
   "effects": [],
   "folder": null,
-  "sort": 1100000,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.2",
-    "coreVersion": "10.286",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787233689,
-    "modifiedTime": 1663775408647,
+    "modifiedTime": 1671220961432,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

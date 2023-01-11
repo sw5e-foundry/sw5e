@@ -9,16 +9,17 @@
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 275",
+    "source": "SRD 5.1",
     "activation": {
       "type": "reaction",
       "cost": 1,
       "condition": "Which you take when you are hit by an attack or targeted by the magic missile power"
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "round"
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -31,18 +32,19 @@
       "units": "self"
     },
     "uses": {
-      "value": 0,
-      "max": "0",
-      "per": ""
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -50,20 +52,17 @@
     },
     "damage": {
       "parts": [],
-      "versatile": "",
-      "value": ""
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power",
-      "value": ""
+      "scaling": "power"
     },
     "level": 1,
     "school": "abj",
     "components": {
-      "value": "",
       "vocal": true,
       "somatic": true,
       "material": false,
@@ -111,21 +110,22 @@
       "label": "Shield",
       "origin": "Item.FlLKKv7bQBlIAs11",
       "tint": null,
-      "transfer": true
+      "transfer": true,
+      "sort": 0
     }
   ],
   "folder": null,
-  "sort": 100001,
+  "sort": 0,
   "ownership": {
     "default": 0
   },
   "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234244,
-    "modifiedTime": 1661787234244,
+    "modifiedTime": 1671220971502,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

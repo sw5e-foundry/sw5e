@@ -7,20 +7,21 @@
   "type": "feat",
   "system": {
     "description": {
-      "value": "<p>At 8th level, you gain the ability to infuse your weapon strikes with divine energy.</p><p>Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage to the target. When you reach 14th level, the extra damage increases to 2d8.</p><p><em>**Foundry note: Note the damage die is set to the base default of 1d8, Versatile 2d8.</em></p>",
+      "value": "<p>At 8th level, you gain the ability to infuse your weapon strikes with divine energy.</p><p>Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage to the target. When you reach 14th level, the extra damage increases to 2d8.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "source": "PHB pg. 60",
+    "source": "SRD 5.1",
     "activation": {
       "type": "",
-      "cost": 0,
+      "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
+    "cover": null,
     "target": {
       "value": null,
       "width": null,
@@ -35,16 +36,17 @@
     "uses": {
       "value": null,
       "max": "",
-      "per": null
+      "per": null,
+      "recovery": ""
     },
     "consume": {
       "type": "",
-      "target": "",
+      "target": null,
       "amount": null
     },
     "ability": "",
     "actionType": "other",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -53,17 +55,21 @@
     "damage": {
       "parts": [
         [
-          "1d8",
+          "@scale.life-domain.divine-strike",
           "radiant"
         ]
       ],
-      "versatile": "2d8"
+      "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
       "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
     },
     "requirements": "Life Domain 8",
     "recharge": {
@@ -78,10 +84,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.0.0",
-    "coreVersion": "10.279",
+    "systemVersion": "2.1.0",
+    "coreVersion": "10.291",
     "createdTime": 1661787234380,
-    "modifiedTime": 1661787234380,
+    "modifiedTime": 1672334497269,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

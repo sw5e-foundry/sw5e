@@ -74,7 +74,7 @@ export default class ItemSheet5e extends ItemSheet {
         // Possibly Don't need this?
         const actor = item.actor;
 
-        let wpnType, armorType, ammoType;
+        let wpnType, armorType, ammoType, isAmmo;
         let isStarshipAmmo, isStarshipArmor, isStarshipShield, isStarshipReactor, isStarshipHyperdrive, isStarshipWeapon, isStarshipEquipment, isStarshipPowerCoupling;
 
         foundry.utils.mergeObject(context, {
@@ -126,9 +126,18 @@ export default class ItemSheet5e extends ItemSheet {
             isLine: ["line", "wall"].includes(item.system.target?.type),
             critical: item.system.critical,
 
-            wpnType: wpnType = item.system?.weaponType ?? "",
+            // Armor
+            isArmor: item.isArmor,
             armorType: armorType = item.system?.armor?.type ?? "",
-            ammoType: ammoType = item.system?.consumableType === "ammo" ? item.system?.ammoType ?? "" : "",
+            hasAC: item.isArmor || isMountable,
+            hasDexModifier: item.isArmor && item.system.armor?.type !== "shield",
+
+            // Weapon
+            wpnType: wpnType = item.system?.weaponType ?? "",
+
+            // Ammo
+            isAmmo: isAmmo = item.system?.consumableType === "ammo",
+            ammoType: ammoType = isAmmo ? item.system?.ammoType ?? "" : "",
 
             // Vehicles
             isStarshipWeapon: isStarshipWeapon = (wpnType in CONFIG.SW5E.weaponStarshipTypes),
@@ -146,11 +155,6 @@ export default class ItemSheet5e extends ItemSheet {
                 isStarshipReactor,
             isCrewed: item.system.activation?.type === "crew",
             isMountable,
-
-            // Armor Class
-            isArmor: item.isArmor,
-            hasAC: item.isArmor || isMountable,
-            hasDexModifier: item.isArmor && item.system.armor?.type !== "shield",
 
             // Advancement
             advancement: this._getItemAdvancement(item),

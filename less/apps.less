@@ -8,6 +8,12 @@
 /*  All SW5e Apps                           */
 /* ----------------------------------------- */
 
+h5 {
+  margin-block-start: 1em;
+  margin-block-end: 0;
+  font-size: var(--font-size-13);
+}
+
 .sw5e {
   .window-content {
     font-size: 13px;
@@ -61,6 +67,17 @@
   button {
     background: rgba(0, 0, 0, 0.10);
     border: @borderGroove;
+  }
+
+  // Secrets
+  .secret .reveal {
+    border: 1px dashed var(--color-border-light-primary);
+    background: rgb(255 255 240 / 80%);
+  }
+
+  // TODO: Remove when fixed in core: https://github.com/foundryvtt/foundryvtt/issues/8340
+  .locked .secret .reveal {
+    display: none;
   }
 
   /* Form Groups */
@@ -544,21 +561,23 @@
 /*  Property Attribution                     */
 /* ----------------------------------------- */
 
-.property-attribution {
-  display: none;
-  position: absolute;
+#tooltip.property-attribution {
+  min-width: 150px;
   padding: 3px;
-  border: 1px solid #000;
-  border-radius: 3px;
   background-color: rgba(0, 0, 0, .8);
   backdrop-filter: blur(4px);
-  color: @colorFaint;
-  text-align: left;
-  z-index: 1;
+  text-align: left !important;
+  // TODO: Remove !important here once system supports v11 only
 
   table {
     margin: 0;
     border: 0;
+    font-size: var(--font-size-14);
+
+    caption {
+      padding-block: 0.25em 0.5em;
+      font-size: var(--font-size-16);
+    }
     tr {
       background-color: inherit;
     }
@@ -635,8 +654,8 @@
 /*  Armor Config Sheet Specifically          */
 /* ----------------------------------------- */
 
-.sw5e.actor-armor-config {
-  .ac-field input {
+.sw5e.actor-armor-config, .sw5e.actor-hit-points-config {
+  .ac-field input, .hp-field input {
     font-size: 3em;
     text-align: center;
   }
@@ -670,65 +689,48 @@
 }
 
 /* ----------------------------------------- */
-/*  SRD Compendium                           */
+/*  Polymorph Features                       */
 /* ----------------------------------------- */
 
-.srd-compendium article {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
-
-  aside, .contents {
-    border: 4px solid #ba2828;
-    background: #efefef99;
-
-    header h2 {
-      border: none;
-      background: #ba2828;
-      color: var(--color-text-light-1);
-      padding: 0 .25rem .25rem .25rem;
-      margin: 0;
-    }
-
-    section {
-      padding: .625rem 1rem;
-    }
+.polymorph {
+  /* ----------------------------------------- */
+  /*  Two Column Configurations                */
+  /* ----------------------------------------- */
+  &.two-column {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-gap: 0.4em;
   }
 
-  aside blockquote {
-    border: none;
-    margin: 0;
-    padding: 0;
-  }
+}
 
-  .contents {
-    flex-grow: 1;
+/* ----------------------------------------- */
+/*  Module Art Configuration                 */
+/* ----------------------------------------- */
 
-    .chapter {
-      margin-bottom: .5rem;
-      break-inside: avoid-column;
+#module-art-config {
+  .form-group-stacked {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    > label {
+      flex: 1 0 auto;
     }
 
-    h3 {
-      border: none;
-      font-weight: bold;
-      font-size: var(--font-size-18);
-      color: var(--color-text-hyperlink);
-    }
+    > .form-fields {
+      flex: 0 0 auto;
+      display: flex;
+      gap: .5rem;
 
-    ul {
-      list-style-type: none;
-      margin: 0 0 0 .375rem;
-      padding: 0;
-
-      li {
-        font-size: var(--font-size-16);
+      label {
+        display: flex;
+        align-items: center;
       }
-    }
 
-    section {
-      column-count: 3;
+      input {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }

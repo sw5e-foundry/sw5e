@@ -13,23 +13,24 @@ import SW5E from "./module/config.mjs";
 import registerSystemSettings from "./module/settings.mjs";
 
 // Import Submodules
-import * as advancement from "./module/advancement/_module.mjs";
 import * as applications from "./module/applications/_module.mjs";
 import * as canvas from "./module/canvas/_module.mjs";
+import * as dataModels from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
 import * as migrations from "./module/migration.mjs";
 import * as utils from "./module/utils.mjs";
+import {ModuleArt} from "./module/module-art.mjs";
 
 /* -------------------------------------------- */
 /*  Define Module Structure                     */
 /* -------------------------------------------- */
 
 globalThis.sw5e = {
-  advancement,
   applications,
   canvas,
   config: SW5E,
+  dataModels,
   dice,
   documents,
   migrations,
@@ -91,9 +92,16 @@ Hooks.once("init", function() {
   CONFIG.Dice.DamageRoll = dice.DamageRoll;
   CONFIG.Dice.D20Roll = dice.D20Roll;
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
+  CONFIG.ui.combat = applications.combat.CombatTracker5e;
 
   // Register System Settings
   registerSystemSettings();
+
+  // Validation strictness.
+  _determineValidationStrictness();
+
+  // Configure module art.
+  game.sw5e.moduleArt = new ModuleArt();
 
   // Remove honor & sanity from configuration if they aren't enabled
   if ( !game.settings.get("sw5e", "honorScore") ) {
@@ -106,12 +114,16 @@ Hooks.once("init", function() {
   }
 
   // Patch Core Functions
-  CONFIG.Combat.initiative.formula = "1d20 + @attributes.init.mod + @attributes.init.prof + @attributes.init.bonus + @abilities.dex.bonuses.check + @bonuses.abilities.check";
-  Combatant.prototype._getInitiativeFormula = documents.combat._getInitiativeFormula;
+  Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
 
   // Register Roll Extensions
   CONFIG.Dice.rolls.push(dice.D20Roll);
   CONFIG.Dice.rolls.push(dice.DamageRoll);
+
+  // Hook up system data types
+  CONFIG.Actor.systemDataModels = dataModels.actor.config;
+  CONFIG.Item.systemDataModels = dataModels.item.config;
+  CONFIG.JournalEntryPage.systemDataModels = dataModels.journal.config;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -130,10 +142,20 @@ Hooks.once("init", function() {
     makeDefault: true,
     label: "SW5E.SheetClassVehicle"
   });
+  Actors.registerSheet("sw5e", applications.actor.GroupActorSheet, {
+    types: ["group"],
+    makeDefault: true,
+    label: "SW5E.SheetClassGroup"
+  });
+
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("sw5e", applications.item.ItemSheet5e, {
     makeDefault: true,
     label: "SW5E.SheetClassItem"
+  });
+  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
+    label: "SW5E.SheetClassClassSummary",
+    types: ["class"]
   });
 
   // Preload Handlebars helpers & partials
@@ -141,6 +163,28 @@ Hooks.once("init", function() {
   utils.preloadHandlebarsTemplates();
 });
 
+/**
+ * Determine if this is a 'legacy' world with permissive validation, or one where strict validation is enabled.
+ * @internal
+ */
+function _determineValidationStrictness() {
+  dataModels.SystemDataModel._enableV10Validation = game.settings.get("sw5e", "strictValidation");
+}
+
+/**
+ * Update the world's validation strictness setting based on whether validation errors were encountered.
+ * @internal
+ */
+async function _configureValidationStrictness() {
+  if ( !game.user.isGM ) return;
+  const invalidDocuments = game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size;
+  const strictValidation = game.settings.get("sw5e", "strictValidation");
+  if ( invalidDocuments && strictValidation ) {
+    await game.settings.set("sw5e", "strictValidation", false);
+    game.socket.emit("reload");
+    foundry.utils.debouncedReload();
+  }
+}
 
 /* -------------------------------------------- */
 /*  Foundry VTT Setup                           */
@@ -152,6 +196,7 @@ Hooks.once("init", function() {
 Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
+  game.sw5e.moduleArt.registerModuleArt();
 });
 
 /* --------------------------------------------- */
@@ -183,9 +228,12 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", function() {
+  // Configure validation strictness.
+  _configureValidationStrictness();
+
   // Apply custom compendium styles to the SRD rules compendium.
   const rules = game.packs.get("sw5e.rules");
-  rules.apps = [new applications.SRDCompendium(rules)];
+  rules.apps = [new applications.journal.SRDCompendium(rules)];
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
@@ -234,9 +282,9 @@ Hooks.on("getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextO
 /* -------------------------------------------- */
 
 export {
-  advancement,
   applications,
   canvas,
+  dataModels,
   dice,
   documents,
   migrations,

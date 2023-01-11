@@ -2,7 +2,7 @@
  * Base configuration application for advancements that can be extended by other types to implement custom
  * editing interfaces.
  *
- * @property {Advancement} advancement         The advancement item being edited.
+ * @param {Advancement} advancement            The advancement item being edited.
  * @param {object} [options={}]                Additional options passed to FormApplication.
  * @param {string} [options.dropKeyPath=null]  Path within advancement configuration where dropped items are stored.
  *                                             If populated, will enable default drop & delete behavior.
@@ -10,19 +10,25 @@
 export default class AdvancementConfig extends FormApplication {
   constructor(advancement, options={}) {
     super(advancement, options);
-
-    /**
-     * The advancement being created or edited.
-     * @type {Advancement}
-     */
-    this.advancement = advancement;
-
-    /**
-     * Parent item to which this advancement belongs.
-     * @type {Item5e}
-     */
+    this.#advancementId = advancement.id;
     this.item = advancement.item;
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The ID of the advancement being created or edited.
+   * @type {string}
+   */
+  #advancementId;
+
+  /* -------------------------------------------- */
+
+  /**
+   * Parent item to which this advancement belongs.
+   * @type {Item5e}
+   */
+  item;
 
   /* -------------------------------------------- */
 
@@ -41,6 +47,16 @@ export default class AdvancementConfig extends FormApplication {
 
   /* -------------------------------------------- */
 
+  /**
+   * The advancement being created or edited.
+   * @type {Advancement}
+   */
+  get advancement() {
+    return this.item.advancement.byId[this.#advancementId];
+  }
+
+  /* -------------------------------------------- */
+
   /** @inheritDoc */
   get title() {
     const type = this.advancement.constructor.metadata.title;
@@ -50,13 +66,22 @@ export default class AdvancementConfig extends FormApplication {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
+  async close(options={}) {
+    await super.close(options);
+    delete this.advancement.apps[this.appId];
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   getData() {
     const levels = Object.fromEntries(Array.fromRange(CONFIG.SW5E.maxLevel + 1).map(l => [l, l]));
     if ( ["class", "archetype"].includes(this.item.type) ) delete levels[0];
     else levels[0] = game.i18n.localize("SW5E.AdvancementLevelAnyHeader");
-    return {
+    const context = {
       CONFIG: CONFIG.SW5E,
-      data: this.advancement.data,
+      ...this.advancement.toObject(false),
+      src: this.advancement.toObject(),
       default: {
         title: this.advancement.constructor.metadata.title,
         icon: this.advancement.constructor.metadata.icon
@@ -65,6 +90,18 @@ export default class AdvancementConfig extends FormApplication {
       showClassRestrictions: this.item.type === "class",
       showLevelSelector: !this.advancement.constructor.metadata.multiLevel
     };
+    Object.defineProperty(context, "data", {
+      get() {
+        foundry.utils.logCompatibilityWarning(
+          `You are accessing the ${this.constructor.name}#data object which is no longer used. `
+          + "Since 2.1 the Advancement class and its contained DataModel are merged into a combined data structure. "
+          + "You should now reference keys which were previously contained within the data object directly.",
+          { since: "SW5e 2.1", until: "SW5e 2.2" }
+        );
+        return context;
+      }
+    });
+    return context;
   }
 
   /* -------------------------------------------- */
@@ -80,6 +117,7 @@ export default class AdvancementConfig extends FormApplication {
 
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
 
@@ -90,11 +128,28 @@ export default class AdvancementConfig extends FormApplication {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
+  render(force=false, options={}) {
+    this.advancement.apps[this.appId] = this;
+    return super.render(force, options);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   async _updateObject(event, formData) {
-    let updates = foundry.utils.expandObject(formData).data;
+    let updates = foundry.utils.expandObject(formData);
+    if ( updates.data ) {
+      foundry.utils.logCompatibilityWarning(
+        "An update being performed on an advancement points to `data`. Advancement data has moved to the top level so the"
+        + " leading `data.` is no longer required.",
+        { since: "SW5e 2.1", until: "SW5e 2.2" }
+      );
+      const data = updates.data;
+      delete updates.data;
+      updates = { ...updates, ...data };
+    }
     if ( updates.configuration ) updates.configuration = this.prepareConfigurationUpdate(updates.configuration);
     await this.advancement.update(updates);
-    this.render();
   }
 
   /* -------------------------------------------- */
@@ -128,12 +183,11 @@ export default class AdvancementConfig extends FormApplication {
     event.preventDefault();
     const uuidToDelete = event.currentTarget.closest("[data-item-uuid]")?.dataset.itemUuid;
     if ( !uuidToDelete ) return;
-    const items = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
+    const items = foundry.utils.getProperty(this.advancement.configuration, this.options.dropKeyPath);
     const updates = { configuration: await this.prepareConfigurationUpdate({
       [this.options.dropKeyPath]: items.filter(uuid => uuid !== uuidToDelete)
     }) };
     await this.advancement.update(updates);
-    this.render();
   }
 
   /* -------------------------------------------- */
@@ -153,14 +207,9 @@ export default class AdvancementConfig extends FormApplication {
     );
 
     // Try to extract the data
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    } catch(err) {
-      return false;
-    }
+    const data = TextEditor.getDragEventData(event);
 
-    if ( data.type !== "Item" ) return false;
+    if ( data?.type !== "Item" ) return false;
     const item = await Item.implementation.fromDropData(data);
 
     try {
@@ -169,7 +218,7 @@ export default class AdvancementConfig extends FormApplication {
       return ui.notifications.error(err.message);
     }
 
-    const existingItems = foundry.utils.getProperty(this.advancement.data.configuration, this.options.dropKeyPath);
+    const existingItems = foundry.utils.getProperty(this.advancement.configuration, this.options.dropKeyPath);
 
     // Abort if this uuid is the parent item
     if ( item.uuid === this.item.uuid ) {
@@ -182,7 +231,6 @@ export default class AdvancementConfig extends FormApplication {
     }
 
     await this.advancement.update({[`configuration.${this.options.dropKeyPath}`]: [...existingItems, item.uuid]});
-    this.render();
   }
 
   /* -------------------------------------------- */

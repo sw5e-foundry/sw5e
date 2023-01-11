@@ -1,6 +1,6 @@
 import ActorSheet5e from "./base-sheet.mjs";
-import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
-import AdvancementManager from "../../advancement/advancement-manager.mjs";
+import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for player character type actors.
@@ -38,7 +38,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       classLabels: classes.map(c => c.name).join(", "),
       multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
       weightUnit: game.i18n.localize(`SW5E.Abbreviation${
-        game.settings.get("sw5e", "metricWeightUnits") ? "Kgs" : "Lbs"}`)
+        game.settings.get("sw5e", "metricWeightUnits") ? "Kgs" : "Lbs"}`),
+      encumbrance: context.system.attributes.encumbrance
     });
   }
 
@@ -49,12 +50,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Categorize items as inventory, powerbook, features, and classes
     const inventory = {
-      weapon: { label: "SW5E.ItemTypeWeaponPl", items: [], dataset: {type: "weapon"} },
-      equipment: { label: "SW5E.ItemTypeEquipmentPl", items: [], dataset: {type: "equipment"} },
-      consumable: { label: "SW5E.ItemTypeConsumablePl", items: [], dataset: {type: "consumable"} },
-      tool: { label: "SW5E.ItemTypeToolPl", items: [], dataset: {type: "tool"} },
-      backpack: { label: "SW5E.ItemTypeContainerPl", items: [], dataset: {type: "backpack"} },
-      loot: { label: "SW5E.ItemTypeLootPl", items: [], dataset: {type: "loot"} }
+      weapon: { label: "ITEM.TypeWeaponPl", items: [], dataset: {type: "weapon"} },
+      equipment: { label: "ITEM.TypeEquipmentPl", items: [], dataset: {type: "equipment"} },
+      consumable: { label: "ITEM.TypeConsumablePl", items: [], dataset: {type: "consumable"} },
+      tool: { label: "ITEM.TypeToolPl", items: [], dataset: {type: "tool"} },
+      backpack: { label: "ITEM.TypeContainerPl", items: [], dataset: {type: "backpack"} },
+      loot: { label: "ITEM.TypeLootPl", items: [], dataset: {type: "loot"} }
     };
 
     // Partition items by category
@@ -62,9 +63,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       const {quantity, uses, recharge, target} = item.system;
 
       // Item details
-      item.img = item.img || CONST.DEFAULT_TOKEN;
-      item.isStack = Number.isNumeric(quantity) && (quantity !== 1);
-      item.attunement = {
+      const ctx = context.itemContext[item.id] ??= {};
+      ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+      ctx.attunement = {
         [CONFIG.SW5E.attunementTypes.REQUIRED]: {
           icon: "fa-sun",
           cls: "not-attuned",
@@ -77,14 +78,17 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         }
       }[item.system.attunement];
 
+      // Prepare data needed to display expanded sections
+      ctx.isExpanded = this._expanded.has(item.id);
+
       // Item usage
-      item.hasUses = uses && (uses.max > 0);
-      item.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
-      item.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
-      item.hasTarget = !!target && !(["none", ""].includes(target.type));
+      ctx.hasUses = uses && (uses.max > 0);
+      ctx.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
+      ctx.isDepleted = ctx.isOnCooldown && (uses.per && (uses.value > 0));
+      ctx.hasTarget = !!target && !(["none", ""].includes(target.type));
 
       // Item toggle state
-      this._prepareItemToggleState(item);
+      this._prepareItemToggleState(item, ctx);
 
       // Classify items into types
       if ( item.type === "power" ) obj.powers.push(item);
@@ -103,9 +107,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Organize items
     for ( let i of items ) {
-      i.system.quantity = i.system.quantity || 0;
-      i.system.weight = i.system.weight || 0;
-      i.totalWeight = (i.system.quantity * i.system.weight).toNearest(0.1);
+      const ctx = context.itemContext[i.id] ??= {};
+      ctx.totalWeight = (i.system.quantity * i.system.weight).toNearest(0.1);
       inventory[i.type].items.push(i);
     }
 
@@ -120,7 +123,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     classes.sort((a, b) => b.system.levels - a.system.levels);
     const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.system.details.level;
     classes = classes.reduce((arr, cls) => {
-      cls.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
+      const ctx = context.itemContext[cls.id] ??= {};
+      ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
         const delta = level - cls.system.levels;
         return { level, delta, disabled: delta > maxLevelDelta };
       });
@@ -141,10 +145,10 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     const features = {
       background: {
-        label: "SW5E.ItemTypeBackground", items: backgrounds,
+        label: "ITEM.TypeBackground", items: backgrounds,
         hasActions: false, dataset: {type: "background"} },
       classes: {
-        label: "SW5E.ItemTypeClassPl", items: classes,
+        label: "ITEM.TypeClassPl", items: classes,
         hasActions: false, dataset: {type: "class"}, isClass: true },
       active: {
         label: "SW5E.FeatureActive", items: [],
@@ -159,6 +163,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     }
 
     // Assign and return
+    context.inventoryFilters = true;
     context.inventory = Object.values(inventory);
     context.powerbook = powerbook;
     context.preparedPowers = nPrepared;
@@ -170,24 +175,26 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /**
    * A helper method to establish the displayed preparation state for an item.
-   * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
-   * @private
+   * @param {Item5e} item     Item being prepared for display.
+   * @param {object} context  Context data for display.
+   * @protected
    */
-  _prepareItemToggleState(item) {
-    if (item.type === "power") {
+  _prepareItemToggleState(item, context) {
+    if ( item.type === "power" ) {
       const prep = item.system.preparation || {};
       const isAlways = prep.mode === "always";
       const isPrepared = !!prep.prepared;
-      item.toggleClass = isPrepared ? "active" : "";
-      if ( isAlways ) item.toggleClass = "fixed";
-      if ( isAlways ) item.toggleTitle = CONFIG.SW5E.powerPreparationModes.always;
-      else if ( isPrepared ) item.toggleTitle = CONFIG.SW5E.powerPreparationModes.prepared;
-      else item.toggleTitle = game.i18n.localize("SW5E.PowerUnprepared");
+      context.toggleClass = isPrepared ? "active" : "";
+      if ( isAlways ) context.toggleClass = "fixed";
+      if ( isAlways ) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.always;
+      else if ( isPrepared ) context.toggleTitle = CONFIG.SW5E.powerPreparationModes.prepared;
+      else context.toggleTitle = game.i18n.localize("SW5E.PowerUnprepared");
     }
     else {
       const isActive = !!item.system.equipped;
-      item.toggleClass = isActive ? "active" : "";
-      item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Equipped" : "SW5E.Unequipped");
+      context.toggleClass = isActive ? "active" : "";
+      context.toggleTitle = game.i18n.localize(isActive ? "SW5E.Equipped" : "SW5E.Unequipped");
+      context.canToggle = "equipped" in item.system;
     }
   }
 
@@ -227,7 +234,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       case "rollDeathSave":
         return this.actor.rollDeathSave({event: event});
       case "rollInitiative":
-        return this.actor.rollInitiative({createCombatants: true});
+        return this.actor.rollInitiativeDialog({event});
     }
   }
 

@@ -1,4 +1,4 @@
-import ClassFeatures from "./advancement/class-features.mjs";
+import * as advancement from "./documents/advancement/_module.mjs";
 import { preLocalize } from "./utils.mjs";
 
 // Namespace Configuration Values
@@ -13,7 +13,6 @@ ______      ______ _____ _____
 | |/ / (_>  < |/ //\\__/ / |___
 |___/ \\___/\\/___/ \\____/\\____/
 _______________________________`;
-
 
 /**
  * The set of Ability Scores used within the system.
@@ -46,6 +45,18 @@ SW5E.abilityAbbreviations = {
   san: "SW5E.AbilitySanAbbr"
 };
 preLocalize("abilityAbbreviations");
+
+/**
+ * Configure which ability score is used as the default modifier for initiative rolls.
+ * @type {string}
+ */
+SW5E.initiativeAbility = "dex";
+
+/**
+ * Configure which ability score is used when calculating hit points per level.
+ * @type {string}
+ */
+SW5E.hitPointsAbility = "con";
 
 /* -------------------------------------------- */
 
@@ -292,7 +303,6 @@ preLocalize("timePeriods");
  * @enum {string}
  */
 SW5E.abilityActivationTypes = {
-  none: "SW5E.None",
   action: "SW5E.Action",
   bonus: "SW5E.BonusAction",
   reaction: "SW5E.Reaction",
@@ -304,7 +314,7 @@ SW5E.abilityActivationTypes = {
   lair: "SW5E.LairActionLabel",
   crew: "SW5E.VehicleCrewAction"
 };
-preLocalize("abilityActivationTypes", { sort: true });
+preLocalize("abilityActivationTypes");
 
 /* -------------------------------------------- */
 
@@ -603,7 +613,7 @@ preLocalize("armorClasses", { key: "label" });
  * @enum {string}
  */
 SW5E.consumableTypes = {
-  ammo: "SW5E.ConsumableAmmunition",
+  ammo: "SW5E.ConsumableAmmo",
   potion: "SW5E.ConsumablePotion",
   poison: "SW5E.ConsumablePoison",
   food: "SW5E.ConsumableFood",
@@ -617,37 +627,93 @@ preLocalize("consumableTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for an item with the "feature" type.
+ *
+ * @typedef {object} FeatureTypeConfiguration
+ * @property {string} label                       Localized label for this type.
+ * @property {Object<string, string>} [subtypes]  Enum containing localized labels for subtypes.
+ */
+
+/**
+ * Types of "features" items.
+ * @enum {FeatureTypeConfiguration}
+ */
+SW5E.featureTypes = {
+  background: {
+    label: "SW5E.Feature.Background"
+  },
+  class: {
+    label: "SW5E.Feature.Class",
+    subtypes: {
+      artificerInfusion: "SW5E.ClassFeature.ArtificerInfusion",
+      channelDivinity: "SW5E.ClassFeature.ChannelDivinity",
+      defensiveTactic: "SW5E.ClassFeature.DefensiveTactic",
+      eldritchInvocation: "SW5E.ClassFeature.EldritchInvocation",
+      elementalDiscipline: "SW5E.ClassFeature.ElementalDiscipline",
+      fightingStyle: "SW5E.ClassFeature.FightingStyle",
+      huntersPrey: "SW5E.ClassFeature.HuntersPrey",
+      ki: "SW5E.ClassFeature.Ki",
+      maneuver: "SW5E.ClassFeature.Maneuver",
+      metamagic: "SW5E.ClassFeature.Metamagic",
+      multiattack: "SW5E.ClassFeature.Multiattack",
+      pact: "SW5E.ClassFeature.PactBoon",
+      psionicPower: "SW5E.ClassFeature.PsionicPower",
+      rune: "SW5E.ClassFeature.Rune",
+      superiorHuntersDefense: "SW5E.ClassFeature.SuperiorHuntersDefense"
+    }
+  },
+  monster: {
+    label: "SW5E.Feature.Monster"
+  },
+  species: {
+    label: "SW5E.Feature.Species"
+  },
+  feat: {
+    label: "SW5E.Feature.Feat"
+  }
+};
+preLocalize("featureTypes", { key: "label" });
+preLocalize("featureTypes.class.subtypes", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * @typedef {object} CurrencyConfiguration
+ * @property {string} label         Localized label for the currency.
+ * @property {string} abbreviation  Localized abbreviation for the currency.
+ * @property {number} conversion    Number by which this currency should be multiplied to arrive at a standard value.
+ */
+
+/**
  * The valid currency denominations with localized labels, abbreviations, and conversions.
- * @enum {{
- *   label: string,
- *   abbreviation: string,
- *   [conversion]: {into: string, each: number}
- * }}
+ * The conversion number defines how many of that currency are equal to one GP.
+ * @enum {CurrencyConfiguration}
  */
 SW5E.currencies = {
   pp: {
     label: "SW5E.CurrencyPP",
-    abbreviation: "SW5E.CurrencyAbbrPP"
+    abbreviation: "SW5E.CurrencyAbbrPP",
+    conversion: 0.1
   },
   gp: {
     label: "SW5E.CurrencyGP",
     abbreviation: "SW5E.CurrencyAbbrGP",
-    conversion: {into: "pp", each: 10}
+    conversion: 1
   },
   ep: {
     label: "SW5E.CurrencyEP",
     abbreviation: "SW5E.CurrencyAbbrEP",
-    conversion: {into: "gp", each: 2}
+    conversion: 2
   },
   sp: {
     label: "SW5E.CurrencySP",
     abbreviation: "SW5E.CurrencyAbbrSP",
-    conversion: {into: "ep", each: 5}
+    conversion: 10
   },
   cp: {
     label: "SW5E.CurrencyCP",
     abbreviation: "SW5E.CurrencyAbbrCP",
-    conversion: {into: "sp", each: 10}
+    conversion: 100
   }
 };
 preLocalize("currencies", { keys: ["label", "abbreviation"] });
@@ -706,6 +772,18 @@ preLocalize("damageResistanceTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * Different types of healing that can be applied using abilities.
+ * @enum {string}
+ */
+SW5E.healingTypes = {
+  healing: "SW5E.Healing",
+  temphp: "SW5E.HealingTemp"
+};
+preLocalize("healingTypes");
+
+/* -------------------------------------------- */
+
+/**
  * The valid units of measure for movement distances in the game system.
  * By default this uses the imperial units of feet and miles.
  * @enum {string}
@@ -718,6 +796,10 @@ SW5E.movementTypes = {
   walk: "SW5E.MovementWalk"
 };
 preLocalize("movementTypes", { sort: true });
+
+/* -------------------------------------------- */
+/*  Measurement                                 */
+/* -------------------------------------------- */
 
 /**
  * The valid units of measure for movement distances in the game system.
@@ -732,18 +814,30 @@ SW5E.movementUnits = {
 };
 preLocalize("movementUnits");
 
+/* -------------------------------------------- */
+
 /**
- * The valid units of measure for the range of an action or effect.
- * This object automatically includes the movement units from `SW5E.movementUnits`.
+ * The types of range that are used for measuring actions and effects.
  * @enum {string}
  */
-SW5E.distanceUnits = {
-  none: "SW5E.None",
+SW5E.rangeTypes = {
   self: "SW5E.DistSelf",
   touch: "SW5E.DistTouch",
   spec: "SW5E.Special",
-  any: "SW5E.DistAny",
-  ...SW5E.movementUnits
+  any: "SW5E.DistAny"
+};
+preLocalize("rangeTypes");
+
+/* -------------------------------------------- */
+
+/**
+ * The valid units of measure for the range of an action or effect. A combination of `SW5E.movementUnits` and
+ * `SW5E.rangeUnits`.
+ * @enum {string}
+ */
+SW5E.distanceUnits = {
+  ...SW5E.movementUnits,
+  ...SW5E.rangeTypes
 };
 preLocalize("distanceUnits");
 
@@ -769,59 +863,85 @@ SW5E.encumbrance = {
 };
 
 /* -------------------------------------------- */
+/*  Targeting                                   */
+/* -------------------------------------------- */
+
+/**
+ * Targeting types that apply to one or more distinct targets.
+ * @enum {string}
+ */
+SW5E.individualTargetTypes = {
+  self: "SW5E.TargetSelf",
+  ally: "SW5E.TargetAlly",
+  enemy: "SW5E.TargetEnemy",
+  creature: "SW5E.TargetCreature",
+  object: "SW5E.TargetObject",
+  space: "SW5E.TargetSpace"
+};
+preLocalize("individualTargetTypes");
+
+/* -------------------------------------------- */
+
+/**
+ * Information needed to represent different area of effect target types.
+ *
+ * @typedef {object} AreaTargetDefinition
+ * @property {string} label     Localized label for this type.
+ * @property {string} template  Type of `MeasuredTemplate` create for this target type.
+ */
+
+/**
+ * Targeting types that cover an area.
+ * @enum {AreaTargetDefinition}
+ */
+SW5E.areaTargetTypes = {
+  radius: {
+    label: "SW5E.TargetRadius",
+    template: "circle"
+  },
+  sphere: {
+    label: "SW5E.TargetSphere",
+    template: "circle"
+  },
+  cylinder: {
+    label: "SW5E.TargetCylinder",
+    template: "circle"
+  },
+  cone: {
+    label: "SW5E.TargetCone",
+    template: "cone"
+  },
+  square: {
+    label: "SW5E.TargetSquare",
+    template: "rect"
+  },
+  cube: {
+    label: "SW5E.TargetCube",
+    template: "rect"
+  },
+  line: {
+    label: "SW5E.TargetLine",
+    template: "ray"
+  },
+  wall: {
+    label: "SW5E.TargetWall",
+    template: "ray"
+  }
+};
+preLocalize("areaTargetTypes", { key: "label", sort: true });
+patchConfig("areaTargetTypes", "template", { since: 2.0, until: 2.2 });
+
+/* -------------------------------------------- */
 
 /**
  * The types of single or area targets which can be applied to abilities.
  * @enum {string}
  */
 SW5E.targetTypes = {
-  none: "SW5E.None",
-  self: "SW5E.TargetSelf",
-  creature: "SW5E.TargetCreature",
-  ally: "SW5E.TargetAlly",
-  enemy: "SW5E.TargetEnemy",
-  object: "SW5E.TargetObject",
-  space: "SW5E.TargetSpace",
-  radius: "SW5E.TargetRadius",
-  sphere: "SW5E.TargetSphere",
-  cylinder: "SW5E.TargetCylinder",
-  cone: "SW5E.TargetCone",
-  square: "SW5E.TargetSquare",
-  cube: "SW5E.TargetCube",
-  line: "SW5E.TargetLine",
-  wall: "SW5E.TargetWall"
+  ...SW5E.individualTargetTypes,
+  ...Object.fromEntries(Object.entries(SW5E.areaTargetTypes).map(([k, v]) => [k, v.label]))
 };
 preLocalize("targetTypes", { sort: true });
-
-/* -------------------------------------------- */
-
-/**
- * Mapping between `SW5E.targetTypes` and `MeasuredTemplate` shape types to define
- * which templates are produced by which area of effect target type.
- * @enum {string}
- */
-SW5E.areaTargetTypes = {
-  cone: "cone",
-  cube: "rect",
-  cylinder: "circle",
-  line: "ray",
-  radius: "circle",
-  sphere: "circle",
-  square: "rect",
-  wall: "ray"
-};
-
-/* -------------------------------------------- */
-
-/**
- * Different types of healing that can be applied using abilities.
- * @enum {string}
- */
-SW5E.healingTypes = {
-  healing: "SW5E.Healing",
-  temphp: "SW5E.HealingTemp"
-};
-preLocalize("healingTypes");
 
 /* -------------------------------------------- */
 
@@ -846,6 +966,38 @@ SW5E.senses = {
 preLocalize("senses", { sort: true });
 
 /* -------------------------------------------- */
+/*  Powercasting                                */
+/* -------------------------------------------- */
+
+/**
+ * Define the standard slot progression by character level.
+ * The entries of this array represent the power slot progression for a full power-caster.
+ * @type {number[][]}
+ */
+SW5E.SPELL_SLOT_TABLE = [
+  [2],
+  [3],
+  [4, 2],
+  [4, 3],
+  [4, 3, 2],
+  [4, 3, 3],
+  [4, 3, 3, 1],
+  [4, 3, 3, 2],
+  [4, 3, 3, 3, 1],
+  [4, 3, 3, 3, 2],
+  [4, 3, 3, 3, 2, 1],
+  [4, 3, 3, 3, 2, 1],
+  [4, 3, 3, 3, 2, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 2, 1, 1, 1, 1],
+  [4, 3, 3, 3, 3, 1, 1, 1, 1],
+  [4, 3, 3, 3, 3, 2, 1, 1, 1],
+  [4, 3, 3, 3, 3, 2, 2, 1, 1]
+];
+
+/* -------------------------------------------- */
 
 /**
  * Various different ways a power can be prepared.
@@ -859,11 +1011,68 @@ SW5E.powerPreparationModes = {
 };
 preLocalize("powerPreparationModes");
 
+/* -------------------------------------------- */
+
 /**
  * Subset of `SW5E.powerPreparationModes` that consume power slots.
  * @type {boolean[]}
  */
 SW5E.powerUpcastModes = ["always", "pact", "prepared"];
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for different types of powercasting supported.
+ *
+ * @typedef {object} PowercastingTypeConfiguration
+ * @property {string} label                                                        Localized label.
+ * @property {Object<string, PowercastingProgressionConfiguration>} [progression]  Any progression modes for this type.
+ */
+
+/**
+ * Configuration data for a powercasting progression mode.
+ *
+ * @typedef {object} PowercastingProgressionConfiguration
+ * @property {string} label             Localized label.
+ * @property {number} [divisor=1]       Value by which the class levels are divided to determine powercasting level.
+ * @property {boolean} [roundUp=false]  Should fractional values should be rounded up by default?
+ */
+
+/**
+ * Different powercasting types and their progression.
+ * @type {PowercastingTypeConfiguration}
+ */
+SW5E.powercastingTypes = {
+  leveled: {
+    label: "SW5E.PowerProgLeveled",
+    progression: {
+      full: {
+        label: "SW5E.PowerProgFull",
+        divisor: 1
+      },
+      half: {
+        label: "SW5E.PowerProgHalf",
+        divisor: 2
+      },
+      third: {
+        label: "SW5E.PowerProgThird",
+        divisor: 3
+      },
+      artificer: {
+        label: "SW5E.PowerProgArt",
+        divisor: 2,
+        roundUp: true
+      }
+    }
+  },
+  pact: {
+    label: "SW5E.PowerProgPact"
+  }
+};
+preLocalize("powercastingTypes", { key: "label", sort: true });
+preLocalize("powercastingTypes.leveled.progression", { key: "label" });
+
+/* -------------------------------------------- */
 
 /**
  * Ways in which a class can contribute to powercasting levels.
@@ -877,7 +1086,27 @@ SW5E.powerProgression = {
   pact: "SW5E.PowerProgPact",
   artificer: "SW5E.PowerProgArt"
 };
-preLocalize("powerProgression");
+preLocalize("powerProgression", { key: "label" });
+
+/* -------------------------------------------- */
+
+/**
+ * Valid power levels.
+ * @enum {string}
+ */
+SW5E.powerLevels = {
+  0: "SW5E.PowerLevel0",
+  1: "SW5E.PowerLevel1",
+  2: "SW5E.PowerLevel2",
+  3: "SW5E.PowerLevel3",
+  4: "SW5E.PowerLevel4",
+  5: "SW5E.PowerLevel5",
+  6: "SW5E.PowerLevel6",
+  7: "SW5E.PowerLevel7",
+  8: "SW5E.PowerLevel8",
+  9: "SW5E.PowerLevel9"
+};
+preLocalize("powerLevels");
 
 /* -------------------------------------------- */
 
@@ -891,6 +1120,83 @@ SW5E.powerScalingModes = {
   level: "SW5E.PowerLevel"
 };
 preLocalize("powerScalingModes", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * Types of components that can be required when casting a power.
+ * @enum {object}
+ */
+SW5E.powerComponents = {
+  vocal: {
+    label: "SW5E.ComponentVerbal",
+    abbr: "SW5E.ComponentVerbalAbbr"
+  },
+  somatic: {
+    label: "SW5E.ComponentSomatic",
+    abbr: "SW5E.ComponentSomaticAbbr"
+  },
+  material: {
+    label: "SW5E.ComponentMaterial",
+    abbr: "SW5E.ComponentMaterialAbbr"
+  }
+};
+preLocalize("powerComponents", {keys: ["label", "abbr"]});
+
+/* -------------------------------------------- */
+
+/**
+ * Supplementary rules keywords that inform a power's use.
+ * @enum {object}
+ */
+SW5E.powerTags = {
+  concentration: {
+    label: "SW5E.Concentration",
+    abbr: "SW5E.ConcentrationAbbr"
+  },
+  ritual: {
+    label: "SW5E.Ritual",
+    abbr: "SW5E.RitualAbbr"
+  }
+};
+preLocalize("powerTags", {keys: ["label", "abbr"]});
+
+/* -------------------------------------------- */
+
+/**
+ * Schools to which a power can belong.
+ * @enum {string}
+ */
+SW5E.powerSchools = {
+  abj: "SW5E.SchoolAbj",
+  con: "SW5E.SchoolCon",
+  div: "SW5E.SchoolDiv",
+  enc: "SW5E.SchoolEnc",
+  evo: "SW5E.SchoolEvo",
+  ill: "SW5E.SchoolIll",
+  nec: "SW5E.SchoolNec",
+  trs: "SW5E.SchoolTrs"
+};
+preLocalize("powerSchools", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
+ * @enum {string}
+ */
+SW5E.powerScrollIds = {
+  0: "rQ6sO7HDWzqMhSI3",
+  1: "9GSfMg0VOA2b4uFN",
+  2: "XdDp6CKh9qEvPTuS",
+  3: "hqVKZie7x9w3Kqds",
+  4: "DM7hzgL836ZyUFB1",
+  5: "wa1VF8TXHmkrrR35",
+  6: "tI3rWx4bxefNCexS",
+  7: "mtyw4NS1s7j2EJaD",
+  8: "aOrinPg7yuDZEuWr",
+  9: "O4YbkJkLlnsgUszZ"
+};
 
 /* -------------------------------------------- */
 /*  Weapon Details                              */
@@ -951,95 +1257,6 @@ SW5E.weaponProperties = {
 preLocalize("weaponProperties", { sort: true });
 
 /* -------------------------------------------- */
-/*  Power Details                               */
-/* -------------------------------------------- */
-
-/**
- * Types of components that can be required when casting a power.
- * @enum {object}
- */
-SW5E.powerComponents = {
-  vocal: {
-    label: "SW5E.ComponentVerbal",
-    abbr: "SW5E.ComponentVerbalAbbr"
-  },
-  somatic: {
-    label: "SW5E.ComponentSomatic",
-    abbr: "SW5E.ComponentSomaticAbbr"
-  },
-  material: {
-    label: "SW5E.ComponentMaterial",
-    abbr: "SW5E.ComponentMaterialAbbr"
-  }
-};
-preLocalize("powerComponents", {keys: ["label", "abbr"]});
-
-/**
- * Supplementary rules keywords that inform a power's use.
- * @enum {object}
- */
-SW5E.powerTags = {
-  concentration: {
-    label: "SW5E.Concentration",
-    abbr: "SW5E.ConcentrationAbbr"
-  },
-  ritual: {
-    label: "SW5E.Ritual",
-    abbr: "SW5E.RitualAbbr"
-  }
-};
-preLocalize("powerTags", {keys: ["label", "abbr"]});
-
-/**
- * Schools to which a power can belong.
- * @enum {string}
- */
-SW5E.powerSchools = {
-  abj: "SW5E.SchoolAbj",
-  con: "SW5E.SchoolCon",
-  div: "SW5E.SchoolDiv",
-  enc: "SW5E.SchoolEnc",
-  evo: "SW5E.SchoolEvo",
-  ill: "SW5E.SchoolIll",
-  nec: "SW5E.SchoolNec",
-  trs: "SW5E.SchoolTrs"
-};
-preLocalize("powerSchools", { sort: true });
-
-/**
- * Valid power levels.
- * @enum {string}
- */
-SW5E.powerLevels = {
-  0: "SW5E.PowerLevel0",
-  1: "SW5E.PowerLevel1",
-  2: "SW5E.PowerLevel2",
-  3: "SW5E.PowerLevel3",
-  4: "SW5E.PowerLevel4",
-  5: "SW5E.PowerLevel5",
-  6: "SW5E.PowerLevel6",
-  7: "SW5E.PowerLevel7",
-  8: "SW5E.PowerLevel8",
-  9: "SW5E.PowerLevel9"
-};
-preLocalize("powerLevels");
-
-/**
- * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
- * @enum {string}
- */
-SW5E.powerScrollIds = {
-  0: "rQ6sO7HDWzqMhSI3",
-  1: "9GSfMg0VOA2b4uFN",
-  2: "XdDp6CKh9qEvPTuS",
-  3: "hqVKZie7x9w3Kqds",
-  4: "DM7hzgL836ZyUFB1",
-  5: "wa1VF8TXHmkrrR35",
-  6: "tI3rWx4bxefNCexS",
-  7: "mtyw4NS1s7j2EJaD",
-  8: "aOrinPg7yuDZEuWr",
-  9: "O4YbkJkLlnsgUszZ"
-};
 
 /**
  * Compendium packs used for localized items.
@@ -1048,34 +1265,6 @@ SW5E.powerScrollIds = {
 SW5E.sourcePacks = {
   ITEMS: "sw5e.items"
 };
-
-/**
- * Define the standard slot progression by character level.
- * The entries of this array represent the power slot progression for a full power-caster.
- * @type {number[][]}
- */
-SW5E.SPELL_SLOT_TABLE = [
-  [2],
-  [3],
-  [4, 2],
-  [4, 3],
-  [4, 3, 2],
-  [4, 3, 3],
-  [4, 3, 3, 1],
-  [4, 3, 3, 2],
-  [4, 3, 3, 3, 1],
-  [4, 3, 3, 3, 2],
-  [4, 3, 3, 3, 2, 1],
-  [4, 3, 3, 3, 2, 1],
-  [4, 3, 3, 3, 2, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 2, 1, 1, 1, 1],
-  [4, 3, 3, 3, 3, 1, 1, 1, 1],
-  [4, 3, 3, 3, 3, 2, 1, 1, 1],
-  [4, 3, 3, 3, 3, 2, 2, 1, 1]
-];
 
 /* -------------------------------------------- */
 
@@ -1095,9 +1284,63 @@ SW5E.polymorphSettings = {
   keepPowers: "SW5E.PolymorphKeepPowers",
   keepItems: "SW5E.PolymorphKeepItems",
   keepBio: "SW5E.PolymorphKeepBio",
-  keepVision: "SW5E.PolymorphKeepVision"
+  keepVision: "SW5E.PolymorphKeepVision",
+  keepSelf: "SW5E.PolymorphKeepSelf"
 };
 preLocalize("polymorphSettings", { sort: true });
+
+/**
+ * Settings to configure how actors are effects are merged when polymorphing is applied.
+ * @enum {string}
+ */
+SW5E.polymorphEffectSettings = {
+  keepAE: "SW5E.PolymorphKeepAE",
+  keepOtherOriginAE: "SW5E.PolymorphKeepOtherOriginAE",
+  keepOriginAE: "SW5E.PolymorphKeepOriginAE",
+  keepEquipmentAE: "SW5E.PolymorphKeepEquipmentAE",
+  keepFeatAE: "SW5E.PolymorphKeepFeatureAE",
+  keepPowerAE: "SW5E.PolymorphKeepPowerAE",
+  keepClassAE: "SW5E.PolymorphKeepClassAE",
+  keepBackgroundAE: "SW5E.PolymorphKeepBackgroundAE"
+};
+preLocalize("polymorphEffectSettings", { sort: true });
+
+/**
+ * Settings to configure how actors are merged when preset polymorphing is applied.
+ * @enum {object}
+ */
+SW5E.transformationPresets = {
+  wildshape: {
+    icon: '<i class="fas fa-paw"></i>',
+    label: "SW5E.PolymorphWildShape",
+    options: {
+      keepBio: true,
+      keepClass: true,
+      keepMental: true,
+      mergeSaves: true,
+      mergeSkills: true,
+      keepEquipmentAE: false
+    }
+  },
+  polymorph: {
+    icon: '<i class="fas fa-pastafarianism"></i>',
+    label: "SW5E.Polymorph",
+    options: {
+      keepEquipmentAE: false,
+      keepClassAE: false,
+      keepFeatAE: false,
+      keepBackgroundAE: false
+    }
+  },
+  polymorphSelf: {
+    icon: '<i class="fas fa-eye"></i>',
+    label: "SW5E.PolymorphSelf",
+    options: {
+      keepSelf: true
+    }
+  }
+};
+preLocalize("transformationPresets", { sort: true, keys: ["label"] });
 
 /* -------------------------------------------- */
 
@@ -1136,7 +1379,7 @@ preLocalize("cover");
  * @type {string[]}
  */
 SW5E.trackableAttributes = [
-  "attributes.ac.value", "attributes.init.value", "attributes.movement", "attributes.senses", "attributes.powerdc",
+  "attributes.ac.value", "attributes.init.bonus", "attributes.movement", "attributes.senses", "attributes.powerdc",
   "attributes.powerLevel", "details.cr", "details.powerLevel", "details.xp.value", "skills.*.passive",
   "abilities.*.value"
 ];
@@ -1237,24 +1480,96 @@ SW5E.CR_EXP_LEVELS = [
 ];
 
 /**
- * Character features automatically granted by classes & archetypes at certain levels.
- * @type {object}
- * @deprecated since 1.6.0, targeted for removal in 2.1
+ * @typedef {object} CharacterFlagConfig
+ * @property {string} name
+ * @property {string} hint
+ * @property {string} section
+ * @property {typeof boolean|string|number} type
+ * @property {string} placeholder
+ * @property {string[]} [abilities]
+ * @property {Object<string, string>} [choices]
+ * @property {string[]} [skills]
  */
-SW5E.classFeatures = ClassFeatures;
+
+/* -------------------------------------------- */
+
+/**
+ * Trait configuration information.
+ *
+ * @typedef {object} TraitConfiguration
+ * @property {string} label               Localization key for the trait name.
+ * @property {string} [actorKeyPath]      If the trait doesn't directly map to an entry as `traits.[key]`, where is
+ *                                        this trait's data stored on the actor?
+ * @property {string} [configKey]         If the list of trait options doesn't match the name of the trait, where can
+ *                                        the options be found within `CONFIG.SW5E`?
+ * @property {string} [labelKey]          If config is an enum of objects, where can the label be found?
+ * @property {object} [subtypes]          Configuration for traits that take some sort of base item.
+ * @property {string} [subtypes.keyPath]  Path to subtype value on base items, should match a category key.
+ * @property {string[]} [subtypes.ids]    Key for base item ID objects within `CONFIG.SW5E`.
+ * @property {object} [children]          Mapping of category key to an object defining its children.
+ * @property {boolean} [sortCategories]   Whether top-level categories should be sorted.
+ */
+
+/**
+ * Configurable traits on actors.
+ * @enum {TraitConfiguration}
+ */
+SW5E.traits = {
+  saves: {
+    label: "SW5E.ClassSaves",
+    configKey: "abilities"
+  },
+  skills: {
+    label: "SW5E.TraitSkillProf",
+    labelKey: "label"
+  },
+  languages: {
+    label: "SW5E.Languages"
+  },
+  di: {
+    label: "SW5E.DamImm",
+    configKey: "damageTypes"
+  },
+  dr: {
+    label: "SW5E.DamRes",
+    configKey: "damageTypes"
+  },
+  dv: {
+    label: "SW5E.DamVuln",
+    configKey: "damageTypes"
+  },
+  ci: {
+    label: "SW5E.ConImm",
+    configKey: "conditionTypes"
+  },
+  weapon: {
+    label: "SW5E.TraitWeaponProf",
+    actorKeyPath: "traits.weaponProf",
+    configKey: "weaponProficiencies",
+    subtypes: { keyPath: "weaponType", ids: ["weaponIds"] }
+  },
+  armor: {
+    label: "SW5E.TraitArmorProf",
+    actorKeyPath: "traits.armorProf",
+    configKey: "armorProficiencies",
+    subtypes: { keyPath: "armor.type", ids: ["armorIds", "shieldIds"] }
+  },
+  tool: {
+    label: "SW5E.TraitToolProf",
+    actorKeyPath: "traits.toolProf",
+    configKey: "toolProficiencies",
+    subtypes: { keyPath: "toolType", ids: ["toolIds"] },
+    children: { vehicle: "vehicleTypes" },
+    sortCategories: true
+  }
+};
+preLocalize("traits", { key: "label" });
+
+/* -------------------------------------------- */
 
 /**
  * Special character flags.
- * @enum {{
- *   name: string,
- *   hint: string,
- *   [abilities]: string[],
- *   [choices]: object<string, string>,
- *   [skills]: string[],
- *   section: string,
- *   type: any,
- *   placeholder: any
- * }}
+ * @enum {CharacterFlagConfig}
  */
 SW5E.characterFlags = {
   diamondSoul: {
@@ -1349,6 +1664,18 @@ preLocalize("characterFlags", { keys: ["name", "hint", "section"] });
  * @type {string[]}
  */
 SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(SW5E.characterFlags));
+
+/* -------------------------------------------- */
+
+/**
+ * Advancement types that can be added to items.
+ * @enum {*}
+ */
+SW5E.advancementTypes = {
+  HitPoints: advancement.HitPointsAdvancement,
+  ItemGrant: advancement.ItemGrantAdvancement,
+  ScaleValue: advancement.ScaleValueAdvancement
+};
 
 /* -------------------------------------------- */
 

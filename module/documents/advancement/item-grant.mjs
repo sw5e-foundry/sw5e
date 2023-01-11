@@ -1,22 +1,19 @@
-import Advancement from "../advancement.mjs";
-import AdvancementFlow from "../advancement-flow.mjs";
-import AdvancementConfig from "../advancement-config.mjs";
+import Advancement from "./advancement.mjs";
+import ItemGrantConfig from "../../applications/advancement/item-grant-config.mjs";
+import ItemGrantFlow from "../../applications/advancement/item-grant-flow.mjs";
+import ItemGrantConfigurationData from "../../data/advancement/item-grant.mjs";
 
 /**
  * Advancement that automatically grants one or more items to the player. Presents the player with the option of
  * skipping any or all of the items.
  */
-export class ItemGrantAdvancement extends Advancement {
+export default class ItemGrantAdvancement extends Advancement {
 
   /** @inheritdoc */
   static get metadata() {
     return foundry.utils.mergeObject(super.metadata, {
-      defaults: {
-        configuration: {
-          items: [],
-          optional: false,
-          power: null
-        }
+      dataModels: {
+        configuration: ItemGrantConfigurationData
       },
       order: 40,
       icon: "systems/sw5e/icons/svg/item-grant.svg",
@@ -43,7 +40,7 @@ export class ItemGrantAdvancement extends Advancement {
 
   /** @inheritdoc */
   configuredForLevel(level) {
-    return !foundry.utils.isEmpty(this.data.value);
+    return !foundry.utils.isEmpty(this.value);
   }
 
   /* -------------------------------------------- */
@@ -51,13 +48,13 @@ export class ItemGrantAdvancement extends Advancement {
   /** @inheritdoc */
   summaryForLevel(level, { configMode=false }={}) {
     // Link to compendium items
-    if ( !this.data.value.added || configMode ) {
-      return this.data.configuration.items.reduce((html, uuid) => html + sw5e.utils.linkForUuid(uuid), "");
+    if ( !this.value.added || configMode ) {
+      return this.configuration.items.reduce((html, uuid) => html + sw5e.utils.linkForUuid(uuid), "");
     }
 
     // Link to items on the actor
     else {
-      return Object.keys(this.data.value.added).map(id => {
+      return Object.keys(this.value.added).map(id => {
         const item = this.actor.items.get(id);
         return item?.toAnchor({classes: ["content-link"]}).outerHTML ?? "";
       }).join("");
@@ -78,7 +75,7 @@ export class ItemGrantAdvancement extends Advancement {
   async apply(level, data, retainedData={}) {
     const items = [];
     const updates = {};
-    const powerChanges = this.data.configuration.power ? this._preparePowerChanges(this.data.configuration.power) : {};
+    const powerChanges = this.configuration.power?.powerChanges ?? {};
     for ( const [uuid, selected] of Object.entries(data) ) {
       if ( !selected ) continue;
 
@@ -95,7 +92,6 @@ export class ItemGrantAdvancement extends Advancement {
       if ( itemData.type === "power" ) foundry.utils.mergeObject(itemData, powerChanges);
 
       items.push(itemData);
-      // TODO: Trigger any additional advancement steps for added items
       updates[itemData._id] = uuid;
     }
     this.actor.updateSource({items});
@@ -109,7 +105,6 @@ export class ItemGrantAdvancement extends Advancement {
     const updates = {};
     for ( const item of data.items ) {
       this.actor.updateSource({items: [item]});
-      // TODO: Restore any additional advancement data here
       updates[item._id] = item.flags.sw5e.sourceId;
     }
     this.updateSource({"value.added": updates});
@@ -120,118 +115,13 @@ export class ItemGrantAdvancement extends Advancement {
   /** @inheritdoc */
   reverse(level) {
     const items = [];
-    for ( const id of Object.keys(this.data.value.added ?? {}) ) {
+    for ( const id of Object.keys(this.value.added ?? {}) ) {
       const item = this.actor.items.get(id);
       if ( item ) items.push(item.toObject());
       this.actor.items.delete(id);
-      // TODO: Ensure any advancement data attached to these items is properly reversed
-      // and store any advancement data for these items in case they need to be restored
     }
     this.updateSource({ "value.-=added": null });
     return { items };
-  }
-
-}
-
-
-/**
- * Configuration application for item grants.
- */
-export class ItemGrantConfig extends AdvancementConfig {
-
-  /** @inheritdoc */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      dragDrop: [{ dropSelector: ".drop-target" }],
-      dropKeyPath: "items",
-      template: "systems/sw5e/templates/advancement/item-grant-config.hbs"
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  getData() {
-    const context = super.getData();
-    context.showPowerConfig = context.data.configuration.items.map(fromUuidSync).some(i => i.type === "power");
-    return context;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  _validateDroppedItem(event, item) {
-    if ( this.advancement.constructor.VALID_TYPES.has(item.type) ) return true;
-    const type = game.i18n.localize(`ITEM.Type${item.type.capitalize()}`);
-    throw new Error(game.i18n.format("SW5E.AdvancementItemTypeInvalidWarning", { type }));
-  }
-}
-
-
-/**
- * Inline application that presents the player with a list of items to be added.
- */
-export class ItemGrantFlow extends AdvancementFlow {
-
-  /** @inheritdoc */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/item-grant-flow.hbs"
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async getData() {
-    const config = this.advancement.data.configuration.items;
-    const added = this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
-      ?? this.advancement.data.value.added;
-    const checked = new Set(Object.values(added ?? {}));
-
-    const items = await Promise.all(config.map(fromUuid));
-    return foundry.utils.mergeObject(super.getData(), {
-      optional: this.advancement.data.configuration.optional,
-      items: items.reduce((arr, item) => {
-        if ( !item ) return arr;
-        item.checked = added ? checked.has(item.uuid) : true;
-        arr.push(item);
-        return arr;
-      }, [])
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find("a[data-uuid]").click(this._onClickFeature.bind(this));
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle clicking on a feature during item grant to preview the feature.
-   * @param {MouseEvent} event  The triggering event.
-   * @protected
-   */
-  async _onClickFeature(event) {
-    event.preventDefault();
-    const uuid = event.currentTarget.dataset.uuid;
-    const item = await fromUuid(uuid);
-    item?.sheet.render(true);
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  async _updateObject(event, formData) {
-    const retainedData = this.retainedData?.items.reduce((obj, i) => {
-      obj[foundry.utils.getProperty(i, "flags.sw5e.sourceId")] = i;
-      return obj;
-    }, {});
-    await this.advancement.apply(this.level, formData, retainedData);
   }
 
 }

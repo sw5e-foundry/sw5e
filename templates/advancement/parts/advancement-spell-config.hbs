@@ -1,8 +1,8 @@
 <div class="form-group">
   <label>{{localize "SW5E.AbilityModifier"}}</label>
   <div class="form-fields">
-    <select name="data.configuration.power.ability">
-      {{selectOptions CONFIG.abilities selected=data.configuration.power.ability blank="&mdash;"}}
+    <select name="configuration.power.ability">
+      {{selectOptions CONFIG.abilities selected=configuration.power.ability blank="—"}}
     </select>
   </div>
 </div>
@@ -10,8 +10,8 @@
 <div class="form-group">
   <label>{{localize "SW5E.PowerPreparationMode"}}</label>
   <div class="form-fields">
-    <select name="data.configuration.power.preparation">
-      {{selectOptions CONFIG.powerPreparationModes selected=data.configuration.power.preparation blank="&mdash;"}}
+    <select name="configuration.power.preparation">
+      {{selectOptions CONFIG.powerPreparationModes selected=configuration.power.preparation blank="—"}}
     </select>
   </div>
 </div>
@@ -19,9 +19,9 @@
 <div class="form-group">
   <label>{{localize "SW5E.LimitedUses"}}</label>
   <div class="form-fields">
-    <input type="text" name="data.configuration.power.uses.max" value="{{data.configuration.power.uses.max}}">
-    <select name="data.configuration.power.uses.per">
-      {{selectOptions CONFIG.limitedUsePeriods selected=data.configuration.power.uses.per blank="&mdash;"}}
+    <input type="text" name="configuration.power.uses.max" value="{{configuration.power.uses.max}}" data-formula-editor>
+    <select name="configuration.power.uses.per">
+      {{selectOptions CONFIG.limitedUsePeriods selected=configuration.power.uses.per blank="—"}}
     </select>
   </div>
 </div>

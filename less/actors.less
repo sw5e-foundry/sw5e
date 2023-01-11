@@ -11,8 +11,6 @@
   // Attribute Configuration
   .config-button {
     color: @colorOlive;
-    right: -6px;
-    top: -3px;
     font-size: 10px;
     font-weight: normal;
   }
@@ -75,6 +73,7 @@
       margin: 0;
 
       .attribute {
+        position: relative;
         height: 70px;
         margin: 0;
         border: none;
@@ -96,6 +95,9 @@
 
         .config-button {
           position: absolute;
+          padding: 4px;
+          right: 0;
+          top: 0;
           display: none;
         }
 
@@ -106,16 +108,6 @@
         // Temporary HP
         input.temphp {
           width: 48%;
-        }
-
-        // Attribution Tooltip
-        .property-attribution {
-          min-width: 150px;
-          top: 50px;
-          font-family: Signika, sans-serif;
-          font-size: 14px;
-          font-weight: normal;
-          line-height: 1rem;
         }
       }
     }
@@ -176,7 +168,7 @@
           font-size: 24px;
         }
 
-        &.multiple input {
+        &.multiple input, &.multiple span:not(.sep) {
           flex: 0 0 33%;
         }
       }
@@ -190,14 +182,6 @@
         font-weight: 400;
         white-space: nowrap
       }
-    }
-  }
-
-  .attributable {
-    position: relative;
-
-    &:hover .tooltip {
-      display: block;
     }
   }
 
@@ -277,6 +261,11 @@
   .proficiency-toggle {
     color: @colorBeige;
     font-size: 12px;
+
+    &.disabled {
+      cursor: default;
+      text-shadow: none;
+    }
   }
   .proficient .proficiency-toggle {
     color: @colorOlive;
@@ -485,7 +474,7 @@
         line-height: 20px;
         color: @colorTan;
       }
-      input[type="number"] {
+      input[type="text"], input[type="number"] {
         flex: 0 0 48px;
         text-align: center;
         margin-left: 8px;

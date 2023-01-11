@@ -3,7 +3,7 @@ export default class SRDCompendium extends Compendium {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["srd-compendium"],
-      template: "systems/sw5e/templates/apps/srd-compendium.hbs",
+      template: "systems/sw5e/templates/journal/srd-compendium.hbs",
       width: 800,
       height: 950,
       resizable: true

@@ -57,11 +57,30 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
     if ( Object.keys(contents).length === 0 ) delete data.flags[key];
   });
 
+  if ( data.system?.activation?.cost === 0 ) data.system.activation.cost = null;
+  if ( data.system?.duration?.value === "0" ) data.system.duration.value = "";
+  if ( data.system?.target?.value === 0 ) data.system.target.value = null;
+  if ( data.system?.target?.width === 0 ) data.system.target.width = null;
+  if ( data.system?.range?.value === 0 ) data.system.range.value = null;
+  if ( data.system?.range?.long === 0 ) data.system.range.long = null;
+  if ( data.system?.uses?.value === 0 ) data.system.uses.value = null;
+  if ( data.system?.uses?.max === "0" ) data.system.duration.value = "";
+  if ( data.system?.save?.dc === 0 ) data.system.save.dc = null;
+  if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
+  if ( data.system?.strength === 0 ) data.system.strength = null;
+
+  // Remove mystery-man.svg from Actors
+  if ( ["character", "npc"].includes(data.type) && data.img === "icons/svg/mystery-man.svg" ) {
+    data.img = "";
+    data.prototypeToken.texture.src = "";
+  }
+
   if ( data.effects ) data.effects.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
   if ( data.items ) data.items.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
   if ( data.system?.description?.value ) data.system.description.value = cleanString(data.system.description.value);
   if ( data.label ) data.label = cleanString(data.label);
   if ( data.name ) data.name = cleanString(data.name);
+  data.sort = 0;
 }
 
 

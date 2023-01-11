@@ -1,3 +1,5 @@
+import BaseConfigSheet from "./base-config.mjs";
+
 /**
  * A simple form to set skill configuration for a given skill.
  *
@@ -5,7 +7,7 @@
  * @param {ApplicationOptions} options  Additional application configuration options.
  * @param {string} skillId              The skill key as defined in CONFIG.SW5E.skills.
  */
-export default class ActorSkillConfig extends DocumentSheet {
+export default class ActorSkillConfig extends BaseConfigSheet {
   constructor(actor, options, skillId) {
     super(actor, options);
     this._skillId = skillId;
@@ -37,7 +39,8 @@ export default class ActorSkillConfig extends DocumentSheet {
   getData(options) {
     const src = this.document.toObject();
     return {
-      skill: src.system.skills?.[this._skillId] || {},
+      abilities: CONFIG.SW5E.abilities,
+      skill: src.system.skills?.[this._skillId] ?? this.document.system.skills[this._skillId] ?? {},
       skillId: this._skillId,
       proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
       bonusGlobal: src.system.bonuses?.abilities.skill

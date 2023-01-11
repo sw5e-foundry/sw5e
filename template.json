@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc", "vehicle"],
+    "types": ["character", "npc", "vehicle", "group"],
     "templates": {
       "common": {
         "abilities": {
@@ -61,14 +61,13 @@
           },
           "hp": {
             "value": 10,
-            "min": 0,
-            "max": 10,
+            "max": null,
             "temp": 0,
             "tempmax": 0
           },
           "init": {
-            "value": 0,
-            "bonus": 0
+            "ability": "",
+            "bonus": ""
           },
           "movement": {
             "burrow": 0,
@@ -357,28 +356,29 @@
         }
       }
     },
-    "htmlFields": ["details.biography.value", "details.biography.public"],
+    "htmlFields": ["details.biography.value", "details.biography.public", "description.full", "description.summary"],
     "character": {
       "templates": ["common", "creature"],
       "attributes": {
         "hp": {
           "value": 0,
-          "max": 0
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          }
         },
         "death": {
           "success": 0,
           "failure": 0
         },
         "exhaustion": 0,
-        "inspiration": 0
+        "inspiration": false
       },
       "details": {
         "background": "",
         "originalClass": "",
         "xp": {
-          "value": 0,
-          "min": 0,
-          "max": 300
+          "value": 0
         },
         "appearance": "",
         "trait": "",
@@ -390,20 +390,23 @@
         "primary": {
           "value": 0,
           "max": 0,
-          "sr": 0,
-          "lr": 0
+          "sr": false,
+          "lr": false,
+          "label": ""
         },
         "secondary": {
           "value": 0,
           "max": 0,
-          "sr": 0,
-          "lr": 0
+          "sr": false,
+          "lr": false,
+          "label": ""
         },
         "tertiary": {
           "value": 0,
           "max": 0,
-          "sr": 0,
-          "lr": 0
+          "sr": false,
+          "lr": false,
+          "label": ""
         }
       },
       "traits": {
@@ -425,6 +428,7 @@
       "templates": ["common", "creature"],
       "attributes": {
         "hp": {
+          "max": 10,
           "formula": ""
         }
       },
@@ -438,9 +442,6 @@
         "environment": "",
         "cr": 1,
         "powerLevel": 0,
-        "xp": {
-          "value": 10
-        },
         "source": ""
       },
       "resources": {
@@ -453,8 +454,8 @@
           "max": 0
         },
         "lair": {
-          "value": 0,
-          "initiative": 0
+          "value": false,
+          "initiative": null
         }
       }
     },
@@ -474,7 +475,7 @@
       },
       "attributes": {
         "ac": {
-          "value": null,
+          "calc": "flat",
           "motionless": ""
         },
         "actions": {
@@ -488,7 +489,6 @@
         },
         "hp": {
           "value": null,
-          "max": null,
           "dt": null,
           "mt": null
         },
@@ -512,6 +512,27 @@
         "crew": [],
         "passengers": []
       }
+    },
+    "group": {
+      "description": {
+        "full": "",
+        "summary": ""
+      },
+      "members": [],
+      "attributes": {
+        "movement": {
+          "land": 0,
+          "water": 0,
+          "air": 0
+        }
+      },
+      "currency": {
+        "pp": 0,
+        "gp": 0,
+        "ep": 0,
+        "sp": 0,
+        "cp": 0
+      }
     }
   },
   "Item": {
@@ -528,7 +549,10 @@
       "physicalItem": {
         "quantity": 1,
         "weight": 0,
-        "price": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gp"
+        },
         "attunement": 0,
         "equipped": false,
         "rarity": "",
@@ -537,13 +561,14 @@
       "activatedEffect": {
         "activation": {
           "type": "",
-          "cost": 0,
+          "cost": null,
           "condition": ""
         },
         "duration": {
-          "value": null,
+          "value": "",
           "units": ""
         },
+        "cover": null,
         "target": {
           "value": null,
           "width": null,
@@ -570,7 +595,7 @@
       "action": {
         "ability": null,
         "actionType": null,
-        "attackBonus": 0,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -589,11 +614,11 @@
       },
       "mountable": {
         "armor": {
-          "value": 10
+          "value": null
         },
         "hp": {
-          "value": 0,
-          "max": 0,
+          "value": null,
+          "max": null,
           "dt": null,
           "conditions": ""
         }
@@ -608,7 +633,7 @@
       "templates": ["itemDescription", "physicalItem"],
       "capacity": {
         "type": "weight",
-        "value": 0,
+        "value": null,
         "weightless": false
       },
       "currency": {
@@ -656,12 +681,16 @@
         "value": null,
         "conditions": ""
       },
-      "strength": 0,
+      "strength": null,
       "stealth": false,
       "proficient": true
     },
     "feat": {
       "templates": ["itemDescription", "activatedEffect", "action"],
+      "type": {
+        "value": "",
+        "subtype": ""
+      },
       "requirements": "",
       "recharge": {
         "value": null,
@@ -685,7 +714,6 @@
       "level": 1,
       "school": "",
       "components": {
-        "value": "",
         "vocal": false,
         "somatic": false,
         "material": false,
@@ -723,6 +751,22 @@
       "baseItem": "",
       "properties": {},
       "proficient": true
+    }
+  },
+  "JournalEntryPage": {
+    "types": ["class"],
+    "htmlFields": ["description.value", "description.additionalHitPoints", "description.additionalTraits", "description.additionalEquipment", "description.archetype"],
+    "class": {
+      "item": "",
+      "description": {
+        "value": "",
+        "additionalHitPoints": "",
+        "additionalTraits": "",
+        "additionalEquipment": "",
+        "archetype": ""
+      },
+      "archetypeHeader": "",
+      "archetypeItems": []
     }
   }
 }

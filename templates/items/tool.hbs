@@ -2,7 +2,7 @@
 
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img"/>
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -19,7 +19,7 @@
                     {{#if system.toolType}}
                       {{lookup config.toolTypes system.toolType}}
                     {{else}}
-                      {{localize "SW5E.ItemTypeTool"}}
+                      {{localize "ITEM.TypeTool"}}
                     {{/if}}
                 </li>
                 <li>
@@ -91,7 +91,7 @@
             {{!-- Tool Bonus --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemToolBonus" }}</label>
-                <input type="text" name="system.bonus" value="{{system.bonus}}"/>
+                <input type="text" name="system.bonus" value="{{system.bonus}}" data-formula-editor/>
             </div>
 
             {{!-- Chat Message Flavor --}}

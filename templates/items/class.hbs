@@ -2,7 +2,7 @@
 
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img"/>
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -45,10 +45,11 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.Identifier" }}</label>
                 <div class="form-fields">
-                    <input type="text" name="system.identifier" value="{{system.identifier}}">
+                    <input type="text" name="system.identifier" value="{{system.identifier}}"
+                           placeholder="{{item.identifier}}">
                 </div>
                 <p class="hint">
-                    {{{localize "SW5E.ClassIdentifierHint" identifier=system.identifier}}}
+                    {{{localize "SW5E.ClassIdentifierHint" identifier=item.identifier}}}
                 </p>
             </div>
 

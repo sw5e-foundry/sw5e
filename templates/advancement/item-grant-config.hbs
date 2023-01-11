@@ -3,7 +3,7 @@
   <div class="form-group">
     <label>{{localize "SW5E.AdvancementItemGrantOptional"}}</label>
     <div class="form-fields">
-      <input type="checkbox" name="data.configuration.optional" {{checked data.configuration.optional}}>
+      <input type="checkbox" name="configuration.optional" {{checked configuration.optional}}>
     </div>
     <p class="hint">{{localize "SW5E.AdvancementItemGrantOptionalHint"}}</p>
   </div>
@@ -16,11 +16,11 @@
     <ol class="items-list">
       <li class="items-header flexrow"><h3 class="item-name">{{localize "DOCUMENT.Items"}}</h3></li>
       <ol class="item-list">
-      {{#each data.configuration.items}}
+      {{#each configuration.items}}
         <li class="item flexrow" data-item-uuid="{{this}}">
           <div class="item-name">{{{sw5e-linkForUuid this}}}</div>
           <div class="item-controls flexrow">
-            <a class="item-control item-action" data-action="delete" title="{{localize 'SW5E.ItemDelete'}}">
+            <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete">
               <i class="fas fa-trash"></i>
             </a>
           </div>

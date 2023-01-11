@@ -1,104 +1,161 @@
-/**
- * A specialized form used to select from a checklist of attributes, traits, or properties
- */
-export default class TraitSelector extends DocumentSheet {
+import * as Trait from "../../documents/actor/trait.mjs";
+import BaseConfigSheet from "./base-config.mjs";
 
-  /** @inheritDoc */
+/**
+ * A specialized application used to modify actor traits.
+ *
+ * @param {Actor5e} actor                       Actor for whose traits are being edited.
+ * @param {string} trait                        Trait key as defined in CONFIG.traits.
+ * @param {object} [options={}]
+ * @param {boolean} [options.allowCustom=true]  Support user custom trait entries.
+ */
+export default class TraitSelector extends BaseConfigSheet {
+  constructor(actor, trait, options) {
+    if ( !CONFIG.SW5E.traits[trait] ) throw new Error(
+      `Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.`
+    );
+    if ( ["saves", "skills"].includes(trait) ) throw new Error(
+      `TraitSelector does not support selection of ${trait}. That should be handled through `
+      + "that type's more specialized configuration application."
+    );
+
+    super(actor, options);
+
+    /**
+     * Trait key as defined in CONFIG.traits.
+     * @type {string}
+     */
+    this.trait = trait;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       id: "trait-selector",
       classes: ["sw5e", "trait-selector", "subconfig"],
-      title: "Actor Trait Selection",
       template: "systems/sw5e/templates/apps/trait-selector.hbs",
       width: 320,
       height: "auto",
-      choices: {},
-      allowCustom: true,
-      minimum: 0,
-      maximum: null,
-      labelKey: null,
-      valueKey: "value",
-      customKey: "custom"
+      sheetConfig: false,
+      allowCustom: true
     });
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
+  get id() {
+    return `${this.constructor.name}-${this.trait}-Actor-${this.document.id}`;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   get title() {
-    return this.options.title || super.title;
+    return `${this.document.name}: ${Trait.traitLabel(this.trait)}`;
   }
 
   /* -------------------------------------------- */
 
-  /**
-   * Return a reference to the target attribute
-   * @type {string}
-   */
-  get attribute() {
-    return this.options.name;
-  }
+  /** @inheritdoc */
+  async getData() {
+    const path = `system.${Trait.actorKeyPath(this.trait)}`;
+    const data = foundry.utils.getProperty(this.document, path);
 
-  /* -------------------------------------------- */
-
-  /** @override */
-  getData() {
-    const attr = foundry.utils.getProperty(this.object, this.attribute);
-    const o = this.options;
-    const value = (o.valueKey) ? foundry.utils.getProperty(attr, o.valueKey) ?? [] : attr;
-    const custom = (o.customKey) ? foundry.utils.getProperty(attr, o.customKey) ?? "" : "";
-
-    // Populate choices
-    const choices = Object.entries(o.choices).reduce((obj, e) => {
-      let [k, v] = e;
-      const label = o.labelKey ? foundry.utils.getProperty(v, o.labelKey) ?? v : v;
-      obj[k] = { label, chosen: attr ? value.includes(k) : false };
-      return obj;
-    }, {});
-
-    // Return data
     return {
-      allowCustom: o.allowCustom,
-      choices: choices,
-      custom: custom
+      ...super.getData(),
+      choices: await Trait.choices(this.trait, data.value),
+      custom: data.custom,
+      customPath: "custom" in data ? `${path}.custom` : null,
+      bypasses: "bypasses" in data ? Object.entries(CONFIG.SW5E.physicalWeaponProperties).reduce((obj, [k, v]) => {
+        obj[k] = { label: v, chosen: data.bypasses.has(k) };
+        return obj;
+      }, {}) : null,
+      bypassesPath: "bypasses" in data ? `${path}.bypasses` : null
     };
   }
 
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    for ( const checkbox of html[0].querySelectorAll("input[type='checkbox']") ) {
+      if ( checkbox.checked ) this._onToggleCategory(checkbox);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _getActorOverrides() {
+    const overrides = super._getActorOverrides();
+    const path = `system.${Trait.actorKeyPath(this.trait)}.value`;
+    const src = new Set(foundry.utils.getProperty(this.document._source, path));
+    const current = foundry.utils.getProperty(this.document, path);
+    const delta = current.difference(src);
+    for ( const choice of delta ) {
+      overrides.push(`choices.${choice}`);
+    }
+    return overrides;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  async _onChangeInput(event) {
+    super._onChangeInput(event);
+
+    if ( event.target.name?.startsWith("choices") ) this._onToggleCategory(event.target);
+  }
+
+  /* -------------------------------------------- */
+
   /**
-   * Prepare the update data to include choices in the provided object.
-   * @param {object} formData  Form data to search for choices.
-   * @returns {object}         Updates to apply to target.
+   * Enable/disable all children when a category is checked.
+   * @param {HTMLElement} checkbox  Checkbox that was changed.
+   * @protected
    */
-  _prepareUpdateData(formData) {
-    const o = this.options;
+  _onToggleCategory(checkbox) {
+    const children = checkbox.closest("li")?.querySelector("ol");
+    if ( !children ) return;
 
-    // Obtain choices
-    const chosen = Object.entries(formData).filter(([k, v]) => (k !== "custom") && v).map(([k]) => k);
-
-    // Object including custom data
-    const updateData = {};
-    if ( o.valueKey ) updateData[`${this.attribute}.${o.valueKey}`] = chosen;
-    else updateData[this.attribute] = chosen;
-    if ( o.allowCustom ) updateData[`${this.attribute}.${o.customKey}`] = formData.custom;
-
-    // Validate the number chosen
-    if ( o.minimum && (chosen.length < o.minimum) ) {
-      return ui.notifications.error(`You must choose at least ${o.minimum} options`);
+    for ( const child of children.querySelectorAll("input[type='checkbox']") ) {
+      child.checked = child.disabled = checkbox.checked;
     }
-    if ( o.maximum && (chosen.length > o.maximum) ) {
-      return ui.notifications.error(`You may choose no more than ${o.maximum} options`);
-    }
+  }
 
-    return updateData;
+  /* -------------------------------------------- */
+
+  /**
+   * Filter a list of choices that begin with the provided key for update.
+   * @param {string} prefix    They initial form prefix under which the choices are grouped.
+   * @param {string} path      Path in actor data where the final choices will be saved.
+   * @param {object} formData  Form data being prepared. *Will be mutated.*
+   * @protected
+   */
+  _prepareChoices(prefix, path, formData) {
+    const chosen = [];
+    for ( const key of Object.keys(formData).filter(k => k.startsWith(`${prefix}.`)) ) {
+      if ( formData[key] ) chosen.push(key.replace(`${prefix}.`, ""));
+      delete formData[key];
+    }
+    formData[path] = chosen;
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   async _updateObject(event, formData) {
-    const updateData = this._prepareUpdateData(formData);
-    if ( updateData ) this.object.update(updateData);
+    const path = `system.${Trait.actorKeyPath(this.trait)}`;
+    const data = foundry.utils.getProperty(this.document, path);
+
+    this._prepareChoices("choices", `${path}.value`, formData);
+    if ( "bypasses" in data ) this._prepareChoices("bypasses", `${path}.bypasses`, formData);
+
+    return this.object.update(formData);
   }
 }

@@ -1,5 +1,6 @@
 import {d20Roll, damageRoll} from "../dice/dice.mjs";
 import simplifyRollFormula from "../dice/simplify-roll-formula.mjs";
+import Advancement from "./advancement/advancement.mjs";
 import AbilityUseDialog from "../applications/item/ability-use-dialog.mjs";
 import Proficiency from "./actor/proficiency.mjs";
 
@@ -24,13 +25,12 @@ export default class Item5e extends Item {
    * @type {string|null}
    */
   get abilityMod() {
-    if ( !("ability" in this.system) ) return null;
 
     // Case 1 - defined directly by the item
     if ( this.system.ability ) return this.system.ability;
 
     // Case 2 - inferred from a parent actor
-    if ( this.actor ) {
+    if ( this.actor && ("abilities" in this.actor.system) ) {
       const abilities = this.actor.system.abilities;
       const powercasting = this.actor.system.attributes.powercasting;
 
@@ -147,7 +147,7 @@ export default class Item5e extends Item {
   get class() {
     if ( !this.isEmbedded || (this.type !== "archetype") ) return null;
     const cid = this.system.classIdentifier;
-    return this._classLink ??= this.parent.items.find(i => (i.type === "class") && (i.system.identifier === cid));
+    return this._classLink ??= this.parent.items.find(i => (i.type === "class") && (i.identifier === cid));
   }
 
   /* -------------------------------------------- */
@@ -159,7 +159,7 @@ export default class Item5e extends Item {
   get archetype() {
     if ( !this.isEmbedded || (this.type !== "class") ) return null;
     const items = this.parent.items;
-    const cid = this.system.identifier;
+    const cid = this.identifier;
     return this._classLink ??= items.find(i => (i.type === "archetype") && (i.system.classIdentifier === cid));
   }
 
@@ -238,7 +238,7 @@ export default class Item5e extends Item {
     if ( !["class", "archetype"].includes(this.type) || !this.advancement.byType.ScaleValue ) return {};
     const level = this.type === "class" ? this.system.levels : this.class?.system.levels ?? 0;
     return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
-      obj[advancement.identifier] = advancement.prepareValue(level);
+      obj[advancement.identifier] = advancement.valueForLevel(level);
       return obj;
     }, {});
   }
@@ -246,19 +246,40 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
+   * Powercasting details for a class or archetype.
+   *
+   * @typedef {object} PowercastingDescription
+   * @property {string} type              Powercasting type as defined in ``CONFIG.SW5E.powercastingTypes`.
+   * @property {string|null} progression  Progression within the specified powercasting type if supported.
+   * @property {string} ability           Ability used when casting powers from this class or archetype.
+   * @property {number|null} levels       Number of levels of this class or archetype's class if embedded.
+   */
+
+  /**
    * Retrieve the powercasting for a class or archetype. For classes, this will return the powercasting
    * of the archetype if it overrides the class. For archetypes, this will return the class's powercasting
    * if no powercasting is defined on the archetype.
-   * @type {object}  Powercasting object containing progression & ability.
+   * @type {PowercastingDescription|null}  Powercasting object containing progression & ability.
    */
   get powercasting() {
     const powercasting = this.system.powercasting;
-    if ( !powercasting ) return powercasting;
+    if ( !powercasting ) return null;
     const isArchetype = this.type === "archetype";
-    const classPowercasting = isArchetype ? this.class?.system.powercasting : powercasting;
-    const archetypePowercasting = isArchetype ? powercasting : this.archetype?.system.powercasting;
-    if ( archetypePowercasting && archetypePowercasting.progression !== "none" ) return archetypePowercasting;
-    return classPowercasting;
+    const classSC = isArchetype ? this.class?.system.powercasting : powercasting;
+    const archetypeSC = isArchetype ? powercasting : this.archetype?.system.powercasting;
+    const finalSC = foundry.utils.deepClone(
+      ( archetypeSC && (archetypeSC.progression !== "none") ) ? archetypeSC : classSC
+    );
+    if ( !finalSC ) return null;
+    finalSC.levels = this.isEmbedded ? (this.system.levels ?? this.class?.system.levels) : null;
+
+    // Temp method for determining powercasting type until this data is available directly using advancement
+    if ( CONFIG.SW5E.powercastingTypes[finalSC.progression] ) finalSC.type = finalSC.progression;
+    else finalSC.type = Object.entries(CONFIG.SW5E.powercastingTypes).find(([type, data]) => {
+      return !!data.progression?.[finalSC.progression];
+    })?.[0];
+
+    return finalSC;
   }
 
   /* -------------------------------------------- */
@@ -374,29 +395,23 @@ export default class Item5e extends Item {
 
     // Ability Activation Label
     const act = this.system.activation ?? {};
-    this.labels.activation = [act.cost, C.abilityActivationTypes[act.type]].filterJoin(" ");
+    if ( ["none", ""].includes(act.type) ) act.type = null;   // Backwards compatibility
+    this.labels.activation = act.type ? [act.cost, C.abilityActivationTypes[act.type]].filterJoin(" ") : "";
 
     // Target Label
     let tgt = this.system.target ?? {};
-    if ( ["none", "touch", "self"].includes(tgt.units) ) tgt.value = null;
-    if ( ["none", "self"].includes(tgt.type) ) {
-      tgt.value = null;
-      tgt.units = null;
-    }
-    this.labels.target = [tgt.value, C.distanceUnits[tgt.units], C.targetTypes[tgt.type]].filterJoin(" ");
+    if ( ["none", ""].includes(tgt.type) ) tgt.type = null;   // Backwards compatibility
+    if ( [null, "self"].includes(tgt.type) ) tgt.value = tgt.units = null;
+    else if ( tgt.units === "touch" ) tgt.value = null;
+    this.labels.target = tgt.type
+      ? [tgt.value, C.distanceUnits[tgt.units], C.targetTypes[tgt.type]].filterJoin(" ") : "";
 
     // Range Label
     let rng = this.system.range ?? {};
-    if ( ["none", "touch", "self"].includes(rng.units) ) {
-      rng.value = null;
-      rng.long = null;
-    }
-    this.labels.range = [rng.value, rng.long ? `/ ${rng.long}` : null, C.distanceUnits[rng.units]].filterJoin(" ");
-
-    // Duration Label
-    let dur = this.system.duration ?? {};
-    if ( ["inst", "perm"].includes(dur.units) ) dur.value = null;
-    this.labels.duration = [dur.value, C.timePeriods[dur.units]].filterJoin(" ");
+    if ( ["none", ""].includes(rng.units) ) rng.units = null; // Backwards compatibility
+    if ( [null, "touch", "self"].includes(rng.units) ) rng.value = rng.long = null;
+    this.labels.range = rng.units
+      ? [rng.value, rng.long ? `/ ${rng.long}` : null, C.distanceUnits[rng.units]].filterJoin(" ") : "";
 
     // Recharge Label
     let chg = this.system.recharge ?? {};
@@ -436,13 +451,11 @@ export default class Item5e extends Item {
       byType: {},
       needingConfiguration: []
     };
-    for ( const advancementData of this.system.advancement ?? [] ) {
-      const Advancement = sw5e.advancement.types[`${advancementData.type}Advancement`];
-      if ( !Advancement ) continue;
-      const advancement = new Advancement(this, advancementData);
+    for ( const advancement of this.system.advancement ?? [] ) {
+      if ( !(advancement instanceof Advancement) ) continue;
       this.advancement.byId[advancement.id] = advancement;
-      this.advancement.byType[advancementData.type] ??= [];
-      this.advancement.byType[advancementData.type].push(advancement);
+      this.advancement.byType[advancement.type] ??= [];
+      this.advancement.byType[advancement.type].push(advancement);
       advancement.levels.forEach(l => this.advancement.byLevel[l].push(advancement));
       if ( !advancement.levels.length ) this.advancement.needingConfiguration.push(advancement);
     }
@@ -461,8 +474,10 @@ export default class Item5e extends Item {
   prepareFinalAttributes() {
 
     // Proficiency
-    const isProficient = (this.type === "power") || this.system.proficient; // Always proficient in power attacks.
-    this.system.prof = new Proficiency(this.actor?.system.attributes.prof, isProficient);
+    if ( this.actor?.system.attributes?.prof ) {
+      const isProficient = (this.type === "power") || this.system.proficient; // Always proficient in power attacks.
+      this.system.prof = new Proficiency(this.actor?.system.attributes.prof, isProficient);
+    }
 
     // Class data
     if ( this.type === "class" ) this.system.isOriginalClass = this.isOriginalClass;
@@ -481,6 +496,9 @@ export default class Item5e extends Item {
 
       // Limited Uses
       this.prepareMaxUses();
+
+      // Duration
+      this.prepareDurationValue();
 
       // Damage Label
       this.getDerivedDamageLabel();
@@ -605,6 +623,7 @@ export default class Item5e extends Item {
    * Retrieve an item's critical hit threshold. Uses the smallest value from among the following sources:
    * - item document
    * - item document's actor (if it has one)
+   * - item document's ammunition (if it has any)
    * - the constant '20'
    * @returns {number|null}  The minimum value that must be rolled to be considered a critical hit.
    */
@@ -612,9 +631,14 @@ export default class Item5e extends Item {
     const actorFlags = this.actor.flags.sw5e || {};
     if ( !this.hasAttack ) return null;
     let actorThreshold = null;
+    let itemThreshold = this.system.critical?.threshold ?? Infinity;
+    let ammoThreshold = Infinity;
     if ( this.type === "weapon" ) actorThreshold = actorFlags.weaponCriticalThreshold;
     else if ( this.type === "power" ) actorThreshold = actorFlags.powerCriticalThreshold;
-    return Math.min(this.system.critical?.threshold ?? 20, actorThreshold ?? 20);
+    if ( this.system.consume?.type === "ammo" ) {
+      ammoThreshold = this.actor.items.get(this.system.consume.target)?.system.critical.threshold ?? Infinity;
+    }
+    return Math.min(itemThreshold, ammoThreshold, actorThreshold ?? 20);
   }
 
   /* -------------------------------------------- */
@@ -630,7 +654,7 @@ export default class Item5e extends Item {
     if ( this.isOwned && !Number.isNumeric(max) ) {
       const property = game.i18n.localize("SW5E.UsesMax");
       try {
-        const rollData = this.actor.getRollData({ deterministic: true });
+        const rollData = this.getRollData({ deterministic: true });
         max = Roll.safeEval(this.replaceFormulaData(max, rollData, { property }));
       } catch(e) {
         const message = game.i18n.format("SW5E.FormulaMalformedError", { property, name: this.name });
@@ -640,6 +664,37 @@ export default class Item5e extends Item {
       }
     }
     uses.max = Number(max);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Populate the duration value of an item. If the item is an owned item and the
+   * duration value is not numeric, calculate based on actor data.
+   */
+  prepareDurationValue() {
+    const duration = this.system.duration;
+    if ( !duration?.value ) return;
+    let value = duration.value;
+
+    // If this is an owned item and the value is not numeric, we need to calculate it
+    if ( this.isOwned && !Number.isNumeric(value) ) {
+      const property = game.i18n.localize("SW5E.Duration");
+      try {
+        const rollData = this.getRollData({ deterministic: true });
+        value = Roll.safeEval(this.replaceFormulaData(value, rollData, { property }));
+      } catch(e) {
+        const message = game.i18n.format("SW5E.FormulaMalformedError", { property, name: this.name });
+        this.actor._preparationWarnings.push({ message, link: this.uuid, type: "error" });
+        console.error(message, e);
+        return;
+      }
+    }
+    duration.value = Number(value);
+
+    // Now that duration value is a number, set the label
+    if ( ["inst", "perm"].includes(duration.units) ) duration.value = null;
+    this.labels.duration = [duration.value, CONFIG.SW5E.timePeriods[duration.units]].filterJoin(" ");
   }
 
   /* -------------------------------------------- */
@@ -699,6 +754,7 @@ export default class Item5e extends Item {
    * @property {boolean} createMessage    Whether to automatically create a chat message (if true) or simply return
    *                                      the prepared chat message data (if false).
    * @property {object} flags             Additional flags added to the chat message.
+   * @property {Event} event              The browser event which triggered the item usage, if any.
    */
 
   /**
@@ -732,7 +788,7 @@ export default class Item5e extends Item {
     options = foundry.utils.mergeObject({
       configureDialog: true,
       createMessage: true,
-      flags: {}
+      "flags.sw5e.use": {type: this.type, itemId: this.id, itemUuid: this.uuid}
     }, options);
 
     // Reference aspects of the item data necessary for usage
@@ -748,7 +804,7 @@ export default class Item5e extends Item {
       consumeResource: !!resource.target && (!item.hasAttack || (resource.type !== "ammo")),
       consumePowerLevel: requirePowerSlot ? is.preparation.mode === "pact" ? "pact" : is.level : null,
       consumePowerSlot: requirePowerSlot,
-      consumeUsage: !!is.uses?.per
+      consumeUsage: !!is.uses?.per && (is.uses?.max > 0)
     }, config);
 
     // Display a configuration dialog to customize the usage
@@ -783,6 +839,7 @@ export default class Item5e extends Item {
         item.prepareFinalAttributes();
       }
     }
+    if ( isPower ) foundry.utils.mergeObject(options.flags, {"sw5e.use.powerLevel": item.system.level});
 
     /**
      * A hook event that fires before an item's resource consumption has been calculated.
@@ -1040,9 +1097,9 @@ export default class Item5e extends Item {
     // Render the chat card template
     const token = this.actor.token;
     const templateData = {
-      actor: this.actor.toObject(false),
+      actor: this.actor,
       tokenId: token?.uuid || null,
-      item: this.toObject(false),
+      item: this,
       data: await this.getChatData(),
       labels: this.labels,
       hasAttack: this.hasAttack,
@@ -1069,7 +1126,7 @@ export default class Item5e extends Item {
 
     // If the Item was destroyed in the process of displaying its card - embed the item data in the chat message
     if ( (this.type === "consumable") && !this.actor.items.has(this.id) ) {
-      chatData.flags["sw5e.itemData"] = templateData.item;
+      chatData.flags["sw5e.itemData"] = templateData.item.toObject();
     }
 
     // Merge in the flags from options
@@ -1121,6 +1178,7 @@ export default class Item5e extends Item {
     data.description.value = await TextEditor.enrichHTML(data.description.value, {
       async: true,
       relativeTo: this,
+      rollData: this.getRollData(),
       ...htmlOptions
     });
 
@@ -1227,7 +1285,7 @@ export default class Item5e extends Item {
    */
   _lootChatData(data, labels, props) {
     props.push(
-      game.i18n.localize("SW5E.ItemTypeLoot"),
+      game.i18n.localize("ITEM.TypeLoot"),
       data.weight ? `${data.weight} ${game.i18n.localize("SW5E.AbbreviationLbs")}` : null
     );
   }
@@ -1298,6 +1356,7 @@ export default class Item5e extends Item {
 
     // Get the parts and rollData for this item's attack
     const {parts, rollData} = this.getAttackToHit();
+    if ( options.powerLevel ) rollData.item.level = options.powerLevel;
 
     // Handle ammunition consumption
     delete this._ammo;
@@ -1327,7 +1386,6 @@ export default class Item5e extends Item {
 
     // Compose roll options
     const rollConfig = foundry.utils.mergeObject({
-      parts,
       actor: this.actor,
       data: rollData,
       critical: this.getCriticalThreshold(),
@@ -1341,10 +1399,11 @@ export default class Item5e extends Item {
         left: window.innerWidth - 710
       },
       messageData: {
-        "flags.sw5e.roll": {type: "attack", itemId: this.id },
+        "flags.sw5e.roll": {type: "attack", itemId: this.id, itemUuid: this.uuid},
         speaker: ChatMessage.getSpeaker({actor: this.actor})
       }
     }, options);
+    rollConfig.parts = parts.concat(options.parts ?? []);
 
     /**
      * A hook event that fires before an attack is rolled for an Item.
@@ -1388,10 +1447,10 @@ export default class Item5e extends Item {
    * @returns {Promise<DamageRoll>}        A Promise which resolves to the created Roll instance, or null if the action
    *                                       cannot be performed.
    */
-  async rollDamage({critical=false, event=null, powerLevel=null, versatile=false, options={}}={}) {
+  async rollDamage({critical, event=null, powerLevel=null, versatile=false, options={}}={}) {
     if ( !this.hasDamage ) throw new Error("You may not make a Damage Roll with this Item.");
     const messageData = {
-      "flags.sw5e.roll": {type: "damage", itemId: this.id},
+      "flags.sw5e.roll": {type: "damage", itemId: this.id, itemUuid: this.uuid},
       speaker: ChatMessage.getSpeaker({actor: this.actor})
     };
 
@@ -1406,11 +1465,9 @@ export default class Item5e extends Item {
     const title = `${this.name} - ${actionFlavor}`;
     const rollConfig = {
       actor: this.actor,
-      critical: critical ?? event?.altKey ?? false,
+      critical,
       data: rollData,
-      event: event,
-      fastForward: event ? event.shiftKey || event.altKey || event.ctrlKey || event.metaKey : false,
-      parts: parts,
+      event,
       title: title,
       flavor: this.labels.damageTypes.length ? `${title} (${this.labels.damageTypes})` : title,
       dialogOptions: {
@@ -1465,6 +1522,7 @@ export default class Item5e extends Item {
     if ( this.system.critical?.damage ) rollConfig.criticalBonusDamage = this.system.critical.damage;
 
     foundry.utils.mergeObject(rollConfig, options);
+    rollConfig.parts = parts.concat(options.parts ?? []);
 
     /**
      * A hook event that fires before a damage is rolled for an Item.
@@ -1598,7 +1656,7 @@ export default class Item5e extends Item {
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         flavor: `${this.name} - ${game.i18n.localize("SW5E.OtherFormula")}`,
         rollMode: game.settings.get("core", "rollMode"),
-        messageData: {"flags.sw5e.roll": {type: "other", itemId: this.id }}
+        messageData: {"flags.sw5e.roll": {type: "other", itemId: this.id, itemUuid: this.uuid}}
       });
     }
 
@@ -1714,7 +1772,6 @@ export default class Item5e extends Item {
 
     // Compose the roll data
     const rollConfig = foundry.utils.mergeObject({
-      parts: parts,
       data: rollData,
       title: title,
       flavor: title,
@@ -1728,9 +1785,10 @@ export default class Item5e extends Item {
       reliableTalent: (this.system.proficient >= 1) && this.actor.getFlag("sw5e", "reliableTalent"),
       messageData: {
         speaker: options.speaker || ChatMessage.getSpeaker({actor: this.actor}),
-        "flags.sw5e.roll": {type: "tool", itemId: this.id }
+        "flags.sw5e.roll": {type: "tool", itemId: this.id, itemUuid: this.uuid}
       }
     }, options);
+    rollConfig.parts = parts.concat(options.parts ?? []);
 
     /**
      * A hook event that fires before a tool check is rolled for an Item.
@@ -1759,13 +1817,14 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Prepare a data object which is passed to any Roll formulas which are created related to this Item.
-   * @returns {object}  Data used for @ formula replacement in Roll formulas.
-   * @private
+   * @inheritdoc
+   * @param {object} [options]
+   * @param {boolean} [options.deterministic] Whether to force deterministic values for data properties that could be
+   *                                          either a die term or a flat term.
    */
-  getRollData() {
+  getRollData({ deterministic=false }={}) {
     if ( !this.actor ) return null;
-    const actorRollData = this.actor.getRollData();
+    const actorRollData = this.actor.getRollData({ deterministic });
     const rollData = {
       ...actorRollData,
       item: this.toObject().system
@@ -1773,7 +1832,7 @@ export default class Item5e extends Item {
 
     // Include an ability score modifier if one exists
     const abl = this.abilityMod;
-    if ( abl ) {
+    if ( abl && ("abilities" in rollData) ) {
       const ability = rollData.abilities[abl];
       if ( !ability ) {
         console.warn(`Item ${this.name} in Actor ${this.actor.name} has an invalid item ability modifier of ${abl} defined`);
@@ -1815,13 +1874,13 @@ export default class Item5e extends Item {
     const message = game.messages.get(messageId);
     const action = button.dataset.action;
 
-    // Validate permission to proceed with the roll
-    const isTargetted = action === "save";
-    if ( !( isTargetted || game.user.isGM || message.isAuthor ) ) return;
-
     // Recover the actor for the chat card
     const actor = await this._getChatCardActor(card);
     if ( !actor ) return;
+
+    // Validate permission to proceed with the roll
+    const isTargetted = action === "save";
+    if ( !( isTargetted || game.user.isGM || actor.isOwner ) ) return;
 
     // Get the Item from stored flag data or by the item ID on the Actor
     const storedData = message.getFlag("sw5e", "itemData");
@@ -1836,11 +1895,14 @@ export default class Item5e extends Item {
     let targets;
     switch ( action ) {
       case "attack":
-        await item.rollAttack({event}); break;
+        await item.rollAttack({
+          event: event,
+          powerLevel: powerLevel
+        });
+        break;
       case "damage":
       case "versatile":
         await item.rollDamage({
-          critical: event.altKey,
           event: event,
           powerLevel: powerLevel,
           versatile: action === "versatile"
@@ -1851,20 +1913,21 @@ export default class Item5e extends Item {
       case "save":
         targets = this._getChatCardTargets(card);
         for ( let token of targets ) {
-          const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token});
+          const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
           await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
         }
         break;
       case "toolCheck":
         await item.rollToolCheck({event}); break;
       case "placeTemplate":
-        const template = sw5e.canvas.AbilityTemplate.fromItem(item);
-        if ( template ) template.drawPreview();
+        try {
+          await sw5e.canvas.AbilityTemplate.fromItem(item)?.drawPreview();
+        } catch(err) {}
         break;
       case "abilityCheck":
         targets = this._getChatCardTargets(card);
         for ( let token of targets ) {
-          const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token});
+          const speaker = ChatMessage.getSpeaker({scene: canvas.scene, token: token.document});
           await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
         }
         break;
@@ -1932,77 +1995,103 @@ export default class Item5e extends Item {
 
   /**
    * Create a new advancement of the specified type.
-   * @param {string} type                        Type of advancement to create.
-   * @param {object} [data]                      Data to use when creating the advancement.
+   * @param {string} type                          Type of advancement to create.
+   * @param {object} [data]                        Data to use when creating the advancement.
    * @param {object} [options]
-   * @param {boolean} [options.showConfig=true]  Should the new advancement's configuration application be shown?
-   * @returns {Promise<AdvancementConfig>}
+   * @param {boolean} [options.showConfig=true]    Should the new advancement's configuration application be shown?
+   * @param {boolean} [options.source=false]       Should a source-only update be performed?
+   * @returns {Promise<AdvancementConfig>|Item5e}  Promise for advancement config for new advancement if local
+   *                                               is `false`, or item with newly added advancement.
    */
-  async createAdvancement(type, data={}, { showConfig=true }={}) {
-    if ( !this.system.advancement ) return;
+  createAdvancement(type, data={}, { showConfig=true, source=false }={}) {
+    if ( !this.system.advancement ) return this;
 
-    const Advancement = sw5e.advancement.types[`${type}Advancement`];
-    if ( !Advancement ) throw new Error(`${type}Advancement not found in sw5e.advancement.types`);
-    data = foundry.utils.mergeObject(Advancement.defaultData, data);
+    const Advancement = CONFIG.SW5E.advancementTypes[type];
+    if ( !Advancement ) throw new Error(`${type} not found in CONFIG.SW5E.advancementTypes`);
 
     if ( !Advancement.metadata.validItemTypes.has(this.type) || !Advancement.availableForItem(this) ) {
       throw new Error(`${type} advancement cannot be added to ${this.name}`);
     }
 
-    const advancement = this.toObject().system.advancement;
-    if ( !data._id ) data._id = foundry.utils.randomID();
-    advancement.push(data);
-    await this.update({"system.advancement": advancement});
-
-    if ( !showConfig ) return;
-    const config = new Advancement.metadata.apps.config(this.advancement.byId[data._id]);
-    return config.render(true);
+    const advancement = new Advancement(data, {parent: this});
+    const advancementCollection = this.toObject().system.advancement;
+    advancementCollection.push(advancement.toObject());
+    if ( source ) return this.updateSource({"system.advancement": advancementCollection});
+    return this.update({"system.advancement": advancementCollection}).then(() => {
+      if ( !showConfig ) return this;
+      const config = new Advancement.metadata.apps.config(this.advancement.byId[advancement.id]);
+      return config.render(true);
+    });
   }
 
   /* -------------------------------------------- */
 
   /**
    * Update an advancement belonging to this item.
-   * @param {string} id          ID of the advancement to update.
-   * @param {object} updates     Updates to apply to this advancement, using the same format as `Document#update`.
-   * @returns {Promise<Item5e>}  This item with the changes applied.
+   * @param {string} id                       ID of the advancement to update.
+   * @param {object} updates                  Updates to apply to this advancement.
+   * @param {object} [options={}]
+   * @param {boolean} [options.source=false]  Should a source-only update be performed?
+   * @returns {Promise<Item5e>|Item5e}        This item with the changes applied, promised if source is `false`.
    */
-  async updateAdvancement(id, updates) {
-    if ( !this.system.advancement ) return;
+  updateAdvancement(id, updates, { source=false }={}) {
+    if ( !this.system.advancement ) return this;
     const idx = this.system.advancement.findIndex(a => a._id === id);
     if ( idx === -1 ) throw new Error(`Advancement of ID ${id} could not be found to update`);
-    const advancement = this.toObject().system.advancement;
-    foundry.utils.mergeObject(advancement[idx], updates, { performDeletions: true });
-    return this.update({"system.advancement": advancement});
+
+    const advancement = this.advancement.byId[id];
+    advancement.updateSource(updates);
+    if ( source ) {
+      advancement.render();
+      return this;
+    }
+
+    const advancementCollection = this.toObject().system.advancement;
+    advancementCollection[idx] = advancement.toObject();
+    return this.update({"system.advancement": advancementCollection}).then(r => {
+      advancement.render();
+      return r;
+    });
   }
 
   /* -------------------------------------------- */
 
   /**
    * Remove an advancement from this item.
-   * @param {string} id          ID of the advancement to remove.
-   * @returns {Promise<Item5e>}  This item with the changes applied.
+   * @param {string} id                       ID of the advancement to remove.
+   * @param {object} [options={}]
+   * @param {boolean} [options.source=false]  Should a source-only update be performed?
+   * @returns {Promise<Item5e>|Item5e}        This item with the changes applied.
    */
-  async deleteAdvancement(id) {
-    if ( !this.system.advancement ) return;
-    return this.update({"system.advancement": this.system.advancement.filter(a => a._id !== id)});
+  deleteAdvancement(id, { source=false }={}) {
+    if ( !this.system.advancement ) return this;
+
+    const advancementCollection = this.system.advancement.filter(a => a._id !== id);
+    if ( source ) return this.updateSource({"system.advancement": advancementCollection});
+    return this.update({"system.advancement": advancementCollection});
   }
 
   /* -------------------------------------------- */
 
   /**
    * Duplicate an advancement, resetting its value to default and giving it a new ID.
-   * @param {string} id                          ID of the advancement to duplicate.
+   * @param {string} id                             ID of the advancement to duplicate.
    * @param {object} [options]
-   * @param {boolean} [options.showConfig=true]  Should the new advancement's configuration application be shown?
-   * @returns {Promise<Item5e>}                  This item with the changes applied.
+   * @param {boolean} [options.showConfig=true]     Should the new advancement's configuration application be shown?
+   * @param {boolean} [options.source=false]        Should a source-only update be performed?
+   * @returns {Promise<AdvancementConfig>|Item5e}   Promise for advancement config for duplicate advancement if source
+   *                                                is `false`, or item with newly duplicated advancement.
    */
-  async duplicateAdvancement(id, options) {
+  duplicateAdvancement(id, options) {
     const original = this.advancement.byId[id];
-    if ( !original ) return;
-    const duplicate = foundry.utils.deepClone(original.data);
+    if ( !original ) return this;
+    const duplicate = original.toObject();
     delete duplicate._id;
-    duplicate.value = original.constructor.metadata.defaults.value;
+    if ( original.constructor.metadata.dataModels?.value ) {
+      duplicate.value = (new original.constructor.metadata.dataModels.value()).toObject();
+    } else {
+      duplicate.value = original.constructor.metadata.defaults?.value ?? {};
+    }
     return this.createAdvancement(original.constructor.typeName, duplicate, options);
   }
 
@@ -2126,9 +2215,9 @@ export default class Item5e extends Item {
         updates["system.proficient"] = true;  // NPCs automatically have equipment proficiency
       } else {
         const armorProf = CONFIG.SW5E.armorProficienciesMap[this.system.armor?.type]; // Player characters check proficiency
-        const actorArmorProfs = this.parent.system.traits?.armorProf?.value || [];
-        updates["system.proficient"] = (armorProf === true) || actorArmorProfs.includes(armorProf)
-          || actorArmorProfs.includes(this.system.baseItem);
+        const actorArmorProfs = this.parent.system.traits?.armorProf?.value || new Set();
+        updates["system.proficient"] = (armorProf === true) || actorArmorProfs.has(armorProf)
+          || actorArmorProfs.has(this.system.baseItem);
       }
     }
     return updates;
@@ -2166,9 +2255,8 @@ export default class Item5e extends Item {
     if ( data.system?.proficient === undefined ) {
       if ( isNPC ) updates["system.proficient"] = 1;
       else {
-        const actorToolProfs = this.parent.system.traits?.toolProf?.value;
-        const proficient = actorToolProfs.includes(this.system.toolType)
-          || actorToolProfs.includes(this.system.baseItem);
+        const actorToolProfs = this.parent.system.traits?.toolProf?.value || new Set();
+        const proficient = actorToolProfs.has(this.system.toolType) || actorToolProfs.has(this.system.baseItem);
         updates["system.proficient"] = Number(proficient);
       }
     }
@@ -2202,8 +2290,8 @@ export default class Item5e extends Item {
 
     // Characters may have proficiency in this weapon type (or specific base weapon)
     else {
-      const actorProfs = this.parent.system.traits?.weaponProf?.value || [];
-      updates["system.proficient"] = actorProfs.includes(weaponProf) || actorProfs.includes(this.system.baseItem);
+      const actorProfs = this.parent.system.traits?.weaponProf?.value || new Set();
+      updates["system.proficient"] = actorProfs.has(weaponProf) || actorProfs.has(this.system.baseItem);
     }
     return updates;
   }
@@ -2221,8 +2309,9 @@ export default class Item5e extends Item {
 
     // Get power data
     const itemData = (power instanceof Item5e) ? power.toObject() : power;
-    const { actionType, description, source, activation, duration, target,
-      range, damage, formula, save, level} = itemData.system;
+    let {
+      actionType, description, source, activation, duration, target, range, damage, formula, save, level, attackBonus
+    } = itemData.system;
 
     // Get scroll data
     const scrollUuid = `Compendium.${CONFIG.SW5E.sourcePacks.ITEMS}.${CONFIG.SW5E.powerScrollIds[level]}`;
@@ -2240,13 +2329,22 @@ export default class Item5e extends Item {
     // Create a composite description from the scroll description and the power details
     const desc = `${scrollIntro}<hr/><h3>${itemData.name} (Level ${level})</h3><hr/>${description.value}<hr/><h3>Scroll Details</h3><hr/>${scrollDetails}`;
 
+    // Used a fixed attack modifier and saving throw according to the level of power scroll.
+    if ( ["mwak", "rwak", "mpak", "rpak"].includes(actionType) ) {
+      attackBonus = `${scrollData.system.attackBonus} - @mod`;
+    }
+    if ( save.ability ) {
+      save.scaling = "flat";
+      save.dc = scrollData.system.save.dc;
+    }
+
     // Create the power scroll data
     const powerScrollData = foundry.utils.mergeObject(scrollData, {
       name: `${game.i18n.localize("SW5E.PowerScroll")}: ${itemData.name}`,
       img: itemData.img,
       system: {
         "description.value": desc.trim(), source, actionType, activation, duration, target, range, damage, formula,
-        save, level
+        save, level, attackBonus
       }
     });
     return new this(powerScrollData);

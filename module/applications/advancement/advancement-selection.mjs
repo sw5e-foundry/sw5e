@@ -1,4 +1,4 @@
-import Advancement from "./advancement.mjs";
+import Advancement from "../../documents/advancement/advancement.mjs";
 
 /**
  * Presents a list of advancement types to create when clicking the new advancement button.
@@ -43,19 +43,19 @@ export default class AdvancementSelection extends Dialog {
 
   /** @inheritDoc */
   getData() {
-    const data = { types: {} };
-    for ( const advancement of Object.values(sw5e.advancement.types) ) {
+    const context = { types: {} };
+    for ( const [name, advancement] of Object.entries(CONFIG.SW5E.advancementTypes) ) {
       if ( !(advancement.prototype instanceof Advancement)
         || !advancement.metadata.validItemTypes.has(this.item.type) ) continue;
-      data.types[advancement.typeName] = {
+      context.types[name] = {
         label: advancement.metadata.title,
         icon: advancement.metadata.icon,
         hint: advancement.metadata.hint,
         disabled: !advancement.availableForItem(this.item)
       };
     }
-    data.types = sw5e.utils.sortObjectEntries(data.types, "label");
-    return data;
+    context.types = sw5e.utils.sortObjectEntries(context.types, "label");
+    return context;
   }
 
   /* -------------------------------------------- */

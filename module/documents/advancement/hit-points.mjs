@@ -1,13 +1,14 @@
-import Advancement from "../advancement.mjs";
-import AdvancementFlow from "../advancement-flow.mjs";
-import AdvancementConfig from "../advancement-config.mjs";
+import Advancement from "./advancement.mjs";
+import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
+import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 
 /**
  * Advancement that presents the player with the option to roll hit points at each level or select the average value.
  * Keeps track of player hit point rolls or selection for each class level. **Can only be added to classes and each
  * class can only have one.**
  */
-export class HitPointsAdvancement extends Advancement {
+export default class HitPointsAdvancement extends Advancement {
 
   /** @inheritdoc */
   static get metadata() {
@@ -80,14 +81,14 @@ export class HitPointsAdvancement extends Advancement {
    * @returns {number|null}  Hit points for level or null if none have been taken.
    */
   valueForLevel(level) {
-    return this.constructor.valueForLevel(this.data.value, this.hitDieValue, level);
+    return this.constructor.valueForLevel(this.value, this.hitDieValue, level);
   }
 
   /* -------------------------------------------- */
 
   /**
    * Hit points given at the provided level.
-   * @param {object} data         Contents of `data.value` used to determine this value.
+   * @param {object} data         Contents of `value` used to determine this value.
    * @param {number} hitDieValue  Face value of the hit die used by this advancement.
    * @param {number} level        Level for which to get hit points.
    * @returns {number|null}       Hit points for level or null if none have been taken.
@@ -108,7 +109,20 @@ export class HitPointsAdvancement extends Advancement {
    * @returns {number}  Hit points currently selected.
    */
   total() {
-    return Object.keys(this.data.value).reduce((total, level) => total + this.valueForLevel(parseInt(level)), 0);
+    return Object.keys(this.value).reduce((total, level) => total + this.valueForLevel(parseInt(level)), 0);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Total hit points taking the provided ability modifier into account, with a minimum of 1 per level.
+   * @param {number} mod  Modifier to add per level.
+   * @returns {number}    Total hit points plus modifier.
+   */
+  getAdjustedTotal(mod) {
+    return Object.keys(this.value).reduce((total, level) => {
+      return total + Math.max(this.valueForLevel(parseInt(level)) + mod, 1);
+    }, 0);
   }
 
   /* -------------------------------------------- */
@@ -124,16 +138,26 @@ export class HitPointsAdvancement extends Advancement {
   /*  Application Methods                         */
   /* -------------------------------------------- */
 
+  /**
+   * Add the ability modifier and any bonuses to the provided hit points value to get the number to apply.
+   * @param {number} value  Hit points taken at a given level.
+   * @returns {number}      Hit points adjusted with ability modifier and per-level bonuses.
+   */
+  #getApplicableValue(value) {
+    const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
+    value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+    return value;
+  }
+
+  /* -------------------------------------------- */
+
   /** @inheritdoc */
   apply(level, data) {
     let value = this.constructor.valueForLevel(data, this.hitDieValue, level);
     if ( value === undefined ) return;
-    const con = this.actor.system.abilities.con;
-    const hp = this.actor.system.attributes.hp;
-    value += con?.mod ?? 0;
     this.actor.updateSource({
-      "system.attributes.hp.max": hp.max + value,
-      "system.attributes.hp.value": hp.value + value
+      "system.attributes.hp.value": this.actor.system.attributes.hp.value + this.#getApplicableValue(value)
     });
     this.updateSource({ value: data });
   }
@@ -151,120 +175,11 @@ export class HitPointsAdvancement extends Advancement {
   reverse(level) {
     let value = this.valueForLevel(level);
     if ( value === undefined ) return;
-    const con = this.actor.system.abilities.con;
-    const hp = this.actor.system.attributes.hp;
-    value += con?.mod ?? 0;
     this.actor.updateSource({
-      "system.attributes.hp.max": hp.max - value,
-      "system.attributes.hp.value": hp.value - value
+      "system.attributes.hp.value": this.actor.system.attributes.hp.value - this.#getApplicableValue(value)
     });
-    const source = { [level]: this.data.value[level] };
+    const source = { [level]: this.value[level] };
     this.updateSource({ [`value.-=${level}`]: null });
     return source;
   }
-}
-
-
-/**
- * Configuration application for hit points.
- */
-export class HitPointsConfig extends AdvancementConfig {
-  /** @inheritdoc */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/hit-points-config.hbs"
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  getData() {
-    return foundry.utils.mergeObject(super.getData(), {
-      hitDie: this.advancement.hitDie
-    });
-  }
-}
-
-
-/**
- * Inline application that presents hit points selection upon level up.
- */
-export class HitPointsFlow extends AdvancementFlow {
-
-  /** @inheritdoc */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      template: "systems/sw5e/templates/advancement/hit-points-flow.hbs"
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  getData() {
-    const source = this.retainedData ?? this.advancement.data.value;
-    const value = source[this.level];
-
-    // If value is empty, `useAverage` should default to the value selected at the previous level
-    let useAverage = value === "avg";
-    if ( !value ) {
-      const lastValue = source[this.level - 1];
-      if ( lastValue === "avg" ) useAverage = true;
-    }
-
-    return foundry.utils.mergeObject(super.getData(), {
-      isFirstClassLevel: (this.level === 1) && this.advancement.item.isOriginalClass,
-      hitDie: this.advancement.hitDie,
-      dieValue: this.advancement.hitDieValue,
-      data: {
-        value: Number.isInteger(value) ? value : "",
-        useAverage
-      }
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  activateListeners(html) {
-    this.form.querySelector(".averageCheckbox")?.addEventListener("change", event => {
-      this.form.querySelector(".rollResult").disabled = event.target.checked;
-      this.form.querySelector(".rollButton").disabled = event.target.checked;
-      this._updateRollResult();
-    });
-    this.form.querySelector(".rollButton")?.addEventListener("click", async () => {
-      const roll = await this.advancement.actor.rollClassHitPoints(this.advancement.item);
-      this.form.querySelector(".rollResult").value = roll.total;
-    });
-    this._updateRollResult();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Update the roll result display when the average result is taken.
-   * @protected
-   */
-  _updateRollResult() {
-    if ( !this.form.elements.useAverage?.checked ) return;
-    this.form.elements.value.value = (this.advancement.hitDieValue / 2) + 1;
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritdoc */
-  _updateObject(event, formData) {
-    let value;
-    if ( formData.useMax ) value = "max";
-    else if ( formData.useAverage ) value = "avg";
-    else if ( Number.isInteger(formData.value) ) value = parseInt(formData.value);
-
-    if ( value !== undefined ) return this.advancement.apply(this.level, { [this.level]: value });
-
-    this.form.querySelector(".rollResult")?.classList.add("error");
-    const errorType = formData.value ? "Invalid" : "Empty";
-    throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementHitPoints${errorType}Error`));
-  }
-
 }

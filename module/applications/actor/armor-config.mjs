@@ -1,15 +1,17 @@
+import BaseConfigSheet from "./base-config.mjs";
+
 /**
  * Interface for managing a character's armor calculation.
  */
-export default class ActorArmorConfig extends DocumentSheet {
+export default class ActorArmorConfig extends BaseConfigSheet {
   constructor(...args) {
     super(...args);
 
     /**
-     * Cloned copy of the actor for previewing change.s
+     * Cloned copy of the actor for previewing changes.
      * @type {Actor5e}
      */
-    this.clone = this.object.clone();
+    this.clone = this.document.clone();
   }
 
   /* -------------------------------------------- */
@@ -17,11 +19,11 @@ export default class ActorArmorConfig extends DocumentSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      id: "actor-armor-config",
       classes: ["sw5e", "actor-armor-config"],
       template: "systems/sw5e/templates/apps/actor-armor.hbs",
       width: 320,
-      height: "auto"
+      height: "auto",
+      sheetConfig: false
     });
   }
 
@@ -37,6 +39,7 @@ export default class ActorArmorConfig extends DocumentSheet {
   /** @inheritdoc */
   async getData() {
     const ac = this.clone.system.attributes.ac;
+    const isFlat = ["flat", "natural"].includes(ac.calc);
 
     // Get configuration data for the calculation mode, reset to flat if configuration is unavailable
     let cfg = CONFIG.SW5E.armorClasses[ac.calc];
@@ -47,9 +50,9 @@ export default class ActorArmorConfig extends DocumentSheet {
     }
 
     return {
-      ac,
+      ac, isFlat,
       calculations: CONFIG.SW5E.armorClasses,
-      valueDisabled: !["flat", "natural"].includes(ac.calc),
+      valueDisabled: !isFlat,
       formula: ac.calc === "custom" ? ac.formula : cfg.formula,
       formulaDisabled: ac.calc !== "custom"
     };
@@ -58,9 +61,16 @@ export default class ActorArmorConfig extends DocumentSheet {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
+  _getActorOverrides() {
+    return Object.keys(foundry.utils.flattenObject(this.object.overrides?.system?.attributes || {}));
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   async _updateObject(event, formData) {
     const ac = foundry.utils.expandObject(formData).ac;
-    return this.object.update({"system.attributes.ac": ac});
+    return this.document.update({"system.attributes.ac": ac});
   }
 
   /* -------------------------------------------- */

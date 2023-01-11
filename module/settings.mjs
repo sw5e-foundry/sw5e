@@ -1,3 +1,5 @@
+import { ModuleArtConfig } from "./module-art.mjs";
+
 /**
  * Register all of the system's settings.
  */
@@ -157,6 +159,15 @@ export default function registerSystemSettings() {
       keepItems: false,
       keepBio: false,
       keepVision: true,
+      keepSelf: false,
+      keepAE: false,
+      keepOriginAE: true,
+      keepOtherOriginAE: true,
+      keepFeatAE: true,
+      keepPowerAE: true,
+      keepEquipmentAE: true,
+      keepClassAE: true,
+      keepBackgroundAE: true,
       transformTokens: true
     }
   });
@@ -189,5 +200,36 @@ export default function registerSystemSettings() {
     config: true,
     type: Boolean,
     default: false
+  });
+
+  // Strict validation
+  game.settings.register("sw5e", "strictValidation", {
+    scope: "world",
+    config: false,
+    type: Boolean,
+    default: true
+  });
+
+  // Dynamic art.
+  game.settings.registerMenu("sw5e", "moduleArtConfiguration", {
+    name: "SW5E.ModuleArtConfigN",
+    label: "SW5E.ModuleArtConfigL",
+    hint: "SW5E.ModuleArtConfigH",
+    icon: "fa-solid fa-palette",
+    type: ModuleArtConfig,
+    restricted: true
+  });
+
+  game.settings.register("sw5e", "moduleArtConfiguration", {
+    name: "Module Art Configuration",
+    scope: "world",
+    config: false,
+    type: Object,
+    default: {
+      sw5e: {
+        portraits: true,
+        tokens: true
+      }
+    }
   });
 }

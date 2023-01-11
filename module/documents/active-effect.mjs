@@ -18,6 +18,31 @@ export default class ActiveEffect5e extends ActiveEffect {
     return super.apply(actor, change);
   }
 
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _applyAdd(actor, change, current, delta, changes) {
+    if ( current instanceof Set ) {
+      if ( Array.isArray(delta) ) delta.forEach(item => current.add(item));
+      else current.add(delta);
+      return;
+    }
+    super._applyAdd(actor, change, current, delta, changes);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _applyOverride(actor, change, current, delta, changes) {
+    if ( current instanceof Set ) {
+      current.clear();
+      if ( Array.isArray(delta) ) delta.forEach(item => current.add(item));
+      else current.add(delta);
+      return;
+    }
+    return super._applyOverride(actor, change, current, delta, changes);
+  }
+
   /* --------------------------------------------- */
 
   /**
@@ -57,9 +82,19 @@ export default class ActiveEffect5e extends ActiveEffect {
   determineSuppression() {
     this.isSuppressed = false;
     if ( this.disabled || (this.parent.documentName !== "Actor") ) return;
-    const [parentType, parentId, documentType, documentId] = this.origin?.split(".") ?? [];
-    if ( (parentType !== "Actor") || (parentId !== this.parent.id) || (documentType !== "Item") ) return;
-    const item = this.parent.items.get(documentId);
+    const parts = this.origin?.split(".") ?? [];
+    const [parentType, parentId, documentType, documentId, syntheticItem, syntheticItemId] = parts;
+    let item;
+    // Case 1: This is a linked or sidebar actor
+    if ( parentType === "Actor" ) {
+      if ( (parentId !== this.parent.id) || (documentType !== "Item") ) return;
+      item = this.parent.items.get(documentId);
+    }
+    // Case 2: This is a synthetic actor on the scene
+    else if ( parentType === "Scene" ) {
+      if ( (documentId !== this.parent.token?.id) || (syntheticItem !== "Item") ) return;
+      item = this.parent.items.get(syntheticItemId);
+    }
     if ( !item ) return;
     this.isSuppressed = item.areEffectsSuppressed;
   }

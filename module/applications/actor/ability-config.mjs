@@ -1,3 +1,5 @@
+import BaseConfigSheet from "./base-config.mjs";
+
 /**
  * A simple form to set save throw configuration for a given ability score.
  *
@@ -5,7 +7,7 @@
  * @param {ApplicationOptions} options  Additional application configuration options.
  * @param {string} abilityId            The ability key as defined in CONFIG.SW5E.abilities.
  */
-export default class ActorAbilityConfig extends DocumentSheet {
+export default class ActorAbilityConfig extends BaseConfigSheet {
   constructor(actor, options, abilityId) {
     super(actor, options);
     this._abilityId = abilityId;
@@ -34,9 +36,9 @@ export default class ActorAbilityConfig extends DocumentSheet {
 
   /** @override */
   getData(options) {
-    const src = this.object.toObject();
+    const src = this.document.toObject();
     return {
-      ability: src.system.abilities[this._abilityId] || {},
+      ability: src.system.abilities[this._abilityId] ?? this.document.system.abilities[this._abilityId] ?? {},
       labelSaves: game.i18n.format("SW5E.AbilitySaveConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
       labelChecks: game.i18n.format("SW5E.AbilityCheckConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
       abilityId: this._abilityId,

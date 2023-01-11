@@ -69,6 +69,11 @@
 /* ----------------------------------------- */
 /*  All SW5e Apps                           */
 /* ----------------------------------------- */
+h5 {
+  margin-block-start: 1em;
+  margin-block-end: 0;
+  font-size: var(--font-size-13);
+}
 .sw5e {
   /* ----------------------------------------- */
   /*  Element Styles                           */
@@ -119,6 +124,13 @@
 .sw5e button {
   background: rgba(0, 0, 0, 0.1);
   border: 2px groove #eeede0;
+}
+.sw5e .secret .reveal {
+  border: 1px dashed var(--color-border-light-primary);
+  background: rgba(255, 255, 240, 0.8);
+}
+.sw5e .locked .secret .reveal {
+  display: none;
 }
 .sw5e .form-group label {
   flex: 2;
@@ -550,56 +562,56 @@
 /* ----------------------------------------- */
 /*  Property Attribution                     */
 /* ----------------------------------------- */
-.property-attribution {
-  display: none;
-  position: absolute;
+#tooltip.property-attribution {
+  min-width: 150px;
   padding: 3px;
-  border: 1px solid #000;
-  border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
-  color: #c9c7b8;
-  text-align: left;
-  z-index: 1;
+  text-align: left !important;
 }
-.property-attribution table {
+#tooltip.property-attribution table {
   margin: 0;
   border: 0;
+  font-size: var(--font-size-14);
 }
-.property-attribution table tr {
+#tooltip.property-attribution table caption {
+  padding-block: 0.25em 0.5em;
+  font-size: var(--font-size-16);
+}
+#tooltip.property-attribution table tr {
   background-color: inherit;
 }
-.property-attribution table td {
+#tooltip.property-attribution table td {
   padding: 3px;
 }
-.property-attribution table tr.total > td {
+#tooltip.property-attribution table tr.total > td {
   font-weight: 600;
   padding-top: 5px;
   border-top: 1px solid #7a7971;
 }
-.property-attribution table td.attribution-value {
+#tooltip.property-attribution table td.attribution-value {
   width: 20%;
   padding-right: 5px;
   text-align: right;
   font-weight: 600;
 }
-.property-attribution table td::before {
+#tooltip.property-attribution table td::before {
   opacity: 0.6;
 }
-.property-attribution table td.mode-1::before {
+#tooltip.property-attribution table td.mode-1::before {
   content: "×";
 }
-.property-attribution table td.mode-2::before {
+#tooltip.property-attribution table td.mode-2::before {
   content: "+";
 }
-.property-attribution table td.mode-2.negative::before {
+#tooltip.property-attribution table td.mode-2.negative::before {
   content: "−";
   margin-right: -1px;
 }
-.property-attribution table td.mode-3::before {
+#tooltip.property-attribution table td.mode-3::before {
   content: "↓";
 }
-.property-attribution table td.mode-4::before {
+#tooltip.property-attribution table td.mode-4::before {
   content: "↑";
 }
 /* ----------------------------------------- */
@@ -632,7 +644,10 @@
 /* ----------------------------------------- */
 /*  Armor Config Sheet Specifically          */
 /* ----------------------------------------- */
-.sw5e.actor-armor-config .ac-field input {
+.sw5e.actor-armor-config .ac-field input,
+.sw5e.actor-hit-points-config .ac-field input,
+.sw5e.actor-armor-config .hp-field input,
+.sw5e.actor-hit-points-config .hp-field input {
   font-size: 3em;
   text-align: center;
 }
@@ -658,59 +673,40 @@
   overflow-y: auto;
 }
 /* ----------------------------------------- */
-/*  SRD Compendium                           */
+/*  Polymorph Features                       */
 /* ----------------------------------------- */
-.srd-compendium article {
+.polymorph {
+  /* ----------------------------------------- */
+  /*  Two Column Configurations                */
+  /* ----------------------------------------- */
+}
+.polymorph.two-column {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-gap: 0.4em;
+}
+/* ----------------------------------------- */
+/*  Module Art Configuration                 */
+/* ----------------------------------------- */
+#module-art-config .form-group-stacked {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+#module-art-config .form-group-stacked > label {
+  flex: 1 0 auto;
+}
+#module-art-config .form-group-stacked > .form-fields {
+  flex: 0 0 auto;
   display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
+  gap: 0.5rem;
 }
-.srd-compendium article aside,
-.srd-compendium article .contents {
-  border: 4px solid #ba2828;
-  background: #efefef99;
+#module-art-config .form-group-stacked > .form-fields label {
+  display: flex;
+  align-items: center;
 }
-.srd-compendium article aside header h2,
-.srd-compendium article .contents header h2 {
-  border: none;
-  background: #ba2828;
-  color: var(--color-text-light-1);
-  padding: 0 0.25rem 0.25rem 0.25rem;
-  margin: 0;
-}
-.srd-compendium article aside section,
-.srd-compendium article .contents section {
-  padding: 0.625rem 1rem;
-}
-.srd-compendium article aside blockquote {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-.srd-compendium article .contents {
-  flex-grow: 1;
-}
-.srd-compendium article .contents .chapter {
-  margin-bottom: 0.5rem;
-  break-inside: avoid-column;
-}
-.srd-compendium article .contents h3 {
-  border: none;
-  font-weight: bold;
-  font-size: var(--font-size-18);
-  color: var(--color-text-hyperlink);
-}
-.srd-compendium article .contents ul {
-  list-style-type: none;
-  margin: 0 0 0 0.375rem;
-  padding: 0;
-}
-.srd-compendium article .contents ul li {
-  font-size: var(--font-size-16);
-}
-.srd-compendium article .contents section {
-  column-count: 3;
+#module-art-config .form-group-stacked > .form-fields input {
+  width: 16px;
+  height: 16px;
 }
 .sw5e.sheet.actor {
   /* ----------------------------------------- */
@@ -754,8 +750,6 @@
 }
 .sw5e.sheet.actor .config-button {
   color: #4b4a44;
-  right: -6px;
-  top: -3px;
   font-size: 10px;
   font-weight: normal;
 }
@@ -804,6 +798,7 @@
   margin: 0;
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute {
+  position: relative;
   height: 70px;
   margin: 0;
   border: none;
@@ -822,6 +817,9 @@
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute .config-button {
   position: absolute;
+  padding: 4px;
+  right: 0;
+  top: 0;
   display: none;
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute:hover .config-button {
@@ -829,14 +827,6 @@
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute input.temphp {
   width: 48%;
-}
-.sw5e.sheet.actor .sheet-header .attributes .attribute .property-attribution {
-  min-width: 150px;
-  top: 50px;
-  font-family: Signika, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1rem;
 }
 .sw5e.sheet.actor h4.box-title {
   height: 18px;
@@ -884,7 +874,8 @@
   font-weight: 400;
   font-size: 24px;
 }
-.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
+.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input,
+.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple span:not(.sep) {
   flex: 0 0 33%;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-footer {
@@ -895,12 +886,6 @@
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
-}
-.sw5e.sheet.actor .attributable {
-  position: relative;
-}
-.sw5e.sheet.actor .attributable:hover .tooltip {
-  display: block;
 }
 .sw5e.sheet.actor .ability-scores {
   flex: 0 0 100px;
@@ -964,6 +949,10 @@
 .sw5e.sheet.actor .proficiency-toggle {
   color: #b5b3a4;
   font-size: 12px;
+}
+.sw5e.sheet.actor .proficiency-toggle.disabled {
+  cursor: default;
+  text-shadow: none;
 }
 .sw5e.sheet.actor .proficient .proficiency-toggle {
   color: #4b4a44;
@@ -1127,6 +1116,7 @@
   line-height: 20px;
   color: #7a7971;
 }
+.sw5e.sheet.actor .inventory-filters .currency input[type="text"],
 .sw5e.sheet.actor .inventory-filters .currency input[type="number"] {
   flex: 0 0 48px;
   text-align: center;
@@ -1422,6 +1412,9 @@
 .sw5e.advancement.scale-value select option[value=""] {
   color: var(--color-text-light-6);
 }
+.sw5e.advancement-migration .items-list {
+  margin-block-end: 1em;
+}
 /* ----------------------------------------- */
 /*  Advancement Flow                         */
 /* ----------------------------------------- */
@@ -1518,9 +1511,6 @@
   /*  Item Actions                             */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
-  /*  Item Advancement                         */
-  /* ----------------------------------------- */
-  /* ----------------------------------------- */
   /*  Loot Sheet (No Tabs)                     */
   /* ----------------------------------------- */
 }
@@ -1533,6 +1523,7 @@
   margin: 0;
   padding: 5px;
   text-align: right;
+  white-space: nowrap;
   color: #7a7971;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle .item-type {
@@ -1596,6 +1587,9 @@
   color: #4b4a44;
   margin: 0.5em 0 0 0;
   font-size: 1em;
+}
+.sw5e.sheet.item .sheet-body .item-properties [name="system.price.denomination"] {
+  border: none;
 }
 .sw5e.sheet.item .details input[type="text"],
 .sw5e.sheet.item .details input[type="number"],
@@ -1698,37 +1692,43 @@
 .sw5e.sheet.item .weapon-properties label.checkbox {
   flex: 0 0 98px;
 }
-.sw5e.sheet.item .advancement .items-list {
+.sw5e.sheet.item .loot-header {
+  margin-bottom: 10px;
+}
+/* ----------------------------------------- */
+/*  Item Advancement                         */
+/* ----------------------------------------- */
+.sw5e .advancement .items-list {
   height: 100%;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control {
+.sw5e .advancement .items-list .main-controls .configuration-mode-control {
   flex: 1 0;
   margin-inline-start: 0.5em;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control a {
+.sw5e .advancement .items-list .main-controls .configuration-mode-control a {
   text-align: start;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .item-add {
+.sw5e .advancement .items-list .main-controls .item-add {
   padding-block-start: 0.2em;
 }
-.sw5e.sheet.item .advancement .items-list .items-header .item-checkmark {
+.sw5e .advancement .items-list .items-header .item-checkmark {
   flex: 0 0 44px;
   color: #119111;
   text-shadow: white 0 0 1px;
 }
-.sw5e.sheet.item .advancement .items-list .items-header .item-warning {
+.sw5e .advancement .items-list .items-header .item-warning {
   flex: 0 0 44px;
   color: #faff23;
   text-shadow: black 0 0 1px;
 }
-.sw5e.sheet.item .advancement .items-list .item-name {
+.sw5e .advancement .items-list .item-name {
   flex: 1 0 10em;
 }
-.sw5e.sheet.item .advancement .items-list .item-controls {
+.sw5e .advancement .items-list .item-controls {
   border-left: 1px solid #c9c7b8;
   flex: 0 0 44px;
 }
-.sw5e.sheet.item .advancement .items-list .item-summary {
+.sw5e .advancement .items-list .item-summary {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
@@ -1736,15 +1736,108 @@
   margin-top: -4px;
   color: #191813;
 }
-.sw5e.sheet.item .advancement .items-list .item-summary .item-list .item-name {
+.sw5e .advancement .items-list .item-summary .item-list .item-name {
   display: flex;
 }
-.sw5e.sheet.item .advancement .items-list .tag {
+.sw5e .advancement .items-list .tag {
   font-size: 0.7rem;
   padding: 0.1em 0.5em;
 }
-.sw5e.sheet.item .loot-header {
-  margin-bottom: 10px;
+/* ----------------------------------------- */
+/*  SRD Compendium                           */
+/* ----------------------------------------- */
+.srd-compendium article {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+.srd-compendium article aside,
+.srd-compendium article .contents {
+  border: 4px solid #ba2828;
+  background: #efefef99;
+}
+.srd-compendium article aside header h2,
+.srd-compendium article .contents header h2 {
+  border: none;
+  background: #ba2828;
+  color: var(--color-text-light-1);
+  padding: 0 0.25rem 0.25rem 0.25rem;
+  margin: 0;
+}
+.srd-compendium article aside section,
+.srd-compendium article .contents section {
+  padding: 0.625rem 1rem;
+}
+.srd-compendium article aside blockquote {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.srd-compendium article .contents {
+  flex-grow: 1;
+}
+.srd-compendium article .contents .chapter {
+  margin-bottom: 0.5rem;
+  break-inside: avoid-column;
+}
+.srd-compendium article .contents h3 {
+  border: none;
+  font-weight: bold;
+  font-size: var(--font-size-18);
+  color: var(--color-text-hyperlink);
+}
+.srd-compendium article .contents ul {
+  list-style-type: none;
+  margin: 0 0 0 0.375rem;
+  padding: 0;
+}
+.srd-compendium article .contents ul li {
+  font-size: var(--font-size-16);
+}
+.srd-compendium article .contents section {
+  column-count: 3;
+}
+/* ----------------------------------------- */
+/*  Journal Pages                            */
+/* ----------------------------------------- */
+.journal-editor .tox-tinymce {
+  height: 100% !important;
+}
+.journal-entry-page.class h4,
+.class-journal h4 {
+  border-block-end: 1px solid var(--color-underline-header);
+  font-weight: bold;
+}
+.journal-entry-page.class table th[scope="col"],
+.class-journal table th[scope="col"] {
+  padding-inline: 0.25em;
+}
+.journal-entry-page.class table td:is(.level, .prof, .scale, .power-slots),
+.class-journal table td:is(.level, .prof, .scale, .power-slots) {
+  text-align: center;
+}
+.journal-entry-page.class form .form-group,
+.class-journal form .form-group {
+  align-items: start;
+}
+.journal-entry-page.class form button.launch-text-editor,
+.class-journal form button.launch-text-editor {
+  flex: 0.35;
+}
+.journal-entry-page.class form .items-list .item,
+.class-journal form .items-list .item {
+  align-items: center;
+  padding-block: 0.35em 0;
+  padding-inline: 2px;
+}
+.journal-entry-page.class form .items-list .item .item-controls,
+.class-journal form .items-list .item .item-controls {
+  flex: 0;
+}
+.journal-entry-page.class form .items-list .item:not(:last-of-type),
+.class-journal form .items-list .item:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-border-light-secondary);
 }
 /* ----------------------------------------- */
 /*  Chat Cards
@@ -2063,5 +2156,62 @@
 }
 .sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
+  text-align: right;
+}
+.sw5e.sheet.group {
+  min-width: 620px;
+  min-height: 620px;
+  /** Members Directory */
+}
+.sw5e.sheet.group .attribute.health span.value {
+  line-height: 64px;
+  flex: 0 0 64px;
+}
+.sw5e.sheet.group .members .directory-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0 0.5rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+}
+.sw5e.sheet.group .members .directory-header > * {
+  margin: 0;
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: left;
+}
+.sw5e.sheet.group .members .group-member {
+  padding: 0 0.5rem;
+}
+.sw5e.sheet.group .members .group-member .name {
+  cursor: pointer;
+}
+.sw5e.sheet.group .members .hp {
+  flex: 2;
+  align-items: center;
+}
+.sw5e.sheet.group .members .hp .current,
+.sw5e.sheet.group .members .hp .max {
+  flex: 0 0 40px;
+  text-align: center;
+}
+.sw5e.sheet.group .members .hp .bar-container {
+  background: #111;
+  height: 20px;
+  padding: 1px;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+.sw5e.sheet.group .members .hp .bar {
+  height: 16px;
+  border-radius: 4px;
+}
+.sw5e.sheet.group .members .controls {
+  flex: 0 0 64px;
   text-align: right;
 }

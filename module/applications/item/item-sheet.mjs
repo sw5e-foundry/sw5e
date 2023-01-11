@@ -156,8 +156,8 @@ export default class ItemSheet5e extends ItemSheet {
             advancement: this._getItemAdvancement(item),
 
             // Powercasting
-            forcecaster: item.system.powercasting.force !== "none",
-            techcaster: item.system.powercasting.tech !== "none",
+            forcecaster: item.system?.powercasting?.force !== "none",
+            techcaster: item.system?.powercasting?.tech !== "none",
 
             // Prepare Active Effects
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)

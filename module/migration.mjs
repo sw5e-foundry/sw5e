@@ -295,6 +295,7 @@ export const migrateItemData = async function (item, migrationData) {
     await _migrateItemModificationData(item, updateData, migrationData);
     _migrateItemBackgroundDescription(item, updateData);
     _migrateItemIdentifier(item, updateData);
+    _migrateItemSpeciesDroid(item, updateData);
 
     // Migrate embedded effects
     if (item.effects) {
@@ -1259,6 +1260,22 @@ function _migrateItemIdentifier(item, updateData) {
 
     updateData["system.-=className"] = null;
     updateData["system.classIdentifier"] = item.system.className.slugify({strict: true});
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate species isDroid data
+ * @param {object} item        Archetype data to migrate.
+ * @param {object} updateData  Existing update to expand upon.
+ * @returns {object}           The updateData to apply.
+ */
+function _migrateItemSpeciesDroid(item, updateData) {
+    if (item.type !== "species") return updateData;
+
+    updateData["system.details.isDroid"] = !!item.system?.colorScheme?.value;
 
     return updateData;
 }

@@ -603,6 +603,8 @@ export default class Item5e extends Item {
             {all: [], vsm: [], tags: []}
         );
         this.labels.materials = this.system?.materials?.value ?? null;
+
+        this.system.critical.baseThreshold = 20;
     }
 
     /* -------------------------------------------- */
@@ -640,6 +642,7 @@ export default class Item5e extends Item {
             this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
             this.system.ammo.baseUse = 1;
         }
+        this.system.critical.baseThreshold = Math.max(15, 20 - this.system.properties.keen);
     }
 
     /* -------------------------------------------- */
@@ -922,24 +925,30 @@ export default class Item5e extends Item {
     /**
      * Retrieve an item's critical hit threshold.
      * Uses a custom treshold if the item has one set
-     * Otherwise, uses the smaller value from amongst the following:
+     * Otherwise, uses the smaller value from amongst the following, with a minimum of 15:
      * - item document's actor's critical threshold (if it has one)
-     * - the constant '20' - item document's keen property (if it has one)
+     * - item document's base threshold (20 - the keen property's value)
      *
      * @returns {number|null}  The minimum value that must be rolled to be considered a critical hit.
      */
     getCriticalThreshold() {
-        // Get the actor's critical threshold
-        const actorFlags = this.actor.flags.sw5e || {};
         if (!this.hasAttack) return null;
-        let actorThreshold = null;
+
+        const actorFlags = this.actor.flags.sw5e || {};
+        const itemCrit = this.system.critical;
+
+        if (itemCrit.threshold !== null) return itemCrit.threshold;
+
+        // Get the actor's critical threshold
+        let actorThreshold = 20;
         if (this.type === "weapon") actorThreshold = actorFlags.weaponCriticalThreshold;
         else if (this.type === "power") actorThreshold = actorFlags.powerCriticalThreshold;
-        // Get the item's critical threshold
-        const itemTreshold = Math.min(this.system.critical?.threshold ?? 20, 20 - (this.system?.properties?.ken ?? 0));
 
-        // Use the lowest of the the item and actor thresholds
-        return Math.max(Math.min(itemTreshold, actorThreshold ?? 20), 15);
+        // Get the item's critical threshold
+        const itemTreshold = itemCrit.baseThreshold;
+
+        // Use the lowest of the the actor and item thresholds
+        return Math.max(Math.min(actorThreshold, itemTreshold), 15);
     }
 
     /* -------------------------------------------- */

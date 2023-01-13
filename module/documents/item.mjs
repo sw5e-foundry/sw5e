@@ -636,7 +636,10 @@ export default class Item5e extends Item {
      * @protected
      */
     _prepareWeapon() {
-        if (this.system.ammo) this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
+        if (this.system.ammo) {
+            this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
+            this.system.ammo.baseUse = 1;
+        }
     }
 
     /* -------------------------------------------- */
@@ -895,7 +898,7 @@ export default class Item5e extends Item {
 
             if (ammoItem) {
                 const ammoItemQuantity = isReload ? this.system.ammo?.value : ammoItem.system?.quantity;
-                const ammoConsumeAmmount = isReload ? 1 : this.system.consume.amount ?? 0;
+                const ammoConsumeAmmount = isReload ? this.system.ammo?.use ?? this.system.ammo?.baseUse : this.system.consume.amount ?? 0;
                 const ammoCanBeConsumed = ammoItemQuantity && ammoItemQuantity - ammoConsumeAmmount >= 0;
                 const ammoItemAttackBonus = ammoItem.system.attackBonus;
                 const ammoIsTypeConsumable =
@@ -1260,14 +1263,15 @@ export default class Item5e extends Item {
 
         // Consume Weapon Reload
         if (consumeReload) {
-            if (is.ammo.value <= 0) {
+            const use = this.system.ammo?.use ?? this.system.ammo?.baseUse;
+            if (is.ammo.value < use) {
                 if (is.properties.rel)
                     ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", {name: this.name}));
                 else if (is.properties.ovr)
                     ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", {name: this.name}));
                 return false;
             }
-            itemUpdates["system.ammo.value"] = is.ammo.value - 1;
+            itemUpdates["system.ammo.value"] = is.ammo.value - use;
         }
 
         // Consume Limited Resource
@@ -1784,7 +1788,7 @@ export default class Item5e extends Item {
             ammo = this.actor.items.get(this.system.ammo.target);
             if (ammo) {
                 const q = this.system.ammo.value;
-                const consumeAmount = 1;
+                const consumeAmount = this.system.ammo.use ?? this.system.ammo.baseUse;
                 if (q && q - consumeAmount >= 0) {
                     this._ammo = ammo;
                     title += ` [${ammo.name}]`;

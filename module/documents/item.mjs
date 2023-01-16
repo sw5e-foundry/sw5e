@@ -642,7 +642,7 @@ export default class Item5e extends Item {
             this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
             this.system.ammo.baseUse = 1;
         }
-        this.system.critical.baseThreshold = Math.max(15, 20 - this.system.properties.keen);
+        this.system.critical.baseThreshold = Math.max(15, 20 - (this.system.properties.keen ?? 0));
     }
 
     /* -------------------------------------------- */

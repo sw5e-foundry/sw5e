@@ -217,8 +217,8 @@ export default function registerSystemSettings() {
 
     // Disable Item Modification Effects
     game.settings.register("sw5e", "disableItemMods", {
-        name: "SETTINGS.SWdisableModsN",
-        hint: "SETTINGS.SWdisableModsL",
+        name: "SETTINGS.SWDisableModsN",
+        hint: "SETTINGS.SWDisableModsL",
         scope: "world",
         config: true,
         type: Boolean,

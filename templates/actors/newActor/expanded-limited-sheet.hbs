@@ -6,7 +6,9 @@
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
         <div class="level-experience">
-            <div class="charlevel">{{ localize "SW5E.Level" }} {{system.details.level}} {{classLabels}}</div>
+            <div class="charlevel" title="{{multiclassLabels}}">
+                {{ localize "SW5E.Level" }} {{system.details.level}} {{classLabels}}
+            </div>
             {{#unless disableExperience}}
             <div class="experience">
                 {{numberInput system.details.xp.value name="system.details.xp.value" placeholder="0"}}
@@ -25,12 +27,16 @@
                 value="{{system.details.species}}"
                 placeholder="{{ localize 'SW5E.Species' }}"
             />
-            <input
-                type="text"
-                name="system.details.background"
-                value="{{system.details.background}}"
-                placeholder="{{ localize 'SW5E.Background' }}"
-            />
+            {{#if labels.background}}
+                <span title="{{localize 'SW5E.Background'}}">{{labels.background}}</span>
+            {{else}}
+                <input
+                    type="text"
+                    name="system.details.background"
+                    value="{{system.details.background}}"
+                    placeholder="{{ localize 'SW5E.Background' }}"
+                />
+            {{/if}}
             <input
                 type="text"
                 name="system.details.alignment"
@@ -42,56 +48,83 @@
         {{!-- Header Attributes --}}
         <div class="attributes">
             {{!-- ARMOR CLASS --}}
-            <section>
-                <h1>{{ localize "SW5E.ArmorClass" }}</h1>
+            <section class="attrib armor">
+                <h1 class="attribute-name armor">
+                    {{ localize "SW5E.ArmorClass" }}
+                </h1>
                 <div class="attribute-value attributable" data-property="attributes.ac">
-                        <span>{{system.attributes.ac.value}}</span>
-                    </div>
+                    <span>{{system.attributes.ac.value}}</span>
+                </div>
+                <footer class="attribute-footer">
+                    <span>{{labels.armorType}}</span>
+                </footer>
             </section>
 
             {{!-- HIT POINTS --}}
-            <section>
+            <section class="attrib health">
                 <h1>{{ localize "SW5E.HP" }}</h1>
                 <div class="attribute-value multiple">
-                    <input name="system.attributes.hp.value" type="number" step="any"
-                            value="{{system.attributes.hp.value}}" placeholder="10"
-                        class="value-number"
+                    <input
+                        name="system.attributes.hp.value"
+                        type="number"
+                        step="any"
+                        value="{{system.attributes.hp.value}}"
+                        placeholder="10"
+                        title="{{localize 'SW5E.HitPointsCurrent'}}"
                     />
                     <span class="value-separator">/</span>
-                    <input name="system.attributes.hp.max" type="number" step="any"
-                            value="{{system.attributes.hp.max}}" placeholder="10"
-                        class="value-number"
+                    <input
+                        name="system.attributes.hp.max"
+                        type="number"
+                        step="any"
+                        value="{{system.attributes.hp.max}}"
+                        placeholder="10"
+                        title="{{localize 'SW5E.HitPointsMax'}}"
                     />
                 </div>
                 <footer class="attribute-footer hit-points">
-                    <input name="system.attributes.hp.temp" type="number" step="any" class="temphp"
-                            placeholder="+{{ localize 'SW5E.Temp' }}"
-                            value="{{system.attributes.hp.temp}}"
+                    <input
+                        name="system.attributes.hp.temp"
+                        type="number"
+                        step="any"
+                        class="temphp"
+                        placeholder="+{{ localize 'SW5E.Temp' }}"
+                        value="{{system.attributes.hp.temp}}"
+                        title="{{localize 'SW5E.HitPointsTemp'}}"
                     />
-                    <input name="system.attributes.hp.tempmax" type="number" step="any" class="temphp"
-                            placeholder="+{{ localize 'SW5E.Max' }}"
-                            value="{{system.attributes.hp.tempmax}}"
+                    <input
+                        name="system.attributes.hp.tempmax"
+                        type="number"
+                        step="any"
+                        class="temphp"
+                        placeholder="+{{ localize 'SW5E.Max' }}"
+                        value="{{system.attributes.hp.tempmax}}"
+                        title="{{localize 'SW5E.HitPointsTempMax'}}"
                     />
                 </footer>
             </section>
 
             {{!-- HIT DICE / SHORT & LONG REST BUTTONS --}}
-            <section>
-                <h1>{{ localize "SW5E.HitDice" }}</h1>
+            <section class="attrib hit-dice">
+                <h1 class="attribute-name hit-dice">
+                    {{ localize "SW5E.HitDice" }}
+                </h1>
                 <div class="attribute-value multiple">
-                    <span class="value-number">{{system.attributes.hd}}</span>
+                    <span title="{{localize 'SW5E.HitDiceRemaining'}}">{{system.attributes.hd}}</span>
                     <span class="value-separator">/</span>
-                    <span class="value-number">{{system.details.level}}</span>
+                    <span title="{{localize 'SW5E.HitDiceMax'}}">{{system.details.level}}</span>
                 </div>
                 <footer class="attribute-footer hit-dice">
-                    <button type="button" class="rest short-rest">{{ localize "SW5E.RestS" }}</button>
-                    <button type="button" class="rest long-rest">{{ localize "SW5E.RestL" }}</button>
+                    <button type="button" class="rest short-rest" title="{{localize 'SW5E.ShortRest'}}">{{ localize "SW5E.RestS" }}</button>
+                    <button type="button" class="rest long-rest" title="{{localize 'SW5E.LongRest'}}">{{ localize "SW5E.RestL" }}</button>
                 </footer>
             </section>
 
             {{!-- INITIATIVE --}}
-            <section>
-                <h1>{{ localize "SW5E.Initiative" }}</h1>
+            <section class="attrib initiative">
+                <h1 class="attribute-name box-title">
+                    {{ localize "SW5E.Initiative" }}
+                </h1>
                 <div class="attribute-value">
                     <span class="initiative">{{numberFormat system.attributes.init.total decimals=0 sign=true}}</span>
                 </div>
@@ -100,8 +133,8 @@
                     <input
                         name="system.attributes.init.value"
                         type="text"
-                        placeholder="0"
                         data-dtype="Number"
+                        placeholder="0"
                         value="{{numberFormat system.attributes.init.value decimals=0 sign=true}}"
                     />
                 </footer>
@@ -109,23 +142,14 @@
 
             {{!-- SPEED / MOVEMENT TYPES --}}
             <section>
-                <h1>{{ localize "SW5E.Speed" }}</h1>
+                <h1 class="attrib movement">
+                    {{ localize "SW5E.Speed" }}
+                </h1>
                 <div class="attribute-value">
-                    <input
-                        name="system.attributes.speed.value"
-                        type="text"
-                        value="{{system.attributes.speed.value}}"
-                        placeholder="0"
-                    />
+                    <span>{{movement.primary}}</span>
                 </div>
-                <footer class="attribute-footer speed">
-                    <input
-                        type="text"
-                        class="speed"
-                        name="system.attributes.speed.special"
-                        value="{{system.attributes.speed.special}}"
-                        placeholder="{{ localize 'SW5E.SpeedSpecial' }}"
-                    />
+                <footer class="attribute-footer">
+                    <span>{{movement.special}} {{system.attributes.movement.units}}</span>
                 </footer>
             </section>
         </div>

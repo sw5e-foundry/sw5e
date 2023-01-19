@@ -179,12 +179,12 @@ export default class CharacterImporter {
         for (const cls of classes) {
             const compendiumClass = classesPack.find((o) => o.name === cls.name);
             if (compendiumClass) {
-                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass.system]))[0];
+                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass]))[0];
                 await createdClass.update({"system.levels": cls.level});
             }
             const compendiumArch = archetypesPack.find((o) => o.name === cls.arch);
             if (compendiumArch) {
-                await actor.createEmbeddedDocuments("Item", [compendiumArch.system]);
+                await actor.createEmbeddedDocuments("Item", [compendiumArch]);
             }
         }
     }
@@ -228,7 +228,7 @@ export default class CharacterImporter {
     static async addSpecies(race, actor) {
         const species = await game.packs.get("sw5e.species").getDocuments();
         const assignedSpecies = species.find((c) => c.name === race);
-        const activeEffects = [...assignedSpecies.system.effects][0].system.changes;
+        const activeEffects = [...assignedSpecies.effects][0]?.changes ?? [];
         const actorData = {system: {abilities: {...actor.system.abilities}}};
 
         activeEffects.map((effect) => {
@@ -264,14 +264,14 @@ export default class CharacterImporter {
 
         await actor.update(actorData);
 
-        await actor.createEmbeddedDocuments("Item", [assignedSpecies.system]);
+        await actor.createEmbeddedDocuments("Item", [assignedSpecies]);
     }
 
     static async addBackground(bg, actor) {
         const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
         const packBg = bgs.find((c) => c.name === bg);
         if (packBg) {
-            await actor.createEmbeddedDocuments("Item", [packBg.system]);
+            await actor.createEmbeddedDocuments("Item", [packBg]);
         }
     }
 
@@ -283,7 +283,7 @@ export default class CharacterImporter {
             const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
 
             if (createdPower) {
-                await actor.createEmbeddedDocuments("Item", [createdPower.system]);
+                await actor.createEmbeddedDocuments("Item", [createdPower]);
             }
         }
     }
@@ -321,7 +321,7 @@ export default class CharacterImporter {
                     packItem.system.quantity = item.quantity;
                 }
 
-                await actor.createEmbeddedDocuments("Item", [packItem.system]);
+                await actor.createEmbeddedDocuments("Item", [packItem]);
             }
         }
     }

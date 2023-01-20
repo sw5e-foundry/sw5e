@@ -165,6 +165,21 @@ export default class CharacterImporter {
                 }),
             actor
         );
+
+        await this.addProficiencies(
+            sourceCharacter.attribs
+                .filter((e) => e.name.search(/repeating_proficiencies.+_name/g) != -1)
+                .map((prof) => {
+                    const id = prof.name.match(/-\w{19}/g);
+                    const type = sourceCharacter.attribs.find((e) => e.name === `repeating_proficiencies_${id}_prof_type`)
+                        ?.current ?? "LANGUAGE";
+                    return {
+                        name: prof.current,
+                        type: type
+                    };
+                }),
+            actor
+        );
     }
 
     static async addClasses(classes, actor) {
@@ -177,18 +192,20 @@ export default class CharacterImporter {
         classes.unshift(firstClass);
 
         const toCreate = [];
-
         for (const cls of classes) {
             const packClass = packClasses.find((o) => o.name === cls.name)?.toObject();
-            if (packClass) {
-                packClass.system.level = cls.level;
-                toCreate.push(packClass);
-            }
+            if (packClass) toCreate.push(packClass);
             const packArch = packArchs.find((o) => o.name === cls.arch)?.toObject();
             if (packArch) toCreate.push(packArch);
         }
-
         await actor.createEmbeddedDocuments("Item", toCreate);
+
+        const toUpdate = [];
+        for (const cls of classes) {
+            const itemClass = actor.itemTypes.class.find((o) => o.name === cls.name);
+            toUpdate.push({"_id": itemClass.id, "system.levels": cls.level});
+        }
+        await actor.updateEmbeddedDocuments("Item", toUpdate);
     }
 
     static classOrMulticlass(name) {
@@ -225,6 +242,15 @@ export default class CharacterImporter {
 
     static capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    static addValue(obj, value) {
+        if (!obj.value.includes(value)) obj.value.push(value);
+    }
+
+    static addCustom(obj, value) {
+        if (obj.custom) obj.custom = `${obj.custom}; ${value}`;
+        else obj.custom = value;
     }
 
     static async addSpecies(race, actor) {
@@ -331,6 +357,67 @@ export default class CharacterImporter {
         }
 
         await actor.createEmbeddedDocuments("Item", toCreate);
+    }
+
+    static async addProficiencies(profs, actor) {
+        const updates = {};
+
+        const armorProf = actor.system.traits.armorProf;
+        const languages = actor.system.traits.languages;
+        const weaponProf = actor.system.traits.weaponProf;
+
+        for (const prof of profs) {
+            let name = prof.name;
+            switch (prof.type) {
+                case "WEAPON":
+                case "OTHER":
+                    name = name.toLowerCase().replace(/\s/g, "");
+                    const match = name.match(/(all|simple|martial|exotic)(\w+)s/);
+                    if (match) {
+                        const weapons = {
+                            "blaster": ["smb", "mrb", "exb"],
+                            "vibroweapon": ["svw", "mvw", "evw"],
+                            "lightweapon": ["slw", "mlw", "elw"],
+                        };
+                        const which = match[1];
+                        const wpnType = match[2];
+                        let toAdd = weapons[wpnType];
+                        if (which === "all") toAdd = [toAdd[0], toAdd[1]];
+                        else if (which === "simple") toAdd = [toAdd[0]];
+                        else if (which === "martial") toAdd = [toAdd[1]];
+                        else if (which === "exotic") toAdd = [toAdd[2]];
+                        else toAdd = [];
+                        for (const wpnProf of toAdd) this.addValue(weaponProf, wpnProf);
+                    } else if (name in CONFIG.SW5E.weaponIds) {
+                        this.addValue(weaponProf, name);
+                    } else {
+                        this.addCustom(weaponProf, prof.name);
+                    }
+                    break;
+                case "ARMOR":
+                    name = name.toLowerCase().replace(/\s|armor/g, "");
+                    if (name in CONFIG.SW5E.armorProficienciesMap) {
+                        this.addValue(armorProf, CONFIG.SW5E.armorProficienciesMap[name]);
+                    } else {
+                        this.addCustom(armorProf, prof.name);
+                    }
+                    break;
+                case "LANGUAGE":
+                    name = name.toLowerCase().replace(/galactic /g, "").replace(/\s/g, "-");
+                    if (name in CONFIG.SW5E.languages) {
+                        this.addValue(languages, name);
+                    } else {
+                        this.addCustom(languages, prof.name);
+                    }
+                    break;
+            }
+        }
+
+        updates["system.traits.armorProf"] = armorProf;
+        updates["system.traits.languages"] = languages;
+        updates["system.traits.weaponProf"] = weaponProf;
+
+        await actor.update(updates);
     }
 
     static addImportButton(html) {

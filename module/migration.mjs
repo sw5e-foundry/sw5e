@@ -4,7 +4,7 @@ import {slugifyIcon} from "./utils.mjs";
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function () {
+export const migrateWorld = async function (migrateSystemCompendiums=false) {
     const version = game.system.version;
     ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", {version}), {permanent: true});
 
@@ -71,7 +71,7 @@ export const migrateWorld = async function () {
 
     // Migrate World Compendium Packs
     for (let p of game.packs) {
-        if (p.metadata.package !== "world") continue;
+        if (p.metadata.package !== "world" && !migrateSystemCompendiums) continue;
         if (!["Actor", "Item", "Scene"].includes(p.documentName)) continue;
         await migrateCompendium(p);
     }
@@ -500,7 +500,7 @@ function _updateNPCData(actor) {
     }
 
     //merge object
-    actorSysData = mergeObject(actorData, updateData);
+    actorSysData = mergeObject(actorSysData, updateData);
     // Return the scrubbed data
     return actor;
 }
@@ -573,7 +573,7 @@ function _migrateActorPowers(actorData, updateData) {
             updateData["system.powers.power" + i + ".foverride"] = null;
             updateData["system.powers.power" + i + ".tvalue"] = asd?.powers?.["power" + i]?.value ?? 0;
             updateData["system.powers.power" + i + ".tmax"] = asd?.powers?.["power" + i]?.max ?? 0;
-            updateData["data.powers.power" + i + ".toverride"] = null;
+            updateData["system.powers.power" + i + ".toverride"] = null;
             //remove system
             updateData["system.powers.power" + i + ".-=value"] = null;
             updateData["system.powers.power" + i + ".-=override"] = null;
@@ -658,20 +658,20 @@ function _migrateActorType(actor, updateData) {
     // Specifics
     // (Some of these have weird names, these need to be addressed individually)
     if (original === "force entity") {
-        data.value = "force";
-        data.subtype = "storm";
+        actorTypeData.value = "force";
+        actorTypeData.subtype = "storm";
     } else if (original === "human") {
-        data.value = "humanoid";
-        data.subtype = "human";
+        actorTypeData.value = "humanoid";
+        actorTypeData.subtype = "human";
     } else if (["humanoid (any)", "humanoid (Villainous"].includes(original)) {
-        data.value = "humanoid";
+        actorTypeData.value = "humanoid";
     } else if (original === "tree") {
-        data.value = "plant";
-        data.subtype = "tree";
+        actorTypeData.value = "plant";
+        actorTypeData.subtype = "tree";
     } else if (original === "(humanoid) or Large (beast) force entity") {
-        data.value = "force";
+        actorTypeData.value = "force";
     } else if (original === "droid (appears human)") {
-        data.value = "droid";
+        actorTypeData.value = "droid";
     } else {
         // Match the existing string
         const pattern = /^(?:swarm of (?<size>[\w-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
@@ -836,7 +836,7 @@ async function _migrateItemPower(item, updateData) {
 async function _migrateTokenImage(actorData, updateData, {iconMap} = {}) {
     const prefix = "systems/sw5e/packs/Icons/";
 
-    for (let prop of ["img", "token.img"]) {
+    for (let prop of ["texture.src", "prototypeToken.texture.src"]) {
         const path = foundry.utils.getProperty(actorData, prop);
 
         if (!path?.startsWith(prefix)) return;
@@ -1044,7 +1044,7 @@ function _migrateItemArmorPropertiesData(item, updateData) {
  * @private
  */
 function _migrateItemWeaponPropertiesData(item, updateData) {
-    if (!(item.type === "weapon" || (item.type === "consumable" && item.data.consumableType === "ammo")))
+    if (!(item.type === "weapon" || (item.type === "consumable" && item.system.consumableType === "ammo")))
         return updateData;
     const hasProperties = item.system?.properties !== undefined;
     if (!hasProperties) return updateData;
@@ -1090,7 +1090,7 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
  */
 async function _migrateItemModificationData(item, updateData, migrationData) {
     if (item.type === "modification") {
-        if (item.system.modified !== undefined) updateData["data.-=modified"] = null;
+        if (item.system.modified !== undefined) updateData["system.-=modified"] = null;
     } else if (item.system.modifications !== undefined) {
         const itemMods = item.system.modifications;
         updateData[`system.-=modifications`] = null;

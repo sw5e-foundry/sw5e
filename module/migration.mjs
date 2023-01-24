@@ -10,6 +10,12 @@ export const migrateWorld = async function (migrateSystemCompendiums=false) {
 
     const migrationData = await getMigrationData();
 
+    // // Migrate Armor Class
+    // for (let p of game.packs) {
+    //     if (!["Actor"].includes(p.documentName)) continue;
+    //     await migrateArmorClass(p, migrationData);
+    // }
+
     // Migrate World Actors
     for await (let a of game.actors) {
         try {
@@ -138,18 +144,20 @@ export const migrateCompendium = async function (pack) {
  * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
  * check to see if the actor has armor already equipped, and opt to use that instead.
  * @param {CompendiumCollection|string} pack  Pack or name of pack to migrate.
+ * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {Promise}
  */
-export const migrateArmorClass = async function (pack) {
+export const migrateArmorClass = async function (pack, migrationData) {
     if (typeof pack === "string") pack = game.packs.get(pack);
     if (pack.documentName !== "Actor") return;
     const wasLocked = pack.locked;
     await pack.configure({locked: false});
     const actors = await pack.getDocuments();
     const updates = [];
-    const armor = new Set(Object.keys(CONFIG.SW5E.armorTypes));
+    const armorTypes = new Set(Object.keys(CONFIG.SW5E.armorTypes));
 
     for (const actor of actors) {
+        if (actor.type === "starship") continue;
         try {
             console.log(`Migrating ${actor.name}...`);
             const src = actor.toObject();
@@ -159,11 +167,21 @@ export const migrateArmorClass = async function (pack) {
             _migrateActorAC(src, update);
             updates.push(update);
 
-            // CASE 1: Armor is equipped
+            // If actor has the name of an armor but doesn't have it equipped, try to add it
             const hasArmorEquipped = actor.itemTypes.equipment.some((e) => {
-                return armor.has(e.system.armor?.type) && e.system.equipped;
+                return armorTypes.has(e.system.armor?.type) && e.system.equipped;
             });
-            if (hasArmorEquipped) update["system.attributes.ac.calc"] = "default";
+            const armorName = actor.system.attributes.ac.formula.toLowerCase();
+            const armorItem = migrationData.armors.find(a => a.name.toLowerCase() === armorName);
+            if (actor.name === "Trooper, Captain") console.debug(armorItem, actor.system.attributes.ac, armorName);
+            if (!hasArmorEquipped && armorItem) {
+                const armorData = armorItem.toObject();
+                armorData.system.equipped = true;
+                actor.createEmbeddedDocuments("Item", [armorData]);
+            }
+
+            // CASE 1: Armor is equipped
+            if (hasArmorEquipped || armorItem) update["system.attributes.ac.calc"] = "default";
             // CASE 2: NPC Natural Armor
             else if (src.type === "npc") update["system.attributes.ac.calc"] = "natural";
         } catch (e) {
@@ -419,6 +437,7 @@ export const getMigrationData = async function () {
 
         data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
         data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
+        data.armors = await (await game.packs.get("sw5e.armor")).getDocuments();
         data.modifications = await (await game.packs.get("sw5e.modifications")).getDocuments();
     } catch (err) {
         console.warn(`Failed to retrieve migration data: ${err.message}`);

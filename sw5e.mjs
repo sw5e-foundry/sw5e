@@ -343,7 +343,7 @@ Hooks.on("renderSettings", async (_app, html) => {
         const remigrate = $("<div>").attr({id: "sw5e-remigrate"});
         const shootButton = $('<button type="button">')
             .append(utils.fontAwesomeIcon("wrench"), game.i18n.localize("SW5E.Remigrate"))
-            .on("click", () => migrations.migrateWorld());
+            .on("click", (ev) => migrations.migrateWorld(ev.ctrlKey));
         remigrate.append(shootButton);
 
         elements.push(remigrate);

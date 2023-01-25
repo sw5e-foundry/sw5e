@@ -124,7 +124,7 @@ export default class CharacterImporter {
             }
         };
 
-        let actor = await Actor.create(targetCharacter);
+        const actor = await Actor.create(targetCharacter);
 
         await this.addClasses(
             sourceCharacter.attribs
@@ -165,28 +165,47 @@ export default class CharacterImporter {
                 }),
             actor
         );
+
+        await this.addProficiencies(
+            sourceCharacter.attribs
+                .filter((e) => e.name.search(/repeating_proficiencies.+_name/g) != -1)
+                .map((prof) => {
+                    const id = prof.name.match(/-\w{19}/g);
+                    const type = sourceCharacter.attribs.find((e) => e.name === `repeating_proficiencies_${id}_prof_type`)
+                        ?.current ?? "LANGUAGE";
+                    return {
+                        name: prof.current,
+                        type: type
+                    };
+                }),
+            actor
+        );
     }
 
     static async addClasses(classes, actor) {
-        const classesPack = await game.packs.get("sw5e.classes").getDocuments();
-        const archetypesPack = await game.packs.get("sw5e.archetypes").getDocuments();
+        const packClasses = await game.packs.get("sw5e.classes").getDocuments();
+        const packArchs = await game.packs.get("sw5e.archetypes").getDocuments();
 
         // Make sure the base class is added first
         const firstClassIdx = classes.findIndex((cls) => cls.type === "base_class");
         const firstClass = classes.splice(firstClassIdx, 1)[0];
         classes.unshift(firstClass);
 
+        const toCreate = [];
         for (const cls of classes) {
-            const compendiumClass = classesPack.find((o) => o.name === cls.name);
-            if (compendiumClass) {
-                const createdClass = (await actor.createEmbeddedDocuments("Item", [compendiumClass.system]))[0];
-                await createdClass.update({"system.levels": cls.level});
-            }
-            const compendiumArch = archetypesPack.find((o) => o.name === cls.arch);
-            if (compendiumArch) {
-                await actor.createEmbeddedDocuments("Item", [compendiumArch.system]);
-            }
+            const packClass = packClasses.find((o) => o.name === cls.name)?.toObject();
+            if (packClass) toCreate.push(packClass);
+            const packArch = packArchs.find((o) => o.name === cls.arch)?.toObject();
+            if (packArch) toCreate.push(packArch);
         }
+        await actor.createEmbeddedDocuments("Item", toCreate);
+
+        const toUpdate = [];
+        for (const cls of classes) {
+            const itemClass = actor.itemTypes.class.find((o) => o.name === cls.name);
+            toUpdate.push({"_id": itemClass.id, "system.levels": cls.level});
+        }
+        await actor.updateEmbeddedDocuments("Item", toUpdate);
     }
 
     static classOrMulticlass(name) {
@@ -225,67 +244,81 @@ export default class CharacterImporter {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    static addValue(obj, value) {
+        if (!obj.value.includes(value)) obj.value.push(value);
+    }
+
+    static addCustom(obj, value) {
+        if (obj.custom) obj.custom = `${obj.custom}; ${value}`;
+        else obj.custom = value;
+    }
+
     static async addSpecies(race, actor) {
         const species = await game.packs.get("sw5e.species").getDocuments();
-        const assignedSpecies = species.find((c) => c.name === race);
-        const activeEffects = [...assignedSpecies.system.effects][0].system.changes;
-        const actorData = {system: {abilities: {...actor.system.abilities}}};
+        const assignedSpecies = species.find((c) => c.name === race)?.toObject();
 
-        activeEffects.map((effect) => {
-            switch (effect.key) {
-                case "system.abilities.str.value":
-                    actorData.system.abilities.str.value -= effect.value;
-                    break;
+        if (assignedSpecies) {
+            const activeEffects = [...assignedSpecies.effects][0]?.changes ?? [];
+            const actorData = {system: {abilities: {...actor.system.abilities}}};
 
-                case "system.abilities.dex.value":
-                    actorData.system.abilities.dex.value -= effect.value;
-                    break;
+            activeEffects.map((effect) => {
+                switch (effect.key) {
+                    case "system.abilities.str.value":
+                        actorData.system.abilities.str.value -= effect.value;
+                        break;
 
-                case "system.abilities.con.value":
-                    actorData.system.abilities.con.value -= effect.value;
-                    break;
+                    case "system.abilities.dex.value":
+                        actorData.system.abilities.dex.value -= effect.value;
+                        break;
 
-                case "system.abilities.int.value":
-                    actorData.system.abilities.int.value -= effect.value;
-                    break;
+                    case "system.abilities.con.value":
+                        actorData.system.abilities.con.value -= effect.value;
+                        break;
 
-                case "system.abilities.wis.value":
-                    actorData.system.abilities.wis.value -= effect.value;
-                    break;
+                    case "system.abilities.int.value":
+                        actorData.system.abilities.int.value -= effect.value;
+                        break;
 
-                case "system.abilities.cha.value":
-                    actorData.system.abilities.cha.value -= effect.value;
-                    break;
+                    case "system.abilities.wis.value":
+                        actorData.system.abilities.wis.value -= effect.value;
+                        break;
 
-                default:
-                    break;
-            }
-        });
+                    case "system.abilities.cha.value":
+                        actorData.system.abilities.cha.value -= effect.value;
+                        break;
 
-        await actor.update(actorData);
+                    default:
+                        break;
+                }
+            });
 
-        await actor.createEmbeddedDocuments("Item", [assignedSpecies.system]);
+            await actor.update(actorData);
+
+            await actor.createEmbeddedDocuments("Item", [assignedSpecies]);
+        }
     }
 
     static async addBackground(bg, actor) {
         const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
-        const packBg = bgs.find((c) => c.name === bg);
+        const packBg = bgs.find((c) => c.name === bg)?.toObject();
         if (packBg) {
-            await actor.createEmbeddedDocuments("Item", [packBg.system]);
+            await actor.createEmbeddedDocuments("Item", [packBg]);
         }
     }
 
     static async addPowers(powers, actor) {
-        const forcePowers = await game.packs.get("sw5e.forcepowers").getDocuments();
-        const techPowers = await game.packs.get("sw5e.techpowers").getDocuments();
+        const packPowers = [
+            ...(await game.packs.get("sw5e.forcepowers").getDocuments()),
+            ...(await game.packs.get("sw5e.techpowers").getDocuments()),
+        ];
+        const toCreate = [];
 
         for (const power of powers) {
-            const createdPower = forcePowers.find((c) => c.name === power) || techPowers.find((c) => c.name === power);
-
-            if (createdPower) {
-                await actor.createEmbeddedDocuments("Item", [createdPower.system]);
-            }
+            const packPower = packPowers.find((c) => c.name === power)?.toObject();
+            if (packPower) toCreate.push(packPower);
         }
+
+        await actor.createEmbeddedDocuments("Item", toCreate);
     }
 
     static async addItems(items, actor) {
@@ -312,18 +345,79 @@ export default class CharacterImporter {
             ...(await game.packs.get("sw5e.kits").getDocuments()),
             ...(await game.packs.get("sw5e.maneuvers").getDocuments())
         ];
+        const toCreate = [];
 
         for (const item of items) {
-            const packItem = packItems.find((c) => c.name.toLowerCase() === item.name.toLowerCase());
+            const packItem = packItems.find((c) => c.name.toLowerCase() === item.name.toLowerCase())?.toObject();
 
             if (packItem) {
-                if (item.quantity != 1) {
-                    packItem.system.quantity = item.quantity;
-                }
-
-                await actor.createEmbeddedDocuments("Item", [packItem.system]);
+                packItem.system.quantity = item.quantity;
+                toCreate.push(packItem);
             }
         }
+
+        await actor.createEmbeddedDocuments("Item", toCreate);
+    }
+
+    static async addProficiencies(profs, actor) {
+        const updates = {};
+
+        const armorProf = actor.system.traits.armorProf;
+        const languages = actor.system.traits.languages;
+        const weaponProf = actor.system.traits.weaponProf;
+
+        for (const prof of profs) {
+            let name = prof.name;
+            switch (prof.type) {
+                case "WEAPON":
+                case "OTHER":
+                    name = name.toLowerCase().replace(/\s/g, "");
+                    const match = name.match(/(all|simple|martial|exotic)(\w+)s/);
+                    if (match) {
+                        const weapons = {
+                            "blaster": ["smb", "mrb", "exb"],
+                            "vibroweapon": ["svw", "mvw", "evw"],
+                            "lightweapon": ["slw", "mlw", "elw"],
+                        };
+                        const which = match[1];
+                        const wpnType = match[2];
+                        let toAdd = weapons[wpnType];
+                        if (which === "all") toAdd = [toAdd[0], toAdd[1]];
+                        else if (which === "simple") toAdd = [toAdd[0]];
+                        else if (which === "martial") toAdd = [toAdd[1]];
+                        else if (which === "exotic") toAdd = [toAdd[2]];
+                        else toAdd = [];
+                        for (const wpnProf of toAdd) this.addValue(weaponProf, wpnProf);
+                    } else if (name in CONFIG.SW5E.weaponIds) {
+                        this.addValue(weaponProf, name);
+                    } else {
+                        this.addCustom(weaponProf, prof.name);
+                    }
+                    break;
+                case "ARMOR":
+                    name = name.toLowerCase().replace(/\s|armor/g, "");
+                    if (name in CONFIG.SW5E.armorProficienciesMap) {
+                        this.addValue(armorProf, CONFIG.SW5E.armorProficienciesMap[name]);
+                    } else {
+                        this.addCustom(armorProf, prof.name);
+                    }
+                    break;
+                case "LANGUAGE":
+                    name = name.toLowerCase().replace(/galactic /g, "").replace(/\s/g, "-");
+                    if (name in CONFIG.SW5E.languages) {
+                        this.addValue(languages, name);
+                    } else {
+                        this.addCustom(languages, prof.name);
+                    }
+                    break;
+            }
+        }
+
+        updates["system.traits.armorProf"] = armorProf;
+        updates["system.traits.languages"] = languages;
+        updates["system.traits.weaponProf"] = weaponProf;
+
+        await actor.update(updates);
     }
 
     static addImportButton(html) {

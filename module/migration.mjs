@@ -4,11 +4,17 @@ import {slugifyIcon} from "./utils.mjs";
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function () {
+export const migrateWorld = async function (migrateSystemCompendiums=false) {
     const version = game.system.version;
     ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", {version}), {permanent: true});
 
     const migrationData = await getMigrationData();
+
+    // // Migrate Armor Class
+    // for (let p of game.packs) {
+    //     if (!["Actor"].includes(p.documentName)) continue;
+    //     await migrateArmorClass(p, migrationData);
+    // }
 
     // Migrate World Actors
     for await (let a of game.actors) {
@@ -71,7 +77,7 @@ export const migrateWorld = async function () {
 
     // Migrate World Compendium Packs
     for (let p of game.packs) {
-        if (p.metadata.package !== "world") continue;
+        if (p.metadata.package !== "world" && !migrateSystemCompendiums) continue;
         if (!["Actor", "Item", "Scene"].includes(p.documentName)) continue;
         await migrateCompendium(p);
     }
@@ -138,18 +144,20 @@ export const migrateCompendium = async function (pack) {
  * Apply 'smart' AC migration to a given Actor compendium. This will perform the normal AC migration but additionally
  * check to see if the actor has armor already equipped, and opt to use that instead.
  * @param {CompendiumCollection|string} pack  Pack or name of pack to migrate.
+ * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {Promise}
  */
-export const migrateArmorClass = async function (pack) {
+export const migrateArmorClass = async function (pack, migrationData) {
     if (typeof pack === "string") pack = game.packs.get(pack);
     if (pack.documentName !== "Actor") return;
     const wasLocked = pack.locked;
     await pack.configure({locked: false});
     const actors = await pack.getDocuments();
     const updates = [];
-    const armor = new Set(Object.keys(CONFIG.SW5E.armorTypes));
+    const armorTypes = new Set(Object.keys(CONFIG.SW5E.armorTypes));
 
     for (const actor of actors) {
+        if (actor.type === "starship") continue;
         try {
             console.log(`Migrating ${actor.name}...`);
             const src = actor.toObject();
@@ -159,11 +167,21 @@ export const migrateArmorClass = async function (pack) {
             _migrateActorAC(src, update);
             updates.push(update);
 
-            // CASE 1: Armor is equipped
+            // If actor has the name of an armor but doesn't have it equipped, try to add it
             const hasArmorEquipped = actor.itemTypes.equipment.some((e) => {
-                return armor.has(e.system.armor?.type) && e.system.equipped;
+                return armorTypes.has(e.system.armor?.type) && e.system.equipped;
             });
-            if (hasArmorEquipped) update["system.attributes.ac.calc"] = "default";
+            const armorName = actor.system.attributes.ac.formula.toLowerCase();
+            const armorItem = migrationData.armors.find(a => a.name.toLowerCase() === armorName);
+            if (actor.name === "Trooper, Captain") console.debug(armorItem, actor.system.attributes.ac, armorName);
+            if (!hasArmorEquipped && armorItem) {
+                const armorData = armorItem.toObject();
+                armorData.system.equipped = true;
+                actor.createEmbeddedDocuments("Item", [armorData]);
+            }
+
+            // CASE 1: Armor is equipped
+            if (hasArmorEquipped || armorItem) update["system.attributes.ac.calc"] = "default";
             // CASE 2: NPC Natural Armor
             else if (src.type === "npc") update["system.attributes.ac.calc"] = "natural";
         } catch (e) {
@@ -419,6 +437,7 @@ export const getMigrationData = async function () {
 
         data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
         data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
+        data.armors = await (await game.packs.get("sw5e.armor")).getDocuments();
         data.modifications = await (await game.packs.get("sw5e.modifications")).getDocuments();
     } catch (err) {
         console.warn(`Failed to retrieve migration data: ${err.message}`);
@@ -500,7 +519,7 @@ function _updateNPCData(actor) {
     }
 
     //merge object
-    actorSysData = mergeObject(actorData, updateData);
+    actorSysData = mergeObject(actorSysData, updateData);
     // Return the scrubbed data
     return actor;
 }
@@ -573,7 +592,7 @@ function _migrateActorPowers(actorData, updateData) {
             updateData["system.powers.power" + i + ".foverride"] = null;
             updateData["system.powers.power" + i + ".tvalue"] = asd?.powers?.["power" + i]?.value ?? 0;
             updateData["system.powers.power" + i + ".tmax"] = asd?.powers?.["power" + i]?.max ?? 0;
-            updateData["data.powers.power" + i + ".toverride"] = null;
+            updateData["system.powers.power" + i + ".toverride"] = null;
             //remove system
             updateData["system.powers.power" + i + ".-=value"] = null;
             updateData["system.powers.power" + i + ".-=override"] = null;
@@ -658,20 +677,20 @@ function _migrateActorType(actor, updateData) {
     // Specifics
     // (Some of these have weird names, these need to be addressed individually)
     if (original === "force entity") {
-        data.value = "force";
-        data.subtype = "storm";
+        actorTypeData.value = "force";
+        actorTypeData.subtype = "storm";
     } else if (original === "human") {
-        data.value = "humanoid";
-        data.subtype = "human";
+        actorTypeData.value = "humanoid";
+        actorTypeData.subtype = "human";
     } else if (["humanoid (any)", "humanoid (Villainous"].includes(original)) {
-        data.value = "humanoid";
+        actorTypeData.value = "humanoid";
     } else if (original === "tree") {
-        data.value = "plant";
-        data.subtype = "tree";
+        actorTypeData.value = "plant";
+        actorTypeData.subtype = "tree";
     } else if (original === "(humanoid) or Large (beast) force entity") {
-        data.value = "force";
+        actorTypeData.value = "force";
     } else if (original === "droid (appears human)") {
-        data.value = "droid";
+        actorTypeData.value = "droid";
     } else {
         // Match the existing string
         const pattern = /^(?:swarm of (?<size>[\w-]+) )?(?<type>[^(]+?)(?:\((?<subtype>[^)]+)\))?$/i;
@@ -836,7 +855,7 @@ async function _migrateItemPower(item, updateData) {
 async function _migrateTokenImage(actorData, updateData, {iconMap} = {}) {
     const prefix = "systems/sw5e/packs/Icons/";
 
-    for (let prop of ["img", "token.img"]) {
+    for (let prop of ["texture.src", "prototypeToken.texture.src"]) {
         const path = foundry.utils.getProperty(actorData, prop);
 
         if (!path?.startsWith(prefix)) return;
@@ -1044,7 +1063,7 @@ function _migrateItemArmorPropertiesData(item, updateData) {
  * @private
  */
 function _migrateItemWeaponPropertiesData(item, updateData) {
-    if (!(item.type === "weapon" || (item.type === "consumable" && item.data.consumableType === "ammo")))
+    if (!(item.type === "weapon" || (item.type === "consumable" && item.system.consumableType === "ammo")))
         return updateData;
     const hasProperties = item.system?.properties !== undefined;
     if (!hasProperties) return updateData;
@@ -1090,7 +1109,7 @@ function _migrateItemWeaponPropertiesData(item, updateData) {
  */
 async function _migrateItemModificationData(item, updateData, migrationData) {
     if (item.type === "modification") {
-        if (item.system.modified !== undefined) updateData["data.-=modified"] = null;
+        if (item.system.modified !== undefined) updateData["system.-=modified"] = null;
     } else if (item.system.modifications !== undefined) {
         const itemMods = item.system.modifications;
         updateData[`system.-=modifications`] = null;

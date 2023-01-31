@@ -215,6 +215,7 @@ export const migrateActorData = async function (actor, migrationData) {
     _migrateActorSenses(actor, updateData);
     _migrateActorType(actor, updateData);
     _migrateActorAC(actor, updateData);
+    _migrateActorCurrency(actor, updateData);
     if (["character", "npc"].includes(actor.type)) {
         _migrateActorAttribRank(actor, updateData);
     }
@@ -765,6 +766,38 @@ function _migrateActorAC(actorData, updateData) {
     // Protect against string values created by character sheets or importers that don't enforce data types
     if (typeof ac?.flat === "string" && Number.isNumeric(ac.flat)) {
         updateData["system.attributes.ac.flat"] = parseInt(ac.flat);
+    }
+
+    return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor currency field
+ * @param {object} actorData   Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
+ * @private
+ */
+function _migrateActorCurrency(actorData, updateData) {
+    if (!["character", "starship"].includes(actorData.type)) return updateData;
+
+    const currency = actorData.system?.currency;
+
+    // If currency if for some reason null, set it to default values
+    if (currency === null) updateData["system.currency"] = { "gc": 0 };
+
+    // If the actor has a numeric currency, then it has not been migrated yet.
+    else if (Number.isNumeric(currency)) updateData["system.currency"] = { "gc": currency };
+
+    // If currency is an object, remove all but galactic credit
+    else if (foundry.utils.getType(currency) === "Object") {
+        const gc = currency.gc ?? currency.cr ?? 0;
+        for (const key of Object.keys(currency)) {
+            if (key !== "gc") updateData[`system.currency.-=${key}`] = null;
+        }
+        if (gc !== currency.gc) updateData["system.currency.gc"] = gc;
     }
 
     return updateData;

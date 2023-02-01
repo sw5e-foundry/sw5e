@@ -1,0 +1,61 @@
+<ol>
+    <li>
+        <div class="group-list-title group-grid-features">
+            <div class="title">
+                <h3 class="item-name">{{localize name}}{{#if (not actions.derived)}} {{localize "SW5E.ActionPl"}} {{/if}}</h3>
+                {{#if owner}}
+                    {{#if (not actions.derived)}}
+                        <a class="item-control item-create" title="{{localize 'SW5E.FeatureAdd'}}"
+                            {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+                			<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                        </a>&nbsp;
+                    {{/if}}
+                    <a class="item-control item-collapse" title="{{localize 'SW5E.FeatureCollapse'}}"
+                        {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
+                        <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
+            		</a>
+                {{/if}}
+            </div>
+            <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
+            <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+        </div>
+
+        <ol class="item-list content" style="display: block">
+            {{#each actions.items as |item iid|}}
+                <li class="item group-grid-features" data-item-id="{{item.id}}" data-derived="{{item.derived}}">
+                    <div class="item-name rollable">
+                        <div class="item-image" style="background-image: url('{{item.img}}')"></div>
+                        <h4>
+                            {{item.the_name}}
+                        </h4>
+                    </div>
+
+                    <div class="item-detail item-uses">
+                        {{#if item.isOnCooldown}}
+                            <a class="item-recharge rollable">{{item.labels.recharge}}</a>
+                        {{else if item.system.recharge.value}}
+                            {{localize "SW5E.Charged"}}
+                        {{else if item.hasUses}}
+                            <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
+                        {{/if}}
+                    </div>
+
+                    <div class="item-detail item-action">
+                        {{#if item.system.activation.type }}
+                            {{item.labels.activation}}
+                        {{/if}}
+                    </div>
+
+                    {{#if ../owner}}
+                        <div class="item-controls item-detail">
+                            <a class="item-control item-edit" title="{{localize 'SW5E.ItemEdit'}}"><i class="fas fa-edit"></i></a>
+                            {{#if (not ../actions.derived)}}
+                                <a class="item-control item-delete" title="{{localize 'SW5E.ItemDelete'}}"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ol>
+    </li>
+</ol>

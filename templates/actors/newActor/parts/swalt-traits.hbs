@@ -1,0 +1,248 @@
+<section class="resources">
+    <section class="resource-items">
+        {{#each resources as |res|}}
+        <div class="resource">
+            <h1>
+                <input
+                    name="system.resources.{{res.name}}.label"
+                    type="text"
+                    value="{{res.label}}"
+                    placeholder="{{res.placeholder}}"
+                />
+            </h1>
+            <div class="attribute-value">
+                            {{numberInput res.value name=(concat "system.resources." res.name ".value")
+                                placeholder="0" class="value-number"}}
+
+                <span class="value-separator">/</span>
+                {{numberInput res.max name=(concat "system.resources." res.name ".max") placeholder="0" class="value-number"}}
+            </div>
+            <footer class="attribute-footer">
+                <label class="recharge checkbox flexcol">
+                    <span>{{ localize "SW5E.AbbreviationSR" }}</span>
+                    <input name="system.resources.{{res.name}}.sr" type="checkbox" {{checked res.sr}} />
+                </label>
+                <label class="recharge checkbox flexcol">
+                    <span>{{ localize "SW5E.AbbreviationLR" }}</span>
+                    <input name="system.resources.{{res.name}}.lr" type="checkbox" {{checked res.lr}} />
+                </label>
+            </footer>
+        </div>
+        {{/each}}
+    </section>
+    <section class="counters">
+        <div class="counter">
+            <h4 class="death-save rollable" data-action="rollDeathSave">{{ localize "SW5E.DeathSave" }}</h4>
+            <div class="counter-value">
+                <div class="death-success">
+                    <i class="fas fa-check"></i>
+                    {{numberInput system.attributes.death.success name="system.attributes.death.success"
+                                placeholder="0"}}
+                </div>
+                <div class="death-fail">
+                    <i class="fas fa-times"></i>
+                    {{numberInput system.attributes.death.failure name="system.attributes.death.failure"
+                                placeholder="0"}}
+                </div>
+            </div>
+        </div>
+        <div class="counter">
+            <h4>{{ localize "SW5E.Exhaustion" }}</h4>
+            <div class="counter-value">
+                {{numberInput system.attributes.exhaustion name="system.attributes.exhaustion"
+                                placeholder="0"}}
+            </div>
+        </div>
+        <div class="counter">
+            <h4>{{ localize "SW5E.Inspiration" }}</h4>
+            <div class="counter-value">
+                <input
+                    type="checkbox"
+                    name="system.attributes.inspiration"
+                    data-dtype="Boolean"
+                    {{checked
+                    system.attributes.inspiration}}
+                />
+            </div>
+        </div>
+    </section>
+    <section class="traits">
+        <label>
+            {{localize "SW5E.Size"}}
+            <select class="actor-size" name="system.traits.size">
+                {{#select system.traits.size}} {{#each config.actorSizes as |label size|}}
+                <option value="{{size}}">{{label}}</option>
+                {{/each}} {{/select}}
+            </select>
+        </label>
+        {{#if isNPC}}
+        <label>
+            {{localize "SW5E.Powercasting"}}
+            <select class="powercasting" name="system.attributes.powercasting">
+                {{#select system.attributes.powercasting}} {{#each config.powerMaxLevel as |id class|}}
+                <option value="{{class}}">{{class}}</option>
+                {{/each}} {{/select}}
+            </select>
+        </label>
+        {{/if}}
+        <label class="{{#unless system.traits.senses}}inactive{{/unless}}">
+            {{#unless isVehicle}}
+            <label>{{localize "SW5E.Senses"}}</label>
+            <a class="config-button" data-action="senses" title="{{localize 'SW5E.SensesConfig'}}">
+                <i class="fas fa-cog"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each senses as |v k|}}
+                <li class="tag {{k}}">{{v}}</li>
+                {{/each}}
+            </ul>
+            {{/unless}}
+        </label>
+        <div class="languages">
+            <label data-options="share-languages" class="languages">{{localize "SW5E.Languages"}}</label>
+            <a
+                class="trait-selector"
+                data-options="languages"
+                data-target="system.traits.languages"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.Languages')}}"
+                tabindex="0"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.languages.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        {{#unless isVehicle}}
+        <div class="form-group">
+            <label>{{localize "SW5E.SpecialTraits"}}</label>
+            <a
+                class="config-button"
+                data-action="flags"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.SpecialTraits')}}"
+            >
+                <i class="fas fa-cog"></i>
+            </a>
+        </div>
+        {{/unless}}
+
+        <div>
+            <label>{{localize "SW5E.TraitArmorProf"}}</label>
+            <a
+                class="proficiency-selector"
+                data-type="armor"
+                data-target="system.traits.armorProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitArmorProf')}}"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.armorProf.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <label>{{localize "SW5E.TraitToolProf"}}</label>
+            <a
+                class="proficiency-selector"
+                data-type="tool"
+                data-target="system.traits.toolProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitToolProf')}}"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.toolProf.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <label>{{localize "SW5E.TraitWeaponProf"}}</label>
+            <a
+                class="proficiency-selector"
+                data-type="weapon"
+                data-target="system.traits.weaponProf"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitWeaponProf')}}"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.weaponProf.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <label>{{localize "SW5E.DamImm"}}</label>
+            <a
+                class="trait-selector"
+                data-options="damageTypes"
+                data-target="system.traits.di"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamImm')}}"
+                tabindex="0"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.di.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <label>{{localize "SW5E.DamRes"}}</label>
+            <a
+                class="trait-selector"
+                data-options="damageTypes"
+                data-target="system.traits.dr"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamRes')}}"
+                tabindex="0"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.dr.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div>
+            <label>{{localize "SW5E.DamVuln"}}</label>
+            <a
+                class="trait-selector"
+                data-options="damageTypes"
+                data-target="system.traits.dv"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamVuln')}}"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.dv.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div>
+            <label>{{localize "SW5E.ConImm"}}</label>
+            <a
+                class="trait-selector"
+                data-options="conditionTypes"
+                data-target="system.traits.ci"
+                title="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ConImm')}}"
+            >
+                <i class="fas fa-edit"></i>
+            </a>
+            <ul class="traits-list">
+                {{#each system.traits.ci.selected as |v k|}}
+                <li>{{v}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <ul class="passives"></ul>
+    </section>
+</section>

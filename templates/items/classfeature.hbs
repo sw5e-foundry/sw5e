@@ -1,0 +1,85 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary">
+                <li>{{labels.featType}}</li>
+                <li>
+                    <input
+                        type="text"
+                        name="system.requirements"
+                        value="{{system.requirements}}"
+                        placeholder="{{ localize 'SW5E.Requirements' }}"
+                    />
+                </li>
+                <li>
+                    <input
+                        type="text"
+                        name="system.source"
+                        value="{{system.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}} 
+        {{> "sw5e.item-description"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
+
+            {{!-- Item Activation Template --}}
+            {{> "sw5e.item-activation"}}
+
+            {{!-- Recharge Requirement --}}
+            {{#if system.activation.type}}
+            <div class="form-group recharge">
+                <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
+                <div class="form-fields">
+                    <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
+                    {{numberInput system.recharge.value name="system.recharge.value"
+                        placeholder=(localize "SW5E.FeatureRechargeResult")}}
+                    <label class="checkbox">
+                        {{ localize "SW5E.Charged" }}
+                        <input type="checkbox" name="system.recharge.charged" {{checked system.recharge.charged}} />
+                    </label>
+                </div>
+            </div>
+            {{/if}}
+
+            <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "sw5e.item-action"}}
+        </div>
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

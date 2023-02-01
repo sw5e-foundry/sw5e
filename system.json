@@ -1,11 +1,25 @@
 {
-    "name": "sw5e",
+    "id": "sw5e",
     "title": "SW 5th Edition",
     "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
-    "version": "1.6.2.2.2.2",
-    "author": "Dev Team",
+    "version": "2.0.3.2.3.7",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10",
+        "maximum": "10"
+    },
+    "url": "https://github.com/unrealkakeman89/sw5e",
+    "manifest": "https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json",
+    "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip",
+    "authors": [
+        {
+            "name": "The Dev Team",
+            "url": "https://github.com/unrealkakeman89/sw5eus",
+            "discord": "https://discord.gg/HUNHVhDQka"
+        }
+    ],
     "scripts": [],
-    "esmodules": ["sw5e.js"],
+    "esmodules": ["sw5e.mjs"],
     "styles": ["sw5e.css", "sw5e-global.css", "sw5e-light.css", "sw5e-dark.css"],
     "packs": [
         {
@@ -123,6 +137,12 @@
             "type": "Item"
         },
         {
+            "name": "fistoscodex",
+            "label": "Fisto's Codex",
+            "path": "./packs/packs/fistoscodex.db",
+            "type": "Actor"
+        },
+        {
             "name": "forcepowers",
             "label": "Force Powers",
             "path": "./packs/packs/forcepowers.db",
@@ -177,6 +197,12 @@
             "type": "Actor"
         },
         {
+            "name": "monstertraits",
+            "label": "Monster Traits",
+            "path": "./packs/packs/monstertraits.db",
+            "type": "Item"
+        },        
+        {
             "name": "monsters_temp",
             "label": "Monsters Temp",
             "path": "./packs/packs/monsters_temp.db",
@@ -186,7 +212,7 @@
             "name": "modifications",
             "label": "Modifications",
             "path": "./packs/packs/modifications.db",
-            "entity": "Item"
+            "type": "Item"
         },
         {
             "name": "musicalinstruments",
@@ -205,6 +231,12 @@
             "label": "Species Features",
             "path": "./packs/packs/speciesfeatures.db",
             "type": "Item"
+        },
+        {
+            "name": "drakes-shipyard",
+            "label": "Drakes Shipyard",
+            "path": "./packs/packs/drakes-shipyard.db",
+            "type": "Actor"
         },
         {
             "name": "starshipactions",
@@ -252,7 +284,6 @@
             "name": "tables",
             "label": "Tables",
             "path": "./packs/packs/tables.db",
-            "entity": "RollTable",
             "type": "RollTable"
         },
         {
@@ -312,9 +343,8 @@
     "gridUnits": "ft",
     "primaryTokenAttribute": "attributes.hp",
     "secondaryTokenAttribute": null,
-    "minimumCoreVersion": "9.245",
-    "compatibleCoreVersion": "9",
-    "url": "https://github.com/unrealkakeman89/sw5e",
-    "manifest": "https://github.com/unrealkakeman89/sw5e/releases/latest/download/system.json",
-    "download": "https://github.com/unrealkakeman89/sw5e/archive/master.zip"
+    "flags": {
+        "needsMigrationVersion": "2.0.0",
+        "compatibleMigrationVersion": "0.8"
+    }
 }

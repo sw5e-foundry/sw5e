@@ -1,0 +1,84 @@
+<!-- <div class="panel"> -->
+<section class="background">
+    <input
+        type="text"
+        name="system.details.notesname"
+        value="{{system.details.notesname}}"
+        placeholder="Personal Journal"
+    />
+
+    {{editor
+		notesHTML
+        target="system.details.notes.value"
+        button=true
+        owner=owner
+        editable=editable
+    }}
+</section>
+<section>
+    <input
+        type="text"
+        name="system.details.notes1name"
+        value="{{system.details.notes1name}}"
+        placeholder="Additional Notes"
+    />
+    {{editor
+		notes1HTML
+        target="system.details.notes1.value"
+        button=true
+        owner=owner
+        editable=editable
+    }}
+</section>
+
+<section>
+    <input
+        type="text"
+        name="system.details.notes2name"
+        value="{{system.details.notes2name}}"
+        placeholder="Additional Notes"
+    />
+    {{editor
+		notes2HTML
+        content=system.details.notes2.value
+        target="system.details.notes2.value"
+        button=true
+        owner=owner
+        editable=editable
+    }}
+</section>
+
+<section>
+    <input
+        type="text"
+        name="system.details.notes3name"
+        value="{{system.details.notes3name}}"
+        placeholder="Additional Notes"
+    />
+    {{editor
+		notes3HTML
+        content=system.details.notes3.value
+        target="system.details.notes3.value"
+        button=true
+        owner=owner
+        editable=editable
+    }}
+</section>
+
+<section>
+    <input
+        type="text"
+        name="system.details.notes4name"
+        value="{{system.details.notes4name}}"
+        placeholder="Additional Notes"
+    />
+    {{editor
+		notes4HTML
+        content=system.details.notes4.value
+        target="system.details.notes4.value"
+        button=true
+        owner=owner
+        editable=editable
+    }}
+</section>
+<!-- </div> -->

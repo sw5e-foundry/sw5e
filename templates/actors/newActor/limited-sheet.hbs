@@ -1,0 +1,37 @@
+<form class="{{cssClass}} swalt-sheet limited" autocomplete="off">
+    <!-- HEADER -->
+    <header class="panel">
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+        <h1 class="character-name">{{actor.name}}</h1>
+    </header>
+
+    <!-- BODY -->
+    <section class="sheet-body">
+        <div class="tab biography active">
+            <div class="panel">
+                <section class="additional-info">
+                    <h1 class="section-titles">Description</h1>
+                    {{editor
+                        descriptionHTML
+                        target="system.details.description.value"
+                        button=true
+                        editable=editable
+                        engine="prosemirror"
+                        collaborate=false
+                    }}
+                </section>
+                <section>
+                    <h1 class="section-titles">Background</h1>
+                    {{editor
+                        biographyHTML
+                        target="system.details.biography.value"
+                        button=true
+                        editable=editable
+                        engine="prosemirror"
+                        collaborate=false
+                    }}
+                </section>
+            </div>
+        </div>
+    </section>
+</form>

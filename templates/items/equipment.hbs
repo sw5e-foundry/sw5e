@@ -1,0 +1,284 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary flexrow">
+                <li>{{lookup config.equipmentTypes system.armor.type }}</li>
+                <li>
+                    <select name="system.rarity">
+                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
+                    </select>
+                </li>
+                <li>
+                    <input
+                        type="text"
+                        name="system.source"
+                        value="{{system.source}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        {{#unless isStarshipEquipment}}<a class="item" data-tab="modifications">{{ localize "SW5E.ModificationPl" }}</a>{{/unless}}
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        {{> "sw5e.item-description"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentDetails" }}</h3>
+
+            {{!-- Equipment Type --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemEquipmentType" }}</label>
+                <select name="system.armor.type">
+                    <option value=""></option>
+                    <optgroup label="{{ localize 'SW5E.Armor' }}">
+                        {{selectOptions config.armorTypes selected=system.armor.type}}
+                    </optgroup>
+                    <optgroup label="{{ localize 'SW5E.Starship' }}">
+                        {{selectOptions config.ssEquipmentTypes selected=system.armor.type}}
+                    </optgroup>
+                    {{selectOptions config.miscEquipmentTypes selected=system.armor.type}}
+                </select>
+            </div>
+
+            {{!-- Equipment Base --}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.ItemEquipmentBase" }}</label>
+                <select name="system.baseItem">
+                    {{selectOptions baseItems selected=system.baseItem blank=""}}
+                </select>
+            </div>
+
+            {{!-- Equipment Attunement and Status --}}
+            {{#unless isMountable}}
+                {{#unless isStarshipEquipment}}
+                    <div class="form-group">
+                        <label>{{localize "SW5E.Attunement"}}</label>
+                        <select name="system.attunement" data-dtype="Number">
+                            {{selectOptions config.attunements selected=system.attunement}}
+                        </select>
+                    </div>
+                {{/unless}}
+
+                {{!-- Equipment Status --}}
+                <div class="form-group stacked">
+                    <label>{{ localize "SW5E.ItemEquipmentStatus" }}</label>
+                    {{#unless isStarshipEquipment}}
+                        <label class="checkbox">
+                            <input type="checkbox" name="system.proficient" {{checked system.proficient}} /> {{ localize "SW5E.Proficient" }}
+                        </label>
+                    {{/unless}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Equipped" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.identified" {{checked system.identified}} /> {{ localize "SW5E.Identified" }}
+                    </label>
+                </div>
+            {{/unless}}
+
+            {{#if equipProperties}}
+                {{!-- Equipment Properties --}}
+                <div class="form-group stacked armor-properties">
+                    <label>{{ localize "SW5E.EquipmentProperties" }}</label>
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                        <label class="checkbox" title="{{localize property.desc}}">
+                            <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
+                        </label>
+                    {{/if}} {{/each}}
+
+                    {{#each equipProperties as |property key|}} {{#if (eq property.type "Number")}}
+                        <label class="number" title="{{localize property.desc}}">
+                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
+                        </label>
+                    {{/if}} {{/each}}
+                </div>
+            {{/if}}
+
+            {{#if (or isStarshipArmor isStarshipShield)}}
+                {{!-- Starship Armor and Shield Properties --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.StarshipArmorandShieldProps" }}</label>
+                </div>
+
+                <div class="form-group">
+                    {{#if isStarshipShield}}
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.CapacityMultiplier" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.capx.value"
+                            value="{{system.capx.value}}"
+                        />
+                        &nbsp;&nbsp;
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.RegenerationRateCoefficient" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.attributes.regrateco.value"
+                            value="{{system.regrateco.value}}"
+                        />
+                        &nbsp;&nbsp;
+                    {{else}}
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.DmgRed" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.attributes.dmgred.value"
+                            value="{{system.attributes.dmgred.value}}"
+                        />
+                        &nbsp;&nbsp;
+                    {{/if}}
+                </div>
+            {{/if}}
+
+            {{#if (or isStarshipHyperdrive isStarshipPowerCoupling isStarshipReactor)}}
+                {{!-- Starship Equipment Properties --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.StarshipEquipmentProps" }}</label>
+                </div>
+
+                <div class="form-group">
+                    {{#if isStarshipPowerCoupling}}
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.CentStorageCapacity" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.cscap.value"
+                            value="{{system.cscap.value}}"
+                        />
+                        &nbsp;&nbsp;
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.SysStorageCapacity" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.sscap.value"
+                            value="{{system.sscap.value}}"
+                        />
+                        &nbsp;&nbsp;
+                    {{else if isStarshipReactor}}
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.FuelCostsMod" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.fuelcostsmod.value"
+                            value="{{system.fuelcostsmod.value}}"
+                        />
+                        &nbsp;&nbsp;
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.PowerDiceRecovery" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.powdicerec.value"
+                            value="{{system.powdicerec.value}}"
+                        />
+                        &nbsp;&nbsp;
+                    {{else if isStarshipHyperdrive}}
+                        <strong style="color: #4b4a44; font-size: 11px">{{ localize "SW5E.HyperdriveClass" }}</strong>
+                        <input
+                            style="min-width: 5px; max-width: 35px; padding: 0"
+                            type="text"
+                            name="system.hdclass.value"
+                            value="{{system.hdclass.value}}"
+                        />
+                        &nbsp;&nbsp;
+                    {{/if}}
+                </div>
+            {{/if}}
+
+            {{!-- Armor Class --}}
+            {{#if hasAC}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ArmorClass" }}</label>
+                    <div class="form-fields">
+                        {{numberInput system.armor.value name="system.armor.value"}}
+                    </div>
+                </div>
+            {{/if}}
+
+            {{#if hasDexModifier}}
+                {{!-- Dexterity Modifier --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemEquipmentDexMod" }}</label>
+                    <div class="form-fields">
+                        {{numberInput system.armor.dex name="system.armor.dex" placeholder=(localize "SW5E.Unlimited")}}
+                    </div>
+                </div>
+            {{/if}}
+
+            {{#if isArmor}}
+                {{!-- Required Strength --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
+                    <div class="form-fields">
+                        {{numberInput system.strength name="system.strength" placeholder=(localize "SW5E.None")}}
+                    </div>
+                </div>
+
+                {{!-- Stealth Disadvantage --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
+                    <input type="checkbox" name="system.stealth" {{checked system.stealth}}/>
+                </div>
+            {{/if}}
+
+            {{#if isMountable}}
+                {{> "sw5e.item-mountable"}}
+                <div class="form-group">
+                    <label>{{localize 'SW5E.Speed'}}</label>
+                    <div class="form-fields">
+                        {{numberInput system.speed.value name="system.speed.value" placeholder="0"}}
+                        <span class="sep">{{localize 'SW5E.FeetAbbr'}}</span>
+                        <input type="text" name="system.speed.conditions" value="{{system.speed.conditions}}">
+                    </div>
+                </div>
+            {{/if}}
+
+            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentUsage" }}</h3>
+
+            {{!-- Item Activation Template --}}
+            {{> "sw5e.item-activation"}}
+
+            <h3 class="form-header">{{ localize "SW5E.ItemEquipmentAction" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "sw5e.item-action"}}
+        </div>
+
+        {{!-- Modifications Tab --}}
+        {{#unless isStarshipEquipment}}
+            <div class="tab modifications" data-group="primary" data-tab="modifications">
+                {{> "sw5e.item-modifications"}}
+            </div>
+        {{/unless}}
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

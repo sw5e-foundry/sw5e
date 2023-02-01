@@ -11,7 +11,7 @@
 
 		<ol class="item-list">
 			{{#each favItems as |item id|}}
-			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=item}}
+			{{> "sw5e.item" item=item}}
 			{{/each}}
 		</ol>
 	</li>
@@ -27,7 +27,7 @@
 
 		<ol class="item-list">
 			{{#each favFeats as |feat lvl|}}
-			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=feat}}
+			{{> "sw5e.item" item=feat}}
 			{{/each}}
 		</ol>
 	</li>
@@ -39,11 +39,11 @@
 	<li>
 		<div class="group-list-title group-grid-fav-items">
 			<h3 class="item-name">
-				{{#if section.isCantrip}}At-Will Powers{{else}}Level {{lvl}} Powers{{/if}}
+				{{#if section.isAtWill}}At-Will Powers{{else}}Level {{lvl}} Powers{{/if}}
 			</h3>
 
 			<div class="item-detail item-uses">
-				{{#if section.isCantrip}}&nbsp;
+				{{#if section.isAtWill}}&nbsp;
 				{{else}}
 				{{section.value}}
 				/
@@ -56,7 +56,7 @@
 		</div>
 		<ol class="item-list">
 			{{#each section.powers as |power id|}}
-			{{> "systems/sw5e/templates/actors/newActor/item.hbs" item=power}}
+			{{> "sw5e.item" item=power}}
 			{{/each}}
 		</ol>
 	</li>

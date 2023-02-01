@@ -94,14 +94,17 @@
                     "size": "med",
                     "di": {
                         "value": [],
+                        "bypasses": [],
                         "custom": ""
                     },
                     "dr": {
                         "value": [],
+                        "bypasses": [],
                         "custom": ""
                     },
                     "dv": {
                         "value": [],
+                        "bypasses": [],
                         "custom": ""
                     },
                     "ci": {
@@ -156,10 +159,15 @@
                         "level": 0
                     },
                     "super": {
-                        "known": {},
+                        "known": {
+                            "value": 0,
+                            "max": 0
+                        },
                         "dice": {
-                            "value": 0
-                        }
+                            "value": 0,
+                            "max": 0
+                        },
+                        "die": ""
                     },
                     "deployed": {
                         "uuid": null,
@@ -1039,7 +1047,8 @@
                 "uses": {
                     "value": null,
                     "max": "",
-                    "per": null
+                    "per": null,
+                    "recovery": ""
                 },
                 "consume": {
                     "type": "",
@@ -1116,7 +1125,7 @@
                     "modSlots": 4,
                     "items": [],
                     "type": null,
-                    "overrides": {}
+                    "changes": {}
                 }
             }
         },
@@ -1285,6 +1294,9 @@
             "modifying": {
                 "id": null,
                 "disabled": false
+            },
+            "properties": {
+                "indeterminate": {}
             }
         },
         "power": {
@@ -1391,6 +1403,7 @@
             "ammo": {
                 "target": null,
                 "value": null,
+                "use": null,
                 "types": ["powerCell"]
             },
             "baseItem": "",

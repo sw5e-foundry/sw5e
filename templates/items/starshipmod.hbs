@@ -1,0 +1,103 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <span class="item-status">{{itemStatus}}</span>
+            </div>
+
+            <ul class="summary flexrow">
+                <li>
+                    <select name="system.system.value">
+                        {{selectOptions config.ssModSystems selected=system.system.value}}
+                    </select>
+                </li>
+                <li>
+                    <input
+                        type="text"
+                        data-dtype="Number"
+                        name="system.grade.value"
+                        value="{{system.grade.value}}"
+                        placeholder="0"
+                        title="{{localize 'SW5E.ModGrade'}}"
+                    />
+                </li>
+                <li>
+                    <input
+                        type="text"
+                        data-dtype="Number"
+                        name="system.basecost.value"
+                        value="{{system.basecost.value}}"
+                        placeholder="{{ lookup config.ssModSystemsBaseCost system.system.value }}"
+                        title="{{localize 'SW5E.ModBaseCost'}}"
+                    />
+                </li>
+            </ul>
+            <ul class="summary flexrow">
+                <li>
+                    <input
+                        type="text"
+                        name="system.prerequisites.value"
+                        value="{{system.prerequisites.value}}"
+                        placeholder="{{ localize 'SW5E.PrerequisitePl' }}"
+                    />
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item active" data-tab="description">{{ localize "SW5E.Description" }}</a>
+        <a class="item" data-tab="details">{{ localize "SW5E.Details" }}</a>
+        <a class="item" data-tab="effects">{{ localize "SW5E.Effects" }}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        {{> "sw5e.item-description"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationDetails" }}</h3>
+
+            <div class="form-group stacked">
+                <label class="checkbox">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Installed"}}
+                </label>
+                <label class="checkbox">
+                      <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize "SW5E.ModFreeSlot"}}
+                </label>
+                {{#if (eq system.system.value "Suite")}}
+                <label class="checkbox">
+                      <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
+                </label>
+                {{/if}}
+            </div>
+
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationUsage" }}</h3>
+
+            {{!-- Item Activation Template --}}
+            {{> "sw5e.item-activation"}}
+
+            <h3 class="form-header">{{ localize "SW5E.ItemModificationAction" }}</h3>
+
+            {{!-- Item Action Template --}}
+            {{> "sw5e.item-action"}}
+        </div>
+
+        {{!-- Effects Tab --}}
+        <div class="tab effects flexcol" data-group="primary" data-tab="effects">
+            {{> "sw5e.active-effects"}}
+        </div>
+    </section>
+</form>

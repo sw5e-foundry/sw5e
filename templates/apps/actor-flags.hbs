@@ -1,0 +1,52 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <section class="form-body">
+        <p class="notes">{{localize "SW5E.FlagsInstructions"}}</p>
+
+        <h3 class="form-header">{{localize "SW5E.ItemTypeClass"}}</h3>
+        <div class="form-group">
+            <label>{{localize "SW5E.ClassMakeOriginal"}}</label>
+            <select name="system.details.originalClass" data-dtype="String">
+                {{selectOptions classes selected=actor.system.details.originalClass}}
+            </select>
+            <p class="notes">{{localize "SW5E.ClassMakeOriginalHint"}}</p>
+        </div>
+
+        {{#each flags as |fs section|}}
+            <h3 class="form-header">{{section}}</h3>
+            {{#each fs as |flag key|}}
+                <div class="form-group">
+                    <label title="{{localize flag.hint}}">{{flag.name}}</label>
+
+                    {{#if flag.isCheckbox}}
+                        <input type="checkbox" name="{{key}}" {{checked flag.value}} />
+                    {{else if flag.isSelect}}
+                        {{selectOptions flag.choices selected=flag.value localize=true}}
+                    {{else}}
+                        <input
+                            type="text"
+                            name="{{key}}"
+                            value="{{flag.value}}"
+                            placeholder="{{flag.placeholder}}"
+                            data-dtype="{{flag.type}}"
+                        />
+                    {{/if}}
+
+                    <p class="notes">{{flag.hint}}</p>
+                </div>
+            {{/each}}
+        {{/each}}
+
+        <h3 class="form-header">{{localize "SW5E.Bonuses"}}</h3>
+        <p class="notes">{{localize "SW5E.BonusesHint"}}</p>
+        {{#each bonuses as |b|}}
+            <div class="form-group">
+                <label>{{localize b.label}}</label>
+                <input type="text" name="{{b.name}}" value="{{b.value}}" />
+            </div>
+        {{/each}}
+    </section>
+
+    <footer class="form-footer">
+        <button type="submit"><i class="far fa-save"></i> {{localize "SW5E.FlagsSave"}}</button>
+    </footer>
+</form>

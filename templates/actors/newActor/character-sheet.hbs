@@ -29,7 +29,7 @@
                 placeholder="{{ localize 'SW5E.Species' }}"
             />
             {{#if labels.background}}
-                <span title="{{localize 'SW5E.Background'}}">{{labels.background}}</span>
+                <span data-tooltip="SW5E.Background">{{labels.background}}</span>
             {{else}}
                 <input
                     type="text"
@@ -52,7 +52,7 @@
             <section class="attrib armor">
                 <h1 class="attribute-name armor">
                     {{ localize "SW5E.ArmorClass" }}
-                    <a class="config-button" data-action="armor" title="{{localize 'SW5E.ArmorConfig'}}"
+                    <a class="config-button" data-action="armor" data-tooltip="SW5E.ArmorConfig"
                         ><i class="fas fa-cog"></i
                     ></a>
                 </h1>
@@ -74,7 +74,7 @@
                         step="any"
                         value="{{system.attributes.hp.value}}"
                         placeholder="10"
-                        title="{{localize 'SW5E.HitPointsCurrent'}}"
+                        data-tooltip="SW5E.HitPointsCurrent"
                     >
                     <span class="value-separator">/</span>
                     <input
@@ -83,7 +83,7 @@
                         step="any"
                         value="{{system.attributes.hp.max}}"
                         placeholder="10"
-                        title="{{localize 'SW5E.HitPointsMax'}}"
+                        data-tooltip="SW5E.HitPointsMax"
                     >
                 </div>
                 <footer class="attribute-footer hit-points">
@@ -94,7 +94,7 @@
                         class="temphp"
                         placeholder="+{{ localize 'SW5E.Temp' }}"
                         value="{{system.attributes.hp.temp}}"
-                        title="{{localize 'SW5E.HitPointsTemp'}}"
+                        data-tooltip="SW5E.HitPointsTemp"
                     >
                     <input
                         name="system.attributes.hp.tempmax"
@@ -103,7 +103,7 @@
                         class="temphp"
                         placeholder="+{{ localize 'SW5E.Max' }}"
                         value="{{system.attributes.hp.tempmax}}"
-                        title="{{localize 'SW5E.HitPointsTempMax'}}"
+                        data-tooltip="SW5E.HitPointsTempMax"
                     >
                 </footer>
             </section>
@@ -112,22 +112,22 @@
             <section class="attrib hit-dice">
                 <h1 class="attribute-name hit-dice">
                     {{ localize "SW5E.HitDice" }}
-                    <a class="config-button" data-action="hit-dice" title="{{localize 'SW5E.HitDiceConfig'}}"
+                    <a class="config-button" data-action="hit-dice" data-tooltip="SW5E.HitDiceConfig"
                         ><i class="fas fa-cog"></i
                     ></a>
                 </h1>
                 <div class="attribute-value multiple">
                     <label class="hit-dice">
-                        <span title="{{localize 'SW5E.HitDiceRemaining'}}">{{system.attributes.hd}}</span>
+                        <span data-tooltip="SW5E.HitDiceRemaining">{{system.attributes.hd}}</span>
                         <span class="value-separator">/</span>
-                        <span title="{{localize 'SW5E.HitDiceMax'}}">{{system.details.level}}</span>
+                        <span data-tooltip="SW5E.HitDiceMax">{{system.details.level}}</span>
                     </label>
                 </div>
                 <footer class="attribute-footer hit-dice">
-                    <button type="button" class="rest short-rest" title="{{localize 'SW5E.ShortRest'}}">
+                    <button type="button" class="rest short-rest" data-tooltip="SW5E.ShortRest">
                         {{ localize "SW5E.RestS" }}
                     </button>
-                    <button type="button" class="rest long-rest" title="{{localize 'SW5E.LongRest'}}">
+                    <button type="button" class="rest long-rest" data-tooltip="SW5E.LongRest">
                         {{ localize "SW5E.RestL" }}
                     </button>
                 </footer>
@@ -157,7 +157,7 @@
             <section class="attrib movement">
                 <h1 class="attribute-name movement">
                     {{ localize "SW5E.Movement" }}
-                    <a class="config-button" data-action="movement" title="{{localize 'SW5E.MovementConfig'}}"
+                    <a class="config-button" data-action="movement" data-tooltip="SW5E.MovementConfig"
                         ><i class="fas fa-cog"></i
                     ></a>
                 </h1>

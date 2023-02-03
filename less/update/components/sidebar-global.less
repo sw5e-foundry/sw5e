@@ -26,7 +26,6 @@
     background: none;
     text-shadow: none;
   }
-  
 }
 
 /*-----------
@@ -47,7 +46,6 @@
         color: @colorBlack;
       }
     }
-
   }
 }
 .notification-pip {
@@ -110,7 +108,8 @@
       margin: 4px 0;
       border: none;
       border-radius: 4px;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         box-shadow: none;
       }
     }
@@ -144,7 +143,7 @@
 #chat-controls {
   padding-top: 4px;
 }
-#chat-form  textarea {
+#chat-form textarea {
   &:focus {
     box-shadow: none;
     outline: none;
@@ -159,120 +158,119 @@
     border: none;
   }
 
-    #combat-tracker {
-      li.combatant {
-        padding: 4px 0;
-        background: none;
-        .token-name {
-          text-shadow: none;
-        }
-        .ce-image-wrapper {
-          .token-image {
-            width: auto;
-            height: auto;
-          }
-        }        
-        h4 {
-          color: @colorBlack;
-        }
-        .roll {
-          background: none;
-          &::before {
-            content: "\f6cf";
-            .fontAwesome();
-            font-size: 28px;
-          }
-          
-        }
-        
-        
-        .initiative {
-          text-shadow: none;
-        }
-        
-        &.hidden {
-          opacity: 0.5;
+  #combat-tracker {
+    li.combatant {
+      padding: 4px 0;
+      background: none;
+      .token-name {
+        text-shadow: none;
+      }
+      .ce-image-wrapper {
+        .token-image {
+          width: auto;
+          height: auto;
         }
       }
-    }
-    #combat-controls {
-      padding-top: 0;
+      h4 {
+        color: @colorBlack;
+      }
+      .roll {
+        background: none;
+        &::before {
+          content: "\f6cf";
+          .fontAwesome();
+          font-size: 28px;
+        }
+      }
+
+      .initiative {
+        text-shadow: none;
+      }
+
+      &.hidden {
+        opacity: 0.5;
+      }
     }
   }
+  #combat-controls {
+    padding-top: 0;
+  }
+}
 
 /*
 ** Folders
 */
 .sidebar-tab {
-.directory-header {
-  margin-bottom: 4px;
-  .header-search {
-    position: relative;
-    i.fa-search {
-      position: absolute;
-      left: 8px;
-    }
-    input {
-      text-align: left;
-      padding-left: 22px;
-      &:focus {
-        box-shadow: none;
-      }
-    }
-  }
-}
-.subdirectory {
-  border: none;
-  margin-left: 8px;
-  min-height: 8px;
-
-}
-.directory-list {
-  padding-bottom: 4px;
-  .folder {
-    & > .folder-header {
-      line-height: initial;
-      padding: 0 0 0 8px;
+  .directory-header {
+    margin-bottom: 4px;
+    .header-search {
       position: relative;
-      border: none;
-      h3 {
-        padding: 8px 4px;
-        .openSans(13px, 700);
-        line-height: 1.6;
-        & > i {
-          margin-right: 4px;
-        }
-      }
-      a {
+      i.fa-search {
         position: absolute;
-        top: 0;
-        right: 4px;
-        height: 100%;
-        padding: 0 4px;
-        i {
-          margin-top: 12px;
-        }
-        
-        &.create-folder {
-          right: 28px;
+        left: 8px;
+      }
+      input {
+        text-align: left;
+        padding-left: 22px;
+        &:focus {
+          box-shadow: none;
         }
       }
     }
   }
-  .directory-item img {
-    flex: 0 0 32px;
-    height: 32px;
-    width: 32px;
-    align-self: center;
-  }
-  .actor, .item, .journal, .table {
+  .subdirectory {
     border: none;
-    .entity-name {
-      .openSans(13px, 700);
-    }
-
+    margin-left: 8px;
+    min-height: 8px;
   }
-}
+  .directory-list {
+    padding-bottom: 4px;
+    .folder {
+      & > .folder-header {
+        line-height: initial;
+        padding: 0 0 0 8px;
+        position: relative;
+        border: none;
+        h3 {
+          padding: 8px 4px;
+          .openSans(13px, 700);
+          line-height: 1.6;
+          & > i {
+            margin-right: 4px;
+          }
+        }
+        a {
+          position: absolute;
+          top: 0;
+          right: 4px;
+          height: 100%;
+          padding: 0 4px;
+          i {
+            margin-top: 12px;
+          }
+
+          &.create-folder {
+            right: 28px;
+          }
+        }
+      }
+    }
+    .directory-item img {
+      flex: 0 0 32px;
+      height: 32px;
+      width: 32px;
+      align-self: center;
+    }
+    .actor,
+    .item,
+    .journal,
+    .table {
+      border: none;
+      .entity-name {
+        .openSans(13px, 700);
+      }
+    }
+  }
 }
 #scenes {
   .subdirectory {
@@ -287,7 +285,7 @@
       margin-top: 4px;
     }
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 100%;
       height: 99px;
@@ -326,11 +324,9 @@
         h4 {
           .openSans(13px, 400);
         }
-        
       }
     }
   }
-  
 }
 #compendium {
   .compendium-entity {
@@ -339,7 +335,7 @@
     .dropShadow1();
     border-radius: 4px;
     border: none;
-    &+ .compendium-entity {
+    & + .compendium-entity {
       margin-top: 4px;
     }
     h3 {
@@ -368,7 +364,6 @@
             font-size: 13px;
           }
         }
-
       }
     }
   }
@@ -381,7 +376,10 @@
     padding: 0;
     background: none;
   }
-  #game-details, #settings-game, #settings-documentation, #settings-access {
+  #game-details,
+  #settings-game,
+  #settings-documentation,
+  #settings-access {
     padding: 0 8px;
     margin: 0 0 8px;
   }

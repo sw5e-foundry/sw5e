@@ -7,14 +7,14 @@
   </div>
 </div>
 {{#if forcecaster}}
-<div class="form-group">
-  <label>{{localize "SW5E.ForceCastingOverride"}}</label>
-  <div class="form-fields">
-    <select name="system.powercasting.forceOverride">
-      {{selectOptions config.abilities selected=system.powercasting.forceOverride blank=""}}
-    </select>
+  <div class="form-group">
+    <label>{{localize "SW5E.ForceCastingOverride"}}</label>
+    <div class="form-fields">
+      <select name="system.powercasting.forceOverride">
+        {{selectOptions config.abilities selected=system.powercasting.forceOverride blank=""}}
+      </select>
+    </div>
   </div>
-</div>
 {{/if}}
 <div class="form-group">
   <label>{{localize "SW5E.TechCasting"}}</label>
@@ -25,12 +25,12 @@
   </div>
 </div>
 {{#if techcaster}}
-<div class="form-group">
-  <label>{{localize "SW5E.TechCastingOverride"}}</label>
-  <div class="form-fields">
-    <select name="system.powercasting.techOverride">
-      {{selectOptions config.abilities selected=system.powercasting.techOverride blank=""}}
-    </select>
+  <div class="form-group">
+    <label>{{localize "SW5E.TechCastingOverride"}}</label>
+    <div class="form-fields">
+      <select name="system.powercasting.techOverride">
+        {{selectOptions config.abilities selected=system.powercasting.techOverride blank=""}}
+      </select>
+    </div>
   </div>
-</div>
 {{/if}}

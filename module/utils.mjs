@@ -10,17 +10,15 @@
  * @protected
  */
 export function simplifyBonus(bonus, data = {}) {
-    if (!bonus) return 0;
-    if (Number.isNumeric(bonus)) return Number(bonus);
-    try {
-        const roll = new Roll(bonus, data);
-        if (!roll.isDeterministic) return 0;
-        roll.evaluate({async: false});
-        return roll.total;
-    } catch (error) {
-        console.error(error);
-        return 0;
-    }
+  if (!bonus) return 0;
+  if (Number.isNumeric(bonus)) return Number(bonus);
+  try {
+    const roll = new Roll(bonus, data);
+    return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
 }
 
 /* -------------------------------------------- */
@@ -34,10 +32,10 @@ export function simplifyBonus(bonus, data = {}) {
  * @returns {object}          A copy of the original object that has been sorted.
  */
 export function sortObjectEntries(obj, sortKey) {
-    let sorted = Object.entries(obj);
-    if (sortKey) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
-    else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
-    return Object.fromEntries(sorted);
+  let sorted = Object.entries(obj);
+  if (sortKey) sorted = sorted.sort((a, b) => a[1][sortKey].localeCompare(b[1][sortKey]));
+  else sorted = sorted.sort((a, b) => a[1].localeCompare(b[1]));
+  return Object.fromEntries(sorted);
 }
 
 /* -------------------------------------------- */
@@ -48,24 +46,24 @@ export function sortObjectEntries(obj, sortKey) {
  * @returns {object}     Document's index if one could be found.
  */
 export function indexFromUuid(uuid) {
-    const parts = uuid.split(".");
-    let index;
+  const parts = uuid.split(".");
+  let index;
 
-    // Compendium Documents
-    if (parts[0] === "Compendium") {
-        const [, scope, packName, id] = parts;
-        const pack = game.packs.get(`${scope}.${packName}`);
-        index = pack?.index.get(id);
-    }
+  // Compendium Documents
+  if (parts[0] === "Compendium") {
+    const [, scope, packName, id] = parts;
+    const pack = game.packs.get(`${scope}.${packName}`);
+    index = pack?.index.get(id);
+  }
 
-    // World Documents
-    else if (parts.length < 3) {
-        const [docName, id] = parts;
-        const collection = CONFIG[docName].collection.instance;
-        index = collection.get(id);
-    }
+  // World Documents
+  else if (parts.length < 3) {
+    const [docName, id] = parts;
+    const collection = CONFIG[docName].collection.instance;
+    index = collection.get(id);
+  }
 
-    return index || null;
+  return index || null;
 }
 
 /* -------------------------------------------- */
@@ -76,8 +74,25 @@ export function indexFromUuid(uuid) {
  * @returns {string}     Link to the item or empty string if item wasn't found.
  */
 export function linkForUuid(uuid) {
-    return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
+  return TextEditor._createContentLink(["", "UUID", uuid]).outerHTML;
 }
+
+/* -------------------------------------------- */
+/*  Validators                                  */
+/* -------------------------------------------- */
+
+/**
+ * Ensure the provided string contains only the characters allowed in identifiers.
+ * @param {string} identifier
+ * @returns {boolean}
+ */
+function isValidIdentifier(identifier) {
+  return /^([a-z0-9_-]+)$/i.test(identifier);
+}
+
+export const validators = {
+  isValidIdentifier: isValidIdentifier
+};
 
 /* -------------------------------------------- */
 /*  Handlebars Template Helpers                 */
@@ -90,53 +105,79 @@ export function linkForUuid(uuid) {
  * @returns {Promise}
  */
 export async function preloadHandlebarsTemplates() {
-    const partials = [
-        // Shared Partials
-        "systems/sw5e/templates/actors/parts/active-effects.hbs",
+  const partials = [
+    // Shared Partials
+    "systems/sw5e/templates/actors/parts/active-effects.hbs",
+    "systems/sw5e/templates/apps/parts/trait-list.hbs",
 
-        // Actor Sheet Partials
-        "systems/sw5e/templates/actors/origActor/parts/actor-traits.hbs",
-        "systems/sw5e/templates/actors/origActor/parts/actor-inventory.hbs",
-        "systems/sw5e/templates/actors/origActor/parts/actor-features.hbs",
-        "systems/sw5e/templates/actors/origActor/parts/actor-powerbook.hbs",
-        "systems/sw5e/templates/actors/origActor/parts/actor-warnings.hbs",
+    // Actor Sheet Partials
+    "systems/sw5e/templates/actors/origActor/parts/actor-traits.hbs",
+    "systems/sw5e/templates/actors/origActor/parts/actor-inventory.hbs",
+    "systems/sw5e/templates/actors/origActor/parts/actor-features.hbs",
+    "systems/sw5e/templates/actors/origActor/parts/actor-powerbook.hbs",
+    "systems/sw5e/templates/actors/origActor/parts/actor-warnings.hbs",
 
-        "systems/sw5e/templates/actors/newActor/parts/swalt-biography.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-core.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-crew.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-features.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-resources.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-starships.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-traits.hbs",
-        "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-biography.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-core.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-crew.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-features.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-resources.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-starships.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-traits.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.hbs",
 
-        // Item Sheet Partials
-        "systems/sw5e/templates/items/parts/item-action.hbs",
-        "systems/sw5e/templates/items/parts/item-activation.hbs",
-        "systems/sw5e/templates/items/parts/item-advancement.hbs",
-        "systems/sw5e/templates/items/parts/item-description.hbs",
-        "systems/sw5e/templates/items/parts/item-mountable.hbs",
-        "systems/sw5e/templates/items/parts/item-powercasting.hbs",
-        "systems/sw5e/templates/items/parts/item-modifications.hbs",
+    // Item Sheet Partials
+    "systems/sw5e/templates/items/parts/item-action.hbs",
+    "systems/sw5e/templates/items/parts/item-activation.hbs",
+    "systems/sw5e/templates/items/parts/item-advancement.hbs",
+    "systems/sw5e/templates/items/parts/item-description.hbs",
+    "systems/sw5e/templates/items/parts/item-mountable.hbs",
+    "systems/sw5e/templates/items/parts/item-powercasting.hbs",
+    "systems/sw5e/templates/items/parts/item-modifications.hbs",
+    "systems/sw5e/templates/items/parts/item-summary.hbs",
 
-        // Advancement Partials
-        "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
-        "systems/sw5e/templates/advancement/advancement-power-config.hbs"
-    ];
+    // Journal Partials
+    "systems/sw5e/templates/journal/parts/journal-table.hbs",
 
-    const paths = {};
-    for (const path of partials) {
-        paths[path.replace(".hbs", ".html")] = path;
-        paths[`sw5e.${path.split("/").pop().replace(".hbs", "")}`] = path;
-    }
+    // Advancement Partials
+    "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
+    "systems/sw5e/templates/advancement/advancement-power-config.hbs"
+  ];
 
-    return loadTemplates(paths);
+  const paths = {};
+  for (const path of partials) {
+    paths[path.replace(".hbs", ".html")] = path;
+    paths[`sw5e.${path.split("/").pop().replace(".hbs", "")}`] = path;
+  }
+
+  return loadTemplates(paths);
+}
+
+/* -------------------------------------------- */
+
+/**
+ * A helper that fetch the appropriate item context from root and adds it to the first block parameter.
+ * @param {object} context  Current evaluation context.
+ * @param {object} options  Handlebars options.
+ * @returns {string}
+ */
+function itemContext(context, options) {
+  if ( arguments.length !== 2 ) throw new Error("#sw5e-with requires exactly one argument");
+  if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
+
+  const ctx = options.data.root.itemContext?.[context.id];
+  if ( !ctx ) {
+    const inverse = options.inverse(this);
+    if ( inverse ) return options.inverse(this);
+  }
+
+  return options.fn(context, { data: options.data, blockParams: [ctx] });
 }
 
 /* -------------------------------------------- */
@@ -145,10 +186,11 @@ export async function preloadHandlebarsTemplates() {
  * Register custom Handlebars helpers used by 5e.
  */
 export function registerHandlebarsHelpers() {
-    Handlebars.registerHelper({
-        "getProperty": foundry.utils.getProperty,
-        "sw5e-linkForUuid": linkForUuid
-    });
+  Handlebars.registerHelper({
+    "getProperty": foundry.utils.getProperty,
+    "sw5e-linkForUuid": linkForUuid,
+    "sw5e-itemContext": itemContext
+  });
 }
 
 /* -------------------------------------------- */
@@ -164,7 +206,7 @@ const _preLocalizationRegistrations = {};
 
 /**
  * Mark the provided config key to be pre-localized during the init stage.
- * @param {string} configKey              Key within `CONFIG.SW5E` to localize.
+ * @param {string} configKeyPath          Key path within `CONFIG.SW5E` to localize.
  * @param {object} [options={}]
  * @param {string} [options.key]          If each entry in the config enum is an object,
  *                                        localize and sort using this property.
@@ -172,9 +214,9 @@ const _preLocalizationRegistrations = {};
  *                                        if multiple are provided.
  * @param {boolean} [options.sort=false]  Sort this config enum, using the key if set.
  */
-export function preLocalize(configKey, {key, keys = [], sort = false} = {}) {
-    if (key) keys.unshift(key);
-    _preLocalizationRegistrations[configKey] = {keys, sort};
+export function preLocalize(configKeyPath, { key, keys = [], sort = false } = {}) {
+  if (key) keys.unshift(key);
+  _preLocalizationRegistrations[configKeyPath] = { keys, sort };
 }
 
 /* -------------------------------------------- */
@@ -184,10 +226,11 @@ export function preLocalize(configKey, {key, keys = [], sort = false} = {}) {
  * @param {object} config  The `CONFIG.SW5E` object to localize and sort. *Will be mutated.*
  */
 export function performPreLocalization(config) {
-    for (const [key, settings] of Object.entries(_preLocalizationRegistrations)) {
-        _localizeObject(config[key], settings.keys);
-        if (settings.sort) config[key] = sortObjectEntries(config[key], settings.keys[0]);
-    }
+  for ( const [keyPath, settings] of Object.entries(_preLocalizationRegistrations) ) {
+    const target = foundry.utils.getProperty(config, keyPath);
+    _localizeObject(target, settings.keys);
+    if ( settings.sort ) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
+  }
 }
 
 /* -------------------------------------------- */
@@ -199,33 +242,33 @@ export function performPreLocalization(config) {
  * @private
  */
 function _localizeObject(obj, keys) {
-    for (const [k, v] of Object.entries(obj)) {
-        const type = typeof v;
-        if (type === "string") {
-            obj[k] = game.i18n.localize(v);
-            continue;
-        }
-
-        if (type !== "object") {
-            console.error(
-                new Error(
-                    `Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`
-                )
-            );
-            continue;
-        }
-        if (!keys?.length) {
-            console.error(new Error("Localization keys must be provided for pre-localizing when target is an object."));
-            continue;
-        }
-
-        for (const key of keys) {
-            if (!v[key]) continue;
-            v[key] = game.i18n.localize(v[key]);
-        }
+  for (const [k, v] of Object.entries(obj)) {
+    const type = typeof v;
+    if (type === "string") {
+      obj[k] = game.i18n.localize(v);
+      continue;
     }
+
+    if (type !== "object") {
+      console.error(
+        new Error(`Pre-localized configuration values must be a string or object, ${type} found for "${k}" instead.`)
+      );
+      continue;
+    }
+    if (!keys?.length) {
+      console.error(new Error("Localization keys must be provided for pre-localizing when target is an object."));
+      continue;
+    }
+
+    for (const key of keys) {
+      if (!v[key]) continue;
+      v[key] = game.i18n.localize(v[key]);
+    }
+  }
 }
 
+/* -------------------------------------------- */
+/*  Migration                                   */
 /* -------------------------------------------- */
 
 /**
@@ -235,30 +278,30 @@ function _localizeObject(obj, keys) {
  * @returns {Promise<void>}
  */
 export async function synchronizeActorPowers(actorPack, powersPack) {
-    // Load all actors and powers
-    const actors = await actorPack.getDocuments();
-    const powers = await powersPack.getDocuments();
-    const powersMap = powers.reduce((obj, item) => {
-        obj[item.name] = item;
-        return obj;
-    }, {});
+  // Load all actors and powers
+  const actors = await actorPack.getDocuments();
+  const powers = await powersPack.getDocuments();
+  const powersMap = powers.reduce((obj, item) => {
+    obj[item.name] = item;
+    return obj;
+  }, {});
 
-    // Unlock the pack
-    await actorPack.configure({locked: false});
+  // Unlock the pack
+  await actorPack.configure({ locked: false });
 
-    // Iterate over actors
-    SceneNavigation.displayProgressBar({label: "Synchronizing Power Data", pct: 0});
-    for (const [i, actor] of actors.entries()) {
-        const {toDelete, toCreate} = _synchronizeActorPowers(actor, powersMap);
-        if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
-        if (toCreate.length) await actor.createEmbeddedDocuments("Item", toCreate, {keepId: true});
-        console.debug(`${actor.name} | Synchronized ${toCreate.length} powers`);
-        SceneNavigation.displayProgressBar({label: actor.name, pct: ((i / actors.length) * 100).toFixed(0)});
-    }
+  // Iterate over actors
+  SceneNavigation.displayProgressBar({ label: "Synchronizing Power Data", pct: 0 });
+  for (const [i, actor] of actors.entries()) {
+    const { toDelete, toCreate } = _synchronizeActorPowers(actor, powersMap);
+    if (toDelete.length) await actor.deleteEmbeddedDocuments("Item", toDelete);
+    if (toCreate.length) await actor.createEmbeddedDocuments("Item", toCreate, { keepId: true });
+    console.debug(`${actor.name} | Synchronized ${toCreate.length} powers`);
+    SceneNavigation.displayProgressBar({ label: actor.name, pct: ((i / actors.length) * 100).toFixed(0) });
+  }
 
-    // Re-lock the pack
-    await actorPack.configure({locked: true});
-    SceneNavigation.displayProgressBar({label: "Synchronizing Power Data", pct: 100});
+  // Re-lock the pack
+  await actorPack.configure({ locked: true });
+  SceneNavigation.displayProgressBar({ label: "Synchronizing Power Data", pct: 100 });
 }
 
 /* -------------------------------------------- */
@@ -271,30 +314,30 @@ export async function synchronizeActorPowers(actorPack, powersPack) {
  * @private
  */
 function _synchronizeActorPowers(actor, powersMap) {
-    const powers = actor.itemTypes.power;
-    const toDelete = [];
-    const toCreate = [];
-    if (!powers.length) return {toDelete, toCreate};
+  const powers = actor.itemTypes.power;
+  const toDelete = [];
+  const toCreate = [];
+  if (!powers.length) return { toDelete, toCreate };
 
-    for (const power of powers) {
-        const source = powersMap[power.name];
-        if (!source) {
-            console.warn(`${actor.name} | ${power.name} | Does not exist in powers compendium pack`);
-            continue;
-        }
-
-        // Combine source data with the preparation and uses data from the actor
-        const powerData = source.toObject();
-        const {preparation, uses, save} = power.toObject().system;
-        Object.assign(powerData.system, {preparation, uses});
-        powerData.system.save.dc = save.dc;
-        foundry.utils.setProperty(powerData, "flags.core.sourceId", source.uuid);
-
-        // Record powers to be deleted and created
-        toDelete.push(power.id);
-        toCreate.push(powerData);
+  for (const power of powers) {
+    const source = powersMap[power.name];
+    if (!source) {
+      console.warn(`${actor.name} | ${power.name} | Does not exist in powers compendium pack`);
+      continue;
     }
-    return {toDelete, toCreate};
+
+    // Combine source data with the preparation and uses data from the actor
+    const powerData = source.toObject();
+    const { preparation, uses, save } = power.toObject().system;
+    Object.assign(powerData.system, { preparation, uses });
+    powerData.system.save.dc = save.dc;
+    foundry.utils.setProperty(powerData, "flags.core.sourceId", source.uuid);
+
+    // Record powers to be deleted and created
+    toDelete.push(power.id);
+    toCreate.push(powerData);
+  }
+  return { toDelete, toCreate };
 }
 
 /* -------------------------------------------- */
@@ -308,28 +351,28 @@ function _synchronizeActorPowers(actor, powersMap) {
  * @return {Document|null}
  */
 export function fromUuidSynchronous(uuid) {
-    if (!uuid) return null;
-    let parts = uuid.split(".");
-    let doc;
+  if (!uuid) return null;
+  let parts = uuid.split(".");
+  let doc;
 
-    // Compendium Documents
-    if (parts[0] === "Compendium")
-        return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
-    // World Documents
-    else {
-        const [docName, docId] = parts.slice(0, 2);
-        parts = parts.slice(2);
-        const collection = CONFIG[docName]?.collection?.instance;
-        doc = collection?.get(docId);
-    }
+  // Compendium Documents
+  if (parts[0] === "Compendium")
+    return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
+  // World Documents
+  else {
+    const [docName, docId] = parts.slice(0, 2);
+    parts = parts.slice(2);
+    const collection = CONFIG[docName]?.collection?.instance;
+    doc = collection?.get(docId);
+  }
 
-    // Embedded Documents
-    while (doc && parts.length > 1) {
-        const [embeddedName, embeddedId] = parts.slice(0, 2);
-        doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
-        parts = parts.slice(2);
-    }
-    return doc || null;
+  // Embedded Documents
+  while (doc && parts.length > 1) {
+    const [embeddedName, embeddedId] = parts.slice(0, 2);
+    doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
+    parts = parts.slice(2);
+  }
+  return doc || null;
 }
 
 /* -------------------------------------------- */
@@ -341,34 +384,34 @@ export function fromUuidSynchronous(uuid) {
  * @return {Document|null}
  */
 export async function fromUuidSafe(uuid) {
-    if (!uuid) return null;
-    let parts = uuid.split(".");
-    let doc;
+  if (!uuid) return null;
+  let parts = uuid.split(".");
+  let doc;
 
-    // Compendium Documents
-    if (parts[0] === "Compendium") {
-        parts.shift();
-        const [scope, packName, id] = parts.slice(0, 3);
-        parts = parts.slice(3);
-        const pack = game.packs.get(`${scope}.${packName}`);
-        doc = await pack?.getDocument(id);
-    }
+  // Compendium Documents
+  if (parts[0] === "Compendium") {
+    parts.shift();
+    const [scope, packName, id] = parts.slice(0, 3);
+    parts = parts.slice(3);
+    const pack = game.packs.get(`${scope}.${packName}`);
+    doc = await pack?.getDocument(id);
+  }
 
-    // World Documents
-    else {
-        const [docName, docId] = parts.slice(0, 2);
-        parts = parts.slice(2);
-        const collection = CONFIG[docName]?.collection?.instance;
-        doc = collection?.get(docId);
-    }
+  // World Documents
+  else {
+    const [docName, docId] = parts.slice(0, 2);
+    parts = parts.slice(2);
+    const collection = CONFIG[docName]?.collection?.instance;
+    doc = collection?.get(docId);
+  }
 
-    // Embedded Documents
-    while (doc && parts.length > 1) {
-        const [embeddedName, embeddedId] = parts.slice(0, 2);
-        doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
-        parts = parts.slice(2);
-    }
-    return doc || null;
+  // Embedded Documents
+  while (doc && parts.length > 1) {
+    const [embeddedName, embeddedId] = parts.slice(0, 2);
+    doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
+    parts = parts.slice(2);
+  }
+  return doc || null;
 }
 
 /* -------------------------------------------- */
@@ -380,35 +423,35 @@ export async function fromUuidSafe(uuid) {
  * @return {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
  */
 export function htmlFindClosingBracket(html, index = 0) {
-    if (!html) return null;
-    let inString = false;
-    let depth = 0;
-    let prev = null;
-    let blockStart = null;
-    let blockEnd = null;
-    let contentStart = null;
-    let contentEnd = null;
-    for (let i = index; i < html.length; i++) {
-        const c = html[i];
-        if (['"', "'", "`"].includes(c)) {
-            if (!inString) inString = c;
-            else if (inString === c && prev !== "\\") inString = false;
-        } else if (inString) continue;
-        else if (prev === "<") {
-            if (blockStart === null) blockStart = i - 1;
-            contentEnd = i - 1;
+  if (!html) return null;
+  let inString = false;
+  let depth = 0;
+  let prev = null;
+  let blockStart = null;
+  let blockEnd = null;
+  let contentStart = null;
+  let contentEnd = null;
+  for (let i = index; i < html.length; i++) {
+    const c = html[i];
+    if (['"', "'", "`"].includes(c)) {
+      if (!inString) inString = c;
+      else if (inString === c && prev !== "\\") inString = false;
+    } else if (inString) continue;
+    else if (prev === "<") {
+      if (blockStart === null) blockStart = i - 1;
+      contentEnd = i - 1;
 
-            if (c === "/") depth -= 1;
-            else depth += 1;
-        } else if (c === ">") {
-            if (contentStart === null) contentStart = i + 1;
-            blockEnd = i + 1;
+      if (c === "/") depth -= 1;
+      else depth += 1;
+    } else if (c === ">") {
+      if (contentStart === null) contentStart = i + 1;
+      blockEnd = i + 1;
 
-            if (depth === 0) return [blockStart, blockEnd, contentStart, contentEnd];
-        }
-        prev = c;
+      if (depth === 0) return [blockStart, blockEnd, contentStart, contentEnd];
     }
-    return null;
+    prev = c;
+  }
+  return null;
 }
 
 /**
@@ -417,30 +460,30 @@ export function htmlFindClosingBracket(html, index = 0) {
  * @return {string}        The slugified name
  */
 export function slugifyIcon(path) {
-    let folder_index = path.search(/\/[^/]*$/) + 1;
-    let extension_index = path.search(/\.\w+$/);
-    if (extension_index === -1) extension_index = path.length;
+  let folder_index = path.search(/\/[^/]*$/) + 1;
+  let extension_index = path.search(/\.\w+$/);
+  if (extension_index === -1) extension_index = path.length;
 
-    let folder = path.substring(0, folder_index);
-    let icon = path.substring(folder_index, extension_index);
-    let extension = path.substring(extension_index);
+  let folder = path.substring(0, folder_index);
+  let icon = path.substring(folder_index, extension_index);
+  let extension = path.substring(extension_index);
 
-    // Replace %20 and underscores with spaces
-    icon = icon.replace(/%20|_/g, " ");
-    // Capitalize each word
-    icon = icon.replace(/\b\w+\b/g, (w) => w.capitalize());
-    // Replace slashes and commas with dashes
-    icon = icon.replace(/[/,]/g, "-");
-    // Remove all whitespaces
-    icon = icon.replace(/[\s]/g, "");
-    // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
-    icon = icon.replace(/^\(([^)]*)\)/g, "$1-");
-    // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
-    icon = icon.replace(/-*\(([^)]*)\)/g, "-$1");
-    // Remove all non-word characters but dashes
-    icon = icon.replace(/[^\w-]/g, "");
+  // Replace %20 and underscores with spaces
+  icon = icon.replace(/%20|_/g, " ");
+  // Capitalize each word
+  icon = icon.replace(/\b\w+\b/g, w => w.capitalize());
+  // Replace slashes and commas with dashes
+  icon = icon.replace(/[/,]/g, "-");
+  // Remove all whitespaces
+  icon = icon.replace(/[\s]/g, "");
+  // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
+  icon = icon.replace(/^\(([^)]*)\)/g, "$1-");
+  // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
+  icon = icon.replace(/-*\(([^)]*)\)/g, "-$1");
+  // Remove all non-word characters but dashes
+  icon = icon.replace(/[^\w-]/g, "");
 
-    return folder + icon + extension;
+  return folder + icon + extension;
 }
 
 /**
@@ -450,9 +493,9 @@ export function slugifyIcon(path) {
  * @return {string}        The slugified name
  */
 export function fontAwesomeIcon(glyph, style = "solid") {
-    const styleClass = style === "regular" ? "far" : "fas";
-    const glyphClass = glyph.startsWith("fa-") ? glyph : `fa-${glyph}`;
-    const icon = document.createElement("i");
-    icon.classList.add(styleClass, glyphClass);
-    return icon;
+  const styleClass = style === "regular" ? "far" : "fas";
+  const glyphClass = glyph.startsWith("fa-") ? glyph : `fa-${glyph}`;
+  const icon = document.createElement("i");
+  icon.classList.add(styleClass, glyphClass);
+  return icon;
 }

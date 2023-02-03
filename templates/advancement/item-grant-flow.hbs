@@ -9,9 +9,9 @@
           <a data-uuid="{{uuid}}">{{this.name}}</a>
         </h4>
         {{#if @root.optional}}
-          <input type="checkbox" name="{{this.uuid}}" {{checked this.checked}}>
+          <input type="checkbox" name="{{this.uuid}}" {{checked this.checked}} />
         {{else}}
-          <input type="hidden" name="{{this.uuid}}" value="true" data-dtype="Boolean">
+          <input type="hidden" name="{{this.uuid}}" value="true" data-dtype="Boolean" />
         {{/if}}
       </label>
     </div>

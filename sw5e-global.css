@@ -83,7 +83,7 @@ html {
   scrollbar-color: #0d99cc #afc6d6;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
   background-image: url("./ui/SW5e-logo.svg");
@@ -91,32 +91,32 @@ body {
   background-size: cover;
 }
 h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 34px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 27px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 21px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h4 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h5,
 h6 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -231,7 +231,7 @@ textarea:focus,
 .roundTransition:focus {
   box-shadow: none;
 }
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
   /* Hides the slider so that custom slider can be made */
   width: 100%;
@@ -239,7 +239,7 @@ input[type=range] {
   background: transparent;
   /* Otherwise white in Chrome */
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -248,7 +248,7 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -257,7 +257,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -266,7 +266,7 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -275,10 +275,10 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #0d99cc;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -287,7 +287,7 @@ input[type=range]::-moz-range-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -296,11 +296,11 @@ input[type=range]::-ms-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
   /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
   /* Hides the slider so custom styles can be added */
@@ -312,7 +312,7 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   text-align: center;
@@ -378,7 +378,7 @@ input[type="reset"]:disabled {
   margin-bottom: 4px;
 }
 #chat-log .chat-message > header span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 .notification-pip {
   color: #0d99cc;
@@ -398,7 +398,7 @@ input[type="reset"]:disabled {
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -437,7 +437,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.chat-card .card-buttons button,
 .midi-qol-item-card .card-buttons button {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   padding: 4px 0;
@@ -501,7 +501,7 @@ input[type="reset"]:disabled {
   height: auto;
 }
 #combat #combat-tracker li.combatant h4 {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 #combat #combat-tracker li.combatant .roll {
   background: none;
@@ -562,7 +562,7 @@ input[type="reset"]:disabled {
 }
 .sidebar-tab .directory-list .folder > .folder-header h3 {
   padding: 8px 4px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   line-height: 1.6;
@@ -599,7 +599,7 @@ input[type="reset"]:disabled {
 .sidebar-tab .directory-list .item .entity-name,
 .sidebar-tab .directory-list .journal .entity-name,
 .sidebar-tab .directory-list .table .entity-name {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
@@ -616,7 +616,7 @@ input[type="reset"]:disabled {
   margin-top: 4px;
 }
 #scenes .scene::after {
-  content: '';
+  content: "";
   display: block;
   width: 100%;
   height: 99px;
@@ -625,7 +625,7 @@ input[type="reset"]:disabled {
   left: 0;
 }
 #scenes .scene h3 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -654,7 +654,7 @@ input[type="reset"]:disabled {
   border: none;
 }
 #playlists .directory-list li.playlist li.sound h4 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
@@ -671,7 +671,7 @@ input[type="reset"]:disabled {
 #compendium .compendium-entity h3 {
   background: none;
   border: none;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -688,7 +688,7 @@ input[type="reset"]:disabled {
   position: relative;
 }
 #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
@@ -722,7 +722,7 @@ input[type="reset"]:disabled {
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
 }
@@ -771,7 +771,7 @@ input[type="reset"]:disabled {
   grid-template-rows: 182px 36px auto;
 }
 .sw5e.sheet.actor .swalt-sheet section > h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -801,7 +801,7 @@ input[type="reset"]:disabled {
   margin: 0;
   border: none;
   align-self: center;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 32px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -809,7 +809,7 @@ input[type="reset"]:disabled {
   height: auto;
 }
 .sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"] {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 32px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -826,7 +826,7 @@ input[type="reset"]:disabled {
   grid-column: 3;
 }
 .sw5e.sheet.actor .swalt-sheet header .level-experience .charlevel {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -838,7 +838,7 @@ input[type="reset"]:disabled {
   height: auto;
 }
 .sw5e.sheet.actor .swalt-sheet header .level-experience .experience {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -869,7 +869,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   display: inline;
   height: auto;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -899,7 +899,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1047,7 +1047,7 @@ input[type="reset"]:disabled {
   margin: 0;
   padding: 3px 0 0;
   line-height: 1;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1108,7 +1108,7 @@ input[type="reset"]:disabled {
   padding-right: 6px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list-title h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1169,7 +1169,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
 .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0;
@@ -1317,7 +1317,7 @@ input[type="reset"]:disabled {
   border-radius: 0 0 4px 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1329,7 +1329,7 @@ input[type="reset"]:disabled {
   text-shadow: none;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-score {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1439,7 +1439,7 @@ input[type="reset"]:disabled {
   margin: 0;
   padding: 0 4px;
   line-height: 1.6;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1530,40 +1530,102 @@ input[type="reset"]:disabled {
   border-radius: 0;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value input {
-  font-family: 'Russo One';
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value
+  input {
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
   text-align: center;
   line-height: 1;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value {
   display: grid;
   grid-template-columns: auto 14px auto;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value input {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value
+  input {
   display: block;
   width: 100%;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value
+  .value-number {
   display: block;
   width: 100%;
   text-align: right;
   padding: 0 3px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number:last-child {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value
+  .value-number:last-child {
   text-align: left;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value span.value-number {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-value
+  span.value-number {
   padding: 1px 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-footer {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-footer {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-footer label {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.core
+  .traits-resources
+  section.resources
+  .resource-items
+  .resource
+  .attribute-footer
+  label {
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters {
@@ -1612,7 +1674,7 @@ input[type="reset"]:disabled {
   align-items: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1620,7 +1682,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency input {
   display: inline-block;
   width: 128px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
@@ -1685,7 +1747,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1714,7 +1776,13 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number:last-child,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number:last-child {
+.sw5e.sheet.actor
+  .swalt-sheet
+  .tab.superiority-powerbook
+  .resource-items
+  .resource
+  .attribute-value
+  .value-number:last-child {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value span.value-number,
@@ -1763,7 +1831,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability h3,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability h3,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .force-powercasting-ability h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1795,7 +1863,7 @@ input[type="reset"]:disabled {
   position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1820,7 +1888,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor.npc .swalt-sheet header .npc-size,
 .sw5e.sheet.actor.npc .swalt-sheet header .creature-type {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.5px;

@@ -1,11 +1,10 @@
 @import "variables.less";
 
-
-
 a {
   color: @colorRed;
   text-decoration: none;
-  &:hover, &:active {
+  &:hover,
+  &:active {
     text-shadow: none;
     text-decoration: underline;
   }
@@ -13,7 +12,7 @@ a {
 
 .app {
   background: @sheetBackground;
-  border: none;// 1px solid @colorBlue;
+  border: none; // 1px solid @colorBlue;
   .dropShadow1();
 }
 
@@ -54,8 +53,6 @@ a {
       }
     }
   }
-  
-
 }
 @import "components/forms.less";
 @import "components/sidebar.less";

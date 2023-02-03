@@ -1,5 +1,5 @@
 .window-app {
-  border-radius:  4px;
+  border-radius: 4px;
   border: none;
   .dropShadow2();
   & > header {
@@ -17,7 +17,8 @@
     }
   }
   &.minimized {
-    & > header, & > .window-header {
+    & > header,
+    & > .window-header {
       border: none;
       border-radius: 4px;
       margin: 0;
@@ -25,7 +26,7 @@
   }
 }
 
-#client-settings  {
+#client-settings {
   nav.tabs {
     border: none;
     font-size: 17px;
@@ -51,8 +52,8 @@
 .dialog-buttons {
   margin-top: 8px;
   button:last-child {
-      margin-right: 0;
-    }
+    margin-right: 0;
+  }
   button:not(.default) {
     border: 1px solid @buttonBackground;
     margin-right: 4px;
@@ -61,7 +62,6 @@
     &:hover {
       background: @buttonSecondaryHoverBackground;
     }
-    
   }
   button.normal.default {
     border: none;
@@ -71,6 +71,4 @@
       background: @buttonHoverBackground;
     }
   }
-
-
 }

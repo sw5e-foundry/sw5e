@@ -1,8 +1,9 @@
-import AdvancementManager from "../../advancement/advancement-manager.mjs";
-import ProficiencySelector from "../proficiency-selector.mjs";
+import AdvancementManager from "../advancement/advancement-manager.mjs";
+import AdvancementMigrationDialog from "../advancement/advancement-migration-dialog.mjs";
 import TraitSelector from "../trait-selector.mjs";
 import CheckboxSelect from "../actor/checkbox-select.mjs";
 import ActiveEffect5e from "../../documents/active-effect.mjs";
+import * as Trait from "../../documents/actor/trait.mjs";
 import Item5e from "../../documents/item.mjs";
 
 /**
@@ -32,7 +33,11 @@ export default class ItemSheet5e extends ItemSheet {
             resizable: true,
             scrollY: [".tab.details"],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
-            dragDrop: [{dragSelector: "[data-effect-id]", dropSelector: ".effects-list"}, {dragSelector: ".item-list .item", dropSelector: null}],
+            dragDrop: [
+                {dragSelector: "[data-effect-id]", dropSelector: ".effects-list"},
+                {dragSelector: ".advancement-item", dropSelector: ".advancement"}
+                {dragSelector: ".item-list .item", dropSelector: null}
+            ]
         });
     }
 
@@ -71,53 +76,27 @@ export default class ItemSheet5e extends ItemSheet {
         const source = item.toObject();
         const isMountable = this._isItemMountable(item);
 
-        // Possibly Don't need this?
-        const actor = item.actor;
-
         let wpnType, armorType, ammoType, isAmmo;
         let isStarshipAmmo, isStarshipArmor, isStarshipShield, isStarshipReactor, isStarshipHyperdrive, isStarshipWeapon, isStarshipEquipment, isStarshipPowerCoupling;
 
+        // Game system configuration
+        context.config = CONFIG.SW5E;
+
+        // Item rendering data
         foundry.utils.mergeObject(context, {
             source: source.system,
             system: item.system,
             labels: item.labels,
             isEmbedded: item.isEmbedded,
             advancementEditable: (this.advancementConfigurationMode || !item.isEmbedded) && context.editable,
+            rollData: this.item.getRollData(),
 
             // Item Type, Status, and Details
-            itemType: game.i18n.localize(`ITEM.Type${item.type.titleCase()}`),
+            itemType: game.i18n.localize(`ITEM.Type${this.item.type.titleCase()}`),
             itemStatus: this._getItemStatus(),
             itemProperties: this._getItemProperties(),
             baseItems: await this._getItemBaseTypes(),
             isPhysical: item.system.hasOwnProperty("quantity"),
-
-            // Enrich HTML description
-            descriptionHTML: await TextEditor.enrichHTML(item.system.description?.value, {
-                secrets: item.isOwner,
-                async: true,
-                relativeTo: this.item
-            }),
-
-            // Enrich HTML invocations
-            invocationsHTML: await TextEditor.enrichHTML(item.system.invocations?.value, {
-                secrets: item.isOwner,
-                async: true,
-                relativeTo: this.item
-            }),
-
-            // Enrich HTML flavor
-            atFlavorTextHTML: await TextEditor.enrichHTML(item.system.atFlavorText?.value, {
-                secrets: item.isOwner,
-                async: true,
-                relativeTo: this.item
-            }),
-
-            // Enrich HTML Traits
-            traitsHTML: await TextEditor.enrichHTML(item.system.traits?.value, {
-                secrets: item.isOwner,
-                async: true,
-                relativeTo: this.item
-            }),
 
             // Action Details
             hasAttackRoll: item.hasAttack,
@@ -126,16 +105,18 @@ export default class ItemSheet5e extends ItemSheet {
             isLine: ["line", "wall"].includes(item.system.target?.type),
             critical: item.system.critical,
 
-            // Armor
+            // Vehicles
+            isCrewed: item.system.activation?.type === "crew",
+            isMountable,
+
+            // Armor Class
             isArmor: item.isArmor,
-            armorType: armorType = item.system?.armor?.type ?? "",
             hasAC: item.isArmor || isMountable,
             hasDexModifier: item.isArmor && item.system.armor?.type !== "shield",
 
-            // Weapon
+            // Type
+            armorType: armorType = item.system?.armor?.type ?? "",
             wpnType: wpnType = item.system?.weaponType ?? "",
-
-            // Ammo
             isAmmo: isAmmo = item.system?.consumableType === "ammo",
             ammoType: ammoType = isAmmo ? item.system?.ammoType ?? "" : "",
 
@@ -153,8 +134,6 @@ export default class ItemSheet5e extends ItemSheet {
                 isStarshipHyperdrive ||
                 isStarshipPowerCoupling ||
                 isStarshipReactor,
-            isCrewed: item.system.activation?.type === "crew",
-            isMountable,
 
             // Advancement
             advancement: this._getItemAdvancement(item),
@@ -166,46 +145,58 @@ export default class ItemSheet5e extends ItemSheet {
             // Prepare Active Effects
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)
         });
+        context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
 
-        // Set up config with proper power components
-        context.config = foundry.utils.mergeObject(
-            CONFIG.SW5E,
-            {
-                powerComponents: {...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags}
-            },
-            {inplace: false}
-        );
+        /** @deprecated */
+        Object.defineProperty(context, "data", {
+            get() {
+                const msg = `You are accessing the "data" attribute within the rendering context provided by the ItemSheet5e
+                class. This attribute has been deprecated in favor of "system" and will be removed in a future release`;
+                foundry.utils.logCompatibilityWarning(msg, {since: "SW5e 2.0", until: "SW5e 2.2"});
+                return context.system;
+            }
+        });
 
-        //TODO: See if there is a way to get it into merge object for consistency
-        // Weapon Properties
-        if (item.consumableType === "ammo") {
-            context.wpnProperties = context.isStarshipAmmo
-                ? CONFIG.SW5E.weaponFullStarshipProperties
-                : CONFIG.SW5E.weaponFullCharacterProperties;
-        }
-        if (item.type === "weapon") {
-            context.wpnProperties = context.isStarshipWeapon
-                ? CONFIG.SW5E.weaponFullStarshipProperties
-                : CONFIG.SW5E.weaponFullCharacterProperties;
-            context = this._getWeaponReloadProperties(context);
-        }
-
-        // Armor Class
-        if (item.type === "equipment") {
-            if (item.system.armor.type in CONFIG.SW5E.armorTypes) context.equipProperties = CONFIG.SW5E.armorProperties;
-            if (item.system.armor.type in CONFIG.SW5E.castingEquipmentTypes)
-                context.equipProperties = CONFIG.SW5E.castingProperties;
-        }
-
-        // Modification Properties
-        if (this.item.type === "modification") {
-            context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;
-            context.isWpnMod = item.system.modificationType in CONFIG.SW5E.modificationTypesWeapon;
-            context.isCastMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCasting;
-            context.isCreatureMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCreature;
-            context.isAugment = item.system.modificationType === "augment";
-            context.usesSlot = !(context.isCreatureMod || context.isAugment);
-            context.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
+        // Special handling for specific item types
+        switch ( item.type ) {
+            case "consumable":
+                if (item.consumableType === "ammo") {
+                    context.wpnProperties = context.isStarshipAmmo
+                        ? CONFIG.SW5E.weaponFullStarshipProperties
+                        : CONFIG.SW5E.weaponFullCharacterProperties;
+                }
+                break;
+            case "equipment":
+                if (item.system.armor.type in CONFIG.SW5E.armorTypes)
+                    context.equipProperties = CONFIG.SW5E.armorProperties;
+                if (item.system.armor.type in CONFIG.SW5E.castingEquipmentTypes)
+                    context.equipProperties = CONFIG.SW5E.castingProperties;
+                break;
+            case "feat":
+                const featureType = CONFIG.SW5E.featureTypes[item.system.type?.value];
+                if ( featureType ) {
+                    context.itemType = featureType.label;
+                    context.featureSubtypes = featureType.subtypes;
+                }
+                break;
+            case "modification":
+                context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;
+                context.isWpnMod = item.system.modificationType in CONFIG.SW5E.modificationTypesWeapon;
+                context.isCastMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCasting;
+                context.isCreatureMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCreature;
+                context.isAugment = item.system.modificationType === "augment";
+                context.usesSlot = !(context.isCreatureMod || context.isAugment);
+                context.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
+                break;
+            case "power":
+                context.powerComponents = {...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags};
+                break;
+            case "weapon":
+                context.wpnProperties = context.isStarshipWeapon
+                    ? CONFIG.SW5E.weaponFullStarshipProperties
+                    : CONFIG.SW5E.weaponFullCharacterProperties;
+                context = this._getWeaponReloadProperties(context);
+                break;
         }
 
         // Modifiable items
@@ -215,18 +206,15 @@ export default class ItemSheet5e extends ItemSheet {
             context.mods = item.system.modify.items;
         }
 
-        // Potential consumption targets
-        context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
-
-        /** @deprecated */
-        Object.defineProperty(context, "data", {
-            get() {
-                const msg = `You are accessing the "data" attribute within the rendering context provided by the ItemSheet5e 
-          class. This attribute has been deprecated in favor of "system" and will be removed in a future release`;
-                foundry.utils.logCompatibilityWarning(msg, {since: "SW5e 2.0", until: "SW5e 2.2"});
-                return context.system;
-            }
-        });
+        // Enrich HTML
+        for (const attr of ["description", "invocations", "atFlavorText", "traits"]) {
+            context[`${attr}HTML`] = await TextEditor.enrichHTML(item.system[attr]?.value, {
+                secrets: item.isOwner,
+                async: true,
+                relativeTo: this.item,
+                rollData: context.rollData
+            });
+        }
 
         return context;
     }
@@ -239,6 +227,7 @@ export default class ItemSheet5e extends ItemSheet {
      * @returns {object}     Object with advancement data grouped by levels.
      */
     _getItemAdvancement(item) {
+        if ( !item.system.advancement ) return {};
         const advancement = {};
         const configMode = !item.parent || this.advancementConfigurationMode;
         const maxLevel = !configMode ? item.curAdvancementLevel : -1;
@@ -251,7 +240,7 @@ export default class ItemSheet5e extends ItemSheet {
                     order: a.constructor.order,
                     title: a.title,
                     icon: a.icon,
-                    classRestriction: a.data.classRestriction,
+                    classRestriction: a.classRestriction,
                     configured: false
                 })),
                 configured: "partial"
@@ -266,7 +255,7 @@ export default class ItemSheet5e extends ItemSheet {
                 order: advancement.sortingValueForLevel(level),
                 title: advancement.titleForLevel(level, {configMode}),
                 icon: advancement.icon,
-                classRestriction: advancement.data.classRestriction,
+                classRestriction: advancement.classRestriction,
                 summary: advancement.summaryForLevel(level, {configMode}),
                 configured: advancement.configuredForLevel(level)
             }));
@@ -297,10 +286,10 @@ export default class ItemSheet5e extends ItemSheet {
 
         const items = {};
         for (const [name, id] of Object.entries(baseIds)) {
-            let baseItem = await ProficiencySelector.getBaseItem(id);
-            /** */
+            let baseItem = await Trait.getBaseItem(id);
+            // TODO: Fix this??
             // For some reason, loading a compendium item after the cache is generated deletes that item's data from the cache
-            if (!baseItem) baseItem = (await ProficiencySelector.getBaseItem(id, {fullItem: true}));
+            if (!baseItem) baseItem = (await Trait.getBaseItem(id, {fullItem: true}));
 
             if (!baseItem) continue;
 
@@ -342,8 +331,7 @@ export default class ItemSheet5e extends ItemSheet {
                 (ammo, i) => {
                     if (i.system.consumableType === "ammo") ammo[i.id] = `${i.name} (${i.system.quantity})`;
                     return ammo;
-                },
-                {[this.item.id]: `${this.item.name} (${this.item.system.quantity})`}
+                }, {}
             );
         }
 
@@ -409,7 +397,7 @@ export default class ItemSheet5e extends ItemSheet {
     /**
      * Get the text item status which is shown beneath the Item type in the top-right corner of the sheet.
      * @returns {string|null}  Item status string if applicable to item's type.
-     * @private
+     * @protected
      */
     _getItemStatus() {
         switch (this.item.type) {
@@ -418,11 +406,16 @@ export default class ItemSheet5e extends ItemSheet {
             case "equipment":
             case "weapon":
                 return game.i18n.localize(this.item.system.equipped ? "SW5E.Equipped" : "SW5E.Unequipped");
+            case "feat":
+                const typeConfig = CONFIG.SW5E.featureTypes[this.item.system.type.value];
+                if ( typeConfig?.subtypes ) return typeConfig.subtypes[this.item.system.type.subtype] ?? null;
+                break;
             case "power":
                 return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation];
             case "tool":
                 return game.i18n.localize(this.item.system.proficient ? "SW5E.Proficient" : "SW5E.NotProficient");
         }
+        return null;
     }
 
     /* -------------------------------------------- */
@@ -562,7 +555,7 @@ export default class ItemSheet5e extends ItemSheet {
     /** @inheritDoc */
     setPosition(position = {}) {
         if (!(this._minimized || position.height)) {
-            position.height = this._tabs[0].active === "details" ? "auto" : this.options.height;
+            position.height = this._tabs[0].active === "details" ? "auto" : Math.max(this.height, this.options.height);
         }
         return super.setPosition(position);
     }
@@ -609,15 +602,24 @@ export default class ItemSheet5e extends ItemSheet {
             }
         }
 
-        // Check class identifier
-        if (formData.system.identifier) {
-            const dataRgx = new RegExp(/^([a-z0-9_-]+)$/i);
-            const match = formData.system.identifier.match(dataRgx);
-            if (!match) {
-                formData.system.identifier = this.item._source.system.identifier;
-                this.form.querySelector("input[name='system.identifier']").value = formData.system.identifier;
-                return ui.notifications.error(game.i18n.localize("SW5E.IdentifierError"));
+        // Check duration value formula
+        const duration = formData.system?.duration;
+        if ( duration?.value ) {
+            const durationRoll = new Roll(duration.value);
+            if ( !durationRoll.isDeterministic ) {
+                duration.value = this.item._source.system.duration.value;
+                this.form.querySelector("input[name='system.duration.value']").value = duration.value;
+                return ui.notifications.error(game.i18n.format("SW5E.FormulaCannotContainDiceError", {
+                    name: game.i18n.localize("SW5E.Duration")
+                }));
             }
+        }
+
+        // Check class identifier
+        if ( formData.system?.identifier && !sw5e.utils.validators.isValidIdentifier(formData.system.identifier) ) {
+            formData.system.identifier = this.item._source.system.identifier;
+            this.form.querySelector("input[name='system.identifier']").value = formData.system.identifier;
+            return ui.notifications.error(game.i18n.localize("SW5E.IdentifierError"));
         }
 
         // Flatten the submission data
@@ -788,6 +790,8 @@ export default class ItemSheet5e extends ItemSheet {
         if ( li.dataset.effectId ) {
             const effect = this.item.effects.get(li.dataset.effectId);
             dragData = effect.toDragData();
+        } else if ( li.classList.contains("advancement-item") ) {
+            dragData = this.item.advancement.byId[li.dataset.id]?.toDragData();
         }
 
         if ( !dragData ) return;
@@ -819,7 +823,9 @@ export default class ItemSheet5e extends ItemSheet {
             case "ActiveEffect":
                 return this._onDropActiveEffect(event, data);
             case "Item":
-                return this._onDropItem(event, data);
+                if (this._tabs[0].active !== "advancements") return this._onDropItem(event, data);
+            case "Advancement":
+                return this._onDropAdvancement(event, data);
         }
     }
 
@@ -838,7 +844,7 @@ export default class ItemSheet5e extends ItemSheet {
         if ( (this.item.uuid === effect.parent.uuid) || (this.item.uuid === effect.origin) ) return false;
         return ActiveEffect.create({
             ...effect.toObject(),
-            origin: this.item.uuid,
+            origin: this.item.uuid
         }, {parent: this.item});
     }
 
@@ -860,6 +866,53 @@ export default class ItemSheet5e extends ItemSheet {
     /* -------------------------------------------- */
 
     /**
+     * Handle the dropping of an advancement or item with advancements onto the advancements tab.
+     * @param {DragEvent} event                  The concluding DragEvent which contains drop data.
+     * @param {object} data                      The data transfer extracted from the event.
+     */
+    async _onDropAdvancement(event, data) {
+        let advancements;
+        let showDialog = false;
+        if ( data.type === "Advancement" ) {
+            advancements = [await fromUuid(data.uuid)];
+        } else if ( data.type === "Item" ) {
+            const item = await Item.implementation.fromDropData(data);
+            if ( !item ) return false;
+            advancements = Object.values(item.advancement.byId);
+            showDialog = true;
+        } else {
+            return false;
+        }
+        advancements = advancements.filter(a => {
+            return !this.item.advancement.byId[a.id]
+                && a.constructor.metadata.validItemTypes.has(this.item.type)
+                && a.constructor.availableForItem(this.item);
+        });
+
+        // Display dialog prompting for which advancements to add
+        if ( showDialog ) {
+            try {
+                advancements = await AdvancementMigrationDialog.createDialog(this.item, advancements);
+            } catch(err) {
+                return false;
+            }
+        }
+
+        if ( !advancements.length ) return false;
+        if ( this.item.isEmbedded && !game.settings.get("sw5e", "disableAdvancements") ) {
+            const manager = AdvancementManager.forNewAdvancement(this.item.actor, this.item.id, advancements);
+            if ( manager.steps.length ) return manager.render(true);
+        }
+
+        // If no advancements need to be applied, just add them to the item
+        const advancementArray = foundry.utils.deepClone(this.item.system.advancement);
+        advancementArray.push(...advancements.map(a => a.toObject()));
+        this.item.update({"system.advancement": advancementArray});
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Handle spawning the TraitSelector application for selection various options.
      * @param {Event} event   The click event which originated the selection.
      * @private
@@ -871,7 +924,8 @@ export default class ItemSheet5e extends ItemSheet {
             name: a.dataset.target,
             title: a.parentElement.innerText,
             choices: [],
-            allowCustom: false
+            allowCustom: false,
+            supressWarning: true
         };
         switch (a.dataset.options) {
             case "saves":
@@ -1054,24 +1108,29 @@ export default class ItemSheet5e extends ItemSheet {
      * Handle one of the advancement actions from the buttons or context menu.
      * @param {Element} target  Button or context menu entry that triggered this action.
      * @param {string} action   Action being triggered.
-     * @returns {Promise}
+     * @returns {Promise|void}
      */
     _onAdvancementAction(target, action) {
         const id = target.closest(".advancement-item")?.dataset.id;
         const advancement = this.item.advancement.byId[id];
+        let manager;
         if (["edit", "delete", "duplicate"].includes(action) && !advancement) return;
         switch (action) {
             case "add":
-                return game.sw5e.advancement.AdvancementSelection.createDialog(this.item);
+                return game.sw5e.applications.advancement.AdvancementSelection.createDialog(this.item);
             case "edit":
                 return new advancement.constructor.metadata.apps.config(advancement).render(true);
             case "delete":
+                if ( this.item.isEmbedded && !game.settings.get("sw5e", "disableAdvancements") ) {
+                    manager = AdvancementManager.forDeletedAdvancement(this.item.actor, this.item.id, id);
+                    if ( manager.steps.length ) return manager.render(true);
+                }
                 return this.item.deleteAdvancement(id);
             case "duplicate":
                 return this.item.duplicateAdvancement(id);
             case "modify-choices":
                 const level = target.closest("li")?.dataset.level;
-                const manager = AdvancementManager.forModifyChoices(this.item.actor, this.item.id, Number(level));
+                manager = AdvancementManager.forModifyChoices(this.item.actor, this.item.id, Number(level));
                 if (manager.steps.length) manager.render(true);
                 return;
             case "toggle-configuration":

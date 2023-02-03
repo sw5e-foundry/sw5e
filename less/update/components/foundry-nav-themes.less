@@ -2,9 +2,8 @@
   #nav-toggle {
     background: @foundryNavBgColor;
     color: @foundryNavTextColor;
-  
-       transform: rotate(-90deg);
-  
+
+    transform: rotate(-90deg);
   }
   .nav-item {
     border: 1px solid @foundryNavBorderColor;
@@ -20,7 +19,8 @@
         border: 1px solid @foundryNavBorderColorGM;
         background: rgba(@foundryNavBgColorGM, 0.4);
       }
-      &.view, &.context {
+      &.view,
+      &.context {
         box-shadow: 0 0 8px @foundryNavContextShadow;
         border-color: @foundryNavContextBorderColor;
       }
@@ -33,9 +33,10 @@
   }
 }
 #controls {
-  .scene-control, .control-tool {
+  .scene-control,
+  .control-tool {
     background: @foundryNavBgColor;
-    color: @foundryNavTextColor; 
+    color: @foundryNavTextColor;
     border: 1px solid @foundryNavBorderColor;
     box-shadow: none;
     &:hover {
@@ -44,8 +45,8 @@
     }
     &.active {
       border-color: @foundryNavActiveBorderColor;
-        background: @foundryNavActiveBgColor;
-        box-shadow: 0 0 8px @foundryNavActiveGlow;
+      background: @foundryNavActiveBgColor;
+      box-shadow: 0 0 8px @foundryNavActiveGlow;
     }
   }
 }

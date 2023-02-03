@@ -3,47 +3,47 @@
 /* ----------------------------------------- */
 /* russo-one-regular - latin */
 @font-face {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/RussoOne.ttf');
+  src: url("./fonts/RussoOne.ttf");
 }
 @font-face {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-style: italic;
   font-weight: 400;
-  src: url('./fonts/RussoOne.ttf');
+  src: url("./fonts/RussoOne.ttf");
 }
 @font-face {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-style: normal;
   font-weight: 700;
-  src: url('./fonts/RussoOne.ttf');
+  src: url("./fonts/RussoOne.ttf");
 }
 /* open-sans-regular - latin */
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/OpenSans-Regular.ttf');
+  src: url("./fonts/OpenSans-Regular.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: italic;
   font-weight: 400;
-  src: url('./fonts/OpenSans-Italic.ttf');
+  src: url("./fonts/OpenSans-Italic.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  src: url('./fonts/OpenSans-Bold.ttf');
+  src: url("./fonts/OpenSans-Bold.ttf");
 }
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: italic;
   font-weight: 700;
-  src: url('./fonts/OpenSans-BoldItalic.ttf');
+  src: url("./fonts/OpenSans-BoldItalic.ttf");
 }
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
@@ -71,33 +71,33 @@ html {
   scrollbar-color: #0d99cc #afc6d6;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
 h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 34px;
   font-weight: 400;
 }
 h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 27px;
   font-weight: 400;
 }
 h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 21px;
   font-weight: 400;
 }
 h4 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
 }
 h5,
 h6 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 13px;
   font-weight: 400;
 }
@@ -111,7 +111,7 @@ a:active {
   text-decoration: underline;
 }
 .app {
-  background: linear-gradient(90deg, #afc6d6 0%, #D6D6D6 30%, #D6D6D6 70%, #afc6d6);
+  background: linear-gradient(90deg, #afc6d6 0%, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
   border: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
@@ -119,7 +119,7 @@ a:active {
   background: none;
   border: none;
   border-radius: 0;
-  color: #1C1C1C;
+  color: #1c1c1c;
   padding: 0 8px;
 }
 #context-menu ol.context-items {
@@ -149,7 +149,7 @@ a:active {
   color: white;
 }
 #context-menu ol.context-items li.context-item + li {
-  border-top: 1px solid #D6D6D6;
+  border-top: 1px solid #d6d6d6;
 }
 input[type="text"],
 input[type="number"],
@@ -160,7 +160,7 @@ select,
 textarea {
   border: 1px solid #828282;
   border-radius: 4px;
-  color: #1C1C1C;
+  color: #1c1c1c;
   transition: all 0.3s;
 }
 input[type="text"]:hover,
@@ -183,7 +183,7 @@ textarea:focus {
   border-color: #c40f0f;
   box-shadow: none;
 }
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
   /* Hides the slider so that custom slider can be made */
   width: 100%;
@@ -191,7 +191,7 @@ input[type=range] {
   background: transparent;
   /* Otherwise white in Chrome */
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -200,7 +200,7 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -209,7 +209,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -218,7 +218,7 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -227,10 +227,10 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #0d99cc;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -239,7 +239,7 @@ input[type=range]::-moz-range-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -248,11 +248,11 @@ input[type=range]::-ms-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
   /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
   /* Hides the slider so custom styles can be added */
@@ -261,7 +261,7 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 button {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   background: #c40f0f;
@@ -316,7 +316,7 @@ button:focus {
   margin-bottom: 4px;
 }
 #chat-log .chat-message > header span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 .notification-pip {
   color: #0d99cc;
@@ -337,13 +337,13 @@ button:focus {
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 .sw5e.chat-card .card-header h3:hover {
-  color: #1C1C1C;
+  color: #1c1c1c;
   text-shadow: none;
 }
 .sw5e.chat-card .card-content {
@@ -370,7 +370,7 @@ button:focus {
   border: 1px solid #828282;
 }
 .sw5e.chat-card .card-buttons button {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   padding: 4px 0;
@@ -391,7 +391,7 @@ button:focus {
   border-top: 1px solid #7ed6f7;
 }
 .sw5e.chat-card .card-footer span {
-  border-right: 2px groove #FFF;
+  border-right: 2px groove #fff;
   padding: 0 3px 0 0;
   font-size: 10px;
 }
@@ -432,7 +432,7 @@ button:focus {
   padding-top: 4px;
 }
 #chat-controls label {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 #chat-form textarea {
   background: white;
@@ -459,14 +459,14 @@ button:focus {
 }
 #combat #combat-tracker li.combatant {
   padding: 4px 0;
-  color: #1C1C1C;
+  color: #1c1c1c;
   background: none;
 }
 #combat #combat-tracker li.combatant:nth-child(even) {
   background: rgba(175, 198, 214, 0.5);
 }
 #combat #combat-tracker li.combatant h4 {
-  color: #1C1C1C;
+  color: #1c1c1c;
   text-shadow: none;
 }
 #combat #combat-tracker li.combatant .roll {
@@ -510,7 +510,7 @@ button:focus {
 }
 #combat #combat-tracker li.combatant.hidden {
   opacity: 0.5;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 #combat #combat-controls {
   padding-top: 0;
@@ -563,8 +563,8 @@ button:focus {
 .sidebar-tab .directory-list .folder > .folder-header h3 {
   padding: 8px 4px;
   background: white;
-  color: #1C1C1C;
-  font-family: 'Open Sans';
+  color: #1c1c1c;
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   line-height: 1.6;
@@ -613,10 +613,10 @@ button:focus {
 .sidebar-tab .directory-list .item .entity-name,
 .sidebar-tab .directory-list .journal .entity-name,
 .sidebar-tab .directory-list .table .entity-name {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 .sidebar-tab .directory-list .actor:nth-child(even),
 .sidebar-tab .directory-list .item:nth-child(even),
@@ -639,7 +639,7 @@ button:focus {
   margin-top: 4px;
 }
 #scenes .scene::after {
-  content: '';
+  content: "";
   display: block;
   width: 100%;
   height: 99px;
@@ -649,7 +649,7 @@ button:focus {
   box-shadow: 0 0 20px #0d99cc inset;
 }
 #scenes .scene h3 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -681,10 +681,10 @@ button:focus {
 }
 #playlists .directory-list li.playlist li.sound {
   border: none;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 #playlists .directory-list li.playlist li.sound h4 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
@@ -706,7 +706,7 @@ button:focus {
   border: none;
   color: #c40f0f;
   border-bottom: 2px solid #0d99cc;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   padding: 0;
@@ -725,7 +725,7 @@ button:focus {
   position: relative;
 }
 #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
@@ -738,7 +738,7 @@ button:focus {
   font-size: 13px;
 }
 #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 #settings h2 {
   color: #c40f0f;
@@ -753,5 +753,5 @@ button:focus {
 #settings #settings-access {
   padding: 0 8px;
   margin: 0 0 8px;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }

@@ -12,16 +12,16 @@
       border: 2px solid #000;
     }
     h1 {
-    	input {
-    		font-size: 26px;
-    	}
+      input {
+        font-size: 26px;
+      }
     }
     .header-details.flexrow {
       h1 {
         font-size: 26px;
       }
       .charname {
-      	font-size: 26px;
+        font-size: 26px;
       }
     }
     .item-subtitle {
@@ -30,6 +30,7 @@
       margin: 0;
       padding: 5px;
       text-align: right;
+      white-space: nowrap;
       color: @colorTan;
 
       .item-type {
@@ -42,20 +43,18 @@
         font-size: 16px;
         line-height: 24px;
       }
-	}
-      
-      .summary {
-		.class-level {
-			flex: 0 0 4em;
-			padding: 0 0.25em;
-			text-align: right;
-		  }
-        li {
-      	  font-size: 16px;
-        }      	
+    }
+
+    .summary {
+      .class-level {
+        flex: 0 0 4em;
+        padding: 0 0.25em;
+        text-align: right;
       }
-      
-    
+      li {
+        font-size: 16px;
+      }
+    }
   }
 
   .sheet-navigation {
@@ -67,279 +66,279 @@
 
   .sheet-body {
     overflow: hidden;
-    
+
     h1 {
-    	font-family: 'Russo One';
-    	font-size: 20px;
-    	font-weight: 400;
-    	text-transform: uppercase;
-    	letter-spacing: 0.5px;
-    	border-bottom: none;
-    	color: #c40f0f;
+      font-family: "Russo One";
+      font-size: 20px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: none;
+      color: #c40f0f;
     }
-    
+
     h2 {
-		  font-family: 'Russo One';
-		  font-size: 18px;
-		  font-weight: 400;
-		  text-transform: uppercase;
-		  letter-spacing: 0.5px;
-		  border-bottom: 2px solid rgb(13, 153, 204);
-		  color: #c40f0f;
-	  }
-	  
-	  h3 {
-	  	font-family: 'Russo One';
-	  	font-size: 16px;
-	  	font-weight: 400;
-	  	text-transform: uppercase;
-	  	letter-spacing: 0.5px;
-	  	border-bottom: none;
-	  	color: #c40f0f;
-	  }
-	  .smalltable {
-	  	table {
-	  		border-top: none;
-	  		border-bottom: none;
-	  		width: 200px;
-	  	}
-			td {
-				&:nth-child(odd) {
-					width: 50px;
-					margin: 0.5em 0.5em;
-					text-align: center;
-				}
-				&:nth-child(even) {
-					width: 150px;
-					margin: 0.5em 0.5em;
-					padding: 0 10px 0 10px;
-					text-align: left;
-				}
-			}
-			thead {
-				border-bottom: 0;
-			}
-			th {
-				color: #000000;
-				text-shadow: none;
-				border-bottom: 0;
-				background-color: #bdc8cc;
-				text-transform: none;
-				font-weight: bold;
-				font-family: 'Open Sans';
-				&:nth-child(odd) {
-					width: 50px;
-					margin: 0.5em 0.5em;
-					text-align: center;					
-				}
-				&:nth-child(even) {
-					width: 150px;
-					margin: 0.5em 0.5em;
-					padding: 0 10px 0 10px;
-					text-align: left;
-				}
-			}
-		}
-		.medtable {
-			table {
-				width: 500px;
-				border: 0;
-				margin: 0.5em 0.5em;
-			}
-			td {
-				&:nth-child(odd) {
-					width: 50px;
-					margin: 0.5em 0.5em;
-					text-align: center;
-				}
-				&:nth-child(even) {
-					width: 450px;
-					margin: 0.5em 0.5em;
-					padding: 0 10px 0 0;
-					text-align: left;
-				}
-			}
-			thead {
-				border-bottom: 0;
-			}
-			th {
-				color: #000000;
-				text-shadow: none;
-				border-bottom: 0;
-				background-color: #bdc8cc;
-				text-transform: none;
-				font-weight: bold;
-				font-family: 'Open Sans';
-				&:nth-child(odd) {
-					text-align: center;
-				}
-				&:nth-child(even) {
-					text-align: left;
-				}
-			}
-		}
-		.classtable {
-			blockquote {
-				border-left: 0;
-				border-right: 0;
-				background-color: #bdc8cc;
-				width: 600px;
-				h3 {
-					color: #000000;
-					text-transform: uppercase;
-					font-family: 'Russo One'; 
-					font-size: 16px;
-				}
-			}
-			table {
-				width: 100%;
-				border-collapse: collapse;
-				background: rgba(0, 0, 0, 0.05);
-				border-left: 0;
-				border-right: 0;
-				border-top: 0;
-				border-bottom: 0;
-				margin: 0.5em 0;
-				font-style: normal;
-				text-shadow: none;
-			}
-			thead {
-				color: #000000;
-				text-shadow: none;
-				border-bottom: 0;
-				background-color: #bdc8cc;
-				text-transform: none;
-				font-style: normal;
-				font-family: 'Open Sans';
-			}
-			th {
-				color: #000000;
-				text-shadow: none;
-				border-bottom: 0;
-				background-color: #bdc8cc;
-				text-transform: none;
-				font-style: normal;
-				font-weight: bold;
-				font-family: 'Open Sans';
-			}
-			tbody {
-				text-align: center;
-			}
-		}
-		.speciestable {
-			blockquote {
-				width: 620px;
-				padding: 15px 10px;
-				margin: 15px;
-				line-height: 20px;
-				background-color: #bdc8cc;
-				border-top: 2px solid #0d99cc !important;
-				border-bottom: 2px solid #0d99cc !important;
-				border-left: 0 !important;
-				border-right: 0 !important;
-				-webkit-box-shadow: 0 0 1.5em rgba(13, 153, 204, .5) !important;
-				box-shadow: 0 0 1.5em rgba(13, 153, 204, .5) !important;
-				overflow-x: auto;
-				h3 {
-					color: #000000;
-					font-size: 22px;
-					border-bottom: none;
-				}
-			}
-			table {
-				background-color: #bdc8cc;
-				border-collapse: collapse;
-				width: 100%;
-				line-height: 18px;
-				margin-bottom: 15px;
-				border: 0;
-				border-bottom: none;
-				overflow-x: auto;
-				tbody {
-					tr {
-						&:nth-child(odd) {
-							background-color: #c9d6db;
-						}
-						&:nth-child(even) {
-							background-color: #bdc8cc;
-						}
-					}
-				}
-				td {
-					&:nth-child(1) {
-						padding-right: 5px;
-						width: 100px;
-						font-style: italic;
-						font-weight: 800;
-					}
-				}
-				h3 {
-					font-family: 'Russo One';
-					color: #000000;
-					font-size: 15px;
-					text-transform: uppercase;
-				}
-				thead {
-					font-style: normal;
-					font-size: 18px;
-					background-color: #bdc8cc;
-					text-shadow: none;
-					text-align: left;
-					line-height: 20px;
-					border-top: 5px solid #0d99cc;
-					border-bottom: 0;
-				}
-			}
-		}
-		.icon {
-			&:before {
-				display: inline-block;
-				font-style: normal;
-				font-variant: normal;
-				text-rendering: auto;
-				-webkit-font-smoothing: antialiased;
-			}
-		}
-		a.entity-link {
-			background: #DDD;
-			padding: 1px 4px;
-			border: 1px solid #4b4a44;
-			border-radius: 2px;
-			white-space: nowrap;
-			word-break: break-all;
-			i {
-				&::before {
-					content: url("ui/jedi-order.svg") !important;
-					display: inline-block;
-					position: relative;
-					top: 2px;
-					height: 15px;
-					width: 15px;
-				}
-			}
-		}
-		#species-description {
-			h2 {
-				font-family: 'Russo One';
-				font-size: 20px;
-				font-weight: 400;
-				letter-spacing: 0.5px;
-				border-bottom: 2px solid rgb(13, 153, 204);
-				color: #c40f0f;
-			}
-		}
-		#Traits {
-			h2 {
-				font-family: 'Russo One';
-				font-size: 20px;
-				font-weight: 400;
-				text-transform: uppercase;
-				letter-spacing: 0.5px;
-				border-bottom: 2px solid rgb(13, 153, 204);
-				color: #c40f0f;
-			}
-		}
-	  
+      font-family: "Russo One";
+      font-size: 18px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid rgb(13, 153, 204);
+      color: #c40f0f;
+    }
+
+    h3 {
+      font-family: "Russo One";
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: none;
+      color: #c40f0f;
+    }
+    .smalltable {
+      table {
+        border-top: none;
+        border-bottom: none;
+        width: 200px;
+      }
+      td {
+        &:nth-child(odd) {
+          width: 50px;
+          margin: 0.5em 0.5em;
+          text-align: center;
+        }
+        &:nth-child(even) {
+          width: 150px;
+          margin: 0.5em 0.5em;
+          padding: 0 10px 0 10px;
+          text-align: left;
+        }
+      }
+      thead {
+        border-bottom: 0;
+      }
+      th {
+        color: #000000;
+        text-shadow: none;
+        border-bottom: 0;
+        background-color: #bdc8cc;
+        text-transform: none;
+        font-weight: bold;
+        font-family: "Open Sans";
+        &:nth-child(odd) {
+          width: 50px;
+          margin: 0.5em 0.5em;
+          text-align: center;
+        }
+        &:nth-child(even) {
+          width: 150px;
+          margin: 0.5em 0.5em;
+          padding: 0 10px 0 10px;
+          text-align: left;
+        }
+      }
+    }
+    .medtable {
+      table {
+        width: 500px;
+        border: 0;
+        margin: 0.5em 0.5em;
+      }
+      td {
+        &:nth-child(odd) {
+          width: 50px;
+          margin: 0.5em 0.5em;
+          text-align: center;
+        }
+        &:nth-child(even) {
+          width: 450px;
+          margin: 0.5em 0.5em;
+          padding: 0 10px 0 0;
+          text-align: left;
+        }
+      }
+      thead {
+        border-bottom: 0;
+      }
+      th {
+        color: #000000;
+        text-shadow: none;
+        border-bottom: 0;
+        background-color: #bdc8cc;
+        text-transform: none;
+        font-weight: bold;
+        font-family: "Open Sans";
+        &:nth-child(odd) {
+          text-align: center;
+        }
+        &:nth-child(even) {
+          text-align: left;
+        }
+      }
+    }
+    .classtable {
+      blockquote {
+        border-left: 0;
+        border-right: 0;
+        background-color: #bdc8cc;
+        width: 600px;
+        h3 {
+          color: #000000;
+          text-transform: uppercase;
+          font-family: "Russo One";
+          font-size: 16px;
+        }
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(0, 0, 0, 0.05);
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+        border-bottom: 0;
+        margin: 0.5em 0;
+        font-style: normal;
+        text-shadow: none;
+      }
+      thead {
+        color: #000000;
+        text-shadow: none;
+        border-bottom: 0;
+        background-color: #bdc8cc;
+        text-transform: none;
+        font-style: normal;
+        font-family: "Open Sans";
+      }
+      th {
+        color: #000000;
+        text-shadow: none;
+        border-bottom: 0;
+        background-color: #bdc8cc;
+        text-transform: none;
+        font-style: normal;
+        font-weight: bold;
+        font-family: "Open Sans";
+      }
+      tbody {
+        text-align: center;
+      }
+    }
+    .speciestable {
+      blockquote {
+        width: 620px;
+        padding: 15px 10px;
+        margin: 15px;
+        line-height: 20px;
+        background-color: #bdc8cc;
+        border-top: 2px solid #0d99cc !important;
+        border-bottom: 2px solid #0d99cc !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        -webkit-box-shadow: 0 0 1.5em rgba(13, 153, 204, 0.5) !important;
+        box-shadow: 0 0 1.5em rgba(13, 153, 204, 0.5) !important;
+        overflow-x: auto;
+        h3 {
+          color: #000000;
+          font-size: 22px;
+          border-bottom: none;
+        }
+      }
+      table {
+        background-color: #bdc8cc;
+        border-collapse: collapse;
+        width: 100%;
+        line-height: 18px;
+        margin-bottom: 15px;
+        border: 0;
+        border-bottom: none;
+        overflow-x: auto;
+        tbody {
+          tr {
+            &:nth-child(odd) {
+              background-color: #c9d6db;
+            }
+            &:nth-child(even) {
+              background-color: #bdc8cc;
+            }
+          }
+        }
+        td {
+          &:nth-child(1) {
+            padding-right: 5px;
+            width: 100px;
+            font-style: italic;
+            font-weight: 800;
+          }
+        }
+        h3 {
+          font-family: "Russo One";
+          color: #000000;
+          font-size: 15px;
+          text-transform: uppercase;
+        }
+        thead {
+          font-style: normal;
+          font-size: 18px;
+          background-color: #bdc8cc;
+          text-shadow: none;
+          text-align: left;
+          line-height: 20px;
+          border-top: 5px solid #0d99cc;
+          border-bottom: 0;
+        }
+      }
+    }
+    .icon {
+      &:before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+    a.entity-link {
+      background: #ddd;
+      padding: 1px 4px;
+      border: 1px solid #4b4a44;
+      border-radius: 2px;
+      white-space: nowrap;
+      word-break: break-all;
+      i {
+        &::before {
+          content: url("ui/jedi-order.svg") !important;
+          display: inline-block;
+          position: relative;
+          top: 2px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+    }
+    #species-description {
+      h2 {
+        font-family: "Russo One";
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgb(13, 153, 204);
+        color: #c40f0f;
+      }
+    }
+    #Traits {
+      h2 {
+        font-family: "Russo One";
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgb(13, 153, 204);
+        color: #c40f0f;
+      }
+    }
+
     .tab {
       padding: 0 5px;
       overflow: hidden auto;
@@ -383,6 +382,10 @@
         margin: 0.5em 0 0 0;
         font-size: 1em;
       }
+
+      [name="system.price.denomination"] {
+        border: none;
+      }
     }
   }
 
@@ -391,7 +394,6 @@
   /* ----------------------------------------- */
 
   .details {
-
     // Item Sheet form fields
     input[type="text"],
     input[type="number"],
@@ -499,7 +501,7 @@
     text-align: right;
     color: @colorTan;
   }
- 
+
   .recharge.form-group {
     span {
       text-align: right;
@@ -519,7 +521,7 @@
       }
     }
   }
- 
+
   /* ----------------------------------------- */
   /*  Item Actions                             */
   /* ----------------------------------------- */
@@ -534,69 +536,69 @@
   }
 
   /* ----------------------------------------- */
-  /*  Item Advancement                         */
-  /* ----------------------------------------- */
-
-  .advancement {
-    .items-list {
-      height: 100%;
-
-      .main-controls {
-        .configuration-mode-control {
-          flex: 1 0;
-          margin-inline-start: 0.5em;
-          a { text-align: start; }
-        }
-        .item-add {
-          padding-block-start: 0.2em;
-        }
-      }
-      .items-header {
-        .item-checkmark {
-          flex: 0 0 44px;
-          color: rgb(17 145 17);
-          text-shadow: white 0 0 1px;
-        }
-        .item-warning {
-          flex: 0 0 44px;
-          color: rgb(250 255 35);
-          text-shadow: black 0 0 1px;
-        }
-      }
-      .item-name {
-        flex: 1 0 10em;
-      }
-      .item-controls {
-        border-left: 1px solid @colorFaint;
-        flex: 0 0 44px;
-      }
-      .item-summary {
-        flex: 0 0 100%;
-        font-size: 12px;
-        line-height: 16px;
-        padding: 0 .5em .5em 34px;
-        margin-top: -4px;
-        color: @colorDark;
-
-        .item-list {
-          .item-name {
-            display: flex;
-          }
-        }
-      }
-
-      .tag {
-        font-size: 0.7rem;
-        padding: 0.1em 0.5em;
-      }
-    }
-  }
-
-  /* ----------------------------------------- */
   /*  Loot Sheet (No Tabs)                     */
   /* ----------------------------------------- */
 
   .loot-header {
     margin-bottom: 10px;
+  }
+}
+
+/* ----------------------------------------- */
+/*  Item Advancement                         */
+/* ----------------------------------------- */
+
+.sw5e .advancement .items-list {
+  height: 100%;
+
+  .main-controls {
+    .configuration-mode-control {
+      flex: 1 0;
+      margin-inline-start: 0.5em;
+      a {
+        text-align: start;
+      }
+    }
+    .item-add {
+      padding-block-start: 0.2em;
+    }
+  }
+  .items-header {
+    .item-checkmark {
+      flex: 0 0 44px;
+      color: rgb(17 145 17);
+      text-shadow: white 0 0 1px;
+    }
+    .item-warning {
+      flex: 0 0 44px;
+      color: rgb(250 255 35);
+      text-shadow: black 0 0 1px;
+    }
+  }
+  .item-name {
+    flex: 1 0 10em;
+  }
+  .item-controls {
+    border-left: 1px solid @colorFaint;
+    flex: 0 0 44px;
+  }
+  .item-summary {
+    flex: 0 0 100%;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 0 0.5em 0.5em 34px;
+    margin-top: -4px;
+    color: @colorDark;
+
+    .item-list {
+      .item-name {
+        display: flex;
+      }
+    }
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.1em 0.5em;
   }
 }

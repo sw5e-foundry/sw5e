@@ -24,7 +24,6 @@
         color: @bodyFontColor;
       }
     }
-
   }
 }
 .notification-pip {
@@ -33,7 +32,6 @@
 
 .sw5e.chat-card,
 .midi-qol-item-card {
-
   .card-header {
     h3 {
       color: @bodyFontColor;
@@ -43,12 +41,10 @@
     }
   }
 
-
   .card-buttons {
     span {
       border: 1px solid @cardButtonBorder;
     }
-
   }
 
   .card-footer {
@@ -63,7 +59,6 @@
   }
 }
 .dice-roll {
-
   .dice-formula {
     background: @diceFormulaBackground;
     color: @diceFormualColor;
@@ -71,63 +66,61 @@
     border-radius: 4px;
   }
 
-.dice-total {
-  background: @diceTotalBackground;
-  border: 1px solid @diceTotalBorder;
-  box-shadow: 0 0 12px rgba(@diceTotalShadow,.8);
-  &.success {
-    color: @diceSuccessColor;
+  .dice-total {
+    background: @diceTotalBackground;
+    border: 1px solid @diceTotalBorder;
+    box-shadow: 0 0 12px rgba(@diceTotalShadow, 0.8);
+    &.success {
+      color: @diceSuccessColor;
+    }
+    &.failure {
+      color: @diceFailureColor;
+    }
+    &.critical {
+      color: @diceCriticalColor;
+      background: @diceCriticalBackground;
+      box-shadow: 0 0 12px rgba(@diceCriticalColor, 0.5);
+    }
+    &.fumble {
+      color: @diceFumbleColor;
+      background: @diceFumbleBackground;
+      box-shadow: 0 0 12px rgba(@diceFumbleColor, 0.5);
+    }
   }
-  &.failure {
-    color: @diceFailureColor;
-  }
-  &.critical {
-    color: @diceCriticalColor;
-    background: @diceCriticalBackground;
-    box-shadow: 0 0 12px rgba(@diceCriticalColor,.5);
-  }
-  &.fumble {
-    color: @diceFumbleColor;
-    background: @diceFumbleBackground;
-    box-shadow: 0 0 12px rgba(@diceFumbleColor,.5);
-  }
-}
 }
 #chat-controls {
   .roll-type-select {
     background: #a9a9a9;
-	color: #1C1C1C;
+    color: #1c1c1c;
   }
   label {
     color: @bodyFontColor;
   }
- 
 }
-#chat-form  textarea {
+#chat-form textarea {
   background: #a9a9a9;
-  color: #1C1C1C;
-
+  color: #1c1c1c;
 }
 
 /*-----------
 ** Combat Tab
 -----------*/
 #combat {
-#combat-round {
-  color: @combatRoundColor;
-  border-bottom: 2px solid @combatRoundColor;
-  .encounters {
+  #combat-round {
+    color: @combatRoundColor;
+    border-bottom: 2px solid @combatRoundColor;
+    .encounters {
       h4 {
-      color: @combatRoundColor;
-    }
-    a {
-      color: @linkSecondaryColor;
-      &:hover {
-        color: @linkColor;
+        color: @combatRoundColor;
+      }
+      a {
+        color: @linkSecondaryColor;
+        &:hover {
+          color: @linkColor;
+        }
       }
     }
   }
-}
   #combat-tracker {
     //padding-top: 4px;
     li.combatant {
@@ -136,7 +129,7 @@
         background: rgba(@altRowBackground, 0.5);
       }
       h4 {
-        color: @bodyFontColor
+        color: @bodyFontColor;
       }
       .roll {
         color: @linkSecondaryColor;
@@ -156,7 +149,8 @@
       }
       &.active {
         color: @combatActiveCombatantColor;
-        .initiative, h4 {
+        .initiative,
+        h4 {
           color: @combatActiveCombatantColor;
         }
       }
@@ -174,61 +168,64 @@
 ** Folders
 */
 .sidebar-tab {
-.directory-header {
-  .header-search {
-    i.fa-search {
-      color: @folderSearchIconColor;
-    }
-    input {
-      background: @inputBackgroundColor;
-    }
-  }
-}
-.subdirectory {
-  background: @folderSubdirectoryBackground;
-  .folder {
-    border-left: 2px solid rgba(@folderSubdirectoryBorder, 0.4);
-  }
-}
-.directory-list {
-  li + li {
-    border-top: 1px solid @directoryListItemBorder;
-  }
-  .folder {
-    & > .folder-header {
-      background: @folderHeaderBackground;
-      h3 {
-        background: @folderHeaderBackground;
-        color: @folderHeaderColor;
-        & > i {
-          color: @folderIconColor;
-        }
+  .directory-header {
+    .header-search {
+      i.fa-search {
+        color: @folderSearchIconColor;
       }
-      a {
-        color: @linkSecondaryColor;
-        &:hover {
-          color: @linkColor;
-        }
+      input {
+        background: @inputBackgroundColor;
       }
     }
-    &.collapsed > .folder-header {
-      background: @folderHeaderBackground;
+  }
+  .subdirectory {
+    background: @folderSubdirectoryBackground;
+    .folder {
+      border-left: 2px solid rgba(@folderSubdirectoryBorder, 0.4);
     }
-    & + .entity {
+  }
+  .directory-list {
+    li + li {
       border-top: 1px solid @directoryListItemBorder;
     }
-  }
-  
-  .actor, .item, .journal, .table {
-    background: @entityBackgroundColor;
-    .entity-name {
-      color: @entityNameColor;
+    .folder {
+      & > .folder-header {
+        background: @folderHeaderBackground;
+        h3 {
+          background: @folderHeaderBackground;
+          color: @folderHeaderColor;
+          & > i {
+            color: @folderIconColor;
+          }
+        }
+        a {
+          color: @linkSecondaryColor;
+          &:hover {
+            color: @linkColor;
+          }
+        }
+      }
+      &.collapsed > .folder-header {
+        background: @folderHeaderBackground;
+      }
+      & + .entity {
+        border-top: 1px solid @directoryListItemBorder;
+      }
     }
-    &:nth-child(even) {
-      background: rgba(@altRowBackground, 0.3);
+
+    .actor,
+    .item,
+    .journal,
+    .table {
+      background: @entityBackgroundColor;
+      .entity-name {
+        color: @entityNameColor;
+      }
+      &:nth-child(even) {
+        background: rgba(@altRowBackground, 0.3);
+      }
     }
   }
-}
 }
 #scenes {
   .scene {
@@ -254,14 +251,12 @@
       }
       li.sound {
         color: @playlistSoundColor;
-        
       }
       a.sound-control {
         color: @linkColor;
       }
     }
   }
-  
 }
 #compendium {
   .compendium-entity {
@@ -292,7 +287,10 @@
     color: @headingColor;
     border-bottom: 2px solid @headerBorderColor;
   }
-  #game-details, #settings-game, #settings-documentation, #settings-access {
+  #game-details,
+  #settings-game,
+  #settings-documentation,
+  #settings-access {
     color: @bodyFontColor;
   }
 }

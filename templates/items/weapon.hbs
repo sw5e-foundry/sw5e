@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -19,7 +19,7 @@
                 </li>
                 <li>
                     <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
+                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
                     </select>
                 </li>
                 <li>
@@ -106,13 +106,13 @@
             <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
                 {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
-                    <label class="checkbox" title="{{localize property.desc}}">
+                    <label class="checkbox" data-tooltip="property.desc">
                         <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                     </label>
                 {{/if}} {{/each}}
 
                 {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
-                    <label class="number" title="{{localize property.desc}}">
+                    <label class="number" data-tooltip="property.desc">
                         {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                     </label>
                 {{/if}} {{/each}}
@@ -138,7 +138,7 @@
             {{#if hasReload}}
                 <div class="form-group uses-per">
                     <label>
-                        <a class="weapon-configure-ammo" title="{{ localize 'SW5E.WeaponAmmoConfigureTitle' }}"><i class="fas fa-tasks"></i></a>
+                        <a class="weapon-configure-ammo" data-tooltip="SW5E.WeaponAmmoConfigureTitle"><i class="fas fa-tasks"></i></a>
                         {{ localize reloadLabel }}
                     </label>
                     <div class="form-fields">
@@ -156,7 +156,7 @@
                         <span class="sep">/</span>
                         <span>{{ system.ammo.max }}</span>
                         <a class="weapon-reload"{{#if reloadFull}} disabled{{/if}}>{{ localize reloadActLabel }}</a>
-                        <input type="text" name="system.ammo.use" value="{{system.ammo.use}}" data-dtype="Number" placeholder="{{system.ammo.baseUse}}" title="{{ localize 'SW5E.WeaponAmmoConsumeAmmountHint' }}"/>
+                        <input type="text" name="system.ammo.use" value="{{system.ammo.use}}" data-dtype="Number" placeholder="{{system.ammo.baseUse}}" data-tooltip="SW5E.WeaponAmmoConsumeAmmountHint"/>
                     </div>
                 </div>
             {{/if}}

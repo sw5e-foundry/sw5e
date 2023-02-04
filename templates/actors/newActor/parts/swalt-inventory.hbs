@@ -1,41 +1,41 @@
 <section class="panel">
     {{#if (or isCharacter isStarship) }}
-    <div class="currency-encumbrance">
+        <div class="currency-encumbrance">
 
-        <label class="currency">
-            {{localize "SW5E.Currency"}}
-            {{#each system.currency as |v k|}}
-            <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
-            <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number" />
-            {{/each}}
-        </label>
-        {{#if isCharacter}}
-        {{#with system.attributes.encumbrance}}
-        <div class="encumbrance-wrapper" title="Encumbrance">
-            <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
-                <span class="encumbrance-bar" style="width:{{pct}}%"></span>
+            <label class="currency">
+                {{localize "SW5E.Currency"}}
+                {{#each system.currency as |v k|}}
+                    <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
+                    <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number">
+                {{/each}}
+            </label>
+            {{#if isCharacter}} {{#with encumbrance}}
+                <div class="encumbrance-wrapper" title="Encumbrance">
+                    <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
+                        <span class="encumbrance-bar" style="width:{{pct}}%"></span>
 
-                <i class="encumbrance-breakpoint encumbrance-33 arrow-up"></i>
-                <i class="encumbrance-breakpoint encumbrance-33 arrow-down"></i>
-                <i class="encumbrance-breakpoint encumbrance-66 arrow-up"></i>
-                <i class="encumbrance-breakpoint encumbrance-66 arrow-down"></i>
-            </div>
-            <span class="encumbrance-label">{{value}} / {{max}}</span>
+                        <i class="encumbrance-breakpoint encumbrance-33 arrow-up"></i>
+                        <i class="encumbrance-breakpoint encumbrance-33 arrow-down"></i>
+                        <i class="encumbrance-breakpoint encumbrance-66 arrow-up"></i>
+                        <i class="encumbrance-breakpoint encumbrance-66 arrow-down"></i>
+                    </div>
+                    <span class="encumbrance-label">{{value}} / {{max}}</span>
+                </div>
+            {{/with}} {{/if}}
         </div>
-        {{/with}}
-        {{/if}}
-    </div>
     {{/if}}
 
-    <ul class="filter-list" data-filter="inventory">
-        <li class="filter-title">{{localize "SW5E.Filter"}}</li>
-        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
-        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
-        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
-        {{#if isCharacter }}
-        <li class="filter-item" data-filter="equipped">{{localize "SW5E.Equipped"}}</li>
-        {{/if}}
-    </ul>
+    {{#if inventoryFilters}}
+        <ul class="filter-list" data-filter="inventory">
+            <li class="filter-title">{{localize "SW5E.Filter"}}</li>
+            <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+            <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+            <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+            {{#if isCharacter }}
+                <li class="filter-item" data-filter="equipped">{{localize "SW5E.Equipped"}}</li>
+            {{/if}}
+        </ul>
+    {{/if}}
 
     <div class="group-list-header group-grid-inventory">
         <div>&nbsp;</div>
@@ -54,7 +54,7 @@
                 <h3 class="item-name">{{localize section.label}}</h3>
 
                 {{#if ../owner}}
-                    <a class="item-control item-create" data-tooltip="SW5E.ItemCreate"
+                    <a class="item-control item-create" data-action="itemCreate" data-tooltip="SW5E.ItemCreate"
                         {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                         <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                     </a>
@@ -62,78 +62,85 @@
             </div>
             <ol class="group-items item-list">
                 {{#each section.items as |item iid|}}
-                <li class="item group-grid-inventory"
-                    {{#if section.editableName}}data-item-index="{{iid}}"{{else}}data-item-id="{{item._id}}"{{/if}}>
-                    <div class="item-name rollable">
-                        <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url({{item.img}})"></div>
-                        <h4>
-                            {{item.name~}}
-                            {{~#if item.isStack}} ({{item.system.quantity}}){{/if}}
-                        </h4>
-                        {{#if item.attunement}}
-                            <div class="item-detail attunement">
-                                <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" data-tooltip="item.attunement.title"></i>
-                            </div>
-                        {{/if}}
-                        {{#if item.hasReload}}
-                            <div class="form-group uses-per">
-                                <div class="form-fields">
-                                    <span> </span>
-                                    {{#if item.reloadUsesAmmo}}
-                                        <select class="weapon-select-ammo" name="item.system.ammo.target">
-                                            {{#select item.system.ammo.target}}
-                                                <option value=""></option>
-                                                {{#each item.reloadAmmo as |name key|}}
-                                                    <option value="{{key}}">{{name}}</option>
-                                                {{/each}}
-                                            {{/select}}
-                                        </select>
-                                    {{/if}}
-                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
-                                    <span class="sep">/</span>
-                                    <span>{{ system.ammo.max }}</span>
-                                    <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
+                {{#sw5e-itemContext item as |ctx|}}
+                    <li class="item flexrow {{section.css}} {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}"
+                        {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}>
+                        <div class="item-name flexrow {{@root.rollableClass}}">
+                            <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url({{item.img}})"></div>
+                            <h4>
+                                {{item.name~}}
+                                {{~#if ctx.isStack}} ({{item.system.quantity}}){{/if}}
+                            </h4>
+                            {{#if ctx.attunement}}
+                                <div class="item-detail attunement">
+                                    <i class="fas {{item.attunement.icon}} {{item.attunement.cls}}" data-tooltip="item.attunement.title"></i>
                                 </div>
+                            {{/if}}
+                            {{#if ctx.hasReload}}
+                                <div class="form-group uses-per">
+                                    <div class="form-fields">
+                                        <span> </span>
+                                        {{#if ctx.reloadUsesAmmo}}
+                                            <select class="weapon-select-ammo" name="item.system.ammo.target">
+                                                {{#select item.system.ammo.target}}
+                                                    <option value=""></option>
+                                                    {{#each ctx.reloadAmmo as |name key|}}
+                                                        <option value="{{key}}">{{name}}</option>
+                                                    {{/each}}
+                                                {{/select}}
+                                            </select>
+                                        {{/if}}
+                                        <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
+                                        <span class="sep">/</span>
+                                        <span>{{ system.ammo.max }}</span>
+                                        <a class="weapon-reload"{{#if ctx.reloadFull}} disabled{{/if}}>{{ localize ctx.reloadActLabel }}</a>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        </div>
+
+                        {{#if @root.isCharacter}}
+                            <div class="item-detail item-weight">
+                                {{#if ctx.totalWeight}}
+                                    {{ ctx.totalWeight }} {{ @root.weightUnit }}
+                                {{/if}}
                             </div>
                         {{/if}}
-                    </div>
 
+                        <div class="item-detail item-uses">
+                            {{#if ctx.hasUses }}
+                            <input type="text" value="{{item.system.uses.value}}" placeholder="0" />
+                            /<span style="padding-left: 8px;">{{item.system.uses.max}}</span>
+                            {{/if}}
+                        </div>
 
-                    {{#if ../../isCharacter}}
-                    <div class="item-detail item-weight">
-                        {{#if item.totalWeight}}
-                            {{ item.totalWeight }} {{ @root.weightUnit }}
+                        <div class="item-detail item-action">
+                            {{#if item.system.activation.type }}
+                                {{item.labels.activation}}
+                            {{/if}}
+                        </div>
+
+                        {{#if @root.owner}}
+                            {{#if ctx.canToggle}}
+                                <a class="item-control item-toggle {{ctx.toggleClass}}" data-action="itemToggle" data-tooltip='{{ctx.toggleTitle}}'>
+                                    <i class="fas fa-shield-alt"></i>
+                                </a>
+                            {{/if}}
+                            {{#unless section.editableName}}
+                                <a class="item-control item-edit" data-action="itemEdit" data-tooltip="SW5E.ItemEdit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            {{/unless}}
+                            <a class="item-control item-delete" data-action="itemDelete" data-tooltip="SW5E.ItemDelete">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         {{/if}}
-                    </div>
-                    {{/if}}
 
-                    <div class="item-detail item-uses">
-                        {{#if item.hasUses }}
-                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" />
-                        /<span style="padding-left: 8px;">{{item.system.uses.max}}</span>
+                        {{#if ctx.isExpanded}}
+                            {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
                         {{/if}}
-                    </div>
-
-                    <div class="item-detail item-action">
-                        {{#if item.system.activation.type }}
-                        {{item.labels.activation}}
-                        {{/if}}
-                    </div>
-
-                    {{#if ../../owner}}
-                    <div class="item-detail item-controls">
-                        {{#if item.toggleTitle}}
-                        <a class="item-control item-toggle {{item.toggleClass}}" title='{{item.toggleTitle}}'>
-                            <i class="fas fa-shield-alt"></i>
-                        </a>
-                        {{/if}}
-                        <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i
-                                class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i
-                                class="fas fa-trash"></i></a>
-                    </div>
-                    {{/if}}
-                </li>
+                    </li>
+                {{/sw5e-itemContext}}
                 {{/each}}
             </ol>
         </li>

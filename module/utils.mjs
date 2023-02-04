@@ -147,7 +147,7 @@ export async function preloadHandlebarsTemplates() {
 
     // Advancement Partials
     "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
-    "systems/sw5e/templates/advancement/advancement-power-config.hbs"
+    "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs"
   ];
 
   const paths = {};

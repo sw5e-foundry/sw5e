@@ -150,7 +150,28 @@ export default class AttributesFields {
         blank: true,
         initial: "int",
         label: "SW5E.PowerAbility"
-      })
+      }),
+      force: new foundry.data.fields.SchemaField(
+        { points: makePointsResource({label: "SW5E.ForcePoint", hasTemp: true}) },
+        { label: "SW5E.ForceCasting" }
+      ),
+      tech: new foundry.data.fields.SchemaField(
+        { points: makePointsResource({label: "SW5E.TechPoint", hasTemp: true}) },
+        { label: "SW5E.TechCasting" }
+      ),
+      super: new foundry.data.fields.SchemaField(
+        {
+          die: new foundry.data.fields.NumberField({
+            nullable: true,
+            integer: true,
+            min: 0,
+            initial: null,
+            label: "SW5E.SuperiorityDieOverride"
+          }),
+          dice: makePointsResource({label: "SW5E.SuperiorityDice"})
+        },
+        { label: "SW5E.Superiority" }
+      )
     };
   }
 
@@ -167,4 +188,45 @@ export default class AttributesFields {
     if (init.bonus) init.bonus += init.value < 0 ? ` - ${init.value * -1}` : ` + ${init.value}`;
     else init.bonus = `${init.value}`;
   }
+}
+
+/**
+ * Produce the schema field for a points resource.
+ * @param {object} [schemaOptions]    Options passed to the outer schema.
+ * @returns {PowerCastingData}
+ */
+function makePointsResource( schemaOptions = {} ) {
+  const baseLabel = schemaOptions.label;
+  const schemaObj = {
+    value: new foundry.data.fields.NumberField({
+      nullable: false,
+      integer: true,
+      min: 0,
+      initial: 0,
+      label: `${baseLabel}Current`
+    }),
+    max: new foundry.data.fields.NumberField({
+      nullable: true,
+      integer: true,
+      min: 0,
+      initial: null,
+      label: `${baseLabel}Override`
+    }),
+    bonuses: new foundry.data.fields.SchemaField({
+      level: new FormulaField({ deterministic: true, label: `${baseLabel}BonusLevel` }),
+      overall: new FormulaField({ deterministic: true, label: `${baseLabel}BonusOverall` })
+    })
+  }
+  if ( schemaOptions.hasTemp ) schemaObj.temp = new foundry.data.fields.NumberField({
+    integer: true,
+    initial: 0,
+    min: 0,
+    label: `${baseLabel}Temp`
+  });
+  if ( schemaOptions.hasTempMax ) schemaObj.tempmax = new foundry.data.fields.NumberField({
+    integer: true,
+    initial: 0,
+    label: `${baseLabel}TempMax`
+  });
+  return new foundry.data.fields.SchemaField(schemaObj, schemaOptions);
 }

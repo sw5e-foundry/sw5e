@@ -49,7 +49,7 @@ export default class AbilityUseDialog extends Dialog {
             consumePowerSlot: false,
             consumeSuperiorityDie: item.type === "maneuver",
             consumeRecharge: recharges,
-            consumeResource: resource.target && (!item.hasAttack || (resource.type !== "ammo")),,
+            consumeResource: resource.target && (!item.hasAttack || (resource.type !== "ammo")),
             consumeUses: uses.per && uses.max > 0,
             canUse: recharges ? recharge.charged : sufficientUses,
             createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,

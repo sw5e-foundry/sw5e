@@ -35,7 +35,7 @@ export default class ItemSheet5e extends ItemSheet {
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}],
             dragDrop: [
                 {dragSelector: "[data-effect-id]", dropSelector: ".effects-list"},
-                {dragSelector: ".advancement-item", dropSelector: ".advancement"}
+                {dragSelector: ".advancement-item", dropSelector: ".advancement"},
                 {dragSelector: ".item-list .item", dropSelector: null}
             ]
         });

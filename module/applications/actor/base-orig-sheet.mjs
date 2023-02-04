@@ -1,22 +1,23 @@
 import ActiveEffect5e from "../../documents/active-effect.mjs";
-import Actor5e from "../../documents/actor/actor.mjs";
+import * as Trait from "../../documents/actor/trait.mjs";
 import Item5e from "../../documents/item.mjs";
 
 import ActorAbilityConfig from "./ability-config.mjs";
 import ActorArmorConfig from "./armor-config.mjs";
 import ActorHitDiceConfig from "./hit-dice-config.mjs";
+import ActorHitPointsConfig from "./hit-points-config.mjs";
+import ActorInitiativeConfig from "./initiative-config.mjs";
 import ActorMovementConfig from "./movement-config.mjs";
 import ActorSensesConfig from "./senses-config.mjs";
 import ActorSheetFlags from "./sheet-flags.mjs";
 import ActorSkillConfig from "./skill-config.mjs";
 import ActorTypeConfig from "./type-config.mjs";
 
-import AdvancementConfirmationDialog from "../../advancement/advancement-confirmation-dialog.mjs";
-import AdvancementManager from "../../advancement/advancement-manager.mjs";
+import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../advancement/advancement-manager.mjs";
 
-import ProficiencySelector from "../proficiency-selector.mjs";
 import PropertyAttribution from "../property-attribution.mjs";
-import TraitSelector from "../trait-selector.mjs";
+import TraitSelector from "./trait-selector.mjs";
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
@@ -34,6 +35,15 @@ export default class ActorSheetOrig5e extends ActorSheet {
     features: new Set(),
     effects: new Set()
   };
+
+  /* -------------------------------------------- */
+
+  /**
+   * IDs for items on the sheet that have been expanded.
+   * @type {Set<string>}
+   * @protected
+   */
+  _expanded = new Set();
 
   /* -------------------------------------------- */
 
@@ -82,18 +92,19 @@ export default class ActorSheetOrig5e extends ActorSheet {
   async getData(options) {
     // The Actor's data
     const source = this.actor.toObject();
-    const actorData = this.actor.toObject(false);
 
     // Basic data
     const context = {
-      actor: actorData,
+      actor: this.actor,
       source: source.system,
-      system: actorData.system,
-      items: actorData.items,
-      labels: this._getLabels(actorData.system),
-      movement: this._getMovementSpeed(actorData.system),
-      senses: this._getSenses(actorData.system),
-      effects: ActiveEffect5e.prepareActiveEffectCategories(this.actor.effects),
+      system: this.actor.system,
+      items: Array.from(this.actor.items),
+      itemContext: {},
+      abilities: foundry.utils.deepClone(this.actor.system.abilities),
+      skills: foundry.utils.deepClone(this.actor.system.skills ?? {}),
+      labels: this._getLabels(),
+      movement: this._getMovementSpeed(this.actor.system),
+      senses: this._getSenses(this.actor.system),
       warnings: this.actor._preparationWarnings,
       filters: this._filters,
       owner: this.actor.isOwner,
@@ -106,7 +117,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
       isStarship: this.actor.type === "starship",
       isVehicle: this.actor.type === "vehicle",
       config: CONFIG.SW5E,
-      rollData: this.actor.getRollData.bind(this.actor)
+      rollableClass: this.isEditable ? "rollable" : "",
+      rollData: this.actor.getRollData()
     };
 
     /** @deprecated */
@@ -120,39 +132,40 @@ export default class ActorSheetOrig5e extends ActorSheet {
     });
 
     // Sort Owned Items
-    for (let i of context.items) {
-      const item = this.actor.items.get(i._id);
-      i.labels = item.labels;
-    }
     context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
     // Temporary HP
-    const hp = context.system.attributes.hp;
-    if (hp.temp === 0) delete hp.temp;
-    if (hp.tempmax === 0) delete hp.tempmax;
+    const hp = {...context.system.attributes.hp};
+    if ( hp.temp === 0 ) delete hp.temp;
+    if ( hp.tempmax === 0 ) delete hp.tempmax;
+    context.hp = hp;
 
     // Ability Scores
-    for (const [a, abl] of Object.entries(context.system.abilities)) {
+    for ( const [a, abl] of Object.entries(context.abilities) ) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient ?? 0].label;
       abl.label = CONFIG.SW5E.abilities[a];
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
 
     // Skills
-    for (const [s, skl] of Object.entries(context.system.skills ?? {})) {
-      skl.ability = CONFIG.SW5E.abilityAbbreviations[skl.ability];
+    for ( const [s, skl] of Object.entries(context.skills) ) {
+      skl.abbreviation = CONFIG.SW5E.abilityAbbreviations[skl.ability];
       skl.icon = this._getProficiencyIcon(skl.value);
-      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value].label;
+      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value ?? 0].label;
       skl.label = CONFIG.SW5E.skills[s]?.label;
       skl.baseValue = source.system.skills[s]?.value ?? 0;
     }
 
     // Update traits
-    this._prepareTraits(context.system.traits);
+    context.traits = this._prepareTraits(context.system);
 
     // Prepare owned items
     this._prepareItems(context);
+    context.expandedData = {};
+    for ( const id of this._expanded ) {
+      context.expandedData[id] = await this.actor.items.get(id).getChatData({secrets: this.actor.isOwner});
+    }
 
     // Biography HTML enrichment
     context.biographyHTML = await TextEditor.enrichHTML(context.system.details.biography.value, {
@@ -169,12 +182,11 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
   /**
    * Prepare labels object for the context.
-   * @param {object} systemData  System data for the Actor being prepared.
    * @returns {object}           Object containing various labels.
    * @protected
    */
-  _getLabels(systemData) {
-    const labels = this.actor.labels ?? {};
+  _getLabels() {
+    const labels = {...this.actor.labels};
 
     // Currency Labels
     labels.currencies = Object.entries(CONFIG.SW5E.currencies).reduce((obj, [k, c]) => {
@@ -185,8 +197,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
     // Proficiency
     labels.proficiency =
       game.settings.get("sw5e", "proficiencyModifier") === "dice"
-        ? `d${systemData.attributes.prof * 2}`
-        : `+${systemData.attributes.prof}`;
+        ? `d${this.actor.system.attributes.prof * 2}`
+        : `+${this.actor.system.attributes.prof}`;
 
     return labels;
   }
@@ -198,7 +210,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
    * @param {object} systemData               System data for the Actor being prepared.
    * @param {boolean} [largestPrimary=false]  Show the largest movement speed as "primary", otherwise show "walk".
    * @returns {{primary: string, special: string}}
-   * @private
+   * @protected
    */
   _getMovementSpeed(systemData, largestPrimary = false) {
     const movement = systemData.attributes.movement ?? {};
@@ -220,7 +232,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     // Filter and sort speeds on their values
-    speeds = speeds.filter(s => !!s[0]).sort((a, b) => b[0] - a[0]);
+    speeds = speeds.filter(s => s[0]).sort((a, b) => b[0] - a[0]);
 
     // Case 1: Largest as primary
     if (largestPrimary) {
@@ -378,39 +390,54 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
   /**
    * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies.
-   * @param {object} traits   The raw traits data object from the actor data. *Will be mutated.*
-   * @private
+   * @param {object} systemData  System data for the Actor being prepared.
+   * @returns {object}           Prepared trait data.
+   * @protected
    */
-  _prepareTraits(traits) {
-    const map = {
-      dr: CONFIG.SW5E.damageResistanceTypes,
-      di: CONFIG.SW5E.damageResistanceTypes,
-      dv: CONFIG.SW5E.damageResistanceTypes,
-      ci: CONFIG.SW5E.conditionTypes,
-      languages: CONFIG.SW5E.languages
-    };
-    for (let [t, choices] of Object.entries(map)) {
-      const trait = traits[t];
-      if (!trait) continue;
-      let values = [];
-      if (trait.value) values = trait.value instanceof Array ? trait.value : [trait.value];
-      trait.selected = values.reduce((obj, t) => {
-        obj[t] = choices[t];
+  _prepareTraits(systemData) {
+    const traits = {};
+    for ( const [trait, traitConfig] of Object.entries(CONFIG.SW5E.traits) ) {
+      const key = traitConfig.actorKeyPath ?? `traits.${trait}`;
+      let data = foundry.utils.getProperty(systemData, key);
+      const choices = CONFIG.SW5E[traitConfig.configKey];
+      if ( !data ) continue;
+
+      foundry.utils.setProperty(traits, key, data);
+      let values = data.value;
+      if ( !values ) values = [];
+      else if ( values instanceof Set ) values = Array.from(values);
+      else if ( !Array.isArray(values) ) values = [values];
+
+      // Split physical damage types from others if bypasses is set
+      const physical = [];
+      if ( data.bypasses?.size ) {
+        values = values.filter(t => {
+          if ( !CONFIG.SW5E.physicalDamageTypes[t] ) return true;
+          physical.push(t);
+          return false;
+        });
+      }
+
+      data.selected = values.reduce((obj, key) => {
+        obj[key] = Trait.keyLabel(trait, key) ?? key;
         return obj;
       }, {});
 
-      // Add custom entry
-      if (trait.custom) trait.custom.split(";").forEach((c, i) => (trait.selected[`custom${i + 1}`] = c.trim()));
-      trait.cssClass = !foundry.utils.isEmpty(trait.selected) ? "" : "inactive";
-    }
+      // Display bypassed damage types
+      if ( physical.length ) {
+        const damageTypesFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
+        const bypassFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
+        data.selected.physical = game.i18n.format("SW5E.DamagePhysicalBypasses", {
+          damageTypes: damageTypesFormatter.format(physical.map(t => choices[t])),
+          bypassTypes: bypassFormatter.format(data.bypasses.map(t => CONFIG.SW5E.physicalWeaponProperties[t]))
+        });
+      }
 
-    // Populate and localize proficiencies
-    for (const t of ["armor", "weapon", "tool"]) {
-      const trait = traits[`${t}Prof`];
-      if (!trait) continue;
-      Actor5e.prepareProficiencies(trait, t);
-      trait.cssClass = !foundry.utils.isEmpty(trait.selected) ? "" : "inactive";
+      // Add custom entries
+      if ( data.custom ) data.custom.split(";").forEach((c, i) => data.selected[`custom${i+1}`] = c.trim());
+      data.cssClass = !foundry.utils.isEmpty(data.selected) ? "" : "inactive";
     }
+    return traits;
   }
 
   /* -------------------------------------------- */
@@ -442,6 +469,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
+      const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.override`);
       powerbook[i] = {
         order: i,
         label: label,
@@ -453,7 +481,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
         slots: useLabels[i] || max || 0,
         override: override || 0,
         dataset: { "type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode },
-        prop: sl
+        prop: sl,
+        editable: context.editable && !aeOverride
       };
     };
 
@@ -589,6 +618,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
 
     // Property attributions
+    html.find("[data-attribution]").mouseover(this._onPropertyAttribution.bind(this))
     html.find(".attributable").mouseover(this._onPropertyAttribution.bind(this));
 
     // Editable Only Listeners
@@ -596,16 +626,15 @@ export default class ActorSheetOrig5e extends ActorSheet {
       // Input focus and update
       const inputs = html.find("input");
       inputs.focus(ev => ev.currentTarget.select());
-      inputs.addBack().find('[type="number"]').change(this._onChangeInputDelta.bind(this));
+      inputs.addBack().find('[type="text"][data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
       // Ability Proficiency
-      html.find(".ability-proficiency").on("click contextmenu", this._onCycleAbilityProficiency.bind(this));
+      html.find(".ability-proficiency").on("click contextmenu", this._onToggleAbilityProficiency.bind(this));
 
       // Toggle Skill Proficiency
       html.find(".skill-proficiency").on("click contextmenu", this._onCycleSkillProficiency.bind(this));
 
       // Trait Selector
-      html.find(".proficiency-selector").click(this._onProficiencySelector.bind(this));
       html.find(".trait-selector").click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
@@ -622,6 +651,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
       // Active Effect management
       html.find(".effect-control").click(ev => ActiveEffect5e.onManageActiveEffect(ev, this.actor));
+      this._disableOverriddenFields(html);
     }
 
     // Owner Only Listeners
@@ -635,6 +665,9 @@ export default class ActorSheetOrig5e extends ActorSheet {
       // Item Rolling
       html.find(".rollable .item-image").click(event => this._onItemUse(event));
       html.find(".item .item-recharge").click(event => this._onItemRecharge(event));
+
+      // Item Context Menu
+      new ContextMenu(html, ".item-list .item", [], {onOpen: this._onItemContext.bind(this)});
     }
 
     // Otherwise, remove rollable classes
@@ -644,6 +677,159 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Handle default listeners last so system listeners are triggered first
     super.activateListeners(html);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Disable any fields that are overridden by active effects and display an informative tooltip.
+   * @param {jQuery} html  The sheet's rendered HTML.
+   * @protected
+   */
+  _disableOverriddenFields(html) {
+    for ( const override of Object.keys(foundry.utils.flattenObject(this.actor.overrides)) ) {
+      html.find(`input[name="${override}"],select[name="${override}"]`).each((i, el) => {
+        el.disabled = true;
+        el.dataset.tooltip = "SW5E.ActiveEffectOverrideWarning";
+      });
+
+      const [, ability] = override.match(/system\.abilities\.([^.]+)\.proficient/) || [];
+      if ( ability ) {
+        const toggle = html.find(`li[data-ability="${ability}"] .proficiency-toggle`);
+        toggle.addClass("disabled");
+        toggle.attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
+      }
+
+      const [, skill] = override.match(/system\.skills\.([^.]+)\.value/) || [];
+      if ( skill ) {
+        const toggle = html.find(`li[data-skill="${skill}"] .proficiency-toggle`);
+        toggle.addClass("disabled");
+        toggle.attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
+      }
+
+      const [, power] = override.match(/system\.powers\.(power\d)\.override/) || [];
+      if ( power ) {
+        html.find(`.power-max[data-level="${power}"]`).attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle activation of a context menu for an embedded Item or ActiveEffect document.
+   * Dynamically populate the array of context menu options.
+   * @param {HTMLElement} element       The HTML element for which the context menu is activated
+   * @protected
+   */
+  _onItemContext(element) {
+
+    // Active Effects
+    if ( element.classList.contains("effect") ) {
+      const effect = this.actor.effects.get(element.dataset.effectId);
+      if ( !effect ) return;
+      ui.context.menuItems = this._getActiveEffectContextOptions(effect);
+      Hooks.call("sw5e.getActiveEffectContextOptions", effect, ui.context.menuItems);
+    }
+
+    // Items
+    else {
+      const item = this.actor.items.get(element.dataset.itemId);
+      if ( !item ) return;
+      ui.context.menuItems = this._getItemContextOptions(item);
+      Hooks.call("sw5e.getItemContextOptions", item, ui.context.menuItems);
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare an array of context menu options which are available for owned ActiveEffect documents.
+   * @param {ActiveEffect5e} effect         The ActiveEffect for which the context menu is activated
+   * @returns {ContextMenuEntry[]}          An array of context menu options offered for the ActiveEffect
+   * @protected
+   */
+  _getActiveEffectContextOptions(effect) {
+    return [
+      {
+        name: "SW5E.ContextMenuActionEdit",
+        icon: "<i class='fas fa-edit fa-fw'></i>",
+        callback: () => effect.sheet.render(true)
+      },
+      {
+        name: "SW5E.ContextMenuActionDuplicate",
+        icon: "<i class='fas fa-copy fa-fw'></i>",
+        callback: () => effect.clone({label: game.i18n.format("DOCUMENT.CopyOf", {name: effect.label})}, {save: true})
+      },
+      {
+        name: "SW5E.ContextMenuActionDelete",
+        icon: "<i class='fas fa-trash fa-fw'></i>",
+        callback: () => effect.deleteDialog()
+      },
+      {
+        name: effect.disabled ? "SW5E.ContextMenuActionEnable" : "SW5E.ContextMenuActionDisable",
+        icon: effect.disabled ? "<i class='fas fa-check fa-fw'></i>" : "<i class='fas fa-times fa-fw'></i>",
+        callback: () => effect.update({disabled: !effect.disabled})
+      }
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare an array of context menu options which are available for owned Item documents.
+   * @param {Item5e} item                   The Item for which the context menu is activated
+   * @returns {ContextMenuEntry[]}          An array of context menu options offered for the Item
+   * @protected
+   */
+  _getItemContextOptions(item) {
+
+    // Standard Options
+    const options = [
+      {
+        name: "SW5E.ContextMenuActionEdit",
+        icon: "<i class='fas fa-edit fa-fw'></i>",
+        callback: () => item.sheet.render(true)
+      },
+      {
+        name: "SW5E.ContextMenuActionDuplicate",
+        icon: "<i class='fas fa-copy fa-fw'></i>",
+        condition: () => !["species", "background", "class", "archetype"].includes(item.type),
+        callback: () => item.clone({name: game.i18n.format("DOCUMENT.CopyOf", {name: item.name})}, {save: true})
+      },
+      {
+        name: "SW5E.ContextMenuActionDelete",
+        icon: "<i class='fas fa-trash fa-fw'></i>",
+        callback: () => item.deleteDialog()
+      }
+    ];
+
+    // Toggle Attunement State
+    if ( ("attunement" in item.system) && (item.system.attunement !== CONFIG.SW5E.attunementTypes.NONE) ) {
+      const isAttuned = item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED;
+      options.push({
+        name: isAttuned ? "SW5E.ContextMenuActionUnattune" : "SW5E.ContextMenuActionAttune",
+        icon: "<i class='fas fa-sun fa-fw'></i>",
+        callback: () => item.update({
+          "system.attunement": CONFIG.SW5E.attunementTypes[isAttuned ? "REQUIRED" : "ATTUNED"]
+        })
+      });
+    }
+
+    // Toggle Equipped State
+    if ( "equipped" in item.system ) options.push({
+      name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
+      icon: "<i class='fas fa-shield-alt fa-fw'></i>",
+      callback: () => item.update({"system.equipped": !item.system.equipped})
+    });
+
+    // Toggle Prepared State
+    if ( ("preparation" in item.system) && (item.system.preparation?.mode === "prepared") ) options.push({
+      name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
+      icon: "<i class='fas fa-sun fa-fw'></i>",
+      callback: () => item.update({"system.preparation.prepared": !item.system.preparation?.prepared})
+    });
+    return options;
   }
 
   /* -------------------------------------------- */
@@ -667,17 +853,17 @@ export default class ActorSheetOrig5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle input changes to numeric form fields, allowing them to accept delta-typed inputs
+   * Handle input changes to numeric form fields, allowing them to accept delta-typed inputs.
    * @param {Event} event  Triggering event.
-   * @private
+   * @protected
    */
   _onChangeInputDelta(event) {
     const input = event.target;
     const value = input.value;
-    if (["+", "-"].includes(value[0])) {
-      let delta = parseFloat(value);
-      input.value = foundry.utils.getProperty(this.actor, input.name) + delta;
-    } else if (value[0] === "=") input.value = value.slice(1);
+    if ( ["+", "-"].includes(value[0]) ) {
+      const delta = parseFloat(value);
+      input.value = Number(foundry.utils.getProperty(this.actor, input.name)) + delta;
+    } else if ( value[0] === "=" ) input.value = value.slice(1);
   }
 
   /* -------------------------------------------- */
@@ -689,6 +875,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
    */
   _onConfigMenu(event) {
     event.preventDefault();
+    event.stopPropagation();
     const button = event.currentTarget;
     let app;
     switch (button.dataset.action) {
@@ -697,6 +884,12 @@ export default class ActorSheetOrig5e extends ActorSheet {
         break;
       case "hit-dice":
         app = new ActorHitDiceConfig(this.actor);
+        break;
+      case "hit-points":
+        app = new ActorHitPointsConfig(this.actor);
+        break;
+      case "initiative":
+        app = new ActorInitiativeConfig(this.actor);
         break;
       case "movement":
         app = new ActorMovementConfig(this.actor);
@@ -733,15 +926,15 @@ export default class ActorSheetOrig5e extends ActorSheet {
    * @private
    */
   _onCycleSkillProficiency(event) {
+    if ( event.currentTarget.classList.contains("disabled") ) return;
     event.preventDefault();
-    const field = event.currentTarget.previousElementSibling;
-    const skillName = field.parentElement.dataset.skill;
-    const source = this.actor._source.system.skills[skillName];
-    if (!source) return;
+    const parent = event.currentTarget.closest(".skill");
+    const field = parent.querySelector('[name$=".value"]');
+    const value = this.actor._source.system.skills[parent.dataset.skill]?.value ?? 0;
 
     // Cycle to the next or previous skill proficiency level
     const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
-    const idx = levels.indexOf(source.value);
+    const idx = levels.indexOf(value);
     const next = (idx + (event.type === "click" ? 1 : levels.length - 1)) % levels.length;
     field.value = levels[next];
 
@@ -778,7 +971,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
         title: game.i18n.localize("SW5E.PolymorphPromptTitle"),
         content: {
           options: game.settings.get("sw5e", "polymorphSettings"),
-          i18n: CONFIG.SW5E.polymorphSettings,
+          settings: CONFIG.SW5E.polymorphSettings,
+          effectSettings: CONFIG.SW5E.polymorphEffectSettings,
           isToken: this.actor.isToken
         },
         default: "accept",
@@ -789,38 +983,39 @@ export default class ActorSheetOrig5e extends ActorSheet {
             callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
           },
           wildshape: {
-            icon: '<i class="fas fa-paw"></i>',
-            label: game.i18n.localize("SW5E.PolymorphWildShape"),
-            callback: html =>
-              this.actor.transformInto(sourceActor, {
-                keepBio: true,
-                keepClass: true,
-                keepMental: true,
-                mergeSaves: true,
-                mergeSkills: true,
-                transformTokens: rememberOptions(html).transformTokens
-              })
-          },
-          polymorph: {
-            icon: '<i class="fas fa-pastafarianism"></i>',
-            label: game.i18n.localize("SW5E.Polymorph"),
-            callback: html =>
-              this.actor.transformInto(sourceActor, {
-                transformTokens: rememberOptions(html).transformTokens
-              })
-          },
-          cancel: {
-            icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("Cancel")
-          }
+          icon: CONFIG.SW5E.transformationPresets.wildshape.icon,
+          label: CONFIG.SW5E.transformationPresets.wildshape.label,
+          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+            CONFIG.SW5E.transformationPresets.wildshape.options,
+            { transformTokens: rememberOptions(html).transformTokens }
+          ))
+        },
+        polymorph: {
+          icon: CONFIG.SW5E.transformationPresets.polymorph.icon,
+          label: CONFIG.SW5E.transformationPresets.polymorph.label,
+          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+            CONFIG.SW5E.transformationPresets.polymorph.options,
+            { transformTokens: rememberOptions(html).transformTokens }
+          ))
+        },
+        self: {
+          icon: CONFIG.SW5E.transformationPresets.polymorphSelf.icon,
+          label: CONFIG.SW5E.transformationPresets.polymorphSelf.label,
+          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+            CONFIG.SW5E.transformationPresets.polymorphSelf.options,
+            { transformTokens: rememberOptions(html).transformTokens }
+          ))
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("Cancel")
         }
-      },
-      {
-        classes: ["dialog", "sw5e"],
-        width: 600,
-        template: "systems/sw5e/templates/apps/polymorph-prompt.hbs"
       }
-    ).render(true);
+    }, {
+      classes: ["dialog", "sw5e", "polymorph"],
+      width: 900,
+      template: "systems/sw5e/templates/apps/polymorph-prompt.hbs"
+    }).render(true);
   }
 
   /* -------------------------------------------- */
@@ -868,7 +1063,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Create a Consumable power scroll on the Inventory tab
     // TODO: This is pretty non functional as the base items for the scrolls, and the powers, are not defined, maybe consider using holocrons
-    if (itemData.type === "power" && this._tabs[0].active === "inventory") {
+    if ( (itemData.type === "power")
+      && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type)) ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       return scroll.toObject();
     }
@@ -978,7 +1174,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    if (item) return item.use();
+    return item.use({}, {event});
   }
 
   /* -------------------------------------------- */
@@ -1011,15 +1207,14 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Toggle summary
     if (li.hasClass("expanded")) {
-      let summary = li.children(".item-summary");
+      const summary = li.children(".item-summary");
       summary.slideUp(200, () => summary.remove());
+      this._expanded.delete(item.id);
     } else {
-      let div = $(`<div class="item-summary">${chatData.description.value}</div>`);
-      let props = $('<div class="item-properties"></div>');
-      chatData.properties.forEach(p => props.append(`<span class="tag">${p}</span>`));
-      div.append(props);
-      li.append(div.hide());
-      div.slideDown(200);
+      const summary = $(await renderTemplate("systems/sw5e/templates/items/parts/item-summary.hbs", chatData));
+      li.append(summary.hide());
+      summary.slideDown(200);
+      this._expanded.add(item.id);
     }
     li.toggleClass("expanded");
   }
@@ -1050,9 +1245,9 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     const itemData = {
-      name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`SW5E.ItemType${type.capitalize()}`) }),
+      name: game.i18n.format("SW5E.ItemNew", {type: game.i18n.localize(`ITEM.Type${type.capitalize()}`)}),
       type: type,
-      system: foundry.utils.deepClone(header.dataset)
+      system: foundry.utils.expandObject({ ...header.dataset })
     };
     delete itemData.system.type;
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -1105,7 +1300,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
       }
     }
 
-    return item.delete();
+    return item.deleteDialog();
   }
 
   /* -------------------------------------------- */
@@ -1116,19 +1311,27 @@ export default class ActorSheetOrig5e extends ActorSheet {
    * @private
    */
   async _onPropertyAttribution(event) {
-    const existingTooltip = event.currentTarget.querySelector("div.tooltip");
-    const property = event.currentTarget.dataset.property;
-    if (existingTooltip || !property) return;
-    const rollData = this.actor.getRollData({ deterministic: true });
-    let attributions;
-    switch (property) {
-      case "attributes.ac":
-        attributions = this._prepareArmorClassAttribution(rollData);
-        break;
+    const element = event.target;
+    let property = element.dataset.attribution;
+    if ( !property ) {
+      property = element.dataset.property;
+      if ( !property ) return;
+      foundry.utils.logCompatibilityWarning(
+        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
+        + " has been deprecated in favor of a single `data-attribution` value.",
+        { since: "SW5e 2.1.3", until: "SW5e 2.4" }
+      );
     }
-    if (!attributions) return;
-    const html = await new PropertyAttribution(this.actor, attributions, property).renderTooltip();
-    event.currentTarget.insertAdjacentElement("beforeend", html[0]);
+
+    const rollData = this.actor.getRollData({ deterministic: true });
+    const title = game.i18n.localize(element.dataset.attributionCaption);
+    let attributions;
+    switch ( property ) {
+      case "attributes.ac":
+        attributions = this._prepareArmorClassAttribution(rollData); break;
+    }
+    if ( !attributions ) return;
+    new PropertyAttribution(this.actor, attributions, property, {title}).renderTooltip(element);
   }
 
   /* -------------------------------------------- */
@@ -1161,23 +1364,16 @@ export default class ActorSheetOrig5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle cycling proficiency in an Ability score.
-   * @param {Event} event   A click or contextmenu event which triggered the handler.
-   * @returns {Promise}     Updated data for this actor after changes are applied.
+   * Handle toggling Ability score proficiency level.
+   * @param {Event} event         The originating click event.
+   * @returns {Promise<Actor5e>}  Updated actor instance.
    * @private
    */
-  _onCycleAbilityProficiency(event) {
+  _onToggleAbilityProficiency(event) {
+    if ( event.currentTarget.classList.contains("disabled") ) return;
     event.preventDefault();
     const field = event.currentTarget.previousElementSibling;
-
-    // Cycle to the next or previous proficiency level
-    const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
-    const idx = levels.indexOf(Number(field.value));
-    const next = (idx + (event.type === "click" ? 1 : levels.length - 1)) % levels.length;
-    field.value = levels[next];
-
-    // Update the field value and save the form
-    return this._onSubmit(event);
+    return this.actor.update({[field.name]: 1 - parseInt(field.value)});
   }
 
   /* -------------------------------------------- */
@@ -1201,22 +1397,6 @@ export default class ActorSheetOrig5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle spawning the ProficiencySelector application to configure armor, weapon, and tool proficiencies.
-   * @param {Event} event            The click event which originated the selection.
-   * @returns {ProficiencySelector}  Newly displayed application.
-   * @private
-   */
-  _onProficiencySelector(event) {
-    event.preventDefault();
-    const a = event.currentTarget;
-    const label = a.parentElement.querySelector("label");
-    const options = { name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, type: a.dataset.type };
-    return new ProficiencySelector(this.actor, options).render(true);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
    * @param {Event} event      The click event which originated the selection.
    * @returns {TraitSelector}  Newly displayed application.
@@ -1224,11 +1404,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
    */
   _onTraitSelector(event) {
     event.preventDefault();
-    const a = event.currentTarget;
-    const label = a.parentElement.querySelector("label");
-    const choices = CONFIG.SW5E[a.dataset.options];
-    const options = { name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, choices };
-    return new TraitSelector(this.actor, options).render(true);
+    return new TraitSelector(this.actor, event.currentTarget.dataset.trait).render(true);
   }
 
   /* -------------------------------------------- */

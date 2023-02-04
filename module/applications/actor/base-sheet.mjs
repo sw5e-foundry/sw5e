@@ -682,7 +682,6 @@ export default class ActorSheet5e extends ActorSheet {
       html.find(".skill-proficiency").on("click contextmenu", this._onCycleSkillProficiency.bind(this));
 
       // Trait Selector
-      html.find(".proficiency-selector").click(this._onProficiencySelector.bind(this));
       html.find(".trait-selector").click(this._onTraitSelector.bind(this));
 
       // Configure Special Flags
@@ -1482,29 +1481,25 @@ export default class ActorSheet5e extends ActorSheet {
   async _onPropertyAttribution(event) {
     const element = event.target;
     let property = element.dataset.attribution;
-    if (!property) {
+    if ( !property ) {
       property = element.dataset.property;
-      if (!property) return;
+      if ( !property ) return;
       foundry.utils.logCompatibilityWarning(
-        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value" +
-          " has been deprecated in favor of a single `data-attribution` value.",
+        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
+        + " has been deprecated in favor of a single `data-attribution` value.",
         { since: "SW5e 2.1.3", until: "SW5e 2.4" }
       );
     }
 
-    const existingTooltip = event.currentTarget.querySelector("div.tooltip");
-    const property = event.currentTarget.dataset.property;
-    if (existingTooltip || !property) return;
     const rollData = this.actor.getRollData({ deterministic: true });
     const title = game.i18n.localize(element.dataset.attributionCaption);
     let attributions;
-    switch (property) {
+    switch ( property ) {
       case "attributes.ac":
-        attributions = this._prepareArmorClassAttribution(rollData);
-        break;
+        attributions = this._prepareArmorClassAttribution(rollData); break;
     }
-    if (!attributions) return;
-    new PropertyAttribution(this.actor, attributions, property, { title }).renderTooltip(element);
+    if ( !attributions ) return;
+    new PropertyAttribution(this.actor, attributions, property, {title}).renderTooltip(element);
   }
 
   /* -------------------------------------------- */

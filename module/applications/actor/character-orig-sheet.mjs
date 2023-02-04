@@ -193,7 +193,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         isClass: true
       },
       classfeatures: {
-        label: "ITEM.TypeClassfeaturePL",
+        label: "ITEM.TypeClassfeaturePl",
         items: classfeatures,
         hasActions: true,
         dataset: { type: "classfeature" },

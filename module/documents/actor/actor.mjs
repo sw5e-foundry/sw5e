@@ -610,6 +610,7 @@ export default class Actor5e extends Actor {
       }
 
       // Apply the calculated values to the sheet
+      this.system.attributes[progression.castType].known ??= {};
       this.system.attributes[progression.castType].known.value = progression.powersKnownCur;
       this.system.attributes[progression.castType].known.max = progression.powersKnownMax;
       this.system.attributes[progression.castType].points.max = progression.points;
@@ -658,6 +659,7 @@ export default class Actor5e extends Actor {
 
     // Calculate derived values
     superiority.level = level;
+    superiority.known ??= {};
     superiority.known.value = this.itemTypes.maneuver.length;
     superiority.known.max = known;
     superiority.dice.max = dice;

@@ -69,17 +69,29 @@ export default class CreatureTemplate extends CommonTemplate {
       ),
       powers: new MappingField(
         new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+          fvalue: new foundry.data.fields.NumberField({
             nullable: false,
             integer: true,
             min: 0,
             initial: 0,
-            label: "SW5E.PowerProfAvailable"
+            label: "SW5E.ForcePowerProgAvailable"
           }),
-          override: new foundry.data.fields.NumberField({
+          foverride: new foundry.data.fields.NumberField({
             integer: true,
             min: 0,
-            label: "SW5E.PowerProgOverride"
+            label: "SW5E.ForcePowerProgOverride"
+          }),
+          tvalue: new foundry.data.fields.NumberField({
+            nullable: false,
+            integer: true,
+            min: 0,
+            initial: 0,
+            label: "SW5E.TechPowerProgAvailable"
+          }),
+          toverride: new foundry.data.fields.NumberField({
+            integer: true,
+            min: 0,
+            label: "SW5E.TechPowerProgOverride"
           })
         }),
         { initialKeys: this._powerLevels, label: "SW5E.PowerLevels" }

@@ -30,6 +30,8 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {string} details.originalClass               ID of first class taken by character.
  * @property {XPData} details.xp                          Experience points gained.
  * @property {number} details.xp.value                    Total experience points earned.
+ * @property {XPData} details.prestige                    Prestige points gained (starship deployment).
+ * @property {number} details.prestige.value              Total prestige points earned (starship deployment).
  * @property {string} details.appearance                  Description of character's appearance.
  * @property {string} details.trait                       Character's personality traits.
  * @property {string} details.ideal                       Character's ideals.
@@ -150,6 +152,19 @@ export default class CharacterData extends CreatureTemplate {
               })
             },
             { label: "SW5E.ExperiencePoints" }
+          ),
+          prestige: new foundry.data.fields.SchemaField(
+            {
+              value: new foundry.data.fields.NumberField({
+                required: true,
+                nullable: false,
+                integer: true,
+                min: 0,
+                initial: 0,
+                label: "SW5E.PrestigePointsCurrent"
+              })
+            },
+            { label: "SW5E.PrestigePoints" }
           ),
           appearance: new foundry.data.fields.StringField({ required: true, label: "SW5E.Appearance" }),
           trait: new foundry.data.fields.StringField({ required: true, label: "SW5E.PersonalityTraits" }),

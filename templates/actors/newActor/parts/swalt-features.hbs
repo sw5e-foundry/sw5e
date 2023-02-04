@@ -1,13 +1,10 @@
 <div class="panel">
-
-
     <ul class="filter-list" data-filter="features">
         <li class="filter-title">{{localize "SW5E.Filter"}}</li>
         <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
         <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
         <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
     </ul>
-
 
     <ol class="group-list">
         {{#each sections as |section sid|}}
@@ -37,15 +34,18 @@
             </div>
             <ol class="item-list content" style="display: block">
                 {{#each section.items as |item iid|}}
-                <li class="item group-grid-features {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
+                {{#sw5e-itemContext item as |ctx|}}
+                <li class="item flexrow {{#if ctx.isDepleted}}depleted{{/if}} {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
                     <div class="item-name rollable">
                         <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                         <h4>
                             {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
                             {{item.name}}
-                            {{#if item.system.isOriginalClass}} <i class="original-class fas fa-sun" data-tooltip="SW5E.ClassOriginal"></i>{{/if}}
+                            {{#if item.system.isOriginalClass}}
+                                <i class="original-class fas fa-sun" data-tooltip="SW5E.ClassOriginal"></i>
+                            {{/if}}
                         </h4>
-                        {{#if item.hasReload}}
+                        {{#if ctx.hasReload}}
                             <div class="form-group uses-per">
                                 <div class="form-fields">
                                     {{#if item.reloadUsesAmmo}}
@@ -69,12 +69,12 @@
 
                     {{#if section.hasActions}}
                     <div class="item-detail item-uses">
-                        {{#if item.isOnCooldown}}
+                        {{#if ctx.isOnCooldown}}
                         <a class="item-recharge rollable">{{item.labels.recharge}}</a>
                         {{else if item.system.recharge.value}}
                         {{localize "SW5E.Charged"}}
 
-                        {{else if item.hasUses}}
+                        {{else if ctx.hasUses}}
                         <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
                         {{/if}}
                     </div>
@@ -92,7 +92,7 @@
                     <div class="item-detail player-class-levels">
                         <select class="level-selector">
                             {{#select 0}}
-                            {{#each item.availableLevels}}
+                            {{#each ctx.availableLevels}}
                                 <option value="{{this.delta}}" {{disabled this.disabled}}>
                                     {{localize "SW5E.LevelNumber" level=this.level}}
                                     {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
@@ -108,10 +108,10 @@
                     </div>
                     {{/if}}
 
-                    {{#if ../../owner}}
+                    {{#if @root.owner}}
                     <div class="item-controls item-detail">
                         {{#if ../../isStarshipEquipment}}
-                        <a class="item-control item-toggle {{item.toggleClass}}" title='{{item.toggleTitle}}'>
+                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-tooltip="{{ctx.toggleTitle}}">
                             <i class="fas fa-shield-alt"></i>
                         </a>
                         {{/if}}
@@ -121,8 +121,13 @@
                         {{/if}}
                     </div>
                     {{/if}}
+
+                    {{#if ctx.isExpanded}}
+                        {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
+                    {{/if}}
                 </li>
-                {{/each}}
+            {{/sw5e-itemContext}}
+            {{/each}}
             </ol>
         </li>
         {{/each}}

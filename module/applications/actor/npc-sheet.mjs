@@ -84,13 +84,14 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     // Start by classifying items into groups for rendering
     let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other, ssfeats] = context.items.reduce(
       (arr, item) => {
-        const { quantity, uses, recharge, target, school } = item.system;
-        item.img = item.img || CONST.DEFAULT_TOKEN;
-        item.isStack = Number.isNumeric(quantity) && quantity !== 1;
-        item.hasUses = uses && uses.max > 0;
-        item.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        item.isDepleted = item.isOnCooldown && uses.per && uses.value > 0;
-        item.hasTarget = !!target && !["none", ""].includes(target.type);
+        const ctx = context.itemContext[item.id] ??= {};
+        ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+        ctx.isExpanded = this._expanded.has(item.id);
+        ctx.hasUses = uses && (uses.max > 0);
+        ctx.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
+        ctx.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
+        ctx.hasTarget = !!target && !(["none", ""].includes(target.type));
+        ctx.canToggle = false;
         if (item.type === "power" && ["lgt", "drk", "uni"].includes(school)) arr[0].push(item);
         else if (item.type === "power" && ["tec"].includes(school)) arr[1].push(item);
         else if (item.type === "deployment") arr[2].push(item);
@@ -161,6 +162,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     ssfeatures.ventures.items = ventures;
 
     // Assign and return
+    context.inventoryFilters = true;
     context.features = Object.values(features);
     context.forcePowerbook = forcePowerbook;
     context.techPowerbook = techPowerbook;
@@ -201,30 +203,6 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers                */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find(".health .rollable").click(this._onRollHPFormula.bind(this));
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle rolling NPC health values using the provided formula.
-   * @param {Event} event  The original click event.
-   * @private
-   */
-  _onRollHPFormula(event) {
-    event.preventDefault();
-    const formula = this.actor.system.attributes.hp.formula;
-    if (!formula) return;
-    const hp = new Roll(formula).roll({ async: false }).total;
-    AudioHelper.play({ src: CONFIG.sounds.dice });
-    this.actor.update({ "system.attributes.hp.value": hp, "system.attributes.hp.max": hp });
-  }
-
   /* -------------------------------------------- */
 
   /** @override */

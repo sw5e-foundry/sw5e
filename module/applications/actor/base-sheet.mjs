@@ -151,7 +151,7 @@ export default class ActorSheet5e extends ActorSheet {
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient ?? 0].label;
       abl.label = CONFIG.SW5E.abilities[a];
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
@@ -160,7 +160,7 @@ export default class ActorSheet5e extends ActorSheet {
     for (const [s, skl] of Object.entries(context.skills)) {
       skl.abbreviation = CONFIG.SW5E.abilityAbbreviations[skl.ability];
       skl.icon = this._getProficiencyIcon(skl.value);
-      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value].label;
+      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value ?? 0].label;
       if (context.actor.type === "starship") {
         skl.label = CONFIG.SW5E.starshipSkills[s]?.label;
       } else {

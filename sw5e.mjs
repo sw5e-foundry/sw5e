@@ -12,7 +12,7 @@ import SW5E from "./module/config.mjs";
 import registerSystemSettings from "./module/settings.mjs";
 
 // Import Documents
-import CharacterImporter from "./module/characterImporter.mjs";
+import CharacterImporter from "./module/character-importer.mjs";
 import DisplayCR from "./module/display-cr.mjs";
 
 // Import Submodules

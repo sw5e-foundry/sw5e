@@ -1,13 +1,13 @@
 <form class="{{cssClass}} swalt-sheet" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="panel">
-        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+        <img class="profile" src="{{actor.img}}" data-tooltip="{{actor.name}}" data-edit="img" />
         {{> "sw5e.swalt-warnings"}}
         <h1 class="character-name">
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
         <div class="level-experience">
-            <div class="charlevel" title="{{multiclassLabels}}">
+            <div class="charlevel" data-tooltip="{{multiclassLabels}}">
                 {{ localize "SW5E.Level" }} {{system.details.level}} {{classLabels}}
             </div>
             {{#unless disableExperience}}

@@ -1,4 +1,4 @@
-import { FormulaField } from "../../fields.mjs";
+import { FormulaField, UUIDField } from "../../fields.mjs";
 
 /**
  * Shared contents of the attributes schema between various actor types.
@@ -81,15 +81,41 @@ export default class AttributesFields {
    *
    * @type {object}
    * @property {object} attunement
-   * @property {number} attunement.max      Maximum number of attuned items.
+   * @property {number} attunement.max                     Maximum number of attuned items.
    * @property {object} senses
-   * @property {number} senses.darkvision   Creature's darkvision range.
-   * @property {number} senses.blindsight   Creature's blindsight range.
-   * @property {number} senses.tremorsense  Creature's tremorsense range.
-   * @property {number} senses.truesight    Creature's truesight range.
-   * @property {string} senses.units        Distance units used to measure senses.
-   * @property {string} senses.special      Description of any special senses or restrictions.
-   * @property {string} powercasting        Primary powercasting ability.
+   * @property {number} senses.darkvision                  Creature's darkvision range.
+   * @property {number} senses.blindsight                  Creature's blindsight range.
+   * @property {number} senses.tremorsense                 Creature's tremorsense range.
+   * @property {number} senses.truesight                   Creature's truesight range.
+   * @property {string} senses.units                       Distance units used to measure senses.
+   * @property {string} senses.special                     Description of any special senses or restrictions.
+   * @property {object} force
+   * @property {object} force.points
+   * @property {number} force.points.value                 Current force points.
+   * @property {number} force.points.max                   Override for maximum FP.
+   * @property {number} force.points.temp                  Temporary FP applied on top of value.
+   * @property {object} force.points.bonuses
+   * @property {string} force.points.bonuses.level         Bonus formula applied for each class level.
+   * @property {string} force.points.bonuses.overall       Bonus formula applied to total FP.
+   * @property {object} tech
+   * @property {object} tech.points
+   * @property {number} tech.points.value                  Current tech points.
+   * @property {number} tech.points.max                    Override for maximum TP.
+   * @property {number} tech.points.temp                   Temporary TP applied on top of value.
+   * @property {object} tech.points.bonuses
+   * @property {string} tech.points.bonuses.level          Bonus formula applied for each class level.
+   * @property {string} tech.points.bonuses.overall        Bonus formula applied to total TP.
+   * @property {object} super
+   * @property {number} super.die                          Override for SD size.
+   * @property {object} super.dice
+   * @property {number} super.dice.value                   Current superiority dice.
+   * @property {number} super.dice.max                     Override for maximum SD.
+   * @property {object} super.dice.bonuses
+   * @property {string} super.dice.bonuses.level           Bonus formula applied for each class level.
+   * @property {string} super.dice.bonuses.overall         Bonus formula applied to total SD.
+   * @property {object} deployed
+   * @property {string} deployed.uuid                      UUID of the starship this character is deployed on.
+   * @property {Set<string>} deployed.deployments          Positions the actor is deployed on.
    */
   static get creature() {
     return {
@@ -145,12 +171,6 @@ export default class AttributesFields {
         },
         { label: "SW5E.Senses" }
       ),
-      powercasting: new foundry.data.fields.StringField({
-        required: true,
-        blank: true,
-        initial: "int",
-        label: "SW5E.PowerAbility"
-      }),
       force: new foundry.data.fields.SchemaField(
         { points: makePointsResource({label: "SW5E.ForcePoint", hasTemp: true}) },
         { label: "SW5E.ForceCasting" }
@@ -171,7 +191,14 @@ export default class AttributesFields {
           dice: makePointsResource({label: "SW5E.SuperiorityDice"})
         },
         { label: "SW5E.Superiority" }
-      )
+      ),
+      deployed: new foundry.data.fields.SchemaField(
+        {
+          uuid: new UUIDField({ label: "SW5E.DeployedStarship", nullable: true }),
+          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), { label: "SW5E.DeployedPositions" }),
+        },
+        { label: "SW5E.Deployed" }
+      ),
     };
   }
 

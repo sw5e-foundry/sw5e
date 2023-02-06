@@ -891,6 +891,9 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 12px;
 }
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib {
+  position: relative;
+}
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib h1 {
   text-align: center;
 }
@@ -908,13 +911,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value.multiple {
   display: grid;
-  grid-template-columns: auto 14px auto;
-}
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value.multiple input {
-  width: 100%;
-}
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value input {
-  display: inline-block;
+  grid-template-columns: 1fr 14px 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value .value-number {
   display: inline-block;
@@ -934,11 +931,10 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .config-button {
   position: absolute;
+  padding: 2px;
+  right: 0;
+  top: 0;
   display: none;
-  right: -6px;
-  top: -3px;
-  font-size: 10px;
-  font-weight: normal;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib:hover .config-button {
   display: block;
@@ -1301,6 +1297,7 @@ input[type="reset"]:disabled {
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score {
   border-radius: 0;
@@ -1340,9 +1337,9 @@ input[type="reset"]:disabled {
   display: block;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .config-button {
-  right: -54px;
+  right: 2px;
   top: 3px;
-  position: relative;
+  position: absolute;
   display: none;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score:hover .config-button {
@@ -1371,6 +1368,7 @@ input[type="reset"]:disabled {
   border-radius: 4px 0 0 0;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .proficiency-toggle {
+  text-align: center;
   border: none;
   background: none;
   line-height: 1;
@@ -1391,7 +1389,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li {
   display: grid;
-  grid-template-columns: 28px auto 18px 28px;
+  grid-template-columns: 28px auto 18px 28px 26px;
   align-items: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .proficiency-toggle {
@@ -1421,6 +1419,10 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .skill-mod {
   text-align: right;
+  padding-right: 4px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .skill-passive {
+  text-align: center;
   padding-right: 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources {
@@ -1530,15 +1532,7 @@ input[type="reset"]:disabled {
   border-radius: 0;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value,
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value
-  input {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value input {
   font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
@@ -1546,87 +1540,35 @@ input[type="reset"]:disabled {
   text-align: center;
   line-height: 1;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value {
   display: grid;
   grid-template-columns: auto 14px auto;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value
-  input {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value input {
   display: block;
   width: 100%;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value
-  .value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number {
   display: block;
   width: 100%;
   text-align: right;
   padding: 0 3px;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value
-  .value-number:last-child {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-value
-  span.value-number {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value span.value-number {
   padding: 1px 4px;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-footer {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-footer {
   margin: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.core
-  .traits-resources
-  section.resources
-  .resource-items
-  .resource
-  .attribute-footer
-  label {
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-footer label {
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters {
   border: none;
@@ -1776,13 +1718,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number:last-child,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number:last-child,
-.sw5e.sheet.actor
-  .swalt-sheet
-  .tab.superiority-powerbook
-  .resource-items
-  .resource
-  .attribute-value
-  .value-number:last-child {
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number:last-child {
   text-align: left;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value span.value-number,
@@ -1900,6 +1836,7 @@ input[type="reset"]:disabled {
   padding: 1px 4px;
   border: 1px solid transparent;
   overflow-x: auto;
+  position: relative;
 }
 .sw5e.sheet.actor.npc .swalt-sheet header div.creature-type span {
   overflow: hidden;
@@ -2009,3 +1946,4 @@ input[type="reset"]:disabled {
     transform: rotate(360deg);
   }
 }
+/*# sourceMappingURL=sw5e-global.css.map */

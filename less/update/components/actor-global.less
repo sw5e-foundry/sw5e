@@ -178,6 +178,8 @@
         column-gap: 12px;
 
         .attrib {
+          position: relative;
+
           h1 {
             text-align: center;
           }
@@ -195,15 +197,7 @@
           .attribute-value {
             &.multiple {
               display: grid;
-              grid-template-columns: auto 14px auto;
-
-              input {
-                width: 100%;
-              }
-            }
-
-            input {
-              display: inline-block;
+              grid-template-columns: 1fr 14px 1fr;
             }
 
             .value-number {
@@ -231,16 +225,15 @@
           // Attribute Configuration
           .config-button {
             position: absolute;
+            padding: 2px;
+            right: 0;
+            top: 0;
             display: none;
-            right: -6px;
-            top: -3px;
-            font-size: 10px;
-            font-weight: normal;
           }
+
           &:hover .config-button {
             display: block;
           }
-
           // Temporary HP
           input.temphp {
             width: 48%;
@@ -624,6 +617,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      position: relative;
 
       .score {
         border-radius: 0;
@@ -661,9 +655,9 @@
         }
 
         .config-button {
-          right: -54px;
+          right: 2px;
           top: 3px;
-          position: relative;
+          position: absolute;
           display: none;
         }
 
@@ -697,6 +691,7 @@
           }
 
           .proficiency-toggle {
+            text-align: center;
             border: none;
             background: none;
             line-height: 1;
@@ -723,7 +718,7 @@
         .skills {
           li {
             display: grid;
-            grid-template-columns: 28px auto 18px 28px;
+            grid-template-columns: 28px auto 18px 28px 26px;
             align-items: center;
 
             .proficiency-toggle {
@@ -761,6 +756,11 @@
 
             .skill-mod {
               text-align: right;
+              padding-right: 4px;
+            }
+
+            .skill-passive {
+              text-align: center;
               padding-right: 4px;
             }
           }
@@ -926,6 +926,8 @@
 
                 label {
                   text-align: center;
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
                 }
               }
             }
@@ -1196,6 +1198,7 @@
           padding: 1px 4px;
           border: 1px solid transparent;
           overflow-x: auto;
+          position: relative;
 
           span {
             overflow: hidden;

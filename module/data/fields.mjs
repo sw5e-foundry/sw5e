@@ -148,6 +148,20 @@ export class IdentifierField extends foundry.data.fields.StringField {
 /* -------------------------------------------- */
 
 /**
+ * Special case StringField that includes automatic validation for UUIDs.
+ */
+export class UUIDField extends foundry.data.fields.StringField {
+  /** @override */
+  _validateType(value) {
+    if (!sw5e.utils.validators.isValidUUID(value)) {
+      throw new Error(game.i18n.localize("SW5E.IdentifierError"));
+    }
+  }
+}
+
+/* -------------------------------------------- */
+
+/**
  * @typedef {DataFieldOptions} MappingFieldOptions
  * @property {string[]} [initialKeys]  Keys that will be created if no data is provided.
  */

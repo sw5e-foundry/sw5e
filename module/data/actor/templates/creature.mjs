@@ -46,7 +46,11 @@ export default class CreatureTemplate extends CommonTemplate {
           ),
           power: new foundry.data.fields.SchemaField(
             {
-              dc: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusPowerDC" })
+              dc: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusPowerDC" }),
+              forceLightDC: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusForceLightPowerDC" }),
+              forceUnivDC: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusForceUnivPowerDC" }),
+              forceDarkDC: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusForceDarkPowerDC" }),
+              techDC: new FormulaField({ required: true, deterministic: true, label: "SW5E.BonusTechPowerDC" })
             },
             { label: "SW5E.BonusPower" }
           )

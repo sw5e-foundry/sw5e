@@ -1,13 +1,13 @@
 <form class="{{cssClass}} swalt-sheet" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="panel">
-        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" />
+        <img class="profile" src="{{actor.img}}" data-tooltip="{{actor.name}}" data-edit="img" />
         {{> "sw5e.swalt-warnings"}}
         <h1 class="character-name">
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
         <div class="level-experience">
-            <div class="charlevel" title="{{multiclassLabels}}">
+            <div class="charlevel" data-tooltip="{{multiclassLabels}}">
                 {{ localize "SW5E.Level" }} {{system.details.level}} {{classLabels}}
             </div>
             {{#unless disableExperience}}
@@ -77,13 +77,14 @@
                     <input
                         name="system.attributes.hp.value"
                         type="text"
+                        class="value-number"
                         value="{{hp.value}}"
                         placeholder="10"
                         data-tooltip="SW5E.HitPointsCurrent"
                         data-dtype="Number"
                     >
                     <span class="value-separator">/</span>
-                    <span data-tooltip="{{#if hp.max}}SW5E.HitPointsOverride{{else}}SW5E.HitPointsMax{{/if}}">
+                    <span class="value-number" data-tooltip="{{#if hp.max}}SW5E.HitPointsOverride{{else}}SW5E.HitPointsMax{{/if}}">
                         {{hp.max}}
                     </span>
                 </div>
@@ -91,7 +92,7 @@
                     <input
                         name="system.attributes.hp.temp"
                         type="text"
-                        class="temphp"
+                        class="value-number temphp"
                         placeholder="+{{ localize 'SW5E.Temp' }}"
                         value="{{hp.temp}}"
                         data-tooltip="SW5E.HitPointsTemp"
@@ -100,7 +101,7 @@
                     <input
                         name="system.attributes.hp.tempmax"
                         type="text"
-                        class="temphp"
+                        class="value-number temphp"
                         placeholder="+{{ localize 'SW5E.Max' }}"
                         value="{{hp.tempmax}}"
                         data-tooltip="SW5E.HitPointsTempMax"
@@ -116,11 +117,9 @@
                     <i class="fas fa-cog"></i>
                 </a>
                 <div class="attribute-value multiple">
-                    <label class="hit-dice">
-                        <span data-tooltip="SW5E.HitDiceRemaining">{{system.attributes.hd}}</span>
-                        <span class="value-separator">/</span>
-                        <span data-tooltip="SW5E.HitDiceMax">{{system.details.level}}</span>
-                    </label>
+                    <span class="value-number" data-tooltip="SW5E.HitDiceRemaining">{{system.attributes.hd}}</span>
+                    <span class="value-separator">/</span>
+                    <span class="value-number" data-tooltip="SW5E.HitDiceMax">{{system.details.level}}</span>
                 </div>
                 <footer class="attribute-footer hit-dice">
                     <button type="button" class="rest short-rest" data-tooltip="SW5E.ShortRest">{{ localize "SW5E.RestS" }}</button>

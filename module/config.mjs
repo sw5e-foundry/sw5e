@@ -1931,12 +1931,23 @@ preLocalize("weaponSizes");
 /**
  * A subset of weapon properties that determine the physical characteristics of the weapon.
  * These properties are used for determining physical resistance bypasses.
- * @enum {string}
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ * }}
  */
 SW5E.physicalWeaponProperties = {
-  mgc: "SW5E.WeaponPropertyEnh"
+  mgc: {
+    name: "SW5E.WeaponPropertyEnh",
+    full: "SW5E.WeaponPropertyEnhFull",
+    desc: "SW5E.WeaponPropertyEnhDesc",
+    type: "Boolean",
+  }
 };
-preLocalize("physicalWeaponProperties", { sort: true });
+preLocalize("physicalWeaponProperties", { keys: ["name", "full", "desc"] });
 
 /**
  * The set of weapon property flags which can exist on any weapon.

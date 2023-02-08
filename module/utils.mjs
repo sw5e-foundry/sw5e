@@ -91,15 +91,6 @@ function isValidIdentifier(identifier) {
 }
 
 /**
- * Ensure the provided string matches the pattern of an foundry id.
- * @param {string} id
- * @returns {boolean}
- */
-function isValidId(id) {
-  return /^([a-z0-9]{16})$/i.test(id);
-}
-
-/**
  * Ensure the provided string matches the pattern of an UUID.
  * @param {string} uuid
  * @returns {boolean}
@@ -109,17 +100,16 @@ function isValidUUID(uuid) {
 
   // Compendium Document
   const packs = game.packs.set();
-  if ((parts.length >= 3) && (packs.has(`${parts[0]}.${parts[1]}`)) && isValidId(parts[2])) parts = parts.slice(3);
+  if ((parts.length >= 3) && (packs.has(`${parts[0]}.${parts[1]}`)) && foundry.data.validators.isValidId(parts[2])) parts = parts.slice(3);
 
   // World Document / Embedded Document
-  while ((parts.length >= 2) && (parts[0] in game.documentTypes) && isValidId(parts[1])) parts = parts.slice(2);
+  while ((parts.length >= 2) && (parts[0] in game.documentTypes) && foundry.data.validators.isValidId(parts[1])) parts = parts.slice(2);
 
   return parts.length === 0;
 }
 
 export const validators = {
   isValidIdentifier: isValidIdentifier,
-  isValidId: isValidId,
   isValidUUID: isValidUUID
 };
 

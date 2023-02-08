@@ -6,6 +6,7 @@ import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
+import makeItemProperties from "./helpers.mjs";
 
 /**
  * Data definition for Weapon items.
@@ -18,7 +19,7 @@ import MountableTemplate from "./templates/mountable.mjs";
  *
  * @property {string} weaponType   Weapon category as defined in `SW5E.weaponTypes`.
  * @property {string} baseItem     Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
- * @property {object} properties   Mapping of various weapon property booleans.
+ * @property {object} properties   Mapping of various equipment property booleans and numbers.
  * @property {boolean} proficient  Does the weapon's owner have proficiency?
  */
 export default class WeaponData extends SystemDataModel.mixin(
@@ -38,9 +39,8 @@ export default class WeaponData extends SystemDataModel.mixin(
         label: "SW5E.ItemWeaponType"
       }),
       baseItem: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ItemWeaponBase" }),
-      properties: new MappingField(new foundry.data.fields.BooleanField(), {
+      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
         required: true,
-        initialKeys: CONFIG.SW5E.weaponProperties,
         label: "SW5E.ItemWeaponProperties"
       }),
       proficient: new foundry.data.fields.BooleanField({ required: true, initial: true, label: "SW5E.Proficient" })
@@ -52,22 +52,8 @@ export default class WeaponData extends SystemDataModel.mixin(
   /** @inheritdoc */
   static migrateData(source) {
     super.migrateData(source);
-    WeaponData.#migratePropertiesData(source);
     WeaponData.#migrateProficient(source);
     WeaponData.#migrateWeaponType(source);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Migrate the weapons's properties object to remove any old, non-boolean values.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migratePropertiesData(source) {
-    if (!source.properties) return;
-    for (const [key, value] of Object.entries(source.properties)) {
-      if (typeof value !== "boolean") delete source.properties[key];
-    }
   }
 
   /* -------------------------------------------- */

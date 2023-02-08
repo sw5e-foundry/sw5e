@@ -35,7 +35,7 @@
             <ol class="item-list content" style="display: block">
                 {{#each section.items as |item iid|}}
                 {{#sw5e-itemContext item as |ctx|}}
-                <li class="item flexrow {{#if ctx.isDepleted}}depleted{{/if}} {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
+                <li class="item group-grid-features {{#if ctx.isDepleted}}depleted{{/if}} {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
                     <div class="item-name rollable">
                         <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                         <h4>

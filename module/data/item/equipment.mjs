@@ -5,6 +5,7 @@ import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
+import makeItemProperties from "./helpers.mjs";
 
 /**
  * Data definition for Equipment items.
@@ -26,6 +27,7 @@ import MountableTemplate from "./templates/mountable.mjs";
  * @property {string} speed.conditions  Conditions that may affect item's speed.
  * @property {number} strength          Minimum strength required to use a piece of armor.
  * @property {boolean} stealth          Does this equipment grant disadvantage on stealth checks when used?
+ * @property {object} properties        Mapping of various weapon property booleans and numbers.
  * @property {boolean} proficient       Does the owner have proficiency in this piece of equipment?
  */
 export default class EquipmentData extends SystemDataModel.mixin(
@@ -71,7 +73,11 @@ export default class EquipmentData extends SystemDataModel.mixin(
         label: "SW5E.ItemRequiredStr"
       }),
       stealth: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemEquipmentStealthDisav" }),
-      proficient: new foundry.data.fields.BooleanField({ required: true, initial: true, label: "SW5E.Proficient" })
+      proficient: new foundry.data.fields.BooleanField({ required: true, initial: true, label: "SW5E.Proficient" }),
+      properties: makeItemProperties({ ...CONFIG.SW5E.weaponProperties, ...CONFIG.SW5E.castingProperties }, {
+        required: true,
+        label: "SW5E.ItemEquipmentProperties"
+      }),
     });
   }
 

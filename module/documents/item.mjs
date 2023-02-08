@@ -2648,14 +2648,6 @@ export default class Item5e extends Item {
     if (updates) return this.updateSource(updates);
   }
 
-  /** @inheritdoc */
-  async _preUpdate(changed, options, user) {
-    await super._preUpdate(changed, options, user);
-
-    const changes = foundry.utils.flattenObject(changed);
-    delete changes["_id"];
-  }
-
   /* -------------------------------------------- */
 
   /** @inheritdoc */

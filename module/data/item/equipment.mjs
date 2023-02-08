@@ -74,7 +74,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
       }),
       stealth: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemEquipmentStealthDisav" }),
       proficient: new foundry.data.fields.BooleanField({ required: true, initial: true, label: "SW5E.Proficient" }),
-      properties: makeItemProperties({ ...CONFIG.SW5E.weaponProperties, ...CONFIG.SW5E.castingProperties }, {
+      properties: makeItemProperties(CONFIG.SW5E.equipmentProperties, {
         required: true,
         label: "SW5E.ItemEquipmentProperties"
       }),

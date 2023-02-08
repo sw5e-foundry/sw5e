@@ -2623,8 +2623,6 @@ SW5E.armorProperties = {
 };
 preLocalize("armorProperties", { keys: ["name", "full", "desc"] });
 
-/* -------------------------------------------- */
-
 /**
  * The set of casting property flags which can exist on any casting focus.
  * @enum {{
@@ -2764,6 +2762,23 @@ SW5E.castingProperties = {
   }
 };
 preLocalize("castingProperties", { keys: ["name", "full", "desc"] });
+
+
+/**
+ * The set of equipment property flags which can exist on an equipment.
+ * @enum {{
+ *   name: string,
+ *   full: string,
+ *   type: string
+ *   [min]: number,
+ *   [max]: number,
+ *   [ship]: boolean
+ * }}
+ */
+SW5E.equipmentProperties = {
+  ...SW5E.armorProperties,
+  ...SW5E.castingProperties
+};
 
 /* -------------------------------------------- */
 

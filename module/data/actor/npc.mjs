@@ -26,7 +26,9 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {string} details.type.custom        Custom type beyond what is available in the configuration.
  * @property {string} details.environment        Common environments in which this NPC is found.
  * @property {number} details.cr                 NPC's challenge rating.
- * @property {number} details.powerLevel         Powercasting level of this NPC.
+ * @property {number} details.powerForceLevel    Forcecasting level of this NPC.
+ * @property {number} details.powerTechLevel     Techcasting level of this NPC.
+ * @property {number} details.superiorityLevel   Superiority level of this NPC.
  * @property {string} details.source             What book or adventure is this NPC from?
  * @property {object} resources
  * @property {object} resources.legact           NPC's legendary actions.
@@ -122,13 +124,29 @@ export default class NPCData extends CreatureTemplate {
             initial: 1,
             label: "SW5E.ChallengeRating"
           }),
-          powerLevel: new foundry.data.fields.NumberField({
+          powerForceLevel: new foundry.data.fields.NumberField({
             required: true,
             nullable: false,
             integer: true,
             min: 0,
             initial: 0,
-            label: "SW5E.PowercasterLevel"
+            label: "SW5E.ForcecasterLevel"
+          }),
+          powerTechLevel: new foundry.data.fields.NumberField({
+            required: true,
+            nullable: false,
+            integer: true,
+            min: 0,
+            initial: 0,
+            label: "SW5E.TechcasterLevel"
+          }),
+          superiorityLevel: new foundry.data.fields.NumberField({
+            required: true,
+            nullable: false,
+            integer: true,
+            min: 0,
+            initial: 0,
+            label: "SW5E.SuperiorityLevel"
           }),
           source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" })
         },
@@ -208,6 +226,7 @@ export default class NPCData extends CreatureTemplate {
   static migrateData(source) {
     super.migrateData(source);
     NPCData.#migrateTypeData(source);
+    NPCData.#migratePowercastingData(source);
     AttributesFields._migrateInitiative(source.attributes);
   }
 
@@ -262,6 +281,49 @@ export default class NPCData extends CreatureTemplate {
     else {
       source.type.value = "custom";
       source.type.custom = original;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the actor's powercasting data.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migratePowercastingData(source) {
+    let level = Number(source.details.cr);
+    let hasCasting = false;
+
+    if (source.details.powerLevel) {
+      hasCasting = true;
+      level = source.details.powerLevel;
+      delete source.details.powerLevel;
+    }
+
+    if (source.attributes.powercasting) {
+      hasCasting = true;
+      switch (source.attributes.powercasting) {
+        case "consular":
+          source.details.powerForceLevel = level;
+          break;
+        case "engineer":
+          source.details.powerTechLevel = level;
+          break;
+        case "guardian":
+          source.details.powerForceLevel = ceil(level/2);
+          break;
+        case "scout":
+          source.details.powerTechLevel = ceil(level/2);
+          break;
+        case "sentinel":
+          source.details.powerForceLevel = ceil(3*level/4);
+          break;
+      }
+      delete source.abilities.powercasting;
+    }
+    else if (hasCasting) {
+      source.details.powerForceLevel = level;
+      source.details.powerTechLevel = level;
     }
   }
 }

@@ -6,6 +6,7 @@ import ActorAbilityConfig from "./ability-config.mjs";
 import ActorArmorConfig from "./armor-config.mjs";
 import ActorHitDiceConfig from "./hit-dice-config.mjs";
 import ActorHitPointsConfig from "./hit-points-config.mjs";
+import ActorCastPointsConfig from "./cast-points-config.mjs";
 import ActorInitiativeConfig from "./initiative-config.mjs";
 import ActorMovementConfig from "./movement-config.mjs";
 import ActorSensesConfig from "./senses-config.mjs";
@@ -147,6 +148,14 @@ export default class ActorSheet5e extends ActorSheet {
       if (hp.tempmax === 0) delete hp.tempmax;
       context.hp = hp;
     }
+
+    // Powercasting
+    context.force = { ...context.system._source.attributes.force };
+    context.tech = { ...context.system._source.attributes.tech };
+    context.super = { ...context.system._source.attributes.super };
+    context.sourceForce = { ...context.system.attributes.force };
+    context.sourceFech = { ...context.system.attributes.tech };
+    context.sourceFuper = { ...context.system.attributes.super };
 
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {
@@ -941,6 +950,11 @@ export default class ActorSheet5e extends ActorSheet {
         break;
       case "hit-points":
         app = new ActorHitPointsConfig(this.actor);
+        break;
+      case "force-points":
+      case "tech-points":
+      case "super-dice":
+        app = new ActorCastPointsConfig(button.dataset.action, this.actor);
         break;
       case "initiative":
         app = new ActorInitiativeConfig(this.actor);

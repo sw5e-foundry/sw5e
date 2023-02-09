@@ -1672,6 +1672,11 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 24px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource {
+  position: relative;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource h1 {
@@ -1683,6 +1688,11 @@ input[type="reset"]:disabled {
   text-align: center;
   margin-bottom: 4px;
   border-radius: 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-name,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-name,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-name {
+  position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
@@ -1697,23 +1707,16 @@ input[type="reset"]:disabled {
   text-align: center;
   line-height: 1;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value.multiple {
   display: grid;
-  grid-template-columns: auto 14px auto;
-}
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
-  display: block;
-  width: 100%;
+  grid-template-columns: 1fr 14px 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number {
-  display: block;
-  width: 100%;
+  display: inline-block;
   text-align: right;
   padding: 0 3px;
 }
@@ -1727,12 +1730,34 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value span.value-number {
   padding: 1px 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .config-button {
+  position: absolute;
+  padding: 2px;
+  right: 0;
+  top: 0;
+  display: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .property-attribution,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .property-attribution,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .property-attribution {
+  min-width: 150px;
+  top: 50px;
+  font-family: Signika, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1rem;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource:hover .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource:hover .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource:hover .config-button {
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer {
   margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   flex: 0 0 18px;
   margin-top: -1px;
   line-height: 18px;
@@ -1741,9 +1766,15 @@ input[type="reset"]:disabled {
   font-weight: 400;
   white-space: nowrap;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer input,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer input,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer input {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer.multiple {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer input,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer input,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer input {
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook > .panel,

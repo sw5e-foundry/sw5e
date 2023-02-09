@@ -613,7 +613,7 @@ export default class Actor5e extends Actor {
       this.system.attributes[progression.castType].known ??= {};
       this.system.attributes[progression.castType].known.value = progression.powersKnownCur;
       this.system.attributes[progression.castType].known.max = progression.powersKnownMax;
-      this.system.attributes[progression.castType].points.max = progression.points;
+      this.system.attributes[progression.castType].points.max ??= progression.points;
       this.system.attributes[progression.castType].level = progression.casterLevel;
       this.system.attributes[progression.castType].override = progression.override;
     }
@@ -662,7 +662,7 @@ export default class Actor5e extends Actor {
     superiority.known ??= {};
     superiority.known.value = this.itemTypes.maneuver.length;
     superiority.known.max = known;
-    superiority.dice.max = dice;
+    superiority.dice.max ??= dice;
     superiority.die = CONFIG.SW5E.superiorityDieSizeProgression[levels];
 
     this.superiority = superiority;
@@ -1238,37 +1238,47 @@ export default class Actor5e extends Actor {
     const bonusUniv = simplifyBonus(this.system.bonuses?.power?.forceUnivDC, bonusData) + bonusAll;
     const bonusTech = simplifyBonus(this.system.bonuses?.power?.techDC, bonusData) + bonusAll;
 
+    const abl = this.system.abilities;
+    const attr = this.system.attributes;
+    const fOverride = attr.force.override;
+    const tOverride = attr.tech.override;
+    const base = 8 + attr.prof ?? 0;
+
     // Powercasting DC for Actors and NPCs
-    this.system.attributes.powerForceLightDC =
-      8 + this.system.abilities[this.system.attributes.force.override ?? "wis"].mod + this.system.attributes.prof ?? 10;
-    this.system.attributes.powerForceDarkDC =
-      8 + this.system.abilities[this.system.attributes.force.override ?? "cha"].mod + this.system.attributes.prof ?? 10;
-    this.system.attributes.powerForceUnivDC =
-      Math.max(this.system.attributes.powerForceLightDC, this.system.attributes.powerForceDarkDC) ?? 10;
-    this.system.attributes.powerTechDC =
-      8 + this.system.abilities[this.system.attributes.tech.override ?? "int"].mod + this.system.attributes.prof ?? 10;
+    attr.powerForceLightDC = base + (abl[fOverride ?? "wis"].mod ?? 0);
+    attr.powerForceDarkDC = base + (abl[fOverride ?? "cha"].mod ?? 0);
+    attr.powerForceUnivDC = Math.max(attr.powerForceLightDC, attr.powerForceDarkDC);
+    attr.powerTechDC = base + (abl[tOverride ?? "int"].mod ?? 0);
 
     if (game.settings.get("sw5e", "simplifiedForcecasting")) {
-      this.system.attributes.powerForceLightDC = this.system.attributes.powerForceUnivDC;
-      this.system.attributes.powerForceDarkDC = this.system.attributes.powerForceUnivDC;
+      attr.powerForceLightDC = attr.powerForceUnivDC;
+      attr.powerForceDarkDC = attr.powerForceUnivDC;
     }
 
-    this.system.attributes.powerForceLightDC += bonusLight;
-    this.system.attributes.powerForceDarkDC += bonusDark;
-    this.system.attributes.powerForceUnivDC += bonusUniv;
-    this.system.attributes.powerTechDC += bonusTech;
+    attr.powerForceLightDC += bonusLight;
+    attr.powerForceDarkDC += bonusDark;
+    attr.powerForceUnivDC += bonusUniv;
+    attr.powerTechDC += bonusTech;
 
     if (this.type !== "character") return;
 
     // Set Force and tech bonus points for PC Actors
     for (const castType of ["force", "tech"]) {
-      if (this.system.attributes[castType].level === 0) continue;
-      let mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, attr) => {
-        return Math.max(best, this.system.abilities?.[attr]?.mod ?? Number.NEGATIVE_INFINITY);
+      const cast = attr[castType];
+      const castSource = this.system._source.attributes[castType];
+
+      if (castSource.points.max !== null) continue;
+      if (cast.level === 0) continue;
+
+      let mod;
+      if (cast.override) mod = abl[cast.override].mod;
+      else mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, a) => {
+        return Math.max(best, abl[a]?.mod ?? Number.NEGATIVE_INFINITY);
       }, Number.NEGATIVE_INFINITY);
-      if (this.system.attributes[castType].override)
-        mod = this.system.abilities[this.system.attributes[castType].override].mod;
-      if (mod !== Number.NEGATIVE_INFINITY) this.system.attributes[castType].points.max += mod;
+      if (mod !== Number.NEGATIVE_INFINITY) cast.points.max += mod;
+
+      cast.points.max += Number(cast.points.bonuses?.overall ?? 0);
+      cast.points.max += Number(cast.points.bonuses?.level ?? 0) * Number(this.system.details?.level ?? 0);
     }
   }
 
@@ -1286,21 +1296,21 @@ export default class Actor5e extends Actor {
     const bonusPhysical = simplifyBonus(this.system.bonuses?.super?.physicalDC, bonusData) + bonusAll;
     const bonusMental = simplifyBonus(this.system.bonuses?.super?.mentalDC, bonusData) + bonusAll;
 
-    // Powercasting DC for Actors and NPCs
-    this.system.attributes.super.physicalDC =
-      8 +
-        Math.max(this.system.abilities.str.mod, this.system.abilities.dex.mod, this.system.abilities.con.mod) +
-        this.system.attributes.prof ?? 10;
-    this.system.attributes.super.mentalDC =
-      8 +
-        Math.max(this.system.abilities.int.mod, this.system.abilities.wis.mod, this.system.abilities.cha.mod) +
-        this.system.attributes.prof ?? 10;
-    this.system.attributes.super.generalDC =
-      Math.max(this.system.attributes.super.physicalDC, this.system.attributes.super.mentalDC) ?? 10;
+    const abl = this.system.abilities;
+    const spr = this.system.attributes.super;
+    const base = 8 + this.system.attributes.prof ?? 0;
 
-    this.system.attributes.super.generalDC += bonusGeneral;
-    this.system.attributes.super.physicalDC += bonusPhysical;
-    this.system.attributes.super.mentalDC += bonusMental;
+    // Powercasting DC for Actors and NPCs
+    spr.physicalDC = base + Math.max(abl.str.mod ?? 0, abl.dex.mod ?? 0, abl.con.mod ?? 0);
+    spr.mentalDC = base + Math.max(abl.int.mod ?? 0, abl.wis.mod ?? 0, abl.cha.mod ?? 0);
+    spr.generalDC = Math.max(spr.physicalDC, spr.mentalDC);
+
+    spr.generalDC += bonusGeneral;
+    spr.physicalDC += bonusPhysical;
+    spr.mentalDC += bonusMental;
+
+    spr.dice.max += Number(spr.dice.bonuses?.overall ?? 0);
+    spr.dice.max += Number(spr.dice.bonuses?.level ?? 0) * Number(this.system.details?.level ?? 0);
   }
 
   /* -------------------------------------------- */

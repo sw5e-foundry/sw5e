@@ -1,17 +1,35 @@
 <section class="panel">
     <section class="resource-items">
-        <div class="resource">
-            <h1>{{localize "SW5E.ConsumableForce"}}</h1>
-
-            <div class="attribute-value">
-                <input name="system.attributes.force.points.value" type="text" value="{{system.attributes.force.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+        <div class="resource points-resource">
+            <h1 class="attribute-name box-title">{{ localize "SW5E.ForcePoints" }}</h1>
+            <a class="config-button" data-action="force-points" data-tooltip="SW5E.ForcePointsConfig">
+                <i class="fas fa-cog"></i>
+            </a>
+            <div class="attribute-value multiple">
+                <input
+                    name="system.attributes.force.points.value"
+                    type="text"
+                    class="value-number"
+                    value="{{force.points.value}}"
+                    data-tooltip="SW5E.ForcePointsCurrent"
+                    data-dtype="Number"
+                >
                 <span class="value-separator">/</span>
-                <input name="system.attributes.force.points.max" type="text" value="{{system.attributes.force.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <span class="value-number" data-tooltip="{{#if sourceForce.points.max}}SW5E.ForcePointsOverride{{else}}SW5E.ForcePointsMax{{/if}}">
+                    {{force.points.max}}
+                </span>
             </div>
 
             <footer class="attribute-footer">
-                <input name="system.attributes.force.points.temp" type="text" placeholder="+Temp" value="{{system.attributes.force.points.temp}}" data-dtype="Number" />
-                <input name="system.attributes.force.points.tempmax" type="text" placeholder="+Max" value="{{system.attributes.force.points.tempmax}}" data-dtype="Number" />
+                <input
+                    name="system.attributes.force.points.temp"
+                    type="text"
+                    class="value-number temphp"
+                    placeholder="+{{ localize 'SW5E.Temp' }}"
+                    value="{{force.points.temp}}"
+                    data-tooltip="SW5E.HitPointsTemp"
+                    data-dtype="Number"
+                >
             </footer>
         </div>
 

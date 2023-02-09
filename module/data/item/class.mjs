@@ -6,19 +6,21 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * Data definition for Class items.
  * @mixes ItemDescriptionTemplate
  *
- * @property {string} identifier        Identifier slug for this class.
- * @property {number} levels            Current number of levels in this class.
- * @property {string} hitDice           Denomination of hit dice available as defined in `SW5E.hitDieTypes`.
- * @property {number} hitDiceUsed       Number of hit dice consumed.
- * @property {object[]} advancement     Advancement objects for this class.
- * @property {string[]} saves           Savings throws in which this class grants proficiency.
- * @property {object} skills            Available class skills and selected skills.
- * @property {number} skills.number     Number of skills selectable by the player.
- * @property {string[]} skills.choices  List of skill keys that are valid to be chosen.
- * @property {string[]} skills.value    List of skill keys the player has chosen.
- * @property {object} powercasting      Details on class's powercasting ability.
- * @property {string} powercasting.progression  Power progression granted by class as from `SW5E.powerProgression`.
- * @property {string} powercasting.ability      Ability score to use for powercasting.
+ * @property {string} identifier                   Identifier slug for this class.
+ * @property {number} levels                       Current number of levels in this class.
+ * @property {string} hitDice                      Denomination of hit dice available as defined in `SW5E.hitDieTypes`.
+ * @property {number} hitDiceUsed                  Number of hit dice consumed.
+ * @property {object[]} advancement                Advancement objects for this class.
+ * @property {string[]} saves                      Savings throws in which this class grants proficiency.
+ * @property {object} skills                       Available class skills and selected skills.
+ * @property {number} skills.number                Number of skills selectable by the player.
+ * @property {string[]} skills.choices             List of skill keys that are valid to be chosen.
+ * @property {string[]} skills.value               List of skill keys the player has chosen.
+ * @property {object} powercasting                 Details on class's powercasting ability.
+ * @property {string} powercasting.force           Force power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.tech            Tech power progression granted by class as from `SW5E.powerProgression`.
+ * @property {object} superiority                  Details on class's superiority ability.
+ * @property {string} superiority.progression      Power progression granted by class as from `SW5E.superiorityProgression`.
  */
 export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
@@ -69,15 +71,33 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
       }),
       powercasting: new foundry.data.fields.SchemaField(
         {
+          force: new foundry.data.fields.StringField({
+            required: true,
+            initial: "none",
+            blank: false,
+            label: "SW5E.ForcePowerProgression"
+          }),
+          forceOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.ForceCastingOverride" }),
+          tech: new foundry.data.fields.StringField({
+            required: true,
+            initial: "none",
+            blank: false,
+            label: "SW5E.TechPowerProgression"
+          }),
+          techOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.TechCastingOverride" })
+        },
+        { label: "SW5E.Powercasting" }
+      ),
+      superiority: new foundry.data.fields.SchemaField(
+        {
           progression: new foundry.data.fields.StringField({
             required: true,
             initial: "none",
             blank: false,
-            label: "SW5E.PowerProgression"
-          }),
-          ability: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerAbility" })
+            label: "SW5E.SuperiorityProgression"
+          })
         },
-        { label: "SW5E.Powercasting" }
+        { label: "SW5E.Superiority" }
       )
     });
   }
@@ -110,11 +130,8 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migratePowercastingData(source) {
-    if (source.powercasting?.progression === "") source.powercasting.progression = "none";
-    if (typeof source.powercasting !== "string") return;
-    source.powercasting = {
-      progression: source.powercasting,
-      ability: ""
-    };
+    if (source.powercasting?.force === "") source.powercasting.force = "none";
+    if (source.powercasting?.tech === "") source.powercasting.tech = "none";
+    if (source.superiority?.progression === "") source.superiority.progression = "none";
   }
 }

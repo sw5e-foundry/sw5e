@@ -1,0 +1,19 @@
+<form>
+  <div class="cast-points-field form-group">
+    <input type="number" name="max" value="{{source.max}}"
+      placeholder="{{attr.max}}" data-tooltip="{{maxOverrideLabel}}">
+  </div>
+
+  <div class="form-group">
+    <label>{{localize bonusLevelLabel}}</label>
+    <input type="text" name="bonuses.level" value="{{attr.bonuses.level}}">
+  </div>
+  <div class="form-group">
+    <label>{{localize bonusOverallLabel}}</label>
+    <input type="text" name="bonuses.overall" value="{{attr.bonuses.overall}}">
+  </div>
+
+  <button type="submit">
+    <i class="far fa-save"></i> {{localize "Save"}}
+  </button>
+</form>

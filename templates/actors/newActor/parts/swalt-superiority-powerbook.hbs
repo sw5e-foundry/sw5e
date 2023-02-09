@@ -8,13 +8,24 @@
             </div>
         </div> -->
 
-        <div class="resource">
-            <h1>{{localize "SW5E.ConsumableManeuver"}}</h1>
-
+        <div class="resource points-resource">
+            <h1 class="attribute-name box-title">{{ localize "SW5E.SuperDice" }}</h1>
+            <a class="config-button" data-action="super-dice" data-tooltip="SW5E.SuperDiceConfig">
+                <i class="fas fa-cog"></i>
+            </a>
             <div class="attribute-value multiple">
-                <input name="system.attributes.super.dice.value" type="text" value="{{system.attributes.super.dice.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <input
+                    name="system.attributes.super.dice.value"
+                    type="text"
+                    class="value-number"
+                    value="{{super.dice.value}}"
+                    data-tooltip="SW5E.SuperDiceCurrent"
+                    data-dtype="Number"
+                >
                 <span class="value-separator">/</span>
-                <span class="value-number">{{system.attributes.super.dice.max}}{{#if system.attributes.super.dice.max}}{{system.attributes.super.die}}{{/if}}</span>
+                <span class="value-number" data-tooltip="{{#if sourceSuper.dice.max}}SW5E.SuperDiceOverride{{else}}SW5E.SuperDiceMax{{/if}}">
+                    {{super.dice.max}}{{#if system.attributes.super.dice.max}}{{system.attributes.super.die}}{{/if}}
+                </span>
             </div>
         </div>
 

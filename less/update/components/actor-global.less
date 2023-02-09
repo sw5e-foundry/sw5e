@@ -234,6 +234,7 @@
           &:hover .config-button {
             display: block;
           }
+
           // Temporary HP
           input.temphp {
             width: 48%;
@@ -1057,6 +1058,8 @@
         column-gap: 24px;
 
         .resource {
+          position: relative;
+
           h1 {
             border: none;
             margin: 0;
@@ -1067,6 +1070,9 @@
             margin-bottom: 4px;
             border-radius: 0;
           }
+          .attribute-name {
+            position: relative;
+          }
 
           .attribute-value,
           .attribute-value input {
@@ -1076,19 +1082,17 @@
           }
 
           .attribute-value {
-            display: grid;
-            grid-template-columns: auto 14px auto;
-
-            input {
-              display: block;
-              width: 100%;
+            &.multiple {
+              display: grid;
+              grid-template-columns: 1fr 14px 1fr;
             }
 
             .value-number {
-              display: block;
-              width: 100%;
+              display: inline-block;
               text-align: right;
+
               padding: 0 3px;
+
               &:last-child {
                 text-align: left;
               }
@@ -1099,10 +1103,35 @@
             }
           }
 
-          .attribute-footer {
+          // Attribute Configuration
+          .config-button {
+            position: absolute;
+            padding: 2px;
+            right: 0;
+            top: 0;
+            display: none;
+          }
+
+          // Attribution Tooltip
+          .property-attribution {
+            min-width: 150px;
+            top: 50px;
+            font-family: Signika, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1rem;
+          }
+
+          &:hover .config-button {
+            display: block;
+          }
+
+          footer {
             margin: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            &.multiple {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+            }
             flex: 0 0 18px;
             margin-top: -1px;
             line-height: 18px;

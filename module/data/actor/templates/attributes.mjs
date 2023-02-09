@@ -188,7 +188,7 @@ export default class AttributesFields {
             initial: null,
             label: "SW5E.SuperiorityDieOverride"
           }),
-          dice: makePointsResource({label: "SW5E.SuperiorityDice"})
+          dice: makePointsResource({label: "SW5E.SuperDice"})
         },
         { label: "SW5E.Superiority" }
       ),

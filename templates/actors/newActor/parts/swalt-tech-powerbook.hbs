@@ -1,17 +1,35 @@
 <section class="panel">
     <section class="resource-items">
-        <div class="resource">
-            <h1>{{localize "SW5E.ConsumableTech"}}</h1>
-
-            <div class="attribute-value">
-                <input name="system.attributes.tech.points.value" type="text" value="{{system.attributes.tech.points.value}}" data-dtype="Number" placeholder="0" class="value-number" />
+        <div class="resource points-resource">
+            <h1 class="attribute-name box-title">{{ localize "SW5E.TechPoints" }}</h1>
+            <a class="config-button" data-action="tech-points" data-tooltip="SW5E.TechPointsConfig">
+                <i class="fas fa-cog"></i>
+            </a>
+            <div class="attribute-value multiple">
+                <input
+                    name="system.attributes.tech.points.value"
+                    type="text"
+                    class="value-number"
+                    value="{{tech.points.value}}"
+                    data-tooltip="SW5E.TechPointsCurrent"
+                    data-dtype="Number"
+                >
                 <span class="value-separator">/</span>
-                <input name="system.attributes.tech.points.max" type="text" value="{{system.attributes.tech.points.max}}" data-dtype="Number" placeholder="0" class="value-number" />
+                <span class="value-number" data-tooltip="{{#if sourceTech.points.max}}SW5E.TechPointsOverride{{else}}SW5E.TechPointsMax{{/if}}">
+                    {{tech.points.max}}
+                </span>
             </div>
 
             <footer class="attribute-footer">
-                <input name="system.attributes.tech.points.temp" type="text" placeholder="+Temp" value="{{system.attributes.tech.points.temp}}" data-dtype="Number" />
-                <input name="system.attributes.tech.points.tempmax" type="text" placeholder="+Max" value="{{system.attributes.tech.points.tempmax}}" data-dtype="Number" />
+                <input
+                    name="system.attributes.tech.points.temp"
+                    type="text"
+                    class="value-number temphp"
+                    placeholder="+{{ localize 'SW5E.Temp' }}"
+                    value="{{tech.points.temp}}"
+                    data-tooltip="SW5E.HitPointsTemp"
+                    data-dtype="Number"
+                >
             </footer>
         </div>
 

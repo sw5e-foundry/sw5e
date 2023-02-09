@@ -219,7 +219,6 @@ export const migrateArmorClass = async function (pack, migrationData) {
       });
       const armorName = actor.system.attributes.ac.formula.toLowerCase();
       const armorItem = migrationData.armors.find(a => a.name.toLowerCase() === armorName);
-      if (actor.name === "Trooper, Captain") console.debug(armorItem, actor.system.attributes.ac, armorName);
       if (!hasArmorEquipped && armorItem) {
         const armorData = armorItem.toObject();
         armorData.system.equipped = true;

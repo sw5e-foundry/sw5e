@@ -36,11 +36,6 @@ export default class ActorCastPointsConfig extends BaseConfigSheet {
     else if (attr.points !== undefined) this.subName += "points";
 
     if (this.subName) this.attrPath += `.${this.subName}`;
-
-    console.debug('ActorCastPointsConfig | clone', this.clone);
-    console.debug('ActorCastPointsConfig | attrName', this.attrName);
-    console.debug('ActorCastPointsConfig | attrName', this.subName);
-    console.debug('ActorCastPointsConfig | attrPath', this.attrPath);
   }
 
   /* -------------------------------------------- */
@@ -89,7 +84,6 @@ export default class ActorCastPointsConfig extends BaseConfigSheet {
 
   /** @inheritdoc */
   async _updateObject(event, formData) {
-    console.debug('ActorCastPointsConfig | _updateObject formData', formData);
     const attr = foundry.utils.expandObject(formData);
     this.clone.updateSource({ [this.attrPath]: attr });
 
@@ -109,12 +103,6 @@ export default class ActorCastPointsConfig extends BaseConfigSheet {
   async _onChangeInput(event) {
     await super._onChangeInput(event);
     const t = event.currentTarget;
-
-    console.debug('ActorCastPointsConfig | _onChangeInput event', event);
-    console.debug('ActorCastPointsConfig | _onChangeInput t', t);
-    console.debug('ActorCastPointsConfig | _onChangeInput t.name', t.name);
-    console.debug('ActorCastPointsConfig | _onChangeInput t.value', t.value);
-    console.debug('ActorCastPointsConfig | _onChangeInput path', `${this.attrPath}.${t.name}`);
 
     // Update clone with new data & re-render
     this.clone.updateSource({ [`${this.attrPath}.${t.name}`]: t.value || null });

@@ -476,12 +476,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       const value = parseInt(event.currentTarget.value, 10);
       if (!Number.isNaN(value)) item.update({ "system.ammo.value": value });
     });
-    html.find(".weapon-reload").click(event => {
-      event.preventDefault();
-      const itemId = event.currentTarget.closest(".item").dataset.itemId;
-      const item = this.actor.items.get(itemId);
-      item.sheet._onWeaponReload(event);
-    });
   }
 
   /* -------------------------------------------- */

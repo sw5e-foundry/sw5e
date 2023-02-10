@@ -868,7 +868,7 @@ export default class ActorSheet5e extends ActorSheet {
     // Toggle Attunement State
     if ("attunement" in item.system && item.system.attunement !== CONFIG.SW5E.attunementTypes.NONE) {
       const isAttuned = item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED;
-      options.push({
+      options.unshift({
         name: isAttuned ? "SW5E.ContextMenuActionUnattune" : "SW5E.ContextMenuActionAttune",
         icon: "<i class='fas fa-sun fa-fw'></i>",
         callback: () =>
@@ -880,7 +880,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Toggle Equipped State
     if ("equipped" in item.system)
-      options.push({
+      options.unshift({
         name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
         icon: "<i class='fas fa-shield-alt fa-fw'></i>",
         callback: () => item.update({ "system.equipped": !item.system.equipped })
@@ -888,11 +888,20 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Toggle Prepared State
     if ("preparation" in item.system && item.system.preparation?.mode === "prepared")
-      options.push({
+      options.unshift({
         name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
         icon: "<i class='fas fa-sun fa-fw'></i>",
         callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
       });
+
+    // Reload Weapon
+    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max))
+      options.unshift({
+        name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
+        icon: "<i class='fas fa-raygun fa-fw'></i>",
+        callback: () => item.reloadWeapon()
+      });
+
     return options;
   }
 

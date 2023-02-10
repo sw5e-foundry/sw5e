@@ -17,10 +17,15 @@ import makeItemProperties from "./helpers.mjs";
  * @mixes ActionTemplate
  * @mixes MountableTemplate
  *
- * @property {string} weaponType   Weapon category as defined in `SW5E.weaponTypes`.
- * @property {string} baseItem     Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
- * @property {object} properties   Mapping of various equipment property booleans and numbers.
- * @property {boolean} proficient  Does the weapon's owner have proficiency?
+ * @property {string} weaponType          Weapon category as defined in `SW5E.weaponTypes`.
+ * @property {string} baseItem            Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
+ * @property {object} ammo
+ * @property {string} ammo.target         Id of the selected ammo item.
+ * @property {string} ammo.value          Current ammount of loaded ammo.
+ * @property {string} ammo.use            Ammount of ammo spent per shot.
+ * @property {array<string>} ammo.types   Types of ammo this ammo can accept.
+ * @property {object} properties          Mapping of various equipment property booleans and numbers.
+ * @property {boolean} proficient         Does the weapon's owner have proficiency?
  */
 export default class WeaponData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
@@ -39,6 +44,16 @@ export default class WeaponData extends SystemDataModel.mixin(
         label: "SW5E.ItemWeaponType"
       }),
       baseItem: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ItemWeaponBase" }),
+      ammo: new foundry.data.fields.SchemaField({
+        target: new foundry.data.fields.StringField({ required: true, nullable: true, label: "SW5E.WeaponAmmoSelected" }),
+        value: new foundry.data.fields.NumberField({ required: true, nullable: true, label: "SW5E.WeaponAmmoLoaded" }),
+        use: new foundry.data.fields.NumberField({ required: true, nullable: true, label: "SW5E.WeaponAmmoUse" }),
+        types: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
+          required: true,
+          initial: ["powerCell"],
+          label: "SW5E.WeaponAmmoValid",
+        }),
+      }, {}),
       properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
         required: true,
         label: "SW5E.ItemWeaponProperties"

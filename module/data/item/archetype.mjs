@@ -9,9 +9,13 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} identifier       Identifier slug for this archetype.
  * @property {string} classIdentifier  Identifier slug for the class with which this archetype should be associated.
  * @property {object[]} advancement    Advancement objects for this archetype.
- * @property {object} powercasting              Details on archetype's powercasting ability.
- * @property {string} powercasting.progression  Power progression granted by class as from `SW5E.powerProgression`.
- * @property {string} powercasting.ability      Ability score to use for powercasting.
+ * @property {object} powercasting                 Details on class's powercasting ability.
+ * @property {string} powercasting.force           Force power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.forceOverride   Ability score to use for forcecasting.
+ * @property {string} powercasting.tech            Tech power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.techOverride    Ability score to use for techcasting.
+ * @property {object} superiority                  Details on class's superiority ability.
+ * @property {string} superiority.progression      Power progression granted by class as from `SW5E.superiorityProgression`.
  */
 export default class ArchetypeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
@@ -26,15 +30,32 @@ export default class ArchetypeData extends SystemDataModel.mixin(ItemDescription
       advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
       powercasting: new foundry.data.fields.SchemaField(
         {
-          progression: new foundry.data.fields.StringField({
+          force: new foundry.data.fields.StringField({
             required: true,
             initial: "none",
             blank: false,
-            label: "SW5E.PowerProgression"
+            label: "SW5E.ForcePowerProgression"
           }),
-          ability: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerAbility" })
+          forceOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.ForceCastingOverride" }),
+          tech: new foundry.data.fields.StringField({
+            required: true,
+            initial: "none",
+            blank: false,
+            label: "SW5E.TechPowerProgression"
+          }),
+          techOverride: new foundry.data.fields.StringField({ required: true, label: "SW5E.TechCastingOverride" })
         },
         { label: "SW5E.Powercasting" }
+      ),
+      superiority: new foundry.data.fields.SchemaField(
+        {
+          progression: new foundry.data.fields.NumberField({
+            required: true,
+            initial: 0,
+            label: "SW5E.SuperiorityProgression"
+          })
+        },
+        { label: "SW5E.Superiority" }
       )
     });
   }

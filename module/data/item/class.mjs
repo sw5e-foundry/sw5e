@@ -18,7 +18,9 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string[]} skills.value               List of skill keys the player has chosen.
  * @property {object} powercasting                 Details on class's powercasting ability.
  * @property {string} powercasting.force           Force power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.forceOverride   Ability score to use for forcecasting.
  * @property {string} powercasting.tech            Tech power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.techOverride    Ability score to use for techcasting.
  * @property {object} superiority                  Details on class's superiority ability.
  * @property {string} superiority.progression      Power progression granted by class as from `SW5E.superiorityProgression`.
  */
@@ -90,10 +92,9 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
       ),
       superiority: new foundry.data.fields.SchemaField(
         {
-          progression: new foundry.data.fields.StringField({
+          progression: new foundry.data.fields.NumberField({
             required: true,
-            initial: "none",
-            blank: false,
+            initial: 0,
             label: "SW5E.SuperiorityProgression"
           })
         },

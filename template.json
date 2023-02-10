@@ -1125,7 +1125,9 @@
       "advancement": [],
       "powercasting": {
         "force": "none",
-        "tech": "none"
+        "forceOverride": null,
+        "tech": "none",
+        "techOverride": null
       },
       "superiority": {
         "progression": 0
@@ -1151,7 +1153,6 @@
       "templates": ["classDescription"],
       "identifier": "",
       "levels": 1,
-      "archetype": "",
       "hitDice": "d6",
       "hitDiceUsed": 0,
       "advancement": [],
@@ -1161,10 +1162,11 @@
         "choices": [],
         "value": []
       },
-      "source": "",
       "powercasting": {
         "force": "none",
-        "tech": "none"
+        "forceOverride": null,
+        "tech": "none",
+        "techOverride": null
       },
       "superiority": {
         "progression": 0
@@ -1244,7 +1246,8 @@
       },
       "strength": null,
       "stealth": false,
-      "properties": {}
+      "properties": {},
+      "proficient": true
     },
     "feat": {
       "templates": ["itemDescription", "activatedEffect", "action"],

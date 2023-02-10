@@ -15,6 +15,7 @@ import makeItemProperties from "./helpers.mjs";
  * @mixes ActionTemplate
  *
  * @property {string} consumableType     Type of consumable as defined in `SW5E.consumableTypes`.
+ * @property {string} ammoType           Type of ammo as defined in `SW5E.ammoTypes`.
  * @property {object} uses
  * @property {boolean} uses.autoDestroy  Should this item be destroyed when it runs out of uses.
  * @property {object} properties         Mapping of various weapon property booleans and numbers.
@@ -33,6 +34,11 @@ export default class ConsumableData extends SystemDataModel.mixin(
         required: true,
         initial: "potion",
         label: "SW5E.ItemConsumableType"
+      }),
+      ammoType: new foundry.data.fields.StringField({
+        required: true,
+        nullable: true,
+        label: "SW5E.ItemAmmoType"
       }),
       uses: new ActivatedEffectTemplate.ItemUsesField(
         {

@@ -655,7 +655,7 @@ export default class ItemSheet5e extends ItemSheet {
         super.activateListeners(html);
         if (this.isEditable) {
             html.find(".damage-control").click(this._onDamageControl.bind(this));
-            html.find(".trait-selector.class-skills").click(this._onConfigureTraits.bind(this));
+            html.find(".trait-selector").click(this._onConfigureTraits.bind(this));
             html.find(".effect-control").click((ev) => {
                 if (this.item.isOwned)
                     return ui.notifications.warn(

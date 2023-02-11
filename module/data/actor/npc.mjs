@@ -310,13 +310,13 @@ export default class NPCData extends CreatureTemplate {
           source.details.powerTechLevel = level;
           break;
         case "guardian":
-          source.details.powerForceLevel = ceil(level/2);
+          source.details.powerForceLevel = Math.ceil(level/2);
           break;
         case "scout":
-          source.details.powerTechLevel = ceil(level/2);
+          source.details.powerTechLevel = Math.ceil(level/2);
           break;
         case "sentinel":
-          source.details.powerForceLevel = ceil(3*level/4);
+          source.details.powerForceLevel = Math.ceil(3*level/4);
           break;
       }
       delete source.abilities.powercasting;

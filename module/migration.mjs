@@ -296,11 +296,6 @@ export const migrateActorData = async function (actor, migrationData) {
     _updateNPCData(actor);
   }
 
-  // migrate powers last since it relies on item classes being migrated first.
-  if (["character", "npc"].includes(actor.type)) {
-    _migrateActorPowers(actor, updateData);
-  }
-
   return updateData;
 };
 
@@ -317,8 +312,6 @@ export async function migrateItemData (item, migrationData) {
   const updateData = {};
   await _migrateItemPower(item, updateData);
   await _migrateItemIcon(item, updateData, migrationData);
-  _migrateItemArmorPropertiesData(item, updateData);
-  _migrateItemWeaponPropertiesData(item, updateData);
   await _migrateItemModificationData(item, updateData, migrationData);
   _migrateItemBackgroundDescription(item, updateData);
   _migrateItemIdentifier(item, updateData);

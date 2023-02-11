@@ -6,8 +6,8 @@
             {{#each abilities as |ability id|}}
             <li class="score{{#if ability.proficient}} proficient{{/if}}" data-ability="{{id}}">
                 <h2 class="ability-name rollable">{{ability.label}}</h2>
-                    <input type="text" name="system.abilities.{{id}}.value" value="{{ability.value}}"
-                        class="ability-score" placeholder="10" data-dtype="Number">
+                <input type="text" name="system.abilities.{{id}}.value" value="{{ability.value}}"
+                       class="ability-score" placeholder="10" data-dtype="Number">
                 <div class="ability-modifiers">
                     <span class="ability-mod" data-tooltip="SW5E.Modifier">
                         {{numberFormat ability.mod decimals=0 sign=true}}

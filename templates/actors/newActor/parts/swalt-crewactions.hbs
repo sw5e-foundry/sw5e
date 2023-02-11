@@ -22,20 +22,21 @@
 
         <ol class="item-list content" style="display: block">
             {{#each actions.items as |item iid|}}
-                <li class="item group-grid-features" data-item-id="{{item.id}}" data-derived="{{item.derived}}">
+            {{#sw5e-itemContext item as |ctx|}}
+                <li class="item group-grid-features{{#if ctx.isExpanded}} expanded{{/if}}" data-item-id="{{ctx.id}}" data-derived="{{ctx.derived}}">
                     <div class="item-name rollable">
                         <div class="item-image" style="background-image: url('{{item.img}}')"></div>
                         <h4>
-                            {{item.the_name}}
+                            {{ctx.the_name}}
                         </h4>
                     </div>
 
                     <div class="item-detail item-uses">
-                        {{#if item.isOnCooldown}}
+                        {{#if ctx.isOnCooldown}}
                             <a class="item-recharge rollable">{{item.labels.recharge}}</a>
                         {{else if item.system.recharge.value}}
                             {{localize "SW5E.Charged"}}
-                        {{else if item.hasUses}}
+                        {{else if ctx.hasUses}}
                             <input type="text" value="{{item.system.uses.value}}" placeholder="0" />/<span>{{item.system.uses.max}}</span>
                         {{/if}}
                     </div>
@@ -54,7 +55,12 @@
                             {{/if}}
                         </div>
                     {{/if}}
+
+                    {{#if ctx.isExpanded}}
+                        {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
+                    {{/if}}
                 </li>
+            {{/sw5e-itemContext}}
             {{/each}}
         </ol>
     </li>

@@ -367,27 +367,21 @@ export default class Actor5e extends Actor {
    */
   async addStarshipDefaults() {
     const items = [];
+    const equippedItems = Object.keys(CONFIG.SW5E.ssEquipmentTypes).filter(k => !this._getEquipment(k, { equipped: true }).length);
 
     const actions = await game.packs.get("sw5e.starshipactions").getIndex();
     const action_ids = actions.map(a => "Compendium.sw5e.starshipactions." + a._id);
-    for (const id of action_ids) items.push(await fromUuid(id));
+    for (const id of action_ids) items.push((await fromUuid(id)).toObject());
 
     for (const id of CONFIG.SW5E.ssDefaultEquipment) {
-      const item = await fromUuid(id);
-      if (
-        item.type === "equipment" &&
-        this.items.filter(i => i.type === "equipment" && item.system.armor.type === i.system.armor.type).length
-      )
-        continue;
+      const item = (await fromUuid(id)).toObject();
+      if (item.type === "equipment" && equippedItems.includes(item.system.armor.type)) continue;
       if (item.type === "starship" && this.items.filter(i => i.type === "starship").length) continue;
+      item.system.equipped = true;
       items.push(item);
     }
 
-    const result = await this.addEmbeddedItems(items, false);
-
-    const updates = [];
-    for (const item of result) updates.push({ "_id": item.id, "data.equipped": true });
-    await this.updateEmbeddedDocuments("Item", updates);
+    await this.createEmbeddedDocuments("Item", items);
   }
 
   /* -------------------------------------------- */
@@ -1175,7 +1169,7 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareHitPoints(rollData) {
-    if ( this.type !== "character" || (this.system._source.attributes.hp.max !== null) ) return;
+    if ( this.type !== "character" || (this._source.system.attributes.hp.max !== null) ) return;
     const hp = this.system.attributes.hp;
 
     const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
@@ -1263,7 +1257,7 @@ export default class Actor5e extends Actor {
     // Set Force and tech bonus points for PC Actors
     for (const castType of ["force", "tech"]) {
       const cast = attr[castType];
-      const castSource = this.system._source.attributes[castType];
+      const castSource = this._source.system.attributes[castType];
 
       if (castSource.points.max !== null) continue;
       if (cast.level === 0) continue;

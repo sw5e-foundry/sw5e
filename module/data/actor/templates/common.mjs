@@ -78,6 +78,16 @@ export default class CommonTemplate extends SystemDataModel.mixin(CurrencyTempla
     if (typeof ac.formula === "string" && ac.formula.includes("@attributes.ac.base")) {
       ac.formula = ac.formula.replaceAll("@attributes.ac.base", "@attributes.ac.armor");
     }
+
+    // Remove invalid AC formula strings.
+    if ( ac?.formula ) {
+      try {
+        const roll = new Roll(ac.formula);
+        Roll.safeEval(roll.formula);
+      } catch( e ) {
+        ac.formula = "";
+      }
+    }
   }
 
   /* -------------------------------------------- */

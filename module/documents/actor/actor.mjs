@@ -845,7 +845,7 @@ export default class Actor5e extends Actor {
     const armor = this._getEquipment("starship", { equipped: true });
     if (armor.length !== 0) {
       const armorData = armor[0].system;
-      this.system.attributes.equip.armor.dr = parseInt(armorData.attributes.dmgred.value) || 0;
+      this.system.attributes.equip.armor.dr = parseInt(armorData.attributes?.dmgred?.value) || 0;
       this.system.attributes.equip.armor.maxDex = armorData.armor.dex;
       this.system.attributes.equip.armor.stealthDisadv = armorData.stealth;
     } else {
@@ -859,7 +859,7 @@ export default class Actor5e extends Actor {
     const hyperdrive = this._getEquipment("hyper", { equipped: true });
     if (hyperdrive.length !== 0) {
       const hdData = hyperdrive[0].system;
-      this.system.attributes.equip.hyperdrive.class = parseFloat(hdData.hdclass.value) || null;
+      this.system.attributes.equip.hyperdrive.class = parseFloat(hdData.attributes?.hdclass?.value) || null;
     } else {
       // no hyperdrive installed
       this.system.attributes.equip.hyperdrive.class = null;
@@ -869,8 +869,8 @@ export default class Actor5e extends Actor {
     const pwrcpl = this._getEquipment("powerc", { equipped: true });
     if (pwrcpl.length !== 0) {
       const pwrcplData = pwrcpl[0].system;
-      this.system.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.cscap.value) || 0;
-      this.system.attributes.equip.powerCoupling.systemCap = parseInt(pwrcplData.sscap.value) || 0;
+      this.system.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.attributes?.cscap?.value) || 0;
+      this.system.attributes.equip.powerCoupling.systemCap = parseInt(pwrcplData.attributes?.sscap?.value) || 0;
     } else {
       // no power coupling installed
       this.system.attributes.equip.powerCoupling.centralCap = 0;
@@ -888,8 +888,8 @@ export default class Actor5e extends Actor {
     const reactor = this._getEquipment("reactor", { equipped: true });
     if (reactor.length !== 0) {
       const reactorData = reactor[0].system;
-      this.system.attributes.equip.reactor.fuelMult = parseFloat(reactorData.fuelcostsmod.value) || 0;
-      this.system.attributes.equip.reactor.powerRecDie = reactorData.powdicerec.value;
+      this.system.attributes.equip.reactor.fuelMult = parseFloat(reactorData.attributes?.fuelcostsmod?.value) || 0;
+      this.system.attributes.equip.reactor.powerRecDie = reactorData.attributes?.powerdicerec?.value;
     } else {
       // no reactor installed
       this.system.attributes.equip.reactor.fuelMult = 1;
@@ -900,8 +900,8 @@ export default class Actor5e extends Actor {
     const shields = this._getEquipment("ssshield", { equipped: true });
     if (shields.length !== 0) {
       const shieldsData = shields[0].system;
-      this.system.attributes.equip.shields.capMult = parseFloat(shieldsData.capx.value) || 1;
-      this.system.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.regrateco.value) || 1;
+      this.system.attributes.equip.shields.capMult = parseFloat(shieldsData.attributes?.capx?.value) || 1;
+      this.system.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.attributes?.regrateco?.value) || 1;
     } else {
       // no shields installed
       this.system.attributes.equip.shields.capMult = 0;

@@ -22,4 +22,30 @@ export default class CurrencyTemplate extends foundry.abstract.DataModel {
       )
     };
   }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static migrateData(source) {
+    super.migrateData(source);
+    CurrencyTemplate.#migrateCurrencyData(source);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the actor currency field.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateCurrencyData(source) {
+    // If currency if for some reason null, set it to default values
+    if (source.currency === null) source.currency = { "gc": 0 };
+    // If the actor has a numeric currency, then it has not been migrated yet.
+    else if (Number.isNumeric(currency)) source.currency = { "gc": source.currency };
+    // If currency is an object, remove all but galactic credit
+    else if (foundry.utils.getType(source.currency) === "Object") {
+      const gc = source.currency.gc ?? source.currency.cr ?? 0;
+      source.currency = { "gc": gc };
+    }
+  }
 }

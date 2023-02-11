@@ -84,6 +84,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     // Start by classifying items into groups for rendering
     let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other, ssfeats] = context.items.reduce(
       (arr, item) => {
+        const { quantity, uses, recharge, target } = item.system;
         const ctx = context.itemContext[item.id] ??= {};
         ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
         ctx.isExpanded = this._expanded.has(item.id);
@@ -124,21 +125,21 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     // Organize Starship Features
     const ssfeatures = {
       deployments: {
-        label: "SW5E.ItemTypeDeploymentPl",
+        label: "ITEM.TypeDeploymentPl",
         items: [],
         hasActions: false,
         dataset: { type: "deployment" },
         isDeployment: true
       },
       deploymentfeatures: {
-        label: "SW5E.ItemTypeDeploymentfeaturePl",
+        label: "ITEM.TypeDeploymentfeaturePl",
         items: [],
         hasActions: true,
         dataset: { type: "deploymentfeature" },
         isDeploymentfeature: true
       },
       ventures: {
-        label: "SW5E.ItemTypeVenturePl",
+        label: "ITEM.TypeVenturePl",
         items: [],
         hasActions: false,
         dataset: { type: "venture" },

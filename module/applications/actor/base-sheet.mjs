@@ -147,16 +147,16 @@ export default class ActorSheet5e extends ActorSheet {
       if (hp.temp === 0) delete hp.temp;
       if (hp.tempmax === 0) delete hp.tempmax;
       context.hp = hp;
-      context.sourceHP = context.system._source.attributes.hp;
+      context.sourceHP = context.source.attributes.hp;
     }
 
     // Powercasting
     context.force = { ...context.system.attributes.force };
     context.tech = { ...context.system.attributes.tech };
     context.super = { ...context.system.attributes.super };
-    context.sourceForce = context.system._source.attributes.force;
-    context.sourceFech = context.system._source.attributes.tech;
-    context.sourceFuper = context.system._source.attributes.super;
+    context.sourceForce = context.source.attributes.force;
+    context.sourceFech = context.source.attributes.tech;
+    context.sourceFuper = context.source.attributes.super;
 
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {

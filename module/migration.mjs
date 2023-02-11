@@ -458,8 +458,6 @@ export const getMigrationData = async function () {
 /*  Low level migration utilities
 /* -------------------------------------------- */
 
-/* -------------------------------------------- */
-
 /**
  * Update an NPC Actor's data based on compendium
  * @param {object} actor    The data object for an Actor
@@ -701,86 +699,6 @@ async function _migrateItemIcon(item, updateData, { iconMap } = {}) {
   if (slug !== img) {
     const icon = await fetch(prefix + slug);
     if (icon.ok) updateData.img = prefix + slug;
-  }
-
-  return updateData;
-}
-
-/* -------------------------------------------- */
-
-/**
- * Set the item's armor properties to a proper object value.
- * @param {object} item        Item data to migrate.
- * @param {object} updateData  Existing update to expand upon.
- * @returns {object}           The updateData to apply.
- * @private
- */
-function _migrateItemArmorPropertiesData(item, updateData) {
-  if (item.type !== "equipment") return updateData;
-  const hasProperties = item.system?.properties !== undefined;
-  if (!hasProperties) return updateData;
-
-  const props = item.system.properties;
-  let configProp = {};
-  if (item.system?.armor?.type in CONFIG.SW5E.castingEquipmentTypes) configProp = CONFIG.SW5E.castingProperties;
-  else if (item.system?.armor?.type in CONFIG.SW5E.armorTypes) configProp = CONFIG.SW5E.armorProperties;
-
-  // Remove existing properties not in current template
-  for (const key in props) {
-    if (!(key in configProp)) updateData[`system.properties.-=${key}`] = null;
-  }
-
-  // Add template properties that don't exist yet on current weapon
-  for (const [key, prop] of Object.entries(configProp)) {
-    if (!(key in props)) updateData[`system.properties.${key}`] = prop.type === "Boolean" ? false : null;
-  }
-
-  // Migrate from boolean to number
-  for (const [key, prop] of Object.entries(configProp)) {
-    if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
-      updateData[`system.properties.${key}`] = props[key] ? prop.min ?? 1 : null;
-    }
-  }
-
-  return updateData;
-}
-
-/* -------------------------------------------- */
-
-/**
- * Set the item's weapon properties to a proper object value.
- * @param {object} item        Item data to migrate.
- * @param {object} updateData  Existing update to expand upon.
- * @returns {object}           The updateData to apply.
- * @private
- */
-function _migrateItemWeaponPropertiesData(item, updateData) {
-  if (!(item.type === "weapon" || (item.type === "consumable" && item.system.consumableType === "ammo")))
-    return updateData;
-  const hasProperties = item.system?.properties !== undefined;
-  if (!hasProperties) return updateData;
-
-  const props = item.system.properties;
-  const isStarship =
-    item.system.weaponType in CONFIG.SW5E.weaponStarshipTypes ||
-    item.system.consumableType in CONFIG.SW5E.ammoStarshipTypes;
-  const configProp = isStarship ? CONFIG.SW5E.weaponFullStarshipProperties : CONFIG.SW5E.weaponFullCharacterProperties;
-
-  // Remove existing properties not in current template
-  for (const key in props) {
-    if (!(key in configProp)) updateData[`system.properties.-=${key}`] = null;
-  }
-
-  // Add template properties that don't exist yet on current weapon
-  for (const [key, prop] of Object.entries(configProp)) {
-    if (!(key in props)) updateData[`system.properties.${key}`] = prop.type === "Boolean" ? false : null;
-  }
-
-  // Migrate from boolean to number
-  for (const [key, prop] of Object.entries(configProp)) {
-    if (prop.type === "Number" && foundry.utils.getType(props[key]) !== "Number") {
-      updateData[`system.properties.${key}`] = props[key] ? prop.min ?? 1 : null;
-    }
   }
 
   return updateData;

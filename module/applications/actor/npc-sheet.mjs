@@ -93,8 +93,8 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         ctx.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
         ctx.hasTarget = !!target && !(["none", ""].includes(target.type));
         ctx.canToggle = false;
-        if (item.type === "power" && ["lgt", "drk", "uni"].includes(school)) arr[0].push(item);
-        else if (item.type === "power" && ["tec"].includes(school)) arr[1].push(item);
+        if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) arr[0].push(item);
+        else if (item.type === "power" && ["tec"].includes(item.system.school)) arr[1].push(item);
         else if (item.type === "deployment") arr[2].push(item);
         else if (item.type === "deploymentfeature") arr[3].push(item);
         else if (item.type === "venture") arr[4].push(item);

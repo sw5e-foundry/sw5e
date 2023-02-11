@@ -122,6 +122,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
   static migrateData(source) {
     ActivatedEffectTemplate.#migrateFormulaFields(source);
     ActivatedEffectTemplate.#migrateRanges(source);
+    ActivatedEffectTemplate.#migrateDuration(source);
     ActivatedEffectTemplate.#migrateTargets(source);
     ActivatedEffectTemplate.#migrateUses(source);
     ActivatedEffectTemplate.#migrateConsume(source);
@@ -163,6 +164,24 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
     const [value, long] = source.range.value.split("/");
     if (Number.isNumeric(value)) source.range.value = Number(value);
     if (Number.isNumeric(long)) source.range.long = Number(long);
+  }
+
+
+  /* -------------------------------------------- */
+
+  /**
+   * Fix issue with some imported duration data that uses "instantaneous" in the duration value field,
+   * rather than in the duration units field.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateDuration(source) {
+    if (!("duration" in source)) return;
+    if (source.duration.value === "Instantaneous") {
+      source.duration = {
+        value: "",
+        units: "inst"
+      }
+    }
   }
 
   /* -------------------------------------------- */

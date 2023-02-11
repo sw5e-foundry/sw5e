@@ -367,7 +367,7 @@ export default class Actor5e extends Actor {
    */
   async addStarshipDefaults() {
     const items = [];
-    const equippedItems = Object.keys(CONFIG.SW5E.ssEquipmentTypes).filter(k => !this._getEquipment(k, { equipped: true }).length);
+    const equippedItems = Object.keys(CONFIG.SW5E.equipmentTypes).filter(k => this._getEquipment(k, { equipped: true }).length);
 
     const actions = await game.packs.get("sw5e.starshipactions").getIndex();
     const action_ids = actions.map(a => "Compendium.sw5e.starshipactions." + a._id);

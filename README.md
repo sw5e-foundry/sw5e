@@ -1,4 +1,7 @@
 # Foundry Virtual Tabletop - SW5e Game System
+![GitHub Latest Release](https://img.shields.io/github/release/sw5e-foundry/sw5e?style=flat-square)
+![GitHub Downloads Latest](https://img.shields.io/github/downloads/sw5e-foundry/sw5e/latest/sw5e-companions.zip?style=flat-square)
+![License](https://img.shields.io/github/license/sw5e-foundry/sw5e?style=flat-square)
 
 This unofficial implementation of the SW5e system for Foundry VTT is made by fans for fans and is not associated with SW5e, Disney, Wizards of the Coast, or their partners in any way.
 

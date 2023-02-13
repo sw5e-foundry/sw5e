@@ -7,7 +7,7 @@ export default function DisplayCR(html, compendium) {
       let id = i.getAttribute("data-document-id");
       if (!id) return;
       let actor = game.actors.get(id);
-      let cr = actor.system.details.cr;
+      let cr = actor.system.details?.cr;
       if (typeof cr !== "undefined") {
         let p = document.createElement("h4");
         p.classList.add("document-name");
@@ -25,7 +25,7 @@ export default function DisplayCR(html, compendium) {
 
       async function getActor() {
         let actor = await pack.getDocument(id);
-        let cr = actor.system.details.cr;
+        let cr = actor.system.details?.cr;
         if (typeof cr !== "undefined") {
           let p = document.createElement("h4");
           p.classList.add("document-name");

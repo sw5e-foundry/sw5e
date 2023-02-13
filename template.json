@@ -905,7 +905,9 @@
     "templates": {
       "archetypeDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "invocations": {
           "value": ""
@@ -914,7 +916,9 @@
       },
       "backgroundDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "skillProficiencies": {
           "value": ""
@@ -950,35 +954,47 @@
       },
       "classDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "atFlavorText": {
           "value": ""
         },
         "invocations": {
           "value": ""
-        }
+        },
+        "source": ""
       },
       "deploymentDescription": {
         "description": {
-          "value": ""
-        }
+          "value": "",
+          "chat": "",
+          "unidentified": ""
+        },
+        "source": ""
       },
       "fightingmasteryDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "source": ""
       },
       "fightingstyleDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "source": ""
       },
       "lightsaberformDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "source": ""
       },
@@ -989,12 +1005,14 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": "",
-        "traits": ""
+        "traits": "",
+        "source": ""
       },
       "ventureDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         },
         "prerequisites": [""],
         "source": ""
@@ -1007,6 +1025,7 @@
           "denomination": "gc"
         },
         "attunement": 0,
+        "equipped": false,
         "rarity": "",
         "identified": true,
         "isCargo": false
@@ -1048,7 +1067,7 @@
       "action": {
         "ability": null,
         "actionType": null,
-        "attackBonus": null,
+        "attackBonus": "",
         "chatFlavor": "",
         "critical": {
           "threshold": null,
@@ -1078,7 +1097,9 @@
       },
       "starshipDescription": {
         "description": {
-          "value": ""
+          "value": "",
+          "chat": "",
+          "unidentified": ""
         }
       },
       "starshipEquipment": {
@@ -1102,7 +1123,7 @@
             "value": null
           },
           "powerdicerec": {
-            "value": null
+            "value": ""
           },
           "hdclass": {
             "value": null
@@ -1128,9 +1149,9 @@
       "advancement": [],
       "powercasting": {
         "force": "none",
-        "forceOverride": null,
+        "forceOverride": "",
         "tech": "none",
-        "techOverride": null
+        "techOverride": ""
       },
       "superiority": {
         "progression": 0
@@ -1167,9 +1188,9 @@
       },
       "powercasting": {
         "force": "none",
-        "forceOverride": null,
+        "forceOverride": "",
         "tech": "none",
-        "techOverride": null
+        "techOverride": ""
       },
       "superiority": {
         "progression": 0
@@ -1302,7 +1323,6 @@
       "level": 1,
       "school": "",
       "components": {
-        "value": "",
         "vocal": false,
         "somatic": false,
         "material": false,

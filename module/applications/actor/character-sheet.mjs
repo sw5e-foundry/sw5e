@@ -121,6 +121,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         // Item details
         const ctx = context.itemContext[item.id] ??= {};
         ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
+        ctx.id = item.id;
         ctx.attunement = {
           [CONFIG.SW5E.attunementTypes.REQUIRED]: {
             icon: "fa-sun",

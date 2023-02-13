@@ -12,7 +12,7 @@ export default class GroupActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "sheet", "actor", "group"],
-      template: "systems/sw5e/templates/actors/group-sheet.hbs",
+      template: "systems/sw5e/templates/actors/origActor/group-sheet.hbs",
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "members" }],
       scrollY: [".inventory .inventory-list"],
       width: 620,

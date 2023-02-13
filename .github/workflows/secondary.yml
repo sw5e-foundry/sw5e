@@ -17,14 +17,14 @@ jobs:
       - name: Get Version
         shell: bash
         id: get-version
-        run: echo "version=$(node ./.github/workflows/get-version.js)" >> $GITHuB_OUTPUT
+        run: echo "version=$(node ./.github/workflows/get-version.js)" >> $GITHUB_OUTPUT
 
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
         with: 
           allowUpdates: true
-          name: Release ${{ steps.get-version.outputs.version }}
+          name: .v${{ steps.get-version.outputs.version }}
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}

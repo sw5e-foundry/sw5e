@@ -160,10 +160,10 @@ function applyChatCardDamage(li, multiplier) {
   if (multiplier === null) {
     multiplier = 1;
     // Get damage type from the roll flavor
-    const flavor = message.roll.options.flavor;
+    const flavor = message.rolls.options.flavor;
     const regexp = /[(]([^()]*)[)]/g;
     const types = [...flavor.matchAll(regexp)].map(i => i[1].split(", ")).flat(1);
-    const damageTypes = types.filter(d => Object.keys(SW5E.damageTypes).includes(d.toLowerCase()));
+    const damageTypes = types.filter(d => Object.keys(CONFIG.SW5E.damageTypes).includes(d.toLowerCase()));
     if (damageTypes.length) extraData.damageType = damageTypes[0];
     // Get item uuid from the message data
     const actorId = message.speaker.actor;

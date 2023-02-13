@@ -8,7 +8,7 @@ export default function makeItemProperties( config, schemaOptions = {} ) {
   const schemaObj = {};
   for (const [key, prop] of Object.entries(config)) {
     if (prop.type === "Number") schemaObj[key] = new foundry.data.fields.NumberField({
-      required: true,
+      required: false,
       nullable: true,
       integer: true,
       min: prop.min ?? 0,
@@ -17,7 +17,7 @@ export default function makeItemProperties( config, schemaOptions = {} ) {
       hint: prop.desc,
     });
     else if (prop.type === "Boolean") schemaObj[key] = new foundry.data.fields.BooleanField({
-      required: true,
+      required: false,
       nullable: true,
       label: prop.full,
       hint: prop.desc,

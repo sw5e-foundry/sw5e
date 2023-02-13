@@ -1520,9 +1520,9 @@ export default class Actor5e extends Actor {
       let tmpMult = multiplier;
       if (damageType) {
         const prefix = this.type === "starship" ? "sd" : "d";
-        if (traits[prefix + "i"]?.value?.includes(damageType)) tmpMult = 0;
-        else if (traits[prefix + "r"]?.value?.includes(damageType)) tmpMult = 0.5;
-        else if (traits[prefix + "v"]?.value?.includes(damageType)) tmpMult = 2;
+        if (traits[prefix + "i"]?.value?.has(damageType)) tmpMult = 0;
+        else if (traits[prefix + "r"]?.value?.has(damageType)) tmpMult = 0.5;
+        else if (traits[prefix + "v"]?.value?.has(damageType)) tmpMult = 2;
         else tmpMult = 1;
       }
       const tmpDamage = Math.floor(Math.min(tmp, amount * tmpMult));
@@ -1532,9 +1532,9 @@ export default class Actor5e extends Actor {
       const hpCur = parseInt(hp.value) || 0;
       let hpMult = multiplier;
       if (damageType) {
-        if (traits.di.value.includes(damageType)) hpMult = 0;
-        else if (traits.dr.value.includes(damageType)) hpMult = 0.5;
-        else if (traits.dv.value.includes(damageType)) hpMult = 2;
+        if (traits.di.value.has(damageType)) hpMult = 0;
+        else if (traits.dr.value.has(damageType)) hpMult = 0.5;
+        else if (traits.dv.value.has(damageType)) hpMult = 2;
         else hpMult = 1;
       }
       const hpDamage = Math.floor(Math.min(hpCur, amount * hpMult));

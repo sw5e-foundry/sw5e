@@ -384,12 +384,60 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * The list of valid properties for this item.
+   * @type {object|null}
+   */
+  get propertiesList() {
+    if (this.type === "weapon") {
+      if (this.system.weaponType in CONFIG.SW5E.weaponStandardTypes) return CONFIG.SW5E.weaponFullCharacterProperties;
+      if (this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes) return CONFIG.SW5E.weaponFullStarshipProperties;
+    }
+    else if (this.type === "consumable" && this.system.consumableType === "ammo") {
+      if (this.system.ammoType in CONFIG.SW5E.ammoStandardTypes) return CONFIG.SW5E.weaponFullCharacterProperties;
+      if (this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes) return CONFIG.SW5E.weaponFullStarshipProperties;
+    }
+    else if (this.type === "equipment") {
+      if (this.system.armor.type in CONFIG.SW5E.armorTypes) return CONFIG.SW5E.armorProperties;
+      if (this.system.armor.type in CONFIG.SW5E.castingEquipmentTypes) return CONFIG.SW5E.castingProperties;
+    }
+    else if (this.type === "modification") {
+      if (this.system.modificationType in CONFIG.SW5E.modificationTypesWeapon) return CONFIG.SW5E.weaponProperties;
+      if (this.system.modificationType in CONFIG.SW5E.modificationTypesEquipment) return CONFIG.SW5E.armorProperties;
+      if (this.system.modificationType in CONFIG.SW5E.modificationTypesCasting) return CONFIG.SW5E.castingProperties
+    }
+    return null;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The type of modifications this item accepts
+   * @type {string|null}
+   */
+  get modificationsType() {
+    if (this.type === "equipment") {
+      if (this.system.armor?.type in CONFIG.SW5E.armorTypes) return "armor";
+      if (this.system.armor?.type in CONFIG.SW5E.miscEquipmentTypes) return this.system.armor?.type;
+    } else if (this.type === "weapon") {
+      if (this.system.weaponType?.endsWith("LW")) return "lightweapon";
+      if (this.system.weaponType?.endsWith("VW")) return "vibroweapon";
+      if (this.system.weaponType?.endsWith("B")) return "blaster";
+      return "vibroweapon";
+    }
+    return null;
+  }
+
+  /* -------------------------------------------- */
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
   _initialize(options = {}) {
     super._initialize(options);
   }
+
+  /* -------------------------------------------- */
 
   /** @inheritDoc */
   prepareDerivedData() {
@@ -464,6 +512,8 @@ export default class Item5e extends Item {
    * Apply modifications.
    */
   applyModifications() {
+    if (!("modify" in this.system)) return;
+
     // Get the Item's data
     const item = this;
     const itemData = item.system;
@@ -471,59 +521,43 @@ export default class Item5e extends Item {
     const changes = foundry.utils.flattenObject(itemMods?.changes ?? {});
     let overrides = {};
 
-    if (itemMods) {
-      // Calculate the type of item modifications accepted
-      if (item.type === "equipment") {
-        if (itemData.armor?.type in CONFIG.SW5E.armorTypes) itemMods.type = "armor";
-        else if (itemData.armor?.type in CONFIG.SW5E.miscEquipmentTypes) itemMods.type = itemData.armor?.type;
-        else itemMods.type = null;
-      } else if (item.type === "weapon") {
-        if (itemData.weaponType?.endsWith("LW")) itemMods.type = "lightweapon";
-        else if (itemData.weaponType?.endsWith("VW")) itemMods.type = "vibroweapon";
-        else if (itemData.weaponType?.endsWith("B")) itemMods.type = "blaster";
-        else itemMods.type = "vibroweapon";
-      } else itemMods.type = null;
+    // Calculate the type of item modifications accepted
+    const modificationTypes = this.modificationsType;
 
-      if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isEmpty(changes)) overrides = {};
-      else if (!foundry.utils.isEmpty(this.overrides)) overrides = foundry.utils.flattenObject(this.overrides);
-      else {
-        for (const [prop, val] of Object.entries(changes)) {
-          // Handle type specific changes
-          if (
-            !itemMods.type in CONFIG.SW5E.modificationTypesEquipment &&
-            change in ["armor.value", "armor.dex", "strength", "stealth"]
-          )
-            continue;
-          overrides[`system.${prop}`] = val;
-        }
+    if (game.settings.get("sw5e", "disableItemMods") || foundry.utils.isEmpty(changes)) overrides = {};
+    else if (!foundry.utils.isEmpty(this.overrides)) overrides = foundry.utils.flattenObject(this.overrides);
+    else {
+      for (const [prop, val] of Object.entries(changes)) {
+        // Handle type specific changes
+        if (
+          !modificationTypes in CONFIG.SW5E.modificationTypesEquipment &&
+          change in ["armor.value", "armor.dex", "strength", "stealth"]
+        )
+          continue;
+        overrides[`system.${prop}`] = val;
+      }
 
-        // Handle non-overwrite changes
-        if ((itemData.attackBonus || "0") !== "0" && overrides["system.attackBonus"]) {
-          overrides["system.attackBonus"] = `${itemData.attackBonus} + ${overrides["system.attackBonus"]}`;
-        }
-        if (itemData.damage?.parts && overrides["system.damage.parts"]) {
-          overrides["system.damage.parts"] = itemData.damage.parts.concat(overrides["system.damage.parts"]);
-        }
-        if (itemData.armor?.value && overrides["system.armor.value"])
-          overrides["system.armor.value"] += itemData.armor.value;
+      // Handle non-overwrite changes
+      if ((itemData.attackBonus || "0") !== "0" && overrides["system.attackBonus"]) {
+        overrides["system.attackBonus"] = `${itemData.attackBonus} + ${overrides["system.attackBonus"]}`;
+      }
+      if (itemData.damage?.parts && overrides["system.damage.parts"]) {
+        overrides["system.damage.parts"] = itemData.damage.parts.concat(overrides["system.damage.parts"]);
+      }
+      if (itemData.armor?.value && overrides["system.armor.value"])
+        overrides["system.armor.value"] += itemData.armor.value;
 
-        // Handle item properties
-        let props = null;
-        if (item.type === "weapon") props = CONFIG.SW5E.weaponProperties;
-        else if (item.type === "equipment") {
-          if (itemData.armor.type in CONFIG.SW5E.armorTypes) props = CONFIG.SW5E.armorProperties;
-          if (itemData.armor.type in CONFIG.SW5E.castingEquipmentTypes) props = CONFIG.SW5E.castingProperties;
-        }
-        if (props) {
-          for (const [prop, propData] of Object.entries(props)) {
-            if (propData.type === "Number" && overrides[`system.properties.${prop}`]) {
-              if (itemData.properties[prop])
-                overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
-              if (propData.min !== undefined)
-                overrides[`system.properties.${prop}`] = Math.max(overrides[`system.properties.${prop}`], propData.min);
-              if (propData.max !== undefined)
-                overrides[`system.properties.${prop}`] = Math.min(overrides[`system.properties.${prop}`], propData.max);
-            }
+      // Handle item properties
+      const props = this.propertiesList;
+      if (props) {
+        for (const [prop, propData] of Object.entries(props)) {
+          if (propData.type === "Number" && overrides[`system.properties.${prop}`]) {
+            if (itemData.properties[prop])
+              overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
+            if (propData.min !== undefined)
+              overrides[`system.properties.${prop}`] = Math.max(overrides[`system.properties.${prop}`], propData.min);
+            if (propData.max !== undefined)
+              overrides[`system.properties.${prop}`] = Math.min(overrides[`system.properties.${prop}`], propData.max);
           }
         }
       }
@@ -2985,14 +3019,27 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   async addModification(uuid) {
+    if (!("modify" in this.system)) return;
+
     const item = this;
     const itemSysData = item.system;
     const itemMods = itemSysData.modify;
-    if (!itemMods) return;
+    const mods = [ ...itemMods.items ];
 
+    // Get the modification item
     const mod = await fromUuid(uuid);
     const modSysData = mod?.system;
+    const modificationsType = this.modificationsType;
+
+    // Validate the installation
     if (mod?.type !== "modification") return;
+
+    if (["none", "enhanced"].includes(itemMods.chassis))
+      return ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModNoChassis", {
+          name: item.name
+        })
+      );
 
     const rarityMap = {
       standard: 1,
@@ -3002,13 +3049,6 @@ export default class Item5e extends Item {
       legendary: 5,
       artifact: 6
     };
-
-    if (["none", "enhanced"].includes(itemMods.chassis))
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModNoChassis", {
-          name: item.name
-        })
-      );
     if (itemMods.chassis === "chassis" && (rarityMap[itemSysData.rarity] ?? 0) < (rarityMap[modSysData.rarity] ?? 0)) {
       return ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModWrongRarity", {
@@ -3018,11 +3058,11 @@ export default class Item5e extends Item {
       );
     }
 
-    if (!(itemMods.type in CONFIG.SW5E.modificationTypes))
+    if (!(modificationsType in CONFIG.SW5E.modificationTypes))
       return ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModUnrecognizedType", {
           name: item.name,
-          type: itemMods.type
+          type: modificationsType
         })
       );
 
@@ -3035,17 +3075,17 @@ export default class Item5e extends Item {
       );
 
     const modType = modSysData.modificationType === "augment" ? "augment" : "mod";
-    if (modType === "mod" && itemMods.type !== modSysData.modificationType)
+    if (modType === "mod" && modificationsType !== modSysData.modificationType)
       return ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModWrongType", {
           modName: mod.name,
           modType: modSysData.modificationType,
           itemName: item.name,
-          itemType: itemMods.type
+          itemType: modificationsType
         })
       );
 
-    const modCount = itemMods.items.filter(m => m.type === modType).length;
+    const modCount = mods.filter(m => m.type === modType).length;
     if (modCount >= itemMods[`${modType}Slots`])
       return ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModNoSpace", {
@@ -3055,55 +3095,55 @@ export default class Item5e extends Item {
         })
       );
 
-    const updates = {};
-
+    // Apply the changes
     const objData = mod.toObject();
     delete objData._id;
     objData.system.modifying.id = item.id;
     const obj = { objdata: objData, name: mod.name, type: modType };
 
     if (this.actor) {
-      const items = await Item5e.createDocuments([objData], { parent: this.actor });
+      const items = await this.actor.createEmbeddedDocuments("Item", [objData]);
       if (items?.length) obj.id = items[0].id;
     }
 
-    itemMods.items.push(obj);
-    updates[`system.modify.items`] = itemMods.items;
+    mods.push(obj);
 
-    if (!foundry.utils.isEmpty(updates)) await this.update(updates);
+    if ( mods !== this.system.modify.items )
+      await this.update({ [`system.modify.items`]: mods });
 
     await this.updModificationChanges();
   }
 
   async updModification(id = null, index = null, objdata = null) {
+    if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = this.system?.modify?.items;
-    if (mods) {
-      if (id === null) id = mods[index].id;
-      if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
-      if (objdata === null) return;
+    const mods = [ ...this.system?.modify?.items ];
+    if (id === null) id = mods[index].id;
+    if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
+    if (objdata === null) return;
 
-      if (index === null) index = mods.findIndex(m => m.id === id);
-      if (index === -1) return;
-      mods[index].objdata = objdata;
-      mods[index].name = objdata.name;
+    if (index === null) index = mods.findIndex(m => m.id === id);
+    if (index === -1) return;
+    mods[index].objdata = objdata;
+    mods[index].name = objdata.name;
+    if ( mods !== this.system.modify.items )
       await this.update({ [`system.modify.items`]: mods });
-    }
 
     await this.updModificationChanges();
   }
 
   async delModification(id = null, index = null, deleteTempItem = true) {
+    if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = this.system?.modify?.items;
-    if (mods) {
-      if (index === null) index = mods.findIndex(m => m.id === id);
-      if (index === -1) return;
-      mods.splice(index, 1);
+    const mods = [ ...this.system?.modify?.items ];
+    if (index === null) index = mods.findIndex(m => m.id === id);
+    if (index === -1) return;
+    mods.splice(index, 1);
+
+    if ( mods !== this.system.modify.items )
       await this.update({ [`system.modify.items`]: mods });
-    }
 
     if (deleteTempItem) {
       if (id === null) id = mods[index].id;
@@ -3115,49 +3155,44 @@ export default class Item5e extends Item {
   }
 
   async tglModification(id = null, index = null) {
+    if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = this.system?.modify?.items;
-    if (mods) {
-      if (index === null) index = mods.findIndex(m => m.id === id);
-      if (index === -1) return;
-      mods[index].disabled = !mods[index].disabled;
+    const mods = [ ...this.system?.modify?.items ];
+    if (index === null) index = mods.findIndex(m => m.id === id);
+    if (index === -1) return;
+    mods[index].disabled = !mods[index].disabled;
+
+    if ( mods !== this.system.modify.items )
       await this.update({ [`system.modify.items`]: mods });
 
-      if (id === null) id = mods[index].id;
-      await this.actor?.items?.get(id)?.update({ "system.modifying.disabled": mods[index].disabled });
-    }
-
+    if (id === null) id = mods[index].id;
+    await this.actor?.items?.get(id)?.update({ "system.modifying.disabled": mods[index].disabled });
     await this.updModificationChanges();
   }
 
   async updModificationChanges() {
-    const changes = {};
+    if (!("modify" in this.system)) return;
+
+    const props = this.propertiesList;
     const itemMods = this.system.modify;
-    if (!itemMods) return;
-
-    // Precalculate valid properties
-    let props = null;
-    const itemSysData = this.system;
-    if (this.type === "weapon") props = CONFIG.SW5E.weaponProperties;
-    if (this.type === "equipment") {
-      if (itemSysData.armor.type in CONFIG.SW5E.armorTypes) props = CONFIG.SW5E.armorProperties;
-      if (itemSysData.armor.type in CONFIG.SW5E.castingEquipmentTypes) props = CONFIG.SW5E.castingProperties;
-    }
-
     const mods = itemMods.items;
+    let changes = {};
+
+    // Accumulate changes of all active modifications
     for (const mod of mods) {
       if (mod.disabled) continue;
       this._calcSingleModChanges(mod.objdata.system, changes, props);
     }
 
-    if (itemMods.changes !== changes) {
-      if (itemMods.changes !== null && itemMods.changes !== undefined && Object.keys(itemMods.changes).length !== 0) {
-        await this.update({ "system.modify.-=changes": null });
-      }
-      if (changes !== null && changes !== undefined && Object.keys(changes) !== 0) {
-        await this.update({ "system.modify.changes": changes });
-      }
+    changes = foundry.utils.expandObject(changes);
+
+    // Update the changes property
+    if ( changes !== this.system.modify.changes ) {
+      const updates = {};
+      for (const key of Object.keys(this.system.modify.changes)) updates[`system.modify.changes.-=${key}`] = null;
+      await this.update(updates);
+      await this.update({ "system.modify.changes": changes });
     }
   }
   _calcSingleModChanges(modSysData, changes, props) {

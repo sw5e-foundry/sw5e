@@ -234,16 +234,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Organize Starship Equipment
     for (const item of equipment) {
       const ctx = context.itemContext[item._id] ??= {};
+      const i = this.actor.items.get(item._id);
+      ctx.itemProperties = i.propertyList;
       if (item.type === "weapon") {
         ctx.isStarshipWeapon = item.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-        ctx.wpnProperties = ctx.isStarshipWeapon
-          ? CONFIG.SW5E.weaponFullStarshipProperties
-          : CONFIG.SW5E.weaponFullCharacterProperties;
-        const i = this.actor.items.get(item._id);
         const reloadProperties = i.sheet._getWeaponReloadProperties();
-        for (const attr of Object.keys(reloadProperties)) {
-          ctx[attr] = reloadProperties[attr];
-        }
+        for (const attr of Object.keys(reloadProperties)) ctx[attr] = reloadProperties[attr];
         ssEquipment.weapons.items.push(item);
       } else if (item.type === "starshipmod") ssEquipment.starshipmods.items.push(item);
       else ssEquipment.equipment.items.push(item);

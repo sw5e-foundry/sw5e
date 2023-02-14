@@ -199,11 +199,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     for (let i of items) {
       const ctx = context.itemContext[i.id] ??= {};
       ctx.totalWeight = (i.system.quantity * i.system.weight).toNearest(0.1);
+      ctx.itemProperties = i.propertyList
       if (i.type === "weapon") {
         ctx.isStarshipWeapon = i.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-        ctx.wpnProperties = ctx.isStarshipWeapon
-          ? CONFIG.SW5E.weaponFullStarshipProperties
-          : CONFIG.SW5E.weaponFullCharacterProperties;
 
         const item = this.actor.items.get(i._id);
         const reloadProperties = item.sheet._getWeaponReloadProperties();

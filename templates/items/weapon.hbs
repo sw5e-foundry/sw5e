@@ -62,8 +62,8 @@
                 </select>
             </div>
 
-            {{!-- Starship Weapon Size --}}
-            <!-- <div class="form-group">
+            <!-- {{!-- Starship Weapon Size --}}
+            <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponSize" }}</label>
                 <select name="system.weaponSize">
                     <option value="" selected disabled>Select Size</option>
@@ -103,15 +103,15 @@
             {{/unless}}
 
             {{!-- Weapon Properties --}}
-            <div class="form-group stacked weapon-properties">
+            <div class="form-group stacked item-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
-                {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                {{#each itemProperties as |property key|}} {{#if (eq property.type "Boolean")}}
                     <label class="checkbox" data-tooltip="{{property.desc}}">
                         <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                     </label>
                 {{/if}} {{/each}}
 
-                {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
+                {{#each itemProperties as |property key|}} {{#if (eq property.type "Number")}}
                     <label class="number" data-tooltip="{{property.desc}}">
                         {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                     </label>

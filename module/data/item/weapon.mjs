@@ -6,6 +6,7 @@ import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
+import ModdableTemplate from "./templates/moddable.mjs";
 import makeItemProperties from "./helpers.mjs";
 
 /**
@@ -33,7 +34,8 @@ export default class WeaponData extends SystemDataModel.mixin(
   EquippableItemTemplate,
   ActivatedEffectTemplate,
   ActionTemplate,
-  MountableTemplate
+  MountableTemplate,
+  ModdableTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {

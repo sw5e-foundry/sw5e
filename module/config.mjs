@@ -1879,6 +1879,27 @@ SW5E.maneuversKnownProgression = [0, 1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16
 /* -------------------------------------------- */
 
 /**
+ * The set of types which a non-starship weapon item can take.
+ * @enum {string}
+ */
+SW5E.weaponStandardTypes = {
+  ammo: "SW5E.WeaponAmmo",
+  improv: "SW5E.WeaponImprov",
+  exoticB: "SW5E.WeaponExoticB",
+  exoticLW: "SW5E.WeaponExoticLW",
+  exoticVW: "SW5E.WeaponExoticVW",
+  martialB: "SW5E.WeaponMartialB",
+  martialLW: "SW5E.WeaponMartialLW",
+  martialVW: "SW5E.WeaponMartialVW",
+  natural: "SW5E.WeaponNatural",
+  siege: "SW5E.WeaponSiege",
+  simpleB: "SW5E.WeaponSimpleB",
+  simpleLW: "SW5E.WeaponSimpleLW",
+  simpleVW: "SW5E.WeaponSimpleVW",
+};
+preLocalize("weaponStandardTypes");
+
+/**
  * The set of types which a starship weapon item can take.
  * @enum {string}
  */
@@ -1895,19 +1916,7 @@ preLocalize("weaponStarshipTypes");
  * @enum {string}
  */
 SW5E.weaponTypes = {
-  ammo: "SW5E.WeaponAmmo",
-  improv: "SW5E.WeaponImprov",
-  exoticB: "SW5E.WeaponExoticB",
-  exoticLW: "SW5E.WeaponExoticLW",
-  exoticVW: "SW5E.WeaponExoticVW",
-  martialB: "SW5E.WeaponMartialB",
-  martialLW: "SW5E.WeaponMartialLW",
-  martialVW: "SW5E.WeaponMartialVW",
-  natural: "SW5E.WeaponNatural",
-  siege: "SW5E.WeaponSiege",
-  simpleB: "SW5E.WeaponSimpleB",
-  simpleLW: "SW5E.WeaponSimpleLW",
-  simpleVW: "SW5E.WeaponSimpleVW",
+  ...SW5E.weaponStandardTypes,
   ...SW5E.weaponStarshipTypes
 };
 preLocalize("weaponTypes");

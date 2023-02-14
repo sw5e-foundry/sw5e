@@ -143,7 +143,10 @@ export default class ItemSheet5e extends ItemSheet {
             techcaster: item.system?.powercasting?.tech !== "none",
 
             // Prepare Active Effects
-            effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects)
+            effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects),
+
+            // Item Properties
+            itemProperties: item.propertiesList,
         });
         context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
 
@@ -159,19 +162,6 @@ export default class ItemSheet5e extends ItemSheet {
 
         // Special handling for specific item types
         switch ( item.type ) {
-            case "consumable":
-                if (item.consumableType === "ammo") {
-                    context.wpnProperties = context.isStarshipAmmo
-                        ? CONFIG.SW5E.weaponFullStarshipProperties
-                        : CONFIG.SW5E.weaponFullCharacterProperties;
-                }
-                break;
-            case "equipment":
-                if (item.system.armor.type in CONFIG.SW5E.armorTypes)
-                    context.equipProperties = CONFIG.SW5E.armorProperties;
-                if (item.system.armor.type in CONFIG.SW5E.castingEquipmentTypes)
-                    context.equipProperties = CONFIG.SW5E.castingProperties;
-                break;
             case "feat":
                 const featureType = CONFIG.SW5E.featureTypes[item.system.type?.value];
                 if ( featureType ) {
@@ -186,23 +176,19 @@ export default class ItemSheet5e extends ItemSheet {
                 context.isCreatureMod = item.system.modificationType in CONFIG.SW5E.modificationTypesCreature;
                 context.isAugment = item.system.modificationType === "augment";
                 context.usesSlot = !(context.isCreatureMod || context.isAugment);
-                context.wpnProperties = CONFIG.SW5E.weaponFullCharacterProperties;
                 break;
             case "power":
                 context.powerComponents = {...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags};
                 break;
             case "weapon":
-                context.wpnProperties = context.isStarshipWeapon
-                    ? CONFIG.SW5E.weaponFullStarshipProperties
-                    : CONFIG.SW5E.weaponFullCharacterProperties;
                 context = this._getWeaponReloadProperties(context);
                 break;
         }
 
         // Modifiable items
         if (item.system.modify) {
-            if (item.system.modify.type)
-                context.config.modSlots = CONFIG.SW5E.modificationSlots[item.system.modify.type];
+            const modificationsType = item.propertiesList;
+            if (modificationsType) context.config.modSlots = CONFIG.SW5E.modificationSlots[modificationsType];
             context.mods = item.system.modify.items;
         }
 
@@ -503,35 +489,35 @@ export default class ItemSheet5e extends ItemSheet {
 
     /**
      * Prepare the weapon reload properties
-     * @param {object}    [obj]   The data object to apply the changes to
+     * @param {object}    [ctx]   The data object to apply the changes to
      * @returns {object}          The modified data object
      * @private
      */
-    _getWeaponReloadProperties(obj = {}) {
+    _getWeaponReloadProperties(ctx = {}) {
         const itemSysdata = this.item.system;
         const actor = this.item.actor;
 
-        obj.hasReload = !!(itemSysdata.ammo?.max);
-        obj.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
-        obj.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || (obj.reloadUsesAmmo && !itemSysdata.ammo?.target);
-        if (obj.hasReload) {
-            if (actor && obj.reloadUsesAmmo) {
-                obj.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
+        ctx.hasReload = !!(itemSysdata.ammo?.max);
+        ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
+        ctx.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || (ctx.reloadUsesAmmo && !itemSysdata.ammo?.target);
+        if (ctx.hasReload) {
+            if (actor && ctx.reloadUsesAmmo) {
+                ctx.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
                     if (i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes(i.system.ammoType)) {
                         ammo[i.id] = `${i.name} (${i.system.quantity})`;
                     }
                     return ammo;
                 }, {});
-            } else obj.reloadAmmo = {};
+            } else ctx.reloadAmmo = {};
             if (itemSysdata.properties?.rel) {
-                obj.reloadActLabel = "SW5E.WeaponReload";
-                obj.reloadLabel = "SW5E.WeaponReload";
+                ctx.reloadActLabel = "SW5E.WeaponReload";
+                ctx.reloadLabel = "SW5E.WeaponReload";
             } else if (itemSysdata.properties?.ovr) {
-                obj.reloadActLabel = "SW5E.WeaponCoolDown";
-                obj.reloadLabel = "SW5E.WeaponOverheat";
+                ctx.reloadActLabel = "SW5E.WeaponCoolDown";
+                ctx.reloadLabel = "SW5E.WeaponOverheat";
             }
         }
-        return obj;
+        return ctx;
     }
 
     /* -------------------------------------------- */

@@ -928,6 +928,24 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * TODO: Remove this once they are assimilated under feat subtypes
+ * Item types that behave simillar to "feats".
+ * @enum {string}
+ */
+SW5E.featLikeItems = {
+  feat: "ITEM.TypeFeat",
+  classfeature: "ITEM.TypeClassfeature",
+  deploymentfeature: "ITEM.TypeDeploymentfeature",
+  fightingmastery: "ITEM.TypeFightingmastery",
+  fightingstyle: "ITEM.TypeFightingstyle",
+  lightsaberform: "ITEM.TypeLightsaberform",
+  maneuver: "ITEM.TypeManeuver",
+  venture: "ITEM.TypeVenture",
+}
+
+/* -------------------------------------------- */
+
+/**
  * Configuration data for an item with the "feature" type.
  *
  * @typedef {object} FeatureTypeConfiguration

@@ -442,7 +442,9 @@ export default class Item5e extends Item {
   /** @inheritDoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.labels = {};
+    this.labels = {
+      type: game.i18n.localize(`ITEM.Type${this.type.capitalize()}`)
+    };
 
     // Clear out linked item cache
     this._classLink = undefined;
@@ -451,12 +453,11 @@ export default class Item5e extends Item {
     this._prepareAdvancement();
 
     // Specialized preparation per Item type
-    switch (this.type) {
+    if (this.type in CONFIG.SW5E.featLikeItems) {
+      this._prepareFeat();
+    } else switch (this.type) {
       case "equipment":
         this._prepareEquipment();
-        break;
-      case "feat":
-        this._prepareFeat();
         break;
       case "power":
         this._preparePower();
@@ -476,17 +477,7 @@ export default class Item5e extends Item {
         break;
       case "background":
         break;
-      case "classfeature":
-        break;
       case "deployment":
-        break;
-      case "venture":
-        break;
-      case "fightingstyle":
-        break;
-      case "fightingmastery":
-        break;
-      case "lightsaberform":
         break;
     }
 
@@ -1674,15 +1665,14 @@ export default class Item5e extends Item {
     // Item type specific properties
     const props = [];
     //TODO: Likely need more item types to match SW5e
-    switch (this.type) {
+    if (item.type in CONFIG.SW5E.featLikeItems) {
+      this._featChatData(data, labels, props);
+    } else switch (this.type) {
       case "consumable":
         this._consumableChatData(data, labels, props);
         break;
       case "equipment":
         this._equipmentChatData(data, labels, props);
-        break;
-      case "feat":
-        this._featChatData(data, labels, props);
         break;
       case "loot":
         this._lootChatData(data, labels, props);

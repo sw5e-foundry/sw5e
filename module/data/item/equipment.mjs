@@ -17,6 +17,7 @@ import makeItemProperties from "./helpers.mjs";
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  * @mixes MountableTemplate
+ * @mixes ModdableTemplate
  *
  * @property {object} armor                 Armor details and equipment type information.
  * @property {string} armor.type            Equipment type as defined in `SW5E.equipmentTypes`.

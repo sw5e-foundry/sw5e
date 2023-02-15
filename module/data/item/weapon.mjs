@@ -17,6 +17,7 @@ import makeItemProperties from "./helpers.mjs";
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  * @mixes MountableTemplate
+ * @mixes ModdableTemplate
  *
  * @property {string} weaponType          Weapon category as defined in `SW5E.weaponTypes`.
  * @property {string} baseItem            Base weapon as defined in `SW5E.weaponIds` for determining proficiency.

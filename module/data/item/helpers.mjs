@@ -5,7 +5,8 @@
  * @returns {SchemaField}
  */
 export default function makeItemProperties( config, schemaOptions = {} ) {
-  const schemaObj = {};
+  const schemaObj = { ...schemaOptions.extraFields };
+  delete schemaOptions.extraFields;
   for (const [key, prop] of Object.entries(config)) {
     if (prop.type === "Number") schemaObj[key] = new foundry.data.fields.NumberField({
       required: false,

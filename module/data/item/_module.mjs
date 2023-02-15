@@ -6,6 +6,7 @@ import ContainerData from "./container.mjs";
 import EquipmentData from "./equipment.mjs";
 import FeatData from "./feat.mjs";
 import LootData from "./loot.mjs";
+import ManeuverData from "./maneuver.mjs";
 import ModificationData from "./modification.mjs";
 import PowerData from "./power.mjs";
 import ToolData from "./tool.mjs";
@@ -20,6 +21,7 @@ export {
   EquipmentData,
   FeatData,
   LootData,
+  ManeuverData,
   ModificationData,
   PowerData,
   ToolData,
@@ -42,6 +44,7 @@ export const config = {
   feat: FeatData,
   loot: LootData,
   modification: ModificationData,
+  maneuver: ManeuverData,
   power: PowerData,
   tool: ToolData,
   weapon: WeaponData

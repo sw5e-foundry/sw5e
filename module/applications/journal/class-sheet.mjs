@@ -111,27 +111,33 @@ export default class JournalClassPageSheet extends JournalPageSheet {
   async _getTable(item, initialLevel = 1) {
     const hasFeatures = !!item.advancement.byType.ItemGrant;
     const scaleValues = item.advancement.byType.ScaleValue ?? [];
-    const powerProgression = await this._getPowerProgression(item);
+    const powerProgression = [
+      await this._getPowerProgression(item, "force"),
+      await this._getPowerProgression(item, "tech"),
+    ]
 
     const headers = [[{ content: game.i18n.localize("SW5E.Level") }]];
     if (item.type === "class") headers[0].push({ content: game.i18n.localize("SW5E.ProficiencyBonus") });
     if (hasFeatures) headers[0].push({ content: game.i18n.localize("SW5E.Features") });
-    headers[0].push(...scaleValues.map(a => ({ content: a.title })));
-    if (powerProgression) {
-      if (powerProgression.headers.length > 1) {
-        headers[0].forEach(h => (h.rowSpan = 2));
-        headers[0].push(...powerProgression.headers[0]);
-        headers[1] = powerProgression.headers[1];
-      } else {
-        headers[0].push(...powerProgression.headers[0]);
+
+    for (const progression of powerProgression) {
+      if (progression) {
+        if (progression.headers.length > 1) {
+          headers[0].forEach(h => (h.rowSpan = 2));
+          headers[0].push(...progression.headers[0]);
+          headers[1] = progression.headers[1];
+        } else {
+          headers[0].push(...progression.headers[0]);
+        }
       }
     }
+    headers[0].push(...scaleValues.map(a => ({ content: a.title })));
 
     const cols = [{ class: "level", span: 1 }];
     if (item.type === "class") cols.push({ class: "prof", span: 1 });
     if (hasFeatures) cols.push({ class: "features", span: 1 });
+    for (const progression of powerProgression) if (progression) cols.push(...progression.cols);
     if (scaleValues.length) cols.push({ class: "scale", span: scaleValues.length });
-    if (powerProgression) cols.push(...powerProgression.cols);
 
     const makeLink = async uuid => (await fromUuid(uuid))?.toAnchor({ classes: ["content-link"] }).outerHTML;
 
@@ -151,12 +157,14 @@ export default class JournalClassPageSheet extends JournalPageSheet {
       const cells = [{ class: "level", content: level.ordinalString() }];
       if (item.type === "class") cells.push({ class: "prof", content: `+${Proficiency.calculateMod(level)}` });
       if (hasFeatures) cells.push({ class: "features", content: features.join(", ") });
-      scaleValues.forEach(s => cells.push({ class: "scale", content: s.valueForLevel(level)?.display }));
-      const powerCells = powerProgression?.rows[rows.length];
-      if (powerCells) cells.push(...powerCells);
+      for (const progression of powerProgression) {
+        const powerCells = progression?.rows[rows.length];
+        if (powerCells) cells.push(...powerCells);
+      }
+      scaleValues.forEach(s => cells.push({ class: "scale", content: s.valueForLevel(level)?.display ?? "—" }));
 
       // Skip empty rows on archetypes
-      if (item.type === "archetype" && !features.length && !scaleValues.length && !powerCells) continue;
+      if (cells.length === 1) continue;
 
       rows.push(cells);
     }
@@ -168,82 +176,39 @@ export default class JournalClassPageSheet extends JournalPageSheet {
 
   /**
    * Build out the power progression data.
-   * @param {Item5e} item  Class item belonging to this journal.
-   * @returns {object}     Prepared power progression table.
+   * @param {Item5e} item       Class item belonging to this journal.
+   * @param {string} progType   'force' or 'tech'
+   * @returns {object}          Prepared power progression table.
    */
-  async _getPowerProgression(item) {
+  async _getPowerProgression(item, progType) {
     const powercasting = foundry.utils.deepClone(item.powercasting);
-    if (!powercasting || powercasting.progression === "none") return null;
+    const progression = powercasting?.[progType];
+    if (!progression || progression === "none") return null;
 
     const table = { rows: [] };
 
-    if (powercasting.type === "leveled") {
-      const powers = {};
-      const maxPowerLevel = CONFIG.SW5E.SPELL_SLOT_TABLE[CONFIG.SW5E.SPELL_SLOT_TABLE.length - 1].length;
-      Array.fromRange(maxPowerLevel, 1).forEach(l => (powers[`power${l}`] = {}));
-
-      let largestSlot;
-      for (const level of Array.fromRange(CONFIG.SW5E.maxLevel, 1).reverse()) {
-        const progression = { slot: 0 };
-        powercasting.levels = level;
-        Actor5e.computeClassProgression(progression, item, { powercasting });
-        Actor5e.preparePowercastingSlots(powers, "leveled", progression);
-
-        if (!largestSlot)
-          largestSlot = Object.entries(powers).reduce((slot, [key, data]) => {
-            if (!data.max) return slot;
-            const level = parseInt(key.slice(5));
-            if (!Number.isNaN(level) && level > slot) return level;
-            return slot;
-          }, -1);
-
-        table.rows.push(
-          Array.fromRange(largestSlot, 1).map(powerLevel => {
-            return { class: "power-slots", content: powers[`power${powerLevel}`]?.max || "&mdash;" };
-          })
-        );
-      }
-
-      // Prepare headers & columns
-      table.headers = [
-        [{ content: game.i18n.localize("JOURNALENTRYPAGE.SW5E.Class.PowerSlotsPerPowerLevel"), colSpan: largestSlot }],
-        Array.fromRange(largestSlot, 1).map(powerLevel => ({ content: powerLevel.ordinalString() }))
-      ];
-      table.cols = [{ class: "powercasting", span: largestSlot }];
-      table.rows.reverse();
-    } else if (powercasting.type === "pact") {
-      const powers = { pact: {} };
-
+    if (["force", "tech"].includes(progType)) {
       table.headers = [
         [
-          { content: game.i18n.localize("JOURNALENTRYPAGE.SW5E.Class.PowerSlots") },
-          { content: game.i18n.localize("JOURNALENTRYPAGE.SW5E.Class.PowerSlotLevel") }
+          { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}PowersKnown`) },
+          { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}Points`) },
+          { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}MaxLevel`) },
         ]
       ];
-      table.cols = [{ class: "powercasting", span: 2 }];
+      table.cols = [{ class: "powercasting", span: 3 }];
 
-      // Loop through each level, gathering "Power Slots" & "Slot Level" for each one
+      const basePoints = CONFIG.SW5E.powerPointsBase[progression] / ((progType === "tech") ? 2 : 1);
+      const maxKnown = CONFIG.SW5E.powersKnown[progType][progression];
+      const maxLevel = CONFIG.SW5E.powerMaxLevel[progression];
+
+      // Loop through each level, setting "power points" and "max power level" for each one
       for (const level of Array.fromRange(CONFIG.SW5E.maxLevel, 1)) {
-        const progression = { pact: 0 };
-        powercasting.levels = level;
-        Actor5e.computeClassProgression(progression, item, { powercasting });
-        Actor5e.preparePowercastingSlots(powers, "pact", progression);
         table.rows.push([
-          { class: "power-slots", content: `${powers.pact.max}` },
-          { class: "slot-level", content: powers.pact.level.ordinalString() }
+          { class: "powers-known", content: `${maxKnown[level] ? maxKnown[level] : "—"}` },
+          { class: "power-points", content: `${basePoints * level}` },
+          { class: "max-power-level", content: `${maxLevel[level] ? maxLevel[level] : "—"}` },
         ]);
       }
-    } else {
-      /**
-       * A hook event that fires to generate the table for custom powercasting types.
-       * The actual hook names include the powercasting type (e.g. `sw5e.buildPsionicPowercastingTable`).
-       * @param {object} table                          Table definition being built. *Will be mutated.*
-       * @param {Item5e} item                           Class for which the powercasting table is being built.
-       * @param {PowercastingDescription} powercasting  Powercasting descriptive object.
-       * @function sw5e.buildPowercastingTable
-       * @memberof hookEvents
-       */
-      Hooks.callAll(`sw5e.build${powercasting.type.capitalize()}PowercastingTable`, table, item, powercasting);
     }
 
     return table;
@@ -437,11 +402,13 @@ export default class JournalClassPageSheet extends JournalPageSheet {
       case "class":
         await this.document.update({ "system.item": item.uuid });
         this.render();
+        break;
       case "archetype":
         const itemSet = this.document.system.archetypeItems;
         itemSet.add(item.uuid);
         await this.document.update({ "system.archetypeItems": Array.from(itemSet) });
         this.render();
+        break;
       default:
         return false;
     }

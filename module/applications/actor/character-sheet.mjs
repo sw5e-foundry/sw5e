@@ -281,14 +281,14 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         label: "SW5E.CustomizationOption.FightingStylePl",
         items: fightingstyles,
         hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinStyle" },
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingStyle" },
         isFightingstyle: true
       },
       fightingmasteries: {
         label: "SW5E.CustomizationOption.FightingMasteryPl",
         items: fightingmasteries,
         hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinMastery" },
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingMastery" },
         isFightingmastery: true
       },
       lightsaberforms: {

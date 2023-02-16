@@ -287,7 +287,7 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", function () {
+Hooks.once("ready", async function () {
   // Configure validation strictness.
   _configureValidationStrictness();
 
@@ -304,18 +304,10 @@ Hooks.once("ready", function () {
     }
   });
 
-  // Determine whether a system migration is required and feasible
-  if (!game.user.isGM) return;
-  const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
-  const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
-  if (!cv && totalDocuments === 0) return game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
-  if (cv && !isNewerVersion(game.system.flags.needsMigrationVersion, cv)) return;
+  if (migrations.needsMigration()) await migrations.migrateWorld();
 
-  // Perform the migration
-  if (cv && isNewerVersion(game.system.flags.compatibleMigrationVersion, cv)) {
-    ui.notifications.error(game.i18n.localize("MIGRATION.5eVersionTooOldWarning"), { permanent: true });
-  }
-  migrations.migrateWorld();
+  // Make old item types unavailable to create
+  game.documentTypes.Item = game.documentTypes.Item.filter(t => !(t in CONFIG.SW5E.featLikeItemsMigration));
 });
 
 /* -------------------------------------------- */

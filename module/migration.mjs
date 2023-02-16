@@ -1,6 +1,30 @@
 import { slugifyIcon } from "./utils.mjs";
 
 /**
+ * Checks if the world needs migrating.
+ * @returns {boolean}      Wheter migration is needed or not.
+ */
+export const needsMigration = function() {
+  // Determine whether a system migration is required and feasible
+  if (!game.user.isGM) return false;
+  const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
+  const totalDocuments = game.actors.size + game.scenes.size + game.items.size;
+  if (!cv && totalDocuments === 0) {
+    game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
+    return false;
+  }
+  if (cv && !isNewerVersion(game.system.flags.needsMigrationVersion, cv)) return false;
+
+  if (cv && isNewerVersion(game.system.flags.compatibleMigrationVersion, cv)) {
+    ui.notifications.error(game.i18n.localize("MIGRATION.5eVersionTooOldWarning"), { permanent: true });
+  }
+
+  return true;
+}
+
+/* -------------------------------------------- */
+
+/**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
@@ -15,6 +39,8 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
   //     if (!["Actor"].includes(p.documentName)) continue;
   //     await migrateArmorClass(p, migrationData);
   // }
+
+  await migrateFeatLikeItems(migrateSystemCompendiums);
 
   // Migrate World Actors
   const actors = game.actors.map(a => [a, true])
@@ -269,6 +295,7 @@ export const migrateActorData = async function (actor, migrationData) {
   if (!actor.items) return updateData;
   const items = await actor.items.reduce(async (memo, i) => {
     const arr = await memo;
+
     // Migrate the Owned Item
     const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
     let itemUpdate = await migrateItemData(itemData, migrationData);
@@ -885,6 +912,76 @@ function _migrateItemSpeciesDroid(item, updateData) {
   updateData["system.details.isDroid"] = !!item.system?.colorScheme?.value;
 
   return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate all feat-like items.
+ * @param {boolean} migrateSystemCompendiums  Migrate items in system compendiums.
+ */
+async function migrateFeatLikeItems(migrateSystemCompendiums) {
+  const items = new Set(game.items);
+  const actors = new Set(game.actors);
+  const scenes = new Set(game.scenes);
+  const wasLocked = {};
+
+  // Accumulate invalid World Actors
+  for (const id of game.actors.invalidDocumentIds) actors.add(game.actors.getInvalid(id));
+  // Accumulate invalid World Items
+  for (const id of game.items.invalidDocumentIds) items.add(game.items.getInvalid(id));
+  // Accumulate everything from compendium packs
+  for await (const pack of game.packs) {
+    if (pack.metadata.packageType !== "world" && !migrateSystemCompendiums) continue;
+    const documentName = pack.documentName;
+    if (!["Actor", "Item", "Scene"].includes(documentName)) continue;
+    let set = null;
+    if (documentName === "Item") set = items;
+    if (documentName === "Actor") set = actors;
+    if (documentName === "Scene") set = scenes;
+
+    // Unlock the pack for editing
+    wasLocked[pack.collection] = pack.locked;
+    await pack.configure({ locked: false });
+
+    // Iterate over compendium entries
+    const documents = await pack.getDocuments();
+    for await (let doc of documents) set.add(doc);
+  }
+  // Accumulate actors from scenes
+  for (const scene of scenes) for (const token of scene.tokens) if (!token.actorLink) actors.add(token.actor)
+  // Accumulate items from actors
+  for (const actor of actors) for (const item of actor.items) items.add(item);
+
+  // Migrate items
+  for await (const item of items) await _migrateItemFeatLike(item);
+
+  // Apply the original locked status for the packs
+  for await (const [collection, lock] of Object.entries(wasLocked)) {
+    const pack = await game.packs.get(collection);
+    pack.configure({ locked: false });
+  }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate feat-like item
+ * @param {object} item        Item to migrate.
+ */
+async function _migrateItemFeatLike(item) {
+  if (!(item.type in CONFIG.SW5E.featLikeItemsMigration)) return;
+
+  const updates = { "system.type": CONFIG.SW5E.featLikeItemsMigration[item.type] };
+
+  switch (item.type) {
+    case "deploymentfeature":
+      updates["system.requirements"] = [item.system.deployment?.value ?? "", item.system.rank?.value ?? ""].join(" ");
+      break;
+  }
+  console.log(`Migrating feat-like Item document ${item.name}`);
+  await item.update({ type: "feat" });
+  await item.update(updates);
 }
 
 /* -------------------------------------------- */

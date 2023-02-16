@@ -583,7 +583,7 @@ export default class Item5e extends Item {
     if (act?.type === types.legendary) this.labels.featType = game.i18n.localize("SW5E.LegendaryActionLabel");
     else if (act?.type === types.lair) this.labels.featType = game.i18n.localize("SW5E.LairActionLabel");
     else if (act?.type) {
-      this.labels.featType = game.i18n.localize(this.system.damage.length ? "SW5E.Attack" : "SW5E.Action");
+      this.labels.featType = game.i18n.localize(this.system.damage?.length ? "SW5E.Attack" : "SW5E.Action");
     } else this.labels.featType = game.i18n.localize("SW5E.Passive");
   }
 
@@ -1665,7 +1665,7 @@ export default class Item5e extends Item {
     // Item type specific properties
     const props = [];
     //TODO: Likely need more item types to match SW5e
-    if (item.type in CONFIG.SW5E.featLikeItems) {
+    if (this.type in CONFIG.SW5E.featLikeItems) {
       this._featChatData(data, labels, props);
     } else switch (this.type) {
       case "consumable":

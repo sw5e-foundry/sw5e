@@ -15,7 +15,15 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set(["background", "class", "archetype"]);
+  static unsupportedItemTypes = new Set([
+    "background",
+    "class",
+    "archetype",
+    "starship",
+    "starshipaction",
+    "starshipfeature",
+    "starshipmod"
+  ]);
 
   /* -------------------------------------------- */
   /*  Context Preparation                         */

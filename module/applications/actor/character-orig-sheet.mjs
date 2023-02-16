@@ -14,6 +14,11 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
   }
 
   /* -------------------------------------------- */
+
+  /** @override */
+  static unsupportedItemTypes = new Set(["starship", "starshipaction", "starshipfeature", "starshipmod"]);
+
+  /* -------------------------------------------- */
   /*  Context Preparation                         */
   /* -------------------------------------------- */
 
@@ -104,15 +109,19 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
 
         // Classify items into types
         if (item.type === "power") obj.powers.push(item);
-        else if (item.type === "feat") obj.feats.push(item);
+        else if (item.type === "feat") {
+          if (item.system.type.value === "class") obj.classfeatures.push(item);
+          else if (item.system.type.value === "customizationOption") {
+            if (item.system.type.subtype === "fightingMastery") obj.fightingmasteries.push(item);
+            else if (item.system.type.subtype === "fightingStyle") obj.fightingstyles.push(item);
+            else if (item.system.type.subtype === "lightsaberForm") obj.lightsaberforms.push(item);
+          }
+          else obj.feats.push(item);
+        }
         else if (item.type === "class") obj.classes.push(item);
         else if (item.type === "species") obj.species.push(item);
         else if (item.type === "archetype") obj.archetypes.push(item);
-        else if (item.type === "classfeature") obj.classfeatures.push(item);
         else if (item.type === "background") obj.backgrounds.push(item);
-        else if (item.type === "fightingstyle") obj.fightingstyles.push(item);
-        else if (item.type === "fightingmastery") obj.fightingmasteries.push(item);
-        else if (item.type === "lightsaberform") obj.lightsaberforms.push(item);
         else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
         return obj;
       },
@@ -193,10 +202,10 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         isClass: true
       },
       classfeatures: {
-        label: "ITEM.TypeClassfeaturePl",
+        label: "SW5E.Feature.Class",
         items: classfeatures,
         hasActions: true,
-        dataset: { type: "classfeature" },
+        dataset: { type: "feat", featType: "class" },
         isClassfeature: true
       },
       species: {
@@ -207,24 +216,24 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         isSpecies: true
       },
       fightingstyles: {
-        label: "ITEM.TypeFightingstylePl",
+        label: "SW5E.CustomizationOption.FightingStyle",
         items: fightingstyles,
-        hasActions: false,
-        dataset: { type: "fightingstyle" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinStyle" },
         isFightingstyle: true
       },
       fightingmasteries: {
-        label: "ITEM.TypeFightingmasteryPl",
+        label: "SW5E.CustomizationOption.FightingMastery",
         items: fightingmasteries,
-        hasActions: false,
-        dataset: { type: "fightingmastery" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinMastery" },
         isFightingmastery: true
       },
       lightsaberforms: {
-        label: "ITEM.TypeLightsaberformPl",
+        label: "SW5E.CustomizationOption.LightsaberForm",
         items: lightsaberforms,
-        hasActions: false,
-        dataset: { type: "lightsaberform" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "lightsaberForm" },
         isLightsaberform: true
       },
       active: {

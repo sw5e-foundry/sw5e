@@ -43,17 +43,11 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     "archetype",
     "background",
     "class",
-    "classfeature",
     "deployment",
-    "deploymentfeature",
     "feat",
-    "fightingmastery",
-    "fightingstyle",
-    "lightsaberform",
     "maneuver",
     "power",
-    "species",
-    "venture"
+    "species"
   ]);
 
   /* -------------------------------------------- */
@@ -95,12 +89,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Categorize Items as actions, features, equipment and cargo
     const ssActions = {
       deploymentfeature: {
-        label: "ITEM.TypeDeploymentfeaturePl",
+        label: "SW5E.Feature.Deployment",
         items: [],
         derived: true
       },
       venture: {
-        label: "ITEM.TypeVenturePl",
+        label: "SW5E.DeploymentFeature.Venture",
         items: [],
         derived: true
       }
@@ -206,7 +200,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     for (const uuid of ssDeploy.crew.items) {
       const actor = fromUuidSynchronous(uuid);
       if (!actor) continue;
-      const actions = actor.items.filter(item => ["deploymentfeature", "venture"].includes(item.type));
+      const actions = actor.items.filter(item => item.type === "feat" && item.system.type.value === "deployment");
       for (const action of actions) {
         const ctx = context.itemContext[action.id] ??= {};
         ctx.active = ssDeploy.active.value === uuid;

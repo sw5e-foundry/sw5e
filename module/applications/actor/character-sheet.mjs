@@ -148,21 +148,29 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         this._prepareItemToggleState(item, ctx);
 
         // Classify items into types
-        if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) obj.forcepowers.push(item);
-        else if (item.type === "power" && ["tec"].includes(item.system.school)) obj.techpowers.push(item);
+        if (item.type === "power") {
+          if (["lgt", "drk", "uni"].includes(item.system.school)) obj.forcepowers.push(item);
+          else obj.techpowers.push(item);
+        }
         else if (item.type === "maneuver") obj.maneuvers.push(item);
-        else if (item.type === "feat") obj.feats.push(item);
+        else if (item.type === "feat") {
+          if (item.system.type.value === "class") obj.classfeatures.push(item);
+          else if (item.system.type.value === "customizationOption") {
+            if (item.system.type.subtype === "fightingMastery") obj.fightingmasteries.push(item);
+            else if (item.system.type.subtype === "fightingStyle") obj.fightingstyles.push(item);
+            else if (item.system.type.subtype === "lightsaberForm") obj.lightsaberforms.push(item);
+          }
+          else if (item.system.type.value === "deployment") {
+            if (item.system.type.subtype === "venture") obj.ventures.push(item);
+            else obj.deploymentfeatures.push(item);
+          }
+          else obj.feats.push(item);
+        }
         else if (item.type === "class") obj.classes.push(item);
         else if (item.type === "deployment") obj.deployments.push(item);
-        else if (item.type === "deploymentfeature") obj.deploymentfeatures.push(item);
-        else if (item.type === "venture") obj.ventures.push(item);
         else if (item.type === "species") obj.species.push(item);
         else if (item.type === "archetype") obj.archetypes.push(item);
-        else if (item.type === "classfeature") obj.classfeatures.push(item);
         else if (item.type === "background") obj.backgrounds.push(item);
-        else if (item.type === "fightingstyle") obj.fightingstyles.push(item);
-        else if (item.type === "fightingmastery") obj.fightingmasteries.push(item);
-        else if (item.type === "lightsaberform") obj.lightsaberforms.push(item);
         else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
         return obj;
       },
@@ -256,10 +264,10 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         isClass: true
       },
       classfeatures: {
-        label: "ITEM.TypeClassfeaturePl",
+        label: "SW5E.Feature.Class",
         items: classfeatures,
         hasActions: true,
-        dataset: { type: "classfeature" },
+        dataset: { type: "feat", featType: "class" },
         isClassfeature: true
       },
       species: {
@@ -270,24 +278,24 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         isSpecies: true
       },
       fightingstyles: {
-        label: "ITEM.TypeFightingstylePl",
+        label: "SW5E.CustomizationOption.FightingStylePl",
         items: fightingstyles,
-        hasActions: false,
-        dataset: { type: "fightingstyle" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinStyle" },
         isFightingstyle: true
       },
       fightingmasteries: {
-        label: "ITEM.TypeFightingmasteryPl",
+        label: "SW5E.CustomizationOption.FightingMasteryPl",
         items: fightingmasteries,
-        hasActions: false,
-        dataset: { type: "fightingmastery" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightinMastery" },
         isFightingmastery: true
       },
       lightsaberforms: {
-        label: "ITEM.TypeLightsaberformPl",
+        label: "SW5E.CustomizationOption.LightsaberFormPl",
         items: lightsaberforms,
-        hasActions: false,
-        dataset: { type: "lightsaberform" },
+        hasActions: true,
+        dataset: { type: "feat", featType: "customizationOption", featSubType: "lightsaberForm" },
         isLightsaberform: true
       },
       active: {
@@ -330,17 +338,17 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         isDeployment: true
       },
       deploymentfeatures: {
-        label: "ITEM.TypeDeploymentfeaturePl",
+        label: "SW5E.Feature.Deployment",
         items: deploymentfeatures,
         hasActions: true,
-        dataset: { type: "deploymentfeature" },
+        dataset: { type: "feat", featType: "deploymentFeature" },
         isDeploymentfeature: true
       },
       ventures: {
-        label: "ITEM.TypeVenturePl",
+        label: "SW5E.DeploymentFeature.Venture",
         items: ventures,
         hasActions: false,
-        dataset: { type: "venture" },
+        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" },
         isVenture: true
       }
     };

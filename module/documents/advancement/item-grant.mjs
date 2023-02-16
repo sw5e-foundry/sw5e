@@ -34,20 +34,14 @@ export default class ItemGrantAdvancement extends Advancement {
    */
   static VALID_TYPES = new Set([
     "backpack",
-    "classfeature",
     "consumable",
-    "deploymentfeature",
     "equipment",
     "feat",
-    "fightingmastery",
-    "fightingstyle",
-    "lightsaberform",
     "loot",
     "maneuver",
     "modification",
     "power",
     "tool",
-    "venture",
     "weapon"
   ]);
 

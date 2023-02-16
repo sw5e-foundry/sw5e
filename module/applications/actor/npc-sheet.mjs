@@ -96,8 +96,12 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) arr[0].push(item);
         else if (item.type === "power" && ["tec"].includes(item.system.school)) arr[1].push(item);
         else if (item.type === "deployment") arr[2].push(item);
-        else if (item.type === "deploymentfeature") arr[3].push(item);
-        else if (item.type === "venture") arr[4].push(item);
+        else if (item.type === "feat") {
+          if (item.system.type.value === "deploymentFeature") {
+            if (item.system.type.subtype === "venture") arr[4].push(item);
+            else arr[3].push(item);
+          }
+        }
         else arr[5].push(item);
         return arr;
       },
@@ -132,26 +136,19 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         isDeployment: true
       },
       deploymentfeatures: {
-        label: "ITEM.TypeDeploymentfeaturePl",
+        label: "SW5E.Feature.Deployment",
         items: [],
         hasActions: true,
-        dataset: { type: "deploymentfeature" },
+        dataset: { type: "feat", featType: "deploymentFeature" },
         isDeploymentfeature: true
       },
       ventures: {
-        label: "ITEM.TypeVenturePl",
+        label: "SW5E.DeploymentFeature.Venture",
         items: [],
         hasActions: false,
-        dataset: { type: "venture" },
+        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" },
         isVenture: true
-      },
-      active: {
-        label: "SW5E.FeatureActive",
-        items: [],
-        hasActions: true,
-        dataset: { "type": "feat", "activation.type": "action" }
-      },
-      passive: { label: "SW5E.FeaturePassive", items: [], hasActions: false, dataset: { type: "feat" } }
+      }
     };
     for (let ssf of ssfeats) {
       if (ssf.system.activation.type) ssfeatures.active.items.push(ssf);

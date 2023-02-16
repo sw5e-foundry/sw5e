@@ -928,19 +928,46 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
- * TODO: Remove this once they are assimilated under feat subtypes
- * Item types that behave simillar to "feats".
+ * TODO: Remove this once they are assimilated under feat types and subtypes
+ * Item types that behave simillar to "feat".
  * @enum {string}
  */
 SW5E.featLikeItems = {
   feat: "ITEM.TypeFeat",
-  classfeature: "ITEM.TypeClassfeature",
-  deploymentfeature: "ITEM.TypeDeploymentfeature",
-  fightingmastery: "ITEM.TypeFightingmastery",
-  fightingstyle: "ITEM.TypeFightingstyle",
-  lightsaberform: "ITEM.TypeLightsaberform",
   maneuver: "ITEM.TypeManeuver",
-  venture: "ITEM.TypeVenture",
+  starshipaction: "ITEM.TypeStarshipaction",
+  starshipfeature: "ITEM.TypeStarshipfeature"
+}
+
+/**
+ * Migration data for old 'feat-like items'.
+ * @enum {object}
+ * @property {string} value       system.type.value data after migration
+ * @property {string} [subtype]   system.type.subtype data after migration
+ */
+SW5E.featLikeItemsMigration = {
+  deploymentfeature: {
+    value: "deployment"
+  },
+  classfeature: {
+    value: "class"
+  },
+  fightingmastery: {
+    value: "customizationOption",
+    subtype: "fightingMastery"
+  },
+  fightingstyle: {
+    value: "customizationOption",
+    subtype: "fightingStyle"
+  },
+  lightsaberform: {
+    value: "customizationOption",
+    subtype: "lightsaberForm"
+  },
+  venture: {
+    value: "deployment",
+    subtype: "venture"
+  },
 }
 
 /* -------------------------------------------- */
@@ -969,7 +996,6 @@ SW5E.featureTypes = {
       defensiveTactic: "SW5E.ClassFeature.DefensiveTactic",
       eldritchInvocation: "SW5E.ClassFeature.EldritchInvocation",
       elementalDiscipline: "SW5E.ClassFeature.ElementalDiscipline",
-      fightingStyle: "SW5E.ClassFeature.FightingStyle",
       huntersPrey: "SW5E.ClassFeature.HuntersPrey",
       ki: "SW5E.ClassFeature.Ki",
       maneuver: "SW5E.ClassFeature.Maneuver",
@@ -979,6 +1005,20 @@ SW5E.featureTypes = {
       psionicPower: "SW5E.ClassFeature.PsionicPower",
       rune: "SW5E.ClassFeature.Rune",
       superiorHuntersDefense: "SW5E.ClassFeature.SuperiorHuntersDefense"
+    }
+  },
+  customizationOption: {
+    label: "SW5E.Feature.CustomizationOption",
+    subtypes: {
+      fightingMastery: "SW5E.CustomizationOption.FightingMastery",
+      fightingStyle: "SW5E.CustomizationOption.FightingStyle",
+      lightsaberForm: "SW5E.CustomizationOption.LightsaberForm",
+    }
+  },
+  deployment: {
+    label: "SW5E.Feature.Deployment",
+    subtypes: {
+      venture: "SW5E.DeploymentFeature.Venture"
     }
   },
   monster: {
@@ -992,7 +1032,8 @@ SW5E.featureTypes = {
   }
 };
 preLocalize("featureTypes", { key: "label" });
-preLocalize("featureTypes.class.subtypes", { sort: true });
+for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type)
+  preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
 
 /* -------------------------------------------- */
 

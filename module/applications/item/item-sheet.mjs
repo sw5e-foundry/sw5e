@@ -450,23 +450,8 @@ export default class ItemSheet5e extends ItemSheet {
             case "background":
                 //props.push(labels.background);
                 break;
-            case "classfeature":
-                //props.push(labels.classfeature);
-                break;
             case "deployment":
                 //props.push(labels.deployment);
-                break;
-            case "venture":
-                //props.push(labels.venture);
-                break;
-            case "fightingmastery":
-                //props.push(labels.fightingmastery);
-                break;
-            case "fightingstyle":
-                //props.push(labels.fightingstyle);
-                break;
-            case "lightsaberform":
-                //props.push(labels.lightsaberform);
                 break;
             case "maneuver":
                 // props.push(labels.maneuverType);

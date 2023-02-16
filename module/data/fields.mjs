@@ -154,7 +154,6 @@ export class UUIDField extends foundry.data.fields.StringField {
   /** @override */
   _validateType(value) {
     if (!sw5e.utils.validators.isValidUUID(value)) {
-      console.debug(value);
       throw new Error(game.i18n.localize("SW5E.IdentifierError"));
     }
   }

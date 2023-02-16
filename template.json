@@ -974,30 +974,6 @@
         },
         "source": ""
       },
-      "fightingmasteryDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": ""
-      },
-      "fightingstyleDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": ""
-      },
-      "lightsaberformDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "source": ""
-      },
       "speciesDescription": {
         "data": "$characteristics-table",
         "description": {
@@ -1006,15 +982,6 @@
           "unidentified": ""
         },
         "traits": "",
-        "source": ""
-      },
-      "ventureDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
-        },
-        "prerequisites": [""],
         "source": ""
       },
       "physicalItem": {
@@ -1195,13 +1162,7 @@
         "progression": 0
       }
     },
-    "classfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "recharge": {
-        "charged": false,
-        "value": null
-      }
-    },
+    "classfeature": {},
     "deployment": {
       "templates": ["deploymentDescription"],
       "identifier": "",
@@ -1210,34 +1171,11 @@
       "advancement": [],
       "source": ""
     },
-    "deploymentfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "deployment": {
-        "value": ""
-      },
-      "featureType": {
-        "value": ""
-      },
-      "rank": {
-        "value": ""
-      },
-      "recharge": {
-        "charged": false,
-        "value": null
-      }
-    },
-    "fightingmastery": {
-      "templates": ["fightingmasteryDescription"]
-    },
-    "fightingstyle": {
-      "templates": ["fightingstyleDescription"]
-    },
-    "lightsaberform": {
-      "templates": ["lightsaberformDescription"]
-    },
-    "venture": {
-      "templates": ["ventureDescription"]
-    },
+    "deploymentfeature": {},
+    "fightingmastery": {},
+    "fightingstyle": {},
+    "lightsaberform": {},
+    "venture": {},
     "consumable": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action"],
       "consumableType": "potion",

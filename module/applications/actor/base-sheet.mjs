@@ -1322,6 +1322,8 @@ export default class ActorSheet5e extends ActorSheet {
     event.preventDefault();
     const header = event.currentTarget;
     const type = header.dataset.type;
+    const featType = header.dataset.feattype ?? "";
+    const featSubtype = header.dataset.featsubtype ?? "";
 
     // Check to make sure the newly created class doesn't take player over level cap
     if (type === "class" && this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel) {
@@ -1335,12 +1337,26 @@ export default class ActorSheet5e extends ActorSheet {
       return ui.notifications.error(errDeploy);
     }
 
+    delete header.dataset.type;
+    delete header.dataset.feattype;
+    delete header.dataset.featsubtype;
+
     const itemData = {
       name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`ITEM.Type${type.capitalize()}`) }),
       type: type,
       system: foundry.utils.expandObject({ ...header.dataset })
     };
-    delete itemData.system.type;
+    if (featType) {
+      itemData.system.type = {
+        value: featType,
+        subtype: featSubtype
+      };
+      let cfg = CONFIG.SW5E.featureTypes[featType];
+      if (featSubtype) cfg = cfg.subtypes[featSubtype];
+      else cfg = cfg.label;
+      itemData.name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(cfg).capitalize() });
+    }
+
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 

@@ -1,0 +1,68 @@
+{{#if (or favItems favFeats favPowers)}}
+	<ol class="group-list ">
+		{{#if favItems}}
+			<li>
+				<div class="group-list-title group-grid-fav-items">
+					<h3 class="item-name">Items</h3>
+					<div class="form-group">
+						<div class="item-detail item-type form-item">Type</div>
+						<div class="item-detail item-uses form-item">Charges</div>
+						<div class="item-detail item-quantity form-item">Qty</div>
+					</div>
+					<div class="item-detail item-controls"></div>
+				</div>
+
+				<ol class="item-list">
+					{{#each favItems as |item id|}}
+						{{> "sw5e.fav-item" item=item}}
+					{{/each}}
+				</ol>
+			</li>
+		{{/if}}
+		{{#if favPowers}}
+			{{#each favPowers as |section lvl|}}
+			{{#if section.powers}}
+			{{#if lvl}}
+				<li>
+					<div class="group-list-title group-grid-fav-items">
+						<h3 class="item-name">
+							{{#if section.isAtWill}}At-Will Powers{{else}}Level {{lvl}} Powers{{/if}}
+						</h3>
+
+						<div class="form-group">
+							<div class="item-detail item-type form-item">School</div>
+							<div class="item-detail item-uses form-item">Uses</div>
+							<div class="item-detail item-comps form-item"></div>
+						</div>
+						<div class="item-detail item-controls"></div>
+					</div>
+					<ol class="item-list">
+						{{#each section.powers as |power id|}}
+							{{> "sw5e.fav-item" item=power}}
+						{{/each}}
+					</ol>
+				</li>
+			{{/if}}
+			{{/if}}
+			{{/each}}
+		{{/if}}
+		{{#if favFeats}}
+			<li>
+				<div class="group-list-title group-grid-fav-items">
+					<h3 class="item-name">Features &amp; Feats</h3>
+					<div class="form-group">
+						<div class="item-detail item-type form-item">Type</div>
+						<div class="item-detail item-uses form-item">Uses</div>
+					</div>
+					<div class="item-detail item-controls"></div>
+				</div>
+
+				<ol class="item-list">
+					{{#each favFeats as |feat lvl|}}
+						{{> "sw5e.fav-item" item=feat}}
+					{{/each}}
+				</ol>
+			</li>
+		{{/if}}
+	</ol>
+{{/if}}

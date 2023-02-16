@@ -151,6 +151,10 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/actors/newActor/parts/swalt-traits.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.hbs",
 
+    // FavTab Partials
+    "systems/sw5e/templates/actors/favTab/fav-item.hbs",
+    "systems/sw5e/templates/actors/favTab/template.hbs",
+
     // Item Sheet Partials
     "systems/sw5e/templates/items/parts/item-action.hbs",
     "systems/sw5e/templates/items/parts/item-activation.hbs",

@@ -690,7 +690,7 @@ async function addFavorites(app, html, context) {
   let powerCount = 0;
   let items = context.actor.items;
   for (let item of items) {
-    if (item.type == "class") continue;
+    if (["class", "archetype", "species", "deployment", "background"].includes(item.type)) continue;
     if (item.flags.favtab === undefined || item.flags.favtab.isFavourite === undefined) {
       item.flags.favtab = {
         isFavourite: false
@@ -726,13 +726,11 @@ async function addFavorites(app, html, context) {
       }
 
       item.editable = app.options.editable;
-      switch (item.type) {
-        case "feat":
-          if (item.flags.favtab.sort === undefined) {
-            item.flags.favtab.sort = (favFeats.count + 1) * 100000; // initial sort key if not present
-          }
-          favFeats.push(item);
-          break;
+      if (item.type in CONFIG.SW5E.featLikeItems) {
+        item.flags.favtab.sort ??= (favFeats.count + 1) * 100000; // initial sort key if not present
+        favFeats.push(item);
+      }
+      else switch (item.type) {
         case "power":
           if (item.system.preparation.mode) {
             item.powerPrepMode = ` (${CONFIG.SW5E.powerPreparationModes[item.system.preparation.mode]})`;
@@ -745,9 +743,7 @@ async function addFavorites(app, html, context) {
           powerCount++;
           break;
         default:
-          if (item.flags.favtab.sort === undefined) {
-            item.flags.favtab.sort = (favItems.count + 1) * 100000; // initial sort key if not present
-          }
+          item.flags.favtab.sort ??= (favItems.count + 1) * 100000; // initial sort key if not present
           favItems.push(item);
           break;
       }
@@ -767,12 +763,12 @@ async function addFavorites(app, html, context) {
   context.favPowers = powerCount > 0 ? favPowers : false;
   context.editable = app.options.editable;
 
-  await loadTemplates(["systems/sw5e/templates/actors/newActor/item.hbs"]);
-  let favtabHtml = $(await renderTemplate("systems/sw5e/templates/actors/newActor/template.hbs", context));
+  await loadTemplates(["systems/sw5e/templates/actors/favTab/fav-item.hbs"]);
+  let favtabHtml = $(await renderTemplate("systems/sw5e/templates/actors/favTab/template.hbs", context));
   favtabHtml.find(".item-name h4").click(event => app._onItemSummary(event));
 
   if (app.options.editable) {
-    favtabHtml.find(".item-image").click(ev => app._onItemRoll(ev));
+    favtabHtml.find(".item-image").click(ev => app._onItemUse(ev));
     let handler = ev => app._onDragStart(ev);
     favtabHtml.find(".item").each((i, li) => {
       if (li.classList.contains("inventory-header")) return;
@@ -798,13 +794,21 @@ async function addFavorites(app, html, context) {
       ev.stopPropagation();
 
       let dropData = JSON.parse(ev.originalEvent.dataTransfer.getData("text/plain"));
-      // if (dropData.actorId !== app.actor.id || dropData.type === 'power') return;
-      if (dropData.actorId !== app.actor.id) return;
+      let uuidParts = dropData.uuid.split(".");
+      let actorIndex = uuidParts.indexOf("Actor");
+      let actorId = actorIndex === -1 ? undefined : uuidParts[actorIndex+1];
+      let itemIndex = uuidParts.indexOf("Item");
+      let itemId = itemIndex === -1 ? undefined : uuidParts[itemIndex+1];
+
+      if (actorId !== app.actor.id || dropData.type === 'power') return;
+
+      let dragSource = app.actor.items.get(itemId);
+
       let list = null;
-      if (dropData.type === "feat") list = favFeats;
+      if (dragSource.type in CONFIG.SW5E.featLikeItems) list = favFeats;
       else list = favItems;
-      let dragSource = list.find(i => i.id === dropData.id);
-      let siblings = list.filter(i => i.id !== dropData.id);
+
+      let siblings = list.filter(i => i.id !== itemId);
       let targetId = ev.target.closest(".item").dataset.itemId;
       let dragTarget = siblings.find(s => s.id === targetId);
 
@@ -816,7 +820,7 @@ async function addFavorites(app, html, context) {
       });
       const updateData = sortUpdates.map(u => {
         const update = u.update;
-        update.id = u.target.id;
+        update._id = u.target.id;
         return update;
       });
       app.actor.updateEmbeddedDocuments("Item", updateData);

@@ -91,7 +91,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     context.toggleTitle = game.i18n.localize(`SW5E.${isCrewed ? "Crewed" : "Uncrewed"}`);
 
     // Handle crew actions
-    if (item.type === "feat" && item.system.activation.type === "crew") {
+    if (item.type in CONFIG.SW5E.featLikeItems && item.system.activation.type === "crew") {
       context.cover = game.i18n.localize(`SW5E.${item.system.cover ? "CoverTotal" : "None"}`);
       if (item.system.cover === 0.5) context.cover = "½";
       else if (item.system.cover === 0.75) context.cover = "¾";
@@ -252,18 +252,17 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       }
 
       // Handle non-cargo item types
-      switch (item.type) {
+      if (item.type in CONFIG.SW5E.featLikeItems) {
+        const act = item.system.activation;
+        if (act.type || act.type === "none") features.passive.items.push(item);
+        else if (act.type === "reaction") features.reactions.items.push(item);
+        else features.actions.items.push(item);
+      } else switch (item.type) {
         case "weapon":
           features.weapons.items.push(item);
           break;
         case "equipment":
           features.equipment.items.push(item);
-          break;
-        case "feat":
-          const act = item.system.activation;
-          if (act.type || act.type === "none") features.passive.items.push(item);
-          else if (act.type === "reaction") features.reactions.items.push(item);
-          else features.actions.items.push(item);
           break;
         default:
           totalWeight += (item.system.weight || 0) * item.system.quantity;

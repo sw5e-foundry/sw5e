@@ -81,7 +81,7 @@
   flex: 4;
 }
 /* ----------------------------------------- */
-/*  All SW5e Apps                            */
+/*  All SW5e Apps                           */
 /* ----------------------------------------- */
 h5 {
   margin-block-start: 1em;
@@ -141,7 +141,7 @@ h5 {
 }
 .sw5e .secret .reveal {
   border: 1px dashed var(--color-border-light-primary);
-  background: rgba(255, 255, 240, 0.8);
+  background: rgb(255 255 3%);
 }
 .sw5e .locked .secret .reveal {
   display: none;
@@ -691,9 +691,9 @@ h5 {
 /* ----------------------------------------- */
 /*  Armor Config Sheet Specifically          */
 /* ----------------------------------------- */
-.sw5e.actor-armor-config .ac-field input,
-.sw5e.actor-hit-points-config .hp-field input,
-.sw5e.actor-cast-points-config .cast-points-field input {
+.sw5e.actor-armor-config .ac-field,
+.sw5e.actor-hit-points-config .hp-field,
+.sw5e.actor-cast-points-config .cast-points-field {
   font-size: 3em;
   text-align: center;
 }
@@ -915,7 +915,6 @@ h5 {
 .sw5e.sheet.actor .sheet-header .attributes .attribute input.temphp {
   width: 48%;
 }
-
 .sw5e.sheet.actor h4.box-title {
   height: 18px;
   line-height: 16px;
@@ -2107,7 +2106,6 @@ h5 {
 .sw5e.sheet.item .recharge.form-group label.checkbox {
   flex: none;
 }
-
 .sw5e.sheet.item .recharge.form-group label.number input,
 .sw5e.sheet.item .recharge.form-group label.checkbox input {
   width: 16px;
@@ -2618,9 +2616,9 @@ h5 {
 }
 .sw5e.sheet.group .members .directory-header > * {
   margin: 0;
-  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-family: "Russo One";
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 16px;
   font-weight: bold;
   line-height: 20px;

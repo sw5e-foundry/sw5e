@@ -162,8 +162,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
     this._prepareItemsCategorized(context, categories);
 
-    console.debug("features", categories.features);
-
     // Split features
     categories.ssactions = Object.fromEntries(Object.entries(categories.features)
       .filter(([k, v]) => ["starshipAction", "deployment"].includes(v.dataset.featType))
@@ -225,7 +223,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     }
     categories.features.unshift(categories.class.starshipsize);
 
-    console.debug("ssactions", categories.ssactions);
+    // Add unsorted items to the Inventory, to make them acessible
+    categories.inventory.unsorted = categories.unsorted;
 
     // Assign and return
     context.inventoryFilters = true;

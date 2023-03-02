@@ -1184,7 +1184,8 @@ export default class Item5e extends Item {
         createMeasuredTemplate: item.hasAreaTarget,
         consumeQuantity: is.uses?.autoDestroy ?? false,
         consumeRecharge: !!is.recharge?.value,
-        consumeReload: false, // only consume ammo when the attack is rolled
+        // only consume ammo when the attack is rolled
+        consumeReload: item.system.ammo.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack),
         consumeResource:
           !!resource.target &&
           (!item.hasAttack ||

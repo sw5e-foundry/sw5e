@@ -793,14 +793,25 @@ SW5E.creatureTypes = {
 /* -------------------------------------------- */
 
 /**
+ * Classification types for item action types that are attacks.
+ * @enum {string}
+ */
+SW5E.itemActionTypesAttack = {
+  mwak: "SW5E.ActionMWAK",
+  rwak: "SW5E.ActionRWAK",
+  mpak: "SW5E.ActionMPAK",
+  rpak: "SW5E.ActionRPAK"
+};
+preLocalize("itemActionTypesAttack");
+
+/* -------------------------------------------- */
+
+/**
  * Classification types for item action types.
  * @enum {string}
  */
 SW5E.itemActionTypes = {
-  mwak: "SW5E.ActionMWAK",
-  rwak: "SW5E.ActionRWAK",
-  mpak: "SW5E.ActionMPAK",
-  rpak: "SW5E.ActionRPAK",
+  ...SW5E.itemActionTypesAttack,
   save: "SW5E.ActionSave",
   heal: "SW5E.ActionHeal",
   abil: "SW5E.ActionAbil",

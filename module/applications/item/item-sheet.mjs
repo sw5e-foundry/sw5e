@@ -431,7 +431,7 @@ export default class ItemSheet5e extends ItemSheet {
                     props.push(
                         ...Object.entries(this.item.system.properties)
                             .filter((e) => ![false, undefined, null, 0].includes(e[1]))
-                            .map((e) => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]]?.full, {value: e[1]}))
+                            .map((e) => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]]?.full ?? "?", {value: e[1]}))
                     );
                 break;
 

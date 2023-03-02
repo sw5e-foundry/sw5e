@@ -71,7 +71,7 @@ export default class PhysicalItemTemplate extends foundry.abstract.DataModel {
     if (foundry.utils.getType(source.price) === "Object") return;
     source.price = {
       value: Number.isNumeric(source.price) ? Number(source.price) : 0,
-      denomination: "gp"
+      denomination: "gc"
     };
   }
 

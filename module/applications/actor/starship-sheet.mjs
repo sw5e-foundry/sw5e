@@ -11,7 +11,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /** @override */
   get template() {
     if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
-    return `systems/sw5e/templates/actors/newActor/starship.hbs`;
+    return `systems/sw5e/templates/actors/newActor/starship-sheet.hbs`;
   }
 
   /** @inheritDoc */
@@ -44,7 +44,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     "background",
     "class",
     "deployment",
-    "feat",
     "maneuver",
     "power",
     "species"
@@ -79,120 +78,111 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       else deployment.actionsVisible = !!(!anyDeployed || deployment.items?.length || deployment.value);
     }
 
+    const routing = this.actor.system.attributes.power.routing;
+    const symbols = ["↓", "=", "↑"];
+    const effects = ["negative", "neutral", "positive"];
+    context.routing = Object.keys(CONFIG.SW5E.powerRoutingOpts).reduce((obj, key) => {
+      const effect = routing === key ? 2 : routing === "none" ? 1 : 0;
+      obj[key] = {
+        value: effect,
+        symbol: symbols[effect],
+        effect: effects[effect],
+      }
+      return obj;
+    }, {});
+
+    // Check for Starship Shield
+    context.shieldInstalled = !!(this.actor._getEquipment("ssshield", { equipped: true })?.length);
+    context.isShieldDepleted = context.system.attributes.shld.depleted;
+
     return context;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _getLabels() {
+    const labels = super._getLabels();
+
+    labels.hullDice = game.i18n.format("SW5E.HullDiceFull", {
+      cur: this.actor.system.attributes.hull.dice,
+      max: this.actor.system.attributes.hull.dicemax,
+      die: this.actor.system.attributes.hull.die,
+    });
+
+    labels.shieldDice = game.i18n.format("SW5E.ShieldDiceFull", {
+      cur: this.actor.system.attributes.shld.dice,
+      max: this.actor.system.attributes.shld.dicemax,
+      die: this.actor.system.attributes.shld.die,
+    });
+
+    return labels;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  _getMovementSpeed(systemData, largestPrimary = false) {
+    const movement = systemData.attributes.movement ?? {};
+
+    // Prepare an array of available movement speeds
+    let speeds = [
+      [movement.turn, `${game.i18n.localize("SW5E.MovementTurn")} ${movement.turn}`],
+    ];
+    if (largestPrimary) {
+      speeds.push([movement.space, `${game.i18n.localize("SW5E.MovementSpace")} ${movement.space}`]);
+    }
+
+    // Filter and sort speeds on their values
+    speeds = speeds.filter(s => s[0]).sort((a, b) => b[0] - a[0]);
+
+    // Case 1: Largest as primary
+    if (largestPrimary) {
+      let primary = speeds.shift();
+      return {
+        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        special: speeds.map(s => s[1]).join(", ")
+      };
+    }
+
+    // Case 2: Space as primary
+    else {
+      return {
+        primary: `${movement.space || 0} ${movement.units}`,
+        special: speeds.length ? `${speeds.map(s => s[1]).join(", ")} ${movement.units}` : ""
+      };
+    }
   }
 
   /* -------------------------------------------- */
 
   /** @override */
   _prepareItems(context) {
-    // Categorize Items as actions, features, equipment and cargo
-    const ssActions = {
-      deploymentfeature: {
-        label: "SW5E.Feature.Deployment",
-        items: [],
-        derived: true
-      },
-      venture: {
-        label: "SW5E.DeploymentFeature.Venture",
-        items: [],
-        derived: true
-      }
-    };
-    for (const deploy of Object.keys(CONFIG.SW5E.ssCrewStationTypes))
-      ssActions[deploy] = {
-        items: [],
-        dataset: { type: "starshipaction", deployment: deploy }
-      };
+    const categories = this._prepareItemCategories({ splitEquipped: true });
 
-    const ssFeatures = {
-      starshiptype: {
-        label: "ITEM.TypeStarship",
-        items: [],
-        hasActions: false,
-        dataset: { type: "starship" },
-        isStarship: true
-      },
-      passive: { label: "SW5E.Features", items: [], dataset: { type: "feat" } },
-      starshipfeatures: {
-        label: "ITEM.TypeStarshipfeaturePl",
-        items: [],
-        hasActions: true,
-        dataset: { type: "starshipfeature" }
-      }
-    };
-    const ssEquipment = {
-      weapons: {
-        label: "ITEM.TypeWeaponPl",
-        items: [],
-        hasActions: true,
-        dataset: { "type": "weapon", "weapon-type": "natural" }
-      },
-      equipment: { label: "SW5E.StarshipEquipment", items: [], dataset: { type: "equipment" } },
-      starshipmods: {
-        label: "ITEM.TypeStarshipmodPl",
-        items: [],
-        hasActions: false,
-        dataset: { type: "starshipmod" }
-      }
-    };
-    const ssCargo = {
-      weapon: { label: "ITEM.TypeWeaponPl", items: [], dataset: { type: "weapon" } },
-      equipment: { label: "ITEM.TypeEquipmentPl", items: [], dataset: { type: "equipment" } },
-      consumable: { label: "ITEM.TypeConsumablePl", items: [], dataset: { type: "consumable" } },
-      tool: { label: "ITEM.TypeToolPl", items: [], dataset: { type: "tool" } },
-      backpack: { label: "ITEM.TypeContainerPl", items: [], dataset: { type: "backpack" } },
-      modification: { label: "ITEM.TypeModificationPl", items: [], dataset: { type: "modification" } },
-      loot: { label: "ITEM.TypeLootPl", items: [], dataset: { type: "loot" } },
-      starshipmod: { label: "ITEM.TypeStarshipmodPl", items: [], dataset: { type: "starshipmod" } }
-    };
+    this._prepareItemsCategorized(context, categories);
 
-    // Start by classifying items into groups for rendering
-    let [actions, features, equipment, cargo] = context.items.reduce(
-      (arr, item) => {
-        const { quantity, uses, recharge, target } = item.system;
+    console.debug("features", categories.features);
 
-        // Item details
-        const ctx = context.itemContext[item.id] ??= {};
-        ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
+    // Split features
+    categories.ssactions = Object.fromEntries(Object.entries(categories.features)
+      .filter(([k, v]) => ["starshipAction", "deployment"].includes(v.dataset.featType))
+      .map(([k, v]) => [k.replace(/.*\./g, ""), v]));
 
-        // Prepare data needed to display expanded sections
-        ctx.isExpanded = this._expanded.has(item.id);
+    categories.features.feat.required = false;
+    categories.features["feat.starship"].required = true;
+    categories.features = Object.values(categories.features)
+      .filter(f => !["starshipAction", "deployment"].includes(f.dataset.featType));
 
-        // Item usage
-        ctx.hasUses = uses && uses.max > 0;
-        ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
-
-        // Item toggle state
-        this._prepareItemToggleState(item);
-
-        if ("starshipaction" === item.type) arr[0].push(item);
-        else if (["feat", "starship", "starshipfeature"].includes(item.type)) arr[1].push(item);
-        else if (item.system.equipped) arr[2].push(item);
-        else if (Object.keys(ssCargo).includes(item.type)) arr[3].push(item);
-
-        return arr;
-      },
-      [[], [], [], []]
-    );
-
-    // Apply item filters
-    actions = this._filterItems(actions, this._filters.ssactions);
-    features = this._filterItems(features, this._filters.features);
-    equipment = this._filterItems(equipment, this._filters.ssequipment);
-    cargo = this._filterItems(cargo, this._filters.inventory);
+    categories.inventory = Object.values(categories.inventory);
+    categories.equipped = Object.values(categories.equipped);
 
     // Organize Starship Actions
-    for (const action of actions) {
+    for (const actions of Object.values(categories.ssactions)) for (const action of actions.items) {
       const deployment = this.actor.system.attributes.deployment[action.system.deployment];
-      const ctx = context.itemContext[action._id] ??= {};
-      ctx.active = deployment.active;
-      ctx.id = action._id;
-      ctx.the_name = action.name;
-      if (this._filters.ssactions.has("activeDeploy") && !ctx.active) continue;
-      ssActions[action.system.deployment].items.push(action);
+      const ctx = context.itemContext[action.id] ??= {};
+      ctx.active = deployment?.active;
+      ctx.name = action.name;
     }
 
     // Add derived actions from crew members
@@ -200,80 +190,75 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     for (const uuid of ssDeploy.crew.items) {
       const actor = fromUuidSynchronous(uuid);
       if (!actor) continue;
-      const actions = actor.items.filter(item => item.type === "feat" && item.system.type.value === "deployment");
+      const actions = actor.itemsTypes.feat.filter(item => item.system.type.value === "deployment");
       for (const action of actions) {
         const ctx = context.itemContext[action.id] ??= {};
         ctx.active = ssDeploy.active.value === uuid;
+        ctx.isExpanded = this._expanded.has(item.id);
+        ctx.hasUses = uses && uses.max > 0;
+        ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
+        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
+        ctx.id = action.id;
         ctx.derived = uuid;
-        ctx.the_name = action.name;
-        if (this._filters.ssactions.has("activeDeploy")) {
-          if (!ctx.active) continue;
-        } else ctx.the_name += ` (${actor.name})`;
-        ssActions[action.type].items.push(action);
+        ctx.name = action.name;
+        if (!this._filters.ssactions.has("activeDeploy")) ctx.name += ` (${actor.name})`;
+        if (item.system.type.subtype === "venture") categories.ssActions[`deployment.${venture}`].items.push(item);
+        else categories.ssActions.deployment.items.push(item);
       }
     }
 
-    // Organize Starship Items and Features
-    for (const feature of features) {
-      if (feature.type === "feat") {
-        if (feature.system.activation.type) ssFeatures.actions.items.push(feature);
-        else ssFeatures.passive.items.push(feature);
-      } else if (feature.type === "starship") {
-        ssFeatures.starshiptype.items.push(feature);
-      } else if (feature.type === "starshipfeature") {
-        ssFeatures.starshipfeatures.items.push(feature);
-      }
-    }
+    // Apply item filters
+    for (const actions of Object.values(categories.ssactions)) actions.items = this._filterItems(actions.items, this._filters.ssactions);
+    for (const features of categories.features) features.items = this._filterItems(features.items, this._filters.features);
+    for (const itemType of categories.inventory) itemType.items = this._filterItems(itemType.items, this._filters.inventory);
+    for (const itemType of categories.equipped) itemType.items = this._filterItems(itemType.items, this._filters.ssequipment);
 
-    // Organize Starship Equipment
-    for (const item of equipment) {
-      const ctx = context.itemContext[item._id] ??= {};
-      const i = this.actor.items.get(item._id);
-      ctx.itemProperties = i.propertyList;
-      if (item.type === "weapon") {
-        ctx.isStarshipWeapon = item.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-        const reloadProperties = i.sheet._getWeaponReloadProperties();
-        for (const attr of Object.keys(reloadProperties)) ctx[attr] = reloadProperties[attr];
-        ssEquipment.weapons.items.push(item);
-      } else if (item.type === "starshipmod") ssEquipment.starshipmods.items.push(item);
-      else ssEquipment.equipment.items.push(item);
+    // Organize Starship Size
+    const maxTierDelta = CONFIG.SW5E.maxTier - this.actor.system.details.tier;
+    for (const ss of categories.class.starshipsize.items) {
+      const ctx = context.itemContext[ss.id] ??= {};
+      ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxTier + 1).map(tier => {
+        const delta = tier - ss.system.tier;
+        return { tier, delta, disabled: delta > maxTierDelta };
+      });
     }
+    categories.features.unshift(categories.class.starshipsize);
 
-    // Organize Cargo
-    for (const item of cargo) {
-      const ctx = context.itemContext[item._id] ??= {};
-      ctx.totalWeight = (item.system.quantity * item.system.weight).toNearest(0.1);
-      ssCargo[item.type].items.push(item);
-    }
+    console.debug("ssactions", categories.ssactions);
 
     // Assign and return
-    context.actions = ssActions;
-    context.features = Object.values(ssFeatures);
-    context.inventory = Object.values(ssCargo);
-    context.equipment = Object.values(ssEquipment);
+    context.inventoryFilters = true;
+    context.ssactions = categories.ssactions;
+    context.features = categories.features;
+    context.inventory = categories.inventory;
+    context.equipment = categories.equipped;
   }
 
   /* -------------------------------------------- */
 
   /**
    * A helper method to establish the displayed preparation state for an item.
-   * @param {Item5e} item  Item being prepared for display. *Will be mutated.*
-   * @private
+   * @param {Item5e} item  Item being prepared for display.
+   * @param {object} context  Context data for display.
+   * @protected
    */
-  _prepareItemToggleState(item) {
-    if (
-      (item.type === "equipment" &&
-        ["starship", "hyper", "powerc", "reactor", "ssshield"].includes(item.system.armor.type)) ||
-      (item.type === "weapon" &&
-        ["primary (starship)", "secondary (starship)", "tertiary (starship)", "quaternary (starship)"].includes(
-          item.system.weaponType
-        )) ||
-      item.type === "starshipmod"
-    ) {
+  _prepareItemToggleState(item, context) {
+    if (item.isStarshipItem) {
       const isActive = !!item.system.equipped;
-      item.toggleClass = isActive ? "active" : "";
-      item.toggleTitle = game.i18n.localize(isActive ? "SW5E.Installed" : "SW5E.NotInstalled");
+      context.toggleClass = isActive ? "active" : "";
+      context.toggleTitle = game.i18n.localize(isActive ? "SW5E.Installed" : "SW5E.NotInstalled");
+      context.canToggle = "equipped" in item.system;
     }
+  }
+
+
+  /** @inheritDoc */
+  _filterItems(items, filters) {
+    return super._filterItems(items, filters).filter(item => {
+      if (filters.has("activeDeploy") && item.active !== true) return false;
+      return true;
+    });
   }
 
   /* -------------------------------------------- */
@@ -287,6 +272,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".refuel").click(this._onIncrementFuelLevel.bind(this));
     html.find(".burnfuel").click(this._onDecrementFuelLevel.bind(this));
     html.find(".powerslider").change("input", this._powerRoutingSliderUpdate.bind(this));
+    // Tier selector
+    html.find(".tier-selector").change(this._onTierChange.bind(this));
     // Recharge, Refitting and Regen Repairs
     html.find(".recharge-repair").click(this._onRechargeRepair.bind(this));
     html.find(".refitting-repair").click(this._onRefittingRepair.bind(this));
@@ -329,7 +316,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       case "rollDestructionSave":
         return this.actor.rollDestructionSave({ event: event });
       case "rollInitiative":
-        return this.actor.rollInitiative({ createCombatants: true });
+        return this.actor.rollInitiativeDialog({ event });
       case "rollPowerDie":
         return this.actor.rollPowerDie({ slot: event.target.dataset.location });
     }
@@ -343,7 +330,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
    * @private
    */
-  //TODO: Add Tier Selector like Character for similar interface
   async _onTierChange(event) {
     event.preventDefault();
 
@@ -353,7 +339,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     const item = this.actor.items.get(itemId);
 
     let attr = null;
-    if (item.type === "starship") attr = "tier";
+    if (item.type === "starshipsize") attr = "tier";
     if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
 
     if (!game.settings.get("sw5e", "disableAdvancements")) {
@@ -463,8 +449,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /** @override */
   async _onDropSingleItem(itemData) {
     // Increment the number of tier of a starship instead of creating a new item
-    if (itemData.type === "starship") {
-      const currentType = this.actor.itemTypes.starship.find(t => t.name === itemData.name);
+    if (itemData.type === "starshipsize") {
+      const currentType = this.actor.itemTypes.starshipsize.find(t => t.name === itemData.name);
       if (currentType) {
         const currentTier = currentType.system.tier;
         itemData.system.tier = Math.min(itemData.system.tier || 1, CONFIG.SW5E.maxTier - currentTier);
@@ -484,8 +470,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         return false;
       } else {
         // Only allow 1 starship type per starship
-        const toDelete = this.actor.itemTypes.starship.map(item => item.id);
+        const toDelete = this.actor.itemTypes.starshipsize.map(item => item.id);
         await this.actor.deleteEmbeddedDocuments("Item", toDelete);
+        await this.actor.update({ "system.attributes.hp.value": 0, "system.attributes.hp.temp": 0 });
       }
     }
 
@@ -536,42 +523,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /* -------------------------------------------- */
 
   _powerRoutingSliderUpdate(input) {
-    let symbol1 = "=";
-    let symbol2 = "=";
-    let effect1 = "neutral";
-    let effect2 = "neutral";
-    let coefficient = 1;
-    switch (input.target.value) {
-      case "0":
-        input.target.value = 1;
-        break;
-      case "2":
-        symbol1 = "↑";
-        symbol2 = "↓";
-        effect1 = "positive";
-        effect2 = "negative";
-        coefficient = 2;
-        break;
-    }
-    const updates = {};
+    const selected = input.target.value === "2" ? input.target.dataset.id : "none";
 
-    for (const routing of Object.keys(CONFIG.SW5E.powerRoutingOpts)) {
-      if (routing === input.target.dataset.id) {
-        document.querySelector(`#${routing}slideroutput`).value = symbol1;
-        document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(
-          CONFIG.SW5E.powerRoutingEffects[routing][effect1]
-        );
-        updates[`system.attributes.power.routing.${routing}`] = coefficient;
-      } else {
-        document.querySelector(`.powerslider.${routing}`).value = 2 - coefficient;
-        document.querySelector(`#${routing}slideroutput`).value = symbol2;
-        document.querySelector(`#${routing}slideroutput`).title = game.i18n.localize(
-          CONFIG.SW5E.powerRoutingEffects[routing][effect2]
-        );
-        updates[`system.attributes.power.routing.${routing}`] = 1 / coefficient;
-      }
-    }
-    this.actor.update(updates);
+    this.actor.update({ "system.attributes.power.routing": selected });
   }
 
   /* -------------------------------------------- */

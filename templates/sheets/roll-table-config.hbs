@@ -30,7 +30,7 @@
         <ol class="table-results">
             <li class="table-result table-header flexrow">
                 <div class="result-image">
-                    <a class="create-result" data-tooltip=""TABLE.ResultCreate"">
+                    <a class="create-result" data-tooltip="TABLE.ResultCreate">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
 
                 {{#if owner}}
                 <div class="result-controls">
-                    <a class="normalize-results" data-tooltip=""TABLE.Normalize"">
+                    <a class="normalize-results" data-tooltip="TABLE.Normalize">
                         <i class="fas fa-balance-scale"></i>
                     </a>
                 </div>
@@ -118,11 +118,11 @@
 
                 {{#if ../owner}}
                 <div class="result-controls">
-                    <a class="lock-result" data-tooltip=""TABLE.ToggleDrawn"">
+                    <a class="lock-result" data-tooltip="TABLE.ToggleDrawn">
                         <i class="fas {{#if result.drawn}}fa-lock{{else}}fa-unlock{{/if}} fa-fw"></i>
                     </a>
                     <input type="hidden" name="results.{{i}}.drawn" value="{{result.drawn}}" data-dtype="Boolean"/>
-                    <a class="delete-result" data-tooltip=""TABLE.ResultDelete"">
+                    <a class="delete-result" data-tooltip="TABLE.ResultDelete">
                         <i class="fas fa-trash fa-fw"></i>
                     </a>
                 </div>

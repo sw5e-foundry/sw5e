@@ -518,12 +518,15 @@
         "ac": {
           "calc": "starship"
         },
-        "cost": {
-          "baseBuild": 0,
-          "baseUpgrade": 0,
-          "multEquip": 0,
-          "multModification": 0,
-          "multUpgrade": 0
+        "hp": {
+          "value": 0,
+          "tempmax": null,
+          "bonuses": {
+            "level": "",
+            "overall": "",
+            "templevel": "",
+            "tempoverall": ""
+          }
         },
         "death": {
           "failure": 0,
@@ -546,114 +549,36 @@
             "value": null
           }
         },
-        "equip": {
-          "armor": {
-            "dr": 0,
-            "maxDex": 99,
-            "stealthDisadv": false
-          },
-          "hyperdrive": {
-            "class": null
-          },
-          "powerCoupling": {
-            "centralCap": 0,
-            "systemCap": 0
-          },
-          "reactor": {
-            "fuelMult": 1,
-            "powerRecDie": "d1"
-          },
-          "size": {
-            "cargoCap": 0,
-            "crewMinWorkforce": 0,
-            "foodCap": 0
-          },
-          "shields": {
-            "capMult": 1,
-            "regenRateMult": 1
-          }
-        },
         "systemDamage": 0,
         "fuel": {
           "fuelCap": 0,
           "cost": 0,
           "value": 0
         },
-        "hull": {
-          "die": "",
-          "dice": 0,
-          "dicemax": 0,
-          "formula": "",
-          "value": null,
-          "max": null
-        },
-        "mods": {
-          "cap": {
-            "value": 0,
-            "max": 10
-          },
-          "hardpoint": {
-            "value": 0,
-            "max": 0
-          },
-          "suite": {
-            "value": 0,
-            "max": 0
-          }
-        },
         "power": {
-          "die": "",
-          "routing": {
-            "engines": 1,
-            "shields": 1,
-            "weapons": 1
-          },
+          "routing": "none",
           "central": {
-            "value": 0,
-            "max": 0
+            "value": 0
           },
           "comms": {
-            "value": 0,
-            "max": 0
+            "value": 0
           },
           "engines": {
-            "value": 0,
-            "max": 0
+            "value": 0
           },
           "shields": {
-            "value": 0,
-            "max": 0
+            "value": 0
           },
           "sensors": {
-            "value": 0,
-            "max": 0
+            "value": 0
           },
           "weapons": {
-            "value": 0,
-            "max": 0
+            "value": 0
           }
         },
-        "shld": {
-          "die": "",
-          "dice": 0,
-          "dicemax": 0,
-          "depleted": false,
-          "formula": "",
-          "value": null,
-          "max": null
-        },
-        "used": false,
-        "workforce": {
-          "max": 0,
-          "minBuild": 0,
-          "minEquip": 0,
-          "minModification": 0,
-          "minUpgrade": 0
-        }
+        "used": false
       },
       "details": {
-        "tier": 0,
-        "role": [],
         "source": ""
       },
       "skills": {
@@ -771,7 +696,6 @@
         }
       },
       "traits": {
-        "size": null,
         "sdi": {
           "value": [],
           "custom": ""
@@ -895,6 +819,7 @@
       "power",
       "species",
       "starship",
+      "starshipsize",
       "starshipaction",
       "starshipfeature",
       "starshipmod",
@@ -1060,13 +985,6 @@
           "max": null,
           "dt": null,
           "conditions": ""
-        }
-      },
-      "starshipDescription": {
-        "description": {
-          "value": "",
-          "chat": "",
-          "unidentified": ""
         }
       },
       "starshipEquipment": {
@@ -1281,18 +1199,16 @@
         "formula": null
       }
     },
-    "starship": {
-      "templates": ["starshipDescription"],
-      "size": "",
+    "starship": {},
+    "starshipsize": {
+      "templates": ["itemDescription"],
       "identifier": "",
       "tier": 0,
       "hullDice": "d6",
       "hullDiceStart": 3,
-      "hullDiceRolled": [6, 4, 4],
       "hullDiceUsed": 0,
       "shldDice": "d6",
       "shldDiceStart": 3,
-      "shldDiceRolled": [6, 4, 4],
       "shldDiceUsed": 0,
       "advancement": [],
       "buildBaseCost": 50000,
@@ -1316,19 +1232,8 @@
       "foodCap": 10,
       "source": "SotG"
     },
-    "starshipaction": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "deployment": "crew",
-      "recharge": {
-        "charged": false,
-        "value": null
-      }
-    },
-    "starshipfeature": {
-      "templates": ["itemDescription", "activatedEffect", "action"],
-      "size": "med",
-      "tier": 0
-    },
+    "starshipaction": {},
+    "starshipfeature": {},
     "starshipmod": {
       "templates": ["itemDescription", "activatedEffect", "action"],
       "recharge": {

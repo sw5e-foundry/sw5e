@@ -198,8 +198,8 @@ export default class AdvancementManager extends Application {
       }
     } else if (itemData.type === "deployment") {
       dataClone.system.rank = 0;
-    } else if (itemData.type === "starship") {
-      dataClone.data.tier = 0;
+    } else if (itemData.type === "starshipsize") {
+      dataClone.system.tier = -1;
     }
 
     // Add item to clone & get new instance from clone
@@ -207,7 +207,7 @@ export default class AdvancementManager extends Application {
     const clonedItem = manager.clone.items.get(dataClone._id);
 
     // For class, deployment and starship items, prepare level change data
-    if (["class", "deployment", "starship"].includes(itemData.type)) {
+    if (["class", "deployment", "starshipsize"].includes(itemData.type)) {
       return manager.createLevelChangeSteps(clonedItem, 1);
     }
 
@@ -302,7 +302,7 @@ export default class AdvancementManager extends Application {
     if (!clonedItem) return manager;
 
     // For class, deployment and starship items, prepare level change data
-    if (["class", "deployment", "starship"].includes(clonedItem.type)) {
+    if (["class", "deployment", "starshipsize"].includes(clonedItem.type)) {
       return manager.createLevelChangeSteps(clonedItem, clonedItem.curAdvancementLevel * -1);
     }
 
@@ -373,7 +373,9 @@ export default class AdvancementManager extends Application {
       if (clonedItem.type === "class")
         pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel).reverse(), stepData);
       pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel).reverse(), stepData);
-      if (advancementLevel === 1) this.steps.push({ type: "delete", item: clonedItem, automatic: true });
+      if ((clonedItem.type !== "starshipsize" && advancementLevel === 1) || advancementLevel === 0) {
+        this.steps.push({ type: "delete", item: clonedItem, automatic: true });
+      }
     }
 
     // Ensure the class level ends up at the appropriate point
@@ -425,7 +427,7 @@ export default class AdvancementManager extends Application {
     // Prepare information for subheading
     const item = this.step.flow.item;
     let level = this.step.flow.level;
-    if (this.step.class && ["class", "archetype", "deployment", "starship"].includes(item.type))
+    if (this.step.class && ["class", "archetype", "deployment", "starshipsize"].includes(item.type))
       level = this.step.class.level;
 
     const visibleSteps = this.steps.filter(s => !s.automatic);
@@ -461,7 +463,7 @@ export default class AdvancementManager extends Application {
       if (this.step.class.item.type === "deployment") {
         this.step.class.item.updateSource({ "system.rank": level });
       }
-      if (this.step.class.item.type === "starship") {
+      if (this.step.class.item.type === "starshipsize") {
         this.step.class.item.updateSource({ "system.tier": level });
       }
       this.clone.reset();
@@ -588,7 +590,7 @@ export default class AdvancementManager extends Application {
           if (this.step.class.item.type === "deployment") {
             this.step.class.item.updateSource({ "system.rank": level });
           }
-          if (this.step.class.item.type === "starship") {
+          if (this.step.class.item.type === "starshipsize") {
             this.step.class.item.updateSource({ "system.tier": level });
           }
         }

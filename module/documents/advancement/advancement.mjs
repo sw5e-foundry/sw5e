@@ -81,7 +81,7 @@ export default class Advancement extends BaseAdvancement {
       title: game.i18n.localize("SW5E.AdvancementTitle"),
       hint: "",
       multiLevel: false,
-      validItemTypes: new Set(["background", "species", "class", "archetype", "deployment", "starship"]),
+      validItemTypes: new Set(["background", "species", "class", "archetype", "deployment", "starshipsize"]),
       apps: {
         config: AdvancementConfig,
         flow: AdvancementFlow

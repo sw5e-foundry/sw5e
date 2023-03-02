@@ -26,7 +26,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set(["starship", "starshipaction", "starshipfeature", "starshipmod"]);
+  static unsupportedItemTypes = new Set(["starshipsize", "starshipmod"]);
 
   /* -------------------------------------------- */
 
@@ -84,149 +84,32 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /** @override */
   _prepareItems(context) {
-    // Categorize items as inventory, powerbook, features, and classes
-    const inventory = {
-      weapon: { label: "ITEM.TypeWeaponPl", items: [], dataset: { type: "weapon" } },
-      equipment: { label: "ITEM.TypeEquipmentPl", items: [], dataset: { type: "equipment" } },
-      consumable: { label: "ITEM.TypeConsumablePl", items: [], dataset: { type: "consumable" } },
-      tool: { label: "ITEM.TypeToolPl", items: [], dataset: { type: "tool" } },
-      backpack: { label: "ITEM.TypeContainerPl", items: [], dataset: { type: "backpack" } },
-      modification: { label: "ITEM.TypeModificationPl", items: [], dataset: { type: "modification" } },
-      loot: { label: "ITEM.TypeLootPl", items: [], dataset: { type: "loot" } }
-    };
+    const categories = this._prepareItemCategories({
+      splitActive: true,
+      featureTypes: Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes)
+        .map(([k, v]) => { if(k === "class") delete v.subtypes; return [k, v]; })),
+    });
 
-    // Partition items by category
-    let {
-      items,
-      forcepowers,
-      techpowers,
-      maneuvers,
-      feats,
-      classes,
-      deployments,
-      deploymentfeatures,
-      ventures,
-      species,
-      archetypes,
-      classfeatures,
-      backgrounds,
-      fightingstyles,
-      fightingmasteries,
-      lightsaberforms,
-      ssfeats
-    } = context.items.reduce(
-      (obj, item) => {
-        const { quantity, uses, recharge, target } = item.system;
-
-        // Item details
-        const ctx = context.itemContext[item.id] ??= {};
-        ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
-        ctx.id = item.id;
-        ctx.attunement = {
-          [CONFIG.SW5E.attunementTypes.REQUIRED]: {
-            icon: "fa-sun",
-            cls: "not-attuned",
-            title: "SW5E.AttunementRequired"
-          },
-          [CONFIG.SW5E.attunementTypes.ATTUNED]: {
-            icon: "fa-sun",
-            cls: "attuned",
-            title: "SW5E.AttunementAttuned"
-          }
-        }[item.system.attunement];
-
-        // Prepare data needed to display expanded sections
-        ctx.isExpanded = this._expanded.has(item.id);
-
-        // Item usage
-        ctx.hasUses = uses && uses.max > 0;
-        ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
-
-        // Item toggle state
-        this._prepareItemToggleState(item, ctx);
-
-        // Classify items into types
-        if (item.type === "power") {
-          if (["lgt", "drk", "uni"].includes(item.system.school)) obj.forcepowers.push(item);
-          else obj.techpowers.push(item);
-        }
-        else if (item.type === "maneuver") obj.maneuvers.push(item);
-        else if (item.type === "feat") {
-          if (item.system.type.value === "class") obj.classfeatures.push(item);
-          else if (item.system.type.value === "customizationOption") {
-            if (item.system.type.subtype === "fightingMastery") obj.fightingmasteries.push(item);
-            else if (item.system.type.subtype === "fightingStyle") obj.fightingstyles.push(item);
-            else if (item.system.type.subtype === "lightsaberForm") obj.lightsaberforms.push(item);
-          }
-          else if (item.system.type.value === "deployment") {
-            if (item.system.type.subtype === "venture") obj.ventures.push(item);
-            else obj.deploymentfeatures.push(item);
-          }
-          else obj.feats.push(item);
-        }
-        else if (item.type === "class") obj.classes.push(item);
-        else if (item.type === "deployment") obj.deployments.push(item);
-        else if (item.type === "species") obj.species.push(item);
-        else if (item.type === "archetype") obj.archetypes.push(item);
-        else if (item.type === "background") obj.backgrounds.push(item);
-        else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
-        return obj;
-      },
-      {
-        items: [],
-        forcepowers: [],
-        techpowers: [],
-        maneuvers: [],
-        feats: [],
-        classes: [],
-        deployments: [],
-        deploymentfeatures: [],
-        ventures: [],
-        species: [],
-        archetypes: [],
-        classfeatures: [],
-        backgrounds: [],
-        fightingstyles: [],
-        fightingmasteries: [],
-        lightsaberforms: [],
-        ssfeats: []
-      }
-    );
+    this._prepareItemsCategorized(context, categories);
 
     // Apply active item filters
-    items = this._filterItems(items, this._filters.inventory);
-    forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
-    techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
-    maneuvers = this._filterItems(maneuvers, this._filters.superiorityPowerbook);
-    feats = this._filterItems(feats, this._filters.features);
-    ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
-
-    // Organize items
-    for (let i of items) {
-      const ctx = context.itemContext[i.id] ??= {};
-      ctx.totalWeight = (i.system.quantity * i.system.weight).toNearest(0.1);
-      ctx.itemProperties = i.propertyList
-      if (i.type === "weapon") {
-        ctx.isStarshipWeapon = i.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-
-        const item = this.actor.items.get(i._id);
-        const reloadProperties = item.sheet._getWeaponReloadProperties();
-        for (const attr of Object.keys(reloadProperties)) ctx[attr] = reloadProperties[attr];
-      }
-      inventory[i.type].items.push(i);
-    }
+    for (const type of Object.keys(categories.inventory))
+      categories.inventory[type].items = this._filterItems(categories.inventory[type].items, this._filters.inventory);
+    for (const type of Object.keys(categories.features))
+      categories.features[type].items = this._filterItems(categories.features[type].items, this._filters.features);
+    categories.powers.for.items = this._filterItems(categories.powers.for.items, this._filters.forcePowerbook);
+    categories.powers.tec.items = this._filterItems(categories.powers.tec.items, this._filters.techPowerbook);
+    categories.maneuvers.items = this._filterItems(categories.maneuvers.items, this._filters.superiorityPowerbook);
 
     // Organize Powerbook and count the number of prepared powers (excluding always, at will, etc...)
-    const forcePowerbook = this._preparePowerbook(context, forcepowers, "uni");
-    const techPowerbook = this._preparePowerbook(context, techpowers, "tec");
-    const superiorityPowerbook = this._prepareManeuvers(maneuvers);
+    categories.powers.for.items = this._preparePowerbook(context, categories.powers.for.items, "uni");
+    categories.powers.tec.items = this._preparePowerbook(context, categories.powers.tec.items, "tec");
+    categories.maneuvers.items = this._prepareManeuvers(categories.maneuvers.items);
 
     // Sort classes and interleave matching archetypes, put unmatched archetypes into features so they don't disappear
-    classes.sort((a, b) => b.system.levels - a.system.levels);
+    categories.class.class.items.sort((a, b) => b.system.levels - a.system.levels);
     const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.system.details.level;
-    classes = classes.reduce((arr, cls) => {
+    categories.class.class.items = categories.class.class.items.reduce((arr, cls) => {
       const ctx = context.itemContext[cls.id] ??= {};
       ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
         const delta = level - cls.system.levels;
@@ -234,12 +117,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       });
       arr.push(cls);
       const identifier = cls.system.identifier || cls.name.slugify({ strict: true });
-      const archetype = archetypes.findSplice(s => s.system.classIdentifier === identifier);
+      const archetype = categories.class.archetype.items.findSplice(s => s.system.classIdentifier === identifier);
       if (archetype) arr.push(archetype);
       return arr;
     }, []);
-    for (const archetype of archetypes) {
-      feats.push(archetype);
+    for (const archetype of categories.class.archetype.items) {
+      categories.features.feat.push(archetype);
       const message = game.i18n.format("SW5E.ArchetypeMismatchWarn", {
         name: archetype.name,
         class: archetype.system.classIdentifier
@@ -247,80 +130,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       context.warnings.push({ message, type: "warning" });
     }
 
-    // Organize Features
-    const features = {
-      background: {
-        label: "ITEM.TypeBackground",
-        items: backgrounds,
-        hasActions: false,
-        dataset: { type: "background" },
-        isBackground: true
-      },
-      classes: {
-        label: "ITEM.TypeClassPl",
-        items: classes,
-        hasActions: false,
-        dataset: { type: "class" },
-        isClass: true
-      },
-      classfeatures: {
-        label: "SW5E.Feature.Class",
-        items: classfeatures,
-        hasActions: true,
-        dataset: { type: "feat", featType: "class" },
-        isClassfeature: true
-      },
-      species: {
-        label: "ITEM.TypeSpecies",
-        items: species,
-        hasActions: false,
-        dataset: { type: "species" },
-        isSpecies: true
-      },
-      fightingstyles: {
-        label: "SW5E.CustomizationOption.FightingStylePl",
-        items: fightingstyles,
-        hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingStyle" },
-        isFightingstyle: true
-      },
-      fightingmasteries: {
-        label: "SW5E.CustomizationOption.FightingMasteryPl",
-        items: fightingmasteries,
-        hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "fightingMastery" },
-        isFightingmastery: true
-      },
-      lightsaberforms: {
-        label: "SW5E.CustomizationOption.LightsaberFormPl",
-        items: lightsaberforms,
-        hasActions: true,
-        dataset: { type: "feat", featType: "customizationOption", featSubType: "lightsaberForm" },
-        isLightsaberform: true
-      },
-      active: {
-        label: "SW5E.FeatureActive",
-        items: [],
-        hasActions: true,
-        dataset: { "type": "feat", "activation.type": "action" }
-      },
-      passive: {
-        label: "SW5E.FeaturePassive",
-        items: [],
-        hasActions: false,
-        dataset: { type: "feat" }
-      }
-    };
-    for (const feat of feats) {
-      if (feat.system.activation?.type) features.active.items.push(feat);
-      else features.passive.items.push(feat);
-    }
-
     // Organize Starship Features
-    deployments.sort((a, b) => b.system.rank - a.system.rank);
+    categories.class.deployment.items.sort((a, b) => b.system.rank - a.system.rank);
     const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.system.details.ranks;
-    deployments = deployments.reduce((arr, dep) => {
-      dep.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1)
+    categories.class.deployment.items = categories.class.deployment.items.reduce((arr, dep) => {
+      const ctx = context.itemContext[dep.id] ??= {};
+      ctx.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1)
         .slice(1)
         .map(rank => {
           const delta = rank - dep.system.rank;
@@ -329,39 +144,30 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       arr.push(dep);
       return arr;
     }, []);
-    const ssfeatures = {
-      deployments: {
-        label: "ITEM.TypeDeploymentPl",
-        items: deployments,
-        hasActions: false,
-        dataset: { type: "deployment" },
-        isDeployment: true
-      },
-      deploymentfeatures: {
-        label: "SW5E.Feature.Deployment",
-        items: deploymentfeatures,
-        hasActions: true,
-        dataset: { type: "feat", featType: "deploymentFeature" },
-        isDeploymentfeature: true
-      },
-      ventures: {
-        label: "SW5E.DeploymentFeature.Venture",
-        items: ventures,
-        hasActions: false,
-        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" },
-        isVenture: true
-      }
-    };
+
+    categories.ssfeatures = [
+      categories.class.deployment,
+      categories.features["feat.deployment"],
+      categories.features["feat.deployment.venture"]
+    ];
+
+    // Organize Features
+    categories.features = Object.values(categories.features).filter(f => f.dataset.featType !== "deployment");
+    categories.features.unshift(categories.class.species);
+    const classFeatures = categories.features.splice(categories.features.findIndex(f => f.dataset.featType === "class"), 1);
+    categories.features.unshift(...classFeatures);
+    categories.features.unshift(categories.class.class);
+    categories.features.unshift(categories.class.background);
 
     // Assign and return
     context.inventoryFilters = true;
-    context.inventory = Object.values(inventory);
-    context.forcePowerbook = forcePowerbook;
-    context.techPowerbook = techPowerbook;
-    context.superiorityPowerbook = superiorityPowerbook;
-    context.features = Object.values(features);
-    context.ssfeatures = Object.values(ssfeatures);
-    context.labels.background = backgrounds[0]?.name;
+    context.inventory = Object.values(categories.inventory);
+    context.forcePowerbook = categories.powers.for.items;
+    context.techPowerbook = categories.powers.tec.items;
+    context.superiorityPowerbook = categories.maneuvers.items;
+    context.features = categories.features;
+    context.ssfeatures = categories.ssfeatures;
+    context.labels.background = categories.class.background[0]?.name;
   }
 
   /* -------------------------------------------- */
@@ -404,7 +210,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     html.find(".long-rest").click(this._onLongRest.bind(this));
     html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
 
-    // TODO: Need to check this
     // Send Languages to Chat onClick
     html.find('[data-options="share-languages"]').click(event => {
       event.preventDefault();
@@ -635,9 +440,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   }
 }
 
-//TODO: Did not update this stuff
 async function addFavorites(app, html, context) {
-  // Thisfunction is adapted for the SwaltSheet from the Favorites Item
+  // This function is adapted for the SwaltSheet from the Favorites Item
   // Tab Module created for Foundry VTT - by Felix Müller (Felix#6196 on Discord).
   // It is licensed under a Creative Commons Attribution 4.0 International License
   // and can be found at https://github.com/syl3r86/favtab.

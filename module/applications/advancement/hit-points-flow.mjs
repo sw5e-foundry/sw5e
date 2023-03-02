@@ -1,3 +1,4 @@
+import Advancement from "../../documents/advancement/advancement.mjs";
 import AdvancementFlow from "./advancement-flow.mjs";
 
 /**
@@ -32,6 +33,11 @@ export default class HitPointsFlow extends AdvancementFlow {
       data: {
         value: Number.isInteger(value) ? value : "",
         useAverage
+      },
+      labels: {
+        firstClassLevel: "SW5E.AdvancementHitPointsMaxAtFirstLevel",
+        average: "SW5E.AdvancementHitPointsAverage",
+        roll: "SW5E.AdvancementHitPointsRollButton",
       }
     });
   }
@@ -46,7 +52,7 @@ export default class HitPointsFlow extends AdvancementFlow {
       this._updateRollResult();
     });
     this.form.querySelector(".rollButton")?.addEventListener("click", async () => {
-      const roll = await this.advancement.actor.rollClassHitPoints(this.advancement.item);
+      const roll = await this.rollHitPoints();
       this.form.querySelector(".rollResult").value = roll.total;
     });
     this._updateRollResult();
@@ -77,5 +83,15 @@ export default class HitPointsFlow extends AdvancementFlow {
     this.form.querySelector(".rollResult")?.classList.add("error");
     const errorType = formData.value ? "Invalid" : "Empty";
     throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementHitPoints${errorType}Error`));
+  }
+
+  /* -------------------------------------------- */
+
+  /*
+   * Calls the actor's roll hit point function
+   * @returns {promisse<Roll>}   Roll object
+   */
+  rollHitPoints() {
+    return this.advancement.actor.rollClassHitPoints(this.advancement.item);
   }
 }

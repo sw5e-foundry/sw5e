@@ -91,6 +91,6 @@ export default class WeaponData extends SystemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateWeaponType(source) {
-    if (source.weaponType === null) source.weaponType = "simpleM";
+    if (source.weaponType === null) source.weaponType = "simpleVW";
   }
 }

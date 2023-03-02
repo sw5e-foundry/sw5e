@@ -16,7 +16,8 @@ export default class HitPointsConfig extends AdvancementConfig {
   /** @inheritdoc */
   getData() {
     return foundry.utils.mergeObject(super.getData(), {
-      hitDie: this.advancement.hitDie
+      hitDie: this.advancement.hitDie,
+      label: "SW5E.HitDie"
     });
   }
 }

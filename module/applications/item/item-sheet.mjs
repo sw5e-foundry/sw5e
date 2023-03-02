@@ -77,7 +77,6 @@ export default class ItemSheet5e extends ItemSheet {
         const isMountable = this._isItemMountable(item);
 
         let wpnType, armorType, ammoType, isAmmo;
-        let isStarshipAmmo, isStarshipArmor, isStarshipShield, isStarshipReactor, isStarshipHyperdrive, isStarshipWeapon, isStarshipEquipment, isStarshipPowerCoupling;
 
         // Game system configuration
         context.config = CONFIG.SW5E;
@@ -114,26 +113,19 @@ export default class ItemSheet5e extends ItemSheet {
             hasAC: item.isArmor || isMountable,
             hasDexModifier: item.isArmor && item.system.armor?.type !== "shield",
 
-            // Type
+            // Item Type
             armorType: armorType = item.system?.armor?.type ?? "",
             wpnType: wpnType = item.system?.weaponType ?? "",
             isAmmo: isAmmo = item.system?.consumableType === "ammo",
             ammoType: ammoType = isAmmo ? item.system?.ammoType ?? "" : "",
 
-            // Vehicles
-            isStarshipWeapon: isStarshipWeapon = (wpnType in CONFIG.SW5E.weaponStarshipTypes),
-            isStarshipAmmo: isStarshipAmmo = (ammoType in CONFIG.SW5E.ammoStarshipTypes),
-            isStarshipArmor: isStarshipArmor = (armorType === "starship"),
-            isStarshipShield: isStarshipShield = (armorType === "ssshield"),
-            isStarshipHyperdrive: isStarshipHyperdrive = (armorType === "hyper"),
-            isStarshipPowerCoupling: isStarshipPowerCoupling = (armorType === "powerc"),
-            isStarshipReactor: isStarshipReactor = (armorType === "reactor"),
-            isStarshipEquipment:
-                isStarshipArmor ||
-                isStarshipShield ||
-                isStarshipHyperdrive ||
-                isStarshipPowerCoupling ||
-                isStarshipReactor,
+            // Starship Items
+            isStarshipItem: item.isStarshipItem,
+            isStarshipArmor: armorType === "starship",
+            isStarshipShield: armorType === "ssshield",
+            isStarshipHyperdrive: armorType === "hyper",
+            isStarshipPowerCoupling: armorType === "powerc",
+            isStarshipReactor: armorType === "reactor",
 
             // Advancement
             advancement: this._getItemAdvancement(item),
@@ -146,7 +138,7 @@ export default class ItemSheet5e extends ItemSheet {
             effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects),
 
             // Item Properties
-            itemProperties: item.propertiesList,
+            propertiesList: item.propertiesList,
         });
         context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
 
@@ -182,6 +174,9 @@ export default class ItemSheet5e extends ItemSheet {
                 break;
             case "weapon":
                 context = this._getWeaponReloadProperties(context);
+                break;
+            case "starshipsize":
+                context.useOldMove = game.settings.get("sw5e", "oldStarshipMovement");
                 break;
         }
 
@@ -481,6 +476,8 @@ export default class ItemSheet5e extends ItemSheet {
     _getWeaponReloadProperties(ctx = {}) {
         const itemSysdata = this.item.system;
         const actor = this.item.actor;
+
+        if (!"ammo" in itemSysdata) return ctx;
 
         ctx.hasReload = !!(itemSysdata.ammo?.max);
         ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;

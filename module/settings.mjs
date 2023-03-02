@@ -266,4 +266,14 @@ export default function registerSystemSettings() {
     type: Boolean,
     default: false
   });
+
+  // Use old starship movement calculation rules
+  game.settings.register("sw5e", "oldStarshipMovement", {
+    name: "SETTINGS.SWOldStarshipMovementN",
+    hint: "SETTINGS.SWOldStarshipMovementL",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false
+  });
 }

@@ -273,6 +273,21 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
+   * Is this item a starship item?
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return false ||
+      (this.type === "equipment" && this.system.armor.type in CONFIG.SW5E.ssEquipmentTypes) ||
+      (this.type === "equipment" && this.system.armor.type === "starship") ||
+      (this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes) ||
+      (this.type === "consumable" && this.system.consumableType === "ammo" && this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes) ||
+      (this.type === "starshipmod");
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Retrieve scale values for current level from advancement data.
    * @type {object}
    */
@@ -330,21 +345,17 @@ export default class Item5e extends Item {
   get curAdvancementLevel() {
     if (this.type === "class") return this.system?.levels ?? 1;
     if (this.type === "deployment") return this.system?.rank ?? 1;
-    if (this.type === "starship") return this.system?.tier ?? 1;
+    if (this.type === "starshipsize") return this.system?.tier ?? 0;
     if (this.type === "archetype") return this.class?.system?.levels ?? 0;
     return this.parent?.system?.details?.level ?? 0;
   }
 
   set curAdvancementLevel(value) {
-    if (this.type === "class")
-      if (this.system?.levels != undefined) this.system.levels = value;
-      else if (this.type === "deployment")
-        if (this.system?.rank != undefined) this.system.rank = value;
-        else if (this.type === "starship")
-          if (this.system?.tier != undefined) this.system.tier = value;
-          else if (this.type === "archetype")
-            if (this.class?.system?.levels != undefined) this.class.system.levels = value;
-            else if (this.parent?.system?.details?.level != undefined) this.parent.system.details.level = value;
+    if (this.type === "class") { if (this.system?.levels != undefined) this.system.levels = value; }
+    else if (this.type === "deployment") { if (this.system?.rank != undefined) this.system.rank = value; }
+    else if (this.type === "starshipsize") { if (this.system?.tier != undefined) this.system.tier = value; }
+    else if (this.type === "archetype") { if (this.class?.system?.levels != undefined) this.class.system.levels = value; }
+    else if (this.parent?.system?.details?.level != undefined) this.parent.system.details.level = value;
   }
 
   /* -------------------------------------------- */
@@ -356,7 +367,7 @@ export default class Item5e extends Item {
    */
   get curAdvancementCharLevel() {
     if (this.type === "deployment") return this.parent?.system?.details?.ranks ?? 0;
-    if (this.type === "starship") return this.system?.tier ?? 0;
+    if (this.type === "starshipsize") return this.system?.tier ?? 0;
     return this.parent?.system?.details?.level ?? 0;
   }
 
@@ -368,7 +379,7 @@ export default class Item5e extends Item {
    */
   get maxAdvancementLevel() {
     if (this.type === "deployment") return CONFIG.SW5E.maxIndividualRank;
-    if (this.type === "starship") return CONFIG.SW5E.maxTier;
+    if (this.type === "starshipsize") return CONFIG.SW5E.maxTier;
     return CONFIG.SW5E.maxLevel;
   }
 
@@ -379,7 +390,7 @@ export default class Item5e extends Item {
    * @type {boolean}
    */
   get minAdvancementLevel() {
-    if (["class", "archetype", "deployment", "starship"].includes(this.type)) return 1;
+    if (["class", "archetype", "deployment"].includes(this.type)) return 1;
     return 0;
   }
 
@@ -390,16 +401,12 @@ export default class Item5e extends Item {
    * @type {object|null}
    */
   get propertiesList() {
-    if (this.type === "weapon") {
-      if (this.system.weaponType in CONFIG.SW5E.weaponStandardTypes) return CONFIG.SW5E.weaponFullCharacterProperties;
-      if (this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes) return CONFIG.SW5E.weaponFullStarshipProperties;
-    }
-    else if (this.type === "consumable" && this.system.consumableType === "ammo") {
-      if (this.system.ammoType in CONFIG.SW5E.ammoStandardTypes) return CONFIG.SW5E.weaponFullCharacterProperties;
-      if (this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes) return CONFIG.SW5E.weaponFullStarshipProperties;
+    if (this.type === "weapon" || (this.type === "consumable" && this.system.consumableType === "ammo")) {
+      if (this.isStarshipItem) return CONFIG.SW5E.weaponFullStarshipProperties;
+      else return CONFIG.SW5E.weaponFullCharacterProperties;
     }
     else if (this.type === "equipment") {
-      if (this.system.armor.type in CONFIG.SW5E.armorTypes) return CONFIG.SW5E.armorProperties;
+      if (this.isArmor) return CONFIG.SW5E.armorProperties;
       if (this.system.armor.type in CONFIG.SW5E.castingEquipmentTypes) return CONFIG.SW5E.castingProperties;
     }
     else if (this.type === "modification") {
@@ -418,7 +425,7 @@ export default class Item5e extends Item {
    */
   get modificationsType() {
     if (this.type === "equipment") {
-      if (this.system.armor?.type in CONFIG.SW5E.armorTypes) return "armor";
+      if (this.isArmor) return "armor";
       if (this.system.armor?.type in CONFIG.SW5E.miscEquipmentTypes) return this.system.armor?.type;
     } else if (this.type === "weapon") {
       if (this.system.weaponType?.endsWith("LW")) return "lightweapon";
@@ -725,7 +732,7 @@ export default class Item5e extends Item {
    * @protected
    */
   _prepareAdvancement() {
-    const minAdvancementLevel = ["class", "archetype"].includes(this.type) ? 1 : 0;
+    const minAdvancementLevel = this.minAdvancementLevel;
     const maxLevel = this.maxAdvancementLevel;
     this.advancement = {
       byId: {},

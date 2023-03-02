@@ -2,8 +2,9 @@ import CharacterData from "./character.mjs";
 import GroupData from "./group.mjs";
 import NPCData from "./npc.mjs";
 import VehicleData from "./vehicle.mjs";
+import StarshipData from "./starship.mjs";
 
-export { CharacterData, GroupData, NPCData, VehicleData };
+export { CharacterData, GroupData, NPCData, VehicleData, StarshipData };
 export { default as AttributesFields } from "./templates/attributes.mjs";
 export { default as CommonTemplate } from "./templates/common.mjs";
 export { default as CreatureTemplate } from "./templates/creature.mjs";
@@ -14,5 +15,6 @@ export const config = {
   character: CharacterData,
   group: GroupData,
   npc: NPCData,
-  vehicle: VehicleData
+  vehicle: VehicleData,
+  starship: StarshipData
 };

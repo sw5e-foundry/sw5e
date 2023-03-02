@@ -4,7 +4,7 @@ import BaseConfigSheet from "./base-config.mjs";
  * A form for configuring actor hit points and bonuses.
  */
 export default class ActorHitPointsConfig extends BaseConfigSheet {
-  constructor(...args) {
+  constructor(hitPointType, ...args) {
     super(...args);
 
     /**
@@ -12,6 +12,12 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
      * @type {Actor5e}
      */
     this.clone = this.object.clone();
+
+    /**
+     * Which hit point type is this, hit-points, hull-points or shield-points.
+     * @type {string}
+     */
+    this.hitPointType = hitPointType.split('-')[0];
   }
 
   /* -------------------------------------------- */
@@ -31,18 +37,38 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
 
   /** @inheritdoc */
   get title() {
-    return `${game.i18n.localize("SW5E.HitPointsConfig")}: ${this.document.name}`;
+    return `${game.i18n.localize(`SW5E.${this.hitPointType.capitalize()}PointsConfig`)}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   getData(options) {
-    return {
-      hp: this.clone.system.attributes.hp,
-      source: this.clone.toObject().system.attributes.hp,
-      isCharacter: this.document.type === "character"
+    const source = this.clone.toObject().system.attributes.hp;
+    const hp = this.clone.system.attributes.hp;
+    const temp = this.hitPointType === "shield" ? "temp" : "";
+    const data = {
+      hp: hp,
+      isNpc: this.document.type === "npc",
+      value: {
+        sourceMax: source[`${temp}max`],
+        max: hp[`${temp}max`],
+        level: hp.bonuses[`${temp}level`],
+        overall: hp.bonuses[`${temp}overall`],
+      },
+      path: {
+        max: `hp.${temp}max`,
+        level: `hp.bonuses.${temp}level`,
+        overall: `hp.bonuses.${temp}overall`,
+      },
+      label: {
+        override: `SW5E.${this.hitPointType.capitalize()}PointsOverride`,
+        max: `SW5E.${this.hitPointType.capitalize()}PointsMax`,
+        bonusLevel: `SW5E.${this.hitPointType.capitalize()}PointsBonusLevel`,
+        bonusOverall: `SW5E.${this.hitPointType.capitalize()}PointsBonusOverall`,
+      },
     };
+    return data;
   }
 
   /* -------------------------------------------- */
@@ -57,9 +83,10 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
   /** @inheritdoc */
   async _updateObject(event, formData) {
     const hp = foundry.utils.expandObject(formData).hp;
+    const temp = this.hitPointType === "shield" ? "temp" : "";
     this.clone.updateSource({ "system.attributes.hp": hp });
-    const maxDelta = this.clone.system.attributes.hp.max - this.document.system.attributes.hp.max;
-    hp.value = Math.max(this.document.system.attributes.hp.value + maxDelta, 0);
+    const maxDelta = this.clone.system.attributes.hp[`${temp}max`] - this.document.system.attributes.hp[`${temp}max`];
+    hp[temp || "value"] = Math.max(this.document.system.attributes.hp[temp || "value"] + maxDelta, 0);
     return this.document.update({ "system.attributes.hp": hp });
   }
 

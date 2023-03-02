@@ -40,7 +40,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
   //     await migrateArmorClass(p, migrationData);
   // }
 
-  await migrateFeatLikeItems(migrateSystemCompendiums);
+  await migrateItemTypes(migrateSystemCompendiums);
 
   // Migrate World Actors
   const actors = game.actors.map(a => [a, true])
@@ -109,6 +109,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
 
   // Migrate World Compendium Packs
   for (let p of game.packs) {
+    if (!p) continue;
     if (p.metadata.packageType !== "world" && !migrateSystemCompendiums) continue;
     if (!["Actor", "Item", "Scene"].includes(p.documentName)) continue;
     await migrateCompendium(p);
@@ -225,7 +226,6 @@ export const migrateArmorClass = async function (pack, migrationData) {
   await pack.configure({ locked: false });
   const actors = await pack.getDocuments();
   const updates = [];
-  const armorTypes = new Set(Object.keys(CONFIG.SW5E.armorTypes));
 
   for (const actor of actors) {
     if (actor.type === "starship") continue;
@@ -241,7 +241,7 @@ export const migrateArmorClass = async function (pack, migrationData) {
 
       // If actor has the name of an armor but doesn't have it equipped, try to add it
       const hasArmorEquipped = actor.itemTypes.equipment.some(e => {
-        return armorTypes.has(e.system.armor?.type) && e.system.equipped;
+        return e.isArmor && e.system.equipped;
       });
       const armorName = actor.system.attributes.ac.formula.toLowerCase();
       const armorItem = migrationData.armors.find(a => a.name.toLowerCase() === armorName);
@@ -754,11 +754,10 @@ async function _migrateItemModificationData(item, updateData, migrationData) {
       if (!mod) continue;
       const modType = mod.system.modificationType === "augment" ? "augment" : "mod";
 
-      //TODO: Likely broke, I took a guess on what data was
       const sysdata = mod.toObject();
       delete sysdata._id;
       items.push({
-        system: system,
+        system: sysdata,
         name: mod.name,
         type: modType,
         disabled: mod_data.disabled
@@ -917,10 +916,10 @@ function _migrateItemSpeciesDroid(item, updateData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate all feat-like items.
+ * Migrate all deprecated item types.
  * @param {boolean} migrateSystemCompendiums  Migrate items in system compendiums.
  */
-async function migrateFeatLikeItems(migrateSystemCompendiums) {
+async function migrateItemTypes(migrateSystemCompendiums) {
   const items = new Set(game.items);
   const actors = new Set(game.actors);
   const scenes = new Set(game.scenes);
@@ -932,6 +931,7 @@ async function migrateFeatLikeItems(migrateSystemCompendiums) {
   for (const id of game.items.invalidDocumentIds) items.add(game.items.getInvalid(id));
   // Accumulate everything from compendium packs
   for await (const pack of game.packs) {
+    if (!pack) continue;
     if (pack.metadata.packageType !== "world" && !migrateSystemCompendiums) continue;
     const documentName = pack.documentName;
     if (!["Actor", "Item", "Scene"].includes(documentName)) continue;
@@ -954,7 +954,7 @@ async function migrateFeatLikeItems(migrateSystemCompendiums) {
   for (const actor of actors) for (const item of actor.items) items.add(item);
 
   // Migrate items
-  for await (const item of items) await _migrateItemFeatLike(item);
+  for await (const item of items) await _migrateItemType(item);
 
   // Apply the original locked status for the packs
   for await (const [collection, lock] of Object.entries(wasLocked)) {
@@ -966,22 +966,44 @@ async function migrateFeatLikeItems(migrateSystemCompendiums) {
 /* -------------------------------------------- */
 
 /**
- * Migrate feat-like item
+ * Migrate item with deprecated type
  * @param {object} item        Item to migrate.
  */
-async function _migrateItemFeatLike(item) {
-  if (!(item.type in CONFIG.SW5E.featLikeItemsMigration)) return;
+async function _migrateItemType(item) {
+  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item.type))) return;
 
-  const updates = { "system.type": CONFIG.SW5E.featLikeItemsMigration[item.type] };
+  console.log(`Migrating item ${item.name} with deprecated type ${item.type}`);
 
-  switch (item.type) {
-    case "deploymentfeature":
-      updates["system.requirements"] = [item.system.deployment?.value ?? "", item.system.rank?.value ?? ""].join(" ");
-      break;
+  if (item.type === "starship") {
+    await item.update({ type: "starshipsize" });
+    return;
   }
-  console.log(`Migrating feat-like Item document ${item.name}`);
-  await item.update({ type: "feat" });
-  await item.update(updates);
+
+  if (item.type in CONFIG.SW5E.featLikeItemsMigration) {
+    const updates = {
+      "system.critical": {
+        threshold: item?.system?.critical?.threshold ?? null,
+        damage: item?.system?.critical?.damage ?? "",
+      },
+      "system.save": {
+        ability: item?.system?.save?.ability ?? "",
+        dc: item?.system?.save?.dc ?? 0,
+        scaling: item?.system?.save?.scaling ?? "power",
+      },
+      "system.type": CONFIG.SW5E.featLikeItemsMigration[item.type],
+    };
+
+    switch (item.type) {
+      case "deploymentfeature":
+        updates["system.requirements"] = [item.system.deployment?.value ?? "", item.system.rank?.value ?? ""].join(" ");
+        break;
+      case "starshipaction":
+        updates["system.type"].subtype = item.system.deployment;
+    }
+    console.log(`Migrating feat-like Item document ${item.name}`);
+    await item.update(updates);
+    await item.update({ type: "feat" });
+  }
 }
 
 /* -------------------------------------------- */

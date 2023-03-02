@@ -16,7 +16,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set(["starship", "starshipaction", "starshipfeature", "starshipmod"]);
+  static unsupportedItemTypes = new Set(["starshipsize", "starshipmod"]);
 
   /* -------------------------------------------- */
   /*  Context Preparation                         */

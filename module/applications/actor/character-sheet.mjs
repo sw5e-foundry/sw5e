@@ -159,6 +159,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     categories.features.unshift(categories.class.class);
     categories.features.unshift(categories.class.background);
 
+    // Add unsorted items to the Inventory, to make them acessible
+    categories.inventory.unsorted = categories.unsorted;
+
     // Assign and return
     context.inventoryFilters = true;
     context.inventory = Object.values(categories.inventory);

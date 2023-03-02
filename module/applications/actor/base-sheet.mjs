@@ -486,6 +486,7 @@ export default class ActorSheet5e extends ActorSheet {
       features: {},
       powers: {},
       maneuvers: {},
+      unsorted: { label: "SW5E.Unsorted", items: [] },
       config
     };
 
@@ -631,13 +632,20 @@ export default class ActorSheet5e extends ActorSheet {
       else if (item.type === "power") {
         if (["lgt", "uni", "drk"].includes(item.system.school) && categories.config.combineForcePowers)
           categories.powers.for.items.push(item);
-        else categories.powers[item.system.school]?.items?.push(item);
+        else if (item.system.school in categories.powers) categories.powers[item.system.school]?.items?.push(item);
+        else {
+          categories.unsorted.items.push(item);
+          console.warn(`Power ${item.name} of school ${item.system.school} is unsorted.`);
+        }
       }
       else if (item.type === "maneuver") {
         if (categories.config.combineManeuvers) categories.maneuvers.items.push(item);
         else categories.maneuvers[item.system.maneuverType].items.push(item);
       }
-      else console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
+      else {
+        categories.unsorted.items.push(item);
+        console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
+      }
     }
   }
 

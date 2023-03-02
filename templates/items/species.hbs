@@ -297,13 +297,15 @@
             </div>
             <div id="species-description">
                 <p>
-                    {{editor 
-						descriptionHTML 
-						target="system.description.value" 
-						fontsize=12px 
-						button=true
-						editable=editable
-					}}
+                    {{editor
+                        descriptionHTML
+                        target="system.description.value"
+                        fontsize=12px
+                        button=true
+                        editable=editable
+                        engine="prosemirror"
+                        collaborate=false
+                    }}
                 </p>
             </div>
         </div>

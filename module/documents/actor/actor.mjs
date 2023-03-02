@@ -81,7 +81,7 @@ export default class Actor5e extends Actor {
     if (this._starships !== undefined) return this._starships;
     if (this.type !== "starship") return (this._starships = {});
     return (this._starships = this.items
-      .filter(item => item.type === "starship")
+      .filter(item => item.type === "starshipsize")
       .reduce((obj, sship) => {
         obj[sship.identifier] = sship;
         return obj;
@@ -284,17 +284,17 @@ export default class Actor5e extends Actor {
     data.classes = {};
     for (const [identifier, cls] of Object.entries(this.classes)) {
       data.classes[identifier] = {...cls.system};
-      if (cls.archetype) data.classes[identifier].archetype = cls.archetype.system;
+      if (cls.archetype) data.classes[identifier].archetype = {...cls.archetype.system};
     }
 
     data.deployments = {};
     for (const [identifier, dep] of Object.entries(this.deployments)) {
-      data.deployments[identifier] = dep.system;
+      data.deployments[identifier] = {...dep.system};
     }
 
     data.starships = {};
     for (const [identifier, ss] of Object.entries(this.starships)) {
-      data.starships[identifier] = ss.system;
+      data.starships[identifier] = {...ss.system};
     }
 
     data.hitDice = {};
@@ -330,17 +330,17 @@ export default class Actor5e extends Actor {
   /**
    * Return data related to the installation of an item in a starship.
    * @param {string} itemId       The id of the item.
-   * @return [
+   * @return {
    *           {Number} minCrew      The minimum crew required to install.
    *           {Number} installCost  The credits cost to install.
    *           {Number} installTime  The time taken to install.
-   *         ]
+   *         }
    */
   getInstallationData(itemId) {
     if (this.type !== "starship") return [0, 0, 0];
 
     const item = this.items.get(itemId);
-    const ship = this.items.filter(i => i.type === "starship")[0];
+    const ship = this.itemTypes.starshipsize?.[0];
 
     const itemData = item.system;
     const shipData = ship.system;
@@ -350,13 +350,14 @@ export default class Actor5e extends Actor {
 
     const baseCost = isMod ? itemData.basecost.value : itemData.price;
     const sizeMult = isMod ? shipData.modCostMult : isWpn ? 1 : shipData.equipCostMult;
-    const gradeMult = isMod ? Number(itemData.grade) || 1 : 1;
+    const gradeMult = isMod ? Number(itemData.grade.value) || 1 : 1;
     const fullCost = baseCost * sizeMult * gradeMult;
 
     const minCrew = isMod ? shipData.modMinWorkforce : shipData.equipMinWorkforce;
     const installCost = Math.ceil(fullCost / 2);
-    const installTime = fullCost / (500 * minCrew);
+    const installTime = (baseCost * sizeMult) / (500 * minCrew);
     // TODO: accept a 'crew' parameter to use instead of minCrew in the install time calculation
+    //       pottentially add a checkbox for players working, to decrease/remove the installation cost
 
     return { minCrew, installCost, installTime };
   }
@@ -366,17 +367,16 @@ export default class Actor5e extends Actor {
   /**
    */
   async addStarshipDefaults() {
-    const items = [];
-    const equippedItems = Object.keys(CONFIG.SW5E.equipmentTypes).filter(k => this._getEquipment(k, { equipped: true }).length);
+    if (this.items.size !== 0) return;
 
-    const actions = await game.packs.get("sw5e.starshipactions").getIndex();
-    const action_ids = actions.map(a => "Compendium.sw5e.starshipactions." + a._id);
-    for (const id of action_ids) items.push((await fromUuid(id)).toObject());
+    const items = [];
+
+    const pack = await game.packs.get("sw5e.starshipactions");
+    const actions = await pack.getDocuments();
+    for (const action of actions) items.push(action.toObject());
 
     for (const id of CONFIG.SW5E.ssDefaultEquipment) {
       const item = (await fromUuid(id)).toObject();
-      if (item.type === "equipment" && equippedItems.includes(item.system.armor.type)) continue;
-      if (item.type === "starship" && this.items.filter(i => i.type === "starship").length) continue;
       item.system.equipped = true;
       items.push(item);
     }
@@ -779,6 +779,8 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareBaseStarshipData() {
+    if (this.type !== "starship") return;
+
     // Determine starship's proficiency bonus based on active deployed crew member
     this.system.attributes.prof = 0;
     const active = this.system.attributes.deployment.active;
@@ -786,90 +788,82 @@ export default class Actor5e extends Actor {
     if (actor?.system?.details?.ranks) this.system.attributes.prof = actor.system.attributes?.prof ?? 0;
 
     // Determine Starship size-based properties based on owned Starship item
-    const size = this.items.filter(i => i.type === "starship");
-    if (size.length !== 0) {
-      const sizeData = size[0].system;
-      const hugeOrGrg = ["huge", "grg"].includes(sizeData.size);
-      const tiers = parseInt(sizeData.tier) || 0;
+    const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
+    const hugeOrGrg = ["huge", "grg"].includes(sizeData.size);
+    const tiers = parseInt(sizeData.tier ?? 0);
 
-      this.system.traits.size = sizeData.size; // needs to be the short code
-      this.system.details.tier = tiers;
+    this.system.traits.size = sizeData.size ?? "med"; // needs to be the short code
+    this.system.details.tier = tiers;
 
-      this.system.attributes.cost.baseBuild = sizeData.buildBaseCost;
-      this.system.attributes.cost.baseUpgrade = CONFIG.SW5E.ssBaseUpgradeCost[tiers];
-      this.system.attributes.cost.multEquip = sizeData.equipCostMult;
-      this.system.attributes.cost.multModification = sizeData.modCostMult;
-      this.system.attributes.cost.multUpgrade = sizeData.upgrdCostMult;
+    this.system.attributes.cost = {
+      baseBuild: sizeData.buildBaseCost ?? 0,
+      baseUpgrade: CONFIG.SW5E.ssBaseUpgradeCost[tiers],
+      multEquip: sizeData.equipCostMult ?? 1,
+      multModification: sizeData.modCostMult ?? 1,
+      multUpgrade: sizeData.upgrdCostMult ?? 1,
+    };
 
-      this.system.attributes.equip.size.cargoCap = sizeData.cargoCap;
-      this.system.attributes.equip.size.crewMinWorkforce = parseInt(sizeData.crewMinWorkforce) || 1;
-      this.system.attributes.equip.size.foodCap = sizeData.foodCap;
+    this.system.attributes.equip = {
+      size: {
+        cargoCap: sizeData.cargoCap ?? 0,
+        crewMinWorkforce: parseInt(sizeData.crewMinWorkforce ?? 1),
+        foodCap: sizeData.foodCap ?? 0,
+      }
+    };
 
-      this.system.attributes.fuel.cost = sizeData.fuelCost;
-      this.system.attributes.fuel.fuelCap = sizeData.fuelCap;
+    this.system.attributes.fuel.cost = sizeData.fuelCost ?? 0;
+    this.system.attributes.fuel.fuelCap = sizeData.fuelCap ?? 0;
 
-      const hullmax = sizeData.hullDiceStart + (hugeOrGrg ? 2 : 1) * tiers;
-      this.system.attributes.hull = {
-        die: sizeData.hullDice,
-        dicemax: hullmax,
-        dice: hullmax - (parseInt(sizeData.hullDiceUsed) || 0)
-      };
+    const hullmax = (sizeData.hullDiceStart ?? 0) + (hugeOrGrg ? 2 : 1) * tiers;
+    this.system.attributes.hull = {
+      die: sizeData.hullDice ?? "d1",
+      dicemax: hullmax,
+      dice: hullmax - parseInt(sizeData.hullDiceUsed ?? 0)
+    };
 
-      const shldmax = sizeData.shldDiceStart + (hugeOrGrg ? 2 : 1) * tiers;
-      this.system.attributes.shld = {
-        die: sizeData.shldDice,
-        dicemax: shldmax,
-        dice: shldmax - (parseInt(sizeData.shldDiceUsed) || 0)
-      };
+    const shldmax = (sizeData.shldDiceStart ?? 0) + (hugeOrGrg ? 2 : 1) * tiers;
+    this.system.attributes.shld = {
+      die: sizeData.shldDice ?? "d1",
+      dicemax: shldmax,
+      dice: shldmax - parseInt(sizeData.shldDiceUsed ?? 0)
+    };
 
-      this.system.attributes.mods.cap.max = sizeData.modBaseCap;
-      this.system.attributes.mods.suite.max = sizeData.modMaxSuitesBase;
-      this.system.attributes.mods.hardpoint.max = 0;
+    this.system.attributes.mods = {
+      cap: { max: sizeData.modBaseCap ?? 0 },
+      suite: { max: sizeData.modMaxSuitesBase ?? 0 },
+      hardpoint: { max: 0 },
+    };
 
-      this.system.attributes.power.die = CONFIG.SW5E.powerDieTypes[tiers];
+    this.system.attributes.power.die = CONFIG.SW5E.powerDieTypes[tiers];
 
-      this.system.attributes.workforce.max = this.system.attributes.workforce.minBuild * 5;
-      this.system.attributes.workforce.minBuild = sizeData.buildMinWorkforce;
-      this.system.attributes.workforce.minEquip = sizeData.equipMinWorkforce;
-      this.system.attributes.workforce.minModification = sizeData.modMinWorkforce;
-      this.system.attributes.workforce.minUpgrade = sizeData.upgrdMinWorkforce;
-    }
+    this.system.attributes.workforce = {
+      minBuild: sizeData.buildMinWorkforce ?? 0,
+      minEquip: sizeData.equipMinWorkforce ?? 0,
+      minModification: sizeData.modMinWorkforce ?? 0,
+      minUpgrade: sizeData.upgrdMinWorkforce ?? 0,
+    };
+    this.system.attributes.workforce.max = this.system.attributes.workforce.minBuild * 5;
 
     // Determine Starship armor-based properties based on owned Starship item
-    const armor = this._getEquipment("starship", { equipped: true });
-    if (armor.length !== 0) {
-      const armorData = armor[0].system;
-      this.system.attributes.equip.armor.dr = parseInt(armorData.attributes?.dmgred?.value) || 0;
-      this.system.attributes.equip.armor.maxDex = armorData.armor.dex;
-      this.system.attributes.equip.armor.stealthDisadv = armorData.stealth;
-    } else {
-      // no armor installed
-      this.system.attributes.equip.armor.dr = 0;
-      this.system.attributes.equip.armor.maxDex = 99;
-      this.system.attributes.equip.armor.stealthDisadv = false;
-    }
+    const armorData = this._getEquipment("starship", { equipped: true })?.[0]?.system ?? {};
+    this.system.attributes.equip.armor = {
+      dr: parseInt(armorData.attributes?.dmgred?.value ?? 0),
+      maxDex: armorData.armor?.dex ?? 99,
+      stealthDisadv: armorData.stealth ?? false,
+    };
 
     // Determine Starship hyperdrive-based properties based on owned Starship item
-    const hyperdrive = this._getEquipment("hyper", { equipped: true });
-    if (hyperdrive.length !== 0) {
-      const hdData = hyperdrive[0].system;
-      this.system.attributes.equip.hyperdrive.class = parseFloat(hdData.attributes?.hdclass?.value) || null;
-    } else {
-      // no hyperdrive installed
-      this.system.attributes.equip.hyperdrive.class = null;
-    }
+    const hyperdriveData = this._getEquipment("hyper", { equipped: true })?.[0]?.system ?? {};
+    this.system.attributes.equip.hyperdrive = {
+      class: parseFloat(hyperdriveData.attributes?.hdclass?.value ?? null),
+    };
 
     // Determine Starship power coupling-based properties based on owned Starship item
-    const pwrcpl = this._getEquipment("powerc", { equipped: true });
-    if (pwrcpl.length !== 0) {
-      const pwrcplData = pwrcpl[0].system;
-      this.system.attributes.equip.powerCoupling.centralCap = parseInt(pwrcplData.attributes?.cscap?.value) || 0;
-      this.system.attributes.equip.powerCoupling.systemCap = parseInt(pwrcplData.attributes?.sscap?.value) || 0;
-    } else {
-      // no power coupling installed
-      this.system.attributes.equip.powerCoupling.centralCap = 0;
-      this.system.attributes.equip.powerCoupling.systemCap = 0;
-    }
+    const pwrcplData = this._getEquipment("powerc", { equipped: true })?.[0]?.system ?? {};
+    this.system.attributes.equip.powerCoupling = {
+      centralCap: parseInt(pwrcplData.attributes?.cscap?.value ?? 0),
+      systemCap: parseInt(pwrcplData.attributes?.sscap?.value ?? 0),
+    };
 
     this.system.attributes.power.central.max = 0;
     this.system.attributes.power.comms.max = 0;
@@ -879,28 +873,18 @@ export default class Actor5e extends Actor {
     this.system.attributes.power.weapons.max = 0;
 
     // Determine Starship reactor-based properties based on owned Starship item
-    const reactor = this._getEquipment("reactor", { equipped: true });
-    if (reactor.length !== 0) {
-      const reactorData = reactor[0].system;
-      this.system.attributes.equip.reactor.fuelMult = parseFloat(reactorData.attributes?.fuelcostsmod?.value) || 0;
-      this.system.attributes.equip.reactor.powerRecDie = reactorData.attributes?.powerdicerec?.value;
-    } else {
-      // no reactor installed
-      this.system.attributes.equip.reactor.fuelMult = 1;
-      this.system.attributes.equip.reactor.powerRecDie = "1d1";
-    }
+    const reactorData = this._getEquipment("reactor", { equipped: true })?.[0]?.system ?? {};
+    this.system.attributes.equip.reactor = {
+      fuelMult: parseFloat(reactorData.attributes?.fuelcostsmod?.value ?? 1),
+      powerRecDie: reactorData.attributes?.powerdicerec?.value ?? "1d1",
+    };
 
     // Determine Starship shield-based properties based on owned Starship item
-    const shields = this._getEquipment("ssshield", { equipped: true });
-    if (shields.length !== 0) {
-      const shieldsData = shields[0].system;
-      this.system.attributes.equip.shields.capMult = parseFloat(shieldsData.attributes?.capx?.value) || 1;
-      this.system.attributes.equip.shields.regenRateMult = parseFloat(shieldsData.attributes?.regrateco?.value) || 1;
-    } else {
-      // no shields installed
-      this.system.attributes.equip.shields.capMult = 0;
-      this.system.attributes.equip.shields.regenRateMult = 0;
-    }
+    const shieldData = this._getEquipment("ssshield", { equipped: true })?.[0]?.system ?? {};
+    this.system.attributes.equip.shields = {
+      capMult: parseFloat(shieldData.attributes?.capx?.value ?? 0),
+      regenRateMult: parseFloat(shieldData.attributes?.regrateco?.value ?? 0),
+    };
 
     // Inherit deployed pilot's proficiency in piloting
     const pilot = fromUuidSynchronous(this.system.attributes.deployment.pilot.value);
@@ -1169,19 +1153,33 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareHitPoints(rollData) {
-    if ( this.type !== "character" || (this._source.system.attributes.hp.max !== null) ) return;
+    if ( !["character", "starship"].includes(this.type) ) return;
+    if ( !("hp" in this.system.attributes) ) return;
+
     const hp = this.system.attributes.hp;
+    const level = this.system.details.level ?? this.system.details.tier;
+    const classes = this.type === "character" ? this.classes : this.starships;
+    for (const advancementType of ["HitPoints", "HullPoints", "ShieldPoints"]) {
+      if ((this.type === "character") !== (advancementType === "HitPoints")) continue;
 
-    const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
-    const abilityMod = (this.system.abilities[abilityId]?.mod ?? 0);
-    const base = Object.values(this.classes).reduce((total, item) => {
-      const advancement = item.advancement.byType.HitPoints?.[0];
-      return total + (advancement?.getAdjustedTotal(abilityMod) ?? 0);
-    }, 0);
-    const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.system.details.level;
-    const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
+      const temp = advancementType === "ShieldPoints" ? "temp" : "";
+      if ( this._source.system.attributes.hp[`${temp}max`] !== null ) continue;
 
-    hp.max = base + levelBonus + overallBonus;
+      const property = `${advancementType[0].toLowerCase()}${advancementType.slice(1)}Ability`;
+      const abilityId = CONFIG.SW5E[property] || "con";
+      const abilityMod = (this.system.abilities[abilityId]?.mod ?? 0);
+      let base = Object.values(classes).reduce((total, item) => {
+        const advancement = item.advancement.byType[advancementType]?.[0];
+        return total + (advancement?.getAdjustedTotal(abilityMod) ?? 0);
+      }, 0);
+
+      if (temp) base = Math.round(base * this.system.attributes.equip.shields.capMult);
+
+      const levelBonus = simplifyBonus(hp.bonuses[`${temp}level`], rollData) * level;
+      const overallBonus = simplifyBonus(hp.bonuses[`${temp}overall`], rollData);
+
+      hp[`${temp}max`] = base + levelBonus + overallBonus;
+    }
   }
 
   /* -------------------------------------------- */
@@ -1309,84 +1307,47 @@ export default class Actor5e extends Actor {
 
   _prepareStarshipData() {
     if (this.type !== "starship") return;
+
     // Find Size info of Starship
-    const size = this.items.filter(i => i.type === "starship");
-    if (size.length === 0) return;
-    const sizeData = size[0].system;
+    const attr = this.system.attributes;
+    const abl = this.system.abilities;
+    const sizeData = this.itemTypes.starshipsize[0]?.system ?? {};
 
     // Set Power Die Storage
-    this.system.attributes.power.central.max += this.system.attributes.equip.powerCoupling.centralCap;
-    this.system.attributes.power.comms.max += this.system.attributes.equip.powerCoupling.systemCap;
-    this.system.attributes.power.engines.max += this.system.attributes.equip.powerCoupling.systemCap;
-    this.system.attributes.power.shields.max += this.system.attributes.equip.powerCoupling.systemCap;
-    this.system.attributes.power.sensors.max += this.system.attributes.equip.powerCoupling.systemCap;
-    this.system.attributes.power.weapons.max += this.system.attributes.equip.powerCoupling.systemCap;
-
-    // Prepare Hull Points
-    this.system.attributes.hp.max =
-      sizeData.hullDiceRolled.reduce((a, b) => a + b, 0) +
-      (this.system.attributes.hull.dicemax - sizeData.hullDiceRolled.length) *
-        CONFIG.SW5E.hitDieAvg[sizeData.hullDice] +
-      this.system.abilities.con.mod * this.system.attributes.hull.dicemax;
-    if (this.system.attributes.hp.value === null) this.system.attributes.hp.value = this.system.attributes.hp.max;
-
-    // Prepare Shield Points
-    this.system.attributes.hp.tempmax = Math.floor(
-      (sizeData.shldDiceRolled.reduce((a, b) => a + b, 0) +
-        (this.system.attributes.shld.dicemax - sizeData.shldDiceRolled.length) *
-          CONFIG.SW5E.hitDieAvg[sizeData.shldDice] +
-        this.system.abilities.str.mod * this.system.attributes.shld.dicemax) *
-        this.system.attributes.equip.shields.capMult
-    );
-    if (this.system.attributes.hp.temp === null) this.system.attributes.hp.temp = this.system.attributes.hp.tempmax;
+    attr.power.central.max += attr.equip.powerCoupling.centralCap;
+    attr.power.comms.max += attr.equip.powerCoupling.systemCap;
+    attr.power.engines.max += attr.equip.powerCoupling.systemCap;
+    attr.power.shields.max += attr.equip.powerCoupling.systemCap;
+    attr.power.sensors.max += attr.equip.powerCoupling.systemCap;
+    attr.power.weapons.max += attr.equip.powerCoupling.systemCap;
 
     // Disable Shields
-    this.system.attributes.shld.depleted =
-      this.system.attributes.hp.temp === 0 && this.system.attributes.equip.shields.capMult !== 0 ? true : false;
+    attr.shld.depleted = attr.hp.temp === 0 && attr.equip.shields.capMult !== 0;
 
     // Prepare Speeds
-    this.system.attributes.movement.space =
-      sizeData.baseSpaceSpeed + 50 * (this.system.abilities.str.mod - this.system.abilities.con.mod);
-    this.system.attributes.movement.turn = Math.min(
-      this.system.attributes.movement.space,
-      Math.max(50, sizeData.baseTurnSpeed - 50 * (this.system.abilities.dex.mod - this.system.abilities.con.mod))
-    );
+    if (game.settings.get("sw5e", "oldStarshipMovement")) {
+      attr.movement.space = (sizeData.baseSpaceSpeed ?? 0) + 50 * (abl.str.mod - abl.con.mod);
+      attr.movement.turn = Math.min(
+        attr.movement.space,
+        Math.max(50, (sizeData.baseTurnSpeed ?? 0) - 50 * (abl.dex.mod - abl.con.mod))
+      );
+    }
 
     // Prepare Mods
-    this.system.attributes.mods.cap.value = this.items.filter(
-      i => i.type === "starshipmod" && i.system.equipped && !i.system.free.slot
-    ).length;
+    attr.mods.cap.value = this.itemTypes.starshipmod.filter(i => i.system.equipped && !i.system.free.slot).length;
 
     // Prepare Suites
-    this.system.attributes.mods.suite.max += sizeData.modMaxSuitesMult * this.system.abilities.con.mod;
-    this.system.attributes.mods.suite.value = this.items.filter(
-      i => i.type === "starshipmod" && i.system.equipped && !i.system.free.suite && i.system.system.value === "Suite"
-    ).length;
+    attr.mods.suite.max += (sizeData.modMaxSuitesMult ?? 1) * abl.con.mod;
+    attr.mods.suite.value = this.itemTypes.starshipmod.filter(
+      i => i.system.equipped && !i.system.free.suite && i.system.system.value === "Suite"
+      ).length;
 
     // Prepare Hardpoints
-    this.system.attributes.mods.hardpoint.max += sizeData.hardpointMult * Math.max(1, this.system.abilities.str.mod);
+    attr.mods.hardpoint.max += (sizeData.hardpointMult ?? 1) * Math.max(1, abl.str.mod);
 
     // Prepare Fuel
-    this.system.attributes.fuel = this._computeFuel();
+    attr.fuel = this._computeFuel();
   }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Get a list of all equipment of a certain type.
-   * @param {string} type       The type of equipment to return, empty for all.
-   * @param {boolean} equipped  Ignore non-equipped items
-   * @type {object}             Array of items of that type
-   */
-  _getEquipment(type, { equipped = false } = {}) {
-    return this.items.filter(
-      item => item.type === "equipment" && type === item.system.armor.type && (!equipped || item.system.equipped)
-    );
-  }
-
-  /* -------------------------------------------- */
-  /*  Event Handlers                              */
-  /* -------------------------------------------- */
 
   _computeFuel() {
     const fuel = this.system.attributes.fuel;
@@ -1395,6 +1356,24 @@ export default class Actor5e extends Actor {
     const pct = Math.clamped((fuel.value.toNearest(0.1) * 100) / fuel.fuelCap, 0, 100);
     return { ...fuel, pct, fueled: pct > 0 };
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Get a list of all equipment of a certain type.
+   * @param {string} type         The type of equipment to return, empty for all.
+   * @param {boolean} [equipped]  Ignore non-equipped items
+   * @type {object}               Array of items of that type
+   */
+  _getEquipment(type, { equipped = false } = {}) {
+    return this.itemTypes.equipment.filter(
+      item => type === item.system.armor.type && (!equipped || item.system.equipped)
+    );
+  }
+
+  /* -------------------------------------------- */
+  /*  Event Handlers                              */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   async _preCreate(data, options, user) {
@@ -1423,7 +1402,7 @@ export default class Actor5e extends Actor {
     super._onCreate(data, options, userId);
 
     // Add starship actions
-    if (this.type == "starship") this.addStarshipDefaults();
+    if (this.type === "starship") this.addStarshipDefaults();
   }
 
   /* -------------------------------------------- */
@@ -2424,7 +2403,7 @@ export default class Actor5e extends Actor {
     let sship = null;
     const hullMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
     if (!denomination) {
-      sship = this.itemTypes.starship.find(
+      sship = this.itemTypes.starshipsize.find(
         s => s.system.hullDiceUsed < s.system.tier * hullMult + s.system.hullDiceStart
       );
       if (!sship) return null;
@@ -2522,8 +2501,6 @@ export default class Actor5e extends Actor {
    * @property {Roll} roll             The created Roll instance, or null if no shield die was rolled
    */
 
-  /* -------------------------------------------- */
-
   /**
    * Roll a shield die of the appropriate type, gaining shield points equal to the die roll
    * multiplied by the shield regeneration coefficient
@@ -2561,7 +2538,7 @@ export default class Actor5e extends Actor {
     let sship = null;
     const shldMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
     if (!denomination) {
-      sship = this.itemTypes.starship.find(
+      sship = this.itemTypes.starshipsize.find(
         i => (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
       );
       if (!sship) return result;
@@ -2569,7 +2546,7 @@ export default class Actor5e extends Actor {
     }
     // Otherwise locate a starship (if any) which has an available shield die of the requested denomination
     else {
-      sship = this.itemTypes.starship.find(i => {
+      sship = this.itemTypes.starshipsize.find(i => {
         return (
           i.system.shldDice === denomination &&
           (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
@@ -2676,8 +2653,6 @@ export default class Actor5e extends Actor {
    * @property {object} itemUpdates    Updates applied to the actor's items.
    * @property {Roll} roll             The created Roll instance, or null if no power die was rolled
    */
-
-  /* -------------------------------------------- */
 
   /**
    * Roll a power die recovery of the appropriate type, gaining power dice equal to the roll
@@ -2952,6 +2927,118 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
+   * Roll hull points for a specific starship as part of a tier-up workflow.
+   * @param {Item5e} item                         The starship size item whose hull dice to roll.
+   * @param {number} tier                         The tier of the starship.
+   * @param {object} options
+   * @param {boolean} [options.chatMessage=true]  Display the chat message for this roll.
+   * @returns {Promise<Roll>}                     The completed roll.
+   * @see {@link sw5e.preRollStarshipHullPoints}
+   */
+  async rollStarshipHullPoints(item, tier, { chatMessage=true }={}) {
+    if (item.type !== "starshipsize") throw new Error("Hull points can only be rolled for a starship size item.");
+    const rollData = {
+      formula: `1${item.system.hullDice}`,
+      data: item.getRollData(),
+      chatMessage
+    };
+    if (tier === 0) rollData.formula = `${item.system.hullDice.substring(1)} + ${item.system.hullDiceStart-1}${item.system.hullDice}`;
+    const flavor = game.i18n.format("SW5E.AdvancementHullPointsRollMessage", { starship: item.name });
+    const messageData = {
+      "title": `${flavor}: ${this.name}`,
+      flavor,
+      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      "flags.sw5e.roll": { type: "hitPoints" }
+    };
+
+    /**
+     * A hook event that fires before hull points are rolled for a starship's tier.
+     * @function sw5e.preRollStarshipHullPoints
+     * @memberof hookEvents
+     * @param {Actor5e} actor            Actor for which the hull points are being rolled.
+     * @param {Item5e} item              The starship size item whose hull dice will be rolled.
+     * @param {object} rollData
+     * @param {string} rollData.formula  The string formula to parse.
+     * @param {object} rollData.data     The data object against which to parse attributes within the formula.
+     * @param {object} messageData       The data object to use when creating the message.
+     */
+    Hooks.callAll("sw5e.preRollStarshipHullPoints", this, item, rollData, messageData);
+
+    const roll = new Roll(rollData.formula, rollData.data);
+    await roll.evaluate({async: true});
+
+    /**
+     * A hook event that fires after hull points haven been rolled for a starship's tier.
+     * @function sw5e.rollStarshipHullPoints
+     * @memberof hookEvents
+     * @param {Actor5e} actor  Actor for which the hull points have been rolled.
+     * @param {Roll} roll      The resulting roll.
+     */
+    Hooks.callAll("sw5e.rollStarshipHullPoints", this, roll);
+
+    if ( rollData.chatMessage ) await roll.toMessage(messageData);
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Roll shield points for a specific starship as part of a tier-up workflow.
+   * @param {Item5e} item                         The starship size item whose shield dice to roll.
+   * @param {number} tier                         The tier of the starship.
+   * @param {object} options
+   * @param {boolean} [options.chatMessage=true]  Display the chat message for this roll.
+   * @returns {Promise<Roll>}                     The completed roll.
+   * @see {@link sw5e.preRollStarshipShieldPoints}
+   */
+  async rollStarshipShieldPoints(item, tier, { chatMessage=true }={}) {
+    if (item.type !== "starshipsize") throw new Error("Shield points can only be rolled for a starship size item.");
+    const rollData = {
+      formula: `1${item.system.shldDice}`,
+      data: item.getRollData(),
+      chatMessage
+    };
+    if (tier === 0) rollData.formula = `${item.system.shldDice.substring(1)} + ${item.system.shldDiceStart-1}${item.system.shldDice}`;
+    const flavor = game.i18n.format("SW5E.AdvancementShieldPointsRollMessage", { starship: item.name });
+    const messageData = {
+      "title": `${flavor}: ${this.name}`,
+      flavor,
+      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      "flags.sw5e.roll": { type: "hitPoints" }
+    };
+
+    /**
+     * A hook event that fires before shield points are rolled for a starship's tier.
+     * @function sw5e.preRollStarshipShieldPoints
+     * @memberof hookEvents
+     * @param {Actor5e} actor            Actor for which the shield points are being rolled.
+     * @param {Item5e} item              The starship size item whose shield dice will be rolled.
+     * @param {object} rollData
+     * @param {string} rollData.formula  The string formula to parse.
+     * @param {object} rollData.data     The data object against which to parse attributes within the formula.
+     * @param {object} messageData       The data object to use when creating the message.
+     */
+    Hooks.callAll("sw5e.preRollStarshipShieldPoints", this, item, rollData, messageData);
+
+    const roll = new Roll(rollData.formula, rollData.data);
+    await roll.evaluate({async: true});
+
+    /**
+     * A hook event that fires after shield points haven been rolled for a starship's tier.
+     * @function sw5e.rollStarshipShieldPoints
+     * @memberof hookEvents
+     * @param {Actor5e} actor  Actor for which the shield points have been rolled.
+     * @param {Roll} roll      The resulting roll.
+     */
+    Hooks.callAll("sw5e.rollStarshipShieldPoints", this, roll);
+
+    if ( rollData.chatMessage ) await roll.toMessage(messageData);
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Roll hit points for an NPC based on the HP formula.
    * @param {object} options
    * @param {boolean} [options.chatMessage=true]  Display the chat message for this roll.
@@ -3030,8 +3117,6 @@ export default class Actor5e extends Actor {
    * @property {boolean} newDay        Whether a new day occurred during the rest.
    * @property {Roll[]} rolls          Any rolls that occurred during the rest process, not including hit dice.
    */
-
-  /* -------------------------------------------- */
 
   /**
    * Take a short rest, possibly spending hit dice and recovering resources, item uses, and tech slots & points.
@@ -3520,8 +3605,6 @@ export default class Actor5e extends Actor {
    * @property {boolean} RefittingRepair  Whether the rest type was a long rest.
    * @property {boolean} newDay           Whether a new day occurred during the repair.
    */
-
-  /* -------------------------------------------- */
 
   /**
    * Take a recharge repair, possibly spending hull dice and recovering resources, and item uses.

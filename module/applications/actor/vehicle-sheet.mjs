@@ -18,9 +18,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     "background",
     "class",
     "archetype",
-    "starship",
-    "starshipaction",
-    "starshipfeature",
+    "starshipsize",
     "starshipmod"
   ]);
 

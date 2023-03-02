@@ -152,17 +152,20 @@
         grid-template-columns: repeat(4, 1fr);
 
         input,
+        .size,
         .proficiency {
           display: inline;
           height: auto;
           .russoOne(17px);
           line-height: 24px;
           width: 100%;
+          text-align: center;
         }
 
         .proficiency {
           line-height: 26px;
         }
+
         select {
           position: relative;
           top: -4px;
@@ -266,7 +269,8 @@
 
             &.hit-points,
             &.hit-dice,
-            &.initiative {
+            &.initiative,
+            &.repair {
               display: grid;
               grid-template-columns: 1fr 1fr;
               column-gap: 8px;
@@ -295,45 +299,20 @@
                 text-align: center;
               }
             }
-          }
-        }
-      }
-    }
 
-    .panel.resources {
-      .traits {
-        .fuel-wrapper {
-          display: grid;
-          grid-template-columns: 300px 100px;
-          width: 400px;
-          justify-self: end;
-          .fuel-label {
-            font-size: 12px;
-            line-height: 14px;
-            width: 100%;
-            text-shadow: none;
-            padding: 0;
-            margin: 0;
-            height: auto;
-            text-align: center;
-            margin-left: -2px;
-            border-radius: 0 4px 4px 0;
-          }
-          .fuel {
-            position: relative;
-            border-radius: 4px;
-            height: 16px;
-            margin: 0;
-            width: 100%;
-            .fuel-bar {
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 100%;
-              border-radius: 4px;
-              border: none;
+            &.repair {
+              grid-template-columns: 1fr 1fr 1fr;
+              column-gap: 4px;
+            }
+
+            .depleted {
+              color: #c40f0f;
             }
           }
+        }
+
+        &.starship {
+          grid-template-columns: repeat(4, 1fr);
         }
       }
     }
@@ -355,6 +334,7 @@
         .russoOne(16px);
       }
     }
+
     .editor {
       position: static;
       min-height: 32px;
@@ -376,6 +356,7 @@
         height: 250px !important;
       }
     }
+
     .tab {
       display: none;
 
@@ -771,6 +752,7 @@
 
       .traits-resources {
         grid-template-rows: 32px auto;
+
         nav {
           margin-bottom: 4px;
 
@@ -865,6 +847,91 @@
 
             strong {
               font-size: 13px;
+            }
+          }
+        }
+
+        .traits {
+          &.cargo-fuel {
+            table {
+              border: none;
+              background: none;
+            }
+            .fuel-wrapper {
+              display: grid;
+              grid-template-columns: 300px 100px;
+              width: 400px;
+              justify-self: end;
+              .fuel-label {
+                font-size: 12px;
+                line-height: 14px;
+                width: 100%;
+                text-shadow: none;
+                padding: 0;
+                margin: 0;
+                height: auto;
+                text-align: center;
+                margin-left: -2px;
+                border-radius: 0 4px 4px 0;
+              }
+              .fuel {
+                position: relative;
+                border-radius: 4px;
+                height: 16px;
+                margin: 0;
+                width: 100%;
+                .fuel-bar {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  height: 100%;
+                  border-radius: 4px;
+                  border: none;
+                }
+              }
+            }
+          }
+
+          &.power-routing {
+            table {
+              border: none;
+              .top {
+                border-top: 2px solid #0d99cc;
+                border-left: 2px solid #0d99cc;
+                border-right: 2px solid #0d99cc;
+              }
+              .bottom {
+                border-bottom: 2px solid #0d99cc;
+                border-left: 2px solid #0d99cc;
+                border-right: 2px solid #0d99cc;
+              }
+            }
+            .attribute-value {
+              text-align: center;
+              &.multiple {
+                display: grid;
+                grid-template-columns: 1fr 14px 1fr;
+              }
+
+              .value-number,
+              .value-separator {
+                height: calc(100% - 2px);
+              }
+
+              .value-number {
+                display: inline-block;
+                text-align: right;
+
+                padding: 0 3px;
+
+                &:last-child {
+                  text-align: left;
+                }
+              }
+
+              span.value-number {
+                padding: 1px 4px;
+              }
             }
           }
         }
@@ -985,6 +1052,15 @@
       }
     }
 
+    .tab.crew.group-grid-deployments {
+      grid-template-columns: auto 100px 100px;
+      .group-item-title {
+        vertical-align: center;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: -10px;
+      }
+    }
     .tab.inventory {
       & > .panel {
         grid-template-rows: 32px 32px 24px auto;
@@ -1292,14 +1368,12 @@
     }
   }
   &.starship .swalt-sheet {
-    .tab .group-grid-deployments {
-      grid-template-columns: auto 100px 100px;
-      .group-item-title {
-        vertical-align: center;
-        margin-left: 10px;
-        margin-top: 10px;
-        margin-bottom: -10px;
-      }
+    header.panel {
+      font-family: 'Russo One';
+      color: #4f4f4f;
+    }
+    nav.sheet-navigation {
+      grid-template-columns: repeat(6, 1fr);
     }
   }
 

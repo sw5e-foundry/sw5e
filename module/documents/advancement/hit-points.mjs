@@ -90,14 +90,19 @@ export default class HitPointsAdvancement extends Advancement {
    * @param {object} data         Contents of `value` used to determine this value.
    * @param {number} hitDieValue  Face value of the hit die used by this advancement.
    * @param {number} level        Level for which to get hit points.
+   * @param {number} [quant]      Quantity of dice at provided level.
    * @returns {number|null}       Hit points for level or null if none have been taken.
    */
-  static valueForLevel(data, hitDieValue, level) {
+  static valueForLevel(data, hitDieValue, level, quant=1) {
     const value = data[level];
     if (!value) return null;
 
-    if (value === "max") return hitDieValue;
-    if (value === "avg") return hitDieValue / 2 + 1;
+    const avg = hitDieValue / 2 + 1
+    if (value === "max") return hitDieValue * quant;
+    if (value === "avg") {
+      if (level == 0) return hitDieValue + avg * (quant - 1);
+      return avg * quant;
+    }
     return value;
   }
 

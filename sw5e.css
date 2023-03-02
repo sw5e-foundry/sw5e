@@ -1623,23 +1623,35 @@ h5 {
   border-block-end: 2px groove var(--color-border-light-1);
   padding-block-end: 1em;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] div {
+.sw5e.advancement.flow form[data-type="HitPoints"] div,
+.sw5e.advancement.flow form[data-type="HullPoints"] div,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] div {
   font-size: var(--font-size-14);
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls {
   display: grid;
   grid-template-columns: 50% 1fr 1fr;
   align-items: center;
   gap: 2px;
 }
 .sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel span,
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel input {
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .averageLabel span,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .averageLabel span,
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel input,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .averageLabel input,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .averageLabel input {
   vertical-align: middle;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollResult {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollResult,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .rollResult,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .rollResult {
   text-align: center;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollButton {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollButton,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .rollButton,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .rollButton {
   height: calc(var(--form-field-height) + 5px);
   line-height: 1.5em;
 }

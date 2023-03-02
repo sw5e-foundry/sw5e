@@ -59,6 +59,18 @@ SW5E.initiativeAbility = "dex";
  */
 SW5E.hitPointsAbility = "con";
 
+/**
+ * Configure which ability score is used when calculating hull points.
+ * @type {string}
+ */
+SW5E.hullPointsAbility = "con";
+
+/**
+ * Configure which ability score is used when calculating shield points.
+ * @type {string}
+ */
+SW5E.shieldPointsAbility = "str";
+
 /* -------------------------------------------- */
 
 /**
@@ -906,8 +918,8 @@ preLocalize("ammoStandardTypes", { sort: true });
  * @enum {string}
  */
 SW5E.ammoStarshipTypes = {
+  sscluster: "SW5E.AmmoSsCluster",
   ssmissile: "SW5E.AmmoSsMissile",
-  ssrocket: "SW5E.AmmoSsRocket",
   sstorpedo: "SW5E.AmmoSsTorpedo",
   ssbomb: "SW5E.AmmoSsBomb"
 };
@@ -934,9 +946,7 @@ preLocalize("ammoTypes", { sort: true });
  */
 SW5E.featLikeItems = {
   feat: "ITEM.TypeFeat",
-  maneuver: "ITEM.TypeManeuver",
-  starshipaction: "ITEM.TypeStarshipaction",
-  starshipfeature: "ITEM.TypeStarshipfeature"
+  maneuver: "ITEM.TypeManeuver"
 }
 
 /**
@@ -964,11 +974,51 @@ SW5E.featLikeItemsMigration = {
     value: "customizationOption",
     subtype: "lightsaberForm"
   },
+  starshipaction: {
+    value: "starshipAction"
+  },
+  starshipfeature: {
+    value: "starship"
+  },
   venture: {
     value: "deployment",
     subtype: "venture"
   },
 }
+
+/*
+ * List of deprecated item types
+ */
+SW5E.deprecatedItemTypes = [
+  ...Object.keys(SW5E.featLikeItemsMigration),
+  "starship",
+];
+
+/**
+ * Item types that should show up in an 'inventory'.
+ */
+SW5E.inventoryItems = [
+  "weapon",
+  "equipment",
+  "consumable",
+  "tool",
+  "backpack",
+  "modification",
+  "loot",
+  "starshipmod",
+];
+
+/**
+ * Item types that behave like a 'class'.
+ */
+SW5E.classItems = [
+  "archetype",
+  "background",
+  "class",
+  "deployment",
+  "starshipsize",
+  "species",
+];
 
 /* -------------------------------------------- */
 
@@ -1026,6 +1076,22 @@ SW5E.featureTypes = {
   },
   species: {
     label: "SW5E.Feature.Species"
+  },
+  starship: {
+    label: "SW5E.Feature.Starship",
+    subtypes: {
+      role: "SW5E.StarshipFeature.Role",
+      roleSpec: "SW5E.StarshipFeature.RoleSpecialization",
+      roleMast: "SW5E.StarshipFeature.RoleMastery",
+    }
+  },
+  starshipAction: {
+    label: "SW5E.Feature.StarshipAction",
+    subtypes: {
+      pilot: "SW5E.StarshipActionFeature.Pilot",
+      crew: "SW5E.StarshipActionFeature.Crew",
+      passenger: "SW5E.StarshipActionFeature.Passenger",
+    }
   },
   feat: {
     label: "SW5E.Feature.Feat"
@@ -1600,7 +1666,8 @@ SW5E.ssDefaultEquipment = [
  * @enum {{
  *   field: string,
  *   name: string,
- *   [select]: string
+ *   [select]: string,
+ *   [move]: boolean
  * }}
  */
 SW5E.ssTypeDetails = {
@@ -1621,8 +1688,8 @@ SW5E.ssTypeDetails = {
   buildMinWorkforce: { name: "SW5E.MinConstWorkforce" },
   upgrdCostMult: { name: "SW5E.UpgradeCostMult" },
   upgrdMinWorkforce: { name: "SW5E.UpgradeMinWorkforce" },
-  baseSpaceSpeed: { name: "SW5E.BaseSpaceSpeed" },
-  baseTurnSpeed: { name: "SW5E.BaseTurnSpeed" },
+  baseSpaceSpeed: { name: "SW5E.BaseSpaceSpeed", move: true },
+  baseTurnSpeed: { name: "SW5E.BaseTurnSpeed", move: true },
   crewMinWorkforce: { name: "SW5E.MinCrew" },
   modBaseCap: { name: "SW5E.ModCap" },
   modMaxSuitesBase: { name: "SW5E.ModMaxSuitesBase" },
@@ -3714,6 +3781,8 @@ SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].conca
  */
 SW5E.advancementTypes = {
   HitPoints: advancement.HitPointsAdvancement,
+  HullPoints: advancement.HullPointsAdvancement,
+  ShieldPoints: advancement.ShieldPointsAdvancement,
   ItemGrant: advancement.ItemGrantAdvancement,
   ScaleValue: advancement.ScaleValueAdvancement
 };

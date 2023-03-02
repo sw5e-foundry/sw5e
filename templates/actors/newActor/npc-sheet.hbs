@@ -3,7 +3,6 @@
     <header class="panel">
         <img class="profile" src="{{actor.img}}" data-tooltip="{{actor.name}}" data-edit="img" />
         {{> "sw5e.swalt-warnings"}}
-
         <h1 class="character-name">
             <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'SW5E.Name' }}" />
         </h1>
@@ -41,15 +40,20 @@
                 placeholder="{{ localize 'SW5E.Source' }}"
             />
         </div>
+        {{!-- Header Attributes --}}
         <div class="attributes">
             {{!-- ARMOR CLASS --}}
             <section class="attrib armor">
-                <h4 class="attribute-name box-title">{{ localize "SW5E.ArmorClass" }}</h4>
+                <h4 class="attribute-name box-title"> {{ localize "SW5E.ArmorClass" }} </h4>
                 <a class="config-button" data-action="armor" data-tooltip="SW5E.ArmorConfig">
                     <i class="fas fa-cog"></i>
                 </a>
-                <div class="attribute-value" data-attribution="attributes.ac"
-                     data-attribution-caption="SW5E.ArmorClass" data-tooltip-direction="DOWN">
+                <div
+                    class="attribute-value"
+                    data-attribution="attributes.ac"
+                    data-attribution-caption="SW5E.ArmorClass"
+                    data-tooltip-direction="DOWN"
+                >
                     <span>{{system.attributes.ac.value}}</span>
                 </div>
                 <footer class="attribute-footer">
@@ -64,19 +68,44 @@
                     <i class="fas fa-cog"></i>
                 </a>
                 <div class="attribute-value multiple">
-                    <input name="system.attributes.hp.value" type="text" value="{{hp.value}}" placeholder="10"
-                           data-tooltip="SW5E.HitPointsCurrent" data-dtype="Number">
-                    <span class="sep"> / </span>
-                    <input name="system.attributes.hp.max" type="text" value="{{hp.max}}" placeholder="10"
-                           data-tooltip="SW5E.HitPointsMax" data-dtype="Number">
+                    <input
+                        name="system.attributes.hp.value"
+                        type="text"
+                        class="value-number"
+                        value="{{hp.value}}"
+                        placeholder="10"
+                        data-tooltip="SW5E.HitPointsCurrent"
+                        data-dtype="Number"
+                    >
+                    <span class="value-separator">/</span>
+                    <input
+                        name="system.attributes.hp.max"
+                        type="text"
+                        value="{{hp.max}}"
+                        placeholder="10"
+                        data-tooltip="SW5E.HitPointsMax"
+                        data-dtype="Number"
+                    >
                 </div>
-                <footer class="attribute-footer hit- flexrow">
-                    <input name="system.attributes.hp.temp" type="text" class="temphp"
-                           placeholder="+{{ localize 'SW5E.Temp' }}" value="{{hp.temp}}"
-                           data-tooltip="SW5E.HitPointsTemp">
-                    <input name="system.attributes.hp.tempmax" type="text" class="temphp"
-                           placeholder="+{{ localize 'SW5E.Max' }}" value="{{hp.tempmax}}"
-                           data-tooltip="SW5E.HitPointsTempMax">
+                <footer class="attribute-footer hit-points">
+                    <input
+                        name="system.attributes.hp.temp"
+                        type="text"
+                        class="value-number temphp"
+                        placeholder="+{{ localize 'SW5E.Temp' }}"
+                        value="{{hp.temp}}"
+                        data-tooltip="SW5E.HitPointsTemp"
+                        data-dtype="Number"
+                    >
+                    <input
+                        name="system.attributes.hp.tempmax"
+                        type="text"
+                        class="value-number temphp"
+                        placeholder="+{{ localize 'SW5E.Max' }}"
+                        value="{{hp.tempmax}}"
+                        data-tooltip="SW5E.HitPointsTempMax"
+                        data-dtype="Number"
+                    >
                 </footer>
             </section>
 
@@ -169,7 +198,7 @@
                                     placeholder="0"
                                     data-tooltip="Misc. Modifier"
                                 /> -->
-                                <!-- <span class="skill-passive" data-tooltip="'SW5E.SkillPassiveHint' skill=label">
+                                <!-- <span class="skill-passive" data-tooltip="{{localize 'SW5E.SkillPassiveHint' skill=label}}">
                                     ({{skill.passive}})
                                 </span> -->
                             </li>

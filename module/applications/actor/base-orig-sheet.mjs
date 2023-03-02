@@ -886,7 +886,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
         app = new ActorHitDiceConfig(this.actor);
         break;
       case "hit-points":
-        app = new ActorHitPointsConfig(this.actor);
+        app = new ActorHitPointsConfig(button.dataset.action, this.actor);
         break;
       case "initiative":
         app = new ActorInitiativeConfig(this.actor);

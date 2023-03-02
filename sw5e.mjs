@@ -199,6 +199,7 @@ Hooks.once("init", function () {
       "deployment",
       "deploymentfeature",
       "starship",
+      "starshipsize",
       "starshipaction",
       "starshipfeature",
       "starshipmod",
@@ -307,7 +308,7 @@ Hooks.once("ready", async function () {
   if (migrations.needsMigration()) await migrations.migrateWorld();
 
   // Make old item types unavailable to create
-  game.documentTypes.Item = game.documentTypes.Item.filter(t => !(t in CONFIG.SW5E.featLikeItemsMigration));
+  game.documentTypes.Item = game.documentTypes.Item.filter(t => !(t in CONFIG.SW5E.deprecatedItemTypes));
 });
 
 /* -------------------------------------------- */

@@ -4,7 +4,7 @@
   {{#if isFirstClassLevel}}
 
     <div>
-      {{{localize "SW5E.AdvancementHitPointsMaxAtFirstLevel" max=dieValue}}}
+      {{{localize labels.firstClassLevel max=dieValue}}}
       <input type="hidden" name="useMax" value="true" data-dtype="Boolean" />
     </div>
 
@@ -12,13 +12,13 @@
 
     <div class="rolls">
       <label class="averageLabel">
-        <span>{{localize "SW5E.AdvancementHitPointsAverage"}}</span>
+        <span>{{localize labels.average}}</span>
         <input class="averageCheckbox" type="checkbox" name="useAverage" {{checked data.useAverage}} />
       </label>
       <input class="rollResult" type="number" name="value" value="{{data.value}}" {{disabled data.useAverage}} />
       <button class="rollButton" type="button" name="roll" {{disabled data.useAverage}}>
         <i class="fas fa-dice-d20"></i>
-        {{localize "SW5E.AdvancementHitPointsRollButton" die=hitDie}}
+        {{localize labels.roll die=hitDie}}
       </button>
     </div>
 

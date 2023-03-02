@@ -39,17 +39,15 @@ export default class RechargeRepairDialog extends Dialog {
     const data = super.getData();
 
     // Determine Hull Dice
-    data.availableHD = this.actor.items.reduce((hulld, item) => {
-      if (item.type === "starship") {
-        const { tier, size, hullDice, hullDiceStart, hullDiceUsed } = item.system;
-        const denom = hullDice ?? "d6";
-        const hugeOrGrg = ["huge", "grg"].includes(size);
-        const available =
-          parseInt(hullDiceStart ?? 1) +
-          parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0) -
-          parseInt(hullDiceUsed ?? 0);
-        hulld[denom] = denom in hulld ? hulld[denom] + available : available;
-      }
+    data.availableHD = this.actor.itemTypes.starshipsize.reduce((hulld, item) => {
+      const { tier, size, hullDice, hullDiceStart, hullDiceUsed } = item.system;
+      const denom = hullDice ?? "d6";
+      const hugeOrGrg = ["huge", "grg"].includes(size);
+      const available =
+        parseInt(hullDiceStart ?? 1) +
+        parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0) -
+        parseInt(hullDiceUsed ?? 0);
+      hulld[denom] = denom in hulld ? hulld[denom] + available : available;
       return hulld;
     }, {});
     data.canRoll = this.actor.system.attributes.hull.dice > 0;

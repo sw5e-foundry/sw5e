@@ -135,20 +135,17 @@ export default class ActorSheet5e extends ActorSheet {
       }
     });
 
-    // Check for Starship Shield Depletion
-    if (context.isStarship) context.isShieldDepleted = context.system.attributes.shld.depleted;
-
     // Sort Owned Items
     context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
+    const hp = { ...context.system.attributes.hp };
     // Temporary HP
     if (!context.isStarship) {
-      const hp = { ...context.system.attributes.hp };
       if (hp.temp === 0) delete hp.temp;
       if (hp.tempmax === 0) delete hp.tempmax;
-      context.hp = hp;
-      context.sourceHP = context.source.attributes.hp;
     }
+    context.hp = hp;
+    context.sourceHP = context.source.attributes.hp;
 
     // Powercasting
     context.force = { ...context.system.attributes.force };
@@ -471,7 +468,178 @@ export default class ActorSheet5e extends ActorSheet {
    * Each archetype overrides this method to implement type-specific logic.
    * @protected
    */
-  _prepareItems() {}
+  _prepareItems(context) {}
+
+  /* -------------------------------------------- */
+
+  _prepareItemCategories(config = {}) {
+    config = foundry.utils.mergeObject({
+      expandSubtypes: true,
+      combineForcePowers: true,
+      combineManeuvers: true,
+      splitActive: false,
+      splitEquipped: false,
+    }, config);
+    const categories = {
+      inventory: {},
+      class: {},
+      features: {},
+      powers: {},
+      maneuvers: {},
+      config
+    };
+
+    if (config.splitEquipped) categories.equipped = {};
+    for (const itemType of (config.inventoryItems ?? CONFIG.SW5E.inventoryItems)) {
+      categories.inventory[itemType] = {
+        label: `ITEM.Type${itemType.capitalize()}Pl`,
+        items: [],
+        required: true,
+        dataset: { type: itemType },
+      };
+      if (config.splitEquipped) {
+        categories.equipped[itemType] = {
+          label: `ITEM.Type${itemType.capitalize()}Pl`,
+          items: [],
+          required: true,
+          dataset: { type: itemType, equipped: true },
+        };
+      }
+    }
+
+    for (const itemType of (config.classItems ?? CONFIG.SW5E.classItems)) {
+      categories.class[itemType] = {
+        label: `ITEM.Type${itemType.capitalize()}Pl`,
+        items: [],
+        required: true,
+        dataset: { type: itemType },
+      };
+    }
+
+    for (const [type, val] of Object.entries(config.featureTypes ?? CONFIG.SW5E.featureTypes)) {
+      if ("subtypes" in val && config.expandSubtypes) for (const [subtype, label] of Object.entries(val.subtypes)) {
+        categories.features[`feat.${type}.${subtype}`] = {
+          label,
+          items: [],
+          hasActions: true,
+          dataset: { type: "feat", featType: type, featSubtype: subtype },
+        };
+      }
+      categories.features[`feat.${type}`] = {
+        label: val.label,
+        items: [],
+        hasActions: true,
+        dataset: { type: "feat", featType: type },
+      };
+    }
+    if (config.splitActive) {
+      categories.features.active = {
+        label: "SW5E.FeatureActive",
+        items: [],
+        hasActions: true,
+        required: true,
+        dataset: { "type": "feat", "activation.type": "action" },
+      };
+      categories.features.passive = {
+        label: "SW5E.FeaturePassive",
+        items: [],
+        hasActions: false,
+        required: true,
+        dataset: { type: "feat" },
+      };
+    }
+    else categories.features.feat = {
+      label: "ITEM.TypeFeat",
+      items: [],
+      hasActions: true,
+      required: true,
+      dataset: { type: "feat" },
+    };
+
+    for (const [scl, label] of Object.entries(config.powerSchools ?? CONFIG.SW5E.powerSchools)) {
+      if (config.combineForcePowers && ["lgt", "uni", "drk"].includes(scl)) continue;
+      categories.powers[scl] = { label, items: [], dataset: { type: "power", school: scl } };
+    }
+    if (config.combineForcePowers) categories.powers.for = { items: [], dataset: { type: "power", school: "uni" } };
+
+    if (config.combineManeuvers) categories.maneuvers = { items: [], dataset: { type: "maneuver", maneuverType: "general" } };
+    else for (const [type, label] of Object.entries(config.maneuverTypes ?? CONFIG.SW5E.maneuverTypes)) {
+      categories.maneuvers[type] = { label, items: [], dataset: { type: "maneuver", maneuverType: type } };
+    }
+
+    return categories;
+  }
+
+  _prepareItemsCategorized(context, categories) {
+    for (const item of context.items) {
+      const { quantity, uses, recharge, target } = item.system;
+
+      // Item details
+      const ctx = context.itemContext[item.id] ??= {};
+      ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
+      ctx.id = item.id;
+      ctx.attunement = {
+        [CONFIG.SW5E.attunementTypes.REQUIRED]: {
+          icon: "fa-sun",
+          cls: "not-attuned",
+          title: "SW5E.AttunementRequired"
+        },
+        [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+          icon: "fa-sun",
+          cls: "attuned",
+          title: "SW5E.AttunementAttuned"
+        }
+      }[item.system.attunement];
+
+      // Prepare data needed to display expanded sections
+      ctx.isExpanded = this._expanded.has(item.id);
+
+      // Item usage
+      ctx.hasUses = uses && uses.max > 0;
+      ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+      ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
+      ctx.hasTarget = !!target && !["none", ""].includes(target.type);
+
+      // Item toggle state
+      this._prepareItemToggleState(item, ctx);
+
+      // Item Weight
+      if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
+
+      // Item properties
+      ctx.propertiesList = item.propertiesList;
+      ctx.isStarshipItem = item.isStarshipItem;
+      item.sheet._getWeaponReloadProperties(ctx);
+
+      // Categorize the item
+      if (item.type in categories.inventory) {
+        if (categories.config.splitEquipped && item.system.equipped) categories.equipped[item.type].items.push(item);
+        else categories.inventory[item.type].items.push(item);
+      }
+      else if (item.type in categories.class) categories.class[item.type].items.push(item);
+      else if (item.type === "feat") {
+        const featType = item.system.type.value ? `feat.${item.system.type.value}` : null;
+        const featSubtype = (featType && item.system.type.subtype) ? `${featType}.${item.system.type.subtype}` : null;
+        if (featSubtype in categories.features) categories.features[featSubtype].items.push(item);
+        else if (featType in categories.features) categories.features[featType].items.push(item);
+        else if (categories.config.splitActive) {
+          if (item.system.activation?.type) categories.features.active.items.push(item);
+          else categories.features.passive.items.push(item);
+        }
+        else categories.features.feat.items.push(item);
+      }
+      else if (item.type === "power") {
+        if (["lgt", "uni", "drk"].includes(item.system.school) && categories.config.combineForcePowers)
+          categories.powers.for.items.push(item);
+        else categories.powers[item.system.school]?.items?.push(item);
+      }
+      else if (item.type === "maneuver") {
+        if (categories.config.combineManeuvers) categories.maneuvers.items.push(item);
+        else categories.maneuvers[item.system.maneuverType].items.push(item);
+      }
+      else console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
+    }
+  }
 
   /* -------------------------------------------- */
 
@@ -706,10 +874,6 @@ export default class ActorSheet5e extends ActorSheet {
         .click(ev => ev.target.select())
         .change(this._onUsesChange.bind(this));
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
-      html.find(".increment-deployment-rank").click(this._onIncrementDeploymentRank.bind(this));
-      html.find(".decrement-deployment-rank").click(this._onDecrementDeploymentRank.bind(this));
-      html.find(".increment-starship-tier").click(this._onIncrementStarshipTier.bind(this));
-      html.find(".decrement-starship-tier").click(this._onDecrementStarshipTier.bind(this));
 
       // Active Effect management
       html.find(".effect-control").click(ev => ActiveEffect5e.onManageActiveEffect(ev, this.actor));
@@ -959,7 +1123,9 @@ export default class ActorSheet5e extends ActorSheet {
         app = new ActorHitDiceConfig(this.actor);
         break;
       case "hit-points":
-        app = new ActorHitPointsConfig(this.actor);
+      case "hull-points":
+      case "shield-points":
+        app = new ActorHitPointsConfig(button.dataset.action, this.actor);
         break;
       case "force-points":
       case "tech-points":
@@ -1410,12 +1576,13 @@ export default class ActorSheet5e extends ActorSheet {
     return item.deleteDialog();
   }
 
+  /* -------------------------------------------- */
+
   /**
    * Handle collapsing a Feature row on the actor sheet
    * @param {Event} event   The originating click event
    * @private
    */
-
   _onItemCollapse(event) {
     event.preventDefault();
 
@@ -1429,86 +1596,6 @@ export default class ActorSheet5e extends ActorSheet {
     } else {
       content.style.display = "none";
     }
-  }
-
-  /**
-   * Handle incrementing deployment rank on the actor sheet
-   * @param {Event} event   The originating click event
-   * @private
-   */
-
-  async _onIncrementDeploymentRank(event) {
-    event.preventDefault();
-
-    const li = event.currentTarget.closest("li");
-    const itemId = li.dataset.itemId;
-
-    const actor = this.actor;
-    const item = actor.items.get(itemId);
-
-    const rnk = item.system.rank ?? 99;
-    if (rnk < 5) item.update({ "system.rank": rnk + 1 });
-  }
-
-  /**
-   * Handle decrementing deployment rank on the actor sheet
-   * @param {Event} event   The originating click event
-   * @private
-   */
-
-  async _onDecrementDeploymentRank(event) {
-    event.preventDefault();
-
-    const li = event.currentTarget.closest("li");
-    const itemId = li.dataset.itemId;
-
-    const actor = this.actor;
-    const item = actor.items.get(itemId);
-
-    const rnk = item.system.rank ?? 1;
-    if (rnk > 1) item.update({ "system.rank": rnk - 1 });
-  }
-
-  /**
-   * Handle incrementing starship tier on the actor sheet
-   * @param {Event} event   The originating click event
-   * @private
-   */
-
-  _onIncrementStarshipTier(event) {
-    event.preventDefault();
-
-    const li = event.currentTarget.closest("li");
-    const itemId = li.dataset.itemId;
-
-    const actor = this.actor;
-    const item = actor.items.get(itemId);
-
-    const tier = item.system.tier;
-    if (tier === 5) return;
-
-    item.update({ "system.tier": tier + 1 });
-  }
-
-  /**
-   * Handle decrementing starship tier on the actor sheet
-   * @param {Event} event   The originating click event
-   * @private
-   */
-
-  _onDecrementStarshipTier(event) {
-    event.preventDefault();
-
-    const li = event.currentTarget.closest("li");
-    const itemId = li.dataset.itemId;
-
-    const actor = this.actor;
-    const item = actor.items.get(itemId);
-
-    const tier = item.system.tier;
-    if (tier === 0) return;
-
-    item.update({ "system.tier": tier - 1 });
   }
 
   /* -------------------------------------------- */

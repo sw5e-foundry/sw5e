@@ -61,12 +61,12 @@
             {{/if}} {{/with}} {{/each}}
 
             <!-- Deployment Features -->
-            {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.deployment as | actions |}} {{#if (not (eq actions.items.length 0))}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
             {{/if}} {{/with}}
 
             <!-- Ventures -->
-            {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
             {{/if}} {{/with}}
 
@@ -74,7 +74,7 @@
             {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
-                {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{#with (lookup @root.ssactions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
                     {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
                 {{/if}} {{/with}}
             {{/if}} {{/with}} {{/each}}

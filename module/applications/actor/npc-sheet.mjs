@@ -32,9 +32,8 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     "background",
     "class",
     "archetype",
-    "starship",
-    "starshipaction",
-    "starshipfeature",
+    "species",
+    "starshipsize",
     "starshipmod"
   ]);
 

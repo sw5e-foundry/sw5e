@@ -37,10 +37,11 @@ export default class AdvancementConfirmationDialog extends Dialog {
    * @returns {Promise<boolean|null>}  Resolves with whether advancements should be unapplied. Rejects with null.
    */
   static forLevelDown(item) {
+    const itemLabel = game.i18n.localize(`ITEM.Type${item.type.capitalize()}`);
     return this.createDialog(
       item,
-      game.i18n.localize("SW5E.AdvancementLevelDownConfirmationTitle"),
-      game.i18n.localize("SW5E.AdvancementLevelDownConfirmationMessage"),
+      game.i18n.format("SW5E.AdvancementLevelDownConfirmationTitle", { item: itemLabel }),
+      game.i18n.format("SW5E.AdvancementLevelDownConfirmationMessage", { item: itemLabel }),
       {
         icon: '<i class="fas fa-sort-numeric-down-alt"></i>',
         label: game.i18n.localize("SW5E.LevelActionDecrease")

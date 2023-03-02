@@ -68,18 +68,18 @@
             </div>
 
             {{!-- Weapon/Equipment Properties --}}
-            {{#if itemProperties}}
+            {{#if propertiesList}}
                 <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
                 <div class="form-group stacked item-properties">
                     <label>{{ localize "SW5E.ItemProperties" }}</label>
-                    {{#each itemProperties as |property key|}} {{#if (eq property.type "Boolean")}}
+                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
                         <label class="checkbox" data-tooltip="{{property.desc}}">
                             <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}"
                                    {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                         </label>
                     {{/if}} {{/each}}
 
-                    {{#each itemProperties as |property key|}} {{#if (eq property.type "Number")}}
+                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
                         <label class="number" data-tooltip="{{property.desc}}">
                             {{ localize property.name }}<input type="text" name="system.properties.{{key}}"
                                value="{{lookup ../system.properties key}}" data-dtype="Number">

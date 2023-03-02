@@ -866,6 +866,7 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(4, 1fr);
 }
 .sw5e.sheet.actor .swalt-sheet header .summary input,
+.sw5e.sheet.actor .swalt-sheet header .summary .size,
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   display: inline;
   height: auto;
@@ -875,6 +876,7 @@ input[type="reset"]:disabled {
   letter-spacing: 0.5px;
   line-height: 24px;
   width: 100%;
+  text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   line-height: 26px;
@@ -963,7 +965,8 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 8px;
@@ -972,21 +975,25 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative input,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
   width: 100%;
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
   font-weight: 400;
   margin-top: 2px;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points span,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice span,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative span {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative span,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair span {
   display: block;
   padding: 3px 4px;
 }
@@ -996,38 +1003,15 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.speed input {
   text-align: center;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper {
-  display: grid;
-  grid-template-columns: 300px 100px;
-  width: 400px;
-  justify-self: end;
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair {
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel-label {
-  font-size: 12px;
-  line-height: 14px;
-  width: 100%;
-  text-shadow: none;
-  padding: 0;
-  margin: 0;
-  height: auto;
-  text-align: center;
-  margin-left: -2px;
-  border-radius: 0 4px 4px 0;
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer .depleted {
+  color: #c40f0f;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel {
-  position: relative;
-  border-radius: 4px;
-  height: 16px;
-  margin: 0;
-  width: 100%;
-}
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel .fuel-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 4px;
-  border: none;
+.sw5e.sheet.actor .swalt-sheet header .attributes.starship {
+  grid-template-columns: repeat(4, 1fr);
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
   display: grid;
@@ -1515,6 +1499,78 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.traits ul.passives strong {
   font-size: 13px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel table {
+  border: none;
+  background: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper {
+  display: grid;
+  grid-template-columns: 300px 100px;
+  width: 400px;
+  justify-self: end;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel-label {
+  font-size: 12px;
+  line-height: 14px;
+  width: 100%;
+  text-shadow: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  text-align: center;
+  margin-left: -2px;
+  border-radius: 0 4px 4px 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel {
+  position: relative;
+  border-radius: 4px;
+  height: 16px;
+  margin: 0;
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel .fuel-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table {
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table .top {
+  border-top: 2px solid #0d99cc;
+  border-left: 2px solid #0d99cc;
+  border-right: 2px solid #0d99cc;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table .bottom {
+  border-bottom: 2px solid #0d99cc;
+  border-left: 2px solid #0d99cc;
+  border-right: 2px solid #0d99cc;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value.multiple {
+  display: grid;
+  grid-template-columns: 1fr 14px 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number,
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-separator {
+  height: calc(100% - 2px);
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number {
+  display: inline-block;
+  text-align: right;
+  padding: 0 3px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number:last-child {
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value span.value-number {
+  padding: 1px 4px;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1606,6 +1662,15 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters .counter .death-success {
   margin-right: 8px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.crew.group-grid-deployments {
+  grid-template-columns: auto 100px 100px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.crew.group-grid-deployments .group-item-title {
+  vertical-align: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: -10px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.inventory > .panel {
   grid-template-rows: 32px 32px 24px auto;
@@ -1923,14 +1988,12 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor.npc .swalt-sheet .tab.biography.active {
   display: block;
 }
-.sw5e.sheet.actor.starship .swalt-sheet .tab .group-grid-deployments {
-  grid-template-columns: auto 100px 100px;
+.sw5e.sheet.actor.starship .swalt-sheet header.panel {
+  font-family: 'Russo One';
+  color: #4f4f4f;
 }
-.sw5e.sheet.actor.starship .swalt-sheet .tab .group-grid-deployments .group-item-title {
-  vertical-align: center;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: -10px;
+.sw5e.sheet.actor.starship .swalt-sheet nav.sheet-navigation {
+  grid-template-columns: repeat(6, 1fr);
 }
 .sw5e.sheet.actor input[type="range"][orient="vertical"] {
   -webkit-appearance: slider-vertical;

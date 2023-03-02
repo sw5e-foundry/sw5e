@@ -223,6 +223,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
   static #migrateStarshipData(source) {
     const starshipAttrs = ["capx", "dmgred", "regrateco", "cscap", "sscap", "fuelcostmod", "powerdicerec", "hdclass"];
 
+    source.attributes ??= {};
     for (const attr of starshipAttrs) {
       if (source[attr]) {
         source.attributes[attr] = source[attr];

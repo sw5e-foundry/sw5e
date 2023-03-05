@@ -302,7 +302,7 @@ export default class Actor5e extends Actor {
       acc[dice] = {
         cur: 0,
         max: 0,
-        dice: dice,
+        dice,
         number: parseInt(dice.substring(1))
       };
       return acc;
@@ -496,7 +496,7 @@ export default class Actor5e extends Actor {
     // Prepare base progression data
     const charProgression = ["force", "tech"].reduce((obj, castType) => {
       obj[castType] = {
-        castType: castType,
+        castType,
         prefix: castType.slice(0, 1),
         powersKnownCur: 0,
         powersKnownMax: 0,
@@ -1576,7 +1576,7 @@ export default class Actor5e extends Actor {
     for (const damage of damages) {
       await this.applyDamage(Math.abs(damage.ammount), damage.ammount >= 0 ? 1 : -1, {
         damageType: damage.type,
-        itemUuid: itemUuid
+        itemUuid
       });
     }
     return this;
@@ -1668,7 +1668,7 @@ export default class Actor5e extends Actor {
     const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.skills[skillId]?.label ?? "" });
     const rollData = foundry.utils.mergeObject(
       {
-        data: data,
+        data,
         title: `${flavor}: ${this.name}`,
         flavor,
         chooseModifier: true,
@@ -2063,8 +2063,8 @@ export default class Actor5e extends Actor {
     // Evaluate the roll
     const rollData = foundry.utils.mergeObject(
       {
-        parts: parts,
-        data: data,
+        parts,
+        data,
         title: `${game.i18n.localize("SW5E.DestructionSavingThrow")}: ${this.name}`,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
         targetValue: 10,
@@ -2799,7 +2799,7 @@ export default class Actor5e extends Actor {
     if (!Object.keys(slots).includes(slot)) {
       ui.notifications.warn(
         game.i18n.format("SW5E.PowerDieInvalidSlot", {
-          slot: slot
+          slot
         })
       );
       return null;
@@ -3242,8 +3242,8 @@ export default class Actor5e extends Actor {
     const result = {
       dhd: dhd + hitDiceRecovered,
       dhp: dhp + hitPointsRecovered,
-      dtp: dtp,
-      dfp: dfp,
+      dtp,
+      dfp,
       updateData: {
         ...hitPointUpdates,
         ...this._getRestResourceRecovery({
@@ -3810,7 +3810,7 @@ export default class Actor5e extends Actor {
           recoverDailyUses: newDay
         })
       ],
-      newDay: newDay
+      newDay
     };
 
     /**

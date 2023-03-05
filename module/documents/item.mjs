@@ -85,11 +85,11 @@ export default class Item5e extends Item {
 
           const { attr, mod } = attrs.reduce(
             (acc, attr) => {
-              const mod = abilities[attr]?.mod ?? -1001;
-              if (mod > acc.mod) acc = { attr: attr, mod: mod };
+              const mod = abilities[attr]?.mod ?? -Infinity;
+              if (mod > acc.mod) acc = { attr, mod };
               return acc;
             },
-            { attr: "str", mod: -1000 }
+            { attr: "str", mod: -Infinity }
           );
 
           return attr;
@@ -1992,7 +1992,7 @@ export default class Item5e extends Item {
       critical,
       data: rollData,
       event,
-      title: title,
+      title,
       flavor: this.labels.damageTypes.length ? `${title} (${this.labels.damageTypes})` : title,
       dialogOptions: {
         width: 400,
@@ -2297,7 +2297,7 @@ export default class Item5e extends Item {
     const rollConfig = foundry.utils.mergeObject(
       {
         data: rollData,
-        title: title,
+        title,
         flavor: title,
         dialogOptions: {
           width: 400,
@@ -2424,16 +2424,16 @@ export default class Item5e extends Item {
     switch (action) {
       case "attack":
         await item.rollAttack({
-          event: event,
-          powerLevel: powerLevel
+          event,
+          powerLevel
         });
         break;
       case "damage":
       case "versatile":
         await item.rollDamage({
           critical: event.altKey,
-          event: event,
-          powerLevel: powerLevel,
+          event,
+          powerLevel,
           versatile: action === "versatile"
         });
         break;
@@ -3089,7 +3089,7 @@ export default class Item5e extends Item {
         game.i18n.format("SW5E.ErrorModNoSpace", {
           itemName: item.name,
           modName: mod.name,
-          modType: modType
+          modType
         })
       );
 
@@ -3097,7 +3097,7 @@ export default class Item5e extends Item {
     const objData = mod.toObject();
     delete objData._id;
     objData.system.modifying.id = item.id;
-    const obj = { objdata: objData, name: mod.name, type: modType };
+    const obj = { objdata, name: mod.name, type: modType };
 
     if (this.actor) {
       const items = await this.actor.createEmbeddedDocuments("Item", [objData]);

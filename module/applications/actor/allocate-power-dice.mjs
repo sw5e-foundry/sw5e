@@ -32,8 +32,8 @@ export default class AllocatePowerDice extends Dialog {
 
     for (const [id, str] of Object.entries(slots)) {
       data.slots[id] = {
-        id: id,
-        str: str,
+        id,
+        str,
         full: power[id].value == power[id].max
       };
     }

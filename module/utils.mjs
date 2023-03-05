@@ -109,8 +109,8 @@ function isValidUUID(uuid) {
 }
 
 export const validators = {
-  isValidIdentifier: isValidIdentifier,
-  isValidUUID: isValidUUID
+  isValidIdentifier,
+  isValidUUID
 };
 
 /* -------------------------------------------- */

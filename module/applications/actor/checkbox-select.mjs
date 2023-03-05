@@ -75,8 +75,8 @@ export default class CheckboxSelectDialog extends Dialog {
       const dialog = new this(
         select,
         {
-          title: title,
-          content: content,
+          title,
+          content,
           buttons: {
             ok: {
               icon: '<i class="fas fa-check"></i>',
@@ -89,7 +89,7 @@ export default class CheckboxSelectDialog extends Dialog {
               }
             }
           },
-          render: render,
+          render,
           close: () => {
             if (rejectClose) reject("The selection Dialog was closed without a choice being made");
             else resolve(null);

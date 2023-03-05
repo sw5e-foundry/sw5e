@@ -48,7 +48,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
     const hp = this.clone.system.attributes.hp;
     const temp = this.hitPointType === "shield" ? "temp" : "";
     const data = {
-      hp: hp,
+      hp,
       isNpc: this.document.type === "npc",
       value: {
         sourceMax: source[`${temp}max`],

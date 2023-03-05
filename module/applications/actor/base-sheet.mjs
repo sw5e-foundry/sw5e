@@ -572,8 +572,9 @@ export default class ActorSheet5e extends ActorSheet {
   }
 
   _prepareItemsCategorized(context, categories) {
+    const config = categories.config;
     for (const item of context.items) {
-      const { quantity, uses, recharge, target } = item.system;
+      const { quantity, uses, recharge, target, equipped } = item.system;
 
       // Item details
       const ctx = context.itemContext[item.id] ??= {};
@@ -613,39 +614,53 @@ export default class ActorSheet5e extends ActorSheet {
       item.sheet._getWeaponReloadProperties(ctx);
 
       // Categorize the item
-      if (item.type in categories.inventory) {
-        if (categories.config.splitEquipped && item.system.equipped) categories.equipped[item.type].items.push(item);
-        else categories.inventory[item.type].items.push(item);
+      if (item.type in categories.equipped && config.splitEquipped && equipped) {
+        categories.equipped[item.type].items.push(item);
+        continue;
       }
-      else if (item.type in categories.class) categories.class[item.type].items.push(item);
+      else if (item.type in categories.inventory) {
+        categories.inventory[item.type].items.push(item);
+        continue;
+      }
+      else if (item.type in categories.class) {
+        categories.class[item.type].items.push(item);
+        continue;
+      }
       else if (item.type === "feat") {
         const featType = item.system.type.value ? `feat.${item.system.type.value}` : null;
         const featSubtype = (featType && item.system.type.subtype) ? `${featType}.${item.system.type.subtype}` : null;
         if (featSubtype in categories.features) categories.features[featSubtype].items.push(item);
         else if (featType in categories.features) categories.features[featType].items.push(item);
-        else if (categories.config.splitActive) {
+        else if (config.splitActive) {
           if (item.system.activation?.type) categories.features.active.items.push(item);
           else categories.features.passive.items.push(item);
         }
         else categories.features.feat.items.push(item);
+        continue;
       }
       else if (item.type === "power") {
-        if (["lgt", "uni", "drk"].includes(item.system.school) && categories.config.combineForcePowers)
+        if (["lgt", "uni", "drk"].includes(item.system.school) && config.combineForcePowers) {
           categories.powers.for.items.push(item);
-        else if (item.system.school in categories.powers) categories.powers[item.system.school]?.items?.push(item);
-        else {
-          categories.unsorted.items.push(item);
-          console.warn(`Power ${item.name} of school ${item.system.school} is unsorted.`);
+          continue;
+        }
+        else if (item.system.school in categories.powers) {
+          categories.powers[item.system.school]?.items?.push(item);
+          continue;
         }
       }
       else if (item.type === "maneuver") {
-        if (categories.config.combineManeuvers) categories.maneuvers.items.push(item);
-        else categories.maneuvers[item.system.maneuverType].items.push(item);
+        if (config.combineManeuvers) {
+          categories.maneuvers.items.push(item);
+          continue;
+        }
+        else {
+          categories.maneuvers[item.system.maneuverType]?.items.push(item);
+          continue;
+        }
       }
-      else {
-        categories.unsorted.items.push(item);
-        console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
-      }
+
+      categories.unsorted.items.push(item);
+      console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
     }
   }
 

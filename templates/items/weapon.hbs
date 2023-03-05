@@ -152,11 +152,13 @@
                                 {{/select}}
                             </select>
                         {{/if}}
-                        <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number"{{#if (and reloadUsesAmmo (not system.ammo.target))}} disabled{{/if}} />
+                        <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number"
+                               {{#if (and reloadUsesAmmo (not system.ammo.target))}} disabled{{/if}} />
                         <span class="sep">/</span>
                         <span>{{ system.ammo.max }}</span>
                         <a class="weapon-reload"{{#if reloadFull}} disabled{{/if}}>{{ localize reloadActLabel }}</a>
-                        <input type="text" name="system.ammo.use" value="{{system.ammo.use}}" data-dtype="Number" placeholder="{{system.ammo.baseUse}}" data-tooltip="SW5E.WeaponAmmoConsumeAmmountHint"/>
+                        <input type="text" name="system.ammo.use" value="{{system.ammo.use}}" data-dtype="Number"
+                               placeholder="{{system.ammo.baseUse}}" data-tooltip="SW5E.WeaponAmmoConsumeAmmountHint"/>
                     </div>
                 </div>
             {{/if}}

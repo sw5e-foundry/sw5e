@@ -14,7 +14,7 @@
                     <div class="title">
                         <h3 class="item-name">{{localize section.label}}</h3>
                         {{#if ../owner}}
-                            {{#unless (or ../isStarshipItem section.isStarship)}}
+                            {{#unless section.isStarship}}
                                 <a class="item-control item-create" data-tooltip="SW5E.FeatureAdd"
                                     {{#each section.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
             						<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
@@ -46,26 +46,6 @@
                                         <i class="original-class fas fa-sun" data-tooltip="SW5E.ClassOriginal"></i>
                                     {{/if}}
                                 </h4>
-                                {{#if ctx.hasReload}}
-                                    <div class="form-group uses-per">
-                                        <div class="form-fields">
-                                            {{#if item.reloadUsesAmmo}}
-                                                <select class="weapon-select-ammo" name="item.system.ammo.target">
-                                                    {{#select item.system.ammo.target}}
-                                                        <option value=""></option>
-                                                        {{#each item.reloadAmmo as |name key|}}
-                                                            <option value="{{key}}">{{name}}</option>
-                                                        {{/each}}
-                                                    {{/select}}
-                                                </select>
-                                            {{/if}}
-                                            <input class="weapon-reload-count" type="text" name="item.system.ammo.value" value="{{item.system.ammo.value}}" data-dtype="Number"{{#if (and item.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}} />
-                                            <span class="sep">/</span>
-                                            <span>{{ system.ammo.max }}</span>
-                                            <a class="weapon-reload"{{#if item.reloadFull}} disabled{{/if}}>{{ localize item.reloadActLabel }}</a>
-                                        </div>
-                                    </div>
-                                {{/if}}
                             </div>
 
                             {{#if section.hasActions}}
@@ -119,11 +99,6 @@
 
                             {{#if @root.owner}}
                                 <div class="item-controls item-detail">
-                                    {{#if ../../isStarshipItem}}
-                                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-tooltip="{{ctx.toggleTitle}}">
-                                            <i class="fas fa-shield-alt"></i>
-                                        </a>
-                                    {{/if}}
                                     <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
                                     {{#if (not section.isStarship)}}
                                         <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>

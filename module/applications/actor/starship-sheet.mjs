@@ -160,6 +160,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   _prepareItems(context) {
     const categories = this._prepareItemCategories({ splitEquipped: true });
 
+    categories.equipped = {
+      weapon: categories.equipped.weapon,
+      equipment: categories.equipped.equipment,
+      starshipmod: categories.equipped.starshipmod,
+    }
+
     this._prepareItemsCategorized(context, categories);
 
     // Split features

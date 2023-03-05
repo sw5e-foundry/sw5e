@@ -1,15 +1,17 @@
 <section class="panel">
-    {{#if (or isCharacter isStarship) }}
+    {{#if (or isCharacter showCurrency showEncumbrance) }}
         <div class="currency-encumbrance">
 
-            <label class="currency">
-                {{localize "SW5E.Currency"}}
-                {{#each system.currency as |v k|}}
-                    <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
-                    <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number">
-                {{/each}}
-            </label>
-            {{#if isCharacter}} {{#with encumbrance}}
+            {{#if (or isCharacter showCurrency)}}
+                <label class="currency">
+                    {{localize "SW5E.Currency"}}
+                    {{#each system.currency as |v k|}}
+                        <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
+                        <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number">
+                    {{/each}}
+                </label>
+            {{/if}}
+            {{#if (or isCharacter showEncumbrance)}} {{#with encumbrance}}
                 <div class="encumbrance-wrapper" title="Encumbrance">
                     <div class="encumbrance {{#if encumbered}}encumbered{{/if}}">
                         <span class="encumbrance-bar" style="width:{{pct}}%"></span>
@@ -40,15 +42,18 @@
     <div class="group-list-header group-grid-inventory">
         <div>&nbsp;</div>
         {{#if isCharacter}}
-        <div class="item-detail item-weight">{{localize "SW5E.Weight"}}</div>
+            <div class="item-detail item-weight">{{localize "SW5E.Weight"}}</div>
+        {{else}}
+            <div></div>
         {{/if}}
-
+        <div class="item-detail item-weight">{{#if isCharacter}}{{localize "SW5E.Weight"}}{{/if}}</div>
         <div class="item-detail item-uses">{{localize "SW5E.Charges"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
         <div class="item-detail"></div>
     </div>
     <ol class="group-list">
         {{#each sections as |section sid|}}
+        {{#if (or section.items.length section.required)}}
         <li>
             <div class="group-list-title">
                 <h3 class="item-name">{{localize section.label}}</h3>
@@ -78,7 +83,7 @@
                                 </div>
                             {{/if}}
                             {{#if ctx.hasReload}}
-                                <div class="form-group uses-per">
+                                <div class="form-group uses-per" data-tooltip="SW5E.ItemReload">
                                     <div class="form-fields">
                                         <span> </span>
                                         {{#if ctx.reloadUsesAmmo}}
@@ -91,28 +96,40 @@
                                                 {{/select}}
                                             </select>
                                         {{/if}}
-                                        <input class="weapon-reload-count" type="text" name="item.system.ammo.value"
-                                               value="{{item.system.ammo.value}}" data-dtype="Number"
-                                               {{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}}/>
-                                        <span class="sep">/</span>
-                                        <span>{{ system.ammo.max }}</span>
+                                        {{#if ctx.hasUses}}
+                                            <input class="weapon-reload-count" type="text" name="item.system.ammo.value"
+                                                   value="{{item.system.ammo.value}}" data-dtype="Number"
+                                                   {{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}}/>
+                                            <span class="sep">/</span>
+                                            <span>{{ system.ammo.max }}</span>
+                                        {{/if}}
                                     </div>
                                 </div>
                             {{/if}}
                         </div>
 
-                        {{#if @root.isCharacter}}
-                            <div class="item-detail item-weight">
-                                {{#if ctx.totalWeight}}
-                                    {{ ctx.totalWeight }} {{ @root.weightUnit }}
-                                {{/if}}
-                            </div>
+                        {{#if ctx.totalWeight}}
+                            <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
+                        {{else}}
+                            <div></div>
                         {{/if}}
 
                         <div class="item-detail item-uses">
-                            {{#if ctx.hasUses }}
-                            <input type="text" value="{{item.system.uses.value}}" placeholder="0" />
-                            /<span style="padding-left: 8px;">{{item.system.uses.max}}</span>
+                            {{#if ctx.hasUses}}
+                                <div class="form-group uses-per" data-tooltip="SW5E.ConsumeCharges">
+                                    <input type="text" name="item.system.uses.value" placeholder="0" 
+                                           value="{{item.system.uses.value}}" data-dtype="Number" />
+                                    <span class="sep">/</span>
+                                    <span>{{ system.uses.max }}</span>
+                                </div>
+                            {{else if ctx.hasReload}}
+                                <div class="form-group uses-per" data-tooltip="SW5E.ItemReload">
+                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value"
+                                           value="{{item.system.ammo.value}}" data-dtype="Number"
+                                           {{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}}/>
+                                    <span class="sep">/</span>
+                                    <span>{{ system.ammo.max }}</span>
+                                </div>
                             {{/if}}
                         </div>
 
@@ -148,6 +165,7 @@
                 {{/each}}
             </ol>
         </li>
+        {{/if}}
         {{/each}}
     </ol>
 </section>

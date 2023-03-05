@@ -235,7 +235,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       if (rollMode === "blindroll") rollBlind = true;
       let data = {
         user: game.user.id,
-        content: content,
+        content,
         blind: rollBlind,
         speaker: {
           actor: this.actor.id,
@@ -306,7 +306,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     const button = event.currentTarget;
     switch (button.dataset.action) {
       case "rollDeathSave":
-        return this.actor.rollDeathSave({ event: event });
+        return this.actor.rollDeathSave({ event });
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({event});
     }
@@ -630,7 +630,7 @@ async function addFavorites(app, html, context) {
       if (dragTarget === undefined) return;
       const sortUpdates = SortingHelpers.performIntegerSort(dragSource, {
         target: dragTarget,
-        siblings: siblings,
+        siblings,
         sortKey: "flags.favtab.sort"
       });
       const updateData = sortUpdates.map(u => {
@@ -666,7 +666,7 @@ async function addSubTabs(app, html, data) {
     html.find("[data-subgroup-selection] [data-subgroup]").each((idx, el) => {
       let subgroup = el.getAttribute("data-subgroup");
       let target = el.getAttribute("data-target");
-      let targetObj = { target: target, active: el.classList.contains("active") };
+      let targetObj = { target, active: el.classList.contains("active") };
       if (data.options.subTabs.hasOwnProperty(subgroup)) {
         data.options.subTabs[subgroup].push(targetObj);
       } else {

@@ -115,11 +115,11 @@ export default class CharacterImporter {
       type: "character",
       img: sourceCharacter.avatar,
       system: {
-        abilities: abilities,
-        details: details,
-        skills: skills,
+        abilities,
+        details,
+        skills,
         attributes: {
-          hp: hp
+          hp
         }
       }
     };
@@ -172,7 +172,7 @@ export default class CharacterImporter {
             "LANGUAGE";
           return {
             name: prof.current,
-            type: type
+            type
           };
         }),
       actor
@@ -435,7 +435,7 @@ export default class CharacterImporter {
         <textarea id="character-json" name="character-json" rows="10" cols="50"></textarea>`;
       let importDialog = new Dialog({
         title: "Import Character from SW5e.com",
-        content: content,
+        content,
         buttons: {
           Import: {
             icon: `<i class="fas fa-file-import"></i>`,

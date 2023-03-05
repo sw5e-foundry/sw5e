@@ -319,7 +319,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     const button = event.currentTarget;
     switch (button.dataset.action) {
       case "rollDestructionSave":
-        return this.actor.rollDestructionSave({ event: event });
+        return this.actor.rollDestructionSave({ event });
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({ event });
       case "rollPowerDie":
@@ -399,9 +399,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       Dialog.confirm({
         title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
         content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
-          minCrew: minCrew,
-          installCost: installCost,
-          installTime: installTime
+          minCrew,
+          installCost,
+          installTime
         }),
         yes: callback
       });
@@ -691,7 +691,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         content: {
           i18n: CONFIG.SW5E.ssCrewStationTypes,
           isToken: this.actor.isToken,
-          preselected: preselected
+          preselected
         },
         default: "accept",
         buttons: {

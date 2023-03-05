@@ -1065,7 +1065,7 @@ export default class ItemSheet5e extends ItemSheet {
             content: game.i18n.localize("SW5E.WeaponAmmoConfigureContent"),
             checkboxes: CONFIG.SW5E.ammoTypes,
             defaultSelect: this.item.system.ammo?.types,
-            disabled: disabled
+            disabled
         });
         if (result) this.item.update({"system.ammo.types": result});
     }

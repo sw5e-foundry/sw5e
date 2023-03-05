@@ -71,8 +71,8 @@ export default class TraitSelector extends DocumentSheet {
 
     // Return data
     return {
-      choices: choices,
-      custom: custom,
+      choices,
+      custom,
       customPath: o.allowCustom ? "custom" : null
     };
   }

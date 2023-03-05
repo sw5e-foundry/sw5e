@@ -688,7 +688,7 @@ export default class ActorSheet5e extends ActorSheet {
       const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.override`);
       powerbook[i] = {
         order: i,
-        label: label,
+        label,
         usesSlots: i > 0,
         canCreate: owner,
         canPrepare: context.actor.type === "character" && i >= 1,
@@ -1532,7 +1532,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     const itemData = {
       name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`ITEM.Type${type.capitalize()}`) }),
-      type: type,
+      type,
       system: foundry.utils.expandObject({ ...header.dataset })
     };
     if (featType) {
@@ -1662,7 +1662,7 @@ export default class ActorSheet5e extends ActorSheet {
   _onRollAbilityTest(event) {
     event.preventDefault();
     let ability = event.currentTarget.parentElement.dataset.ability;
-    this.actor.rollAbility(ability, { event: event });
+    this.actor.rollAbility(ability, { event });
   }
 
   /* -------------------------------------------- */
@@ -1676,7 +1676,7 @@ export default class ActorSheet5e extends ActorSheet {
   _onRollSkillCheck(event) {
     event.preventDefault();
     const skill = event.currentTarget.closest("[data-skill]").dataset.skill;
-    return this.actor.rollSkill(skill, { event: event });
+    return this.actor.rollSkill(skill, { event });
   }
 
   /* -------------------------------------------- */

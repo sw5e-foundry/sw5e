@@ -40,7 +40,7 @@ export default class AbilityUseDialog extends Dialog {
 
         // Prepare dialog form data
         const data = {
-            item: item,
+            item,
             title: game.i18n.format("SW5E.AbilityUseHint", {
                 type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`),
                 name: item.name
@@ -70,7 +70,7 @@ export default class AbilityUseDialog extends Dialog {
                 buttons: {
                     use: {
                         icon: `<i class="fas ${icon}"></i>`,
-                        label: label,
+                        label,
                         callback: (html) => {
                             const fd = new FormDataExtended(html[0].querySelector("form"));
                             resolve(fd.object);

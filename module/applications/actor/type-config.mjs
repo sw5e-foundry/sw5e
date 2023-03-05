@@ -57,7 +57,7 @@ export default class ActorTypeConfig extends FormApplication {
 
     // Return data for rendering
     return {
-      types: types,
+      types,
       custom: {
         value: attr.custom,
         label: game.i18n.localize("SW5E.CreatureTypeSelectorCustom"),

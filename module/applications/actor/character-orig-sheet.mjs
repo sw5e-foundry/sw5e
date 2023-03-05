@@ -318,7 +318,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     const button = event.currentTarget;
     switch (button.dataset.action) {
       case "rollDeathSave":
-        return this.actor.rollDeathSave({ event: event });
+        return this.actor.rollDeathSave({ event });
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({ event });
     }

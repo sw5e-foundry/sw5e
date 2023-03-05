@@ -30,8 +30,8 @@ export default class ExpendPowerDiceDialog extends Dialog {
 
     for (const [id, str] of Object.entries(slots)) {
       data.slots[id] = {
-        id: id,
-        str: str,
+        id,
+        str,
         disabled: power[id].value < 1
       };
     }

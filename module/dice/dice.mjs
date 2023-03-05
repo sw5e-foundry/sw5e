@@ -322,7 +322,7 @@ export async function damageRoll({
     const configured = await roll.configureDialog(
       {
         title,
-        defaultRollMode: defaultRollMode,
+        defaultRollMode,
         defaultCritical: isCritical,
         template,
         allowCritical

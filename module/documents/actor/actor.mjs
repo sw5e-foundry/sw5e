@@ -348,8 +348,8 @@ export default class Actor5e extends Actor {
     const isMod = item.type === "starshipmod";
     const isWpn = item.type === "weapon";
 
-    const baseCost = isMod ? itemData.basecost.value : itemData.price;
-    const sizeMult = isMod ? shipData.modCostMult : isWpn ? 1 : shipData.equipCostMult;
+    const baseCost = isMod ? itemData.basecost?.value ?? 0 : itemData.price?.value ?? 0;
+    const sizeMult = isMod ? shipData.modCostMult ?? 1 : isWpn ? 1 : shipData.equipCostMult ?? 1;
     const gradeMult = isMod ? Number(itemData.grade.value) || 1 : 1;
     const fullCost = baseCost * sizeMult * gradeMult;
 

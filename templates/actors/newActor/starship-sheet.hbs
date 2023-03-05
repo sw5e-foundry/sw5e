@@ -464,12 +464,12 @@
 
     {{!-- Cargo --}}
     <div class="tab cargo flexcol" data-group="primary" data-tab="cargo">
-      {{> "sw5e.swalt-inventory" sections=inventory}}
+      {{> "sw5e.swalt-inventory" sections=inventory showCurrency="true"}}
     </div>
 
     {{!-- Equipment Tab --}}
     <div class="tab equipment flexcol" data-group="primary" data-tab="equipment">
-      {{> "sw5e.swalt-features" sections=equipment isStarshipItem="true"}}
+      {{> "sw5e.swalt-inventory" sections=equipment}}
     </div>
 
     {{!-- Features Tab --}}

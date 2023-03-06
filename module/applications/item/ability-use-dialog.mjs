@@ -203,7 +203,7 @@ export default class AbilityUseDialog extends Dialog {
         // Abilities which use Recharge
         if (recharge.value) {
             return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
-                type: game.i18n.localize(`ITEM.Type${item.system.type.capitalize()}`)
+                type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`)
             });
         }
 

@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated core to match [dnd5e 2.1.4](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.1.4).
 - The following item types were merged into `feat` as subcategories: `deploymentfeature`, `classfeature`, `fightingmastery`, `fightingstyle`, `lightsaberform`, `starshipaction`, `starshipfeature`, `venture`.
 - Starship Movement Calculations updated. To use the old rules, turn on `Old Starship Movement` configuration.
+- Drake's Shipyard and the other Starship Compendiums updated with the new reload system.
 - Moved weapon 'reload' on the actor's inventory to the context menu.
 
 ### Fixed

@@ -32,6 +32,7 @@ export default class AbilityUseDialog extends Dialog {
 
         // Prepare data
         const uses = item.system.uses ?? {};
+        const resource = item.system.consume ?? {};
         const quantity = item.system.quantity ?? 0;
         const recharge = item.system.recharge ?? {};
         const recharges = !!recharge.value;
@@ -39,16 +40,16 @@ export default class AbilityUseDialog extends Dialog {
 
         // Prepare dialog form data
         const data = {
-            item: item,
+            item,
             title: game.i18n.format("SW5E.AbilityUseHint", {
-                type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
+                type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`),
                 name: item.name
             }),
             note: this._getAbilityUseNote(item, uses, recharge),
             consumePowerSlot: false,
             consumeSuperiorityDie: item.type === "maneuver",
             consumeRecharge: recharges,
-            consumeResource: !!item.system.consume.target,
+            consumeResource: resource.target && (!item.hasAttack || (resource.type !== "ammo")),
             consumeUses: uses.per && uses.max > 0,
             canUse: recharges ? recharge.charged : sufficientUses,
             createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
@@ -69,7 +70,7 @@ export default class AbilityUseDialog extends Dialog {
                 buttons: {
                     use: {
                         icon: `<i class="fas ${icon}"></i>`,
-                        label: label,
+                        label,
                         callback: (html) => {
                             const fd = new FormDataExtended(html[0].querySelector("form"));
                             resolve(fd.object);
@@ -202,7 +203,7 @@ export default class AbilityUseDialog extends Dialog {
         // Abilities which use Recharge
         if (recharge.value) {
             return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
-                type: game.i18n.localize(`SW5E.ItemType${item.system.type.capitalize()}`)
+                type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`)
             });
         }
 
@@ -227,7 +228,7 @@ export default class AbilityUseDialog extends Dialog {
         // Other Items
         else {
             return game.i18n.format("SW5E.AbilityUseNormalHint", {
-                type: game.i18n.localize(`SW5E.ItemType${item.type.capitalize()}`),
+                type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`),
                 value: uses.value,
                 max: uses.max,
                 per: CONFIG.SW5E.limitedUsePeriods[uses.per]

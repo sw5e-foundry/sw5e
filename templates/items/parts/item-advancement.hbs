@@ -5,21 +5,29 @@
         <div class="item-controls flexrow configuration-mode-control">
           {{#if isEmbedded}}
             {{#if advancementEditable}}
-              <a class="item-control" data-action="toggle-configuration"
-                title="{{localize 'SW5E.AdvancementConfigurationActionDisable'}}">
-                <i class="fas fa-lock-open"></i> {{localize "SW5E.AdvancementConfigurationModeEnabled"}}
+              <a
+                class="item-control"
+                data-action="toggle-configuration"
+                data-tooltip="SW5E.AdvancementConfigurationActionDisable"
+              >
+                <i class="fas fa-lock-open"></i>
+                {{localize "SW5E.AdvancementConfigurationModeEnabled"}}
               </a>
             {{else}}
-              <a class="item-control" data-action="toggle-configuration"
-                title="{{localize 'SW5E.AdvancementConfigurationActionEnable'}}">
-                <i class="fas fa-lock"></i> {{localize "SW5E.AdvancementConfigurationModeDisabled"}}
+              <a
+                class="item-control"
+                data-action="toggle-configuration"
+                data-tooltip="SW5E.AdvancementConfigurationActionEnable"
+              >
+                <i class="fas fa-lock"></i>
+                {{localize "SW5E.AdvancementConfigurationModeDisabled"}}
               </a>
             {{/if}}
           {{/if}}
         </div>
         {{#if advancementEditable}}
           <div class="item-controls flexrow add-button">
-            <a class="item-control" data-action="add" title="{{localize 'SW5E.AdvancementControlCreate'}}">
+            <a class="item-control" data-action="add" data-tooltip="SW5E.AdvancementControlCreate">
               <i class="fas fa-plus"></i>
             </a>
           </div>
@@ -29,10 +37,12 @@
     {{#each advancement as |data level|}}
       <li class="items-header flexrow" data-level="{{level}}">
         <h3 class="item-name flexrow">
-          {{#if (eq level "0")}}
-            {{localize "SW5E.AdvancementLevelAnyHeader"}}
-          {{else if (eq level "unconfigured")}}
+          {{#if (eq level "unconfigured")}}
             {{localize "SW5E.AdvancementLevelNoneHeader"}}
+          {{else if (eq @root.item.type "starshipsize")}}
+            {{localize "SW5E.AdvancementLevelHeaderStarship" tier=level}}
+          {{else if (eq level "0")}}
+            {{localize "SW5E.AdvancementLevelAnyHeader"}}
           {{else}}
             {{localize "SW5E.AdvancementLevelHeader" level=level}}
           {{/if}}
@@ -44,11 +54,11 @@
           </div>
         {{/if}}
         {{#if (eq data.configured "full")}}
-          <div class="item-checkmark" title="{{localize 'SW5E.AdvancementConfiguredComplete'}}">
+          <div class="item-checkmark" data-tooltip="SW5E.AdvancementConfiguredComplete">
             <i class="fas fa-check-circle"></i>
           </div>
         {{else if (eq data.configured "partial")}}
-          <div class="item-warning" title="{{localize 'SW5E.AdvancementConfiguredIncomplete'}}">
+          <div class="item-warning" data-tooltip="SW5E.AdvancementConfiguredIncomplete">
             <i class="fas fa-exclamation-triangle"></i>
           </div>
         {{/if}}
@@ -71,12 +81,12 @@
             {{/if}}
             {{#if @root.advancementEditable}}
               <div class="item-controls flexrow">
-                  <a class="item-control" data-action="edit" title="{{localize 'SW5E.AdvancementControlEdit'}}">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a class="item-control" data-action="delete" title="{{localize 'SW5E.AdvancementControlDelete'}}">
-                    <i class="fas fa-trash"></i>
-                  </a>
+                <a class="item-control" data-action="edit" data-tooltip="SW5E.AdvancementControlEdit">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a class="item-control" data-action="delete" data-tooltip="SW5E.AdvancementControlDelete">
+                  <i class="fas fa-trash"></i>
+                </a>
               </div>
             {{/if}}
             {{#if this.summary}}

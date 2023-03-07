@@ -28,10 +28,10 @@
             <a class="modification-link"><i class="fas fa-suitcase"></i>{{mod.name}}</a>
         </div>
         <div class="modification-controls">
-            <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+            <a class="modification-control" data-action="toggle" data-tooltip="SW5E.ItemModControlToggle{{#if mod.disabled}}On{{else}}Off{{/if}}">
                 <i class="fas {{#if mod.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
             </a>
-            <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+            <a class="modification-control" data-action="delete" data-tooltip="SW5E.ItemModControlDelete">
                 <i class="fas fa-trash"></i>
             </a>
         </div>
@@ -54,10 +54,10 @@
             <a class="modification-link"><i class="fas fa-suitcase"></i> {{aug.name}}</a>
         </div>
         <div class="modification-controls">
-            <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+            <a class="modification-control" data-action="toggle" data-tooltip="SW5E.ItemModControlToggle">
                 <i class="fas {{#if aug.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
             </a>
-            <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+            <a class="modification-control" data-action="delete" data-tooltip="SW5E.ItemModControlDelete">
                 <i class="fas fa-trash"></i>
             </a>
         </div>

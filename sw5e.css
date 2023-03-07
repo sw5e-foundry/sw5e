@@ -4,32 +4,32 @@
 /* ----------------------------------------- */
 /* russo-one-regular - latin */
 @font-face {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/RussoOne.ttf');
+  src: url("./fonts/RussoOne.ttf");
 }
 /* engli-besh */
 @font-face {
-  font-family: 'Engli-Besh';
+  font-family: "Engli-Besh";
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/EngliBesh-KG3W.ttf');
+  src: url("./fonts/EngliBesh-KG3W.ttf");
 }
 .engli-Besh {
-  font-family: 'Engli-Besh';
+  font-family: "Engli-Besh";
   font-size: 20px;
   font-weight: 400;
 }
 /* open-sans-regular - latin */
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/OpenSans-Regular.ttf');
+  src: url("./fonts/OpenSans-Regular.ttf");
 }
 .openSans {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 20px;
   font-weight: 400;
 }
@@ -83,6 +83,11 @@
 /* ----------------------------------------- */
 /*  All SW5e Apps                           */
 /* ----------------------------------------- */
+h5 {
+  margin-block-start: 1em;
+  margin-block-end: 0;
+  font-size: var(--font-size-13);
+}
 .sw5e {
   /* ----------------------------------------- */
   /*  Element Styles                           */
@@ -134,6 +139,13 @@
   background: rgba(0, 0, 0, 0.1);
   border: 2px groove #eeede0;
 }
+.sw5e .secret .reveal {
+  border: 1px dashed var(--color-border-light-primary);
+  background: rgb(255 255 3%);
+}
+.sw5e .locked .secret .reveal {
+  display: none;
+}
 .sw5e .form-group label {
   flex: 2;
   color: #4b4a44;
@@ -181,7 +193,7 @@
   padding: 2px 0;
   border-top: 2px groove #eeede0;
   border-bottom: 2px groove #eeede0;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
 }
@@ -247,7 +259,7 @@
 .sw5e.sheet .window-content {
   overflow-y: hidden;
   padding: 5px;
-  background: linear-gradient(90deg, #afc6d6 0%, #D6D6D6 30%, #D6D6D6 70%, #afc6d6);
+  background: linear-gradient(90deg, #afc6d6 0%, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
   font-size: 13px;
   color: #191813;
 }
@@ -330,7 +342,7 @@
   /* Header Summary Details */
 }
 .sw5e.sheet .sheet-header .header-details {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
 }
@@ -338,7 +350,7 @@
   width: 100%;
   height: 100%;
   border: 0;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   text-transform: capitalize;
@@ -389,7 +401,7 @@
 .sw5e.sheet .sheet-navigation {
   flex: 0 0 30px;
   margin-bottom: 5px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
 }
@@ -400,7 +412,7 @@
   border-bottom: 3px solid #b5b3a4;
 }
 .sw5e.sheet .sheet-navigation .item.active {
-  border-bottom: 3px solid #44191A;
+  border-bottom: 3px solid #44191a;
 }
 .sw5e.sheet .sheet-body {
   flex: 1;
@@ -434,7 +446,7 @@
   border-bottom: 3px solid #7a7971;
 }
 .sw5e.sheet .filter-list .filter-item.active {
-  border-bottom: 3px solid #44191A;
+  border-bottom: 3px solid #44191a;
 }
 .sw5e.sheet .traits {
   margin: 5px 0 0;
@@ -597,56 +609,56 @@
 /* ----------------------------------------- */
 /*  Property Attribution                     */
 /* ----------------------------------------- */
-.property-attribution {
-  display: none;
-  position: absolute;
+#tooltip.property-attribution {
+  min-width: 150px;
   padding: 3px;
-  border: 1px solid #000;
-  border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
-  color: #c9c7b8;
-  text-align: left;
-  z-index: 1;
+  text-align: left !important;
 }
-.property-attribution table {
+#tooltip.property-attribution table {
   margin: 0;
   border: 0;
+  font-size: var(--font-size-14);
 }
-.property-attribution table tr {
+#tooltip.property-attribution table caption {
+  padding-block: 0.25em 0.5em;
+  font-size: var(--font-size-16);
+}
+#tooltip.property-attribution table tr {
   background-color: inherit;
 }
-.property-attribution table td {
+#tooltip.property-attribution table td {
   padding: 3px;
 }
-.property-attribution table tr.total > td {
+#tooltip.property-attribution table tr.total > td {
   font-weight: 600;
   padding-top: 5px;
   border-top: 1px solid #7a7971;
 }
-.property-attribution table td.attribution-value {
+#tooltip.property-attribution table td.attribution-value {
   width: 20%;
   padding-right: 5px;
   text-align: right;
   font-weight: 600;
 }
-.property-attribution table td::before {
+#tooltip.property-attribution table td::before {
   opacity: 0.6;
 }
-.property-attribution table td.mode-1::before {
+#tooltip.property-attribution table td.mode-1::before {
   content: "×";
 }
-.property-attribution table td.mode-2::before {
+#tooltip.property-attribution table td.mode-2::before {
   content: "+";
 }
-.property-attribution table td.mode-2.negative::before {
+#tooltip.property-attribution table td.mode-2.negative::before {
   content: "−";
   margin-right: -1px;
 }
-.property-attribution table td.mode-3::before {
+#tooltip.property-attribution table td.mode-3::before {
   content: "↓";
 }
-.property-attribution table td.mode-4::before {
+#tooltip.property-attribution table td.mode-4::before {
   content: "↑";
 }
 /* ----------------------------------------- */
@@ -679,7 +691,9 @@
 /* ----------------------------------------- */
 /*  Armor Config Sheet Specifically          */
 /* ----------------------------------------- */
-.sw5e.actor-armor-config .ac-field input {
+.sw5e.actor-armor-config .ac-field,
+.sw5e.actor-hit-points-config .hp-field,
+.sw5e.actor-cast-points-config .cast-points-field {
   font-size: 3em;
   text-align: center;
 }
@@ -742,59 +756,40 @@
   pointer-events: all;
 }
 /* ----------------------------------------- */
-/*  SRD Compendium                           */
+/*  Polymorph Features                       */
 /* ----------------------------------------- */
-.srd-compendium article {
+.polymorph {
+  /* ----------------------------------------- */
+  /*  Two Column Configurations                */
+  /* ----------------------------------------- */
+}
+.polymorph.two-column {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-gap: 0.4em;
+}
+/* ----------------------------------------- */
+/*  Module Art Configuration                 */
+/* ----------------------------------------- */
+#module-art-config .form-group-stacked {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+#module-art-config .form-group-stacked > label {
+  flex: 1 0 auto;
+}
+#module-art-config .form-group-stacked > .form-fields {
+  flex: 0 0 auto;
   display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
+  gap: 0.5rem;
 }
-.srd-compendium article aside,
-.srd-compendium article .contents {
-  border: 4px solid #ba2828;
-  background: #efefef99;
+#module-art-config .form-group-stacked > .form-fields label {
+  display: flex;
+  align-items: center;
 }
-.srd-compendium article aside header h2,
-.srd-compendium article .contents header h2 {
-  border: none;
-  background: #ba2828;
-  color: var(--color-text-light-1);
-  padding: 0 0.25rem 0.25rem 0.25rem;
-  margin: 0;
-}
-.srd-compendium article aside section,
-.srd-compendium article .contents section {
-  padding: 0.625rem 1rem;
-}
-.srd-compendium article aside blockquote {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-.srd-compendium article .contents {
-  flex-grow: 1;
-}
-.srd-compendium article .contents .chapter {
-  margin-bottom: 0.5rem;
-  break-inside: avoid-column;
-}
-.srd-compendium article .contents h3 {
-  border: none;
-  font-weight: bold;
-  font-size: var(--font-size-18);
-  color: var(--color-text-hyperlink);
-}
-.srd-compendium article .contents ul {
-  list-style-type: none;
-  margin: 0 0 0 0.375rem;
-  padding: 0;
-}
-.srd-compendium article .contents ul li {
-  font-size: var(--font-size-16);
-}
-.srd-compendium article .contents section {
-  column-count: 3;
+#module-art-config .form-group-stacked > .form-fields input {
+  width: 16px;
+  height: 16px;
 }
 .sw5e.sheet.actor {
   /* ----------------------------------------- */
@@ -838,8 +833,6 @@
 }
 .sw5e.sheet.actor .config-button {
   color: #4b4a44;
-  right: -6px;
-  top: -3px;
   font-size: 10px;
   font-weight: normal;
 }
@@ -888,6 +881,7 @@
   margin: 0;
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute {
+  position: relative;
   height: 70px;
   margin: 0;
   border: none;
@@ -906,6 +900,9 @@
 }
 .sw5e.sheet.actor .sheet-header .attributes .attribute .config-button {
   position: absolute;
+  padding: 4px;
+  right: 0;
+  top: 0;
   display: none;
   right: -6px;
   top: -3px;
@@ -918,19 +915,11 @@
 .sw5e.sheet.actor .sheet-header .attributes .attribute input.temphp {
   width: 48%;
 }
-.sw5e.sheet.actor .sheet-header .attributes .attribute .property-attribution {
-  min-width: 150px;
-  top: 50px;
-  font-family: Signika, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1rem;
-}
 .sw5e.sheet.actor h4.box-title {
   height: 18px;
   line-height: 16px;
   margin: 4px 8px 2px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   color: #4b4a44;
@@ -963,7 +952,7 @@
   align-items: center;
   height: 28px;
   line-height: 28px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
 }
@@ -971,7 +960,8 @@
   font-weight: 400;
   font-size: 24px;
 }
-.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input {
+.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple input,
+.sw5e.sheet.actor ul.attributes li.attribute .attribute-value.multiple span:not(.sep) {
   flex: 0 0 33%;
 }
 .sw5e.sheet.actor ul.attributes li.attribute .attribute-footer {
@@ -983,19 +973,13 @@
   font-weight: 400;
   white-space: nowrap;
 }
-.sw5e.sheet.actor .attributable {
-  position: relative;
-}
-.sw5e.sheet.actor .attributable:hover .tooltip {
-  display: block;
-}
 .sw5e.sheet.actor .ability-scores {
   flex: 0 0 100px;
   align-content: flex-start;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   border: 2px groove #eeede0;
@@ -1051,6 +1035,10 @@
 .sw5e.sheet.actor .proficiency-toggle {
   color: #b5b3a4;
   font-size: 12px;
+}
+.sw5e.sheet.actor .proficiency-toggle.disabled {
+  cursor: default;
+  text-shadow: none;
 }
 .sw5e.sheet.actor .proficient .proficiency-toggle {
   color: #4b4a44;
@@ -1217,6 +1205,7 @@
   line-height: 20px;
   color: #7a7971;
 }
+.sw5e.sheet.actor .inventory-filters .currency input[type="text"],
 .sw5e.sheet.actor .inventory-filters .currency input[type="number"] {
   flex: 0 0 48px;
   text-align: center;
@@ -1239,7 +1228,7 @@
   color: #7a7971;
 }
 .sw5e.sheet.actor .inventory-list .item .item-name i.not-attuned {
-  color: #44191A;
+  color: #44191a;
 }
 .sw5e.sheet.actor .inventory-list .item .item-uses input {
   width: 24px;
@@ -1590,6 +1579,9 @@
 .sw5e.advancement.scale-value select option[value=""] {
   color: var(--color-text-light-6);
 }
+.sw5e.advancement-migration .items-list {
+  margin-block-end: 1em;
+}
 /* ----------------------------------------- */
 /*  Advancement Flow                         */
 /* ----------------------------------------- */
@@ -1631,23 +1623,35 @@
   border-block-end: 2px groove var(--color-border-light-1);
   padding-block-end: 1em;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] div {
+.sw5e.advancement.flow form[data-type="HitPoints"] div,
+.sw5e.advancement.flow form[data-type="HullPoints"] div,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] div {
   font-size: var(--font-size-14);
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls {
   display: grid;
   grid-template-columns: 50% 1fr 1fr;
   align-items: center;
   gap: 2px;
 }
 .sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel span,
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel input {
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .averageLabel span,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .averageLabel span,
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .averageLabel input,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .averageLabel input,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .averageLabel input {
   vertical-align: middle;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollResult {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollResult,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .rollResult,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .rollResult {
   text-align: center;
 }
-.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollButton {
+.sw5e.advancement.flow form[data-type="HitPoints"] .rolls .rollButton,
+.sw5e.advancement.flow form[data-type="HullPoints"] .rolls .rollButton,
+.sw5e.advancement.flow form[data-type="ShieldPoints"] .rolls .rollButton {
   height: calc(var(--form-field-height) + 5px);
   line-height: 1.5em;
 }
@@ -1685,9 +1689,6 @@
   /*  Item Actions                             */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
-  /*  Item Advancement                         */
-  /* ----------------------------------------- */
-  /* ----------------------------------------- */
   /*  Loot Sheet (No Tabs)                     */
   /* ----------------------------------------- */
 }
@@ -1709,6 +1710,7 @@
   margin: 0;
   padding: 5px;
   text-align: right;
+  white-space: nowrap;
   color: #7a7971;
 }
 .sw5e.sheet.item .sheet-header .item-subtitle .item-type {
@@ -1738,7 +1740,7 @@
   overflow: hidden;
 }
 .sw5e.sheet.item .sheet-body h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1747,7 +1749,7 @@
   color: #c40f0f;
 }
 .sw5e.sheet.item .sheet-body h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 18px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1756,7 +1758,7 @@
   color: #c40f0f;
 }
 .sw5e.sheet.item .sheet-body h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1790,7 +1792,7 @@
   background-color: #bdc8cc;
   text-transform: none;
   font-weight: bold;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .sw5e.sheet.item .sheet-body .smalltable th:nth-child(odd) {
   width: 50px;
@@ -1829,7 +1831,7 @@
   background-color: #bdc8cc;
   text-transform: none;
   font-weight: bold;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .sw5e.sheet.item .sheet-body .medtable th:nth-child(odd) {
   text-align: center;
@@ -1846,7 +1848,7 @@
 .sw5e.sheet.item .sheet-body .classtable blockquote h3 {
   color: #000000;
   text-transform: uppercase;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
 }
 .sw5e.sheet.item .sheet-body .classtable table {
@@ -1868,7 +1870,7 @@
   background-color: #bdc8cc;
   text-transform: none;
   font-style: normal;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .sw5e.sheet.item .sheet-body .classtable th {
   color: #000000;
@@ -1878,7 +1880,7 @@
   text-transform: none;
   font-style: normal;
   font-weight: bold;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 .sw5e.sheet.item .sheet-body .classtable tbody {
   text-align: center;
@@ -1925,7 +1927,7 @@
   font-weight: 800;
 }
 .sw5e.sheet.item .sheet-body .speciestable table h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   color: #000000;
   font-size: 15px;
   text-transform: uppercase;
@@ -1948,7 +1950,7 @@
   -webkit-font-smoothing: antialiased;
 }
 .sw5e.sheet.item .sheet-body a.entity-link {
-  background: #DDD;
+  background: #ddd;
   padding: 1px 4px;
   border: 1px solid #4b4a44;
   border-radius: 2px;
@@ -1964,7 +1966,7 @@
   width: 15px;
 }
 .sw5e.sheet.item .sheet-body #species-description h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1972,7 +1974,7 @@
   color: #c40f0f;
 }
 .sw5e.sheet.item .sheet-body #Traits h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   text-transform: uppercase;
@@ -2018,6 +2020,9 @@
   color: #4b4a44;
   margin: 0.5em 0 0 0;
   font-size: 1em;
+}
+.sw5e.sheet.item .sheet-body .item-properties [name="system.price.denomination"] {
+  border: none;
 }
 .sw5e.sheet.item .details input[type="text"],
 .sw5e.sheet.item .details input[type="number"],
@@ -2119,45 +2124,47 @@
   height: 16px;
   top: 4px;
 }
-.sw5e.sheet.item .weapon-properties label.number,
-.sw5e.sheet.item .weapon-properties label.checkbox,
-.sw5e.sheet.item .armor-properties label.number,
-.sw5e.sheet.item .armor-properties label.checkbox,
-.sw5e.sheet.item .casting-properties label.number,
-.sw5e.sheet.item .casting-properties label.checkbox {
+.sw5e.sheet.item .item-properties label.number,
+.sw5e.sheet.item .item-properties label.checkbox {
   flex: 0 0 98px;
 }
-.sw5e.sheet.item .advancement .items-list {
+.sw5e.sheet.item .loot-header {
+  margin-bottom: 10px;
+}
+/* ----------------------------------------- */
+/*  Item Advancement                         */
+/* ----------------------------------------- */
+.sw5e .advancement .items-list {
   height: 100%;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control {
+.sw5e .advancement .items-list .main-controls .configuration-mode-control {
   flex: 1 0;
   margin-inline-start: 0.5em;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .configuration-mode-control a {
+.sw5e .advancement .items-list .main-controls .configuration-mode-control a {
   text-align: start;
 }
-.sw5e.sheet.item .advancement .items-list .main-controls .item-add {
+.sw5e .advancement .items-list .main-controls .item-add {
   padding-block-start: 0.2em;
 }
-.sw5e.sheet.item .advancement .items-list .items-header .item-checkmark {
+.sw5e .advancement .items-list .items-header .item-checkmark {
   flex: 0 0 44px;
   color: rgb(17 145 17);
   text-shadow: white 0 0 1px;
 }
-.sw5e.sheet.item .advancement .items-list .items-header .item-warning {
+.sw5e .advancement .items-list .items-header .item-warning {
   flex: 0 0 44px;
   color: rgb(250 255 35);
   text-shadow: black 0 0 1px;
 }
-.sw5e.sheet.item .advancement .items-list .item-name {
+.sw5e .advancement .items-list .item-name {
   flex: 1 0 10em;
 }
-.sw5e.sheet.item .advancement .items-list .item-controls {
+.sw5e .advancement .items-list .item-controls {
   border-left: 1px solid #c9c7b8;
   flex: 0 0 44px;
 }
-.sw5e.sheet.item .advancement .items-list .item-summary {
+.sw5e .advancement .items-list .item-summary {
   flex: 0 0 100%;
   font-size: 12px;
   line-height: 16px;
@@ -2165,15 +2172,108 @@
   margin-top: -4px;
   color: #191813;
 }
-.sw5e.sheet.item .advancement .items-list .item-summary .item-list .item-name {
+.sw5e .advancement .items-list .item-summary .item-list .item-name {
   display: flex;
 }
-.sw5e.sheet.item .advancement .items-list .tag {
+.sw5e .advancement .items-list .tag {
   font-size: 0.7rem;
   padding: 0.1em 0.5em;
 }
-.sw5e.sheet.item .loot-header {
-  margin-bottom: 10px;
+/* ----------------------------------------- */
+/*  SRD Compendium                           */
+/* ----------------------------------------- */
+.srd-compendium article {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+.srd-compendium article aside,
+.srd-compendium article .contents {
+  border: 4px solid #ba2828;
+  background: #efefef99;
+}
+.srd-compendium article aside header h2,
+.srd-compendium article .contents header h2 {
+  border: none;
+  background: #ba2828;
+  color: var(--color-text-light-1);
+  padding: 0 0.25rem 0.25rem 0.25rem;
+  margin: 0;
+}
+.srd-compendium article aside section,
+.srd-compendium article .contents section {
+  padding: 0.625rem 1rem;
+}
+.srd-compendium article aside blockquote {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.srd-compendium article .contents {
+  flex-grow: 1;
+}
+.srd-compendium article .contents .chapter {
+  margin-bottom: 0.5rem;
+  break-inside: avoid-column;
+}
+.srd-compendium article .contents h3 {
+  border: none;
+  font-weight: bold;
+  font-size: var(--font-size-18);
+  color: var(--color-text-hyperlink);
+}
+.srd-compendium article .contents ul {
+  list-style-type: none;
+  margin: 0 0 0 0.375rem;
+  padding: 0;
+}
+.srd-compendium article .contents ul li {
+  font-size: var(--font-size-16);
+}
+.srd-compendium article .contents section {
+  column-count: 3;
+}
+/* ----------------------------------------- */
+/*  Journal Pages                            */
+/* ----------------------------------------- */
+.journal-editor .tox-tinymce {
+  height: 100% !important;
+}
+.journal-entry-page.class h4,
+.class-journal h4 {
+  border-block-end: 1px solid var(--color-underline-header);
+  font-weight: bold;
+}
+.journal-entry-page.class table th[scope="col"],
+.class-journal table th[scope="col"] {
+  padding-inline: 0.25em;
+}
+.journal-entry-page.class table td:is(.level, .prof, .scale, .power-slots),
+.class-journal table td:is(.level, .prof, .scale, .power-slots) {
+  text-align: center;
+}
+.journal-entry-page.class form .form-group,
+.class-journal form .form-group {
+  align-items: start;
+}
+.journal-entry-page.class form button.launch-text-editor,
+.class-journal form button.launch-text-editor {
+  flex: 0.35;
+}
+.journal-entry-page.class form .items-list .item,
+.class-journal form .items-list .item {
+  align-items: center;
+  padding-block: 0.35em 0;
+  padding-inline: 2px;
+}
+.journal-entry-page.class form .items-list .item .item-controls,
+.class-journal form .items-list .item .item-controls {
+  flex: 0;
+}
+.journal-entry-page.class form .items-list .item:not(:last-of-type),
+.class-journal form .items-list .item:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-border-light-secondary);
 }
 /* ----------------------------------------- */
 /*  Chat Cards
@@ -2186,8 +2286,8 @@
 .sw5e.chat-card .card-header,
 .midi-qol-item-card .card-header {
   padding: 3px 0;
-  border-top: 2px groove #FFF;
-  border-bottom: 2px groove #FFF;
+  border-top: 2px groove #fff;
+  border-bottom: 2px groove #fff;
 }
 .sw5e.chat-card .card-header img,
 .midi-qol-item-card .card-header img {
@@ -2199,7 +2299,7 @@
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: 'Engli-Besh';
+  font-family: "Engli-Besh";
   font-size: 20px;
   font-weight: 400;
   color: #4b4a44;
@@ -2235,7 +2335,7 @@
   display: block;
   line-height: 28px;
   text-align: center;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
 }
 .sw5e.chat-card .card-buttons button,
 .midi-qol-item-card .card-buttons button {
@@ -2247,11 +2347,11 @@
 .sw5e.chat-card .card-footer,
 .midi-qol-item-card .card-footer {
   padding: 3px 0 0;
-  border-top: 2px groove #FFF;
+  border-top: 2px groove #fff;
 }
 .sw5e.chat-card .card-footer span,
 .midi-qol-item-card .card-footer span {
-  border-right: 2px groove #FFF;
+  border-right: 2px groove #fff;
   padding: 0 3px 0 0;
   font-size: 10px;
 }
@@ -2400,7 +2500,7 @@
 }
 .sw5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed,
 .sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.fixed {
-  color: #44191A;
+  color: #44191a;
 }
 .sw5e.sheet.actor.character .inventory .item-controls .item-toggle.fixed:hover,
 .sw5e.sheet.actor.character .powerbook .item-controls .item-toggle.fixed:hover {
@@ -2413,7 +2513,7 @@
 }
 .sw5e.sheet.actor.character .characteristics label {
   flex: 0 0 20px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   font-size: 16px;
@@ -2422,7 +2522,7 @@
   text-align: center;
 }
 .sw5e.sheet.actor.character .characteristics textarea {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 20px;
   font-weight: 400;
   border: 1px solid #c9c7b8;
@@ -2507,5 +2607,62 @@
 }
 .sw5e.sheet.actor.vehicle .counters .counter.cargo-cap input {
   max-width: 40px;
+  text-align: right;
+}
+.sw5e.sheet.group {
+  min-width: 620px;
+  min-height: 620px;
+  /** Members Directory */
+}
+.sw5e.sheet.group .attribute.health span.value {
+  line-height: 64px;
+  flex: 0 0 64px;
+}
+.sw5e.sheet.group .members .directory-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0 0.5rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px groove #eeede0;
+}
+.sw5e.sheet.group .members .directory-header > * {
+  margin: 0;
+  font-family: "Russo One";
+  font-size: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: left;
+}
+.sw5e.sheet.group .members .group-member {
+  padding: 0 0.5rem;
+}
+.sw5e.sheet.group .members .group-member .name {
+  cursor: pointer;
+}
+.sw5e.sheet.group .members .hp {
+  flex: 2;
+  align-items: center;
+}
+.sw5e.sheet.group .members .hp .current,
+.sw5e.sheet.group .members .hp .max {
+  flex: 0 0 40px;
+  text-align: center;
+}
+.sw5e.sheet.group .members .hp .bar-container {
+  background: #111;
+  height: 20px;
+  padding: 1px;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+.sw5e.sheet.group .members .hp .bar {
+  height: 16px;
+  border-radius: 4px;
+}
+.sw5e.sheet.group .members .controls {
+  flex: 0 0 64px;
   text-align: right;
 }

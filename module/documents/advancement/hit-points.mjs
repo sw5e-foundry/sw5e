@@ -1,0 +1,189 @@
+import Advancement from "./advancement.mjs";
+import HitPointsConfig from "../../applications/advancement/hit-points-config.mjs";
+import HitPointsFlow from "../../applications/advancement/hit-points-flow.mjs";
+import { simplifyBonus } from "../../utils.mjs";
+
+/**
+ * Advancement that presents the player with the option to roll hit points at each level or select the average value.
+ * Keeps track of player hit point rolls or selection for each class level. **Can only be added to classes and each
+ * class can only have one.**
+ */
+export default class HitPointsAdvancement extends Advancement {
+  /** @inheritdoc */
+  static get metadata() {
+    return foundry.utils.mergeObject(super.metadata, {
+      order: 10,
+      icon: "systems/sw5e/icons/svg/hit-points.svg",
+      title: game.i18n.localize("SW5E.AdvancementHitPointsTitle"),
+      hint: game.i18n.localize("SW5E.AdvancementHitPointsHint"),
+      multiLevel: true,
+      validItemTypes: new Set(["class"]),
+      apps: {
+        config: HitPointsConfig,
+        flow: HitPointsFlow
+      }
+    });
+  }
+
+  /* -------------------------------------------- */
+  /*  Instance Properties                         */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  get levels() {
+    return Array.fromRange(this.item.maxAdvancementLevel + 1).slice(1);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Shortcut to the hit die used by the class.
+   * @returns {string}
+   */
+  get hitDie() {
+    return this.item.system.hitDice;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The face value of the hit die used.
+   * @returns {number}
+   */
+  get hitDieValue() {
+    return Number(this.hitDie.substring(1));
+  }
+
+  /* -------------------------------------------- */
+  /*  Display Methods                             */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  configuredForLevel(level) {
+    return this.valueForLevel(level) !== null;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  titleForLevel(level, { configMode = false } = {}) {
+    const hp = this.valueForLevel(level);
+    if (!hp || configMode) return this.title;
+    return `${this.title}: <strong>${hp}</strong>`;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Hit points given at the provided level.
+   * @param {number} level   Level for which to get hit points.
+   * @returns {number|null}  Hit points for level or null if none have been taken.
+   */
+  valueForLevel(level) {
+    return this.constructor.valueForLevel(this.value, this.hitDieValue, level);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Hit points given at the provided level.
+   * @param {object} data         Contents of `value` used to determine this value.
+   * @param {number} hitDieValue  Face value of the hit die used by this advancement.
+   * @param {number} level        Level for which to get hit points.
+   * @param {number} [quant]      Quantity of dice at provided level.
+   * @returns {number|null}       Hit points for level or null if none have been taken.
+   */
+  static valueForLevel(data, hitDieValue, level, quant=1) {
+    const value = data[level];
+    if (!value) return null;
+
+    const avg = hitDieValue / 2 + 1
+    if (value === "max") return hitDieValue * quant;
+    if (value === "avg") {
+      if (level == 0) return hitDieValue + avg * (quant - 1);
+      return avg * quant;
+    }
+    return value;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Total hit points provided by this advancement.
+   * @returns {number}  Hit points currently selected.
+   */
+  total() {
+    return Object.keys(this.value).reduce((total, level) => total + this.valueForLevel(parseInt(level)), 0);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Total hit points taking the provided ability modifier into account, with a minimum of 1 per level.
+   * @param {number} mod  Modifier to add per level.
+   * @returns {number}    Total hit points plus modifier.
+   */
+  getAdjustedTotal(mod) {
+    return Object.keys(this.value).reduce((total, level) => {
+      return total + Math.max(this.valueForLevel(parseInt(level)) + mod, 1);
+    }, 0);
+  }
+
+  /* -------------------------------------------- */
+  /*  Editing Methods                             */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static availableForItem(item) {
+    return !item.advancement.byType.HitPoints?.length;
+  }
+
+  /* -------------------------------------------- */
+  /*  Application Methods                         */
+  /* -------------------------------------------- */
+
+  /**
+   * Add the ability modifier and any bonuses to the provided hit points value to get the number to apply.
+   * @param {number} value  Hit points taken at a given level.
+   * @returns {number}      Hit points adjusted with ability modifier and per-level bonuses.
+   */
+  #getApplicableValue(value) {
+    const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
+    value = Math.max(value + (this.actor.system.abilities[abilityId]?.mod ?? 0), 1);
+    value += simplifyBonus(this.actor.system.attributes.hp.bonuses.level, this.actor.getRollData());
+    return value;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  apply(level, data) {
+    let value = this.constructor.valueForLevel(data, this.hitDieValue, level);
+    if (value === undefined) return;
+    this.actor.updateSource({
+      "system.attributes.hp.value": this.actor.system.attributes.hp.value + this.#getApplicableValue(value)
+    });
+    this.updateSource({ value: data });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  restore(level, data) {
+    this.apply(level, data);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  reverse(level) {
+    let value = this.valueForLevel(level);
+    if (value === undefined) return;
+    this.actor.updateSource({
+      "system.attributes.hp.value": this.actor.system.attributes.hp.value - this.#getApplicableValue(value)
+    });
+    const source = { [level]: this.value[level] };
+    this.updateSource({ [`value.-=${level}`]: null });
+    return source;
+  }
+}

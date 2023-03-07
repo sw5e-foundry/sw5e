@@ -26,7 +26,7 @@
  * @property {boolean} [reliableTalent]  Allow Reliable Talent to modify this roll?
  *
  * ## Roll Configuration Dialog
- * @property {boolean} [fastForward=false]     Should the roll configuration dialog be skipped?
+ * @property {boolean} [fastForward]           Should the roll configuration dialog be skipped?
  * @property {boolean} [chooseModifier=false]  If the configuration dialog is shown, should the ability modifier be
  *                                             configurable within that interface?
  * @property {string} [template]               The HTML template used to display the roll configuration dialog.
@@ -49,93 +49,74 @@
  * @returns {Promise<D20Roll|null>}             The evaluated D20Roll, or null if the workflow was cancelled
  */
 export async function d20Roll({
-    parts = [],
-    data = {},
-    event,
-    advantage,
-    disadvantage,
-    critical = 20,
-    fumble = 1,
+  parts = [],
+  data = {},
+  event,
+  advantage,
+  disadvantage,
+  critical = 20,
+  fumble = 1,
+  targetValue,
+  elvenAccuracy,
+  halflingLucky,
+  reliableTalent,
+  fastForward,
+  chooseModifier = false,
+  template,
+  title,
+  dialogOptions,
+  chatMessage = true,
+  messageData = {},
+  rollMode,
+  flavor
+} = {}) {
+  // Handle input arguments
+  const formula = ["1d20"].concat(parts).join(" + ");
+  const {advantageMode, isFF} = CONFIG.Dice.D20Roll.determineAdvantageMode({
+    advantage, disadvantage, fastForward, event
+  });
+  const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
+  if (chooseModifier && !isFF) {
+    data.mod = "@mod";
+    if ("abilityCheckBonus" in data) data.abilityCheckBonus = "@abilityCheckBonus";
+  }
+
+  // Construct the D20Roll instance
+  const roll = new CONFIG.Dice.D20Roll(formula, data, {
+    flavor: flavor || title,
+    advantageMode,
+    defaultRollMode,
+    rollMode,
+    critical,
+    fumble,
     targetValue,
     elvenAccuracy,
     halflingLucky,
-    reliableTalent,
-    fastForward = false,
-    chooseModifier = false,
-    template,
-    title,
-    dialogOptions,
-    chatMessage = true,
-    messageData = {},
-    rollMode,
-    flavor
-} = {}) {
-    // Handle input arguments
-    const formula = ["1d20"].concat(parts).join(" + ");
-    const {advantageMode, isFF} = _determineAdvantageMode({advantage, disadvantage, fastForward, event});
-    const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
-    if (chooseModifier && !isFF) {
-        data.mod = "@mod";
-        if ("abilityCheckBonus" in data) data.abilityCheckBonus = "@abilityCheckBonus";
-    }
+    reliableTalent
+  });
 
-    // Construct the D20Roll instance
-    const roll = new CONFIG.Dice.D20Roll(formula, data, {
-        flavor: flavor || title,
-        advantageMode,
+  // Prompt a Dialog to further configure the D20Roll
+  if (!isFF) {
+    const configured = await roll.configureDialog(
+      {
+        title,
+        chooseModifier,
         defaultRollMode,
-        rollMode,
-        critical,
-        fumble,
-        targetValue,
-        elvenAccuracy,
-        halflingLucky,
-        reliableTalent
-    });
+        defaultAction: advantageMode,
+        defaultAbility: data?.item?.ability || data?.defaultAbility,
+        template
+      },
+      dialogOptions
+    );
+    if (configured === null) return null;
+  } else roll.options.rollMode ??= defaultRollMode;
 
-    // Prompt a Dialog to further configure the D20Roll
-    if (!isFF) {
-        const configured = await roll.configureDialog(
-            {
-                title,
-                chooseModifier,
-                defaultRollMode,
-                defaultAction: advantageMode,
-                defaultAbility: data?.item?.ability || data?.defaultAbility,
-                template
-            },
-            dialogOptions
-        );
-        if (configured === null) return null;
-    } else roll.options.rollMode ??= defaultRollMode;
+  // Evaluate the configured roll
+  await roll.evaluate({ async: true });
 
-    // Evaluate the configured roll
-    await roll.evaluate({async: true});
-
-    // Create a Chat Message
-    if (roll && chatMessage) await roll.toMessage(messageData);
-    return roll;
-}
-
-/* -------------------------------------------- */
-
-/**
- * Determines whether this d20 roll should be fast-forwarded, and whether advantage or disadvantage should be applied
- * @param {object} [config]
- * @param {Event} [config.event]           Event that triggered the roll.
- * @param {boolean} [config.advantage]     Is something granting this roll advantage?
- * @param {boolean} [config.disadvantage]  Is something granting this roll disadvantage?
- * @param {boolean} [config.fastForward]   Should the roll dialog be skipped?
- * @returns {{isFF: boolean, advantageMode: number}}  Whether the roll is fast-forward, and its advantage mode.
- */
-function _determineAdvantageMode({event, advantage = false, disadvantage = false, fastForward = false} = {}) {
-    const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-    let advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.NORMAL;
-    if (advantage || event?.altKey) advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.ADVANTAGE;
-    else if (disadvantage || event?.ctrlKey || event?.metaKey) {
-        advantageMode = CONFIG.Dice.D20Roll.ADV_MODE.DISADVANTAGE;
-    }
-    return {isFF, advantageMode};
+  // Create a Chat Message
+  if (roll && chatMessage) await roll.toMessage(messageData);
+  return roll;
 }
 
 /* -------------------------------------------- */
@@ -179,56 +160,56 @@ function _determineAdvantageMode({event, advantage = false, disadvantage = false
  * @returns {Promise<AttribDieRoll|null>}            The evaluated AttribDieRoll, or null if the workflow was cancelled
  */
 export async function attribDieRoll({
-    parts = [],
-    data = {},
-    event,
-    advantage,
-    disadvantage,
-    fastForward = false,
-    chooseModifier = false,
-    template,
-    title,
-    dialogOptions,
-    chatMessage = true,
-    messageData = {},
-    rollMode,
-    flavor
+  parts = [],
+  data = {},
+  event,
+  advantage,
+  disadvantage,
+  fastForward = false,
+  chooseModifier = false,
+  template,
+  title,
+  dialogOptions,
+  chatMessage = true,
+  messageData = {},
+  rollMode,
+  flavor
 } = {}) {
-    // Handle input arguments
-    const formula = parts.join(" + ");
-    const {advantageMode, isFF} = _determineAttribDieAdvantageMode({advantage, disadvantage, fastForward, event});
-    const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
-    if (chooseModifier && !isFF) data.mod = "@mod";
+  // Handle input arguments
+  const formula = parts.join(" + ");
+  const { advantageMode, isFF } = _determineAttribDieAdvantageMode({ advantage, disadvantage, fastForward, event });
+  const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
+  if (chooseModifier && !isFF) data.mod = "@mod";
 
-    // Construct the AttribDieRoll instance
-    const roll = new CONFIG.Dice.AttribDieRoll(formula, data, {
-        flavor: flavor || title,
-        advantageMode,
-        defaultRollMode
-    });
+  // Construct the AttribDieRoll instance
+  const roll = new CONFIG.Dice.AttribDieRoll(formula, data, {
+    flavor: flavor || title,
+    advantageMode,
+    defaultRollMode
+  });
 
-    // Prompt a Dialog to further configure the AttribDieRoll
-    if (!isFF) {
-        const configured = await roll.configureDialog(
-            {
-                title,
-                chooseModifier,
-                defaultRollMode,
-                defaultAction: advantageMode,
-                defaultAbility: data?.item?.ability,
-                template
-            },
-            dialogOptions
-        );
-        if (configured === null) return null;
-    } else roll.options.rollMode ??= defaultRollMode;
+  // Prompt a Dialog to further configure the AttribDieRoll
+  if (!isFF) {
+    const configured = await roll.configureDialog(
+      {
+        title,
+        chooseModifier,
+        defaultRollMode,
+        defaultAction: advantageMode,
+        defaultAbility: data?.item?.ability,
+        template
+      },
+      dialogOptions
+    );
+    if (configured === null) return null;
+  } else roll.options.rollMode ??= defaultRollMode;
 
-    // Evaluate the configured roll
-    await roll.evaluate({async: true});
+  // Evaluate the configured roll
+  await roll.evaluate({ async: true });
 
-    // Create a Chat Message
-    if (roll && chatMessage) await roll.toMessage(messageData);
-    return roll;
+  // Create a Chat Message
+  if (roll && chatMessage) await roll.toMessage(messageData);
+  return roll;
 }
 
 /* -------------------------------------------- */
@@ -242,13 +223,18 @@ export async function attribDieRoll({
  * @param {boolean} [config.fastForward]              Should the roll dialog be skipped?
  * @returns {{isFF: boolean, advantageMode: number}}  Whether the roll is fast-forward, and its advantage mode.
  */
-function _determineAttribDieAdvantageMode({event, advantage = false, disadvantage = false, fastForward = false} = {}) {
-    const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-    let advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.NORMAL;
-    if (advantage || event?.altKey) advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.ADVANTAGE;
-    else if (disadvantage || event?.ctrlKey || event?.metaKey)
-        advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.DISADVANTAGE;
-    return {isFF, advantageMode};
+function _determineAttribDieAdvantageMode({
+  event,
+  advantage = false,
+  disadvantage = false,
+  fastForward = false
+} = {}) {
+  const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+  let advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.NORMAL;
+  if (advantage || event?.altKey) advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.ADVANTAGE;
+  else if (disadvantage || event?.ctrlKey || event?.metaKey)
+    advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.DISADVANTAGE;
+  return { isFF, advantageMode };
 }
 
 /* -------------------------------------------- */
@@ -266,7 +252,7 @@ function _determineAttribDieAdvantageMode({event, advantage = false, disadvantag
  *
  * ## Critical Handling
  * @property {boolean} [allowCritical=true]  Is this damage roll allowed to be rolled as critical?
- * @property {boolean} [critical=false]      Apply critical to this roll (unless overridden by modifier key or dialog)?
+ * @property {boolean} [critical]            Apply critical to this roll (unless overridden by modifier key or dialog)?
  * @property {number} [criticalBonusDice]    A number of bonus damage dice that are added for critical hits.
  * @property {number} [criticalMultiplier]   Multiplier to use when calculating critical damage.
  * @property {boolean} [multiplyNumeric]     Should numeric terms be multiplied when this roll criticals?
@@ -274,7 +260,7 @@ function _determineAttribDieAdvantageMode({event, advantage = false, disadvantag
  * @property {string} [criticalBonusDamage]  An extra damage term that is applied only on a critical hit.
  *
  * ## Roll Configuration Dialog
- * @property {boolean} [fastForward=false]  Should the roll configuration dialog be skipped?
+ * @property {boolean} [fastForward]        Should the roll configuration dialog be skipped?
  * @property {string} [template]            The HTML template used to render the roll configuration dialog.
  * @property {string} [title]               Title of the roll configuration dialog.
  * @property {object} [dialogOptions]       Additional options passed to the roll configuration dialog.
@@ -295,63 +281,63 @@ function _determineAttribDieAdvantageMode({event, advantage = false, disadvantag
  * @returns {Promise<DamageRoll|null>}             The evaluated DamageRoll, or null if the workflow was canceled
  */
 export async function damageRoll({
-    parts = [],
-    data,
-    event,
-    allowCritical = true,
-    critical = false,
+  parts = [],
+  data,
+  event,
+  allowCritical = true,
+  critical,
+  criticalBonusDice,
+  criticalMultiplier,
+  multiplyNumeric,
+  powerfulCritical,
+  criticalBonusDamage,
+  fastForward,
+  template,
+  title,
+  dialogOptions,
+  chatMessage = true,
+  messageData = {},
+  rollMode,
+  flavor
+} = {}) {
+  // Handle input arguments
+  const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
+
+  // Construct the DamageRoll instance
+  const formula = parts.join(" + ");
+  const { isCritical, isFF } = _determineCriticalMode({ critical, fastForward, event });
+  const roll = new CONFIG.Dice.DamageRoll(formula, data, {
+    flavor: flavor || title,
+    rollMode,
+    critical: isFF ? isCritical : false,
     criticalBonusDice,
     criticalMultiplier,
-    multiplyNumeric,
-    powerfulCritical,
     criticalBonusDamage,
-    fastForward = false,
-    template,
-    title,
-    dialogOptions,
-    chatMessage = true,
-    messageData = {},
-    rollMode,
-    flavor
-} = {}) {
-    // Handle input arguments
-    const defaultRollMode = rollMode || game.settings.get("core", "rollMode");
+    multiplyNumeric: multiplyNumeric ?? game.settings.get("sw5e", "criticalDamageModifiers"),
+    powerfulCritical: powerfulCritical ?? game.settings.get("sw5e", "criticalDamageMaxDice")
+  });
 
-    // Construct the DamageRoll instance
-    const formula = parts.join(" + ");
-    const {isCritical, isFF} = _determineCriticalMode({critical, fastForward, event});
-    const roll = new CONFIG.Dice.DamageRoll(formula, data, {
-        flavor: flavor || title,
-        rollMode,
-        critical: isFF ? isCritical : false,
-        criticalBonusDice,
-        criticalMultiplier,
-        criticalBonusDamage,
-        multiplyNumeric: multiplyNumeric ?? game.settings.get("sw5e", "criticalDamageModifiers"),
-        powerfulCritical: powerfulCritical ?? game.settings.get("sw5e", "criticalDamageMaxDice")
-    });
+  // Prompt a Dialog to further configure the DamageRoll
+  if (!isFF) {
+    const configured = await roll.configureDialog(
+      {
+        title,
+        defaultRollMode,
+        defaultCritical: isCritical,
+        template,
+        allowCritical
+      },
+      dialogOptions
+    );
+    if (configured === null) return null;
+  }
 
-    // Prompt a Dialog to further configure the DamageRoll
-    if (!isFF) {
-        const configured = await roll.configureDialog(
-            {
-                title,
-                defaultRollMode: defaultRollMode,
-                defaultCritical: isCritical,
-                template,
-                allowCritical
-            },
-            dialogOptions
-        );
-        if (configured === null) return null;
-    }
+  // Evaluate the configured roll
+  await roll.evaluate({ async: true });
 
-    // Evaluate the configured roll
-    await roll.evaluate({async: true});
-
-    // Create a Chat Message
-    if (roll && chatMessage) await roll.toMessage(messageData);
-    return roll;
+  // Create a Chat Message
+  if (roll && chatMessage) await roll.toMessage(messageData);
+  return roll;
 }
 
 /* -------------------------------------------- */
@@ -364,8 +350,8 @@ export async function damageRoll({
  * @param {boolean} [config.fastForward]  Should the roll dialog be skipped?
  * @returns {{isFF: boolean, isCritical: boolean}}  Whether the roll is fast-forward, and whether it is a critical hit
  */
-function _determineCriticalMode({event, critical = false, fastForward = false} = {}) {
-    const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-    if (event?.altKey) critical = true;
-    return {isFF, isCritical: critical};
+function _determineCriticalMode({ event, critical = false, fastForward } = {}) {
+  const isFF = fastForward ?? (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+  if (event?.altKey) critical = true;
+  return { isFF: !!isFF, isCritical: critical };
 }

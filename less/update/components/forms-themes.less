@@ -1,4 +1,10 @@
-input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea {
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
   border: 1px solid @inputBorderNormal;
   &:hover {
     border-color: @inputBorderHover;
@@ -10,33 +16,43 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
     color: @inputTextColor;
     opacity: 0.5;
   }
-  ::-ms-input-placeholder { /* Microsoft Edge */
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
     color: @inputTextColor;
     opacity: 0.5;
   }
 }
 
-button, input[type="button"], input[type="submit"], input[type="reset"] {
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   background: @buttonBackground;
   color: @buttonTextColor;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: @buttonHoverBackground;
   }
   &:disabled {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: @buttonBackground;
     }
   }
-  
 }
-input[type="reset"], button.secondary, button[type="reset"], input[type="button"].secondary, input[type="submit"].secondary {
+input[type="reset"],
+button.secondary,
+button[type="reset"],
+input[type="button"].secondary,
+input[type="submit"].secondary {
   background: @buttonSecondaryBackground;
   color: @buttonSecondaryTextColor;
   &:hover {
     background: @buttonSecondaryHoverBackground;
   }
   &:disabled {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: @buttonSecondaryBackground;
     }
   }
@@ -46,7 +62,8 @@ form {
   button {
     border: none;
   }
-  .notes, .hint {
+  .notes,
+  .hint {
     color: rgba(@bodyFontColor, 0.8);
   }
 }

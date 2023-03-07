@@ -1,5 +1,7 @@
 .sw5e.advancement {
-  input[type="text"], input[type="number"], select {
+  input[type="text"],
+  input[type="number"],
+  select {
     height: var(--form-field-height);
   }
   .form-group .form-fields button {
@@ -86,6 +88,12 @@
   }
 }
 
+.sw5e.advancement-migration {
+  .items-list {
+    margin-block-end: 1em;
+  }
+}
+
 /* ----------------------------------------- */
 /*  Advancement Flow                         */
 /* ----------------------------------------- */
@@ -95,13 +103,17 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
-    h1 { flex-grow: 1; }
+    h1 {
+      flex-grow: 1;
+    }
     h2 {
       text-align: right;
       line-height: 1.8em;
       border-bottom: 2px solid var(--color-underline-header);
     }
-    form { flex-basis: 100%; }
+    form {
+      flex-basis: 100%;
+    }
   }
 
   h3 {
@@ -131,7 +143,9 @@
     padding-block-end: 1em;
   }
 
-  form[data-type="HitPoints"] {
+  form[data-type="HitPoints"],
+  form[data-type="HullPoints"],
+  form[data-type="ShieldPoints"] {
     div {
       font-size: var(--font-size-14);
     }
@@ -142,7 +156,10 @@
       gap: 2px;
 
       .averageLabel {
-        span, input { vertical-align: middle; }
+        span,
+        input {
+          vertical-align: middle;
+        }
       }
       .rollResult {
         text-align: center;
@@ -163,7 +180,9 @@
       margin-block-end: 0;
       font-size: var(--font-size-18);
     }
-    span.none { font-style: italic; }
+    span.none {
+      font-style: italic;
+    }
   }
 
   nav {

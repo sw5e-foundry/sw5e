@@ -44,15 +44,15 @@ body.light-theme blockquote {
   border: 1px solid #0d99cc;
   box-shadow: 0 0 20px rgba(13, 153, 204, 0.8);
 }
-body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel-label {
+body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel-label {
   background: #d6d6d6;
   color: #1c1c1c;
   border: 1px solid #1c1c1c;
 }
-body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel {
+body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel {
   background: #c40f0f;
 }
-body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel .fuel-bar {
+body.light-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel .fuel-bar {
   background: #0dce0d;
 }
 body.light-theme hr {
@@ -93,7 +93,7 @@ body.light-theme input[type="date"]::placeholder,
 body.light-theme input[type="time"]::placeholder,
 body.light-theme select::placeholder,
 body.light-theme textarea::placeholder {
-  color: #1C1C1C;
+  color: #1c1c1c;
   opacity: 0.5;
 }
 body.light-theme input[type="text"] ::-ms-input-placeholder,
@@ -104,7 +104,7 @@ body.light-theme input[type="time"] ::-ms-input-placeholder,
 body.light-theme select ::-ms-input-placeholder,
 body.light-theme textarea ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #1C1C1C;
+  color: #1c1c1c;
   opacity: 0.5;
 }
 body.light-theme button,
@@ -139,8 +139,8 @@ body.light-theme button.secondary,
 body.light-theme button[type="reset"],
 body.light-theme input[type="button"].secondary,
 body.light-theme input[type="submit"].secondary {
-  background: #D6D6D6;
-  color: #1C1C1C;
+  background: #d6d6d6;
+  color: #1c1c1c;
 }
 body.light-theme input[type="reset"]:hover,
 body.light-theme button.secondary:hover,
@@ -159,7 +159,7 @@ body.light-theme button.secondary:disabled:focus,
 body.light-theme button[type="reset"]:disabled:focus,
 body.light-theme input[type="button"].secondary:disabled:focus,
 body.light-theme input[type="submit"].secondary:disabled:focus {
-  background: #D6D6D6;
+  background: #d6d6d6;
 }
 body.light-theme form button {
   border: none;
@@ -180,25 +180,25 @@ body.light-theme #sidebar-tabs .item.active {
 }
 body.light-theme #chat-log .chat-message {
   background: white;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #chat-log .chat-message > header {
   color: #c40f0f;
   border-bottom: 2px solid #0d99cc;
 }
 body.light-theme #chat-log .chat-message > header span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .notification-pip {
   color: #0d99cc;
 }
 body.light-theme .sw5e.chat-card .card-header h3,
 body.light-theme .midi-qol-item-card .card-header h3 {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.chat-card .card-header h3:hover,
 body.light-theme .midi-qol-item-card .card-header h3:hover {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.chat-card .card-buttons span,
 body.light-theme .midi-qol-item-card .card-buttons span {
@@ -210,15 +210,15 @@ body.light-theme .midi-qol-item-card .card-footer {
 }
 body.light-theme .sw5e.chat-card .card-footer span,
 body.light-theme .midi-qol-item-card .card-footer span {
-  border-right: 1px solid #D6D6D6;
+  border-right: 1px solid #d6d6d6;
 }
 body.light-theme .sw5e.chat-card .card-footer span:last-child,
 body.light-theme .midi-qol-item-card .card-footer span:last-child {
   border-right: none;
 }
 body.light-theme .dice-roll .dice-formula {
-  background: #D6D6D6;
-  color: #1C1C1C;
+  background: #d6d6d6;
+  color: #1c1c1c;
   box-shadow: none;
   border-radius: 4px;
 }
@@ -240,19 +240,19 @@ body.light-theme .dice-roll .dice-total.critical {
 }
 body.light-theme .dice-roll .dice-total.fumble {
   color: #c40f0f;
-  background: #FBF4F4;
+  background: #fbf4f4;
   box-shadow: 0 0 12px rgba(196, 15, 15, 0.5);
 }
 body.light-theme #chat-controls .roll-type-select {
   background: #a9a9a9;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #chat-controls label {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #chat-form textarea {
   background: #a9a9a9;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #combat #combat-round {
   color: #c40f0f;
@@ -268,13 +268,13 @@ body.light-theme #combat #combat-round .encounters a:hover {
   color: #c40f0f;
 }
 body.light-theme #combat #combat-tracker li.combatant {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #combat #combat-tracker li.combatant:nth-child(even) {
   background: rgba(175, 198, 214, 0.5);
 }
 body.light-theme #combat #combat-tracker li.combatant h4 {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #combat #combat-tracker li.combatant .roll {
   color: #4f4f4f;
@@ -300,7 +300,7 @@ body.light-theme #combat #combat-tracker li.combatant.active h4 {
   color: #0d99cc;
 }
 body.light-theme #combat #combat-tracker li.combatant.hidden {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #combat #combat-controls {
   border-top: 1px solid #0d99cc;
@@ -325,7 +325,7 @@ body.light-theme .sidebar-tab .directory-list .folder > .folder-header {
 }
 body.light-theme .sidebar-tab .directory-list .folder > .folder-header h3 {
   background: white;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sidebar-tab .directory-list .folder > .folder-header h3 > i {
   color: #0d99cc;
@@ -352,7 +352,7 @@ body.light-theme .sidebar-tab .directory-list .actor .entity-name,
 body.light-theme .sidebar-tab .directory-list .item .entity-name,
 body.light-theme .sidebar-tab .directory-list .journal .entity-name,
 body.light-theme .sidebar-tab .directory-list .table .entity-name {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sidebar-tab .directory-list .actor:nth-child(even),
 body.light-theme .sidebar-tab .directory-list .item:nth-child(even),
@@ -379,7 +379,7 @@ body.light-theme #playlists .directory-list li.playlist .playlist-header {
   border-bottom: 2px solid #0d99cc;
 }
 body.light-theme #playlists .directory-list li.playlist li.sound {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #playlists .directory-list li.playlist a.sound-control {
   color: #c40f0f;
@@ -397,7 +397,7 @@ body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium
   color: #828282;
 }
 body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #settings h2 {
   color: #c40f0f;
@@ -407,7 +407,7 @@ body.light-theme #settings #game-details,
 body.light-theme #settings #settings-game,
 body.light-theme #settings #settings-documentation,
 body.light-theme #settings #settings-access {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #navigation #nav-toggle {
   background: rgba(126, 214, 247, 0.4);
@@ -481,7 +481,7 @@ body.light-theme #players ol .player-name.self {
   font-weight: 700;
 }
 body.light-theme #players ol .player {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #players ol .player-active {
   margin-top: 7px;
@@ -503,7 +503,7 @@ body.light-theme .window-app > header {
 }
 body.light-theme .window-app .window-content {
   background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .window-app .window-content footer {
   margin-top: 8px;
@@ -521,7 +521,7 @@ body.light-theme #client-settings nav.tabs {
 }
 body.light-theme #client-settings nav.tabs a.item {
   border-bottom: 3px solid transparent;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme #client-settings nav.tabs a.item:hover {
   text-decoration: none;
@@ -543,8 +543,8 @@ body.light-theme .dialog-buttons button:last-child {
 body.light-theme .dialog-buttons button:not(.default) {
   border: 1px solid #c40f0f;
   margin-right: 4px;
-  background: #D6D6D6;
-  color: #1C1C1C;
+  background: #d6d6d6;
+  color: #1c1c1c;
 }
 body.light-theme .dialog-buttons button:not(.default):hover {
   background: #e3e3e3;
@@ -561,12 +561,12 @@ body.light-theme .panel {
   background: white;
 }
 body.light-theme .sw5e.sheet .window-content {
-  color: #1C1C1C;
+  color: #1c1c1c;
   background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
 }
 body.light-theme .sw5e.sheet .window-content input,
 body.light-theme .sw5e.sheet .window-content select {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet .window-content input:hover,
 body.light-theme .sw5e.sheet .window-content select:hover {
@@ -581,7 +581,7 @@ body.light-theme .sw5e.sheet .window-content button:focus {
   border-color: #c40f0f;
 }
 body.light-theme .sw5e.sheet.actor {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor input:hover,
 body.light-theme .sw5e.sheet.actor select:hover,
@@ -621,20 +621,22 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attr
   color: #828282;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer button {
-  border: 1px solid #D6D6D6;
+  border: 1px solid #d6d6d6;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer button:hover {
   color: #c40f0f;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
-  border: 1px solid #D6D6D6;
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
+  border: 1px solid #d6d6d6;
   color: #c40f0f;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button:hover,
 body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button:hover,
-body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button:hover {
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button:hover,
+body.light-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button:hover {
   border-color: #c40f0f;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
@@ -668,7 +670,7 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-title {
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-header .item-detail,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list .item-detail {
-  border-left: 1px solid #D6D6D6;
+  border-left: 1px solid #d6d6d6;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item:nth-child(even),
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item:nth-child(even) {
@@ -676,7 +678,7 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item:nth-
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
@@ -696,10 +698,10 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .ite
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control.item-toggle.active,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control.item-toggle.active {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .score-list .score {
-  border: 1px solid #D6D6D6;
+  border: 1px solid #d6d6d6;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .score-list .score h2:hover {
   color: #c40f0f;
@@ -709,13 +711,13 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-scor
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .ability-mod,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .ability-save {
-  border-color: #D6D6D6;
+  border-color: #d6d6d6;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li:nth-child(even) {
   background-color: #f0f0f0;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .proficiency-toggle {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .skill-name:hover {
   color: #c40f0f;
@@ -764,9 +766,9 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
   color: #c40f0f;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance-label {
-  background: #D6D6D6;
-  color: #1C1C1C;
-  border: 1px solid #1C1C1C;
+  background: #d6d6d6;
+  color: #1c1c1c;
+  border: 1px solid #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance {
   background: #afc6d6;
@@ -788,7 +790,7 @@ body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .powe
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .powercasting-ability h3 span,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .powercasting-ability h3 span,
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .powercasting-ability h3 span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.light-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
   color: #c40f0f;

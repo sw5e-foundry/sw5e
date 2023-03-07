@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -17,7 +17,7 @@
                 <li>{{lookup config.consumableTypes system.consumableType }}</li>
                 <li>
                     <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank="&nbsp;"}}
+                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
                     </select>
                 </li>
                 <li>
@@ -67,16 +67,16 @@
                 </div>
 
                 {{!-- Weapon Properties --}}
-                <div class="form-group stacked weapon-properties">
+                <div class="form-group stacked item-properties">
                     <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
-                    {{#each wpnProperties as |property key|}} {{#if (eq property.type "Boolean")}}
-                        <label class="checkbox" title="{{localize property.desc}}">
+                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
+                        <label class="checkbox" data-tooltip="{{property.desc}}">
                             <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
                         </label>
                     {{/if}} {{/each}}
 
-                    {{#each wpnProperties as |property key|}} {{#if (eq property.type "Number")}}
-                        <label class="number" title="{{localize property.desc}}">
+                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
+                        <label class="number" data-tooltip="{{property.desc}}">
                             {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
                         </label>
                     {{/if}} {{/each}}

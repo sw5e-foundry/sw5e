@@ -7,23 +7,28 @@
  *
  * @returns {string}  The resulting simplified formula.
  */
-export default function simplifyRollFormula(formula, { preserveFlavor=false } = {}) {
+export default function simplifyRollFormula(formula, { preserveFlavor = false } = {}) {
   // Create a new roll and verify that the formula is valid before attempting simplification.
   let roll;
-  try { roll = new Roll(formula); }
-  catch(err) { console.warn(`Unable to simplify formula '${formula}': ${err}`); }
+  try {
+    roll = new Roll(formula);
+  } catch (err) {
+    console.warn(`Unable to simplify formula '${formula}': ${err}`);
+  }
   Roll.validate(roll.formula);
 
   // Optionally strip flavor annotations.
-  if ( !preserveFlavor ) roll.terms = Roll.parse(roll.formula.replace(RollTerm.FLAVOR_REGEXP, ""));
+  if (!preserveFlavor) roll.terms = Roll.parse(roll.formula.replace(RollTerm.FLAVOR_REGEXP, ""));
 
   // Perform arithmetic simplification on the existing roll terms.
   roll.terms = _simplifyOperatorTerms(roll.terms);
 
+  // If the formula contains multiplication or division we cannot easily simplify
   if ( /[*/]/.test(roll.formula) ) {
-    return ( roll.isDeterministic ) && ( !/\[/.test(roll.formula) || !preserveFlavor )
-      ? roll.evaluate({ async: false }).total.toString()
-      : roll.constructor.getFormula(roll.terms);
+    if ( roll.isDeterministic && !/d\(/.test(roll.formula) && (!/\[/.test(roll.formula) || !preserveFlavor) ) {
+      return Roll.safeEval(roll.formula).toString();
+    }
+    else return roll.constructor.getFormula(roll.terms);
   }
 
   // Flatten the roll formula and eliminate string terms.
@@ -37,7 +42,7 @@ export default function simplifyRollFormula(formula, { preserveFlavor=false } = 
 
   // Recombine the terms into a single term array and remove an initial + operator if present.
   const simplifiedTerms = [diceTerms, poolTerms, mathTerms, numericTerms].flat().filter(Boolean);
-  if ( simplifiedTerms[0]?.operator === "+" ) simplifiedTerms.shift();
+  if (simplifiedTerms[0]?.operator === "+") simplifiedTerms.shift();
   return roll.constructor.getFormula(simplifiedTerms);
 }
 
@@ -54,16 +59,13 @@ function _simplifyOperatorTerms(terms) {
     const ops = new Set([prior?.operator, term.operator]);
 
     // If one of the terms is not an operator, add the current term as is.
-    if ( ops.has(undefined) ) acc.push(term);
-
+    if (ops.has(undefined)) acc.push(term);
     // Replace consecutive "+ -" operators with a "-" operator.
-    else if ( (ops.has("+")) && (ops.has("-")) ) acc.splice(-1, 1, new OperatorTerm({ operator: "-" }));
-
+    else if (ops.has("+") && ops.has("-")) acc.splice(-1, 1, new OperatorTerm({ operator: "-" }));
     // Replace double "-" operators with a "+" operator.
-    else if ( (ops.has("-")) && (ops.size === 1) ) acc.splice(-1, 1, new OperatorTerm({ operator: "+" }));
-
+    else if (ops.has("-") && ops.size === 1) acc.splice(-1, 1, new OperatorTerm({ operator: "+" }));
     // Don't include "+" operators that directly follow "+", "*", or "/". Otherwise, add the term as is.
-    else if ( !ops.has("+") ) acc.push(term);
+    else if (!ops.has("+")) acc.push(term);
 
     return acc;
   }, []);
@@ -81,13 +83,13 @@ function _simplifyNumericTerms(terms) {
   const { annotated, unannotated } = _separateAnnotatedTerms(terms);
 
   // Combine the unannotated numerical bonuses into a single new NumericTerm.
-  if ( unannotated.length ) {
+  if (unannotated.length) {
     const staticBonus = Roll.safeEval(Roll.getFormula(unannotated));
-    if ( staticBonus === 0 ) return [...annotated];
+    if (staticBonus === 0) return [...annotated];
 
     // If the staticBonus is greater than 0, add a "+" operator so the formula remains valid.
-    if ( staticBonus > 0 ) simplified.push(new OperatorTerm({ operator: "+"}));
-    simplified.push(new NumericTerm({ number: staticBonus} ));
+    if (staticBonus > 0) simplified.push(new OperatorTerm({ operator: "+" }));
+    simplified.push(new NumericTerm({ number: staticBonus }));
   }
   return [...simplified, ...annotated];
 }
@@ -104,17 +106,17 @@ function _simplifyDiceTerms(terms) {
 
   // Split the unannotated terms into different die sizes and signs
   const diceQuantities = unannotated.reduce((obj, curr, i) => {
-    if ( curr instanceof OperatorTerm ) return obj;
+    if (curr instanceof OperatorTerm) return obj;
     const key = `${unannotated[i - 1].operator}${curr.faces}`;
     obj[key] = (obj[key] ?? 0) + curr.number;
     return obj;
   }, {});
 
   // Add new die and operator terms to simplified for each die size and sign
-  const simplified = Object.entries(diceQuantities).flatMap(([key, number]) => ([
+  const simplified = Object.entries(diceQuantities).flatMap(([key, number]) => [
     new OperatorTerm({ operator: key.charAt(0) }),
     new Die({ number, faces: parseInt(key.slice(1)) })
-  ]));
+  ]);
   return [...simplified, ...annotated];
 }
 
@@ -127,8 +129,8 @@ function _simplifyDiceTerms(terms) {
  */
 function _expandParentheticalTerms(terms) {
   terms = terms.reduce((acc, term) => {
-    if ( term instanceof ParentheticalTerm ) {
-      if ( term.isDeterministic ) term = new NumericTerm({ number: Roll.safeEval(term.term) });
+    if (term instanceof ParentheticalTerm) {
+      if (term.isDeterministic) term = new NumericTerm({ number: Roll.safeEval(term.term) });
       else {
         const subterms = new Roll(term.term).terms;
         term = _expandParentheticalTerms(subterms);
@@ -150,12 +152,12 @@ function _expandParentheticalTerms(terms) {
  */
 function _groupTermsByType(terms) {
   // Add an initial operator so that terms can be rearranged arbitrarily.
-  if ( !(terms[0] instanceof OperatorTerm) ) terms.unshift(new OperatorTerm({ operator: "+" }));
+  if (!(terms[0] instanceof OperatorTerm)) terms.unshift(new OperatorTerm({ operator: "+" }));
 
   return terms.reduce((obj, term, i) => {
     let type;
-    if ( term instanceof DiceTerm ) type = DiceTerm;
-    else if ( (term instanceof MathTerm) && (term.isDeterministic) ) type = NumericTerm;
+    if (term instanceof DiceTerm) type = DiceTerm;
+    else if (term instanceof MathTerm && term.isDeterministic) type = NumericTerm;
     else type = term.constructor;
     const key = `${type.name.charAt(0).toLowerCase()}${type.name.substring(1)}s`;
 
@@ -173,9 +175,12 @@ function _groupTermsByType(terms) {
  * @returns {Array | Array[]}  A pair of term arrays, one containing annotated terms.
  */
 function _separateAnnotatedTerms(terms) {
-  return terms.reduce((obj, curr, i) => {
-    if ( curr instanceof OperatorTerm ) return obj;
-    obj[curr.flavor ? "annotated" : "unannotated"].push(terms[i - 1], curr);
-    return obj;
-  }, { annotated: [], unannotated: [] });
+  return terms.reduce(
+    (obj, curr, i) => {
+      if (curr instanceof OperatorTerm) return obj;
+      obj[curr.flavor ? "annotated" : "unannotated"].push(terms[i - 1], curr);
+      return obj;
+    },
+    { annotated: [], unannotated: [] }
+  );
 }

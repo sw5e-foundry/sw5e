@@ -6,7 +6,7 @@
             <div class="effect-source">{{localize "SW5E.Source"}}</div>
             <div class="effect-source">{{localize "SW5E.Duration"}}</div>
             <div class="item-controls effect-controls flexrow">
-                <a class="effect-control" data-action="create" title="{{localize 'SW5E.EffectCreate'}}">
+                <a class="effect-control" data-action="create" data-tooltip="SW5E.EffectCreate">
                     <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                 </a>
             </div>
@@ -22,13 +22,13 @@
                 <div class="effect-source">{{effect.sourceName}}</div>
                 <div class="effect-duration">{{effect.duration.label}}</div>
                 <div class="item-controls effect-controls flexrow">
-                    <a class="effect-control" data-action="toggle" title="{{localize 'SW5E.EffectToggle'}}">
+                    <a class="effect-control" data-action="toggle" data-tooltip="SW5E.EffectToggle">
                         <i class="fas {{#if effect.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
                     </a>
-                    <a class="effect-control" data-action="edit" title="{{localize 'SW5E.EffectEdit'}}">
+                    <a class="effect-control" data-action="edit" data-tooltip="SW5E.EffectEdit">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a class="effect-control" data-action="delete" title="{{localize 'SW5E.EffectDelete'}}">
+                    <a class="effect-control" data-action="delete" data-tooltip="SW5E.EffectDelete">
                         <i class="fas fa-trash"></i>
                     </a>
                 </div>

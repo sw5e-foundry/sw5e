@@ -38,6 +38,8 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.title = Object.fromEntries(Array.fromRange(4, 1).map(n => [`level${n}`, context.data.title.level + n - 1]));
 
     const linked = await fromUuid(this.document.system.item);
+    context.subclasses = await this._getSubclasses(this.document.system.subclassItems);
+
     if (!linked) return context;
     context.linked = {
       document: linked,
@@ -50,7 +52,6 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.table = await this._getTable(linked);
     context.optionalTable = await this._getOptionalTable(linked);
     context.features = await this._getFeatures(linked);
-    context.optionalFeatures = await this._getFeatures(linked, true);
     context.archetypes = await this._getArchetypes(this.document.system.archetypeItems);
     context.archetypes?.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name));
 
@@ -401,14 +402,12 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     switch (item.type) {
       case "class":
         await this.document.update({ "system.item": item.uuid });
-        this.render();
-        break;
+        return this.render();
       case "archetype":
         const itemSet = this.document.system.archetypeItems;
         itemSet.add(item.uuid);
         await this.document.update({ "system.archetypeItems": Array.from(itemSet) });
-        this.render();
-        break;
+        return this.render();
       default:
         return false;
     }

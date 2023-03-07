@@ -164,7 +164,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
     this._prepareItems(context);
     context.expandedData = {};
     for ( const id of this._expanded ) {
-      context.expandedData[id] = await this.actor.items.get(id).getChatData({secrets: this.actor.isOwner});
+      const item = this.actor.items.get(id);
+      if ( item ) context.expandedData[id] = await item.getChatData({secrets: this.actor.isOwner});
     }
 
     // Biography HTML enrichment

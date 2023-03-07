@@ -2995,7 +2995,7 @@ export default class Item5e extends Item {
       name: `${game.i18n.localize("SW5E.PowerScroll")}: ${itemData.name}`,
       img: itemData.img,
       system: {
-        "description.value": desc.trim(),
+        description: { value: desc.trim() },
         source,
         actionType,
         activation,

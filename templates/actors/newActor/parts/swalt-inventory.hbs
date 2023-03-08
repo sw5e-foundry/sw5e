@@ -46,7 +46,6 @@
         {{else}}
             <div></div>
         {{/if}}
-        <div class="item-detail item-weight">{{#if isCharacter}}{{localize "SW5E.Weight"}}{{/if}}</div>
         <div class="item-detail item-uses">{{localize "SW5E.Charges"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
         <div class="item-detail"></div>
@@ -72,7 +71,7 @@
                         {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}>
                         <div class="item-name {{@root.rollableClass}}">
                             <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}"
-                                 style="background-image: url({{item.img}})"></div>
+                                 style="background-image: url('{{item.img}}')"></div>
                             <h4>
                                 {{item.name~}}
                                 {{~#if ctx.isStack}} ({{item.system.quantity}}){{/if}}
@@ -83,27 +82,19 @@
                                 </div>
                             {{/if}}
                             {{#if ctx.hasReload}}
-                                <div class="form-group uses-per" data-tooltip="SW5E.ItemReload">
-                                    <div class="form-fields">
-                                        <span> </span>
-                                        {{#if ctx.reloadUsesAmmo}}
-                                            <select class="weapon-select-ammo" name="item.system.ammo.target">
-                                                {{#select item.system.ammo.target}}
-                                                    <option value=""></option>
-                                                    {{#each ctx.reloadAmmo as |name key|}}
-                                                        <option value="{{key}}">{{name}}</option>
-                                                    {{/each}}
-                                                {{/select}}
-                                            </select>
-                                        {{/if}}
-                                        {{#if ctx.hasUses}}
-                                            <input class="weapon-reload-count" type="text" name="item.system.ammo.value"
-                                                   value="{{item.system.ammo.value}}" data-dtype="Number"
-                                                   {{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}}/>
+                                <div class="item-detail item-reload">
+                                    {{#if ctx.reloadUsesAmmo}}
+                                        <select class="weapon-select-ammo" name="item.system.ammo.target" data-tooltip="SW5E.ItemReloadTarget">
+                                            {{selectOptions ctx.reloadAmmo selected=item.system.ammo.target blank=""}}
+                                        </select>
+                                    {{/if}}
+                                    {{#if ctx.hasUses}}
+                                        <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
+                                            <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
                                             <span class="sep">/</span>
-                                            <span>{{ system.ammo.max }}</span>
-                                        {{/if}}
-                                    </div>
+                                            <span>{{ item.system.ammo.max }}</span>
+                                        </div>
+                                    {{/if}}
                                 </div>
                             {{/if}}
                         </div>
@@ -116,19 +107,16 @@
 
                         <div class="item-detail item-uses">
                             {{#if ctx.hasUses}}
-                                <div class="form-group uses-per" data-tooltip="SW5E.ConsumeCharges">
-                                    <input type="text" name="item.system.uses.value" placeholder="0" 
-                                           value="{{item.system.uses.value}}" data-dtype="Number" />
+                                <div class="form-group uses-per" data-tooltip="SW5E.ConsumeCharges" data-attr="uses">
+                                    <input type="text" value="{{item.system.uses.value}}" placeholder="0"/>
                                     <span class="sep">/</span>
-                                    <span>{{ system.uses.max }}</span>
+                                    <span>{{ item.system.uses.max }}</span>
                                 </div>
                             {{else if ctx.hasReload}}
-                                <div class="form-group uses-per" data-tooltip="SW5E.ItemReload">
-                                    <input class="weapon-reload-count" type="text" name="item.system.ammo.value"
-                                           value="{{item.system.ammo.value}}" data-dtype="Number"
-                                           {{#if (and ctx.reloadUsesAmmo (not item.system.ammo.target))}} disabled{{/if}}/>
+                                <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
+                                    <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
                                     <span class="sep">/</span>
-                                    <span>{{ system.ammo.max }}</span>
+                                    <span>{{ item.system.ammo.max }}</span>
                                 </div>
                             {{/if}}
                         </div>

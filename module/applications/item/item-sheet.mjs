@@ -480,9 +480,8 @@ export default class ItemSheet5e extends ItemSheet {
         if (!"ammo" in itemSysdata) return ctx;
 
         ctx.hasReload = !!(itemSysdata.ammo?.max);
-        ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
-        ctx.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || (ctx.reloadUsesAmmo && !itemSysdata.ammo?.target);
         if (ctx.hasReload) {
+            ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
             if (actor && ctx.reloadUsesAmmo) {
                 ctx.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
                     if (i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes(i.system.ammoType)) {
@@ -490,13 +489,18 @@ export default class ItemSheet5e extends ItemSheet {
                     }
                     return ammo;
                 }, {});
-            } else ctx.reloadAmmo = {};
-            if (itemSysdata.properties?.rel) {
-                ctx.reloadActLabel = "SW5E.WeaponReload";
-                ctx.reloadLabel = "SW5E.WeaponReload";
-            } else if (itemSysdata.properties?.ovr) {
+                if (actor.type === "npc" && !game.settings.get("sw5e", "npcConsumeAmmo")) ctx.reloadDisabled = false;
+            } else {
+                ctx.reloadAmmo = {};
+                ctx.reloadDisabled = ctx.reloadUsesAmmo && !itemSysdata.ammo.target;
+            }
+            ctx.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || (ctx.reloadDisabled);
+            if (itemSysdata.properties?.ovr) {
                 ctx.reloadActLabel = "SW5E.WeaponCoolDown";
                 ctx.reloadLabel = "SW5E.WeaponOverheat";
+            } else {
+                ctx.reloadActLabel = "SW5E.WeaponReload";
+                ctx.reloadLabel = "SW5E.WeaponReload";
             }
         }
         return ctx;
@@ -984,8 +988,8 @@ export default class ItemSheet5e extends ItemSheet {
      * @private
      */
     _onWeaponReload(event) {
-        event.preventDefault();
-        if (!event.target.attributes.disabled) this.item.reloadWeapon();
+        event?.preventDefault();
+        if (!this._getWeaponReloadProperties().reloadDisabled) this.item.reloadWeapon();
     }
 
     /* -------------------------------------------- */

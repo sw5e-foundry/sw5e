@@ -72,7 +72,7 @@
                                     {{item.labels.activation}}
                                     {{/if}}
                                 </div>
-                            {{else if section.isDeployment}}
+                            {{else if (eq item.type "deployment")}}
                                 <div class="item-detail player-deployment-ranks">
                                     <select class="level-selector">
                                         {{#select 0}}

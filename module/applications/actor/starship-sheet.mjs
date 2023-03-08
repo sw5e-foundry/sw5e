@@ -289,21 +289,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".deploy-control").click(this._onDeployControl.bind(this));
     // Item State Toggling
     html.find(".item-toggle").click(this._onToggleItem.bind(this));
-    // Weapon reload
-    html.find(".weapon-select-ammo").change(event => {
-      event.preventDefault();
-      const itemId = event.currentTarget.closest(".item").dataset.itemId;
-      const item = this.actor.items.get(itemId);
-      item.sheet._onWeaponSelectAmmo(event);
-    });
-    html.find(".weapon-reload-count").change(event => {
-      event.preventDefault();
-      if (event.target.attributes.disabled) return;
-      const itemId = event.currentTarget.closest(".item").dataset.itemId;
-      const item = this.actor.items.get(itemId);
-      const value = parseInt(event.currentTarget.value, 10);
-      if (!Number.isNaN(value)) item.update({ "system.ammo.value": value });
-    });
   }
 
   /* -------------------------------------------- */

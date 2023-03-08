@@ -143,20 +143,14 @@
                     </label>
                     <div class="form-fields">
                         {{#if reloadUsesAmmo}}
-                            <select class="weapon-select-ammo" name="system.ammo.target">
-                                {{#select system.ammo.target}}
-                                    <option value=""></option>
-                                    {{#each reloadAmmo as |name key|}}
-                                        <option value="{{key}}">{{name}}</option>
-                                    {{/each}}
-                                {{/select}}
+                            <select class="weapon-select-ammo" name="system.ammo.target" data-tooltip="SW5E.ItemReloadTarget">
+                                {{selectOptions reloadAmmo selected=system.ammo.target blank=""}}
                             </select>
                         {{/if}}
-                        <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number"
-                               {{#if (and reloadUsesAmmo (not system.ammo.target))}} disabled{{/if}} />
+                        <input type="text" name="system.ammo.value" value="{{system.ammo.value}}" data-dtype="Number" {{disabled reloadDisabled}}/>
                         <span class="sep">/</span>
                         <span>{{ system.ammo.max }}</span>
-                        <a class="weapon-reload"{{#if reloadFull}} disabled{{/if}}>{{ localize reloadActLabel }}</a>
+                        <a class="weapon-reload" {{disabled reloadFull}}>{{ localize reloadActLabel }}</a>
                         <input type="text" name="system.ammo.use" value="{{system.ammo.use}}" data-dtype="Number"
                                placeholder="{{system.ammo.baseUse}}" data-tooltip="SW5E.WeaponAmmoConsumeAmmountHint"/>
                     </div>

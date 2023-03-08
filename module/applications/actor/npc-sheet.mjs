@@ -68,49 +68,99 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         label: game.i18n.localize("SW5E.AttackPl"),
         items: [],
         hasActions: true,
+        required: true,
         dataset: { "type": "weapon", "weapon-type": "natural" }
       },
       actions: {
         label: game.i18n.localize("SW5E.ActionPl"),
         items: [],
         hasActions: true,
-        dataset: { "type": "feat", "activation.type": "action" }
+        required: true,
+        dataset: { "type": "feat", "featureType": "monster", "activation.type": "action" }
       },
-      passive: { label: game.i18n.localize("SW5E.Features"), items: [], dataset: { type: "feat" } },
-      equipment: { label: game.i18n.localize("SW5E.Inventory"), items: [], dataset: { type: "loot" } }
+      passive: { label: game.i18n.localize("SW5E.Features"), items: [], required: true, dataset: { type: "feat", "featureType": "monster" } },
+      equipment: { label: game.i18n.localize("SW5E.Inventory"), items: [], required: true, dataset: { type: "loot" } }
+    };
+    const ssfeatures = {
+      deployments: {
+        label: "ITEM.TypeDeploymentPl",
+        items: [],
+        hasActions: false,
+        dataset: { type: "deployment" }
+      },
+      deploymentfeatures: {
+        label: "SW5E.Feature.Deployment",
+        items: [],
+        hasActions: true,
+        dataset: { type: "feat", featType: "deploymentFeature" }
+      },
+      ventures: {
+        label: "SW5E.DeploymentFeature.Venture",
+        items: [],
+        hasActions: false,
+        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" }
+      }
     };
 
     // Start by classifying items into groups for rendering
-    let [forcepowers, techpowers, deployments, deploymentfeatures, ventures, other, ssfeats] = context.items.reduce(
-      (arr, item) => {
+    let {forcepowers, techpowers, deployments, deploymentfeatures, ventures, other} = context.items.reduce(
+      (obj, item) => {
         const { quantity, uses, recharge, target } = item.system;
+
+        // Item details
         const ctx = context.itemContext[item.id] ??= {};
         ctx.isStack = Number.isNumeric(quantity) && (quantity !== 1);
+        ctx.id = item.id;
+
+        // Prepare data needed to display expanded sections
         ctx.isExpanded = this._expanded.has(item.id);
+
+        // Item usage
         ctx.hasUses = uses && (uses.max > 0);
         ctx.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
         ctx.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
         ctx.hasTarget = !!target && !(["none", ""].includes(target.type));
+
+        // Item toggle state
         ctx.canToggle = false;
-        if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) arr[0].push(item);
-        else if (item.type === "power" && ["tec"].includes(item.system.school)) arr[1].push(item);
-        else if (item.type === "deployment") arr[2].push(item);
+
+        // Item Weight
+        if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
+
+        // Item properties
+        ctx.propertiesList = item.propertiesList;
+        ctx.isStarshipItem = item.isStarshipItem;
+        item.sheet._getWeaponReloadProperties(ctx);
+
+        // Categorize the item
+        if (item.type === "power" && ["lgt", "drk", "uni"].includes(item.system.school)) obj.forcepowers.push(item);
+        else if (item.type === "power" && ["tec"].includes(item.system.school)) obj.techpowers.push(item);
+        else if (item.type === "deployment") obj.deployments.push(item);
         else if (item.type === "feat") {
           if (item.system.type.value === "deploymentFeature") {
-            if (item.system.type.subtype === "venture") arr[4].push(item);
-            else arr[3].push(item);
+            if (item.system.type.subtype === "venture") obj.ventures.push(item);
+            else obj.deploymentfeatures.push(item);
           }
+          else obj.other.push(item);
         }
-        else arr[5].push(item);
-        return arr;
+        else obj.other.push(item);
+        return obj;
       },
-      [[], [], [], [], [], [], []]
+      {
+        forcepowers: [],
+        techpowers: [],
+        deployments: [],
+        deploymentfeatures: [],
+        ventures: [],
+        other: []
+      }
     );
 
     // Apply item filters
     forcepowers = this._filterItems(forcepowers, this._filters.forcePowerbook);
     techpowers = this._filterItems(techpowers, this._filters.techPowerbook);
-    ssfeats = this._filterItems(ssfeats, this._filters.ssfeatures);
+    deploymentfeatures = this._filterItems(deploymentfeatures, this._filters.ssfeatures);
+    ventures = this._filterItems(ventures, this._filters.ssfeatures);
     other = this._filterItems(other, this._filters.features);
 
     // Organize Powerbook
@@ -125,34 +175,8 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         else features.passive.items.push(item);
       } else features.equipment.items.push(item);
     }
+
     // Organize Starship Features
-    const ssfeatures = {
-      deployments: {
-        label: "ITEM.TypeDeploymentPl",
-        items: [],
-        hasActions: false,
-        dataset: { type: "deployment" },
-        isDeployment: true
-      },
-      deploymentfeatures: {
-        label: "SW5E.Feature.Deployment",
-        items: [],
-        hasActions: true,
-        dataset: { type: "feat", featType: "deploymentFeature" },
-        isDeploymentfeature: true
-      },
-      ventures: {
-        label: "SW5E.DeploymentFeature.Venture",
-        items: [],
-        hasActions: false,
-        dataset: { type: "feat", featType: "deploymentFeature", featSubType: "venture" },
-        isVenture: true
-      }
-    };
-    for (let ssf of ssfeats) {
-      if (ssf.system.activation.type) ssfeatures.active.items.push(ssf);
-      else ssfeatures.passive.items.push(ssf);
-    }
     deployments.sort((a, b) => b.system.rank - a.system.rank);
     ssfeatures.deployments.items = deployments;
     ssfeatures.deploymentfeatures.items = deploymentfeatures;

@@ -615,7 +615,7 @@ export default class ActorSheet5e extends ActorSheet {
       item.sheet._getWeaponReloadProperties(ctx);
 
       // Categorize the item
-      if (item.type in categories.equipped && config.splitEquipped && equipped) {
+      if (config.splitEquipped && equipped && item.type in categories.equipped) {
         categories.equipped[item.type].items.push(item);
         continue;
       }
@@ -894,9 +894,15 @@ export default class ActorSheet5e extends ActorSheet {
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".item-collapse").click(this._onItemCollapse.bind(this));
       html
-        .find(".item-uses input")
+        .find(".item-uses input, .item-reload input")
         .click(ev => ev.target.select())
         .change(this._onUsesChange.bind(this));
+      html.find(".weapon-select-ammo").change(event => {
+        event.preventDefault();
+        const itemId = event.currentTarget.closest(".item").dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        item.sheet._onWeaponSelectAmmo(event);
+      });
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
 
       // Active Effect management
@@ -1087,7 +1093,7 @@ export default class ActorSheet5e extends ActorSheet {
       options.unshift({
         name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
         icon: "<i class='fas fa-raygun fa-fw'></i>",
-        callback: () => item.reloadWeapon()
+        callback: () => item.sheet._onWeaponReload()
       });
 
     return options;
@@ -1437,10 +1443,11 @@ export default class ActorSheet5e extends ActorSheet {
   async _onUsesChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const attr = event.currentTarget.closest(".uses-per").dataset.attr;
     const item = this.actor.items.get(itemId);
-    const uses = Math.clamped(0, parseInt(event.target.value), item.system.uses.max);
-    event.target.value = uses;
-    return item.update({ "system.uses.value": uses });
+    const value = Math.clamped(item.system[attr].min ?? 0, parseInt(event.target.value), item.system[attr].max);
+    event.target.value = value;
+    return item.update({ [`system.${attr}.value`]: value });
   }
 
   /* -------------------------------------------- */
@@ -1527,15 +1534,17 @@ export default class ActorSheet5e extends ActorSheet {
       return ui.notifications.error(errDeploy);
     }
 
-    delete header.dataset.type;
-    delete header.dataset.feattype;
-    delete header.dataset.featsubtype;
-
     const itemData = {
       name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`ITEM.Type${type.capitalize()}`) }),
       type,
       system: foundry.utils.expandObject({ ...header.dataset })
     };
+
+    delete itemData.system.tooltip;
+    delete itemData.system.type;
+    delete itemData.system.feattype;
+    delete itemData.system.featsubtype;
+
     if (featType) {
       itemData.system.type = {
         value: featType,

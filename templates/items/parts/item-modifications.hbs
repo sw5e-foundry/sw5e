@@ -22,7 +22,7 @@
     {{#each mods as | mod |}}
     {{#unless mod.hidden}}
     {{#if (eq mod.type "mod")}}
-    <li class="modification {{#if (or @root.system.modsdisabled mod.disabled)}}disabled{{/if}}" data-id="{{mod.id}}" data-index="{{@index}}">
+    <li class="modification {{disabled (or @root.system.modsdisabled mod.disabled)}}" data-id="{{mod.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i>{{mod.name}}</a>
@@ -48,7 +48,7 @@
     {{#each mods as | aug |}}
     {{#unless aug.hidden}}
     {{#if (eq aug.type "augment")}}
-    <li class="modification {{#if (or @root.system.modsdisabled aug.disabled)}}disabled{{/if}}" data-id="{{aug.id}}" data-index="{{@index}}">
+    <li class="modification {{disabled (or @root.system.modsdisabled aug.disabled)}}" data-id="{{aug.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i> {{aug.name}}</a>

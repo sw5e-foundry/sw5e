@@ -949,9 +949,9 @@ async function migrateItemTypes(migrateSystemCompendiums) {
     for await (let doc of documents) set.add(doc);
   }
   // Accumulate actors from scenes
-  for (const scene of scenes) for (const token of scene?.tokens ?? {}) if (!token.actorLink) actors.add(token.actor)
+  for (const scene of scenes) for (const token of scene?.tokens ?? []) if (!token.actorLink) actors.add(token.actor)
   // Accumulate items from actors
-  for (const actor of actors) for (const item of actor?.items ?? {}) items.add(item);
+  for (const actor of actors) for (const item of actor?.items ?? []) items.add(item);
 
   // Migrate items
   for await (const item of items) await _migrateItemType(item);

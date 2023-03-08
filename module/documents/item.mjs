@@ -1192,7 +1192,7 @@ export default class Item5e extends Item {
         consumeQuantity: is.uses?.autoDestroy ?? false,
         consumeRecharge: !!is.recharge?.value,
         // only consume ammo when the attack is rolled
-        consumeReload: item.system.ammo.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack),
+        consumeReload: item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack),
         consumeResource:
           !!resource.target &&
           (!item.hasAttack ||

@@ -254,55 +254,72 @@ body.light-theme #chat-form textarea {
   background: #a9a9a9;
   color: #1c1c1c;
 }
-body.light-theme #combat #combat-round {
+body.light-theme #combat #combat-round,
+body.light-theme #combat-popout #combat-round {
   color: #c40f0f;
   border-bottom: 2px solid #c40f0f;
 }
-body.light-theme #combat #combat-round .encounters h4 {
+body.light-theme #combat #combat-round .encounters h4,
+body.light-theme #combat-popout #combat-round .encounters h4 {
   color: #c40f0f;
 }
-body.light-theme #combat #combat-round .encounters a {
+body.light-theme #combat #combat-round .encounters a,
+body.light-theme #combat-popout #combat-round .encounters a {
   color: #4f4f4f;
 }
-body.light-theme #combat #combat-round .encounters a:hover {
+body.light-theme #combat #combat-round .encounters a:hover,
+body.light-theme #combat-popout #combat-round .encounters a:hover {
   color: #c40f0f;
 }
-body.light-theme #combat #combat-tracker li.combatant {
+body.light-theme #combat #combat-tracker li.combatant,
+body.light-theme #combat-popout #combat-tracker li.combatant {
   color: #1c1c1c;
 }
-body.light-theme #combat #combat-tracker li.combatant:nth-child(even) {
+body.light-theme #combat #combat-tracker li.combatant:nth-child(even),
+body.light-theme #combat-popout #combat-tracker li.combatant:nth-child(even) {
   background: rgba(175, 198, 214, 0.5);
 }
-body.light-theme #combat #combat-tracker li.combatant h4 {
+body.light-theme #combat #combat-tracker li.combatant h4,
+body.light-theme #combat-popout #combat-tracker li.combatant h4 {
   color: #1c1c1c;
 }
-body.light-theme #combat #combat-tracker li.combatant .roll {
+body.light-theme #combat #combat-tracker li.combatant .roll,
+body.light-theme #combat-popout #combat-tracker li.combatant .roll {
   color: #4f4f4f;
 }
-body.light-theme #combat #combat-tracker li.combatant .roll:hover {
+body.light-theme #combat #combat-tracker li.combatant .roll:hover,
+body.light-theme #combat-popout #combat-tracker li.combatant .roll:hover {
   color: #c40f0f;
 }
-body.light-theme #combat #combat-tracker li.combatant .combatant-control {
+body.light-theme #combat #combat-tracker li.combatant .combatant-control,
+body.light-theme #combat-popout #combat-tracker li.combatant .combatant-control {
   color: #828282;
 }
-body.light-theme #combat #combat-tracker li.combatant .combatant-control.active {
+body.light-theme #combat #combat-tracker li.combatant .combatant-control.active,
+body.light-theme #combat-popout #combat-tracker li.combatant .combatant-control.active {
   color: #363636;
 }
-body.light-theme #combat #combat-tracker li.combatant .token-resource {
+body.light-theme #combat #combat-tracker li.combatant .token-resource,
+body.light-theme #combat-popout #combat-tracker li.combatant .token-resource {
   color: #4f4f4f;
   border-right: 1px solid #828282;
 }
-body.light-theme #combat #combat-tracker li.combatant.active {
+body.light-theme #combat #combat-tracker li.combatant.active,
+body.light-theme #combat-popout #combat-tracker li.combatant.active {
   color: #0d99cc;
 }
 body.light-theme #combat #combat-tracker li.combatant.active .initiative,
-body.light-theme #combat #combat-tracker li.combatant.active h4 {
+body.light-theme #combat-popout #combat-tracker li.combatant.active .initiative,
+body.light-theme #combat #combat-tracker li.combatant.active h4,
+body.light-theme #combat-popout #combat-tracker li.combatant.active h4 {
   color: #0d99cc;
 }
-body.light-theme #combat #combat-tracker li.combatant.hidden {
+body.light-theme #combat #combat-tracker li.combatant.hidden,
+body.light-theme #combat-popout #combat-tracker li.combatant.hidden {
   color: #1c1c1c;
 }
-body.light-theme #combat #combat-controls {
+body.light-theme #combat #combat-controls,
+body.light-theme #combat-popout #combat-controls {
   border-top: 1px solid #0d99cc;
 }
 body.light-theme .sidebar-tab .directory-header .header-search i.fa-search {
@@ -360,53 +377,70 @@ body.light-theme .sidebar-tab .directory-list .journal:nth-child(even),
 body.light-theme .sidebar-tab .directory-list .table:nth-child(even) {
   background: rgba(175, 198, 214, 0.3);
 }
-body.light-theme #scenes .scene {
+body.light-theme #scenes .scene,
+body.light-theme #scenes-popout .scene {
   border-top: 1px solid #0d99cc;
   border-left: 4px solid #0d99cc;
 }
-body.light-theme #scenes .scene::after {
+body.light-theme #scenes .scene::after,
+body.light-theme #scenes-popout .scene::after {
   box-shadow: 0 0 20px #0d99cc inset;
 }
-body.light-theme #scenes .scene h3 {
+body.light-theme #scenes .scene h3,
+body.light-theme #scenes-popout .scene h3 {
   background: white;
 }
-body.light-theme #playlists .directory-list li.playlist {
+body.light-theme #playlists .directory-list li.playlist,
+body.light-theme #playlists-popout .directory-list li.playlist {
   background: white;
 }
-body.light-theme #playlists .directory-list li.playlist .playlist-header {
+body.light-theme #playlists .directory-list li.playlist .playlist-header,
+body.light-theme #playlists-popout .directory-list li.playlist .playlist-header {
   background: white;
   color: #c40f0f;
   border-bottom: 2px solid #0d99cc;
 }
-body.light-theme #playlists .directory-list li.playlist li.sound {
+body.light-theme #playlists .directory-list li.playlist li.sound,
+body.light-theme #playlists-popout .directory-list li.playlist li.sound {
   color: #1c1c1c;
 }
-body.light-theme #playlists .directory-list li.playlist a.sound-control {
+body.light-theme #playlists .directory-list li.playlist a.sound-control,
+body.light-theme #playlists-popout .directory-list li.playlist a.sound-control {
   color: #c40f0f;
 }
-body.light-theme #compendium .compendium-entity {
+body.light-theme #compendium .compendium-entity,
+body.light-theme #compendium-popout .compendium-entity {
   background: white !important;
 }
-body.light-theme #compendium .compendium-entity h3 {
+body.light-theme #compendium .compendium-entity h3,
+body.light-theme #compendium-popout .compendium-entity h3 {
   border-bottom: 2px solid #0d99cc;
 }
-body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
+body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even),
+body.light-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
   background: rgba(175, 198, 214, 0.3);
 }
-body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons,
+body.light-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   color: #828282;
 }
-body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
+body.light-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer,
+body.light-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
   color: #1c1c1c;
 }
-body.light-theme #settings h2 {
+body.light-theme #settings h2,
+body.light-theme #settings-popout h2 {
   color: #c40f0f;
   border-bottom: 2px solid #0d99cc;
 }
 body.light-theme #settings #game-details,
+body.light-theme #settings-popout #game-details,
 body.light-theme #settings #settings-game,
+body.light-theme #settings-popout #settings-game,
 body.light-theme #settings #settings-documentation,
-body.light-theme #settings #settings-access {
+body.light-theme #settings-popout #settings-documentation,
+body.light-theme #settings #settings-access,
+body.light-theme #settings-popout #settings-access {
   color: #1c1c1c;
 }
 body.light-theme #navigation #nav-toggle {

@@ -949,9 +949,9 @@ async function migrateItemTypes(migrateSystemCompendiums) {
     for await (let doc of documents) set.add(doc);
   }
   // Accumulate actors from scenes
-  for (const scene of scenes) for (const token of scene.tokens) if (!token.actorLink) actors.add(token.actor)
+  for (const scene of scenes) for (const token of scene?.tokens ?? {}) if (!token.actorLink) actors.add(token.actor)
   // Accumulate items from actors
-  for (const actor of actors) for (const item of actor.items) items.add(item);
+  for (const actor of actors) for (const item of actor?.items ?? {}) items.add(item);
 
   // Migrate items
   for await (const item of items) await _migrateItemType(item);
@@ -959,7 +959,7 @@ async function migrateItemTypes(migrateSystemCompendiums) {
   // Apply the original locked status for the packs
   for await (const [collection, lock] of Object.entries(wasLocked)) {
     const pack = await game.packs.get(collection);
-    pack.configure({ locked: false });
+    pack.configure({ locked: lock });
   }
 }
 
@@ -970,7 +970,7 @@ async function migrateItemTypes(migrateSystemCompendiums) {
  * @param {object} item        Item to migrate.
  */
 async function _migrateItemType(item) {
-  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item.type))) return;
+  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item?.type))) return;
 
   console.log(`Migrating item ${item.name} with deprecated type ${item.type}`);
 

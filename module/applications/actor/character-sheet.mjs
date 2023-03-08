@@ -276,21 +276,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         default: "cancel"
       }).render(true);
     });
-
-    html.find(".weapon-select-ammo").change(event => {
-      event.preventDefault();
-      const itemId = event.currentTarget.closest(".item").dataset.itemId;
-      const item = this.actor.items.get(itemId);
-      item.sheet._onWeaponSelectAmmo(event);
-    });
-    html.find(".weapon-reload-count").change(event => {
-      event.preventDefault();
-      if (event.target.attributes.disabled) return;
-      const itemId = event.currentTarget.closest(".item").dataset.itemId;
-      const item = this.actor.items.get(itemId);
-      const value = parseInt(event.currentTarget.value, 10);
-      if (!Number.isNaN(value)) item.update({ "system.ammo.value": value });
-    });
   }
 
   /* -------------------------------------------- */

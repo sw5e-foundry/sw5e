@@ -2901,6 +2901,7 @@ export default class Item5e extends Item {
     const actor = this.actor;
     const ammo = wpnSysData.ammo.target ? actor?.items?.get(wpnSysData.ammo.target) : null;
     const ammoSysData = ammo?.system;
+    const freeShot = actor.type === "npc" && !game.settings.get("sw5e", "npcConsumeAmmo");
 
     let toReload = wpnSysData.ammo.max - wpnSysData.ammo.value;
     const updates = [];
@@ -2921,7 +2922,7 @@ export default class Item5e extends Item {
         case "sstorpedo":
         case "ssbomb":
           toReload = Math.min(toReload, ammoSysData.quantity);
-          updates.push({
+          if (!freeShot) updates.push({
             "system.quantity": ammoSysData.quantity - toReload,
             "_id": ammo.id
           });
@@ -2932,8 +2933,8 @@ export default class Item5e extends Item {
         case "powerGenerator":
         case "projectorCanister":
         case "projectorTank":
-          updates.push({
-            "data.quantity": ammoSysData.quantity - 1,
+          if (!freeShot) updates.push({
+            "system.quantity": ammoSysData.quantity - 1,
             "_id": ammo.id
           });
           break;

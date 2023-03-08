@@ -276,4 +276,14 @@ export default function registerSystemSettings() {
     type: Boolean,
     default: false
   });
+
+  // NPCs consume ammo
+  game.settings.register("sw5e", "npcConsumeAmmo", {
+    name: "SETTINGS.SWnpcConsumeAmmoN",
+    hint: "SETTINGS.SWnpcConsumeAmmoL",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false
+  });
 }

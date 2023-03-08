@@ -644,11 +644,18 @@ export default class Item5e extends Item {
    * @protected
    */
   _prepareStarshipMod() {
-    foundry.utils.setProperty(
-      this.system,
-      "baseCost.value",
-      this.system?.baseCost?.value || CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value]
-    );
+    const baseCost = this.system?.baseCost?.value ?? CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const sizeMult = this.actor?.itemTypes?.starshipsize?.[0]?.system?.modCostMult;
+    const gradeMult = Number.isNumeric(this.system.grade.value) ? this.system.grade.value || 1 : 1;
+    if (baseCost && sizeMult && gradeMult) this.labels.cost = game.i18n.format("SW5E.ModFullCost", {
+      cost: baseCost * sizeMult * gradeMult,
+      baseCost,
+      sizeMult,
+      gradeMult
+    });
+    else this.labels.cost = game.i18n.format("SW5E.ModBaseCost");
+
+    foundry.utils.setProperty(this.system, "baseCost.value", baseCost);
   }
 
   /* -------------------------------------------- */

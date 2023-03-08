@@ -74,7 +74,7 @@
             {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
-                {{#with (lookup @root.ssactions key) as | actions |}} {{#unless (eq actions.items.length 0))}}
+                {{#with (lookup @root.ssactions key) as | actions |}} {{#unless (eq actions.items.length 0)}}
                     {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
                 {{/unless}} {{/with}}
             {{/if}} {{/with}} {{/each}}

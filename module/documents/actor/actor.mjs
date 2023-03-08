@@ -462,7 +462,7 @@ export default class Actor5e extends Actor {
     }
 
     const superiority = this.system?.attributes?.super;
-    if (superiority?.levels) {
+    if (superiority?.level) {
       if (scale.superiority) ui.notifications.warn("SW5E.SuperiorityIdentifierWarn");
       scale.superiority = superiority;
     }

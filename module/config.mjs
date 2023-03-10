@@ -1052,28 +1052,34 @@ SW5E.featureTypes = {
   class: {
     label: "SW5E.Feature.Class",
     subtypes: {
-      artificerInfusion: "SW5E.ClassFeature.ArtificerInfusion",
-      channelDivinity: "SW5E.ClassFeature.ChannelDivinity",
-      defensiveTactic: "SW5E.ClassFeature.DefensiveTactic",
-      eldritchInvocation: "SW5E.ClassFeature.EldritchInvocation",
-      elementalDiscipline: "SW5E.ClassFeature.ElementalDiscipline",
-      huntersPrey: "SW5E.ClassFeature.HuntersPrey",
-      ki: "SW5E.ClassFeature.Ki",
-      maneuver: "SW5E.ClassFeature.Maneuver",
-      metamagic: "SW5E.ClassFeature.Metamagic",
+      berserkerInvocation: "SW5E.ClassFeature.BerserkerInstinct",
+      consularForceAffinity: "SW5E.ClassFeature.ConsularForceAffinity",
+      consularInvocation: "SW5E.ClassFeature.ConsularFEC",
+      engineerInvocation: "SW5E.ClassFeature.EngineerModification",
+      fighterInvocation: "SW5E.ClassFeature.FighterStrategy",
+      guardianInvocation: "SW5E.ClassFeature.GuardianAura",
+      guardianCTF: "SW5E.ClassFeature.GuardianCTF",
+      monkFocus: "SW5E.ClassFeature.MonkFocus",
+      monkInvocation: "SW5E.ClassFeature.MonkVow",
       multiattack: "SW5E.ClassFeature.Multiattack",
-      pact: "SW5E.ClassFeature.PactBoon",
-      psionicPower: "SW5E.ClassFeature.PsionicPower",
-      rune: "SW5E.ClassFeature.Rune",
-      superiorHuntersDefense: "SW5E.ClassFeature.SuperiorHuntersDefense"
+      operativeInvocation: "SW5E.ClassFeature.OperativeExploit",
+      scholarInvocation: "SW5E.ClassFeature.ScholarDiscovery",
+      scoutInvocation: "SW5E.ClassFeature.ScoutRoutine",
+      sentinelInvocation: "SW5E.ClassFeature.SentinelIdeal",
+      sentinelFES: "SW5E.ClassFeature.SentinelFES",
     }
   },
   customizationOption: {
     label: "SW5E.Feature.CustomizationOption",
     subtypes: {
+      classImprovement: "SW5E.CustomizationOption.ClassImprovement",
       fightingMastery: "SW5E.CustomizationOption.FightingMastery",
       fightingStyle: "SW5E.CustomizationOption.FightingStyle",
       lightsaberForm: "SW5E.CustomizationOption.LightsaberForm",
+      multiclassImprovement: "SW5E.CustomizationOption.MulticlassImprovement",
+      splashclassImprovement: "SW5E.CustomizationOption.SplashclassImprovement",
+      weaponFocus: "SW5E.CustomizationOption.WeaponFocus",
+      weaponSupremacy: "SW5E.CustomizationOption.WeaponSupremacy",
     }
   },
   deployment: {

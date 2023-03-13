@@ -526,20 +526,17 @@ async function addFavorites(app, html, context) {
       }
 
       item.editable = app.options.editable;
-      if (item.type in CONFIG.SW5E.featLikeItems) {
-        item.flags.favtab.sort ??= (favFeats.count + 1) * 100000; // initial sort key if not present
-        favFeats.push(item);
-      }
-      else switch (item.type) {
+      switch (item.type) {
+        case "feat":
+        case "maneuver":
+          item.flags.favtab.sort ??= (favFeats.count + 1) * 100000; // initial sort key if not present
+          favFeats.push(item);
+          break;
         case "power":
           if (item.system.preparation.mode) {
             item.powerPrepMode = ` (${CONFIG.SW5E.powerPreparationModes[item.system.preparation.mode]})`;
           }
-          if (item.system.level) {
-            favPowers[item.system.level].powers.push(item);
-          } else {
-            favPowers[0].powers.push(item);
-          }
+          favPowers[item.system.level || 0].powers.push(item);
           powerCount++;
           break;
         default:
@@ -605,7 +602,7 @@ async function addFavorites(app, html, context) {
       let dragSource = app.actor.items.get(itemId);
 
       let list = null;
-      if (dragSource.type in CONFIG.SW5E.featLikeItems) list = favFeats;
+      if (["feat", "maneuver"].includes(dragSource.type)) list = favFeats;
       else list = favItems;
 
       let siblings = list.filter(i => i.id !== itemId);

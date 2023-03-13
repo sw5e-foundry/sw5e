@@ -84,7 +84,7 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
     context.toggleTitle = game.i18n.localize(`SW5E.${isCrewed ? "Crewed" : "Uncrewed"}`);
 
     // Handle crew actions
-    if ( item.type in CONFIG.SW5E.featLikeItems && item.system.activation.type === "crew" ) {
+    if ( item.type === "feat" && item.system.activation.type === "crew" ) {
       context.cover = game.i18n.localize(`SW5E.${item.system.cover ? "CoverTotal" : "None"}`);
       if ( item.system.cover === .5 ) context.cover = "½";
       else if ( item.system.cover === .75 ) context.cover = "¾";

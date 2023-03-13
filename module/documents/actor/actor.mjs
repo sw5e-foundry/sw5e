@@ -4273,8 +4273,8 @@ export default class Actor5e extends Actor {
       // Keep specific items from the original data
       d.items = d.items.concat(o.items.filter(i => {
         if ( ["class", "archetype", "deployment"].includes(i.type) ) return keepClass;
-        else if ( item.type in CONFIG.SW5E.featLikeItems ) return keepFeats;
-        else if ( i.type === "power" ) return keepPowers;
+        else if ( i.type === "feat" ) return keepFeats;
+        else if ( ["power", "maneuver"].includes(i.type) ) return keepPowers;
         else return keepItems;
       }));
 
@@ -4306,8 +4306,8 @@ export default class Actor5e extends Actor {
         const isOriginEffect = originEffectIds.has(e._id);
         if ( isOriginEffect ) return keepOriginAE;
         if ( !isOriginEffect && !originIsSelf ) return keepOtherOriginAE;
-        if ( origin.type === "power" ) return keepPowerAE;
-        if ( origin.type in CONFIG.SW5E.featLikeItems ) return keepFeatAE;
+        if ( ["power", "maneuver"].includes(origin.type) ) return keepPowerAE;
+        if ( origin.type === "feat" ) return keepFeatAE;
         if ( origin.type === "background" ) return keepBackgroundAE;
         if ( ["archetype", "class"].includes(origin.type) ) return keepClassAE;
         if ( ["equipment", "weapon", "tool", "loot", "backpack"].includes(origin.type) ) return keepEquipmentAE;

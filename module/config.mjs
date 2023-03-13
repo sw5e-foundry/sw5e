@@ -951,16 +951,6 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
- * TODO: Remove this once they are assimilated under feat types and subtypes
- * Item types that behave simillar to "feat".
- * @enum {string}
- */
-SW5E.featLikeItems = {
-  feat: "ITEM.TypeFeat",
-  maneuver: "ITEM.TypeManeuver"
-}
-
-/**
  * Migration data for old 'feat-like items'.
  * @enum {object}
  * @property {string} value       system.type.value data after migration

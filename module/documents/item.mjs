@@ -460,9 +460,10 @@ export default class Item5e extends Item {
     this._prepareAdvancement();
 
     // Specialized preparation per Item type
-    if (this.type in CONFIG.SW5E.featLikeItems) {
-      this._prepareFeat();
-    } else switch (this.type) {
+    switch (this.type) {
+      case "feat":
+        this._prepareFeat();
+        break;
       case "equipment":
         this._prepareEquipment();
         break;
@@ -1680,9 +1681,10 @@ export default class Item5e extends Item {
     // Item type specific properties
     const props = [];
     //TODO: Likely need more item types to match SW5e
-    if (this.type in CONFIG.SW5E.featLikeItems) {
-      this._featChatData(data, labels, props);
-    } else switch (this.type) {
+    switch (this.type) {
+      case "feat":
+        this._featChatData(data, labels, props);
+        break;
       case "consumable":
         this._consumableChatData(data, labels, props);
         break;

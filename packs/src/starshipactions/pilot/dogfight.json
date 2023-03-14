@@ -1,0 +1,89 @@
+{
+  "name": "Dogfight",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/pilot-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "iz9DVRm7QxoNVU0Q",
+  "system": {
+    "description": {
+      "value": "<p>When you take the Dogfight action, you engage an enemy, ducking and weaving, vying for a good shot while avoiding theirs. You choose a target you can see and make an opposed Dexterity (Maneuver) check. On a success, you cause the next attack made against your ship by the target to suffer from disadvantage, but you grant the next attack made against your ship by a different target advantage. Additionally, you can perform a primary or tertiary weapon attack from a forward-facing limited firing arc against that ship without suffering the normal disadvantage.</p>\n<p>Only a deployed pilot can take the Dogfight action.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "abil",
+    "attackBonus": 0,
+    "chatFlavor": "Contested by Dexterity (Maneuver)",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.man.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "pilot"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": "pilot"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016677,
+    "modifiedTime": 1677699337411,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

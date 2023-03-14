@@ -1,0 +1,1176 @@
+{
+  "_id": "7bzdB5wwWmrVzoUx",
+  "name": "IG-100 Series",
+  "type": "npc",
+  "img": "icons/svg/hazard.svg",
+  "items": [
+    {
+      "name": "Multiattack",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+        "uid": "MonsterBehavior.name-multiattack.source-monster.sourceName-ig_100_series",
+        "sw5e-importer": {
+          "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-multiattack.source-monster.sourceName-ig_100_series"
+        }
+      },
+      "_id": "1ruQqrM2I3Wn1J36",
+      "type": "feat",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<p> The MagnaGuard makes two electrostaff attacks.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "other",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Electrostaff",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+        "uid": "MonsterBehavior.name-electrostaff.source-monster.sourceName-ig_100_series",
+        "sw5e-importer": {
+          "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-electrostaff.source-monster.sourceName-ig_100_series"
+        }
+      },
+      "_id": "1PuDLcRFB8Ey1F57",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 9 ([[/r 2d4+4]]) kinetic damage.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 5,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "mwak",
+        "attackBonus": "3",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "2d4+4",
+              "kinetic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hvy": false,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "rel": null,
+          "smr": false,
+          "spc": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "ilk": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rch": false,
+          "rck": null,
+          "ret": false,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false,
+          "thr": false,
+          "two": false,
+          "ver": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Blaster Pistol",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+        "uid": "MonsterBehavior.name-blaster_pistol.source-monster.sourceName-ig_100_series",
+        "sw5e-importer": {
+          "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-blaster_pistol.source-monster.sourceName-ig_100_series"
+        }
+      },
+      "_id": "188X3xIZXUVV1aKZ",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Ranged Weapon Attack: +6 to hit, range 40/160 ft., one target. Hit: 7 ([[/r 1d6+4]]) energy damage.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 40,
+          "long": 160,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "rwak",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d6+4",
+              "energy"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hvy": false,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "rel": null,
+          "smr": false,
+          "spc": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "ilk": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rch": false,
+          "rck": null,
+          "ret": false,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false,
+          "thr": false,
+          "two": false,
+          "ver": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Parry",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+        "uid": "MonsterBehavior.name-parry.source-monster.sourceName-ig_100_series",
+        "sw5e-importer": {
+          "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-parry.source-monster.sourceName-ig_100_series"
+        }
+      },
+      "_id": "GFtVkorpjYrHnaxi",
+      "type": "feat",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<p> The droid adds 3 to its AC against one melee attack that would hit it. To do so, the droid must see the attacker and be wielding a melee weapon.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "activation": {
+          "type": "reaction",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "other",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-05-03T05:14:16.2192959+00:00",
+      "importer_version": 3,
+      "uid": "Monster.name-ig_100_series"
+    }
+  },
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 13,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Strength",
+        "mod": 1
+      },
+      "dex": {
+        "value": 19,
+        "proficient": 1,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Dexterity",
+        "mod": 4
+      },
+      "con": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Constitution",
+        "mod": 2
+      },
+      "int": {
+        "value": 15,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Intelligence",
+        "mod": 2
+      },
+      "wis": {
+        "value": 13,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Wisdom",
+        "mod": 1
+      },
+      "cha": {
+        "value": 9,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Charisma",
+        "mod": -1
+      },
+      "hon": {
+        "value": 9,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 13,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 16,
+        "calc": "flat",
+        "formula": ""
+      },
+      "hp": {
+        "value": 58,
+        "max": 58,
+        "temp": null,
+        "tempmax": null,
+        "formula": "9d8 + 18",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": 0,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": 0,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none"
+    },
+    "details": {
+      "biography": {
+        "value": "<p>Battle droids, also known as combat droids or battle bots, are a type of droid designed for combat. One thing most battle droids have in common is limited intelligence. They are programmed to follow orders, and not much else, though they do have personalities. Some battle droids, however, have some form of intelligence. These droids are much more expensive to make, due to their advanced brains.<strong><em>Clone Wars.</em></strong> Over the years, many different models of battle droid have been utilized by various factions throughout the galaxy. The Confederacy of Independent Systems, for example, used a number of different models of battle droid during the Clone Wars to make up the Separatist Droid Army. Under the command of General Grievous, varying models of battle droid fought against the Galactic Republic's clone troopers until the final days of the war, when the Confederate battle droids were deactivated by the Galactic Empire.</p>\n<p>After the InterGalactic Banking Clan secured Grievous's services as an enforcer, they refused to hire his Kaleesh, and thus the cyborg general demanded a cadre of \"more intelligent battle droids\" to serve him. The construction of the MagnaGuards was then commissioned for Grievous's service. Constructed by Holowan Mechanicals, MagnaGuards were roughly two meters tall, with a humanoid body shape, but possessed a far-superior mechanical anatomy. This allowed for superhuman acrobatics, speed, and combat ability. Their internal systems were furnished with advanced combat learning programs, which, compared to most of the droids utilized by the Confederacy of Independent Systems, allowed the MagnaGuards to adapt to a highly diverse variety of tasks. These tasks ranged from melee and ranged combat to starfighter control. MagnaGuards were also capable of speech and were programmed to taunt their opponents in a low growling Basic.The MagnaGuard's weapon of choice was the lightsaber-resistant electrostaff, and wore cloaks and head wraps similar to the garments of Grievous's old Izvoshra elite during the general's time as a Kaleesh warlord.Grievous personally trained his bodyguards in the seven classic styles of lightsaber combat so that they could effectively engage and then kill Jedi. Grievous would not allow any repairs to be made to the droids, believing that their numerous scrapes and battle scars made them more intimidating to enemies. </p>",
+        "public": ""
+      },
+      "alignment": "unaligned",
+      "species": "",
+      "type": {
+        "value": "custom",
+        "subtype": "",
+        "swarm": "",
+        "custom": "droid"
+      },
+      "environment": "",
+      "cr": 4,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "SnV",
+      "xp": {
+        "value": 10
+      }
+    },
+    "traits": {
+      "size": "med",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [
+          "necrotic",
+          "poison"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [
+          "ion"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [
+          "poisoned",
+          "diseased"
+        ],
+        "custom": ""
+      },
+      "languages": {
+        "value": [
+          "binary",
+          "basic"
+        ],
+        "custom": ""
+      }
+    },
+    "currency": {
+      "gc": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 1
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 1
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 1
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power2": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power3": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power4": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power5": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power6": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power7": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power8": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power9": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": 0,
+        "initiative": 0
+      }
+    },
+    "source": "SnV"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "name": "IG-100 Series",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false,
+        "type": null
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "texture": {
+      "src": "icons/svg/hazard.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493994017,
+    "modifiedTime": 1678476394712,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

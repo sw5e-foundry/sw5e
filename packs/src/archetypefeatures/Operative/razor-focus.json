@@ -1,0 +1,119 @@
+{
+  "_id": "hNLCVeWzPt9KyXDY",
+  "name": "Razor Focus",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Bonus.webp",
+  "effects": [
+    {
+      "_id": "8H40zgYS6J0C1rPc",
+      "flags": {},
+      "changes": [],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Bonus.webp",
+      "label": "New Active Effect",
+      "transfer": false,
+      "disabled": false,
+      "origin": null,
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "dae": {
+      "activeEquipped": false,
+      "alwaysActive": false
+    },
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-razor_focus.source-archetype.sourceName-pugnacity_practice.level-17"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Pugnacity Practice:</strong> 17th level</em></p>\n<p>You can enter a hyper-focused state of mind for 1 minute as a bonus action. You must maintain concentration, as if concentrating on a power. For the duration, each time you successfully deal Sneak Attack damage against a creature, you gain two additional Sneak Attack dice, cumulatively, as your attacks become increasingly precise. These additional dice are lost when your focus ends, whether through failing to maintain concentration or after 1 minute.</p>\n<p>The first time you use this feature, you suffer no ill effect. If you use this feature again before you finish a long rest, you suffer one level of exhaustion each time you use it.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Pugnacity Practice) 17",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Operative"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957981,
+    "modifiedTime": 1678471090720,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

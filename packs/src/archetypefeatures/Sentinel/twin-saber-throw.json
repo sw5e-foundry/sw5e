@@ -1,0 +1,96 @@
+{
+  "name": "Twin Saber Throw",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SNTL-ARCH-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:01.2708944+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-twin_saber_throw.source-archetype.sourceName-path_of_the_forceblade.level-13"
+    }
+  },
+  "_id": "pdaAmQgr2AQx1Jmc",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Path of the Forceblade:</strong> 7th, 9th, 13th, and 17th level</em></p>\n<p>When you cast <em>saber throw</em> while wielding your forceblade, you can attack the same target multiple times.</p>\n<p>Additionally, when you deal damage to a creature within 30 feet of you with your forceblade, you can use your bonus action to teleport to within 5 feet of that creature and make a melee weapon attack against that creature. This attack uses your Kinetic Combat die instead of your weapon's damage die. You can use this feature three times. You gain an additional use at 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Sentinel (Path of the Forceblade) 13",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 3,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Sentinel"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958132,
+    "modifiedTime": 1678471090726,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

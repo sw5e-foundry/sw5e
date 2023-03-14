@@ -1,0 +1,95 @@
+{
+  "_id": "nIUV3obxOJMfF7d7",
+  "name": "Unstable Volley",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-ARCH-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:01.3038837+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-unstable_volley.source-archetype.sourceName-unstable_engineering.level-17"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Unstable Engineering:</strong> 3rd, 9th, and 17th level</em></p>\n<p>While wielding your tinkercannon, as a bonus action you can expend one use of your Potent Aptitude to launch a volley of unstable energy at a surface located within 30 feet of you that you can see. This energy adheres to the surface for 1 minute, after which it erupts. As a part of this bonus action, or as a bonus action on a following turn, you can cause the energy to erupt early. Each creature within 5 feet of it must make a Dexterity saving throw against your tech save DC. A creature takes [[/r 1d6]] lightning damage on a failed save, or half as much on a successfu one. </p>\n<p>The range at which you can launch your volley increases to 60 feet at 9th level, and 120 feet at 17th level.</p>\n<p>This damage increases when you reach certain levels in this class, increasing to [[/r 2d6]] at 5th level, [[/r 3d6]] at 11th level, and [[/r 4d6]] at 17th level.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Unstable Engineering) 17",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d6",
+          "lightning"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958058,
+    "modifiedTime": 1678471090723,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

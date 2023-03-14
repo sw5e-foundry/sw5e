@@ -1,0 +1,173 @@
+{
+  "_id": "SBDxq0lX1bTYAeUZ",
+  "name": "Tractor Beam Heavy Capacitors",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "midi-qol": {
+      "effectActivation": false
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>As an action, a crew member can use a ship's tractor beam to move a ship or object one size category larger than the ship or smaller within 900 feet and within the tractor beam's arc. The target must make a Strength saving throw (DC = 8 + ship tier + the ship's Strength modifier). An object automatically fails this saving throw. On a failed save, the ship or object moves a number of feet in a direction of your choice based on its size. A ship or object two or more size categories smaller than your ship can be moved up to 900 feet, a ship or object one size category smaller can be moved up to 600 feet, a ship or object of the same size category can be moved up to 300 feet, and a ship or object one size category larger can be moved up to 100 feet. If at the end of this movement the ship or object strikes another ship or object, they both take 2d8 kinetic damage.</p>\n<p> </p>\n<p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "any",
+      "type": "object"
+    },
+    "range": {
+      "value": 900,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "str"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Engineering"
+    },
+    "grade": {
+      "value": "2"
+    },
+    "basecost": {
+      "value": "3500"
+    },
+    "prerequisites": {
+      "value": "Tractor Beam"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "attunement": 0,
+    "proficient": false,
+    "equipped": false,
+    "identified": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Steadfast": false,
+      "Strength": false,
+      "Versatile": false
+    },
+    "capx": {
+      "value": ""
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "regrateco": {
+      "value": ""
+    },
+    "cscap": {
+      "value": ""
+    },
+    "sscap": {
+      "value": ""
+    },
+    "fuelcostsmod": {
+      "value": ""
+    },
+    "powdicerec": {
+      "value": ""
+    },
+    "hdclass": {
+      "value": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494018681,
+    "modifiedTime": 1677349746306,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

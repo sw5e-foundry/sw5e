@@ -1,0 +1,115 @@
+{
+  "name": "Saber Dance",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:05.9363659+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-saber_dance.level-4"
+    }
+  },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/SaberDance.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Animate Weapon</em></p>\n<p>A light- or vibro-weapon of your choice that you are wearing or carrying begins to animate, spinning around your body at high speeds in a 10-foot radius centered on you. For the duration, your movement speed is halved, and the weapon moves with you.</p>\n<p>When a creature enters the affected area for the first time on a turn or starts its turn there, the creature must make a Dexterity saving throw or take [[/r 4d10]] damage of the weapon's type, or half as much damage on a successful saving throw.</p>\n<p>When this power ends, you can immediately recall the weapon to your hand.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a force slot of 5th level or higher, the radius of the power increases to 15 feet, and the power's damage increases by [[/r 1d10]] for each slot level above 4th.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Animate Weapon",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": "10",
+      "width": null,
+      "units": "ft",
+      "type": "radius"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "4d10",
+          "damage"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 4,
+    "school": "uni",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": "1d10"
+    }
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1667426102469,
+    "modifiedTime": 1678476389179,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "9HVjAdyYtafS5r7A"
+}

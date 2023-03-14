@@ -1,0 +1,98 @@
+{
+  "_id": "4pWcO0OsRziug7Tf",
+  "name": "Advanced Blastsaber",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.543927+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-advanced_blastsaber.source-archetypeinvocation.sourceName-artificer_engineering.level-15"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 15th level, Prototype Blastsaber</em></p>\n<p>You further fine tune your blastsaber. As an action, you can disable a single electronic device not being worn or held by another creature within 5 feet of you. The device is then disabled until it is rebooted.</p>\n<p>Additionally, when you activate this conversion to alter the properties of your lightweapon, you create a projected barrier of ion energy in a 10-foot-radius sphere around you until the start of your next turn. Hostile creatures treat this area as difficult terrain. When a hostile creature enters the shielded area or starts its turn there, that creature takes [[/r 3d4]] ion damage. Any electronics not being worn or held within the barrier's radius are disabled until rebooted.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Artificer Engineering) 15, Prototype Blastsaber",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": "10",
+      "width": null,
+      "units": "ft",
+      "type": "sphere"
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "3d4",
+          "ion"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493980979,
+    "modifiedTime": 1678471402721,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

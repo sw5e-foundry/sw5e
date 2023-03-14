@@ -1,0 +1,90 @@
+{
+  "_id": "wNQS0Ptg34IyGxZZ",
+  "name": "Knowledge is Power",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:21.8891414+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-knowledge_is_power.source-archetype.sourceName-archaeologist_pursuit.level-17"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Archaeologist Pursuit:</strong> 17th level</em></p>\n<p>You gain the ability to steal the knowledge of how to cast a power from another forcecaster. When a hostile creature casts a force power that affects a friendly creature within range of your Critical Analysis feature, and you use your reaction target that friendly creature with your Critical Analysis feature, you can force the creature casting the power to make a Wisdom or Charisma saving throw (your choice) against your universal force save DC. On a successful save, the power is cast as normal.</p>\n<p>On a failed save, you negate the power's effects, and you steal the knowledge of that power if it is at least 1st level and of a level you can cast. For the next 8 hours, you know the power and can cast it using your force points. The creature cannot cast that power again until the 8 hours have passed.</p>\n<p>Once you've used this feature, you cannot use it again until you finish a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Archaeologist Pursuit) 17",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "8",
+      "units": "hour"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958234,
+    "modifiedTime": 1678471090731,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

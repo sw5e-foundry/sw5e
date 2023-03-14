@@ -1,0 +1,105 @@
+{
+  "name": "Battle Crescendo",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:21.7231957+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-battle_crescendo.source-archetype.sourceName-audiotech_engineering.level-18"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-ARCH-Passive.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Choose up to 10 creatures of your choice that you can see and that can hear your song. Each must make a Constitution saving throw. On a failed save, a target takes [[/r 14d6]] sonic damage and is stunned for [[/r 1d4+1]] turns. On a success, it takes half damage and isn't stunned. If a creature is killed by this power, its head explodes.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Audiotech Engineering) 18",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "14d6",
+          "sonic"
+        ],
+        [
+          "1d4 + 1",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1667426104166,
+    "modifiedTime": 1678471090707,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "QaNZyDJsLfuBepL5"
+}

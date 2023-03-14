@@ -1,0 +1,97 @@
+{
+  "_id": "EOFtXi7actzLQrCl",
+  "name": "Disabling Shot",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Gunner.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br>When you make a ship attack roll against a ship, you can expend one power die to add it to the roll. On a hit, the ship has disadvantage on the next ability check or attack roll it makes before the end of your next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Gunner 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.weapons.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Gunner"
+    },
+    "featureType": {
+      "value": "Gambit"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963423,
+    "modifiedTime": 1677349705089,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

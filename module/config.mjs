@@ -1088,8 +1088,8 @@ SW5E.featureTypes = {
     label: "SW5E.Feature.Starship",
     subtypes: {
       role: "SW5E.StarshipFeature.Role",
-      roleSpec: "SW5E.StarshipFeature.RoleSpecialization",
-      roleMast: "SW5E.StarshipFeature.RoleMastery"
+      roleSpecialization: "SW5E.StarshipFeature.RoleSpecialization",
+      roleMastery: "SW5E.StarshipFeature.RoleMastery"
     }
   },
   starshipAction: {

@@ -11,7 +11,7 @@ export default class HullPointsFlow extends HitPointsFlow {
       isFirstClassLevel: false,
       labels: {
         average: "SW5E.AdvancementHullPointsAverage",
-        roll: "SW5E.AdvancementHullPointsRollButton",
+        roll: "SW5E.AdvancementHullPointsRollButton"
       }
     });
   }
@@ -24,8 +24,8 @@ export default class HullPointsFlow extends HitPointsFlow {
    */
   _updateRollResult() {
     if (!this.form.elements.useAverage?.checked) return;
-    let avg = this.advancement.hitDieValue / 2 + 1;
-    if (this.level === 0) avg = this.advancement.hitDieValue + (this.advancement.item.system.hullDiceStart - 1) * avg;
+    let avg = (this.advancement.hitDieValue / 2) + 1;
+    if (this.level === 0) avg = this.advancement.hitDieValue + ((this.advancement.item.system.hullDiceStart - 1) * avg);
     this.form.elements.value.value = avg;
   }
 

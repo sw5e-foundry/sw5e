@@ -31,18 +31,18 @@ export default class CheckboxSelectDialog extends Dialog {
    * A helper factory method to create simple confirmation dialog windows which consist of simple yes/no prompts.
    * If you require more flexibility, a custom Dialog instance is preferred.
    *
-   * @param {object} config                               Confirmation dialog configuration
-   * @param {string} config.title                         The window title
-   * @param {string} config.content                       The message
-   * @param {Object{string, string}]} config.checkboxes   Selectable options list
-   * @param {Array.<string>} [config.defaultSelect=[]]    Array with the ids of pre-selected checkboxes
-   * @param {Array.<string>} [config.disabled=[]]         Array with the ids of read-only checkboxes
-   * @param {string} config.confirmLabel                  The confirmation button's text
-   * @param {Function} [config.render]                    A function to call when the dialog is rendered
-   * @param {boolean} [config.rejectClose=false]          Reject the Promise if the Dialog is closed without making a choice.
-   * @param {Object} [config.options={}]                  Additional rendering options passed to the Dialog
+   * @param {object} cfg                       Confirmation dialog configuration
+   * @param {string} cfg.title                 The window title
+   * @param {string} cfg.content               The message
+   * @param {object} cfg.checkboxes            Selectable options list
+   * @param {string[]} [cfg.defaultSelect=[]]  Array with the ids of pre-selected checkboxes
+   * @param {string[]} [cfg.disabled=[]]       Array with the ids of read-only checkboxes
+   * @param {string} cfg.confirmLabel          The confirmation button's text
+   * @param {Function} [cfg.render]            A function to call when the dialog is rendered
+   * @param {boolean} [cfg.rejectClose=false]  Reject the Promise if the Dialog is closed without making a choice.
+   * @param {object} [cfg.options={}]          Additional rendering options passed to the Dialog
    *
-   * @return {Promise<*>}                                 A promise which resolves once the user makes a choice or closes the window
+   * @returns {Promise<*>}   A promise which resolves once the user makes a choice or closes the window
    *
    * @example
    * let d = CheckboxSelect.checkboxSelect({

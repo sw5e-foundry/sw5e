@@ -121,11 +121,10 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
   static #migrateCritical(source) {
     if (!("critical" in source)) return;
     if (source.critical?.damage === null) source.critical.damage = "";
-    if (typeof source.critical !== "object" || source.critical === null)
-      source.critical = {
-        threshold: null,
-        damage: ""
-      };
+    if (typeof source.critical !== "object" || source.critical === null) source.critical = {
+      threshold: null,
+      damage: ""
+    };
   }
 
   /* -------------------------------------------- */

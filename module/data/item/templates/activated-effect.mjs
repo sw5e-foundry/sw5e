@@ -180,7 +180,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
       source.duration = {
         value: "",
         units: "inst"
-      }
+      };
     }
   }
 

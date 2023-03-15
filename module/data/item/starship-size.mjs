@@ -6,32 +6,32 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * Data definition for Starship Size items.
  * @mixes ItemDescriptionTemplate
  *
- * @property {string} identifier                      Identifier slug for this.
- * @property {number} tier                            Current tier.
- * @property {string} hullDice                        Denomination of hull dice available as defined in `SW5E.hullDieTypes`.
- * @property {number} hullDiceStart                   Number of hull dice at tier 0.
- * @property {number} hullDiceUsed                    Number of hull dice consumed.
- * @property {string} shldDice                        Denomination of shield dice available as defined in `SW5E.shldDieTypes`.
- * @property {number} shldDiceStart                   Number of shield dice at tier 0.
- * @property {number} shldDiceUsed                    Number of shield dice consumed.
- * @property {object[]} advancement                   Advancement objects for this.
- * @property {number} buildBaseCost                   Base cost of building a starship of this size.
- * @property {number} buildMinWorkforce               Minimum worforce needed to build a starship of this size.
- * @property {number} upgrdCostMult                   Multiplier to the cost of upgrading a starship of this size.
- * @property {number} upgrdMinWorkforce               Minimum worforce needed to upgrade a starship of this size.
- * @property {number} baseSpaceSpeed                  Starship's base space speed. //TODO: Check if this should be changed
- * @property {number} baseTurnSpeed                   Starship's base turn speed. //TODO: Check if this should be changed
- * @property {number} crewMinWorkforce                Minimum workforce needed to crew a starship of this size. //TODO: Check if this is correct
- * @property {number} modBaseCap                      Base capacity of modifications on a starship of this size.
- * @property {number} modMaxSuitesBase                Base capacity of suite modifications on a starship of this size.
- * @property {number} modMaxSuitesMult                Increase in capacity of suite modifications per CON mod on a starship of this size.
- * @property {number} modMinWorkforce                 Minimum workforce needed to install a modification on a starship of this size.
- * @property {number} hardpointMult                   Multiplier to the ammount of Fires per turn on a starship of this size.
- * @property {number} equipCostMult                   Multiplier to the cost of equipment for a starship of this size.
- * @property {number} equipMinWorkforce               Minimum workforce needed to install equipment on a starship of this size.
- * @property {number} cargoCap                        Starship's cargo capacity.
- * @property {number} fuelCost                        Cost per unit of fuel for a starship of this size.
- * @property {number} fuelCap                         Starship's fuel capacity.
+ * @property {string} identifier         Identifier slug for this.
+ * @property {number} tier               Current tier.
+ * @property {string} hullDice           Denomination of hull dice available as defined in `SW5E.hullDieTypes`.
+ * @property {number} hullDiceStart      Number of hull dice at tier 0.
+ * @property {number} hullDiceUsed       Number of hull dice consumed.
+ * @property {string} shldDice           Denomination of shield dice available as defined in `SW5E.shldDieTypes`.
+ * @property {number} shldDiceStart      Number of shield dice at tier 0.
+ * @property {number} shldDiceUsed       Number of shield dice consumed.
+ * @property {object[]} advancement      Advancement objects for this.
+ * @property {number} buildBaseCost      Base cost of building a starship of this size.
+ * @property {number} buildMinWorkforce  Minimum worforce needed to build a starship of this size.
+ * @property {number} upgrdCostMult      Multiplier to the cost of upgrading a starship of this size.
+ * @property {number} upgrdMinWorkforce  Minimum worforce needed to upgrade a starship of this size.
+ * @property {number} baseSpaceSpeed     Starship's base space speed. //TODO: Check if this should be changed
+ * @property {number} baseTurnSpeed      Starship's base turn speed. //TODO: Check if this should be changed
+ * @property {number} crewMinWorkforce   Minimum workforce needed to crew a starship of this size.
+ * @property {number} modBaseCap         Base capacity of mods on a starship of this size.
+ * @property {number} modMaxSuitesBase   Base capacity of suite mods on a starship of this size.
+ * @property {number} modMaxSuitesMult   Increase in capacity of suite mods per CON mod on a starship of this size.
+ * @property {number} modMinWorkforce    Minimum workforce needed to install a mod on a starship of this size.
+ * @property {number} hardpointMult      Multiplier to the ammount of Fires per turn on a starship of this size.
+ * @property {number} equipCostMult      Multiplier to the cost of equipment for a starship of this size.
+ * @property {number} equipMinWorkforce  Minimum workforce needed to install equipment on a starship of this size.
+ * @property {number} cargoCap           Starship's cargo capacity.
+ * @property {number} fuelCost           Cost per unit of fuel for a starship of this size.
+ * @property {number} fuelCap            Starship's fuel capacity.
  */
 export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
@@ -42,7 +42,7 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
         required: true,
         nullable: false,
         integer: true,
-        // min: 0, // Min removed because of advancements
+        // Min: 0, // Min removed because of advancements
         initial: 0,
         label: "SW5E.StarshipTiers"
       }),

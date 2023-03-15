@@ -1,0 +1,97 @@
+{
+  "_id": "aaJBvhIo9mFBaU4U",
+  "name": "Break the Lock",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Pilot.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br>When the ship fails a Strength, Dexterity, or Constitution saving throw, as a reaction, you can expend a power die to attempt to recover. Roll the die and add the result to the saving throw.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Pilot 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.engines.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Pilot"
+    },
+    "featureType": {
+      "value": "Tactic"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963450,
+    "modifiedTime": 1677349705117,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

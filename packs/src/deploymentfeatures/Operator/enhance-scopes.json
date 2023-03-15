@@ -1,0 +1,97 @@
+{
+  "_id": "CXpsc3IX1mUE7g78",
+  "name": "Enhance Scopes",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Operator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Sensors</em><br>As a bonus action, can expend one power die to increase the ranges of your ship's next primary or secondary weapon attack by 500 feet. If it hits, you add the power die to the attack's damage roll.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.sensors.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Operator"
+    },
+    "featureType": {
+      "value": "Disruption"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963420,
+    "modifiedTime": 1677349705086,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "_id": "Ja3M4Dsep6lfYUTW",
+  "name": "Starship Charge",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Pilot.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br>When you take the Ram action, you can expend a power die to increase the damage. On a failed save, the target ship takes additional kinetic damage equal to the amount rolled on the die + your ship's Strength modifier. Your ship has resistance to the additional damage dealt by this tactic.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Pilot 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.engines.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Pilot"
+    },
+    "featureType": {
+      "value": "Tactic"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963428,
+    "modifiedTime": 1677349705095,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

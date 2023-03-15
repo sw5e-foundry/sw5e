@@ -1,0 +1,93 @@
+{
+  "_id": "Ov2baOEChu6p4ll2",
+  "name": "Vow of the Nemesis",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/MNK-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:01.0719592+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-vow_of_the_nemesis.source-classinvocation.sourceName-monk.level-13"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 13th level</em></p>\n<p>As a bonus action, you can choose one creature within 30 feet that you can see. The creature must make a Wisdom saving throw against your focus save DC. On a successful save, the creature becomes immune to this feature for 24 hours. On a failed save, for the next minute, the creature has disadvantage on attack rolls against creatures other than you, and it must make an additional Wisdom saving throw each time it attempts to move to a space that is more than 30 feet away from you; if it succeeds on this saving throw, this feature doesn't restrict its movement for that turn. </p>\n<p>This feature ends early if you attack another creature, if you target another hostile creature with a power or class feature, if a friendly creature damages the target, if a friendly creature targets it with a power or class feature, or if you target another creature with this feature.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Monk 13",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "24",
+      "units": "hour"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "monkInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981086,
+    "modifiedTime": 1678471402727,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

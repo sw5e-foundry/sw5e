@@ -68,7 +68,7 @@ export default class ActorHitDiceConfig extends BaseConfigSheet {
   async _updateObject(event, formData) {
     const actorItems = this.object.items;
     const classUpdates = Object.entries(formData).map(([id, hd]) => ({
-      "_id": id,
+      _id: id,
       "system.hitDiceUsed": actorItems.get(id).system.levels - hd
     }));
     return this.object.updateEmbeddedDocuments("Item", classUpdates);

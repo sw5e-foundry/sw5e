@@ -1,7 +1,6 @@
 import { d20Roll, damageRoll } from "../dice/dice.mjs";
 import simplifyRollFormula from "../dice/simplify-roll-formula.mjs";
 import Advancement from "./advancement/advancement.mjs";
-import { fromUuidSynchronous, fromUuidSafe } from "../utils.mjs";
 import AbilityUseDialog from "../applications/item/ability-use-dialog.mjs";
 import Proficiency from "./actor/proficiency.mjs";
 
@@ -83,25 +82,21 @@ export default class Item5e extends Item {
           else if (type === "mental") attrs = ["int", "wis", "cha"];
           else attrs = ["str", "dex", "con", "int", "wis", "cha"];
 
-          const { attr, mod } = attrs.reduce(
+          return attrs.reduce(
             (acc, attr) => {
               const mod = abilities[attr]?.mod ?? -Infinity;
               if (mod > acc.mod) acc = { attr, mod };
               return acc;
             },
             { attr: "str", mod: -Infinity }
-          );
-
-          return attr;
-          break;
+          ).attr;
       }
 
       // If a specific attack type is defined
-      if (this.hasAttack)
-        return {
-          mwak: "str",
-          rwak: "dex"
-        }[this.system.actionType];
+      if (this.hasAttack) return {
+        mwak: "str",
+        rwak: "dex"
+      }[this.system.actionType];
     }
 
     // Case 3 - unknown
@@ -277,12 +272,12 @@ export default class Item5e extends Item {
    * @type {boolean}
    */
   get isStarshipItem() {
-    return false ||
-      (this.type === "equipment" && this.system.armor.type in CONFIG.SW5E.ssEquipmentTypes) ||
-      (this.type === "equipment" && this.system.armor.type === "starship") ||
-      (this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes) ||
-      (this.type === "consumable" && this.system.consumableType === "ammo" && this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes) ||
-      (this.type === "starshipmod");
+    return false
+      || (this.type === "equipment" && this.system.armor.type in CONFIG.SW5E.ssEquipmentTypes)
+      || (this.type === "equipment" && this.system.armor.type === "starship")
+      || (this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes)
+      || (this.type === "consumable" && this.system.consumableType === "ammo" && this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes)
+      || (this.type === "starshipmod");
   }
 
   /* -------------------------------------------- */
@@ -351,11 +346,11 @@ export default class Item5e extends Item {
   }
 
   set curAdvancementLevel(value) {
-    if (this.type === "class") { if (this.system?.levels != undefined) this.system.levels = value; }
-    else if (this.type === "deployment") { if (this.system?.rank != undefined) this.system.rank = value; }
-    else if (this.type === "starshipsize") { if (this.system?.tier != undefined) this.system.tier = value; }
-    else if (this.type === "archetype") { if (this.class?.system?.levels != undefined) this.class.system.levels = value; }
-    else if (this.parent?.system?.details?.level != undefined) this.parent.system.details.level = value;
+    if (this.type === "class") { if (this.system?.levels !== undefined) this.system.levels = value; }
+    else if (this.type === "deployment") { if (this.system?.rank !== undefined) this.system.rank = value; }
+    else if (this.type === "starshipsize") { if (this.system?.tier !== undefined) this.system.tier = value; }
+    else if (this.type === "archetype") { if (this.class?.system?.levels !== undefined) this.class.system.levels = value; }
+    else if (this.parent?.system?.details?.level !== undefined) this.parent.system.details.level = value;
   }
 
   /* -------------------------------------------- */
@@ -412,7 +407,7 @@ export default class Item5e extends Item {
     else if (this.type === "modification") {
       if (this.system.modificationType in CONFIG.SW5E.modificationTypesWeapon) return CONFIG.SW5E.weaponProperties;
       if (this.system.modificationType in CONFIG.SW5E.modificationTypesEquipment) return CONFIG.SW5E.armorProperties;
-      if (this.system.modificationType in CONFIG.SW5E.modificationTypesCasting) return CONFIG.SW5E.castingProperties
+      if (this.system.modificationType in CONFIG.SW5E.modificationTypesCasting) return CONFIG.SW5E.castingProperties;
     }
     return null;
   }
@@ -460,9 +455,10 @@ export default class Item5e extends Item {
     this._prepareAdvancement();
 
     // Specialized preparation per Item type
-    if (this.type in CONFIG.SW5E.featLikeItems) {
-      this._prepareFeat();
-    } else switch (this.type) {
+    switch (this.type) {
+      case "feat":
+        this._prepareFeat();
+        break;
       case "equipment":
         this._prepareEquipment();
         break;
@@ -528,10 +524,9 @@ export default class Item5e extends Item {
       for (const [prop, val] of Object.entries(changes)) {
         // Handle type specific changes
         if (
-          !modificationTypes in CONFIG.SW5E.modificationTypesEquipment &&
-          change in ["armor.value", "armor.dex", "strength", "stealth"]
-        )
-          continue;
+          !(modificationTypes in CONFIG.SW5E.modificationTypesEquipment)
+          && change in ["armor.value", "armor.dex", "strength", "stealth"]
+        ) continue;
         overrides[`system.${prop}`] = val;
       }
 
@@ -542,20 +537,16 @@ export default class Item5e extends Item {
       if (itemData.damage?.parts && overrides["system.damage.parts"]) {
         overrides["system.damage.parts"] = itemData.damage.parts.concat(overrides["system.damage.parts"]);
       }
-      if (itemData.armor?.value && overrides["system.armor.value"])
-        overrides["system.armor.value"] += itemData.armor.value;
+      if (itemData.armor?.value && overrides["system.armor.value"]) overrides["system.armor.value"] += itemData.armor.value;
 
       // Handle item properties
       const props = this.propertiesList;
       if (props) {
         for (const [prop, propData] of Object.entries(props)) {
           if (propData.type === "Number" && overrides[`system.properties.${prop}`]) {
-            if (itemData.properties[prop])
-              overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
-            if (propData.min !== undefined)
-              overrides[`system.properties.${prop}`] = Math.max(overrides[`system.properties.${prop}`], propData.min);
-            if (propData.max !== undefined)
-              overrides[`system.properties.${prop}`] = Math.min(overrides[`system.properties.${prop}`], propData.max);
+            if (itemData.properties[prop]) overrides[`system.properties.${prop}`] += Number(itemData.properties[prop]);
+            if (propData.min !== undefined) overrides[`system.properties.${prop}`] = Math.max(overrides[`system.properties.${prop}`], propData.min);
+            if (propData.max !== undefined) overrides[`system.properties.${prop}`] = Math.min(overrides[`system.properties.${prop}`], propData.max);
           }
         }
       }
@@ -644,7 +635,8 @@ export default class Item5e extends Item {
    * @protected
    */
   _prepareStarshipMod() {
-    const baseCost = this.system?.baseCost?.value ?? CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const baseCost = this.system?.baseCost?.value
+      ?? CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
     const sizeMult = this.actor?.itemTypes?.starshipsize?.[0]?.system?.modCostMult;
     const gradeMult = Number.isNumeric(this.system.grade.value) ? this.system.grade.value || 1 : 1;
     if (baseCost && sizeMult && gradeMult) this.labels.cost = game.i18n.format("SW5E.ModFullCost", {
@@ -823,7 +815,7 @@ export default class Item5e extends Item {
       try {
         const roll = new Roll(damagePart[0], rollData);
         formula = simplifyRollFormula(roll.formula, { preserveFlavor: true });
-      } catch (err) {
+      } catch(err) {
         console.warn(`Unable to simplify formula for ${this.name}: ${err}`);
       }
       const damageType = damagePart[1];
@@ -890,8 +882,7 @@ export default class Item5e extends Item {
     const rollData = this.getRollData();
 
     // Use wisdom on attack rolls for starship weapons, unless an item specific ability is set
-    if (rollData && !this.system.ability && (this.system.weaponType ?? "").search("(starship)") !== -1)
-      rollData.mod = rollData.abilities.wis?.mod;
+    if (rollData && !this.system.ability && (this.system.weaponType ?? "").search("(starship)") !== -1) rollData.mod = rollData.abilities.wis?.mod;
 
     // Define Roll bonuses
     const parts = [];
@@ -955,9 +946,9 @@ export default class Item5e extends Item {
    * Retrieve an item's critical hit threshold.
    * Uses a custom treshold if the item or it's ammo has one set
    * Otherwise, uses the smaller value from amongst the following, with a minimum of 15:
-   * - item document's actor's critical threshold (if it has one)
-   * - item document's base threshold (20 - the keen property's value)
-   * - ammo document's base threshold (20 - the keen property's value)
+   * - actor's critical threshold (if it has one)
+   * - item's base threshold (20 - the keen property's value)
+   * - ammo's base threshold (20 - the keen property's value)
    *
    * @returns {number|null}  The minimum value that must be rolled to be considered a critical hit.
    */
@@ -971,7 +962,7 @@ export default class Item5e extends Item {
     if ( this.system.consume?.type === "ammo" ) {
       ammo = this.actor.items.get(this.system.consume.target);
       const ammoOverride = ammo?.system.critical.threshold;
-      if (ammoOverride) return ammoOverride;
+      if (ammoOverride !== null) return ammoOverride;
     }
     if (itemCrit.threshold !== null) return itemCrit.threshold;
 
@@ -995,15 +986,14 @@ export default class Item5e extends Item {
   /**
    * Retrieve an item's number of bonus dice on a critical hit. Uses the sum of the extra damage from the
    * following sources:
-   * - item entity's brutal property (if it has one)
-   * - item entity's actor (if it has one)
+   * - item's brutal property
+   * - actor flags
    *
    * @returns {number|null}  The extra dice of damage dealt on a critical hit.
    */
 
   getCriticalExtraDice() {
     const itemData = this.system;
-    const actorFlags = this.actor.flags.sw5e || {};
     if (!this.hasAttack || !itemData) return;
 
     let dice = 0;
@@ -1034,7 +1024,7 @@ export default class Item5e extends Item {
       try {
         const rollData = this.getRollData({ deterministic: true });
         max = Roll.safeEval(this.replaceFormulaData(max, rollData, { property }));
-      } catch (e) {
+      } catch(e) {
         const message = game.i18n.format("SW5E.FormulaMalformedError", { property, name: this.name });
         this.actor._preparationWarnings.push({ message, link: this.uuid, type: "error" });
         console.error(message, e);
@@ -1166,7 +1156,6 @@ export default class Item5e extends Item {
     const is = item.system;
     const actor = this.actor;
     const starship = actor.getStarship();
-    const as = item.actor.system;
 
     // Ensure the options object is ready
     options = foundry.utils.mergeObject(
@@ -1191,13 +1180,13 @@ export default class Item5e extends Item {
         createMeasuredTemplate: item.hasAreaTarget,
         consumeQuantity: is.uses?.autoDestroy ?? false,
         consumeRecharge: !!is.recharge?.value,
-        // only consume ammo when the attack is rolled
+        // Only consume ammo when the attack is rolled
         consumeReload: item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack),
         consumeResource:
-          !!resource.target &&
-          (!item.hasAttack ||
-            (resource.type !== "ammo" &&
-              !(resource.type === "charges" && resource.target.system.consumableType === "ammo"))),
+          !!resource.target
+          && (!item.hasAttack
+            || (resource.type !== "ammo"
+              && !(resource.type === "charges" && resource.target.system.consumableType === "ammo"))),
         consumePowerLevel: requirePowerSlot ? is.level : null,
         consumePowerSlot: requirePowerSlot,
         consumeSuperiorityDie: item.type === "maneuver",
@@ -1207,15 +1196,14 @@ export default class Item5e extends Item {
     );
 
     // Display a configuration dialog to customize the usage
-    if (config.needsConfiguration === undefined)
-      config.needsConfiguration =
-        config.createMeasuredTemplate ||
-        config.consumeRecharge ||
-        config.consumeReload ||
-        (config.consumeResource && !["simpleB", "martialB"].includes(is.weaponType)) ||
-        config.consumePowerSlot ||
-        config.consumeSuperiorityDie ||
-        (config.consumeUsage && !["simpleB", "martialB"].includes(is.weaponType));
+    if (config.needsConfiguration === undefined) config.needsConfiguration =
+        config.createMeasuredTemplate
+        || config.consumeRecharge
+        || config.consumeReload
+        || (config.consumeResource && !["simpleB", "martialB"].includes(is.weaponType))
+        || config.consumePowerSlot
+        || config.consumeSuperiorityDie
+        || (config.consumeUsage && !["simpleB", "martialB"].includes(is.weaponType));
 
     /**
      * A hook event that fires before an item usage is configured.
@@ -1293,7 +1281,7 @@ export default class Item5e extends Item {
     if (config.createMeasuredTemplate) {
       try {
         templates = await sw5e.canvas.AbilityTemplate.fromItem(item)?.drawPreview();
-      } catch (err) {}
+      } catch(err) {}
     }
 
     /**
@@ -1350,8 +1338,7 @@ export default class Item5e extends Item {
       const use = this.system.ammo?.use ?? this.system.ammo?.baseUse;
       if (is.ammo.value < use) {
         if (is.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", { name: this.name }));
-        else if (is.properties.ovr)
-          ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", { name: this.name }));
+        else if (is.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", { name: this.name }));
         return false;
       }
       itemUpdates["system.ammo.value"] = is.ammo.value - use;
@@ -1525,10 +1512,7 @@ export default class Item5e extends Item {
     // Verify that the required quantity is available
     let remaining = quantity - amount;
     if (remaining < 0 && consume.type === "powerdice") {
-      consume = {
-        target: "attributes.power.central.value",
-        type: "powerdice"
-      };
+      consume.target = "attributes.power.central.value";
       resource = foundry.utils.getProperty(starship.system, consume.target);
       quantity = resource || 0;
       remaining = quantity - amount;
@@ -1545,22 +1529,21 @@ export default class Item5e extends Item {
         break;
       case "ammo":
       case "material":
-        resourceUpdates.push({ "_id": consume.target, "system.quantity": remaining });
+        resourceUpdates.push({ _id: consume.target, "system.quantity": remaining });
         break;
       case "hitDice":
-        if (["smallest", "largest"].includes(consume.target))
-          resource = resource.sort((lhs, rhs) => {
-            let sort = lhs.system.hitDice.localeCompare(rhs.system.hitDice, "en", { numeric: true });
-            if (consume.target === "largest") sort *= -1;
-            return sort;
-          });
+        if (["smallest", "largest"].includes(consume.target)) resource = resource.sort((lhs, rhs) => {
+          let sort = lhs.system.hitDice.localeCompare(rhs.system.hitDice, "en", { numeric: true });
+          if (consume.target === "largest") sort *= -1;
+          return sort;
+        });
         let toConsume = consume.amount;
         for (const cls of resource) {
           const cs = cls.system;
           const available = (toConsume > 0 ? cs.levels : 0) - cs.hitDiceUsed;
           const delta = toConsume > 0 ? Math.min(toConsume, available) : Math.max(toConsume, available);
           if (delta !== 0) {
-            resourceUpdates.push({ "_id": cls.id, "system.hitDiceUsed": cs.hitDiceUsed + delta });
+            resourceUpdates.push({ _id: cls.id, "system.hitDiceUsed": cs.hitDiceUsed + delta });
             toConsume -= delta;
             if (toConsume === 0) break;
           }
@@ -1679,10 +1662,11 @@ export default class Item5e extends Item {
 
     // Item type specific properties
     const props = [];
-    //TODO: Likely need more item types to match SW5e
-    if (this.type in CONFIG.SW5E.featLikeItems) {
-      this._featChatData(data, labels, props);
-    } else switch (this.type) {
+    // TODO: Likely need more item types to match SW5e
+    switch (this.type) {
+      case "feat":
+        this._featChatData(data, labels, props);
+        break;
       case "consumable":
         this._consumableChatData(data, labels, props);
         break;
@@ -1908,8 +1892,8 @@ export default class Item5e extends Item {
     }
     // Flags
     const elvenAccuracy =
-      (flags.elvenAccuracy && CONFIG.SW5E.characterFlags.elvenAccuracy.abilities.includes(this.abilityMod)) ||
-      undefined;
+      (flags.elvenAccuracy && CONFIG.SW5E.characterFlags.elvenAccuracy.abilities.includes(this.abilityMod))
+      || undefined;
 
     // Compose roll options
     const rollConfig = foundry.utils.mergeObject(
@@ -1928,7 +1912,7 @@ export default class Item5e extends Item {
         },
         messageData: {
           "flags.sw5e.roll": { type: "attack", itemId: this.id, itemUuid: this.uuid },
-          "speaker": ChatMessage.getSpeaker({ actor: this.actor })
+          speaker: ChatMessage.getSpeaker({ actor: this.actor })
         }
       },
       options
@@ -1982,7 +1966,7 @@ export default class Item5e extends Item {
     if (!this.hasDamage) throw new Error("You may not make a Damage Roll with this Item.");
     const messageData = {
       "flags.sw5e.roll": { type: "damage", itemId: this.id, itemUuid: this.uuid },
-      "speaker": ChatMessage.getSpeaker({ actor: this.actor })
+      speaker: ChatMessage.getSpeaker({ actor: this.actor })
     };
 
     // Get roll data
@@ -2315,7 +2299,7 @@ export default class Item5e extends Item {
         halflingLucky: this.actor.getFlag("sw5e", "halflingLucky"),
         reliableTalent: this.system.proficient >= 1 && this.actor.getFlag("sw5e", "reliableTalent"),
         messageData: {
-          "speaker": options.speaker || ChatMessage.getSpeaker({ actor: this.actor }),
+          speaker: options.speaker || ChatMessage.getSpeaker({ actor: this.actor }),
           "flags.sw5e.roll": { type: "tool", itemId: this.id, itemUuid: this.uuid }
         }
       },
@@ -2743,11 +2727,10 @@ export default class Item5e extends Item {
     super._onUpdate(changed, options, userId);
 
     const changes = foundry.utils.flattenObject(changed);
-    delete changes["_id"];
+    delete changes._id;
 
     // If a temporary modification item changes it's data, update the data in the modified item
     if (this.type === "modification" && this.actor && this.system?.modifying?.id) {
-      const modType = this.system?.modificationType === "augment" ? "augment" : "mod";
       this.actor.items.get(this.system.modifying.id)?.updModification(this.id, null, this.toObject());
     }
   }
@@ -2766,7 +2749,6 @@ export default class Item5e extends Item {
 
     // Remove modification data from modified item
     if (this.type === "modification") {
-      const modType = this.system?.modificationType === "augment" ? "augment" : "mod";
       this.actor?.items?.get(this.system?.modifying?.id)?.delModification(this.id, null, false);
     }
     // Delete any temporary modification items on the parent actor created by this item
@@ -2790,8 +2772,7 @@ export default class Item5e extends Item {
 
     // Unowned modifications are not modifying any item
     if (foundry.utils.getProperty(data, "system.modifying.id") !== null) updates["system.modifying.id"] = null;
-    if (foundry.utils.getProperty(data, "system.modifying.disabled") !== false)
-      updates["system.modifying.disabled"] = false;
+    if (foundry.utils.getProperty(data, "system.modifying.disabled") !== false) updates["system.modifying.disabled"] = false;
 
     return updates;
   }
@@ -2931,7 +2912,7 @@ export default class Item5e extends Item {
           toReload = Math.min(toReload, ammoSysData.quantity);
           if (!freeShot) updates.push({
             "system.quantity": ammoSysData.quantity - toReload,
-            "_id": ammo.id
+            _id: ammo.id
           });
           break;
         case "powerCell":
@@ -2942,7 +2923,7 @@ export default class Item5e extends Item {
         case "projectorTank":
           if (!freeShot) updates.push({
             "system.quantity": ammoSysData.quantity - 1,
-            "_id": ammo.id
+            _id: ammo.id
           });
           break;
       }
@@ -2951,7 +2932,7 @@ export default class Item5e extends Item {
     if (toReload <= 0) return;
     updates.push({
       "system.ammo.value": wpnSysData.ammo.value + toReload,
-      "_id": this.id
+      _id: this.id
     });
 
     if (updates.length) actor.updateEmbeddedDocuments("Item", updates);
@@ -3030,7 +3011,7 @@ export default class Item5e extends Item {
     const item = this;
     const itemSysData = item.system;
     const itemMods = itemSysData.modify;
-    const mods = [ ...itemMods.items ];
+    const mods = [...itemMods.items];
 
     // Get the modification item
     const mod = await fromUuid(uuid);
@@ -3040,12 +3021,11 @@ export default class Item5e extends Item {
     // Validate the installation
     if (mod?.type !== "modification") return;
 
-    if (["none", "enhanced"].includes(itemMods.chassis))
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModNoChassis", {
-          name: item.name
-        })
-      );
+    if (["none", "enhanced"].includes(itemMods.chassis)) return ui.notifications.warn(
+      game.i18n.format("SW5E.ErrorModNoChassis", {
+        name: item.name
+      })
+    );
 
     const rarityMap = {
       standard: 1,
@@ -3064,42 +3044,38 @@ export default class Item5e extends Item {
       );
     }
 
-    if (!(modificationsType in CONFIG.SW5E.modificationTypes))
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-          name: item.name,
-          type: modificationsType
-        })
-      );
+    if (!(modificationsType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
+      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+        name: item.name,
+        type: modificationsType
+      })
+    );
 
-    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes))
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-          name: mod.name,
-          type: modSysData.modificationType
-        })
-      );
+    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
+      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+        name: mod.name,
+        type: modSysData.modificationType
+      })
+    );
 
     const modType = modSysData.modificationType === "augment" ? "augment" : "mod";
-    if (modType === "mod" && modificationsType !== modSysData.modificationType)
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModWrongType", {
-          modName: mod.name,
-          modType: modSysData.modificationType,
-          itemName: item.name,
-          itemType: modificationsType
-        })
-      );
+    if (modType === "mod" && modificationsType !== modSysData.modificationType) return ui.notifications.warn(
+      game.i18n.format("SW5E.ErrorModWrongType", {
+        modName: mod.name,
+        modType: modSysData.modificationType,
+        itemName: item.name,
+        itemType: modificationsType
+      })
+    );
 
     const modCount = mods.filter(m => m.type === modType).length;
-    if (modCount >= itemMods[`${modType}Slots`])
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.ErrorModNoSpace", {
-          itemName: item.name,
-          modName: mod.name,
-          modType
-        })
-      );
+    if (modCount >= itemMods[`${modType}Slots`]) return ui.notifications.warn(
+      game.i18n.format("SW5E.ErrorModNoSpace", {
+        itemName: item.name,
+        modName: mod.name,
+        modType
+      })
+    );
 
     // Apply the changes
     const objData = mod.toObject();
@@ -3114,8 +3090,7 @@ export default class Item5e extends Item {
 
     mods.push(obj);
 
-    if ( mods !== this.system.modify.items )
-      await this.update({ [`system.modify.items`]: mods });
+    if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     await this.updModificationChanges();
   }
@@ -3124,7 +3099,7 @@ export default class Item5e extends Item {
     if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = [ ...this.system?.modify?.items ];
+    const mods = [...this.system?.modify?.items ?? []];
     if (id === null) id = mods[index].id;
     if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
     if (objdata === null) return;
@@ -3133,8 +3108,7 @@ export default class Item5e extends Item {
     if (index === -1) return;
     mods[index].objdata = objdata;
     mods[index].name = objdata.name;
-    if ( mods !== this.system.modify.items )
-      await this.update({ [`system.modify.items`]: mods });
+    if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     await this.updModificationChanges();
   }
@@ -3143,13 +3117,12 @@ export default class Item5e extends Item {
     if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = [ ...this.system?.modify?.items ];
+    const mods = [...this.system?.modify?.items ?? []];
     if (index === null) index = mods.findIndex(m => m.id === id);
     if (index === -1) return;
     mods.splice(index, 1);
 
-    if ( mods !== this.system.modify.items )
-      await this.update({ [`system.modify.items`]: mods });
+    if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     if (deleteTempItem) {
       if (id === null) id = mods[index].id;
@@ -3164,13 +3137,12 @@ export default class Item5e extends Item {
     if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
-    const mods = [ ...this.system?.modify?.items ];
+    const mods = [...this.system?.modify?.items ?? []];
     if (index === null) index = mods.findIndex(m => m.id === id);
     if (index === -1) return;
     mods[index].disabled = !mods[index].disabled;
 
-    if ( mods !== this.system.modify.items )
-      await this.update({ [`system.modify.items`]: mods });
+    if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     if (id === null) id = mods[index].id;
     await this.actor?.items?.get(id)?.update({ "system.modifying.disabled": mods[index].disabled });
@@ -3201,6 +3173,7 @@ export default class Item5e extends Item {
       await this.update({ "system.modify.changes": changes });
     }
   }
+
   _calcSingleModChanges(modSysData, changes, props) {
     if (props) {
       for (const [prop, propData] of Object.entries(props)) {
@@ -3209,9 +3182,9 @@ export default class Item5e extends Item {
           else changes[`properties.${prop}`] = Number(changes[`properties.${prop}`]);
           changes[`properties.${prop}`] += modSysData.properties[prop];
         } else if (
-          propData.type === "Boolean" &&
-          modSysData.properties.indeterminate &&
-          modSysData.properties.indeterminate[prop] === false
+          propData.type === "Boolean"
+          && modSysData.properties.indeterminate
+          && modSysData.properties.indeterminate[prop] === false
         ) {
           changes[`properties.${prop}`] = modSysData.properties[prop];
         }
@@ -3227,9 +3200,9 @@ export default class Item5e extends Item {
 
     // Attack bonus
     if (modSysData.attackBonus && modSysData.attackBonus !== "0") {
-      if (changes["attackBonus"]) changes["attackBonus"] += " + ";
-      else changes["attackBonus"] = "";
-      changes["attackBonus"] += modSysData.attackBonus.replace(/^\s*[+]\s*/, "");
+      if (changes.attackBonus) changes.attackBonus += " + ";
+      else changes.attackBonus = "";
+      changes.attackBonus += modSysData.attackBonus.replace(/^\s*[+]\s*/, "");
     }
     // Damage rolls
     if (modSysData.damage?.parts?.length) {
@@ -3245,8 +3218,8 @@ export default class Item5e extends Item {
     // Dexterity Modifier
     if (modSysData.armor?.dex) changes["armor.dex"] = modSysData.armor.dex;
     // Strength Requirement
-    if (modSysData.strength) changes["strength"] = modSysData.strength;
+    if (modSysData.strength) changes.strength = modSysData.strength;
     // Stealth Disadvantage
-    if (modSysData.indeterminate?.stealth === false) changes[`stealth`] = modSysData.stealth;
+    if (modSysData.indeterminate?.stealth === false) changes.stealth = modSysData.stealth;
   }
 }

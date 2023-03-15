@@ -1,0 +1,780 @@
+{
+  "_id": "ZjR4YIJCB1Q3bDh0",
+  "name": "B'omarr Monk Initiate",
+  "type": "npc",
+  "img": "icons/svg/hazard.svg",
+  "items": [
+    {
+      "name": "Hold-Out Blaster",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2212957+00:00",
+        "uid": "MonsterBehavior.name-hold_out_blaster.source-monster.sourceName-bomarr_monk_initiate",
+        "sw5e-importer": {
+          "timestamp": "2022-05-03T05:14:16.2212957+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-hold_out_blaster.source-monster.sourceName-bomarr_monk_initiate"
+        }
+      },
+      "_id": "b3pxUTcWIUIf9g8i",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Ranged Weapon Attack: +2 to hit, range 30/120, one target. Hit: 4 ([[/r 1d4+2]]) energy damage.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "rwak",
+        "attackBonus": "2",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d4+2",
+              "energy"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hvy": false,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "rel": null,
+          "smr": false,
+          "spc": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "ilk": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rch": false,
+          "rck": null,
+          "ret": false,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false,
+          "thr": false,
+          "two": false,
+          "ver": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-05-03T05:14:16.2212957+00:00",
+      "importer_version": 3,
+      "uid": "Monster.name-bomarr_monk_initiate"
+    }
+  },
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 8,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Strength",
+        "mod": -1
+      },
+      "dex": {
+        "value": 8,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Dexterity",
+        "mod": -1
+      },
+      "con": {
+        "value": 8,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Constitution",
+        "mod": -1
+      },
+      "int": {
+        "value": 1,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Intelligence",
+        "mod": 0
+      },
+      "wis": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Wisdom",
+        "mod": 2
+      },
+      "cha": {
+        "value": 9,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Charisma",
+        "mod": -1
+      },
+      "hon": {
+        "value": 9,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 12,
+        "calc": "flat",
+        "formula": ""
+      },
+      "hp": {
+        "value": 9,
+        "max": 9,
+        "temp": null,
+        "tempmax": null,
+        "formula": "2d8",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": 0,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": 0,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none"
+    },
+    "details": {
+      "biography": {
+        "value": "<p>The B'omarr Order, which consisted of the B'omarr Monks, was a mysterious religious order that moved to the planet Tatooine around 700 BBY. The B'omarr believed that cutting themselves off from all physical sensation would further their studies, and allow them to ponder the galaxy and achieve enlightenment. When a monk became enlightened, his brain was removed through a special procedure, and was placed in a nutrient-filled jar. The brains were held in very high regard by the lower, embodied monks, who saw to their every need, though the brains rarely did anything other than think and wonder. When they did need to travel around their monastery on Tatooine, the brains were transferred into specially modified BT-16 perimeter droids.</p>\n<p>None</p>",
+        "public": ""
+      },
+      "alignment": "any neutral alignment",
+      "species": "",
+      "type": {
+        "value": "custom",
+        "subtype": "",
+        "swarm": "",
+        "custom": "humanoid"
+      },
+      "environment": "",
+      "cr": 0.125,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "SnV",
+      "xp": {
+        "value": 10
+      }
+    },
+    "traits": {
+      "size": "med",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": ""
+      },
+      "languages": {
+        "value": [
+          "huttese"
+        ],
+        "custom": "basic"
+      }
+    },
+    "currency": {
+      "gc": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power2": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power3": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power4": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power5": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power6": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power7": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power8": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power9": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": 0,
+        "initiative": 0
+      }
+    },
+    "source": "SnV"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "name": "B'omarr Monk Initiate",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false,
+        "type": null
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "texture": {
+      "src": "icons/svg/hazard.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493994363,
+    "modifiedTime": 1678476394794,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

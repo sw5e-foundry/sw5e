@@ -1,0 +1,88 @@
+{
+  "_id": "nIcdXAilNxbeqCZ4",
+  "name": "Spine-Chilling Howls",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/Spine-ChillingHowls.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:28.1950762+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-spine_chilling_howls"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>As an action, you can expend one superiority die to command your companion to frighten another creature. The target must then succeed on a Wisdom saving throw against your Maneuver save DC or become frightened of both you and your companion for 1 minute. The frightened target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Companion",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "general"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983316,
+    "modifiedTime": 1678471089777,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

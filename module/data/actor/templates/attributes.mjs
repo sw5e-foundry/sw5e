@@ -195,10 +195,10 @@ export default class AttributesFields {
       deployed: new foundry.data.fields.SchemaField(
         {
           uuid: new UUIDField({ label: "SW5E.DeployedStarship", nullable: true }),
-          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), { label: "SW5E.DeployedPositions" }),
+          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), { label: "SW5E.DeployedPositions" })
         },
         { label: "SW5E.Deployed" }
-      ),
+      )
     };
   }
 
@@ -243,7 +243,7 @@ function makePointsResource( schemaOptions = {} ) {
       level: new FormulaField({ deterministic: true, label: `${baseLabel}BonusLevel` }),
       overall: new FormulaField({ deterministic: true, label: `${baseLabel}BonusOverall` })
     })
-  }
+  };
   if ( schemaOptions.hasTemp ) schemaObj.temp = new foundry.data.fields.NumberField({
     integer: true,
     initial: 0,

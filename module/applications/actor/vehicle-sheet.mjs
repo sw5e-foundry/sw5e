@@ -89,7 +89,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     context.toggleTitle = game.i18n.localize(`SW5E.${isCrewed ? "Crewed" : "Uncrewed"}`);
 
     // Handle crew actions
-    if (item.type in CONFIG.SW5E.featLikeItems && item.system.activation.type === "crew") {
+    if (item.type === "crew" && item.system.activation.type === "crew") {
       context.cover = game.i18n.localize(`SW5E.${item.system.cover ? "CoverTotal" : "None"}`);
       if (item.system.cover === 0.5) context.cover = "½";
       else if (item.system.cover === 0.75) context.cover = "¾";
@@ -146,7 +146,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         items: [],
         hasActions: true,
         crewable: true,
-        dataset: { "type": "feat", "activation.type": "crew" },
+        dataset: { type: "feat", "activation.type": "crew" },
         columns: [
           {
             label: game.i18n.localize("SW5E.Cover"),
@@ -159,7 +159,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         label: game.i18n.localize("ITEM.TypeEquipment"),
         items: [],
         crewable: true,
-        dataset: { "type": "equipment", "armor.type": "vehicle" },
+        dataset: { type: "equipment", "armor.type": "vehicle" },
         columns: equipmentColumns
       },
       passive: {
@@ -170,13 +170,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       reactions: {
         label: game.i18n.localize("SW5E.ReactionPl"),
         items: [],
-        dataset: { "type": "feat", "activation.type": "reaction" }
+        dataset: { type: "feat", "activation.type": "reaction" }
       },
       weapons: {
         label: game.i18n.localize("ITEM.TypeWeaponPl"),
         items: [],
         crewable: true,
-        dataset: { "type": "weapon", "weapon-type": "siege" },
+        dataset: { type: "weapon", "weapon-type": "siege" },
         columns: equipmentColumns
       }
     };
@@ -250,12 +250,14 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       }
 
       // Handle non-cargo item types
-      if (item.type in CONFIG.SW5E.featLikeItems) {
-        const act = item.system.activation;
-        if (act.type || act.type === "none") features.passive.items.push(item);
-        else if (act.type === "reaction") features.reactions.items.push(item);
-        else features.actions.items.push(item);
-      } else switch (item.type) {
+      switch (item.type) {
+        case "feat":
+        case "maneuver":
+          const act = item.system.activation;
+          if (act.type || act.type === "none") features.passive.items.push(item);
+          else if (act.type === "reaction") features.reactions.items.push(item);
+          else features.actions.items.push(item);
+          break;
         case "weapon":
           features.weapons.items.push(item);
           break;

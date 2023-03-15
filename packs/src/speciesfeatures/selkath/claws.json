@@ -1,0 +1,95 @@
+{
+  "_id": "pZG6CBeQN7dVcsMB",
+  "name": "Claws",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Species/Selkath.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:19.8158212+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-claws.source-species.sourceName-selkath.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>Your claws are a natural weapon, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal [[/r 1d4]] kinetic damage and have the finesse property. Lastly, as a bonus action, you can perform a special claw attack. On a hit, the target suffers the attack's normal effects, and it must make a Constitution saving throw (DC = 8 + your proficiency bonus + your Constitution modifier). On a failed save, the target is poisoned until the end of its next turn, and you can't use this feature again until you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "None (Selkath)",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d4",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "species",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494003716,
+    "modifiedTime": 1678471093439,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

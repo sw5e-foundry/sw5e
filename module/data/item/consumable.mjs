@@ -49,7 +49,7 @@ export default class ConsumableData extends SystemDataModel.mixin(
       properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
         required: true,
         label: "SW5E.ItemWeaponProperties"
-      }),
+      })
     });
   }
 }

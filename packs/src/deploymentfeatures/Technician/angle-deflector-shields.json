@@ -1,0 +1,97 @@
+{
+  "_id": "dSMbwvdqRmrHWvwl",
+  "name": "Angle Deflector Shields",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Technician.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br>When you are hit by a ship attack, you can expend one power die as a reaction to redirect some of the impact. Reduce the damage absorbed by your shields by the amount rolled on the power die plus the ship's intelligence modifier.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Technician 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.shields.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Technician"
+    },
+    "featureType": {
+      "value": "Stratagem"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963455,
+    "modifiedTime": 1677349705122,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

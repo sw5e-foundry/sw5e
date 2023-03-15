@@ -15,7 +15,7 @@ export function simplifyBonus(bonus, data = {}) {
   try {
     const roll = new Roll(bonus, data);
     return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
-  } catch (error) {
+  } catch(error) {
     console.error(error);
     return 0;
   }
@@ -96,14 +96,18 @@ function isValidIdentifier(identifier) {
  * @returns {boolean}
  */
 function isValidUUID(uuid) {
-  let parts = uuid.split('.');
+  let parts = uuid.split(".");
 
   // Compendium Document
   const packs = game.packs.set();
-  if ((parts.length >= 3) && (packs.has(`${parts[0]}.${parts[1]}`)) && foundry.data.validators.isValidId(parts[2])) parts = parts.slice(3);
+  if ((parts.length >= 3) && (packs.has(`${parts[0]}.${parts[1]}`)) && foundry.data.validators.isValidId(parts[2])) {
+    parts = parts.slice(3);
+  }
 
   // World Document / Embedded Document
-  while ((parts.length >= 2) && (parts[0] in game.documentTypes) && foundry.data.validators.isValidId(parts[1])) parts = parts.slice(2);
+  while ((parts.length >= 2) && (parts[0] in game.documentTypes) && foundry.data.validators.isValidId(parts[1])) {
+    parts = parts.slice(2);
+  }
 
   return parts.length === 0;
 }
@@ -210,7 +214,7 @@ function itemContext(context, options) {
  */
 export function registerHandlebarsHelpers() {
   Handlebars.registerHelper({
-    "getProperty": foundry.utils.getProperty,
+    getProperty: foundry.utils.getProperty,
     "sw5e-linkForUuid": linkForUuid,
     "sw5e-itemContext": itemContext
   });
@@ -368,10 +372,11 @@ function _synchronizeActorPowers(actor, powersMap) {
 /* -------------------------------------------- */
 
 /**
- * Syncronous version of fromUuid. Returns null when the uuid is of a compendium item, or a collection that isn't ready yet.
+ * Syncronous version of fromUuid.
+ * Returns null when the uuid is of a compendium item, or a collection that isn't ready yet.
  * Retrieve a Document by its Universally Unique Identifier (uuid).
  * @param {string} uuid   The uuid of the Document to retrieve
- * @return {Document|null}
+ * @returns {Document|null}
  */
 export function fromUuidSynchronous(uuid) {
   if (!uuid) return null;
@@ -379,8 +384,7 @@ export function fromUuidSynchronous(uuid) {
   let doc;
 
   // Compendium Documents
-  if (parts[0] === "Compendium")
-    return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
+  if (parts[0] === "Compendium") return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
   // World Documents
   else {
     const [docName, docId] = parts.slice(0, 2);
@@ -404,7 +408,7 @@ export function fromUuidSynchronous(uuid) {
  * Safe version of fromUuid. Returns null when the uuid is of a collection that isn't ready yet.
  * Retrieve a Document by its Universally Unique Identifier (uuid).
  * @param {string} uuid   The uuid of the Document to retrieve
- * @return {Document|null}
+ * @returns {Document|null}
  */
 export async function fromUuidSafe(uuid) {
   if (!uuid) return null;
@@ -443,7 +447,7 @@ export async function fromUuidSafe(uuid) {
  * Given a partial html string, finds the closing bracket
  * @param {string} html   The partial html string
  * @param {int} index     The index to start searching from
- * @return {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
+ * @returns {int[]|null}   The indexes of the start and end of the bracket, and start and end of the bracket's content
  */
 export function htmlFindClosingBracket(html, index = 0) {
   if (!html) return null;
@@ -480,7 +484,7 @@ export function htmlFindClosingBracket(html, index = 0) {
 /**
  * Given an icon path, slugify it
  * @param {string} path    The icon path
- * @return {string}        The slugified name
+ * @returns {string}        The slugified name
  */
 export function slugifyIcon(path) {
   let folder_index = path.search(/\/[^/]*$/) + 1;
@@ -513,7 +517,7 @@ export function slugifyIcon(path) {
  * Generate and return an HTML element for a FontAwesome icon
  * @param {string} glyph   The icon name
  * @param {string} [style] The style of the icon, defaults to "solid"
- * @return {string}        The slugified name
+ * @returns {string}        The slugified name
  */
 export function fontAwesomeIcon(glyph, style = "solid") {
   const styleClass = style === "regular" ? "far" : "fas";

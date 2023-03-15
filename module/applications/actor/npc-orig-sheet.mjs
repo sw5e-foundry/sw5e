@@ -54,13 +54,13 @@ export default class ActorSheetOrig5eNPC extends ActorSheetOrig5e {
         label: game.i18n.localize("SW5E.AttackPl"),
         items: [],
         hasActions: true,
-        dataset: { "type": "weapon", "weapon-type": "natural" }
+        dataset: { type: "weapon", "weapon-type": "natural" }
       },
       actions: {
         label: game.i18n.localize("SW5E.ActionPl"),
         items: [],
         hasActions: true,
-        dataset: { "type": "feat", "activation.type": "action" }
+        dataset: { type: "feat", "activation.type": "action" }
       },
       passive: { label: game.i18n.localize("SW5E.Features"), items: [], dataset: { type: "feat" } },
       equipment: { label: game.i18n.localize("SW5E.Inventory"), items: [], dataset: { type: "loot" } }

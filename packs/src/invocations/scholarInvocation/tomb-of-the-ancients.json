@@ -1,0 +1,98 @@
+{
+  "_id": "talYZt1amuwSxg56",
+  "name": "Tomb of the Ancients",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.5529241+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-tomb_of_the_ancients.source-archetypeinvocation.sourceName-archaeologist_pursuit.level-5"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 5th level</em></p>\n<p>As a reaction when you take damage, you can entomb yourself in the Force until the end of your next turn. For the duration, you have resistance to the triggering damage, you gain temporary hit points equal to [[/r 1d10]] + your universal forcecasting ability modifier + your scholar level to potentially absorb the attack, and your speed is reduced to 0.</p>\n<p>Once you've used this feature, you can't use it again until you finish a short or long rest. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Archaeologist Pursuit) 5",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d10 + @mod",
+          "temphp"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "scholarInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981238,
+    "modifiedTime": 1678471402734,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

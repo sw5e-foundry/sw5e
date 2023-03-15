@@ -77,7 +77,7 @@ export default class Token5e extends Token {
       bar
         .beginFill(c.temp, 1.0)
         .lineStyle(0)
-        .drawRoundedRect(bs1, bs1, tempPct * w - 2 * bs1, h - 2 * bs1, 1);
+        .drawRoundedRect(bs1, bs1, (tempPct * w) - (2 * bs1), h - (2 * bs1), 1);
     }
 
     // Set position

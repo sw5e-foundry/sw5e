@@ -117,7 +117,7 @@ export default class ActorSheetFlags extends BaseConfigSheet {
 
     // Unset any flags which are "false"
     const flags = updateData.flags.sw5e;
-    //clone flags to dnd5e for module compatability
+    // Clone flags to dnd5e for module compatability
     updateData.flags.dnd5e = updateData.flags.sw5e;
     for (let [k, v] of Object.entries(flags)) {
       if ([undefined, null, "", false, 0].includes(v)) {

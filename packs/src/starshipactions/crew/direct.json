@@ -1,0 +1,89 @@
+{
+  "name": "Direct",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/crew-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "nZubPOivzWtY5KP6",
+  "system": {
+    "description": {
+      "value": "<p>When you take the Direct action, one creature can see or hear you gains advantage on the next ability check it makes to perform the task you are helping with, provided that it makes the check before the start of your next turn. Alternatively, you can direct a friendly creature that can hear you in attacking another target. If your ally attacks the target before the start of your next turn, the first attack roll is made with advantage. The Direct action can be taken multiple times on a ship's turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "crew"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": "crew"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016678,
+    "modifiedTime": 1677699337423,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

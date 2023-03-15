@@ -17,13 +17,13 @@ export default class ActorCastPointsConfig extends BaseConfigSheet {
      * Type of casting this form represents.
      * @type {string}
      */
-    this.attrName = name.split('-')[0];
+    this.attrName = name.split("-")[0];
 
     /**
      * Part of the attribute to be modified.
      * @type {string}
      */
-    this.subName = '';
+    this.subName = "";
 
     /**
      * Path to the attribute this form will alter.
@@ -65,11 +65,11 @@ export default class ActorCastPointsConfig extends BaseConfigSheet {
     let label = `SW5E.${this.attrName.capitalize()}${this.subName.capitalize()}`;
 
     return {
-      maxOverrideLabel: label + "Override",
-      bonusLevelLabel: label + "BonusLevel",
-      bonusOverallLabel: label + "BonusOverall",
+      maxOverrideLabel: `${label}Override`,
+      bonusLevelLabel: `${label}BonusLevel`,
+      bonusOverallLabel: `${label}BonusOverall`,
       attr: foundry.utils.getProperty(this.clone, this.attrPath),
-      source: foundry.utils.getProperty(this.clone.toObject(), this.attrPath),
+      source: foundry.utils.getProperty(this.clone.toObject(), this.attrPath)
     };
   }
 

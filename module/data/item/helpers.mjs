@@ -13,17 +13,17 @@ export default function makeItemProperties( config, schemaOptions = {} ) {
       nullable: true,
       integer: true,
       min: prop.min ?? 0,
-      // initial: 0,
+      // Initial: 0,
       label: prop.full,
-      hint: prop.desc,
+      hint: prop.desc
     });
     else if (prop.type === "Boolean") schemaObj[key] = new foundry.data.fields.BooleanField({
       required: false,
       nullable: true,
       label: prop.full,
-      hint: prop.desc,
+      hint: prop.desc
     });
-    else console.warn('Invalid item property type', key, prop);
+    else console.warn("Invalid item property type", key, prop);
   }
   return new foundry.data.fields.SchemaField(schemaObj, schemaOptions);
 }

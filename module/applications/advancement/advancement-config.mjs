@@ -93,9 +93,9 @@ export default class AdvancementConfig extends FormApplication {
     Object.defineProperty(context, "data", {
       get() {
         foundry.utils.logCompatibilityWarning(
-          `You are accessing the ${this.constructor.name}#data object which is no longer used. ` +
-            "Since 2.1 the Advancement class and its contained DataModel are merged into a combined data structure. " +
-            "You should now reference keys which were previously contained within the data object directly.",
+          `You are accessing the ${this.constructor.name}#data object which is no longer used. `
+            + "Since 2.1 the Advancement class and its contained DataModel are merged into a combined data structure. "
+            + "You should now reference keys which were previously contained within the data object directly.",
           { since: "SW5e 2.1", until: "SW5e 2.2" }
         );
         return context;
@@ -140,8 +140,8 @@ export default class AdvancementConfig extends FormApplication {
     let updates = foundry.utils.expandObject(formData);
     if (updates.data) {
       foundry.utils.logCompatibilityWarning(
-        "An update being performed on an advancement points to `data`. Advancement data has moved to the top level so the" +
-          " leading `data.` is no longer required.",
+        "An update being performed on an advancement points to `data`. Advancement data has moved to the top level so the"
+          + " leading `data.` is no longer required.",
         { since: "SW5e 2.1", until: "SW5e 2.2" }
       );
       const data = updates.data;
@@ -203,11 +203,10 @@ export default class AdvancementConfig extends FormApplication {
 
   /** @inheritdoc */
   async _onDrop(event) {
-    if (!this.options.dropKeyPath)
-      throw new Error(
-        "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support" +
-          " drag and drop on advancement config items."
-      );
+    if (!this.options.dropKeyPath) throw new Error(
+      "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support"
+          + " drag and drop on advancement config items."
+    );
 
     // Try to extract the data
     const data = TextEditor.getDragEventData(event);
@@ -217,7 +216,7 @@ export default class AdvancementConfig extends FormApplication {
 
     try {
       this._validateDroppedItem(event, item);
-    } catch (err) {
+    } catch(err) {
       return ui.notifications.error(err.message);
     }
 

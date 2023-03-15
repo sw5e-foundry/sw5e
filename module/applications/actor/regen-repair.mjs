@@ -32,7 +32,7 @@ export default class RegenRepairDialog extends Dialog {
   getData() {
     const data = super.getData();
     const attr = this.actor.system.attributes;
-    if (attr.hp.temp == attr.hp.tempmax || attr.shld.depleted || Number(attr.shld.dice) == 0) {
+    if (attr.hp.temp === attr.hp.tempmax || attr.shld.depleted || Number(attr.shld.dice) === 0) {
       data.useShieldDie = false;
     } else {
       data.useShieldDie = true;

@@ -1,0 +1,93 @@
+{
+  "_id": "yT32O9CVWxCk5PKg",
+  "name": "Conceal",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/pilot-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "midi-qol": {
+      "effectActivation": false
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When you take the Conceal action, you make a Dexterity (Hide) check in an attempt to conceal your ship, following the rules in chapter 7 for hiding. If you succeed, you gain certain benefits, as described in the \"Unseen Attackers and Targets\" section later in this chapter.</p>\n<p>Only a deployed pilot can take the Conceal action.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "abil",
+    "attackBonus": 0,
+    "chatFlavor": "Contested by passive Wisdom (Scan)",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.hid.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "pilot"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": "pilot"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016681,
+    "modifiedTime": 1677699337446,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

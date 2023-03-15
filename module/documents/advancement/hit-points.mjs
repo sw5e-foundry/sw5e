@@ -97,10 +97,10 @@ export default class HitPointsAdvancement extends Advancement {
     const value = data[level];
     if (!value) return null;
 
-    const avg = hitDieValue / 2 + 1
+    const avg = (hitDieValue / 2) + 1;
     if (value === "max") return hitDieValue * quant;
     if (value === "avg") {
-      if (level == 0) return hitDieValue + avg * (quant - 1);
+      if (level === 0) return hitDieValue + (avg * (quant - 1));
       return avg * quant;
     }
     return value;

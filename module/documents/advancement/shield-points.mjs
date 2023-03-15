@@ -56,7 +56,7 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
 
   /** @inheritdoc */
   valueForLevel(level) {
-    const quant = (level == 0) ? this.item.system.shldDiceStart : 1;
+    const quant = (level === 0) ? this.item.system.shldDiceStart : 1;
     return this.constructor.valueForLevel(this.value, this.hitDieValue, level, quant);
   }
 
@@ -66,7 +66,7 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   getAdjustedTotal(mod) {
     const start = this.item.system.shldDiceStart;
     return Object.keys(this.value).reduce((total, level) => {
-      if (level === "0") return total + Math.max(this.valueForLevel(parseInt(level)) + start * mod, start);
+      if (level === "0") return total + Math.max(this.valueForLevel(parseInt(level)) + (start * mod), start);
       return total + Math.max(this.valueForLevel(parseInt(level)) + mod, 1);
     }, 0);
   }

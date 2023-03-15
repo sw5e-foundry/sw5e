@@ -146,7 +146,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         items: [],
         hasActions: true,
         crewable: true,
-        dataset: { "type": "feat", "activation.type": "crew" },
+        dataset: { type: "feat", "activation.type": "crew" },
         columns: [
           {
             label: game.i18n.localize("SW5E.Cover"),
@@ -159,7 +159,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         label: game.i18n.localize("ITEM.TypeEquipment"),
         items: [],
         crewable: true,
-        dataset: { "type": "equipment", "armor.type": "vehicle" },
+        dataset: { type: "equipment", "armor.type": "vehicle" },
         columns: equipmentColumns
       },
       passive: {
@@ -170,13 +170,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       reactions: {
         label: game.i18n.localize("SW5E.ReactionPl"),
         items: [],
-        dataset: { "type": "feat", "activation.type": "reaction" }
+        dataset: { type: "feat", "activation.type": "reaction" }
       },
       weapons: {
         label: game.i18n.localize("ITEM.TypeWeaponPl"),
         items: [],
         crewable: true,
-        dataset: { "type": "weapon", "weapon-type": "siege" },
+        dataset: { type: "weapon", "weapon-type": "siege" },
         columns: equipmentColumns
       }
     };

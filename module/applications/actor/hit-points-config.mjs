@@ -17,7 +17,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
      * Which hit point type is this, hit-points, hull-points or shield-points.
      * @type {string}
      */
-    this.hitPointType = hitPointType.split('-')[0];
+    this.hitPointType = hitPointType.split("-")[0];
   }
 
   /* -------------------------------------------- */
@@ -54,19 +54,19 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
         sourceMax: source[`${temp}max`],
         max: hp[`${temp}max`],
         level: hp.bonuses[`${temp}level`],
-        overall: hp.bonuses[`${temp}overall`],
+        overall: hp.bonuses[`${temp}overall`]
       },
       path: {
         max: `hp.${temp}max`,
         level: `hp.bonuses.${temp}level`,
-        overall: `hp.bonuses.${temp}overall`,
+        overall: `hp.bonuses.${temp}overall`
       },
       label: {
         override: `SW5E.${this.hitPointType.capitalize()}PointsOverride`,
         max: `SW5E.${this.hitPointType.capitalize()}PointsMax`,
         bonusLevel: `SW5E.${this.hitPointType.capitalize()}PointsBonusLevel`,
-        bonusOverall: `SW5E.${this.hitPointType.capitalize()}PointsBonusOverall`,
-      },
+        bonusOverall: `SW5E.${this.hitPointType.capitalize()}PointsBonusOverall`
+      }
     };
     return data;
   }
@@ -125,7 +125,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
       const roll = await this.clone.rollNPCHitPoints();
       this.clone.updateSource({ "system.attributes.hp.max": roll.total });
       this.render();
-    } catch (error) {
+    } catch(error) {
       ui.notifications.error(game.i18n.localize("SW5E.HPFormulaError"));
       throw error;
     }

@@ -17,8 +17,8 @@ export default class ItemGrantFlow extends AdvancementFlow {
   async getData() {
     const config = this.advancement.configuration.items;
     const added =
-      this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId")) ??
-      this.advancement.value.added;
+      this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
+      ?? this.advancement.value.added;
     const checked = new Set(Object.values(added ?? {}));
 
     const items = await Promise.all(config.map(fromUuid));

@@ -12,7 +12,7 @@ export default function simplifyRollFormula(formula, { preserveFlavor = false } 
   let roll;
   try {
     roll = new Roll(formula);
-  } catch (err) {
+  } catch(err) {
     console.warn(`Unable to simplify formula '${formula}': ${err}`);
   }
   Roll.validate(roll.formula);

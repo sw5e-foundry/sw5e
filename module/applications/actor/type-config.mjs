@@ -38,13 +38,12 @@ export default class ActorTypeConfig extends FormApplication {
   getData(options = {}) {
     // Get current value or new default
     let attr = foundry.utils.getProperty(this.object.system, "details.type");
-    if (foundry.utils.getType(attr) !== "Object")
-      attr = {
-        value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
-        subtype: "",
-        swarm: "",
-        custom: ""
-      };
+    if (foundry.utils.getType(attr) !== "Object") attr = {
+      value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
+      subtype: "",
+      swarm: "",
+      custom: ""
+    };
 
     // Populate choices
     const types = {};

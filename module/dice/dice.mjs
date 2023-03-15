@@ -12,8 +12,10 @@
  * @property {Event} [event]        The triggering event for this roll.
  *
  * ## D20 Properties
- * @property {boolean} [advantage]        Apply advantage to this roll (unless overridden by modifier keys or dialog)?
- * @property {boolean} [disadvantage]     Apply disadvantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {boolean} [advantage]        Apply advantage to this roll?
+ *                                        (unless overridden by modifier keys or dialog)
+ * @property {boolean} [disadvantage]     Apply disadvantage to this roll?
+ *                                        (unless overridden by modifier keys or dialog)
  * @property {number|null} [critical=20]  The value of the d20 result which represents a critical success,
  *                                        `null` will prevent critical successes.
  * @property {number|null} [fumble=1]     The value of the d20 result which represents a critical failure,
@@ -133,8 +135,8 @@ export async function d20Roll({
  * @property {Event} [event]        The triggering event for this roll.
  *
  * ## Attrib Properties
- * @property {boolean} [advantage]        Apply advantage to this roll (unless overridden by modifier keys or dialog)?
- * @property {boolean} [disadvantage]     Apply disadvantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {boolean} [advantage]     Apply advantage to this roll (unless overridden by modifier keys or dialog)?
+ * @property {boolean} [disadvantage]  Apply disadvantage to this roll (unless overridden by modifier keys or dialog)?
  *
  * ## Roll Configuration Dialog
  * @property {boolean} [fastForward=false]     Should the roll configuration dialog be skipped?
@@ -215,7 +217,8 @@ export async function attribDieRoll({
 /* -------------------------------------------- */
 
 /**
- * Determines whether this attribute die roll should be fast-forwarded, and whether advantage or disadvantage should be applied
+ * Determines whether this attribute die roll should be fast-forwarded,
+ * and whether advantage or disadvantage should be applied
  * @param {object} [config]
  * @param {Event} [config.event]                      Event that triggered the roll.
  * @param {boolean} [config.advantage]                Is something granting this roll advantage?
@@ -231,9 +234,11 @@ function _determineAttribDieAdvantageMode({
 } = {}) {
   const isFF = fastForward || (event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
   let advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.NORMAL;
-  if (advantage || event?.altKey) advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.ADVANTAGE;
-  else if (disadvantage || event?.ctrlKey || event?.metaKey)
+  if (advantage || event?.altKey) {
+    advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.ADVANTAGE;
+  } else if (disadvantage || event?.ctrlKey || event?.metaKey) {
     advantageMode = CONFIG.Dice.AttribDieRoll.ADV_MODE.DISADVANTAGE;
+  }
   return { isFF, advantageMode };
 }
 

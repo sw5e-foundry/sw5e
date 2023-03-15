@@ -37,7 +37,7 @@ export default class HitPointsFlow extends AdvancementFlow {
       labels: {
         firstClassLevel: "SW5E.AdvancementHitPointsMaxAtFirstLevel",
         average: "SW5E.AdvancementHitPointsAverage",
-        roll: "SW5E.AdvancementHitPointsRollButton",
+        roll: "SW5E.AdvancementHitPointsRollButton"
       }
     });
   }
@@ -66,7 +66,7 @@ export default class HitPointsFlow extends AdvancementFlow {
    */
   _updateRollResult() {
     if (!this.form.elements.useAverage?.checked) return;
-    this.form.elements.value.value = this.advancement.hitDieValue / 2 + 1;
+    this.form.elements.value.value = (this.advancement.hitDieValue / 2) + 1;
   }
 
   /* -------------------------------------------- */
@@ -87,9 +87,9 @@ export default class HitPointsFlow extends AdvancementFlow {
 
   /* -------------------------------------------- */
 
-  /*
+  /**
    * Calls the actor's roll hit point function
-   * @returns {promisse<Roll>}   Roll object
+   * @returns {Promise<Roll>}   Roll object
    */
   rollHitPoints() {
     return this.advancement.actor.rollClassHitPoints(this.advancement.item);

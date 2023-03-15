@@ -1,5 +1,4 @@
 import SystemDataModel from "../abstract.mjs";
-import { MappingField } from "../fields.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
@@ -25,7 +24,7 @@ import makeItemProperties from "./helpers.mjs";
  * @property {string} ammo.target         Id of the selected ammo item.
  * @property {string} ammo.value          Current ammount of loaded ammo.
  * @property {string} ammo.use            Ammount of ammo spent per shot.
- * @property {array<string>} ammo.types   Types of ammo this ammo can accept.
+ * @property {Array<string>} ammo.types   Types of ammo this ammo can accept.
  * @property {object} properties          Mapping of various equipment property booleans and numbers.
  * @property {boolean} proficient         Does the weapon's owner have proficiency?
  */
@@ -54,8 +53,8 @@ export default class WeaponData extends SystemDataModel.mixin(
         types: new foundry.data.fields.ArrayField(new foundry.data.fields.StringField(), {
           required: true,
           initial: ["powerCell"],
-          label: "SW5E.WeaponAmmoValid",
-        }),
+          label: "SW5E.WeaponAmmoValid"
+        })
       }, {}),
       properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
         required: true,

@@ -87,16 +87,18 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     const categories = this._prepareItemCategories({
       splitActive: true,
       featureTypes: Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes)
-        .map(([k, v]) => { if(k === "class") delete v.subtypes; return [k, v]; })),
+        .map(([k, v]) => { if (k === "class") delete v.subtypes; return [k, v]; }))
     });
 
     this._prepareItemsCategorized(context, categories);
 
     // Apply active item filters
-    for (const type of Object.keys(categories.inventory))
-      categories.inventory[type].items = this._filterItems(categories.inventory[type].items, this._filters.inventory);
-    for (const type of Object.keys(categories.features))
-      categories.features[type].items = this._filterItems(categories.features[type].items, this._filters.features);
+    for (const itemType of Object.values(categories.inventory)) {
+      itemType.items = this._filterItems(itemType.items, this._filters.inventory);
+    }
+    for (const featType of Object.values(categories.features)) {
+      featType.items = this._filterItems(featType.items, this._filters.features);
+    }
     categories.powers.for.items = this._filterItems(categories.powers.for.items, this._filters.forcePowerbook);
     categories.powers.tec.items = this._filterItems(categories.powers.tec.items, this._filters.techPowerbook);
     categories.maneuvers.items = this._filterItems(categories.maneuvers.items, this._filters.superiorityPowerbook);
@@ -218,7 +220,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       event.preventDefault();
       let langs = Array.from(this.actor.system.traits.languages.value).map(l => CONFIG.SW5E.languages[l] || l).join(", ");
       let custom = this.actor.system.traits.languages.custom;
-      if (custom) langs += ", " + custom.replace(/;/g, ",");
+      if (custom) langs += `, ${custom.replace(/;/g, ",")}`;
       let content = `
         <div class="sw5e chat-card item-card" data-actor-id="${this.actor.id}">
           <header class="card-header flexrow">
@@ -245,8 +247,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         type: CONST.CHAT_MESSAGE_TYPES.OTHER
       };
 
-      if (["gmroll", "blindroll"].includes(rollMode)) data["whisper"] = ChatMessage.getWhisperRecipients("GM");
-      else if (rollMode === "selfroll") data["whisper"] = [game.users.get(game.user.id)];
+      if (["gmroll", "blindroll"].includes(rollMode)) data.whisper = ChatMessage.getWhisperRecipients("GM");
+      else if (rollMode === "selfroll") data.whisper = [game.users.get(game.user.id)];
 
       ChatMessage.create(data);
     });
@@ -325,7 +327,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch (err) {
+        } catch(err) {
           return;
         }
       }
@@ -428,6 +430,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   }
 }
 
+/**
+ * Adds the favorites tab
+ * @param {ActorSheet5eCharacter} app
+ * @param {jQuery} html
+ * @param {object} context
+ */
 async function addFavorites(app, html, context) {
   // This function is adapted for the SwaltSheet from the Favorites Item
   // Tab Module created for Foundry VTT - by Felix Müller (Felix#6196 on Discord).
@@ -529,7 +537,7 @@ async function addFavorites(app, html, context) {
       switch (item.type) {
         case "feat":
         case "maneuver":
-          item.flags.favtab.sort ??= (favFeats.count + 1) * 100000; // initial sort key if not present
+          item.flags.favtab.sort ??= (favFeats.count + 1) * 100000; // Initial sort key if not present
           favFeats.push(item);
           break;
         case "power":
@@ -540,7 +548,7 @@ async function addFavorites(app, html, context) {
           powerCount++;
           break;
         default:
-          item.flags.favtab.sort ??= (favItems.count + 1) * 100000; // initial sort key if not present
+          item.flags.favtab.sort ??= (favItems.count + 1) * 100000; // Initial sort key if not present
           favItems.push(item);
           break;
       }
@@ -572,7 +580,7 @@ async function addFavorites(app, html, context) {
       li.setAttribute("draggable", true);
       li.addEventListener("dragstart", handler, false);
     });
-    //favtabHtml.find('.item-toggle').click(event => app._onToggleItem(event));
+    // FavtabHtml.find('.item-toggle').click(event => app._onToggleItem(event));
     favtabHtml.find(".item-edit").click(ev => {
       let itemId = $(ev.target).parents(".item")[0].dataset.itemId;
       app.actor.items.get(itemId).sheet.render(true);
@@ -597,7 +605,7 @@ async function addFavorites(app, html, context) {
       let itemIndex = uuidParts.indexOf("Item");
       let itemId = itemIndex === -1 ? undefined : uuidParts[itemIndex+1];
 
-      if (actorId !== app.actor.id || dropData.type === 'power') return;
+      if (actorId !== app.actor.id || dropData.type === "power") return;
 
       let dragSource = app.actor.items.get(itemId);
 
@@ -624,26 +632,18 @@ async function addFavorites(app, html, context) {
     });
   }
   tabContainer.append(favtabHtml);
-  // if(app.options.editable) {
-  //   let handler = ev => app._onDragItemStart(ev);
-  //   tabContainer.find('.item').each((i, li) => {
-  //     if (li.classList.contains("inventory-header")) return;
-  //     li.setAttribute("draggable", true);
-  //     li.addEventListener("dragstart", handler, false);
-  //   });
-  //}
-  // try {
-  //   if (game.modules.get("betterrolls5e") && game.modules.get("betterrolls5e").active) BetterRolls.addItemContent(app.object, favtabHtml, ".item .item-name h4", ".item-properties", ".item > .rollable div");
-  // }
-  // catch (err) {
-  //   // Better Rolls not found!
-  // }
   Hooks.callAll("renderedSwaltSheet", app, html, context);
 }
 
+/**
+ * Adds sub tabs
+ * @param {ActorSheet5eCharacter} app
+ * @param {jQuery} html
+ * @param {object} data
+ */
 async function addSubTabs(app, html, data) {
   if (data.options.subTabs == null) {
-    //let subTabs = []; //{subgroup: '', target: '', active: false}
+    // Let subTabs = []; //{subgroup: '', target: '', active: false}
     data.options.subTabs = {};
     html.find("[data-subgroup-selection] [data-subgroup]").each((idx, el) => {
       let subgroup = el.getAttribute("data-subgroup");
@@ -676,11 +676,8 @@ async function addSubTabs(app, html, data) {
       let target = event.target.closest("[data-target]").getAttribute("data-target");
       html.find(`[data-subgroup=${subgroup}]`).removeClass("active");
       html.find(`[data-subgroup=${subgroup}][data-target=${target}]`).addClass("active");
-      let tabId = data.options.subTabs[subgroup].find(tab => {
-        return tab.target == target;
-      });
       data.options.subTabs[subgroup].map(el => {
-        el.active = el.target == target;
+        el.active = el.target === target;
         return el;
       });
     });

@@ -1,4 +1,4 @@
-import { FormulaField, MappingField, UUIDField } from "../fields.mjs";
+import { MappingField } from "../fields.mjs";
 import SystemDataModel from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
@@ -47,14 +47,20 @@ export default class ModificationData extends SystemDataModel.mixin(
       properties: makeItemProperties({
         ...CONFIG.SW5E.weaponProperties,
         ...CONFIG.SW5E.castingProperties,
-        ...CONFIG.SW5E.equipmentProperties,
-      }, { required: true, extraFields: {
-        indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), { required: true, initialKeys: {
-          ...CONFIG.SW5E.weaponProperties,
-          ...CONFIG.SW5E.castingProperties,
-          ...CONFIG.SW5E.equipmentProperties,
-        } })
-      } }),
+        ...CONFIG.SW5E.equipmentProperties
+      }, {
+        required: true,
+        extraFields: {
+          indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), {
+            required: true,
+            initialKeys: {
+              ...CONFIG.SW5E.weaponProperties,
+              ...CONFIG.SW5E.castingProperties,
+              ...CONFIG.SW5E.equipmentProperties
+            }
+          })
+        }
+      })
     });
   }
 }

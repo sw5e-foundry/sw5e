@@ -108,7 +108,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.CapacityMultiplier" },
+          { required: true, label: "SW5E.CapacityMultiplier" }
         ),
         dmgred: new foundry.data.fields.SchemaField(
           {
@@ -118,7 +118,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.DmgRed" },
+          { required: true, label: "SW5E.DmgRed" }
         ),
         regrateco: new foundry.data.fields.SchemaField(
           {
@@ -127,7 +127,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.RegenerationRateCoefficient" },
+          { required: true, label: "SW5E.RegenerationRateCoefficient" }
         ),
         cscap: new foundry.data.fields.SchemaField(
           {
@@ -137,7 +137,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.CentStorageCapacity" },
+          { required: true, label: "SW5E.CentStorageCapacity" }
         ),
         sscap: new foundry.data.fields.SchemaField(
           {
@@ -147,7 +147,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.SysStorageCapacity" },
+          { required: true, label: "SW5E.SysStorageCapacity" }
         ),
         fuelcostsmod: new foundry.data.fields.SchemaField(
           {
@@ -156,11 +156,11 @@ export default class EquipmentData extends SystemDataModel.mixin(
               min: 0
             })
           },
-          { required: true, label: "SW5E.FuelCostsMod" },
+          { required: true, label: "SW5E.FuelCostsMod" }
         ),
         powerdicerec: new foundry.data.fields.SchemaField(
           { value: new FormulaField({}) },
-          { label: "SW5E.PowerDiceRecovery" },
+          { label: "SW5E.PowerDiceRecovery" }
         ),
         hdclass: new foundry.data.fields.SchemaField(
           {
@@ -170,9 +170,9 @@ export default class EquipmentData extends SystemDataModel.mixin(
               max: 15
             })
           },
-          { required: true, label: "SW5E.SysStorageCapacity" },
-        ),
-      }),
+          { required: true, label: "SW5E.SysStorageCapacity" }
+        )
+      })
     });
   }
 

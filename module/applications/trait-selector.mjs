@@ -5,13 +5,12 @@
 export default class TraitSelector extends DocumentSheet {
   constructor(...args) {
     super(...args);
-    if (!this.options.suppressWarning)
-      foundry.utils.logCompatibilityWarning(
-        `${this.constructor.name} has been deprecated in favor of a more specialized TraitSelector ` +
-          "available at 'sw5e.applications.actor.TraitSelector'. Support for the old application will " +
-          "be removed in a future version.",
-        { since: "SW5e 2.1", until: "SW5e 2.3" }
-      );
+    if (!this.options.suppressWarning) foundry.utils.logCompatibilityWarning(
+      `${this.constructor.name} has been deprecated in favor of a more specialized TraitSelector `
+          + "available at 'sw5e.applications.actor.TraitSelector'. Support for the old application will "
+          + "be removed in a future version.",
+      { since: "SW5e 2.1", until: "SW5e 2.3" }
+    );
   }
 
   /* -------------------------------------------- */

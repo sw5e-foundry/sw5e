@@ -7,7 +7,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
   /** @override */
   get template() {
     if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
-    return `systems/sw5e/templates/actors/newActor/npc-sheet.hbs`;
+    return "systems/sw5e/templates/actors/newActor/npc-sheet.hbs";
   }
 
   /** @inheritDoc */
@@ -69,16 +69,16 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         items: [],
         hasActions: true,
         required: true,
-        dataset: { "type": "weapon", "weapon-type": "natural" }
+        dataset: { type: "weapon", "weapon-type": "natural" }
       },
       actions: {
         label: game.i18n.localize("SW5E.ActionPl"),
         items: [],
         hasActions: true,
         required: true,
-        dataset: { "type": "feat", "featureType": "monster", "activation.type": "action" }
+        dataset: { type: "feat", featureType: "monster", "activation.type": "action" }
       },
-      passive: { label: game.i18n.localize("SW5E.Features"), items: [], required: true, dataset: { type: "feat", "featureType": "monster" } },
+      passive: { label: game.i18n.localize("SW5E.Features"), items: [], required: true, dataset: { type: "feat", featureType: "monster" } },
       equipment: { label: game.i18n.localize("SW5E.Inventory"), items: [], required: true, dataset: { type: "loot" } }
     };
     const ssfeatures = {

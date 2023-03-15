@@ -46,8 +46,8 @@ export default class AdvancementSelection extends Dialog {
     const context = { types: {} };
 
     for (const [name, advancement] of Object.entries(CONFIG.SW5E.advancementTypes)) {
-      if (!(advancement.prototype instanceof Advancement) || !advancement.metadata.validItemTypes.has(this.item.type))
-        continue;
+      if (!(advancement.prototype instanceof Advancement)
+        || !advancement.metadata.validItemTypes.has(this.item.type)) continue;
       context.types[name] = {
         label: advancement.metadata.title,
         icon: advancement.metadata.icon,

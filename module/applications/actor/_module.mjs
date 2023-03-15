@@ -5,12 +5,12 @@ export { default as ActorSheet5eStarship } from "./starship-sheet.mjs";
 export { default as ActorSheet5eVehicle } from "./vehicle-sheet.mjs";
 export { default as GroupActorSheet } from "./group-sheet.mjs";
 
-export { default as BaseConfigSheet } from "./base-sheet.mjs";
 export { default as ActorSheetOrig5e } from "./base-orig-sheet.mjs";
 export { default as ActorSheetOrig5eCharacter } from "./character-orig-sheet.mjs";
 export { default as ActorSheetOrig5eNPC } from "./npc-orig-sheet.mjs";
 export { default as ActorSheetOrig5eVehicle } from "./vehicle-orig-sheet.mjs";
 
+export { default as BaseConfigSheet } from "./base-config.mjs";
 export { default as ActorAbilityConfig } from "./ability-config.mjs";
 export { default as AllocatePowerDiceDialog } from "./allocate-power-dice.mjs";
 export { default as ActorArmorConfig } from "./armor-config.mjs";

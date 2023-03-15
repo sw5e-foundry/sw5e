@@ -11,7 +11,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /** @override */
   get template() {
     if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/limited-sheet.hbs";
-    return `systems/sw5e/templates/actors/newActor/starship-sheet.hbs`;
+    return "systems/sw5e/templates/actors/newActor/starship-sheet.hbs";
   }
 
   /** @inheritDoc */
@@ -28,12 +28,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         }
       ]
     });
-  }
-
-  /* -------------------------------------------- */
-
-  constructor(...args) {
-    super(...args);
   }
 
   /* -------------------------------------------- */
@@ -74,7 +68,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     for (const key of Object.keys(CONFIG.SW5E.ssCrewStationTypes)) {
       const deployment = ssDeploy[key];
       deployment.actorsVisible = !!(!anyDeployed || deployment.items?.length);
-      if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = deployment.active;
+      if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = !anyActive || deployment.active;
       else deployment.actionsVisible = !!(!anyDeployed || deployment.items?.length || deployment.value);
     }
 
@@ -86,8 +80,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       obj[key] = {
         value: effect,
         symbol: symbols[effect],
-        effect: effects[effect],
-      }
+        effect: effects[effect]
+      };
       return obj;
     }, {});
 
@@ -107,13 +101,13 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     labels.hullDice = game.i18n.format("SW5E.HullDiceFull", {
       cur: this.actor.system.attributes.hull.dice,
       max: this.actor.system.attributes.hull.dicemax,
-      die: this.actor.system.attributes.hull.die,
+      die: this.actor.system.attributes.hull.die
     });
 
     labels.shieldDice = game.i18n.format("SW5E.ShieldDiceFull", {
       cur: this.actor.system.attributes.shld.dice,
       max: this.actor.system.attributes.shld.dicemax,
-      die: this.actor.system.attributes.shld.die,
+      die: this.actor.system.attributes.shld.die
     });
 
     return labels;
@@ -127,7 +121,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
     // Prepare an array of available movement speeds
     let speeds = [
-      [movement.turn, `${game.i18n.localize("SW5E.MovementTurn")} ${movement.turn}`],
+      [movement.turn, `${game.i18n.localize("SW5E.MovementTurn")} ${movement.turn}`]
     ];
     if (largestPrimary) {
       speeds.push([movement.space, `${game.i18n.localize("SW5E.MovementSpace")} ${movement.space}`]);
@@ -163,8 +157,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     categories.equipped = {
       weapon: categories.equipped.weapon,
       equipment: categories.equipped.equipment,
-      starshipmod: categories.equipped.starshipmod,
-    }
+      starshipmod: categories.equipped.starshipmod
+    };
 
     this._prepareItemsCategorized(context, categories);
 
@@ -213,10 +207,18 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     }
 
     // Apply item filters
-    for (const actions of Object.values(categories.ssactions)) actions.items = this._filterItems(actions.items, this._filters.ssactions);
-    for (const features of categories.features) features.items = this._filterItems(features.items, this._filters.features);
-    for (const itemType of categories.inventory) itemType.items = this._filterItems(itemType.items, this._filters.inventory);
-    for (const itemType of categories.equipped) itemType.items = this._filterItems(itemType.items, this._filters.ssequipment);
+    for (const actions of Object.values(categories.ssactions)) {
+      actions.items = this._filterItems(actions.items, this._filters.ssactions);
+    }
+    for (const features of categories.features) {
+      features.items = this._filterItems(features.items, this._filters.features);
+    }
+    for (const itemType of categories.inventory) {
+      itemType.items = this._filterItems(itemType.items, this._filters.inventory);
+    }
+    for (const itemType of categories.equipped) {
+      itemType.items = this._filterItems(itemType.items, this._filters.ssequipment);
+    }
 
     // Organize Starship Size
     const maxTierDelta = CONFIG.SW5E.maxTier - this.actor.system.details.tier;
@@ -339,7 +341,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch (err) {
+        } catch(err) {
           return;
         }
       }
@@ -351,8 +353,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
   /**
    * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Item with the updates applied.
+   * @param {Event} event             The triggering click event.
+   * @returns {Promise<Item5e>|void}  Item with the updates applied.
    * @private
    */
   _onToggleItem(event) {
@@ -369,27 +371,26 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (!val && item.type === "equipment") {
         for (const i of this.actor.items) {
           if (i.type === "equipment" && i.system.armor.type === item.system.armor.type && i.system.equipped) {
-            updates.push({ "_id": i.id, "system.equipped": false });
+            updates.push({ _id: i.id, "system.equipped": false });
           }
         }
       }
-      updates.push({ "_id": item.id, "system.equipped": !val });
+      updates.push({ _id: item.id, "system.equipped": !val });
 
       this.actor.updateEmbeddedDocuments("Item", updates);
     };
 
     // Shift click skips the confirmation dialog
     if (event.shiftKey) callback();
-    else
-      Dialog.confirm({
-        title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
-        content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
-          minCrew,
-          installCost,
-          installTime
-        }),
-        yes: callback
-      });
+    else Dialog.confirm({
+      title: game.i18n.localize(val ? "SW5E.StarshipEquipUninstallTitle" : "SW5E.StarshipEquipInstallTitle"),
+      content: game.i18n.format(val ? "SW5E.StarshipEquipUninstallContent" : "SW5E.StarshipEquipInstallContent", {
+        minCrew,
+        installCost,
+        installTime
+      }),
+      yes: callback
+    });
   }
 
   /* -------------------------------------------- */
@@ -494,7 +495,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * @private
    */
   _onIncrementFuelLevel(event) {
-    // event.preventDefault();
+    // Event.preventDefault();
     this.actor.update({ "system.attributes.fuel.value": this.actor.system.attributes.fuel.fuelCap });
   }
 
@@ -506,7 +507,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
    * @private
    */
   _onDecrementFuelLevel(event) {
-    // event.preventDefault();
+    // Event.preventDefault();
     this.actor.update({ "system.attributes.fuel.value": this.actor.system.attributes.fuel.value - 1 });
   }
 
@@ -552,8 +553,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
 
   /**
    * Handle editing an existing Owned Item for the Actor.
-   * @param {Event} event    The originating click event.
-   * @returns {ItemSheet5e}  The rendered item sheet.
+   * @param {Event} event         The originating click event.
+   * @returns {ItemSheet5e|void}  The rendered item sheet.
    * @private
    */
   _onItemEdit(event) {
@@ -564,7 +565,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (uuid) {
         const actor = fromUuidSynchronous(uuid);
         const item = actor?.items?.get(li.dataset.itemId);
-        item?.sheet?.render(true);
+        return item?.sheet?.render(true);
       }
     } else {
       return super._onItemEdit(event);
@@ -574,12 +575,12 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /**
-   * Handle rolling an item from the Actor sheet, obtaining the Item instance, and dispatching to its roll method.
-   * @param {Event} event  The triggering click event.
-   * @returns {Promise}    Results of the roll.
+   * Handle using an item from the Actor sheet, obtaining the Item instance, and dispatching to its use method.
+   * @param {Event} event    The triggering click event.
+   * @returns {Roll|void}    Results of the roll.
    * @private
    */
-  _onItemRoll(event) {
+  _onItemUse(event) {
     const li = event.currentTarget.closest(".item");
     if (li.dataset.derived) {
       event.preventDefault();
@@ -587,11 +588,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (uuid) {
         const actor = fromUuidSynchronous(uuid);
         const item = actor?.items?.get(li.dataset.itemId);
-        item?.roll();
+        return item?.roll();
       }
-    } else {
-      return super._onItemRoll(event);
-    }
+    } else return super._onItemUse(event);
   }
 
   /* -------------------------------------------- */
@@ -630,9 +629,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
           li.toggleClass("expanded");
         }
       }
-    } else {
-      return super._onItemSummary(event);
-    }
+    } else super._onItemSummary(event);
   }
 
   /* -------------------------------------------- */
@@ -644,16 +641,15 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     const sourceActor = await cls.fromDropData(data);
     if (!sourceActor) return;
 
-    if (!CONFIG.SW5E.ssDeployableTypes.includes(sourceActor.type))
-      return ui.notifications.warn(
-        game.i18n.format("SW5E.DeploymentInvalidActorType", {
-          actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
-        })
-      );
+    if (!CONFIG.SW5E.ssDeployableTypes.includes(sourceActor.type)) return ui.notifications.warn(
+      game.i18n.format("SW5E.DeploymentInvalidActorType", {
+        actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
+      })
+    );
 
     // Pre-select the deployment slot with the highest rank
     let preselected = Object.entries(sourceActor.system.details.ranks ?? {}).reduce(
-      (prev, cur) => (cur[0] == "total" ? prev : cur[1] > prev[1] ? cur : prev),
+      (prev, cur) => (cur[0] === "total" ? prev : cur[1] > prev[1] ? cur : prev),
       ["passenger", 0]
     )[0];
     if (!Object.keys(CONFIG.SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";

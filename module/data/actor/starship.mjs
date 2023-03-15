@@ -9,63 +9,63 @@ import TraitsFields from "./templates/traits.mjs";
  *
  * @property {object} attributes
  * @property {object} attributes.ac
- * @property {number} attributes.ac.flat                            Flat value used for flat or natural armor calculation.
- * @property {string} attributes.ac.calc                            Name of one of the built-in formulas to use.
- * @property {string} attributes.ac.formula                         Custom formula to use.
+ * @property {number} attributes.ac.flat                       Flat value used for flat or natural armor calculation.
+ * @property {string} attributes.ac.calc                       Name of one of the built-in formulas to use.
+ * @property {string} attributes.ac.formula                    Custom formula to use.
  * @property {object} attributes.hp
- * @property {number} attributes.hp.value                           Current hull points.
- * @property {number} attributes.hp.max                             Override for maximum HP.
- * @property {number} attributes.hp.temp                            Current shield points.
- * @property {number} attributes.hp.tempmax                         Override for maximum SP.
+ * @property {number} attributes.hp.value                      Current hull points.
+ * @property {number} attributes.hp.max                        Override for maximum HP.
+ * @property {number} attributes.hp.temp                       Current shield points.
+ * @property {number} attributes.hp.tempmax                    Override for maximum SP.
  * @property {object} attributes.hp.bonuses
- * @property {string} attributes.hp.bonuses.level                   Bonus formula applied to HP for each class level.
- * @property {string} attributes.hp.bonuses.overall                 Bonus formula applied to total HP.
- * @property {string} attributes.hp.bonuses.templevel               Bonus formula applied to SP for each class level.
- * @property {string} attributes.hp.bonuses.tempoverall             Bonus formula applied to total SP.
+ * @property {string} attributes.hp.bonuses.level              Bonus formula applied to HP for each class level.
+ * @property {string} attributes.hp.bonuses.overall            Bonus formula applied to total HP.
+ * @property {string} attributes.hp.bonuses.templevel          Bonus formula applied to SP for each class level.
+ * @property {string} attributes.hp.bonuses.tempoverall        Bonus formula applied to total SP.
  * @property {object} attributes.death
- * @property {number} attributes.death.success                      Number of successful death saves.
- * @property {number} attributes.death.failure                      Number of failed death saves.
- * @property {number} attributes.systemDamage                       Number of levels of system damage.
+ * @property {number} attributes.death.success                 Number of successful death saves.
+ * @property {number} attributes.death.failure                 Number of failed death saves.
+ * @property {number} attributes.systemDamage                  Number of levels of system damage.
  * @property {object} attributes.deployment
  * @property {object} attributes.deployment.pilot
- * @property {string} attributes.deployment.pilot.value             UUID of the actor deployed as the pilot.
- * @property {boolean} attributes.deployment.pilot.active           Is the active actor a pilot?
+ * @property {string} attributes.deployment.pilot.value        UUID of the actor deployed as the pilot.
+ * @property {boolean} attributes.deployment.pilot.active      Is the active actor a pilot?
  * @property {object} attributes.deployment.crew
- * @property {array<string>} attributes.deployment.crew.value       Array of UUIDs of actors deployed as crew members..
- * @property {boolean} attributes.deployment.crew.active            Is the active actor a crew member?
+ * @property {string[]} attributes.deployment.crew.value       Array of UUIDs of actors deployed as crew members..
+ * @property {boolean} attributes.deployment.crew.active       Is the active actor a crew member?
  * @property {object} attributes.deployment.passenger
- * @property {array<string>} attributes.deployment.passenger.value  Array of UUIDs of actors deployed as passengers..
- * @property {boolean} attributes.deployment.passenger.active       Is the active actor a passenger?
+ * @property {string[]} attributes.deployment.passenger.value  Array of UUIDs of actors deployed as passengers..
+ * @property {boolean} attributes.deployment.passenger.active  Is the active actor a passenger?
  * @property {object} attributes.deployment.active
- * @property {string} attributes.deployment.active.value            UUID of the active actor.
+ * @property {string} attributes.deployment.active.value       UUID of the active actor.
  * @property {object} attributes.fuel
- * @property {number} attributes.fuel.value                         Ammount of units of fuel stored.
+ * @property {number} attributes.fuel.value                    Ammount of units of fuel stored.
  * @property {object} attributes.power
- * @property {string} attributes.power.routing                      Where is the power being diverted, as defined in `SW5E.powerRoutingOpts`.
+ * @property {string} attributes.power.routing                 Power routing as defined in `SW5E.powerRoutingOpts`.
  * @property {object} attributes.power.central
- * @property {number} attributes.power.central.value                Number of power dice stored in central storage.
+ * @property {number} attributes.power.central.value           Number of power dice stored in central storage.
  * @property {object} attributes.power.comms
- * @property {number} attributes.power.comms.value                  Number of power dice stored in comms storage.
+ * @property {number} attributes.power.comms.value             Number of power dice stored in comms storage.
  * @property {object} attributes.power.engines
- * @property {number} attributes.power.engines.value                Number of power dice stored in engines storage.
+ * @property {number} attributes.power.engines.value           Number of power dice stored in engines storage.
  * @property {object} attributes.power.shields
- * @property {number} attributes.power.shields.value                Number of power dice stored in shields storage.
+ * @property {number} attributes.power.shields.value           Number of power dice stored in shields storage.
  * @property {object} attributes.power.sensors
- * @property {number} attributes.power.sensors.value                Number of power dice stored in sensors storage.
+ * @property {number} attributes.power.sensors.value           Number of power dice stored in sensors storage.
  * @property {object} attributes.power.weapons
- * @property {number} attributes.power.weapons.value                Number of power dice stored in weapons storage.
- * @property {boolean} attributes.used                              Does the ship have the 'used' condition.
+ * @property {number} attributes.power.weapons.value           Number of power dice stored in weapons storage.
+ * @property {boolean} attributes.used                         Does the ship have the 'used' condition.
  * @property {object} details
- * @property {string} details.source                                What book or adventure is this Starship from.
- * @property {Object<string, SkillData>} skills                     Starship's skills.
+ * @property {string} details.source                           What book or adventure is this Starship from.
+ * @property {Object<string, SkillData>} skills                Starship's skills.
  * @property {object} traits
- * @property {SimpleTraitData} traits.ci                            Condition immunities.
- * @property {DamageTraitData} traits.di                            Hull Damage immunities.
- * @property {DamageTraitData} traits.dr                            Hull Damage resistances.
- * @property {DamageTraitData} traits.dv                            Hull Damage vulnerabilities.
- * @property {DamageTraitData} traits.sdi                           Shield Damage immunities.
- * @property {DamageTraitData} traits.sdr                           Shield Damage resistances.
- * @property {DamageTraitData} traits.sdv                           Shield Damage vulnerabilities.
+ * @property {SimpleTraitData} traits.ci                       Condition immunities.
+ * @property {DamageTraitData} traits.di                       Hull Damage immunities.
+ * @property {DamageTraitData} traits.dr                       Hull Damage resistances.
+ * @property {DamageTraitData} traits.dv                       Hull Damage vulnerabilities.
+ * @property {DamageTraitData} traits.sdi                      Shield Damage immunities.
+ * @property {DamageTraitData} traits.sdr                      Shield Damage resistances.
+ * @property {DamageTraitData} traits.sdv                      Shield Damage vulnerabilities.
  */
 export default class StarshipData extends CommonTemplate {
   /** @inheritdoc */
@@ -168,7 +168,7 @@ export default class StarshipData extends CommonTemplate {
             }),
             active: new foundry.data.fields.SchemaField({
               value: new UUIDField({ label: "SW5E.DeployedActive", nullable: true })
-            }),
+            })
           }),
           fuel: new foundry.data.fields.SchemaField({
             value: new foundry.data.fields.NumberField({
@@ -238,9 +238,9 @@ export default class StarshipData extends CommonTemplate {
                 min: 0,
                 initial: 0
               })
-            }),
+            })
           }),
-          used: new foundry.data.fields.BooleanField(),
+          used: new foundry.data.fields.BooleanField()
         },
         { label: "SW5E.Attributes" }
       ),
@@ -250,7 +250,7 @@ export default class StarshipData extends CommonTemplate {
           source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" })
         },
         { label: "SW5E.Details"
-      }),
+        }),
       skills: new MappingField(
         new foundry.data.fields.SchemaField({
           value: new foundry.data.fields.NumberField({ required: true, initial: 0, label: "SW5E.ProficiencyLevel" }),
@@ -273,7 +273,7 @@ export default class StarshipData extends CommonTemplate {
           di: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamImm", initial: ["poison", "psychic"] }),
           sdr: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamRes", initial: ["acid", "cold", "fire", "necrotic"] }),
           sdv: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamVuln" }),
-          sdi: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamImm", initial: ["poison", "psychic"] }),
+          sdi: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamImm", initial: ["poison", "psychic"] })
         },
         { label: "SW5E.Traits" }
       )
@@ -295,7 +295,7 @@ export default class StarshipData extends CommonTemplate {
    */
   static #migratePowerRouting(source) {
     source.attributes.power ??= {};
-    if (typeof source.attributes.power.routing !== String) source.attributes.power.routing = "none";
+    if (typeof source.attributes.power.routing !== "string") source.attributes.power.routing = "none";
   }
 
   /* -------------------------------------------- */

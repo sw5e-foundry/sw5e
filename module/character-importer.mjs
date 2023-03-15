@@ -1,46 +1,46 @@
 export default class CharacterImporter {
-  // transform JSON from sw5e.com to Foundry friendly format
+  // Transform JSON from sw5e.com to Foundry friendly format
   // and insert new actor
   static async transform(rawCharacter) {
-    const sourceCharacter = JSON.parse(rawCharacter); //source character
+    const sourceCharacter = JSON.parse(rawCharacter); // Source character
 
     const details = {
-      species: sourceCharacter.attribs.find(e => e.name == "race").current,
-      background: sourceCharacter.attribs.find(e => e.name == "background").current,
-      alignment: sourceCharacter.attribs.find(e => e.name == "alignment").current
+      species: sourceCharacter.attribs.find(e => e.name === "race").current,
+      background: sourceCharacter.attribs.find(e => e.name === "background").current,
+      alignment: sourceCharacter.attribs.find(e => e.name === "alignment").current
     };
 
     const hp = {
-      value: sourceCharacter.attribs.find(e => e.name == "hp").current,
+      value: sourceCharacter.attribs.find(e => e.name === "hp").current,
       min: 0,
-      max: sourceCharacter.attribs.find(e => e.name == "hp").current,
-      temp: sourceCharacter.attribs.find(e => e.name == "hp_temp").current
+      max: sourceCharacter.attribs.find(e => e.name === "hp").current,
+      temp: sourceCharacter.attribs.find(e => e.name === "hp_temp").current
     };
 
     const abilities = {
       str: {
-        value: sourceCharacter.attribs.find(e => e.name == "strength").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "strength_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "strength").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "strength_save_prof").current ? 1 : 0
       },
       dex: {
-        value: sourceCharacter.attribs.find(e => e.name == "dexterity").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "dexterity_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "dexterity").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "dexterity_save_prof").current ? 1 : 0
       },
       con: {
-        value: sourceCharacter.attribs.find(e => e.name == "constitution").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "constitution_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "constitution").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "constitution_save_prof").current ? 1 : 0
       },
       int: {
-        value: sourceCharacter.attribs.find(e => e.name == "intelligence").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "intelligence_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "intelligence").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "intelligence_save_prof").current ? 1 : 0
       },
       wis: {
-        value: sourceCharacter.attribs.find(e => e.name == "wisdom").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "wisdom_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "wisdom").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "wisdom_save_prof").current ? 1 : 0
       },
       cha: {
-        value: sourceCharacter.attribs.find(e => e.name == "charisma").current,
-        proficient: sourceCharacter.attribs.find(e => e.name == "charisma_save_prof").current ? 1 : 0
+        value: sourceCharacter.attribs.find(e => e.name === "charisma").current,
+        proficient: sourceCharacter.attribs.find(e => e.name === "charisma_save_prof").current ? 1 : 0
       }
     };
 
@@ -55,58 +55,58 @@ export default class CharacterImporter {
         /* ----------------------------------------------------------------- */
     const skills = {
       acr: {
-        value: sourceCharacter.attribs.find(e => e.name == "acrobatics_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "acrobatics_type").current
       },
       ani: {
-        value: sourceCharacter.attribs.find(e => e.name == "animal_handling_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "animal_handling_type").current
       },
       ath: {
-        value: sourceCharacter.attribs.find(e => e.name == "athletics_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "athletics_type").current
       },
       dec: {
-        value: sourceCharacter.attribs.find(e => e.name == "deception_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "deception_type").current
       },
       ins: {
-        value: sourceCharacter.attribs.find(e => e.name == "insight_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "insight_type").current
       },
       inv: {
-        value: sourceCharacter.attribs.find(e => e.name == "investigation_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "investigation_type").current
       },
       itm: {
-        value: sourceCharacter.attribs.find(e => e.name == "intimidation_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "intimidation_type").current
       },
       lor: {
-        value: sourceCharacter.attribs.find(e => e.name == "lore_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "lore_type").current
       },
       med: {
-        value: sourceCharacter.attribs.find(e => e.name == "medicine_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "medicine_type").current
       },
       nat: {
-        value: sourceCharacter.attribs.find(e => e.name == "nature_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "nature_type").current
       },
       per: {
-        value: sourceCharacter.attribs.find(e => e.name == "persuasion_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "persuasion_type").current
       },
       pil: {
-        value: sourceCharacter.attribs.find(e => e.name == "piloting_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "piloting_type").current
       },
       prc: {
-        value: sourceCharacter.attribs.find(e => e.name == "perception_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "perception_type").current
       },
       prf: {
-        value: sourceCharacter.attribs.find(e => e.name == "performance_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "performance_type").current
       },
       slt: {
-        value: sourceCharacter.attribs.find(e => e.name == "sleight_of_hand_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "sleight_of_hand_type").current
       },
       ste: {
-        value: sourceCharacter.attribs.find(e => e.name == "stealth_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "stealth_type").current
       },
       sur: {
-        value: sourceCharacter.attribs.find(e => e.name == "survival_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "survival_type").current
       },
       tec: {
-        value: sourceCharacter.attribs.find(e => e.name == "technology_type").current
+        value: sourceCharacter.attribs.find(e => e.name === "technology_type").current
       }
     };
 
@@ -140,18 +140,18 @@ export default class CharacterImporter {
       actor
     );
 
-    await this.addSpecies(sourceCharacter.attribs.find(e => e.name == "race").current, actor);
+    await this.addSpecies(sourceCharacter.attribs.find(e => e.name === "race").current, actor);
 
-    await this.addBackground(sourceCharacter.attribs.find(e => e.name == "background").current, actor);
+    await this.addBackground(sourceCharacter.attribs.find(e => e.name === "background").current, actor);
 
     await this.addPowers(
-      sourceCharacter.attribs.filter(e => e.name.search(/repeating_power.+_powername/g) != -1).map(e => e.current),
+      sourceCharacter.attribs.filter(e => e.name.search(/repeating_power.+_powername/g) !== -1).map(e => e.current),
       actor
     );
 
     await this.addItems(
       sourceCharacter.attribs
-        .filter(e => e.name.search(/repeating_(?:inventory|traits).+_(?:item)?name/g) != -1)
+        .filter(e => e.name.search(/repeating_(?:inventory|traits).+_(?:item)?name/g) !== -1)
         .map(item => {
           const id = item.name.match(/-\w{19}/g);
           return {
@@ -164,12 +164,12 @@ export default class CharacterImporter {
 
     await this.addProficiencies(
       sourceCharacter.attribs
-        .filter(e => e.name.search(/repeating_proficiencies.+_name/g) != -1)
+        .filter(e => e.name.search(/repeating_proficiencies.+_name/g) !== -1)
         .map(prof => {
           const id = prof.name.match(/-\w{19}/g);
           const type =
-            sourceCharacter.attribs.find(e => e.name === `repeating_proficiencies_${id}_prof_type`)?.current ??
-            "LANGUAGE";
+            sourceCharacter.attribs.find(e => e.name === `repeating_proficiencies_${id}_prof_type`)?.current
+            ?? "LANGUAGE";
           return {
             name: prof.current,
             type
@@ -200,7 +200,7 @@ export default class CharacterImporter {
     const toUpdate = [];
     for (const cls of classes) {
       const itemClass = actor.itemTypes.class.find(o => o.name === cls.name);
-      toUpdate.push({ "_id": itemClass.id, "system.levels": cls.level });
+      toUpdate.push({ _id: itemClass.id, "system.levels": cls.level });
     }
     await actor.updateEmbeddedDocuments("Item", toUpdate);
   }
@@ -258,36 +258,10 @@ export default class CharacterImporter {
       const activeEffects = [...assignedSpecies.effects][0]?.changes ?? [];
       const actorData = { system: { abilities: { ...actor.system.abilities } } };
 
-      activeEffects.map(effect => {
-        switch (effect.key) {
-          case "system.abilities.str.value":
-            actorData.system.abilities.str.value -= effect.value;
-            break;
-
-          case "system.abilities.dex.value":
-            actorData.system.abilities.dex.value -= effect.value;
-            break;
-
-          case "system.abilities.con.value":
-            actorData.system.abilities.con.value -= effect.value;
-            break;
-
-          case "system.abilities.int.value":
-            actorData.system.abilities.int.value -= effect.value;
-            break;
-
-          case "system.abilities.wis.value":
-            actorData.system.abilities.wis.value -= effect.value;
-            break;
-
-          case "system.abilities.cha.value":
-            actorData.system.abilities.cha.value -= effect.value;
-            break;
-
-          default:
-            break;
-        }
-      });
+      for (const effect of activeEffects) {
+        const attr = effects.key.match(/system\.abilities\.(str|dex|con|int|wis|cha)\.value/)?.[1];
+        if (attr) actorData.system.abilities[attr].value -= effect.value;
+      }
 
       await actor.update(actorData);
 
@@ -424,7 +398,7 @@ export default class CharacterImporter {
     const actionButtons = html.find(".header-actions");
     actionButtons[0].insertAdjacentHTML(
       "afterend",
-      `<div class="header-actions action-buttons flexrow"><button class="create-entity cs-import-button"><i class="fas fa-upload"></i> Import Character</button></div>`
+      "<div class=\"header-actions action-buttons flexrow\"><button class=\"create-entity cs-import-button\"><i class=\"fas fa-upload\"></i> Import Character</button></div>"
     );
 
     let characterImportButton = $(".cs-import-button");
@@ -438,7 +412,7 @@ export default class CharacterImporter {
         content,
         buttons: {
           Import: {
-            icon: `<i class="fas fa-file-import"></i>`,
+            icon: "<i class=\"fas fa-file-import\"></i>",
             label: "Import Character",
             callback: () => {
               let characterData = $("#character-json").val();
@@ -447,7 +421,7 @@ export default class CharacterImporter {
             }
           },
           Cancel: {
-            icon: `<i class="fas fa-times-circle"></i>`,
+            icon: "<i class=\"fas fa-times-circle\"></i>",
             label: "Cancel",
             callback: () => {}
           }

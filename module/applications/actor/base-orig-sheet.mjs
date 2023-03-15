@@ -61,8 +61,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
       height: Math.max(
         680,
         Math.max(
-          237 + Object.keys(CONFIG.SW5E.abilities).length * 70,
-          240 + Object.keys(CONFIG.SW5E.skills).length * 24
+          237 + (Object.keys(CONFIG.SW5E.abilities).length * 70),
+          240 + (Object.keys(CONFIG.SW5E.skills).length * 24)
         )
       )
     });
@@ -367,23 +367,21 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     // Shield
-    if (ac.shield !== 0)
-      attribution.push({
-        label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.shield
-      });
+    if (ac.shield !== 0) attribution.push({
+      label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
 
     // Bonus
     if (ac.bonus !== 0) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
 
     // Cover
-    if (ac.cover !== 0)
-      attribution.push({
-        label: game.i18n.localize("SW5E.Cover"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.cover
-      });
+    if (ac.cover !== 0) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
     return attribution;
   }
 
@@ -466,7 +464,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10, pact: 0.5 };
-    const useLabels = { "-20": "-", "-10": "-", "0": "&infin;" };
+    const useLabels = { "-20": "-", "-10": "-", 0: "&infin;" };
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
@@ -481,7 +479,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
         uses: useLabels[i] || value || 0,
         slots: useLabels[i] || max || 0,
         override: override || 0,
-        dataset: { "type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode },
+        dataset: { type: "power", level: prepMode in sections ? 1 : i, "preparation.mode": prepMode },
         prop: sl,
         editable: context.editable && !aeOverride
       };
@@ -619,7 +617,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
 
     // Property attributions
-    html.find("[data-attribution]").mouseover(this._onPropertyAttribution.bind(this))
+    html.find("[data-attribution]").mouseover(this._onPropertyAttribution.bind(this));
     html.find(".attributable").mouseover(this._onPropertyAttribution.bind(this));
 
     // Editable Only Listeners
@@ -922,8 +920,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
   /**
    * Handle cycling proficiency in a Skill.
-   * @param {Event} event   A click or contextmenu event which triggered the handler.
-   * @returns {Promise}     Updated data for this actor after changes are applied.
+   * @param {Event} event     A click or contextmenu event which triggered the handler.
+   * @returns {Promise|void}  Updated data for this actor after changes are applied.
    * @private
    */
   _onCycleSkillProficiency(event) {
@@ -984,39 +982,39 @@ export default class ActorSheetOrig5e extends ActorSheet {
             callback: html => this.actor.transformInto(sourceActor, rememberOptions(html))
           },
           wildshape: {
-          icon: CONFIG.SW5E.transformationPresets.wildshape.icon,
-          label: CONFIG.SW5E.transformationPresets.wildshape.label,
-          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.SW5E.transformationPresets.wildshape.options,
-            { transformTokens: rememberOptions(html).transformTokens }
-          ))
-        },
-        polymorph: {
-          icon: CONFIG.SW5E.transformationPresets.polymorph.icon,
-          label: CONFIG.SW5E.transformationPresets.polymorph.label,
-          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.SW5E.transformationPresets.polymorph.options,
-            { transformTokens: rememberOptions(html).transformTokens }
-          ))
-        },
-        self: {
-          icon: CONFIG.SW5E.transformationPresets.polymorphSelf.icon,
-          label: CONFIG.SW5E.transformationPresets.polymorphSelf.label,
-          callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
-            CONFIG.SW5E.transformationPresets.polymorphSelf.options,
-            { transformTokens: rememberOptions(html).transformTokens }
-          ))
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize("Cancel")
+            icon: CONFIG.SW5E.transformationPresets.wildshape.icon,
+            label: CONFIG.SW5E.transformationPresets.wildshape.label,
+            callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+              CONFIG.SW5E.transformationPresets.wildshape.options,
+              { transformTokens: rememberOptions(html).transformTokens }
+            ))
+          },
+          polymorph: {
+            icon: CONFIG.SW5E.transformationPresets.polymorph.icon,
+            label: CONFIG.SW5E.transformationPresets.polymorph.label,
+            callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+              CONFIG.SW5E.transformationPresets.polymorph.options,
+              { transformTokens: rememberOptions(html).transformTokens }
+            ))
+          },
+          self: {
+            icon: CONFIG.SW5E.transformationPresets.polymorphSelf.icon,
+            label: CONFIG.SW5E.transformationPresets.polymorphSelf.label,
+            callback: html => this.actor.transformInto(sourceActor, foundry.utils.mergeObject(
+              CONFIG.SW5E.transformationPresets.polymorphSelf.options,
+              { transformTokens: rememberOptions(html).transformTokens }
+            ))
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize("Cancel")
+          }
         }
-      }
-    }, {
-      classes: ["dialog", "sw5e", "polymorph"],
-      width: 900,
-      template: "systems/sw5e/templates/apps/polymorph-prompt.hbs"
-    }).render(true);
+      }, {
+        classes: ["dialog", "sw5e", "polymorph"],
+        width: 900,
+        template: "systems/sw5e/templates/apps/polymorph-prompt.hbs"
+      }).render(true);
   }
 
   /* -------------------------------------------- */
@@ -1063,7 +1061,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     // Create a Consumable power scroll on the Inventory tab
-    // TODO: This is pretty non functional as the base items for the scrolls, and the powers, are not defined, maybe consider using holocrons
+    // TODO: This is pretty non functional as the base items for the scrolls,
+    //       and the powers, are not defined, maybe consider using holocrons
     if ( (itemData.type === "power")
       && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type)) ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
@@ -1292,7 +1291,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
           try {
             const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
             if (shouldRemoveAdvancements) return manager.render(true);
-          } catch (err) {
+          } catch(err) {
             return;
           }
         } else {
@@ -1366,8 +1365,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
   /**
    * Handle toggling Ability score proficiency level.
-   * @param {Event} event         The originating click event.
-   * @returns {Promise<Actor5e>}  Updated actor instance.
+   * @param {Event} event              The originating click event.
+   * @returns {Promise<Actor5e>|void}  Updated actor instance.
    * @private
    */
   _onToggleAbilityProficiency(event) {

@@ -312,7 +312,7 @@ export default class Actor5e extends Actor {
       data.hitDice[dice].cur += cur;
       data.hitDice[dice].max += max;
     }
-    for (const hd of Object.values(hitDice)) {
+    for (const hd of Object.values(data.hitDice)) {
       if (hd.max === 0) continue;
       if (hd.number > data.hitDice.largest?.number ?? -Infinity) data.hitDice.largest = hd;
       if (hd.number < data.hitDice.smallest?.number ?? Infinity) data.hitDice.smallest = hd;

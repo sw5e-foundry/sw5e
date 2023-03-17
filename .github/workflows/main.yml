@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Compile with Gulp
-        uses: elstudio/actions-js-build/build@v2
+        uses: elstudio/actions-js-build/build@v4
 
       - name: Commit changes
-        uses: elstudio/actions-js-build/commit@v3
+        uses: elstudio/actions-js-build/commit@v4
         with:
           commitMessage: Regenerate css

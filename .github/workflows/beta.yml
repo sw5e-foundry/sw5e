@@ -20,7 +20,7 @@ jobs:
       - name: Get Most Recent Version Number
         id: get-version
         run: |
-          version=$(grep -oP '^## \[\K.*(?=\])' CHANGELOG.md | head -n 1 | awk '{print $2}')
+          version=$(grep -oP '^## \[\K.*(?=\])' CHANGELOG.md)
           echo "${version}"
           echo "version=${version}" >> $GITHUB_OUTPUT
       

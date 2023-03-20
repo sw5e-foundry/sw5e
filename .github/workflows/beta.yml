@@ -1,50 +1,49 @@
 name: Beta Versioning
 
 on:
-  release:
-    types: [prereleased]
+  push:
+    branches:
+      - beta
 
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      # Substitute the Manifest and Download URLs in the module.json
+      - name: Zip Files
+        working-directory: ./
+        run: zip -r ./system.zip ./*
+
+      # Get the most recent version number from the CHANGELOG.md file
+      - name: Get Most Recent Version Number
+        id: get-version
+        run: |
+          version=$(grep -oP '^## \[\K.*(?=\])' CHANGELOG.md | head -1)
+          echo "${version}"
+          echo "version=${version}" >> $GITHUB_OUTPUT
+      
+    # Substitute the Manifest and Download URLs in the module.json with the most recent version number
       - name: Substitute Manifest and Download Links For Versioned Ones
         id: sub_manifest_link_version
         uses: microsoft/variable-substitution@v1
         with:
           files: system.json
         env:
-          version: ${{github.event.release.tag_name}}
-          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{github.event.release.tag_name}}/system.json
-          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{github.event.release.tag_name}}/system.zip
-
-      # Create zip file
-      - run: zip -r ./system.zip *
-
-      # Substitute tag for changelog
-      - name: Substitute tag
-        id: substitute_tag
-        uses: ashley-taylor/regex-property-action@1.2
-        with:
-          value: ${{github.event.release.tag_name}}
-          regex: "[v.]"
-          flags: "g"
-          replacement: ""
-
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
-      # Update release with zip file
-      - name: Update Release with Files
-        id: create_version_release
+          version: ${{ steps.get_version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip  
+      
+      - name: Create Release
+        id: create-release
         uses: ncipollo/release-action@v1
-        with:
+        with: 
           allowUpdates: true
-          artifacts: "./system.json, ./system.zip"
-          body: "Changelog: https://github.com/sw5e-foundry/sw5e/blob/${{github.ref_name}}/CHANGELOG.md#${{steps.substitute_tag.outputs.value}}---${{steps.date.outputs.date}}"
-          omitDraftDuringUpdate: true
-          omitPrereleaseDuringUpdate: true
+          name: .v${{ steps.get-version.outputs.version }}
+          draft: false
+          prerelease: true
+          token: ${{secrets.GITHUB_TOKEN}}
+          artifacts: './system.zip, ./system.json'
+          generateReleaseNotes: true
+          tag: ${{ steps.get-version.outputs.version }}

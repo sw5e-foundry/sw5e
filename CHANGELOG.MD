@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added configuration to toggle consumption of ammo by NPCs.
 - Item reload ui on NPC sheet.
 - More Feat subtypes.
+- Added 'spell' equivalent of 'power' attributes in CONFIG, for module compatibility.
 
 ### Fixed
 

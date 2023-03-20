@@ -5,14 +5,14 @@ import * as javascript from "./utils/javascript.mjs";
 import * as packs from "./utils/packs.mjs";
 
 
-// Default export - build CSS and watch for updates
-export default gulp.series(
+// Default export - build CSS
+export default gulp.series(css.compile);
+
+// CSS compiling and watch for updates
+export const watchUpdates = gulp.series(
   gulp.parallel(css.compile),
   css.watchUpdates
 );
-
-// CSS compiling
-export const buildCSS = gulp.series(css.compile);
 
 // Javascript compiling & linting
 export const buildJS = gulp.series(javascript.compile);

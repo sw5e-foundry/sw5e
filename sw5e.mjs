@@ -103,9 +103,15 @@ Hooks.once("init", function() {
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
   CONFIG.ui.combat = applications.combat.CombatTracker5e;
 
-  // Add DND5e namespace for module compatability
+  // Add DND5e namespace for module compatibility
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
+  // Add 'spell' equivalent of 'power' config for module compatibility
+  for (const [power, val] of Object.entries(CONFIG.SW5E).filter(([k]) => k.search(/power(?!die|routing|coupling)/i) !== -1)) {
+    const spell = power.replace(/power/g, "spell").replace(/Power/g, "Spell");
+    if (CONFIG.SW5E[spell] !== undefined) console.warn(`CONFIG.SW5E.${spell} is already defined`);
+    else CONFIG.SW5E[spell] = val;
+  }
 
   // Register System Settings
   registerSystemSettings();

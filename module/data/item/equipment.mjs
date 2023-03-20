@@ -7,7 +7,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import MountableTemplate from "./templates/mountable.mjs";
 import ModdableTemplate from "./templates/moddable.mjs";
-import makeItemProperties from "./helpers.mjs";
+import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 /**
  * Data definition for Equipment items.
@@ -184,6 +184,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
     EquipmentData.#migrateArmor(source);
     EquipmentData.#migrateStrength(source);
     EquipmentData.#migrateStarshipData(source);
+    migrateItemProperties(source.properties, CONFIG.SW5E.equipmentProperties);
   }
 
   /* -------------------------------------------- */

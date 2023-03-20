@@ -140,6 +140,7 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
       if (source.save.dc === "") source.save.dc = null;
       else if (Number.isNumeric(source.save.dc)) source.save.dc = Number(source.save.dc);
     }
+    if (typeof source.save?.dc === "number" && Number.isNaN(source.save?.dc)) source.save.dc = null;
   }
 
   /* -------------------------------------------- */

@@ -152,18 +152,21 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
   static #migrateRanges(source) {
     if (!("range" in source)) return;
     if (source.range.units === null) source.range.units = "";
+    if (typeof source.range.long === "number" && Number.isNaN(source.range.long)) source.range.long = null;
     if (typeof source.range.long === "string") {
       if (source.range.long === "") source.range.long = null;
       else if (Number.isNumeric(source.range.long)) source.range.long = Number(source.range.long);
     }
-    if (typeof source.range.value !== "string") return;
-    if (source.range.value === "") {
-      source.range.value = null;
-      return;
+    if (typeof source.range.value === "number" && Number.isNaN(source.range.value)) source.range.value = null;
+    if (typeof source.range.value === "string") {
+      if (source.range.value === "") {
+        source.range.value = null;
+        return;
+      }
+      const [value, long] = source.range.value.split("/");
+      if (Number.isNumeric(value)) source.range.value = Number(value);
+      if (Number.isNumeric(long)) source.range.long = Number(long);
     }
-    const [value, long] = source.range.value.split("/");
-    if (Number.isNumeric(value)) source.range.value = Number(value);
-    if (Number.isNumeric(long)) source.range.long = Number(long);
   }
 
 

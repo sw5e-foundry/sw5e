@@ -21,6 +21,7 @@ jobs:
         id: get-version
         run: |
           version=$(grep -E '^##.*' CHANGELOG.md | head -n 1 | awk '{print $2}')
+          echo "${version}"
           echo "version=${version}" >> $GITHUB_OUTPUT
       
     # Substitute the Manifest and Download URLs in the module.json with the most recent version number

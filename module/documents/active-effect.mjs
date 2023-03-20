@@ -115,11 +115,11 @@ export default class ActiveEffect5e extends ActiveEffect {
       case "create":
         return owner.createEmbeddedDocuments("ActiveEffect", [
           {
-            "label": game.i18n.localize("SW5E.EffectNew"),
-            "icon": "icons/svg/aura.svg",
-            "origin": owner.uuid,
+            label: game.i18n.localize("SW5E.EffectNew"),
+            icon: "icons/svg/aura.svg",
+            origin: owner.uuid,
             "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
-            "disabled": li.dataset.effectType === "inactive"
+            disabled: li.dataset.effectType === "inactive"
           }
         ]);
       case "edit":

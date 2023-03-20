@@ -78,9 +78,9 @@ export default class AdvancementManager extends Application {
       visibleIndex < 0
         ? ""
         : game.i18n.format("SW5E.AdvancementManagerSteps", {
-            current: visibleIndex + 1,
-            total: visibleSteps.length
-          });
+          current: visibleIndex + 1,
+          total: visibleSteps.length
+        });
     return `${game.i18n.localize("SW5E.AdvancementManagerTitle")} ${step}`;
   }
 
@@ -359,8 +359,7 @@ export default class AdvancementManager extends Application {
       const advancementCharLevel = clonedItem.curAdvancementCharLevel + offset;
       const stepData = { type: "forward", class: { item: clonedItem, level: advancementLevel } };
       pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel), stepData);
-      if (clonedItem.type === "class")
-        pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel), stepData);
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel), stepData);
       pushSteps(getItemFlows(advancementCharLevel), stepData);
     }
 
@@ -370,8 +369,7 @@ export default class AdvancementManager extends Application {
       const advancementCharLevel = clonedItem.curAdvancementCharLevel + offset;
       const stepData = { type: "reverse", class: { item: clonedItem, level: advancementLevel }, automatic: true };
       pushSteps(getItemFlows(advancementCharLevel).reverse(), stepData);
-      if (clonedItem.type === "class")
-        pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel).reverse(), stepData);
+      if (clonedItem.type === "class") pushSteps(this.constructor.flowsForLevel(clonedItem.archetype, advancementLevel).reverse(), stepData);
       pushSteps(this.constructor.flowsForLevel(clonedItem, advancementLevel).reverse(), stepData);
       if ((clonedItem.type !== "starshipsize" && advancementLevel === 1) || advancementLevel === 0) {
         this.steps.push({ type: "delete", item: clonedItem, automatic: true });
@@ -412,7 +410,7 @@ export default class AdvancementManager extends Application {
    * @returns {number}       Working level.
    */
   static currentLevel(item, actor) {
-    // return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level;
+    // Return item.system.levels ?? item.class?.system.levels ?? actor.system.details.level;
     return item.curAdvancementLevel;
   }
 
@@ -427,8 +425,7 @@ export default class AdvancementManager extends Application {
     // Prepare information for subheading
     const item = this.step.flow.item;
     let level = this.step.flow.level;
-    if (this.step.class && ["class", "archetype", "deployment", "starshipsize"].includes(item.type))
-      level = this.step.class.level;
+    if (this.step.class && ["class", "archetype", "deployment", "starshipsize"].includes(item.type)) level = this.step.class.level;
 
     const visibleSteps = this.steps.filter(s => !s.automatic);
     const visibleIndex = visibleSteps.indexOf(this.step);
@@ -596,7 +593,7 @@ export default class AdvancementManager extends Application {
         }
         this.clone.reset();
       } while (this.step?.automatic);
-    } catch (error) {
+    } catch(error) {
       if (!(error instanceof Advancement.ERROR)) throw error;
       ui.notifications.error(error.message);
       this.step.automatic = false;
@@ -630,15 +627,14 @@ export default class AdvancementManager extends Application {
 
         // Reverse step based on step type
         if (this.step.type === "delete" && this.step.item) this.clone.updateSource({ items: [this.step.item] });
-        else if (this.step.type === "delete" && this.step.advancement)
-          this.advancement.item.createAdvancement(this.advancement.typeName, this.advancement._source, {
-            source: true
-          });
+        else if (this.step.type === "delete" && this.step.advancement) this.advancement.item.createAdvancement(this.advancement.typeName, this.advancement._source, {
+          source: true
+        });
         else if (this.step.type === "reverse") await flow.advancement.restore(flow.level, flow.retainedData);
         else if (flow) flow.retainedData = await flow.advancement.reverse(flow.level);
         this.clone.reset();
       } while (this.step?.automatic);
-    } catch (error) {
+    } catch(error) {
       if (!(error instanceof Advancement.ERROR)) throw error;
       ui.notifications.error(error.message);
       this.step.automatic = false;

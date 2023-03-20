@@ -61,22 +61,22 @@
             {{/if}} {{/with}} {{/each}}
 
             <!-- Deployment Features -->
-            {{#with ssactions.deployment as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.deployment as | actions |}} {{#unless (eq actions.items.length 0)}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
-            {{/if}} {{/with}}
+            {{/unless}} {{/with}}
 
             <!-- Ventures -->
-            {{#with ssactions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.venture as | actions |}} {{#unless (eq actions.items.length 0)}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
-            {{/if}} {{/with}}
+            {{/unless}} {{/with}}
 
             <!-- Deployments actions -->
             {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
-                {{#with (lookup @root.ssactions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{#with (lookup @root.ssactions key) as | actions |}} {{#unless (eq actions.items.length 0)}}
                     {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
-                {{/if}} {{/with}}
+                {{/unless}} {{/with}}
             {{/if}} {{/with}} {{/each}}
         </li>
     </ol>

@@ -1,0 +1,105 @@
+{
+  "_id": "4WitHCdI0QiCuS8A",
+  "name": "Audiotech Engineering",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/AudiotechEngineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.5449266+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-audiotech_engineering"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Audiotech Engineering</h1>\n<p>Those engineers who choose the Audiotech Engineering discipline focus on using a specially modified instrument to use music to assist their allies and disrupt their enemies.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Audiotech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.tGKhuGQkcRHiFsLM]{Advanced battle enhancement}</li>\n<li>@Compendium[sw5e.invocations.of7eiKTv17ASHIno]{Advanced disruption enhancement}</li>\n<li>@Compendium[sw5e.invocations.jRubDHCbVZx17Q3c]{Advanced support enhancement}</li>\n<li>@Compendium[sw5e.invocations.Z5L2ddCHI0608EEP]{Battle song enhancement}</li>\n<li>@Compendium[sw5e.invocations.AkQ0MiEYYL18HcnA]{Disruption song enhancement}</li>\n<li>@Compendium[sw5e.invocations.hlFUrB5kiJEFd5i9]{Enthralling performance}</li>\n<li>@Compendium[sw5e.invocations.O8C8bsq30F6U3wtX]{Finding my way}</li>\n<li>@Compendium[sw5e.invocations.7v7vxULyWmk0sqqx]{Hypnotic melody}</li>\n<li>@Compendium[sw5e.invocations.DraBzbjz7L98tfcM]{Inaudible casting}</li>\n<li>@Compendium[sw5e.invocations.thTvuiT7tHpkULCQ]{Long range noise}</li>\n<li>@Compendium[sw5e.invocations.C7Z4eeNhRnO58mGW]{Magnifying device}</li>\n<li>@Compendium[sw5e.invocations.4jxQxDLsDfZ6dpqV]{Overwhelming soundwaves}</li>\n<li>@Compendium[sw5e.invocations.ARo5qSJjPMcxN7lJ]{Prototype battle enhancement}</li>\n<li>@Compendium[sw5e.invocations.ZbSi6MCMPbCGFNhg]{Prototype disruption enhancement}</li>\n<li>@Compendium[sw5e.invocations.oGETUFSG9m7PYwBI]{Prototype support enhancement}</li>\n<li>@Compendium[sw5e.invocations.tvei8pQBY3ODFw24]{Restful melody}</li>\n<li>@Compendium[sw5e.invocations.9tiCNoxXYkYwxy7Z]{Rush}</li>\n<li>@Compendium[sw5e.invocations.Tz2SJsn6gihR8LEQ]{Sharp noise}</li>\n<li>@Compendium[sw5e.invocations.u11CnGTBy84S5iUL]{Shock mount}</li>\n<li>@Compendium[sw5e.invocations.cphRg7cQCqrowpAi]{Simple melodies}</li>\n<li>@Compendium[sw5e.invocations.OjvjMmsXfOrMMSfC]{Sonar pulse}</li>\n<li>@Compendium[sw5e.invocations.SCUOmLh31Xm10Lcg]{Song flow}</li>\n<li>@Compendium[sw5e.invocations.lYRqiuSDoxdhFGTe]{Support song enhancement}</li>\n<li>@Compendium[sw5e.invocations.fGdxPGhDQWhgV86b]{Weapon integration}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "audiotechengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "rbt1qdNeMsRZgxuK",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.6aLauomtya5x0Bkn",
+            "Compendium.sw5e.archetypefeatures.qBF3hSgQmoXEE1xa",
+            "Compendium.sw5e.archetypefeatures.kmcrjj0s9p4KfNEM"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "ED34rWWQnz0AyWLa",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.xVKm3UMya6KyNQOx"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1xTkdnQ0KaitZmdK",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.nDpXaAiMpFjx71ym"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "12Dbl5kiIL1n1kze",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.NKOEhauwGTSiMLrm"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493959710,
+    "modifiedTime": 1678476389770,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

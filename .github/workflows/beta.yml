@@ -33,3 +33,5 @@ jobs:
           artifacts: "./system.zip, ./system.json"
           generateReleaseNotes: true
           tag: ${{ steps.get-version.outputs.version }}
+          
+          

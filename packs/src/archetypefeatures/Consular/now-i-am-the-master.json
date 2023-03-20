@@ -1,0 +1,93 @@
+{
+  "_id": "pPyeqnE1GnMeG1og",
+  "name": "Now I Am The Master",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/CSLR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-now_i_am_the_master.source-archetype.sourceName-way_of_tutelage.level-18"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Way of Tutelage:</strong> 18th level</em></p>\n<p>Your companion has learned almost all that it can from you. As an action on its turn, your companion can take the lead, gaining the following benefits for 1 minute:</p>\n<ul>\n<li>It gains temporary hit points equal to twice its level.</li>\n<li>Once per turn, when it deals damage or restores hit points, it can roll an additional die.</li>\n<li>It gains resistance to kinetic and energy damage.</li>\n</ul>\n<p>This effect ends early if your companion is incapacitated or dies. Once your companion has used this feature, it can't use it again until it finishes a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Consular (Way of Tutelage) 18",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Consular"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958127,
+    "modifiedTime": 1678471090726,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

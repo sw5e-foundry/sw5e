@@ -34,7 +34,7 @@ export default class AllocatePowerDice extends Dialog {
       data.slots[id] = {
         id,
         str,
-        full: power[id].value == power[id].max
+        full: power[id].value === power[id].max
       };
     }
 
@@ -44,8 +44,10 @@ export default class AllocatePowerDice extends Dialog {
   /* -------------------------------------------- */
 
   /**
-   * A helper constructor function which displays the power dice allocation confirmation dialog and returns a Promise once it's
-   * workflow has been resolved.
+   * A helper constructor function which displays the power dice allocation confirmation
+   * dialog and returns a Promise once it's workflow has been resolved.
+   * @param {Actor5e} actor
+   * @param {number} powerDice
    * @returns {Promise}
    */
   static async allocatePowerDice(actor, powerDice) {
@@ -63,11 +65,11 @@ export default class AllocatePowerDice extends Dialog {
               const allocation = [];
 
               for (const slot of Object.keys(slots)) {
-                const wasAllocated = power[slot].value == power[slot].max;
+                const wasAllocated = power[slot].value === power[slot].max;
                 const allocated = html.find(`input[name="${slot}"]`)[0].checked;
                 if (allocated && !wasAllocated) allocation.push(slot);
               }
-              if (allocation.length == powerDice) resolve(allocation);
+              if (allocation.length === powerDice) resolve(allocation);
               else throw Error(`You need to allocate ${powerDice} power dice.`);
             }
           },

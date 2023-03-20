@@ -486,27 +486,34 @@ input[type="reset"]:disabled {
 /*-----------
 ** Combat Tab
 -----------*/
-#combat h3 {
+#combat h3,
+#combat-popout h3 {
   border: none;
 }
-#combat #combat-tracker li.combatant {
+#combat #combat-tracker li.combatant,
+#combat-popout #combat-tracker li.combatant {
   padding: 4px 0;
   background: none;
 }
-#combat #combat-tracker li.combatant .token-name {
+#combat #combat-tracker li.combatant .token-name,
+#combat-popout #combat-tracker li.combatant .token-name {
   text-shadow: none;
 }
-#combat #combat-tracker li.combatant .ce-image-wrapper .token-image {
+#combat #combat-tracker li.combatant .ce-image-wrapper .token-image,
+#combat-popout #combat-tracker li.combatant .ce-image-wrapper .token-image {
   width: auto;
   height: auto;
 }
-#combat #combat-tracker li.combatant h4 {
+#combat #combat-tracker li.combatant h4,
+#combat-popout #combat-tracker li.combatant h4 {
   color: #1c1c1c;
 }
-#combat #combat-tracker li.combatant .roll {
+#combat #combat-tracker li.combatant .roll,
+#combat-popout #combat-tracker li.combatant .roll {
   background: none;
 }
-#combat #combat-tracker li.combatant .roll::before {
+#combat #combat-tracker li.combatant .roll::before,
+#combat-popout #combat-tracker li.combatant .roll::before {
   content: "\f6cf";
   font-family: "Font Awesome 5 Free";
   -webkit-font-smoothing: antialiased;
@@ -517,13 +524,16 @@ input[type="reset"]:disabled {
   font-weight: 900;
   font-size: 28px;
 }
-#combat #combat-tracker li.combatant .initiative {
+#combat #combat-tracker li.combatant .initiative,
+#combat-popout #combat-tracker li.combatant .initiative {
   text-shadow: none;
 }
-#combat #combat-tracker li.combatant.hidden {
+#combat #combat-tracker li.combatant.hidden,
+#combat-popout #combat-tracker li.combatant.hidden {
   opacity: 0.5;
 }
-#combat #combat-controls {
+#combat #combat-controls,
+#combat-popout #combat-controls {
   padding-top: 0;
 }
 /*
@@ -603,19 +613,23 @@ input[type="reset"]:disabled {
   font-size: 13px;
   font-weight: 700;
 }
-#scenes .subdirectory {
+#scenes .subdirectory,
+#scenes-popout .subdirectory {
   border-left: none;
 }
-#scenes .scene {
+#scenes .scene,
+#scenes-popout .scene {
   border: none;
   box-shadow: none;
   position: relative;
   height: 128px;
 }
-#scenes .scene + .scene {
+#scenes .scene + .scene,
+#scenes-popout .scene + .scene {
   margin-top: 4px;
 }
-#scenes .scene::after {
+#scenes .scene::after,
+#scenes-popout .scene::after {
   content: "";
   display: block;
   width: 100%;
@@ -624,7 +638,8 @@ input[type="reset"]:disabled {
   top: 28px;
   left: 0;
 }
-#scenes .scene h3 {
+#scenes .scene h3,
+#scenes-popout .scene h3 {
   font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
@@ -637,38 +652,46 @@ input[type="reset"]:disabled {
   left: 0;
   width: 100%;
 }
-#playlists .directory-list {
+#playlists .directory-list,
+#playlists-popout .directory-list {
   padding: 0 8px;
 }
-#playlists .directory-list li.playlist {
+#playlists .directory-list li.playlist,
+#playlists-popout .directory-list li.playlist {
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 8px;
   border-top: inherit;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
-#playlists .directory-list li.playlist .playlist-header {
+#playlists .directory-list li.playlist .playlist-header,
+#playlists-popout .directory-list li.playlist .playlist-header {
   text-decoration: none;
 }
-#playlists .directory-list li.playlist li.sound {
+#playlists .directory-list li.playlist li.sound,
+#playlists-popout .directory-list li.playlist li.sound {
   border: none;
 }
-#playlists .directory-list li.playlist li.sound h4 {
+#playlists .directory-list li.playlist li.sound h4,
+#playlists-popout .directory-list li.playlist li.sound h4 {
   font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
-#compendium .compendium-entity {
+#compendium .compendium-entity,
+#compendium-popout .compendium-entity {
   margin: 0 4px;
   padding: 8px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   border: none;
 }
-#compendium .compendium-entity + .compendium-entity {
+#compendium .compendium-entity + .compendium-entity,
+#compendium-popout .compendium-entity + .compendium-entity {
   margin-top: 4px;
 }
-#compendium .compendium-entity h3 {
+#compendium .compendium-entity h3,
+#compendium-popout .compendium-entity h3 {
   background: none;
   border: none;
   font-family: "Russo One";
@@ -678,37 +701,47 @@ input[type="reset"]:disabled {
   padding: 0;
   margin-bottom: 4px;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack {
   margin: 0;
   padding: 4px;
   border: none;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title {
   margin: 0;
   position: relative;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
   font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i {
   display: none;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   top: 4px;
   font-size: 13px;
 }
-#settings h2 {
+#settings h2,
+#settings-popout h2 {
   border: none;
   margin: 0 8px;
   padding: 0;
   background: none;
 }
 #settings #game-details,
+#settings-popout #game-details,
 #settings #settings-game,
+#settings-popout #settings-game,
 #settings #settings-documentation,
-#settings #settings-access {
+#settings-popout #settings-documentation,
+#settings #settings-access,
+#settings-popout #settings-access {
   padding: 0 8px;
   margin: 0 0 8px;
 }

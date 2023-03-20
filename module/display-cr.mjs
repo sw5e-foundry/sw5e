@@ -1,42 +1,26 @@
-export default function DisplayCR(html, compendium) {
-  let findActors = html.find(".directory-item.document.actor");
-  let actors = findActors;
+/**
+ * Display a monster's CR in the sidebar
+ * @param {jQuery} html                   The jQuery object of the sidebar to be modified
+ * @param {object|undefined} compendium   The compendium pack's data
+ */
+export default async function DisplayCR(html, compendium) {
+  if (compendium && compendium?.collection?.title !== "Monsters") return;
 
-  if (typeof compendium == "undefined") {
-    for (let i of actors) {
-      let id = i.getAttribute("data-document-id");
-      if (!id) return;
-      let actor = game.actors.get(id);
-      let cr = actor.system.details?.cr;
-      if (typeof cr !== "undefined") {
-        let p = document.createElement("h4");
-        p.classList.add("document-name");
-        p.style.textAlign = "right";
-        p.style.marginRight = "10px";
-        p.textContent = "CR: " + cr;
-        i.appendChild(p);
-      }
-    }
-  } else if (compendium.collection.title == "Monsters") {
-    for (let i of actors) {
-      let id = i.getAttribute("data-document-id");
-      if (!id) return;
-      let pack = compendium.collection;
+  const actorElements = html.find(".directory-item.document.actor");
+  for (const actorElement of actorElements) {
+    const id = actorElement.getAttribute("data-document-id");
+    if (!id) continue;
 
-      async function getActor() {
-        let actor = await pack.getDocument(id);
-        let cr = actor.system.details?.cr;
-        if (typeof cr !== "undefined") {
-          let p = document.createElement("h4");
-          p.classList.add("document-name");
-          p.style.textAlign = "right";
-          p.style.marginRight = "10px";
-          p.style.maxWidth = "85px";
-          p.textContent = "CR: " + cr;
-          i.appendChild(p);
-        }
-      }
-      getActor();
-    }
+    const actor = await (compendium?.collection?.getDocument(id) ?? game.actors.get(id));
+    const cr = actor?.system?.details?.cr;
+    if (!cr) continue;
+
+    const el = document.createElement("h4");
+    el.classList.add("document-name");
+    el.style.textAlign = "right";
+    el.style.marginRight = "10px";
+    el.textContent = `${game.i18n.localize("SW5E.ChallengeRatingAbbr")}: ${cr}`;
+    if (compendium) el.style.maxWidth = "85px";
+    actorElement.appendChild(el);
   }
 }

@@ -1,0 +1,95 @@
+{
+  "_id": "qIxH6tE6oiSglRaa",
+  "name": "Hunter's Prey",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCT-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:01.3768595+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-hunters_prey.source-archetype.sourceName-hunter_technique.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Hunter Technique:</strong> 3rd level</em></p>\n<p>You gain one of the following features of your choice. </p>\n<h3>Colossus Slayer</h3>\n<p>Your tenacity can wear down the most potent foes. When you hit a creature with a weapon attack, the creature takes an extra [[/r 1d8]] damage if it's below its hit point maximum. You can deal this extra damage only once per turn, and this damage is the same type as the weapon's damage. </p>\n<h3>Giant Killer</h3>\n<p>When a Large or larger creature within 5 feet of you hits or misses you with an attack, you can use your reaction to attack that creature immediately after its attack, provided that you can see the creature. </p>\n<h3>Horde Breaker</h3>\n<p>Once on each of your turns when you make a weapon attack, you can make another attack with the same weapon against a different creature that is within 5 feet of the original target and within range of your weapon, no action required.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scout (Hunter Technique) 3",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scout"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958148,
+    "modifiedTime": 1678471090727,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

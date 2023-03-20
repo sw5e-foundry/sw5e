@@ -2,14 +2,14 @@
     <li>
         <div class="group-list-title group-grid-features">
             <div class="title">
-                <h3 class="item-name">{{localize name}}{{#if (not actions.derived)}} {{localize "SW5E.ActionPl"}} {{/if}}</h3>
+                <h3 class="item-name">{{localize name}}{{#unless actions.derived}} {{localize "SW5E.ActionPl"}} {{/unless}}</h3>
                 {{#if owner}}
-                    {{#if (not actions.derived)}}
+                    {{#unless actions.derived}}
                         <a class="item-control item-create" data-tooltip="SW5E.FeatureAdd"
                             {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                 			<i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                         </a>&nbsp;
-                    {{/if}}
+                    {{/unless}}
                     <a class="item-control item-collapse" data-tooltip="SW5E.FeatureCollapse"
                         {{#each actions.dataset as |v k|}}data-{{k}}="{{v}}" {{/each}}>
                         <i class="fas fa-compress-arrows-alt"></i> {{localize "SW5E.Collapse"}}
@@ -50,9 +50,9 @@
                     {{#if ../owner}}
                         <div class="item-controls item-detail">
                             <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
-                            {{#if (not ../actions.derived)}}
+                            {{#unless ../actions.derived}}
                                 <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
-                            {{/if}}
+                            {{/unless}}
                         </div>
                     {{/if}}
 

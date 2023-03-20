@@ -238,7 +238,7 @@ export function onRenderChatMessage(app, html, data) {
  * Reveal or Hide secret block in a message
  *
  * @param {HTMLElement} li      The chat entry
- * @returns {Promise}
+ * @returns {Promise|void}
  */
 function toggleSecrets(li) {
   const message = game.messages.get(li.data("messageId"));
@@ -256,10 +256,8 @@ function toggleSecrets(li) {
   if (secretsShown) {
     if (blockStart === 0) desc = desc.substring(blockEnd);
     else desc = desc.substring(0, blockStart) + desc.substring(blockEnd);
-  } else {
-    if (blockStart === 0) desc = desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
-    else desc = desc.substring(0, blockStart) + desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
-  }
+  } else if (blockStart === 0) desc = desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
+  else desc = desc.substring(0, blockStart) + desc.substring(contentStart, contentEnd) + desc.substring(blockEnd);
 
   let cont = message?.content;
   if (!cont) return;

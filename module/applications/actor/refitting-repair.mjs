@@ -35,8 +35,8 @@ export default class RefittingRepairDialog extends Dialog {
   /* -------------------------------------------- */
 
   /**
-   * A helper constructor function which displays the Refitting Repair confirmation dialog and returns a Promise once it's
-   * workflow has been resolved.
+   * A helper constructor function which displays the Refitting Repair confirmation dialog
+   * and returns a Promise once it's workflow has been resolved.
    * @param {object} [options={}]
    * @param {Actor5e} [options.actor]  Actor that is taking the refitting repair.
    * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.

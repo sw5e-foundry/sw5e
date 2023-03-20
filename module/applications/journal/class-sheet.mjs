@@ -1,4 +1,3 @@
-import Actor5e from "../../documents/actor/actor.mjs";
 import Proficiency from "../../documents/actor/proficiency.mjs";
 import JournalEditor from "./journal-editor.mjs";
 
@@ -114,8 +113,8 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     const scaleValues = item.advancement.byType.ScaleValue ?? [];
     const powerProgression = [
       await this._getPowerProgression(item, "force"),
-      await this._getPowerProgression(item, "tech"),
-    ]
+      await this._getPowerProgression(item, "tech")
+    ];
 
     const headers = [[{ content: game.i18n.localize("SW5E.Level") }]];
     if (item.type === "class") headers[0].push({ content: game.i18n.localize("SW5E.ProficiencyBonus") });
@@ -193,7 +192,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
         [
           { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}PowersKnown`) },
           { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}Points`) },
-          { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}MaxLevel`) },
+          { content: game.i18n.localize(`JOURNALENTRYPAGE.SW5E.Class.${progType.capitalize()}MaxLevel`) }
         ]
       ];
       table.cols = [{ class: "powercasting", span: 3 }];
@@ -207,7 +206,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
         table.rows.push([
           { class: "powers-known", content: `${maxKnown[level] ? maxKnown[level] : "—"}` },
           { class: "power-points", content: `${basePoints * level}` },
-          { class: "max-power-level", content: `${maxLevel[level] ? maxLevel[level] : "—"}` },
+          { class: "max-power-level", content: `${maxLevel[level] ? maxLevel[level] : "—"}` }
         ]);
       }
     }

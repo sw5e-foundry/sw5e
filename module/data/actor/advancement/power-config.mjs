@@ -34,7 +34,7 @@ export default class PowerConfigurationData extends foundry.abstract.DataModel {
           const rollData = this.parent.parent.actor.getRollData({ deterministic: true });
           const formula = Roll.replaceFormulaData(this.uses.max, rollData, { missing: 0 });
           updates["system.uses.value"] = Roll.safeEval(formula);
-        } catch (e) {}
+        } catch(e) {}
       }
     }
     return updates;

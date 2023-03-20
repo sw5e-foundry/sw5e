@@ -145,7 +145,8 @@ export default class AttribDieRoll extends Roll {
    * @param {string} [data.defaultAbility]    For tool rolls, the default ability modifier applied to the roll
    * @param {string} [data.template]          A custom path to an HTML template to use instead of the default
    * @param {object} options                  Additional Dialog customization options
-   * @returns {Promise<AttibDieRoll|null>}    A resulting AttribDieRoll object constructed with the dialog, or null if the dialog was closed
+   * @returns {Promise<AttibDieRoll|null>}    A resulting AttribDieRoll object constructed with the dialog,
+   *                                          or null if the dialog was closed
    */
   async configureDialog(
     {

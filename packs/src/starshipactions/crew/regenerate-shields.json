@@ -1,0 +1,94 @@
+{
+  "name": "Regenerate Shields",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/crew-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "qpDYc0VtdAwwu94e",
+  "system": {
+    "description": {
+      "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "DC = 10 or half the ship’s missing shield points, whichever number is higher",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@attributes.shld.die + @abilities.con.mod",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.bst.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "crew"
+    },
+    "recharge": {
+      "value": 1,
+      "charged": true
+    },
+    "deployment": "crew"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016680,
+    "modifiedTime": 1677699337434,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

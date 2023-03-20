@@ -1,0 +1,183 @@
+{
+  "_id": "3sjDrGeF8yCYKmnK",
+  "name": "Talz",
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Talz.webp",
+  "effects": [
+    {
+      "_id": "tJH1nruC0gpiDYG8",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "value": "Talz",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.abilities.str.value",
+          "value": "2",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.abilities.wis.value",
+          "value": "1",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.size",
+          "value": "med",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "value": "30",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.senses.darkvision",
+          "value": "60",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.ac.value",
+          "value": "12+@abilities.dex.mod",
+          "mode": 5,
+          "priority": 1
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "basic",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "talzzi",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "flags.sw5e.longlimbed",
+          "value": "1",
+          "mode": 0,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Talz.webp",
+      "label": "Talz",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "dae": {
+          "transfer": true,
+          "stackable": false,
+          "specialDuration": []
+        }
+      },
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:19.2500065+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-talz"
+    }
+  },
+  "system": {
+    "data": "$characteristics-table",
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Talz are large, bulky, bipedal creatures, that are covered head to toe in thick white fur, which provides exceptional insulation against their frozen world. Talz have four eyes, which are also adaptations to their native environment. The larger set of eyes are shut during the day, when sunlight reflects off the snow with dazzling brightness—able to blind sensitive optical organs—leaving the smaller set to navigate with. Alternatively, during the deep darkness of their homeworld's moonless night, the larger pair are utilized to provide the Talz with adequate vision. Talz use a small proboscis to eat and communicate, creating high-pitched chirps and buzzes.</p>\n<h2>Society and Culture</h2>\n<p>Talz are a hunter-gatherer, clan-based society. They work in unison, and treat the entire clan as one single familial entity. Resources on Ordo Plutonia are often scarce, which leads to warring among Talz tribes. However, the clans are adept at forming a unified front when they face a common enemy.</p>\n<p>Talz are large, brutal creatures and are often used as guards and enforcers. Sometimes they are taken as slaves, though it's rare; they are rebellious against authority and don't take well to slavery. There are rumors that Talz are captured for scientific experimentation.</p>\n<h2>Names</h2>\n<p>Talz names are fairly gutteral and are characterized by their harsh nature. Female names are typically longer than male names. Surnames are clan-based, though it's rare that a Talz shares them with non-Talz.</p>\n<p><strong>Male Names.</strong> Drak, Fedirk, Imom, Ke, Twift</p>\n<p><strong>Female Names.</strong> Ilnuno, Ontuga, Utrukk, Zimtucc</p>\n<p><strong>Surnames.</strong> Dic, Noetoc, Suptat, Wume, Zapak</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "EC",
+    "identifier": "talz",
+    "advancement": [
+      {
+        "_id": "8faHt6SDkHSF8vew",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.speciesfeatures.hU19A5jwkV1G6rgi",
+            "Compendium.sw5e.speciesfeatures.iI2pLu5mkHnKY4uq",
+            "Compendium.sw5e.speciesfeatures.rLIVbi8ZvZEDZkGn",
+            "Compendium.sw5e.speciesfeatures.tcn9S9KNsmNCPhzJ",
+            "Compendium.sw5e.speciesfeatures.aPVBjXwcUPDsPYvC",
+            "Compendium.sw5e.speciesfeatures.m53VqBwft8NLn8bb",
+            "Compendium.sw5e.speciesfeatures.4O0zN94xX1qJ3gks",
+            "Compendium.sw5e.speciesfeatures.MSRICovfTYdnRcVT",
+            "Compendium.sw5e.speciesfeatures.nxrS2cdCLUwCDp2k"
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Traits",
+        "classRestriction": ""
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black or grey"
+    },
+    "hairColorOptions": {
+      "value": "Grey, pink, or white"
+    },
+    "eyeColorOptions": {
+      "value": "Black, dark blue, or dark red"
+    },
+    "colorScheme": {
+      "value": null
+    },
+    "distinctions": {
+      "value": "Covered in fur, four eyes, unable to speak Galactic Basic"
+    },
+    "heightAverage": {
+      "value": "6'5\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "180 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Orto Plutonia"
+    },
+    "slanguage": {
+      "value": "Talzzi"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494002061,
+    "modifiedTime": 1678476391056,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

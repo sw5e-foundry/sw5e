@@ -47,7 +47,7 @@ globalThis.sw5e = {
 // Keep on while testing new SW5e build
 CONFIG.debug.hooks = false;
 
-Hooks.once("init", function () {
+Hooks.once("init", function() {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
@@ -55,8 +55,8 @@ Hooks.once("init", function () {
   Object.defineProperty(sw5e, "entities", {
     get() {
       foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.entities' property which has been deprecated and renamed to " +
-          "'sw5e.documents'. Support for this old path will be removed in a future version.",
+        "You are referencing the 'sw5e.entities' property which has been deprecated and renamed to "
+          + "'sw5e.documents'. Support for this old path will be removed in a future version.",
         { since: "SW5e 2.0", until: "SW5e 2.2" }
       );
       return sw5e.documents;
@@ -67,8 +67,8 @@ Hooks.once("init", function () {
   Object.defineProperty(sw5e, "rollItemMacro", {
     get() {
       foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.rollItemMacro' method which has been deprecated and renamed to " +
-          "'sw5e.documents.macro.rollItem'. Support for this old path will be removed in a future version.",
+        "You are referencing the 'sw5e.rollItemMacro' method which has been deprecated and renamed to "
+          + "'sw5e.documents.macro.rollItem'. Support for this old path will be removed in a future version.",
         { since: "SW5e 2.0", until: "SW5e 2.2" }
       );
       return sw5e.documents.macro.rollItem;
@@ -79,8 +79,8 @@ Hooks.once("init", function () {
   Object.defineProperty(sw5e, "macros", {
     get() {
       foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.macros' property which has been deprecated and renamed to " +
-          "'sw5e.documents.macro'. Support for this old path will be removed in a future version.",
+        "You are referencing the 'sw5e.macros' property which has been deprecated and renamed to "
+          + "'sw5e.documents.macro'. Support for this old path will be removed in a future version.",
         { since: "SW5e 2.0", until: "SW5e 2.2" }
       );
       return sw5e.documents.macro;
@@ -103,9 +103,15 @@ Hooks.once("init", function () {
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
   CONFIG.ui.combat = applications.combat.CombatTracker5e;
 
-  // Add DND5e namespace for module compatability
+  // Add DND5e namespace for module compatibility
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
+  // Add 'spell' equivalent of 'power' config for module compatibility
+  for (const [power, val] of Object.entries(CONFIG.SW5E).filter(([k]) => k.search(/power(?!die|routing|coupling)/i) !== -1)) {
+    const spell = power.replace(/power/g, "spell").replace(/Power/g, "Spell");
+    if (CONFIG.SW5E[spell] !== undefined) console.warn(`CONFIG.SW5E.${spell} is already defined`);
+    else CONFIG.SW5E[spell] = val;
+  }
 
   // Register System Settings
   registerSystemSettings();
@@ -250,13 +256,13 @@ async function _configureValidationStrictness() {
 /**
  * Prepare attribute lists.
  */
-Hooks.once("setup", function () {
+Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
   game.sw5e.moduleArt.registerModuleArt();
 
-  // console.log(game.settings.get("sw5e", "colorTheme"));
-  let theme = game.settings.get("sw5e", "colorTheme") + "-theme";
+  // Console.log(game.settings.get("sw5e", "colorTheme"));
+  let theme = `${game.settings.get("sw5e", "colorTheme")}-theme`;
   document.body.classList.add(theme);
 });
 
@@ -288,7 +294,7 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", async function () {
+Hooks.once("ready", async function() {
   // Configure validation strictness.
   _configureValidationStrictness();
 
@@ -331,7 +337,7 @@ Hooks.on("renderChatLog", (app, html, data) => documents.Item5e.chatListeners(ht
 Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
 Hooks.on("getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextOptions);
 Hooks.on("renderSceneDirectory", (app, html, data) => {
-  //console.log(html.find("header.folder-header"));
+  // Console.log(html.find("header.folder-header"));
   setFolderBackground(html);
 });
 Hooks.on("renderActorDirectory", (app, html, data) => {
@@ -396,27 +402,31 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
   console.log("renderSwaltSheet");
 });
 
-Handlebars.registerHelper("round", function (value) {
+Handlebars.registerHelper("round", function(value) {
   return Math.floor(value);
 });
 
-Handlebars.registerHelper("debug", function (value) {
+Handlebars.registerHelper("debug", function(value) {
   console.log(value);
   return value;
 });
 
-Handlebars.registerHelper("isUndefined", function (value) {
+Handlebars.registerHelper("isUndefined", function(value) {
   return value === undefined;
 });
 
-Handlebars.registerHelper("isNull", function (value) {
+Handlebars.registerHelper("isNull", function(value) {
   return value === null;
 });
 
+/**
+ * Sets folder background color
+ * @param {jQuery} html
+ */
 function setFolderBackground(html) {
-  html.find("header.folder-header").each(function () {
+  html.find("header.folder-header").each(function() {
     let bgColor = $(this).css("background-color");
-    if (bgColor == undefined) bgColor = "rgb(255,255,255)";
+    if (bgColor === undefined) bgColor = "rgb(255,255,255)";
     $(this).closest("li").css("background-color", bgColor);
   });
 }

@@ -1,9 +1,30 @@
 {
-  "name": "sw5e",
-  "description": "This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides character sheet and game system \r support for the SW5E roleplaying game.",
-  "main": "sw5e.js",
-  "dependencies": {
+  "type": "module",
+  "scripts": {
+    "build": "gulp buildAll",
+    "build:clean": "gulp cleanPacks",
+    "build:css": "gulp buildCSS",
+    "build:db": "gulp compilePacks",
+    "build:json": "gulp extractPacks",
+    "build:watch": "gulp",
+    "lint": "gulp lint",
+    "lint:fix": "gulp lint --fix"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.4",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "eslint-plugin-jsdoc": "^39.6.7",
+    "fancy-log": "^2.0.0",
+    "fs": "^0.0.1-security",
     "gulp": "^4.0.2",
-    "gulp-less": "^4.0.1"
+    "gulp-eslint7": "^0.3.1",
+    "gulp-if": "^3.0.0",
+    "gulp-less": "^5.0.0",
+    "merge-stream": "^2.0.0",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7",
+    "rollup": "^3.9.1",
+    "through2": "^4.0.2",
+    "yargs": "^17.5.1"
   }
 }

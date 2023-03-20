@@ -1,7 +1,7 @@
 /**
  * A type of Roll specific to a damage (or healing) roll in the 5e system.
  * @param {string} formula                            The string formula to parse
- * @param {object} data                               The data object against which to parse attributes within the formula
+ * @param {object} data                               The object against which to parse attributes within the formula
  * @param {object} [options={}]                       Extra optional arguments which describe or modify the DamageRoll
  * @param {number} [options.criticalBonusDice=0]      A number of bonus damage dice that are added for critical hits
  * @param {number} [options.criticalMultiplier=2]     A critical hit multiplier which is applied to critical hits
@@ -62,7 +62,9 @@ export default class DamageRoll extends Roll {
       const prevTerm = this.terms[i - 1];
 
       // Convert shorthand dX terms to 1dX preemptively to allow them to be appropriately doubled for criticals
-      if ( (term instanceof StringTerm) && /^d\d+/.test(term.term) && !(prevTerm instanceof ParentheticalTerm) ) {
+      if ( (term instanceof StringTerm)
+        && /^d\d+/.test(term.term)
+        && !(prevTerm instanceof ParentheticalTerm) ) {
         const formula = `1${term.term}`;
         const newTerm = new Roll(formula).terms[0];
         this.terms.splice(i, 1, newTerm);
@@ -70,7 +72,9 @@ export default class DamageRoll extends Roll {
       }
 
       // Merge parenthetical terms that follow string terms to build a dice term (to allow criticals)
-      else if (term instanceof ParentheticalTerm && prevTerm instanceof StringTerm && prevTerm.term.match(/^[0-9]*d$/)) {
+      else if (term instanceof ParentheticalTerm
+        && prevTerm instanceof StringTerm
+        && prevTerm.term.match(/^[0-9]*d$/)) {
         if (term.isDeterministic) {
           let newFormula = `${prevTerm.term}${term.evaluate().total}`;
           let deleteCount = 2;
@@ -89,9 +93,9 @@ export default class DamageRoll extends Roll {
 
       // Merge any parenthetical terms followed by string terms
       else if (
-        (term instanceof ParentheticalTerm || term instanceof MathTerm) &&
-        nextTerm instanceof StringTerm &&
-        nextTerm.term.match(/^d[0-9]*$/)
+        (term instanceof ParentheticalTerm || term instanceof MathTerm)
+        && nextTerm instanceof StringTerm
+        && nextTerm.term.match(/^d[0-9]*$/)
       ) {
         if (term.isDeterministic) {
           const newFormula = `${term.evaluate().total}${nextTerm.term}`;
@@ -195,7 +199,8 @@ export default class DamageRoll extends Roll {
    * @param {string} [data.template]            A custom path to an HTML template to use instead of the default
    * @param {boolean} [data.allowCritical=true] Allow critical hit to be chosen as a possible damage mode
    * @param {object} options                    Additional Dialog customization options
-   * @returns {Promise<D20Roll|null>}           A resulting D20Roll object constructed with the dialog, or null if the dialog was closed
+   * @returns {Promise<D20Roll|null>}           A resulting D20Roll object constructed with the dialog,
+   *                                            or null if the dialog was closed
    */
   async configureDialog(
     { title, defaultRollMode, defaultCritical = false, template, allowCritical = true } = {},

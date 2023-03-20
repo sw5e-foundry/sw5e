@@ -11,7 +11,7 @@ export default class ShieldPointsFlow extends HitPointsFlow {
       isFirstClassLevel: false,
       labels: {
         average: "SW5E.AdvancementShieldPointsAverage",
-        roll: "SW5E.AdvancementShieldPointsRollButton",
+        roll: "SW5E.AdvancementShieldPointsRollButton"
       }
     });
   }
@@ -24,8 +24,8 @@ export default class ShieldPointsFlow extends HitPointsFlow {
    */
   _updateRollResult() {
     if (!this.form.elements.useAverage?.checked) return;
-    let avg = this.advancement.hitDieValue / 2 + 1;
-    if (this.level === 0) avg = this.advancement.hitDieValue + (this.advancement.item.system.shldDiceStart - 1) * avg;
+    let avg = (this.advancement.hitDieValue / 2) + 1;
+    if (this.level === 0) avg = this.advancement.hitDieValue + ((this.advancement.item.system.shldDiceStart - 1) * avg);
     this.form.elements.value.value = avg;
   }
 

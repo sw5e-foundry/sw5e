@@ -1,0 +1,98 @@
+{
+  "_id": "Tz2SJsn6gihR8LEQ",
+  "name": "Sharp Noise",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.5449266+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-sharp_noise.source-archetypeinvocation.sourceName-audiotech_engineering.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>As an action while wielding your modified instrument, choose a creature you can see. If it can hear you, it must succeed on a Constitution saving throw or take [[/r 1d4]] sonic damage and have disadvantage on its next attack roll before the end of its next turn.</p>\n<p>This feature's damage increases by [[/r 1d4]] when you reach 5th level ([[/r 2d4]]), 11th level ([[/r 3d4]]), and 17th level ([[/r 4d4]]).</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Audiotech Engineering)",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d4",
+          "sonic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981105,
+    "modifiedTime": 1678471402728,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

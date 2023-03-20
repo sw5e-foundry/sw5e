@@ -1,0 +1,115 @@
+{
+  "name": "Improved Force Intuition",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:05.9343665+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-improved_force_intuition.level-2"
+    }
+  },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/ImprovedForceIntuition.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Force Intuition</em></p>\n<p>You make your initiative check at advantage, and gain a +2 bonus to AC until the power ends. In addition, until the end of your first turn in the combat, your speed increases by 10 feet and you add [[/r 1d4]] to your attack rolls. This power ends early if you fail a saving throw or are hit by an attack.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Force Intuition",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": "when you would roll initiative"
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d4",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 2,
+    "school": "uni",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "none",
+      "formula": null
+    }
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1667426102468,
+    "modifiedTime": 1678471089139,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "1qeRtfKPWbNyeicE"
+}

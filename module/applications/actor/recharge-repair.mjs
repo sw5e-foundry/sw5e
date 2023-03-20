@@ -44,9 +44,9 @@ export default class RechargeRepairDialog extends Dialog {
       const denom = hullDice ?? "d6";
       const hugeOrGrg = ["huge", "grg"].includes(size);
       const available =
-        parseInt(hullDiceStart ?? 1) +
-        parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0) -
-        parseInt(hullDiceUsed ?? 0);
+        parseInt(hullDiceStart ?? 1)
+        + (parseInt(hugeOrGrg ? 2 : 1) * parseInt(tier ?? 0))
+        - parseInt(hullDiceUsed ?? 0);
       hulld[denom] = denom in hulld ? hulld[denom] + available : available;
       return hulld;
     }, {});
@@ -87,8 +87,8 @@ export default class RechargeRepairDialog extends Dialog {
   /* -------------------------------------------- */
 
   /**
-   * A helper constructor function which displays the Recharge Repair dialog and returns a Promise once it's workflow has
-   * been resolved.
+   * A helper constructor function which displays the Recharge Repair dialog and
+   * returns a Promise once it's workflow has been resolved.
    * @param {object} [options={}]
    * @param {Actor5e} [options.actor]  Actor that is taking the recharge repair.
    * @returns {Promise}                Promise that resolves when the repair is completed or rejects when canceled.

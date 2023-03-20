@@ -17,12 +17,16 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string[]} skills.choices             List of skill keys that are valid to be chosen.
  * @property {string[]} skills.value               List of skill keys the player has chosen.
  * @property {object} powercasting                 Details on class's powercasting ability.
- * @property {string} powercasting.force           Force power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.force           Force power progression as defined in `SW5E.powerProgression`.
  * @property {string} powercasting.forceOverride   Ability score to use for forcecasting.
- * @property {string} powercasting.tech            Tech power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.tech            Tech power progression as defined in `SW5E.powerProgression`.
  * @property {string} powercasting.techOverride    Ability score to use for techcasting.
- * @property {object} superiority                  Details on class's superiority ability.
- * @property {string} superiority.progression      Power progression granted by class as from `SW5E.superiorityProgression`.
+ * @property {object} superiority
+ * @property {string} superiority.progression      Superiority progression as defined in `SW5E.superiorityProgression`.
+ * @property {object} atFlavorText
+ * @property {string} atFlavorText.value           Flavor and list of class archetypes.
+ * @property {object} invocations
+ * @property {string} invocations.value            Flavor and list of class invocations.
  */
 export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
@@ -99,6 +103,14 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
           })
         },
         { label: "SW5E.Superiority" }
+      ),
+      atFlavorText: new foundry.data.fields.SchemaField(
+        { value: new foundry.data.fields.StringField({ required: true, initial: "" }) },
+        { label: "SW5E.ArchetypePl" }
+      ),
+      invocations: new foundry.data.fields.SchemaField(
+        { value: new foundry.data.fields.StringField({ required: true, initial: "" }) },
+        { label: "SW5E.Invocations" }
       )
     });
   }

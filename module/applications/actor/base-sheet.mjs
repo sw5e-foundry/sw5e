@@ -82,8 +82,7 @@ export default class ActorSheet5e extends ActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited)
-      return "systems/sw5e/templates/actors/newActor/expanded-limited-sheet.hbs";
+    if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/expanded-limited-sheet.hbs";
     return `systems/sw5e/templates/actors/newActor/${this.actor.type}-sheet.hbs`;
   }
 
@@ -386,23 +385,21 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     // Shield
-    if (ac.shield !== 0)
-      attribution.push({
-        label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.shield
-      });
+    if (ac.shield !== 0) attribution.push({
+      label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
 
     // Bonus
     if (ac.bonus !== 0) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
 
     // Cover
-    if (ac.cover !== 0)
-      attribution.push({
-        label: game.i18n.localize("SW5E.Cover"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.cover
-      });
+    if (ac.cover !== 0) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
     return attribution;
   }
 
@@ -467,6 +464,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Prepare the data structure for items which appear on the actor sheet.
    * Each archetype overrides this method to implement type-specific logic.
+   * @param {object} context
    * @protected
    */
   _prepareItems(context) {}
@@ -479,7 +477,7 @@ export default class ActorSheet5e extends ActorSheet {
       combineForcePowers: true,
       combineManeuvers: true,
       splitActive: false,
-      splitEquipped: false,
+      splitEquipped: false
     }, config);
     const categories = {
       inventory: {},
@@ -497,14 +495,14 @@ export default class ActorSheet5e extends ActorSheet {
         label: `ITEM.Type${itemType.capitalize()}Pl`,
         items: [],
         required: true,
-        dataset: { type: itemType },
+        dataset: { type: itemType }
       };
       if (config.splitEquipped) {
         categories.equipped[itemType] = {
           label: `ITEM.Type${itemType.capitalize()}Pl`,
           items: [],
           required: true,
-          dataset: { type: itemType, equipped: true },
+          dataset: { type: itemType, equipped: true }
         };
       }
     }
@@ -514,7 +512,7 @@ export default class ActorSheet5e extends ActorSheet {
         label: `ITEM.Type${itemType.capitalize()}Pl`,
         items: [],
         required: true,
-        dataset: { type: itemType },
+        dataset: { type: itemType }
       };
     }
 
@@ -524,14 +522,14 @@ export default class ActorSheet5e extends ActorSheet {
           label,
           items: [],
           hasActions: true,
-          dataset: { type: "feat", featType: type, featSubtype: subtype },
+          dataset: { type: "feat", featType: type, featSubtype: subtype }
         };
       }
       categories.features[`feat.${type}`] = {
         label: val.label,
         items: [],
         hasActions: true,
-        dataset: { type: "feat", featType: type },
+        dataset: { type: "feat", featType: type }
       };
     }
     if (config.splitActive) {
@@ -540,14 +538,14 @@ export default class ActorSheet5e extends ActorSheet {
         items: [],
         hasActions: true,
         required: true,
-        dataset: { "type": "feat", "activation.type": "action" },
+        dataset: { type: "feat", "activation.type": "action" }
       };
       categories.features.passive = {
         label: "SW5E.FeaturePassive",
         items: [],
         hasActions: false,
         required: true,
-        dataset: { type: "feat" },
+        dataset: { type: "feat" }
       };
     }
     else categories.features.feat = {
@@ -555,7 +553,7 @@ export default class ActorSheet5e extends ActorSheet {
       items: [],
       hasActions: true,
       required: true,
-      dataset: { type: "feat" },
+      dataset: { type: "feat" }
     };
 
     for (const [scl, label] of Object.entries(config.powerSchools ?? CONFIG.SW5E.powerSchools)) {
@@ -615,7 +613,7 @@ export default class ActorSheet5e extends ActorSheet {
       item.sheet._getWeaponReloadProperties(ctx);
 
       // Categorize the item
-      if (item.type in categories.equipped && config.splitEquipped && equipped) {
+      if (config.splitEquipped && equipped && item.type in categories.equipped) {
         categories.equipped[item.type].items.push(item);
         continue;
       }
@@ -682,7 +680,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10 };
-    const useLabels = { "-20": "-", "-10": "-", "0": "&infin;" };
+    const useLabels = { "-20": "-", "-10": "-", 0: "&infin;" };
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
@@ -698,10 +696,10 @@ export default class ActorSheet5e extends ActorSheet {
         slots: useLabels[i] || max || 0,
         override: override || 0,
         dataset: {
-          "type": "power",
-          "level": prepMode in sections ? 1 : i,
+          type: "power",
+          level: prepMode in sections ? 1 : i,
           "preparation.mode": prepMode,
-          "school": school
+          school: school
         },
         prop: sl,
         editable: context.editable && !aeOverride
@@ -779,7 +777,7 @@ export default class ActorSheet5e extends ActorSheet {
         canCreate: owner,
         maneuvers: [],
         dataset: {
-          "type": "maneuver",
+          type: "maneuver",
           "maneuver-type": t
         }
       };
@@ -894,9 +892,15 @@ export default class ActorSheet5e extends ActorSheet {
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".item-collapse").click(this._onItemCollapse.bind(this));
       html
-        .find(".item-uses input")
+        .find(".item-uses input, .item-reload input")
         .click(ev => ev.target.select())
         .change(this._onUsesChange.bind(this));
+      html.find(".weapon-select-ammo").change(event => {
+        event.preventDefault();
+        const itemId = event.currentTarget.closest(".item").dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        item.sheet._onWeaponSelectAmmo(event);
+      });
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
 
       // Active Effect management
@@ -1067,28 +1071,25 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     // Toggle Equipped State
-    if ("equipped" in item.system)
-      options.unshift({
-        name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
-        icon: "<i class='fas fa-shield-alt fa-fw'></i>",
-        callback: () => item.update({ "system.equipped": !item.system.equipped })
-      });
+    if ("equipped" in item.system) options.unshift({
+      name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
+      icon: "<i class='fas fa-shield-alt fa-fw'></i>",
+      callback: () => item.update({ "system.equipped": !item.system.equipped })
+    });
 
     // Toggle Prepared State
-    if ("preparation" in item.system && item.system.preparation?.mode === "prepared")
-      options.unshift({
-        name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
-        icon: "<i class='fas fa-sun fa-fw'></i>",
-        callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
-      });
+    if ("preparation" in item.system && item.system.preparation?.mode === "prepared") options.unshift({
+      name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
+      icon: "<i class='fas fa-sun fa-fw'></i>",
+      callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
+    });
 
     // Reload Weapon
-    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max))
-      options.unshift({
-        name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
-        icon: "<i class='fas fa-raygun fa-fw'></i>",
-        callback: () => item.reloadWeapon()
-      });
+    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max)) options.unshift({
+      name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
+      icon: "<i class='fas fa-raygun fa-fw'></i>",
+      callback: () => item.sheet._onWeaponReload()
+    });
 
     return options;
   }
@@ -1189,8 +1190,8 @@ export default class ActorSheet5e extends ActorSheet {
 
   /**
    * Handle cycling proficiency in a Skill.
-   * @param {Event} event   A click or contextmenu event which triggered the handler.
-   * @returns {Promise}     Updated data for this actor after changes are applied.
+   * @param {Event} event     A click or contextmenu event which triggered the handler.
+   * @returns {Promise|void}  Updated data for this actor after changes are applied.
    * @private
    */
   _onCycleSkillProficiency(event) {
@@ -1340,11 +1341,11 @@ export default class ActorSheet5e extends ActorSheet {
       return false;
     }
 
-    //TODO: Possibly make this a holocron
+    // TODO: Possibly make this a holocron
     // Create a Consumable power scroll on the Inventory tab
     if (
-      itemData.type === "power" &&
-      (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
+      itemData.type === "power"
+      && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
     ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       return scroll.toObject();
@@ -1437,10 +1438,11 @@ export default class ActorSheet5e extends ActorSheet {
   async _onUsesChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const attr = event.currentTarget.closest(".uses-per").dataset.attr;
     const item = this.actor.items.get(itemId);
-    const uses = Math.clamped(0, parseInt(event.target.value), item.system.uses.max);
-    event.target.value = uses;
-    return item.update({ "system.uses.value": uses });
+    const value = Math.clamped(item.system[attr].min ?? 0, parseInt(event.target.value), item.system[attr].max);
+    event.target.value = value;
+    return item.update({ [`system.${attr}.value`]: value });
   }
 
   /* -------------------------------------------- */
@@ -1527,15 +1529,17 @@ export default class ActorSheet5e extends ActorSheet {
       return ui.notifications.error(errDeploy);
     }
 
-    delete header.dataset.type;
-    delete header.dataset.feattype;
-    delete header.dataset.featsubtype;
-
     const itemData = {
       name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`ITEM.Type${type.capitalize()}`) }),
       type,
       system: foundry.utils.expandObject({ ...header.dataset })
     };
+
+    delete itemData.system.tooltip;
+    delete itemData.system.type;
+    delete itemData.system.feattype;
+    delete itemData.system.featsubtype;
+
     if (featType) {
       itemData.system.type = {
         value: featType,
@@ -1588,7 +1592,7 @@ export default class ActorSheet5e extends ActorSheet {
           try {
             const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
             if (shouldRemoveAdvancements) return manager.render(true);
-          } catch (err) {
+          } catch(err) {
             return;
           }
         } else {
@@ -1684,8 +1688,8 @@ export default class ActorSheet5e extends ActorSheet {
 
   /**
    * Handle cycling proficiency in an Ability score.
-   * @param {Event} event   A click or contextmenu event which triggered the handler.
-   * @returns {Promise}     Updated data for this actor after changes are applied.
+   * @param {Event} event     A click or contextmenu event which triggered the handler.
+   * @returns {Promise|void}  Updated data for this actor after changes are applied.
    * @private
    */
   _onCycleAbilityProficiency(event) {

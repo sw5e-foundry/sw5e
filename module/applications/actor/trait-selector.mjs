@@ -11,13 +11,11 @@ import BaseConfigSheet from "./base-config.mjs";
  */
 export default class TraitSelector extends BaseConfigSheet {
   constructor(actor, trait, options) {
-    if (!CONFIG.SW5E.traits[trait])
-      throw new Error(`Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.`);
-    if (["saves", "skills"].includes(trait))
-      throw new Error(
-        `TraitSelector does not support selection of ${trait}. That should be handled through ` +
-          "that type's more specialized configuration application."
-      );
+    if (!CONFIG.SW5E.traits[trait]) throw new Error(`Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.`);
+    if (["saves", "skills"].includes(trait)) throw new Error(
+      `TraitSelector does not support selection of ${trait}. That should be handled through `
+          + "that type's more specialized configuration application."
+    );
 
     super(actor, options);
 
@@ -72,9 +70,9 @@ export default class TraitSelector extends BaseConfigSheet {
       bypasses:
         "bypasses" in data
           ? Object.entries(CONFIG.SW5E.physicalWeaponProperties).reduce((obj, [k, v]) => {
-              obj[k] = { label: v.name, chosen: data.bypasses.has(k) };
-              return obj;
-            }, {})
+            obj[k] = { label: v.name, chosen: data.bypasses.has(k) };
+            return obj;
+          }, {})
           : null,
       bypassesPath: "bypasses" in data ? `${path}.bypasses` : null
     };

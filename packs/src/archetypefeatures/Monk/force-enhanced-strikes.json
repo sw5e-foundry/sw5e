@@ -1,0 +1,95 @@
+{
+  "_id": "Pqp7qsEGnd2K8unD",
+  "name": "Force-Enhanced Strikes",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/MNK-ARCH-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:01.3668624+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-force_enhanced_strikes.source-archetype.sourceName-matukai_order.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Matukai Order:</strong> 3rd level</em></p>\n<p>You learn to channel the Force into your unarmed strikes and monk weapons, further enhancing your melee strikes. When you hit a creature with an unarmed strike or melee weapon attack with a monk weapon, you can spend 1 focus point to force the creature to make a Strength saving throw against your focus save DC. On a failed save, it takes [[/r 2d6]] force damage and is pushed up to 15 feet away from you. On a successful save, the creature only takes half as much damage and isn't pushed.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Monk (Matukai Order) 3",
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "2d6",
+          "force"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Monk"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957707,
+    "modifiedTime": 1678471090707,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

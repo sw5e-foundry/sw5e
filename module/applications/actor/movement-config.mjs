@@ -38,17 +38,17 @@ export default class ActorMovementConfig extends BaseConfigSheet {
     const speeds =
       source.type === "group"
         ? {
-            land: "SW5E.MovementLand",
-            water: "SW5E.MovementWater",
-            air: "SW5E.MovementAir"
-          }
+          land: "SW5E.MovementLand",
+          water: "SW5E.MovementWater",
+          air: "SW5E.MovementAir"
+        }
         : {
-            walk: "SW5E.MovementWalk",
-            burrow: "SW5E.MovementBurrow",
-            climb: "SW5E.MovementClimb",
-            fly: "SW5E.MovementFly",
-            swim: "SW5E.MovementSwim"
-          };
+          walk: "SW5E.MovementWalk",
+          burrow: "SW5E.MovementBurrow",
+          climb: "SW5E.MovementClimb",
+          fly: "SW5E.MovementFly",
+          swim: "SW5E.MovementSwim"
+        };
 
     // Return rendering context
     return {

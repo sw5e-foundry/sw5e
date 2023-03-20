@@ -42,8 +42,9 @@ export default class ExpendPowerDiceDialog extends Dialog {
   /* -------------------------------------------- */
 
   /**
-   * A helper constructor function which displays the power dice allocation confirmation dialog and returns a Promise once it's
-   * workflow has been resolved.
+   * A helper constructor function which displays the power dice allocation confirmation dialog and
+   * returns a Promise once it's workflow has been resolved.
+   * @param {Actor5e} actor
    * @returns {Promise}
    */
   static async expendPowerDice(actor) {
@@ -55,7 +56,7 @@ export default class ExpendPowerDiceDialog extends Dialog {
             icon: '<i class="fas fa-wrench"></i>',
             label: game.i18n.localize("SW5E.ExpendPowerDice"),
             callback: html => {
-              const chosen = html.find(`select[name="slot"]`)[0];
+              const chosen = html.find("select[name=\"slot\"]")[0];
               resolve(chosen.value);
             }
           },

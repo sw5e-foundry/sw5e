@@ -10,12 +10,12 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} classIdentifier  Identifier slug for the class with which this archetype should be associated.
  * @property {object[]} advancement    Advancement objects for this archetype.
  * @property {object} powercasting                 Details on class's powercasting ability.
- * @property {string} powercasting.force           Force power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.force           Force power progression as defined in `SW5E.powerProgression`.
  * @property {string} powercasting.forceOverride   Ability score to use for forcecasting.
- * @property {string} powercasting.tech            Tech power progression granted by class as from `SW5E.powerProgression`.
+ * @property {string} powercasting.tech            Tech power progression as defined in `SW5E.powerProgression`.
  * @property {string} powercasting.techOverride    Ability score to use for techcasting.
  * @property {object} superiority                  Details on class's superiority ability.
- * @property {string} superiority.progression      Power progression granted by class as from `SW5E.superiorityProgression`.
+ * @property {string} superiority.progression      Superiority progression as defined in `SW5E.superiorityProgression`.
  */
 export default class ArchetypeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */

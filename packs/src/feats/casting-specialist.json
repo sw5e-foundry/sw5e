@@ -1,0 +1,162 @@
+{
+  "_id": "msmwv2EKYVQdcBUo",
+  "name": "Casting Specialist",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Feats/CastingSpecialist.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:26.984473+00:00",
+      "importer_version": 3,
+      "uid": "Feat.name-casting_specialist"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>Choose one from force- or tech-casting. You've mastered your chosen casting type, gaining the following benefits:</p>\n<ul>\n<li>You gain a +1 bonus to your force or tech save DC and your force or tech attack modifier.</li>\n<li>Once per turn, when you cast a power that requires an attack roll or saving throw, you can have advantage on one attack roll, or you can force one creature affected by the power to have advantage or disadvantage on the saving throw (your choice). Once you've used this feature on a power, you can't affect that power again until you complete a short or long rest. Once you've used this feature on a creature, you can't do so again until you complete a short or long rest.</li>\n<li>Once per turn, when you cast a power that doesn't require an ability check, attack roll, or saving throw, but requires a die roll, you can choose the maximum or minimum on the die (your choice). If the power requires rolling multiple dice, you can only affect a number of them equal to half your proficiency bonus (rounded up) in this way. Once you've used this feature on a power, you can't affect that power again until you complete a short or long rest.</li>\n</ul>\n<p>You can select this feat twice. Each time you do so, you must choose a different casting type.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "4th level, the ability to cast force or tech powers",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493966827,
+    "modifiedTime": 1678471094868,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

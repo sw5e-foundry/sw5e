@@ -32,8 +32,8 @@ export async function create5eMacro(dropData, slot) {
 
   // Assign the macro to the hotbar
   const macro =
-    game.macros.find(m => m.name === macroData.name && m.command === macroData.command && m.author.isSelf) ||
-    (await Macro.create(macroData));
+    game.macros.find(m => m.name === macroData.name && m.command === macroData.command && m.author.isSelf)
+    || (await Macro.create(macroData));
   game.user.assignHotbarMacro(macro, slot);
 }
 

@@ -1,5 +1,4 @@
 import SystemDataModel from "../abstract.mjs";
-import { FormulaField, MappingField } from "../fields.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";

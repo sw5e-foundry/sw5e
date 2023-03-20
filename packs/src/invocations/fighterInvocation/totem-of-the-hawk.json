@@ -1,0 +1,93 @@
+{
+  "_id": "Eb8EBtRmO0Tq8NVu",
+  "name": "Totem of the Hawk",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/FGTR-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.5479256+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-totem_of_the_hawk.source-archetypeinvocation.sourceName-totem_specialist.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>This totem is inspired by the visage of a hawk, granting you advantage on Intelligence (Investigation) checks, and darkvision out to a range of 60 feet. If you already have darkvision, its range increases by 30 feet.</p>\n<p>Additionally, when a creature you can see ends its turn within 30 feet of you, you can use your reaction to invoke the totem and force the creature to make a Constitution saving throw by emitting a powerful sound. Unless the save succeeds, the creature is dazed, suffering from the charmed condition, for 1 minute. While charmed in this way, the creature has a speed of 0 and is incapacitated. The effect ends if the charmed creature takes any damage or if someone else uses an action to shake the creature out of its haze. Once you invoke the totem, you can't do so again until you finish a short or long rest. A deaf creature automatically succeeds on its saving throw.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Fighter (Totem Specialist)",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "fighterInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Fighter"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981032,
+    "modifiedTime": 1678471402724,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

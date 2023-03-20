@@ -1,0 +1,90 @@
+{
+  "_id": "GirKxjNPvTGk3DVX",
+  "name": "Target Masking",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCT-ARCH-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:21.8961394+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-target_masking.source-archetype.sourceName-artillerist_technique.level-11"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Artillerist Technique:</strong> 11th level</em></p>\n<p>You are familiar with various turrets and defensive emplacements, and their operation. </p>\n<p>As a bonus action, you can activate a masking effect to confuse the targeting of constructs for 1 minute. Any construct who targets you with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw against your tech save DC. On a failed save, the construct must choose a new target or lose the attack or power. This power doesn't protect you from area effects.</p>\n<p>You can use this feature a combined number of times equal to your proficiency bonus, as shown in the scout table. You regain all expended uses when you complete a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scout (Artillerist Technique) 11",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@attributes.prof",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scout"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957538,
+    "modifiedTime": 1678471090699,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

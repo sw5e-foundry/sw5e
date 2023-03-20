@@ -20,15 +20,16 @@ export const needsMigration = function() {
   }
 
   return true;
-}
+};
 
 /* -------------------------------------------- */
 
 /**
  * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
+ * @param {boolean}  [migrateSystemCompendiums=false]
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function (migrateSystemCompendiums = false) {
+export const migrateWorld = async function(migrateSystemCompendiums = false) {
   const version = game.system.version;
   ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", { version }), { permanent: true });
 
@@ -53,7 +54,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
         console.log(`Migrating Actor document ${actor.name}`);
         await actor.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch(err) {
       err.message = `Failed sw5e system migration for Actor ${actor.name}: ${err.message}`;
       console.error(err);
     }
@@ -70,7 +71,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
         console.log(`Migrating Item document ${item.name}`);
         await item.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch(err) {
       err.message = `Failed sw5e system migration for Item ${item.name}: ${err.message}`;
       console.error(err);
     }
@@ -84,7 +85,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
         console.log(`Migrating Macro document ${m.name}`);
         await m.update(updateData, { enforceTypes: false });
       }
-    } catch (err) {
+    } catch(err) {
       err.message = `Failed sw5e system migration for Macro ${m.name}: ${err.message}`;
       console.error(err);
     }
@@ -101,7 +102,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
         // with the un-updated actorData.
         s.tokens.forEach(t => (t._actor = null));
       }
-    } catch (err) {
+    } catch(err) {
       err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
     }
@@ -127,7 +128,7 @@ export const migrateWorld = async function (migrateSystemCompendiums = false) {
  * @param {CompendiumCollection} pack  Pack to be migrated.
  * @returns {Promise}
  */
-export const migrateCompendium = async function (pack) {
+export const migrateCompendium = async function(pack) {
   const documentName = pack.documentName;
   if (!["Actor", "Item", "Scene"].includes(documentName)) return;
 
@@ -161,7 +162,7 @@ export const migrateCompendium = async function (pack) {
       if (foundry.utils.isEmpty(updateData)) continue;
       await doc.update(updateData);
       console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
-    } catch (err) {
+    } catch(err) {
       // Handle migration failures
       err.message = `Failed sw5e system migration for document ${doc.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
@@ -219,7 +220,7 @@ export async function refreshCompendium(pack) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {Promise}
  */
-export const migrateArmorClass = async function (pack, migrationData) {
+export const migrateArmorClass = async function(pack, migrationData) {
   if (typeof pack === "string") pack = game.packs.get(pack);
   if (pack.documentName !== "Actor") return;
   const wasLocked = pack.locked;
@@ -255,7 +256,7 @@ export const migrateArmorClass = async function (pack, migrationData) {
       if (hasArmorEquipped || armorItem) update["system.attributes.ac.calc"] = "default";
       // CASE 2: NPC Natural Armor
       else if (src.type === "npc") update["system.attributes.ac.calc"] = "natural";
-    } catch (e) {
+    } catch(e) {
       console.warn(`Failed to migrate armor class for Actor ${actor.name}`, e);
     }
   }
@@ -277,7 +278,7 @@ export const migrateArmorClass = async function (pack, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply
  */
-export const migrateActorData = async function (actor, migrationData) {
+export const migrateActorData = async function(actor, migrationData) {
   const updateData = {};
   await _migrateTokenImage(actor, updateData, migrationData);
   _migrateActorAC(actor, updateData);
@@ -302,8 +303,7 @@ export const migrateActorData = async function (actor, migrationData) {
 
     // Prepared, Equipped, and Proficient for NPC actors
     if (actor.type === "npc") {
-      if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false)
-        itemUpdate["system.preparation.prepared"] = true;
+      if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false) itemUpdate["system.preparation.prepared"] = true;
       if (foundry.utils.getProperty(itemData.system, "equipped") === false) itemUpdate["system.equipped"] = true;
       if (foundry.utils.getProperty(itemData.system, "proficient") === false) itemUpdate["system.proficient"] = true;
     }
@@ -335,7 +335,7 @@ export const migrateActorData = async function (actor, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply
  */
-export async function migrateItemData (item, migrationData) {
+export async function migrateItemData(item, migrationData) {
   const updateData = {};
   await _migrateItemPower(item, updateData);
   await _migrateItemIcon(item, updateData, migrationData);
@@ -361,7 +361,7 @@ export async function migrateItemData (item, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration.
  * @returns {object[]}              Updates to apply on the embedded effects.
  */
-export const migrateEffects = function (parent, migrationData) {
+export const migrateEffects = function(parent, migrationData) {
   if (!parent.effects) return {};
   return parent.effects.reduce((arr, e) => {
     const effectData = e instanceof CONFIG.ActiveEffect.documentClass ? e.toObject() : e;
@@ -382,7 +382,7 @@ export const migrateEffects = function (parent, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration.
  * @returns {object}                The updateData to apply.
  */
-export const migrateEffectData = function (effect, migrationData) {
+export const migrateEffectData = function(effect, migrationData) {
   const updateData = {};
   _migrateEffectArmorClass(effect, updateData);
   return updateData;
@@ -396,7 +396,7 @@ export const migrateEffectData = function (effect, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply
  */
-export const migrateMacroData = async function (macro, migrationData) {
+export const migrateMacroData = async function(macro, migrationData) {
   const updateData = {};
   _migrateMacroCommands(macro, updateData);
   return updateData;
@@ -411,7 +411,7 @@ export const migrateMacroData = async function (macro, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}       The updateData to apply
  */
-export const migrateSceneData = async function (scene, migrationData) {
+export const migrateSceneData = async function(scene, migrationData) {
   const tokens = await Promise.all(
     scene.tokens.map(async token => {
       const t = token instanceof foundry.abstract.DataModel ? token.toObject() : token;
@@ -454,7 +454,7 @@ export const migrateSceneData = async function (scene, migrationData) {
  * Fetch bundled data for large-scale migrations.
  * @returns {Promise<object>}  Object mapping original system icons to their core replacements.
  */
-export const getMigrationData = async function () {
+export const getMigrationData = async function() {
   const data = {};
   try {
     const icons = await (await fetch("systems/sw5e/json/icon-migration.json")).json();
@@ -468,7 +468,7 @@ export const getMigrationData = async function () {
     data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
     data.armors = await (await game.packs.get("sw5e.armor")).getDocuments();
     data.modifications = await (await game.packs.get("sw5e.modifications")).getDocuments();
-  } catch (err) {
+  } catch(err) {
     console.warn(`Failed to retrieve migration data: ${err.message}`);
   }
   return data;
@@ -486,16 +486,15 @@ export const getMigrationData = async function () {
 function _updateNPCData(actor) {
   let actorSysData = actor.system;
   const updateData = {};
-  // check for flag.core, if not there is no compendium monster so exit
+  // Check for flag.core, if not there is no compendium monster so exit
   const hasSource = actor?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return actor;
-  // shortcut out if dataVersion flag is set to 1.2.4 or higher
+  // Shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = actor?.flags?.sw5e?.dataVersion !== undefined;
   if (
-    hasDataVersion &&
-    (actor.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", actor.flags.sw5e.dataVersion))
-  )
-    return actor;
+    hasDataVersion
+    && (actor.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", actor.flags.sw5e.dataVersion))
+  ) return actor;
   // Check to see what the source of NPC is
   const sourceId = actor.flags.core.sourceId;
   const coreSource = sourceId.split(".").slice(0, 2).join(".");
@@ -507,7 +506,7 @@ function _updateNPCData(actor) {
       .then(monster => {
         if (monster) {
           const monsterSysData = monster.system;
-          // copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
+          // Copy movement[], senses[], powercasting, force[], tech[], powerForceLevel, powerTechLevel
           updateData["system.attributes.movement"] = monsterSysData.attributes.movement;
           updateData["system.attributes.senses"] = monsterSysData.attributes.senses;
           updateData["system.attributes.powercasting"] = monsterSysData.attributes.powercasting;
@@ -515,7 +514,7 @@ function _updateNPCData(actor) {
           updateData["system.attributes.tech"] = monsterSysData.attributes.tech;
           updateData["system.details.powerForceLevel"] = monsterSysData.details.powerForceLevel;
           updateData["system.details.powerTechLevel"] = monsterSysData.details.powerTechLevel;
-          // push missing powers onto actor
+          // Push missing powers onto actor
           const newPowers = [];
           for (const i of monster.items) {
             if (i.type === "power") {
@@ -524,7 +523,8 @@ function _updateNPCData(actor) {
                 item => i.flags?.core?.sourceId?.split(".")?.slice(-1)[0] === itemCompendium_id
               );
               if (!hasPower) {
-                // Clone power to new object. Don't know if it is technically needed, but seems to prevent some weirdness.
+                // Clone power to new object.
+                // Don't know if it is technically needed, but seems to prevent some weirdness.
                 const newPower = JSON.parse(JSON.stringify(i));
 
                 newPowers.push(newPower);
@@ -532,21 +532,21 @@ function _updateNPCData(actor) {
             }
           }
 
-          // get actor to create new powers
+          // Get actor to create new powers
           const liveActor = game.actors.get(actor._id);
-          // create the powers on the actor
+          // Create the powers on the actor
           liveActor.createEmbeddedDocuments("Item", newPowers);
 
-          // set flag to check to see if migration has been done so we don't do it again.
+          // Set flag to check to see if migration has been done so we don't do it again.
           liveActor.setFlag("sw5e", "dataVersion", "1.2.4");
         } else {
-          updateData["flags"] = { core: { "-=sourceId": null } };
+          updateData.flags = { core: { "-=sourceId": null } };
         }
       });
   }
 
-  //merge object
-  actorSysData = mergeObject(actorSysData, updateData);
+  // Merge object
+  mergeObject(actorSysData, updateData);
   // Return the scrubbed data
   return actor;
 }
@@ -597,6 +597,9 @@ function _migrateActorAC(actorData, updateData) {
 
 /**
  * Migrate the actor to have Rank Deployment attributes
+ * @param {object} actorData
+ * @param {object} updateData
+ * @returns {object}
  * @private
  */
 function _migrateActorAttribRank(actorData, updateData) {
@@ -615,34 +618,34 @@ function _migrateActorAttribRank(actorData, updateData) {
 
 /**
  * Update an Power Item's data based on compendium
- * @param {Object} item    The data object for an item
+ * @param {object} item    The data object for an item
+ * @param {object} updateData
  * @private
  */
 async function _migrateItemPower(item, updateData) {
-  // if item is not a power shortcut out
+  // If item is not a power shortcut out
   if (item.type !== "power") return updateData;
 
   const actor = item.parent;
   if (actor) console.log(`Checking Actor ${actor.name}'s ${item.name} for migration needs`);
   else console.log(`Checking ${item.name} for migration needs`);
-  // check for flag.core, if not there is no compendium power so exit
+  // Check for flag.core, if not there is no compendium power so exit
   const hasSource = item?.flags?.core?.sourceId !== undefined;
   if (!hasSource) return updateData;
 
-  // shortcut out if dataVersion flag is set to 1.2.4 or higher
+  // Shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
   if (
-    hasDataVersion &&
-    (item.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", item.flags.sw5e.dataVersion))
-  )
-    return updateData;
+    hasDataVersion
+    && (item.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", item.flags.sw5e.dataVersion))
+  ) return updateData;
 
   // Check to see what the source of Power is
   const sourceId = item.flags.core.sourceId;
   const coreSource = sourceId.split(".").slice(0, 2).join(".");
   const core_id = sourceId.split(".").slice(2).join(".");
 
-  //if power type is not force or tech  exit out
+  // If power type is not force or tech  exit out
   let powerType = "none";
   if (coreSource === "Compendium.sw5e.forcepowers") powerType = "forcepowers";
   if (coreSource === "Compendium.sw5e.techpowers") powerType = "techpowers";
@@ -653,13 +656,13 @@ async function _migrateItemPower(item, updateData) {
     if (actor) console.log(`Updating Actor ${actor.name}'s ${item.name} from compendium`);
     else console.log(`Updating ${item.name} from compendium`);
     const corePowerSysData = corePower.system;
-    // copy Core Power Data over original Power
-    updateData["system"] = corePowerSysData;
-    updateData["flags"] = { sw5e: { dataVersion: "1.2.4" } };
+    // Copy Core Power Data over original Power
+    updateData.system = corePowerSysData;
+    updateData.flags = { sw5e: { dataVersion: "1.2.4" } };
   } else {
     if (actor) console.error(`Update failed, couldn't find Actor ${actor.name}'s ${item.name} in compendium`);
     else console.error(`Update failed, couldn't find ${item.name} in compendium`);
-    updateData["flags"] = { core: { "-=sourceId": null } };
+    updateData.flags = { core: { "-=sourceId": null } };
   }
 
   return updateData;
@@ -669,10 +672,11 @@ async function _migrateItemPower(item, updateData) {
 
 /**
  * Migrate any system token images from PNG to WEBP.
- * @param {object} actorData    Actor or token data to migrate.
- * @param {object} updateData   Existing update to expand upon.
- * @param {object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
- * @returns {object}            The updateData to apply
+ * @param {object} actorData       Actor or token data to migrate.
+ * @param {object} updateData      Existing update to expand upon.
+ * @param {object} migrationData
+ * @param {Object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
+ * @returns {object}               The updateData to apply
  * @private
  */
 async function _migrateTokenImage(actorData, updateData, { iconMap } = {}) {
@@ -703,7 +707,7 @@ async function _migrateTokenImage(actorData, updateData, { iconMap } = {}) {
  * @param {object} item                                     Item data to migrate
  * @param {object} updateData                               Existing update to expand upon
  * @param {object} [migrationData={}]                       Additional data to perform the migration
- * @param {object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
+ * @param {Object<string, string>} [migrationData.iconMap]  A mapping of system icons to core foundry icons
  * @returns {object}                                        The updateData to apply
  * @private
  */
@@ -729,7 +733,6 @@ async function _migrateItemIcon(item, updateData, { iconMap } = {}) {
 /**
  * Migrate the item's modifications to the newer system.
  * @param {object} item             Item data to migrate.
- * @param {Object} actor            The data object for the actor owning the item
  * @param {object} updateData       Existing update to expand upon.
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply.
@@ -740,7 +743,7 @@ async function _migrateItemModificationData(item, updateData, migrationData) {
     if (item.system.modified !== undefined) updateData["system.-=modified"] = null;
   } else if (item.system.modifications !== undefined) {
     const itemMods = item.system.modifications;
-    updateData[`system.-=modifications`] = null;
+    updateData["system.-=modifications"] = null;
 
     if (itemMods.chassisType !== undefined) updateData["system.modify.chassis"] = itemMods.chassisType;
     if (itemMods.augmentSlots !== undefined) updateData["system.modify.augmentSlots"] = itemMods.augmentSlots;
@@ -783,8 +786,7 @@ function _migrateItemBackgroundDescription(item, updateData) {
     [item.system.flavorText, item.system.flavorName, item.system.flavorDescription, item.system.flavorOptions].every(
       attr => attr === undefined
     )
-  )
-    return updateData;
+  ) return updateData;
   if (item.system.flavorText !== undefined) updateData["system.-=flavorText"] = null;
   if (item.system.flavorName !== undefined) updateData["system.-=flavorName"] = null;
   if (item.system.flavorDescription !== undefined) updateData["system.-=flavorDescription"] = null;
@@ -792,86 +794,84 @@ function _migrateItemBackgroundDescription(item, updateData) {
 
   let text = "";
 
-  if (item.system.flavorText)
-    text +=
-      `<div class="background">\n` + `  <p>\n` + `      ${item.system.flavorText.value}\n` + `  </p>\n` + `</div>\n`;
-  if (item.system.skillProficiencies)
-    text +=
-      `<div class="background">\n` +
-      `  <p><strong>Skill Proficiencies:</strong> ${item.system.skillProficiencies.value}</p>\n` +
-      `</div>\n`;
-  if (item.system.toolProficiencies)
-    text +=
-      `<div class="background">\n` +
-      `  <p><strong>Tool Proficiencies:</strong> ${item.system.toolProficiencies.value}</p>\n` +
-      `</div>\n`;
-  if (item.system.languages)
-    text +=
-      `<div class="background">\n` +
-      `  <p><strong>Languages:</strong> ${item.system.languages.value}</p>\n` +
-      `</div>\n`;
-  if (item.system.equipment)
-    text +=
-      `<div class="background">\n` + `  <p><strong>Equipment:</strong> ${item.system.equipment}</p>\n` + `</div>\n`;
-  if (item.system.flavorName && item.system.flavorDescription && item.system.flavorOptions)
-    text +=
-      `<div class="background"><h3>${item.system.flavorName.value}</h3></div>\n` +
-      `<div class="background"><p>${item.system.flavorDescription.value}</p></div>\n` +
-      `<div class="smalltable">\n` +
-      `  <p>\n` +
-      `      ${item.system.flavorOptions.value}\n` +
-      `  </p>\n` +
-      `</div>\n`;
-  if (item.system.featureName && item.system.featureText)
-    text +=
-      `<div class="background"><h2>Feature: ${item.system.featureName.value}</h2></div>\n` +
-      `<div class="background"><p>${item.system.featureText.value}</p></div>`;
-  if (item.system.featOptions)
-    text +=
-      `<h2>Background Feat</h2>\n` +
-      `<p>\n` +
-      `  As a further embodiment of the experience and training of your background, you can choose from the\n` +
-      `  following feats:\n` +
-      `</p>\n` +
-      `<div class="smalltable">\n` +
-      `  <p>\n` +
-      `      ${item.system.featOptions.value}\n` +
-      `  </p>\n` +
-      `</div>\n`;
+  if (item.system.flavorText) text +=
+      "<div class=\"background\">\n"
+      + "  <p>\n"
+      + `      ${item.system.flavorText.value}\n`
+      + "  </p>\n"
+      + "</div>\n";
+  if (item.system.skillProficiencies) text +=
+      "<div class=\"background\">\n"
+      + `  <p><strong>Skill Proficiencies:</strong> ${item.system.skillProficiencies.value}</p>\n`
+      + "</div>\n";
+  if (item.system.toolProficiencies) text +=
+      "<div class=\"background\">\n"
+      + `  <p><strong>Tool Proficiencies:</strong> ${item.system.toolProficiencies.value}</p>\n`
+      + "</div>\n";
+  if (item.system.languages) text +=
+      "<div class=\"background\">\n"
+      + `  <p><strong>Languages:</strong> ${item.system.languages.value}</p>\n`
+      + "</div>\n";
+  if (item.system.equipment) text +=
+      "<div class=\"background\">\n"
+      + `  <p><strong>Equipment:</strong> ${item.system.equipment}</p>\n`
+      + "</div>\n";
+  if (item.system.flavorName && item.system.flavorDescription && item.system.flavorOptions) text +=
+      `<div class="background"><h3>${item.system.flavorName.value}</h3></div>\n`
+      + `<div class="background"><p>${item.system.flavorDescription.value}</p></div>\n`
+      + "<div class=\"smalltable\">\n"
+      + "  <p>\n"
+      + `      ${item.system.flavorOptions.value}\n`
+      + "  </p>\n"
+      + "</div>\n";
+  if (item.system.featureName && item.system.featureText) text +=
+      `<div class="background"><h2>Feature: ${item.system.featureName.value}</h2></div>\n`
+      + `<div class="background"><p>${item.system.featureText.value}</p></div>`;
+  if (item.system.featOptions) text +=
+      "<h2>Background Feat</h2>\n"
+      + "<p>\n"
+      + "  As a further embodiment of the experience and training of your background, you can choose from the\n"
+      + "  following feats:\n"
+      + "</p>\n"
+      + "<div class=\"smalltable\">\n"
+      + "  <p>\n"
+      + `      ${item.system.featOptions.value}\n`
+      + "  </p>\n"
+      + "</div>\n";
   if (
-    item.system.personalityTraitOptions ||
-    item.system.idealOptions ||
-    item.system.flawOptions ||
-    item.system.bondOptions
+    item.system.personalityTraitOptions
+    || item.system.idealOptions
+    || item.system.flawOptions
+    || item.system.bondOptions
   ) {
-    text += `<div class="background"><h2>Suggested Characteristics</h2></div>\n`;
-    if (item.system.personalityTraitOptions)
-      text +=
-        `<div class="medtable">\n` +
-        `  <p>\n` +
-        `      ${item.system.personalityTraitOptions.value}\n` +
-        `  </p>\n` +
-        `</div>\n` +
-        `<p>&nbsp;</p>`;
-    if (item.system.idealOptions)
-      text +=
-        `<div class="medtable">\n` +
-        `  <p>\n` +
-        `      ${item.system.idealOptions.value}\n` +
-        `  </p>\n` +
-        `</div>\n` +
-        `<p>&nbsp;</p>`;
-    if (item.system.flawOptions)
-      text +=
-        `<div class="medtable">\n` +
-        `  <p>\n` +
-        `      ${item.system.flawOptions.value}\n` +
-        `  </p>\n` +
-        `</div>\n` +
-        `<p>&nbsp;</p>`;
-    if (item.system.bondOptions)
-      text +=
-        `<div class="medtable">\n` + `  <p>\n` + `      ${item.system.bondOptions.value}\n` + `  </p>\n` + `</div>\n`;
+    text += "<div class=\"background\"><h2>Suggested Characteristics</h2></div>\n";
+    if (item.system.personalityTraitOptions) text +=
+        "<div class=\"medtable\">\n"
+        + "  <p>\n"
+        + `      ${item.system.personalityTraitOptions.value}\n`
+        + "  </p>\n"
+        + "</div>\n"
+        + "<p>&nbsp;</p>";
+    if (item.system.idealOptions) text +=
+        "<div class=\"medtable\">\n"
+        + "  <p>\n"
+        + `      ${item.system.idealOptions.value}\n`
+        + "  </p>\n"
+        + "</div>\n"
+        + "<p>&nbsp;</p>";
+    if (item.system.flawOptions) text +=
+        "<div class=\"medtable\">\n"
+        + "  <p>\n"
+        + `      ${item.system.flawOptions.value}\n`
+        + "  </p>\n"
+        + "</div>\n"
+        + "<p>&nbsp;</p>";
+    if (item.system.bondOptions) text +=
+        "<div class=\"medtable\">\n"
+        + "  <p>\n"
+        + `      ${item.system.bondOptions.value}\n`
+        + "  </p>\n"
+        + "</div>\n";
   }
 
   if (text) updateData["system.description.value"] = text;
@@ -949,9 +949,9 @@ async function migrateItemTypes(migrateSystemCompendiums) {
     for await (let doc of documents) set.add(doc);
   }
   // Accumulate actors from scenes
-  for (const scene of scenes) for (const token of scene.tokens) if (!token.actorLink) actors.add(token.actor)
+  for (const scene of scenes) for (const token of scene?.tokens ?? []) if (!token.actorLink) actors.add(token.actor);
   // Accumulate items from actors
-  for (const actor of actors) for (const item of actor.items) items.add(item);
+  for (const actor of actors) for (const item of actor?.items ?? []) items.add(item);
 
   // Migrate items
   for await (const item of items) await _migrateItemType(item);
@@ -959,7 +959,7 @@ async function migrateItemTypes(migrateSystemCompendiums) {
   // Apply the original locked status for the packs
   for await (const [collection, lock] of Object.entries(wasLocked)) {
     const pack = await game.packs.get(collection);
-    pack.configure({ locked: false });
+    pack.configure({ locked: lock });
   }
 }
 
@@ -970,7 +970,7 @@ async function migrateItemTypes(migrateSystemCompendiums) {
  * @param {object} item        Item to migrate.
  */
 async function _migrateItemType(item) {
-  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item.type))) return;
+  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item?.type))) return;
 
   console.log(`Migrating item ${item.name} with deprecated type ${item.type}`);
 
@@ -983,14 +983,14 @@ async function _migrateItemType(item) {
     const updates = {
       "system.critical": {
         threshold: item?.system?.critical?.threshold ?? null,
-        damage: item?.system?.critical?.damage ?? "",
+        damage: item?.system?.critical?.damage ?? ""
       },
       "system.save": {
         ability: item?.system?.save?.ability ?? "",
         dc: item?.system?.save?.dc ?? 0,
-        scaling: item?.system?.save?.scaling ?? "power",
+        scaling: item?.system?.save?.scaling ?? "power"
       },
-      "system.type": CONFIG.SW5E.featLikeItemsMigration[item.type],
+      "system.type": CONFIG.SW5E.featLikeItemsMigration[item.type]
     };
 
     switch (item.type) {
@@ -1003,28 +1003,6 @@ async function _migrateItemType(item) {
     console.log(`Migrating feat-like Item document ${item.name}`);
     await item.update(updates);
     await item.update({ type: "feat" });
-  }
-}
-
-/* -------------------------------------------- */
-
-/**
- * Update an actor's item's modifications to new standard
- * @param {object} actor    The data object for an Actor
- * @param {object} items    The data object for the updated Items
- * @returns {object}        The updated Actor
- */
-async function _updateActorModificationData(actor, items) {
-  const liveActor = game.actors.get(actor._id);
-  for (const item of items) {
-    for (const mod of item?.system?.modify?.items || []) {
-      if (!mod.id && mod.system) {
-        const sysdata = foundry.utils.duplicate(mod.system);
-        sysdata.modifying.id = item._id;
-        const result = await liveActor.createEmbeddedDocuments("Item", [sysdata]);
-        if (result.length) mod.id = result[0].id;
-      }
-    }
   }
 }
 

@@ -1,41 +1,31 @@
-const gulp = require("gulp");
-const less = require("gulp-less");
+import gulp from "gulp";
 
-/* ----------------------------------------- */
-/*  Compile LESS
-/* ----------------------------------------- */
+import * as css from "./utils/css.mjs";
+import * as javascript from "./utils/javascript.mjs";
+import * as packs from "./utils/packs.mjs";
 
-const SW5E_LESS = ["less/**/*.less"];
 
-function compileLESS() {
-  return gulp.src("less/original/sw5e.less").pipe(less()).pipe(gulp.dest("./"));
-}
+// Default export - build CSS
+export default gulp.series(css.compile);
 
-function compileGlobalLess() {
-  return gulp.src("less/update/sw5e-global.less").pipe(less()).pipe(gulp.dest("./"));
-}
+// CSS compiling and watch for updates
+export const watchUpdates = gulp.series(
+  gulp.parallel(css.compile),
+  css.watchUpdates
+);
 
-function compileLightLess() {
-  return gulp.src("less/update/sw5e-light.less").pipe(less()).pipe(gulp.dest("./"));
-}
+// Javascript compiling & linting
+export const buildJS = gulp.series(javascript.compile);
+export const lint = gulp.series(javascript.lint);
 
-function compileDarkLess() {
-  return gulp.src("less/update/sw5e-dark.less").pipe(less()).pipe(gulp.dest("./"));
-}
+// Compendium pack management
+export const cleanPacks = gulp.series(packs.clean);
+export const compilePacks = gulp.series(packs.compile);
+export const extractPacks = gulp.series(packs.extract);
 
-const css = gulp.series(compileLESS, compileGlobalLess, compileLightLess, compileDarkLess);
-
-/* ----------------------------------------- */
-/*  Watch Updates
-/* ----------------------------------------- */
-
-function watchUpdates() {
-  gulp.watch(SW5E_LESS, css);
-}
-
-/* ----------------------------------------- */
-/*  Export Tasks
-/* ----------------------------------------- */
-
-exports.default = css;
-gulp.parallel(css), (exports.watch = gulp.series(gulp.parallel(css), watchUpdates));
+// Build all artifacts
+export const buildAll = gulp.parallel(
+  css.compile,
+  javascript.compile,
+  packs.compile
+);

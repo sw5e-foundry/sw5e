@@ -1,0 +1,90 @@
+{
+  "_id": "hiImvWE5BU0Ef9iK",
+  "name": "Mutagenic Transformation",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-ARCH-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:21.8921407+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-mutagenic_transformation.source-archetype.sourceName-geneticist_pursuit.level-6"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Geneticist Pursuit:</strong> 6th level</em></p>\n<p>When you target yourself with your Critical Analysis feature, you can choose to undergo a mutagenic transformation. Your form shifts, exaggerating and strengthening your geneticist discoveries for 1 hour. You gain the following benefits:</p>\n<ul>\n<li>You can attack twice, instead of once, whenever you take the Attack action on your turn.</li>\n<li>Your Strength score becomes equal to your Critical Analysis score.</li>\n<li>You gain a bonus to your AC equal to half your Critical Analysis ability modifer (minimum of +1) if it doesn't already include that modifier.</li>\n</ul>\n<p>You can end this effect early on your turn as a bonus action. This effect ends early if you are incapacitated or die. You can use this feature twice. You regain all expended uses of it when you finish a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Geneticist Pursuit) 6",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "hour"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 2,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957987,
+    "modifiedTime": 1678471090720,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

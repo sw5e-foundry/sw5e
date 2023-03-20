@@ -1,0 +1,95 @@
+{
+  "_id": "5Lmr5vBJS3s6ma6H",
+  "name": "Sarlaac Sweep",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/GRDN-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:21.7891744+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-sarlaac_sweep.source-archetype.sourceName-shii_cho_form.level-15"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Shii-Cho Form:</strong> 15th level</em></p>\n<p>When a creature moves to within 5 feet of you, you can use your reaction to make a melee weapon attack against that creature. If the attack hits, you can attempt to damage another creature within 5 feet of the original target and within your reach. If the original attack roll would hit the second creature, it takes damage equal to your Strength or Dexterity modifier (your choice). The damage is of the same type dealt by the original attack.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Guardian (Shii-Cho Form) 15",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "@mod",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Guardian"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957361,
+    "modifiedTime": 1678471090691,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

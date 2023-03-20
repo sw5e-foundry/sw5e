@@ -218,205 +218,205 @@ SW5E.weaponProficienciesMap = {
  * @enum {string}
  **/
 SW5E.weaponIds = {
-  "grenadelauncher": "sw5e.blasters.1PtYUVAzIi5e2x4H",
-  "lightpistol": "sw5e.blasters.3MuBVRCfB4j2pmm1",
-  "compoundbow": "sw5e.blasters.45PDLB373AvNUyJT",
-  "ionpistol": "sw5e.blasters.4CdI8yfutf7ZggfY",
-  "cryorifle": "sw5e.blasters.4Jw4d9459nFSSsUF",
-  "wristrifle": "sw5e.blasters.4j1MM03ja8KDnRU2",
-  "incineratorrifle": "sw5e.blasters.66PqJG2lNxMNCg5C",
-  "heavypistol": "sw5e.blasters.6S2Lb686mrKTQMTp",
-  "handblaster": "sw5e.blasters.6aTkk5EqFsVKECbn",
-  "disruptorpistol": "sw5e.blasters.7d9jf8kTjKtzIals",
-  "sonicpistol": "sw5e.blasters.8EKfBUh1sNYcdyxQ",
+  grenadelauncher: "sw5e.blasters.1PtYUVAzIi5e2x4H",
+  lightpistol: "sw5e.blasters.3MuBVRCfB4j2pmm1",
+  compoundbow: "sw5e.blasters.45PDLB373AvNUyJT",
+  ionpistol: "sw5e.blasters.4CdI8yfutf7ZggfY",
+  cryorifle: "sw5e.blasters.4Jw4d9459nFSSsUF",
+  wristrifle: "sw5e.blasters.4j1MM03ja8KDnRU2",
+  incineratorrifle: "sw5e.blasters.66PqJG2lNxMNCg5C",
+  heavypistol: "sw5e.blasters.6S2Lb686mrKTQMTp",
+  handblaster: "sw5e.blasters.6aTkk5EqFsVKECbn",
+  disruptorpistol: "sw5e.blasters.7d9jf8kTjKtzIals",
+  sonicpistol: "sw5e.blasters.8EKfBUh1sNYcdyxQ",
   "bolt-thrower": "sw5e.blasters.9VhsUL3z9o62lUsT",
-  "disruptorcarbine": "sw5e.blasters.9ayhGXQJLdIiaTMF",
-  "nightstingerrifle": "sw5e.blasters.9h8aYCXd9O2aJThy",
-  "lightningcarbine": "sw5e.blasters.Aq421AKVuVHZjFJQ",
-  "switchpistol": "sw5e.blasters.BF0DbpSuicX8qHhb",
-  "incineratorcarbine": "sw5e.blasters.BFsQzs9kgBwTWMzJ",
-  "huntingrifle": "sw5e.blasters.E1qrlNHZ9VtE0lky",
-  "incineratorpistol": "sw5e.blasters.EY3jaFiEsO9UzEz9",
-  "iws": "sw5e.blasters.EmpVpcgRewUPxdJr",
-  "ioncarbine": "sw5e.blasters.FJMwehrWtdagwsqn",
-  "energyslingshot": "sw5e.blasters.FZTA1E9Os0RE1p0k",
-  "revolver": "sw5e.blasters.Fd6o5uHTGQCNBQP3",
-  "shatterrifle": "sw5e.blasters.Ger4Tz2ZQHBsvIdD",
-  "stealthcarbine": "sw5e.blasters.Gq8Xo1CEp8m1HLEa",
-  "heavyslugpistol": "sw5e.blasters.HXyrCz4Kun53F4kK",
-  "sonicrifle": "sw5e.blasters.Iv36Kvf4Twtr0WQf",
-  "heavybowcaster": "sw5e.blasters.Jf8Or7nDFSHPic54",
-  "switchcannon": "sw5e.blasters.KO4QzzK90ddtTCeP",
-  "antimaterielrifle": "sw5e.blasters.LXfN4Frdg9Neip42",
-  "blasterrifle": "sw5e.blasters.Nww9kzfPy9D246fg",
-  "sentrygun": "sw5e.blasters.O2CMHIk0z1iv5rvq",
-  "switchcarbine": "sw5e.blasters.OZhhFSXfVaTxlvMy",
-  "vaporprojector": "sw5e.blasters.PhJpjuTtS0E2dR5M",
-  "cryocarbine": "sw5e.blasters.PkRIfISeSwgqXOBf",
-  "blastercarbine": "sw5e.blasters.PoGaGtinF97I9fQ0",
-  "sniperrifle": "sw5e.blasters.Q45OrdLhguL9OWNU",
-  "switchrifle": "sw5e.blasters.TGpxeKGTfalYK5SA",
-  "heavyshotgun": "sw5e.blasters.TSOf2xTMf792t4af",
-  "wristblaster": "sw5e.blasters.TlrVX9tsQfnzmyo6",
-  "switchsniper": "sw5e.blasters.UZqJABEq0NUKU2Uf",
-  "scattergun": "sw5e.blasters.Ul4lKHTI2TocCqBm",
-  "slugthrower": "sw5e.blasters.UnQu0tKV6bRU8fcE",
-  "holdout": "sw5e.blasters.V7uuRrAqCINlkgFk",
-  "shoulderblaster": "sw5e.blasters.W9dZwJA9S6GuupCx",
-  "torpedolauncher": "sw5e.blasters.WUI1B0CvfWXMUABR",
-  "bowcaster": "sw5e.blasters.WeVSJ3sJaeIAnnvc",
-  "heavycarbine": "sw5e.blasters.YK7Nzdui6FW7dNjE",
-  "smartpistol": "sw5e.blasters.Z3zN5LhPEBnA2gB3",
-  "scatterblaster": "sw5e.blasters.aEhiMrl8fQ4uE3od",
-  "ionrifle": "sw5e.blasters.aXCB2Uap09IIAV0p",
-  "cryopistol": "sw5e.blasters.btSGBSe1oW54ekiK",
-  "shortbow": "sw5e.blasters.bwGON0wPMPw4L2QJ",
-  "handbkg": "sw5e.blasters.dHVGZmcv4QblKIhU",
-  "beamrifle": "sw5e.blasters.eU07RkTEbHfAkaCn",
-  "soniccarbine": "sw5e.blasters.efeQYIZhTk6GGTv4",
-  "lightningrifle": "sw5e.blasters.es7oacLob9VulqVC",
-  "wristlauncher": "sw5e.blasters.fhQ3oxD0XojwKnVN",
-  "lightbow": "sw5e.blasters.gIGxUwvW06msv36V",
-  "radrifle": "sw5e.blasters.i1d3IODE5XVAeLuw",
-  "marksmanblaster": "sw5e.blasters.iY4iRHbLcx10OgRQ",
-  "mortarlauncher": "sw5e.blasters.jWIMqI3Wg3EJZjMv",
-  "handcannon": "sw5e.blasters.jeBtqq1xgKnDpqwC",
-  "tranquilizerrifle": "sw5e.blasters.kTknGaMyXROkwRvm",
-  "incineratorsniper": "sw5e.blasters.l1vS9YRrwQktdgbI",
-  "heavyblasterrifle": "sw5e.blasters.lawuC5DlTMgma6P8",
-  "energybow": "sw5e.blasters.lb1KS1SOtmf384Xv",
-  "flechettecannon": "sw5e.blasters.lzJCdT9fuPVW5S44",
-  "assaultcannon": "sw5e.blasters.mXu2wQEqg6czu3X1",
-  "lightslugpistol": "sw5e.blasters.md4uo61mzq3xBFh0",
-  "slugpistol": "sw5e.blasters.nFL3lIO5cZyGdi7h",
-  "rocketlauncher": "sw5e.blasters.pYsmiZ98tXTfdbt0",
-  "rocketrifle": "sw5e.blasters.q5JrhC2pyO64xhbu",
-  "blasterpistol": "sw5e.blasters.rz0YqUmRxFl79W0K",
-  "lightningpistol": "sw5e.blasters.tAzbTqCc6S6aeCvc",
-  "shotgun": "sw5e.blasters.twTqep64yEvD27WD",
-  "needler": "sw5e.blasters.tzlA3eYfQSOLVlUw",
-  "disruptorsniper": "sw5e.blasters.wQvskhxKbF3itdx8",
-  "arccaster": "sw5e.blasters.xGH5V5Dh3Xd8yRZr",
-  "disruptorrifle": "sw5e.blasters.yOsWMLHMEtzucKDC",
-  "shatterpistol": "sw5e.blasters.yVgru3dfq2S3HzVB",
-  "cyclerrifle": "sw5e.blasters.yaFeefXN5oCNhZns",
-  "afixedrifle": "sw5e.blasters.ZKM6kkOgHXGnXMgi",
-  "railgun": "sw5e.blasters.zuPhwZGH0j2ovgG7",
+  disruptorcarbine: "sw5e.blasters.9ayhGXQJLdIiaTMF",
+  nightstingerrifle: "sw5e.blasters.9h8aYCXd9O2aJThy",
+  lightningcarbine: "sw5e.blasters.Aq421AKVuVHZjFJQ",
+  switchpistol: "sw5e.blasters.BF0DbpSuicX8qHhb",
+  incineratorcarbine: "sw5e.blasters.BFsQzs9kgBwTWMzJ",
+  huntingrifle: "sw5e.blasters.E1qrlNHZ9VtE0lky",
+  incineratorpistol: "sw5e.blasters.EY3jaFiEsO9UzEz9",
+  iws: "sw5e.blasters.EmpVpcgRewUPxdJr",
+  ioncarbine: "sw5e.blasters.FJMwehrWtdagwsqn",
+  energyslingshot: "sw5e.blasters.FZTA1E9Os0RE1p0k",
+  revolver: "sw5e.blasters.Fd6o5uHTGQCNBQP3",
+  shatterrifle: "sw5e.blasters.Ger4Tz2ZQHBsvIdD",
+  stealthcarbine: "sw5e.blasters.Gq8Xo1CEp8m1HLEa",
+  heavyslugpistol: "sw5e.blasters.HXyrCz4Kun53F4kK",
+  sonicrifle: "sw5e.blasters.Iv36Kvf4Twtr0WQf",
+  heavybowcaster: "sw5e.blasters.Jf8Or7nDFSHPic54",
+  switchcannon: "sw5e.blasters.KO4QzzK90ddtTCeP",
+  antimaterielrifle: "sw5e.blasters.LXfN4Frdg9Neip42",
+  blasterrifle: "sw5e.blasters.Nww9kzfPy9D246fg",
+  sentrygun: "sw5e.blasters.O2CMHIk0z1iv5rvq",
+  switchcarbine: "sw5e.blasters.OZhhFSXfVaTxlvMy",
+  vaporprojector: "sw5e.blasters.PhJpjuTtS0E2dR5M",
+  cryocarbine: "sw5e.blasters.PkRIfISeSwgqXOBf",
+  blastercarbine: "sw5e.blasters.PoGaGtinF97I9fQ0",
+  sniperrifle: "sw5e.blasters.Q45OrdLhguL9OWNU",
+  switchrifle: "sw5e.blasters.TGpxeKGTfalYK5SA",
+  heavyshotgun: "sw5e.blasters.TSOf2xTMf792t4af",
+  wristblaster: "sw5e.blasters.TlrVX9tsQfnzmyo6",
+  switchsniper: "sw5e.blasters.UZqJABEq0NUKU2Uf",
+  scattergun: "sw5e.blasters.Ul4lKHTI2TocCqBm",
+  slugthrower: "sw5e.blasters.UnQu0tKV6bRU8fcE",
+  holdout: "sw5e.blasters.V7uuRrAqCINlkgFk",
+  shoulderblaster: "sw5e.blasters.W9dZwJA9S6GuupCx",
+  torpedolauncher: "sw5e.blasters.WUI1B0CvfWXMUABR",
+  bowcaster: "sw5e.blasters.WeVSJ3sJaeIAnnvc",
+  heavycarbine: "sw5e.blasters.YK7Nzdui6FW7dNjE",
+  smartpistol: "sw5e.blasters.Z3zN5LhPEBnA2gB3",
+  scatterblaster: "sw5e.blasters.aEhiMrl8fQ4uE3od",
+  ionrifle: "sw5e.blasters.aXCB2Uap09IIAV0p",
+  cryopistol: "sw5e.blasters.btSGBSe1oW54ekiK",
+  shortbow: "sw5e.blasters.bwGON0wPMPw4L2QJ",
+  handbkg: "sw5e.blasters.dHVGZmcv4QblKIhU",
+  beamrifle: "sw5e.blasters.eU07RkTEbHfAkaCn",
+  soniccarbine: "sw5e.blasters.efeQYIZhTk6GGTv4",
+  lightningrifle: "sw5e.blasters.es7oacLob9VulqVC",
+  wristlauncher: "sw5e.blasters.fhQ3oxD0XojwKnVN",
+  lightbow: "sw5e.blasters.gIGxUwvW06msv36V",
+  radrifle: "sw5e.blasters.i1d3IODE5XVAeLuw",
+  marksmanblaster: "sw5e.blasters.iY4iRHbLcx10OgRQ",
+  mortarlauncher: "sw5e.blasters.jWIMqI3Wg3EJZjMv",
+  handcannon: "sw5e.blasters.jeBtqq1xgKnDpqwC",
+  tranquilizerrifle: "sw5e.blasters.kTknGaMyXROkwRvm",
+  incineratorsniper: "sw5e.blasters.l1vS9YRrwQktdgbI",
+  heavyblasterrifle: "sw5e.blasters.lawuC5DlTMgma6P8",
+  energybow: "sw5e.blasters.lb1KS1SOtmf384Xv",
+  flechettecannon: "sw5e.blasters.lzJCdT9fuPVW5S44",
+  assaultcannon: "sw5e.blasters.mXu2wQEqg6czu3X1",
+  lightslugpistol: "sw5e.blasters.md4uo61mzq3xBFh0",
+  slugpistol: "sw5e.blasters.nFL3lIO5cZyGdi7h",
+  rocketlauncher: "sw5e.blasters.pYsmiZ98tXTfdbt0",
+  rocketrifle: "sw5e.blasters.q5JrhC2pyO64xhbu",
+  blasterpistol: "sw5e.blasters.rz0YqUmRxFl79W0K",
+  lightningpistol: "sw5e.blasters.tAzbTqCc6S6aeCvc",
+  shotgun: "sw5e.blasters.twTqep64yEvD27WD",
+  needler: "sw5e.blasters.tzlA3eYfQSOLVlUw",
+  disruptorsniper: "sw5e.blasters.wQvskhxKbF3itdx8",
+  arccaster: "sw5e.blasters.xGH5V5Dh3Xd8yRZr",
+  disruptorrifle: "sw5e.blasters.yOsWMLHMEtzucKDC",
+  shatterpistol: "sw5e.blasters.yVgru3dfq2S3HzVB",
+  cyclerrifle: "sw5e.blasters.yaFeefXN5oCNhZns",
+  afixedrifle: "sw5e.blasters.ZKM6kkOgHXGnXMgi",
+  railgun: "sw5e.blasters.zuPhwZGH0j2ovgG7",
   "bo-rifle": "sw5e.blasters.AohJSYDPWfhsAqHM",
 
-  "sunsaber": "sw5e.lightweapons.0Mwf5lFw326kCXaP",
-  "splitsaber": "sw5e.lightweapons.2bOBHr15ltB32A46",
-  "broadsaber": "sw5e.lightweapons.58STrK1evawiWDxe",
-  "lightglaive": "sw5e.lightweapons.A2LrY6YdgNv4JL74",
-  "doubleshoto": "sw5e.lightweapons.AVDPyImR6l9E2JEi",
-  "sithsaber": "sw5e.lightweapons.AoO7yHMOrYlG67fa",
-  "lightring": "sw5e.lightweapons.T81gCX274rZCwcUF",
-  "sabergauntlet": "sw5e.lightweapons.QsWyd6ML0hMEavZT",
-  "lightfist": "sw5e.lightweapons.I0DFU813iysKiYCj",
-  "pikesaber": "sw5e.lightweapons.J0CdF65GSK1tlWr2",
-  "crosssaber": "sw5e.lightweapons.qfg0n9Yz1aZykKcM",
-  "retrosaber": "sw5e.lightweapons.L47ZLQgshik5X5ea",
-  "chainedlightdagger": "sw5e.lightweapons.LzWg0JRhhyedB9bi",
-  "lightsaberpike": "sw5e.lightweapons.NKFT1tIzfAAZHsHn",
-  "lightaxe": "sw5e.lightweapons.Ncx7KBa8wBn9KztD",
-  "saberspear": "sw5e.lightweapons.NvHrxWiR8wiUeEhO",
-  "lightclub": "sw5e.lightweapons.OJmYglDcsfSbzuyK",
-  "lightblade": "sw5e.lightweapons.QYOc47JL2U2OCFnM",
-  "bitesaber": "sw5e.lightweapons.R438U6CVFIcKQUj4",
-  "lightdagger": "sw5e.lightweapons.Ri7R7WyapR2CDE9S",
-  "shotosaber": "sw5e.lightweapons.RjQEzblykRC6Qn8E",
-  "blightsaber": "sw5e.lightweapons.SnVUeLTVdJyu6FLA",
-  "doublesaber": "sw5e.lightweapons.T3eHzkaSMMpLuBbr",
-  "lightsaber": "sw5e.lightweapons.TjTDmB8pIYSLkQvw",
-  "claymoresaber": "sw5e.lightweapons.Zy8993dOg0rOsXoS",
-  "crossguardsaber": "sw5e.lightweapons.TzLXYpz7oWOPvZQR",
-  "lightkatana": "sw5e.lightweapons.U1nekOEjEnj6zztB",
-  "greatsaber": "sw5e.lightweapons.mSZS5YaRrV0VEjDc",
-  "bustersaber": "sw5e.lightweapons.NcPqEgYr26QVzPrs",
-  "martiallightsaber": "sw5e.lightweapons.ZAvRnvSdsRnz9CGQ",
-  "phaseknife": "sw5e.lightweapons.ZaubWVQfostRNL56",
-  "warsaber": "sw5e.lightweapons.aJmL8jD1ZbmurHGe",
-  "sabermace": "sw5e.lightweapons.bfKWgOJsnedKQZMT",
-  "dualphasesaber": "sw5e.lightweapons.btN7KpXTNmkCSNCr",
-  "lightnodachi": "sw5e.lightweapons.dHlqXZ0f51MsuNO3",
-  "lightcutlass": "sw5e.lightweapons.f2Gs7BXTGRANoziO",
-  //"lightlance": "sw5e.lightweapons.g0oF8qIKUMSBKd98",
-  "saberwhip": "sw5e.lightweapons.gaFajnxdTGFGVOki",
-  "sicklesaber": "sw5e.lightweapons.gciw8MclS0kQ40S3",
-  "saberaxe": "sw5e.lightweapons.gj2EIKC9sEvLvc2E",
-  "brightsaber": "sw5e.lightweapons.izAkWbwSJEmH6NhS",
-  "lightbaton": "sw5e.lightweapons.l5JZlEuy2sDFmsxT",
-  "lightfoil": "sw5e.lightweapons.s3PoP2XP6eNKibCh",
-  "wristsaber": "sw5e.lightweapons.tct3YIDnft6YS1zm",
-  "guardshoto": "sw5e.lightweapons.xYrgfBXhWqh7jsU5",
-  "saberstaff": "sw5e.lightweapons.8VjKAKu1UfvGU3t5",
+  sunsaber: "sw5e.lightweapons.0Mwf5lFw326kCXaP",
+  splitsaber: "sw5e.lightweapons.2bOBHr15ltB32A46",
+  broadsaber: "sw5e.lightweapons.58STrK1evawiWDxe",
+  lightglaive: "sw5e.lightweapons.A2LrY6YdgNv4JL74",
+  doubleshoto: "sw5e.lightweapons.AVDPyImR6l9E2JEi",
+  sithsaber: "sw5e.lightweapons.AoO7yHMOrYlG67fa",
+  lightring: "sw5e.lightweapons.T81gCX274rZCwcUF",
+  sabergauntlet: "sw5e.lightweapons.QsWyd6ML0hMEavZT",
+  lightfist: "sw5e.lightweapons.I0DFU813iysKiYCj",
+  pikesaber: "sw5e.lightweapons.J0CdF65GSK1tlWr2",
+  crosssaber: "sw5e.lightweapons.qfg0n9Yz1aZykKcM",
+  retrosaber: "sw5e.lightweapons.L47ZLQgshik5X5ea",
+  chainedlightdagger: "sw5e.lightweapons.LzWg0JRhhyedB9bi",
+  lightsaberpike: "sw5e.lightweapons.NKFT1tIzfAAZHsHn",
+  lightaxe: "sw5e.lightweapons.Ncx7KBa8wBn9KztD",
+  saberspear: "sw5e.lightweapons.NvHrxWiR8wiUeEhO",
+  lightclub: "sw5e.lightweapons.OJmYglDcsfSbzuyK",
+  lightblade: "sw5e.lightweapons.QYOc47JL2U2OCFnM",
+  bitesaber: "sw5e.lightweapons.R438U6CVFIcKQUj4",
+  lightdagger: "sw5e.lightweapons.Ri7R7WyapR2CDE9S",
+  shotosaber: "sw5e.lightweapons.RjQEzblykRC6Qn8E",
+  blightsaber: "sw5e.lightweapons.SnVUeLTVdJyu6FLA",
+  doublesaber: "sw5e.lightweapons.T3eHzkaSMMpLuBbr",
+  lightsaber: "sw5e.lightweapons.TjTDmB8pIYSLkQvw",
+  claymoresaber: "sw5e.lightweapons.Zy8993dOg0rOsXoS",
+  crossguardsaber: "sw5e.lightweapons.TzLXYpz7oWOPvZQR",
+  lightkatana: "sw5e.lightweapons.U1nekOEjEnj6zztB",
+  greatsaber: "sw5e.lightweapons.mSZS5YaRrV0VEjDc",
+  bustersaber: "sw5e.lightweapons.NcPqEgYr26QVzPrs",
+  martiallightsaber: "sw5e.lightweapons.ZAvRnvSdsRnz9CGQ",
+  phaseknife: "sw5e.lightweapons.ZaubWVQfostRNL56",
+  warsaber: "sw5e.lightweapons.aJmL8jD1ZbmurHGe",
+  sabermace: "sw5e.lightweapons.bfKWgOJsnedKQZMT",
+  dualphasesaber: "sw5e.lightweapons.btN7KpXTNmkCSNCr",
+  lightnodachi: "sw5e.lightweapons.dHlqXZ0f51MsuNO3",
+  lightcutlass: "sw5e.lightweapons.f2Gs7BXTGRANoziO",
+  // "lightlance": "sw5e.lightweapons.g0oF8qIKUMSBKd98",
+  saberwhip: "sw5e.lightweapons.gaFajnxdTGFGVOki",
+  sicklesaber: "sw5e.lightweapons.gciw8MclS0kQ40S3",
+  saberaxe: "sw5e.lightweapons.gj2EIKC9sEvLvc2E",
+  brightsaber: "sw5e.lightweapons.izAkWbwSJEmH6NhS",
+  lightbaton: "sw5e.lightweapons.l5JZlEuy2sDFmsxT",
+  lightfoil: "sw5e.lightweapons.s3PoP2XP6eNKibCh",
+  wristsaber: "sw5e.lightweapons.tct3YIDnft6YS1zm",
+  guardshoto: "sw5e.lightweapons.xYrgfBXhWqh7jsU5",
+  saberstaff: "sw5e.lightweapons.8VjKAKu1UfvGU3t5",
 
-  "warsword": "sw5e.vibroweapons.1l5wYDmKxsVtBh8C",
-  "techstaff": "sw5e.vibroweapons.1yjNZ2sexhgtLTJd",
-  "stungauntlet": "sw5e.vibroweapons.2HU5GIeXszOFsdzz",
-  "doubleblade": "sw5e.vibroweapons.2JAikVfIqqfVnz89",
-  "mancatcher": "sw5e.vibroweapons.2NpgNbbZii4hBxnf",
-  "disguisedblade": "sw5e.vibroweapons.2hh7rbRe2M7NtsSA",
-  "vibroknife": "sw5e.vibroweapons.3kUGRPNz1ZGoyroy",
-  "vibrodagger": "sw5e.vibroweapons.4NC3GFIB6fkAFode",
-  "vibromace": "sw5e.vibroweapons.4nhExqMbBBc43yEg",
-  "vibrotonfa": "sw5e.vibroweapons.51SEwkiAyEyNxepE",
-  "bolas": "sw5e.vibroweapons.9aZ7pxuQ53FSSln2",
-  "vibroshield": "sw5e.vibroweapons.AAPFz1h7zavJtNLT",
-  "vibrowhip": "sw5e.vibroweapons.DMhK05ya9IaoRaqn",
-  "electroprod": "sw5e.vibroweapons.DPM9vkX71mJqu56S",
-  "net": "sw5e.vibroweapons.E4yr74pank6zL4EM",
-  "echostaff": "sw5e.vibroweapons.EkHc4LJawI0MkZTt",
-  "vibroglaive": "sw5e.vibroweapons.FSHBcQtY54JJeRVj",
-  "electrovoulge": "sw5e.vibroweapons.GHNSNfGwYy5M7PHf",
-  "vibronodachi": "sw5e.vibroweapons.GN53CEWMAFvR1LDU",
-  "techblade": "sw5e.vibroweapons.IAgE03WckaYyW18F",
-  "vibrorapier": "sw5e.vibroweapons.INgbfJEkeG2eTK2J",
-  "cesta": "sw5e.vibroweapons.IP3ZvnlOyVLRjonU",
-  "nervebaton": "sw5e.vibroweapons.IR2YLzSMJtarjPRB",
-  "wristblade": "sw5e.vibroweapons.ITIKI8cm8bfdwJtr",
-  "jaggedvibroblade": "sw5e.vibroweapons.Ix3zb5hgZ8gMlUCU",
-  "vibrohammer": "sw5e.vibroweapons.IyUZfO6To2YpdRAc",
-  "techaxe": "sw5e.vibroweapons.JJW1OllV82jC2RXG",
-  "warhat": "sw5e.vibroweapons.KLQK6pxmZljlmTH7",
-  "riotshocker": "sw5e.vibroweapons.Kdl45Yv1B8aV6wb1",
-  "hookedvibroblade": "sw5e.vibroweapons.LbuQt3wl3ddFby24",
-  "vibrosabre": "sw5e.vibroweapons.Lrx4vPikf9djuvi9",
-  "vibrostaff": "sw5e.vibroweapons.Nai38YsJRjYCUrtq",
-  "vibrokatana": "sw5e.vibroweapons.OAF3LCdfJBwqPDqX",
-  "vibrolance": "sw5e.vibroweapons.P5F9exDDwLqELvx8",
-  "chaineddagger": "sw5e.vibroweapons.QOlVIUthbalyOzx5",
-  "vibrocutlass": "sw5e.vibroweapons.WRORHupqx7zNC5c1",
-  "vibroblade": "sw5e.vibroweapons.UNkMw4mUkIIveQcJ",
-  "diresword": "sw5e.vibroweapons.VOLVlfFZ9WsDLAHO",
-  "chakram": "sw5e.vibroweapons.WFtEcb6twwwCCJw3",
-  "vibrocutter": "sw5e.vibroweapons.aOSObG115AyL94wE",
-  "direvibroblade": "sw5e.vibroweapons.abw8hrZisGBcNuyn",
-  "vibrobuster": "sw5e.vibroweapons.b7eKH5T3Djwod7fk",
-  "hiddenblade": "sw5e.vibroweapons.cmb8tlOI7j4wnfPi",
-  "atlatl": "sw5e.vibroweapons.d7T8eIMQVNYXFOU7",
-  "electrohammer": "sw5e.vibroweapons.eIrYhQUAWrtb7hge",
-  "doublesword": "sw5e.vibroweapons.eNRNDJTz4Qwp9cGJ",
-  "vibroflail": "sw5e.vibroweapons.ez4L9NPb3WxDn0vy",
-  "unarmedstrike": "sw5e.vibroweapons.fnPxFBccb0qvVPQW",
-  "electrostaff": "sw5e.vibroweapons.h05hvfoThlmCxW5H",
-  "vibrodart": "sw5e.vibroweapons.i9YbAYtjJ37eJv3K",
-  "vibroclaw": "sw5e.vibroweapons.j0sgK34TRKbyBprP",
-  "riotbaton": "sw5e.vibroweapons.mWlYuzFhHFek9NN2",
-  "neuronicwhip": "sw5e.vibroweapons.meWyezpYa3y8uRrl",
-  "vibroaxe": "sw5e.vibroweapons.o8JR5oLCQOYpP9Oa",
-  "vibrospear": "sw5e.vibroweapons.oS93z4sSFt0aidDI",
-  "vibroclaymore": "sw5e.vibroweapons.owrLUNZDefZk5dWY",
-  "electrowhip": "sw5e.vibroweapons.pTGzbu3OOCvWiC52",
-  "vibroknuckler": "sw5e.vibroweapons.rqVAzueP6PdG3h4D",
-  "vibropike": "sw5e.vibroweapons.rsn8G4aAxpu0gJBH",
-  "disruptorshiv": "sw5e.vibroweapons.sG5tznTOdE50BvDE",
-  "vibrobattleaxe": "sw5e.vibroweapons.sJOPfGy0XqCOFq1n",
-  "electrobaton": "sw5e.vibroweapons.syMf22lyVB0OTV7V",
-  "vibrobaton": "sw5e.vibroweapons.t4GxMD52v7myAi41",
-  "vibrosword": "sw5e.vibroweapons.u1t2YqPQSOMWPQbs",
-  "vibrostiletto": "sw5e.vibroweapons.vaNoEh1SebpPzEtd",
-  "shockwhip": "sw5e.vibroweapons.wmMxWXgZdlJ8SLXe"
+  warsword: "sw5e.vibroweapons.1l5wYDmKxsVtBh8C",
+  techstaff: "sw5e.vibroweapons.1yjNZ2sexhgtLTJd",
+  stungauntlet: "sw5e.vibroweapons.2HU5GIeXszOFsdzz",
+  doubleblade: "sw5e.vibroweapons.2JAikVfIqqfVnz89",
+  mancatcher: "sw5e.vibroweapons.2NpgNbbZii4hBxnf",
+  disguisedblade: "sw5e.vibroweapons.2hh7rbRe2M7NtsSA",
+  vibroknife: "sw5e.vibroweapons.3kUGRPNz1ZGoyroy",
+  vibrodagger: "sw5e.vibroweapons.4NC3GFIB6fkAFode",
+  vibromace: "sw5e.vibroweapons.4nhExqMbBBc43yEg",
+  vibrotonfa: "sw5e.vibroweapons.51SEwkiAyEyNxepE",
+  bolas: "sw5e.vibroweapons.9aZ7pxuQ53FSSln2",
+  vibroshield: "sw5e.vibroweapons.AAPFz1h7zavJtNLT",
+  vibrowhip: "sw5e.vibroweapons.DMhK05ya9IaoRaqn",
+  electroprod: "sw5e.vibroweapons.DPM9vkX71mJqu56S",
+  net: "sw5e.vibroweapons.E4yr74pank6zL4EM",
+  echostaff: "sw5e.vibroweapons.EkHc4LJawI0MkZTt",
+  vibroglaive: "sw5e.vibroweapons.FSHBcQtY54JJeRVj",
+  electrovoulge: "sw5e.vibroweapons.GHNSNfGwYy5M7PHf",
+  vibronodachi: "sw5e.vibroweapons.GN53CEWMAFvR1LDU",
+  techblade: "sw5e.vibroweapons.IAgE03WckaYyW18F",
+  vibrorapier: "sw5e.vibroweapons.INgbfJEkeG2eTK2J",
+  cesta: "sw5e.vibroweapons.IP3ZvnlOyVLRjonU",
+  nervebaton: "sw5e.vibroweapons.IR2YLzSMJtarjPRB",
+  wristblade: "sw5e.vibroweapons.ITIKI8cm8bfdwJtr",
+  jaggedvibroblade: "sw5e.vibroweapons.Ix3zb5hgZ8gMlUCU",
+  vibrohammer: "sw5e.vibroweapons.IyUZfO6To2YpdRAc",
+  techaxe: "sw5e.vibroweapons.JJW1OllV82jC2RXG",
+  warhat: "sw5e.vibroweapons.KLQK6pxmZljlmTH7",
+  riotshocker: "sw5e.vibroweapons.Kdl45Yv1B8aV6wb1",
+  hookedvibroblade: "sw5e.vibroweapons.LbuQt3wl3ddFby24",
+  vibrosabre: "sw5e.vibroweapons.Lrx4vPikf9djuvi9",
+  vibrostaff: "sw5e.vibroweapons.Nai38YsJRjYCUrtq",
+  vibrokatana: "sw5e.vibroweapons.OAF3LCdfJBwqPDqX",
+  vibrolance: "sw5e.vibroweapons.P5F9exDDwLqELvx8",
+  chaineddagger: "sw5e.vibroweapons.QOlVIUthbalyOzx5",
+  vibrocutlass: "sw5e.vibroweapons.WRORHupqx7zNC5c1",
+  vibroblade: "sw5e.vibroweapons.UNkMw4mUkIIveQcJ",
+  diresword: "sw5e.vibroweapons.VOLVlfFZ9WsDLAHO",
+  chakram: "sw5e.vibroweapons.WFtEcb6twwwCCJw3",
+  vibrocutter: "sw5e.vibroweapons.aOSObG115AyL94wE",
+  direvibroblade: "sw5e.vibroweapons.abw8hrZisGBcNuyn",
+  vibrobuster: "sw5e.vibroweapons.b7eKH5T3Djwod7fk",
+  hiddenblade: "sw5e.vibroweapons.cmb8tlOI7j4wnfPi",
+  atlatl: "sw5e.vibroweapons.d7T8eIMQVNYXFOU7",
+  electrohammer: "sw5e.vibroweapons.eIrYhQUAWrtb7hge",
+  doublesword: "sw5e.vibroweapons.eNRNDJTz4Qwp9cGJ",
+  vibroflail: "sw5e.vibroweapons.ez4L9NPb3WxDn0vy",
+  unarmedstrike: "sw5e.vibroweapons.fnPxFBccb0qvVPQW",
+  electrostaff: "sw5e.vibroweapons.h05hvfoThlmCxW5H",
+  vibrodart: "sw5e.vibroweapons.i9YbAYtjJ37eJv3K",
+  vibroclaw: "sw5e.vibroweapons.j0sgK34TRKbyBprP",
+  riotbaton: "sw5e.vibroweapons.mWlYuzFhHFek9NN2",
+  neuronicwhip: "sw5e.vibroweapons.meWyezpYa3y8uRrl",
+  vibroaxe: "sw5e.vibroweapons.o8JR5oLCQOYpP9Oa",
+  vibrospear: "sw5e.vibroweapons.oS93z4sSFt0aidDI",
+  vibroclaymore: "sw5e.vibroweapons.owrLUNZDefZk5dWY",
+  electrowhip: "sw5e.vibroweapons.pTGzbu3OOCvWiC52",
+  vibroknuckler: "sw5e.vibroweapons.rqVAzueP6PdG3h4D",
+  vibropike: "sw5e.vibroweapons.rsn8G4aAxpu0gJBH",
+  disruptorshiv: "sw5e.vibroweapons.sG5tznTOdE50BvDE",
+  vibrobattleaxe: "sw5e.vibroweapons.sJOPfGy0XqCOFq1n",
+  electrobaton: "sw5e.vibroweapons.syMf22lyVB0OTV7V",
+  vibrobaton: "sw5e.vibroweapons.t4GxMD52v7myAi41",
+  vibrosword: "sw5e.vibroweapons.u1t2YqPQSOMWPQbs",
+  vibrostiletto: "sw5e.vibroweapons.vaNoEh1SebpPzEtd",
+  shockwhip: "sw5e.vibroweapons.wmMxWXgZdlJ8SLXe"
 };
 
 /* -------------------------------------------- */
@@ -951,16 +951,6 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
- * TODO: Remove this once they are assimilated under feat types and subtypes
- * Item types that behave simillar to "feat".
- * @enum {string}
- */
-SW5E.featLikeItems = {
-  feat: "ITEM.TypeFeat",
-  maneuver: "ITEM.TypeManeuver"
-}
-
-/**
  * Migration data for old 'feat-like items'.
  * @enum {object}
  * @property {string} value       system.type.value data after migration
@@ -994,15 +984,15 @@ SW5E.featLikeItemsMigration = {
   venture: {
     value: "deployment",
     subtype: "venture"
-  },
-}
+  }
+};
 
 /*
  * List of deprecated item types
  */
 SW5E.deprecatedItemTypes = [
   ...Object.keys(SW5E.featLikeItemsMigration),
-  "starship",
+  "starship"
 ];
 
 /**
@@ -1016,7 +1006,7 @@ SW5E.inventoryItems = [
   "backpack",
   "modification",
   "loot",
-  "starshipmod",
+  "starshipmod"
 ];
 
 /**
@@ -1028,7 +1018,7 @@ SW5E.classItems = [
   "class",
   "deployment",
   "starshipsize",
-  "species",
+  "species"
 ];
 
 /* -------------------------------------------- */
@@ -1052,28 +1042,34 @@ SW5E.featureTypes = {
   class: {
     label: "SW5E.Feature.Class",
     subtypes: {
-      artificerInfusion: "SW5E.ClassFeature.ArtificerInfusion",
-      channelDivinity: "SW5E.ClassFeature.ChannelDivinity",
-      defensiveTactic: "SW5E.ClassFeature.DefensiveTactic",
-      eldritchInvocation: "SW5E.ClassFeature.EldritchInvocation",
-      elementalDiscipline: "SW5E.ClassFeature.ElementalDiscipline",
-      huntersPrey: "SW5E.ClassFeature.HuntersPrey",
-      ki: "SW5E.ClassFeature.Ki",
-      maneuver: "SW5E.ClassFeature.Maneuver",
-      metamagic: "SW5E.ClassFeature.Metamagic",
+      berserkerInvocation: "SW5E.ClassFeature.BerserkerInstinct",
+      consularForceAffinity: "SW5E.ClassFeature.ConsularForceAffinity",
+      consularInvocation: "SW5E.ClassFeature.ConsularFEC",
+      engineerInvocation: "SW5E.ClassFeature.EngineerModification",
+      fighterInvocation: "SW5E.ClassFeature.FighterStrategy",
+      guardianInvocation: "SW5E.ClassFeature.GuardianAura",
+      guardianCTF: "SW5E.ClassFeature.GuardianCTF",
+      monkFocus: "SW5E.ClassFeature.MonkFocus",
+      monkInvocation: "SW5E.ClassFeature.MonkVow",
       multiattack: "SW5E.ClassFeature.Multiattack",
-      pact: "SW5E.ClassFeature.PactBoon",
-      psionicPower: "SW5E.ClassFeature.PsionicPower",
-      rune: "SW5E.ClassFeature.Rune",
-      superiorHuntersDefense: "SW5E.ClassFeature.SuperiorHuntersDefense"
+      operativeInvocation: "SW5E.ClassFeature.OperativeExploit",
+      scholarInvocation: "SW5E.ClassFeature.ScholarDiscovery",
+      scoutInvocation: "SW5E.ClassFeature.ScoutRoutine",
+      sentinelInvocation: "SW5E.ClassFeature.SentinelIdeal",
+      sentinelFES: "SW5E.ClassFeature.SentinelFES"
     }
   },
   customizationOption: {
     label: "SW5E.Feature.CustomizationOption",
     subtypes: {
+      classImprovement: "SW5E.CustomizationOption.ClassImprovement",
       fightingMastery: "SW5E.CustomizationOption.FightingMastery",
       fightingStyle: "SW5E.CustomizationOption.FightingStyle",
       lightsaberForm: "SW5E.CustomizationOption.LightsaberForm",
+      multiclassImprovement: "SW5E.CustomizationOption.MulticlassImprovement",
+      splashclassImprovement: "SW5E.CustomizationOption.SplashclassImprovement",
+      weaponFocus: "SW5E.CustomizationOption.WeaponFocus",
+      weaponSupremacy: "SW5E.CustomizationOption.WeaponSupremacy"
     }
   },
   deployment: {
@@ -1092,8 +1088,8 @@ SW5E.featureTypes = {
     label: "SW5E.Feature.Starship",
     subtypes: {
       role: "SW5E.StarshipFeature.Role",
-      roleSpec: "SW5E.StarshipFeature.RoleSpecialization",
-      roleMast: "SW5E.StarshipFeature.RoleMastery",
+      roleSpecialization: "SW5E.StarshipFeature.RoleSpecialization",
+      roleMastery: "SW5E.StarshipFeature.RoleMastery"
     }
   },
   starshipAction: {
@@ -1101,7 +1097,7 @@ SW5E.featureTypes = {
     subtypes: {
       pilot: "SW5E.StarshipActionFeature.Pilot",
       crew: "SW5E.StarshipActionFeature.Crew",
-      passenger: "SW5E.StarshipActionFeature.Passenger",
+      passenger: "SW5E.StarshipActionFeature.Passenger"
     }
   },
   feat: {
@@ -1109,8 +1105,7 @@ SW5E.featureTypes = {
   }
 };
 preLocalize("featureTypes", { key: "label" });
-for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type)
-  preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
+for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type) preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
 
 /* -------------------------------------------- */
 
@@ -1218,7 +1213,7 @@ preLocalize("modificationTypes");
 
 /**
  * Enumerate the valid modification slots which are recognized by the system
- * @type {Object}
+ * @type {object}
  */
 SW5E.modificationSlots = {
   armor: {
@@ -1748,11 +1743,11 @@ SW5E.powerUpcastModes = ["always", "prepared"];
  * @enum {string}
  */
 SW5E.powerProgression = {
-  "none": "SW5E.PowerProgNone",
-  "full": "SW5E.PowerProgFull",
+  none: "SW5E.PowerProgNone",
+  full: "SW5E.PowerProgFull",
   "3/4": "SW5E.PowerProg3/4",
-  "half": "SW5E.PowerProgHalf",
-  "arch": "SW5E.PowerProgArch"
+  half: "SW5E.PowerProgHalf",
+  arch: "SW5E.PowerProgArch"
 };
 preLocalize("powerProgression");
 
@@ -1764,16 +1759,16 @@ preLocalize("powerProgression");
  */
 SW5E.powersKnown = {
   force: {
-    "full": [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40],
+    full: [0, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 28, 29, 31, 32, 34, 35, 37, 38, 39, 40],
     "3/4": [0, 7, 9, 11, 13, 15, 17, 18, 19, 21, 22, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35],
-    "half": [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30],
-    "arch": [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
+    half: [0, 5, 7, 9, 10, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 27, 28, 29, 30],
+    arch: [0, 0, 0, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25]
   },
   tech: {
-    "full": [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+    full: [0, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
     "3/4": [0, 0, 0, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
-    "half": [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-    "arch": [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    half: [0, 0, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    arch: [0, 0, 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   }
 };
 
@@ -1784,10 +1779,10 @@ SW5E.powersKnown = {
  * @type {number} progressionType[classLevel]
  */
 SW5E.powerPointsBase = {
-  "full": 4,
+  full: 4,
   "3/4": 3,
-  "half": 2,
-  "arch": 1
+  half: 2,
+  arch: 1
 };
 
 /* -------------------------------------------- */
@@ -1808,10 +1803,10 @@ SW5E.powerPointsBonus = {
  * @type {number[]} progressionType[classLevel]
  */
 SW5E.powerMaxLevel = {
-  "full": [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
+  full: [0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 9, 9],
   "3/4": [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7],
-  "half": [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
-  "arch": [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+  half: [0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5],
+  arch: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
 };
 
 /* -------------------------------------------- */
@@ -1821,10 +1816,10 @@ SW5E.powerMaxLevel = {
  * @type {number} progressionType[powerLevel]
  */
 SW5E.powerLimit = {
-  "full": 6,
+  full: 6,
   "3/4": 5,
-  "half": 4,
-  "arch": 4
+  half: 4,
+  arch: 4
 };
 
 /* -------------------------------------------- */
@@ -1917,11 +1912,11 @@ preLocalize("powerLevels");
 
 // TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
-/*
-// Power Scroll Compendium UUIDs
+/**
+ * Power Scroll Compendium UUIDs
  * Power scroll item ID within the `SW5E.sourcePacks` compendium for each level.
  * @enum {string}
- 
+
 SW5E.powerScrollIds = {
   0: "rQ6sO7HDWzqMhSI3",
   1: "9GSfMg0VOA2b4uFN",
@@ -2032,7 +2027,7 @@ SW5E.weaponStandardTypes = {
   siege: "SW5E.WeaponSiege",
   simpleB: "SW5E.WeaponSimpleB",
   simpleLW: "SW5E.WeaponSimpleLW",
-  simpleVW: "SW5E.WeaponSimpleVW",
+  simpleVW: "SW5E.WeaponSimpleVW"
 };
 preLocalize("weaponStandardTypes");
 
@@ -2090,7 +2085,7 @@ SW5E.physicalWeaponProperties = {
     name: "SW5E.WeaponPropertyEnh",
     full: "SW5E.WeaponPropertyEnhFull",
     desc: "SW5E.WeaponPropertyEnhDesc",
-    type: "Boolean",
+    type: "Boolean"
   }
 };
 preLocalize("physicalWeaponProperties", { keys: ["name", "full", "desc"] });
@@ -3169,112 +3164,112 @@ preLocalize("conditionTypes", { sort: true });
  * @enum {string}
  */
 SW5E.languages = {
-  "abyssin": "SW5E.LanguagesAbyssin",
-  "aleena": "SW5E.LanguagesAleena",
-  "antarian": "SW5E.LanguagesAntarian",
-  "anzellan": "SW5E.LanguagesAnzellan",
-  "aqualish": "SW5E.LanguagesAqualish",
-  "arconese": "SW5E.LanguagesArconese",
-  "ardennian": "SW5E.LanguagesArdennian",
-  "arkanian": "SW5E.LanguagesArkanian",
-  "balosur": "SW5E.LanguagesBalosur",
-  "barabel": "SW5E.LanguagesBarabel",
-  "basic": "SW5E.LanguagesBasic",
-  "besalisk": "SW5E.LanguagesBesalisk",
-  "binary": "SW5E.LanguagesBinary",
-  "bith": "SW5E.LanguagesBith",
-  "bocce": "SW5E.LanguagesBocce",
-  "bothese": "SW5E.LanguagesBothese",
-  "catharese": "SW5E.LanguagesCatharese",
-  "cerean": "SW5E.LanguagesCerean",
+  abyssin: "SW5E.LanguagesAbyssin",
+  aleena: "SW5E.LanguagesAleena",
+  antarian: "SW5E.LanguagesAntarian",
+  anzellan: "SW5E.LanguagesAnzellan",
+  aqualish: "SW5E.LanguagesAqualish",
+  arconese: "SW5E.LanguagesArconese",
+  ardennian: "SW5E.LanguagesArdennian",
+  arkanian: "SW5E.LanguagesArkanian",
+  balosur: "SW5E.LanguagesBalosur",
+  barabel: "SW5E.LanguagesBarabel",
+  basic: "SW5E.LanguagesBasic",
+  besalisk: "SW5E.LanguagesBesalisk",
+  binary: "SW5E.LanguagesBinary",
+  bith: "SW5E.LanguagesBith",
+  bocce: "SW5E.LanguagesBocce",
+  bothese: "SW5E.LanguagesBothese",
+  catharese: "SW5E.LanguagesCatharese",
+  cerean: "SW5E.LanguagesCerean",
   "chadra-fan": "SW5E.LanguagesChadra-Fan",
-  "chagri": "SW5E.LanguagesChagri",
-  "cheunh": "SW5E.LanguagesCheunh",
-  "chevin": "SW5E.LanguagesChevin",
-  "chironan": "SW5E.LanguagesChironan",
-  "clawdite": "SW5E.LanguagesClawdite",
-  "codruese": "SW5E.LanguagesCodruese",
-  "colicoid": "SW5E.LanguagesColicoid",
-  "dashadi": "SW5E.LanguagesDashadi",
-  "defel": "SW5E.LanguagesDefel",
-  "devaronese": "SW5E.LanguagesDevaronese",
-  "dosh": "SW5E.LanguagesDosh",
-  "draethos": "SW5E.LanguagesDraethos",
-  "durese": "SW5E.LanguagesDurese",
-  "dug": "SW5E.LanguagesDug",
-  "ewokese": "SW5E.LanguagesEwokese",
-  "falleen": "SW5E.LanguagesFalleen",
-  "felucianese": "SW5E.LanguagesFelucianese",
-  "gamorrese": "SW5E.LanguagesGamorrese",
-  "gand": "SW5E.LanguagesGand",
-  "geonosian": "SW5E.LanguagesGeonosian",
-  "givin": "SW5E.LanguagesGivin",
-  "gran": "SW5E.LanguagesGran",
-  "gungan": "SW5E.LanguagesGungan",
-  "hapan": "SW5E.LanguagesHapan",
-  "harchese": "SW5E.LanguagesHarchese",
-  "herglese": "SW5E.LanguagesHerglese",
-  "honoghran": "SW5E.LanguagesHonoghran",
-  "huttese": "SW5E.LanguagesHuttese",
-  "iktotchese": "SW5E.LanguagesIktotchese",
-  "ithorese": "SW5E.LanguagesIthorese",
-  "jawaese": "SW5E.LanguagesJawaese",
-  "kaleesh": "SW5E.LanguagesKaleesh",
-  "kaminoan": "SW5E.LanguagesKaminoan",
-  "karkaran": "SW5E.LanguagesKarkaran",
-  "keldor": "SW5E.LanguagesKelDor",
-  "kharan": "SW5E.LanguagesKharan",
-  "killik": "SW5E.LanguagesKillik",
-  "klatooinian": "SW5E.LanguagesKlatooinian",
-  "kubazian": "SW5E.LanguagesKubazian",
-  "kushiban": "SW5E.LanguagesKushiban",
-  "kyuzo": "SW5E.LanguagesKyuzo",
-  "lannik": "SW5E.LanguagesLannik",
-  "lasat": "SW5E.LanguagesLasat",
-  "lowickese": "SW5E.LanguagesLowickese",
-  "lurmese": "SW5E.LanguagesLurmese",
-  "mandoa": "SW5E.LanguagesMandoa",
-  "miralukese": "SW5E.LanguagesMiralukese",
-  "mirialan": "SW5E.LanguagesMirialan",
-  "moncal": "SW5E.LanguagesMonCal",
-  "mustafarian": "SW5E.LanguagesMustafarian",
-  "muun": "SW5E.LanguagesMuun",
-  "nautila": "SW5E.LanguagesNautila",
-  "ortolan": "SW5E.LanguagesOrtolan",
-  "pakpak": "SW5E.LanguagesPakPak",
-  "pyke": "SW5E.LanguagesPyke",
-  "quarrenese": "SW5E.LanguagesQuarrenese",
-  "rakata": "SW5E.LanguagesRakata",
-  "rattataki": "SW5E.LanguagesRattataki",
-  "rishii": "SW5E.LanguagesRishii",
-  "rodese": "SW5E.LanguagesRodese",
-  "ryn": "SW5E.LanguagesRyn",
-  "selkatha": "SW5E.LanguagesSelkatha",
-  "semblan": "SW5E.LanguagesSemblan",
-  "shistavanen": "SW5E.LanguagesShistavanen",
-  "shyriiwook": "SW5E.LanguagesShyriiwook",
-  "sith": "SW5E.LanguagesSith",
-  "squibbian": "SW5E.LanguagesSquibbian",
-  "sriluurian": "SW5E.LanguagesSriluurian",
+  chagri: "SW5E.LanguagesChagri",
+  cheunh: "SW5E.LanguagesCheunh",
+  chevin: "SW5E.LanguagesChevin",
+  chironan: "SW5E.LanguagesChironan",
+  clawdite: "SW5E.LanguagesClawdite",
+  codruese: "SW5E.LanguagesCodruese",
+  colicoid: "SW5E.LanguagesColicoid",
+  dashadi: "SW5E.LanguagesDashadi",
+  defel: "SW5E.LanguagesDefel",
+  devaronese: "SW5E.LanguagesDevaronese",
+  dosh: "SW5E.LanguagesDosh",
+  draethos: "SW5E.LanguagesDraethos",
+  durese: "SW5E.LanguagesDurese",
+  dug: "SW5E.LanguagesDug",
+  ewokese: "SW5E.LanguagesEwokese",
+  falleen: "SW5E.LanguagesFalleen",
+  felucianese: "SW5E.LanguagesFelucianese",
+  gamorrese: "SW5E.LanguagesGamorrese",
+  gand: "SW5E.LanguagesGand",
+  geonosian: "SW5E.LanguagesGeonosian",
+  givin: "SW5E.LanguagesGivin",
+  gran: "SW5E.LanguagesGran",
+  gungan: "SW5E.LanguagesGungan",
+  hapan: "SW5E.LanguagesHapan",
+  harchese: "SW5E.LanguagesHarchese",
+  herglese: "SW5E.LanguagesHerglese",
+  honoghran: "SW5E.LanguagesHonoghran",
+  huttese: "SW5E.LanguagesHuttese",
+  iktotchese: "SW5E.LanguagesIktotchese",
+  ithorese: "SW5E.LanguagesIthorese",
+  jawaese: "SW5E.LanguagesJawaese",
+  kaleesh: "SW5E.LanguagesKaleesh",
+  kaminoan: "SW5E.LanguagesKaminoan",
+  karkaran: "SW5E.LanguagesKarkaran",
+  keldor: "SW5E.LanguagesKelDor",
+  kharan: "SW5E.LanguagesKharan",
+  killik: "SW5E.LanguagesKillik",
+  klatooinian: "SW5E.LanguagesKlatooinian",
+  kubazian: "SW5E.LanguagesKubazian",
+  kushiban: "SW5E.LanguagesKushiban",
+  kyuzo: "SW5E.LanguagesKyuzo",
+  lannik: "SW5E.LanguagesLannik",
+  lasat: "SW5E.LanguagesLasat",
+  lowickese: "SW5E.LanguagesLowickese",
+  lurmese: "SW5E.LanguagesLurmese",
+  mandoa: "SW5E.LanguagesMandoa",
+  miralukese: "SW5E.LanguagesMiralukese",
+  mirialan: "SW5E.LanguagesMirialan",
+  moncal: "SW5E.LanguagesMonCal",
+  mustafarian: "SW5E.LanguagesMustafarian",
+  muun: "SW5E.LanguagesMuun",
+  nautila: "SW5E.LanguagesNautila",
+  ortolan: "SW5E.LanguagesOrtolan",
+  pakpak: "SW5E.LanguagesPakPak",
+  pyke: "SW5E.LanguagesPyke",
+  quarrenese: "SW5E.LanguagesQuarrenese",
+  rakata: "SW5E.LanguagesRakata",
+  rattataki: "SW5E.LanguagesRattataki",
+  rishii: "SW5E.LanguagesRishii",
+  rodese: "SW5E.LanguagesRodese",
+  ryn: "SW5E.LanguagesRyn",
+  selkatha: "SW5E.LanguagesSelkatha",
+  semblan: "SW5E.LanguagesSemblan",
+  shistavanen: "SW5E.LanguagesShistavanen",
+  shyriiwook: "SW5E.LanguagesShyriiwook",
+  sith: "SW5E.LanguagesSith",
+  squibbian: "SW5E.LanguagesSquibbian",
+  sriluurian: "SW5E.LanguagesSriluurian",
   "ssi-ruuvi": "SW5E.LanguagesSsi-ruuvi",
-  "sullustese": "SW5E.LanguagesSullustese",
-  "talzzi": "SW5E.LanguagesTalzzi",
-  "tarasinese": "SW5E.LanguagesTarasinese",
-  "thisspiasian": "SW5E.LanguagesThisspiasian",
-  "togorese": "SW5E.LanguagesTogorese",
-  "togruti": "SW5E.LanguagesTogruti",
-  "toydarian": "SW5E.LanguagesToydarian",
-  "tusken": "SW5E.LanguagesTusken",
+  sullustese: "SW5E.LanguagesSullustese",
+  talzzi: "SW5E.LanguagesTalzzi",
+  tarasinese: "SW5E.LanguagesTarasinese",
+  thisspiasian: "SW5E.LanguagesThisspiasian",
+  togorese: "SW5E.LanguagesTogorese",
+  togruti: "SW5E.LanguagesTogruti",
+  toydarian: "SW5E.LanguagesToydarian",
+  tusken: "SW5E.LanguagesTusken",
   "twi'leki": "SW5E.LanguagesTwileki",
-  "ugnaught": "SW5E.LanguagesUgnaught",
-  "umbaran": "SW5E.LanguagesUmbaran",
-  "utapese": "SW5E.LanguagesUtapese",
-  "verpine": "SW5E.LanguagesVerpine",
-  "vong": "SW5E.LanguagesVong",
-  "voss": "SW5E.LanguagesVoss",
-  "yevethan": "SW5E.LanguagesYevethan",
-  "zabraki": "SW5E.LanguagesZabraki",
-  "zygerrian": "SW5E.LanguagesZygerrian"
+  ugnaught: "SW5E.LanguagesUgnaught",
+  umbaran: "SW5E.LanguagesUmbaran",
+  utapese: "SW5E.LanguagesUtapese",
+  verpine: "SW5E.LanguagesVerpine",
+  vong: "SW5E.LanguagesVong",
+  voss: "SW5E.LanguagesVoss",
+  yevethan: "SW5E.LanguagesYevethan",
+  zabraki: "SW5E.LanguagesZabraki",
+  zygerrian: "SW5E.LanguagesZygerrian"
 };
 preLocalize("languages", { sort: true });
 
@@ -3811,8 +3806,8 @@ function patchConfig(key, fallbackKey, options) {
   /** @override */
   function toString() {
     const message =
-      `The value of CONFIG.SW5E.${key} has been changed to an object.` +
-      ` The former value can be acccessed from .${fallbackKey}.`;
+      `The value of CONFIG.SW5E.${key} has been changed to an object.`
+      + ` The former value can be acccessed from .${fallbackKey}.`;
     foundry.utils.logCompatibilityWarning(message, options);
     return this[fallbackKey];
   }

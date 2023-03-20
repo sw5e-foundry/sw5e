@@ -121,11 +121,10 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
   static #migrateCritical(source) {
     if (!("critical" in source)) return;
     if (source.critical?.damage === null) source.critical.damage = "";
-    if (typeof source.critical !== "object" || source.critical === null)
-      source.critical = {
-        threshold: null,
-        damage: ""
-      };
+    if (typeof source.critical !== "object" || source.critical === null) source.critical = {
+      threshold: null,
+      damage: ""
+    };
   }
 
   /* -------------------------------------------- */
@@ -141,6 +140,7 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
       if (source.save.dc === "") source.save.dc = null;
       else if (Number.isNumeric(source.save.dc)) source.save.dc = Number(source.save.dc);
     }
+    if (typeof source.save?.dc === "number" && Number.isNaN(source.save?.dc)) source.save.dc = null;
   }
 
   /* -------------------------------------------- */

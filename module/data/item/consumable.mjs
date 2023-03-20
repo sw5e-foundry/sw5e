@@ -4,7 +4,7 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import makeItemProperties from "./helpers.mjs";
+import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 /**
  * Data definition for Consumable items.
@@ -51,5 +51,13 @@ export default class ConsumableData extends SystemDataModel.mixin(
         label: "SW5E.ItemWeaponProperties"
       })
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static migrateData(source) {
+    super.migrateData(source);
+    migrateItemProperties(source.properties, CONFIG.SW5E.weaponProperties);
   }
 }

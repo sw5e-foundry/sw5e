@@ -188,21 +188,22 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     for (const uuid of ssDeploy.crew.items) {
       const actor = fromUuidSynchronous(uuid);
       if (!actor) continue;
-      const actions = actor.itemsTypes.feat.filter(item => item.system.type.value === "deployment");
-      for (const action of actions) {
-        const ctx = context.itemContext[action.id] ??= {};
+      const features = actor.itemTypes.feat.filter(item => item.system.type.value === "deployment");
+      for (const feature of features) {
+        const { quantity, uses, recharge, target, equipped } = feature.system;
+        const ctx = context.itemContext[feature.id] ??= {};
         ctx.active = ssDeploy.active.value === uuid;
-        ctx.isExpanded = this._expanded.has(item.id);
+        ctx.isExpanded = this._expanded.has(feature.id);
         ctx.hasUses = uses && uses.max > 0;
         ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
         ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
         ctx.hasTarget = !!target && !["none", ""].includes(target.type);
-        ctx.id = action.id;
+        ctx.id = feature.id;
         ctx.derived = uuid;
-        ctx.name = action.name;
+        ctx.name = feature.name;
         if (!this._filters.ssactions.has("activeDeploy")) ctx.name += ` (${actor.name})`;
-        if (item.system.type.subtype === "venture") categories.ssActions[`deployment.${venture}`].items.push(item);
-        else categories.ssActions.deployment.items.push(item);
+        if (feature.system.type.subtype === "venture") categories.ssactions.venture.items.push(feature);
+        else categories.ssactions.deployment.items.push(feature);
       }
     }
 

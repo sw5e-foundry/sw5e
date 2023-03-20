@@ -100,8 +100,8 @@ function isValidUUID(uuid) {
 
   // Compendium Document
   const packs = game.packs.set();
-  if ((parts.length >= 3) && (packs.has(`${parts[0]}.${parts[1]}`)) && foundry.data.validators.isValidId(parts[2])) {
-    parts = parts.slice(3);
+  if ((parts[0] === 'Compendium') && (parts.length >= 4) && (packs.has(`${parts[1]}.${parts[2]}`)) && foundry.data.validators.isValidId(parts[3])) {
+    parts = parts.slice(4);
   }
 
   // World Document / Embedded Document

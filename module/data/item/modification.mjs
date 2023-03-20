@@ -4,7 +4,7 @@ import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import makeItemProperties from "./helpers.mjs";
+import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 /**
  * Data definition for Equipment items.
@@ -61,6 +61,18 @@ export default class ModificationData extends SystemDataModel.mixin(
           })
         }
       })
+    });
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static migrateData(source) {
+    super.migrateData(source);
+    migrateItemProperties(source.properties, {
+      ...CONFIG.SW5E.weaponProperties,
+      ...CONFIG.SW5E.castingProperties,
+      ...CONFIG.SW5E.equipmentProperties
     });
   }
 }

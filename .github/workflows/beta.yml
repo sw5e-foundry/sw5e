@@ -45,6 +45,6 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "./system.json, ./system.zip"
-          body: "Changelog: https://github.com/sw5e-foundry/sw5e//blob/${{github.ref_name}}/CHANGELOG.md#${{steps.substitute_tag.outputs.value}}---${{steps.date.outputs.date}}"
+          body: "Changelog: https://github.com/sw5e-foundry/sw5e/blob/${{github.ref_name}}/CHANGELOG.md#${{steps.substitute_tag.outputs.value}}---${{steps.date.outputs.date}}"
           omitDraftDuringUpdate: true
           omitPrereleaseDuringUpdate: true

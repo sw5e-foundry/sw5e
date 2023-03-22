@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Broken character item preparation.
 - Superiority data not available in rollData.
+- Not being able to add modifications to chassis.
 
 ## [2.1.4.2.4.0] - 2022-03-07
 

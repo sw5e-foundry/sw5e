@@ -3081,7 +3081,7 @@ export default class Item5e extends Item {
     const objData = mod.toObject();
     delete objData._id;
     objData.system.modifying.id = item.id;
-    const obj = { objdata, name: mod.name, type: modType };
+    const obj = { objData, name: mod.name, type: modType };
 
     if (this.actor) {
       const items = await this.actor.createEmbeddedDocuments("Item", [objData]);
@@ -3095,19 +3095,19 @@ export default class Item5e extends Item {
     await this.updModificationChanges();
   }
 
-  async updModification(id = null, index = null, objdata = null) {
+  async updModification(id = null, index = null, objData = null) {
     if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
     const mods = [...this.system?.modify?.items ?? []];
     if (id === null) id = mods[index].id;
-    if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
-    if (objdata === null) return;
+    if (objData === null) objData = this.actor?.items?.get(id)?.toObject();
+    if (objData === null) return;
 
     if (index === null) index = mods.findIndex(m => m.id === id);
     if (index === -1) return;
-    mods[index].objdata = objdata;
-    mods[index].name = objdata.name;
+    mods[index].objData = objData;
+    mods[index].name = objData.name;
     if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     await this.updModificationChanges();
@@ -3160,7 +3160,7 @@ export default class Item5e extends Item {
     // Accumulate changes of all active modifications
     for (const mod of mods) {
       if (mod.disabled) continue;
-      this._calcSingleModChanges(mod.objdata.system, changes, props);
+      this._calcSingleModChanges(mod.objData.system, changes, props);
     }
 
     changes = foundry.utils.expandObject(changes);

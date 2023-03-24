@@ -38,6 +38,7 @@ export function migrateItemProperties( source, config ) {
   for (const [key, prop] of Object.entries(config)) {
     if (typeof source[key] !== prop.type.toLowerCase()) source[key] = null;
     else if (prop.type === "Number" && Number.isNaN(source[key])) source[key] = null;
-    else if (prop.type === "Number") source[key] = Math.max(source[key], prop.min);
+    else if (prop.type === "Number") source[key] = Math.max(source[key], prop.min || -Infinity);
   }
+  for (const key of Object.keys(source)) if (!(key in config)) delete source[key];
 }

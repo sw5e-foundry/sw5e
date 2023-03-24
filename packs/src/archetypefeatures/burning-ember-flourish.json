@@ -1,0 +1,94 @@
+{
+  "name": "Burning Ember Flourish",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.6847388+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-burning_ember_flourish.source-archetype.sourceName-kro_var_order.level-11"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/MNK-ARCH-Action.webp",
+  "system": {
+    "description": {
+      "value": "<p>You can use your action to choose an area of flame that you can see and that fits within a 5-foot cube within 60 feet. You can extinguish the fire in that area, and you create either fireworks or smoke when you do so.</p>\n<p><strong><em>Fireworks.</em></strong> The target explodes with a dazzling display of colors. Each creature within 10 feet of the target must succeed on a Constitution saving throw or become blinded until the end of your next turn.</p>\n<p><strong><em>Smoke.</em></strong> Thick black smoke spreads out from the target in a 20-foot radius, moving around corners. The area of the smoke is heavily obscured. The smoke persists for 1 minute or until a strong wind disperses it.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Monk (Kro Var Order) 11",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": 20,
+      "width": null,
+      "units": "ft",
+      "type": "radius"
+    },
+    "range": {
+      "value": 60,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1679609438407,
+    "modifiedTime": 1679691118731,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "vpZTxICVtLra6D6K"
+}

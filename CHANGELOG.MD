@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - More Feat subtypes.
 - Added 'spell' equivalent of 'power' attributes in CONFIG, for module compatibility.
 
+### Changes
+
+- Updated compendiums with website data.
+
 ### Fixed
 
 - Broken character item preparation.

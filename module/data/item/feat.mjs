@@ -16,6 +16,10 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {object} recharge           Details on how a feature can roll for recharges.
  * @property {number} recharge.value     Minimum number needed to roll on a d6 to recharge this feature.
  * @property {boolean} recharge.charged  Does this feature have a charge remaining?
+ * @property {object} attributes
+ * @property {object} attributes.speed
+ * @property {number} attributes.speed.space  Starship: Base Space speed.
+ * @property {number} attributes.speed.turn   Starship: Base Turn speed.
  */
 export default class FeatData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
@@ -44,7 +48,31 @@ export default class FeatData extends SystemDataModel.mixin(
           charged: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.Charged" })
         },
         { label: "SW5E.FeatureActionRecharge" }
-      )
+      ),
+      // Starship features
+      attributes: new foundry.data.fields.SchemaField({
+        speed: new foundry.data.fields.SchemaField(
+          {
+            space: new foundry.data.fields.NumberField({
+              required: true,
+              nullable: true,
+              integer: true,
+              initial: 300,
+              min: 0,
+              label: "SW5E.BaseSpaceSpeed"
+            }),
+            turn: new foundry.data.fields.NumberField({
+              required: true,
+              nullable: true,
+              integer: true,
+              initial: 250,
+              min: 0,
+              label: "SW5E.BaseTurnSpeed"
+            })
+          },
+          { required: true }
+        ),
+      })
     });
   }
 

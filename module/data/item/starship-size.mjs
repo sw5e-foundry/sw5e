@@ -19,8 +19,8 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} buildMinWorkforce  Minimum worforce needed to build a starship of this size.
  * @property {number} upgrdCostMult      Multiplier to the cost of upgrading a starship of this size.
  * @property {number} upgrdMinWorkforce  Minimum worforce needed to upgrade a starship of this size.
- * @property {number} baseSpaceSpeed     Starship's base space speed. //TODO: Check if this should be changed
- * @property {number} baseTurnSpeed      Starship's base turn speed. //TODO: Check if this should be changed
+ * @property {number} baseSpaceSpeed     Starship's base space speed. // Only used with old movement rules.
+ * @property {number} baseTurnSpeed      Starship's base turn speed. // Only used with old movement rules.
  * @property {number} crewMinWorkforce   Minimum workforce needed to crew a starship of this size.
  * @property {number} modBaseCap         Base capacity of mods on a starship of this size.
  * @property {number} modMaxSuitesBase   Base capacity of suite mods on a starship of this size.

@@ -1331,6 +1331,21 @@ export default class Actor5e extends Actor {
         attr.movement.space,
         Math.max(50, (sizeData.baseTurnSpeed ?? 0) - (50 * (abl.dex.mod - abl.con.mod)))
       );
+    } else {
+      const roles = this.itemTypes.feat.filter(f => f.system.type.value === "starship" && f.system.type.subtype === "role");
+      if (roles.length === 0) this._preparationWarnings.push({
+        message: game.i18n.localize("SW5E.WarnNoSSRole"),
+        type: "warning"
+      });
+      else if (roles.length > 1) this._preparationWarnings.push({
+        message: game.i18n.localize("SW5E.WarnMultipleSSRole"),
+        type: "warning"
+      });
+      else {
+        const role = roles[0];
+        attr.movement.space = role?.system?.attributes?.speed?.space ?? 0;
+        attr.movement.turn = role?.system?.attributes?.speed?.turn ?? 0;
+      }
     }
 
     // Prepare Mods

@@ -39,6 +39,8 @@ globalThis.sw5e = {
   migrations,
   utils
 };
+// Add DND5e namespace for module compatibility
+globalThis.dnd5e = globalThis.sw5e;
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */

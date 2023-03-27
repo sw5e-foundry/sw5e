@@ -159,11 +159,11 @@ export default class StarshipData extends CommonTemplate {
               active: new foundry.data.fields.BooleanField()
             }),
             crew: new foundry.data.fields.SchemaField({
-              items: new foundry.data.fields.ArrayField(new UUIDField({ label: "SW5E.DeployedCrew", nullable: true })),
+              items: new foundry.data.fields.SetField(new UUIDField({ label: "SW5E.DeployedCrew", nullable: true })),
               active: new foundry.data.fields.BooleanField()
             }),
             passenger: new foundry.data.fields.SchemaField({
-              items: new foundry.data.fields.ArrayField(new UUIDField({ label: "SW5E.DeployedPassenger", nullable: true })),
+              items: new foundry.data.fields.SetField(new UUIDField({ label: "SW5E.DeployedPassenger", nullable: true })),
               active: new foundry.data.fields.BooleanField()
             }),
             active: new foundry.data.fields.SchemaField({

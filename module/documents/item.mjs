@@ -525,7 +525,7 @@ export default class Item5e extends Item {
         // Handle type specific changes
         if (
           !(modificationTypes in CONFIG.SW5E.modificationTypesEquipment)
-          && change in ["armor.value", "armor.dex", "strength", "stealth"]
+          && ["armor.value", "armor.dex", "strength", "stealth"].includes(prop)
         ) continue;
         overrides[`system.${prop}`] = val;
       }

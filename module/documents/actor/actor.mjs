@@ -4529,111 +4529,122 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /**
-   * Deploy an Actor into this one.
+   * Deploy an Actor into this starship.
    *
    * @param {Actor} target The Actor to be deployed.
    * @param {string} toDeploy ID of the position to deploy in
    */
   async ssDeployCrew(target, toDeploy) {
     if (!target) return;
+    const ssUpdates = {};
+    const tUpdates = {};
 
-    const deployed = target.system.attributes.deployed;
+    const tDeployed = target.system.attributes.deployed;
     const otherShip = target.getStarship();
     if (otherShip) {
-      if (otherShip.uuid === this.uuid) {
-        if (deployed.deployments.includes(toDeploy)) return;
-        else deployed.deployments.push(toDeploy);
-      } else {
-        await otherShip?.ssUndeployCrew(target, deployed.deployments);
-        deployed.uuid = this.uuid;
-      }
-    } else {
-      deployed.uuid = this.uuid;
-      deployed.deployments = [toDeploy];
+      if (otherShip.uuid !== this.uuid) await otherShip?.ssUndeployCrew(target, tDeployed.deployments);
+      else if (tDeployed.deployments.has(toDeploy)) return;
     }
+    tDeployed.deployments.add(toDeploy);
+    tUpdates["system.attributes.deployed.uuid"] = this.uuid;
+    tUpdates["system.attributes.deployed.deployments"] = Array.from(tDeployed.deployments);
 
     // Get the starship Actor data and the new crewmember data
+    const tUUID = target.uuid;
     const ssDeploy = this.system.attributes.deployment;
-    const charUUID = target.uuid;
-    const deployment = ssDeploy[toDeploy];
+    const ssDeployment = ssDeploy[toDeploy];
 
-    if (deployment.items) deployment.items.push(charUUID);
+    if (ssDeployment.items) {
+      ssDeployment.items.add(tUUID);
+      ssUpdates[`system.attributes.deployment.${toDeploy}.items`] = Array.from(ssDeployment.items);
+    }
     else {
-      if (deployment.value !== null) {
-        const otherCrew = fromUuidSynchronous(deployment.value);
+      if (![null, tUUID].includes(ssDeployment.value)) {
+        const otherCrew = fromUuidSynchronous(ssDeployment.value);
         if (otherCrew) await this.ssUndeployCrew(otherCrew, [toDeploy]);
       }
-      deployment.value = charUUID;
+      ssUpdates[`system.attributes.deployment.${toDeploy}.value`] = tUUID;
     }
-    if (ssDeploy.active.value === target.uuid) deployment.active = true;
+    if (ssDeploy.active.value === target.uuid) {
+      ssUpdates[`system.attributes.deployment.${toDeploy}.active`] = true;
+    }
 
-    await this.update({ "system.attributes.deployment": ssDeploy });
-    await target.update({ "system.attributes.deployed": deployed });
+    await this.update(ssUpdates);
+    await target.update(tUpdates);
+
+    if (!ssDeploy.crew.items.has(tUUID) && toDeploy !== "passenger") this.ssDeployCrew(target, "crew");
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Undeploys an actor from this starship
+   * Undeploys an actor from this starship.
    *
    * @param {Actor} target The Actor to be undeployed.
-   * @param {Array} toUndeploy Array of ids of the positions to undeploy from, empty for all
+   * @param {Array} [toUndeploy] Array of ids of the positions to undeploy from, empty for all
    */
   async ssUndeployCrew(target, toUndeploy) {
     if (!target) return;
     if (!toUndeploy) toUndeploy = Object.keys(CONFIG.SW5E.ssCrewStationTypes);
+    const ssUpdates = {};
+    const tUpdates = {};
 
     const ssDeploy = this.system.attributes.deployment;
-    const deployed = target.system.attributes.deployed;
+    const tDeployed = target.system.attributes.deployed;
 
     for (const key of toUndeploy) {
-      const deployment = ssDeploy[key];
-      if (!deployment || !deployed.deployments.includes(key)) continue;
-      else if (deployment.items) {
-        deployment.items = deployment.items.filter(i => i !== target.uuid);
-      } else {
-        deployment.value = null;
+      const ssDeployment = ssDeploy[key];
+      if (ssDeployment) {
+        if (ssDeployment.items) {
+          ssDeployment.items.delete(target.uuid);
+          ssUpdates[`system.attributes.deployment.${key}.items`] = ssDeployment.items;
+        } else ssUpdates[`system.attributes.deployment.${key}.value`] = null;
+
+        if (ssDeploy.active.value === target.uuid) {
+          ssUpdates[`system.attributes.deployment.${key}.active`] = false;
+        }
       }
-      if (ssDeploy.active.value === target.uuid) deployment.active = false;
+
+      if (tDeployed?.deployments?.has(key)) {
+        tDeployed?.deployments?.delete(key);
+        tUpdates[`system.attributes.deployed.deployments`] = tDeployed.deployments;
+      }
     }
 
-    deployed.deployments = deployed.deployments.filter(i => !toUndeploy.includes(i));
-    if (!deployed.deployments.length) {
-      deployed.uuid = null;
-      if (ssDeploy.active.value === target.uuid) await this.toggleActiveCrew();
+    if (tDeployed.deployments.size === 0) {
+      tUpdates[`system.attributes.depleted.uuid`] = null;
+      if (ssDeploy.active.value === target.uuid) await this.ssToggleActiveCrew();
     }
 
-    await this.update({ "system.attributes.deployment": ssDeploy });
-    await target.update({ "system.attributes.deployed": deployed });
+    await this.update(ssUpdates);
+    await target.update(tUpdates);
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Toggles if a crew member is active
+   * Toggles if a crew member is active in this starship.
    *
    * @param {string} target UUID of the target, if empty will set everyone as inactive
+   * @returns {string|null} The new active crew member's id.
    */
-  async toggleActiveCrew(target) {
-    const deployments = this.system.attributes.deployment;
-    const active = deployments.active;
+  async ssToggleActiveCrew(target) {
+    const ssUpdates = {};
 
-    if (target === active.value) target = null;
+    const ssDeploy = this.system.attributes.deployment;
+    const ssActive = ssDeploy.active;
 
-    active.value = target;
+    if (target === ssActive.value) target = null;
+    ssUpdates["system.attributes.deployment.active.value"] = target;
+
     for (const key of Object.keys(CONFIG.SW5E.ssCrewStationTypes)) {
-      const deployment = deployments[key];
-      if (!target) {
-        deployment.active = false;
-      } else if (deployment.items) {
-        deployment.active = deployment.items.includes(target);
-      } else {
-        deployment.active = deployment.value === target;
-      }
+      const ssDeployment = ssDeploy[key];
+      if (ssDeployment.items) ssUpdates[`system.attributes.deployment.${key}.active`] = ssDeployment.items.has(target);
+      else ssUpdates[`system.attributes.deployment.${key}.active`] = ssDeployment.value === target;
     }
 
-    await this.update({ "system.attributes.deployment": deployments });
-    return active.value;
+    await this.update(ssUpdates);
+    return ssActive.value;
   }
 
   /* -------------------------------------------- */

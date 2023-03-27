@@ -8,10 +8,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Added configuration to toggle consumption of ammo by NPCs.
-- Item reload ui on NPC sheet.
-- More Feat subtypes.
-- Added 'spell' equivalent of 'power' attributes in CONFIG, for module compatibility.
 - Species DataModel.
 
 ### Changes
@@ -20,13 +16,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Broken character item preparation.
-- Superiority data not available in rollData.
 - Not being able to add modifications to chassis.
 - NPC Hit Point config not openning.
 - 'Led by the force' initiative bonus now correctly rounds up.
+- Not being able to remove deployed actors, or change who is deployed as pilot.
 
-## [2.1.4.2.4.0] - 2022-03-07
+## [2.1.5.2.4.1] - 2022-03-20
+
+### Added
+
+- Added configuration to toggle consumption of ammo by NPCs.
+- Item reload ui on NPC sheet.
+- More Feat subtypes.
+- Added 'spell' equivalent of 'power' attributes in CONFIG, for module compatibility.
+
+### Fixed
+
+- Broken character item preparation.
+- Superiority data not available in rollData.
+
+## [2.1.5.2.4.0] - 2022-03-07
 
 ### Added
 

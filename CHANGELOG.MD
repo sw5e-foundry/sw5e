@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - NPC Hit Point config not openning.
 - 'Led by the force' initiative bonus now correctly rounds up.
 - Not being able to remove deployed actors, or change who is deployed as pilot.
+- Starship recharge not reseting shield.
 
 ## [2.1.5.2.4.1] - 2022-03-20
 

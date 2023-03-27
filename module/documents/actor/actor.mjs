@@ -3676,7 +3676,7 @@ export default class Actor5e extends Actor {
     const dhd = this.system.attributes.hull.dice - hd0;
     const dhp = this.system.attributes.hp.value - hp0;
 
-    return this._repair(chat, newDay, regenShld, false, dhd, dhp);
+    return this._repair(chat, newDay, false, regenShld, dhd, dhp);
   }
 
   /* -------------------------------------------- */

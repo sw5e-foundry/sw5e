@@ -1,0 +1,90 @@
+{
+  "_id": "FOjBpTGHIupbF0Kg",
+  "name": "Fireteam Commander",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.687736+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-fireteam_commander.source-archetype.sourceName-bolstering_practice.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Bolstering Practice:</strong> 3rd level</em></p>\n<p>You learn a number of squad maneuvers you can use to assist allies or exploit enemies. When you deal Sneak Attack damage to a creature, you may choose to forgo two of your Sneak Attack dice to make the attack a squad maneuver.</p>\n<h3>Fortifying Strike</h3>\n<p>You inspire a friendly creature within 60 feet of you who can see or hear you and roll two Sneak Attack dice. That ally immediately gains temporary hit points equal to the amount of rolled.</p>\n<h3>Reaffirming Strike</h3>\n<p>You use the authority your attacks carry to help your ally focus on the task at hand. Choose a creature within 60 feet of you who can see or hear you and that is currently charmed or frightened by the creature you would deal Sneak Attack damage to. The condition immediately ends on that creature.</p>\n<h3>Bolstering Strike</h3>\n<p>You choose a friendly creature within 60 feet of you who can see or hear you. Once before the start of your next turn, if that creature hits the creature against which you forwent two Sneak Attack damage dice, they deal additional damage to the target equal to the maximum of the two Sneak Attack dice.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Bolstering Practice) 3",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": "60",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Operative"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957524,
+    "modifiedTime": 1680288495332,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

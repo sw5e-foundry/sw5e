@@ -2855,25 +2855,25 @@ export default class Item5e extends Item {
    * @private
    */
   _onCreateOwnedWeapon(data, isNPC) {
-    // NPCs automatically equip items and are proficient with them
-    if (isNPC) {
-      const updates = {};
-      if (!foundry.utils.hasProperty(data, "system.equipped")) updates["system.equipped"] = true;
-      if (!foundry.utils.hasProperty(data, "system.proficient")) updates["system.proficient"] = true;
-      return updates;
-    }
-
-    if (data.system?.proficient !== undefined) return {};
-
-    // Some weapon types are always proficient
-    const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.system.weaponType];
     const updates = {};
-    if (weaponProf === true) updates["system.proficient"] = true;
-    // Characters may have proficiency in this weapon type (or specific base weapon)
-    else {
-      const actorProfs = this.parent.system.traits?.weaponProf?.value || new Set();
-      updates["system.proficient"] = actorProfs.has(weaponProf) || actorProfs.has(this.system.baseItem);
+
+    // NPCs automatically equip items and are proficient with them
+    if (foundry.utils.getProperty(data, "system.equipped") === undefined) {
+      updates["system.equipped"] = isNPC; // NPCs automatically equip equipment
     }
+
+    if (foundry.utils.getProperty(data, "system.proficient") === undefined) {
+      if (isNPC) updates["system.proficient"] = true; // NPCs automatically have equipment proficiency
+      else {
+        // Some weapon types are always proficient
+        // Characters may have proficiency in this weapon type, or specific base weapon
+        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.system.weaponType];
+        const actorWeaponProfs = this.parent.system.traits?.weaponProf?.value || new Set();
+        updates["system.proficient"] =
+          weaponProf === true || actorWeaponProfs.has(weaponProf) || actorWeaponProfs.has(this.system.baseItem);
+      }
+    }
+
     return updates;
   }
 

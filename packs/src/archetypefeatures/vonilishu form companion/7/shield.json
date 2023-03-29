@@ -1,0 +1,101 @@
+{
+  "name": "Shield",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.6797409+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-shield.source-archetype.sourceName-vonilishu_form_companion.level-7"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/GRDN-ARCH-Reaction.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>When your companion is hit by a weapon attack while within 10 feet of you, you can use your reaction and expend a use of your Channel the Force to attempt to divert the attack. When you do so, the damage your companion takes from the attack is reduced by [[/r 1d10]] + your Wisdom or Charisma modifier (your choice) + your guardian level.</p>\n<p>At 11th level, your companion must be within 30 feet of you to benefit from this feature. At 17th level, your companion must be within 60 feet.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Guardian (Vonil/Ishu Form (Companion)) 7",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "10",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d10 + @mod",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Guardian"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1667426104224,
+    "modifiedTime": 1680288495353,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "sIxasPYYSmJfgkMJ"
+}

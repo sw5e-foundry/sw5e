@@ -99,7 +99,7 @@ function isValidUUID(uuid) {
   let parts = uuid.split(".");
 
   // Compendium Document
-  const packs = game.packs.set();
+  const packs = new Set(game.packs.keys());
   if ((parts[0] === 'Compendium') && (parts.length >= 4) && (packs.has(`${parts[1]}.${parts[2]}`)) && foundry.data.validators.isValidId(parts[3])) {
     parts = parts.slice(4);
   }

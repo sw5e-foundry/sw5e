@@ -267,6 +267,10 @@ function extractPacks() {
 export const extract = extractPacks;
 
 
+function deslugify(string) {
+  return string.split("_").join(" ");
+}
+
 /**
  * Determine a subfolder name based on which pack is being extracted.
  * @param {object} data  Data for the entry being extracted.
@@ -275,15 +279,14 @@ export const extract = extractPacks;
  * @private
  */
 function _getSubfolderName(data, pack) {
+
+  const iID = data.flags["sw5e-importer"]?.uid ?? "";
+  const iData = Object.fromEntries(`type-${iID}`.split('.').map(s=>s.split('-')));
+  let parts = new Set();
+
   switch (pack) {
+    // Items
     case "adventuringgear":
-      return data.type;
-    case "archetypefeatures":
-      return data.system.className;
-    case "archetypes":
-      return data.system.classIdentifier;
-    case "deploymentfeatures":
-      return data.system.deployment?.value;
     case "ammo":
     case "armor":
     case "blasters":
@@ -292,22 +295,49 @@ function _getSubfolderName(data, pack) {
     case "explosives":
     case "modification":
     case "starshipequipment":
+    case "starshipmodifications":
     case "starshipweapons":
     case "vibroweapons":
-      return data.system?.ammoType ??
-             data.system?.armor?.type ??
-             data.system?.consumableType ??
-             data.system?.weaponType ??
-             data.system?.modificationType ??
-             data.type;
-    case "feats":
+      // foundry type
+      if (["adventuringgear", "enhanceditems"].includes(pack)) parts.add(data.type);
+      // item type
+      parts.add(data.system?.armor?.type);
+      parts.add(data.system?.consumableType);
+      parts.add(data.system?.weaponType);
+      parts.add(data.system?.modificationType);
+      parts.add(data.system?.type?.value);
+      parts.add(data.system?.system?.value.toLowerCase());
+      // item subtype
+      parts.add(data.system?.ammoType);
+      parts.add(data.system?.type?.subtype);
+
+      parts.delete(undefined);
+      parts.delete("");
+      parts.delete(pack);
+      return [...parts].join("/");
+    // 'classes'
+    case "archetypes":
+      return data.system.classIdentifier;
+    // 'features'
+    case "archetypefeatures":
+    case "classfeatures":
+    case "speciesfeatures":
     case "invocations":
+      parts.add(data.system.type.subtype.slice(0, 10));
+      parts.add(deslugify(iData.sourceName));
+      parts.add(iData.level);
+
+      parts.delete(undefined);
+      parts.delete("");
+      parts.delete(pack);
+      parts.delete("None");
+      return [...parts].join("/");
+    case "feats":
     case "starshipactions":
       return data.system.type.subtype;
-    case "fistorcodex":
-    case "monsters":
-    case "monsters_temp":
-      return data.system.details.type.value;
+    case "deploymentfeatures":
+      return data.system.deployment?.value;
+    // powers
     case "forcepowers":
     case "techpowers":
       if ( data.system?.level === undefined ) return "";
@@ -315,12 +345,14 @@ function _getSubfolderName(data, pack) {
       return `level-${data.system.level}`;
     case "maneuver":
       return data.system.maneuverType;
+    // actors
+    case "fistorcodex":
+    case "monsters":
+    case "monsters_temp":
+      return data.system.details.type.value;
+    // other
     case "monstertraits":
       return data.system?.weaponType ?? data.system?.type?.value ?? data.type;
-    case "speciesfeatures":
-      return data.img.split('/').pop().split('.')[0].toLowerCase();
-    case "starshipmodifications":
-      return data.system.system.value.toLowerCase();
 
     default: return "";
   }

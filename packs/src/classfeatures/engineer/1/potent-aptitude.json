@@ -1,0 +1,262 @@
+{
+  "_id": "fGsRWj9oEKcrukw6",
+  "name": "Potent Aptitude",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+  "effects": [
+    {
+      "_id": "kgjdGZaM7KvRGDlN",
+      "changes": [
+        {
+          "key": "flags.dae",
+          "mode": 0,
+          "value": "BardicInspirationDice (floor(@classes.engineer.levels/5)+3) * 2",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+      "label": "Potent Aptitude Dice",
+      "origin": "Compendium.sw5e.classfeatures.fGsRWj9oEKcrukw6",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "tint": null,
+      "sort": 0
+    },
+    {
+      "_id": "87rFIkDTyzEZeKaW",
+      "changes": [
+        {
+          "key": "",
+          "mode": 2,
+          "value": "0",
+          "priority": 0
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "icons/skills/melee/unarmed-punch-fist.webp",
+      "label": "Inspired",
+      "origin": "Compendium.sw5e.classfeatures.fGsRWj9oEKcrukw6",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "mre-dnd5e": {
+      "formulaGroups": [
+        {
+          "label": "Primary",
+          "formulaSet": [
+            0
+          ]
+        }
+      ]
+    },
+    "midi-qol": {
+      "effectActivation": false
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.5650853+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-potent_aptitude.source-class.sourceName-engineer.level-1"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Engineer:</strong> 1st level</em></p>\n<p>Your technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a [[/r d4]]. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.</p>\n<p>Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.</p>\n<p>A creature can have only one Potent Aptitude die at a time.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "10",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": "60",
+      "long": null,
+      "units": "ft",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 2,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d4",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493962350,
+    "modifiedTime": 1680288496418,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

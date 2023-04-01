@@ -1,0 +1,95 @@
+{
+  "_id": "xLpC2xoqe2iODj2a",
+  "name": "Tell Me the Odds",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:57.9914181+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-tell_me_the_odds.source-archetype.sourceName-gambler_pursuit.level-13"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Gambler Pursuit:</strong> 9th, 13th, and 17th level</em></p>\n<p>If the target of your Critical Analysis hits you with a weapon attack roll, you can use your reaction to roll a [[/r d8]]. On a 4 or higher, you impose disadvantage on the roll. If the target already had disadvantage, they must instead reroll one of the dice once (your choice).</p>\n<p>This die increases to [[/r d10]] at 13th level and [[/r d12]] at 17th level.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Gambler Pursuit) 13",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958248,
+    "modifiedTime": 1680288495356,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

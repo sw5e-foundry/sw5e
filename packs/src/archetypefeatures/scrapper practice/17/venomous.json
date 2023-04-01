@@ -1,0 +1,105 @@
+{
+  "name": "Venomous",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-08-11T20:25:19.3862344+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-venomous.source-archetype.sourceName-scrapper_practice.level-17"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Bonus.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Shadow Killer Practice:</strong> 3rd, 5th, 9th, 13th, and 17th level</em></p>\n<p>You gain proficiency with the poisoner's kit, and you can apply a poison as a bonus action.</p>\n<p>Additionally, you learn to create a number of special poison vials. Over the course of a short or long rest, you can create two doses of poison. You must have a poisoner's kit in order to create these doses. Your doses can only be used by you, and they lose their potency at the end of your next short or long rest.</p>\n<p>As an action, you can use one of your doses to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the coated weapon must make a Constitution saving throw (DC = 8 + your proficiency bonus + your Intelligence modifier), taking [[/r 1d4]] + your Intelligence modifier poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>\n<p>The quantity and damage of your doses increases at higher levels, to three and [[/r 2d4]] at 5th level, four and [[/r 3d4]] at 9th level, five and [[/r 4d4]] at 13th level, and six and [[/r 5d4]] at 17th level.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Scrapper Practice) 17",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d4 + @abilities.int.mod",
+          "poison"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1680288495974,
+    "modifiedTime": 1680288495974,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "AlY93XRRY5LLCYCv"
+}

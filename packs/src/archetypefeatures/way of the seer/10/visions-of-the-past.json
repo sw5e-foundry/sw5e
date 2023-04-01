@@ -1,0 +1,90 @@
+{
+  "_id": "9FqNEJdb0V81kkDC",
+  "name": "Visions of the Past",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/CSLR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.4788586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-visions_of_the_past.source-archetype.sourceName-way_of_the_seer.level-10"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Way of the Seer:</strong> 10th level</em></p>\n<p>You can call up visions of the past that relate to an object you hold or your immediate surroundings. You spend at least 1 minute in meditation, then receive dreamlike, shadowy glimpses of recent events. You can meditate in this way for a number of minutes equal to your Wisdom score and must maintain concentration during that time, as if you were casting a force power. Once you've used this feature, you can't use it again until you finish a short or long rest.</p>\n<p><strong><em>Object Reading.</em></strong> Holding an object as you meditate, you can see visions of the object's previous owner. After meditating for 1 minute, you learn how the owner acquired and lost the object, as well as the most recent significant event involving the object and that owner. If the object was owned by another creature in the recent past (within a number of days equal to your Wisdom score), you can spend 1 additional minute for each owner to learn the same information about that creature.</p>\n<p><strong><em>Area Reading.</em></strong> As you meditate, you see visions of recent events in your immediate vicinity (a room, street, tunnel, clearing, or the like, up to a 50-foot cube), going back a number of days equal to your Wisdom score. For each minute you meditate, you learn about one significant event, beginning with the most recent. Significant events typically involve powerful emotions, such as battles and betrayals, marriages and murders, births and funerals. However, they might also include more mundane events that are nevertheless important in your current situation.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Consular (Way of the Seer) 10",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": "50",
+      "width": null,
+      "units": "ft",
+      "type": "cube"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Consular"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957411,
+    "modifiedTime": 1680288529070,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

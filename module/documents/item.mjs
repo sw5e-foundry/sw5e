@@ -1186,7 +1186,7 @@ export default class Item5e extends Item {
           !!resource.target
           && (!item.hasAttack
             || (resource.type !== "ammo"
-              && !(resource.type === "charges" && resource.target.system.consumableType === "ammo"))),
+              && !(resource.type === "charges" && resource.target.system?.consumableType === "ammo"))),
         consumePowerLevel: requirePowerSlot ? is.level : null,
         consumePowerSlot: requirePowerSlot,
         consumeSuperiorityDie: item.type === "maneuver",

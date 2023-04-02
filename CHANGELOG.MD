@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship recharge not reseting shield.
 - Compendiums disappearing when any actor was deployed.
 - Broken Feature Links.
+- 'Item uses' resource consumption fix.
 
 ## [2.1.5.2.4.1] - 2022-03-20
 

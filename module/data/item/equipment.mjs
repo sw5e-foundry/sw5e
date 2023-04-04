@@ -32,22 +32,23 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @property {boolean} stealth              Does this equipment grant disadvantage on stealth checks when used?
  * @property {object} properties            Mapping of various weapon property booleans and numbers.
  * @property {boolean} proficient           Does the owner have proficiency in this piece of equipment?
- * @property {object} capx
- * @property {number} capx.value            Starship: Multiplier for shield capacity.
- * @property {object} dmgred
- * @property {number} dmgred.value          Starship: Damage reduction.
- * @property {object} regrateco
- * @property {number} regrateco.value       Starship: Shield regeneration rate coefficient.
- * @property {object} cscap
- * @property {number} cscap.value           Starship: Central power dice storage capacity.
- * @property {object} sscap
- * @property {number} sscap.value           Starship: System power dice storage capacity.
- * @property {object} fuelcostmod
- * @property {number} fuelcostmod.value     Starship: Fuel cost modifier.
- * @property {object} powerdicerec
- * @property {string} powerdicerec.value    Starship: Formula for power die recovery.
- * @property {object} hdclass
- * @property {number} hdclass.value         Starship: Hyperdrive class.
+ * @property {object} attributes
+ * @property {object} attributes.capx
+ * @property {number} attributes.capx.value            Starship: Multiplier for shield capacity.
+ * @property {object} attributes.dmgred
+ * @property {number} attributes.dmgred.value          Starship: Damage reduction.
+ * @property {object} attributes.regrateco
+ * @property {number} attributes.regrateco.value       Starship: Shield regeneration rate coefficient.
+ * @property {object} attributes.cscap
+ * @property {number} attributes.cscap.value           Starship: Central power dice storage capacity.
+ * @property {object} attributes.sscap
+ * @property {number} attributes.sscap.value           Starship: System power dice storage capacity.
+ * @property {object} attributes.fuelcostmod
+ * @property {number} attributes.fuelcostmod.value     Starship: Fuel cost modifier.
+ * @property {object} attributes.powerdicerec
+ * @property {string} attributes.powerdicerec.value    Starship: Formula for power die recovery.
+ * @property {object} attributes.hdclass
+ * @property {number} attributes.hdclass.value         Starship: Hyperdrive class.
  */
 export default class EquipmentData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,

@@ -68,6 +68,7 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
   if ( data.system?.save?.dc === 0 ) data.system.save.dc = null;
   if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
   if ( data.system?.strength === 0 ) data.system.strength = null;
+  if ( data.system?.properties ) data.system.properties = Object.fromEntries(Object.entries(data.system.properties).filter(([k,v])=>!k.startsWith('c_c_')));
 
   // Remove mystery-man.svg from Actors
   if ( ["character", "npc", "starship"].includes(data.type) && data.img === "icons/svg/mystery-man.svg" ) {
@@ -221,11 +222,39 @@ function extractPacks() {
           const name = entry.name.toLowerCase();
           if ( entryName && (entryName !== name) ) return;
           cleanPackEntry(entry);
-          const output = `${JSON.stringify(entry, null, 2)}\n`;
-          const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+
           const subfolder = path.join(folder, _getSubfolderName(entry, filename) ?? "");
           if ( !fs.existsSync(subfolder) ) fs.mkdirSync(subfolder, { recursive: true, mode: 0o775 });
-          fs.writeFileSync(path.join(subfolder, `${outputName}.json`), output, { mode: 0o664 });
+
+          const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+          const outputPath = path.join(subfolder, `${outputName}.json`);
+
+          let hasChanges = true;
+          if (fs.existsSync(outputPath)) {
+            const oldFile = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8"}));
+            // Do not update item if only changes are flags, stats, or advancement ids
+            if (oldFile._stats && entry._stats) oldFile._stats = entry._stats;
+            if (oldFile.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"]) oldFile.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
+            if (oldFile.system?.advancement && entry.system?.advancement) {
+              const length = Math.min(oldFile.system.advancement.length, entry.system.advancement.length);
+              for (let i=0; i<length; i++) oldFile.system.advancement[i]._id = entry.system.advancement[i]._id;
+            }
+            if (oldFile.items && entry.items) {
+              const length = Math.min(oldFile.items.length, entry.items.length);
+              for (let i=0; i<length; i++) {
+                const oldItem = oldFile.items[i];
+                const newItem = entry.items[i];
+                if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"]) oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
+                if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
+              }
+            }
+            hasChanges = JSON.stringify(entry) !== JSON.stringify(oldFile);
+          }
+
+          if (hasChanges) {
+            const output = `${JSON.stringify(entry, null, 2)}\n`;
+            fs.writeFileSync(outputPath, output, { mode: 0o664 });
+          }
         });
       });
 
@@ -238,6 +267,10 @@ function extractPacks() {
 export const extract = extractPacks;
 
 
+function deslugify(string) {
+  return string.split("_").join(" ");
+}
+
 /**
  * Determine a subfolder name based on which pack is being extracted.
  * @param {object} data  Data for the entry being extracted.
@@ -246,15 +279,14 @@ export const extract = extractPacks;
  * @private
  */
 function _getSubfolderName(data, pack) {
+
+  const iID = data.flags["sw5e-importer"]?.uid ?? "";
+  const iData = Object.fromEntries(`type-${iID}`.split('.').map(s=>s.split('-')));
+  let parts = new Set();
+
   switch (pack) {
+    // Items
     case "adventuringgear":
-      return data.type;
-    case "archetypefeatures":
-      return data.system.className;
-    case "archetypes":
-      return data.system.classIdentifier;
-    case "deploymentfeatures":
-      return data.system.deployment?.value;
     case "ammo":
     case "armor":
     case "blasters":
@@ -263,22 +295,49 @@ function _getSubfolderName(data, pack) {
     case "explosives":
     case "modification":
     case "starshipequipment":
+    case "starshipmodifications":
     case "starshipweapons":
     case "vibroweapons":
-      return data.system?.ammoType ??
-             data.system?.armor?.type ??
-             data.system?.consumableType ??
-             data.system?.weaponType ??
-             data.system?.modificationType ??
-             data.type;
-    case "feats":
+      // foundry type
+      if (["adventuringgear", "enhanceditems"].includes(pack)) parts.add(data.type);
+      // item type
+      parts.add(data.system?.armor?.type);
+      parts.add(data.system?.consumableType);
+      parts.add(data.system?.weaponType);
+      parts.add(data.system?.modificationType);
+      parts.add(data.system?.type?.value);
+      parts.add(data.system?.system?.value.toLowerCase());
+      // item subtype
+      parts.add(data.system?.ammoType);
+      parts.add(data.system?.type?.subtype);
+
+      parts.delete(undefined);
+      parts.delete("");
+      parts.delete(pack);
+      return [...parts].join("/");
+    // 'classes'
+    case "archetypes":
+      return data.system.classIdentifier;
+    // 'features'
+    case "archetypefeatures":
+    case "classfeatures":
+    case "speciesfeatures":
     case "invocations":
+      parts.add(data.system.type.subtype.slice(0, 10));
+      parts.add(deslugify(iData.sourceName));
+      parts.add(iData.level);
+
+      parts.delete(undefined);
+      parts.delete("");
+      parts.delete(pack);
+      parts.delete("None");
+      return [...parts].join("/");
+    case "feats":
     case "starshipactions":
       return data.system.type.subtype;
-    case "fistorcodex":
-    case "monsters":
-    case "monsters_temp":
-      return data.system.details.type.value;
+    case "deploymentfeatures":
+      return data.system.deployment?.value;
+    // powers
     case "forcepowers":
     case "techpowers":
       if ( data.system?.level === undefined ) return "";
@@ -286,12 +345,14 @@ function _getSubfolderName(data, pack) {
       return `level-${data.system.level}`;
     case "maneuver":
       return data.system.maneuverType;
+    // actors
+    case "fistorcodex":
+    case "monsters":
+    case "monsters_temp":
+      return data.system.details.type.value;
+    // other
     case "monstertraits":
       return data.system?.weaponType ?? data.system?.type?.value ?? data.type;
-    case "speciesfeatures":
-      return data.img.split('/').pop().split('.')[0].toLowerCase();
-    case "starshipmodifications":
-      return data.system.system.value.toLowerCase();
 
     default: return "";
   }

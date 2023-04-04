@@ -155,11 +155,24 @@ export default class ItemSheet5e extends ItemSheet {
       // Special handling for specific item types
       switch ( item.type ) {
         case "feat":
-          const featureType = CONFIG.SW5E.featureTypes[item.system.type?.value];
+          const featType = item.system.type;
+          const featureType = CONFIG.SW5E.featureTypes[featType.value];
           if ( featureType ) {
             context.itemType = featureType.label;
             context.featureSubtypes = featureType.subtypes;
           }
+          if (featType?.value === "starship" && featType.subtype === "role") context.starshipSpeed = {
+            space: {
+              label: "SW5E.BaseSpaceSpeed",
+              path: "system.attributes.speed.space",
+              value: item.system.attributes.speed.space,
+            },
+            turn: {
+              label: "SW5E.BaseTurnSpeed",
+              path: "system.attributes.speed.turn",
+              value: item.system.attributes.speed.turn,
+            },
+          };
           break;
         case "modification":
           context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;

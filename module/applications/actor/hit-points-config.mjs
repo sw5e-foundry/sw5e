@@ -53,8 +53,8 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
       value: {
         sourceMax: source[`${temp}max`],
         max: hp[`${temp}max`],
-        level: hp.bonuses[`${temp}level`],
-        overall: hp.bonuses[`${temp}overall`]
+        level: hp.bonuses?.[`${temp}level`],
+        overall: hp.bonuses?.[`${temp}overall`]
       },
       path: {
         max: `hp.${temp}max`,

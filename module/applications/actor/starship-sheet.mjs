@@ -62,14 +62,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Decide if deployment is visible
     const ssDeploy = context.system.attributes.deployment;
     const anyDeployed = Object.keys(CONFIG.SW5E.ssCrewStationTypes).some(
-      k => ssDeploy[k]?.items?.length || ssDeploy[k]?.value
+      k => ssDeploy[k]?.items?.size || ssDeploy[k]?.value
     );
     const anyActive = !!ssDeploy.active.value;
     for (const key of Object.keys(CONFIG.SW5E.ssCrewStationTypes)) {
-      const deployment = ssDeploy[key];
-      deployment.actorsVisible = !!(!anyDeployed || deployment.items?.length);
-      if (this._filters.ssactions.has("activeDeploy")) deployment.actionsVisible = !anyActive || deployment.active;
-      else deployment.actionsVisible = !!(!anyDeployed || deployment.items?.length || deployment.value);
+      const ssDeployment = ssDeploy[key];
+      ssDeployment.actorsVisible = !!(!anyDeployed || ssDeployment.items?.size);
+      if (this._filters.ssactions.has("activeDeploy")) ssDeployment.actionsVisible = !anyActive || ssDeployment.active;
+      else ssDeployment.actionsVisible = !!(ssDeployment.actorsVisible || ssDeployment.value);
     }
 
     const routing = this.actor.system.attributes.power.routing;
@@ -165,7 +165,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Split features
     categories.ssactions = Object.fromEntries(Object.entries(categories.features)
       .filter(([k, v]) => ["starshipAction", "deployment"].includes(v.dataset.featType))
-      .map(([k, v]) => [k.replace(/.*\./g, ""), v]));
+      .map(([k, v]) => [k.replace(/.*\./g, ""), { ...v, derived: v.dataset.featType === "deployment" }]));
 
     categories.features.feat.required = false;
     categories.features["feat.starship"].required = true;
@@ -264,7 +264,10 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   /** @inheritDoc */
   _filterItems(items, filters) {
     return super._filterItems(items, filters).filter(item => {
-      if (filters.has("activeDeploy") && item.active !== true) return false;
+      if (filters.has("activeDeploy") && item.system.deployment) {
+        const deployment = this.actor.system.attributes.deployment[item.system.deployment];
+        if (deployment && !deployment.active) return false;
+      }
       return true;
     });
   }
@@ -545,7 +548,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
         this.actor.ssUndeployCrew(actor);
         break;
       case "toggle":
-        this.actor.toggleActiveCrew(uuid);
+        this.actor.ssToggleActiveCrew(uuid);
         break;
     }
   }

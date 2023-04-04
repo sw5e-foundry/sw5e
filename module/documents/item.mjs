@@ -525,7 +525,7 @@ export default class Item5e extends Item {
         // Handle type specific changes
         if (
           !(modificationTypes in CONFIG.SW5E.modificationTypesEquipment)
-          && change in ["armor.value", "armor.dex", "strength", "stealth"]
+          && ["armor.value", "armor.dex", "strength", "stealth"].includes(prop)
         ) continue;
         overrides[`system.${prop}`] = val;
       }
@@ -1186,7 +1186,7 @@ export default class Item5e extends Item {
           !!resource.target
           && (!item.hasAttack
             || (resource.type !== "ammo"
-              && !(resource.type === "charges" && resource.target.system.consumableType === "ammo"))),
+              && !(resource.type === "charges" && resource.target.system?.consumableType === "ammo"))),
         consumePowerLevel: requirePowerSlot ? is.level : null,
         consumePowerSlot: requirePowerSlot,
         consumeSuperiorityDie: item.type === "maneuver",
@@ -2855,25 +2855,25 @@ export default class Item5e extends Item {
    * @private
    */
   _onCreateOwnedWeapon(data, isNPC) {
-    // NPCs automatically equip items and are proficient with them
-    if (isNPC) {
-      const updates = {};
-      if (!foundry.utils.hasProperty(data, "system.equipped")) updates["system.equipped"] = true;
-      if (!foundry.utils.hasProperty(data, "system.proficient")) updates["system.proficient"] = true;
-      return updates;
-    }
-
-    if (data.system?.proficient !== undefined) return {};
-
-    // Some weapon types are always proficient
-    const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.system.weaponType];
     const updates = {};
-    if (weaponProf === true) updates["system.proficient"] = true;
-    // Characters may have proficiency in this weapon type (or specific base weapon)
-    else {
-      const actorProfs = this.parent.system.traits?.weaponProf?.value || new Set();
-      updates["system.proficient"] = actorProfs.has(weaponProf) || actorProfs.has(this.system.baseItem);
+
+    // NPCs automatically equip items and are proficient with them
+    if (foundry.utils.getProperty(data, "system.equipped") === undefined) {
+      updates["system.equipped"] = isNPC; // NPCs automatically equip equipment
     }
+
+    if (foundry.utils.getProperty(data, "system.proficient") === undefined) {
+      if (isNPC) updates["system.proficient"] = true; // NPCs automatically have equipment proficiency
+      else {
+        // Some weapon types are always proficient
+        // Characters may have proficiency in this weapon type, or specific base weapon
+        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.system.weaponType];
+        const actorWeaponProfs = this.parent.system.traits?.weaponProf?.value || new Set();
+        updates["system.proficient"] =
+          weaponProf === true || actorWeaponProfs.has(weaponProf) || actorWeaponProfs.has(this.system.baseItem);
+      }
+    }
+
     return updates;
   }
 
@@ -3081,7 +3081,7 @@ export default class Item5e extends Item {
     const objData = mod.toObject();
     delete objData._id;
     objData.system.modifying.id = item.id;
-    const obj = { objdata, name: mod.name, type: modType };
+    const obj = { objData, name: mod.name, type: modType };
 
     if (this.actor) {
       const items = await this.actor.createEmbeddedDocuments("Item", [objData]);
@@ -3095,19 +3095,19 @@ export default class Item5e extends Item {
     await this.updModificationChanges();
   }
 
-  async updModification(id = null, index = null, objdata = null) {
+  async updModification(id = null, index = null, objData = null) {
     if (!("modify" in this.system)) return;
     if (id === null && index === null) return;
 
     const mods = [...this.system?.modify?.items ?? []];
     if (id === null) id = mods[index].id;
-    if (objdata === null) objdata = this.actor?.items?.get(id)?.toObject();
-    if (objdata === null) return;
+    if (objData === null) objData = this.actor?.items?.get(id)?.toObject();
+    if (objData === null) return;
 
     if (index === null) index = mods.findIndex(m => m.id === id);
     if (index === -1) return;
-    mods[index].objdata = objdata;
-    mods[index].name = objdata.name;
+    mods[index].objData = objData;
+    mods[index].name = objData.name;
     if ( mods !== this.system.modify.items ) await this.update({ "system.modify.items": mods });
 
     await this.updModificationChanges();
@@ -3160,7 +3160,7 @@ export default class Item5e extends Item {
     // Accumulate changes of all active modifications
     for (const mod of mods) {
       if (mod.disabled) continue;
-      this._calcSingleModChanges(mod.objdata.system, changes, props);
+      this._calcSingleModChanges(mod.objData.system, changes, props);
     }
 
     changes = foundry.utils.expandObject(changes);

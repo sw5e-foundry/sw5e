@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.1.5.2.4.2]
+
+### Added
+
+- Species DataModel.
+
+### Changes
+
+- Updated compendiums with website data.
+
+### Fixed
+
+- Not being able to add modifications to chassis.
+- NPC Hit Point config not openning.
+- 'Led by the force' initiative bonus now correctly rounds up.
+- Not being able to remove deployed actors, or change who is deployed as pilot.
+- Starship recharge not reseting shield.
+- Compendiums disappearing when any actor was deployed.
+- Broken Feature Links.
+- 'Item uses' resource consumption fix.
+
 ## [v2.1.4.2.4.1] - 2023-03-20
 
 ### Added
@@ -18,7 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Broken character item preparation.
 - Superiority data not available in rollData.
 
-## [2.1.4.2.4.0] - 2022-03-07
+## [2.1.5.2.4.0] - 2022-03-07
 
 ### Added
 

@@ -20,11 +20,7 @@
                 </div>
                 <ol class="group-items item-list">
                     {{#each deployment.items as | deploy |}}
-                    <li
-                        class="item group-grid-deployments"
-                        data-key="{{key}}"
-                        data-uuid="{{deploy}}"
-                    >
+                    <li class="item group-grid-deployments" data-key="{{key}}" data-uuid="{{deploy}}">
                         <div class="item-name">
                             <h4>{{{ sw5e-linkForUuid deploy }}}</h4>
                         </div>

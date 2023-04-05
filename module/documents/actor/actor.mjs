@@ -4038,7 +4038,7 @@ export default class Actor5e extends Actor {
     const power = this.system.attributes.power;
     const updates = {};
 
-    for (const slot of CONFIG.SW5E.powerDieSlots) updates[`system.attributes.power.${slot}.value`] = power[slot].max;
+    for (const slot of Object.keys(CONFIG.SW5E.powerDieSlots)) updates[`system.attributes.power.${slot}.value`] = power[slot].max;
 
     return { updates };
   }

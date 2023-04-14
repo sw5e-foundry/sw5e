@@ -912,7 +912,7 @@ export default class Actor5e extends Actor {
       abl.mod = Math.floor((abl.value - 10) / 2);
 
       const isRA = this._isRemarkableAthlete(id);
-      abl.checkProf = new Proficiency(this.system.attributes.prof, isRA || flags.jackOfAllTrades ? 0.5 : 0, !isRA);
+      abl.checkProf = new Proficiency(this.system.attributes.prof, isRA || flags.jackOfAllTrades ? 0.5 : 0);
       const saveBonusAbl = simplifyBonus(abl.bonuses?.save, bonusData);
       abl.saveBonus = saveBonusAbl + saveBonus;
 

@@ -5574,10 +5574,15 @@
       "di": {
         "value": [
           "necrotic",
-          "poison"
+          "poison",
+          "kinetic",
+          "energy",
+          "ion"
         ],
-        "bypasses": [],
-        "custom": "Kinetic, Energy, And Ion From Non-enhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [
@@ -5601,8 +5606,11 @@
         "custom": "Charmed Deafened"
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, High Galactic, Sith"
+        "value": [
+          "basic",
+          "sith"
+        ],
+        "custom": "High Galactic"
       }
     },
     "currency": {

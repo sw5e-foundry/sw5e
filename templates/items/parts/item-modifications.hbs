@@ -22,16 +22,16 @@
     {{#each mods as | mod |}}
     {{#unless mod.hidden}}
     {{#if (eq mod.type "mod")}}
-    <li class="modification {{#if (or @root.system.modsdisabled mod.disabled)}}disabled{{/if}}" data-id="{{mod.id}}" data-index="{{@index}}">
+    <li class="modification {{disabled (or @root.system.modsdisabled mod.disabled)}}" data-id="{{mod.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i>{{mod.name}}</a>
         </div>
         <div class="modification-controls">
-            <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+            <a class="modification-control" data-action="toggle" data-tooltip="SW5E.ItemModControlToggle{{#if mod.disabled}}On{{else}}Off{{/if}}">
                 <i class="fas {{#if mod.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
             </a>
-            <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+            <a class="modification-control" data-action="delete" data-tooltip="SW5E.ItemModControlDelete">
                 <i class="fas fa-trash"></i>
             </a>
         </div>
@@ -48,16 +48,16 @@
     {{#each mods as | aug |}}
     {{#unless aug.hidden}}
     {{#if (eq aug.type "augment")}}
-    <li class="modification {{#if (or @root.system.modsdisabled aug.disabled)}}disabled{{/if}}" data-id="{{aug.id}}" data-index="{{@index}}">
+    <li class="modification {{disabled (or @root.system.modsdisabled aug.disabled)}}" data-id="{{aug.id}}" data-index="{{@index}}">
         <div></div>
         <div class="modification-name">
             <a class="modification-link"><i class="fas fa-suitcase"></i> {{aug.name}}</a>
         </div>
         <div class="modification-controls">
-            <a class="modification-control" data-action="toggle" title="{{localize 'SW5E.ItemModControlToggle'}}">
+            <a class="modification-control" data-action="toggle" data-tooltip="SW5E.ItemModControlToggle">
                 <i class="fas {{#if aug.disabled}}fa-check{{else}}fa-times{{/if}}"></i>
             </a>
-            <a class="modification-control" data-action="delete" title="{{localize 'SW5E.ItemModControlDelete'}}">
+            <a class="modification-control" data-action="delete" data-tooltip="SW5E.ItemModControlDelete">
                 <i class="fas fa-trash"></i>
             </a>
         </div>

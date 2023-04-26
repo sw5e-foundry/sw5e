@@ -1,0 +1,101 @@
+{
+  "name": "Noxious Mixture",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.7427044+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-noxious_mixture.source-archetype.sourceName-biochem_engineering.level-3"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-ARCH-Passive.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Your distributor emits a cloud of poison. The target must make a Constitution saving throw. On a failed save, a creature takes [[/r 1d6]] + your Intelligence modifier poison damage. This mixture's damage increases by [[/r 1d6]] when you reach 5th level ([[/r 2d6]]), 11th level ([[/r 3d6]]), and 17th level ([[/r 4d6]]).</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Biochem Engineering) 3",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6 + @abilities.int.mod",
+          "poison"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1667426104168,
+    "modifiedTime": 1680288495334,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "MtUsOc7DCG7bD2Lh"
+}

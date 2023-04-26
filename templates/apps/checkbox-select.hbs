@@ -2,11 +2,10 @@
     {{{content}}}
 </div>
 <div class="dialog-checkboxes">
-    {{log checkboxes}}
     {{#each checkboxes as |checkbox id|}}
         <div class="form-group">
             <label>{{ localize checkbox.label }}</label>
-            <input type="checkbox" name="{{id}}" {{checked checkbox.selected}}{{#if checkbox.disabled}} disabled{{/if}}/>
+            <input type="checkbox" name="{{id}}" {{checked checkbox.selected}} {{disabled checkbox.disabled}}/>
         </div>
     {{/each}}
 </div>

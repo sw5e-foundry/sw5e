@@ -1,0 +1,97 @@
+{
+  "_id": "kQ9Pc3QNb4deJLrM",
+  "name": "Hacked Communications",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Operator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>As an action, you may expend a power die, and choose any number of ships that you can see within 600 feet of you. Each ship must succeed on a Wisdom saving throw or take ionic damage equal to the number rolled on the die + your ship's Charisma modifier (minimum of one). Additionally, on a failed save, the ship's communication devices are disabled until rebooted.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Operator"
+    },
+    "featureType": {
+      "value": "Disruption"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963460,
+    "modifiedTime": 1677349705130,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

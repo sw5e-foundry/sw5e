@@ -1,0 +1,90 @@
+{
+  "_id": "hEG8eC9KIanzwUcG",
+  "name": "Subtle Control",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/CSLR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:57.9374501+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-subtle_control.source-archetype.sourceName-way_of_suggestion.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Way of Suggestion:</strong> 3rd level</em></p>\n<p>You can befuddle a creature's mind with nothing but a gesture. As an action, you can cause a creature you can see within 30 feet to make a Wisdom saving throw against your universal force save DC. On a failed save, you can force the creature to believe or forget a single aspect of a conversation, observation or encounter it had that you were present for in the past 10 minutes. Whether the creature succeeds or fails their saving throw, you can't use this feature on them again until you finish a long rest. </p>\n<p>Additionally, creatures who attempt to detect your use of the Force have disadvantage on ability checks to do so, and if a creature has the <em>sense force</em> or <em>force sight</em> power active, they must succeed on a universal forcecasting ability check against your universal force save DC in order to notice your usage of the Force, your alignment within the Force, or how strong your connection to the Force is. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Consular (Way of Suggestion) 3",
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Consular"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957978,
+    "modifiedTime": 1680288495347,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

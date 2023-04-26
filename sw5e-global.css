@@ -83,7 +83,7 @@ html {
   scrollbar-color: #0d99cc #afc6d6;
 }
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
   background-image: url("./ui/SW5e-logo.svg");
@@ -91,32 +91,32 @@ body {
   background-size: cover;
 }
 h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 34px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 27px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 21px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h4 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
 }
 h5,
 h6 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -231,7 +231,7 @@ textarea:focus,
 .roundTransition:focus {
   box-shadow: none;
 }
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none;
   /* Hides the slider so that custom slider can be made */
   width: 100%;
@@ -239,7 +239,7 @@ input[type=range] {
   background: transparent;
   /* Otherwise white in Chrome */
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -248,7 +248,7 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -257,7 +257,7 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
   background: #c40f0f;
   width: 12px;
@@ -266,7 +266,7 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -275,10 +275,10 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: #0d99cc;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -287,7 +287,7 @@ input[type=range]::-moz-range-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -296,11 +296,11 @@ input[type=range]::-ms-track {
   border: 1px solid #0d99cc;
   box-shadow: none;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none;
   /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
   /* Hides the slider so custom styles can be added */
@@ -312,7 +312,7 @@ button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   text-align: center;
@@ -378,7 +378,7 @@ input[type="reset"]:disabled {
   margin-bottom: 4px;
 }
 #chat-log .chat-message > header span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 .notification-pip {
   color: #0d99cc;
@@ -398,7 +398,7 @@ input[type="reset"]:disabled {
   flex: 1;
   margin: 0;
   line-height: 36px;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -437,7 +437,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.chat-card .card-buttons button,
 .midi-qol-item-card .card-buttons button {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   padding: 4px 0;
@@ -486,27 +486,34 @@ input[type="reset"]:disabled {
 /*-----------
 ** Combat Tab
 -----------*/
-#combat h3 {
+#combat h3,
+#combat-popout h3 {
   border: none;
 }
-#combat #combat-tracker li.combatant {
+#combat #combat-tracker li.combatant,
+#combat-popout #combat-tracker li.combatant {
   padding: 4px 0;
   background: none;
 }
-#combat #combat-tracker li.combatant .token-name {
+#combat #combat-tracker li.combatant .token-name,
+#combat-popout #combat-tracker li.combatant .token-name {
   text-shadow: none;
 }
-#combat #combat-tracker li.combatant .ce-image-wrapper .token-image {
+#combat #combat-tracker li.combatant .ce-image-wrapper .token-image,
+#combat-popout #combat-tracker li.combatant .ce-image-wrapper .token-image {
   width: auto;
   height: auto;
 }
-#combat #combat-tracker li.combatant h4 {
-  color: #1C1C1C;
+#combat #combat-tracker li.combatant h4,
+#combat-popout #combat-tracker li.combatant h4 {
+  color: #1c1c1c;
 }
-#combat #combat-tracker li.combatant .roll {
+#combat #combat-tracker li.combatant .roll,
+#combat-popout #combat-tracker li.combatant .roll {
   background: none;
 }
-#combat #combat-tracker li.combatant .roll::before {
+#combat #combat-tracker li.combatant .roll::before,
+#combat-popout #combat-tracker li.combatant .roll::before {
   content: "\f6cf";
   font-family: "Font Awesome 5 Free";
   -webkit-font-smoothing: antialiased;
@@ -517,13 +524,16 @@ input[type="reset"]:disabled {
   font-weight: 900;
   font-size: 28px;
 }
-#combat #combat-tracker li.combatant .initiative {
+#combat #combat-tracker li.combatant .initiative,
+#combat-popout #combat-tracker li.combatant .initiative {
   text-shadow: none;
 }
-#combat #combat-tracker li.combatant.hidden {
+#combat #combat-tracker li.combatant.hidden,
+#combat-popout #combat-tracker li.combatant.hidden {
   opacity: 0.5;
 }
-#combat #combat-controls {
+#combat #combat-controls,
+#combat-popout #combat-controls {
   padding-top: 0;
 }
 /*
@@ -562,7 +572,7 @@ input[type="reset"]:disabled {
 }
 .sidebar-tab .directory-list .folder > .folder-header h3 {
   padding: 8px 4px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   line-height: 1.6;
@@ -599,24 +609,28 @@ input[type="reset"]:disabled {
 .sidebar-tab .directory-list .item .entity-name,
 .sidebar-tab .directory-list .journal .entity-name,
 .sidebar-tab .directory-list .table .entity-name {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
-#scenes .subdirectory {
+#scenes .subdirectory,
+#scenes-popout .subdirectory {
   border-left: none;
 }
-#scenes .scene {
+#scenes .scene,
+#scenes-popout .scene {
   border: none;
   box-shadow: none;
   position: relative;
   height: 128px;
 }
-#scenes .scene + .scene {
+#scenes .scene + .scene,
+#scenes-popout .scene + .scene {
   margin-top: 4px;
 }
-#scenes .scene::after {
-  content: '';
+#scenes .scene::after,
+#scenes-popout .scene::after {
+  content: "";
   display: block;
   width: 100%;
   height: 99px;
@@ -624,8 +638,9 @@ input[type="reset"]:disabled {
   top: 28px;
   left: 0;
 }
-#scenes .scene h3 {
-  font-family: 'Open Sans';
+#scenes .scene h3,
+#scenes-popout .scene h3 {
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   text-align: left;
@@ -637,78 +652,96 @@ input[type="reset"]:disabled {
   left: 0;
   width: 100%;
 }
-#playlists .directory-list {
+#playlists .directory-list,
+#playlists-popout .directory-list {
   padding: 0 8px;
 }
-#playlists .directory-list li.playlist {
+#playlists .directory-list li.playlist,
+#playlists-popout .directory-list li.playlist {
   padding: 8px;
   border-radius: 4px;
   margin-bottom: 8px;
   border-top: inherit;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
-#playlists .directory-list li.playlist .playlist-header {
+#playlists .directory-list li.playlist .playlist-header,
+#playlists-popout .directory-list li.playlist .playlist-header {
   text-decoration: none;
 }
-#playlists .directory-list li.playlist li.sound {
+#playlists .directory-list li.playlist li.sound,
+#playlists-popout .directory-list li.playlist li.sound {
   border: none;
 }
-#playlists .directory-list li.playlist li.sound h4 {
-  font-family: 'Open Sans';
+#playlists .directory-list li.playlist li.sound h4,
+#playlists-popout .directory-list li.playlist li.sound h4 {
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
-#compendium .compendium-entity {
+#compendium .compendium-entity,
+#compendium-popout .compendium-entity {
   margin: 0 4px;
   padding: 8px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   border: none;
 }
-#compendium .compendium-entity + .compendium-entity {
+#compendium .compendium-entity + .compendium-entity,
+#compendium-popout .compendium-entity + .compendium-entity {
   margin-top: 4px;
 }
-#compendium .compendium-entity h3 {
+#compendium .compendium-entity h3,
+#compendium-popout .compendium-entity h3 {
   background: none;
   border: none;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
   padding: 0;
   margin-bottom: 4px;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack {
   margin: 0;
   padding: 4px;
   border: none;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title {
   margin: 0;
   position: relative;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
-  font-family: 'Open Sans';
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title a {
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title a i {
   display: none;
 }
-#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+#compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons,
+#compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   top: 4px;
   font-size: 13px;
 }
-#settings h2 {
+#settings h2,
+#settings-popout h2 {
   border: none;
   margin: 0 8px;
   padding: 0;
   background: none;
 }
 #settings #game-details,
+#settings-popout #game-details,
 #settings #settings-game,
+#settings-popout #settings-game,
 #settings #settings-documentation,
-#settings #settings-access {
+#settings-popout #settings-documentation,
+#settings #settings-access,
+#settings-popout #settings-access {
   padding: 0 8px;
   margin: 0 0 8px;
 }
@@ -722,7 +755,7 @@ input[type="reset"]:disabled {
   min-height: 720px;
 }
 .sw5e.sheet .window-content {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 12px;
   font-weight: 400;
 }
@@ -771,7 +804,7 @@ input[type="reset"]:disabled {
   grid-template-rows: 182px 36px auto;
 }
 .sw5e.sheet.actor .swalt-sheet section > h1 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -801,7 +834,7 @@ input[type="reset"]:disabled {
   margin: 0;
   border: none;
   align-self: center;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 32px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -809,7 +842,7 @@ input[type="reset"]:disabled {
   height: auto;
 }
 .sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"] {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 32px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -826,7 +859,7 @@ input[type="reset"]:disabled {
   grid-column: 3;
 }
 .sw5e.sheet.actor .swalt-sheet header .level-experience .charlevel {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -838,7 +871,7 @@ input[type="reset"]:disabled {
   height: auto;
 }
 .sw5e.sheet.actor .swalt-sheet header .level-experience .experience {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -866,15 +899,17 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(4, 1fr);
 }
 .sw5e.sheet.actor .swalt-sheet header .summary input,
+.sw5e.sheet.actor .swalt-sheet header .summary .size,
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   display: inline;
   height: auto;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
   line-height: 24px;
   width: 100%;
+  text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet header .summary .proficiency {
   line-height: 26px;
@@ -891,6 +926,9 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 12px;
 }
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib {
+  position: relative;
+}
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib h1 {
   text-align: center;
 }
@@ -899,7 +937,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -908,13 +946,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value.multiple {
   display: grid;
-  grid-template-columns: auto 14px auto;
-}
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value.multiple input {
-  width: 100%;
-}
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value input {
-  display: inline-block;
+  grid-template-columns: 1fr 14px 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attribute-value .value-number {
   display: inline-block;
@@ -934,11 +966,10 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .config-button {
   position: absolute;
+  padding: 2px;
+  right: 0;
+  top: 0;
   display: none;
-  right: -6px;
-  top: -3px;
-  font-size: 10px;
-  font-weight: normal;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib:hover .config-button {
   display: block;
@@ -967,7 +998,8 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 8px;
@@ -976,21 +1008,25 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative input,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair input,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
   width: 100%;
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
   font-weight: 400;
   margin-top: 2px;
 }
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points span,
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice span,
-.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative span {
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative span,
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair span {
   display: block;
   padding: 3px 4px;
 }
@@ -1000,38 +1036,15 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.speed input {
   text-align: center;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper {
-  display: grid;
-  grid-template-columns: 300px 100px;
-  width: 400px;
-  justify-self: end;
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair {
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel-label {
-  font-size: 12px;
-  line-height: 14px;
-  width: 100%;
-  text-shadow: none;
-  padding: 0;
-  margin: 0;
-  height: auto;
-  text-align: center;
-  margin-left: -2px;
-  border-radius: 0 4px 4px 0;
+.sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer .depleted {
+  color: #c40f0f;
 }
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel {
-  position: relative;
-  border-radius: 4px;
-  height: 16px;
-  margin: 0;
-  width: 100%;
-}
-.sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel .fuel-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 4px;
-  border: none;
+.sw5e.sheet.actor .swalt-sheet header .attributes.starship {
+  grid-template-columns: repeat(4, 1fr);
 }
 .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation {
   display: grid;
@@ -1047,7 +1060,7 @@ input[type="reset"]:disabled {
   margin: 0;
   padding: 3px 0 0;
   line-height: 1;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1108,7 +1121,7 @@ input[type="reset"]:disabled {
   padding-right: 6px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list-title h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1169,7 +1182,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
 .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0;
@@ -1183,6 +1196,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name,
 .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name {
+  cursor: pointer;
   display: flex;
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image,
@@ -1283,14 +1297,13 @@ input[type="reset"]:disabled {
   padding: 0 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items {
-  grid-template-columns: auto 60px 30px 30px 50px;
-}
-.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items.group-list-title {
+  grid-template-columns: auto 220px 50px;
   display: grid;
   align-items: end;
 }
-.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items.group-list-title .item-detail {
+.sw5e.sheet.actor .swalt-sheet .tab .group-grid-fav-items .item-detail {
   padding: 0 4px;
+  text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab > .panel {
   height: 100%;
@@ -1301,10 +1314,12 @@ input[type="reset"]:disabled {
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score {
   border-radius: 0;
   padding: 4px;
+  position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score + li {
   border-top: 0 !important;
@@ -1317,7 +1332,7 @@ input[type="reset"]:disabled {
   border-radius: 0 0 4px 4px;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1329,7 +1344,7 @@ input[type="reset"]:disabled {
   text-shadow: none;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-score {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1340,9 +1355,9 @@ input[type="reset"]:disabled {
   display: block;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .config-button {
-  right: -54px;
+  right: 2px;
   top: 3px;
-  position: relative;
+  position: absolute;
   display: none;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score:hover .config-button {
@@ -1371,6 +1386,7 @@ input[type="reset"]:disabled {
   border-radius: 4px 0 0 0;
 }
 .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .proficiency-toggle {
+  text-align: center;
   border: none;
   background: none;
   line-height: 1;
@@ -1391,7 +1407,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li {
   display: grid;
-  grid-template-columns: 28px auto 18px 28px;
+  grid-template-columns: 28px auto 18px 28px /* 26px*/;
   align-items: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .proficiency-toggle {
@@ -1423,6 +1439,10 @@ input[type="reset"]:disabled {
   text-align: right;
   padding-right: 4px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .skill-passive {
+  text-align: center;
+  padding-right: 4px;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources {
   grid-template-rows: 32px auto;
 }
@@ -1439,7 +1459,7 @@ input[type="reset"]:disabled {
   margin: 0;
   padding: 0 4px;
   line-height: 1.6;
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1512,6 +1532,78 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.traits ul.passives strong {
   font-size: 13px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel table {
+  border: none;
+  background: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper {
+  display: grid;
+  grid-template-columns: 300px 100px;
+  width: 400px;
+  justify-self: end;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel-label {
+  font-size: 12px;
+  line-height: 14px;
+  width: 100%;
+  text-shadow: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  text-align: center;
+  margin-left: -2px;
+  border-radius: 0 4px 4px 0;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel {
+  position: relative;
+  border-radius: 4px;
+  height: 16px;
+  margin: 0;
+  width: 100%;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.cargo-fuel .fuel-wrapper .fuel .fuel-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table {
+  border: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table .top {
+  border-top: 2px solid #0d99cc;
+  border-left: 2px solid #0d99cc;
+  border-right: 2px solid #0d99cc;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing table .bottom {
+  border-bottom: 2px solid #0d99cc;
+  border-left: 2px solid #0d99cc;
+  border-right: 2px solid #0d99cc;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value {
+  text-align: center;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value.multiple {
+  display: grid;
+  grid-template-columns: 1fr 14px 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number,
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-separator {
+  height: calc(100% - 2px);
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number {
+  display: inline-block;
+  text-align: right;
+  padding: 0 3px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value .value-number:last-child {
+  text-align: left;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources .traits.power-routing .attribute-value span.value-number {
+  padding: 1px 4px;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1531,7 +1623,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1565,6 +1657,8 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-footer label {
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters {
   border: none;
@@ -1602,6 +1696,15 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters .counter .death-success {
   margin-right: 8px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.crew .group-grid-deployments {
+  grid-template-columns: auto 100px 100px;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.crew .group-grid-deployments .group-item-title {
+  vertical-align: center;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.inventory > .panel {
   grid-template-rows: 32px 32px 24px auto;
 }
@@ -1612,7 +1715,7 @@ input[type="reset"]:disabled {
   align-items: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1620,7 +1723,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency input {
   display: inline-block;
   width: 128px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 13px;
   font-weight: 400;
 }
@@ -1667,6 +1770,11 @@ input[type="reset"]:disabled {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 24px;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource {
+  position: relative;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource h1,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource h1 {
@@ -1679,36 +1787,34 @@ input[type="reset"]:disabled {
   margin-bottom: 4px;
   border-radius: 0;
 }
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-name,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-name,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-name {
+  position: relative;
+}
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value,
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 0.5px;
   text-align: center;
   line-height: 1;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value.multiple {
   display: grid;
-  grid-template-columns: auto 14px auto;
-}
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value input,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value input {
-  display: block;
-  width: 100%;
+  grid-template-columns: 1fr 14px 1fr;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-value .value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-value .value-number,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value .value-number {
-  display: block;
-  width: 100%;
+  display: inline-block;
   text-align: right;
   padding: 0 3px;
 }
@@ -1722,12 +1828,34 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-value span.value-number {
   padding: 1px 4px;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .config-button {
+  position: absolute;
+  padding: 2px;
+  right: 0;
+  top: 0;
+  display: none;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .property-attribution,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .property-attribution,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .property-attribution {
+  min-width: 150px;
+  top: 50px;
+  font-family: Signika, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1rem;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource:hover .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource:hover .config-button,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource:hover .config-button {
+  display: block;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer {
   margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   flex: 0 0 18px;
   margin-top: -1px;
   line-height: 18px;
@@ -1736,9 +1864,15 @@ input[type="reset"]:disabled {
   font-weight: 400;
   white-space: nowrap;
 }
-.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource .attribute-footer input,
-.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource .attribute-footer input,
-.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource .attribute-footer input {
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer.multiple,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer.multiple {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .resource-items .resource footer input,
+.sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .resource-items .resource footer input,
+.sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .resource-items .resource footer input {
   text-align: center;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook > .panel,
@@ -1763,7 +1897,7 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .force-powercasting-ability h3,
 .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .force-powercasting-ability h3,
 .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .force-powercasting-ability h3 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1795,7 +1929,7 @@ input[type="reset"]:disabled {
   position: relative;
 }
 .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1820,7 +1954,7 @@ input[type="reset"]:disabled {
 }
 .sw5e.sheet.actor.npc .swalt-sheet header .npc-size,
 .sw5e.sheet.actor.npc .swalt-sheet header .creature-type {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1832,6 +1966,7 @@ input[type="reset"]:disabled {
   padding: 1px 4px;
   border: 1px solid transparent;
   overflow-x: auto;
+  position: relative;
 }
 .sw5e.sheet.actor.npc .swalt-sheet header div.creature-type span {
   overflow: hidden;
@@ -1863,7 +1998,7 @@ input[type="reset"]:disabled {
   vertical-align: text-top;
 }
 .sw5e.sheet.actor.npc .swalt-sheet nav.sheet-navigation {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
 }
 .sw5e.sheet.actor.npc .swalt-sheet .traits-resources {
   display: block;
@@ -1886,14 +2021,12 @@ input[type="reset"]:disabled {
 .sw5e.sheet.actor.npc .swalt-sheet .tab.biography.active {
   display: block;
 }
-.sw5e.sheet.actor.starship .swalt-sheet .tab .group-grid-deployments {
-  grid-template-columns: auto 100px 100px;
+.sw5e.sheet.actor.starship .swalt-sheet header.panel {
+  font-family: 'Russo One';
+  color: #4f4f4f;
 }
-.sw5e.sheet.actor.starship .swalt-sheet .tab .group-grid-deployments .group-item-title {
-  vertical-align: center;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: -10px;
+.sw5e.sheet.actor.starship .swalt-sheet nav.sheet-navigation {
+  grid-template-columns: repeat(6, 1fr);
 }
 .sw5e.sheet.actor input[type="range"][orient="vertical"] {
   -webkit-appearance: slider-vertical;

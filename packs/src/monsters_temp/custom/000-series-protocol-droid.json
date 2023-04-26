@@ -1,0 +1,896 @@
+{
+  "_id": "idM1G3g8DYuJqvom",
+  "name": "000 Series Protocol Droid",
+  "type": "npc",
+  "img": "icons/svg/hazard.svg",
+  "items": [
+    {
+      "name": "Techcasting",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.4462193+00:00",
+        "uid": "MonsterBehavior.name-techcasting.source-monster.sourceName-000_series_protocol_droid",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.7230349+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-techcasting.source-monster.sourceName-000_series_protocol_droid"
+        }
+      },
+      "_id": "SztisnHwiMcBo3m7",
+      "type": "feat",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<p>At will: assess the situation, electroshock, venomous strike 1st-level: poison dart, spot the weakness, toxin scan, tranquilizer 2nd-level: paralyze humanoid, toxin purge, truth serum 3rd-level: tactical advantage  The droid is a 5th-level techcaster. Its techcasting ability is Intelligence (tech save DC 13, +5 to hit with tech powers). It has 22 tech points and knows the following tech powers:</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": null,
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Tortuous Strike",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.4462193+00:00",
+        "uid": "MonsterBehavior.name-tortuous_strike.source-monster.sourceName-000_series_protocol_droid",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.7230349+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-tortuous_strike.source-monster.sourceName-000_series_protocol_droid"
+        }
+      },
+      "_id": "BDwP4oGE2L6mwUUC",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 2 ([[/r 1d4]]) kinetic damage and, if the target is a creature, the creature is shocked until the end of its next turn.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 5,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "mwak",
+        "attackBonus": "1",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d4",
+              "kinetic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": null,
+          "bur": null,
+          "dir": null,
+          "hvy": null,
+          "hid": null,
+          "ken": null,
+          "pic": null,
+          "ran": null,
+          "rap": null,
+          "rel": null,
+          "smr": null,
+          "spc": null,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": null,
+          "dgd": null,
+          "dis": null,
+          "dpt": null,
+          "dou": null,
+          "fin": null,
+          "fix": null,
+          "ilk": null,
+          "lgt": null,
+          "lum": null,
+          "mig": null,
+          "mod": null,
+          "neu": null,
+          "pen": null,
+          "pcl": null,
+          "rch": null,
+          "rck": null,
+          "ret": null,
+          "shk": null,
+          "sil": null,
+          "slg": null,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": null,
+          "thr": null,
+          "two": null,
+          "ver": null,
+          "con": null,
+          "exp": null,
+          "hom": null,
+          "ion": null,
+          "mlt": null,
+          "ovr": null,
+          "pow": null,
+          "sat": null,
+          "zon": null
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:10.7230349+00:00",
+      "importer_version": 3,
+      "uid": "Monster.name-000_series_protocol_droid"
+    }
+  },
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Strength",
+        "mod": 0
+      },
+      "dex": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Dexterity",
+        "mod": 0
+      },
+      "con": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Constitution",
+        "mod": 1
+      },
+      "int": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Intelligence",
+        "mod": 2
+      },
+      "wis": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Wisdom",
+        "mod": 1
+      },
+      "cha": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Charisma",
+        "mod": 2
+      },
+      "hon": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 11,
+        "calc": "flat",
+        "formula": ""
+      },
+      "hp": {
+        "value": 27,
+        "max": 27,
+        "temp": null,
+        "tempmax": null,
+        "formula": "5d8 + 5",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none"
+    },
+    "details": {
+      "biography": {
+        "value": "<p>Protocol droids are programmed mostly for etiquette, and are often used as translators between sentients or between sentients and computers. They are generally designed to look like the sentients they serve; for example, 3PO-series protocol droids are humanoid.They possess knowledge about various cultures and customs, both to advise those for whom they were working, and to ensure their own behavior is diplomatic and culturally sensitive.<strong><em>History.</em></strong> Protocol droids constructed around 4000 BBY (around the time of the Great Sith War and the Jedi Civil War) were frequently engineered with certain behavioral shifts set to occur whenever another design-generation was reached. A number of these droids underwent radical changes with each new generation—for example, when a C7-model droid supplanted the C6 variety. Each numeric \"jump\" in sequence could have had wide-ranging changes in functionality and temperament during that historical period.<strong><em>Programming Units.</em></strong> Cybot Galactica, the most famous and successful manufacturer of protocol droids, outfit them with SyntheTech AA-1 VerboBrains to give their droids personalities with emotions and the ability to learn and grow very similar to organic beings. The 3PO unit possesses a TranLang III communications module that can reproduce over six million languages, as well as reproduce any sound it picks up. Linguistic modules are also used to improve their speech functions. Some models, such as the pricey E-3POs, also include the TechSpan I module, making it possible to interface with Imperial networks and undocumented technologies of Imperial subcontractors.</p>\n<p>The 3PO-series protocol droid is a Human-cyborg relations protocol droid produced by Cybot Galactica.  They are equipped with a TranLang III communication module, and as a result are fluent in over 6 million forms of communication. The model series has very similar aesthetic design in its casing to other Cybot Galactica droid model series such as the TC-series, 3PX-series, and 5YQ-series protocol droids.<strong><em>0-0-0.</em></strong> The Triple-Zero protocol personality matrix is a droid personality matrix that was created centuries before the rise of the Galactic Empire. The matrix is considered incredibly dangerous when placed into its designed droid body: a protocol droid. The matrix, when inserted into a protocol droid, turns it into an assassin droid that specializes in torture.It was quarantined on Quarantine World III in Kallidahin Space for centuries before it was stolen by the rogue archaeologist Doctor Aphra during the Galactic Civil War.</p>",
+        "public": ""
+      },
+      "alignment": "unaligned",
+      "species": "",
+      "type": {
+        "value": "custom",
+        "subtype": "",
+        "swarm": "",
+        "custom": "droid"
+      },
+      "environment": "",
+      "cr": 2,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "SnV",
+      "xp": {
+        "value": 10
+      }
+    },
+    "traits": {
+      "size": "med",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [
+          "necrotic",
+          "poison",
+          "psychic"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [
+          "ion"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [
+          "poisoned"
+        ],
+        "custom": "diseased"
+      },
+      "languages": {
+        "value": [],
+        "custom": "all registered languages"
+      }
+    },
+    "currency": {
+      "gc": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power2": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power3": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power4": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power5": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power6": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power7": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power8": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power9": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": 0,
+        "initiative": 0
+      }
+    },
+    "source": "SnV"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "name": "000 Series Protocol Droid",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false,
+        "type": null
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "texture": {
+      "src": "icons/svg/hazard.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493994430,
+    "modifiedTime": 1679691123035,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

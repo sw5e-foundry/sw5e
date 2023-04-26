@@ -1,4 +1,11 @@
-input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], select, textarea, .roundTransition {
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+select,
+textarea,
+.roundTransition {
   border-radius: 4px;
   transition: all 0.3s;
   &:hover {
@@ -8,13 +15,13 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
     box-shadow: none;
   }
 }
-input[type=range] {
+input[type="range"] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
   width: 100%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
 }
 
-input[type=range]::-webkit-slider-thumb{
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   background: @colorRed;
   width: 12px;
@@ -23,7 +30,7 @@ input[type=range]::-webkit-slider-thumb{
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-moz-range-thumb{
+input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   background: @colorRed;
   width: 12px;
@@ -32,7 +39,7 @@ input[type=range]::-moz-range-thumb{
   cursor: pointer;
   box-shadow: none;
 }
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
   background: @colorRed;
   width: 12px;
@@ -42,7 +49,7 @@ input[type=range]::-ms-thumb {
   box-shadow: none;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -51,10 +58,10 @@ input[type=range]::-webkit-slider-runnable-track {
   border: 1px solid @colorBlue;
   box-shadow: none;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
+input[type="range"]:focus::-webkit-slider-runnable-track {
   background: @colorBlue;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -63,7 +70,7 @@ input[type=range]::-moz-range-track {
   border: 1px solid @colorBlue;
   box-shadow: none;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
@@ -72,34 +79,36 @@ input[type=range]::-ms-track {
   border: 1px solid @colorBlue;
   box-shadow: none;
 }
-input[type=range]:focus {
+input[type="range"]:focus {
   outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
 }
 
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
 
   /* Hides the slider so custom styles can be added */
-  background: transparent; 
+  background: transparent;
   border-color: transparent;
   color: transparent;
 }
 
-button, input[type="button"], input[type="submit"], input[type="reset"] {
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   .openSans(13px, 700);
   text-align: center;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     box-shadow: none;
   }
   &:disabled {
     opacity: 0.6;
     cursor: default;
-  
   }
-  
 }

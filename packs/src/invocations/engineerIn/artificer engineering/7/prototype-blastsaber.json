@@ -1,0 +1,98 @@
+{
+  "_id": "foFN496BcC88eKUH",
+  "name": "Prototype Blastsaber",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:22.543927+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-prototype_blastsaber.source-archetypeinvocation.sourceName-artificer_engineering.level-7"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level, Blastsaber Conversion</em></p>\n<p>You fine tune your blastsaber. When you activate this conversion to alter the properties of your lightweapon, you can use your bonus action to cause your modified lightsaber to let loose a burst of energy. Creatures other than yourself within 5 feet of the target creature must succeed on a Dexterity saving throw. On a failed save, they take ion damage equal to your Intelligence modifier.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Artificer Engineering) 7, Blastsaber Conversion",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "@abilities.int.mod",
+          "ion"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981175,
+    "modifiedTime": 1678471402731,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

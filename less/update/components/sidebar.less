@@ -42,13 +42,11 @@
         color: @colorBlack;
       }
     }
-
   }
 }
 .notification-pip {
   color: @colorBlue;
   text-shadow: none;
-
 }
 
 .sw5e.chat-card,
@@ -113,7 +111,8 @@
       background: @colorRed;
       border: none;
       border-radius: 4px;
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: lighten(@colorRed, 5);
         box-shadow: none;
       }
@@ -125,7 +124,7 @@
     border-top: 1px solid @colorLightBlue;
 
     span {
-      border-right: 2px groove #FFF;
+      border-right: 2px groove #fff;
       padding: 0 4px 0 0;
       font-size: 10px;
 
@@ -137,49 +136,47 @@
   }
 }
 .dice-roll {
-
-.dice-formula {
-  background: none;
-  border: none;
-}
-.dice-total {
-  background: @colorPaleBlue;
-  border: 1px solid @colorBlue;
-  border-radius: 0;
-  padding: 4px 0;
-  box-shadow: 0 0 12px rgba(@colorBlue,.5);
-  &.success {
-    color: inherit;
-    background: #c7d0c0;
-    border: 1px solid #006c00;
+  .dice-formula {
+    background: none;
+    border: none;
   }
-  &.failure {
-    color: inherit;
-    background: #ffdddd;
-    border: 1px solid #6e0000;
+  .dice-total {
+    background: @colorPaleBlue;
+    border: 1px solid @colorBlue;
+    border-radius: 0;
+    padding: 4px 0;
+    box-shadow: 0 0 12px rgba(@colorBlue, 0.5);
+    &.success {
+      color: inherit;
+      background: #c7d0c0;
+      border: 1px solid #006c00;
+    }
+    &.failure {
+      color: inherit;
+      background: #ffdddd;
+      border: 1px solid #6e0000;
+    }
+    &.critical {
+      color: @colorGreen;
+      background: @colorPaleGreen;
+      box-shadow: 0 0 12px rgba(@colorGreen, 0.5);
+    }
+    &.fumble {
+      color: red;
+    }
   }
-  &.critical {
-    color: @colorGreen;
-    background: @colorPaleGreen;
-    box-shadow: 0 0 12px rgba(@colorGreen,.5);
-  }
-  &.fumble {
-    color: red;
-  }
-}
 }
 #chat-controls {
   &.roll-type-select {
     background: #4f4f4f;
-	color: #FFFFFF;
+    color: #ffffff;
   }
   padding-top: 4px;
   label {
     color: @colorBlack;
   }
- 
 }
-#chat-form  textarea {
+#chat-form textarea {
   background: #4f4f4f;
   &:focus {
     box-shadow: none;
@@ -190,22 +187,22 @@
 /*-----------
 ** Combat Tab
 -----------*/
-#combat {
-#combat-round {
-  color: @colorRed;
-  border-bottom: 2px solid @colorBlue;
-  .encounters {
+#combat, #combat-popout {
+  #combat-round {
+    color: @colorRed;
+    border-bottom: 2px solid @colorBlue;
+    .encounters {
       h4 {
-      color: @colorRed;
-    }
-    a {
-      color: @colorGray;
-      &:hover {
         color: @colorRed;
+      }
+      a {
+        color: @colorGray;
+        &:hover {
+          color: @colorRed;
+        }
       }
     }
   }
-}
   #combat-tracker {
     //padding-top: 4px;
     li.combatant {
@@ -247,7 +244,8 @@
       }
       &.active {
         color: @colorBlue;
-        .initiative, h4 {
+        .initiative,
+        h4 {
           color: @colorBlue;
         }
       }
@@ -267,103 +265,107 @@
 ** Folders
 */
 .sidebar-tab {
-.directory-header {
-  margin-bottom: 4px;
-  .header-search {
-    position: relative;
-    i.fa-search {
-      position: absolute;
-      left: 8px;
-      color: @colorBlue;
-    }
-    input {
-      text-align: left;
-      padding-left: 22px;
-      background: white;
-      &:focus {
-        box-shadow: none;
-      }
-    }
-  }
-}
-.subdirectory {
-  border: none;
-  margin-left: 8px;
-  background: white;
-  min-height: 8px;
-  .folder {
-    border-left: 2px solid rgba(@colorBlack, 0.4);
-  }
-}
-.directory-list {
-  padding-bottom: 4px;
-  li + li {
-    border-top: 1px solid @colorBlue;
-  }
-  .folder {
-    & > .folder-header {
-      line-height: initial;
-      padding: 0 0 0 8px;
+  .directory-header {
+    margin-bottom: 4px;
+    .header-search {
       position: relative;
-      border: none;
-      background: white;
-      h3 {
-        padding: 8px 4px;
-        background: white;
-        color: @colorBlack;
-        .openSans(13px, 700);
-        line-height: 1.6;
-        & > i {
-          margin-right: 4px;
-          color: @colorBlue;
-        }
-      }
-      a {
+      i.fa-search {
         position: absolute;
-        top: 0;
-        right: 4px;
-        height: 100%;
-        padding: 0 4px;
-        color: @colorLightGray;
-        &:hover {
-          color: @colorRed;
-        }
-        i {
-          margin-top: 12px;
-        }
-        
-        &.create-folder {
-          right: 28px;
+        left: 8px;
+        color: @colorBlue;
+      }
+      input {
+        text-align: left;
+        padding-left: 22px;
+        background: white;
+        &:focus {
+          box-shadow: none;
         }
       }
     }
-    &.collapsed > .folder-header {
-      background: white;
+  }
+  .subdirectory {
+    border: none;
+    margin-left: 8px;
+    background: white;
+    min-height: 8px;
+    .folder {
+      border-left: 2px solid rgba(@colorBlack, 0.4);
     }
-    & + .entity {
+  }
+  .directory-list {
+    padding-bottom: 4px;
+    li + li {
       border-top: 1px solid @colorBlue;
     }
-  }
-  .directory-item img {
-    flex: 0 0 32px;
-    height: 32px;
-    width: 32px;
-    align-self: center;
-  }
-  .actor, .item, .journal, .table {
-    background: white;
-    border: none;
-    .entity-name {
-      .openSans(13px, 700);
-      color: @colorBlack;
+    .folder {
+      & > .folder-header {
+        line-height: initial;
+        padding: 0 0 0 8px;
+        position: relative;
+        border: none;
+        background: white;
+        h3 {
+          padding: 8px 4px;
+          background: white;
+          color: @colorBlack;
+          .openSans(13px, 700);
+          line-height: 1.6;
+          & > i {
+            margin-right: 4px;
+            color: @colorBlue;
+          }
+        }
+        a {
+          position: absolute;
+          top: 0;
+          right: 4px;
+          height: 100%;
+          padding: 0 4px;
+          color: @colorLightGray;
+          &:hover {
+            color: @colorRed;
+          }
+          i {
+            margin-top: 12px;
+          }
+
+          &.create-folder {
+            right: 28px;
+          }
+        }
+      }
+      &.collapsed > .folder-header {
+        background: white;
+      }
+      & + .entity {
+        border-top: 1px solid @colorBlue;
+      }
     }
-    &:nth-child(even) {
-      background: rgba(@colorPaleBlue, 0.3);
+    .directory-item img {
+      flex: 0 0 32px;
+      height: 32px;
+      width: 32px;
+      align-self: center;
+    }
+    .actor,
+    .item,
+    .journal,
+    .table {
+      background: white;
+      border: none;
+      .entity-name {
+        .openSans(13px, 700);
+        color: @colorBlack;
+      }
+      &:nth-child(even) {
+        background: rgba(@colorPaleBlue, 0.3);
+      }
     }
   }
 }
-}
-#scenes {
+
+#scenes, #scenes-popout {
   .subdirectory {
     border-left: none;
   }
@@ -379,7 +381,7 @@
       margin-top: 4px;
     }
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 100%;
       height: 99px;
@@ -403,7 +405,7 @@
   }
 }
 
-#playlists {
+#playlists, #playlists-popout {
   .directory-list {
     padding: 0 8px;
     li.playlist {
@@ -425,16 +427,15 @@
         h4 {
           .openSans(13px, 400);
         }
-        
       }
       a.sound-control {
         color: @colorRed;
       }
     }
   }
-  
 }
-#compendium {
+
+#compendium, #compendium-popout {
   .compendium-entity {
     margin: 0 4px;
     padding: 8px;
@@ -442,7 +443,7 @@
     .dropShadow1();
     border-radius: 4px;
     border: none;
-    &+ .compendium-entity {
+    & + .compendium-entity {
       margin-top: 4px;
     }
     h3 {
@@ -484,7 +485,7 @@
   }
 }
 
-#settings {
+#settings, #settings-popout {
   h2 {
     color: @colorRed;
     border: none;
@@ -492,7 +493,10 @@
     margin: 0 8px;
     padding: 0;
   }
-  #game-details, #settings-game, #settings-documentation, #settings-access {
+  #game-details,
+  #settings-game,
+  #settings-documentation,
+  #settings-access {
     padding: 0 8px;
     margin: 0 0 8px;
     color: @colorBlack;

@@ -1,0 +1,217 @@
+{
+  "name": "Superior Aura of Command",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Monster%20Traits/Superior%20Aura%20of%20Command.webp",
+  "effects": [
+    {
+      "_id": "Pwq0j7VG4ePDGAWl",
+      "flags": {
+        "ActiveAuras": {
+          "aura": "Allies",
+          "radius": 30,
+          "isAura": true,
+          "inactive": false,
+          "hidden": false,
+          "ignoreSelf": false,
+          "height": false,
+          "alignment": "",
+          "type": "",
+          "save": "",
+          "savedc": null,
+          "hostile": false,
+          "onlyOnce": false,
+          "time": "None"
+        },
+        "dae": {
+          "stackable": false,
+          "specialDuration": [
+            "None"
+          ],
+          "transfer": true,
+          "macroRepeat": "none"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.bonuses.All-Attacks",
+          "value": "2",
+          "mode": 0,
+          "priority": 1
+        },
+        {
+          "key": "system.bonuses.All-Damage",
+          "value": "2",
+          "mode": 0,
+          "priority": 1
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/monsters/227_-_Officer_2C_Junior/avatar.webp",
+      "label": "Aura of Command",
+      "origin": "Actor.oz1MItZ6zknCWBbl.Item.UYlxnuMo4uLcJTYV",
+      "tint": null,
+      "transfer": true,
+      "sort": 0
+    }
+  ],
+  "flags": {
+    "dae": {
+      "activeEquipped": false,
+      "alwaysActive": true
+    },
+    "autoanimations": {
+      "killAnim": false,
+      "override": false,
+      "animType": "t1",
+      "animName": "",
+      "bards": {
+        "bardAnim": "a1",
+        "bardTarget": true,
+        "bardTargetAnim": "a1",
+        "bardTargetColor": "a1",
+        "bardSelf": true,
+        "marker": true,
+        "markerColor": "a1",
+        "markerColorTarget": "a1"
+      },
+      "spellVar": "a1",
+      "hmAnim": "a1",
+      "color": "n1",
+      "spellOptions": {
+        "spellLoops": 1
+      },
+      "uaStrikeType": "physical",
+      "dtvar": "dt1",
+      "divineSmite": {
+        "dsEnable": false,
+        "dsSelf": true,
+        "dsSelfDelay": 0,
+        "dsSelfColor": "a1",
+        "dsTarget": true,
+        "dsTargetDelay": 1250,
+        "dsTargetColor": "a1"
+      },
+      "explosion": false,
+      "explodeVariant": "ev1",
+      "explodeColor": "",
+      "explodeRadius": "0",
+      "explodeLoop": "1",
+      "allSounds": {
+        "explosion": {
+          "audioExplodeEnabled": false,
+          "file": "",
+          "delay": 100,
+          "volume": 0.25
+        },
+        "item": {
+          "enableAudio": false,
+          "file": "",
+          "delay": 100,
+          "volume": 0.25
+        }
+      },
+      "selfRadius": "5",
+      "animTint": "#ffffff",
+      "auraOpacity": 0.75,
+      "ctaOption": false,
+      "teleDist": 30
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Friendly creatures that can see and hear the {creature} within 30 feet of it add a +2 bonus to their attack and damage rolls. This effect ends if the </span><span style=\"font-family:'Open Sans', sans-serif\"> {creature}</span><span style=\"font-family:'Open Sans', sans-serif\"> is incapacitated.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "",
+    "activation": {
+      "type": "",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": null,
+      "type": "self"
+    },
+    "range": {
+      "value": 10,
+      "long": 30,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": 0,
+      "per": "",
+      "recovery": "",
+      "type": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": null
+    },
+    "damage": {
+      "parts": [],
+      "versatile": "",
+      "value": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell",
+      "value": ""
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "powercasting": {
+      "force": "none",
+      "tech": "none"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1669753667510,
+    "modifiedTime": 1677349726607,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "e9vAcY3NLI2qKxIE"
+}

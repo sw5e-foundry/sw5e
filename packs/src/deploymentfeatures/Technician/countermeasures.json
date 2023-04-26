@@ -1,0 +1,97 @@
+{
+  "_id": "uIJwWQbv92GSHJTN",
+  "name": "Countermeasures",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Technician.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br>When you fail a Dexterity Saving throw forced by a Ship weapon, you can expend one power die as a reaction. Until the start of your next turn, your ship has a bonus to dexterity saving throws equal to the amount rolled on the power die. This includes the triggering save.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Technician 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": "When you fail a Dexterity Saving throw forced by a Ship weapon."
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Technician"
+    },
+    "featureType": {
+      "value": "Stratagem"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963469,
+    "modifiedTime": 1677349705137,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

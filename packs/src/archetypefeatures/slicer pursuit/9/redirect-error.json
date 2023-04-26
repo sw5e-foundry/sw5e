@@ -1,0 +1,90 @@
+{
+  "_id": "80yruN7q6k2svTUi",
+  "name": "Redirect Error",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.6837386+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-redirect_error.source-archetype.sourceName-slicer_pursuit.level-9"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Slicer Pursuit:</strong> 9th level</em></p>\n<p>When the target of your Critical Analysis feature casts a tech power that affects an area, you can use your reaction to cause that power to instead affect an area in a 10-foot-radius sphere centered on the caster. </p>\n<p>Once you've used this feature, you must complete a long rest before you can use it again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Slicer Pursuit) 9",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": "10",
+      "width": null,
+      "units": "ft",
+      "type": "sphere"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957394,
+    "modifiedTime": 1680288495328,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

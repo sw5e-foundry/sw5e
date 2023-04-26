@@ -1,0 +1,119 @@
+{
+  "name": "Greater Kinetite",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-10-18T11:21:05.9333669+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-greater_kinetite.level-5"
+    }
+  },
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/GreaterKinetite.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Kinetite</em></p>\n<p>A 5-foot diameter sphere of compressed lightning appears in an unoccupied space of your choice and lasts for the duration. Each creature within 5 feet of the sphere when the power is cast must make a Dexterity saving throw. A creature takes [[/r 5d8]] lightning damage on a failed save, or half as much damage on a successful one. </p>\n<p>As a bonus action on each of your turns, you can move the ball of lightning up to 30 feet vertically or horizontally. If you ram the sphere into a creature, that creature must make a Dexterity saving throw or take [[/r 5d8]] kinetic damage (or half as much damage on a success), and the sphere stops moving this turn. A creature takes half as damage on a successful Dexterity saving throw.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power with a force slot of 6th level or higher, both the lightning and kinetic damage increase by [[/r 1d8]] for each slot level above 5th.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Kinetite",
+    "source": "EC",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "120",
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "5d8",
+          "lightning"
+        ],
+        [
+          "5d8",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 5,
+    "school": "drk",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": null
+    }
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1667426102467,
+    "modifiedTime": 1678476389188,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "kAQQgJY9bKcfIixR"
+}

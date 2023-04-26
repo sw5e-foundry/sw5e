@@ -1,0 +1,185 @@
+{
+  "_id": "6BN8l5E8QtYt103T",
+  "name": "Small Starship",
+  "type": "starshipsize",
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+  "effects": [
+    {
+      "_id": "aVvrOFBux3t6WMEc",
+      "flags": {
+        "dae": {
+          "stackable": "none",
+          "transfer": true,
+          "durationExpression": "",
+          "specialDuration": []
+        },
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "2",
+          "priority": 1
+        },
+        {
+          "key": "system.abilities.con.value",
+          "mode": 2,
+          "value": "-2",
+          "priority": 1
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "poison",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "psychic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "label": "Small Starship",
+      "origin": "Item.Kgo48vXNxSZkWp7H",
+      "tint": null,
+      "transfer": true,
+      "sort": 0
+    },
+    {
+      "_id": "fBzSAs2Nhts9o44y",
+      "changes": [
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.sdi.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "label": "Space Travel",
+      "origin": "Compendium.sw5e.starships.6BN8l5E8QtYt103T",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>As the fighters cover his approach, Zik Beskin activates his targeting computer and ignores the explosions surrounding him, instead Focusing on the Destroyer's shield generator. It had to come down soon, or this fight was lost. Arsix, behind him, beeps and whirs, preparing the ion pulse missiles for the attack run, prewarming their engines and arming the warheads.</p>\n<p>Together a long time now, Beskin and Arsix had spilled their share of blood and oil, respectively, for the Rebellion--usually just while improving their ancient Ywing. But today, the blood and oil spilt wouldn't be their own. As Zik let fly a pair of missiles, he knew they would find their target. Today wasn't over just yet. This was her fourth sortie of the day, and Sheena was tired. The terrorists just kept coming. Every time she was about to shut her eyes a new wave of the Rebels came. And every time they did, she rushed to her TIE Interceptor and joined the alert fighters to take the fighters down before they could blow a hole in the planet's defenses. Every time they retreated before suffering heavy losses. But every time they came back. This last time she had decided to just nap in the cramped cockpit, so when the claxon rang out, she and her ship were basically ready to fly. This time she was going to end them quickly. As she repeatedly squeezed her trigger, she executed Koiogran turns and snap rolls galore, her laser blasts striking true, and the debris of A-wings, X-wings, and B-Wings--along with some frozen traitor remains--floated in space the next few days. At night, she leaned back against her beau, sipping some wine and watch-ing the beautiful streaks of light cross the sky as, piece by piece, the wreckage burned up in the atmosphere during reentry.</p>\n<p>R5-S1 locked down the loose stabilizer with his gripper arm as he angled the X-Wing's deflector shields. This ship took a firm gripper to get under control, but R5-S1 was up to the task. As his pilot, Veets, fired his last blast from the overheating cannons on the deployed s-foils, R5-S1 did the work of cooling off the guns, spooling up the hyperdrive, and running the calculations for lightspeed. It was time to go. Small ships have a tiny crew, often only a pilot and perhaps an astromech, but often strike above their weight class, a threat to small and large ships alike.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "identifier": "small",
+    "size": "sm",
+    "tier": 0,
+    "hullDice": "d6",
+    "hullDiceStart": 3,
+    "hullDiceUsed": 0,
+    "shldDice": "d6",
+    "shldDiceStart": 3,
+    "shldDiceUsed": 0,
+    "advancement": [
+      {
+        "_id": "b3UmoYMeO4y10PBf",
+        "type": "HullPoints",
+        "configuration": {},
+        "value": {}
+      },
+      {
+        "_id": "2zGy8VDz50QL2vTn",
+        "type": "ShieldPoints",
+        "configuration": {},
+        "value": {}
+      }
+    ],
+    "buildBaseCost": 50000,
+    "buildMinWorkforce": 5,
+    "upgrdCostMult": 1,
+    "upgrdMinWorkforce": 1,
+    "baseSpaceSpeed": 300,
+    "baseTurnSpeed": 250,
+    "crewMinWorkforce": 1,
+    "modBaseCap": 20,
+    "modMaxSuitesBase": -1,
+    "modMaxSuitesMult": 1,
+    "modCostMult": 1,
+    "modMinWorkforce": 2,
+    "hardpointMult": 1,
+    "equipCostMult": 1,
+    "equipMinWorkforce": 1,
+    "cargoCap": 2,
+    "fuelCost": 50,
+    "fuelCap": 10,
+    "foodCap": 10,
+    "hullDiceRolled": [
+      6,
+      4,
+      4
+    ],
+    "shldDiceRolled": [
+      6,
+      4,
+      4
+    ],
+    "pwrDice": "d1",
+    "modMaxSuiteCap": 1
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494019387,
+    "modifiedTime": 1677517359089,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

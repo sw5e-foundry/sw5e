@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -50,6 +50,36 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            <h3 class="form-header">{{localize "SW5E.ItemFeatureDetails"}}</h3>
+
+            {{!-- Feature Type --}}
+            <div class="form-group">
+                <label>{{localize "SW5E.ItemFeatureType"}}</label>
+                <select name="system.type.value">
+                    {{selectOptions config.featureTypes selected=system.type.value blank="" labelAttr="label"}}
+                </select>
+            </div>
+
+            {{#if featureSubtypes}}
+                <div class="form-group">
+                    <label>
+                        {{localize "SW5E.ItemFeatureSubtype" category=(lookup (lookup config.featureTypes system.type.value) "label")}}
+                    </label>
+                    <select name="system.type.subtype">
+                        {{selectOptions featureSubtypes selected=system.type.subtype blank=""}}
+                    </select>
+                </div>
+            {{/if}}
+
+            {{#each starshipSpeed}}
+                <div class="form-group">
+                    <label>{{ localize this.label }}</label>
+                    <div class="form-fields">
+                        <input type="text" name="{{this.path}}" value="{{this.value}}" data-dtype="Number"/>
+                    </div>
+                </div>
+            {{/each}}
+
             <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
             {{!-- Item Activation Template --}}

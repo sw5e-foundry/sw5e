@@ -1,1312 +1,1420 @@
 .panel {
-    padding: 8px;
-    border-radius: 4px;
-    .dropShadow1();
+  padding: 8px;
+  border-radius: 4px;
+  .dropShadow1();
 }
 .sw5e.sheet.actor.character {
-    min-width: 880px;
-    min-height: 720px;
+  min-width: 880px;
+  min-height: 720px;
 }
 .sw5e.sheet .window-content {
-    .openSans(12px);
+  .openSans(12px);
 
-    input,
-    select {
-        height: 24px;
-        line-height: 20px;
-        padding: 1px 4px;
-        &:hover {
-            box-shadow: none;
-        }
-        &:focus {
-            box-shadow: none;
-        }
+  input,
+  select {
+    height: 24px;
+    line-height: 20px;
+    padding: 1px 4px;
+    &:hover {
+      box-shadow: none;
     }
+    &:focus {
+      box-shadow: none;
+    }
+  }
 
-    button {
-        cursor: pointer;
-        &:hover,
-        &:focus {
-            box-shadow: none;
-        }
+  button {
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      box-shadow: none;
     }
+  }
 }
 
 .sw5e.sheet.actor {
-    // Attribute Configuration
-    .config-button {
-        color: @colorOlive;
-        right: -6px;
-        top: -3px;
-        font-size: 10px;
-        font-weight: normal;
+  // Attribute Configuration
+  .config-button {
+    color: @colorOlive;
+    right: -6px;
+    top: -3px;
+    font-size: 10px;
+    font-weight: normal;
+  }
+
+  input,
+  select,
+  textarea {
+    border-color: transparent;
+    background: none;
+  }
+
+  .attributable {
+    position: relative;
+
+    &:hover .tooltip {
+      display: block;
+    }
+  }
+  .swalt-sheet {
+    display: grid;
+    grid-template-rows: 182px 36px auto;
+
+    section > h1 {
+      .russoOne(17px);
+      text-align: left;
+      margin-bottom: 4px;
     }
 
-    input,
-    select,
-    textarea {
-        border-color: transparent;
-        background: none;
-    }
+    header {
+      display: grid;
+      grid-template-rows: 1fr 26px auto;
+      grid-template-columns: 128px 1fr;
+      column-gap: 8px;
+      grid-row-gap: 8px;
 
-    .attributable {
-        position: relative;
+      img {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
 
-        &:hover .tooltip {
+      h1.character-name {
+        grid-row: 1;
+        grid-column: 2;
+        margin: 0;
+        border: none;
+        align-self: center;
+        height: auto;
+
+        .russoOne(32px);
+        text-transform: uppercase;
+        height: auto;
+
+        input[type="text"] {
+          .russoOne(32px);
+          text-transform: uppercase;
+          height: auto;
+          border: none;
+          background: none;
+          &:focus {
+            text-transform: none;
+          }
+        }
+      }
+
+      .level-experience {
+        grid-row: 1;
+        grid-column: 3;
+
+        .charlevel {
+          .russoOne(17px);
+          text-align: right;
+          input {
+            display: inline-block;
+            width: 42px;
+            height: auto;
+          }
+        }
+
+        .experience {
+          .russoOne(17px);
+          text-align: right;
+          line-height: 26px;
+          input {
+            display: inline-block;
+            width: 120px;
+            text-align: right;
+          }
+        }
+
+        .xpbar {
+          height: 8px;
+
+          .bar {
             display: block;
-        }
-    }
-    .swalt-sheet {
-        display: grid;
-        grid-template-rows: 182px 36px auto;
-
-        section > h1 {
-            .russoOne(17px);
-            text-align: left;
-            margin-bottom: 4px;
-        }
-
-        header {
-            display: grid;
-            grid-template-rows: 1fr 26px auto;
-            grid-template-columns: 128px 1fr;
-            column-gap: 8px;
-            grid-row-gap: 8px;
-
-            img {
-                grid-column-start: 1;
-                grid-row-start: 1;
-                grid-row-end: 4;
-                box-sizing: border-box;
-                border: none;
-                border-radius: 0;
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            h1.character-name {
-                grid-row: 1;
-                grid-column: 2;
-                margin: 0;
-                border: none;
-                align-self: center;
-                height: auto;
-
-                .russoOne(32px);
-                text-transform: uppercase;
-                height: auto;
-
-                input[type="text"] {
-                    .russoOne(32px);
-                    text-transform: uppercase;
-                    height: auto;
-                    border: none;
-                    background: none;
-                    &:focus {
-                        text-transform: none;
-                    }
-                }
-            }
-
-            .level-experience {
-                grid-row: 1;
-                grid-column: 3;
-
-                .charlevel {
-                    .russoOne(17px);
-                    text-align: right;
-                    input {
-                        display: inline-block;
-                        width: 42px;
-                        height: auto;
-                    }
-                }
-
-                .experience {
-                    .russoOne(17px);
-                    text-align: right;
-                    line-height: 26px;
-                    input {
-                        display: inline-block;
-                        width: 120px;
-                        text-align: right;
-                    }
-                }
-
-                .xpbar {
-                    height: 8px;
-
-                    .bar {
-                        display: block;
-                        height: 100%;
-                    }
-                }
-            }
-
-            .summary {
-                grid-column-start: 2;
-                grid-row-start: 2;
-                grid-column-end: 4;
-                display: grid;
-                grid-template-rows: 1fr;
-                grid-template-columns: repeat(4, 1fr);
-
-                input,
-                .proficiency {
-                    display: inline;
-                    height: auto;
-                    .russoOne(17px);
-                    line-height: 24px;
-                    width: 100%;
-                }
-
-                .proficiency {
-                    line-height: 26px;
-                }
-                select {
-                    position: relative;
-                    top: -4px;
-                }
-            }
-
-            .attributes {
-                grid-column-start: 2;
-                grid-row-start: 3;
-                grid-column-end: 4;
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                column-gap: 12px;
-
-                .attrib {
-                    h1 {
-                        text-align: center;
-                    }
-                    .attribute-name {
-                        position: relative;
-                    }
-
-                    .attribute-value,
-                    .attribute-value input {
-                        .russoOne(22px);
-                        text-align: center;
-                        line-height: 1;
-                    }
-
-                    .attribute-value {
-                        &.multiple {
-                            display: grid;
-                            grid-template-columns: auto 14px auto;
-
-                            input {
-                                width: 100%;
-                            }
-                        }
-
-                        input {
-                            display: inline-block;
-                        }
-
-                        .value-number {
-                            display: inline-block;
-                            text-align: right;
-
-                            padding: 0 3px;
-
-                            &:last-child, max {
-                                text-align: left;
-                            }
-                        }
-
-                        span.value-number {
-                            padding: 1px 4px;
-                        }
-
-                        .initiative {
-                            padding: 1px 4px;
-                            display: block;
-                        }
-                    }
-
-                    // Attribute Configuration
-                    .config-button {
-                        position: absolute;
-                        display: none;
-                        right: -6px;
-                        top: -3px;
-                        font-size: 10px;
-                        font-weight: normal;
-                    }
-                    &:hover .config-button {
-                        display: block;
-                    }
-
-                    // Temporary HP
-                    input.temphp {
-                        width: 48%;
-                    }
-
-                    // Attribution Tooltip
-                    .property-attribution {
-                        min-width: 150px;
-                        top: 50px;
-                        font-family: Signika, sans-serif;
-                        font-size: 14px;
-                        font-weight: normal;
-                        line-height: 1rem;
-                    }
-
-                    footer {
-                        button {
-                            background: none;
-                            padding: 1px 3px;
-                            font-size: inherit;
-                            line-height: inherit;
-                            display: inline-block;
-                            width: auto;
-
-                            &:hover {
-                                font-weight: 400;
-                            }
-                        }
-
-                        &.hit-points,
-                        &.hit-dice,
-                        &.initiative {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            column-gap: 8px;
-                            margin-top: 0;
-                            input,
-                            button {
-                                //border: 1px solid @colorPaleGray;
-                                width: 100%;
-                                text-align: center;
-                            }
-
-                            button {
-                                font-weight: 400;
-                                margin-top: 2px;
-                            }
-
-                            span {
-                                display: block;
-                                padding: 3px 4px;
-                            }
-                        }
-
-                        &.speed {
-                            margin-top: 0;
-                            input {
-                                text-align: center;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .panel.resources {
-            .traits {
-                .fuel-wrapper {
-                    display: grid;
-                    grid-template-columns: 300px 100px;
-                    width: 400px;
-                    justify-self: end;
-                    .fuel-label {
-                        font-size: 12px;
-                        line-height: 14px;
-                        width: 100%;
-                        text-shadow: none;
-                        padding: 0;
-                        margin: 0;
-                        height: auto;
-                        text-align: center;
-                        margin-left: -2px;
-                        border-radius: 0 4px 4px 0;
-                    }
-                    .fuel {
-                        position: relative;
-                        border-radius: 4px;
-                        height: 16px;
-                        margin: 0;
-                        width: 100%;
-                        .fuel-bar {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            height: 100%;
-                            border-radius: 4px;
-                            border: none;
-                        }
-                    }
-                }
-            }
-        }
-
-        nav.sheet-navigation {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            column-gap: 8px;
-            margin: 4px 0;
-
-            .item {
-                background: none;
-                border: none;
-                border-bottom: 3px solid transparent;
-                border-radius: 0;
-                margin: 0;
-                padding: 3px 0 0;
-                line-height: 1;
-                .russoOne(16px);
-            }
-        }
-        .editor {
-            position: static;
-            min-height: 32px;
-            padding: 0;
-            .editor-edit {
-                display: block;
-                font-size: 12px;
-                background: none;
-                border: none;
-                padding: 0;
-                box-shadow: none;
-                top: 0;
-                right: 0;
-                &:hover {
-                    text-shadow: none;
-                }
-            }
-            .tox.tox-tinymce {
-                height: 250px !important;
-            }
-        }
-        .tab {
-            display: none;
-
-            &.active {
-                display: block;
-            }
-
-            .filter-list {
-                list-style: none;
-                margin: 0;
-                padding: 0 0 8px;
-                display: flex;
-                flex-direction: row;
-                justify-content: flex-end;
-                max-width: 100%;
-
-                .filter-title {
-                    display: none;
-                    font-weight: bold;
-                    width: 50px;
-                }
-
-                .filter-item {
-                    width: 100px;
-                    text-align: center;
-
-                    & + .filter-item {
-                        margin-left: 12px;
-                    }
-
-                    &:hover {
-                        text-shadow: none;
-                    }
-                }
-            }
-
-            .group-list-header {
-                display: grid;
-                padding-right: 6px;
-            }
-
-            .group-list-title {
-                h3 {
-                    .russoOne(17px);
-                    margin: 4px 0 0;
-                    padding: 0 4px;
-                    display: inline;
-                    border: none;
-                }
-
-                .item-create {
-                    font-size: 12px;
-                    i {
-                        font-size: 10px;
-                    }
-                    &:hover {
-                        text-shadow: none;
-                    }
-                }
-            }
-
-            .group-list-header,
-            .group-list {
-                .item-detail {
-                    text-align: left;
-                    padding: 4px;
-                }
-            }
-
-            .group-list {
-                height: 100%;
-                overflow-y: scroll;
-                & > li:first-child {
-                    padding-top: 8px;
-                }
-            }
-
-            .group-list,
-            .group-list ol {
-                list-style: none;
-                margin: 0 0 8px;
-                padding: 0;
-
-                .item-uses {
-                    input {
-                        display: inline-block;
-                        width: 32px;
-                        margin-right: 0;
-                        text-align: right;
-                    }
-                    span {
-                        padding-left: 8px;
-                    }
-                    .slot-max-override {
-                        margin-left: 5px;
-                        &:hover {
-                            text-shadow: none;
-                        }
-                    }
-                }
-                li.item {
-                    display: grid;
-
-                    h4 {
-                        .openSans(13px, 700);
-                        letter-spacing: 0;
-                    }
-                    .item-name,
-                    .item-detail {
-                        padding: 4px;
-                        line-height: 30px;
-                    }
-
-                    .item-name {
-                        display: flex;
-
-                        .item-image {
-                            width: 30px;
-                            height: 30px;
-                            position: relative;
-                            background-size: contain;
-                            &::before {
-                                font-family: "Font Awesome 5 Free";
-                                font-weight: 900;
-                                content: "\f6cf";
-                                opacity: 0;
-                                position: absolute;
-                                top: 0;
-                                left: 2px;
-                                font-size: 26px;
-                            }
-                        }
-
-                        h4 {
-                            line-height: 30px;
-                            display: inline-block;
-                            height: 30px;
-                            padding-left: 8px;
-                            margin: 0;
-                        }
-
-                        &.rollable:hover {
-                            text-shadow: none;
-
-                            .item-image {
-                                background-image: none !important;
-
-                                &::before {
-                                    opacity: 1;
-                                }
-
-                                &:hover {
-                                    background-image: none !important;
-
-                                    &::before {
-                                        opacity: 1;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    .item-summary {
-                        grid-column-start: 1;
-                        grid-column-end: -1;
-                        padding: 4px 4px 4px 38px;
-                    }
-
-                    .item-controls {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-evenly;
-                    }
-
-                    .item-control {
-                        &:hover {
-                            text-shadow: none;
-                        }
-                    }
-                }
-            }
-
-            .group-grid-inventory {
-                grid-template-columns: auto 60px 100px 100px 100px;
-
-                &.group-list-title {
-                    .item-controls {
-                        grid-column-start: 5;
-                    }
-                }
-            }
-            .group-grid-features {
-                grid-template-columns: auto 100px 100px 100px;
-                &.group-list-title {
-                    display: grid;
-                }
-                .item-controls {
-                    grid-column-start: 4;
-                }
-            }
-            .group-grid-powers {
-                grid-template-columns: auto repeat(5, 100px);
-                &.group-list-title {
-                    display: grid;
-                    align-items: end;
-                    .item-detail {
-                        padding: 0 4px;
-                    }
-                }
-            }
-            .group-grid-maneuvers {
-                grid-template-columns: auto repeat(5, 100px);
-                &.group-list-title {
-                    display: grid;
-                    align-items: end;
-                    .item-detail {
-                        padding: 0 4px;
-                    }
-                }
-            }
-            .group-grid-fav-items {
-                grid-template-columns: auto 60px 30px 30px 50px;
-                &.group-list-title {
-                    display: grid;
-                    align-items: end;
-                    .item-detail {
-                        padding: 0 4px;
-                    }
-                }
-            }
-        }
-
-        .tab > .panel {
             height: 100%;
-            overflow: hidden;
-            display: grid;
+          }
+        }
+      }
+
+      .summary {
+        grid-column-start: 2;
+        grid-row-start: 2;
+        grid-column-end: 4;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+
+        input,
+        .size,
+        .proficiency {
+          display: inline;
+          height: auto;
+          .russoOne(17px);
+          line-height: 24px;
+          width: 100%;
+          text-align: center;
         }
 
-        .score-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .proficiency {
+          line-height: 26px;
+        }
 
-            .score {
-                border-radius: 0;
-                padding: 4px;
-                & + li {
-                    border-top: 0 !important;
+        select {
+          position: relative;
+          top: -4px;
+        }
+      }
+
+      .attributes {
+        grid-column-start: 2;
+        grid-row-start: 3;
+        grid-column-end: 4;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 12px;
+
+        .attrib {
+          position: relative;
+
+          h1 {
+            text-align: center;
+          }
+          .attribute-name {
+            position: relative;
+          }
+
+          .attribute-value,
+          .attribute-value input {
+            .russoOne(22px);
+            text-align: center;
+            line-height: 1;
+          }
+
+          .attribute-value {
+            &.multiple {
+              display: grid;
+              grid-template-columns: 1fr 14px 1fr;
+            }
+
+            .value-number {
+              display: inline-block;
+              text-align: right;
+
+              padding: 0 3px;
+
+              &:last-child,
+              max {
+                text-align: left;
+              }
+            }
+
+            span.value-number {
+              padding: 1px 4px;
+            }
+
+            .initiative {
+              padding: 1px 4px;
+              display: block;
+            }
+          }
+
+          // Attribute Configuration
+          .config-button {
+            position: absolute;
+            padding: 2px;
+            right: 0;
+            top: 0;
+            display: none;
+          }
+
+          &:hover .config-button {
+            display: block;
+          }
+
+          // Temporary HP
+          input.temphp {
+            width: 48%;
+          }
+
+          // Attribution Tooltip
+          .property-attribution {
+            min-width: 150px;
+            top: 50px;
+            font-family: Signika, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1rem;
+          }
+
+          footer {
+            button {
+              background: none;
+              padding: 1px 3px;
+              font-size: inherit;
+              line-height: inherit;
+              display: inline-block;
+              width: auto;
+
+              &:hover {
+                font-weight: 400;
+              }
+            }
+
+            &.hit-points,
+            &.hit-dice,
+            &.initiative,
+            &.repair {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              column-gap: 8px;
+              margin-top: 0;
+              input,
+              button {
+                //border: 1px solid @colorPaleGray;
+                width: 100%;
+                text-align: center;
+              }
+
+              button {
+                font-weight: 400;
+                margin-top: 2px;
+              }
+
+              span {
+                display: block;
+                padding: 3px 4px;
+              }
+            }
+
+            &.speed {
+              margin-top: 0;
+              input {
+                text-align: center;
+              }
+            }
+
+            &.repair {
+              grid-template-columns: 1fr 1fr 1fr;
+              column-gap: 4px;
+            }
+
+            .depleted {
+              color: #c40f0f;
+            }
+          }
+        }
+
+        &.starship {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+    }
+
+    nav.sheet-navigation {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      column-gap: 8px;
+      margin: 4px 0;
+
+      .item {
+        background: none;
+        border: none;
+        border-bottom: 3px solid transparent;
+        border-radius: 0;
+        margin: 0;
+        padding: 3px 0 0;
+        line-height: 1;
+        .russoOne(16px);
+      }
+    }
+
+    .editor {
+      position: static;
+      min-height: 32px;
+      padding: 0;
+      .editor-edit {
+        display: block;
+        font-size: 12px;
+        background: none;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+        top: 0;
+        right: 0;
+        &:hover {
+          text-shadow: none;
+        }
+      }
+      .tox.tox-tinymce {
+        height: 250px !important;
+      }
+    }
+
+    .tab {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+
+      .filter-list {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        max-width: 100%;
+
+        .filter-title {
+          display: none;
+          font-weight: bold;
+          width: 50px;
+        }
+
+        .filter-item {
+          width: 100px;
+          text-align: center;
+
+          & + .filter-item {
+            margin-left: 12px;
+          }
+
+          &:hover {
+            text-shadow: none;
+          }
+        }
+      }
+
+      .group-list-header {
+        display: grid;
+        padding-right: 6px;
+      }
+
+      .group-list-title {
+        h3 {
+          .russoOne(17px);
+          margin: 4px 0 0;
+          padding: 0 4px;
+          display: inline;
+          border: none;
+        }
+
+        .item-create {
+          font-size: 12px;
+          i {
+            font-size: 10px;
+          }
+          &:hover {
+            text-shadow: none;
+          }
+        }
+      }
+
+      .group-list-header,
+      .group-list {
+        .item-detail {
+          text-align: left;
+          padding: 4px;
+        }
+      }
+
+      .group-list {
+        height: 100%;
+        overflow-y: scroll;
+        & > li:first-child {
+          padding-top: 8px;
+        }
+      }
+
+      .group-list,
+      .group-list ol {
+        list-style: none;
+        margin: 0 0 8px;
+        padding: 0;
+
+        .item-uses {
+          input {
+            display: inline-block;
+            width: 32px;
+            margin-right: 0;
+            text-align: right;
+          }
+          span {
+            padding-left: 8px;
+          }
+          .slot-max-override {
+            margin-left: 5px;
+            &:hover {
+              text-shadow: none;
+            }
+          }
+        }
+        li.item {
+          display: grid;
+
+          h4 {
+            .openSans(13px, 700);
+            letter-spacing: 0;
+          }
+          .item-name,
+          .item-detail {
+            padding: 4px;
+            line-height: 30px;
+          }
+
+          .item-name {
+            cursor: pointer;
+            display: flex;
+
+            .item-image {
+              width: 30px;
+              height: 30px;
+              position: relative;
+              background-size: contain;
+              &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                content: "\f6cf";
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 2px;
+                font-size: 26px;
+              }
+            }
+
+            h4 {
+              line-height: 30px;
+              display: inline-block;
+              height: 30px;
+              padding-left: 8px;
+              margin: 0;
+            }
+
+            &.rollable:hover {
+              text-shadow: none;
+
+              .item-image {
+                background-image: none !important;
+
+                &::before {
+                  opacity: 1;
                 }
-                &:first-child {
-                    border-radius: 4px 4px 0 0;
+
+                &:hover {
+                  background-image: none !important;
+
+                  &::before {
+                    opacity: 1;
+                  }
                 }
+              }
+            }
+          }
+
+          .item-summary {
+            grid-column-start: 1;
+            grid-column-end: -1;
+            padding: 4px 4px 4px 38px;
+          }
+
+          .item-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+          }
+
+          .item-control {
+            &:hover {
+              text-shadow: none;
+            }
+          }
+        }
+      }
+
+      .group-grid-inventory {
+        grid-template-columns: auto 60px 100px 100px 100px;
+
+        &.group-list-title {
+          .item-controls {
+            grid-column-start: 5;
+          }
+        }
+      }
+      .group-grid-features {
+        grid-template-columns: auto 100px 100px 100px;
+        &.group-list-title {
+          display: grid;
+        }
+        .item-controls {
+          grid-column-start: 4;
+        }
+      }
+      .group-grid-powers {
+        grid-template-columns: auto repeat(5, 100px);
+        &.group-list-title {
+          display: grid;
+          align-items: end;
+          .item-detail {
+            padding: 0 4px;
+          }
+        }
+      }
+      .group-grid-maneuvers {
+        grid-template-columns: auto repeat(5, 100px);
+        &.group-list-title {
+          display: grid;
+          align-items: end;
+          .item-detail {
+            padding: 0 4px;
+          }
+        }
+      }
+      .group-grid-fav-items {
+        grid-template-columns: auto 220px 50px;
+        display: grid;
+        align-items: end;
+        .item-detail {
+          padding: 0 4px;
+          text-align: center;
+        }
+      }
+    }
+
+    .tab > .panel {
+      height: 100%;
+      overflow: hidden;
+      display: grid;
+    }
+
+    .score-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      .score {
+        border-radius: 0;
+        padding: 4px;
+        position: relative;
+        & + li {
+          border-top: 0 !important;
+        }
+        &:first-child {
+          border-radius: 4px 4px 0 0;
+        }
+
+        &:last-child {
+          border-bottom-width: 1px;
+          border-radius: 0 0 4px 4px;
+        }
+
+        h2 {
+          .russoOne(14px);
+          border: none;
+          text-align: center;
+          margin: 0;
+
+          &:hover {
+            text-shadow: none;
+          }
+        }
+
+        .ability-score {
+          .russoOne(22px);
+          text-align: center;
+          width: 48px;
+          margin: 0 auto;
+          height: 24px;
+          display: block;
+        }
+
+        .config-button {
+          right: 2px;
+          top: 3px;
+          position: absolute;
+          display: none;
+        }
+
+        &:hover .config-button {
+          display: block;
+        }
+
+        .ability-modifiers {
+          margin: 0 -4px -4px;
+          display: grid;
+          grid-template-columns: 28px auto 28px;
+
+          .ability-mod,
+          .ability-save {
+            padding: 2px 4px;
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            border-style: solid;
+          }
+
+          .ability-mod {
+            border-width: 1px 1px 0 0;
+            border-radius: 0 4px 0 0;
+          }
+
+          .ability-save {
+            border-width: 1px 0 0 1px;
+            border-radius: 4px 0 0 0;
+          }
+
+          .proficiency-toggle {
+            text-align: center;
+            border: none;
+            background: none;
+            line-height: 1;
+          }
+        }
+      }
+    }
+
+    .tab.core {
+      &.active {
+        display: grid;
+      }
+
+      grid-template-columns: 350px auto;
+      grid-template-rows: auto;
+      column-gap: 16px;
+
+      .abilities {
+        display: grid;
+        grid-template-columns: 128px auto;
+        grid-template-rows: auto;
+        column-gap: 12px;
+
+        .skills {
+          li {
+            display: grid;
+            grid-template-columns: 28px auto 18px 28px/* 26px*/;
+            align-items: center;
+
+            .proficiency-toggle {
+              border: none;
+              background: none;
+              height: 23px;
+              line-height: 23px;
+              padding: 0 4px;
+            }
+
+            .skill-name {
+              &:hover {
+                text-shadow: none;
+              }
+            }
+
+            .skill-name-controls {
+              position: relative;
+
+              .config-button {
+                right: 3px;
+                top: 4px;
+                position: absolute;
+                display: none;
+              }
+
+              &:hover .config-button {
+                display: block;
+              }
+            }
+
+            .skill-ability {
+              text-transform: capitalize;
+            }
+
+            .skill-mod {
+              text-align: right;
+              padding-right: 4px;
+            }
+
+            .skill-passive {
+              text-align: center;
+              padding-right: 4px;
+            }
+          }
+        }
+      }
+
+      .traits-resources {
+        grid-template-rows: 32px auto;
+
+        nav {
+          margin-bottom: 4px;
+
+          button {
+            display: inline-block;
+            width: auto;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            border-radius: 0;
+            margin: 0;
+            padding: 0 4px;
+            line-height: 1.6;
+            .russoOne(14px);
+
+            & + button {
+              margin-left: 8px;
+            }
+          }
+        }
+
+        section.traits {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 16px;
+          grid-row-gap: 8px;
+
+          input,
+          select {
+            display: block;
+            width: 100%;
+            text-align: left;
+          }
+
+          label {
+            font-size: 13px;
+          }
+
+          .proficiency-selector,
+          .trait-selector {
+            background: none;
+            border: none;
+            display: inline;
+            width: auto;
+            &:hover {
+              text-shadow: none;
+            }
+            i.fas {
+              float: none;
+              &:hover {
+                text-shadow: none;
+              }
+            }
+          }
+
+          .powercasting {
+            text-transform: capitalize;
+          }
+
+          .languages {
+            grid-column-end: span 1;
+            label {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+
+          .traits-list {
+            li {
+              display: inline;
+
+              &::after {
+                content: ",";
+              }
+
+              &:last-child::after {
+                content: "";
+              }
+            }
+          }
+
+          ul.passives {
+            grid-column-end: span 2;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 4px;
+            grid-row-gap: 4px;
+
+            strong {
+              font-size: 13px;
+            }
+          }
+        }
+
+        .traits {
+          &.cargo-fuel {
+            table {
+              border: none;
+              background: none;
+            }
+            .fuel-wrapper {
+              display: grid;
+              grid-template-columns: 300px 100px;
+              width: 400px;
+              justify-self: end;
+              .fuel-label {
+                font-size: 12px;
+                line-height: 14px;
+                width: 100%;
+                text-shadow: none;
+                padding: 0;
+                margin: 0;
+                height: auto;
+                text-align: center;
+                margin-left: -2px;
+                border-radius: 0 4px 4px 0;
+              }
+              .fuel {
+                position: relative;
+                border-radius: 4px;
+                height: 16px;
+                margin: 0;
+                width: 100%;
+                .fuel-bar {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  height: 100%;
+                  border-radius: 4px;
+                  border: none;
+                }
+              }
+            }
+          }
+
+          &.power-routing {
+            table {
+              border: none;
+              .top {
+                border-top: 2px solid #0d99cc;
+                border-left: 2px solid #0d99cc;
+                border-right: 2px solid #0d99cc;
+              }
+              .bottom {
+                border-bottom: 2px solid #0d99cc;
+                border-left: 2px solid #0d99cc;
+                border-right: 2px solid #0d99cc;
+              }
+            }
+            .attribute-value {
+              text-align: center;
+              &.multiple {
+                display: grid;
+                grid-template-columns: 1fr 14px 1fr;
+              }
+
+              .value-number,
+              .value-separator {
+                height: calc(100% - 2px);
+              }
+
+              .value-number {
+                display: inline-block;
+                text-align: right;
+
+                padding: 0 3px;
 
                 &:last-child {
-                    border-bottom-width: 1px;
-                    border-radius: 0 0 4px 4px;
+                  text-align: left;
                 }
+              }
 
-                h2 {
-                    .russoOne(14px);
-                    border: none;
-                    text-align: center;
-                    margin: 0;
-
-                    &:hover {
-                        text-shadow: none;
-                    }
-                }
-
-                .ability-score {
-                    .russoOne(22px);
-                    text-align: center;
-                    width: 48px;
-                    margin: 0 auto;
-                    height: 24px;
-                    display: block;
-                }
-
-                .config-button {
-                    right: -54px;
-                    top: 3px;
-                    position: relative;
-                    display: none;
-                }
-
-                &:hover .config-button {
-                    display: block;
-                }
-
-                .ability-modifiers {
-                    margin: 0 -4px -4px;
-                    display: grid;
-                    grid-template-columns: 28px auto 28px;
-
-                    .ability-mod,
-                    .ability-save {
-                        padding: 2px 4px;
-                        display: block;
-                        font-weight: bold;
-                        font-size: 13px;
-                        text-align: center;
-                        border-style: solid;
-                    }
-
-                    .ability-mod {
-                        border-width: 1px 1px 0 0;
-                        border-radius: 0 4px 0 0;
-                    }
-
-                    .ability-save {
-                        border-width: 1px 0 0 1px;
-                        border-radius: 4px 0 0 0;
-                    }
-
-                    .proficiency-toggle {
-                        border: none;
-                        background: none;
-                        line-height: 1;
-                    }
-                }
+              span.value-number {
+                padding: 1px 4px;
+              }
             }
+          }
         }
 
-        .tab.core {
-            &.active {
-                display: grid;
-            }
+        section.resources {
+          .resource-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 12px;
 
-            grid-template-columns: 350px auto;
-            grid-template-rows: auto;
-            column-gap: 16px;
-
-            .abilities {
-                display: grid;
-                grid-template-columns: 128px auto;
-                grid-template-rows: auto;
-                column-gap: 12px;
-
-                .skills {
-                    li {
-                        display: grid;
-                        grid-template-columns: 28px auto 18px 28px;
-                        align-items: center;
-
-                        .proficiency-toggle {
-                            border: none;
-                            background: none;
-                            height: 23px;
-                            line-height: 23px;
-                            padding: 0 4px;
-                        }
-
-                        .skill-name {
-                            &:hover {
-                                text-shadow: none;
-                            }
-                        }
-
-                        .skill-name-controls {
-                            position: relative;
-
-                            .config-button {
-                                right: 3px;
-                                top: 4px;
-                                position: absolute;
-                                display: none;
-                            }
-
-                            &:hover .config-button {
-                                display: block;
-                            }
-                        }
-
-                        .skill-ability {
-                            text-transform: capitalize;
-                        }
-
-                        .skill-mod {
-                            text-align: right;
-                            padding-right: 4px;
-                        }
-                    }
-                }
-            }
-
-            .traits-resources {
-                grid-template-rows: 32px auto;
-                nav {
-                    margin-bottom: 4px;
-
-                    button {
-                        display: inline-block;
-                        width: auto;
-                        background: none;
-                        border: none;
-                        border-bottom: 3px solid transparent;
-                        border-radius: 0;
-                        margin: 0;
-                        padding: 0 4px;
-                        line-height: 1.6;
-                        .russoOne(14px);
-
-                        & + button {
-                            margin-left: 8px;
-                        }
-                    }
-                }
-
-                section.traits {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    grid-gap: 16px;
-                    grid-row-gap: 8px;
-
-                    input,
-                    select {
-                        display: block;
-                        width: 100%;
-                        text-align: left;
-                    }
-
-                    label {
-                        font-size: 13px;
-                    }
-
-                    .proficiency-selector,
-                    .trait-selector {
-                        background: none;
-                        border: none;
-                        display: inline;
-                        width: auto;
-                        &:hover {
-                            text-shadow: none;
-                        }
-                        i.fas {
-                            float: none;
-                            &:hover {
-                                text-shadow: none;
-                            }
-                        }
-                    }
-
-                    .powercasting {
-                        text-transform: capitalize;
-                    }
-
-                    .languages {
-                        grid-column-end: span 1;
-                        label {
-                            &:hover {
-                                cursor: pointer;
-                            }
-                        }
-                    }
-
-                    .traits-list {
-                        li {
-                            display: inline;
-
-                            &::after {
-                                content: ",";
-                            }
-
-                            &:last-child::after {
-                                content: "";
-                            }
-                        }
-                    }
-
-                    ul.passives {
-                        grid-column-end: span 2;
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        grid-gap: 4px;
-                        grid-row-gap: 4px;
-
-                        strong {
-                            font-size: 13px;
-                        }
-                    }
-                }
-
-                section.resources {
-                    .resource-items {
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                        column-gap: 12px;
-
-                        .resource {
-                            h1 {
-                                border: none;
-                                margin: 0;
-
-                                input {
-                                    font-family: "Russo One";
-                                    font-size: 16px;
-                                    font-weight: 400;
-                                    text-align: center;
-                                    margin-bottom: 4px;
-                                    border-radius: 0;
-                                }
-                            }
-
-                            .attribute-value,
-                            .attribute-value input {
-                                .russoOne(22px);
-                                text-align: center;
-                                line-height: 1;
-                            }
-
-                            .attribute-value {
-                                display: grid;
-                                grid-template-columns: auto 14px auto;
-
-                                input {
-                                    display: block;
-                                    width: 100%;
-                                }
-
-                                .value-number {
-                                    display: block;
-                                    width: 100%;
-                                    text-align: right;
-                                    padding: 0 3px;
-                                    &:last-child {
-                                        text-align: left;
-                                    }
-                                }
-
-                                span.value-number {
-                                    padding: 1px 4px;
-                                }
-                            }
-
-                            .attribute-footer {
-                                margin: 0;
-                                display: grid;
-                                grid-template-columns: 1fr 1fr;
-
-                                label {
-                                    text-align: center;
-                                }
-                            }
-                        }
-                    }
-
-                    .counters {
-                        border: none;
-                        margin: 16px 0;
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-
-                        .counter {
-                            height: auto;
-                            border: none;
-                            text-align: center;
-
-                            h4 {
-                                font-size: 13px;
-                                margin: 0;
-                                //display: inline;
-                                &.rollable {
-                                    &:hover {
-                                        text-shadow: none;
-                                    }
-                                }
-                            }
-
-                            .counter-value {
-                                display: inline;
-                                text-align: left;
-                            }
-
-                            input[type="text"] {
-                                display: inline-block;
-                                width: 10px;
-                            }
-
-                            input[type="checkbox"] {
-                                display: inline-block;
-                            }
-
-                            .death-success,
-                            .death-fail {
-                                display: inline-block;
-                            }
-
-                            .death-success {
-                                margin-right: 8px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .tab.inventory {
-            & > .panel {
-                grid-template-rows: 32px 32px 24px auto;
-            }
-
-            .currency-encumbrance {
-                display: grid;
-                grid-template-columns: 200px auto;
-                margin-bottom: 8px;
-                align-items: center;
-            }
-
-            .currency {
-                .russoOne(14px);
+            .resource {
+              h1 {
+                border: none;
+                margin: 0;
 
                 input {
-                    display: inline-block;
-                    width: 128px;
-                    .openSans(13px);
+                  font-family: "Russo One";
+                  font-size: 16px;
+                  font-weight: 400;
+                  text-align: center;
+                  margin-bottom: 4px;
+                  border-radius: 0;
                 }
-            }
+              }
 
-            .encumbrance-wrapper {
+              .attribute-value,
+              .attribute-value input {
+                .russoOne(22px);
+                text-align: center;
+                line-height: 1;
+              }
+
+              .attribute-value {
                 display: grid;
-                grid-template-columns: 400px 100px;
-                width: 500px;
-                justify-self: end;
+                grid-template-columns: auto 14px auto;
 
-                .encumbrance-label {
-                    font-size: 12px;
-                    line-height: 14px;
-                    width: 100%;
-                    text-shadow: none;
-                    padding: 0;
-                    margin: 0;
-                    height: auto;
-                    text-align: center;
-                    margin-left: -2px;
-                    border-radius: 0 4px 4px 0;
+                input {
+                  display: block;
+                  width: 100%;
                 }
 
-                .encumbrance {
-                    position: relative;
-                    border-radius: 4px;
-                    height: 16px;
-                    margin: 0;
-                    width: 100%;
-
-                    .encumbrance-bar {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        height: 100%;
-                        border-radius: 4px;
-                        border: none;
-                    }
-                }
-            }
-        }
-        .tab.features {
-            & > .panel {
-                grid-template-rows: 24px auto;
-            }
-        }
-        .tab.force-powerbook,
-        .tab.tech-powerbook,
-        .tab.superiority-powerbook {
-            .resource-items {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                column-gap: 24px;
-
-                .resource {
-                    h1 {
-                        border: none;
-                        margin: 0;
-                        font-family: "Russo One";
-                        font-size: 14px;
-                        font-weight: 400;
-                        text-align: center;
-                        margin-bottom: 4px;
-                        border-radius: 0;
-                    }
-
-                    .attribute-value,
-                    .attribute-value input {
-                        .russoOne(22px);
-                        text-align: center;
-                        line-height: 1;
-                    }
-
-                    .attribute-value {
-                        display: grid;
-                        grid-template-columns: auto 14px auto;
-
-                        input {
-                            display: block;
-                            width: 100%;
-                        }
-
-                        .value-number {
-                            display: block;
-                            width: 100%;
-                            text-align: right;
-                            padding: 0 3px;
-                            &:last-child {
-                                text-align: left;
-                            }
-                        }
-
-                        span.value-number {
-                            padding: 1px 4px;
-                        }
-                    }
-
-                    .attribute-footer {
-                        margin: 0;
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        flex: 0 0 18px;
-                        margin-top: -1px;
-                        line-height: 18px;
-                        font-family: "Signika", sans-serif;
-                        font-size: 12px;
-                        font-weight: 400;
-                        white-space: nowrap;
-
-                        input {
-                            text-align: center;
-                        }
-                    }
-                }
-            }
-
-            & > .panel {
-                grid-template-rows: 64px 32px 24px auto;
-            }
-            h3.power-dc {
-                line-height: 24px;
-            }
-            .force-powercasting-ability {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                label,
-                h3 {
-                    .russoOne(13px);
-                    border-bottom: none;
-                }
-            }
-        }
-        .tab.biography {
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: 100%;
-            column-gap: 16px;
-            padding-bottom: 8px;
-            max-width: 100%;
-            &.active {
-                display: grid;
-            }
-            & > .panel {
-                display: grid;
-                grid-template-rows: 1fr 1fr;
-                overflow-y: auto;
-            }
-            section {
-                position: relative;
-            }
-        }
-        .tab.notes {
-            & > .panel {
-                display: block;
-                overflow-y: auto;
-            }
-            section {
-                position: relative;
-                & > input {
-                    .russoOne(16px);
+                .value-number {
+                  display: block;
+                  width: 100%;
+                  text-align: right;
+                  padding: 0 3px;
+                  &:last-child {
                     text-align: left;
-                    margin-bottom: 4px;
+                  }
                 }
-                .editor .editor-edit {
-                    top: 3px;
+
+                span.value-number {
+                  padding: 1px 4px;
                 }
+              }
+
+              .attribute-footer {
+                margin: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+                label {
+                  text-align: center;
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                }
+              }
             }
+          }
+
+          .counters {
+            border: none;
+            margin: 16px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            .counter {
+              height: auto;
+              border: none;
+              text-align: center;
+
+              h4 {
+                font-size: 13px;
+                margin: 0;
+                //display: inline;
+                &.rollable {
+                  &:hover {
+                    text-shadow: none;
+                  }
+                }
+              }
+
+              .counter-value {
+                display: inline;
+                text-align: left;
+              }
+
+              input[type="text"] {
+                display: inline-block;
+                width: 10px;
+              }
+
+              input[type="checkbox"] {
+                display: inline-block;
+              }
+
+              .death-success,
+              .death-fail {
+                display: inline-block;
+              }
+
+              .death-success {
+                margin-right: 8px;
+              }
+            }
+          }
         }
-        &.limited {
-            grid-template-rows: 144px auto;
-            grid-row-gap: 8px;
-            header {
-                grid-template-rows: 1fr;
-            }
-
-            .tab.biography {
-                grid-template-columns: 100%;
-            }
-        }
-    }
-    &.npc {
-        .swalt-sheet {
-            header {
-                h1.character-name {
-                    align-self: auto;
-                }
-                .npc-size,
-                .creature-type {
-                    .russoOne(18px);
-                    line-height: 28px;
-                }
-
-                div.creature-type {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 1px 4px;
-                    border: 1px solid transparent;
-                    overflow-x: auto;
-
-                    span {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
-
-                    .config-button {
-                        display: none;
-                        font-size: 12px;
-                        font-weight: normal;
-                        line-height: 2em;
-                    }
-                    &:hover .config-button {
-                        display: block;
-                    }
-                }
-
-                .attributes {
-                    grid-template-columns: repeat(3, 1fr);
-                    footer {
-                        text-align: center;
-                        margin-top: -2px;
-                        &.hit-points {
-                            display: block;
-                            margin-top: -3px;
-                            input {
-                                height: 16px; 
-                                vertical-align: text-top;
-                            }
-                        }
-                    }
-                }
-            }
-            nav.sheet-navigation {
-                grid-template-columns: repeat(6, 1fr);
-            }
-            .traits-resources {
-                display: block;
-                .counter {
-                    display: inline;
-                    .counter-value {
-                        display: inline;
-                        span {
-                            margin-left: -3px;
-                            margin-right: -3px;
-                        }
-                    }
-                }
-            }
-            .tab.force-powerbook,
-            .tab.tech-powerbook,
-            .tab.superiority-powerbook {
-                input.powercasting-level {
-                    width: 48px;
-                }
-            }
-            .tab.biography.active {
-                display: block;
-            }
-        }
-    }
-    &.starship .swalt-sheet {
-        .tab .group-grid-deployments {
-            grid-template-columns: auto 100px 100px;
-            .group-item-title {
-                vertical-align: center;
-                margin-left: 10px;
-                margin-top: 10px;
-                margin-bottom: -10px;
-            }
-        }
+      }
     }
 
-    input[type="range"][orient="vertical"] {
-        -webkit-appearance: slider-vertical;
-        width: 10px;
-        height: 60px !important;
-        padding: 0 0 !important;
-        background-color: #c40f0f !important;
-        box-sizing: border-box;
-        &::-webkit-slider-runnable-track {
-            -webkit-appearance: slider-vertical !important;
-            height: 60px !important;
-            width: 10px !important;
-            line-height: 60px !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-            margin-top: 0 0 !important;
-            border-radius: 3px !important;
-            background: linear-gradient(to top, #c40f0f 50%, #0dce0d 50%);
-        }
-        &::-webkit-slider-thumb {
-            -webkit-appearance: none !important;
-            background-color: #c40f0f !important;
-            margin-right: -4px !important;
-            margin-top: 0px !important;
-            cursor: grab !important;
-            border-radius: 0 0 0 0 !important;
-            width: 10px !important;
-            height: 5px !important;
-            font-size: 10px;
-        }
+    .tab.crew .group-grid-deployments {
+      grid-template-columns: auto 100px 100px;
+      .group-item-title {
+        vertical-align: center;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: -10px;
+      }
     }
-    output {
+    .tab.inventory {
+      & > .panel {
+        grid-template-rows: 32px 32px 24px auto;
+      }
+
+      .currency-encumbrance {
+        display: grid;
+        grid-template-columns: 200px auto;
+        margin-bottom: 8px;
+        align-items: center;
+      }
+
+      .currency {
+        .russoOne(14px);
+
+        input {
+          display: inline-block;
+          width: 128px;
+          .openSans(13px);
+        }
+      }
+
+      .encumbrance-wrapper {
+        display: grid;
+        grid-template-columns: 400px 100px;
+        width: 500px;
+        justify-self: end;
+
+        .encumbrance-label {
+          font-size: 12px;
+          line-height: 14px;
+          width: 100%;
+          text-shadow: none;
+          padding: 0;
+          margin: 0;
+          height: auto;
+          text-align: center;
+          margin-left: -2px;
+          border-radius: 0 4px 4px 0;
+        }
+
+        .encumbrance {
+          position: relative;
+          border-radius: 4px;
+          height: 16px;
+          margin: 0;
+          width: 100%;
+
+          .encumbrance-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 4px;
+            border: none;
+          }
+        }
+      }
+    }
+    .tab.features {
+      & > .panel {
+        grid-template-rows: 24px auto;
+      }
+    }
+    .tab.force-powerbook,
+    .tab.tech-powerbook,
+    .tab.superiority-powerbook {
+      .resource-items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 24px;
+
+        .resource {
+          position: relative;
+
+          h1 {
+            border: none;
+            margin: 0;
+            font-family: "Russo One";
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 4px;
+            border-radius: 0;
+          }
+          .attribute-name {
+            position: relative;
+          }
+
+          .attribute-value,
+          .attribute-value input {
+            .russoOne(22px);
+            text-align: center;
+            line-height: 1;
+          }
+
+          .attribute-value {
+            &.multiple {
+              display: grid;
+              grid-template-columns: 1fr 14px 1fr;
+            }
+
+            .value-number {
+              display: inline-block;
+              text-align: right;
+
+              padding: 0 3px;
+
+              &:last-child {
+                text-align: left;
+              }
+            }
+
+            span.value-number {
+              padding: 1px 4px;
+            }
+          }
+
+          // Attribute Configuration
+          .config-button {
+            position: absolute;
+            padding: 2px;
+            right: 0;
+            top: 0;
+            display: none;
+          }
+
+          // Attribution Tooltip
+          .property-attribution {
+            min-width: 150px;
+            top: 50px;
+            font-family: Signika, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1rem;
+          }
+
+          &:hover .config-button {
+            display: block;
+          }
+
+          footer {
+            margin: 0;
+            &.multiple {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+            }
+            flex: 0 0 18px;
+            margin-top: -1px;
+            line-height: 18px;
+            font-family: "Signika", sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            white-space: nowrap;
+
+            input {
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      & > .panel {
+        grid-template-rows: 64px 32px 24px auto;
+      }
+      h3.power-dc {
+        line-height: 24px;
+      }
+      .force-powercasting-ability {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        label,
+        h3 {
+          .russoOne(13px);
+          border-bottom: none;
+        }
+      }
+    }
+    .tab.biography {
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: 100%;
+      column-gap: 16px;
+      padding-bottom: 8px;
+      max-width: 100%;
+      &.active {
+        display: grid;
+      }
+      & > .panel {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        overflow-y: auto;
+      }
+      section {
+        position: relative;
+      }
+    }
+    .tab.notes {
+      & > .panel {
         display: block;
-        margin: 5px auto;
-        font-size: 1.75em;
-    }
-    input {
-        .vertslider {
-            height: 60px;
+        overflow-y: auto;
+      }
+      section {
+        position: relative;
+        & > input {
+          .russoOne(16px);
+          text-align: left;
+          margin-bottom: 4px;
         }
+        .editor .editor-edit {
+          top: 3px;
+        }
+      }
     }
+    &.limited {
+      grid-template-rows: 144px auto;
+      grid-row-gap: 8px;
+      header {
+        grid-template-rows: 1fr;
+      }
+
+      .tab.biography {
+        grid-template-columns: 100%;
+      }
+    }
+  }
+  &.npc {
+    .swalt-sheet {
+      header {
+        h1.character-name {
+          align-self: auto;
+        }
+        .npc-size,
+        .creature-type {
+          .russoOne(18px);
+          line-height: 28px;
+        }
+
+        div.creature-type {
+          display: flex;
+          justify-content: space-between;
+          padding: 1px 4px;
+          border: 1px solid transparent;
+          overflow-x: auto;
+          position: relative;
+
+          span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .config-button {
+            display: none;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 2em;
+          }
+          &:hover .config-button {
+            display: block;
+          }
+        }
+
+        .attributes {
+          grid-template-columns: repeat(3, 1fr);
+          footer {
+            text-align: center;
+            margin-top: -2px;
+            &.hit-points {
+              display: block;
+              margin-top: -3px;
+              input {
+                height: 16px;
+                vertical-align: text-top;
+              }
+            }
+          }
+        }
+      }
+      nav.sheet-navigation {
+        grid-template-columns: repeat(7, 1fr);
+      }
+      .traits-resources {
+        display: block;
+        .counter {
+          display: inline;
+          .counter-value {
+            display: inline;
+            span {
+              margin-left: -3px;
+              margin-right: -3px;
+            }
+          }
+        }
+      }
+      .tab.force-powerbook,
+      .tab.tech-powerbook,
+      .tab.superiority-powerbook {
+        input.powercasting-level {
+          width: 48px;
+        }
+      }
+      .tab.biography.active {
+        display: block;
+      }
+    }
+  }
+  &.starship .swalt-sheet {
+    header.panel {
+      font-family: 'Russo One';
+      color: #4f4f4f;
+    }
+    nav.sheet-navigation {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  input[type="range"][orient="vertical"] {
+    -webkit-appearance: slider-vertical;
+    width: 10px;
+    height: 60px !important;
+    padding: 0 0 !important;
+    background-color: #c40f0f !important;
+    box-sizing: border-box;
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: slider-vertical !important;
+      height: 60px !important;
+      width: 10px !important;
+      line-height: 60px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: 0 0 !important;
+      border-radius: 3px !important;
+      background: linear-gradient(to top, #c40f0f 50%, #0dce0d 50%);
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      background-color: #c40f0f !important;
+      margin-right: -4px !important;
+      margin-top: 0px !important;
+      cursor: grab !important;
+      border-radius: 0 0 0 0 !important;
+      width: 10px !important;
+      height: 5px !important;
+      font-size: 10px;
+    }
+  }
+  output {
+    display: block;
+    margin: 5px auto;
+    font-size: 1.75em;
+  }
+  input {
+    .vertslider {
+      height: 60px;
+    }
+  }
 }

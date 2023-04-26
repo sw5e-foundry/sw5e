@@ -20,11 +20,7 @@
                 </div>
                 <ol class="group-items item-list">
                     {{#each deployment.items as | deploy |}}
-                    <li
-                        class="item group-grid-deployments"
-                        data-key="{{key}}"
-                        data-uuid="{{deploy}}"
-                    >
+                    <li class="item group-grid-deployments" data-key="{{key}}" data-uuid="{{deploy}}">
                         <div class="item-name">
                             <h4>{{{ sw5e-linkForUuid deploy }}}</h4>
                         </div>
@@ -46,11 +42,11 @@
                                 {{#if (eq key "passenger")}}
                                     <a/>
                                 {{else}}
-                                    <a class="deploy-control" data-action="toggle" title="{{localize 'SW5E.DeployToggle'}}">
+                                    <a class="deploy-control" data-action="toggle" data-tooltip="SW5E.DeployToggle">
                                         <i class="fas {{#if (eq deploy @root.system.attributes.deployment.active.value)}}fa-check{{else}}fa-times{{/if}}"></i>
                                     </a>
                                 {{/if}}
-                                <a class="deploy-control" data-action="delete" title="{{localize 'SW5E.DeployDelete'}}">
+                                <a class="deploy-control" data-action="delete" data-tooltip="SW5E.DeployDelete">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             {{/if}}
@@ -61,22 +57,22 @@
             {{/if}} {{/with}} {{/each}}
 
             <!-- Deployment Features -->
-            {{#with actions.deploymentfeature as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.deployment as | actions |}} {{#unless (eq actions.items.length 0)}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
-            {{/if}} {{/with}}
+            {{/unless}} {{/with}}
 
             <!-- Ventures -->
-            {{#with actions.venture as | actions |}} {{#if (not (eq actions.items.length 0))}}
+            {{#with ssactions.venture as | actions |}} {{#unless (eq actions.items.length 0)}}
                 {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=actions.label}}
-            {{/if}} {{/with}}
+            {{/unless}} {{/with}}
 
             <!-- Deployments actions -->
             {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actionsVisible}}
-                {{#with (lookup @root.actions key) as | actions |}} {{#if (not (eq actions.items.length 0))}}
+                {{#with (lookup @root.ssactions key) as | actions |}} {{#unless (eq actions.items.length 0)}}
                     {{> "sw5e.swalt-crewactions" actions=actions owner=@root.owner name=name}}
-                {{/if}} {{/with}}
+                {{/unless}} {{/with}}
             {{/if}} {{/with}} {{/each}}
         </li>
     </ol>

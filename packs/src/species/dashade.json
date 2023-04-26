@@ -1,0 +1,184 @@
+{
+  "_id": "JMZm4vuDPmbPOtLl",
+  "name": "Dashade",
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Dashade.webp",
+  "effects": [
+    {
+      "_id": "G99sEwcJAyta31Wz",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "value": "Dashade",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.abilities.con.value",
+          "value": "2",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.abilities.cha.value",
+          "value": "1",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.size",
+          "value": "med",
+          "mode": 0,
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "value": "30",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.skills.itm.value",
+          "value": "1",
+          "mode": 4,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.dr.value",
+          "value": "necrotic",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "basic",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "dashadi",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "flags.sw5e.forceContention",
+          "value": "1",
+          "mode": 5,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Dashade.webp",
+      "label": "Dashade",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "dae": {
+          "transfer": true,
+          "stackable": false
+        }
+      },
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2761355+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-dashade"
+    }
+  },
+  "system": {
+    "data": "$characteristics-table",
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Dashade are a hulking reptillian species known for their strength and aggression. They have three fingers on each hand, each tipped with a long, curving claw.</p>\n<p>Their most notable feature is their natural resistance to the power of the Force. Along with their resistance to the Force, Dashade possess a high tolerance for radioactive energy, able to withstand contact with radioactive materials much longer than other species.</p>\n<p>Despite the thick skin Dashade possess, they have the uncanny ability to control the rate that heat dissipates from their skin. This allows them to regulate their body temperature at will.</p>\n<h2>Society and Culture</h2>\n<p>Dashade's brute strength and Force resistance makes them prime candidates for mercenary and assassin work. </p>\n<p>Dashade society is clan-based. Theses clan's often feud over honor and reputation, a trait that the dashade as a species exhibit.</p>\n<h2>Names</h2>\n<p>Many dashade names are short, dominated by harsher sounds, while others are longer and seperated by an apostrophe. Dashade names are gender neutral. Surnames are clan-based, but most dashade don't share or use them. </p>\n<p><strong>First Names.</strong> Anarin, Rak'vhul, Set, Vattix, Vos</p>\n<p><strong>Surnames.</strong> Ferrex, Gusar, Kruyel, Orath, Xeng, Zath</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "traits": "",
+    "source": "EC",
+    "identifier": "dashade",
+    "advancement": [
+      {
+        "_id": "LwDtyW6wzHPPJ7fl",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.speciesfeatures.8XRhCE2wqCryM11P",
+            "Compendium.sw5e.speciesfeatures.VBdnlRx7dzRsSZL7",
+            "Compendium.sw5e.speciesfeatures.uqvJhD66sISRNYCO",
+            "Compendium.sw5e.speciesfeatures.ZQjWfhr7TQBRE2jH",
+            "Compendium.sw5e.speciesfeatures.2TuRL1ZmF85cZnif",
+            "Compendium.sw5e.speciesfeatures.mvCqEfNcfcJ57xKW",
+            "Compendium.sw5e.speciesfeatures.Q7VhIrC53B5KNJCT",
+            "Compendium.sw5e.speciesfeatures.ZZZVuhI9ravdlNef",
+            "Compendium.sw5e.speciesfeatures.Pt1LiMSrLNP7Gtil",
+            "Compendium.sw5e.speciesfeatures.cUdH07pId7hMdI2h",
+            "Compendium.sw5e.speciesfeatures.exeeXG3rOXugjqqH"
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Traits"
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Black, dark gray, or Olive green"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Black, orange, or red"
+    },
+    "colorScheme": {
+      "value": null
+    },
+    "distinctions": {
+      "value": "Heat dissipation, Force-resistance, radiation resistance"
+    },
+    "heightAverage": {
+      "value": "5'1\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "145 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Urkupp"
+    },
+    "slanguage": {
+      "value": "Dashadi"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674494002080,
+    "modifiedTime": 1680288529698,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

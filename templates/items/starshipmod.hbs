@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" title="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
 
         <div class="header-details flexrow">
             <h1 class="charname">
@@ -26,7 +26,7 @@
                         name="system.grade.value"
                         value="{{system.grade.value}}"
                         placeholder="0"
-                        title="{{localize 'SW5E.ModGrade'}}"
+                        data-tooltip="SW5E.ModGrade"
                     />
                 </li>
                 <li>
@@ -36,7 +36,7 @@
                         name="system.basecost.value"
                         value="{{system.basecost.value}}"
                         placeholder="{{ lookup config.ssModSystemsBaseCost system.system.value }}"
-                        title="{{localize 'SW5E.ModBaseCost'}}"
+                        data-tooltip="{{ labels.cost }}"
                     />
                 </li>
             </ul>

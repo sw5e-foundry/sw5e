@@ -24,13 +24,13 @@ body.dark-theme h3,
 body.dark-theme h4,
 body.dark-theme h5,
 body.dark-theme h6 {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme h3 {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme a {
-  color: #E81111;
+  color: #e81111;
   text-decoration: none;
 }
 body.dark-theme a:hover,
@@ -40,19 +40,19 @@ body.dark-theme a:active {
 }
 body.dark-theme blockquote {
   padding: 4px 8px;
-  background-color: #FBF4F4;
-  border: 1px solid #E81111;
+  background-color: #fbf4f4;
+  border: 1px solid #e81111;
   box-shadow: 0 0 20px rgba(232, 17, 17, 0.8);
 }
-body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel-label {
+body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel-label {
   background: #d6d6d6;
   color: #1c1c1c;
   border: 1px solid #1c1c1c;
 }
-body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel {
+body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel {
   background: #c40f0f;
 }
-body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.resources .traits .fuel-wrapper .fuel .fuel-bar {
+body.dark-theme .sw5e.sheet.actor .swalt-sheet .panel.traits-resources .traits .fuel-wrapper .fuel .fuel-bar {
   background: #0dce0d;
 }
 body.dark-theme hr {
@@ -97,7 +97,7 @@ body.dark-theme input[type="date"]:focus,
 body.dark-theme input[type="time"]:focus,
 body.dark-theme select:focus,
 body.dark-theme textarea:focus {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme input[type="text"]::placeholder,
 body.dark-theme input[type="number"]::placeholder,
@@ -124,7 +124,7 @@ body.dark-theme button,
 body.dark-theme input[type="button"],
 body.dark-theme input[type="submit"],
 body.dark-theme input[type="reset"] {
-  background: #E81111;
+  background: #e81111;
   color: white;
 }
 body.dark-theme button:hover,
@@ -145,7 +145,7 @@ body.dark-theme button:disabled:focus,
 body.dark-theme input[type="button"]:disabled:focus,
 body.dark-theme input[type="submit"]:disabled:focus,
 body.dark-theme input[type="reset"]:disabled:focus {
-  background: #E81111;
+  background: #e81111;
 }
 body.dark-theme input[type="reset"],
 body.dark-theme button.secondary,
@@ -185,18 +185,18 @@ body.dark-theme #sidebar-tabs {
   background: #2b2b2b;
 }
 body.dark-theme #sidebar-tabs > .collapse {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme #sidebar-tabs .item.active {
-  color: #E81111;
-  border-bottom: 3px solid #E81111;
+  color: #e81111;
+  border-bottom: 3px solid #e81111;
 }
 body.dark-theme #chat-log .chat-message {
   background: #363636;
   color: white;
 }
 body.dark-theme #chat-log .chat-message > header {
-  color: #E81111;
+  color: #e81111;
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme #chat-log .chat-message > header span {
@@ -223,7 +223,7 @@ body.dark-theme .midi-qol-item-card .card-footer {
 }
 body.dark-theme .sw5e.chat-card .card-footer span,
 body.dark-theme .midi-qol-item-card .card-footer span {
-  border-right: 1px solid #D6D6D6;
+  border-right: 1px solid #d6d6d6;
 }
 body.dark-theme .sw5e.chat-card .card-footer span:last-child,
 body.dark-theme .midi-qol-item-card .card-footer span:last-child {
@@ -236,15 +236,15 @@ body.dark-theme .dice-roll .dice-formula {
   border-radius: 4px;
 }
 body.dark-theme .dice-roll .dice-total {
-  background: #FBF4F4;
-  border: 1px solid #E81111;
+  background: #fbf4f4;
+  border: 1px solid #e81111;
   box-shadow: 0 0 12px rgba(232, 17, 17, 0.8);
 }
 body.dark-theme .dice-roll .dice-total.success {
   color: #0dce0d;
 }
 body.dark-theme .dice-roll .dice-total.failure {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .dice-roll .dice-total.critical {
   color: #0dce0d;
@@ -252,70 +252,87 @@ body.dark-theme .dice-roll .dice-total.critical {
   box-shadow: 0 0 12px rgba(13, 206, 13, 0.5);
 }
 body.dark-theme .dice-roll .dice-total.fumble {
-  color: #E81111;
-  background: #FBF4F4;
+  color: #e81111;
+  background: #fbf4f4;
   box-shadow: 0 0 12px rgba(232, 17, 17, 0.5);
 }
 body.dark-theme #chat-controls .roll-type-select {
   background: #a9a9a9;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme #chat-controls label {
   color: white;
 }
 body.dark-theme #chat-form textarea {
   background: #a9a9a9;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
-body.dark-theme #combat #combat-round {
-  color: #E81111;
-  border-bottom: 2px solid #E81111;
+body.dark-theme #combat #combat-round,
+body.dark-theme #combat-popout #combat-round {
+  color: #e81111;
+  border-bottom: 2px solid #e81111;
 }
-body.dark-theme #combat #combat-round .encounters h4 {
-  color: #E81111;
+body.dark-theme #combat #combat-round .encounters h4,
+body.dark-theme #combat-popout #combat-round .encounters h4 {
+  color: #e81111;
 }
-body.dark-theme #combat #combat-round .encounters a {
-  color: #D6D6D6;
+body.dark-theme #combat #combat-round .encounters a,
+body.dark-theme #combat-popout #combat-round .encounters a {
+  color: #d6d6d6;
 }
-body.dark-theme #combat #combat-round .encounters a:hover {
-  color: #E81111;
+body.dark-theme #combat #combat-round .encounters a:hover,
+body.dark-theme #combat-popout #combat-round .encounters a:hover {
+  color: #e81111;
 }
-body.dark-theme #combat #combat-tracker li.combatant {
+body.dark-theme #combat #combat-tracker li.combatant,
+body.dark-theme #combat-popout #combat-tracker li.combatant {
   color: white;
 }
-body.dark-theme #combat #combat-tracker li.combatant:nth-child(even) {
+body.dark-theme #combat #combat-tracker li.combatant:nth-child(even),
+body.dark-theme #combat-popout #combat-tracker li.combatant:nth-child(even) {
   background: rgba(79, 79, 79, 0.5);
 }
-body.dark-theme #combat #combat-tracker li.combatant h4 {
+body.dark-theme #combat #combat-tracker li.combatant h4,
+body.dark-theme #combat-popout #combat-tracker li.combatant h4 {
   color: white;
 }
-body.dark-theme #combat #combat-tracker li.combatant .roll {
-  color: #D6D6D6;
+body.dark-theme #combat #combat-tracker li.combatant .roll,
+body.dark-theme #combat-popout #combat-tracker li.combatant .roll {
+  color: #d6d6d6;
 }
-body.dark-theme #combat #combat-tracker li.combatant .roll:hover {
-  color: #E81111;
+body.dark-theme #combat #combat-tracker li.combatant .roll:hover,
+body.dark-theme #combat-popout #combat-tracker li.combatant .roll:hover {
+  color: #e81111;
 }
-body.dark-theme #combat #combat-tracker li.combatant .combatant-control {
-  color: #D6D6D6;
+body.dark-theme #combat #combat-tracker li.combatant .combatant-control,
+body.dark-theme #combat-popout #combat-tracker li.combatant .combatant-control {
+  color: #d6d6d6;
 }
-body.dark-theme #combat #combat-tracker li.combatant .combatant-control.active {
-  color: #E81111;
+body.dark-theme #combat #combat-tracker li.combatant .combatant-control.active,
+body.dark-theme #combat-popout #combat-tracker li.combatant .combatant-control.active {
+  color: #e81111;
 }
-body.dark-theme #combat #combat-tracker li.combatant .token-resource {
+body.dark-theme #combat #combat-tracker li.combatant .token-resource,
+body.dark-theme #combat-popout #combat-tracker li.combatant .token-resource {
   color: white;
   border-right: 1px solid #828282;
 }
-body.dark-theme #combat #combat-tracker li.combatant.active {
+body.dark-theme #combat #combat-tracker li.combatant.active,
+body.dark-theme #combat-popout #combat-tracker li.combatant.active {
   color: #0d99cc;
 }
 body.dark-theme #combat #combat-tracker li.combatant.active .initiative,
-body.dark-theme #combat #combat-tracker li.combatant.active h4 {
+body.dark-theme #combat-popout #combat-tracker li.combatant.active .initiative,
+body.dark-theme #combat #combat-tracker li.combatant.active h4,
+body.dark-theme #combat-popout #combat-tracker li.combatant.active h4 {
   color: #0d99cc;
 }
-body.dark-theme #combat #combat-tracker li.combatant.hidden {
+body.dark-theme #combat #combat-tracker li.combatant.hidden,
+body.dark-theme #combat-popout #combat-tracker li.combatant.hidden {
   color: white;
 }
-body.dark-theme #combat #combat-controls {
+body.dark-theme #combat #combat-controls,
+body.dark-theme #combat-popout #combat-controls {
   border-top: 1px solid #0d99cc;
 }
 body.dark-theme .sidebar-tab .directory-header .header-search i.fa-search {
@@ -344,10 +361,10 @@ body.dark-theme .sidebar-tab .directory-list .folder > .folder-header h3 > i {
   color: #0d99cc;
 }
 body.dark-theme .sidebar-tab .directory-list .folder > .folder-header a {
-  color: #D6D6D6;
+  color: #d6d6d6;
 }
 body.dark-theme .sidebar-tab .directory-list .folder > .folder-header a:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sidebar-tab .directory-list .folder.collapsed > .folder-header {
   background: #2b2b2b;
@@ -365,7 +382,7 @@ body.dark-theme .sidebar-tab .directory-list .actor .entity-name,
 body.dark-theme .sidebar-tab .directory-list .item .entity-name,
 body.dark-theme .sidebar-tab .directory-list .journal .entity-name,
 body.dark-theme .sidebar-tab .directory-list .table .entity-name {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sidebar-tab .directory-list .actor:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .item:nth-child(even),
@@ -373,53 +390,70 @@ body.dark-theme .sidebar-tab .directory-list .journal:nth-child(even),
 body.dark-theme .sidebar-tab .directory-list .table:nth-child(even) {
   background: rgba(79, 79, 79, 0.3);
 }
-body.dark-theme #scenes .scene {
+body.dark-theme #scenes .scene,
+body.dark-theme #scenes-popout .scene {
   border-top: 1px solid #0d99cc;
   border-left: 4px solid #0d99cc;
 }
-body.dark-theme #scenes .scene::after {
+body.dark-theme #scenes .scene::after,
+body.dark-theme #scenes-popout .scene::after {
   box-shadow: 0 0 20px #0d99cc inset;
 }
-body.dark-theme #scenes .scene h3 {
+body.dark-theme #scenes .scene h3,
+body.dark-theme #scenes-popout .scene h3 {
   background: #2b2b2b;
 }
-body.dark-theme #playlists .directory-list li.playlist {
+body.dark-theme #playlists .directory-list li.playlist,
+body.dark-theme #playlists-popout .directory-list li.playlist {
   background: #2b2b2b;
 }
-body.dark-theme #playlists .directory-list li.playlist .playlist-header {
+body.dark-theme #playlists .directory-list li.playlist .playlist-header,
+body.dark-theme #playlists-popout .directory-list li.playlist .playlist-header {
   background: #2b2b2b;
-  color: #E81111;
+  color: #e81111;
   border-bottom: 2px solid #0d99cc;
 }
-body.dark-theme #playlists .directory-list li.playlist li.sound {
-  color: #1C1C1C;
+body.dark-theme #playlists .directory-list li.playlist li.sound,
+body.dark-theme #playlists-popout .directory-list li.playlist li.sound {
+  color: #1c1c1c;
 }
-body.dark-theme #playlists .directory-list li.playlist a.sound-control {
-  color: #E81111;
+body.dark-theme #playlists .directory-list li.playlist a.sound-control,
+body.dark-theme #playlists-popout .directory-list li.playlist a.sound-control {
+  color: #e81111;
 }
-body.dark-theme #compendium .compendium-entity {
+body.dark-theme #compendium .compendium-entity,
+body.dark-theme #compendium-popout .compendium-entity {
   background: #2b2b2b !important;
 }
-body.dark-theme #compendium .compendium-entity h3 {
+body.dark-theme #compendium .compendium-entity h3,
+body.dark-theme #compendium-popout .compendium-entity h3 {
   border-bottom: 2px solid #0d99cc;
 }
-body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even),
+body.dark-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack:nth-child(even) {
   background: rgba(79, 79, 79, 0.3);
 }
-body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons,
+body.dark-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack .pack-title .status-icons {
   color: #828282;
 }
-body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
+body.dark-theme #compendium .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer,
+body.dark-theme #compendium-popout .compendium-entity ol.compendium-list li.compendium-pack footer.compendium-footer {
   color: white;
 }
-body.dark-theme #settings h2 {
-  color: #E81111;
+body.dark-theme #settings h2,
+body.dark-theme #settings-popout h2 {
+  color: #e81111;
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme #settings #game-details,
+body.dark-theme #settings-popout #game-details,
 body.dark-theme #settings #settings-game,
+body.dark-theme #settings-popout #settings-game,
 body.dark-theme #settings #settings-documentation,
-body.dark-theme #settings #settings-access {
+body.dark-theme #settings-popout #settings-documentation,
+body.dark-theme #settings #settings-access,
+body.dark-theme #settings-popout #settings-access {
   color: white;
 }
 body.dark-theme #navigation #nav-toggle {
@@ -541,7 +575,7 @@ body.dark-theme #client-settings nav.tabs a.item:hover {
 }
 body.dark-theme #client-settings nav.tabs a.item.active {
   text-shadow: none;
-  border-bottom-color: #E81111;
+  border-bottom-color: #e81111;
 }
 body.dark-theme #client-settings section.content {
   border: none;
@@ -554,7 +588,7 @@ body.dark-theme .dialog-buttons button:last-child {
   margin-right: 0;
 }
 body.dark-theme .dialog-buttons button:not(.default) {
-  border: 1px solid #E81111;
+  border: 1px solid #e81111;
   margin-right: 4px;
   background: #828282;
   color: white;
@@ -564,7 +598,7 @@ body.dark-theme .dialog-buttons button:not(.default):hover {
 }
 body.dark-theme .dialog-buttons button.normal.default {
   border: none;
-  background: #E81111;
+  background: #e81111;
   color: white;
 }
 body.dark-theme .dialog-buttons button.normal.default:hover {
@@ -574,12 +608,12 @@ body.dark-theme .panel {
   background: white;
 }
 body.dark-theme .sw5e.sheet .window-content {
-  color: #1C1C1C;
+  color: #1c1c1c;
   background: linear-gradient(90deg, #afc6d6 0, #d6d6d6 30%, #d6d6d6 70%, #afc6d6);
 }
 body.dark-theme .sw5e.sheet .window-content input,
 body.dark-theme .sw5e.sheet .window-content select {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet .window-content input:hover,
 body.dark-theme .sw5e.sheet .window-content select:hover {
@@ -587,33 +621,33 @@ body.dark-theme .sw5e.sheet .window-content select:hover {
 }
 body.dark-theme .sw5e.sheet .window-content input:focus,
 body.dark-theme .sw5e.sheet .window-content select:focus {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet .window-content button:hover,
 body.dark-theme .sw5e.sheet .window-content button:focus {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor input:hover,
 body.dark-theme .sw5e.sheet.actor select:hover,
 body.dark-theme .sw5e.sheet.actor textarea:hover {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor input:focus,
 body.dark-theme .sw5e.sheet.actor select:focus,
 body.dark-theme .sw5e.sheet.actor textarea:focus {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet section > h1 {
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header h1.character-name input[type="text"] {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .level-experience .xpbar {
   border: 1px solid #4f4f4f;
@@ -634,28 +668,30 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib .attri
   color: #828282;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer button {
-  border: 1px solid #D6D6D6;
+  border: 1px solid #d6d6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer button:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button,
-body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button {
-  border: 1px solid #D6D6D6;
-  color: #E81111;
+body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button,
+body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button {
+  border: 1px solid #d6d6d6;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-points button:hover,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.hit-dice button:hover,
-body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button:hover {
-  border-color: #E81111;
+body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.initiative button:hover,
+body.dark-theme .sw5e.sheet.actor .swalt-sheet header .attributes .attrib footer.repair button:hover {
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item {
   color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active {
-  color: #E81111;
-  border-bottom-color: #E81111;
+  color: #e81111;
+  border-bottom-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet nav.sheet-navigation .item.active:hover {
   background: rgba(79, 79, 79, 0.1);
@@ -667,11 +703,11 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item {
   border-bottom: 2px solid #828282;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .filter-list .filter-item.active {
-  color: #E81111;
-  border-bottom-color: #E81111;
+  color: #e81111;
+  border-bottom-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-header {
   background: #f0f0f0;
@@ -681,7 +717,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-title {
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list-header .item-detail,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list .item-detail {
-  border-left: 1px solid #D6D6D6;
+  border-left: 1px solid #d6d6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item:nth-child(even),
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item:nth-child(even) {
@@ -689,7 +725,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item:nth-c
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item h4,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item h4 {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name .item-image::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name .item-image::before {
@@ -697,11 +733,11 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-name.rollable:hover .item-image:hover::before,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-name.rollable:hover .item-image:hover::before {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control:hover,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control:hover {
-  color: #E81111 !important;
+  color: #e81111 !important;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control.item-toggle,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control.item-toggle {
@@ -709,36 +745,36 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list li.item .item-control.item-toggle.active,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab .group-list ol li.item .item-control.item-toggle.active {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .score-list .score {
-  border: 1px solid #D6D6D6;
+  border: 1px solid #d6d6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .score-list .score h2:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-score {
   color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .ability-mod,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .score-list .score .ability-modifiers .ability-save {
-  border-color: #D6D6D6;
+  border-color: #d6d6d6;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li:nth-child(even) {
   background-color: #f0f0f0;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .proficiency-toggle {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .abilities .skills li .skill-name:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources nav button {
   color: #4f4f4f;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources nav button.active {
-  color: #E81111;
-  border-bottom-color: #E81111;
+  color: #e81111;
+  border-bottom-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources nav button.active:hover {
   background: rgba(232, 17, 17, 0.1);
@@ -748,13 +784,13 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources nav b
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.traits .proficiency-selector i.fas,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.traits .trait-selector i.fas {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.traits .languages label:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource h1 input {
-  color: #E81111;
+  color: #e81111;
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .resource-items .resource .attribute-value,
@@ -765,21 +801,21 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources secti
   color: #828282;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters .counter h4.rollable:hover {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters .counter .death-success i {
   color: #0dce0d;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.core .traits-resources section.resources .counters .counter .death-fail i {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .currency {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance-label {
-  background: #D6D6D6;
-  color: #1C1C1C;
-  border: 1px solid #1C1C1C;
+  background: #d6d6d6;
+  color: #1c1c1c;
+  border: 1px solid #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.inventory .encumbrance-wrapper .encumbrance {
   background: #afc6d6;
@@ -793,7 +829,7 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .power
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .powercasting-ability h3,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .powercasting-ability h3,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .powercasting-ability h3 {
-  color: #E81111;
+  color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .powercasting-ability label span,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .powercasting-ability label span,
@@ -801,14 +837,14 @@ body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .power
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.force-powerbook .powercasting-ability h3 span,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.tech-powerbook .powercasting-ability h3 span,
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.superiority-powerbook .powercasting-ability h3 span {
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 body.dark-theme .sw5e.sheet.actor .swalt-sheet .tab.notes section > input {
-  color: #E81111;
+  color: #e81111;
   border-bottom: 2px solid #0d99cc;
 }
 body.dark-theme .sw5e.sheet.actor.npc .swalt-sheet header div.creature-type:hover {
-  border-color: #E81111;
+  border-color: #e81111;
 }
 body.dark-theme .sw5e.sheet.actor.npc .swalt-sheet header .experience {
   color: #4f4f4f;

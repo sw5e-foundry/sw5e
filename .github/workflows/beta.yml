@@ -16,8 +16,8 @@ jobs:
         working-directory: ./
         run: zip -r ./system.zip ./*
 
-      - name: Get Version
-        shell: bash
+      # Get the most recent version number from the CHANGELOG.md file
+      - name: Get Most Recent Version Number
         id: get-version
         run: echo "version=$(node ./.github/workflows/get-version.js)" >> $GITHuB_OUTPUT
 
@@ -26,11 +26,10 @@ jobs:
         uses: ncipollo/release-action@v1
         with: 
           allowUpdates: true
-          name: Release ${{ steps.get-version.outputs.version }}
+          name: .v${{ steps.get-version.outputs.version }}
           draft: false
           prerelease: true
           token: ${{secrets.GITHUB_TOKEN}}
           artifacts: './system.zip, ./system.json'
           generateReleaseNotes: true
           tag: ${{ steps.get-version.outputs.version }}
-          

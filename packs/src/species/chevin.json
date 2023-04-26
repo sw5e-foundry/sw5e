@@ -1,0 +1,177 @@
+{
+  "_id": "KOwV2N1l4bDeGSlb",
+  "name": "Chevin",
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Chevin.webp",
+  "effects": [
+    {
+      "_id": "xyKlxEBAGLcMBv2n",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "value": "Chevin",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.abilities.con.value",
+          "value": "2",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.abilities.wis.value",
+          "value": "1",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.size",
+          "value": "med",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "value": "30",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.skills.sur.value",
+          "value": "1",
+          "mode": 4,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "basic",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "chevin",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "flags.sw5e.keenSenses",
+          "value": "1",
+          "mode": 5,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Chevin.webp",
+      "label": "Chevin",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "dae": {
+          "transfer": true,
+          "stackable": false
+        }
+      },
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2741371+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-chevin"
+    }
+  },
+  "system": {
+    "data": "$characteristics-table",
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Chevin have long snouts which hang down nearly to their ankles. Combined with their intellect, this makes them skilled hunters of animals such as backshin, because they can smell out their prey or feed while keeping their eyes on the horizon. It is also their hunting prowess which allowed them to dominate their homeworld and conquer the Chevs. Chevin have thick legs, massive wide bodies, thin rope-like tails, and arms so long their three-fingered hands often brushed the ground.</p>\n<h2>Society and Culture</h2>\n<p>Chevin live in small, mobile communities, with homes mounted on great wheeled carts. Even after they gained access to galactic technology, they continued to live as nomads (though more affluent Chevin mounted their lodges on large repulsorlift vehicles instead.) Their Chev slaves are usually forced to follow on foot. Nomadic groups of Chevin keep in touch via comlinks, and often converge on a single location to deal with danger.</p>\n<p>The only Chevin settlements that stay in place for more than one standard month are the Government Villages, where Chevin dictators live with their hand-picked advisors. Even these settlements are movable when necessary. Each of the roughly two dozen Government Villages rules a Chevin nation.</p>\n<h2>Names</h2>\n<p>Chevin names do not vary significantly based on gender. Surnames are based on community.</p>\n<p><strong>First Names.</strong> Buula, Ephant, Perre, Phylus, Reseros</p>\n<p><strong>Surnames.</strong> Meh, Mon, Nen, Needmo, Phrusaani</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "traits": "",
+    "source": "EC",
+    "identifier": "chevin",
+    "advancement": [
+      {
+        "_id": "cXPaG6BjFXlsmooB",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.speciesfeatures.ezbFJH7uS0I39eTQ",
+            "Compendium.sw5e.speciesfeatures.iTxYgFRO6DdM22j9",
+            "Compendium.sw5e.speciesfeatures.KsNfREVIdzmu5vLk",
+            "Compendium.sw5e.speciesfeatures.VvB4Qyit1FCxKyCM",
+            "Compendium.sw5e.speciesfeatures.Vpvrq7jDbfBoqnXP",
+            "Compendium.sw5e.speciesfeatures.vLBip3EaAWDYQOlA",
+            "Compendium.sw5e.speciesfeatures.VnJzAp6UaCUtJOjv",
+            "Compendium.sw5e.speciesfeatures.qyQkFNZuYSGBKgnr",
+            "Compendium.sw5e.speciesfeatures.WOpNuTiTJb8ph8mH",
+            "Compendium.sw5e.speciesfeatures.NYeLfXf0EwEEELWt"
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Traits"
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Grey"
+    },
+    "hairColorOptions": {
+      "value": "Black, brown, blond, grey, or white (usually with age)"
+    },
+    "eyeColorOptions": {
+      "value": "Black"
+    },
+    "colorScheme": {
+      "value": null
+    },
+    "distinctions": {
+      "value": "Stocky build, large heads, long snouts, long arms, three-fingered hands, four-toed feet"
+    },
+    "heightAverage": {
+      "value": "5'9\""
+    },
+    "heightRollMod": {
+      "value": "+2d12\""
+    },
+    "weightAverage": {
+      "value": "170 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d6) lb."
+    },
+    "homeworld": {
+      "value": "Vinsoth"
+    },
+    "slanguage": {
+      "value": "Chevin"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674494002082,
+    "modifiedTime": 1680288529698,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

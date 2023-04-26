@@ -5695,9 +5695,16 @@
     "traits": {
       "size": "med",
       "di": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Posion, Kinetic, Energy, And Ion From Non-enhanced Weapons"
+        "value": [
+          "poison",
+          "kinetic",
+          "energy",
+          "ion"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [
@@ -5723,8 +5730,13 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Huttese, Bith, Sith"
+        "value": [
+          "basic",
+          "huttese",
+          "bith",
+          "sith"
+        ],
+        "custom": ""
       }
     },
     "currency": {

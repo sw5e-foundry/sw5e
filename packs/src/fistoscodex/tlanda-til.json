@@ -1101,9 +1101,14 @@
     "traits": {
       "size": "lg",
       "di": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Energy And Kinetic Damage From Unenhanced Sources"
+        "value": [
+          "energy",
+          "kinetic"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [],
@@ -1120,8 +1125,11 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Huttese"
+        "value": [
+          "basic",
+          "huttese"
+        ],
+        "custom": ""
       }
     },
     "currency": {

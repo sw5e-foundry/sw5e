@@ -992,7 +992,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -1010,7 +1010,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -1027,7 +1027,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -1103,24 +1103,32 @@
         "custom": ""
       },
       "dr": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Energy From Unenhanced Sources"
+        "value": [
+          "energy"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dv": {
         "value": [
-          "lightning"
+          "lightning",
+          "ion"
         ],
         "bypasses": [],
-        "custom": "Ion"
+        "custom": ""
       },
       "ci": {
         "value": [],
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Binary"
+        "value": [
+          "basic",
+          "binary"
+        ],
+        "custom": ""
       }
     },
     "currency": {

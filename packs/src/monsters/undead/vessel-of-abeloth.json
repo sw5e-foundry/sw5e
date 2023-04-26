@@ -4792,7 +4792,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -4809,7 +4809,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -4881,10 +4881,15 @@
       "size": "med",
       "di": {
         "value": [
-          "poison"
+          "poison",
+          "ion",
+          "kinetic",
+          "energy"
         ],
-        "bypasses": [],
-        "custom": "Ion, Kinetic, And Energy From Unenhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [
@@ -4912,7 +4917,7 @@
       },
       "languages": {
         "value": [],
-        "custom": "All, Telepathy 120 Ft."
+        "custom": "All; Telepathy 120 Ft."
       }
     },
     "currency": {

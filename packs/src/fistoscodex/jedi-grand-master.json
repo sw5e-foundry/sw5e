@@ -7187,7 +7187,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": null,
           "tempmax": null
         },
@@ -7204,7 +7204,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -7276,15 +7276,26 @@
       "size": "sm",
       "di": {
         "value": [
-          "necrotic"
+          "necrotic",
+          "poison",
+          "kinetic",
+          "energy",
+          "ion"
         ],
-        "bypasses": [],
-        "custom": "Posion, Kinetic, Energy, And Ion From Non-enhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Kinetic And Energy From Unenhanced Weapons"
+        "value": [
+          "kinetic",
+          "energy"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dv": {
         "value": [],
@@ -7302,8 +7313,11 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Shyriiwook"
+        "value": [
+          "basic",
+          "shyriiwook"
+        ],
+        "custom": ""
       }
     },
     "currency": {

@@ -3596,7 +3596,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -3614,7 +3614,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -3631,7 +3631,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -3704,10 +3704,16 @@
       "di": {
         "value": [
           "lightning",
-          "poison"
+          "poison",
+          "sonic",
+          "kinetic",
+          "ion",
+          "energy"
         ],
-        "bypasses": [],
-        "custom": "Sonic, Kinetic, Ion, And Energy Damage From Unenhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [],

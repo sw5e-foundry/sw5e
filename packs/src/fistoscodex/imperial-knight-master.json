@@ -3178,7 +3178,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": null,
           "tempmax": null
         },
@@ -3195,7 +3195,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -3271,9 +3271,13 @@
         "custom": ""
       },
       "dr": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Energy From Unenhanced Weapons"
+        "value": [
+          "energy"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dv": {
         "value": [],
@@ -3285,8 +3289,10 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic"
+        "value": [
+          "basic"
+        ],
+        "custom": ""
       }
     },
     "currency": {

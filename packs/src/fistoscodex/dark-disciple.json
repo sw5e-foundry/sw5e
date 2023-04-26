@@ -4124,7 +4124,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -4141,7 +4141,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -4217,9 +4217,14 @@
         "custom": ""
       },
       "dr": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Kinetic And Energy Damage From Unenhanced Weapons, Damage From Force Powers"
+        "value": [
+          "energy",
+          "kinetic"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": "Damage From Force Powers"
       },
       "dv": {
         "value": [],
@@ -4231,8 +4236,10 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic"
+        "value": [
+          "basic"
+        ],
+        "custom": ""
       }
     },
     "currency": {

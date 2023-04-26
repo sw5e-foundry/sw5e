@@ -5607,7 +5607,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -5624,7 +5624,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -5695,9 +5695,16 @@
     "traits": {
       "size": "med",
       "di": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Posion, Kinetic, Energy, And Ion From Non-enhanced Weapons"
+        "value": [
+          "poison",
+          "kinetic",
+          "energy",
+          "ion"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [
@@ -5723,8 +5730,13 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Huttese, Bith, Sith"
+        "value": [
+          "basic",
+          "huttese",
+          "bith",
+          "sith"
+        ],
+        "custom": ""
       }
     },
     "currency": {

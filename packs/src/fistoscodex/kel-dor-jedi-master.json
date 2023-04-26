@@ -5149,7 +5149,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -5166,7 +5166,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -5243,10 +5243,14 @@
       },
       "dr": {
         "value": [
-          "necrotic"
+          "necrotic",
+          "kinetic",
+          "energy"
         ],
-        "bypasses": [],
-        "custom": "Kinetic And Energy From Unenhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dv": {
         "value": [],
@@ -5258,8 +5262,11 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Kel Dor"
+        "value": [
+          "basic",
+          "keldor"
+        ],
+        "custom": ""
       }
     },
     "currency": {

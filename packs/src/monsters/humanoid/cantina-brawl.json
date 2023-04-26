@@ -1801,7 +1801,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -1819,7 +1819,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -1836,7 +1836,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -1912,9 +1912,11 @@
         "custom": ""
       },
       "dr": {
-        "value": [],
+        "value": [
+          "kinetic"
+        ],
         "bypasses": [],
-        "custom": "Kinetic"
+        "custom": ""
       },
       "dv": {
         "value": [],
@@ -1934,8 +1936,10 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, Any One Other Language"
+        "value": [
+          "basic"
+        ],
+        "custom": "Any One Other Language"
       }
     },
     "currency": {

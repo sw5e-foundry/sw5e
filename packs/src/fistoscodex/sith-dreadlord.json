@@ -5707,7 +5707,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": 0,
           "tempmax": 0
         },
@@ -5724,7 +5724,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -5795,9 +5795,15 @@
     "traits": {
       "size": "med",
       "di": {
-        "value": [],
-        "bypasses": [],
-        "custom": "Kinetic, Ion And Energy Damage From Unenhanced Weapons"
+        "value": [
+          "energy",
+          "kinetic",
+          "ion"
+        ],
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dr": {
         "value": [
@@ -5820,8 +5826,10 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic"
+        "value": [
+          "basic"
+        ],
+        "custom": ""
       }
     },
     "currency": {

@@ -3791,7 +3791,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": null,
           "tempmax": null
         },
@@ -3826,7 +3826,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -3904,10 +3904,15 @@
       "dr": {
         "value": [
           "cold",
-          "lightning"
+          "lightning",
+          "kinetic",
+          "ion",
+          "energy"
         ],
-        "bypasses": [],
-        "custom": "Kinetic, Ion And Energy Damage From Unenhanced Weapons"
+        "bypasses": [
+          "mgc"
+        ],
+        "custom": ""
       },
       "dv": {
         "value": [],
@@ -3922,8 +3927,11 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galatic Basic, Huttese, Understands But Cannot Speak Shyriiwook"
+        "value": [
+          "basic",
+          "huttese"
+        ],
+        "custom": "Understands But Cannot Speak Shyriiwook"
       }
     },
     "currency": {

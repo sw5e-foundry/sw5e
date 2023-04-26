@@ -5196,7 +5196,7 @@
             "overall": ""
           },
           "min": 0,
-          "max": 0,
+          "max": null,
           "temp": null,
           "tempmax": null
         },
@@ -5213,7 +5213,7 @@
             "level": "",
             "overall": ""
           },
-          "max": 0
+          "max": null
         },
         "known": {
           "value": 0,
@@ -5289,9 +5289,12 @@
         "custom": ""
       },
       "dr": {
-        "value": [],
+        "value": [
+          "kinetic",
+          "energy"
+        ],
         "bypasses": [],
-        "custom": "Kinetic And Energy Damage, Damage From Force Powers"
+        "custom": "Damage From Force Powers"
       },
       "dv": {
         "value": [],
@@ -5306,8 +5309,10 @@
         "custom": ""
       },
       "languages": {
-        "value": [],
-        "custom": "Galactic Basic, One Other"
+        "value": [
+          "basic"
+        ],
+        "custom": "One Other"
       }
     },
     "currency": {

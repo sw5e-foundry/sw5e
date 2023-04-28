@@ -38,10 +38,10 @@ jobs:
         uses: ncipollo/release-action@v1
         with: 
           allowUpdates: true
-          name: .v${{ steps.get-version.outputs.version }}
+          name: .v${{ steps.get_version.outputs.version }}
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
           artifacts: './system.zip, ./system.json'
           generateReleaseNotes: true
-          tag: ${{ steps.get-version.outputs.version }}
+          tag: ${{ steps.get_version.outputs.version }}

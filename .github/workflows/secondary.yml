@@ -20,7 +20,7 @@ jobs:
         id: get_version
         run: |
           version=$(grep -E '^##.*' CHANGELOG.md | head -n 1 | awk '{print $2}')
-          echo "version=${version}" >> $GITHUB_OUTPUT
+          echo "version=v${version}" >> $GITHUB_OUTPUT
       
     # Substitute the Manifest and Download URLs in the module.json with the most recent version number
       - name: Substitute Manifest and Download Links For Versioned Ones
@@ -38,7 +38,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with: 
           allowUpdates: true
-          name: .v${{ steps.get_version.outputs.version }}
+          name: ${{ steps.get_version.outputs.version }}
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}

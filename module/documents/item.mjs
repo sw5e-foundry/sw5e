@@ -968,17 +968,17 @@ export default class Item5e extends Item {
 
     // Get the actor's critical threshold
     let actorThreshold = 20;
-    if (this.type === "weapon") actorThreshold = actorFlags.weaponCriticalThreshold;
-    else if (this.type === "power") actorThreshold = actorFlags.powerCriticalThreshold;
+    if (this.type === "weapon") actorThreshold = actorFlags.weaponCriticalThreshold ?? 20;
+    else if (this.type === "power") actorThreshold = actorFlags.powerCriticalThreshold ?? 20;
 
     // Get the item's critical threshold
-    const itemTreshold = itemCrit.baseThreshold;
+    const itemThreshold = itemCrit.baseThreshold;
 
     // Get the ammo's critical threshold
-    const ammoThreshold = ammo ? ammo.getCriticalThreshold() : 20;
+    const ammoThreshold = ammo?.getCriticalThreshold() ?? 20;
 
     // Use the lowest of the the actor and item thresholds
-    return Math.max(Math.min(actorThreshold, itemTreshold, ammoThreshold), 15);
+    return Math.max(Math.min(actorThreshold, itemThreshold, ammoThreshold), 15);
   }
 
   /* -------------------------------------------- */

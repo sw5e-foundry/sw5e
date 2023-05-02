@@ -17,7 +17,7 @@ jobs:
 
       # Get the most recent version number from the CHANGELOG.md file
       - name: Get Most Recent Version Number
-        id: get_version
+        id: get-version
         run: |
           version=$(grep -E '^##.*' CHANGELOG.md | head -n 1 | awk '{print $2}')
           echo "version=${version}" >> $GITHUB_OUTPUT
@@ -29,9 +29,9 @@ jobs:
         with:
           files: system.json
         env:
-          version: ${{ steps.get_version.outputs.version }}
-          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
-          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
+          version: ${{ steps.get-version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
 
       - name: Create Release
         id: create-release

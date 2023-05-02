@@ -439,7 +439,7 @@ export default class Item5e extends Item {
    */
   get rarityIcon() {
     if (this.system.rarity === undefined) return null;
-    const rarity = (this.system.rarity === "standard") ? "" : this.system.rarity?.toUpperCase() ?? "";
+    const rarity = this.system.rarity?.toUpperCase() ?? "";
     return `systems/sw5e/packs/Icons/Enhanced Items/Background${rarity}.webp`;
   }
 

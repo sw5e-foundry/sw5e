@@ -30,9 +30,9 @@ jobs:
         with:
           files: system.json
         env:
-          version: ${{ steps.get_version.outputs.version }}
-          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
-          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
+          version: ${{ steps.get-version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
 
       - name: Create Release
         id: create-release
@@ -45,4 +45,4 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           artifacts: "./system.zip, ./system.json"
           generateReleaseNotes: true
-          tag: v${{ steps.get_version.outputs.version }}
+          tag: ${{ steps.get_version.outputs.version }}

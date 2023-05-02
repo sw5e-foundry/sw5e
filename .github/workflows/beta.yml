@@ -38,12 +38,12 @@ jobs:
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
-        with: 
+        with:
           allowUpdates: true
-          name: .v${{ steps.get-version.outputs.version }}
+          name: .${{ steps.get-version.outputs.version }}
           draft: false
           prerelease: true
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: './system.zip, ./system.json'
+          artifacts: "./system.zip, ./system.json"
           generateReleaseNotes: true
           tag: ${{ steps.get-version.outputs.version }}

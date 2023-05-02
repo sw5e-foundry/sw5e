@@ -199,3 +199,16 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.composed-icon {
+  position: relative;
+  img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    .background {
+      z-index: 3;
+    }
+  }
+}

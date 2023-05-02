@@ -2,7 +2,10 @@
 
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img"/>
+        <div class="composed-icon profile">
+            <img class="profile background" src="{{item.rarityIcon}}"/>
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+        </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">

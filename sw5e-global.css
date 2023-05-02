@@ -2074,3 +2074,15 @@ input[type="reset"]:disabled {
     transform: rotate(360deg);
   }
 }
+.composed-icon {
+  position: relative;
+}
+.composed-icon img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.composed-icon img .background {
+  z-index: 3;
+}

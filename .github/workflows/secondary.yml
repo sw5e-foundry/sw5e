@@ -15,20 +15,33 @@ jobs:
         working-directory: ./
         run: zip -r ./system.zip ./*
 
-      - name: Get Version
-        shell: bash
-        id: get-version
-        run: echo "version=$(node ./.github/workflows/get-version.js)" >> $GITHUB_OUTPUT
+      # Get the most recent version number from the CHANGELOG.md file
+      - name: Get Most Recent Version Number
+        id: get_version
+        run: |
+          version=$(grep -E '^##.*' CHANGELOG.md | head -n 1 | awk '{print $2}')
+          echo "version=${version}" >> $GITHUB_OUTPUT
+
+      # Substitute the Manifest and Download URLs in the module.json with the most recent version number
+      - name: Substitute Manifest and Download Links For Versioned Ones
+        id: sub_manifest_link_version
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: system.json
+        env:
+          version: ${{ steps.get_version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
 
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
-        with: 
+        with:
           allowUpdates: true
-          name: .v${{ steps.get-version.outputs.version }}
+          name: ${{ steps.get_version.outputs.version }}
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: './system.zip, ./system.json'
+          artifacts: "./system.zip, ./system.json"
           generateReleaseNotes: true
-          tag: ${{ steps.get-version.outputs.version }}
+          tag: ${{ steps.get_version.outputs.version }}

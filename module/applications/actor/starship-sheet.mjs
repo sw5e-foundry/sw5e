@@ -670,7 +670,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     return new Dialog(
       {
         title: game.i18n.format("SW5E.DeploymentPromptTitle", {
-          crew: sourceActor.system.name,
+          crew: sourceActor.name,
           starship: this.actor.name
         }),
         content: {

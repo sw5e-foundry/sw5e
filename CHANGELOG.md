@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- The popup when deleting items from a PC sheet no longer refers to the item as 'undefined'.
+- The popup when deleting crew from a Starship sheet no longer refers to the actor as 'undefined'.
+- Old archetypes should no longer have model validation issues.
+- Deployment description is once again visible and editable.
+
 ## [v2.1.5.2.4.4]
 
 ### Added

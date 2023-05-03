@@ -3676,7 +3676,7 @@ export default class Actor5e extends Actor {
     const dhd = this.system.attributes.hull.dice - hd0;
     const dhp = this.system.attributes.hp.value - hp0;
 
-    return this._repair(chat, newDay, false, regenShld, dhd, dhp);
+    return this._repair(config.chat, config.newDay, false, regenShld, dhd, dhp);
   }
 
   /* -------------------------------------------- */
@@ -3715,7 +3715,7 @@ export default class Actor5e extends Actor {
       }
     }
 
-    return this._repair(chat, newDay, true, true, 0, 0);
+    return this._repair(config.chat, config.newDay, true, true, 0, 0);
   }
 
   /* -------------------------------------------- */
@@ -4141,8 +4141,9 @@ export default class Actor5e extends Actor {
 
     let updates = [];
     for (let item of this.items) {
-      if (recovery.includes(item.system.uses?.per)) {
-        updates.push({ _id: item.id, "system.uses.value": item.system.uses.max });
+      const uses = item.system.uses;
+      if (recovery.includes(uses?.per)) {
+        updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverRefittingRepairUses && item.system.recharge?.value) {
         updates.push({ _id: item.id, "system.recharge.charged": true });

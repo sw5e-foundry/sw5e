@@ -96,7 +96,7 @@ export default class RechargeRepairDialog extends Dialog {
   static async rechargeRepairDialog({ actor } = {}) {
     return new Promise((resolve, reject) => {
       const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.Recharge Repair")}: ${actor.name}`,
+        title: `${game.i18n.localize("SW5E.RechargeRepair")}: ${actor.name}`,
         buttons: {
           rest: {
             icon: '<i class="fas fa-wrench"></i>',

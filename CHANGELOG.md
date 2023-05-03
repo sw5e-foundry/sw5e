@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Deployment description is once again visible and editable.
 - Character description is once again editable.
 - Starships can once again be created on fresh worlds.
+- Starship repair should once again work.
 
 ## [v2.1.5.2.4.4]
 

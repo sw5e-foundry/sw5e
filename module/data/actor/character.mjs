@@ -138,6 +138,13 @@ export default class CharacterData extends CreatureTemplate {
         {
           ...DetailsFields.common,
           ...DetailsFields.creature,
+          description: new foundry.data.fields.SchemaField(
+            {
+              value: new foundry.data.fields.HTMLField({ label: "SW5E.Description" }),
+              public: new foundry.data.fields.HTMLField({ label: "SW5E.DescriptionPublic" })
+            },
+            { label: "SW5E.Description" }
+          ),
           background: new foundry.data.fields.StringField({ required: true, label: "SW5E.Background" }),
           originalClass: new foundry.data.fields.StringField({ required: true, label: "SW5E.ClassOriginal" }),
           xp: new foundry.data.fields.SchemaField(

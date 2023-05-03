@@ -260,8 +260,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       let itemId = li.attr("data-item-id");
       let item = this.actor.items.get(itemId);
       new Dialog({
-        title: `Deleting ${item.system.name}`,
-        content: `<p>Are you sure you want to delete ${item.system.name}?</p>`,
+        title: `Deleting ${item.name}`,
+        content: `<p>Are you sure you want to delete ${item.name}?</p>`,
         buttons: {
           Yes: {
             icon: '<i class="fa fa-check"></i>',

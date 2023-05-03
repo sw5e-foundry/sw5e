@@ -59,4 +59,22 @@ export default class ArchetypeData extends SystemDataModel.mixin(ItemDescription
       )
     });
   }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  static migrateData(source) {
+    super.migrateData(source);
+    ArchetypeData.#migrateProgression(source);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the archetype progression.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateProgression(source) {
+    if (typeof source.superiority.progression !== "number") source.superiority.progression = 0;
+  }
 }

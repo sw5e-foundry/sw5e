@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Character description is once again editable.
 - Starships can once again be created on fresh worlds.
 - Starship repair should once again work.
+- The character sheet can once again be openned if you have a mismatched archetype.
 
 ## [v2.1.5.2.4.4]
 

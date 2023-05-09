@@ -9,7 +9,7 @@
   "_id": "Jmp4QznVg3PSEK86",
   "system": {
     "description": {
-      "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 12 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
+      "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 10 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -50,7 +50,7 @@
     "ability": "",
     "actionType": "heal",
     "attackBonus": 0,
-    "chatFlavor": "DC 12",
+    "chatFlavor": "DC 10",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -78,6 +78,12 @@
       "value": 1,
       "charged": true
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "deployment": "crew"
   },
   "ownership": {
@@ -85,10 +91,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494016671,
-    "modifiedTime": 1677699337346,
+    "modifiedTime": 1683589512189,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

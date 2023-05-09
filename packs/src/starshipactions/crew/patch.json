@@ -9,7 +9,7 @@
   "_id": "o6Bt78NCyV0fYf1k",
   "system": {
     "description": {
-      "value": "<p>You can attempt to have the ship patch up damage it has taken, using one of its Hull Dice. When you take the Patch action, you make a Constitution (Patch) check (DC = 10 or half the ship's missing hull points, whichever number is higher). On a failure, you have disadvantage on the Hull Dice roll. On a success you roll the Hull Die normally. When you would make a Constitution (Patch) check, you may instead make an Intelligence (Mechanic's Kit) check at disadvantage. The Patch action can be taken multiple times on a ship's turn.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can attempt to patch up damage a ship has taken, using one of its Hull Dice. When you take the Patch action, you make a Constitution (Patch) check (DC = 10 or half the ship's missing hull points, whichever number is higher). On a failure, you roll the Hull Die twice and take the lesser amount. On a success you roll the Hull Die normally. The Patch action can be taken multiple times on a ship's turn.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -78,6 +78,12 @@
       "value": 1,
       "charged": true
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "deployment": "crew"
   },
   "ownership": {
@@ -85,10 +91,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494016679,
-    "modifiedTime": 1677699337428,
+    "modifiedTime": 1683592033713,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

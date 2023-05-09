@@ -1,15 +1,10 @@
 {
-  "name": "Cast a Power",
+  "name": "Detect",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Starship%20Actions/crew-action.webp",
-  "effects": [],
-  "folder": null,
-  "sort": 0,
-  "flags": {},
-  "_id": "MyIsiNQaVYmuo6oK",
   "system": {
     "description": {
-      "value": "<p>As normal, you can cast force or tech powers. You cannot target a hostile creature with a power unless you are aware of their presence and location. The Cast a Power action can be taken multiple times on a ship's turn.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you take the Detect action, you devote your attention to finding something. Depending on the nature of your detection, the DM might have you make a Wisdom (Scan) check or an Intelligence (Probe) check.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -21,7 +16,7 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
@@ -49,7 +44,7 @@
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -73,17 +68,27 @@
       "value": null,
       "charged": false
     },
-    "deployment": "crew"
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
   },
+  "effects": [],
   "ownership": {
     "default": 0
   },
+  "flags": {},
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
-    "createdTime": 1674494016671,
-    "modifiedTime": 1677699337353,
+    "createdTime": 1683590122870,
+    "modifiedTime": 1683590499528,
     "lastModifiedBy": "sw5ebuilder0000"
-  }
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "3sz9S7XnY6hxtXm1"
 }

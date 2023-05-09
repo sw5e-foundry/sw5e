@@ -9,7 +9,7 @@
   "_id": "bIpGPTNtTQBB4Oo5",
   "system": {
     "description": {
-      "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>\n<p>Only a deployed pilot can take the Ram action.</p>",
+      "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -78,6 +78,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "deployment": "pilot"
   },
   "ownership": {
@@ -85,10 +91,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494016675,
-    "modifiedTime": 1677699337385,
+    "modifiedTime": 1683592541114,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

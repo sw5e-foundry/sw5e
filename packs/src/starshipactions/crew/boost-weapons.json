@@ -9,7 +9,7 @@
   "_id": "S1bwJL9ZutRSvCxS",
   "system": {
     "description": {
-      "value": "<p>You can attempt to boost your weapon output. When you take the Boost Weapons action, the next time this turn your ship deals damage, you make a DC 12 Strength (Boost) check. On a success, you have advantage on the damage roll.</p>",
+      "value": "<p>You can attempt to boost your weapon output. When you take the Boost Weapons action, the next time this turn your ship deals damage, you make a DC 10 Strength (Boost) check. On a success, you have advantage on the damage roll.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -50,7 +50,7 @@
     "ability": "",
     "actionType": "other",
     "attackBonus": 0,
-    "chatFlavor": "DC 12",
+    "chatFlavor": "DC 10",
     "critical": {
       "threshold": null,
       "damage": ""
@@ -73,6 +73,12 @@
       "value": 1,
       "charged": true
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "deployment": "crew"
   },
   "ownership": {
@@ -80,10 +86,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494016674,
-    "modifiedTime": 1677699337379,
+    "modifiedTime": 1683589701737,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

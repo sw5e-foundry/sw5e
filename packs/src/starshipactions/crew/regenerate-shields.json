@@ -9,7 +9,7 @@
   "_id": "qpDYc0VtdAwwu94e",
   "system": {
     "description": {
-      "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally.</p>",
+      "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally. <span style=\"font-family:'Open Sans', sans-serif\">The Regenerate Shields action can only be taken once each ship turn.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -21,8 +21,8 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "1",
+      "units": "turn"
     },
     "cover": null,
     "target": {
@@ -78,6 +78,12 @@
       "value": 1,
       "charged": true
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "deployment": "crew"
   },
   "ownership": {
@@ -85,10 +91,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494016680,
-    "modifiedTime": 1677699337434,
+    "modifiedTime": 1683592873198,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

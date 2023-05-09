@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changes
+
+- The starship actions compendium has been updated to match the website. (Credits to GreyCouncil#8804)
+
 ### Fixed
 
 - The popup when deleting items from a PC sheet no longer refers to the item as 'undefined'.

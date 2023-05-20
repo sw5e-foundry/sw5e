@@ -1,6 +1,12 @@
+import AdvancementManager from "./applications/advancement/advancement-manager.mjs";
+
 export default class CharacterImporter {
   // Transform JSON from sw5e.com to Foundry friendly format
   // and insert new actor
+
+  static _itemsWithAdvancement = [];
+  static _actor = null;
+
   static async transform(rawCharacter) {
     const sourceCharacter = JSON.parse(rawCharacter); // Source character
 
@@ -124,32 +130,30 @@ export default class CharacterImporter {
       }
     };
 
-    const actor = await Actor.create(targetCharacter);
+    CharacterImporter._actor = await Actor.create(targetCharacter);
 
-    await this.addClasses(
+    await CharacterImporter.addClasses(
       sourceCharacter.attribs
-        .filter(e => this.classOrMulticlass(e.name))
+        .filter(e => CharacterImporter.classOrMulticlass(e.name))
         .map(e => {
           return {
-            name: this.capitalize(e.current),
-            type: this.baseOrMulti(e.name),
-            level: this.getLevel(e, sourceCharacter),
-            arch: this.getSubclass(e, sourceCharacter)
+            name: CharacterImporter.capitalize(e.current),
+            type: CharacterImporter.baseOrMulti(e.name),
+            level: CharacterImporter.getLevel(e, sourceCharacter),
+            arch: CharacterImporter.getSubclass(e, sourceCharacter)
           };
-        }),
-      actor
+        })
     );
 
-    await this.addSpecies(sourceCharacter.attribs.find(e => e.name === "race").current, actor);
+    await CharacterImporter.addSpecies(sourceCharacter.attribs.find(e => e.name === "race").current);
 
-    await this.addBackground(sourceCharacter.attribs.find(e => e.name === "background").current, actor);
+    await CharacterImporter.addBackground(sourceCharacter.attribs.find(e => e.name === "background").current);
 
-    await this.addPowers(
-      sourceCharacter.attribs.filter(e => e.name.search(/repeating_power.+_powername/g) !== -1).map(e => e.current),
-      actor
+    await CharacterImporter.addPowers(
+      sourceCharacter.attribs.filter(e => e.name.search(/repeating_power.+_powername/g) !== -1).map(e => e.current)
     );
 
-    await this.addItems(
+    await CharacterImporter.addItems(
       sourceCharacter.attribs
         .filter(e => e.name.search(/repeating_(?:inventory|traits).+_(?:item)?name/g) !== -1)
         .map(item => {
@@ -158,11 +162,10 @@ export default class CharacterImporter {
             name: item.current,
             quantity: sourceCharacter.attribs.find(e => e.name === `repeating_inventory_${id}_itemcount`)?.current ?? 1
           };
-        }),
-      actor
+        })
     );
 
-    await this.addProficiencies(
+    await CharacterImporter.addProficiencies(
       sourceCharacter.attribs
         .filter(e => e.name.search(/repeating_proficiencies.+_name/g) !== -1)
         .map(prof => {
@@ -174,12 +177,13 @@ export default class CharacterImporter {
             name: prof.current,
             type
           };
-        }),
-      actor
+        })
     );
+
+    await CharacterImporter.addAdvancements();
   }
 
-  static async addClasses(classes, actor) {
+  static async addClasses(classes) {
     const packClasses = await game.packs.get("sw5e.classes").getDocuments();
     const packArchs = await game.packs.get("sw5e.archetypes").getDocuments();
 
@@ -191,18 +195,14 @@ export default class CharacterImporter {
     const toCreate = [];
     for (const cls of classes) {
       const packClass = packClasses.find(o => o.name === cls.name)?.toObject();
-      if (packClass) toCreate.push(packClass);
+      if (packClass) {
+        packClass.system.levels = cls.level;
+        toCreate.push(packClass);
+      }
       const packArch = packArchs.find(o => o.name === cls.arch)?.toObject();
       if (packArch) toCreate.push(packArch);
     }
-    await actor.createEmbeddedDocuments("Item", toCreate);
-
-    const toUpdate = [];
-    for (const cls of classes) {
-      const itemClass = actor.itemTypes.class.find(o => o.name === cls.name);
-      toUpdate.push({ _id: itemClass.id, "system.levels": cls.level });
-    }
-    await actor.updateEmbeddedDocuments("Item", toUpdate);
+    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
   }
 
   static classOrMulticlass(name) {
@@ -242,7 +242,8 @@ export default class CharacterImporter {
   }
 
   static addValue(obj, value) {
-    if (!obj.value.includes(value)) obj.value.push(value);
+    if (obj.value instanceof Set) obj.value.add(value);
+    else if (!obj.value.includes(value)) obj.value.push(value);
   }
 
   static addCustom(obj, value) {
@@ -250,34 +251,34 @@ export default class CharacterImporter {
     else obj.custom = value;
   }
 
-  static async addSpecies(race, actor) {
+  static async addSpecies(race) {
     const species = await game.packs.get("sw5e.species").getDocuments();
     const assignedSpecies = species.find(c => c.name === race)?.toObject();
 
     if (assignedSpecies) {
       const activeEffects = [...assignedSpecies.effects][0]?.changes ?? [];
-      const actorData = { system: { abilities: { ...actor.system.abilities } } };
+      const actorData = { system: { abilities: { ...CharacterImporter._actor.system.abilities } } };
 
       for (const effect of activeEffects) {
-        const attr = effects.key.match(/system\.abilities\.(str|dex|con|int|wis|cha)\.value/)?.[1];
+        const attr = effect.key.match(/system\.abilities\.(str|dex|con|int|wis|cha)\.value/)?.[1];
         if (attr) actorData.system.abilities[attr].value -= effect.value;
       }
 
-      await actor.update(actorData);
+      await CharacterImporter._actor.update(actorData);
 
-      await actor.createEmbeddedDocuments("Item", [assignedSpecies]);
+      await CharacterImporter._actor.createEmbeddedDocuments("Item", [assignedSpecies].filter(CharacterImporter.checkAdvancement));
     }
   }
 
-  static async addBackground(bg, actor) {
+  static async addBackground(bg) {
     const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
     const packBg = bgs.find(c => c.name === bg)?.toObject();
     if (packBg) {
-      await actor.createEmbeddedDocuments("Item", [packBg]);
+      await CharacterImporter._actor.createEmbeddedDocuments("Item", [packBg].filter(CharacterImporter.checkAdvancement));
     }
   }
 
-  static async addPowers(powers, actor) {
+  static async addPowers(powers) {
     const packPowers = [
       ...(await game.packs.get("sw5e.forcepowers").getDocuments()),
       ...(await game.packs.get("sw5e.techpowers").getDocuments())
@@ -289,10 +290,10 @@ export default class CharacterImporter {
       if (packPower) toCreate.push(packPower);
     }
 
-    await actor.createEmbeddedDocuments("Item", toCreate);
+    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
   }
 
-  static async addItems(items, actor) {
+  static async addItems(items) {
     const packItems = [
       ...(await game.packs.get("sw5e.lightweapons").getDocuments()),
       ...(await game.packs.get("sw5e.vibroweapons").getDocuments()),
@@ -327,15 +328,15 @@ export default class CharacterImporter {
       }
     }
 
-    await actor.createEmbeddedDocuments("Item", toCreate);
+    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
   }
 
-  static async addProficiencies(profs, actor) {
+  static async addProficiencies(profs) {
     const updates = {};
 
-    const armorProf = actor.system.traits.armorProf;
-    const languages = actor.system.traits.languages;
-    const weaponProf = actor.system.traits.weaponProf;
+    const armorProf = CharacterImporter._actor.system.traits.armorProf;
+    const languages = CharacterImporter._actor.system.traits.languages;
+    const weaponProf = CharacterImporter._actor.system.traits.weaponProf;
 
     for (const prof of profs) {
       let name = prof.name;
@@ -358,19 +359,19 @@ export default class CharacterImporter {
             else if (which === "martial") toAdd = [toAdd[1]];
             else if (which === "exotic") toAdd = [toAdd[2]];
             else toAdd = [];
-            for (const wpnProf of toAdd) this.addValue(weaponProf, wpnProf);
+            for (const wpnProf of toAdd) CharacterImporter.addValue(weaponProf, wpnProf);
           } else if (name in CONFIG.SW5E.weaponIds) {
-            this.addValue(weaponProf, name);
+            CharacterImporter.addValue(weaponProf, name);
           } else {
-            this.addCustom(weaponProf, prof.name);
+            CharacterImporter.addCustom(weaponProf, prof.name);
           }
           break;
         case "ARMOR":
           name = name.toLowerCase().replace(/\s|armor/g, "");
           if (name in CONFIG.SW5E.armorProficienciesMap) {
-            this.addValue(armorProf, CONFIG.SW5E.armorProficienciesMap[name]);
+            CharacterImporter.addValue(armorProf, CONFIG.SW5E.armorProficienciesMap[name]);
           } else {
-            this.addCustom(armorProf, prof.name);
+            CharacterImporter.addCustom(armorProf, prof.name);
           }
           break;
         case "LANGUAGE":
@@ -379,9 +380,9 @@ export default class CharacterImporter {
             .replace(/galactic /g, "")
             .replace(/\s/g, "-");
           if (name in CONFIG.SW5E.languages) {
-            this.addValue(languages, name);
+            CharacterImporter.addValue(languages, name);
           } else {
-            this.addCustom(languages, prof.name);
+            CharacterImporter.addCustom(languages, prof.name);
           }
           break;
       }
@@ -391,7 +392,37 @@ export default class CharacterImporter {
     updates["system.traits.languages"] = languages;
     updates["system.traits.weaponProf"] = weaponProf;
 
-    await actor.update(updates);
+    await CharacterImporter._actor.update(updates);
+  }
+
+  static checkAdvancement(item) {
+    // Bypass normal creation flow for any items with advancement
+    if (item?.system?.advancement?.length && !game.settings.get("sw5e", "disableAdvancements")) {
+      CharacterImporter._itemsWithAdvancement.push(item);
+      return false;
+    }
+    return true;
+  }
+
+  static async addAdvancements() {
+    let actor = CharacterImporter._actor;
+    let manager = null;
+    for (const item of CharacterImporter._itemsWithAdvancement) {
+      if (!item) return;
+      if (!manager) manager = AdvancementManager.forNewItem(actor, item);
+      else manager.addNewItem(item);
+
+      // Make sure classes are at the proper level
+      if (item.type === "class") {
+        const classId = item.system.identifier;
+        const classLvl = item.system.levels;
+        const clonedItem = manager.clone.items.find(i=>i.type === "class" && i.system.identifier === classId);
+        const levelDelta = classLvl - 1;
+        if (!clonedItem || levelDelta < 1) continue;
+        manager.createLevelChangeSteps(clonedItem, levelDelta);
+      }
+    }
+    if (manager?.steps?.length) manager.render(true);
   }
 
   static addImportButton(html) {

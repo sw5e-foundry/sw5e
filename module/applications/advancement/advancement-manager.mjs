@@ -123,6 +123,48 @@ export default class AdvancementManager extends Application {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Expand the manager for a newly added item.
+   * @param {object} itemData       Data for the item being added.
+   * @returns {AdvancementManager}  Prepared manager. Steps count can be used to determine if advancements are needed.
+   */
+  addNewItem(itemData) {
+    const manager = this;
+
+    // Prepare data for adding to clone
+    const dataClone = foundry.utils.deepClone(itemData);
+    dataClone._id = foundry.utils.randomID();
+    if (itemData.type === "class") {
+      dataClone.system.levels = 0;
+      if (!manager.clone.system.details.originalClass) {
+        manager.clone.updateSource({ "system.details.originalClass": dataClone._id });
+      }
+    } else if (itemData.type === "deployment") {
+      dataClone.system.rank = 0;
+    } else if (itemData.type === "starshipsize") {
+      dataClone.system.tier = -1;
+    }
+
+    // Add item to clone & get new instance from clone
+    manager.clone.updateSource({ items: [dataClone] });
+    const clonedItem = manager.clone.items.get(dataClone._id);
+
+    // For class, deployment and starship items, prepare level change data
+    if (["class", "deployment", "starshipsize"].includes(itemData.type)) {
+      return manager.createLevelChangeSteps(clonedItem, 1);
+    }
+
+    // All other items, just create some flows up to current character level (or class level for archetypes)
+    let targetLevel = clonedItem.curAdvancementLevel;
+    Array.fromRange(targetLevel + 1)
+      .flatMap(l => AdvancementManager.flowsForLevel(clonedItem, l))
+      .forEach(flow => manager.steps.push({ type: "forward", flow }));
+
+    return manager;
+  }
+
+  /* -------------------------------------------- */
   /*  Factory Methods                             */
   /* -------------------------------------------- */
 

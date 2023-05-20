@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changes
 
 - The starship actions compendium has been updated to match the website. (Credits to GreyCouncil#8804)
+- The website character importer now properly triggers all advancements.
 
 ### Fixed
 

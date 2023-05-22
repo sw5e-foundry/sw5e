@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changes
 
-- The starship actions compendium has been updated to match the website. (Credits to GreyCouncil#8804)
-- The website character importer now properly triggers all advancements.
+- The starship actions compendium has been updated to match the website. (Credits to GreyCouncil#8804).
+- Backdrop Icons were moved to `packs/Icons/ItemBackdrop`.
 
 ### Fixed
 
@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship repair should once again work.
 - The character sheet can once again be openned if you have a mismatched archetype.
 - Feats can once again be created on fresh worlds.
+- The website character importer now properly triggers all advancements.
+- Modifications can once again modify boolean properties.
 
 ## [v2.1.5.2.4.4]
 

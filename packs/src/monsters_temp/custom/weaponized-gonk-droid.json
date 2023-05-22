@@ -84,6 +84,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -689,6 +695,10 @@
         "value": "<p>Power droids are boxy droids with two or four legs that serve as mobile batteries, capable of powering a variety of machinery and vehicles. They are, effectively, power generators with legs and simple artificial intelligence so that they can understand rudimentary commands. They are most commonly found on under-developed worlds that do not have an expansive power grid, or in mobile (often military) operations.They often make a low honking noise that sounds like the word \"gonk,\" resulting in the nickname gonk droid or simply gonk. This form of droidspeak was referred to as \"Gonkian.\"<strong><em>Models.</em></strong> Notable power droid models included the EG-4 and EG-6 power droids produced by Veril Line Systems; the S9-series heavy power droid, a larger and more powerful version of the EG-6; the PLNK \"plunk\" power droid; and the popular GNK power droid manufactured by Industrial Automaton.</p>\n<p>While Gonk Droids are generally harmless, Groodo the Hutt, in his bid to destroy the Fondor Shipyards and Spaceport, employed, as part of his Droid Control Army, GNK Power Droids that were modified with rapid-repeating blasters in their upper casings.Likewise, the Alliance to Restore the Republic modified GNK units so they would march slowly across the battlefield, until they collided with an enemy building, and explode.</p>",
         "public": ""
       },
+      "description": {
+        "value": "",
+        "public": ""
+      },
       "alignment": "unaligned",
       "species": "",
       "type": {
@@ -741,10 +751,9 @@
       "languages": {
         "value": [
           "binary",
-          "basic",
-          "gonkian"
+          "basic"
         ],
-        "custom": ""
+        "custom": "gonkian"
       }
     },
     "currency": {
@@ -1085,10 +1094,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.1",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493994317,
-    "modifiedTime": 1679691123006,
+    "modifiedTime": 1684777314697,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

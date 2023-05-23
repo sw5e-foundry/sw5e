@@ -54,9 +54,13 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
   /*  Display Methods                             */
   /* -------------------------------------------- */
 
+  quantForLevel(level) {
+    return (level === 0) ? this.item.system?.shldDiceStart : ["huge", "gargantuan"].includes(this.item.system.identifier) ? 2 : 1;
+  }
+
   /** @inheritdoc */
   valueForLevel(level) {
-    const quant = (level === 0) ? this.item.system.shldDiceStart : 1;
+    const quant = this.quantForLevel(level);
     return this.constructor.valueForLevel(this.value, this.hitDieValue, level, quant);
   }
 
@@ -64,10 +68,9 @@ export default class ShieldPointsAdvancement extends HitPointsAdvancement {
 
   /** @inheritdoc */
   getAdjustedTotal(mod) {
-    const start = this.item.system.shldDiceStart;
     return Object.keys(this.value).reduce((total, level) => {
-      if (level === "0") return total + Math.max(this.valueForLevel(parseInt(level)) + (start * mod), start);
-      return total + Math.max(this.valueForLevel(parseInt(level)) + mod, 1);
+      const quant = this.quantForLevel(level);
+      return total + Math.max(this.valueForLevel(parseInt(level)) + (quant * mod), quant);
     }, 0);
   }
 

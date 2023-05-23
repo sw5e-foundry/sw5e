@@ -2954,12 +2954,13 @@ export default class Actor5e extends Actor {
    */
   async rollStarshipHullPoints(item, tier, { chatMessage=true }={}) {
     if (item.type !== "starshipsize") throw new Error("Hull points can only be rolled for a starship size item.");
+    const quant = (tier === 0) ? item.system?.hullDiceStart-1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
-      formula: `1${item.system.hullDice}`,
+      formula: `${quant}${item.system.hullDice}`,
       data: item.getRollData(),
       chatMessage
     };
-    if (tier === 0) rollData.formula = `${item.system.hullDice.substring(1)} + ${item.system.hullDiceStart-1}${item.system.hullDice}`;
+    if (tier === 0) rollData.formula += ` + ${item.system.hullDice.substring(1)}`
     const flavor = game.i18n.format("SW5E.AdvancementHullPointsRollMessage", { starship: item.name });
     const messageData = {
       title: `${flavor}: ${this.name}`,
@@ -3010,12 +3011,13 @@ export default class Actor5e extends Actor {
    */
   async rollStarshipShieldPoints(item, tier, { chatMessage=true }={}) {
     if (item.type !== "starshipsize") throw new Error("Shield points can only be rolled for a starship size item.");
+    const quant = (tier === 0) ? item.system?.shldDiceStart-1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
-      formula: `1${item.system.shldDice}`,
+      formula: `${quant}${item.system.shldDice}`,
       data: item.getRollData(),
       chatMessage
     };
-    if (tier === 0) rollData.formula = `${item.system.shldDice.substring(1)} + ${item.system.shldDiceStart-1}${item.system.shldDice}`;
+    if (tier === 0) rollData.formula += ` + ${item.system.shldDice.substring(1)}`
     const flavor = game.i18n.format("SW5E.AdvancementShieldPointsRollMessage", { starship: item.name });
     const messageData = {
       title: `${flavor}: ${this.name}`,

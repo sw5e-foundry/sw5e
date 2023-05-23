@@ -85,15 +85,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +1 bonus to attack and damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon. Additionally, if the weapon is not enhanced, it becomes enhanced for the duration.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +1 bonus to attack and damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon. Additionally, if the weapon is not enhanced, it becomes enhanced for the duration.</p>\n<p> </p>\n<h2>Oscillation calibrator</h2>\n<p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +1 bonus to damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 1,
+    "price": {
+      "value": 170
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -106,7 +108,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -132,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -148,7 +150,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": null,
@@ -162,7 +164,7 @@
     "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493965012,
-    "modifiedTime": 1684777303492,
+    "modifiedTime": 1684819089341,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

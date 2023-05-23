@@ -82,22 +82,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.3993369+00:00",
+      "timestamp": "2023-03-09T01:52:20.4094203+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-mine_ion_devastating.subtype-explosive"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Explosive)</h4>\n <p>Mines can be set to detonate when a creature comes within up to 15 feet of it or paired with a remote detonator. As an action, you can prime and set a mine on a surface you can reach, which arms at the start of your next turn. When detonated, each creature within 15 feet of it must make a DC 24 Dexterity saving throw. A creature takes [[/r 12d6]] ion damage on a failed save, or half as much as on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted. </p>",
+      "value": "<h4>Consumable (Explosive)</h4>\n <p>Mines can be set to detonate when a creature comes within up to 15 feet of it or paired with a remote detonator. As an action, you can prime and set a mine on a surface you can reach, which arms at the start of your next turn. When detonated, each creature within 15 feet of it must make a DC 24 Dexterity saving throw. A creature takes [[/r 12d6]] ion damage on a failed save, or half as much as on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted. </p>\n<p> </p>\n<h2>Mine, ion</h2>\n<p>Mines can be set to detonate when a creature comes within up to 15 feet of it or paired with a remote detonator. As an action, you can prime and set a mine on a surface you can reach, which arms at the start of your next turn. When detonated, each creature within 15 feet of it must make a DC 14 Dexterity saving throw. A creature takes [[/r 2d6]] ion damage on a failed save, or half as much as on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 2,
+    "price": {
+      "value": 525
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "artifact",
@@ -110,7 +112,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -156,8 +158,8 @@
     "formula": "",
     "save": {
       "ability": "dex",
-      "dc": 24,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "explosive",
     "ammoType": null,
@@ -168,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493965003,
-    "modifiedTime": 1678471086390,
+    "modifiedTime": 1684819089339,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

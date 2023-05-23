@@ -2,7 +2,7 @@
   "_id": "90o8rMNkSJrjlclm",
   "name": "Medpac (Champion)",
   "type": "consumable",
-  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/MedpacArtifact.webp",
+  "img": "systems/sw5e/packs/Icons/Medical/Medpac.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -78,14 +78,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.5118506+00:00",
+      "timestamp": "2023-03-09T01:52:04.8044674+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-medpac_champion.subtype-medpac"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Medpac)</h4>\n <p>A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid within 5 feet. The creature rolls six dice equal to the size of their Hit Die and regains hit points equal to the amount rolled + their Constitution modifier (minimum of one hit point). If the creature has Hit Dice of different sizes, use whichever Hit Die size they have the most of.</p>",
+      "value": "<h4>Consumable (Medpac)</h4>\n <p>A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid within 5 feet. The creature rolls six dice equal to the size of their Hit Die and regains hit points equal to the amount rolled + their Constitution modifier (minimum of one hit point). If the creature has Hit Dice of different sizes, use whichever Hit Die size they have the most of.</p>\n<p> </p>\n<h2>Medpac</h2>\n<p>A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid within 5 feet. The creature rolls one die equal to the size of their Hit Die and regains hit points equal to the amount rolled + their Constitution modifier (minimum of one hit point). If the creature has Hit Dice of different sizes, use whichever Hit Die size they have the most of.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -93,7 +93,9 @@
     "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 300
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "artifact",
@@ -106,7 +108,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -132,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -148,7 +150,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "consumableType": "medpac",
     "ammoType": null,
@@ -159,10 +161,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964467,
-    "modifiedTime": 1678471086336,
+    "modifiedTime": 1684819089240,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

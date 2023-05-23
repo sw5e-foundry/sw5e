@@ -84,14 +84,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.4463223+00:00",
+      "timestamp": "2023-03-09T01:52:20.4653878+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-deafening_dart_average.subtype-ammunition"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +1 bonus to attack and damage rolls made with this wrist launcher dart, which deals [[/r 1d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Once the dart has been fired, it no longer gives a bonus. Also on a hit, the creature must make a DC 16 Constitution saving throw, taking [[/r 1d4]] sonic damage on a failed save. </p>\n<p>Additionally, on a failed save, a creature is deafened for 1 minute. At the end of an affected creature's turn, it can repeat this save, ending the effect on a success.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +1 bonus to attack and damage rolls made with this wrist launcher dart, which deals [[/r 1d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Once the dart has been fired, it no longer gives a bonus. Also on a hit, the creature must make a DC 16 Constitution saving throw, taking [[/r 1d4]] sonic damage on a failed save. </p>\n<p>Additionally, on a failed save, a creature is deafened for 1 minute. At the end of an affected creature's turn, it can repeat this save, ending the effect on a success.</p>\n<p> </p>\n<h2>Deafening dart</h2>\n<p>This wrist launcher ammunition deals [[/r 1d6]] kinetic damage on a hit. Also on a hit, the creature must make a DC 14 Constitution saving throw, taking [[/r 1d4]] sonic damage on a failed save. </p>\n<p>Additionally, on a failed save, a creature is deafened for 1 minute. At the end of an affected creature's turn, it can repeat this save, ending the effect on a success.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -99,7 +99,9 @@
     "source": "EC",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 70
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
@@ -149,7 +151,7 @@
     "damage": {
       "parts": [
         [
-          "1d6",
+          "1d6 + 1",
           "kinetic"
         ],
         [
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "con",
-      "dc": 16,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "dart",
@@ -175,10 +177,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964453,
-    "modifiedTime": 1678471086331,
+    "modifiedTime": 1684819089235,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

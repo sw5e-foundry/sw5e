@@ -2,7 +2,7 @@
   "_id": "jhDIGTCcMB4xtjcD",
   "name": "Rocketpack (Champion)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Weapon%20or%20Armor%20Accessory/Rocketpack.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -77,22 +77,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.320913+00:00",
+      "timestamp": "2023-03-09T01:52:04.6985289+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-rocketpack_champion.subtype-back"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>Rocketpacks combine the aerial transportation of a jetpack with the firepower of a rocket launcher. Activating or deactivating the rocketpack's flight capabilities requires a bonus action and, while active, you have a flying speed of 50 feet. The jetpack last for 1 minute per power cell (to a maximum of 10 minutes) and can be recharged by a power source or replacing the power cells.</p>\n<p>Additionally, your rocketpack comes with an enhanced integrated rocket launcher with the Ammunition (range 100/400) and reload 1 properties. Rather than traditional power cells, this rocket launcher fires specialized projectiles in the form of rockets. Whenever you would make a ranged weapon attack, you can instead fire this rocket launcher. When firing a rocket at long range, creatures within the radius of the rocket's explosion have advantage on the saving throw. Reloading this rocket launcher takes 1 minute. You have a +3 bonus to attack rolls and deal an additional [[/r 1d10]] damage with this enhanced rocket launcher.</p>",
+      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>Rocketpacks combine the aerial transportation of a jetpack with the firepower of a rocket launcher. Activating or deactivating the rocketpack's flight capabilities requires a bonus action and, while active, you have a flying speed of 50 feet. The jetpack last for 1 minute per power cell (to a maximum of 10 minutes) and can be recharged by a power source or replacing the power cells.</p>\n<p>Additionally, your rocketpack comes with an enhanced integrated rocket launcher with the Ammunition (range 100/400) and reload 1 properties. Rather than traditional power cells, this rocket launcher fires specialized projectiles in the form of rockets. Whenever you would make a ranged weapon attack, you can instead fire this rocket launcher. When firing a rocket at long range, creatures within the radius of the rocket's explosion have advantage on the saving throw. Reloading this rocket launcher takes 1 minute. You have a +3 bonus to attack rolls and deal an additional [[/r 1d10]] damage with this enhanced rocket launcher.</p>\n<p> </p>\n<h2>Rocketpack</h2>\n<p>Rocketpacks combine the aerial transportation of a jetpack with the firepower of a rocket launcher. Activating or deactivating the rocketpack's flight capabilities requires a bonus action and, while active, you have a flying speed of 25 feet. The jetpack last for 1 minute per power cell (to a maximum of 5 minutes) and can be recharged by a power source or replacing the power cells.</p>\n<p>Additionally, your rocketpack comes with an integrated rocket launcher with the Ammunition (range 100/400) and reload 1 properties. Rather than traditional power cells, this rocket launcher fires specialized projectiles in the form of rockets. Whenever you would make a ranged weapon attack, you can instead fire this rocket launcher. When firing a rocket at long range, creatures within the radius of the rocket's explosion have advantage on the saving throw. Reloading this rocket launcher takes 1 minute.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 35,
+    "price": {
+      "value": 10000
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "artifact",
@@ -105,7 +107,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -130,8 +132,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "3",
     "chatFlavor": "",
     "critical": {
@@ -141,7 +143,7 @@
     "damage": {
       "parts": [
         [
-          "1d10",
+          "1d10 + 1d10",
           ""
         ]
       ],
@@ -151,7 +153,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -199,7 +201,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "rocketpack",
     "speed": {
       "value": null,
       "conditions": ""
@@ -207,7 +209,7 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true,
+    "proficient": false,
     "damageBonus": "1d10"
   },
   "ownership": {
@@ -215,10 +217,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964917,
-    "modifiedTime": 1678471086377,
+    "modifiedTime": 1684819089321,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

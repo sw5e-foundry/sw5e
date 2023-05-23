@@ -84,14 +84,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.3893403+00:00",
+      "timestamp": "2023-03-09T01:52:20.3634461+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-missile_ion_devastating.subtype-ammunition"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +3 bonus to attack rolls made with this enhanced wrist launcher ammunition, which deals [[/r 3d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Additionally, hit or miss, the missile then explodes. The target and each creature within 5 feet must make a DC 24 Dexterity saving throw, taking [[/r 6d6]] ion damage on a failed save or half as much on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +3 bonus to attack rolls made with this enhanced wrist launcher ammunition, which deals [[/r 3d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Additionally, hit or miss, the missile then explodes. The target and each creature within 5 feet must make a DC 24 Dexterity saving throw, taking [[/r 6d6]] ion damage on a failed save or half as much on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted.</p>\n<p> </p>\n<h2>Missile, ion</h2>\n<p>This wrist launcher ammunition deals [[/r 1d6]] kinetic damage on a hit. Additionally, hit or miss, the missile then explodes. The target and each creature within 5 feet must make a DC 14 Dexterity saving throw, taking [[/r 1d6]] ion damage on a failed save or half as much on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -99,7 +99,9 @@
     "source": "EC",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 140
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "artifact",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "3",
     "chatFlavor": "",
     "critical": {
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "dex",
-      "dc": 24,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "missile",
@@ -174,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964862,
-    "modifiedTime": 1678471086372,
+    "modifiedTime": 1684819089311,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

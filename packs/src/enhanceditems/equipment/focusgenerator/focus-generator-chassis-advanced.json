@@ -2,7 +2,7 @@
   "_id": "cIembuJi1qvVJTxM",
   "name": "Focus Generator Chassis (Advanced)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Data%20Recording%20and%20Storage/FocusGenerator.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -73,22 +73,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.7197825+00:00",
+      "timestamp": "2023-03-09T01:52:05.5590315+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-focus_generator_chassis_advanced.subtype-force"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Focus (Force)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<hr />\n<p>This modifiable focus generator chassis comes with vacant modification slots for focus generator modifications, as well as one augment slot. It can house modifications of advanced rarity or lower.</p>",
+      "value": "<h4>Focus (Force)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<hr />\n<p>This modifiable focus generator chassis comes with vacant modification slots for focus generator modifications, as well as one augment slot. It can house modifications of advanced rarity or lower.</p>\n<p> </p>\n<h2>Focus generator</h2>\n<p>A focus generator is a handheld object used to help forcecasters learn to focus on their powers.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 1,
+    "price": {
+      "value": 200
+    },
     "attunement": 1,
     "equipped": false,
     "rarity": "advanced",
@@ -101,7 +103,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -126,8 +128,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -142,7 +144,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -198,17 +200,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964846,
-    "modifiedTime": 1678476387884,
+    "modifiedTime": 1684819089306,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

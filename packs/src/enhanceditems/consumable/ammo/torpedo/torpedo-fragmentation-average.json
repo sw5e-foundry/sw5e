@@ -82,7 +82,7 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.3693467+00:00",
+      "timestamp": "2023-03-09T01:52:20.3454565+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-torpedo_fragmentation_average.subtype-ammunition"
     }
@@ -96,8 +96,10 @@
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 20,
+    "price": {
+      "value": 700
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -110,7 +112,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
@@ -157,7 +159,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "torpedo",
@@ -168,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964945,
-    "modifiedTime": 1678471086383,
+    "modifiedTime": 1684819089327,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

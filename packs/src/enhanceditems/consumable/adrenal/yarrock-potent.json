@@ -2,7 +2,7 @@
   "_id": "9oRZnqDsoFuJUhAk",
   "name": "Yarrock (Potent)",
   "type": "consumable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Spice/Yarrock.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -84,14 +84,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.5058524+00:00",
+      "timestamp": "2023-03-09T01:52:04.8254558+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-yarrock_potent.subtype-substance"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Substance)</h4>\n <p>Yarrock is a hallucinogen which is said to instill a creature with a clear vision of \"the meaning of life\", granting a boost to confidence. As an action, you can apply this substance to a creature within 5 feet. For the next hour, the creature experiences a high that allows them to roll an additional [[/r d10]] when making an ability check, attack roll, or saving throw using Charisma. At the end of the high, the creature must succeed on a DC 22 Wisdom saving throw or experience a low that lasts 4 hours, during which they must roll a [[/r d10]] and subtract the result when making an ability check, attack roll, or saving throw using Charisma. At the end of the low, the creature must make a DC 22 Constitution saving throw to resist addiction.</p>",
+      "value": "<h4>Consumable (Substance)</h4>\n <p>Yarrock is a hallucinogen which is said to instill a creature with a clear vision of \"the meaning of life\", granting a boost to confidence. As an action, you can apply this substance to a creature within 5 feet. For the next hour, the creature experiences a high that allows them to roll an additional [[/r d10]] when making an ability check, attack roll, or saving throw using Charisma. At the end of the high, the creature must succeed on a DC 22 Wisdom saving throw or experience a low that lasts 4 hours, during which they must roll a [[/r d10]] and subtract the result when making an ability check, attack roll, or saving throw using Charisma. At the end of the low, the creature must make a DC 22 Constitution saving throw to resist addiction.</p>\n<p> </p>\n<h2>Yarrock</h2>\n<p>Yarrock is a hallucinogen which is said to instill a creature with a clear vision of \"the meaning of life\", granting a boost to confidence. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d3]] when making an ability check, attack roll, or saving throw using Charisma. At the end of the high, the creature must succeed on a DC 14 Wisdom saving throw or experience a low that lasts 10 minutes, during which they must roll a [[/r d3]] and subtract the result when making an ability check, attack roll, or saving throw using Charisma. At the end of the low, the creature must make a DC 14 Constitution saving throw to resist addiction.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -99,7 +99,9 @@
     "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 85
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "legendary",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": 1,
-      "units": "hour"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "wis",
-      "dc": 22,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "adrenal",
     "ammoType": null,
@@ -174,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964474,
-    "modifiedTime": 1678471086336,
+    "modifiedTime": 1684819089244,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

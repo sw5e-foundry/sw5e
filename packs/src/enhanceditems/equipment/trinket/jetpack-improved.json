@@ -2,7 +2,7 @@
   "_id": "FJeCVNKmyxKWiOc8",
   "name": "Jetpack (Improved)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Weapon%20or%20Armor%20Accessory/Jetpack.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -73,22 +73,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.3199134+00:00",
+      "timestamp": "2023-03-09T01:52:04.697529+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-jetpack_improved.subtype-back"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>Jetpacks are personal aerial transportation devices that allow the operator to fly into and through the air with great mobility. Activating or deactivating the jetpack requires a bonus action and, while active, you have a flying speed of 50 feet. The jetpack last for 1 minute per power cell (to a maximum of 14 minutes) and can be recharged by a power source or replacing the power cells.</p>",
+      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>Jetpacks are personal aerial transportation devices that allow the operator to fly into and through the air with great mobility. Activating or deactivating the jetpack requires a bonus action and, while active, you have a flying speed of 50 feet. The jetpack last for 1 minute per power cell (to a maximum of 14 minutes) and can be recharged by a power source or replacing the power cells.</p>\n<p> </p>\n<h2>Jetpack</h2>\n<p>Jetpacks are personal aerial transportation devices that allow the operator to fly into and through the air with great mobility. Activating or deactivating the jetpack requires a bonus action and, while active, you have a flying speed of 30 feet. The jetpack last for 1 minute per power cell (to a maximum of 10 minutes) and can be recharged by a power source or replacing the power cells.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 20,
+    "price": {
+      "value": 4500
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "prototype",
@@ -101,7 +103,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -126,8 +128,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -142,7 +144,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -190,7 +192,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "jetpack",
     "speed": {
       "value": null,
       "conditions": ""
@@ -198,17 +200,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964533,
-    "modifiedTime": 1678471086343,
+    "modifiedTime": 1684819089255,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

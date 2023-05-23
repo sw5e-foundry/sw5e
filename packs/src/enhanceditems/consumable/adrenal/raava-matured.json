@@ -2,7 +2,7 @@
   "_id": "QfSjoBcow2kuZuRO",
   "name": "Raava (Matured)",
   "type": "consumable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -84,14 +84,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.4998541+00:00",
+      "timestamp": "2023-03-09T01:52:04.8184585+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-raava_matured.subtype-substance"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Substance)</h4>\n <p>Raava is a traditional liquor breed from zsajhira berries. As an action, you can apply this substance to a creature within 5 feet. For the next 10 minutes, the creature experiences a high that allows them to roll an additional [[/r d6]] when making an ability check, attack roll, or saving throw using Dexterity. At the end of the high, the creature must succeed on a DC 18 Constitution saving throw or experience a low that lasts 1 hour, during which they must roll a [[/r d6]] and subtract the result when making an ability check, attack roll, or saving throw using Dexterity. At the end of the low, the creature must make a DC 18 Wisdom saving throw to resist addiction.</p>",
+      "value": "<h4>Consumable (Substance)</h4>\n <p>Raava is a traditional liquor breed from zsajhira berries. As an action, you can apply this substance to a creature within 5 feet. For the next 10 minutes, the creature experiences a high that allows them to roll an additional [[/r d6]] when making an ability check, attack roll, or saving throw using Dexterity. At the end of the high, the creature must succeed on a DC 18 Constitution saving throw or experience a low that lasts 1 hour, during which they must roll a [[/r d6]] and subtract the result when making an ability check, attack roll, or saving throw using Dexterity. At the end of the low, the creature must make a DC 18 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Raava</h2>\n<p>Raava is a traditional liquor breed from zsajhira berries. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d3]] when making an ability check, attack roll, or saving throw using Dexterity. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, during which they must roll a [[/r d3]] and subtract the result when making an ability check, attack roll, or saving throw using Dexterity. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -99,7 +99,9 @@
     "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 95
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "prototype",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": "10",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "con",
-      "dc": 18,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "adrenal",
     "ammoType": null,
@@ -174,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964680,
-    "modifiedTime": 1678471086355,
+    "modifiedTime": 1684819089283,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

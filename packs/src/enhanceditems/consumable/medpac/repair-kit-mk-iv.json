@@ -1,8 +1,8 @@
 {
-  "_id": "IpXIan2cltev5qzH",
-  "name": "Flechette Mag, Fragmentation (Major)",
+  "_id": "kXDvnt2q9y2PgCGu",
+  "name": "Repair Kit Mk IV",
   "type": "consumable",
-  "img": "systems/sw5e/packs/Icons/Ammunition/Melee Consumables/FlechetteMag-Fragmentation.webp",
+  "img": "systems/sw5e/packs/Icons/Medical/RepairKit.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -33,12 +33,8 @@
       },
       "quickDamage": {
         "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
+        "value": [],
+        "altValue": [],
         "context": []
       },
       "quickProperties": {
@@ -82,35 +78,37 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:20.4723836+00:00",
+      "timestamp": "2023-03-09T01:52:04.828454+00:00",
       "importer_version": 3,
-      "uid": "EnhancedItem.name-flechette_mag_fragmentation_major.subtype-ammunition"
+      "uid": "EnhancedItem.name-repair_kit_mk_iv.subtype-technology"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When triggered, this enhanced flechette cannon ammunition fires a volley of kinetic flechette rounds in a short line 15 feet long and 5 feet wide or a long line 45 feet long and 5 feet wide. A single flechette mag holds enough ammunition for three attacks in a short line or one attack in a long line. Each creature must make a DC 18 Dexterity saving throw. A creature takes [[/r 4d10]] kinetic damage on a failed save, or half as much as on a successful one. </p>",
+      "value": "<h4>Consumable (Technology)</h4>\n <p>A repair kit included the basic tools needed to repair a droid after being damaged in combat. The kit has three uses. As an action, you can expend one use of the kit to restore hit points to a droid or construct within 5 feet. The creature rolls four dice equal to the size of their Hit Die and regains hit points equal to the amount rolled + their Constitution modifier (minimum of one hit point). If the creature has Hit Dice of different sizes, use whichever Hit Die size they have the most of.</p>\n<p> </p>\n<h2>Repair kit</h2>\n<p>A repair kit included the basic tools needed to repair a droid or construct after being damaged in combat. The kit has three uses. As an action, you can expend one use of the kit to restore hit points to a droid or construct within 5 feet. The creature rolls one die equal to the size of their Hit Die and regains hit points equal </p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
-    "source": "EC",
+    "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 3,
+    "price": {
+      "value": 750
+    },
     "attunement": 0,
     "equipped": false,
-    "rarity": "prototype",
+    "rarity": "advanced",
     "identified": true,
     "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -120,9 +118,9 @@
       "type": ""
     },
     "range": {
-      "value": null,
+      "value": "5",
       "long": null,
-      "units": ""
+      "units": "feet"
     },
     "uses": {
       "value": null,
@@ -136,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,21 +143,16 @@
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "4d10",
-          "kinetic"
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "dex",
-      "dc": 18,
-      "scaling": "flat"
+      "ability": "",
+      "dc": null,
+      "scaling": "none"
     },
-    "consumableType": "ammo",
+    "consumableType": "medpac",
     "ammoType": null,
     "properties": {}
   },
@@ -170,8 +163,8 @@
     "systemId": "sw5e",
     "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
-    "createdTime": 1674493964564,
-    "modifiedTime": 1684777303438,
+    "createdTime": 1674493964927,
+    "modifiedTime": 1684819089324,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

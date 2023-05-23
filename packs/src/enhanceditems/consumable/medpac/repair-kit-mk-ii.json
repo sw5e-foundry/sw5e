@@ -1,8 +1,8 @@
 {
-  "_id": "VRHg6yVnXXCHrX6x",
-  "name": "Poison (Devastating)",
+  "_id": "bWtwYieX0uxB3w8R",
+  "name": "Repair Kit Mk II",
   "type": "consumable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Medical/RepairKit.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -33,12 +33,8 @@
       },
       "quickDamage": {
         "type": "Array",
-        "value": [
-          true
-        ],
-        "altValue": [
-          true
-        ],
+        "value": [],
+        "altValue": [],
         "context": []
       },
       "quickProperties": {
@@ -82,25 +78,27 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.5148498+00:00",
+      "timestamp": "2023-03-09T01:52:04.828454+00:00",
       "importer_version": 3,
-      "uid": "EnhancedItem.name-poison_devastating.subtype-poison"
+      "uid": "EnhancedItem.name-repair_kit_mk_ii.subtype-technology"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Poison)</h4>\n <p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 24 Constitution saving throw, taking [[/r 12d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>",
+      "value": "<h4>Consumable (Technology)</h4>\n <p>A repair kit included the basic tools needed to repair a droid after being damaged in combat. The kit has three uses. As an action, you can expend one use of the kit to restore hit points to a droid or construct within 5 feet. The creature rolls two dice equal to the size of their Hit Die and regains hit points equal to the amount rolled + their Constitution modifier (minimum of one hit point). If the creature has Hit Dice of different sizes, use whichever Hit Die size they have the most of.</p>\n<p> </p>\n<h2>Repair kit</h2>\n<p>A repair kit included the basic tools needed to repair a droid or construct after being damaged in combat. The kit has three uses. As an action, you can expend one use of the kit to restore hit points to a droid or construct within 5 feet. The creature rolls one die equal to the size of their Hit Die and regains hit points equal </p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 3,
+    "price": {
+      "value": 750
+    },
     "attunement": 0,
     "equipped": false,
-    "rarity": "artifact",
+    "rarity": "premium",
     "identified": true,
     "isCargo": false,
     "activation": {
@@ -109,8 +107,8 @@
       "condition": ""
     },
     "duration": {
-      "value": "1",
-      "units": "minute"
+      "value": null,
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -120,9 +118,9 @@
       "type": ""
     },
     "range": {
-      "value": null,
+      "value": "5",
       "long": null,
-      "units": ""
+      "units": "feet"
     },
     "uses": {
       "value": null,
@@ -136,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,21 +143,16 @@
       "damage": ""
     },
     "damage": {
-      "parts": [
-        [
-          "12d4",
-          "poison"
-        ]
-      ],
+      "parts": [],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "con",
-      "dc": 24,
-      "scaling": "flat"
+      "ability": "",
+      "dc": null,
+      "scaling": "none"
     },
-    "consumableType": "poison",
+    "consumableType": "medpac",
     "ammoType": null,
     "properties": {}
   },
@@ -168,10 +161,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
-    "createdTime": 1674493964726,
-    "modifiedTime": 1678471086361,
+    "createdTime": 1674493964835,
+    "modifiedTime": 1684819089305,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

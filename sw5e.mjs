@@ -316,7 +316,7 @@ Hooks.once("ready", async function() {
   if (migrations.needsMigration()) await migrations.migrateWorld();
 
   // Make deprecated item types unavailable to create
-  game.documentTypes.Item = game.documentTypes.Item.filter(t => !(t in CONFIG.SW5E.deprecatedItemTypes));
+  game.documentTypes.Item = game.documentTypes.Item.filter(t => !CONFIG.SW5E.deprecatedItemTypes.includes(t));
 });
 
 /* -------------------------------------------- */

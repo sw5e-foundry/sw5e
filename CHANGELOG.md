@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Feats can once again be created on fresh worlds.
 - The website character importer now properly triggers all advancements.
 - Modifications can once again modify boolean properties.
+- Deprecated item types no longer show up to be created.
 
 ## [v2.1.5.2.4.4]
 

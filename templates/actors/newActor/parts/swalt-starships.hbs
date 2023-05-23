@@ -47,6 +47,7 @@
                 </div>
                 <ol class="item-list content" style="display: block">
                     {{#each section.items as |item iid|}}
+                    {{#sw5e-itemContext item as |ctx|}}
                         <li class="item group-grid-features {{#if isDepleted}}depleted{{/if}}" data-item-id="{{item._id}}">
                             <div class="item-name rollable">
                                 <div class="item-image" style="background-image: url('{{item.img}}')"></div>
@@ -76,7 +77,7 @@
                                 <div class="item-detail player-deployment-ranks">
                                     <select class="level-selector">
                                         {{#select 0}}
-                                        {{#each item.availableRanks}}
+                                        {{#each ctx.availableRanks}}
                                             <option value="{{this.delta}}" {{disabled this.disabled}}>
                                                 {{localize "SW5E.LevelNumber" level=this.rank}}
                                                 {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
@@ -94,6 +95,7 @@
                                 </div>
                             {{/if}}
                         </li>
+                    {{/sw5e-itemContext}}
                     {{/each}}
                 </ol>
             </li>

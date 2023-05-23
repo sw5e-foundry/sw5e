@@ -1,8 +1,8 @@
 {
-  "_id": "idgXPJmAbzGg2sii",
-  "name": "Flechette Mag, Ion (Major)",
+  "_id": "VRHg6yVnXXCHrX6x",
+  "name": "Poison (Devastating)",
   "type": "consumable",
-  "img": "systems/sw5e/packs/Icons/Ammunition/Melee Consumables/FlechetteMag-Ion.webp",
+  "img": "systems/sw5e/packs/Icons/Medical/Poison.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -82,35 +82,37 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:20.4733824+00:00",
+      "timestamp": "2023-03-09T01:52:04.8084654+00:00",
       "importer_version": 3,
-      "uid": "EnhancedItem.name-flechette_mag_ion_major.subtype-ammunition"
+      "uid": "EnhancedItem.name-poison_devastating.subtype-poison"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When triggered, this enhanced flechette cannon ammunition fires a volley of ion flechette rounds in a short line 15 feet long and 5 feet wide or a long line 45 feet long and 5 feet wide. A single flechette mag holds enough ammunition for three attacks in a short line or one attack in a long line. Each creature must make a DC 18 Dexterity saving throw. A creature takes [[/r 4d6]] ion damage on a failed save, or half as much as on a successful one. Any electronics within the blast radius that aren't being worn or carried are disabled until rebooted.</p>",
+      "value": "<h4>Consumable (Poison)</h4>\n <p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 24 Constitution saving throw, taking [[/r 12d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>\n<p> </p>\n<h2>Poison</h2>\n<p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 14 Constitution saving throw, taking [[/r 2d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
-    "source": "EC",
+    "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 125
+    },
     "attunement": 0,
     "equipped": false,
-    "rarity": "prototype",
+    "rarity": "artifact",
     "identified": true,
     "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": "inst"
+      "value": "1",
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -147,19 +149,19 @@
     "damage": {
       "parts": [
         [
-          "4d6",
-          "ion"
+          "12d4",
+          "poison"
         ]
       ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "dex",
-      "dc": 18,
-      "scaling": "flat"
+      "ability": "con",
+      "dc": null,
+      "scaling": "none"
     },
-    "consumableType": "ammo",
+    "consumableType": "medpac",
     "ammoType": null,
     "properties": {}
   },
@@ -170,8 +172,8 @@
     "systemId": "sw5e",
     "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
-    "createdTime": 1674493964905,
-    "modifiedTime": 1684777303475,
+    "createdTime": 1674493964726,
+    "modifiedTime": 1684819089292,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

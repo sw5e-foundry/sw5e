@@ -82,14 +82,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.4583187+00:00",
+      "timestamp": "2023-03-09T01:52:20.4773813+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-electrifying_cartridge_major.subtype-ammunition"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +2 bonus to attack and damage rolls made with this enhanced electrifying cartridge. This bonus is in addition to any bonuses granted by the weapon. Once the electrifying cartridge has been fired, it no longer gives a bonus. Additionally, when you hit with a shot with the loaded weapon, the creature must make a DC 18 Dexterity saving throw. On a failed save, the creature takes [[/r 1d4]] lightning damage and becomes shocked until the end of its next turn. On a successful save, a creature takes half damage and isn't shocked.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +2 bonus to attack and damage rolls made with this enhanced electrifying cartridge. This bonus is in addition to any bonuses granted by the weapon. Once the electrifying cartridge has been fired, it no longer gives a bonus. Additionally, when you hit with a shot with the loaded weapon, the creature must make a DC 18 Dexterity saving throw. On a failed save, the creature takes [[/r 1d4]] lightning damage and becomes shocked until the end of its next turn. On a successful save, a creature takes half damage and isn't shocked.</p>\n<p> </p>\n<h2>Electrifying cartridge</h2>\n<p>An electrifying cartridge is a specialized slug cartridge for use with blaster weapons that deal kinetic damage. When you hit with a shot with the loaded weapon, the creature must make a DC 14 Dexterity saving throw. On a failed save, the creature takes [[/r 1d4]] lightning damage and becomes shocked until the end of its next turn. On a successful save, a creature takes half damage and isn't shocked.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -97,7 +97,9 @@
     "source": "EC",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 28
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "prototype",
@@ -110,7 +112,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "2",
     "chatFlavor": "",
     "critical": {
@@ -147,7 +149,7 @@
     "damage": {
       "parts": [
         [
-          "1d4",
+          "1d4 + 2",
           "lightning"
         ]
       ],
@@ -156,8 +158,8 @@
     "formula": "",
     "save": {
       "ability": "dex",
-      "dc": 18,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "cartridge",
@@ -169,10 +171,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964511,
-    "modifiedTime": 1678471086341,
+    "modifiedTime": 1684819089251,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

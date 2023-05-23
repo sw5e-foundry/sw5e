@@ -8,14 +8,14 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.6228136+00:00",
+      "timestamp": "2023-03-09T01:52:05.379134+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-shoulder_cannon_improved.subtype-shoulder_cannon.mode-burst"
     }
   },
   "system": {
     "description": {
-      "value": "<p>Mounted in the shoulder slot, a shoulder cannon does not require a free hand to use. Additionally, you have advantage on Strength ability checks and saving throws to avoid being disarmed of this weapon. You have a +2 bonus to attack and damage rolls made with this enhanced shoulder cannon, which has the smart (17, +3) property. </p>\n<p> </p>\n<h2>Shoulder cannon</h2>\n<h3>Auto</h3>\n<p>Weapons with this property can only fire in burst, penetrating, or rapid modes. If the weapon has any combination of burst, penetrating, and rapid modes, you choose which mode to use. You can only use one mode at a time.</p>\n<h3>Burst 8</h3>\n<p>When you would make a ranged weapon attack with a weapon with this property, you can instead spray a 10-foot-cube area within range with shots, consuming ammunition equal to the burst number. Each creature in the area must make a Dexterity saving throw (DC = 8 + your bonus to attacks with the weapon) or take the weapon's normal damage. Before you use this property, you can declare one creature that would be affected by it. If the creature fails its save, in addition to the weapon's normal damage, it is subjected to any additional effects that would occur on a hit. If you would have advantage on your attack roll, the creature instead has disadvantage on their saving throw, and if you would have disadvantage on your attack roll, the creature instead has advantage on their saving throw.</p>\n<h3>Power cell (range 60/240) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 8</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>\n<h3>Smart (15/+2)</h3>\n<p>This weapon ignores your Dexterity score and proficiency bonus. Two numbers appear in parentheses with the property—the first is the weapon's Dexterity score, and the second is the weapon's proficiency bonus. The weapon uses these values instead of yours when you make attack and damage rolls with it. If you lack proficiency with the weapon, the weapon does not benefit from its proficiency bonus.</p>\n<h3>Strength 11</h3>\n<p>A weapon with this property has a heavy kickback. While wielding it, you have disadvantage on attack rolls unless you meet the Strength requirement. If the weapon has the burst, penetrating, or rapid property, you must meet the Strength requirement to use this feature. If the weapon lacks the two-handed property, you can wield the weapon in two hands to temporarily reduce the strength number by one step (from 19 to 17, 17 to 15, 15 to 13, or 13 to 11). If this would reduce the strength number below 11, you ignore it entirely.</p>\n<h3>Special</h3>\n<p>Mounted by the shoulder slot, a shoulder cannon does not require a free hand to use. Additionally, you have advantage on Strength ability checks and saving throws to avoid being disarmed of this weapon.</p>",
+      "value": "<h4>Weapon (Shoulder Cannon)</h4>\n <p>Mounted in the shoulder slot, a shoulder cannon does not require a free hand to use. Additionally, you have advantage on Strength ability checks and saving throws to avoid being disarmed of this weapon. You have a +2 bonus to attack and damage rolls made with this enhanced shoulder cannon, which has the smart (17, +3) property. </p>\n<p> </p>\n<h2>Shoulder cannon</h2>\n<h3>Auto</h3>\n<p>Weapons with this property can only fire in burst, penetrating, or rapid modes. If the weapon has any combination of burst, penetrating, and rapid modes, you choose which mode to use. You can only use one mode at a time.</p>\n<h3>Burst 8</h3>\n<p>When you would make a ranged weapon attack with a weapon with this property, you can instead spray a 10-foot-cube area within range with shots, consuming ammunition equal to the burst number. Each creature in the area must make a Dexterity saving throw (DC = 8 + your bonus to attacks with the weapon) or take the weapon's normal damage. Before you use this property, you can declare one creature that would be affected by it. If the creature fails its save, in addition to the weapon's normal damage, it is subjected to any additional effects that would occur on a hit. If you would have advantage on your attack roll, the creature instead has disadvantage on their saving throw, and if you would have disadvantage on your attack roll, the creature instead has advantage on their saving throw.</p>\n<h3>Power cell (range 60/240) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 8</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>\n<h3>Smart (15/+2)</h3>\n<p>This weapon ignores your Dexterity score and proficiency bonus. Two numbers appear in parentheses with the property—the first is the weapon's Dexterity score, and the second is the weapon's proficiency bonus. The weapon uses these values instead of yours when you make attack and damage rolls with it. If you lack proficiency with the weapon, the weapon does not benefit from its proficiency bonus.</p>\n<h3>Strength 11</h3>\n<p>A weapon with this property has a heavy kickback. While wielding it, you have disadvantage on attack rolls unless you meet the Strength requirement. If the weapon has the burst, penetrating, or rapid property, you must meet the Strength requirement to use this feature. If the weapon lacks the two-handed property, you can wield the weapon in two hands to temporarily reduce the strength number by one step (from 19 to 17, 17 to 15, 15 to 13, or 13 to 11). If this would reduce the strength number below 11, you ignore it entirely.</p>\n<h3>Special</h3>\n<p>Mounted by the shoulder slot, a shoulder cannon does not require a free hand to use. Additionally, you have advantage on Strength ability checks and saving throws to avoid being disarmed of this weapon.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -64,7 +64,7 @@
     },
     "ability": "str",
     "actionType": "save",
-    "attackBonus": "3 - @abilities.str.mod + 3 - @attributes.prof + 2",
+    "attackBonus": "2 - @abilities.str.mod + 2 - @attributes.prof + 2",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -73,7 +73,7 @@
     "damage": {
       "parts": [
         [
-          "1d8 + 3 + 2",
+          "1d8 + 2 + 2",
           "energy"
         ]
       ],
@@ -155,10 +155,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964756,
-    "modifiedTime": 1678476387881,
+    "modifiedTime": 1684819089298,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

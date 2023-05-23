@@ -82,22 +82,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.3823424+00:00",
+      "timestamp": "2023-03-09T01:52:20.3584495+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-projector_tank_corrosive_average.subtype-ammunition"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When triggered, this enhanced vapor projector ammunition produces a spray of acid in a line 15 feet long and 5 feet wide or a 15-foot cone. A single fuel tank holds enough fuel for three attacks in a line or a single attack in a cone. Each creature must make a DC 16 Constitution saving throw. On a failed save, a creature takes [[/r 2d6]] acid damage, and the first attack it makes before the end of its next turn has disadvantage. On a successful save, a creature takes half damage and isn't disadvantaged. If this damage reduces a creature to 0 hit points, it must make a DC 13 Constitution saving throw. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything it is wearing and carrying are reduced to a pile of fine gray dust. </p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When triggered, this enhanced vapor projector ammunition produces a spray of acid in a line 15 feet long and 5 feet wide or a 15-foot cone. A single fuel tank holds enough fuel for three attacks in a line or a single attack in a cone. Each creature must make a DC 16 Constitution saving throw. On a failed save, a creature takes [[/r 2d6]] acid damage, and the first attack it makes before the end of its next turn has disadvantage. On a successful save, a creature takes half damage and isn't disadvantaged. If this damage reduces a creature to 0 hit points, it must make a DC 13 Constitution saving throw. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything it is wearing and carrying are reduced to a pile of fine gray dust. </p>\n<p> </p>\n<h2>Projector tank, corrosive</h2>\n<p>When triggered, this vapor projector ammunition produces a spray of acid in a line 15 feet long and 5 feet wide or a 15-foot cone. A single fuel tank holds enough fuel for three attacks in a line or a single attack in a cone. Each creature must make a DC 14 Constitution saving throw. On a failed save, a creature takes [[/r 2d6]] acid damage, and the first attack it makes before the end of its next turn has disadvantage. On a successful save, a creature takes half damage and isn't disadvantaged. If this damage reduces a creature to 0 hit points, it must make a DC 13 Constitution saving throw. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything it is wearing and carrying are reduced to a pile of fine gray dust. </p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 3,
+    "price": {
+      "value": 625
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -110,7 +112,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -156,8 +158,8 @@
     "formula": "",
     "save": {
       "ability": "con",
-      "dc": 16,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "projectorTank",
@@ -168,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964476,
-    "modifiedTime": 1678471086336,
+    "modifiedTime": 1684819089244,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

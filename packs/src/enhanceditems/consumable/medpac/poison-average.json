@@ -2,7 +2,7 @@
   "_id": "EwMCbik62HBpZUoI",
   "name": "Poison (Average)",
   "type": "consumable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Medical/Poison.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -82,14 +82,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.5138502+00:00",
+      "timestamp": "2023-03-09T01:52:04.8074661+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-poison_average.subtype-poison"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Poison)</h4>\n <p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 16 Constitution saving throw, taking [[/r 4d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>",
+      "value": "<h4>Consumable (Poison)</h4>\n <p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 16 Constitution saving throw, taking [[/r 4d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>\n<p> </p>\n<h2>Poison</h2>\n<p>As an action, you can use the poison in this vial to coat one vibroweapon, one slug cartridge, or one wrist launcher dart. A creature hit by the poisoned weapon must make a DC 14 Constitution saving throw, taking [[/r 2d4]] poison damage on a failed save or half as much on a successful one. Once applied, the poison retains potency for 1 minute before drying.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -97,7 +97,9 @@
     "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 125
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -110,7 +112,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -136,8 +138,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -156,10 +158,10 @@
     "formula": "",
     "save": {
       "ability": "con",
-      "dc": 16,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
-    "consumableType": "poison",
+    "consumableType": "medpac",
     "ammoType": null,
     "properties": {}
   },
@@ -168,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964531,
-    "modifiedTime": 1678471086342,
+    "modifiedTime": 1684819089255,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

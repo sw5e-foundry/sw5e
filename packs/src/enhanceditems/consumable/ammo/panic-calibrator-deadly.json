@@ -85,15 +85,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +3 bonus to attack and damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon. Additionally, for the duration, the weapon gains the neuralizing 16 property. If it already has the neuralizing property, its neuralizing number increases by 4, to a maximum of 18. Lastly, if the weapon is not enhanced, it becomes enhanced for the duration.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +3 bonus to attack and damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon. Additionally, for the duration, the weapon gains the neuralizing 16 property. If it already has the neuralizing property, its neuralizing number increases by 4, to a maximum of 18. Lastly, if the weapon is not enhanced, it becomes enhanced for the duration.</p>\n<p> </p>\n<h2>Panic calibrator</h2>\n<p>As an action, you can apply this calibrator to one vibroweapon or pair of handwraps within 5 feet, granting it a +1 bonus to damage rolls for 1 minute. This bonus is in addition to any bonuses granted by the weapon. Additionally, for the duration, the weapon gains the neuralizing 13 property. If it already has the neuralizing property, its neuralizing number increases by 1, to a maximum of 18.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 1,
+    "price": {
+      "value": 850
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "advanced",
@@ -106,7 +108,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -132,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -148,7 +150,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": null,
@@ -162,7 +164,7 @@
     "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964499,
-    "modifiedTime": 1684777303421,
+    "modifiedTime": 1684819089248,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

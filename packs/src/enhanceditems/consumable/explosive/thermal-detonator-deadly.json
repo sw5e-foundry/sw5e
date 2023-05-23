@@ -84,22 +84,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.4413234+00:00",
+      "timestamp": "2023-03-09T01:52:20.445399+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-thermal_detonator_deadly.subtype-explosive"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Explosive)</h4>\n <p>Thermal detonators are unique in that can only be turned off by whoever turned them on. They can be set to detonate on impact or with a timer that causes them to explode on initiative count 20 (losing all initiative ties). As an action, you can prime and throw a grenade at a point you can see within 30 feet + your Strength modifier x 5. Each creature within 20 feet must make a DC 20 Dexterity saving throw. A creature takes [[/r 8d6]] fire and [[/r 8d10]] kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked prone. </p>",
+      "value": "<h4>Consumable (Explosive)</h4>\n <p>Thermal detonators are unique in that can only be turned off by whoever turned them on. They can be set to detonate on impact or with a timer that causes them to explode on initiative count 20 (losing all initiative ties). As an action, you can prime and throw a grenade at a point you can see within 30 feet + your Strength modifier x 5. Each creature within 20 feet must make a DC 20 Dexterity saving throw. A creature takes [[/r 8d6]] fire and [[/r 8d10]] kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked prone. </p>\n<p> </p>\n<h2>Thermal detonator</h2>\n<p>Thermal detonators are unique in that can only be turned off by whoever turned them on. They can be set to detonate on impact or with a timer that causes them to explode on initiative count 20 (losing all initiative ties). As an action, you can prime and throw a grenade at a point you can see within 30 feet + your Strength modifier x 5. Each creature within 20 feet must make a DC 14 Dexterity saving throw. A creature takes [[/r 2d6]] fire and [[/r 2d10]] kinetic damage on a failed save, or half as much as on a successful one. Additionally, on a failed save, the creature is knocked prone. </p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 1,
+    "price": {
+      "value": 2000
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "advanced",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "dex",
-      "dc": 20,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "explosive",
     "ammoType": null,
@@ -174,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964993,
-    "modifiedTime": 1678471086388,
+    "modifiedTime": 1684819089336,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

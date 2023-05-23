@@ -84,22 +84,24 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:27.3903404+00:00",
+      "timestamp": "2023-03-09T01:52:20.3644457+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-rocket_incendiary_average.subtype-ammunition"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +1 bonus to attack rolls made with this enhanced rocket launcher ammunition, which deals [[/r 2d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Additionally, hit or miss, the rocket then explodes, setting the ground beneath it in a 15 foot radius ablaze for 1 minute. When a creature enters the fire or starts its turn there it must make a DC 16 Dexterity saving throw. On a failed save, the creature takes [[/r 4d8]] fire damage or half as much on a successful one. A construct makes this save with disadvantage.</p>",
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +1 bonus to attack rolls made with this enhanced rocket launcher ammunition, which deals [[/r 2d6]] kinetic damage on a hit. This bonus is in addition to any bonuses granted by the weapon. Additionally, hit or miss, the rocket then explodes, setting the ground beneath it in a 15 foot radius ablaze for 1 minute. When a creature enters the fire or starts its turn there it must make a DC 16 Dexterity saving throw. On a failed save, the creature takes [[/r 4d8]] fire damage or half as much on a successful one. A construct makes this save with disadvantage.</p>\n<p> </p>\n<h2>Rocket, incendiary</h2>\n<p>This rocket launcher ammunition deals [[/r 2d6]] kinetic damage on a hit. Additionally, hit or miss, the rocket then explodes, setting the ground beneath it in a 15 foot radius ablaze for 1 minute. When a creature enters the fire or starts its turn there it must make a DC 14 Dexterity saving throw. On a failed save, the creature takes [[/r 2d8]] fire damage or half as much on a successful one. A construct makes this save with disadvantage.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 2,
+    "price": {
+      "value": 535
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "premium",
@@ -112,7 +114,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -138,8 +140,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "save",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "1",
     "chatFlavor": "",
     "critical": {
@@ -162,8 +164,8 @@
     "formula": "",
     "save": {
       "ability": "dex",
-      "dc": 16,
-      "scaling": "flat"
+      "dc": null,
+      "scaling": "none"
     },
     "consumableType": "ammo",
     "ammoType": "rocket",
@@ -174,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964634,
-    "modifiedTime": 1678471086350,
+    "modifiedTime": 1684819089271,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "_id": "Srm2gNtpnGrkW6Ej",
-  "name": "Rocket Boots (Improved)",
+  "_id": "RF2fMP6WbBcTaYk7",
+  "name": "Rocket Boots (Exceptional)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Weapon%20or%20Armor%20Accessory/RocketBoots.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -73,25 +73,27 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.3289105+00:00",
+      "timestamp": "2023-03-09T01:52:04.7065247+00:00",
       "importer_version": 3,
-      "uid": "EnhancedItem.name-rocket_boots_improved.subtype-feet"
+      "uid": "EnhancedItem.name-rocket_boots_exceptional.subtype-feet"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear (Feet)</h4>\n <p>Rocket boots are a form of rocket propulsion system affixed to a pair of boots instead of being worn on the back like a standard jetpack. Activating or deactivating the boots requires a bonus action and, while active, you have a flying speed of 35 feet. The rocket boots last for 1 minute and can be recharged by a power source or replacing the power cell.\t</p>",
+      "value": "<h4>Adventuring Gear (Feet)</h4>\n <p>Rocket boots are a form of rocket propulsion system affixed to a pair of boots instead of being worn on the back like a standard jetpack. Activating or deactivating the boots requires a bonus action and, while active, you have a flying speed of 45 feet. The rocket boots last for 1 minute and can be recharged by a power source or replacing the power cell.\t</p>\n<p> </p>\n<h2>Rocket boots</h2>\n<p>Rocket boots are a form of rocket propulsion system affixed to a pair of boots instead of being worn on the back like a standard jetpack. Activating or deactivating the boots requires a bonus action and, while active, you have a flying speed of 25 feet. The rocket boots last for 1 minute and can be recharged by a power source or replacing the power cells.\t</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
-    "price": 0,
+    "weight": 3,
+    "price": {
+      "value": 2500
+    },
     "attunement": 0,
     "equipped": false,
-    "rarity": "prototype",
+    "rarity": "legendary",
     "identified": true,
     "isCargo": false,
     "activation": {
@@ -101,7 +103,7 @@
     },
     "duration": {
       "value": "1",
-      "units": "minute"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -126,8 +128,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -142,11 +144,11 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
-      "type": "clothing",
+      "type": "trinket",
       "dex": null
     },
     "hp": {
@@ -190,7 +192,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "rocketboots",
     "speed": {
       "value": null,
       "conditions": ""
@@ -198,17 +200,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
-    "createdTime": 1674493964695,
-    "modifiedTime": 1678471086357,
+    "createdTime": 1674493964686,
+    "modifiedTime": 1684819089284,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

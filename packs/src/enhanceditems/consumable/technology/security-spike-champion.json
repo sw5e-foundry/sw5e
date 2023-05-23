@@ -2,7 +2,7 @@
   "_id": "o5W5C9asEbBILM5V",
   "name": "Security Spike (Champion)",
   "type": "consumable",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Utility/SecuritySpike.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -78,14 +78,14 @@
       }
     },
     "sw5e-importer": {
-      "timestamp": "2022-10-18T11:21:07.510851+00:00",
+      "timestamp": "2023-03-09T01:52:04.8294543+00:00",
       "importer_version": 3,
       "uid": "EnhancedItem.name-security_spike_champion.subtype-technology"
     }
   },
   "system": {
     "description": {
-      "value": "<h4>Consumable (Technology)</h4>\n <p>When you make an Intelligence (security kit) check, you can use the spike (no action required) to gain advantage on the check, and then you can reroll both of the dice once. You can wait until after you roll the [[/r d20]] before deciding to use the spike, but you must decide before the GM says whether the check succeeds or fails.</p>",
+      "value": "<h4>Consumable (Technology)</h4>\n <p>When you make an Intelligence (security kit) check, you can use the spike (no action required) to gain advantage on the check, and then you can reroll both of the dice once. You can wait until after you roll the [[/r d20]] before deciding to use the spike, but you must decide before the GM says whether the check succeeds or fails.</p>\n<p> </p>\n<h2>Security spike</h2>\n<p>When you make an Intelligence (security kit) check, you can use the spike (no action required) to reroll the check. You must use the new roll. You can wait until after you roll the [[/r d20]] before deciding to use the spike, but you must decide before the GM says whether the check succeeds or fails.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -93,7 +93,9 @@
     "source": "WH",
     "quantity": 1,
     "weight": 0,
-    "price": 0,
+    "price": {
+      "value": 150
+    },
     "attunement": 0,
     "equipped": false,
     "rarity": "artifact",
@@ -106,7 +108,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -132,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -148,7 +150,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "consumableType": "technology",
     "ammoType": null,
@@ -159,10 +161,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.0",
+    "systemVersion": "2.1.5.2.4.4",
     "coreVersion": "10.291",
     "createdTime": 1674493964955,
-    "modifiedTime": 1678471086384,
+    "modifiedTime": 1684819089329,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

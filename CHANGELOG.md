@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The website character importer now properly triggers all advancements.
 - Modifications can once again modify boolean properties.
 - Deprecated item types no longer show up to be created.
+- Huge and Gargantuan ships should now have the proper ammount of hull and shield dice at higher levels.
 
 ## [v2.1.5.2.4.4]
 

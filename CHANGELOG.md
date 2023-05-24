@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Some items that were previously loot (rations, spikes) have been made consumables.
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.
 - Innate powers no longer count towards your known powers.
+- When opening the powerbooks tab, the selected subtab will be one you have levels or powers known.
 
 ### Fixed
 

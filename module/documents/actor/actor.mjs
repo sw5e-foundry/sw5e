@@ -1143,15 +1143,16 @@ export default class Actor5e extends Actor {
         huge: 4,
         grg: 8
       }[this.system.traits.size] || 1;
-    if (this.flags.sw5e?.powerfulBuild) mod = Math.min(mod * 2, 8);
 
     const strengthMultiplier = game.settings.get("sw5e", "metricWeightUnits")
       ? CONFIG.SW5E.encumbrance.strMultiplier.metric
       : CONFIG.SW5E.encumbrance.strMultiplier.imperial;
 
+    const traitMultiplier = this.flags.sw5e?.encumbranceMultiplier ?? 1;
+
     // Populate final Encumbrance values
     encumbrance.value = weight.toNearest(0.1);
-    encumbrance.max = ((this.system.abilities.str?.value ?? 10) * strengthMultiplier * mod).toNearest(0.1);
+    encumbrance.max = ((this.system.abilities.str?.value ?? 10) * strengthMultiplier * traitMultiplier * mod).toNearest(0.1);
     encumbrance.pct = Math.clamped((encumbrance.value * 100) / encumbrance.max, 0, 100);
     encumbrance.encumbered = encumbrance.pct > 200 / 3;
   }

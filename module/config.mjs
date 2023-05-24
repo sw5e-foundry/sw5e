@@ -3591,12 +3591,6 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  powerfulBuild: {
-    name: "SW5E.FlagsPowerfulBuild",
-    hint: "SW5E.FlagsPowerfulBuildHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
   precognition: {
     name: "SW5E.FlagsPrecognition",
     hint: "SW5E.FlagsPrecognitionHint",
@@ -3805,6 +3799,13 @@ SW5E.characterFlags = {
     section: "SW5E.Features",
     abilities: ["str", "con", "wis", "cha"],
     type: Boolean
+  },
+  encumbranceMultiplier: {
+    name: "SW5E.FlagsEncumbranceMultiplier",
+    hint: "SW5E.FlagsEncumbranceMultiplierHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 1
   }
 };
 preLocalize("characterFlags", { keys: ["name", "hint", "section"] });

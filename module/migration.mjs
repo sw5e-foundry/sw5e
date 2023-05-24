@@ -282,6 +282,7 @@ export const migrateActorData = async function(actor, migrationData) {
   const updateData = {};
   await _migrateTokenImage(actor, updateData, migrationData);
   _migrateActorAC(actor, updateData);
+  _migrateActorTraits(actor, updateData);
   if (["character", "npc"].includes(actor.type)) {
     _migrateActorAttribRank(actor, updateData);
   }
@@ -610,6 +611,26 @@ function _migrateActorAttribRank(actorData, updateData) {
   const v2 = asd?.attributes?.ranks !== undefined;
   if (v1) updateData["system.attributes.-=rank"] = null;
   if (v2) updateData["system.attributes.-=ranks"] = null;
+
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor's traits
+ * @param {object} actorData
+ * @param {object} updateData
+ * @returns {object}
+ * @private
+ */
+function _migrateActorTraits(actorData, updateData) {
+  const flags = actorData.flags.sw5e;
+
+  if (flags.powerfulBuild !== undefined) {
+    updateData["flags.sw5e.-=powerfulBuild"] = null;
+    updateData["flags.sw5e.encumbranceMultiplier"] = 2;
+  }
 
   return updateData;
 }

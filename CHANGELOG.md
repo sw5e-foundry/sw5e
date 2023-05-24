@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Backdrop Icons were moved to `packs/Icons/ItemBackdrop`.
 - Some items that were previously loot (rations, spikes) have been made consumables.
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.
+- Innate powers no longer count towards your known powers.
 
 ### Fixed
 

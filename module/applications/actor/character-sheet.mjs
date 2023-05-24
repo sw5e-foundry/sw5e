@@ -70,6 +70,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       });
     }
 
+    // Make the correct powerbook active when you open the tab
+    context.activePowerbook = this.actor.caster[0] ?? "force";
+
     const classes = this.actor.itemTypes.class;
     return foundry.utils.mergeObject(context, {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),

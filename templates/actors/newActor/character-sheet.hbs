@@ -185,9 +185,12 @@
         {{!-- Force Powers, Tech Powers and Maneuvers Tab --}}
         <section class="tab powerbooks" data-group="primary" data-tab="powerbooks">
             <nav class="sheet-navigation powerbook-tabs tab-list" style="grid-template-columns: repeat(3, 1fr);"  data-subgroup-selection>
-                <button class="item active" data-subgroup="book-tab" data-target="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
-                <button class="item" data-subgroup="book-tab" data-target="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
-                <button class="item" data-subgroup="book-tab" data-target="superiority-powerbook">{{ localize "SW5E.SuperiorityPowerbook" }}</button>
+                <button class="item{{#if (eq activePowerbook 'force')}} active{{/if}}"
+                        data-subgroup="book-tab" data-target="force-powerbook">{{ localize "SW5E.ForcePowerbook" }}</button>
+                <button class="item{{#if (eq activePowerbook 'tech')}} active{{/if}}"
+                        data-subgroup="book-tab" data-target="tech-powerbook">{{ localize "SW5E.TechPowerbook" }}</button>
+                <button class="item{{#if (eq activePowerbook 'super')}} active{{/if}}"
+                        data-subgroup="book-tab" data-target="superiority-powerbook">{{ localize "SW5E.SuperiorityPowerbook" }}</button>
             </nav>
 
             {{!-- Force Powers Tab --}}

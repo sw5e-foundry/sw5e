@@ -118,6 +118,19 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Get which type of caster the actor is.
+   * @type {array<string>}
+   */
+  get caster() {
+    const types = [];
+    for (const prog of ["force", "tech"]) if (this.system.attributes[prog].level || this.system.attributes[prog].known.value) types.push(prog);
+    if (this.system.attributes.super.level || this.system.attributes.super.known.value) types.push("super");
+    return types;
+  }
+
+  /* -------------------------------------------- */
   /*  Methods                                     */
   /* -------------------------------------------- */
 

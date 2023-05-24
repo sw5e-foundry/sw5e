@@ -2268,6 +2268,7 @@ export default class Item5e extends Item {
    * @returns {Promise<Roll>}                 A Promise which resolves to the created Roll instance.
    */
   async rollToolCheck(options = {}) {
+    const flags = this.actor.flags.sw5e ?? {};
     if (this.type !== "tool") throw new Error("Wrong item type!");
 
     // Prepare roll data
@@ -2300,6 +2301,11 @@ export default class Item5e extends Item {
       rollData.checkBonus = Roll.replaceFormulaData(globalBonus.check, rollData);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod))
+      || undefined;
+
     // Compose the roll data
     const rollConfig = foundry.utils.mergeObject(
       {
@@ -2312,7 +2318,8 @@ export default class Item5e extends Item {
           left: window.innerWidth - 710
         },
         chooseModifier: true,
-        halflingLucky: this.actor.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         reliableTalent: this.system.proficient >= 1 && this.actor.getFlag("sw5e", "reliableTalent"),
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this.actor }),

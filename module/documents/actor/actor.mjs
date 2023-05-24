@@ -1652,6 +1652,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollSkill(skillId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const skl = this.system.skills[skillId];
     const abl = this.system.abilities[skl.ability];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1691,8 +1692,12 @@ export default class Actor5e extends Actor {
       data.skillBonus = Roll.replaceFormulaData(globalBonuses.skill, data);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod))
+      || undefined;
     // Reliable Talent applies to any skill check we have full or better proficiency in
-    const reliableTalent = skl.value >= 1 && this.getFlag("sw5e", "reliableTalent");
+    const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
     // Roll and return
     const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.skills[skillId]?.label ?? "" });
@@ -1702,7 +1707,8 @@ export default class Actor5e extends Actor {
         title: `${flavor}: ${this.name}`,
         flavor,
         chooseModifier: true,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         reliableTalent,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -1775,6 +1781,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilityTest(abilityId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const label = CONFIG.SW5E.abilities[abilityId] ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1804,6 +1811,11 @@ export default class Actor5e extends Actor {
       data.checkBonus = Roll.replaceFormulaData(globalBonuses.check, data);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(abilityId))
+      || undefined;
+
     // Roll and return
     const flavor = game.i18n.format("SW5E.AbilityPromptTitle", { ability: label });
     const rollData = foundry.utils.mergeObject(
@@ -1811,7 +1823,8 @@ export default class Actor5e extends Actor {
         data,
         title: `${flavor}: ${this.name}`,
         flavor,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "ability", abilityId }
@@ -1857,6 +1870,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilitySave(abilityId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const label = CONFIG.SW5E.abilities[abilityId] ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1886,6 +1900,11 @@ export default class Actor5e extends Actor {
       data.saveBonus = Roll.replaceFormulaData(globalBonuses.save, data);
     }
 
+    // Flags
+    const supremeDurability =
+      (flags.supremeDurability && CONFIG.SW5E.characterFlags.supremeDurability.abilities.includes(abilityId))
+      || undefined;
+
     // Roll and return
     const flavor = game.i18n.format("SW5E.SavePromptTitle", { ability: label });
     const rollData = foundry.utils.mergeObject(
@@ -1893,7 +1912,8 @@ export default class Actor5e extends Actor {
         data,
         title: `${flavor}: ${this.name}`,
         flavor,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeDurability,
+        halflingLucky: flags.halflingLucky,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "save", abilityId }

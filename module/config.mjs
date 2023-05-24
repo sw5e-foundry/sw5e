@@ -3769,6 +3769,20 @@ SW5E.characterFlags = {
     section: "SW5E.Features",
     type: Number,
     placeholder: 0
+  },
+  forcePowerDiscount: {
+    name: "SW5E.FlagsForcePowerDiscount",
+    hint: "SW5E.FlagsForcePowerDiscountHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 0
+  },
+  techPowerDiscount: {
+    name: "SW5E.FlagsTechPowerDiscount",
+    hint: "SW5E.FlagsTechPowerDiscountHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 0
   }
 };
 preLocalize("characterFlags", { keys: ["name", "hint", "section"] });

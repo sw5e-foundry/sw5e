@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Trait to decrease the cost casting force/tech powers.
 - Support for Supreme Accuracy / Aptitude / Durability traits.
+- Trait the multiplies the character's carrying capacity.
 
 ### Changes
 

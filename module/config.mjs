@@ -3783,6 +3783,28 @@ SW5E.characterFlags = {
     section: "SW5E.Features",
     type: Number,
     placeholder: 0
+  },
+  // Keeping the id as 'elvenAccuracy' for DND5E compatibility
+  elvenAccuracy: {
+    name: "SW5E.FlagsSupremeAccuracy",
+    hint: "SW5E.FlagsSupremeAccuracyHint",
+    section: "SW5E.Features",
+    abilities: ["dex", "int", "wis", "cha"],
+    type: Boolean
+  },
+  supremeAptitude: {
+    name: "SW5E.FlagsSupremeAptitude",
+    hint: "SW5E.FlagsSupremeAptitudeHint",
+    section: "SW5E.Features",
+    abilities: ["str", "dex", "con", "int"],
+    type: Boolean
+  },
+  supremeDurability: {
+    name: "SW5E.FlagsSupremeDurability",
+    hint: "SW5E.FlagsSupremeDurabilityHint",
+    section: "SW5E.Features",
+    abilities: ["str", "con", "wis", "cha"],
+    type: Boolean
   }
 };
 preLocalize("characterFlags", { keys: ["name", "hint", "section"] });

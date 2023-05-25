@@ -69,6 +69,7 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
   if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
   if ( data.system?.strength === 0 ) data.system.strength = null;
   if ( data.system?.properties ) data.system.properties = Object.fromEntries(Object.entries(data.system.properties).filter(([k,v])=>!k.startsWith('c_c_')));
+  if ( typeof data.system?.price === "number" ) data.system.price = { denomination: "gc", value: data.system.price };
 
   // Remove mystery-man.svg from Actors
   if ( ["character", "npc", "starship"].includes(data.type) && data.img === "icons/svg/mystery-man.svg" ) {

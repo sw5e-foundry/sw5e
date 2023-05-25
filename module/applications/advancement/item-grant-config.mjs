@@ -8,6 +8,7 @@ export default class ItemGrantConfig extends AdvancementConfig {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["sw5e", "advancement", "item-grant"],
       dragDrop: [{ dropSelector: ".drop-target" }],
       dropKeyPath: "items",
       template: "systems/sw5e/templates/advancement/item-grant-config.hbs"
@@ -17,9 +18,9 @@ export default class ItemGrantConfig extends AdvancementConfig {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  getData() {
-    const context = super.getData();
-    context.showPowerConfig = context.configuration.items.map(fromUuidSync).some(i => i.type === "power");
+  getData(options={}) {
+    const context = super.getData(options);
+    context.showPowerConfig = context.configuration.items.map(uuid => fromUuidSync(uuid)).some(i => i.type === "power");
     return context;
   }
 
@@ -27,8 +28,6 @@ export default class ItemGrantConfig extends AdvancementConfig {
 
   /** @inheritdoc */
   _validateDroppedItem(event, item) {
-    if ( this.advancement.constructor.VALID_TYPES.has(item.type) ) return true;
-    const type = game.i18n.localize(`ITEM.Type${item.type.capitalize()}`);
-    throw new Error(game.i18n.format("SW5E.AdvancementItemTypeInvalidWarning", { type }));
+    this.advancement._validateItemType(item);
   }
 }

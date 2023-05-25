@@ -20,6 +20,7 @@ export default class TokenDocument5e extends TokenDocument {
 
   /** @inheritdoc */
   static getTrackedAttributes(data, _path=[]) {
+    if ( !game.sw5e.isV10 ) return super.getTrackedAttributes(data, _path);
     if ( data instanceof foundry.abstract.DataModel ) return this._getTrackedAttributesFromSchema(data.schema, _path);
     const attributes = super.getTrackedAttributes(data, _path);
     if ( _path.length ) return attributes;
@@ -49,7 +50,7 @@ export default class TokenDocument5e extends TokenDocument {
         }
       }
       if ( !(field instanceof MappingField) ) continue;
-      if ( foundry.utils.isEmpty(field.initialKeys) ) continue;
+      if ( !field.initialKeys || foundry.utils.isEmpty(field.initialKeys) ) continue;
       if ( !isSchema(field.model) && !isModel(field.model) ) continue;
       const keys = Array.isArray(field.initialKeys) ? field.initialKeys : Object.keys(field.initialKeys);
       for ( const key of keys ) {
@@ -70,6 +71,7 @@ export default class TokenDocument5e extends TokenDocument {
    */
   static getConsumedAttributes(data) {
     const attributes = super.getTrackedAttributes(data);
+    attributes.value.push(...Object.keys(CONFIG.SW5E.currencies).map(denom => ["currency", denom]));
     const allowed = CONFIG.SW5E.consumableResources;
     attributes.value = attributes.value.filter(attrs => this._isAllowedAttribute(allowed, attrs));
     return attributes;

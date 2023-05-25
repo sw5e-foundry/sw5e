@@ -19,7 +19,7 @@ export default class ScaleValueAdvancement extends Advancement {
       title: game.i18n.localize("SW5E.AdvancementScaleValueTitle"),
       hint: game.i18n.localize("SW5E.AdvancementScaleValueHint"),
       multiLevel: true,
-      validItemTypes: new Set(["class", "archetypee"]),
+      validItemTypes: new Set(["class", "archetype"]),
       apps: {
         config: ScaleValueConfig,
         flow: ScaleValueFlow

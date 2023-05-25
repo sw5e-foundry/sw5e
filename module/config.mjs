@@ -15,36 +15,80 @@ ______      ______ _____ _____
 _______________________________`;
 
 /**
- * The set of Ability Scores used within the system.
- * @enum {string}
+ * Configuration data for abilities.
+ *
+ * @typedef {object} AbilityConfiguration
+ * @property {string} label                               Localized label.
+ * @property {string} abbreviation                        Localized abbreviation.
+ * @property {string} [type]                              Whether this is a "physical" or "mental" ability.
+ * @property {Object<string, number|string>}  [defaults]  Default values for this ability based on actor type.
+ *                                                        If a string is used, the system will attempt to fetch.
+ *                                                        the value of the specified ability.
  */
-SW5E.abilities = {
-  str: "SW5E.AbilityStr",
-  dex: "SW5E.AbilityDex",
-  con: "SW5E.AbilityCon",
-  int: "SW5E.AbilityInt",
-  wis: "SW5E.AbilityWis",
-  cha: "SW5E.AbilityCha",
-  hon: "SW5E.AbilityHon",
-  san: "SW5E.AbilitySan"
-};
-preLocalize("abilities");
 
 /**
- * Localized abbreviations for Ability Scores.
- * @enum {string}
+ * The set of Ability Scores used within the system.
+ * @enum {AbilityConfiguration}
  */
-SW5E.abilityAbbreviations = {
-  str: "SW5E.AbilityStrAbbr",
-  dex: "SW5E.AbilityDexAbbr",
-  con: "SW5E.AbilityConAbbr",
-  int: "SW5E.AbilityIntAbbr",
-  wis: "SW5E.AbilityWisAbbr",
-  cha: "SW5E.AbilityChaAbbr",
-  hon: "SW5E.AbilityHonAbbr",
-  san: "SW5E.AbilitySanAbbr"
+SW5E.abilities = {
+  str: {
+    label: "SW5E.AbilityStr",
+    abbreviation: "SW5E.AbilityStrAbbr",
+    type: "physical"
+  },
+  dex: {
+    label: "SW5E.AbilityDex",
+    abbreviation: "SW5E.AbilityDexAbbr",
+    type: "physical"
+  },
+  con: {
+    label: "SW5E.AbilityCon",
+    abbreviation: "SW5E.AbilityConAbbr",
+    type: "physical"
+  },
+  int: {
+    label: "SW5E.AbilityInt",
+    abbreviation: "SW5E.AbilityIntAbbr",
+    type: "mental",
+    defaults: { vehicle: 0 }
+  },
+  wis: {
+    label: "SW5E.AbilityWis",
+    abbreviation: "SW5E.AbilityWisAbbr",
+    type: "mental",
+    defaults: { vehicle: 0 }
+  },
+  cha: {
+    label: "SW5E.AbilityCha",
+    abbreviation: "SW5E.AbilityChaAbbr",
+    type: "mental",
+    defaults: { vehicle: 0 }
+  },
+  hon: {
+    label: "SW5E.AbilityHon",
+    abbreviation: "SW5E.AbilityHonAbbr",
+    type: "mental",
+    defaults: { npc: "cha", vehicle: 0 }
+  },
+  san: {
+    label: "SW5E.AbilitySan",
+    abbreviation: "SW5E.AbilitySanAbbr",
+    type: "mental",
+    defaults: { npc: "wis", vehicle: 0 }
+  }
 };
-preLocalize("abilityAbbreviations");
+preLocalize("abilities", { keys: ["label", "abbreviation"] });
+patchConfig("abilities", "label", { since: 2.2, until: 2.4 });
+
+Object.defineProperty(SW5E, "abilityAbbreviations", {
+  get() {
+    foundry.utils.logCompatibilityWarning(
+      "The `abilityAbbreviations` configuration object has been merged with `abilities`.",
+      { since: "SW5e 2.2", until: "SW5e 2.4" }
+    );
+    return Object.fromEntries(Object.entries(SW5E.abilities).map(([k, v]) => [k, v.abbreviation]));
+  }
+});
 
 /**
  * Configure which ability score is used as the default modifier for initiative rolls.
@@ -93,7 +137,6 @@ SW5E.skills = {
   sur: { label: "SW5E.SkillSur", ability: "wis" }
 };
 preLocalize("skills", { key: "label", sort: true });
-patchConfig("skills", "label", { since: 2.0, until: 2.2 });
 
 /* -------------------------------------------- */
 
@@ -279,20 +322,55 @@ SW5E.toolIds = {
 /* -------------------------------------------- */
 
 /**
- * The various lengths of time over which effects can occur.
+ * Time periods that accept a numeric value.
  * @enum {string}
  */
-SW5E.timePeriods = {
-  inst: "SW5E.TimeInst",
+SW5E.scalarTimePeriods = {
   turn: "SW5E.TimeTurn",
   round: "SW5E.TimeRound",
   minute: "SW5E.TimeMinute",
   hour: "SW5E.TimeHour",
   day: "SW5E.TimeDay",
   month: "SW5E.TimeMonth",
-  year: "SW5E.TimeYear",
-  perm: "SW5E.TimePerm",
+  year: "SW5E.TimeYear"
+};
+preLocalize("scalarTimePeriods");
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods for powers that don't have a defined ending.
+ * @enum {string}
+ */
+SW5E.permanentTimePeriods = {
+  disp: "SW5E.TimeDisp",
+  dstr: "SW5E.TimeDispTrig",
+  perm: "SW5E.TimePerm"
+};
+preLocalize("permanentTimePeriods");
+
+/* -------------------------------------------- */
+
+/**
+ * Time periods that don't accept a numeric value.
+ * @enum {string}
+ */
+SW5E.specialTimePeriods = {
+  inst: "SW5E.TimeInst",
   spec: "SW5E.Special"
+};
+preLocalize("specialTimePeriods");
+
+/* -------------------------------------------- */
+
+/**
+ * The various lengths of time over which effects can occur.
+ * @enum {string}
+ */
+SW5E.timePeriods = {
+  ...SW5E.specialTimePeriods,
+  ...SW5E.permanentTimePeriods,
+  ...SW5E.scalarTimePeriods
 };
 preLocalize("timePeriods");
 
@@ -311,6 +389,7 @@ SW5E.abilityActivationTypes = {
   day: SW5E.timePeriods.day,
   special: SW5E.timePeriods.spec,
   legendary: "SW5E.LegendaryActionLabel",
+  mythic: "SW5E.MythicActionLabel",
   lair: "SW5E.LairActionLabel",
   crew: "SW5E.VehicleCrewAction"
 };
@@ -929,7 +1008,6 @@ SW5E.areaTargetTypes = {
   }
 };
 preLocalize("areaTargetTypes", { key: "label", sort: true });
-patchConfig("areaTargetTypes", "template", { since: 2.0, until: 2.2 });
 
 /* -------------------------------------------- */
 
@@ -1377,6 +1455,7 @@ preLocalize("cover");
 /**
  * A selection of actor attributes that can be tracked on token resource bars.
  * @type {string[]}
+ * @deprecated since v10
  */
 SW5E.trackableAttributes = [
   "attributes.ac.value", "attributes.init.bonus", "attributes.movement", "attributes.senses", "attributes.powerdc",
@@ -1399,7 +1478,7 @@ SW5E.consumableResources = [
 /* -------------------------------------------- */
 
 /**
- * Conditions that can effect an actor.
+ * Conditions that can affect an actor.
  * @enum {string}
  */
 SW5E.conditionTypes = {
@@ -1517,7 +1596,8 @@ SW5E.CR_EXP_LEVELS = [
 SW5E.traits = {
   saves: {
     label: "SW5E.ClassSaves",
-    configKey: "abilities"
+    configKey: "abilities",
+    labelKey: "label"
   },
   skills: {
     label: "SW5E.TraitSkillProf",
@@ -1673,6 +1753,7 @@ SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(S
  */
 SW5E.advancementTypes = {
   HitPoints: advancement.HitPointsAdvancement,
+  ItemChoice: advancement.ItemChoiceAdvancement,
   ItemGrant: advancement.ItemGrantAdvancement,
   ScaleValue: advancement.ScaleValueAdvancement
 };

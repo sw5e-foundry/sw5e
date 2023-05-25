@@ -45,16 +45,30 @@ export default class CreatureTemplate extends CommonTemplate {
         }, {label: "SW5E.BonusPower"})
       }, {label: "SW5E.Bonuses"}),
       skills: new MappingField(new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.NumberField({required: true, initial: 0, label: "SW5E.ProficiencyLevel"}),
+        value: new foundry.data.fields.NumberField({
+          required: true, min: 0, max: 2, step: 0.5, initial: 0, label: "SW5E.ProficiencyLevel"
+        }),
         ability: new foundry.data.fields.StringField({required: true, initial: "dex", label: "SW5E.Ability"}),
         bonuses: new foundry.data.fields.SchemaField({
           check: new FormulaField({required: true, label: "SW5E.SkillBonusCheck"}),
           passive: new FormulaField({required: true, label: "SW5E.SkillBonusPassive"})
         }, {label: "SW5E.SkillBonuses"})
-      }), {initialKeys: CONFIG.SW5E.skills, initialValue: this._initialSkillValue}),
+      }), {
+        initialKeys: CONFIG.SW5E.skills, initialValue: this._initialSkillValue,
+        initialKeysOnly: true, label: "SW5E.Skills"
+      }),
+      tools: new MappingField(new foundry.data.fields.SchemaField({
+        value: new foundry.data.fields.NumberField({
+          required: true, min: 0, max: 2, step: 0.5, initial: 1, label: "SW5E.ProficiencyLevel"
+        }),
+        ability: new foundry.data.fields.StringField({required: true, initial: "int", label: "SW5E.Ability"}),
+        bonuses: new foundry.data.fields.SchemaField({
+          check: new FormulaField({required: true, label: "SW5E.CheckBonus"})
+        }, {label: "SW5E.ToolBonuses"})
+      })),
       powers: new MappingField(new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({
-          nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.PowerProfAvailable"
+          nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.PowerProgAvailable"
         }),
         override: new foundry.data.fields.NumberField({
           integer: true, min: 0, label: "SW5E.PowerProgOverride"
@@ -90,10 +104,14 @@ export default class CreatureTemplate extends CommonTemplate {
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {
+    super.migrateData(source);
     CreatureTemplate.#migrateSensesData(source);
+    CreatureTemplate.#migrateToolData(source);
   }
 
   /* -------------------------------------------- */
@@ -126,6 +144,26 @@ export default class CreatureTemplate extends CommonTemplate {
 
     // If nothing was matched, but there was an old string - put the whole thing in "special"
     if ( !wasMatched && original ) source.attributes.senses.special = original;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate traits.toolProf to the tools field.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateToolData(source) {
+    const original = source.traits?.toolProf;
+    if ( !original || foundry.utils.isEmpty(original.value) ) return;
+    source.tools ??= {};
+    for ( const prof of original.value ) {
+      if ( !(prof in CONFIG.SW5E.toolProficiencies) && !(prof in CONFIG.SW5E.toolIds) ) continue;
+      source.tools[prof] = {
+        value: 1,
+        ability: "int",
+        bonuses: {check: ""}
+      };
+    }
   }
 }
 

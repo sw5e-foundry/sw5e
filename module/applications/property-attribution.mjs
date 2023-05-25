@@ -82,9 +82,9 @@ export default class PropertyAttribution extends Application {
   getPropertyLabel(property) {
     const parts = property.split(".");
     if ( parts[0] === "abilities" && parts[1] ) {
-      return CONFIG.SW5E.abilities[parts[1]] ?? property;
+      return CONFIG.SW5E.abilities[parts[1]]?.label ?? property;
     } else if ( (property === "attributes.ac.dex") && CONFIG.SW5E.abilities.dex ) {
-      return CONFIG.SW5E.abilities.dex;
+      return CONFIG.SW5E.abilities.dex.label;
     } else if ( (parts[0] === "prof") || (property === "attributes.prof") ) {
       return game.i18n.localize("SW5E.Proficiency");
     }

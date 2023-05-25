@@ -3,7 +3,7 @@
  * A system for playing the fifth edition of the world's most popular role-playing game.
  * Author: Atropos
  * Software License: MIT
- * Content License: https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf
+ * Content License: https://www.dndbeyond.com/attachments/39j2li89/SRD5.1-CCBY4.0License.pdf
  * Repository: https://github.com/foundryvtt/sw5e
  * Issue Tracker: https://github.com/foundryvtt/sw5e/issues
  */
@@ -45,42 +45,6 @@ Hooks.once("init", function() {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
-  /** @deprecated */
-  Object.defineProperty(sw5e, "entities", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.entities' property which has been deprecated and renamed to "
-        + "'sw5e.documents'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents;
-    }
-  });
-
-  /** @deprecated */
-  Object.defineProperty(sw5e, "rollItemMacro", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.rollItemMacro' method which has been deprecated and renamed to "
-        + "'sw5e.documents.macro.rollItem'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents.macro.rollItem;
-    }
-  });
-
-  /** @deprecated */
-  Object.defineProperty(sw5e, "macros", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.macros' property which has been deprecated and renamed to "
-        + "'sw5e.documents.macro'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents.macro;
-    }
-  });
-
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
   CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
@@ -93,25 +57,24 @@ Hooks.once("init", function() {
   CONFIG.Dice.D20Roll = dice.D20Roll;
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
   CONFIG.ui.combat = applications.combat.CombatTracker5e;
+  CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // backwards compatibility with v10
+  game.sw5e.isV10 = game.release.generation < 11;
+
+  // Configure trackable attributes.
+  _configureTrackableAttributes();
 
   // Register System Settings
   registerSystemSettings();
 
   // Validation strictness.
-  _determineValidationStrictness();
+  if ( game.sw5e.isV10 ) _determineValidationStrictness();
 
   // Configure module art.
   game.sw5e.moduleArt = new ModuleArt();
 
   // Remove honor & sanity from configuration if they aren't enabled
-  if ( !game.settings.get("sw5e", "honorScore") ) {
-    delete SW5E.abilities.hon;
-    delete SW5E.abilityAbbreviations.hon;
-  }
-  if ( !game.settings.get("sw5e", "sanityScore") ) {
-    delete SW5E.abilities.san;
-    delete SW5E.abilityAbbreviations.san;
-  }
+  if ( !game.settings.get("sw5e", "honorScore") ) delete SW5E.abilities.hon;
+  if ( !game.settings.get("sw5e", "sanityScore") ) delete SW5E.abilities.san;
 
   // Patch Core Functions
   Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
@@ -121,9 +84,10 @@ Hooks.once("init", function() {
   CONFIG.Dice.rolls.push(dice.DamageRoll);
 
   // Hook up system data types
-  CONFIG.Actor.systemDataModels = dataModels.actor.config;
-  CONFIG.Item.systemDataModels = dataModels.item.config;
-  CONFIG.JournalEntryPage.systemDataModels = dataModels.journal.config;
+  const modelType = game.sw5e.isV10 ? "systemDataModels" : "dataModels";
+  CONFIG.Actor[modelType] = dataModels.actor.config;
+  CONFIG.Item[modelType] = dataModels.item.config;
+  CONFIG.JournalEntryPage[modelType] = dataModels.journal.config;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -177,13 +141,54 @@ function _determineValidationStrictness() {
  */
 async function _configureValidationStrictness() {
   if ( !game.user.isGM ) return;
-  const invalidDocuments = game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size;
+  const invalidDocuments = game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size
+    + game.scenes.invalidDocumentIds.size;
   const strictValidation = game.settings.get("sw5e", "strictValidation");
   if ( invalidDocuments && strictValidation ) {
     await game.settings.set("sw5e", "strictValidation", false);
     game.socket.emit("reload");
     foundry.utils.debouncedReload();
   }
+}
+
+/**
+ * Configure explicit lists of attributes that are trackable on the token HUD and in the combat tracker.
+ * @internal
+ */
+function _configureTrackableAttributes() {
+  const common = {
+    bar: [],
+    value: [
+      ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
+      ...Object.keys(SW5E.movementTypes).map(movement => `attributes.movement.${movement}`),
+      "attributes.ac.value", "attributes.init.total"
+    ]
+  };
+
+  const creature = {
+    bar: [...common.bar, "attributes.hp"],
+    value: [
+      ...common.value,
+      ...Object.keys(SW5E.skills).map(skill => `skills.${skill}.passive`),
+      ...Object.keys(SW5E.senses).map(sense => `attributes.senses.${sense}`),
+      "attributes.powerdc"
+    ]
+  };
+
+  CONFIG.Actor.trackableAttributes = {
+    character: {
+      bar: [...creature.bar, "resources.primary", "resources.secondary", "resources.tertiary", "details.xp"],
+      value: [...creature.value]
+    },
+    npc: {
+      bar: [...creature.bar, "resources.legact", "resources.legres"],
+      value: [...creature.value, "details.cr", "details.powerLevel", "details.xp.value"]
+    },
+    vehicle: {
+      bar: [...common.bar],
+      value: [...common.value]
+    }
+  };
 }
 
 /* -------------------------------------------- */
@@ -197,6 +202,12 @@ Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
   game.sw5e.moduleArt.registerModuleArt();
+
+  // Apply custom compendium styles to the SRD rules compendium.
+  if ( !game.sw5e.isV10 ) {
+    const rules = game.packs.get("sw5e.rules");
+    rules.applicationClass = applications.journal.SRDCompendium;
+  }
 });
 
 /* --------------------------------------------- */
@@ -228,12 +239,14 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", function() {
-  // Configure validation strictness.
-  _configureValidationStrictness();
+  if ( game.sw5e.isV10 ) {
+    // Configure validation strictness.
+    _configureValidationStrictness();
 
-  // Apply custom compendium styles to the SRD rules compendium.
-  const rules = game.packs.get("sw5e.rules");
-  rules.apps = [new applications.journal.SRDCompendium(rules)];
+    // Apply custom compendium styles to the SRD rules compendium.
+    const rules = game.packs.get("sw5e.rules");
+    rules.apps = [new applications.journal.SRDCompendium(rules)];
+  }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {

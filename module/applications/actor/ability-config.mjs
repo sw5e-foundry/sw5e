@@ -29,7 +29,8 @@ export default class ActorAbilityConfig extends BaseConfigSheet {
 
   /** @override */
   get title() {
-    return `${game.i18n.format("SW5E.AbilityConfigureTitle", {ability: CONFIG.SW5E.abilities[this._abilityId]})}: ${this.document.name}`;
+    return `${game.i18n.format("SW5E.AbilityConfigureTitle", {
+      ability: CONFIG.SW5E.abilities[this._abilityId].label})}: ${this.document.name}`;
   }
 
   /* -------------------------------------------- */
@@ -37,10 +38,11 @@ export default class ActorAbilityConfig extends BaseConfigSheet {
   /** @override */
   getData(options) {
     const src = this.document.toObject();
+    const ability = CONFIG.SW5E.abilities[this._abilityId].label;
     return {
       ability: src.system.abilities[this._abilityId] ?? this.document.system.abilities[this._abilityId] ?? {},
-      labelSaves: game.i18n.format("SW5E.AbilitySaveConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
-      labelChecks: game.i18n.format("SW5E.AbilityCheckConfigure", {ability: CONFIG.SW5E.abilities[this._abilityId]}),
+      labelSaves: game.i18n.format("SW5E.AbilitySaveConfigure", {ability}),
+      labelChecks: game.i18n.format("SW5E.AbilityCheckConfigure", {ability}),
       abilityId: this._abilityId,
       proficiencyLevels: {
         0: CONFIG.SW5E.proficiencyLevels[0],

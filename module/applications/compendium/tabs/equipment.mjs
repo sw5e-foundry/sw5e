@@ -35,7 +35,11 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         const inventoryItems = [];
         const itemTypes = CONFIG.SW5E.itemTypes.inventory;
         // Define index fields for different types of equipment
-        const fields = ["img", "system.source", "system.rarity", "system.source"];
+        const fields = ["img", "system.source"];
+        const rarity = {
+            default: "system.rarity",
+            starshipmod: false,
+        }
         const price = {
             default: "system.price.value",
             starshipmod: "system.basecost.value"
@@ -56,6 +60,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         };
         const indexFields = [ ...new Set([
             ...fields,
+            ...Object.values(rarity),
             ...Object.values(price),
             ...Object.values(properties),
             ...Object.values(category),
@@ -75,6 +80,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
                 if (itemTypes.includes(itemData.type)) {
                     const _fields = [
                         ...fields,
+                        rarity[itemData.type] ?? rarity.default,
                         price[itemData.type] ?? price.default,
                         properties[itemData.type],
                         category[itemData.type],
@@ -84,16 +90,18 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
                         console.warn(
                             `Item '${itemData.name}' does not have all required data fields.`
                             + ` Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
+                            + ` Fields: ${_fields}`
                         );
+                        for (const field of _fields) if (getProperty(itemData, field) === undefined) console.debug(`Missing ${field}`);
                         continue;
                     }
 
                     // add properties into the correct format for filtering
-                    itemData.system.itemTypes = { value: itemData.type };
-                    itemData.system.rarity = { value: itemData.system.rarity };
-                    itemData.system.source = { value: itemData.system.source };
-                    itemData.system.category = { value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null };
-                    itemData.system.subcategory = { value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null };
+                    if (itemData?.system?.itemTypes?.value === undefined) itemData.system.itemTypes = { value: itemData.type };
+                    if (itemData?.system?.rarity?.value === undefined) itemData.system.rarity = { value: itemData.system.rarity };
+                    if (itemData?.system?.source?.value === undefined) itemData.system.source = { value: itemData.system.source };
+                    if (itemData?.system?.category?.value === undefined) itemData.system.category = { value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null };
+                    if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = { value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null };
                     itemData.filters = {};
 
                     // Prepare source

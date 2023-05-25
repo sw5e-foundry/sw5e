@@ -1,6 +1,6 @@
 import { CompendiumBrowser } from "../_module.mjs";
 import { sluggify } from "../../../utils.mjs";
-import MiniSearch from "../../../../node_modules/minisearch/dist/es/index.js";
+import MiniSearch from "../../../../dist/minisearch/es/index.js";
 
 export class CompendiumBrowserTab {
     /** A reference to the parent CompendiumBrowser */

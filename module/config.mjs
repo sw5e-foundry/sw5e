@@ -996,30 +996,33 @@ SW5E.deprecatedItemTypes = [
 ];
 
 /**
- * Item types that should show up in an 'inventory'.
+ * Categorization of all item types.
  */
-SW5E.inventoryItems = [
-  "weapon",
-  "equipment",
-  "consumable",
-  "tool",
-  "backpack",
-  "modification",
-  "loot",
-  "starshipmod"
-];
-
-/**
- * Item types that behave like a 'class'.
- */
-SW5E.classItems = [
-  "archetype",
-  "background",
-  "class",
-  "deployment",
-  "starshipsize",
-  "species"
-];
+SW5E.itemTypes = {
+  inventory: [
+    "weapon",
+    "equipment",
+    "consumable",
+    "tool",
+    "backpack",
+    "modification",
+    "loot",
+    "starshipmod"
+  ],
+  class: [
+    "archetype",
+    "background",
+    "class",
+    "deployment",
+    "starshipsize",
+    "species"
+  ],
+  other: [
+    "feat",
+    "maneuver",
+    "power",
+  ]
+}
 
 /* -------------------------------------------- */
 

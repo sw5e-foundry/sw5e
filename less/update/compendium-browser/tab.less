@@ -1,0 +1,220 @@
+// Color variables (appears count calculates by raw css)
+@tabcolor0: #bbbbbb; // Appears 2 times
+
+// Width variables (appears count calculates by raw css)
+@tabwidth0: fit-content; // Appears 2 times
+@tabwidth1: 320px; // Appears 2 times
+@tabwidth4: 100%; // Appears 2 times
+@tabwidth11: 6em; // Appears 2 times
+@tabwidth14: 1em; // Appears 2 times
+
+// Height variables (appears count calculates by raw css)
+@tabheight1: 100%; // Appears 2 times
+@tabheight2: 22px; // Appears 2 times
+@tabheight3: 32px; // Appears 4 times
+
+.spell-browser {
+    display: flex;
+    height: @tabheight1;
+    min-height: 100px;
+    .control-area {
+        display: block;
+        min-width: @tabwidth1;
+        overflow: auto;
+        padding-right: 5px;
+        position: sticky;
+        width: @tabwidth1;
+    }
+    .filtercontainer {
+        border-radius: 5px;
+        border: 1px solid @tabcolor0;
+        margin-top: 5px;
+        padding: 2px;
+        div.title {
+            display: flex;
+            flex-direction: row;
+            height: @tabheight2;
+            justify-content: space-between;
+            h3 {
+                cursor: pointer;
+                margin: 0;
+            }
+            button {
+                line-height: @tabheight2;
+                width: @tabwidth0;
+            }
+        }
+        dt {
+            width: 10%;
+        }
+        dd {
+            width: 82%;
+        }
+        .filter-conjunction {
+            input[type="radio"] {
+                margin: 0 5px 0 3px;
+            }
+        }
+    }
+    .sortcontainer {
+        border-radius: 5px;
+        border: 1px solid @tabcolor0;
+        margin-top: 5px;
+        padding: 2px;
+        div.title {
+            display: flex;
+            flex-direction: row;
+            height: @tabheight2;
+            justify-content: space-between;
+            h3 {
+                cursor: pointer;
+                margin: 0;
+            }
+            button {
+                line-height: @tabheight2;
+                width: @tabwidth0;
+            }
+        }
+    }
+    .filtercontainer>dl {
+        dt>input[type="checkbox"] {
+            flex: none;
+            height: auto;
+            margin: 3px 3px;
+            transform: none;
+        }
+        dd>a.direction {
+            padding: 2px;
+        }
+    }
+    .sortcontainer>dl {
+        dt>input[type="checkbox"] {
+            flex: none;
+            height: auto;
+            margin: 3px 3px;
+            transform: none;
+        }
+        dd>a.direction {
+            padding: 2px;
+        }
+    }
+    .rangecontainer {
+        div {
+            margin-top: 5px;
+            text-align: center;
+        }
+        input {
+            width: 45%;
+        }
+    }
+    .slidercontainer-flex {
+        align-items: baseline;
+        display: flex;
+        justify-content: space-around;
+        label {
+            width: 10px;
+        }
+    }
+    dl {
+        margin: 5px 0;
+    }
+    dt {
+        display: inline-block;
+        padding-left: 5px;
+    }
+    dd {
+        display: inline-block;
+        text-transform: capitalize;
+        select {
+            margin-left: 0.5em;
+            width: @tabwidth11;
+        }
+    }
+    ul.result-list {
+        display: block;
+        float: right;
+        height: @tabheight1;
+        margin: 0;
+        overflow: hidden scroll;
+        overflow: visible scroll;
+        scrollbar-color: var(--primary) transparent;
+        scrollbar-width: thin;
+        width: @tabwidth4;
+    }
+    ul.result-list>li {
+        line-height: var(--font-size-32);
+        margin: 2px 0;
+        &:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.12);
+        }
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            cursor: grab;
+        }
+    }
+    ul.result-list>li>* {
+        align-self: center;
+    }
+    ul.result-list>li>.image {
+        height: @tabheight3;
+        max-width: 32px;
+    }
+    ul.result-list>li>.name {
+        line-height: 1em;
+        padding-left: 5px;
+    }
+    ul.result-list>li>.tags {
+        justify-content: center;
+        margin-left: 0.5em;
+        max-width: @tabwidth11;
+        .tag {
+            line-height: var(--font-size-10);
+        }
+    }
+    ul.result-list>li>.level {
+        flex-grow: 1;
+        font-weight: 900;
+        height: @tabheight3;
+        max-width: 18px;
+        text-align: center;
+    }
+    ul.result-list>li>.price {
+        flex: none;
+        height: @tabheight3;
+        margin-right: 10px;
+        min-width: 5em;
+        text-align: right;
+    }
+    ul.result-list>li>.end {
+        font-weight: 900;
+        height: @tabheight3;
+        margin-right: 3px;
+        max-width: 100px;
+        text-align: right;
+    }
+    #tagfilter {
+        input {
+            width: @tabwidth4;
+        }
+    }
+    .hint {
+        border-radius: 5px;
+        border: 1px solid #00ff05 47;
+        font-size: var(--font-size-12);
+        padding: 3px;
+    }
+    .spacer {
+        display: inline-block;
+        min-width: 5px;
+    }
+    .spacer-large {
+        display: inline-block;
+        min-width: 15px;
+    }
+    .equipment-controls {
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+        max-width: @tabwidth14;
+        width: @tabwidth14;
+    }
+}

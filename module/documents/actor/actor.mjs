@@ -1642,6 +1642,22 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Removes currency from the actor
+   * @param {number} ammount  Ammount to remove.
+   * @returns {boolean}       Wheter the operation was succesfull.
+   */
+  async removeCurrency(ammount) {
+    const cur = this.system.currency.gc;
+    if (cur >= ammount) {
+      await this.update({ "system.currency.gc": cur - ammount });
+      return true;
+    }
+    return false;
+  }
+
+  /* -------------------------------------------- */
   /*  Rolling                                     */
   /* -------------------------------------------- */
 

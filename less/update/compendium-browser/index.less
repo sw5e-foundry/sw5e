@@ -1,0 +1,56 @@
+// Height variables (appears count calculates by raw css)
+@indexheight0: 92%; // Appears 2 times
+
+#compendium-browser>section.window-content>.content-box {
+    @import "filter-slider";
+    @import "nav";
+    @import "settings";
+    @import "tab";
+    flex: 1;
+    height: inherit;
+    overflow: hidden;
+}
+#license-viewer>section.window-content>.content-box {
+    @import "filter-slider";
+    @import "nav";
+    @import "settings";
+    @import "tab";
+    flex: 1;
+    height: inherit;
+    overflow: hidden;
+}
+#compendium-browser>section.window-content>.content-box>section.content {
+    height: @indexheight0;
+}
+#license-viewer>section.window-content>.content-box>section.content {
+    height: @indexheight0;
+}
+#compendium-browser>section.window-content>.content-box>section.content>.tab.browser.active {
+    height: inherit;
+}
+#license-viewer>section.window-content>.content-box>section.content>.tab.browser.active {
+    height: inherit;
+}
+#compendium-browser>section.window-content>.content-box>section.content>.tab.browser.active>div {
+    display: grid;
+    grid-template-columns: 320px auto;
+    .control-area {
+        grid-column-start: 1;
+    }
+    ul {
+        grid-column-start: 2;
+    }
+}
+#license-viewer>section.window-content>.content-box>section.content>.tab.browser.active>div {
+    display: grid;
+    grid-template-columns: 320px auto;
+    .control-area {
+        grid-column-start: 1;
+    }
+    ul {
+        grid-column-start: 2;
+    }
+}
+
+@import "tags";
+@import (css) "./node_modules/@yaireo/tagify/dist/tagify.css";

@@ -23,7 +23,17 @@ export const compilePacks = gulp.series(packs.compile);
 export const extractPacks = gulp.series(packs.extract);
 
 // Static copy
-export const copyStatic = gulp.series(staticGulp.copyAll())
+export const copyStatic = gulp.parallel(
+  staticGulp.copyFonts,
+  staticGulp.copyIcons,
+  staticGulp.copyJson,
+  staticGulp.copyLang,
+  staticGulp.copyPacks,
+  staticGulp.copyTemplates,
+  staticGulp.copyUi,
+  staticGulp.copyStaticRoot,
+  staticGulp.copyRoot
+);
 
 // Build all artifacts
 export const buildAll = gulp.series(
@@ -31,7 +41,8 @@ export const buildAll = gulp.series(
   gulp.parallel(
     css.compile,
     javascript.compile,
-    packs.compile
+    packs.compile,
+    copyStatic
   )
 );
 
@@ -39,7 +50,6 @@ export const buildAll = gulp.series(
 export const watchUpdates = gulp.series(
   gulp.series(
     buildAll,
-    copyStatic,
     gulp.parallel(
       css.watchUpdates,
       javascript.watchUpdates,

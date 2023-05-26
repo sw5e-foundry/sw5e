@@ -12,7 +12,8 @@ const LANG_WATCH = ["static/lang/**/*"];
 const PACKS_WATCH = ["static/packs/**/*"];
 const TEMPLATES_WATCH = ["static/templates/**/*"];
 const UI_WATCH = ["static/ui/**/*"];
-const ROOT_WATCH = ["static/system.json", "static/template.json"];
+const STATIC_ROOT_WATCH = ["static/system.json", "static/template.json"];
+const ROOT_WATCH = ["LICENSE", "README.md", "CONTRIBUTIONS.md", "CHANGELOG.md"];
 
 export function copyFonts() {
   return gulp.src(src + "fonts/**/*")
@@ -49,22 +50,14 @@ export function copyUi() {
     .pipe(gulp.dest(dest + "ui"));
 }
 
-export function copyRoot() {
+export function copyStaticRoot() {
   return gulp.src(src + "/*")
     .pipe(gulp.dest(dest));
 }
 
-export function copyAll() {
-  return gulp.parallel(
-    copyFonts,
-    copyIcons,
-    copyJson,
-    copyLang,
-    copyPacks,
-    copyTemplates,
-    copyUi,
-    copyRoot
-  );
+export function copyRoot() {
+  return gulp.src(["LICENSE", "README.md", "CONTRIBUTIONS.md", "CHANGELOG.md"])
+    .pipe(gulp.dest(dest));
 }
 
 export function watchUpdates() {
@@ -75,6 +68,7 @@ export function watchUpdates() {
   gulp.watch(PACKS_WATCH, copyPacks);
   gulp.watch(TEMPLATES_WATCH, copyTemplates);
   gulp.watch(UI_WATCH, copyUi);
+  gulp.watch(STATIC_ROOT_WATCH, copyStaticRoot);
   gulp.watch(ROOT_WATCH, copyRoot);
 
   // Deletions

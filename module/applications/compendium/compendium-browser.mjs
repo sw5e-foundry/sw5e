@@ -321,7 +321,9 @@ export default class CompendiumBrowser extends Application {
       return;
     }
 
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
+    // TODO: Remove this once the other tabs are working
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment" works so far.`);
+    // if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
 

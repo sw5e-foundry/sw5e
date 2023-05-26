@@ -61,6 +61,6 @@ jobs:
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: "./system.zip, static/system.json"
+          artifacts: "./system.zip, ./static/system.json"
           generateReleaseNotes: true
           tag: ${{ steps.get_version.outputs.version }}

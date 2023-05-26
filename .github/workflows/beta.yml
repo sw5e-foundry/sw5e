@@ -11,10 +11,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Cache NPM
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: node_modules/
+          key: npm-${{ hashFiles('package-lock.json') }}
+
+      - name: Install NPM
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Compile with Gulp
+        uses: elstudio/actions-js-build/build@v4
+        with:
+          args: buildAll --prod
 
       - name: Zip Files
         working-directory: ./
-        run: zip -r ./system.zip ./*
+        run: zip -r ./system.zip ./dist/*
 
       # Get the most recent version number from the CHANGELOG.md file
       - name: Get Most Recent Version Number
@@ -30,6 +49,6 @@ jobs:
           draft: false
           prerelease: true
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: "./system.zip, ./system.json"
+          artifacts: "./system.zip, ./static/system.json"
           generateReleaseNotes: true
           tag: ${{ steps.get-version.outputs.version }}

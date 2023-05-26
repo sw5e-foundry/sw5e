@@ -2,13 +2,14 @@ import eslint from "gulp-eslint7";
 import gulp from "gulp";
 import gulpIf from "gulp-if";
 import mergeStream from "merge-stream";
-import nodeResolve from "@rollup/plugin-node-resolve";
-import { rollup } from "rollup";
 import yargs from "yargs";
 
-import packageJSON from "../package.json" assert { type: "json" };
+import { rollup } from "rollup";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
+import terser from "@rollup/plugin-terser";
 
+import packageJSON from "../package.json" assert { type: "json" };
 
 /**
  * Parsed arguments passed in through the command line.
@@ -33,17 +34,21 @@ const JAVASCRIPT_WATCH = ["module/**/*.mjs", "sw5e.mjs"];
 async function compileJavascript() {
   const config = {
     input: "./sw5e.mjs",
-    sourcemap: true,
     plugins: [
       nodeResolve(),
       commonjs()
     ]
   }
 
+  if (parsedArgs.prod) {
+    config.plugins.push(terser())
+  }
+
   const outputConfig = {
     dir: JAVSCRIPT_DEST,
     chunkFileNames: "[name].mjs",
     entryFileNames: "sw5e.mjs",
+    sourcemap: !parsedArgs.prod,
     manualChunks: {
       "vendor": Object.keys(packageJSON.dependencies)
     },

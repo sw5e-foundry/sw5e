@@ -33,7 +33,6 @@ const JAVASCRIPT_WATCH = ["module/**/*.mjs", "sw5e.mjs"];
 async function compileJavascript() {
   const config = {
     input: "./sw5e.mjs",
-    sourcemap: true,
     plugins: [
       nodeResolve(),
       commonjs()
@@ -44,6 +43,7 @@ async function compileJavascript() {
     dir: JAVSCRIPT_DEST,
     chunkFileNames: "[name].mjs",
     entryFileNames: "sw5e.mjs",
+    sourcemap: true,
     manualChunks: {
       "vendor": Object.keys(packageJSON.dependencies)
     },

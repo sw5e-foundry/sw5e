@@ -11,7 +11,7 @@ const JSON_WATCH = ["static/json/**/*"];
 const LANG_WATCH = ["static/lang/**/*"];
 const PACKS_WATCH = ["static/packs/**/*"];
 const TEMPLATES_WATCH = ["static/templates/**/*"];
-const UI_WATCH = ["static/ui/**/*"];
+const UI_WATCH = ["ui/**/*"];
 const STATIC_ROOT_WATCH = ["static/system.json", "static/template.json"];
 const ROOT_WATCH = ["LICENSE", "README.md", "CONTRIBUTIONS.md", "CHANGELOG.md"];
 

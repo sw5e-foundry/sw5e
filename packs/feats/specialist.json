@@ -1,0 +1,168 @@
+{
+  "_id": "TonpRFhus7GQEe9u",
+  "name": "Specialist",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Feats/Specialist.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.5115363+00:00",
+      "importer_version": 3,
+      "uid": "Feat.name-specialist"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You have focused training with a specific tool. Select one type of specialist's kit. You gain the following benefits:</p>\n<ul>\n<li>Increase an ability score of your choice by 1, to a maximum of 20.</li>\n<li>You gain proficiency with the chosen kit. If you are already proficient with it, you instead gain expertise with it. </li>\n<li>You can attempt ability checks with the chosen kit without the kit present, but you have disadvantage on the check when you do so.</li>\n<li>Whenever you make an ability check with the chosen kit and you don't have disadvantage on the check, you can treat a [[/r d20]] roll of 9 or lower as a 10, as long as you spend at least 1 minute on the check.</li>\n</ul>\n<p>You can take this feat multiple times. Each time you do so, you must choose a different specialist's kit.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493966796,
+    "modifiedTime": 1684777311874,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

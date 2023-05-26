@@ -1,0 +1,139 @@
+{
+  "_id": "45PDLB373AvNUyJT",
+  "name": "Compound bow",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Blasters/CompoundBow.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:13.4514536+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-compound_bow.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Mighty</h3>\n<p>When making an attack with a mighty weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Silent</h3>\n<p>When you make a ranged weapon attack with a weapon with the silent property while hidden, it does not automatically reveal your presence. Make a Dexterity (Stealth) check contested by your targets' Wisdom (Perception) check. On a success, you remain hidden.</p>\n<h3>Special (range 75/300)</h3>\n<p>A weapon that can be used to make a ranged attack has this property. The range lists two numbers. The first is the weapon's normal range in feet, and the second indicates the weapon's long range. When attacking a target beyond normal range, you have disadvantage on the attack roll. You can't attack a target beyond the weapon's long range.</p>\n<h3>Two-handed</h3>\n<p>A weapon with this property requires two hands to use.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": null,
+    "price": {
+      "denomination": "gc",
+      "value": 600
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "rwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + @mod",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialB",
+    "baseItem": "compoundbow",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": [
+        "arrow"
+      ]
+    },
+    "properties": {
+      "mig": true,
+      "sil": true,
+      "ran": 75,
+      "two": true,
+      "spz": true
+    },
+    "proficient": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493961231,
+    "modifiedTime": 1684819088100,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

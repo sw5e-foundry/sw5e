@@ -1,0 +1,177 @@
+{
+  "_id": "CQdviCPoj07vSaKL",
+  "name": "Guardian",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Classes/Guardian.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:21.306899+00:00",
+      "importer_version": 3,
+      "uid": "SplashclassImprovement.name-guardian"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When you hit a creature with a melee weapon attack, you can expend force points to deal additional damage to the target, which is the same type as the weapon's damage. The additional damage is [[/r 1d8]] for each point spent in this way. You can't deal more than [[/r 2d8]] additional damage per hit in this way.</p>\n<p>You can only spend a number of force points in this way equal to your proficiency bonus. You regain the ability to do so when you complete a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "No levels in guardian, the ability to cast force powers",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@attributes.prof",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "customizationOption",
+      "subtype": "splashclassImprovement"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493966774,
+    "modifiedTime": 1684777311870,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

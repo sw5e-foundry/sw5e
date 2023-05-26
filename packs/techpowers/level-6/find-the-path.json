@@ -1,0 +1,183 @@
+{
+  "_id": "kzBrwlkwQpLnBXM9",
+  "name": "Find the Path",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Tech%20Powers/FindThePath.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickVersatile": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": false,
+          "resource": true
+        },
+        "altValue": {
+          "use": false,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1557424+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-find_the_path.level-6"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>This power calculates out the shortest, most direct physical route to a specific fixed location that you are familiar with on the same planet. If you name a destination that moves (such as a mobile fortress), or a destination that isn't specific (such as \"a Black Sun lair\"), the power fails.</p>\n<p>For the duration, as long as you are on the same planet as the destination, you know how far it is and in what direction it lies. While you are traveling there, whenever you are presented with a choice of paths along the way, you automatically determine which path is the shortest and most direct route (but not necessarily the safest route) to the destination.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "PHB",
+    "activation": {
+      "type": "minute",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "day"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "int",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 6,
+    "school": "tec",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "none",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674494020616,
+    "modifiedTime": 1684819093169,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "_id": "wyTLL26oiWfXbPMW",
+  "name": "Chains of Transfixing",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/ChainsOfTransfixing.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:21.5147792+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-chains_of_transfixing"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You can use a bonus action to expend a superiority die. When you do so, choose a creature you can see within 30 feet of you that is no more than one size larger than you. The target must succeed on a Strength saving throw or gain four slowed levels until the start of your next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "mental"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983323,
+    "modifiedTime": 1684819093424,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

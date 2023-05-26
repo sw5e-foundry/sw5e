@@ -1,0 +1,1322 @@
+{
+  "name": "Voxyn",
+  "type": "npc",
+  "img": "systems/sw5e/packs/Icons/monsters/134_-_Voxyn/Avatar.webp",
+  "items": [
+    {
+      "_id": "M2VjOGZlNDFhNDk1",
+      "name": "Multiattack",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/dnd5e/icons/skills/green_03.jpg",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>Voxyn can make two bite attacks and one tail attack </p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "N2QyY2RlYmVhZjI5",
+      "name": "Bite",
+      "type": "weapon",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/134_-_Voxyn/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+9, Reach 5 ft., One target. <em>Hit : </em>18 (3d8+5) kinetic damage plus 13 (2d12) acid damage.</p><p>If the target is a creature, it must succeed on a DC 17 Strength saving throw or be knocked prone.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "quantity": 1,
+        "weight": 1,
+        "price": {
+          "denomination": "gc",
+          "value": 0
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 5,
+          "long": "",
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "wis",
+        "actionType": "mwak",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "3d8+5",
+              "kinetic"
+            ],
+            [
+              "2d12",
+              "acid"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "str",
+          "dc": 10,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "hvy": false,
+          "fin": false,
+          "lgt": false,
+          "rch": false,
+          "rel": null,
+          "ret": false,
+          "spc": false,
+          "thr": false,
+          "two": false,
+          "ver": false,
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "smr": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fix": false,
+          "ilk": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rck": null,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "NTgyMjMxOTJmNWNj",
+      "name": "Tail",
+      "type": "weapon",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/134_-_Voxyn/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+9, Reach 10 ft., One target. <em>Hit : </em>19 (4d6+5) kinetic damage plus 21 (6d6) poison damage.</p><p>If the target is a creature it must also make DC 16 Constitution saving throw. On a failure, a creature is paralyzed for 1 minute. The creature can repeat this saving throw at end of each of its turns, ending the effect on itself.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "quantity": 1,
+        "weight": 1,
+        "price": {
+          "denomination": "gc",
+          "value": 0
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 10,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "0",
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "wis",
+        "actionType": "mwak",
+        "attackBonus": "0",
+        "chatFlavor": "If the target is a creature it must also make DC 16 Constitution saving throw. On a failure, a creature is paralyzed for 1 minute. The creature can repeat this saving throw at end of each of its turns, ending the effect on itself.",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "4d6+5",
+              "kinetic"
+            ],
+            [
+              "6d6",
+              "poison"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 16,
+          "scaling": "flat"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "hvy": false,
+          "fin": false,
+          "lgt": false,
+          "rch": false,
+          "rel": null,
+          "ret": false,
+          "spc": false,
+          "thr": false,
+          "two": false,
+          "ver": false,
+          "aut": false,
+          "bur": null,
+          "def": null,
+          "dex": null,
+          "dir": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fix": false,
+          "hid": false,
+          "ken": null,
+          "lum": false,
+          "mig": false,
+          "pic": null,
+          "rap": null,
+          "shk": null,
+          "sil": false,
+          "str": null,
+          "vic": null,
+          "mgc": null,
+          "ran": false,
+          "smr": false,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "ilk": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rck": null,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "swi": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "YmIwODgwYTBiMTgw",
+      "name": "Sonic Blast (Recharge 5-6)",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/134_-_Voxyn/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>The Voxyn emits a sonic howl from its snout. Creatures within 30 feet of it must succeed on a DC 16 Constitution saving throw or take 32 (5d10 + 5) Sonic damage, be stunned for 1 minute, and is deafened. Takes half damage on a successful save. A target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 10,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e": {
+      "dataVersion": "1.2.4"
+    }
+  },
+  "_id": "POqcIPwzNuOwn1dY",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 20,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 5,
+        "save": 5,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 18
+      },
+      "dex": {
+        "value": 16,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 3,
+        "save": 3,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 16
+      },
+      "con": {
+        "value": 16,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 3,
+        "save": 3,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 16
+      },
+      "int": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 13
+      },
+      "wis": {
+        "value": 18,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 4,
+        "save": 4,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 17
+      },
+      "cha": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -2,
+        "save": -2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "hon": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 18,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 17,
+        "calc": "natural",
+        "formula": "natural armor",
+        "min": 0
+      },
+      "hp": {
+        "value": 170,
+        "max": 170,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": "20d10+60",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0,
+        "mod": 3,
+        "prof": 0,
+        "total": 3
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 30,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 50,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 60,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none",
+      "prof": 5,
+      "powerdc": 13,
+      "bar1": {
+        "value": 170,
+        "min": 0,
+        "max": 170
+      },
+      "bar2": {
+        "value": 17,
+        "min": 0,
+        "max": 0
+      },
+      "encumbrance": {
+        "value": 2,
+        "max": 600,
+        "pct": 0.3333333333333333,
+        "encumbered": false
+      },
+      "powerForceLightDC": 17,
+      "powerForceDarkDC": 11,
+      "powerForceUnivDC": 17,
+      "powerTechDC": 13,
+      "death": {
+        "success": null,
+        "failure": null
+      },
+      "exhaustion": null,
+      "inspiration": false
+    },
+    "details": {
+      "biography": {
+        "value": "<blockquote><p><i>\"Voxyn. They hunt us.\"</i></p><p><span style=\"font-size:13px\">- Tesar Sebatyne</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\">Reptile hound</td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">1 meter</td></tr><tr><td style=\"line-height:1.42857\"><u>Average length</u></td><td style=\"line-height:1.42857\">Over 4 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\"><ul><li>Black</li><li>Green</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Eye color</u></td><td style=\"line-height:1.42857\">Yellow</td></tr><tr><td style=\"line-height:1.42857\"><u>Distinctions</u></td><td style=\"line-height:1.42857\"><ul><li>Poisonous barbed tail</li><li>Spitting acid</li><li>Sonic screeches</li><li>Disease-infested claws</li><li>8 legs</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Average lifespan</u></td><td style=\"line-height:1.42857\">About 3 months, if without a certain nutrient from Myrkr</td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u><br /></td><td style=\"line-height:1.42857\">Multiple<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Diet</u><br /></td><td style=\"line-height:1.42857\">Carnivorous</td></tr></tbody></table><p>Voxyn were a genetic cross between a fero xyn and a vornskr—both deadly predators—shaped into being by the sentient Yuuzhan Vong species. Designed to hunt and kill the Force-sensitive Jedi of the galaxy, which the Yuuzhan Vong were invading, the reptilian hounds were all clones of the voxyn queen, the only successful cross between the vornskr and the fero xyn. As they were made to kill Jedi, the voxyn could sense Force-sensitives through the Force and had a variety of deadly abilities and tools at their disposal: sonic blasts, flesh–melting acid, disease–coated claws, and a poisonous barbed tail. After creation, voxyn were typically trained by the Yuuzhan Vong aboard the worldship Baanu Rass over the world of Myrkr to hunt Jedi in a multitude of environments as well as how to avoid various hazards. Measuring a meter high and over four meters in length, the carnivorous voxyn were fast and agile on their eight legs.</p><p>In existence by 27 ABY, in the midst of the war between the Yuuzhan Vong and the New Republic, the voxyn quickly killed many Jedi on numerous worlds, becoming a great source of concern to the New Jedi Order. The Jedi focused on dealing with this threat by dispatching a strike team to Myrkr, where the voxyn queen had been located. In the Myrkr system, the team boarded the Baanu Rass, where, although taking heavy casualties, it managed to kill the voxyn queen and put a stop to the cloning of the voxyn, preventing any more of the beasts from being created. Because of the beasts' short life spans and their inability to reproduce, this spelled the end for the voxyn, and they began to die off. Despite the diminishing voxyn numbers, the Yuuzhan Vong continued to use them on critical missions, with the last voxyn perishing in the Treskov system in 28 ABY.</p><h3>Biology and appearance</h3><p><b>Yuuzhan Vong creations</b></p><blockquote><p><i>\"Voxyn?\"</i></p><p><span style=\"font-size:13px\"><i>\"Yuuzhan Vong monsters, Jedi-killers. Stay away from anything that looks like an eight-legged reptile. Far away. These things spit acid and screech blastwaves. Maybe they do worse.\"</i></span></p><p>- Commander Gavin Darklighter and former politician Leia Organa Solo</p></blockquote><p>Created by the sentient Yuuzhan Vong species, voxyn were a genetic cross between a fero xyn, a ferocious hunting animal from the Yuuzhan Vong's homeworld of Yuuzhan'tar, and a vornskr, a hound that was native to the planet Myrkr. All voxyn, save for the voxyn queen, were physically identical, as they were all clones of the queen, which was the first voxyn to have ever been created by the Yuuzhan Vong. The cells of voxyn deteriorated at a rapid rate if they were not exposed to a nutrient from the planet Myrkr, and as such, voxyn in other parts of the galaxy typically did not survive for more than a few months after their release. Although voxyn could lay eggs, these were sterile. As such, the creatures could not naturally reproduce, so they relied on Yuuzhan Vong cloning to maintain a population. Once a voxyn's cells started to deteriorate, the scales lost their color and flaked off; the creature's movements would then become listless as it lost energy, and its eyes would become filmy.</p><p>Standing about as high as an average Human's waist, at one meter, mature voxyn measured over four meters in length and were reptilian in appearance. A pair of oval yellow eyes were located on the voxyn's flattish head, which had a broad snout over six inches long filled with fangs, and its lithe body was covered in black or green scales and sported eight legs with claws. The creature's eyesight in poorly lit areas was particularly good, as voxyn eyes could see twice as far as normal in low light, as well as being able to distinguish colors in dimly lit areas. Voxyn torsos possessed a gut, stomach, and a rib cage that protected the internal organs. The voxyn body gave off heat, allowing it to be tracked by beings who had access to the infrared spectrum. The paws of the legs were round, and the toe pads housed a hundred deadly retroviruses, whose medium was the green slime that covered the voxyn's claws.</p><p>A series of sensory bristles ran down the creature's spine, and the voxyn also possessed a whip-like tail that had a white barb on it. A voxyn's tail was poisonous, a trait passed on by the vornskr, and the poison would cause swelling and make most creatures' flesh red for one to six days. The tail's barb could also be used to deliver a neural shock. The sensory bristles along the spine were coated with a powerful neurotoxin. According to the shapers who designed the voxyn, the effect of the sensory bristles' neurotoxin was not the same on all species. Some of those affected fell into convulsions and then into an endless sleep, while others weakened over many hours before losing the ability to breathe or swallow; yet others drowned in their own saliva.</p><p>Voxyn also had long, forked tongues and were able to shoot from their mouths via an efflux tube a jet of brown, acid-like saliva that burned anything it touched. This saliva could kill a humanoid easily if it landed on vital spots like the face, and some voxyn drooled this saliva when not in combat. The creatures were also armed with the ability to emit a sonic blast from their snouts, and this blast sent a compression wave that could temporarily disable a person's hearing, make them feel nauseous, and shatter eardrums. Voxyn blood was purple in color and, when exposed to air, became a neurotoxin that smelled like smoke and ammonia and had a detrimental effect on humanoid lungs that could take over a day to fully heal. Voxyn were also fast and agile on their feet, able to jump to great heights, and could swim in water. Additionally, voxyn could submerge themselves underwater for extended periods of time, though the blast effect of a concussion grenade could stun them while they were underwater and cause them to rise to the surface.</p><h3>Resilient Jedi hunters</h3><p>Voxyn were designed to hunt Jedi, beings who were sensitive to the Force. As such, voxyn possessed the ability to sense Force-sensitives like Jedi through the Force, an ability that vornskrs shared. Voxyn were unlike the rest of Yuuzhan Vong–created organisms in their ability to sense the Force, as members of the Yuuzhan Vong species and their other creations were completely devoid of the Force and could not touch it in any way. Even if the Force-sensitives diminished their presence in the Force, voxyn could still sense them, preventing Jedi from hiding from the hounds.</p><p>Jedi could sometimes feel voxyn through the Force as well, registering the creatures as a hungry or feral presence. Through the Force, voxyn could sometimes sense the emotions of Force-sensitives, and, occasionally, Force-sensitives could sense other things about voxyn rather than just the creatures' hunger. However, voxyn could, if they wished, hide their presence from Force-sensitives, preventing them from being able to detect the voxyn. Force-sensitives skilled with animals could sometimes convince the voxyn via the Force to do certain things by imparting ideas to them, such as attacking their Yuuzhan Vong minders, though this was difficult to do.</p><p>The genetically-created creatures were remarkably durable and difficult to kill, due in part to their ability to heal quickly. Voxyn could survive being pinned beneath a metal bulkhead, even if their torso was crushed almost flat. Additionally, they could survive the blast caused by thermal detonators and could function well even with the loss of limbs and chunks of flesh. A Jedi's lightsaber, which could typically cut through most things, had trouble cutting through a voxyn's foot, though a lightsaber could still kill a voxyn. The creatures' scales could also occasionally deflect a blaster bolt. When exposed to decompression, voxyn were able to make scale cocoons that allowed the creatures to survive for a time in vacuum, as long as they went into a deep hibernation. However, if voxyn remained in a vacuum too long, they would freeze to death, with every cell in their bodies bursting.</p><h3>Behavior</h3><p><b>Intelligent trackers</b></p><blockquote><p><i>\"Four Jedi have died already. Your voxyn are proving most effective.\"</i></p><p><span style=\"font-size:13px\">- Senator Viqi Shesh, to Warmaster Tsavong Lah</span></p></blockquote><p>Although voxyn were classified as non-sentient, they were quite intelligent and possessed a natural cunning. They were smart enough to tap the activation stud of a lift tube if they wanted to use it and could occasionally sense when a trap was being laid for them, which would make them cautious. Voxyn were taught during their training to avoid both triggered traps and dangerous hazards, such as fire, to make them more effective hunters. However, voxyn occasionally had to be guided by their Yuuzhan Vong counterparts when inside unfamiliar locations, such as the interiors of residential areas, and voxyn who were confused by such conditions were considered useless to the Yuuzhan Vong. Voxyn learned from their mistakes if they survived their initial error, making them even better predators. However, unlike the voxyn queen, her clones were not cunning enough to use their surroundings to create advantages for themselves. Temperament-wise, Human Senator Viqi Shesh from the New Republic believed that voxyn were vicious in nature and enjoyed hurting things.</p><p>Voxyn had no fixed habitat, as they were taught versatility by their Yuuzhan Vong creators on the Baanu Rass worldship, and they learned to hunt in almost every habitat imaginable that existed in the galaxy—the target of the Yuuzhan Vong invasion. Voxyn could therefore survive and hunt effectively on a vast number of worlds, such as Kuat, Chiron, and Corellia. They were also comfortable hunting in and around mechanical objects, despite the aversion most Yuuzhan Vong had to them, as voxyn were conditioned from birth to be able to hunt Jedi anywhere. The creatures were carnivorous and would eat ysalamir, humanoids, and even lone Yuuzhan Vong. Food eaten by voxyn eventually reentered the environment as droppings. Feral voxyn aboard the Baanu Rass laired in a series of caves near the best source of food, which was the city of the slaves on the worldship.</p><p>Like the fero xyn, voxyn could be controlled by Yuuzhan Vong warriors and would obey commands given to them by their keepers. All voxyn, save the voxyn queen, were trained to stalk Jedi; the queen herself was trained to preserve her own life, to ensure the survival of voxyn as a species. The creatures typically hunted in packs of four when they tracked Jedi or Force-sensitives for the Yuuzhan Vong. Warriors were in enough control of voxyn that they could have the beast stay stationary while the Yuuzhan Vong tortured other individuals with the variety of dangerous abilities that the creatures possessed, such as their saliva. Specialized Yuuzhan Vong, known as voxyn handlers, usually accompanied voxyn packs, and the beasts would tolerate the leashes that the handlers sometimes put on them, though they would still snap at the handlers if they came too close. If a voxyn was close to its prey, it would sometimes break free from the handlers to attack its target.</p><p>While looking for the trail of a Jedi or other Force-sensitive, voxyn typically swept their heads from side to side and sometimes howled when they first sensed a Jedi or other Force-user. While hunting for Jedi, voxyn would occasionally circle other non–Force-sensitives to investigate them and would cock their heads at loud noises. Voxyn also licked the air with their tongues while on the hunt and would keep their eyes fixed on the floor while their tails waved about if they had located a Force-sensitive and were following it. The creatures were resilient in their hunting, and Jedi found them difficult to deter from their tails. Additionally, voxyn continued to hunt their prey even after sustaining heavy injuries, such as the loss of limbs. Hunting Force-sensitives filled voxyn with energy, and the listless voxyn who were nearing the end of their life-spans would shake off their lethargy when they sensed prey. When entering combat with a Force-sensitive or other enemy, voxyn liked to open with a sonic screech over any other attack. Occasionally, voxyn used their acid to melt holes in which to hide.</p><p><b>Feral voxyn and behavioral idiosyncrasies</b></p><blockquote><p><i>\"The shapers cannot understand why, but ysalamiri drive voxyn mad. The voxyn lose their natural cunning. In experiments similar to this, I have seen them tear their own legs off to get the ysalamiri.\"</i></p><p><span style=\"font-size:13px\">- Commander Duman Yaght</span></p></blockquote><p>In the event that the Yuuzhan Vong lost a voxyn, the creature could still survive on its own, and it became feral. Even feral voxyn would attack and harass Force-sensitives, despite not being ordered to do so. Though they were able to create a cocoon to survive the depressurization of vacuum, voxyn sometimes panicked when they suddenly lost the ability to breathe air.</p><p>For a reason that the shapers who created the voxyn could not understand, voxyn hated ysalamir, creatures that were able to repel the Force. Voxyn lost their natural intelligence when ysalamiri were near and would try to eat the creatures; during experiments in which voxyn's legs were bound to the ground with blorash jelly and a ysalamir was placed out of reach in front of them, voxyn would sometimes tear off their own legs to get at the other creature. When certain voxyn could not reach the ysalamir to eat it, they would eventually resort to killing it. Some Yuuzhan Vong warriors gave ysalamiri to voxyn as treats.</p><p>Even though voxyn were sterile and could not reproduce, some feral voxyn still created nests and guarded them in a territorial style, bringing in corpses to the nests to feed the young that they would never have. Voxyn would not leave their nests unless they felt threatened and defended the nests from both other voxyn and beings not from their species, though nesting voxyn were more inclined to stay in their nest than attack a passerby unless otherwise provoked. In some instances, voxyn would starve themselves to death rather than leave the nest to hunt. While guarding a nest, agitated voxyn would ruffle their neck scales and scratch the ground. Those voxyn without nests became excited if they found fresh corpses while hunting that could potentially nourish their young, and they would drag them back to a voxyn nesting area.</p><h3>History</h3><p><b>Creation</b></p><blockquote><p><i>\"They're cloning the voxyn!\"</i></p><p><span style=\"font-size:13px\"><i>\"Why would they do that? Would it not make more sense to breed them?\"</i></span></p><p><i>\"Perhaps. Unless they have only one.\"</i></p><p>- Jedi Cilghal and Tenel Ka Djo deduce the existence of the voxyn queen</p></blockquote><p>In the year 25 ABY, the sentient Yuuzhan Vong, who were gifted in the use and creation of biotechnology, invaded the galaxy of the New Republic. In what came to be known as the Yuuzhan Vong War, the invading species came into conflict with the Force-using Jedi Knights and, seeing them as worthy adversaries and thus a problem, began working on a project designed to destroy them, of which Master Shaper Yal Phaath was placed in charge. Shortly after the Yuuzhan Vong captured the Jedi–controlled moon of Yavin 4, the Yuuzhan Vong shapers became aware of the vornskrs of the planet Myrkr, who were able to detect the Force.</p><p>The project was subsequently moved to Myrkr, and a decaying worldship, the Baanu Rass, orbiting the planet was used as the base of operations. After traitorous New Republic Senator Viqi Shesh provided the Yuuzhan Vong shapers with multiple vornskrs, Phaath and his shapers began to attempt to shape the vornskr into something that could hunt Jedi for them. The initial experiments with just vornskr genetic material proved only partially successful, as the resulting beast was not ferocious enough. However, after the genes of the fero xyn were added, as the fero xyn was the closest genetically to the vornskr, the perfect beast was created after a few failed attempts: the voxyn queen. However, because she was unable to reproduce and the shapers could not replicate their success with the queen, Phaath and his shapers were forced to clone the beast to be able to supply pack upon pack of voxyn. In cloning the voxyn queen, voxyn-growing vines submerged in a hydroponic pool were used to create immature voxyn.</p><p>After creation, voxyn were taught to hunt Jedi on special training courses on the Baanu Rass that prepared the creatures for the galaxy at large. Numerous different training facilities, each shaped to look like a different location in which voxyn could hunt Jedi, conditioned the creatures, and the Yuuzhan Vong used captured Force-sensitives to help train the new beasts. In addition to training the voxyn how to hunt almost anywhere, the Yuuzhan Vong added hazards and traps to the courses to teach the beasts how to avoid them. Some of these traps just triggered alarms, but a few killed or injured the voxyn who triggered them. Besides serving as the site where new voxyn were trained to hunt, the Baanu Rass was also the location of the shaper grashal structure, which was the home of the voxyn queen, who had to remain near Myrkr so that it could have access to the nutrients that kept it alive. Much of the Yuuzhan Vong's future plans relied on the success of the voxyn cloning program.</p><p><b>Jedi-killers</b></p><blockquote><p><i>\"Eelysa. Something caught her.\"</i></p><p><span style=\"font-size:13px\"><i>\"Something?\"</i></span></p><p><i>\"This one doesn't know. But she is gone. Eelysa is no more.\"</i></p><p>- Jedi Knights Saba Sebatyne and Luke Skywalker, after a voxyn kills Eelysa</p></blockquote><p>By 27 ABY, voxyn had been introduced to the galaxy and were deployed on a multitude of worlds, ranging from Corellia to Kuat. Typically used in conjunction with a group of Yuuzhan Vong warriors, voxyn searched for the presence of Jedi and other Force-sensitives on planets, moons, and refugee starships, such as the Nebula Chaser, after the Yuuzhan Vong–allied Peace Brigade organization became aware that the Jedi commonly used those vessels to transport themselves. Voxyn were quite successful in hunting and killing Force-sensitives, and many Jedi fell to the beasts, including the Chironian Lusa and the Human Eelysa. There was even a failed attempt to smuggle voxyn onto the New Republic's capital of Coruscant so that those hunters might be able to slay the Jedi leaders located there. Because the voxyn could not reproduce on their own, a small contingent of Yuuzhan Vong warriors attempted to get voxyn to mate with vornskr on Myrkr.</p><p>The threat of the voxyn drew the attention of the New Jedi Order. After the Jedi discovered that the Yuuzhan Vong relied on the voxyn queen to create more voxyn and that the queen's current location was near Myrkr, a strike team was made to deal with the voxyn. The strike team, led by Jedi Anakin Solo, managed to commandeer the Yuuzhan Vong frigate Exquisite Death and took it to the Baanu Rass worldship. After inserting itself aboard the worldship, the Jedi team was harried by both the pack of voxyn that accompanied Executor Nom Anor and his warriors as they tried to stop the team and the feral voxyn that dwelt on the Baanu Rass.</p><p>Despite taking heavy casualties—the engagement saw the death of Anakin Solo and the capture of his brother, Jacen—the Jedi team managed to slay the voxyn queen. In addition, Anor failed to prevent the destruction of organic tissue samples that had been taken from the voxyn queen, which would have allowed the Yuuzhan Vong to clone more voxyn. With the queen destroyed, no more voxyn could be created to hunt and kill Jedi, and the short life span of voxyn meant that the species' numbers began to dwindle.</p><p><b>After the queen's fall</b></p><blockquote><p><i>\"I have six remaining voxyn, Dread Lord. Let me take one or two out, and if there are Jeedai involved in this business, the voxyn will find them and tear them!\"</i></p><p><span style=\"font-size:13px\">- Warmaster Tsavong Lah, to Dread Lord Shimrra Jamaane</span></p></blockquote><p>Shortly after the death of the voxyn queen at Myrkr, Jaina Solo, who had been on the strike team, painted a pair of running voxyn on her X-wing starfighter while she was fighting at the planet Borleias. She did this in an effort to further confuse the Yuuzhan Vong fighting her by adding to her persona of the Trickster Goddess. Though the voxyn were dying off and many were ill and weak, the Yuuzhan Vong continued to use the surviving voxyn to hunt down Force-sensitives, as the beasts were still dangerous. After the Yuuzhan Vong captured the planet Coruscant from the New Republic, Warmaster Tsavong Lah dispatched a unit of warriors and one of the remaining packs of voxyn to hunt down a group of Jedi that had infiltrated the Yuuzhan Vong's planetary defenses. However, all the voxyn in the pack, as well as many warriors, fell to the blades of Lord Nyax, a powerful user of the dark side of the Force who was stalking the lower levels of Coruscant.</p><p>As increasingly more voxyn died off, the Yuuzhan Vong began to treasure the beasts more and attempted to protect them when they could. By 28 ABY, only six voxyn remained, and these were controlled by Lah. The warmaster brought these voxyn with him when he led multiple battlegroups to engage New Republic forces at the Deep Core Treskov system. However, the battle in the Treskov system was a trap designed by the New Republic's strategist Gial Ackbar. After the battle began to take a turn for the worst for Lah and his forces, he took his voxyn and his Battle Group of Yun-Yuuzhan to the natural satellite of Ebaq 9. The warmaster hoped to hunt the Jedi in the New Republic's base there as a last ditch offensive, and he landed his voxyn and troops on the satellite.</p><p>However, while fighting in the tunnels of the base, three of the voxyn were killed by the actions of the Jedi, namely Jacen and Jaina Solo, and the others were killed when the Fosh Vergere crashed a stolen RZ-1 A-wing interceptor into the main shaft head of the base. The impact and resulting fireball sucked all of the air out of the tunnels, killing the last voxyn and almost all the warriors in the tunnels, with Lah perishing on Jaina's lightsaber blade soon after. Thus, the last of the voxyn were killed.</p>",
+        "public": ""
+      },
+      "alignment": "Chaotic Balanced",
+      "species": "",
+      "type": {
+        "value": "beast",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": 15,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "Roll 20",
+      "xp": {
+        "value": 13000
+      },
+      "race": "",
+      "class": "",
+      "powerLevel": 15
+    },
+    "traits": {
+      "size": "lg",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": "Poisoned"
+      },
+      "dr": {
+        "value": [
+          "acid",
+          "poison",
+          "energy"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": ""
+      },
+      "languages": {
+        "value": [],
+        "custom": "Yuuzhan Vong"
+      }
+    },
+    "currency": {
+      "gc": 0,
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 3,
+        "passive": 13,
+        "prof": 0,
+        "total": 3
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 4,
+        "passive": 14,
+        "prof": 0,
+        "total": 4
+      },
+      "ath": {
+        "value": 0.5,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 5,
+        "passive": 17,
+        "prof": 2,
+        "total": 7
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 4,
+        "passive": 14,
+        "prof": 0,
+        "total": 4
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "prof": 0,
+        "total": 0,
+        "passive": 10
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 4,
+        "passive": 14,
+        "prof": 0,
+        "total": 4
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "prof": 0,
+        "total": 0,
+        "passive": 10
+      },
+      "prc": {
+        "value": 1,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 4,
+        "passive": 19,
+        "prof": 5,
+        "total": 9
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 3,
+        "passive": 13,
+        "prof": 0,
+        "total": 3
+      },
+      "ste": {
+        "value": 1,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 3,
+        "passive": 18,
+        "prof": 5,
+        "total": 8
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 4,
+        "passive": 14,
+        "prof": 0,
+        "total": 4
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "prof": 0,
+        "total": 0,
+        "passive": 10
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power2": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power3": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power4": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power5": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power6": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power7": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power8": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power9": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "pact": {
+        "value": 0,
+        "max": 0,
+        "override": null,
+        "level": 0
+      },
+      "power0": {
+        "value": 0,
+        "max": 0,
+        "fmax": 0,
+        "fvalue": 0,
+        "tmax": 0,
+        "tvalue": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": false,
+        "initiative": 0
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "flags": {},
+    "name": "Voxyn",
+    "displayName": 40,
+    "width": 2,
+    "height": 2,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.bar2"
+    },
+    "randomImg": false,
+    "alpha": 1,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "texture": {
+      "src": "systems/sw5e/packs/Icons/monsters/134_-_Voxyn/Token.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 10,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493984189,
+    "modifiedTime": 1677349723202,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

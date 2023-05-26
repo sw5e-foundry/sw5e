@@ -1,0 +1,125 @@
+{
+  "name": "Role Mastery: Carrier",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+  "effects": [
+    {
+      "_id": "qQTMHDrpIch61Q7C",
+      "flags": {
+        "dae": {
+          "stackable": false,
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "changes": [
+        {
+          "key": "system.details.role",
+          "value": "Carrier",
+          "mode": 2,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "label": "Role Mastery: Carrier",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "HPiCqS3Ra6Snj49T",
+  "system": {
+    "description": {
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p>\n<h3>Carrier</h3>\n<p>When ships are deployed from your carrier, they have advantage on the first ability check, attack roll, or saving throw they make before the end of their next refitting. Once a ship has benefited from this feature, it can not benefit from it again until it undergoes refitting.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": "When ships are deployed from your carrier, they have advantage on the first ability check, attack roll, or saving throw they make before the end of their next refitting."
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": "1",
+      "max": "1",
+      "per": "refitting",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": "roleMastery"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "size": "Huge",
+    "tier": "4"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017923,
+    "modifiedTime": 1677699337709,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

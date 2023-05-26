@@ -1,0 +1,93 @@
+{
+  "_id": "wpUsWmmPy5MitoAj",
+  "name": "Trip Attack",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/TripAttack.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:02.8036278+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-trip_attack"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When you hit a creature with a weapon attack, you can expend one superiority die to attempt to knock the target down. You add the superiority die to the attack's damage roll, and if the target is Large or smaller, it must make a Strength saving throw. On a failed save, you knock the target prone.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "physical"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983323,
+    "modifiedTime": 1684819093424,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "_id": "OETr2XxiODqlzQJf",
+  "name": "Brawler Mastery",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Fighting%20Styles%20and%20Masteries/BrawlerMastery.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:00.2980799+00:00",
+      "importer_version": 3,
+      "uid": "FightingMastery.name-brawler_mastery"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You've mastered using your weight to your advantage, easily wrangling targets around. You gain the following benefits:</p>\n<ul>\n<li>Your improvised weapons use a [[/r d6]] for damage and gain the versatile ([[/r 2d4]]) property.</li>\n<li>Your damage die for your unarmed strikes and natural weapons increases by one step (from 1 to [[/r d4]], [[/r d4]] to [[/r d6]], or [[/r d6]] to [[/r d8]]).</li>\n<li>Your speed isn't halved by carrying a grappled creature who is the same size category as you or smaller. </li>\n<li>Once on each of your turns, when you hit a creature with an unarmed strike or a weapon wielded in one hand on your turn, you can make an additional unarmed strike against the same target without the aid of your proficiency bonus (no action required).</li></ul>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "customizationOption",
+      "subtype": "fightingMastery"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493967817,
+    "modifiedTime": 1684819096315,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

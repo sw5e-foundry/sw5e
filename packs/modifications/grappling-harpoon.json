@@ -1,0 +1,113 @@
+{
+  "_id": "6UcoZpx36HI7Tot5",
+  "name": "Grappling Harpoon",
+  "type": "modification",
+  "img": "systems/sw5e/packs/Icons/Modifications/armor.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:05.511058+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-grappling_harpoon.subtype-armor"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Item Modification (Armor)</h4>\n <p><em>Prerequisite:  Armor</em></p>\n<hr />\n<p>This armor gains an integrated grappling harpoon set into your gauntlet. With this harpoon, you can make a ranged weapon attack with a range of 30/60. On a hit, it deals [[/r 1d6]] kinetic damage. This attack can target a surface, object, or creature.</p>\n<p>A creature struck by this attack is impaled by the harpoon. As an action, a creature can attempt to remove the harpoon. Removing the harpoon requires a DC 15 Strength check. While the harpoon is stuck in the target, you are connected to the target by a 60 foot cable.</p>\n<p>While the harpoon is deployed, you can use your bonus action to activate the reel, pulling yourself to the location if the target is larger than you. A creature or object your size or smaller is pulled to you. Alternatively, you can opt to release the cable (no action required).</p>\n<p>Once you've used this feature, you can't use it again until you recover and reinsert the harpoon as an action.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "denomination": "gc",
+      "value": 0
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "charges",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "modificationType": "armor",
+    "modificationSlot": "slot1",
+    "modifying": {
+      "id": null,
+      "disabled": false
+    },
+    "properties": {
+      "indeterminate": {}
+    },
+    "modified": [],
+    "modificationItemType": "equipment"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493999131,
+    "modifiedTime": 1684819091240,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

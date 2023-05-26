@@ -1,0 +1,93 @@
+{
+  "_id": "u1oADGkMWPBiFM9S",
+  "name": "Administer Aid",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/AdministerAid.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:02.7876373+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-administer_aid"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>As an action, you can expend a superiority die to tend to a creature you can touch. The creature regains a number of hit points equal to the number rolled + your maneuver ability modifier.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Proficiency in Medicine",
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die + @mod",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "mental"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983321,
+    "modifiedTime": 1684819093424,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

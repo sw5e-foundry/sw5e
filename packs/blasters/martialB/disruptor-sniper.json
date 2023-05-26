@@ -1,0 +1,139 @@
+{
+  "_id": "wQvskhxKbF3itdx8",
+  "name": "Disruptor sniper",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Blasters/DisruptorSniper.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:06.0937199+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-disruptor_sniper.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Disintegrate 13</h3>\n<p>When a creature is reduced to 0 hit points by a weapon with the disintegrate property, it must make a Constitution saving throw, DC equal to the disintegrate number. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything unenhanced it is wearing or carrying are reduced to a pile of fine gray dust. A creature destroyed in this way can not be revitalized.</p>\n<h3>Power cell (range 120/480) Cell</h3>\n<p>Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.</p>\n<h3>Reload 2</h3>\n<p>A number of shots equal to the reload number can be made with a weapon with this property. A character must then reload it using an action or a bonus action (their choice). You must have one free hand to reload.</p>\n<h3>Strength 15</h3>\n<p>A weapon with this property has a heavy kickback. While wielding it, you have disadvantage on attack rolls unless you meet the Strength requirement. If the weapon has the burst, penetrating, or rapid property, you must meet the Strength requirement to use this feature. If the weapon lacks the two-handed property, you can wield the weapon in two hands to temporarily reduce the strength number by one step (from 19 to 17, 17 to 15, 15 to 13, or 13 to 11). If this would reduce the strength number below 11, you ignore it entirely.</p>\n<h3>Two-handed</h3>\n<p>A weapon with this property requires two hands to use.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 15,
+    "price": {
+      "denomination": "gc",
+      "value": 3300
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "rwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d12 + @mod",
+          "acid"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialB",
+    "baseItem": "disruptorsniper",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": [
+        "powerCell"
+      ]
+    },
+    "properties": {
+      "pcl": "range 120/480",
+      "dis": 13,
+      "rel": 2,
+      "str": 15,
+      "two": true
+    },
+    "proficient": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493961316,
+    "modifiedTime": 1684819088105,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

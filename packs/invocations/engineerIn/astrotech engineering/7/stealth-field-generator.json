@@ -1,0 +1,100 @@
+{
+  "name": "Stealth Field Generator",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-stealth_field_generator.source-archetypeinvocation.sourceName-astrotech_engineering.level-7"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level</em></p>\n<p>You integrate a portable, personal cloaking device into your electronic warfare platform. Activating or deactivating the generator requires a bonus action and, while active, you have advantage on Dexterity (Stealth) ability checks that rely on sight. The generator lasts for 1 minute. This effect ends early if you make an attack or cast a force or tech power.</p>\n<p>Once the generator has been activated, it can't be activated again until you finish a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Astrotech Engineering) 7",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "1",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1680288497247,
+    "modifiedTime": 1680288497247,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "Xq6xb9dgawCO8ISy"
+}

@@ -1,0 +1,155 @@
+{
+  "name": "Set Mine",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Monster%20Traits/Set%20Mine.webp",
+  "effects": [],
+  "flags": {
+    "autoanimations": {
+      "killAnim": false,
+      "override": false,
+      "animType": "t1",
+      "animName": "",
+      "bards": {
+        "bardAnim": "a1",
+        "bardTarget": true,
+        "bardTargetAnim": "a1",
+        "bardTargetColor": "a1",
+        "bardSelf": true,
+        "marker": true,
+        "markerColor": "a1",
+        "markerColorTarget": "a1"
+      },
+      "spellVar": "a1",
+      "hmAnim": "a1",
+      "color": "n1",
+      "spellOptions": {
+        "spellLoops": 1
+      },
+      "uaStrikeType": "physical",
+      "dtvar": "dt1",
+      "divineSmite": {
+        "dsEnable": false,
+        "dsSelf": true,
+        "dsSelfDelay": 0,
+        "dsSelfColor": "a1",
+        "dsTarget": true,
+        "dsTargetDelay": 1250,
+        "dsTargetColor": "a1"
+      },
+      "explosion": false,
+      "explodeVariant": "ev1",
+      "explodeColor": "",
+      "explodeRadius": "0",
+      "explodeLoop": "1",
+      "allSounds": {
+        "explosion": {
+          "audioExplodeEnabled": false,
+          "file": "",
+          "delay": 100,
+          "volume": 0.25
+        },
+        "item": {
+          "enableAudio": false,
+          "file": "",
+          "delay": 100,
+          "volume": 0.25
+        }
+      },
+      "selfRadius": "5",
+      "animTint": "#ffffff",
+      "auraOpacity": 0.75,
+      "ctaOption": false,
+      "teleDist": 30
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>After setting this mine, a laser line imperceptible to normal vision extends up to 15 feet out. When the laser is tripped, the mine explodes, and each creature within 15 feet of it must make a DC 13 Dexterity saving throw. On a failed save, a creature takes 3d6 kinetic damage, or half as much on a successful one.</p><p></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 15,
+      "width": null,
+      "units": "ft",
+      "type": "radius"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 2,
+      "max": "2",
+      "per": "day",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": null
+    },
+    "damage": {
+      "parts": [
+        [
+          "3d6",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": 13,
+      "scaling": "flat"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": 0,
+      "charged": false
+    },
+    "powercasting": {
+      "force": "none",
+      "tech": "none"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1669753012531,
+    "modifiedTime": 1677349726626,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "maJlJnkd84GsSwY0"
+}

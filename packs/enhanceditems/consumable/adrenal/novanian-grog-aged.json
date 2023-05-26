@@ -1,0 +1,185 @@
+{
+  "_id": "rkuUfl35n2pWZBh9",
+  "name": "Novanian Grog (Aged)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true,
+          true
+        ],
+        "altValue": [
+          true,
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8164607+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-novanian_grog_aged.subtype-substance"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Substance)</h4>\n <p>This grog features a pungent odor and a strong kick. As an action, you can apply this substance to a creature within 5 feet. For the next 10 minutes, the creature experiences a high that increases their current and maximum tech points by [[/r 2d8]]. At the end of the high, the creature must succeed on a DC 20 Constitution saving throw or experience a low that lasts 4 hours, their current and maximum tech points are reduced by [[/r 2d8]]. At the end of the low, the creature must make a DC 20 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Novanian grog</h2>\n<p>This grog features a pungent odor and a strong kick. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that increases their current and maximum tech points by [[/r 2d3]]. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, their current and maximum tech points are reduced by [[/r 2d3]]. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 70
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "advanced",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "10",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d8",
+          ""
+        ],
+        [
+          "2d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "none"
+    },
+    "consumableType": "adrenal",
+    "ammoType": null,
+    "properties": {}
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964983,
+    "modifiedTime": 1684819089335,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

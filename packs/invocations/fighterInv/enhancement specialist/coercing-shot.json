@@ -1,0 +1,104 @@
+{
+  "_id": "QEDbsrXVZLmEQUKY",
+  "name": "Coercing Shot",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/FGTR-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1694583+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-coercing_shot.source-archetypeinvocation.sourceName-enhancement_specialist.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You enhance your shot with chemicals that confuse the target. The creature hit by the shot takes an extra [[/r 2d6]] poison damage, and choose one of your allies within 30 feet of the target. The target must succeed on a Wisdom saving throw, or it is charmed by the chosen ally until the start of your next turn. This effect ends early if the chosen ally attacks the charmed target, deals damage to it, or forces it to make a saving throw.</p>\n<p>The poison damage increases to [[/r 4d6]] when you reach 18th level in this class.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Fighter (Enhancement Specialist)",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "2d6",
+          "poison"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "fighterInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Fighter"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981089,
+    "modifiedTime": 1684777308934,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

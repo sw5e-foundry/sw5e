@@ -1,0 +1,97 @@
+{
+  "_id": "2NUqt5H4hmf2X9Gl",
+  "name": "Overwhelming Presence",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Coordinator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>As an action, you can make a Charisma (Impress) or Charisma (Menace) skill check and expend one power die to attempt to charm or frighten a humanoid creature who can see and perceive your ship within 600 feet. Add the power die to the roll. The target makes a contested Intelligence (Probe) check. If your check succeeds, the target is charmed by you if you used Impress, or frightened of you if you used Menace, until the end of your next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Coordinator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Coordinator"
+    },
+    "featureType": {
+      "value": "Collaboration"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963407,
+    "modifiedTime": 1677349705073,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

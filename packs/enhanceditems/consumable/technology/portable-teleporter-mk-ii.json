@@ -1,0 +1,171 @@
+{
+  "_id": "7AlT8uEtQhqCR8r9",
+  "name": "Portable Teleporter Mk II",
+  "type": "consumable",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8274536+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-portable_teleporter_mk_ii.subtype-technology"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Technology)</h4>\n <p>As an action, you can use this teleporter to create a pair of linked portals: one portal appears in a space within 5 feet of you, and the other portal appears in an unoccupied space you can see up to 60 feet away. These portals lasts until the start of your next turn, and they are large enough to accommodate Medium and smaller creatures and objects. Portals take the appearance of an elongated, shimmering mirror, and looking through a portal, a creature can see through the linked portal as if looking through a window. A creature or object who passes through a portal immediately appears in a space within 5 feet of the linked portal.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "denomination": "gc",
+      "value": 0
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "premium",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "consumableType": "technology",
+    "ammoType": null,
+    "properties": {}
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964444,
+    "modifiedTime": 1684819089233,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

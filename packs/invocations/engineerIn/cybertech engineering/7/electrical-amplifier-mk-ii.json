@@ -1,0 +1,100 @@
+{
+  "name": "Electrical Amplifier, Mk II",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1684586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-electrical_amplifier_mk_ii.source-archetypeinvocation.sourceName-cybertech_engineering.level-7"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level, Electrical Amplifier</em></p>\n<p>When you deal damage to a creature with this amplifier, the creature must succeed at a Constitution saving throw or become shocked until the end of your next turn.</p>\n<p>You can use this feature a number of times equal to your Intelligence modifier (minimum of 1). You regain all expended uses when you complete a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Cybertech Engineering) 7, Electrical Amplifier",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "max(@abilities.int.mod, 1)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1680288497249,
+    "modifiedTime": 1680288497249,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "BkiLl9b4C3OWBOJE"
+}

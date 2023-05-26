@@ -1,0 +1,113 @@
+{
+  "_id": "7H1BuK7qPubMQaUp",
+  "name": "Ostrine Splitter Mk III",
+  "type": "modification",
+  "img": "systems/sw5e/packs/Icons/Modifications/blaster.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:05.5700237+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-ostrine_splitter_mk_iii.subtype-blaster"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Item Modification (Blaster)</h4>\n <p>When you deal damage with this weapon, you deal an additional [[/r 1d8]] acid, cold, fire, lightning, poison, or sonic damage (chosen by the GM when generating this item).</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "denomination": "gc",
+      "value": 0
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "artifact",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "none",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8",
+          "acid"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "modificationType": "blaster",
+    "modificationSlot": "slot1",
+    "modifying": {
+      "id": null,
+      "disabled": false
+    },
+    "properties": {
+      "indeterminate": {}
+    },
+    "modified": [],
+    "modificationItemType": "weapon"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493999138,
+    "modifiedTime": 1684819091241,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

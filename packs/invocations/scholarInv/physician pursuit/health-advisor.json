@@ -1,0 +1,102 @@
+{
+  "name": "Health Advisor",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.3462122+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-health_advisor.source-archetypeinvocation.sourceName-physician_pursuit.level-None"
+    }
+  },
+  "_id": "eRWzoUBSCZW86rky",
+  "system": {
+    "description": {
+      "value": "<p>Whenever a creature that is a target of your Critical Analysis feature begins their turn, you can use your reaction to give them temporary hit points equal to one-fourth your scholar level + your proficiency bonus, as shown in the scholar table, which last until the start of their next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Physician Pursuit)",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "scholarInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Scholar"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981165,
+    "modifiedTime": 1684777308937,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

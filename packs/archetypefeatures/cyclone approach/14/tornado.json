@@ -1,0 +1,93 @@
+{
+  "_id": "D2dpEvNZhLDsArYf",
+  "name": "Tornado",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-tornado.source-archetype.sourceName-cyclone_approach.level-14"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Cyclone Approach:</strong> 14th level</em></p>\n<p>You can become a tornado of attacks. When you take the Attack action on your turn, you can forgo one of your regular attacks to make a melee attack against any number of creatures within 5 feet of you, with a separate attack roll for each target. If you are wielding a separate melee weapon in each hand, each successful hit against a target deals damage equal to the damage dice of both weapons + your ability modifier + any other modifiers.</p>\n<p>You can use this feature a number of times equal to your Strength modifier (a minimum of once). You regain all expended uses when you finish a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Berserker (Cyclone Approach) 14",
+    "source": "PHB",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "touch",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": "max(@abilities.str.mod, 1)",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Berserker"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957493,
+    "modifiedTime": 1678471090697,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "_id": "tflLdOfjZyQGC2HR",
+  "name": "Pin Down",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/PinDown.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:21.5157784+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-pin_down"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When your companion attempts to grapple or knock a creature prone, you can expend a superiority die to give it direction as long as it can see or hear you. Roll a superiority die and add it to your companion's Strength (Athletics) check.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Companion",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "general"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983321,
+    "modifiedTime": 1684819093424,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

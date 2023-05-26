@@ -1,0 +1,1209 @@
+{
+  "_id": "Zi7m1MaDOdGnSXZU",
+  "name": "Voxyn",
+  "type": "npc",
+  "img": "icons/svg/hazard.svg",
+  "items": [
+    {
+      "name": "Multiattack",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2382905+00:00",
+        "uid": "MonsterBehavior.name-multiattack.source-monster.sourceName-voxyn",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.6320887+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-multiattack.source-monster.sourceName-voxyn"
+        }
+      },
+      "_id": "mKPP3V52HHD13boS",
+      "type": "feat",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<p>  Voxyn can make two bite attacks and one tail attack</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "other",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Bite",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2382905+00:00",
+        "uid": "MonsterBehavior.name-bite.source-monster.sourceName-voxyn",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.6320887+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-bite.source-monster.sourceName-voxyn"
+        }
+      },
+      "_id": "1nTbh7NfGMmr11KO",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Bite. Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 15 ([[/r 3d8 + 5]]) kinetic damage & 12 ([[/r 2d12]]) acid damage If the target is a creature, it must succeed on a DC 17 Strength saving throw or be knocked prone.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": "inst"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 5,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "mwak",
+        "attackBonus": "-1",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "3d8 + 5",
+              "kinetic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": null,
+          "bur": null,
+          "dir": null,
+          "hvy": null,
+          "hid": null,
+          "ken": null,
+          "pic": null,
+          "ran": null,
+          "rap": null,
+          "rel": null,
+          "smr": null,
+          "spc": null,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": null,
+          "dgd": null,
+          "dis": null,
+          "dpt": null,
+          "dou": null,
+          "fin": null,
+          "fix": null,
+          "ilk": null,
+          "lgt": null,
+          "lum": null,
+          "mig": null,
+          "mod": null,
+          "neu": null,
+          "pen": null,
+          "pcl": null,
+          "rch": null,
+          "rck": null,
+          "ret": null,
+          "shk": null,
+          "sil": null,
+          "slg": null,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": null,
+          "thr": null,
+          "two": null,
+          "ver": null,
+          "con": null,
+          "exp": null,
+          "hom": null,
+          "ion": null,
+          "mlt": null,
+          "ovr": null,
+          "pow": null,
+          "sat": null,
+          "zon": null
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Tail",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2382905+00:00",
+        "uid": "MonsterBehavior.name-tail.source-monster.sourceName-voxyn",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.6320887+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-tail.source-monster.sourceName-voxyn"
+        }
+      },
+      "_id": "X4y7RlKV9N81hbjk",
+      "type": "weapon",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<section class=\"secret\">\n<p> Tail. Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: 17 ([[/r 4d6 + 5]]) kinetic damage plus 18 ([[/r 6d6]]) poison damage. If the target is a creature it must also make DC 16 Constitution saving throw. On a failure, a creature is paralyzed for 1 minute. The creature can repeat this saving throw at end of each of its turns, ending the effect on itself.</p>\n</section>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "1",
+          "units": "minute"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 10,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "mwak",
+        "attackBonus": "-1",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "4d6 + 5",
+              "kinetic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "mgc": null,
+          "aut": null,
+          "bur": null,
+          "dir": null,
+          "hvy": null,
+          "hid": null,
+          "ken": null,
+          "pic": null,
+          "ran": null,
+          "rap": null,
+          "rel": null,
+          "smr": null,
+          "spc": null,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": null,
+          "dgd": null,
+          "dis": null,
+          "dpt": null,
+          "dou": null,
+          "fin": null,
+          "fix": null,
+          "ilk": null,
+          "lgt": null,
+          "lum": null,
+          "mig": null,
+          "mod": null,
+          "neu": null,
+          "pen": null,
+          "pcl": null,
+          "rch": null,
+          "rck": null,
+          "ret": null,
+          "shk": null,
+          "sil": null,
+          "slg": null,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": null,
+          "thr": null,
+          "two": null,
+          "ver": null,
+          "con": null,
+          "exp": null,
+          "hom": null,
+          "ion": null,
+          "mlt": null,
+          "ovr": null,
+          "pow": null,
+          "sat": null,
+          "zon": null
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "name": "Sonic Blast",
+      "flags": {
+        "timestamp": "2022-05-03T05:14:16.2382905+00:00",
+        "uid": "MonsterBehavior.name-sonic_blast.source-monster.sourceName-voxyn",
+        "sw5e-importer": {
+          "timestamp": "2023-03-09T01:52:10.6320887+00:00",
+          "importer_version": 3,
+          "uid": "MonsterBehavior.name-sonic_blast.source-monster.sourceName-voxyn"
+        }
+      },
+      "_id": "LwAoHiVFIcelqgzh",
+      "type": "feat",
+      "img": "icons/svg/hazard.svg",
+      "system": {
+        "description": {
+          "value": "<p> The Voxyn emits a sonic howl from its snout. Creatures within 30 feet of it must succeed on a DC 16 Constitution saving throw or take 32 ([[/r 5d10 + 5]]) Sonic damage, be stunned for 1 minute, and is deafened. Takes half damage on a successful save. A target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "SnV",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "1",
+          "units": "minute"
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "",
+          "per": null,
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": null,
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
+        "damage": {
+          "parts": [
+            [
+              "5d10 + 5",
+              "sonic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 16,
+          "scaling": "flat"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 5,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:10.6320887+00:00",
+      "importer_version": 3,
+      "uid": "Monster.name-voxyn"
+    }
+  },
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 20,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Strength",
+        "mod": 5
+      },
+      "dex": {
+        "value": 16,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Dexterity",
+        "mod": 3
+      },
+      "con": {
+        "value": 16,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Constitution",
+        "mod": 3
+      },
+      "int": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Intelligence",
+        "mod": 0
+      },
+      "wis": {
+        "value": 18,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Wisdom",
+        "mod": 4
+      },
+      "cha": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "name": "Charisma",
+        "mod": -2
+      },
+      "hon": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 18,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 17,
+        "calc": "flat",
+        "formula": ""
+      },
+      "hp": {
+        "value": 170,
+        "max": 170,
+        "temp": null,
+        "tempmax": null,
+        "formula": "20d10+60",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none"
+    },
+    "details": {
+      "biography": {
+        "value": "<p>Voxyn are a genetic cross between a fero xyn and a vornskr—both deadly predators—shaped into being by the sentient Yuuzhan Vong species. Designed to hunt and kill the Force-sensitive Jedi of the galaxy, the reptilian hounds are all clones of the voxyn queen.<strong><em>Biology.</em></strong> The cells of voxyn deteriorate at a rapid rate if they are not exposed to a nutrient from the planet Myrkr, and as such, voxyn in other parts of the galaxy typically do not survive for more than a few months. Voxyn are naturally sterile.<strong><em>Characteristics.</em></strong> Standing one meter high, mature voxyn measure over four meters in length and are reptilian in appearance, although warm-blooded. A pair of oval yellow eyes with excellent night vision are located on the voxyn's flattish head, which has a broad snout over six inches long filled with fangs, and its lithe body is covered in black or green scales and sports eight clawed legs. The toe pads house a hundred deadly retroviruses, whose medium is the green slime that covers the voxyn's claws.A series of sensory bristles covered in a powerful neurotoxin run down the creature's spine, ending in a whip-like tail that has a white, poisonous barb on it. The poison causes swelling and makes most creatures' flesh red for one to six days. The tail's barb can also be used to deliver a neural shock. Voxyn also have long, forked tongues and are able to shoot out of its mouth a jet of brown, acid-like saliva that burns anything it touches. The creatures can also emit a sonic blast from their snouts, sending a compression wave that can temporarily disable a person's hearing, make them feel nauseous, and shatter eardrums. Voxyn's purple blood, when exposed to air, becomes a neurotoxin that smells like smoke and ammonia. Voxyn are fast and agile on their feet, able to jump to great heights, and can swim in and under water. Voxyn possess the ability to sense Force-sensitives through the Force. Jedi can sometimes feel voxyn as well, registering the creatures as a hungry or feral presence. However, voxyn can hide their presence from Force-sensitives.</p>\n<p>None</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
+        "public": ""
+      },
+      "alignment": "chaotic balanced",
+      "species": "",
+      "type": {
+        "value": "custom",
+        "subtype": "",
+        "swarm": "",
+        "custom": "beast"
+      },
+      "environment": "",
+      "cr": 15,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "SnV",
+      "xp": {
+        "value": 10
+      }
+    },
+    "traits": {
+      "size": "lg",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [
+          "acid",
+          "energy",
+          "poison"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [
+          "poisoned"
+        ],
+        "custom": ""
+      },
+      "languages": {
+        "value": [],
+        "custom": "yuuzhan vong"
+      }
+    },
+    "currency": {
+      "gc": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "proficient": 2
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        }
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power2": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power3": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power4": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power5": {
+        "fvalue": 1000,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power6": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power7": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power8": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      },
+      "power9": {
+        "fvalue": 1,
+        "foverride": null,
+        "tvalue": 1,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": 0,
+        "initiative": 0
+      }
+    },
+    "source": "SnV"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "name": "Voxyn",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 2,
+    "height": 2,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false,
+        "type": null
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "attenuation": 0.5,
+      "color": null
+    },
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "texture": {
+      "src": "icons/svg/hazard.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493994361,
+    "modifiedTime": 1684819098830,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

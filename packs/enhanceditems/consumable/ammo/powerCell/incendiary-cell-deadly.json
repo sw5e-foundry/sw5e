@@ -1,0 +1,180 @@
+{
+  "_id": "JaFJ8OyuInf2lqnz",
+  "name": "Incendiary Cell (Deadly)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Ammunition/IncendiaryCell.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:20.481378+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-incendiary_cell_deadly.subtype-ammunition"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +3 bonus to attack and damage rolls made with this enhanced incendiary cell. This bonus is in addition to any bonuses granted by the weapon. Once the incendiary cell is depleted, it no longer gives a bonus. Additionally, the loaded weapon deals fire damage instead of its normal damage type, and when you hit with a shot it sets the ground beneath it in a 5-foot square ablaze for 1 minute. When a creature enters the fire or starts its turn there it must make a DC 20 Dexterity saving throw. On a failed save, the creature takes [[/r 1d8]] fire damage or half as much on a successful one. A construct makes this save with disadvantage.</p>\n<p> </p>\n<h2>Incendiary cell</h2>\n<p>An incendiary cell is a specialized power cell for use with blaster weapons that deal acid, energy, fire, ion, or sonic damage. The loaded weapon deals fire damage instead of its normal damage type, and when you hit with a shot it sets the ground beneath it in a 5-foot square ablaze for 1 minute. When a creature enters the fire or starts its turn there it must make a DC 14 Dexterity saving throw. On a failed save, the creature takes [[/r 1d8]] fire damage or half as much on a successful one. A construct makes this save with disadvantage.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 1,
+    "price": {
+      "value": 275
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "advanced",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": "5",
+      "width": null,
+      "units": "ft",
+      "type": "square"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": "3",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + 3",
+          "fire"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "none"
+    },
+    "consumableType": "ammo",
+    "ammoType": "powerCell",
+    "properties": {},
+    "damageBonus": "3"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964613,
+    "modifiedTime": 1684819089267,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

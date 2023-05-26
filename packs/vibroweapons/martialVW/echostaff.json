@@ -1,0 +1,136 @@
+{
+  "_id": "EkHc4LJawI0MkZTt",
+  "name": "Echostaff",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/Echostaff.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:06.0977176+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-echostaff.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Double ([[/r 1d6]] kinetic)</h3>\n<p>A weapon with this property can be used with one or two hands. A damage value in parentheses appears with the property—the damage when the weapon is used with Double-Weapon Fighting. See the rules for Double-Weapon Fighting in chapter 9.</p>\n<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Sonorous 13</h3>\n<p>When you hit a creature with a weapon with the sonorous property, you can force it to make a Constitution saving throw, DC equal to the sonorous number. On a failed save, the creature takes an additional [[/r 1d4]] sonic damage and becomes deafened until the end of its next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 5,
+    "price": {
+      "denomination": "gc",
+      "value": 600
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6 + @mod",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialVW",
+    "baseItem": "echostaff",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "dou": "1d6 kinetic",
+      "fin": true,
+      "son": 13
+    },
+    "proficient": false,
+    "equiped": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674494021683,
+    "modifiedTime": 1684819088386,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

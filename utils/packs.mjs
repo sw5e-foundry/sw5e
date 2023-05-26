@@ -19,13 +19,13 @@ const parsedArgs = yargs(process.argv).argv;
  * base 5e system folder.
  * @type {string}
  */
-const PACK_DEST = "packs/packs";
+const PACK_DEST = "./dist/packs/packs";
 
 /**
  * Folder where source JSON files should be located relative to the 5e system folder.
  * @type {string}
  */
-const PACK_SRC = "packs/src";
+const PACK_SRC = "./packs/";
 
 /**
  * Cache of DBs so they aren't loaded repeatedly when determining IDs.
@@ -175,6 +175,7 @@ function compilePacks() {
   const packs = folders.map(folder => {
     const filePath = path.join(PACK_DEST, `${folder.name}.db`);
     fs.rmSync(filePath, { force: true });
+    fs.mkdirSync(PACK_DEST, { recursive: true });
     const db = fs.createWriteStream(filePath, { flags: "a", mode: 0o664 });
     const data = [];
     logger.info(`Compiling pack ${folder.name}`);

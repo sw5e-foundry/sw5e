@@ -1,0 +1,219 @@
+{
+  "_id": "vVZLhjV6BbKQRTxr",
+  "name": "Hewey",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/Vibroblade.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true,
+          true
+        ],
+        "altValue": [
+          true,
+          true
+        ],
+        "context": []
+      },
+      "quickVersatile": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": false,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:05.3831321+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-hewey.subtype-vibroblade"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Weapon (Vibroblade)</h4>\n <p>You gain a +1 bonus to attack and damage rolls with this enhanced weapon.</p>\n<p>This weapon has 6 charges and regains [[/r 1d6]] charges when you complete a long rest. Once per turn when you hit with a melee weapon attack with this weapon, you can expend a charge to have the weapon deal an additional [[/r 1d8]] kinetic damage. </p>\n<p><em>Hewey is an N-30 battle blade owned by the mercenary Corso Riggs during the Galactic Cold War.</em></p>\n<p> </p>\n<h2>Vibroblade</h2>\n<h3>Versatile ([[/r 1d10]])</h3>\n<p>A weapon with this property can be used with one or two hands. A damage value in parentheses appears with the property—the damage when the weapon is used with two hands to make a melee attack.\t</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 5,
+    "price": {
+      "denomination": "gc",
+      "value": 200
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "advanced",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": 6,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": "1",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + @mod + 1",
+          "kinetic"
+        ],
+        [
+          "1d8",
+          "kinetic"
+        ]
+      ],
+      "versatile": "1d10 +  @mod + 1"
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "none"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialVW",
+    "baseItem": "vibroblade",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "ver": "1d10"
+    },
+    "proficient": false,
+    "equiped": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493965013,
+    "modifiedTime": 1684819089341,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "_id": "x8dYUCTyZiFEgh28",
+  "name": "Disarming Blow",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/DisarmingBlow.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:02.790635+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-disarming_blow"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice that it's holding. You add the superiority die to the attack's damage roll, and the target must make a Strength saving throw. On a failed save, it drops the object you choose. If you have a free hand and are within 5 feet of the creature, you can catch the item. Otherwise, the object lands at the creature's feet.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "physical"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983325,
+    "modifiedTime": 1684819093424,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

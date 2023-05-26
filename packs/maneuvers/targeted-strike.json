@@ -1,0 +1,93 @@
+{
+  "_id": "FN3JiMBjAuwvnC7Q",
+  "name": "Targeted Strike",
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/TargetedStrike.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:02.8036278+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-targeted_strike"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>When an ally who can see or hear you makes an attack against a creature, you can use your reaction to expend a superiority die. You add the superiority die to the attack roll, and the damage roll if it hits. You can use this maneuver before or after the attack roll, but before the GM determines whether or not the attack hits.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "mental"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493983279,
+    "modifiedTime": 1684819093422,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

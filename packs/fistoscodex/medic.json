@@ -1,0 +1,2557 @@
+{
+  "name": "Medic",
+  "type": "npc",
+  "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+  "items": [
+    {
+      "_id": "ZjFmMDVlMjJlMWMz",
+      "name": "Triage",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>Any friendly creature reduced to 0 HP within 15 feet of the field medic is automatically considered to be alive and stabilized.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "NGMxNWRjZjZlMWYx",
+      "name": "Techcasting",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The field medic is a 3rd-level techcaster. Its techcasting ability is Intelligence (power save DC 12, +4 to hit with tech attacks) and it has 14 tech points.</p><p>The</p><p>junior engineer knows the following force powers:</p><p>At-will: acid splash, temporary boost, warding shot</p><p>1st-level: element of surprise, kolto pack, poison dart</p><p>2nd-level: paralyze humanoid, toxin purge, shared shielding</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "ZGQ2YzA1NDFmNGU5",
+      "name": "Parry",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The captain adds 3 to its AC against one melee attack that would hit it. To do so, the captain must see the attacker and be wielding a melee weapon.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "reaction",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "YmZhNmFkYmRkNjY2",
+      "name": "Blaster Carbine",
+      "type": "weapon",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong><em>Ranged Weapon Attack </em>+3, Range 60/240 ft., One target. <em>Hit : </em>4 (1d6+1) energy damage</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "quantity": 1,
+        "weight": 1,
+        "price": {
+          "denomination": "gc",
+          "value": 0
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 60,
+          "long": 240,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "dex",
+        "actionType": "rwak",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d6+1",
+              "energy"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "hvy": false,
+          "fin": false,
+          "lgt": false,
+          "rch": false,
+          "rel": null,
+          "ret": false,
+          "spc": false,
+          "thr": false,
+          "two": false,
+          "ver": false,
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "smr": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fix": false,
+          "ilk": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rck": null,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "YmFjZDA0NTAzNzRh",
+      "name": "Move",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>Mand'alor can move up to their speed without provoking opportunity attacks.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "MjEyMjlmYjUyYjZh",
+      "name": "Attack",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>Mand'alor makes one weapon attack.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "YjZlNWNjZjZmMmRh",
+      "name": "Sole Leader (Costs 3 Actions)",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>Mand'alor shouts a rallying cry to allies within 60ft that can hear or see them. Whenever Mand'alor or a friendly creature within range makes an attack roll or a saving throw, they can roll a d8 and add the number rolled to the attack roll or saving throw. This aura lasts for one round.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "legendary",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "JFGYzn1SLM2PYBJh",
+      "name": "Acid Splash",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.gOVe5Qv8Bwkn9gAf"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/AcidSplash.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>You emit a burst of acid. Choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage.</p>\n<p>This power's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": 2,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 60,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "save",
+        "attackBonus": null,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d6",
+              ""
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "dex",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 0,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "m8jsFbaeiwrAL8aU",
+      "name": "Temporary Boost",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.T9yaDZKiKSX8zFud"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/TemporaryBoost.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The power then ends.</p>\n<p>This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "touch"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 0,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": true,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "oZhvZgbsShNy46Gm",
+      "name": "Warding Shot",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.N6ohW2LtSCM976xi"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/WardingShot.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>As part of the action used to cast this power, you must make a ranged weapon attack against one creature within your weapon's range, otherwise the power fails. On a hit, the target suffers the attack's normal effects, and a dim barrier surrounds it. The first time it would deal damage before the start of your next turn, that damage is reduced by 1d6.</p>\n<p>This power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "round"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "spec"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 0,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "1zWLg3uRONNVePqf",
+      "name": "Element of Surprise",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.Rygvn8mB2NySWQ2s"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/ElementofSurprise.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>You expel a sabotage charge at the creature that attacked you. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "reaction",
+          "cost": 1,
+          "condition": " which you take in response to being damaged by a creature within 60 feet of you that you can see"
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 60,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "save",
+        "attackBonus": null,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "2d10",
+              "fire"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "dex",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 1,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "dUPWEnVE2qdIYEAN",
+      "name": "Kolto Pack",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.KQXx0PfcNGX8uuIj"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/KoltoPack.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>A creature of your choice that you can see within range regains hit points equal to 1d4 + your techcasting ability modifier. This power has no effect on droids or constructs.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "bonus",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 60,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "heal",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d4 + @abilities.int.mod",
+              "healing"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 1,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "1rCr3l0v3v2EJIjF",
+      "name": "Poison Dart",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.d2hRQpNWYK6JxnCu"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/PoisonDart.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>Make a ranged tech attack against a creature within range. On hit, the target takes 2d8 poison damage and must make a Constitution save. On a failed save, it is also poisoned until the end of your next turn.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": null,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 60,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "rpak",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "2d8",
+              "poison"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 1,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "IZhr4sVRmAkaLLSL",
+      "name": "Paralyze Humanoid",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.zXCnz8vBWC4fhvfw"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/ParalyzeHumanoid.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>You emit a paralyzing dart at a humanoid that you can see within range. The target must succeed on a Constitution saving throw or be poisoned for the duration. While poisoned in this way, the target is paralyzed. At the end of each of its turns, the target can make another Constitution saving throw. On a success, the power ends on the target.</p>\n<p><em><strong>Overcharge Tech.</strong></em> When you cast this power using a tech slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "minute"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": 60,
+          "long": null,
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "save",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 2,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": true,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "otOoFy7QYaRbQBna",
+      "name": "Toxin Purge",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.Xn8F3DKTsC7GD00Q"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/ToxinPurge.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>You touch a creature. If it is poisoned or diseased, you neutralize the poison or disease. If more than one poison or disease afflicts the target, you neutralize one poison or disease that you know is present, or you neutralize one at random.</p>\n<p>For the duration, the target has advantage on saving throws against being poisoned or diseased, and it has resistance to poison damage.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "hour"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "touch"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 2,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "lP17YUg8ex6kMqxj",
+      "name": "Shared Shielding",
+      "type": "power",
+      "sort": 0,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.techpowers.c4SsNyGyxVhoTcT7"
+        },
+        "sw5e": {
+          "dataVersion": "1.2.4"
+        }
+      },
+      "img": "systems/sw5e/packs/Icons/Tech%20Powers/SharedShielding.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>This power wards a willing creature you touch and creates an energy link between you and the target until the power ends. While the target is within 60 feet of you, it gains a +1 bonus to AC and saving throws, and it has resistance to all damage. Also, each time it takes damage, you take the same amount of damage.</p>\n<p>The power ends if you drop to 0 hit points or if you and the target become separated by more than 60 feet. It also ends if the power is cast again on either of the connected creatures. You can also dismiss the power as an action.</p>\n",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "Fisto's Codex",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 1,
+          "units": "hour"
+        },
+        "cover": null,
+        "target": {
+          "value": 1,
+          "width": null,
+          "units": "",
+          "type": "creature"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": "touch"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "int",
+        "actionType": "",
+        "attackBonus": "@prof",
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "level": 2,
+        "school": "tec",
+        "components": {
+          "vocal": false,
+          "somatic": false,
+          "material": false,
+          "ritual": false,
+          "concentration": false,
+          "value": ""
+        },
+        "materials": {
+          "value": "",
+          "consumed": false,
+          "cost": 0,
+          "supply": 0
+        },
+        "preparation": {
+          "mode": "",
+          "prepared": true
+        },
+        "scaling": {
+          "mode": "none",
+          "formula": ""
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e": {
+      "dataVersion": "1.2.4"
+    }
+  },
+  "_id": "FcHniIqFYA6QtlrR",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "dex": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "con": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "int": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 2,
+        "save": 2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 12
+      },
+      "wis": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "cha": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "hon": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 14,
+        "calc": "natural",
+        "formula": "heavy combat suit, light shield",
+        "min": 0
+      },
+      "hp": {
+        "value": 16,
+        "max": 16,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": "3d8+3",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0,
+        "mod": 1,
+        "prof": 0,
+        "total": 1
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": "passive Perception 13"
+      },
+      "force": {
+        "points": {
+          "value": 14,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": 14,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 9,
+          "max": 0
+        },
+        "level": 3
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "engineer",
+      "prof": 2,
+      "powerdc": 10,
+      "bar1": {
+        "value": 16,
+        "min": 0,
+        "max": 16
+      },
+      "bar2": {
+        "value": 14,
+        "min": 0,
+        "max": 0
+      },
+      "death": {
+        "success": null,
+        "failure": null
+      },
+      "exhaustion": null,
+      "inspiration": false,
+      "encumbrance": {
+        "value": 1,
+        "max": 150,
+        "pct": 0.6666666666666666,
+        "encumbered": false
+      },
+      "powerForceLightDC": 11,
+      "powerForceDarkDC": 10,
+      "powerForceUnivDC": 11,
+      "powerTechDC": 12
+    },
+    "details": {
+      "biography": {
+        "value": "<p>Medics were soldiers who were trained to provide first aid to injured comrades in battle. Some of the Grand Army of the Republic's clone troopers were clone medics, such as Kix of the 501st Legion. In a medical emergency, medics had the authority to countermand orders from a superior officer.<br /></p>",
+        "public": ""
+      },
+      "alignment": "Any Alignment",
+      "species": "",
+      "type": {
+        "value": "humanoid",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": 1,
+      "powerForceLevel": 0,
+      "powerTechLevel": 3,
+      "superiorityLevel": 0,
+      "source": "Fisto's Codex",
+      "xp": {
+        "value": 200
+      },
+      "race": "",
+      "class": "",
+      "powerLevel": 1
+    },
+    "traits": {
+      "size": "med",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": ""
+      },
+      "languages": {
+        "value": [
+          "basic"
+        ],
+        "custom": ""
+      }
+    },
+    "currency": {
+      "gc": 0,
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      },
+      "med": {
+        "value": 1,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 13,
+        "prof": 2,
+        "total": 3
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      },
+      "prc": {
+        "value": 1,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 13,
+        "prof": 2,
+        "total": 3
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 11,
+        "prof": 0,
+        "total": 1
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 1000,
+        "max": 0
+      },
+      "power2": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 1000,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 1000,
+        "max": 0
+      },
+      "power3": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power4": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power5": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power6": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power7": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power8": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power9": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "pact": {
+        "value": 0,
+        "max": 0,
+        "override": null,
+        "level": 0
+      },
+      "power0": {
+        "value": 0,
+        "max": 0,
+        "fmax": 0,
+        "fvalue": 0,
+        "tmax": 0,
+        "tvalue": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": true,
+        "initiative": 20
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "flags": {},
+    "name": "Medic",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.bar2"
+    },
+    "randomImg": false,
+    "alpha": 1,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "texture": {
+      "src": "systems/sw5e/packs/Icons/monsters/376_-_Medic/Token.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 5,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493968724,
+    "modifiedTime": 1677349712369,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

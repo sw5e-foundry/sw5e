@@ -1,0 +1,99 @@
+{
+  "_id": "O8C8bsq30F6U3wtX",
+  "name": "Finding My Way",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-finding_my_way.source-archetypeinvocation.sourceName-audiotech_engineering.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> Rush</em></p>\n<p>While you are playing an enhanced song, when a creature would make a melee attack roll against you, you can use your reaction to move 5 feet without provoking opportunity attacks, imposing disadvantage on the roll. </p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Audiotech Engineering), Rush",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 2,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981081,
+    "modifiedTime": 1684777308934,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "_id": "nOOoyylQ0oT0mvSa",
+  "name": "Truelight",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.342215+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-truelight.source-archetypeinvocation.sourceName-armstech_engineering.level-11"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 11th level, Flashlight</em></p>\n<p>You modify your flashlight with a toggle allowing you to briefly gain enhanced sight. As a bonus action, you can activate the truesight feature of your flashlight. When toggled on, for the next minute your flashlight now automatically dispel illusions and can detect invisibility, as with truesight.</p>\n<p>Once you've used this feature, you must complete a short or long rest before you can use it again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Armstech Engineering) 11, Flashlight",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981213,
+    "modifiedTime": 1684777308939,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "name": "Role Mastery: Freighter",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Medium.webp",
+  "effects": [
+    {
+      "_id": "qQTMHDrpIch61Q7C",
+      "flags": {
+        "dae": {
+          "stackable": false,
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "changes": [
+        {
+          "key": "system.details.role",
+          "value": "Courier",
+          "mode": 2,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "label": "Role Mastery: Courier",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "4jLcqnxPuOpM0AlD",
+  "system": {
+    "description": {
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p>\n<h3>Freighter</h3>\n<p>When your ship fails a Strength or Dexterity saving throw, a deployed crew member can use their reaction to jettison some of the cargo stored in its storage compartments. If you jettison at least 50 tons of cargo, you can reroll the saving throw and must use the new roll. If you jettison at least 75 tons of cargo, however, you instead automatically succeed on the saving throw. Additionally, the area in a line 300 feet long and 100 feet wide behind your ship becomes difficult terrain for 1 minute.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": "When your ship fails a Strength or Dexterity saving throw"
+    },
+    "duration": {
+      "value": "",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": 300,
+      "width": 100,
+      "units": "ft",
+      "type": "line"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": "0",
+      "max": "0",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": "roleMastery"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "size": "Medium",
+    "tier": "4"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017903,
+    "modifiedTime": 1677699337502,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

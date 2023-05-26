@@ -1,0 +1,38 @@
+<form id="short-rest-hd" class="dialog-content" onsubmit="event.preventDefault();">
+    <p>{{ localize "SW5E.ShortRestHint" }}</p>
+    <div class="form-group">
+        <label>{{ localize "SW5E.ShortRestSelect" }}</label>
+        <div class="form-fields">
+            <select name="hd">
+                {{#select denomination}}
+                {{#each availableHD as |num denom|}}
+                <option value="{{denom}}">{{denom}} ({{num}} {{ localize "SW5E.available" }})</option>
+                {{/each}}
+                {{/select}}
+            </select>
+            <button id="roll-hd" {{#unless canRoll}}disabled{{/unless}}>
+                <i class="fas fa-dice-d20"></i> {{ localize "SW5E.Roll" }}
+            </button>
+        </div>
+        {{#unless canRoll}}
+        <p class="notes">{{ localize "SW5E.ShortRestNoHD" }}</p>
+        {{/unless}}
+    </div>
+    
+    {{#if promptNewDay}}
+    <div class="form-group">
+        <label>{{ localize "SW5E.NewDay" }}</label>
+        <input type="checkbox" name="newDay" {{checked newDay}}/>
+        <p class="hint">{{ localize "SW5E.NewDayHint" }}</p>
+    </div>
+    {{/if}}
+
+    <div class="dialog-buttons">
+        {{#each buttons as |button id|}}
+        <button class="dialog-button" data-button="{{id}}">
+            {{{button.icon}}}
+            {{{button.label}}}
+        </button>
+        {{/each}}
+    </div>
+</form>

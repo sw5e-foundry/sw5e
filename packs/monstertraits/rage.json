@@ -1,0 +1,96 @@
+{
+  "name": "Rage",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Monster%20Traits/Rage.webp",
+  "effects": [],
+  "flags": {
+    "entityorder": {
+      "order": 204
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>On it's turn, the {creature} can enter a rage as a bonus action in combat. The rage lasts for 1 minute and can be used once per day, gaining the following abilities: </p><ul><li><p>+2 damage on all melee attacks. </p></li><li><p>Resistance to kinetic damage.</p></li></ul>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "day",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": null
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": 0,
+      "charged": false
+    },
+    "powercasting": {
+      "force": "none",
+      "tech": "none"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1669752886621,
+    "modifiedTime": 1677349726597,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "ZA7T3x3B7fmLnLLP"
+}

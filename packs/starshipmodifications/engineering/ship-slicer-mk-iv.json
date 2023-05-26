@@ -1,0 +1,148 @@
+{
+  "_id": "TfPhFlV7VEFe9W5Y",
+  "name": "Ship Slicer, Mk IV",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>As an action, a crew member may cause a ship that you can see within 600 feet to succeed on an Intelligence saving throw (DC = 8 + prof. bonus + ship's charisma modifier) or be incapacitated for up to a minute, until the ability ends. At the end of each of its turns, the ship can make another Intelligence saving throw. On a success, the power ends on the target.</p><p>A crew member must use it's bonus action to maintain this ability.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": 600,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "int",
+      "dc": null,
+      "scaling": "cha"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Engineering"
+    },
+    "grade": {
+      "value": "4"
+    },
+    "basecost": {
+      "value": "3500"
+    },
+    "prerequisites": {
+      "value": "Ship Slicer, Mk III"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "attunement": 0,
+    "proficient": false,
+    "equipped": false,
+    "identified": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Strength": false,
+      "Steadfast": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494018683,
+    "modifiedTime": 1677349746308,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

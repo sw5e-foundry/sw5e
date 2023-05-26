@@ -1,0 +1,137 @@
+{
+  "_id": "JlBFNmACItJ0vFlP",
+  "name": "Crippling Shot",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Gunner.webp",
+  "effects": [
+    {
+      "_id": "VV7NiuurLhagmEBw",
+      "changes": [
+        {
+          "key": "system.attributes.movement.fly",
+          "mode": 1,
+          "value": ".5",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Deployments/Gunner.webp",
+      "label": "Crippling Shot",
+      "origin": "Compendium.sw5e.deploymentfeatures.JlBFNmACItJ0vFlP",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "macroRepeat": "none",
+          "specialDuration": [],
+          "transfer": false
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Weapons</em><br>When you hit a ship with a ship attack, you can expend one power die to cripple it. Add the power die to the attack's damage roll, and the target ship's flying speed is reduced by half until the end of their next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Gunner 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.weapons.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Gunner"
+    },
+    "featureType": {
+      "value": "Gambit"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963429,
+    "modifiedTime": 1677349705096,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "_id": "hM4iAJm05SAZ5I0h",
+  "name": "Circlet of Persistence",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": false,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": false,
+          "resource": true
+        }
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.7145191+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-circlet_of_persistence.subtype-head"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Adventuring Gear (Head)</h4>\n <p><em><strong>Requires attunement</strong></em></p>\n<p><em>Prerequisite:  at least 3 levels in consular</em></p>\n<hr />\n<p>This item can hold a number of charges equal to half your consular level (rounded up). When you complete a long rest, this item regains all missing charges. When you would use a Force-Empowered Casting option, you can expend charges instead of force points.</p>\n<p>When you reach 5th level in consular, when you use your Force Recovery feature, you can add both your Wisdom and Charisma modifier to the number of force points regained, instead of just one.</p>\n<p>When you reach 11th level in consular, you can ignore the prerequisites for force powers that are lower level than your Max Power Level.</p>\n<p>When you reach 17th level in consular, when you make a Constitution saving throw to maintain concentration on a force power, you can add your Wisdom or Charisma modifier (your choice, minimum of one) if it doesn't already include that modifier. </p>\n<p><em>This platinum circlet contains a gem that shifts colors at the whim of its bearer.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "denomination": "gc",
+      "value": 0
+    },
+    "attunement": 1,
+    "equipped": false,
+    "rarity": "prototype",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "ceil((@classes.consular.levels)/2)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": null,
+      "type": "clothing",
+      "dex": null
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "attributes": {
+      "capx": {
+        "value": null
+      },
+      "dmgred": {
+        "value": null
+      },
+      "regrateco": {
+        "value": null
+      },
+      "cscap": {
+        "value": null
+      },
+      "sscap": {
+        "value": null
+      },
+      "fuelcostsmod": {
+        "value": null
+      },
+      "powerdicerec": {
+        "value": ""
+      },
+      "hdclass": {
+        "value": null
+      }
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "baseItem": "",
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "properties": {},
+    "proficient": true
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964895,
+    "modifiedTime": 1684819089317,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

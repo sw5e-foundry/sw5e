@@ -6,6 +6,9 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import { rollup } from "rollup";
 import yargs from "yargs";
 
+import packageJSON from "../package.json" assert { type: "json" };
+import commonjs from "rollup-plugin-commonjs";
+
 
 /**
  * Parsed arguments passed in through the command line.
@@ -18,6 +21,8 @@ const parsedArgs = yargs(process.argv).argv;
  * @type {string[]}
  */
 const LINTING_PATHS = ["./sw5e.mjs", "./module/"];
+const JAVSCRIPT_DEST = "./dist";
+const JAVASCRIPT_WATCH = ["module/**/*.mjs", "sw5e.mjs"];
 
 
 /**
@@ -26,16 +31,27 @@ const LINTING_PATHS = ["./sw5e.mjs", "./module/"];
  * - `gulp buildJS` - Compile all javascript files into into single file & build source maps.
  */
 async function compileJavascript() {
-  const bundle = await rollup({
+  const config = {
     input: "./sw5e.mjs",
-    plugins: [nodeResolve()]
-  });
-  await bundle.write({
-    file: "./sw5e-compiled.mjs",
-    format: "es",
     sourcemap: true,
-    sourcemapFile: "sw5e.mjs"
-  });
+    plugins: [
+      nodeResolve(),
+      commonjs()
+    ]
+  }
+
+  const outputConfig = {
+    dir: JAVSCRIPT_DEST,
+    chunkFileNames: "[name].mjs",
+    entryFileNames: "sw5e.mjs",
+    manualChunks: {
+      "vendor": Object.keys(packageJSON.dependencies)
+    },
+    format: "es",
+  }
+
+  const bundle = await rollup(config);
+  await bundle.write(outputConfig);
 }
 export const compile = compileJavascript;
 
@@ -60,3 +76,7 @@ function lintJavascript() {
   return mergeStream(tasks);
 }
 export const lint = lintJavascript;
+
+export function watchUpdates() {
+  gulp.watch(JAVASCRIPT_WATCH, compileJavascript);
+}

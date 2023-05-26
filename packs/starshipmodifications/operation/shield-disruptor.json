@@ -1,0 +1,148 @@
+{
+  "_id": "k81N2qizzLdaHCk1",
+  "name": "Shield Disruptor",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>This modification adds a shield disruptor to a ship, which is used to interfere with another ship's shield. As an action, a crew member can activate the shield disruptor and choose a ship they can see within 1,000 feet. You make a Charisma (Interfere) check contested by the target's Constitution (Regulate) check. On a failed save, the ship's shield capacity and shield regeneration rate are reduced by half for 1 minute. If the ship's current shield points would exceed the new shield capacity, they are reduced accordingly. At the start of each of the target ship's turns, a crew member can use an action to repeat the saving throw, ending the effect on a success.</p><p>If a ship is targeted by a larger ship, it has disadvantage on the saving throw. If targeted by a smaller ship, it instead has advantage.</p><p>You can end the shield disruptor at any time (no action required).</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": 1000,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Operation"
+    },
+    "grade": {
+      "value": 1
+    },
+    "basecost": {
+      "value": 3500
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "attunement": 0,
+    "proficient": false,
+    "equipped": false,
+    "identified": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Strength": false,
+      "Steadfast": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494018727,
+    "modifiedTime": 1677349746355,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

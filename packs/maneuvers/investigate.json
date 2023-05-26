@@ -1,0 +1,93 @@
+{
+  "name": "Investigate",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:02.7946326+00:00",
+      "importer_version": 3,
+      "uid": "Maneuvers.name-investigate"
+    }
+  },
+  "type": "maneuver",
+  "img": "systems/sw5e/packs/Icons/Maneuvers/Investigate.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>When you make an Investigation check, you can expend a superiority die, rolling the die and adding it to the [[/r d20]] roll. You can wait until after rolling the [[/r d20]] before doing so, but you must decide before the GM says whether the roll succeeds or fails.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Proficiency in Investigation",
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@scale.superiority.die",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "maneuverType": "general"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1667426102988,
+    "modifiedTime": 1684819093421,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "578sIP6QTEx6qxWA"
+}

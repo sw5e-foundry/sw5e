@@ -1,0 +1,193 @@
+{
+  "_id": "6YjuCoVzaVhplvT4",
+  "name": "External Docking System",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Suite.webp",
+  "effects": [
+    {
+      "_id": "jg01GHFOrEq9Irhs",
+      "changes": [
+        {
+          "key": "system.attributes.movement.space",
+          "mode": 2,
+          "value": "-50",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.movement.turn",
+          "mode": 2,
+          "value": "+50",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Suite.webp",
+      "label": "External Docking System",
+      "origin": "Compendium.sw5e.starshipmodifications.6YjuCoVzaVhplvT4",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        },
+        "dae": {
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": [],
+          "transfer": true
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>Your ship is equipped with an airlock and couplers designed to attach and connect to one ship of a size one category smaller than your ship. As an action, a crew member can engage or disengage the external docking system. While a ship is coupled to your ship, the ships can share primary systems as appropriate, and creatures can transfer between ships readily. If at least one external docking system is occupied by at least one ship, your ship's flying speed decreases by 50 feet (to a minimum of 50 feet), its turning speed increases by 50 feet, and its hyperdrive is considered one class greater (to a maximum of Class 20) for determining travel time in hyperspace.</p><p>Alternatively, this suite can accommodate multiple ships of smaller size. A Huge ship takes up the space of 10 Large ships, which in turn takes up the place of 10 Medium ships. One Medium ship takes up the space of five Small ships, which in turn takes up the space of two Tiny ships. You can also replace a ship with a droid or construct of four size categories larger. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "activation": {
+      "type": "",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Suite"
+    },
+    "grade": {
+      "value": "NA"
+    },
+    "basecost": {
+      "value": "5000"
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "attunement": 0,
+    "proficient": false,
+    "equipped": false,
+    "identified": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Strength": false,
+      "Steadfast": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494018621,
+    "modifiedTime": 1677349746238,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,7 +1,7 @@
 import { Progress } from "./progress.mjs";
 import { fontAwesomeIcon, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs"
 import * as browserTabs from "./tabs/_module.mjs";
-import Tagify from "../../../dist/tagify/tagify.esm.js";
+import Tagify from '@yaireo/tagify';
 
 class PackLoader {
   loadedPacks = { Actor: {}, Item: {} };

@@ -1,0 +1,97 @@
+{
+  "_id": "2FXFUjMbxTFaisyv",
+  "name": "Call for Backup",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Coordinator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>When a ship makes an attack roll against your ship, you can use your reaction and expend a power die and command another willing ally ship within 300 feet of the enemy ship to intercede. A crew member on that allied ship manning a weapon station must use their reaction to do so. The enemy ship is then forced to make an attack on the ally ship instead. If the attack misses, the crew member can immediately make a weapon attack against the enemy ship as a part of that same reaction. Roll the power die, and add the result to the ally's attack roll.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Coordinator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": "",
+    "actionType": "rwak",
+    "attackBonus": "0",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "deployment": {
+      "value": "Coordinator"
+    },
+    "featureType": {
+      "value": "Collaboration"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963406,
+    "modifiedTime": 1677349705072,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

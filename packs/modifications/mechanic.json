@@ -1,0 +1,111 @@
+{
+  "name": "Mechanic",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:05.5470372+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-mechanic.subtype-part"
+    }
+  },
+  "type": "modification",
+  "img": "systems/sw5e/packs/Icons/Modifications/droid-part.svg",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<h4>Droid Customization (Part)</h4>\n <p>As an action, you can activate the repair tools, choosing one of the following options:</p>\n<ul>\n<li>You can stabilize a droid within 5 feet of you that has 0 hit points, without needing to make an Intelligence (Technology) check.</li>\n<li>You can restore [[/r 2d4+2]] hit points to a droid or construct within 5 feet.</li>\n</ul>\n<p>You can use each feature once. You regain all expended uses when you complete a long rest.</p>\n<p><em>This part equips the droid with a series of machine repair tools.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "denomination": "gc",
+      "value": 0
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "standard",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d4 + 2",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "modificationType": "droidcustomization",
+    "modificationSlot": "slot1",
+    "modifying": {
+      "id": null,
+      "disabled": false
+    },
+    "properties": {
+      "indeterminate": {}
+    }
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1673970648642,
+    "modifiedTime": 1684819091268,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "f51LhoWogJO2a6Vy"
+}

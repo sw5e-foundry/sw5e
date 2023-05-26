@@ -1,0 +1,93 @@
+{
+  "_id": "ameiUgcoTly17A28",
+  "name": "Adaptive Barrier",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:57.9424459+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-adaptive_barrier.source-archetype.sourceName-gadgeteer_engineering.level-18"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Gadgeteer Engineering:</strong> 18th level</em></p>\n<p>When a creature who has one of your barriers within 30 feet of you that you can see takes damage, and that damage is of a type that could be affected by that barrier, you can use your reaction to grant them resistance to the triggering damage. If that damage is the same type as the barrier's chosen damage, you instead grant them immunity. Whether resistance or immunity, the barrier immediately drops to 0 hit points.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Gadgeteer Engineering) 18",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.1",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957905,
+    "modifiedTime": 1680288495344,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

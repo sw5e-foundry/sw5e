@@ -1,0 +1,10 @@
+<div id="{{id}}" class="app window-app {{classes}} this-is-my-custom-window" data-appid="{{appId}}">
+  <header class="window-header flexrow">
+    <h4 class="window-title">{{title}}</h4>
+    {{#each headerButtons}}
+      <a class="header-button {{this.class}}"><i class="{{this.icon}}"></i></a>
+    {{/each}}
+  </header>
+
+  <section class="window-content"></section>
+</div>

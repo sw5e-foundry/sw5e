@@ -1,0 +1,192 @@
+{
+  "_id": "4bThBS2MMOG5Udt0",
+  "name": "Colicoid",
+  "type": "species",
+  "img": "systems/sw5e/packs/Icons/Species/Colicoid.webp",
+  "effects": [
+    {
+      "_id": "lNQzl0PRPGz1LnkR",
+      "changes": [
+        {
+          "key": "system.details.species",
+          "value": "Colicoid",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.abilities.int.value",
+          "value": "2",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.traits.size",
+          "value": "med",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "value": "25",
+          "mode": 5,
+          "priority": 5
+        },
+        {
+          "key": "system.skills.prc.value",
+          "value": "1",
+          "mode": 4,
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.ac.value",
+          "value": "17+@abilities.dex.mod",
+          "mode": 5,
+          "priority": 1
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "basic",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "system.traits.languages.value",
+          "value": "colicoid",
+          "mode": 0,
+          "priority": 0
+        },
+        {
+          "key": "flags.sw5e.closedMind",
+          "value": "1",
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.cannibalize",
+          "value": "1",
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "macro.execute",
+          "value": "\"Ability Score Increase\" @actor \"Colicoid\"",
+          "mode": 0,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Colicoid.webp",
+      "label": "Colicoid",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "dae": {
+          "transfer": true,
+          "stackable": false,
+          "specialDuration": "None"
+        }
+      },
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:12.2751362+00:00",
+      "importer_version": 3,
+      "uid": "Species.name-colicoid"
+    }
+  },
+  "system": {
+    "data": "$characteristics-table",
+    "description": {
+      "value": "<h2>Biology and Appearance</h2>\n<p>Colicoids are tall insectoids that held multiple appendages. Their bodies are chitinous and include a powerful stinging tail. A colicoid's physiology allows them to curl up into a protective ball and unfurl suddenly which allow them to catch their prey unaware. This rolling method of locomotion is second nature to the colicoids. Their insectoid minds provide them a natural defense against mind tricks. </p>\n<p>Some members are colicoid queens that are different as they are more than twice the size of even the largest warrior breeds. This makes them extremely dangerous and are the only colicoids that possess a unique poisonous stinger. This combined with their strength and size makes them deadly combatants, especially when within their nests. However, a queen tends to only fight when her young are being threatened.</p>\n<h2>Society and Culture</h2>\n<p>Though highly intelligent, colicoids are emotionless and cannibalistic in nature. Their ruthless cunning serves them well on the battlefield as it does on the negotiating table. It is known that long ago that they transferred these ruthless characteristics to their commerce activities. As a result, they are known to be brutally efficient in their business practices. They are noted for being vicious and calculating creatures that are driven by greed whilst showing little regard for others. The colicoids have numerous successful commercial ventures and hold strict business protocols. </p>\n<h2>Names</h2>\n<p>Colicoid names are typically very short and gender neutral, with surnames being based on the queen from which they spawned. </p>\n<p><strong>First Names.</strong> Gal, Het, Kaf, Lyp, Nok, Yin</p>\n<p><strong>Surnames.</strong> Bek, Dor, Set, Tel, Wim, Zal</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "traits": "",
+    "source": "EC",
+    "identifier": "colicoid",
+    "advancement": [
+      {
+        "_id": "1TOC6wxwDq4Yv67M",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.speciesfeatures.m8GWdbj5WvXkF9Kr",
+            "Compendium.sw5e.speciesfeatures.cowbWf4ngIzIUrkm",
+            "Compendium.sw5e.speciesfeatures.WD3MHdyBow9jQ0Gb",
+            "Compendium.sw5e.speciesfeatures.4u5ylBfOVzDspEmb",
+            "Compendium.sw5e.speciesfeatures.jgXgwrkXGFoOYlFO",
+            "Compendium.sw5e.speciesfeatures.YgNJ2vV9gtzAhCTX",
+            "Compendium.sw5e.speciesfeatures.NjTk7ChqgHdtxLdd",
+            "Compendium.sw5e.speciesfeatures.Ewn5spXpAjRLhDKY",
+            "Compendium.sw5e.speciesfeatures.nRynMjKjoG4BX3ms",
+            "Compendium.sw5e.speciesfeatures.l9JOIkoVIFINS8Y0",
+            "Compendium.sw5e.speciesfeatures.DROXXgEI8pygRfh8",
+            "Compendium.sw5e.speciesfeatures.rb7vsegqyMEqHiHy"
+          ],
+          "optional": true
+        },
+        "value": {},
+        "level": 0,
+        "title": "Traits"
+      }
+    ],
+    "skinColorOptions": {
+      "value": "Brown, green, or purple"
+    },
+    "hairColorOptions": {
+      "value": "None"
+    },
+    "eyeColorOptions": {
+      "value": "Orange, purple, red, or yellow"
+    },
+    "colorScheme": {
+      "value": null
+    },
+    "distinctions": {
+      "value": "Carnivorous insectoids, four legs, defensive \"ball mode\""
+    },
+    "heightAverage": {
+      "value": "5'2\""
+    },
+    "heightRollMod": {
+      "value": "+2d10\""
+    },
+    "weightAverage": {
+      "value": "120 lb."
+    },
+    "weightRollMod": {
+      "value": "x(2d4) lb."
+    },
+    "homeworld": {
+      "value": "Colla IV"
+    },
+    "slanguage": {
+      "value": "Colicoid"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674494002063,
+    "modifiedTime": 1684819095033,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

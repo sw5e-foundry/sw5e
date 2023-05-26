@@ -10,9 +10,6 @@ export function cleanDist() {
   return deleteAsync(["dist/**", "!dist/.gitkeep"], {force: true});
 }
 
-// Default export - build CSS
-export default gulp.series(css.compile);
-
 // Javascript compiling & linting
 export const buildJS = gulp.series(javascript.compile);
 export const lint = gulp.series(javascript.lint);
@@ -57,3 +54,6 @@ export const watchUpdates = gulp.series(
     )
   )
 );
+
+// Default export - build CSS
+export default buildAll;

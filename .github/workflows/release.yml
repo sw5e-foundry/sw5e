@@ -14,31 +14,12 @@ jobs:
         with:
           node-version: 16
 
-      - name: Cache NPM
-        id: cache-npm
-        uses: actions/cache@v3
-        with:
-          path: node_modules/
-          key: npm-${{ hashFiles('package-lock.json') }}
-
-      - name: Install NPM
-        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        run: npm ci
-
-      - name: Compile with Gulp
-        uses: elstudio/actions-js-build/build@v4
-        with:
-          args: buildAll --prod
-
-      - name: Zip Files
-        working-directory: ./
-        run: zip -r ./system.zip ./dist/*
-
       # Get the most recent version number from the CHANGELOG.md file
       - name: Get Most Recent Version Number
-        id: get-version
+        id: get_version
         run: |
-          version=$(grep -E '^##.*' CHANGELOG.md | head -n 1 | awk '{print $2}')
+          version=$(grep -oP '(?<=^## \[)[0-9.]+(?=\])' CHANGELOG.md | head -n 1)
+          echo "${version}"
           echo "version=${version}" >> $GITHUB_OUTPUT
 
       # Substitute the Manifest and Download URLs in the module.json with the most recent version number
@@ -51,6 +32,25 @@ jobs:
           version: ${{ steps.get-version.outputs.version }}
           manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
           download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
+
+      - name: Cache NPM
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: node_modules/
+          key: npm-${{ hashFiles('package-lock.json') }}
+
+      - name: Install NPM
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Compile with Gulp
+        working-directory: ./
+        run: gulp buildAll --dist
+
+      - name: Zip Files
+        working-directory: ./
+        run: zip -r ./system.zip ./dist/*
 
       - name: Create Release
         id: create-release

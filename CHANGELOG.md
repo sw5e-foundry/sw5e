@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.
 - Innate powers no longer count towards your known powers.
 - When opening the powerbooks tab, the selected subtab will be one you have levels or powers known.
+- Project Restructure. The entire `sw5e` project has undergone an internal restructuring, more closely matching the `dnd5e` system. As part of this, the system is now provided as a single, rolled-up file to end users. This means that if your module was previously importing individual files or classes from the sw5e system directory, those imports will no longer work. All of the public classes are available on the `sw5e` object, however, and this object should be available to your module code immediately, without any need for hooks.
 
 ### Fixed
 

@@ -1,9 +1,8 @@
-name: Beta Versioning
-
+name: Automatic Versioning
 on:
   push:
     branches:
-      - beta
+      - master
 
 jobs:
   build:
@@ -60,7 +59,7 @@ jobs:
           allowUpdates: true
           name: ${{ steps.get_version.outputs.version }}
           draft: false
-          prerelease: true
+          prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
           artifacts: "./system.zip, ./static/system.json"
           generateReleaseNotes: true

@@ -1,4 +1,4 @@
-import { slugifyIcon } from "./utils.mjs";
+import { sluggifyPath } from "./utils.mjs";
 
 /**
  * Checks if the world needs migrating.
@@ -461,7 +461,7 @@ export const getMigrationData = async function() {
     const icons = await (await fetch("systems/sw5e/json/icon-migration.json")).json();
     data.iconMap = {};
     for (const [old_path, new_path] of Object.entries(icons)) {
-      const slug = slugifyIcon(old_path);
+      const slug = sluggifyPath(old_path);
       data.iconMap[slug] = new_path;
     }
 
@@ -709,7 +709,7 @@ async function _migrateTokenImage(actorData, updateData, { iconMap } = {}) {
     if (!path?.startsWith(prefix)) return;
 
     const img = path.substring(prefix.length);
-    let slug = slugifyIcon(img);
+    let slug = sluggifyPath(img);
 
     if (iconMap && slug in iconMap) slug = iconMap[slug];
 
@@ -737,7 +737,7 @@ async function _migrateItemIcon(item, updateData, { iconMap } = {}) {
   if (!item.img?.startsWith(prefix)) return updateData;
 
   const img = item.img.substring(prefix.length);
-  let slug = slugifyIcon(img);
+  let slug = sluggifyPath(img);
 
   if (iconMap && slug in iconMap) slug = iconMap[slug];
 

@@ -3392,6 +3392,18 @@ SW5E.traits = {
     label: "SW5E.DamVuln",
     configKey: "damageTypes"
   },
+  sdi: {
+    label: "SW5E.ShldDamImm",
+    configKey: "damageTypes"
+  },
+  sdr: {
+    label: "SW5E.ShldDamRes",
+    configKey: "damageTypes"
+  },
+  sdv: {
+    label: "SW5E.ShldDamVuln",
+    configKey: "damageTypes"
+  },
   ci: {
     label: "SW5E.ConImm",
     configKey: "conditionTypes"

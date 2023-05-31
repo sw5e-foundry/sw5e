@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.1.5.2.4.5] - 2023-05-26
+## [2.1.5.2.4.6] - 2023-05-31
 
 ### Added
 
@@ -39,8 +39,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Deprecated item types no longer show up to be created.
 - Huge and Gargantuan ships should now have the proper ammount of hull and shield dice at higher levels.
 - Deployments can once again be ranked up.
+- Shield Damage Resistances/Immunities/Vulnerabilities should once again be editable.
 
-## [2.1.5.2.4.4] - 2023-05-02
+## [2.1.5.2.4.5] - 2023-05-02
 
 ### Added
 

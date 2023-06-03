@@ -200,6 +200,39 @@ export const compile = compilePacks;
 /*  Extract Packs
 /* ----------------------------------------- */
 
+function sortObject(object) {
+  //Thanks > http://whitfin.io/sorting-object-recursively-node-jsjavascript/
+  if (!object) {
+    return object;
+  }
+
+  const isArray = object instanceof Array;
+  var sortedObj = {};
+  if (isArray) {
+    sortedObj = object.map((item) => sortObject(item));
+  } else {
+    var keys = Object.keys(object);
+    // console.log(keys);
+    keys.sort(function(key1, key2) {
+      (key1 = key1.toLowerCase()), (key2 = key2.toLowerCase());
+      if (key1 < key2) return -1;
+      if (key1 > key2) return 1;
+      return 0;
+    });
+
+    for (var index in keys) {
+      var key = keys[index];
+      if (typeof object[key] == 'object') {
+        sortedObj[key] = sortObject(object[key]);
+      } else {
+        sortedObj[key] = object[key];
+      }
+    }
+  }
+
+  return sortedObj;
+}
+
 /**
  * Extract the contents of compendium packs to JSON files.
  *
@@ -250,7 +283,9 @@ function extractPacks() {
                 if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
               }
             }
-            hasChanges = JSON.stringify(entry) !== JSON.stringify(oldFile);
+            const oldJson = JSON.stringify(sortObject(oldFile));
+            const newJson = JSON.stringify(sortObject(entry));
+            hasChanges = oldJson !== newJson;
           }
 
           if (hasChanges) {

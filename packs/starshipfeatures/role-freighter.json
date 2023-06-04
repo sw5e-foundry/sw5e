@@ -6,11 +6,6 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": "none",
-          "specialDuration": [],
-          "transfer": true
-        },
         "core": {
           "statusId": ""
         }
@@ -33,7 +28,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Medium.webp",
       "label": "Role: Freighter",
       "tint": null,
       "transfer": true,
@@ -54,7 +49,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -111,6 +106,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 150
+      }
+    },
     "size": "Medium",
     "tier": "0"
   },
@@ -119,10 +120,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017945,
-    "modifiedTime": 1677699337923,
+    "modifiedTime": 1684514151597,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

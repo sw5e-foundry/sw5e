@@ -7,7 +7,7 @@
   "_id": "P2cJTyboU0Xsjq5n",
   "system": {
     "description": {
-      "value": "<p>Also at 1st tier, your starship&rsquo;s firepower can overwhelm larger ships.</p>\n<p>When a crew member deals damage to a Large or larger ship with a ship weapon, the crew member can increase the damage by rolling a Superior Firepower die, which is a d4, and add it to the damage roll (no action required).</p>\n<p>Your ship&rsquo;s Superior Firepower die changes when it reaches certain tiers. The die becomes a d6 at 2nd tier, a d8 at 3rd tier, a d10 at 4th tier, and a d12 at 5th tier.</p>\n<p>This feature can be used a number of times equal to 3 x your ship&rsquo;s tier. All expended uses are regained when the ship undergoes recharging.</p>",
+      "value": "<p>Also at 1st tier, your starship's firepower can overwhelm larger ships.</p><p>When a crew member deals damage to a Large or larger ship with a ship weapon, the crew member can increase the damage by rolling a Superior Firepower die, which is a [[/r 1d4]], and add it to the damage roll (no action required).</p><p>Your ship's Superior Firepower die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to 3 x your ship's tier. All expended uses are regained when the ship undergoes recharging.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -35,8 +35,8 @@
       "units": ""
     },
     "uses": {
-      "value": "3",
-      "max": "3",
+      "value": null,
+      "max": "@details.tier*3",
       "per": "recharge",
       "recovery": ""
     },
@@ -71,6 +71,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Gargantuan",
     "tier": "1"
   },
@@ -81,10 +87,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017933,
-    "modifiedTime": 1677699337795,
+    "modifiedTime": 1684686831621,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

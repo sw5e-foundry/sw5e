@@ -7,17 +7,27 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
         {
           "key": "system.details.role",
-          "value": "Scout",
           "mode": 2,
+          "value": "Scout",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.scn.bonuses.check",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.skills.prb.bonuses.check",
+          "mode": 2,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -49,7 +59,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -106,6 +116,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Small",
     "tier": "2"
   },
@@ -116,10 +132,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017949,
-    "modifiedTime": 1677699337964,
+    "modifiedTime": 1683926196807,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

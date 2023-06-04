@@ -7,7 +7,7 @@
   "_id": "db0LHu2rFIbO98e6",
   "system": {
     "description": {
-      "value": "<p>Also at 3rd tier, your ship is equipped with a superweapon. As an action, a deployed operator can activate the superweapon, which has a limited firing arc, as described in Chapter 9. When activated, a beam of destructive energy forming a line 10,000 feet long and 100 feet wide blasts from the weapon. Each ship in the line must make a Dexterity saving throw (DC = 8 + the crew member&rsquo;s proficiency bonus + the ship&rsquo;s Strength modifier). On a failed save, a ship takes 15d10 energy damage, or half as much on a successful one.</p>\n<p>Once this feature has been used, it can&rsquo;t be used again until the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Also at 3rd tier, your ship is equipped with a superweapon. As an action, a crew member can activate the superweapon, which has a limited firing arc, as described in Chapter 9. When activated, a beam of destructive energy forming a line 10,000 feet long and 100 feet wide blasts from the weapon. Each ship in the line must make a Dexterity saving throw (DC = 8 + the crew member's proficiency bonus + the ship's Strength modifier). On a failed save, a ship takes 15d10 energy damage, or half as much on a successful one.</span></p><p>Once this feature has been used, it can't be used again until the ship recharges.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -35,8 +35,8 @@
       "units": ""
     },
     "uses": {
-      "value": "6",
-      "max": "6",
+      "value": 1,
+      "max": "1",
       "per": "recharge",
       "recovery": ""
     },
@@ -68,12 +68,22 @@
       "dc": "8+@str.mod+@prof",
       "scaling": "flat"
     },
-    "size": "Gargantuan",
-    "tier": "3",
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
     "recharge": {
       "value": null,
       "charged": false
-    }
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Gargantuan",
+    "tier": "3"
   },
   "ownership": {
     "default": 0
@@ -82,10 +92,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017957,
-    "modifiedTime": 1677699338044,
+    "modifiedTime": 1684687154862,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

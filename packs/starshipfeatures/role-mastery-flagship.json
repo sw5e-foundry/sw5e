@@ -7,10 +7,8 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
@@ -37,7 +35,7 @@
         "startTurn": null,
         "combat": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
       "label": "Role Mastery: Flagship",
       "tint": null,
       "transfer": true,
@@ -48,7 +46,7 @@
   "_id": "ydh3dtYUMg0FI5vK",
   "system": {
     "description": {
-      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p>\n<h3>Flagship</h3>\n<p>A coordinator deployed in a command center can, as an action, issue an order to a Huge or smaller ship. That ship can immediately move up to its flying speed, and up to five crew members on that ship can use their reaction to immediately take an action.</p>\n<p>Once this feature has been used, it can&rsquo;t be used again until the ship recharges.</p>",
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p><h3>Flagship</h3><p>A crew member in a command center can, as an action, issue an order to a Huge or smaller ship. That ship can immediately move up to its flying speed, and up to five crew members on that ship can use their reaction to immediately take an action.</p><p>Once this feature has been used, it can't be used again until the ship recharges.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -112,6 +110,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Gargantuan",
     "tier": "4"
   },
@@ -122,10 +126,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017985,
-    "modifiedTime": 1677699524472,
+    "modifiedTime": 1683839193058,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

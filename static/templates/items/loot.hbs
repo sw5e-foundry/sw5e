@@ -2,8 +2,9 @@
     {{!-- Item Sheet Header --}}
     <header class="sheet-header loot-header flexrow">
         <div class="composed-icon profile">
-            <img class="profile background" src="{{item.rarityIcon}}"/>
+            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
             <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
         </div>
 
         <div class="header-details flexrow">

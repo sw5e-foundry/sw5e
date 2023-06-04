@@ -7,7 +7,7 @@
   "_id": "VPkdsE9elNtUVRwf",
   "system": {
     "description": {
-      "value": "<p>Also at 1st tier, your starship gains the ability to automatically mitigate damage from ships.</p>\n<p>Once per turn, as a reaction to being dealt damage by a ship weapon, a crew member can use their reaction and roll a Damage Control die, which is a d4, and subtract it from the damage roll.</p>\n<p>Your ship&rsquo;s Damage Control die changes when it reaches certain tiers. The die becomes a d6 at 2nd tier, a d8 at 3rd tier, a d10 at 4th tier, and a d12 at 5th tier.</p>\n<p>This feature can be used a number of times equal to 4 x your ship&rsquo;s tier. All expended uses are regained when the ship undergoes refitting.</p>",
+      "value": "<p>Also at 1st tier, your starship gains the ability to automatically mitigate damage from ships.</p><p>Once per turn, as a reaction to being dealt damage by a ship weapon, a crew member can use their reaction and roll a Damage Control die, which is a [[/r 1d4]], and subtract it from the damage roll.</p><p>Your ship's Damage Control die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to 4 x your ship's tier. All expended uses are regained when the ship undergoes refitting.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -35,8 +35,8 @@
       "units": ""
     },
     "uses": {
-      "value": "4",
-      "max": "4",
+      "value": null,
+      "max": "4*@details.tier",
       "per": "refitting",
       "recovery": ""
     },
@@ -45,7 +45,7 @@
       "target": "",
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -57,7 +57,7 @@
       "parts": [],
       "versatile": ""
     },
-    "formula": "",
+    "formula": "1d((2*@details.tier)+2)",
     "save": {
       "ability": "",
       "dc": null,
@@ -71,6 +71,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Huge",
     "tier": "1"
   },
@@ -81,10 +87,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017944,
-    "modifiedTime": 1677699337910,
+    "modifiedTime": 1684687960819,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -169,6 +175,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -262,6 +274,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -299,8 +317,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -477,8 +495,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -889,6 +907,10 @@
     "details": {
       "biography": {
         "value": "<blockquote><p><i style=\"font-size:13px\">\"But wesa still needen our beasts, to carry weapons and shields. The evil mackineecks had captured the beasts, for killin' and skinnin'. As the Queen and her big brains plan a big nasty, wesa attacking Camp Six, to rescue our animals and complete disen Gungan Grand Army.\"</i><span style=\"font-size:13px\"> </span></p><p><span style=\"font-size:13px\">- Boss Rugor Nass in a journal entry</span><br /></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\">Amphibian</td></tr><tr><td style=\"line-height:1.42857\"><u>Average height</u></td><td style=\"line-height:1.42857\">9 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Skin color</u></td><td style=\"line-height:1.42857\"><ul><li>Brown</li><li>Green</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Eye color</u></td><td style=\"line-height:1.42857\">Yellow</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u><br /></td><td style=\"line-height:1.42857\"><ul><li>Naboo</li><li>Onderon</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u></td><td style=\"line-height:1.42857\">Swamp</td></tr><tr><td style=\"line-height:1.42857\"><u>Diet</u></td><td style=\"line-height:1.42857\">Herbivorous</td></tr></tbody></table><p>Fambaas were herbivorous amphibians native to the swamps of the planet Naboo.</p><p>The largest terrestrial herbivores of the swamp, fambaas were technically amphibians but had the scaly hide of reptiles. The creatures were native to the Gungan Swamps of Naboo and the jungles of Onderon.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Characteristics</h3><blockquote><p style=\"margin-bottom:9px\"><i>\"I know how you feel. You lost your master, and I lost my Jedi.\"</i> </p><p style=\"margin-bottom:9px\">- Hondo Ohnaka to Preigo's fambaa</p></blockquote><p>Fambaas were large non-sentient amphibians native to the Gungan swamps of the planet Naboo, as well as Onderon. They obtained food by easily knocking over trees to get at leaves and berries. They also foraged for underwater plants, breathing underwater and swimming with ease. They reached sizes of up to 9 meters.<br /></p><p>In the wild, fambaas traveled in herds of up to twelve, but formed breeding herds of hundreds of family units that were so large they were traditionally put to pasture in sacred swampy areas. There were also special fambaa stables contained inside the underwater hydrostatic bubble-enclosed cities for the domesticated breeds kept by Gungans. Females laid large numbers of sticky, gelatinous eggs, which they deposited in puddles and underwater. The young hatched with moist skin and gills, and upon maturity, the gills disappeared and their skin hardened.</p><p>Their only known predators were sando aqua monsters breaching the surface of the swamp waters from the abyssal ocean beneath.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">History</h3><p>The fambaa had been domesticated by Gungans for millennia as beasts of burden and cavalry/artillery draft beasts. In times of war, fambaas were used to carry portable deflector shield generators for protecting their Gungan masters. They were also mounted with large booma cannons. During the Trade Federation occupation of Naboo in 32 BBY, the fambaas were placed in Camp Six. They were subsequently released by the Gungan Grand Army and outfitted for use in the the Gungan's diversionary battle. During that battle, the fambaa-mounted shield generator protected the Grand Army until the generators were destroyed by battle droids.</p><p>During their Clone Wars insurgency, the Onderon rebels used fambaas to hold heavy artillery.[8] In Abafar, they were used as meat in a dish known as Fambaa Delight. Around that time, Preigo's Traveling World of Wonder had a fambaa as part of the performance. The beast was abandoned to the Ohnaka Gang when Preigo and the other performers fled a Jedi rescue mission.</p><p>During the Galactic Civil War, Senior Captain Thrawn of the Imperial Navy, tasked a experienced spacer to kill an adult fambaa for him, then retrieve a vial blood sample in order for Thrawn to conduct a scientific experiment.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1393,10 +1415,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984261,
-    "modifiedTime": 1677349723265,
+    "modifiedTime": 1685840636909,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

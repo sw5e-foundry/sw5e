@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -175,6 +181,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -267,6 +279,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -304,8 +322,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -482,8 +500,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -1954,14 +1972,6 @@
               "hostile": false,
               "onlyOnce": false,
               "time": "None"
-            },
-            "dae": {
-              "stackable": false,
-              "specialDuration": [
-                "None"
-              ],
-              "transfer": true,
-              "macroRepeat": "none"
             }
           },
           "changes": [
@@ -1999,10 +2009,6 @@
       "folder": "boSlXwcgRsEXyVpZ",
       "sort": 0,
       "flags": {
-        "dae": {
-          "activeEquipped": false,
-          "alwaysActive": true
-        },
         "autoanimations": {
           "killAnim": false,
           "override": false,
@@ -2133,6 +2139,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -2238,8 +2250,8 @@
         "quantity": 1,
         "weight": 20,
         "price": {
-          "denomination": "gc",
-          "value": 500
+          "value": 500,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -2443,7 +2455,7 @@
         "coreVersion": "10.291",
         "createdTime": 1674493960285,
         "modifiedTime": 1674581996872,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     }
   ],
@@ -2495,14 +2507,6 @@
           "hostile": false,
           "onlyOnce": false,
           "time": "None"
-        },
-        "dae": {
-          "stackable": false,
-          "specialDuration": [
-            "None"
-          ],
-          "transfer": true,
-          "macroRepeat": "none"
         }
       },
       "sort": 0
@@ -2760,6 +2764,10 @@
     "details": {
       "biography": {
         "value": "<h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Ugnaught</h3><p>\n\t\t\n\t\n\t\n\t\t</p><div class=\"userscript-page\" title=\"Page 186\">\n\t\t\t<div class=\"userscript-layoutArea\">\n\t\t\t\t<div class=\"userscript-column\">\n\t\t\t\t\t<p>Diminutive, porcine humanoids who have pink skin,\nupturned noses, white hair, and thick layers of jowls,\nUgnaughts are considered one of the hardest-working\nspecies in the galaxy. Some have tusks that they use in\nblood duels. They are strong and resilient, and their\nlife-spans reach up to more than 200 standard years.\nThey notably ate genteslugs. Ugnaughts evolved on\nGentes, a planet located in the Anoat sector of the\nOuter Rim Territories. However, throughout history,\nmany were sold into slavery and taken to new worlds\nto work as slaves or indentured servants. </p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Lawful Dark",
@@ -3271,10 +3279,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493968998,
-    "modifiedTime": 1677349712710,
+    "modifiedTime": 1685840621027,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -7,10 +7,8 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
@@ -31,7 +29,7 @@
         "startTurn": null,
         "combat": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
       "label": "Role Mastery: Warship",
       "tint": null,
       "transfer": true,
@@ -42,14 +40,14 @@
   "_id": "10Tl6Ac42kq34Hjv",
   "system": {
     "description": {
-      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p>\n<h3>Warship</h3>\n<p>When a deployed gunner on your ship rolls the maximum on a damage die for a ship weapon, they can roll an additional die.</p>",
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p><h3>Warship</h3><p>When a crew member on your ship rolls the maximum on a damage die for a ship weapon, they can roll an additional die.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -106,6 +104,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Gargantuan",
     "tier": "4"
   },
@@ -116,10 +120,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017898,
-    "modifiedTime": 1677699337463,
+    "modifiedTime": 1683907361517,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

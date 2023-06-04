@@ -7,17 +7,21 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
         {
           "key": "system.details.role",
-          "value": "Colonizer",
           "mode": 2,
+          "value": "Colonizer",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.fuel.fuelCap",
+          "mode": 1,
+          "value": "2",
           "priority": 20
         }
       ],
@@ -31,7 +35,7 @@
         "startTurn": null,
         "combat": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
       "label": "Role Mastery: Colonizer",
       "tint": null,
       "transfer": true,
@@ -49,7 +53,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -106,6 +110,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Huge",
     "tier": "4"
   },
@@ -116,10 +126,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017904,
-    "modifiedTime": 1677699337513,
+    "modifiedTime": 1683839090575,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

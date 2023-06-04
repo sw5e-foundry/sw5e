@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -175,6 +181,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -270,8 +282,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -506,8 +518,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -918,6 +930,10 @@
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"These must be the 'unique items' we were warned about. These assassin droids can be very unpredictable.\"</i></p><p><span style=\"font-size:13px\"><i>\"They're switched off. They don't look so tough to me.\"</i></span></p><p><i>\"Nothing looks tough to you. Take my word for it—they're deadly.\"</i></p><p>- Anakin Skywalker and Ahsoka Tano, encountering a pair of inactive IG-86s aboard the Vulture's Claw</p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Manufacturer</u></td><td style=\"line-height:1.42857\">Holowan Mechanicals</td></tr><tr><td style=\"line-height:1.42857\"><u>Class</u></td><td style=\"line-height:1.42857\">Assassin droid</td></tr><tr><td style=\"line-height:1.42857\"><u>Height</u></td><td style=\"line-height:1.42857\">1,96 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Gender</u></td><td style=\"line-height:1.42857\">Masculine programming<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Sensor color</u></td><td style=\"line-height:1.42857\">Red</td></tr><tr><td style=\"line-height:1.42857\"><u>Plating color</u></td><td style=\"line-height:1.42857\"><ul><li>Gray</li><li>Red</li></ul></td></tr></tbody></table><p>The IG-86 sentinel droid was a model of assassin droids manufactured by Holowan Mechanicals as a subsidiary of Holowan Laboratories, the same company that created the IG-88 assassin droid. It was designed to function as a bodyguard, or home security system for the wealthy, but was usually used for more sinister purposes.</p><h3>Characteristics</h3><blockquote><p><i>\"O Ziro the Hutt, Master of the Hutt Clan on seven systems, I am sorry, Your Highness. It will not happen again.\"</i></p><p><span style=\"font-size:13px\"><i>\"I know. Take him away, and use him for spare parts!\"</i></span></p><p>- KRONOS-327 and Ziro the Hutt, after the droid's failure to complete a mission</p></blockquote><p>IG-86 sentinel droids were similar in appearance to the earlier IG-series droids such as the IG lancer combat droid and later models such as the IG-88 assassin droid. Considered to be some of the deadliest droids in the galaxy, they were more intelligent and agile than standard battle droids, able to think logically and creatively. They were capable assassins working individually or in groups.<br /></p><h3>History</h3><blockquote><p><i>\"After all these years, my most trusted of assassins has finally failed.\"</i></p><p><span style=\"font-size:13px\">- Ziro Desilijic Tiure, on KRONOS-327</span></p></blockquote><p>IG-86 units were owned by Ziro the Hutt and were adorned with a Black Sun marking, like their master. One of these was KRONOS-327, which was used as a sentry droid by Ziro.</p><p>When Anakin Skywalker and Ahsoka Tano were searching for R2-D2 on the freighter Vulture's Claw, owned by the Trandoshan scavenger Gha Nachkt, they were attacked by a pair of IG-86 droids. Though they demonstrated their exceptional agility and firepower, they were destroyed by the two Jedi.</p><p>Later on, three of these droids were used by Cad Bane during his capture of the Senate Building. They bore similar Black Sun markings as those employed by Ziro the Hutt, suggesting that they might have been the Hutt's personal property and not Bane's. Anakin Skywalker, who was not carrying his lightsaber at the time, destroyed one of the droids by clubbing it with its own blaster rifle.</p><p>Some of these droids were known to be used by the Confederacy of Independent Systems.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1431,10 +1447,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984319,
-    "modifiedTime": 1677349723327,
+    "modifiedTime": 1685840636969,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

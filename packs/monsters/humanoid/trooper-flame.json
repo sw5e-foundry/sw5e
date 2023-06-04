@@ -81,8 +81,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -259,8 +259,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -567,6 +567,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -838,6 +844,10 @@
     "details": {
       "biography": {
         "value": "<p><i>\"We're almost through. Bring in the flamethrowers.\"</i></p><p>―Jedi General Ki-Adi-Mundi, during the Second Battle of Geonosis</p><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Organization type</u><br /></td><td style=\"line-height:1.42857\">Specialized Trooper</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Leader(s)</u></p></td><td style=\"line-height:1.42857\"><ul><li>Supreme Chancellor Sheev Palpatine</li><li><span style=\"background-color:transparent\">Jedi High Council</span><br /></li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\"><ul><li>Tipoca City, Kamino</li><li>Galactic City, Coruscant</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">c. 32 BBY, approximately 10 years before the Clone Wars</td></tr><tr><td style=\"line-height:1.42857\"><u>Date reorganized</u></td><td style=\"line-height:1.42857\">19 BBY, as the first generation of stormtroopers<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Date dissolved</u></td><td style=\"line-height:1.42857\">19 BBY, Kamino cloning facilities shut down<br /></td></tr><tr><td style=\"line-height:1.42857\"><p><u>Affiliation</u></p></td><td style=\"line-height:1.42857\"><p>Galactic Republic (Flame Trooper Corps)</p></td></tr></tbody></table><p>Clone flametroopers were clone troopers of the flame trooper corps equipped with insulated armor and BT X-42 heavy flame projectors. Flame troopers under the command of Jedi General Ki-Adi-Mundi and Clone Commander CC-1993 \"Jet\" were highly effective against the Geonosians during the Second Battle of Geonosis.</p><p>For general information about troopers, see <a class=\"entity-link\" data-entity=\"Actor\" data-id=\"NDYyNmJkM2ZkYjhm\"><i class=\"fas fa-user\"></i>Trooper</a></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Any Alignment",
@@ -1344,10 +1354,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984337,
-    "modifiedTime": 1677349723346,
+    "modifiedTime": 1685840636988,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

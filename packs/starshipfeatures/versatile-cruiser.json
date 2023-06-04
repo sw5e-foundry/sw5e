@@ -35,8 +35,8 @@
       "units": ""
     },
     "uses": {
-      "value": "6",
-      "max": "6",
+      "value": null,
+      "max": "@details.tier*2",
       "per": "recharge",
       "recovery": ""
     },
@@ -71,6 +71,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Huge",
     "tier": "3"
   },
@@ -81,10 +87,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017967,
-    "modifiedTime": 1677699524285,
+    "modifiedTime": 1684687323066,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

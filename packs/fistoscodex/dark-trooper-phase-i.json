@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -170,6 +176,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -261,6 +273,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -357,8 +375,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -593,8 +611,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -1005,6 +1023,10 @@
     "details": {
       "biography": {
         "value": "<p>The Dark Trooper Project was a program run by General Rom Mohc of the Galactic Empire, funded by Emperor Palpatine, to develop what would have become next generation stormtroopers/battle droids, the dark troopers.</p><h3 style=\"font-family:&quot;helvetica neue&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif\">Phase I Dark Trooper</h3><p style=\"margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">The Phase I dark trooper was the earliest dark trooper and was little more than a lightsaber-resistant phrik skeletal frame equipped with a vibrosword attached to its right arm, and a blast shield on its left. It served primarily as an installation sentry.</p><p style=\"margin-bottom:10.5px;line-height:1.2em;z-index:15;overflow:hidden\">The Phase I dark trooper had visible power cords and couplings, which were prime weak points. The prototype of this \"super trooper\" had a small jump pack for short bursts of speed to increase the velocity of its vibro blades.<br /></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1519,10 +1541,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493968759,
-    "modifiedTime": 1677349712404,
+    "modifiedTime": 1685840620758,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

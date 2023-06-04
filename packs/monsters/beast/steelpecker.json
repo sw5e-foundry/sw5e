@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -170,6 +176,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -207,8 +219,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -619,6 +631,10 @@
     "details": {
       "biography": {
         "value": "<table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u><br /></td><td style=\"line-height:1.42857\">Jakku</td></tr></tbody></table><p>Steelpeckers were a non-sentient species of carrion bird native to the planet Jakku. They had beaks and talons that were tipped with iron; they fed mainly on metal, to which they were drawn by its magnetic signature. To digest the metal they consumed, Steelpeckers stored vanadium, osmiridium, and corundum in their gizzards. Named for their diet, these birds were useful commodities to scavengers, who collected their carcasses and guano.<br /></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1123,10 +1139,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984349,
-    "modifiedTime": 1677349723359,
+    "modifiedTime": 1685840637002,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

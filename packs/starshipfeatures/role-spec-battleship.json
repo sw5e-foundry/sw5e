@@ -7,10 +7,8 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
@@ -37,7 +35,7 @@
         "startTurn": null,
         "combat": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
       "label": "Role Specialization: Battleship",
       "tint": null,
       "transfer": true,
@@ -55,7 +53,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -112,6 +110,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Huge",
     "tier": "2"
   },
@@ -122,10 +126,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017897,
-    "modifiedTime": 1677699337457,
+    "modifiedTime": 1683907656297,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -6,13 +6,7 @@
   "effects": [
     {
       "_id": "qQTMHDrpIch61Q7C",
-      "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
-        }
-      },
+      "flags": {},
       "changes": [
         {
           "key": "system.details.role",
@@ -55,7 +49,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -112,6 +106,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Small",
     "tier": "5"
   },
@@ -122,10 +122,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017969,
-    "modifiedTime": 1677699524310,
+    "modifiedTime": 1683737794897,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

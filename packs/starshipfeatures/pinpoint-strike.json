@@ -7,7 +7,7 @@
   "_id": "5izWUYBCKNHqUTg6",
   "system": {
     "description": {
-      "value": "<p>Also at 1st tier, your starship gains the ability to slip underneath the shields of an enemy ship.</p>\n<p>When your ship occupies the same square occupied by a target ship and the pilot makes an attack roll, as a reaction, the pilot can, before rolling the attack, roll a Pinpoint Strike die, which is a d4, and add it to the attack roll. If the attack requires a saving throw instead, you may subtract the Pinpoint Strike die from the target's save result. On a hit, the attack deals normal damage that bypasses any shields and directly hits the hull of the target ship. This feature can only be used by the pilot, and it can only be used once per round.</p>\n<p>Your ship&rsquo;s Pinpoint Strike die changes when it reaches certain tiers. The die becomes a d6 at 2nd tier, a d8 at 3rd tier, a d10 at 4th tier, and a d12 at 5th tier.</p>\n<p>This feature can be used a number of times equal to your ship&rsquo;s tier. All expended uses are regained when the ship recharges.</p>",
+      "value": "<p>Also at 1st tier, your starship gains the ability to slip underneath the shields of an enemy ship.</p><p>When your ship occupies the same square occupied by a target ship and the crew member at the helm makes an attack roll, as a reaction, they can, before rolling the attack, roll a Pinpoint Strike die, which is a [[/r 1d4]], and add it to the attack roll. If the attack requires a saving throw instead, you may subtract the Pinpoint Strike die from the target's save result. On a hit or a failed save, the attack deals normal damage that bypasses any shields and directly hits the hull of the target ship. This feature can only be used once per round.</p><p>Your ship's Pinpoint Strike die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -19,8 +19,8 @@
       "condition": ""
     },
     "duration": {
-      "value": "",
-      "units": ""
+      "value": "1",
+      "units": "round"
     },
     "cover": null,
     "target": {
@@ -35,9 +35,9 @@
       "units": ""
     },
     "uses": {
-      "value": "0",
-      "max": "0",
-      "per": "",
+      "value": null,
+      "max": "@details.tier",
+      "per": "recharge",
       "recovery": ""
     },
     "consume": {
@@ -46,7 +46,7 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "rwak",
+    "actionType": "",
     "attackBonus": "1d((2*@details.tier)+2)",
     "chatFlavor": "",
     "critical": {
@@ -71,6 +71,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Small",
     "tier": "1"
   },
@@ -81,10 +87,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017905,
-    "modifiedTime": 1677699337519,
+    "modifiedTime": 1684688172147,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

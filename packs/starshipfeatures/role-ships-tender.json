@@ -6,11 +6,6 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": "none",
-          "specialDuration": [],
-          "transfer": true
-        },
         "core": {
           "statusId": ""
         }
@@ -39,7 +34,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Large.webp",
       "label": "Role: Ship's Tender",
       "tint": null,
       "transfer": true,
@@ -60,7 +55,7 @@
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -117,6 +112,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 200
+      }
+    },
     "size": "Large",
     "tier": "0"
   },
@@ -125,10 +126,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017928,
-    "modifiedTime": 1677699337759,
+    "modifiedTime": 1684520870463,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -173,8 +179,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -406,6 +412,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -556,6 +568,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -579,10 +597,6 @@
       "type": "feat",
       "sort": 0,
       "flags": {
-        "dae": {
-          "activeEquipped": false,
-          "alwaysActive": true
-        },
         "autoanimations": {
           "killAnim": false,
           "override": false,
@@ -664,14 +678,6 @@
               "hostile": false,
               "onlyOnce": false,
               "time": "None"
-            },
-            "dae": {
-              "stackable": false,
-              "specialDuration": [
-                "None"
-              ],
-              "transfer": true,
-              "macroRepeat": "none"
             }
           },
           "changes": [
@@ -775,6 +781,12 @@
         "recharge": {
           "value": null,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -881,8 +893,8 @@
         "quantity": 1,
         "weight": 55,
         "price": {
-          "denomination": "gc",
-          "value": 750
+          "value": 750,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -1086,7 +1098,7 @@
         "coreVersion": "10.291",
         "createdTime": 1674493960313,
         "modifiedTime": 1674582004892,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     }
   ],
@@ -1109,14 +1121,6 @@
           "hostile": false,
           "onlyOnce": false,
           "time": "None"
-        },
-        "dae": {
-          "stackable": false,
-          "specialDuration": [
-            "None"
-          ],
-          "transfer": true,
-          "macroRepeat": "none"
         }
       },
       "changes": [
@@ -1403,6 +1407,10 @@
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"Clear the bridge. Escort the officers down to the hangar.\"</i></p><p>- Poe Dameron</p></blockquote><p>Officer was a commissioned military class. Generally they were above the enlisted soldiers in positions of authority and command. Officers could be divided between junior officers of lower rank, and senior officers of a higher rank. Republic officers were command military personnel who served the Galactic Republic during the Clone Wars, while Separatist officers were command military personnel who served the Confederacy of Independent Systems armed forces. Imperial officers were command military personnel of the Imperial Military.</p><p>All military organizations depended on officers to effectively function. Non-commissioned officers would work with line infantry, while generals would create strategies and tactics.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1909,10 +1917,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984300,
-    "modifiedTime": 1677349723307,
+    "modifiedTime": 1685840636948,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

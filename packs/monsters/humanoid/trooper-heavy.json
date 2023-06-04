@@ -81,8 +81,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -377,6 +377,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -414,8 +420,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -826,6 +832,10 @@
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"Send the Heavy Gunner in first—he has better armor and more firepower.\"</i></p><p><span style=\"font-size:13px\">- Obi-Wan Kenobi</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Organization type</u><br /></td><td style=\"line-height:1.42857\">Specialized Trooper</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Leader(s)</u></p></td><td style=\"line-height:1.42857\"><ul><li>Supreme Chancellor Sheev Palpatine</li><li><span style=\"background-color:transparent\">Jedi High Council</span><br /></li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\"><ul><li>Tipoca City, Kamino</li><li>Galactic City, Coruscant</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">c. 32 BBY, approximately 10 years before the Clone Wars</td></tr><tr><td style=\"line-height:1.42857\"><u>Date reorganized</u></td><td style=\"line-height:1.42857\">19 BBY, as the first generation of stormtroopers<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Date dissolved</u></td><td style=\"line-height:1.42857\">19 BBY, Kamino cloning facilities shut down<br /></td></tr><tr><td style=\"line-height:1.42857\"><p><u>Affiliation</u></p></td><td style=\"line-height:1.42857\"><p>Galactic Republic (Grand Army of the Republic)</p></td></tr></tbody></table><p>Heavy Gunners were clone troopers in the Grand Army of the Republic that used Z-6 rotary blaster cannons. The troopers had better clone trooper armor than other clones in the army. Due to their heavy blaster, they had superior firepower as well. Heavy Gunners in phase one armor had blue markings. In phase two armor, the clones still possessed blue markings, however, now the troopers also wore a kama, and a pauldron.<br /></p><p>During the Clone Wars, Heavy Gunners could work alongside a clone medic and a clone paratrooper that served as a sniper.</p><p>In 22 BBY, during the first battle of the Clone Wars, the First Battle of Geonosis, Heavy Gunners were deployed alongside the other clone troopers of the Grand Army to engage the Separatist's battle droids and their Geonosian allies. Later in the Clone Wars in 19 BBY, at least one Heavy Gunner fought in the Battle of Kashyyyk.</p><p>For general information about troopers, see <a class=\"entity-link\" data-entity=\"Actor\" data-id=\"NDYyNmJkM2ZkYjhm\" style=\"background-color:rgb( 255 , 255 , 255 )\"><i class=\"fas fa-user\"></i>Trooper</a><br /></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Any Alignment",
@@ -1332,10 +1342,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984420,
-    "modifiedTime": 1677349723434,
+    "modifiedTime": 1685840637078,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

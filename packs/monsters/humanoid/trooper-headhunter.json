@@ -83,6 +83,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -174,6 +180,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -270,8 +282,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -448,8 +460,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -694,8 +706,8 @@
         "quantity": 1,
         "weight": 10,
         "price": {
-          "denomination": "gc",
-          "value": 100
+          "value": 100,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -899,7 +911,7 @@
         "coreVersion": "10.291",
         "createdTime": 1674493960308,
         "modifiedTime": 1674582004877,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     }
   ],
@@ -1155,6 +1167,10 @@
     },
     "details": {
       "biography": {
+        "value": "",
+        "public": ""
+      },
+      "description": {
         "value": "",
         "public": ""
       },
@@ -1662,10 +1678,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984154,
-    "modifiedTime": 1677349723167,
+    "modifiedTime": 1685840636811,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

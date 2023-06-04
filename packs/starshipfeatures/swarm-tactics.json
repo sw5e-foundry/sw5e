@@ -1,0 +1,94 @@
+{
+  "name": "Swarm Tactics",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Tiny.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>Also at 1st tier, your starship is most effective when working in groups.</p><p>Your ship makes the most of every opportunity provided by allies. When a crew member at the helm would make an attack roll against a larger ship, and there is an allied ship within 200 feet of your target, they can roll a Swarm Tactics die, which is a [[/r 1d4]], and add it to the attack roll. You can do this after the roll is made, but before the result is known.</p><p>Your ship's Swarm Tactics die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d6]] at 3rd tier, a [[/r 1d10]] at 4th tier and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to 2 x your ship's tier. All expended uses are regained when the ship is refitted.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@details.tier*2",
+      "per": "refitting",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": "1d((2*@details.tier)+2)",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017905,
+    "modifiedTime": 1684768350300,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "IqloHJq1C9OFfaqj"
+}

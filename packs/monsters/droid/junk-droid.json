@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -169,6 +175,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -265,8 +277,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -501,8 +513,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -913,6 +925,10 @@
     "details": {
       "biography": {
         "value": "<blockquote><p><i>\"I created me! They junked me after a century of loyal mechanical service. So I repaired myself.\"</i></p><p><span style=\"font-size:13px\">- Proto One</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Creator</u></td><td style=\"line-height:1.42857\">Self-made</td></tr><tr><td style=\"line-height:1.42857\"><u>Class</u></td><td style=\"line-height:1.42857\">Junk droid</td></tr></tbody></table><p>Junk droid was a common designation for various self-made droids, created from leftover spare parts. Because of their mashed-together programming they were considered dangerous by most civilized people, for they could go on a rampage, confuse orders, or even start building more of their own kind when having enough junk to do so.</p><h3>History</h3><p>After the Clone Wars, many groups turned to recycling, rebuilding and re-purposing the enormous amount of broken high-tech machinery left on the ravaged battlefields and on the junk worlds such as Raxus Prime, and Lotho Minor. These junk droids were built out of almost any spare droid and/or vehicle parts and were capable of performing a large variety of tasks. They could be roughly divided into three large categories: regular, brute and behemoth droids. Regular droids, fairly fragile and often equipped with shields, were approximately Human size and shape and generally used for common labor tasks. Brute droids were larger, stronger and solid rather than flexible and used as brute-force bodyguards or beasts of burden. Special-build behemoth droids served as walking power plants or armor carriers. On Raxus Prime, Jedi Kazdan Paratus used junk golems, held together only by the power of the Force. Junk droids were fairly common right after the Clone Wars, but as the supply of high-tech components decreased, so did the population of junk droids. Scrap drones were flying junk golems designed specifically to combat Darth Vader, who Kazdan knew would one day find him. Capable of creating a powerful negative feedback field, they could attack with a beam that drained force energy from its victims.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1426,10 +1442,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984052,
-    "modifiedTime": 1677349723055,
+    "modifiedTime": 1685840636702,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

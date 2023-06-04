@@ -21,14 +21,6 @@
           "hostile": false,
           "onlyOnce": false,
           "time": "None"
-        },
-        "dae": {
-          "stackable": false,
-          "specialDuration": [
-            "None"
-          ],
-          "transfer": true,
-          "macroRepeat": "none"
         }
       },
       "changes": [
@@ -64,10 +56,6 @@
     }
   ],
   "flags": {
-    "dae": {
-      "activeEquipped": false,
-      "alwaysActive": true
-    },
     "autoanimations": {
       "killAnim": false,
       "override": false,
@@ -195,6 +183,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "powercasting": {
       "force": "none",
       "tech": "none"
@@ -205,10 +199,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1669757714140,
-    "modifiedTime": 1677349726644,
+    "modifiedTime": 1685840641135,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,

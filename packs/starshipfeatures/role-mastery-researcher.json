@@ -7,10 +7,8 @@
     {
       "_id": "qQTMHDrpIch61Q7C",
       "flags": {
-        "dae": {
-          "stackable": false,
-          "specialDuration": [],
-          "transfer": true
+        "core": {
+          "statusId": ""
         }
       },
       "changes": [
@@ -31,7 +29,7 @@
         "startTurn": null,
         "combat": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
       "label": "Role Mastery: Researcher",
       "tint": null,
       "transfer": true,
@@ -42,14 +40,14 @@
   "_id": "zs3QstSyQeHLzs26",
   "system": {
     "description": {
-      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p>\n<h3>Researcher</h3>\n<p>When you use your ship&rsquo;s Superweapon, you can alter its functionality. Instead of dealing damage, ships who fail a saving throw are blinded, shocked, and shocked for 1 minute. Ships who succeed on the saving throw suffer these effects until the start of the deployed operator&rsquo;s next turn, instead.</p>",
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p><h3>Researcher</h3><p>When you use your ship's Superweapon, you can alter its functionality. Instead of dealing damage, ships who fail a saving throw are blinded, ionized, and shocked for 1 minute. Ships who succeed on the saving throw suffer these effects until the start of the deployed operator's next turn, instead.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "SotG",
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -106,6 +104,12 @@
       "value": null,
       "charged": false
     },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
     "size": "Gargantuan",
     "tier": "4"
   },
@@ -116,10 +120,10 @@
   "sort": 0,
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.5",
     "coreVersion": "10.291",
     "createdTime": 1674494017987,
-    "modifiedTime": 1677699524498,
+    "modifiedTime": 1683839434425,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -19,7 +19,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you move at least 150 feet towards a target, you may declare an Attack Run as an action. You must have a clear path towards your target, and nothing should hinder your path (such as difficult terrain or obstacles). If you finish this movement within range of your target, you may follow it with one of these options:</p>\n<p><strong>Fire</strong>. You may make a ship weapon attack from a forward-facing limited arc without suffering the normal disadvantage. If you attack with a tertiary or quartenary weapon, the attack deals additional damage equal to the distance of your attack run divided by 50, up to your ship's Strength modifier (minimum of 1).</p>\n<p><strong>Ram</strong>. You may make a Ram attempt with advantage on your Strength (Ram) check. If you succeed, the target ship takes additional damage equal to the distance of your Attack Run divided by 50, up to your ship's Constitution modifier (minimum of +1), or is damaged as normal and becomes stunned until the end of its next turn.</p>\n<p>Only a deployed pilot can take the Attack Run action.</p>",
+          "value": "<p>When you move at least 150 feet towards a target, you may declare an Attack Run as an action. You must have a clear path towards your target, and nothing should hinder your path (such as difficult terrain or obstacles). If you finish this movement within range of your target, you may follow it with one of these options:</p><p><strong>Fire</strong>. You may make a ship weapon attack from a forward-facing limited arc without suffering the normal disadvantage. If you attack with a tertiary or quaternary weapon, the attack deals additional damage equal to the distance of your attack run divided by 50, up to your ship's Strength modifier (minimum of 1).</p><p><strong>Ram</strong>. You may make a Ram attempt with advantage on your Strength (Ram) check. If you succeed, the target ship takes additional damage equal to the distance of your Attack Run divided by 50, up to your ship's Constitution modifier (minimum of +1).</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -83,6 +83,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -134,10 +140,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699580770,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -156,7 +162,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to boost your speed. When you take the Boost Engines action, you make a DC 12 Strength (Boost) check. On a success you increase your speed by 50 until the end of your ship's next turn.</p>",
+          "value": "<p>You can attempt to boost your speed. When you take the Boost Engines action, you make a DC 10 Strength (Boost) check. On a success you increase your speed by 50 until the end of your ship's next turn.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -197,7 +203,7 @@
         "ability": "",
         "actionType": "abil",
         "attackBonus": 0,
-        "chatFlavor": "DC 12",
+        "chatFlavor": "DC 10",
         "critical": {
           "threshold": null,
           "damage": ""
@@ -219,6 +225,12 @@
         "recharge": {
           "value": 1,
           "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "deployment": "crew",
         "size": "",
@@ -271,10 +283,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699580853,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -293,7 +305,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 12 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
+          "value": "<p>You can attempt to boost your shields. When you take the Boost Shields action, you make a  DC 10 Strength (Boost) check. On a success, you roll a shield die, without expending it, and gain temporary shield points equal to the result that last until the start of your ship's next turn.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -334,7 +346,7 @@
         "ability": "",
         "actionType": "heal",
         "attackBonus": 0,
-        "chatFlavor": "DC 12",
+        "chatFlavor": "DC 10",
         "critical": {
           "threshold": null,
           "damage": ""
@@ -361,6 +373,12 @@
         "recharge": {
           "value": 1,
           "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "deployment": "crew",
         "size": "",
@@ -413,10 +431,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699580930,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -435,7 +453,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to boost your weapon output. When you take the Boost Weapons action, the next time this turn your ship deals damage, you make a DC 12 Strength (Boost) check. On a success, you have advantage on the damage roll.</p>",
+          "value": "<p>You can attempt to boost your weapon output. When you take the Boost Weapons action, the next time this turn your ship deals damage, you make a DC 10 Strength (Boost) check. On a success, you have advantage on the damage roll.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -476,7 +494,7 @@
         "ability": "",
         "actionType": "other",
         "attackBonus": 0,
-        "chatFlavor": "DC 12",
+        "chatFlavor": "DC 10",
         "critical": {
           "threshold": null,
           "damage": ""
@@ -498,6 +516,12 @@
         "recharge": {
           "value": 1,
           "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "deployment": "crew",
         "size": "",
@@ -550,10 +574,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581014,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -636,6 +660,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -691,7 +721,7 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1677699581098,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     },
     {
@@ -709,7 +739,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you take the Conceal action, you make a Dexterity (Hide) check in an attempt to conceal your ship, following the rules in chapter 7 for hiding. If you succeed, you gain certain benefits, as described in the \"Unseen Attackers and Targets\" section later in this chapter.</p>\n<p>Only a deployed pilot can take the Conceal action.</p>",
+          "value": "<p>When you take the Conceal action, you make a Dexterity (Hide) check in an attempt to conceal your ship, following the rules in chapter 7 for hiding. If you succeed, you gain certain benefits, as described in the \"Unseen Attackers and Targets\" section later in this chapter.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -773,6 +803,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -824,10 +860,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581177,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -846,7 +882,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you take the Direct action, one creature can see or hear you gains advantage on the next ability check it makes to perform the task you are helping with, provided that it makes the check before the start of your next turn. Alternatively, you can direct a friendly creature that can hear you in attacking another target. If your ally attacks the target before the start of your next turn, the first attack roll is made with advantage. The Direct action can be taken multiple times on a ship's turn.</p>",
+          "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you take the Direct action, the creature gains advantage on the next ability check it makes to perform the task you are helping with, provided that it makes the check before the start of your next turn. Alternatively, you can direct a friendly creature that can hear you in attacking another target. If your ally attacks the target before the start of your next turn, the first attack roll is made with advantage. The Direct action can be taken multiple times on a ship's turn.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -910,6 +946,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -961,10 +1003,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581254,
+        "modifiedTime": 1685837819506,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -983,7 +1025,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you take the Dogfight action, you engage an enemy, ducking and weaving, vying for a good shot while avoiding theirs. You choose a target you can see and make an opposed Dexterity (Maneuver) check. On a success, you cause the next attack made against your ship by the target to suffer from disadvantage, but you grant the next attack made against your ship by a different target advantage. Additionally, you can perform a primary or tertiary weapon attack from a forward-facing limited firing arc against that ship without suffering the normal disadvantage.</p>\n<p>Only a deployed pilot can take the Dogfight action.</p>",
+          "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you engage a single enemy, you duck and weave, vying for a good shot while avoiding theirs. You choose a target and make an opposed Dexterity (Maneuvering) check. On a success, you cause the next attack made against your ship by the target to suffer from disadvantage, but you grant the next attack made against your ship by a different target advantage. Additionally, you can perform a primary or tertiary weapon attack from a forward facing limited firing arc against that ship without suffering the normal disadvantage.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1047,6 +1089,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -1098,10 +1146,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581337,
+        "modifiedTime": 1685837819507,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1120,7 +1168,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you take the Evade action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack made against you has disadvantage if you can see the attacker on your instruments, and you make Dexterity Saving Throws with advantage.</p>\n<p>This action affects your entire ship: any skill check or attack made by your ship or anyone on it also has disadvantage until the end of your ship's next turn. The effects of Evade end if you are Incapacitated or if your speed drops to 0.</p>\n<p>Only a deployed pilot can take the Evade action.</p>",
+          "value": "<p>When you take the Evade action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack made against you has disadvantage if you can see the attacker on your instruments, and you make Dexterity Saving Throws with advantage.</p><p><span style=\"font-family:'Open Sans', sans-serif\">This action affects your entire ship: any ability check or attack made by your ship or anyone on it has </span>disadvantage until the end of your ship's next turn. The effects of Evade end if you are Incapacitated or if your speed drops to 0.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1184,6 +1232,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -1235,10 +1289,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581418,
+        "modifiedTime": 1685837819507,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1257,7 +1311,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>The most common action to take in combat is the Fire action. With this action, you can make an attack (or attacks) with one ship weapon. See the \"Making an Attack\" section for the rules that govern attacks. The Fire action may be taken multiple times on a ship's turn, but normally only once per weapon. A pilot taking the attack action attacks at disadvantage.</p>",
+          "value": "<p>The most common action to take in combat is the Fire action. With this action, you can make an attack (or attacks) with one ship weapon. See the \"Making an Attack\" section for the rules that govern attacks. The Fire action may be taken multiple times on a ship's turn, but normally only once per weapon. <span style=\"font-family:'Open Sans', sans-serif\">A crew member Firing from the helm has disadvantage on attack rolls with primary and secondary weapons.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1321,6 +1375,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -1372,10 +1432,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581501,
+        "modifiedTime": 1685837819507,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1394,7 +1454,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>When you take the Fly action, you gain extra Movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 300 feet, for example, your ship can move up to 600 feet on its turn if you Fly. Any increase or decrease to your speed changes this additional Movement by the same amount. If your ship's speed of 300 feet is reduced to 150 feet, for instance, your ship can move up to 300 feet this turn if you Fly.</p>\n<p>This action affects your entire ship: any skill check or attack made by your ship or anyone on it also has disadvantage until the end of your ship's next turn.</p>\n<p>Only a deployed pilot can take the Fly action.</p>",
+          "value": "<p>When you take the Fly action, you gain extra Movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 300 feet, for example, your ship can move up to 600 feet on its turn if you Fly. Any increase or decrease to your speed changes this additional Movement by the same amount. If your ship's speed of 300 feet is reduced to 150 feet, for instance, your ship can move up to 300 feet this turn if you Fly.</p><p><span style=\"font-family:'Open Sans', sans-serif\">This action affects your ship's ability to stay on target: any ability check or attack made by your ship or anyone on it has disadvantage until the end of your ship's next turn.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1458,6 +1518,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -1509,10 +1575,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581583,
+        "modifiedTime": 1685837819507,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1531,7 +1597,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can harass an enemy and lock them into a series of close-combat maneuvers in order to prevent their escape. When you take the Harass action, make a contested Dexterity (Maneuver) check against a target within one size category of you and within normal range of at least one of your forward-facing primary weapons. This weapon cannot be used for a Fire action this turn. On a success, if the target voluntarily leaves its square before the beginning of your next turn, it takes damage as though it suffered a critical hit with the primary weapon used to harass.</p>\n<p>Only a deployed pilot can take the Harass action.</p>",
+          "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can harass an enemy and lock them into a series of close-combat maneuvers in order to prevent their escape. When you take the harass action, make an opposed Dexterity (Maneuvering) check against a target within one size category of you and within normal range of at least one of your forward facing primary weapons. This weapon cannot be Fired this turn. On a success, if the target voluntarily leaves it's square before the beginning of your next turn, it takes damage as though it suffered a critical hit with the primary weapon used to harass.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1595,6 +1661,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -1646,10 +1718,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581673,
+        "modifiedTime": 1685837819507,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1668,7 +1740,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to interfere with another creature within 1,000 feet that is deployed on a ship, if you are aware of their presence and location, in the attempt of a task. When you take the Interfere action, you make a Charisma (Interfere) check contested by the target's Wisdom (Scan) check. If you succeed, the subject has disadvantage on the next ability check or attack roll it makes before the start of your next turn. The Interfere action can be taken multiple times on a ship's turn.</p>",
+          "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can attempt to interfere with another creature within 1,000 feet, in the attempt of a task. When you take the Interfere action, you make a Charisma (Interfere) check contested by the target's Wisdom (Scan) check. If you succeed, the subject has disadvantage on the next ability check or attack roll it makes before the start of your next turn. The Interfere action can be taken multiple times on a ship's turn.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1732,6 +1804,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -1783,10 +1861,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581755,
+        "modifiedTime": 1685837819508,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1805,7 +1883,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to have the ship patch up damage it has taken, using one of its Hull Dice. When you take the Patch action, you make a Constitution (Patch) check (DC = 10 or half the ship's missing hull points, whichever number is higher). On a failure, you have disadvantage on the Hull Dice roll. On a success you roll the Hull Die normally. When you would make a Constitution (Patch) check, you may instead make an Intelligence (Mechanic's Kit) check at disadvantage. The Patch action can be taken multiple times on a ship's turn.</p>",
+          "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can attempt to patch up damage a ship has taken, using one of its Hull Dice. When you take the Patch action, you make a Constitution (Patch) check (DC = 10 or half the ship's missing hull points, whichever number is higher). On a failure, you roll the Hull Die twice and take the lesser amount. On a success you roll the Hull Die normally. The Patch action can be taken multiple times on a ship's turn.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -1874,6 +1952,12 @@
           "value": 1,
           "charged": true
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -1925,10 +2009,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581844,
+        "modifiedTime": 1685837819508,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -1947,7 +2031,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>\n<p>Only a deployed pilot can take the Ram action.</p>",
+          "value": "<p>You can attempt to ram another ship while flying through its space. When you take the ram action, you make a Strength (Ram) check opposed by the target's Dexterity (Maneuvering) check. On a failed check the ramming action fails. On a success, both you and the target ship take kinetic damage equal to two of your ship's Hull Dice + your ship's Strength modifier. If your ship has shield points remaining, your ship instead takes half this damage.</p>",
           "chat": "",
           "unidentified": ""
         },
@@ -2016,6 +2100,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "pilot",
         "size": "",
         "identifier": "",
@@ -2067,10 +2157,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699581928,
+        "modifiedTime": 1685837819508,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2153,6 +2243,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -2208,7 +2304,7 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1677699582012,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     },
     {
@@ -2226,7 +2322,7 @@
       },
       "system": {
         "description": {
-          "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally.</p>",
+          "value": "<p>You can attempt to regenerate your shields faster, using one of its Shield Dice. When you take the Regenerate Shields action, you make a Strength (Boost) check (DC = 10 or half the ship's missing shield points, whichever number is higher). On a failure, you roll the Shield Die twice and take the lesser amount. On a success you roll the Shield Die normally. <span style=\"font-family:'Open Sans', sans-serif\">The Regenerate Shields action can only be taken once each ship turn.</span></p>",
           "chat": "",
           "unidentified": ""
         },
@@ -2238,8 +2334,8 @@
           "condition": ""
         },
         "duration": {
-          "value": null,
-          "units": ""
+          "value": "1",
+          "units": "turn"
         },
         "cover": null,
         "target": {
@@ -2295,6 +2391,12 @@
           "value": 1,
           "charged": true
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -2346,10 +2448,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699582096,
+        "modifiedTime": 1685837819508,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2432,6 +2534,12 @@
           "value": 1,
           "charged": true
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -2487,7 +2595,7 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1677699582181,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     },
     {
@@ -2569,6 +2677,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "deployment": "crew",
         "size": "",
         "identifier": "",
@@ -2624,7 +2738,7 @@
         "coreVersion": "10.291",
         "createdTime": null,
         "modifiedTime": 1677699582270,
-        "lastModifiedBy": "sw5ebuilder0000"
+        "lastModifiedBy": null
       }
     },
     {
@@ -2725,7 +2839,7 @@
         },
         "requirements": "",
         "source": "SotG",
-        "identifier": "",
+        "identifier": "medium",
         "tier": 2,
         "hullDice": "d8",
         "hullDiceStart": 5,
@@ -2802,10 +2916,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295788,
+        "modifiedTime": 1685838233352,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2824,15 +2938,15 @@
       },
       "system": {
         "description": {
-          "value": "<p>Also at 1st tier, when a deployed pilot rolls for initiative, they can immediately move the ship. This movement happens before the initiative order is determined.</p>\n<p>The amount the ship moves is determined by rolling an Evasive Maneuvers die, which is a d4, and multiplying it by 50 feet. The ship then gains that many feet that it can move or spend to turn.</p>\n<p>Your ship's Evasive Maneuvers die changes when it reaches certain tiers. The die becomes a d6 at 2nd tier, a d8 at 3rd tier, a d10 at 4th tier, and a d12 at 5th tier.</p>\n<p>This feature can be used a number of times equal to 2 x your ship's tier. All expended uses are regained when the ship is refitted.</p>",
+          "value": "<p>Also at 1st tier, when a crew member at the helm rolls for initiative, they can immediately move the ship. This movement happens before the initiative order is determined.</p><p>The amount the ship moves is determined by rolling an Evasive Maneuvers die, which is a [[/r 1d4]], and multiplying it by 50 feet. The ship then gains that many feet that it can move or spend to turn.</p><p>Your ship's Evasive Maneuvers die changes when it reaches certain tiers. The die becomes a [[/r 1d6]] at 2nd tier, a [[/r 1d8]] at 3rd tier, a [[/r 1d10]] at 4th tier, and a [[/r 1d12]] at 5th tier.</p><p>This feature can be used a number of times equal to 2 x your ship's tier. All expended uses are regained when the ship is refitted.</p>",
           "chat": "",
           "unidentified": ""
         },
         "requirements": "",
         "source": "SotG",
         "activation": {
-          "type": "",
-          "cost": null,
+          "type": "special",
+          "cost": 1,
           "condition": ""
         },
         "duration": {
@@ -2853,8 +2967,8 @@
         },
         "uses": {
           "value": null,
-          "max": "0",
-          "per": "",
+          "max": "2*@details.tier",
+          "per": "refitting",
           "recovery": ""
         },
         "consume": {
@@ -2862,7 +2976,7 @@
           "target": "",
           "amount": null
         },
-        "ability": null,
+        "ability": "",
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
@@ -2887,6 +3001,12 @@
         "recharge": {
           "value": null,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Medium",
         "tier": "1",
@@ -2938,10 +3058,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699582380,
+        "modifiedTime": 1685837819509,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3000,7 +3120,7 @@
         "requirements": "",
         "source": "SotG",
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -3051,11 +3171,17 @@
         },
         "type": {
           "value": "starship",
-          "subtype": ""
+          "subtype": "role"
         },
         "recharge": {
           "value": null,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": 300,
+            "turn": 150
+          }
         },
         "size": "Medium",
         "tier": "0",
@@ -3107,10 +3233,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699582468,
+        "modifiedTime": 1685837819509,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3136,7 +3262,7 @@
         "requirements": "",
         "source": "SotG",
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -3193,6 +3319,12 @@
           "value": null,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "size": "Medium",
         "tier": "2",
         "identifier": "",
@@ -3243,10 +3375,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699582550,
+        "modifiedTime": 1685837819509,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3273,6 +3405,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "reaction",
           "cost": 1,
@@ -3387,8 +3530,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3447,7 +3588,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -3459,10 +3599,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3489,6 +3629,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3603,8 +3754,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3663,7 +3812,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -3675,10 +3823,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3705,6 +3853,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3819,8 +3978,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3879,7 +4036,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -3891,10 +4047,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3954,6 +4110,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4068,8 +4235,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -4128,7 +4293,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4140,10 +4304,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4215,6 +4379,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4329,8 +4504,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -4389,7 +4562,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4401,10 +4573,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4431,6 +4603,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4545,8 +4728,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -4605,7 +4786,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4617,10 +4797,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4647,6 +4827,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4756,8 +4947,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4767,12 +4956,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -4798,6 +4987,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4912,8 +5112,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -4972,7 +5170,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4984,10 +5181,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -5014,6 +5211,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5128,8 +5336,6 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -5188,7 +5394,6 @@
         },
         "strength": null,
         "stealth": false,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5200,10 +5405,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -5230,6 +5435,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5339,8 +5555,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5350,12 +5564,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -5381,6 +5595,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5490,8 +5715,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5501,12 +5724,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -5532,6 +5755,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5641,8 +5875,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5652,12 +5884,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -5683,6 +5915,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5792,8 +6035,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5803,12 +6044,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -5834,6 +6075,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -5943,8 +6195,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5954,12 +6204,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -5985,6 +6235,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -6094,8 +6355,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -6105,12 +6364,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -6136,6 +6395,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -6245,8 +6515,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -6256,12 +6524,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -6287,6 +6555,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -6396,8 +6675,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -6407,12 +6684,12 @@
         "default": 0
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": null,
+        "systemId": "sw5e",
+        "systemVersion": "2.1.5.2.4.6",
+        "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null
+        "modifiedTime": 1685838233403,
+        "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
@@ -6439,7 +6716,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 4400,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -6524,7 +6801,7 @@
         "properties": {
           "aut": false,
           "bur": null,
-          "con": 3,
+          "con": 11,
           "dir": null,
           "exp": false,
           "hvy": false,
@@ -6544,7 +6821,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -6597,10 +6889,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -6628,7 +6920,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 4400,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -6713,7 +7005,7 @@
         "properties": {
           "aut": false,
           "bur": null,
-          "con": 3,
+          "con": 11,
           "dir": null,
           "exp": false,
           "hvy": false,
@@ -6733,7 +7025,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -6786,10 +7093,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -6817,7 +7124,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 4000,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -6922,7 +7229,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -6975,10 +7297,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -7006,7 +7328,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 4150,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -7111,7 +7433,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -7164,10 +7501,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -7195,7 +7532,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 6250,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -7298,7 +7635,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -7351,10 +7703,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -7382,7 +7734,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 6250,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -7485,7 +7837,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -7538,10 +7905,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -7614,8 +7981,8 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "denomination": "gc",
-          "value": 3700
+          "value": 3700,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -7623,7 +7990,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -7691,7 +8058,7 @@
             "value": "6"
           },
           "regrateco": {
-            "value": ""
+            "value": null
           },
           "cscap": {
             "value": null
@@ -7725,7 +8092,7 @@
           "conditions": ""
         },
         "strength": null,
-        "stealth": false,
+        "stealth": true,
         "properties": {
           "Absorptive": null,
           "Agile": null,
@@ -7835,10 +8202,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -7929,8 +8296,8 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "denomination": "gc",
-          "value": 4650
+          "value": 4650,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8003,7 +8370,7 @@
             "value": null
           },
           "dmgred": {
-            "value": ""
+            "value": null
           },
           "regrateco": {
             "value": "0.667"
@@ -8041,7 +8408,27 @@
         },
         "strength": null,
         "stealth": false,
-        "properties": {},
+        "properties": {
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
+        },
         "proficient": true,
         "size": "",
         "identifier": "",
@@ -8119,10 +8506,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -8150,8 +8537,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 10000
+          "value": 10000,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8262,17 +8649,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -8354,10 +8760,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -8385,8 +8791,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 500
+          "value": 500,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8497,17 +8903,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -8589,10 +9014,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295819,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -8620,8 +9045,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 4500
+          "value": 4500,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8629,7 +9054,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -8706,10 +9131,10 @@
             "value": null
           },
           "fuelcostsmod": {
-            "value": null
+            "value": 1
           },
           "powerdicerec": {
-            "value": ""
+            "value": "1"
           },
           "hdclass": {
             "value": null
@@ -8732,17 +9157,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -8824,10 +9268,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295820,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -8855,8 +9299,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 4100
+          "value": 4100,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8864,7 +9308,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -8967,17 +9411,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -9059,10 +9522,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295820,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -9090,7 +9553,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 750,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -9190,11 +9653,11 @@
           "vic": null,
           "ran": false,
           "smr": false,
-          "ilk": false,
-          "mod": false,
-          "pcl": false,
-          "slg": false,
-          "swi": false,
+          "ilk": null,
+          "mod": null,
+          "pcl": null,
+          "slg": null,
+          "swi": null,
           "bit": null,
           "bri": null,
           "bru": null,
@@ -9205,7 +9668,13 @@
           "son": null,
           "spz": null,
           "mgc": false,
-          "exp": true
+          "exp": true,
+          "hom": false,
+          "ion": false,
+          "mlt": false,
+          "pow": false,
+          "sat": false,
+          "zon": false
         },
         "armor": {
           "value": 10
@@ -9285,10 +9754,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295820,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -9349,7 +9818,7 @@
         "requirements": "",
         "source": "SotG",
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -9400,11 +9869,17 @@
         },
         "type": {
           "value": "starship",
-          "subtype": ""
+          "subtype": "roleSpecialization"
         },
         "recharge": {
           "value": null,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Medium",
         "tier": "2",
@@ -9456,10 +9931,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677699582636,
+        "modifiedTime": 1685838233355,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -9486,6 +9961,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -9595,8 +10081,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "attunement": null,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -9607,10 +10091,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358295790,
+        "modifiedTime": 1685838233404,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     }
@@ -10186,6 +10670,10 @@
         "value": "",
         "public": ""
       },
+      "description": {
+        "value": "",
+        "public": ""
+      },
       "source": "Drake's Shipyard",
       "tier": "2",
       "role": []
@@ -10213,14 +10701,17 @@
       },
       "sdi": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "sdr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "sdv": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       }
     },
@@ -10411,10 +10902,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674494006183,
-    "modifiedTime": 1677699582636,
+    "modifiedTime": 1685840656456,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -7,7 +7,7 @@
     {
       "_id": "mvQ2A4njyUOzRNA8",
       "name": "Attack Run",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -61,7 +61,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -72,11 +75,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -127,17 +140,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883207,
+        "modifiedTime": 1685840327079,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "LykIfXXoMDhZuhAF",
       "name": "Boost Engines",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -191,7 +204,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -202,11 +218,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -257,17 +283,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883207,
+        "modifiedTime": 1685840327130,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "mjakD9POz1t8evKG",
       "name": "Boost Shields",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -321,7 +347,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -337,11 +366,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -392,17 +431,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883207,
+        "modifiedTime": 1685840327183,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "V7PSgSOiNMkxwCQo",
       "name": "Boost Weapons",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -456,7 +495,10 @@
         "actionType": "other",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -467,11 +509,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -522,17 +574,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327239,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "ym5qPnkoq6xyPhwR",
       "name": "Cast a Power",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -586,7 +638,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -597,11 +652,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -652,17 +717,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327291,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "u27yP6Dn2zWxcDgv",
       "name": "Conceal",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -716,7 +781,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by passive Wisdom (Scan)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -727,11 +795,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -782,17 +860,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327341,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "19KbXgwCtfo0EM9t",
       "name": "Direct",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -846,7 +924,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -857,11 +938,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -912,17 +1003,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327393,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "olMNetRGUHfp2syj",
       "name": "Dogfight",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -976,7 +1067,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -987,11 +1081,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1042,17 +1146,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327443,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "ZOGDsYmDe8V4zsjN",
       "name": "Evade",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -1106,7 +1210,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -1117,11 +1224,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1172,17 +1289,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327495,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "jHtW6lzLAV8lcLtG",
       "name": "Fire",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -1236,7 +1353,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -1247,11 +1367,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1302,17 +1432,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327550,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "bb4SNizRpjo4b3VQ",
       "name": "Fly",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -1366,7 +1496,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -1377,11 +1510,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1432,17 +1575,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327600,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "Q66LXvDvvxfFt7ng",
       "name": "Harass",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -1496,7 +1639,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -1507,11 +1653,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1562,17 +1718,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327695,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "2cAzN9wOLc1jWJQb",
       "name": "Interfere",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -1626,7 +1782,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Wisdom (Scan)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -1637,11 +1796,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1692,17 +1861,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327804,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "1mfzimEJ39KpQ8yG",
       "name": "Patch",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -1756,7 +1925,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing hull points, whichever number is higher",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -1772,11 +1944,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1827,17 +2009,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840327911,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "vbqIsArCtfIqKlNL",
       "name": "Ram",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -1891,7 +2073,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -1907,11 +2092,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -1962,17 +2157,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840328015,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "S3NAwFtOI2FEq1Ms",
       "name": "Ready",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -2026,7 +2221,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -2037,11 +2235,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -2092,17 +2300,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840328202,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "OVcNda6YInssReez",
       "name": "Regenerate Shields",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -2156,7 +2364,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing shield points, whichever number is higher",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -2172,11 +2383,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -2227,17 +2448,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840328271,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "tmpuGfDeYBuW2HkQ",
       "name": "Search",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -2291,7 +2512,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -2302,11 +2526,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -2357,17 +2591,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840328337,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "IFLZqt6yrtVP8WET",
       "name": "Use an Object",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -2421,7 +2655,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -2432,11 +2669,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -2487,10 +2734,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883208,
+        "modifiedTime": 1685840328403,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2604,8 +2851,7 @@
         },
         "requirements": "",
         "source": "SotG",
-        "identifier": "",
-        "size": "sm",
+        "identifier": "small",
         "tier": 2,
         "hullDice": "d6",
         "hullDiceStart": 3,
@@ -2654,6 +2900,7 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
+        "size": "sm",
         "hullDiceRolled": [
           6,
           4,
@@ -2677,10 +2924,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299059,
+        "modifiedTime": 1685838237714,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2707,6 +2954,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -2821,10 +3079,7 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
         "proficient": false,
-        "equipped": true,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -2893,10 +3148,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299085,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -2923,6 +3178,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3037,10 +3303,7 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
         "proficient": false,
-        "equipped": true,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3109,10 +3372,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299085,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3184,6 +3447,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3298,10 +3572,7 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
         "proficient": false,
-        "equipped": true,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3370,10 +3641,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3400,6 +3671,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3514,10 +3796,7 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
         "proficient": false,
-        "equipped": true,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3586,10 +3865,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3649,6 +3928,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": false,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3763,10 +4053,7 @@
           "value": null,
           "dex": null
         },
-        "attunement": 0,
         "proficient": false,
-        "equipped": true,
-        "identified": false,
         "properties": {
           "Absorptive": false,
           "Agile": false,
@@ -3835,10 +4122,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -3865,6 +4152,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -3974,7 +4272,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -3985,10 +4282,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883174,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4015,6 +4312,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4124,7 +4432,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4135,10 +4442,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883174,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4165,6 +4472,17 @@
         "source": {
           "value": "SotG"
         },
+        "quantity": 1,
+        "weight": 0,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
         "activation": {
           "type": "",
           "cost": null,
@@ -4274,7 +4592,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "equipped": true,
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -4285,10 +4602,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299060,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4316,7 +4633,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 4400,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -4401,7 +4718,7 @@
         "properties": {
           "aut": false,
           "bur": null,
-          "con": 3,
+          "con": 11,
           "dir": null,
           "exp": false,
           "hvy": false,
@@ -4421,7 +4738,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -4474,10 +4806,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4505,7 +4837,7 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "value": 0,
+          "value": 6100,
           "denomination": "gc"
         },
         "attunement": 0,
@@ -4610,7 +4942,22 @@
           "zon": false,
           "mgc": false,
           "ran": false,
-          "smr": false
+          "smr": false,
+          "drm": false,
+          "dgd": false,
+          "dpt": false,
+          "dou": false,
+          "fin": false,
+          "fix": false,
+          "lgt": false,
+          "lum": false,
+          "mig": false,
+          "rch": false,
+          "ret": false,
+          "sil": false,
+          "thr": false,
+          "two": false,
+          "ver": false
         },
         "proficient": true,
         "size": "",
@@ -4663,10 +5010,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4739,8 +5086,8 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "denomination": "gc",
-          "value": 3100
+          "value": 3100,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -4816,7 +5163,7 @@
             "value": "0"
           },
           "regrateco": {
-            "value": ""
+            "value": null
           },
           "cscap": {
             "value": null
@@ -4960,10 +5307,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -4991,8 +5338,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 5100
+          "value": 5100,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -5000,7 +5347,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -5031,8 +5378,8 @@
           "target": null,
           "amount": null
         },
-        "ability": null,
-        "actionType": "",
+        "ability": "",
+        "actionType": "util",
         "attackBonus": 0,
         "chatFlavor": "",
         "critical": {
@@ -5043,7 +5390,7 @@
           "parts": [],
           "versatile": ""
         },
-        "formula": "",
+        "formula": "1d2-1",
         "save": {
           "ability": "",
           "dc": null,
@@ -5077,10 +5424,10 @@
             "value": null
           },
           "fuelcostsmod": {
-            "value": null
+            "value": 0.5
           },
           "powerdicerec": {
-            "value": ""
+            "value": "(1d2)-1"
           },
           "hdclass": {
             "value": null
@@ -5103,17 +5450,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -5195,10 +5561,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -5226,8 +5592,8 @@
         "quantity": 1,
         "weight": null,
         "price": {
-          "denomination": "gc",
-          "value": 4100
+          "value": 4100,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -5235,7 +5601,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -5338,17 +5704,36 @@
         "strength": null,
         "stealth": false,
         "properties": {
-          "Absorptive": 0,
-          "Agile": 0,
-          "Avoidant": 0,
-          "Charging": 0,
-          "Insulated": 0,
-          "Magnetic": 0,
-          "Powered": 0,
-          "Reactive": 0,
-          "Responsive": 0,
-          "Strength": 0,
-          "Versatile": 0
+          "Absorptive": null,
+          "Agile": null,
+          "Avoidant": null,
+          "Charging": null,
+          "Insulated": null,
+          "Magnetic": null,
+          "Powered": null,
+          "Reactive": null,
+          "Responsive": null,
+          "Strength": null,
+          "Versatile": null,
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
         },
         "proficient": true,
         "size": "",
@@ -5430,10 +5815,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -5457,8 +5842,8 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -5653,7 +6038,7 @@
     {
       "_id": "RkYkeL6odYmcnfhx",
       "name": "Pinpoint Strike",
-      "type": "starshipfeature",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
       "effects": [],
       "folder": null,
@@ -5707,7 +6092,10 @@
         "actionType": "rwak",
         "attackBonus": "1d((2*@details.tier)+2)",
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -5717,6 +6105,20 @@
           "ability": "",
           "dc": null,
           "scaling": "power"
+        },
+        "type": {
+          "value": "starship",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Small",
         "tier": "1",
@@ -5757,10 +6159,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -5771,17 +6169,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299060,
+        "modifiedTime": 1685840328465,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "CSXdf6NzOarL8rI5",
       "name": "Role Spec: Interceptor",
-      "type": "starshipfeature",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
       "effects": [
         {
@@ -5882,7 +6280,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -5892,6 +6293,20 @@
           "ability": "",
           "dc": null,
           "scaling": "power"
+        },
+        "type": {
+          "value": "starship",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Small",
         "tier": "2",
@@ -5942,17 +6357,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328524,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "A5zE54ly4fKGuo8g",
       "name": "Retro Thrusters",
-      "type": "starshipfeature",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
       "effects": [],
       "folder": null,
@@ -6006,7 +6421,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6016,6 +6434,20 @@
           "ability": "",
           "dc": null,
           "scaling": "power"
+        },
+        "type": {
+          "value": "starship",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Small",
         "tier": "2",
@@ -6056,10 +6488,6 @@
         "fuelCost": 50,
         "fuelCap": 10,
         "foodCap": 10,
-        "recharge": {
-          "value": null,
-          "charged": false
-        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -6070,17 +6498,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328584,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "SD65mkoce1gtVgp3",
       "name": "Role: Interceptor",
-      "type": "starshipfeature",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
       "effects": [
         {
@@ -6167,7 +6595,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6177,6 +6608,20 @@
           "ability": "",
           "dc": null,
           "scaling": "power"
+        },
+        "type": {
+          "value": "starship",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "size": "Small",
         "tier": "0",
@@ -6227,17 +6672,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328645,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "X06I8G6bzMWavEaa",
       "name": "Attack Run",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -6291,7 +6736,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6302,11 +6750,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -6357,17 +6815,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328707,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "06npFZGg7UngNbNL",
       "name": "Boost Engines",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -6421,7 +6879,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6432,11 +6893,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -6487,17 +6958,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328801,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "eaRk6eqGam5yLlvl",
       "name": "Boost Shields",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -6551,7 +7022,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -6567,11 +7041,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -6622,17 +7106,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840328904,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "88BfHOgxZvEnALzu",
       "name": "Boost Weapons",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -6686,7 +7170,10 @@
         "actionType": "other",
         "attackBonus": 0,
         "chatFlavor": "DC 12",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6697,11 +7184,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -6752,17 +7249,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329036,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "DIEENbKJEWsaLFbY",
       "name": "Cast a Power",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -6816,7 +7313,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6827,11 +7327,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -6882,17 +7392,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329162,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "4BwXVX2jAfBGMol3",
       "name": "Conceal",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -6946,7 +7456,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by passive Wisdom (Scan)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -6957,11 +7470,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7012,17 +7535,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329288,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "q4Bwnjhwn7In59gR",
       "name": "Direct",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -7076,7 +7599,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7087,11 +7613,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7142,17 +7678,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329354,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "ODszM85vHHnEu4Ok",
       "name": "Dogfight",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -7206,7 +7742,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7217,11 +7756,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7272,17 +7821,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329421,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "uL2AdgHoX31wPaGc",
       "name": "Evade",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -7336,7 +7885,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7347,11 +7899,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7402,17 +7964,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883209,
+        "modifiedTime": 1685840329490,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "0RAQBfkTIwBOuxNm",
       "name": "Fire",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -7466,7 +8028,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7477,11 +8042,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7532,17 +8107,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329550,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "xOp8wQ2yXKJuDb96",
       "name": "Fly",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -7596,7 +8171,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7607,11 +8185,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7662,17 +8250,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329614,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "4Fp77JcX80NEK9U9",
       "name": "Harass",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -7726,7 +8314,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7737,11 +8328,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7792,17 +8393,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329679,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "h34TSJDucdlLvUXK",
       "name": "Interfere",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -7856,7 +8457,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Wisdom (Scan)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -7867,11 +8471,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -7922,17 +8536,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329745,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "fk6pQlNTZbJnzWBc",
       "name": "Patch",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -7986,7 +8600,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing hull points, whichever number is higher",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -8002,11 +8619,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8057,17 +8684,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329808,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "5dgBt01grGRpIuXp",
       "name": "Ram",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Pilot-Action.webp",
       "effects": [],
       "folder": null,
@@ -8121,7 +8748,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "Contested by Dexterity (Maneuver)",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -8137,11 +8767,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "pilot",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "pilot"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "pilot",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8192,17 +8832,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840329885,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "7BsVeXiV42UtTfqo",
       "name": "Ready",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -8256,7 +8896,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -8267,11 +8910,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8322,17 +8975,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840330006,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "ScWwOXaiXq2clcdi",
       "name": "Regenerate Shields",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -8386,7 +9039,10 @@
         "actionType": "heal",
         "attackBonus": 0,
         "chatFlavor": "DC = 10 or half the ship’s missing shield points, whichever number is higher",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [
             [
@@ -8402,11 +9058,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8457,17 +9123,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840330366,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "g2P9C6sRtff9d1mP",
       "name": "Search",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -8521,7 +9187,10 @@
         "actionType": "abil",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -8532,11 +9201,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": true,
-          "value": 1
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": 1,
+          "charged": true
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8587,17 +9266,17 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840330453,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
     {
       "_id": "Ex4AOQd1vdkAft6H",
       "name": "Use an Object",
-      "type": "starshipaction",
+      "type": "feat",
       "img": "systems/sw5e/packs/Icons/Starship%20Actions/Crew-Action.webp",
       "effects": [],
       "folder": null,
@@ -8651,7 +9330,10 @@
         "actionType": "",
         "attackBonus": 0,
         "chatFlavor": "",
-        "critical": null,
+        "critical": {
+          "threshold": null,
+          "damage": ""
+        },
         "damage": {
           "parts": [],
           "versatile": ""
@@ -8662,11 +9344,21 @@
           "dc": null,
           "scaling": "power"
         },
-        "deployment": "crew",
-        "recharge": {
-          "charged": false,
-          "value": null
+        "type": {
+          "value": "starshipAction",
+          "subtype": "crew"
         },
+        "recharge": {
+          "value": null,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "deployment": "crew",
         "size": "",
         "identifier": "",
         "tier": 0,
@@ -8717,10 +9409,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677355883210,
+        "modifiedTime": 1685840330545,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     },
@@ -8811,8 +9503,8 @@
         "quantity": 1,
         "weight": 0,
         "price": {
-          "denomination": "gc",
-          "value": 4300
+          "value": 4300,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -8820,7 +9512,7 @@
         "identified": true,
         "isCargo": false,
         "activation": {
-          "type": "",
+          "type": "none",
           "cost": null,
           "condition": ""
         },
@@ -8885,7 +9577,7 @@
             "value": null
           },
           "dmgred": {
-            "value": ""
+            "value": null
           },
           "regrateco": {
             "value": "1"
@@ -8923,7 +9615,27 @@
         },
         "strength": null,
         "stealth": false,
-        "properties": {},
+        "properties": {
+          "Anchor": false,
+          "Barbed": false,
+          "Bulky": false,
+          "Concealing": false,
+          "Cumbersome": false,
+          "Gauntleted": false,
+          "Imbalanced": false,
+          "Impermeable": false,
+          "Interlocking": false,
+          "Lambent": false,
+          "Lightweight": false,
+          "Obscured": false,
+          "Obtrusive": false,
+          "Regulated": false,
+          "Reinforced": false,
+          "Rigid": false,
+          "Silent": false,
+          "Spiked": false,
+          "Steadfast": false
+        },
         "proficient": true,
         "size": "",
         "identifier": "",
@@ -9001,10 +9713,10 @@
       },
       "_stats": {
         "systemId": "sw5e",
-        "systemVersion": "2.1.4.2.4.0",
+        "systemVersion": "2.1.5.2.4.6",
         "coreVersion": "10.291",
         "createdTime": null,
-        "modifiedTime": 1677358299086,
+        "modifiedTime": 1685838237746,
         "lastModifiedBy": "sw5ebuilder0000"
       }
     }
@@ -9660,6 +10372,10 @@
         "value": "",
         "public": ""
       },
+      "description": {
+        "value": "",
+        "public": ""
+      },
       "source": "Drake's Shipyard",
       "tier": "2",
       "role": []
@@ -9687,14 +10403,17 @@
       },
       "sdi": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "sdr": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       },
       "sdv": {
         "value": [],
+        "bypasses": [],
         "custom": ""
       }
     },
@@ -9885,10 +10604,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674494006587,
-    "modifiedTime": 1677358299086,
+    "modifiedTime": 1685840656868,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

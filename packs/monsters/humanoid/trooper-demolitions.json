@@ -81,8 +81,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -377,6 +377,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -526,6 +532,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -681,6 +693,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -953,6 +971,10 @@
     "details": {
       "biography": {
         "value": "<p>Demolition Troopers are members of the Galactic Federation who are outfitted with explosive weaponry for special missions. While capable of destroying the strongest of barriers, they are not very effective in combat, due to lighter armor, and often rely on others to cover them while in battle. They seem to have weaker versions of the Galactic Federation Marine's assault rifles. Their explosives are carried on their back.</p><p>In Metroid Prime 3: Corruption, Samus is charged with watching over twelve Demolition Troopers after she disables the Pirate Homeworld's defense system. These Troopers will clear a path to the Pirate Homeworld Seed. Meanwhile, Samus must defend the Demolition Troopers from Space Pirate attacks. Four of the twelve Demolition Troopers are required for the final door. If there are less than four surviving, Admiral Dane will contact Samus and order her to fall back, causing a Game Over. The easiest tactic for getting the Troopers through to the end is to engage the Space Pirate forces at extremely close range, so that they can't shoot around Samus, and then for her to kill them at point-blank range. If Samus succeeds in protecting all twelve troopers, a Gold Credit, \"All Troopers Survived\" will be rewarded.</p><p>A Demolition Trooper that speaks to Samus after opening the path to the Skyway for her states that their group color is yellow, but this fact is never again referenced. Different groups supposedly have other colour-schemed armour.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Any Alignment",
@@ -1459,10 +1481,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984014,
-    "modifiedTime": 1677349723014,
+    "modifiedTime": 1685840636660,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

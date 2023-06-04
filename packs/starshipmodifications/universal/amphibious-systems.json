@@ -10,7 +10,7 @@
         {
           "key": "system.attributes.movement.swim",
           "mode": 2,
-          "value": "data.attributes.movement.dae.space/2",
+          "value": "@attributes.movement.space/2",
           "priority": 20
         }
       ],
@@ -31,6 +31,13 @@
       "flags": {
         "core": {
           "statusId": ""
+        },
+        "dae": {
+          "selfTarget": false,
+          "selfTargetAlways": false,
+          "stackable": "none",
+          "durationExpression": "",
+          "specialDuration": []
         }
       },
       "tint": null,
@@ -50,8 +57,19 @@
     "source": {
       "value": "SotG"
     },
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "isCargo": false,
     "activation": {
-      "type": "",
+      "type": "none",
       "cost": null,
       "condition": ""
     },
@@ -125,10 +143,7 @@
       "value": null,
       "dex": null
     },
-    "attunement": 0,
     "proficient": false,
-    "equipped": false,
-    "identified": false,
     "properties": {
       "Absorptive": false,
       "Agile": false,
@@ -172,10 +187,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674494018656,
-    "modifiedTime": 1677349746280,
+    "modifiedTime": 1685840666120,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -170,6 +176,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -207,8 +219,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -385,8 +397,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -797,6 +809,10 @@
     "details": {
       "biography": {
         "value": "<table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Average wingspan</u></td><td style=\"line-height:1.42857\">3 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u></td><td style=\"line-height:1.42857\"><p>Endor</p></td></tr></tbody></table><p>Condor dragons were flying, carnivorous reptavians native to the craggy cliffs, deserts, and deep woods of Endor's forest moon. They walked on their hind legs and their forearms were used to hold prey. They had bony ridges along their spine, and a wing span of approximately 3 meters.</p><p>Though powerful predators, they were not above scavenging for food. They were both nocturnal and diurnal, and, despite their large size, they would only prey on small to medium size creatures, which they captured alive and took back to their caves. They flew off from high buttresses and hunted in a spiral swoop. They attacked with a spine-tingling screech.</p><p>They were known to snatch Ewoks right off the backs of their riding ponies, though this was rare as the condor dragons would likely view the rider and pony as one creature, and therefore too large for it to carry. They did not eat ponies, as they were unpleasant to their taste. They did eat giant cave \"spiders\".</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Unaligned",
@@ -1301,10 +1317,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984218,
-    "modifiedTime": 1677349723229,
+    "modifiedTime": 1685840636875,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

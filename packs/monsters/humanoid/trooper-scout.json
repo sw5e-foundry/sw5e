@@ -78,6 +78,12 @@
           "value": 0,
           "charged": false
         },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
         "powercasting": {
           "force": "none",
           "tech": "none"
@@ -169,6 +175,12 @@
         "recharge": {
           "value": 0,
           "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
         },
         "powercasting": {
           "force": "none",
@@ -265,8 +277,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -501,8 +513,8 @@
         "quantity": 1,
         "weight": 1,
         "price": {
-          "denomination": "gc",
-          "value": 0
+          "value": 0,
+          "denomination": "gc"
         },
         "attunement": 0,
         "equipped": true,
@@ -913,6 +925,10 @@
     "details": {
       "biography": {
         "value": "<p></p><table class=\"userscript-table userscript-table-bordered\" style=\"font-size:13px;width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Organization type</u><br /></td><td style=\"line-height:1.42857\">Specialized Trooper</td></tr><tr><td style=\"line-height:1.42857\"><p><u>Leader(s)</u></p></td><td style=\"line-height:1.42857\"><ul><li>Supreme Chancellor Sheev Palpatine</li><li><span style=\"background-color:transparent\">Jedi High Council</span><br /></li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Headquarters</u></td><td style=\"line-height:1.42857\"><ul><li>Tipoca City, Kamino</li><li>Galactic City, Coruscant</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Date founded</u></td><td style=\"line-height:1.42857\">c. 32 BBY, approximately 10 years before the Clone Wars</td></tr><tr><td style=\"line-height:1.42857\"><u>Date reorganized</u></td><td style=\"line-height:1.42857\">19 BBY, as the first generation of stormtroopers<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Date dissolved</u></td><td style=\"line-height:1.42857\">19 BBY, Kamino cloning facilities shut down<br /></td></tr><tr><td style=\"line-height:1.42857\"><p><u>Affiliation</u></p></td><td style=\"line-height:1.42857\"><p>Galactic Republic (Grand Army of the Republic)</p></td></tr></tbody></table><p></p><p>Clone scout troopers, also known as clone scouts, were specialized clone troopers that served in the Grand Army of the Galactic Republic during the Clone Wars. Trained for reconnaissance and warfare over difficult terrain, a battalion of scout troopers deployed to the planet Kashyyyk during the final days of the conflict, and fought alongside the native Wookiees against the droid armies of the Confederacy of Independent Systems.</p><h3>History</h3><p><b>Clone Wars</b></p><p>Clone scout troopers were a variant of the Galactic Republic's clone trooper, trained in reconnaissance and warfare over difficult terrain. Before larger troop actions, small groups of the scouts were deployed to survey territory, and, because of their survival skills, they were suited for fighting in wilderness conditions.</p><p>During the final year of the Clone Wars, the 41st Scout Battalion—led by Jedi Generals Yoda and Luminara Unduli, as well as Clone Commander CC-1004 \"Gree\"—was deployed to the planet Kashyyyk to aid the Wookiees in their fight against the Separatist Droid Army. As Confederate forces stormed the beach, scout troopers were tasked with defending Kachirho, the capital of Kashyyyk. Using barricades and trenches as cover, the scout troopers and Wookiees engaged the battle droids in a brutal confrontation. A number of scout troopers acted as sharpshooters along Tree Kachirho whilst many more lined the top of the seawall. During the battle, Commander Gree received Order 66 from Supreme Chancellor Sheev Palpatine and proceeded to carry out the order. He approached Grand Master Yoda and the Wookiee generals, atop a high command post overlooking the battle, and prepared to fire on his commanding officer. However, the Jedi felt a great disturbance in the Force, as Order 66 was carried out across the the galaxy, and beheaded Gree and another clone before they could execute him.</p><p><b>Legacy</b></p><p>After the Galactic Empire was established, the Grand Army of the Republic transitioned into the Imperial Army and Stormtrooper Corps. Like the Republic, the Empire made use of its own scout troopers, who saw action throughout the Imperial Era.</p><h3>Equipment</h3><p>Clone scout troopers were equipped with camouflaged Phase II ARF armor and were trained for reconnaissance. Scout troopers also possessed survival gear and had macrobinoculars built into their helmet.</p><p>For general information about troopers, see <a class=\"entity-link\" data-entity=\"Actor\" data-id=\"NDYyNmJkM2ZkYjhm\" style=\"background-color:rgb( 255 , 255 , 255 )\"><i class=\"fas fa-user\"></i>Trooper</a></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
         "public": ""
       },
       "alignment": "Any Alignment",
@@ -1419,10 +1435,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.4.2.4.0",
+    "systemVersion": "2.1.5.2.4.6",
     "coreVersion": "10.291",
     "createdTime": 1674493984295,
-    "modifiedTime": 1677349723301,
+    "modifiedTime": 1685840636943,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -625,7 +625,7 @@ function _migrateActorAttribRank(actorData, updateData) {
  * @private
  */
 function _migrateActorTraits(actorData, updateData) {
-  const flags = actorData.flags.sw5e;
+  const flags = actorData?.flags?.sw5e ?? {};
 
   if (flags.powerfulBuild !== undefined) {
     updateData["flags.sw5e.-=powerfulBuild"] = null;
@@ -941,6 +941,10 @@ function _migrateItemSpeciesDroid(item, updateData) {
  * @param {boolean} migrateSystemCompendiums  Migrate items in system compendiums.
  */
 async function migrateItemTypes(migrateSystemCompendiums) {
+  // Make deprecated item types temporarily valid
+  const validTypes = game.documentTypes.Item;
+  game.documentTypes.Item = game.documentTypes.Item.concat(Object.keys(CONFIG.SW5E.deprecatedItemTypes));
+
   const items = new Set(game.items);
   const actors = new Set(game.actors);
   const scenes = new Set(game.scenes);
@@ -982,6 +986,9 @@ async function migrateItemTypes(migrateSystemCompendiums) {
     const pack = await game.packs.get(collection);
     pack.configure({ locked: lock });
   }
+
+  // Restore valid item types
+  game.documentTypes.Item = validTypes;
 }
 
 /* -------------------------------------------- */

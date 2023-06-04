@@ -71,7 +71,7 @@
                         {{#if section.editableName}}data-item-index="{{iid}}"{{/if}}>
                         <div class="item-name {{@root.rollableClass}}">
                             <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}"
-                                 style="background-image: url('{{item.img}}'), url('{{item.rarityIcon}}')"></div>
+                                 style="background-image: url('{{item.iconForeground}}'), url('{{item.img}}'), url('{{item.iconBackground}}')"></div>
                             <h4>
                                 {{item.name~}}
                                 {{~#if ctx.isStack}} ({{item.system.quantity}}){{/if}}

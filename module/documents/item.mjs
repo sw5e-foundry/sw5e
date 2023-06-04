@@ -434,13 +434,25 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * The background icon of the item's rarity
+   * The icon's background. Usually determined by rarity.
    * @type {string|null}
    */
-  get rarityIcon() {
+  get iconBackground() {
     if (this.system.rarity === undefined) return null;
-    const rarity = this.system.rarity?.toUpperCase() ?? "Mundane";
+    const rarity = this.system.rarity?.toUpperCase() || "Mundane";
     return `systems/sw5e/packs/Icons/ItemBackdrop/${rarity}.webp`;
+  }
+
+
+  /* -------------------------------------------- */
+
+  /**
+   * The icon's foreground.
+   * @type {string|null}
+   */
+  get iconForeground() {
+    if ((this?.system?.modify?.chassis ?? "none") !== "none") return `systems/sw5e/packs/Icons/Modifications/ChassisIcon.webp`;
+    return null;
   }
 
   /* -------------------------------------------- */

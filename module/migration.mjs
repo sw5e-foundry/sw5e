@@ -943,7 +943,7 @@ function _migrateItemSpeciesDroid(item, updateData) {
 async function migrateItemTypes(migrateSystemCompendiums) {
   // Make deprecated item types temporarily valid
   const validTypes = game.documentTypes.Item;
-  game.documentTypes.Item = game.documentTypes.Item.concat(Object.keys(CONFIG.SW5E.deprecatedItemTypes));
+  game.documentTypes.Item = game.documentTypes.Item.concat(CONFIG.SW5E.deprecatedItemTypes);
 
   const items = new Set(game.items);
   const actors = new Set(game.actors);

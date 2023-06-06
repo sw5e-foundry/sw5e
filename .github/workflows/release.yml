@@ -29,9 +29,9 @@ jobs:
         with:
           files: static/system.json
         env:
-          version: ${{ steps.get-version.outputs.version }}
-          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
-          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
+          version: ${{ steps.get_version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
 
       - name: Cache NPM
         id: cache-npm
@@ -57,10 +57,10 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          name: ${{ steps.get-version.outputs.version }}
+          name: ${{ steps.get_version.outputs.version }}
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
           artifacts: "./system.zip, ./static/system.json"
           generateReleaseNotes: true
-          tag: ${{ steps.get-version.outputs.version }}
+          tag: ${{ steps.get_version.outputs.version }}

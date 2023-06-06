@@ -1,0 +1,169 @@
+{
+  "_id": "zC4qM8JMmMzCjMJK",
+  "name": "Tiny Starship",
+  "type": "starshipsize",
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Tiny.webp",
+  "effects": [
+    {
+      "_id": "5BCYRjiFKUZY8ke9",
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "4",
+          "priority": 1
+        },
+        {
+          "key": "system.abilities.con.value",
+          "mode": 2,
+          "value": "-4",
+          "priority": 1
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "poison",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "psychic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Tiny.webp",
+      "label": "Tiny Starship",
+      "origin": "Item.k1Cxor0HkSEBpkuN",
+      "tint": null,
+      "transfer": true,
+      "sort": 0
+    },
+    {
+      "_id": "hTCTSpLK0D1JJivH",
+      "changes": [
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.sdi.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Tiny.webp",
+      "label": "Space Travel",
+      "origin": "Compendium.sw5e.starships.zC4qM8JMmMzCjMJK",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>As the droid fighter ducked and weaved through flying blaster bolts and dodged the occasional flak, its optical sensors continued to become more and more occluded as they accumulated a dark haze of dust and smoke. Switching to active radar systems, the droid continued to relentlessly pursue its target: the fleeing Jedi and its small padawn that was barely larger than a youngling. Not that it mattered. Whether either target continued to draw breath a few seconds from now didn't really matter to the droid. Of course, that cessation was its goal, but it didn't really care about that goal...it's just what it was doing. What it had to do. But not exactly what it wanted to do. The droid passed power from its fully charged weapon's capacitors into its guns, which blazed to life and spewed plasma towards the small child's back. It was a perfect shot. How could it not be. That's what it did. Then the Jedi's own plasma weapon flared as it darted across the youngling's back, deflecting the droid's blasts directly back at it. Of course, that is what Jedi's did. And as the bolts tore through the droid ship's hull, into its main computer banks, across its power banks and out its engines, the droid's final computations let it know that it was plummeting to the earth at terminal velocity. It's just what it was doing. What it now had to do. But not exactly what it wanted to do.</p>\n<p>The small drone slips silently past the blockade, scanning the defensive formations as it goes. The only chance to save the people on embattled Neth-Feeno was to coordinate a supply drop with them. This little, remote-controlled stealth ship was their only hope. It had to reach the surface to get the plan and maps through. Then it had to return with a full readout of the defenses. Only then could a distracting assault be planned to cover the air drop. As the tiny craft floated past the final sensor pod mounted right next to the final turret canon, the monitoring crew let out a sigh, and wiped sweat from their brows. As their screens, already more static than signal, winked out as the craft's transmissions were cut-off as it passed completely into the black-out zone, the team leader turned to his squad and said, \"May the force be with us today.\"</p>\n<p>One thing all Tiny starships have in common is that they are unmanned. Sometimes they are controlled remotely, but more often they are controlled by droids.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "identifier": "tiny",
+    "size": "tiny",
+    "tier": 0,
+    "hullDice": "d4",
+    "hullDiceStart": 1,
+    "hullDiceUsed": 0,
+    "shldDice": "d4",
+    "shldDiceStart": 1,
+    "shldDiceUsed": 0,
+    "advancement": [
+      {
+        "_id": "EAFykDKYEamZTzlN",
+        "type": "HullPoints",
+        "configuration": {},
+        "value": {}
+      },
+      {
+        "_id": "hCSeujbLNdk9stX1",
+        "type": "ShieldPoints",
+        "configuration": {},
+        "value": {}
+      }
+    ],
+    "buildBaseCost": 10000,
+    "buildMinWorkforce": 3,
+    "upgrdCostMult": 0.5,
+    "upgrdMinWorkforce": 1,
+    "baseSpaceSpeed": 300,
+    "baseTurnSpeed": 300,
+    "crewMinWorkforce": 0,
+    "modBaseCap": 10,
+    "modMaxSuitesBase": 0,
+    "modMaxSuitesMult": 0,
+    "modCostMult": 0.5,
+    "modMinWorkforce": 1,
+    "hardpointMult": 1,
+    "equipCostMult": 0.5,
+    "equipMinWorkforce": 1,
+    "cargoCap": 0,
+    "fuelCost": 25,
+    "fuelCap": 5,
+    "foodCap": 0,
+    "hullDiceRolled": [
+      4
+    ],
+    "shldDiceRolled": [
+      4
+    ],
+    "pwrDice": "d1",
+    "modMaxSuiteCap": 0
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494019391,
+    "modifiedTime": 1677517347369,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

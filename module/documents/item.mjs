@@ -434,13 +434,25 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * The background icon of the item's rarity
+   * The icon's background. Usually determined by rarity.
    * @type {string|null}
    */
-  get rarityIcon() {
+  get iconBackground() {
     if (this.system.rarity === undefined) return null;
-    const rarity = this.system.rarity?.toUpperCase() ?? "";
-    return `systems/sw5e/packs/Icons/Enhanced Items/Background${rarity}.webp`;
+    const rarity = this.system.rarity?.toUpperCase() || "Mundane";
+    return `systems/sw5e/packs/Icons/ItemBackdrop/${rarity}.webp`;
+  }
+
+
+  /* -------------------------------------------- */
+
+  /**
+   * The icon's foreground.
+   * @type {string|null}
+   */
+  get iconForeground() {
+    if ((this?.system?.modify?.chassis ?? "none") !== "none") return `systems/sw5e/packs/Icons/Modifications/ChassisIcon.webp`;
+    return null;
   }
 
   /* -------------------------------------------- */
@@ -1368,6 +1380,8 @@ export default class Item5e extends Item {
       const level = this.actor?.system.powers[consumePowerLevel];
       const fp = this.actor.system.attributes.force.points;
       const tp = this.actor.system.attributes.tech.points;
+      const fd = this.actor.getFlag("sw5e", "forcePowerDiscount") ?? 0;
+      const td = this.actor.getFlag("sw5e", "techPowerDiscount") ?? 0;
       const powerCost = parseInt(is.level, 10) + 1;
       const innatePower = this.actor.system.attributes.powercasting === "innate";
       if (!innatePower) {
@@ -1376,32 +1390,34 @@ export default class Item5e extends Item {
           case "uni":
           case "drk": {
             const powers = Number(level?.fvalue ?? 0);
+            const discountedCost = Math.max(powerCost - fd, 1);
             if (powers === 0) {
               const label = game.i18n.localize(`SW5E.PowerLevel${is.level}`);
               ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", { name: this.name, level: label }));
               return false;
             }
             actorUpdates[`system.powers.${consumePowerLevel}.fvalue`] = Math.max(powers - 1, 0);
-            if (fp.temp >= powerCost) {
-              actorUpdates["system.attributes.force.points.temp"] = fp.temp - powerCost;
+            if (fp.temp >= discountedCost) {
+              actorUpdates["system.attributes.force.points.temp"] = fp.temp - discountedCost;
             } else {
-              actorUpdates["system.attributes.force.points.value"] = fp.value + fp.temp - powerCost;
+              actorUpdates["system.attributes.force.points.value"] = fp.value + fp.temp - discountedCost;
               actorUpdates["system.attributes.force.points.temp"] = 0;
             }
             break;
           }
           case "tec": {
             const powers = Number(level?.tvalue ?? 0);
+            const discountedCost = Math.max(powerCost - td, 1);
             if (powers === 0) {
               const label = game.i18n.localize(`SW5E.PowerLevel${is.level}`);
               ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", { name: this.name, level: label }));
               return false;
             }
             actorUpdates[`system.powers.${consumePowerLevel}.tvalue`] = Math.max(powers - 1, 0);
-            if (tp.temp >= powerCost) {
-              actorUpdates["system.attributes.tech.points.temp"] = tp.temp - powerCost;
+            if (tp.temp >= discountedCost) {
+              actorUpdates["system.attributes.tech.points.temp"] = tp.temp - discountedCost;
             } else {
-              actorUpdates["system.attributes.tech.points.value"] = tp.value + tp.temp - powerCost;
+              actorUpdates["system.attributes.tech.points.value"] = tp.value + tp.temp - discountedCost;
               actorUpdates["system.attributes.tech.points.temp"] = 0;
             }
             break;
@@ -2264,6 +2280,7 @@ export default class Item5e extends Item {
    * @returns {Promise<Roll>}                 A Promise which resolves to the created Roll instance.
    */
   async rollToolCheck(options = {}) {
+    const flags = this.actor.flags.sw5e ?? {};
     if (this.type !== "tool") throw new Error("Wrong item type!");
 
     // Prepare roll data
@@ -2296,6 +2313,11 @@ export default class Item5e extends Item {
       rollData.checkBonus = Roll.replaceFormulaData(globalBonus.check, rollData);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod))
+      || undefined;
+
     // Compose the roll data
     const rollConfig = foundry.utils.mergeObject(
       {
@@ -2308,7 +2330,8 @@ export default class Item5e extends Item {
           left: window.innerWidth - 710
         },
         chooseModifier: true,
-        halflingLucky: this.actor.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         reliableTalent: this.system.proficient >= 1 && this.actor.getFlag("sw5e", "reliableTalent"),
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this.actor }),

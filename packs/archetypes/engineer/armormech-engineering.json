@@ -1,0 +1,105 @@
+{
+  "_id": "DSaorO1E42ZAoYko",
+  "name": "Armormech Engineering",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/ArmormechEngineering.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.342215+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-armormech_engineering"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Armormech Engineering</h1>\n<p>Those engineers who choose the Armormech Engineering discipline focus on the ability to work with hard metals and electronic shielding to construct and enhance all types of personal armor.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Armormech Modifications</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.7IT8z1HgmuLxQ6uJ]{Absorption shield}</li>\n<li>@Compendium[sw5e.invocations.5LChMNboHi8wrUd4]{Accelerated movement}</li>\n<li>@Compendium[sw5e.invocations.JlObzNsXdfd1EIpe]{Adaptable armor}</li>\n<li>@Compendium[sw5e.invocations.LcGZPNoyEyFVeon0]{Advanced power fist}</li>\n<li>@Compendium[sw5e.invocations.Qx7FcHMV6d4D6ZeI]{Artificially intelligent}</li>\n<li>@Compendium[sw5e.invocations.jDNy2cI6cBHBUcJd]{Bonded plates}</li>\n<li>@Compendium[sw5e.invocations.mHT9620RiTxP8nEQ]{Collapsible suit}</li>\n<li>@Compendium[sw5e.invocations.SnQfHJrVFVpoEYkd]{Darkvision visor}</li>\n<li>@Compendium[sw5e.invocations.Q3e1pzZiaaMntWeI]{Enhanced endurance}</li>\n<li>@Compendium[sw5e.invocations.SiqruKL4ugVuLNp7]{Electroshock shield}</li>\n<li>@Compendium[sw5e.invocations.pIJcMvA9equrs8qG]{Flight}</li>\n<li>@Compendium[sw5e.invocations.7yd7tg0U12BWGmpt]{Grappling harpoon}</li>\n<li>@Compendium[sw5e.invocations.MhnGTjt890SijdfD]{Heavy suit}</li>\n<li>@Compendium[sw5e.invocations.9UsBIvBWoJWnGWLa]{Infiltration suit}</li>\n<li>@Compendium[sw5e.invocations.T9xHK846NcU447MS]{Magnetized shield}</li>\n<li>@Compendium[sw5e.invocations.gXdYVB0cKEqeaTvf]{Overload shield}</li>\n<li>@Compendium[sw5e.invocations.yl6V4KPNpTA7qSYR]{Power fist}</li>\n<li>@Compendium[sw5e.invocations.l5C7fCRwOTECEBmZ]{Prototype power fist}</li>\n<li>@Compendium[sw5e.invocations.f8dytKAGNd5I3aSW]{Reinforced underlay}</li>\n<li>@Compendium[sw5e.invocations.YJ3CUCoA8FX6cxtL]{Resistance}</li>\n<li>@Compendium[sw5e.invocations.YiXKJyGrNMWHlezh]{Sealed suit}</li>\n<li>@Compendium[sw5e.invocations.DgiBZpMdSVvYgsCC]{Sentient armor}</li>\n<li>@Compendium[sw5e.invocations.BoMgGiwRwKpDXf0m]{Shield amplifier}</li>\n<li>@Compendium[sw5e.invocations.vEOLzvXNyqehx5a6]{Shield anchor}</li>\n<li>@Compendium[sw5e.invocations.ngJ1u9hpsJg6FHRD]{Tech blast}</li>\n<li>@Compendium[sw5e.invocations.c71EXsNWKxShWXRt]{Weapon integration armoring}</li>\n</ul>"
+    },
+    "source": "PHB",
+    "identifier": "armormechengineering",
+    "classIdentifier": "engineer",
+    "advancement": [
+      {
+        "_id": "w2xCMyx627wX5u7G",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.z5R0MIpMdDAp0em1",
+            "Compendium.sw5e.archetypefeatures.8GKryrcQTowV837J",
+            "Compendium.sw5e.archetypefeatures.fUtkSOA3uOmiZW1W"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "EiaRQEY5NQYl5U2P",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.Dcm5NMpYudkPcW1S"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 6,
+        "title": "Features"
+      },
+      {
+        "_id": "1KC6JbKeWNPMGNyt",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.sCMaEqHoPH3n5dP9"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 14,
+        "title": "Features"
+      },
+      {
+        "_id": "1If63DgZZmJizyF4",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.71KlrYRbxJhb4AiA"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493959727,
+    "modifiedTime": 1684819093622,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

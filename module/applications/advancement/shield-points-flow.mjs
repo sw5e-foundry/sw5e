@@ -24,9 +24,10 @@ export default class ShieldPointsFlow extends HitPointsFlow {
    */
   _updateRollResult() {
     if (!this.form.elements.useAverage?.checked) return;
+    const quant = parseInt(this.advancement.quantForLevel(this.level));
     let avg = (this.advancement.hitDieValue / 2) + 1;
-    if (this.level === 0) avg = this.advancement.hitDieValue + ((this.advancement.item.system.shldDiceStart - 1) * avg);
-    this.form.elements.value.value = avg;
+    this.form.elements.value.value = quant * avg;
+    if (this.level === 0) this.form.elements.value.value = parseInt(this.form.elements.value.value) + this.advancement.hitDieValue - avg;
   }
 
   /* -------------------------------------------- */

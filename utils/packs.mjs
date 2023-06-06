@@ -19,13 +19,13 @@ const parsedArgs = yargs(process.argv).argv;
  * base 5e system folder.
  * @type {string}
  */
-const PACK_DEST = "packs/packs";
+const PACK_DEST = "./dist/packs/packs";
 
 /**
  * Folder where source JSON files should be located relative to the 5e system folder.
  * @type {string}
  */
-const PACK_SRC = "packs/src";
+const PACK_SRC = "./packs/";
 
 /**
  * Cache of DBs so they aren't loaded repeatedly when determining IDs.
@@ -69,6 +69,7 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
   if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
   if ( data.system?.strength === 0 ) data.system.strength = null;
   if ( data.system?.properties ) data.system.properties = Object.fromEntries(Object.entries(data.system.properties).filter(([k,v])=>!k.startsWith('c_c_')));
+  if ( typeof data.system?.price === "number" ) data.system.price = { denomination: "gc", value: data.system.price };
 
   // Remove mystery-man.svg from Actors
   if ( ["character", "npc", "starship"].includes(data.type) && data.img === "icons/svg/mystery-man.svg" ) {
@@ -174,6 +175,7 @@ function compilePacks() {
   const packs = folders.map(folder => {
     const filePath = path.join(PACK_DEST, `${folder.name}.db`);
     fs.rmSync(filePath, { force: true });
+    fs.mkdirSync(PACK_DEST, { recursive: true });
     const db = fs.createWriteStream(filePath, { flags: "a", mode: 0o664 });
     const data = [];
     logger.info(`Compiling pack ${folder.name}`);
@@ -197,6 +199,39 @@ export const compile = compilePacks;
 /* ----------------------------------------- */
 /*  Extract Packs
 /* ----------------------------------------- */
+
+function sortObject(object) {
+  //Thanks > http://whitfin.io/sorting-object-recursively-node-jsjavascript/
+  if (!object) {
+    return object;
+  }
+
+  const isArray = object instanceof Array;
+  var sortedObj = {};
+  if (isArray) {
+    sortedObj = object.map((item) => sortObject(item));
+  } else {
+    var keys = Object.keys(object);
+    // console.log(keys);
+    keys.sort(function(key1, key2) {
+      (key1 = key1.toLowerCase()), (key2 = key2.toLowerCase());
+      if (key1 < key2) return -1;
+      if (key1 > key2) return 1;
+      return 0;
+    });
+
+    for (var index in keys) {
+      var key = keys[index];
+      if (typeof object[key] == 'object') {
+        sortedObj[key] = sortObject(object[key]);
+      } else {
+        sortedObj[key] = object[key];
+      }
+    }
+  }
+
+  return sortedObj;
+}
 
 /**
  * Extract the contents of compendium packs to JSON files.
@@ -248,7 +283,9 @@ function extractPacks() {
                 if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
               }
             }
-            hasChanges = JSON.stringify(entry) !== JSON.stringify(oldFile);
+            const oldJson = JSON.stringify(sortObject(oldFile));
+            const newJson = JSON.stringify(sortObject(entry));
+            hasChanges = oldJson !== newJson;
           }
 
           if (hasChanges) {

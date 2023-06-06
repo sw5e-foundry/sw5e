@@ -1,0 +1,99 @@
+{
+  "_id": "UvMKVj608ijSAfgd",
+  "name": "Master of Perseverance",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/GRDN-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-master_of_perseverance.source-archetype.sourceName-shiendjem_so_form.level-20"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Shien/Djem So Form:</strong> 20th level</em></p>\n<p>Your might overwhelms even the most implacable of foes. Your Strength and Constitution scores increase by 2. Your maximum for these scores increases by 2. Additionally, you can use your action to gain the following benefits for 1 minute:</p>\n<ul>\n<li>You have resistance to kinetic and energy damage from unenhanced weapons.</li>\n<li>Once per turn, when you hit with a melee weapon attack using Strength, you can use your Force-Empowered Strikes feature at 1st-level without expending force points. You gain temporary hit points equal to the extra damage dealt.</li>\n<li>When a creature within 5 feet of you makes an attack roll against you, you can use your reaction to make a single weapon attack with advantage against that creature. If the attack hits, you impose disadvantage on the triggering attack roll.</li>\n</ul>\n<p>This effect ends early if you are incapacitated or die. Once you've used this feature, you can't use it again until you finish a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Guardian (Shien/Djem So Form) 20",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Guardian"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957779,
+    "modifiedTime": 1685840599939,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

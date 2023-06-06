@@ -1,0 +1,96 @@
+{
+  "_id": "qdVYcGJWX7rULXqs",
+  "name": "Trick Shooter",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-08-17T00:39:14.2639119+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-trick_shooter.source-archetype.sourceName-gunslinger_practice.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Gunslinger Practice:</strong> 3rd level</em></p>\n<p>You learn a number of trick shots you can use to debilitate enemies and impress allies. When you deal Sneak Attack damage to a creature, you may choose to forgo two of your Sneak Attack dice to make the attack a trick shot. </p>\n<p>Some of your trick shots require your target to make a saving throw to resist the trick shot's effects. The saving throw DC is calculated as follows: </p>\n<p><em></em>_</p>\n<p><strong>Trick Shot save DC</strong> = 8 + your proficiency bonus + your Dexterity modifier</p>\n<p><em></em>_</p>\n<h3>Blinding Shot</h3>\n<p>You attempt to blind the target. The target must make a Constitution saving throw or be blinded until the end of your next turn. </p>\n<h3>Brutal Shot</h3>\n<p>You attempt to knock the target prone. The target must make a Strength saving throw or be knocked prone.  </p>\n<h3>Hampering Shot</h3>\n<p>You attempt to hobble the enemy's movement. The target must make a Dexterity saving throw. If it fails, it gains 1 slowed level and it has disadvantage on Dexterity saving throws until the end of its next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Gunslinger Practice) 3",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Operative"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958154,
+    "modifiedTime": 1685840600375,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

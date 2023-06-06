@@ -1,0 +1,107 @@
+{
+  "name": "Throw Foe",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.4688638+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-throw_foe.source-archetype.sourceName-bloodstorm_approach.level-10"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-ARCH-Passive.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "<p>If the creature is an opponent, you throw the target into any unoccupied space within 30 feet, where it takes damage equal to your Strength modifier and falls prone.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Berserker (Bloodstorm Approach) 10",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@abilities.str.mod",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Berserker"
+  },
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1667426104168,
+    "modifiedTime": 1685840599793,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "OgGqrG1OD9ELC4Dd"
+}

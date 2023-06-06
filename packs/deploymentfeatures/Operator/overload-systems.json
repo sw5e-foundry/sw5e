@@ -1,0 +1,154 @@
+{
+  "_id": "2GMuH7TIypF8O3bB",
+  "name": "Overload Systems",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Operator.webp",
+  "effects": [
+    {
+      "_id": "Xafum7u479aJ6zZA",
+      "changes": [
+        {
+          "key": "system.attributes.movement.space",
+          "mode": 1,
+          "value": ".5",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.movement.turn",
+          "mode": 1,
+          "value": "2",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.ac.bonus",
+          "mode": 2,
+          "value": "-2",
+          "priority": 20
+        },
+        {
+          "key": "system.abilities.dex.bonuses.save",
+          "mode": 2,
+          "value": "-2",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Deployments/Operator.webp",
+      "label": "Overload Systems",
+      "origin": "Compendium.sw5e.deploymentfeatures.2GMuH7TIypF8O3bB",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>Also at 5th rank, you learn how to overload the systems of a ship remotely. As an action, you can attempt to breach the systems of the target of your System Disturbance. The ship must make a Constitution saving throw (DC = 8 + your bonus to Interfere checks). On a failed save, the target's flying speed reduced by half, it's turning speed is doubled, it takes a -2 penalty to AC and Dexterity saving throws, it's shields no longer regenerate, and it can't use reactions. On its turn, it can use either an action or a bonus action, not both. Regardless of the ship's abilities, crew, or equipment, it can't make more than one attack during its turn.</p>\n<p>The ship's pilot makes another Constitution saving throw at the end of its turns. On a successful save, the effect ends.</p>\n<p>Once you've use this feature, you must finish a short or long rest before you can use it again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operator 5th Rank",
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "con",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Operator"
+    },
+    "featureType": {
+      "value": ""
+    },
+    "rank": {
+      "value": "5th Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963406,
+    "modifiedTime": 1685840610739,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

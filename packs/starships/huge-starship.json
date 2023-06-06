@@ -1,0 +1,185 @@
+{
+  "_id": "pgmf0rMYLt4LQtfN",
+  "name": "Huge Starship",
+  "type": "starshipsize",
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+  "effects": [
+    {
+      "_id": "5dnyAxPsWqhRxR2v",
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "-4",
+          "priority": 1
+        },
+        {
+          "key": "system.abilities.con.value",
+          "mode": 2,
+          "value": "4",
+          "priority": 1
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "poison",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "psychic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+      "label": "Huge Starship",
+      "origin": "Item.h8l5MTU8C1pDIQGL",
+      "tint": null,
+      "transfer": true,
+      "sort": 0
+    },
+    {
+      "_id": "hSoRkxBvDYz9r4f0",
+      "changes": [
+        {
+          "key": "system.traits.di.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.sdi.value",
+          "mode": 2,
+          "value": "sonic",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+      "label": "Space Travel",
+      "origin": "Compendium.sw5e.starships.pgmf0rMYLt4LQtfN",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>The battleship's shields flicker as it absorbs the blows of the attacking fighters. It continues inexorably past them as it's point-defense system peppers it's vicinity with blaster fire to ward them off. As it a approaches the fragile medical frigate the fighters scramble to protect, its gunners lock on to the target before unleashing a fierce volley of turbolaser fire and snapping it in half.</p>\n<p>As the carrier leaves hyperspace, snubfighters deploy from its hangars in formations and move to intercept the space station's patrol fighters. Before the enemy craft have the opportunity to respond, the fighters fall upon them, quickly decimating their ranks. But before the snubfighters had even left the carrier, a second wave of small bombers had been prepping for takeoff. As they spew forth from the hangars, they quickly lock on to the space station and launch proton bombs, pulverizing the station in minutes.</p>\n<p>With the command given, the operator activates the interdictor's gravity well projectors. the lights inside dim almost imperceptibly as huge amounts of power is drawn from the reactor core and supplemental capacitors to the projectors. Accompanied by a lowpitched hum, the gravity well projectors power up.</p>\n<p>Minutes pass for the ship uneventfully, until finally a frigate lurches unceremoniously out of hyperspace into realspace in front of them. The ship then activates its tractor beam, trapping its quarry.</p>\n<p>Huge starships, regardless of their specific purpose, are the backbone of any military. They provide a mobile base of operations and function as a staging ground for the faction that controls them.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "identifier": "huge",
+    "size": "huge",
+    "tier": 0,
+    "hullDice": "d12",
+    "hullDiceStart": 9,
+    "hullDiceUsed": 0,
+    "shldDice": "d12",
+    "shldDiceStart": 9,
+    "shldDiceUsed": 0,
+    "advancement": [
+      {
+        "_id": "Db4QrsAE7x89g2Ng",
+        "type": "HullPoints",
+        "configuration": {},
+        "value": {}
+      },
+      {
+        "_id": "V41bQzCrw7TvZEkL",
+        "type": "ShieldPoints",
+        "configuration": {},
+        "value": {}
+      }
+    ],
+    "buildBaseCost": 100000000,
+    "buildMinWorkforce": 1000,
+    "upgrdCostMult": 100,
+    "upgrdMinWorkforce": 500,
+    "baseSpaceSpeed": 300,
+    "baseTurnSpeed": 100,
+    "crewMinWorkforce": 4000,
+    "modBaseCap": 60,
+    "modMaxSuitesBase": 6,
+    "modMaxSuitesMult": 3,
+    "modCostMult": 50,
+    "modMinWorkforce": 100,
+    "hardpointMult": 2,
+    "equipCostMult": 50,
+    "equipMinWorkforce": 50,
+    "cargoCap": 10000,
+    "fuelCost": 10000,
+    "fuelCap": 600,
+    "foodCap": 9600000,
+    "hullDiceRolled": [
+      12,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "shldDiceRolled": [
+      12,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7
+    ],
+    "pwrDice": "d1",
+    "modMaxSuiteCap": 4000
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.4.2.4.0",
+    "coreVersion": "10.291",
+    "createdTime": 1674494019391,
+    "modifiedTime": 1677517377801,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

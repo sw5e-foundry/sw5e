@@ -1,0 +1,129 @@
+{
+  "name": "Armor Class Improvement",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship/yt_1300f_light_freighter.Token.webp",
+  "effects": [
+    {
+      "_id": "yFABWn5b0YvgXlks",
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.attributes.ac.bonus",
+          "mode": 2,
+          "value": "(@details.tier)-1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship/yt_1300f_light_freighter.Token.webp",
+      "label": "Armor Class Improvement",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "wZ1zZstHedBTZ1zw",
+  "system": {
+    "description": {
+      "value": "<p>Beginning at second Tier, your ship's armor class improves, giving your ship a +1 to its AC. It gains an additional +1 bonus to AC at 3rd Tier (+2 total), 4th Tier (+3 total), and 5th Tier (+4 total).</p><p>Applies to all ship sizes.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "0",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Gargantuan",
+    "tier": "2"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017981,
+    "modifiedTime": 1684522541530,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

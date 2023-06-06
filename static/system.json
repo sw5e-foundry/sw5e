@@ -1,0 +1,464 @@
+{
+  "id": "sw5e",
+  "title": "SW 5th Edition",
+  "description": "A comprehensive game system for running games of SW 5th Edition in the Foundry VTT environment.",
+  "version": "2.1.5.2.4.6",
+  "compatibility": {
+    "minimum": "10.291",
+    "verified": "10"
+  },
+  "url": "https://github.com/sw5e-foundry/sw5e",
+  "manifest": "https://github.com/sw5e-foundry/sw5e/releases/latest/download/system.json",
+  "download": "https://github.com/sw5e-foundry/sw5e/releases/latest/download/system.zip",
+  "authors": [
+    {
+      "name": "The Dev Team",
+      "url": "https://github.com/unrealkakeman89/sw5e",
+      "discord": "https://discord.gg/HUNHVhDQka",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "sw5e.mjs"
+  ],
+  "styles": [
+    "sw5e.css",
+    "sw5e-global.css",
+    "sw5e-light.css",
+    "sw5e-dark.css"
+  ],
+  "packs": [
+    {
+      "name": "adventuringgear",
+      "label": "Adventuring Gear",
+      "path": "packs/packs/adventuringgear.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "ammo",
+      "label": "Ammo",
+      "path": "packs/packs/ammo.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "archetypefeatures",
+      "label": "Archetype Features",
+      "path": "packs/packs/archetypefeatures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "archetypes",
+      "label": "Archetypes",
+      "path": "packs/packs/archetypes.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "path": "packs/packs/armor.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "armorproperties",
+      "label": "Armor Properties",
+      "path": "packs/packs/armorproperties.db",
+      "type": "JournalEntry",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "backgrounds",
+      "label": "Backgrounds",
+      "path": "packs/packs/backgrounds.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "blasters",
+      "label": "Blasters",
+      "path": "packs/packs/blasters.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "classes",
+      "label": "Classes",
+      "path": "packs/packs/classes.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "classfeatures",
+      "label": "Class Features",
+      "path": "packs/packs/classfeatures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "conditions",
+      "label": "Conditions",
+      "path": "packs/packs/conditions.db",
+      "type": "JournalEntry",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "consumables",
+      "label": "Consumables",
+      "path": "packs/packs/consumables.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "deploymentfeatures",
+      "label": "Deployment Features",
+      "path": "packs/packs/deploymentfeatures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "deployments",
+      "label": "Deployments",
+      "path": "packs/packs/deployments.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "enhanceditems",
+      "label": "Enhanced Items",
+      "path": "packs/packs/enhanceditems.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "explosives",
+      "label": "Explosives",
+      "path": "packs/packs/explosives.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "feats",
+      "label": "Feats",
+      "path": "packs/packs/feats.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "fightingstyles",
+      "label": "Fighting Styles",
+      "path": "packs/packs/fightingstyles.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "fightingmasteries",
+      "label": "Fighting Masteries",
+      "path": "packs/packs/fightingmasteries.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "fistoscodex",
+      "label": "Fisto's Codex",
+      "path": "packs/packs/fistoscodex.db",
+      "type": "Actor",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "forcepowers",
+      "label": "Force Powers",
+      "path": "packs/packs/forcepowers.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "gamingsets",
+      "label": "Gaming Sets",
+      "path": "packs/packs/gamingsets.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "implements",
+      "label": "Artisan's Implements",
+      "path": "packs/packs/implements.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "invocations",
+      "label": "Class Invocations",
+      "path": "packs/packs/invocations.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "kits",
+      "label": "Specialist's Kits",
+      "path": "packs/packs/kits.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "lightsaberform",
+      "label": "Lightsaber Forms",
+      "path": "packs/packs/lightsaberforms.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "lightweapons",
+      "label": "Lightweapons",
+      "path": "packs/packs/lightweapons.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "maneuvers",
+      "label": "Maneuvers",
+      "path": "packs/packs/maneuvers.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "monsters",
+      "label": "Monsters",
+      "path": "packs/packs/monsters.db",
+      "type": "Actor",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "monstertraits",
+      "label": "Monster Traits",
+      "path": "packs/packs/monstertraits.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "monsters_temp",
+      "label": "Monsters Temp",
+      "path": "packs/packs/monsters_temp.db",
+      "type": "Actor",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "modifications",
+      "label": "Modifications",
+      "path": "packs/packs/modifications.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "musicalinstruments",
+      "label": "Musical Instruments",
+      "path": "packs/packs/musicalinstruments.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "species",
+      "label": "Species",
+      "path": "packs/packs/species.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "speciesfeatures",
+      "label": "Species Features",
+      "path": "packs/packs/speciesfeatures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "drakes-shipyard",
+      "label": "Drakes Shipyard",
+      "path": "packs/packs/drakes-shipyard.db",
+      "type": "Actor",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshipactions",
+      "label": "Starship Actions",
+      "path": "packs/packs/starshipactions.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshiparmor",
+      "label": "Starship Armor",
+      "path": "packs/packs/starshiparmor.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshipequipment",
+      "label": "Starship Equipment",
+      "path": "packs/packs/starshipequipment.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshipfeatures",
+      "label": "Starship Features",
+      "path": "packs/packs/starshipfeatures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshipmodifications",
+      "label": "Starship Modifications",
+      "path": "packs/packs/starshipmodifications.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starships",
+      "label": "Starship Types",
+      "path": "packs/packs/starships.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "starshipweapons",
+      "label": "Starship Weapons",
+      "path": "packs/packs/starshipweapons.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "tables",
+      "label": "Tables",
+      "path": "packs/packs/tables.db",
+      "type": "RollTable",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "techpowers",
+      "label": "Tech Powers",
+      "path": "packs/packs/techpowers.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "ventures",
+      "label": "Ventures",
+      "path": "packs/packs/ventures.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "vibroweapons",
+      "label": "Vibroweapons",
+      "path": "packs/packs/vibroweapons.db",
+      "type": "Item",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "name": "weaponproperties",
+      "label": "Weapon Properties",
+      "path": "packs/packs/weaponproperties.db",
+      "type": "JournalEntry",
+      "private": false,
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "de",
+      "name": "German",
+      "path": "lang/de.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json",
+      "flags": {}
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json",
+      "flags": {}
+    },
+    {
+      "lang": "es",
+      "name": "Espanol",
+      "path": "lang/es.json",
+      "flags": {}
+    }
+  ],
+  "media": [
+    {
+      "type": "cover",
+      "loop": false,
+      "flags": {}
+    }
+  ],
+  "socket": true,
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "attributes.hp",
+  "secondaryTokenAttribute": null,
+  "flags": {
+    "needsMigrationVersion": "2.1.5",
+    "compatibleMigrationVersion": "0.8"
+  }
+}

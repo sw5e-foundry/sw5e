@@ -40,5 +40,10 @@ export function migrateItemProperties( source, config ) {
     else if (prop.type === "Number" && Number.isNaN(source[key])) source[key] = null;
     else if (prop.type === "Number") source[key] = Math.max(source[key], prop.min || -Infinity);
   }
-  for (const key of Object.keys(source)) if (!(key in config)) delete source[key];
+  if (source.indeterminate) {
+    for (const key of Object.keys(source)) if (!(key in config) && (key !== "indeterminate")) delete source[key];
+    for (const key of Object.keys(source.indeterminate)) if (!(key in config)) delete source.indeterminate[key];
+  } else {
+    for (const key of Object.keys(source)) if (!(key in config)) delete source[key];
+  }
 }

@@ -1,0 +1,1277 @@
+{
+  "name": "GH-7 Medical Analysis Unit",
+  "type": "npc",
+  "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+  "items": [
+    {
+      "_id": "YzQ2ZmRmNWFiYjE2",
+      "name": "Circuitry",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The droid has disadvantage on saving throws against effects that would deal ion or lightning damage.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "NjQ4YTQzMGExMzI0",
+      "name": "Interfaced Healing Protocol",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>While you are interfaced with this droid via the tracker droid interface tech power, when you restore hit points to a creature that is within 5 feet of your droid, you can roll the dice twice and take either total.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "YWRkYzkzZWIzZDk5",
+      "name": "Medkit (1/rest)",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>As an action, the droid can expend a use of a medkit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 1,
+          "max": "1",
+          "per": "sr",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "MTgyMThhNWYyOThj",
+      "name": "Medpac (1/day)",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>As an action, the droid uses a medpac to restore 2d4+2 hit points to a creature within 5 feet.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 1,
+          "max": "1",
+          "per": "day",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "heal",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "2d4+2",
+              "healing"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "OWZhNWRmYjhmNmI3",
+      "name": "Administer Antidote (1/rest)",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>As an action, the droid can administer a charge of an antidote kit to cure a target of one poison affecting them or to give them advantage on saving throws against poison for 1 hour. It confers no benefit to droids or constructs.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": 1,
+          "max": "1",
+          "per": "sr",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e": {
+      "dataVersion": "1.2.4"
+    }
+  },
+  "_id": "WzVbDNYE7vlswkpw",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -2,
+        "save": -2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 8
+      },
+      "dex": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "con": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -2,
+        "save": -2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 8
+      },
+      "int": {
+        "value": 13,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "wis": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 1,
+        "save": 1,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 11
+      },
+      "cha": {
+        "value": 11,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "hon": {
+        "value": 11,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 12,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 11,
+        "calc": "natural",
+        "formula": "",
+        "min": 0
+      },
+      "hp": {
+        "value": 1,
+        "max": 1,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": "1d6-2",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0,
+        "mod": 1,
+        "prof": 0,
+        "total": 1
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 25,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 0,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": "passive Perception 11"
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none",
+      "prof": 2,
+      "powerdc": 10,
+      "bar1": {
+        "value": 1,
+        "min": 0,
+        "max": 1
+      },
+      "bar2": {
+        "value": 11,
+        "min": 0,
+        "max": 0
+      },
+      "encumbrance": {
+        "value": 0,
+        "max": 105,
+        "pct": 0,
+        "encumbered": false
+      },
+      "powerForceLightDC": 11,
+      "powerForceDarkDC": 10,
+      "powerForceUnivDC": 11,
+      "powerTechDC": 11,
+      "death": {
+        "success": null,
+        "failure": null
+      },
+      "exhaustion": null,
+      "inspiration": false
+    },
+    "details": {
+      "biography": {
+        "value": "<blockquote><p><i>\"The Geeaych-Seven: Four-time winner of the 'Silver Bantha' for excellence in industrial design.\"</i></p><p><span style=\"font-size:13px\">- Excerpt from a Chiewab Amalgamated Pharmaceuticals sales manual</span></p></blockquote><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Manufacturer</u></td><td style=\"line-height:1.42857\">Chiewab Amalgamated Pharmaceuticals Company</td></tr><tr><td style=\"line-height:1.42857\"><u>Class</u></td><td style=\"line-height:1.42857\">Class 1 medical droid</td></tr><tr><td style=\"line-height:1.42857\"><u>Height</u><br /></td><td style=\"line-height:1.42857\">0,7 meters</td></tr><tr><td style=\"line-height:1.42857\"><u>Gender</u></td><td style=\"line-height:1.42857\">Masculine programming</td></tr><tr><td style=\"line-height:1.42857\"><u>Sensor color</u></td><td style=\"line-height:1.42857\">Blue</td></tr><tr><td style=\"line-height:1.42857\"><u>Plating color</u></td><td style=\"line-height:1.42857\">Silver</td></tr></tbody></table><p>The GH-7 medical analysis unit was a model of medical droid in operation during the final years of the Galactic Republic. It was manufactured by the Chiewab Amalgamated Pharmaceuticals Company in competition with Geentech's 2-1B, and designed by a group of Columi.</p><p>The GH-7 was a multi-purpose automaton designed to handle diagnostics and surgical assistance duties. Though reminiscent of a humanoid form, the GH-7 was not modeled on any particular species, instead designed to perform efficiently on a variety of outlying worlds among any number of alien races. The droid had access to a range of medical duties, all the while wirelessly connected to the current medical facility's main computer. Also, it could serve as an assistant to an organic medic, as it was made so that all of its tools were easily accessible.</p><p>The GH-7 was used on many Outer Rim medical outposts, including the CIS facility on Boz Pity and the medical center on Polis Massa. Several decades later, the GH-7 would find use at the Aurora Medical Facility on Obroa-skai.</p><h3>History</h3><p>Chiewab Amalgamated Pharmaceuticals Company, though one of the galaxy's largest medical corporations, was not known for making droids. The company could have gained the opportunity to become a forerunner and lead player in the droid market, however, if it had not spun off its subsidiary unit, Geentech. Geentech soon proved too valuable to lose when the company introduced the 2-1B, but by then it was too late to claim copyrights on the valuable property. Before Chiewab could even have a chance, Industrial Automaton swooped in and absorbed the solo franchise. Ever since, Chiewab worked to make amends for the 2-1B with the GH-7, its best contender. Using a percentage of the company's vast profits Chiewab hired a droid design staff comprised entirely of the highly intelligent Columi. The intellectual species' love for logic and efficiency in engineering were qualities expressed in the creation of the GH-7. However, Core World medical facilities continued to purchase the more sophisticated 2-1B or the broader MD-series medical specialist droids, making the Outer Rim a more welcoming market for the droids.<br /></p><p>After Padmé Amidala was injured by Darth Vader on Mustafar, she was taken to a medical facility on Polis Massa. There, this soft-spoken medical droid bore the news from the silent Polis Massan medics who worked diligently to save Padmé's life. Though they found nothing physically wrong with her, for reasons they could not pinpoint, she was losing her grasp on life. However, this news was mingled with hope for those present, Obi-Wan Kenobi, Bail Organa, and Yoda; the Senator was pregnant with twins. Though the Polis Massan medics were unable to save Amidala's life, she did give birth to twin infants, Luke and Leia, giving these children a chance at life. A GH-7 unit also assisted in treating the injuries of Jedi Padawan Zeami following the Battle of Coruscant.<br /></p><h3>Design</h3><p>The GH-7 was a premier medical droid typically found in some of the better-equipped hospitals and as a personal physician to the wealthy. The GH-7 was designed so as not to mimic any known species to ensure that a wide variety of aliens were comfortable being treated by the droid. The design settled on had a roughly humanoid torso, three main limbs, and a central head unit. The droid was kept easily customizable to account for last-minute emergency needs and use with non-Human races and was equipped with a heuristic processor to allow it to learn new techniques. A slit in the droid's chest also served as a hologram projector, which had the capacity to generate life-sized holograms of a patient in order to better illustrate the steps of a complicated procedure. A separate equipment tray was built into the droid's \"crest\", which held such tools as scalpels, bone spreaders, and other diagnostic tools. Everything on the droid's body was arrayed to allow for easy access. The droid was mostly gray and black, with a bright green holoprojector, display, and photoreceptors, and a blue symbol on the droid's chest to mark the analysis chamber.</p><p>On the droid's left hip was a black, L-shaped tray with another, smaller tray slightly above that. In addition to these, the droid boasted a specimen rack that protruded from its side and held sample jars or vials of live cultures. Repulsor fields kept the sensitive liquids perfectly balanced to inhibit spilling.</p><p>The droid's torso sported three dexterous arms, two of which were connected to the shoulders and were single-hinged, with three dual-hinged manipulators. The third protruded from atop the right shoulder and was also single-hinged with two dual-hinged fingers. These three limbs allowed the droid to perform various delicate tasks, from collecting specimens to hypodermic injections. A fourth, less-noticeable arm housed a testing probe. This arm was used when analyzing a biological sample to insert the sample into the droid's built-in analysis chamber capable of two kilograms of storage.</p><p>The head of the droid was a hammer-headed shape, with a flat \"face\" and a long sloping crest at the back of its head. A wire connected the crest to the back of the droid. Its photoreceptors were wirelessly linked to the medical mainframes of its current facility, as well as doubling as bioscanners and functions that included parallax brainwave readings as well as enabling the droid to see in dim lighting. A disc-shaped display screen exhibited video or pictographic information regarding the GH-7's testing results and its diagnostic conclusions. A comlink was built into the droid for communication over distances.</p><p>The design of the GH-7 was so successful that it won the Silver Bantha for excellence in industrial design four times and was recognized for its humanitarian work.</p><p>The GH-7 cost 4,840 credits, a price that made it rare to find on poorer worlds, though some patrons donated them to hospitals or clinics on fringe worlds or to serve as relief workers.</p><h3>Programming</h3><blockquote><p><i>\"Medically, she is completely healthy. For reasons we can't explain, we are losing her.\"</i></p><p><span style=\"font-size:13px\">- A GH-7, speaking of Padmé Amidala, to Obi-Wan Kenobi, Yoda, and Bail Organa</span></p></blockquote><p>The GH-7 was programmed with considerable intelligence, enabling the droid to act as a diagnostician, a surgical assistant, anesthesiologist, and hematologist. The GH-7 was also automatically programmed with the ability to speak Binary and was able to interface with a computer. The droid was, unlike most medical units, transported on and provided mobility by a single whisper-quiet repulsorlift cell for maximum mobility in an operating room and a crowded hospital and to reduce contact with potentially contaminated surfaces.</p><p>The droid was programmed with a gentle, calming voice meant to soothe both the patients and their companions alike, in conjunction with this, the GH-7 was programmed with a high degree of compassion, such that independent GH-7s sought work in poor or troubled regions and attempted to heal whatever ill being it came across. It was also programmed with several mannerisms meant to give it a more benevolent and approachable feel, such as gestures or subtle movements or raises in pitch. Its largish head, while echoing the Columi's similarly oversized skull, gave the droid the look of a child, making it seem less threatening, as did the lack of any sharp edges and the rounded appearance. The droid was also inherently programmed with the physician's code and strong prohibitions against harming any intelligent organic being. This was so engrained in their programming that the droids were incapable of engaging in combat except to protect their patients, and even then only utilized weapons set to stun when against an intelligent, living target.<br /></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
+        "public": ""
+      },
+      "alignment": "Unaligned",
+      "species": "",
+      "type": {
+        "value": "droid",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": "0",
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "Roll 20",
+      "xp": {
+        "value": 10
+      },
+      "race": "",
+      "class": "",
+      "powerLevel": 1
+    },
+    "traits": {
+      "size": "sm",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [
+          "necrotic",
+          "poison",
+          "psychic"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [
+          "ion"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": "Poison, Disease"
+      },
+      "languages": {
+        "value": [
+          "basic"
+        ],
+        "custom": "One Other Of Your Choice"
+      }
+    },
+    "currency": {
+      "gc": 0,
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0.5,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "ani": {
+        "value": 0.5,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "ath": {
+        "value": 0.5,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 9,
+        "prof": 1,
+        "total": -1
+      },
+      "dec": {
+        "value": 0.5,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 11,
+        "prof": 1,
+        "total": 1
+      },
+      "ins": {
+        "value": 0.5,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "itm": {
+        "value": 0.5,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 11,
+        "prof": 1,
+        "total": 1
+      },
+      "inv": {
+        "value": 0.5,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "prof": 0,
+        "total": 1,
+        "passive": 11
+      },
+      "med": {
+        "value": 2,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 15,
+        "prof": 4,
+        "total": 5
+      },
+      "nat": {
+        "value": 0.5,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "prof": 0,
+        "total": 1,
+        "passive": 11
+      },
+      "prc": {
+        "value": 0.5,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "prf": {
+        "value": 0.5,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 11,
+        "prof": 1,
+        "total": 1
+      },
+      "per": {
+        "value": 0.5,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 11,
+        "prof": 1,
+        "total": 1
+      },
+      "slt": {
+        "value": 0.5,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "ste": {
+        "value": 0.5,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "sur": {
+        "value": 0.5,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "passive": 12,
+        "prof": 1,
+        "total": 2
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 1,
+        "prof": 0,
+        "total": 1,
+        "passive": 11
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power2": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power3": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power4": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power5": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power6": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power7": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power8": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power9": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "pact": {
+        "value": 0,
+        "max": 0,
+        "override": null,
+        "level": 0
+      },
+      "power0": {
+        "value": 0,
+        "max": 0,
+        "fmax": 0,
+        "fvalue": 0,
+        "tmax": 0,
+        "tvalue": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": false,
+        "initiative": 0
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "flags": {},
+    "name": "GH-7 Medical Analysis Unit",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.bar2"
+    },
+    "randomImg": false,
+    "alpha": 1,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "texture": {
+      "src": "systems/sw5e/packs/Icons/monsters/170_-_GH-7_Medical_Analysis_Unit/Token.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 5,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493984257,
+    "modifiedTime": 1685840636903,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

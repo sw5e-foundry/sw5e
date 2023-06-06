@@ -3,16 +3,12 @@ import gulp from "gulp";
 import * as css from "./utils/css.mjs";
 import * as javascript from "./utils/javascript.mjs";
 import * as packs from "./utils/packs.mjs";
+import * as staticGulp from "./utils/static.mjs";
+import {deleteAsync} from "del";
 
-
-// Default export - build CSS
-export default gulp.series(css.compile);
-
-// CSS compiling and watch for updates
-export const watchUpdates = gulp.series(
-  gulp.parallel(css.compile),
-  css.watchUpdates
-);
+export function cleanDist() {
+  return deleteAsync(["dist/**", "!dist/.gitkeep"], {force: true});
+}
 
 // Javascript compiling & linting
 export const buildJS = gulp.series(javascript.compile);
@@ -23,9 +19,41 @@ export const cleanPacks = gulp.series(packs.clean);
 export const compilePacks = gulp.series(packs.compile);
 export const extractPacks = gulp.series(packs.extract);
 
-// Build all artifacts
-export const buildAll = gulp.parallel(
-  css.compile,
-  javascript.compile,
-  packs.compile
+// Static copy
+export const copyStatic = gulp.parallel(
+  staticGulp.copyFonts,
+  staticGulp.copyIcons,
+  staticGulp.copyJson,
+  staticGulp.copyLang,
+  staticGulp.copyPacks,
+  staticGulp.copyTemplates,
+  staticGulp.copyUi,
+  staticGulp.copyStaticRoot,
+  staticGulp.copyRoot
 );
+
+// Build all artifacts
+export const buildAll = gulp.series(
+  cleanDist,
+  gulp.parallel(
+    css.compile,
+    javascript.compile,
+    packs.compile,
+    copyStatic
+  )
+);
+
+// Watch for updates
+export const watchUpdates = gulp.series(
+  gulp.series(
+    buildAll,
+    gulp.parallel(
+      css.watchUpdates,
+      javascript.watchUpdates,
+      staticGulp.watchUpdates
+    )
+  )
+);
+
+// Default export - build CSS
+export default buildAll;

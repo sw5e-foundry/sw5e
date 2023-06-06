@@ -1,0 +1,189 @@
+{
+  "_id": "Gf49HqxtlDhmCCEa",
+  "name": "Sensor Dampener",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "effects": [
+    {
+      "_id": "I1qOM6Et8bJcePHa",
+      "changes": [
+        {
+          "key": "system.skills.hid.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+      "label": "Sensor Dampener",
+      "origin": "Compendium.sw5e.starshipmodifications.Gf49HqxtlDhmCCEa",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p>This modification adds a remote sensor dampener to your ship. As an action, a crew member can attempt to dampen the sensors of a ship they can see within 1,000 feet. The target makes a Wisdom saving throw (DC = 8 + your Charisma (Interfere) bonus. On a failed save, the ship is blinded for 1 minute. As an action on each of the ship's turns, a crew member on the affected ship can repeat this save, ending the effect on a success.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p><p>Additionally, your ship is proficiently equipped for Dexterity (Hide) checks. If your ship is already proficiently equipped, it is instead considered expertly equipped. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "isCargo": false,
+    "activation": {
+      "type": "",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Operation"
+    },
+    "grade": {
+      "value": "NA"
+    },
+    "basecost": {
+      "value": "3500"
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "proficient": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Strength": false,
+      "Steadfast": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674494018642,
+    "modifiedTime": 1685840666105,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

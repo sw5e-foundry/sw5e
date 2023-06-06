@@ -1,0 +1,104 @@
+{
+  "_id": "mUQpy94CIAOkbxC1",
+  "name": "Survivor",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/FGTR-ARCH-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-survivor.source-archetype.sourceName-assault_specialist.level-18"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Assault Specialist:</strong> 18th level</em></p>\n<p>You attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your Constitution modifier if you have no more than half your hit points left. You don't gain this benefit if you have 0 hit points.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Fighter (Assault Specialist) 18",
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": "Start of your turn, HP is greater than 0 and half or less MaxHP"
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "con",
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "5 + @abilities.con.mod",
+          "healing"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Fighter"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958045,
+    "modifiedTime": 1685840600239,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

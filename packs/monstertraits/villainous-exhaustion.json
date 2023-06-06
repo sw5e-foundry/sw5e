@@ -1,0 +1,131 @@
+{
+  "name": "Villainous Exhaustion",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Monster%20Traits/Villainous%20Exhaustion.webp",
+  "effects": [
+    {
+      "label": "Villainous Exhaustion",
+      "icon": "icons/svg/aura.svg",
+      "origin": "Item.aF5Om3bLECgQY4fI",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "_id": "gsSffWZqSvwYHFu3",
+      "changes": [
+        {
+          "key": "flags.sw5e.initiativeAdv",
+          "mode": 0,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "sort": 0
+    }
+  ],
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> rolls initiative with advantage. </p><p><span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> starts with a number of villainous actions equal to one less than it's villainous multiplier. If a hit point pool is depleted, <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> also loses one villainous action. <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> may use a villainous action after any other creature takes a turn. If <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span> does so, it regains its reaction. A villainous action is a complete turn. They have an action, bonus action and may move up to their full speed. The villainous actions refresh at the start of <span style=\"font-family:'Open Sans', sans-serif\">{creature}</span>'s turn and any remaining actions from the previous turn are lost.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "",
+    "activation": {
+      "type": "",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": "",
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "",
+      "long": "",
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 0,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": null
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": 0,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "powercasting": {
+      "force": "none",
+      "tech": "none"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1669754707123,
+    "modifiedTime": 1685840641100,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "folder": null,
+  "sort": 0,
+  "_id": "fkEHkxzrOZQlgnH2"
+}

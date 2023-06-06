@@ -1,0 +1,99 @@
+{
+  "_id": "0RnJECNGdGTiaaB6",
+  "name": "Aura of Protection",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/GRDN-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:57.6286281+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-aura_of_protection.source-classinvocation.sourceName-guardian.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>Whenever a creature within 5 feet of you takes damage, you can use your reaction to take that damage instead of that creature taking it. This feature doesn't transfer any other effects that might accompany the damage, and this damage can't be reduced in any way.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Guardian",
+    "source": "PHB",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "guardianInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493980958,
+    "modifiedTime": 1684777308926,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "name": "Interfere",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/crew-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "dp8pkpYsF3vWkvPz",
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can attempt to interfere with another creature within 1,000 feet, in the attempt of a task. When you take the Interfere action, you make a Charisma (Interfere) check contested by the target's Wisdom (Scan) check. If you succeed, the subject has disadvantage on the next ability check or attack roll it makes before the start of your next turn. The Interfere action can be taken multiple times on a ship's turn.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": 1000,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": "0",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "abil",
+    "attackBonus": 0,
+    "chatFlavor": "Contested by Wisdom (Scan)",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.inf.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "crew"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": "crew"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016676,
+    "modifiedTime": 1683591776479,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

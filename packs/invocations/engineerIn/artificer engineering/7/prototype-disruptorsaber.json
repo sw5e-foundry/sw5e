@@ -1,0 +1,99 @@
+{
+  "_id": "7QTbSDO3YHgUSWws",
+  "name": "Prototype Disruptorsaber",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-prototype_disruptorsaber.source-archetypeinvocation.sourceName-artificer_engineering.level-7"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level, Disruptorsaber Conversion</em></p>\n<p>You fine tune your disruptorsaber. When you activate this conversion to alter the properties of your lightweapon, you can use your bonus action to attempt to knock the target of your attack prone. The creature must make a Strength saving throw or be knocked prone.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Artificer Engineering) 7, Disruptorsaber Conversion",
+    "source": "EC",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493980996,
+    "modifiedTime": 1684777308928,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

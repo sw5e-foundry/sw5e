@@ -1,0 +1,1079 @@
+{
+  "name": "LR1K Sonic Cannon",
+  "type": "npc",
+  "img": "systems/sw5e/packs/Icons/monsters/154_-_LR1K_Sonic_Cannon/Avatar.webp",
+  "items": [
+    {
+      "_id": "NWYxMjI2OWIxZWQ3",
+      "name": "Circuitry",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/154_-_LR1K_Sonic_Cannon/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The construct has disadvantage on saving throws against effects that would deal ion or lightning damage.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "NzM2YjRlMmE1NGU0",
+      "name": "Gunner",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/154_-_LR1K_Sonic_Cannon/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The construct requires an active gunner to take any actions, and if the gunner is subjected to any conditions that the construct is not immune to, the gunner is also subjected to those conditions. The gunner may take their own action or one of the actions granted by the construct.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "NzQwZDI2NmFmYzM2",
+      "name": "Sonic Blast",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/154_-_LR1K_Sonic_Cannon/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong>.</p><p>The sonic cannon lets loose a devastating blast of sonic energy in a direction it chooses. Each creature and construct in a 60-foot cone must make a Constitution saving throw (DC 14). A creature takes 24 (6d6 + 3) sonic damage and is knocked prone on a failed save. On a success, the creature takes half damage.</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": "",
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": 60,
+          "width": null,
+          "units": "ft",
+          "type": "cone"
+        },
+        "range": {
+          "value": null,
+          "long": null,
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": "0",
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": "",
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "save",
+        "attackBonus": 0,
+        "chatFlavor": "knocked prone on a failed save. On a success, the creature takes half damage.",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "6d6+3",
+              "sonic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "con",
+          "dc": 14,
+          "scaling": "flat"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e": {
+      "dataVersion": "1.2.4"
+    }
+  },
+  "_id": "6P1RIdysI6zDLz1D",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 16,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 3,
+        "save": 3,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 13
+      },
+      "dex": {
+        "value": 2,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -4,
+        "save": -4,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 6
+      },
+      "con": {
+        "value": 18,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 4,
+        "save": 4,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 14
+      },
+      "int": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 2,
+        "save": 2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 12
+      },
+      "wis": {
+        "value": 11,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "cha": {
+        "value": 4,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -3,
+        "save": -3,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 7
+      },
+      "hon": {
+        "value": 4,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 11,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 14,
+        "calc": "natural",
+        "formula": "armor plating",
+        "min": 0
+      },
+      "hp": {
+        "value": 76,
+        "max": 76,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": "8d10+48",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0,
+        "mod": -4,
+        "prof": 0,
+        "total": -4
+      },
+      "movement": {
+        "burrow": 0,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 0,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 60,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none",
+      "prof": 2,
+      "powerdc": 10,
+      "bar1": {
+        "value": 76,
+        "min": 0,
+        "max": 76
+      },
+      "bar2": {
+        "value": 14,
+        "min": 0,
+        "max": 0
+      },
+      "encumbrance": {
+        "value": 0,
+        "max": 480,
+        "pct": 0,
+        "encumbered": false
+      },
+      "powerForceLightDC": 10,
+      "powerForceDarkDC": 7,
+      "powerForceUnivDC": 10,
+      "powerTechDC": 12,
+      "death": {
+        "success": null,
+        "failure": null
+      },
+      "exhaustion": null,
+      "inspiration": false
+    },
+    "details": {
+      "biography": {
+        "value": "<table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Manufacturer</u></td><td style=\"line-height:1.42857\"><p>Gordarl Weaponsmiths</p></td></tr><tr><td style=\"line-height:1.42857\"><u>Type</u></td><td style=\"line-height:1.42857\">Sonic cannon</td></tr><tr><td style=\"line-height:1.42857\"><u>Cost</u></td><td style=\"line-height:1.42857\"><ul><li>9.000 credits (new)</li><li>5.000 credits (used)</li></ul></td></tr></tbody></table><p>The LR1K sonic cannon, also known as the Geonosian sonic cannon or the Geonosian defense platform, was a high-powered artillery emplacement weapon produced by the Gordarl Weaponsmiths on Geonosis prior to and during the Clone Wars.</p><h3>Description</h3><p>The LR1K cannon used sonic blaster technology that employed internal oscillators to produce a devastating sonic blast. The high impact concussive sonic energy was stabilized by a containment sphere within the cannon until impact against a target, at which point it broke up to create an omnidirectional blast. Commonly, the LR1K required two Geonosian or battle droid gunners to operate, although the cannon's advanced, highly-precise targeting computers were capable of doing most of the work. A critical hit with this weapon would instantly kill any average clone.<br /></p><h3>History</h3><p>The sonic cannon was rushed into production when Archduke Poggle the Lesser joined the growing Separatist movement, prior to the official creation of the Confederacy of Independent Systems. An arsenal of sonic cannons were kept at the Petranaki arena, for use in the event of a creature break-out or a crowd control situation. Four cannons were deployed against a Jedi strike team in the arena, and many others were later deployed during the Battle of Geonosis against invading clone troopers on the planet's dusty plains. They were later used to defend Geonosis against the Republic's second planetary invasion. Several of the sonic cannons were deployed to defend mines on the planet Rishi.</p><p>The LR1K technology was later incorporated into the Imperial sonic blaster of the Galactic Empire.<br /></p><p><br /></p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
+        "public": ""
+      },
+      "alignment": "Unaligned",
+      "species": "",
+      "type": {
+        "value": "construct",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": 3,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "Roll 20",
+      "xp": {
+        "value": 700
+      },
+      "race": "",
+      "class": "",
+      "powerLevel": 3
+    },
+    "traits": {
+      "size": "lg",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [
+          "necrotic",
+          "poison",
+          "psychic"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [
+          "ion"
+        ],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": "Poison, Disease"
+      },
+      "languages": {
+        "value": [],
+        "custom": "—"
+      }
+    },
+    "currency": {
+      "gc": 0,
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -4,
+        "passive": 6,
+        "prof": 0,
+        "total": -4
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 3,
+        "passive": 13,
+        "prof": 0,
+        "total": 3
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      },
+      "prc": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -4,
+        "passive": 6,
+        "prof": 0,
+        "total": -4
+      },
+      "ste": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -4,
+        "passive": 6,
+        "prof": 0,
+        "total": -4
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2,
+        "passive": 12
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power2": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power3": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power4": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power5": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power6": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power7": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power8": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power9": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "pact": {
+        "value": 0,
+        "max": 0,
+        "override": null,
+        "level": 0
+      },
+      "power0": {
+        "value": 0,
+        "max": 0,
+        "fmax": 0,
+        "fvalue": 0,
+        "tmax": 0,
+        "tvalue": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": false,
+        "initiative": 0
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "flags": {},
+    "name": "LR1K Sonic Cannon",
+    "displayName": 40,
+    "width": 2,
+    "height": 2,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.bar2"
+    },
+    "randomImg": false,
+    "alpha": 1,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "texture": {
+      "src": "systems/sw5e/packs/Icons/monsters/154_-_LR1K_Sonic_Cannon/Token.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 10,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493984016,
+    "modifiedTime": 1685840636662,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

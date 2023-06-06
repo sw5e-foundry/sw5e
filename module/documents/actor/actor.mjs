@@ -118,6 +118,19 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Get which type of caster the actor is.
+   * @type {array<string>}
+   */
+  get caster() {
+    const types = [];
+    for (const prog of ["force", "tech"]) if (this.system.attributes[prog].level || this.system.attributes[prog].known.value) types.push(prog);
+    if (this.system.attributes.super.level || this.system.attributes.super.known.value) types.push("super");
+    return types;
+  }
+
+  /* -------------------------------------------- */
   /*  Methods                                     */
   /* -------------------------------------------- */
 
@@ -566,6 +579,7 @@ export default class Actor5e extends Actor {
 
       // Calculate known powers
       for (const pwr of this.itemTypes.power) {
+        if (pwr?.system?.preparation?.mode === "innate") continue;
         const school = pwr?.system?.school;
         if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
         if ("tec" === school) charProgression.tech.powersKnownCur++;
@@ -1129,15 +1143,16 @@ export default class Actor5e extends Actor {
         huge: 4,
         grg: 8
       }[this.system.traits.size] || 1;
-    if (this.flags.sw5e?.powerfulBuild) mod = Math.min(mod * 2, 8);
 
     const strengthMultiplier = game.settings.get("sw5e", "metricWeightUnits")
       ? CONFIG.SW5E.encumbrance.strMultiplier.metric
       : CONFIG.SW5E.encumbrance.strMultiplier.imperial;
 
+    const traitMultiplier = this.flags.sw5e?.encumbranceMultiplier ?? 1;
+
     // Populate final Encumbrance values
     encumbrance.value = weight.toNearest(0.1);
-    encumbrance.max = ((this.system.abilities.str?.value ?? 10) * strengthMultiplier * mod).toNearest(0.1);
+    encumbrance.max = ((this.system.abilities.str?.value ?? 10) * strengthMultiplier * traitMultiplier * mod).toNearest(0.1);
     encumbrance.pct = Math.clamped((encumbrance.value * 100) / encumbrance.max, 0, 100);
     encumbrance.encumbered = encumbrance.pct > 200 / 3;
   }
@@ -1627,6 +1642,22 @@ export default class Actor5e extends Actor {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * Removes currency from the actor
+   * @param {number} ammount  Ammount to remove.
+   * @returns {boolean}       Wheter the operation was succesfull.
+   */
+  async removeCurrency(ammount) {
+    const cur = this.system.currency.gc;
+    if (cur >= ammount) {
+      await this.update({ "system.currency.gc": cur - ammount });
+      return true;
+    }
+    return false;
+  }
+
+  /* -------------------------------------------- */
   /*  Rolling                                     */
   /* -------------------------------------------- */
 
@@ -1638,6 +1669,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollSkill(skillId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const skl = this.system.skills[skillId];
     const abl = this.system.abilities[skl.ability];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1677,8 +1709,12 @@ export default class Actor5e extends Actor {
       data.skillBonus = Roll.replaceFormulaData(globalBonuses.skill, data);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod))
+      || undefined;
     // Reliable Talent applies to any skill check we have full or better proficiency in
-    const reliableTalent = skl.value >= 1 && this.getFlag("sw5e", "reliableTalent");
+    const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
     // Roll and return
     const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.skills[skillId]?.label ?? "" });
@@ -1688,7 +1724,8 @@ export default class Actor5e extends Actor {
         title: `${flavor}: ${this.name}`,
         flavor,
         chooseModifier: true,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         reliableTalent,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -1761,6 +1798,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilityTest(abilityId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const label = CONFIG.SW5E.abilities[abilityId] ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1790,6 +1828,11 @@ export default class Actor5e extends Actor {
       data.checkBonus = Roll.replaceFormulaData(globalBonuses.check, data);
     }
 
+    // Flags
+    const supremeAptitude =
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(abilityId))
+      || undefined;
+
     // Roll and return
     const flavor = game.i18n.format("SW5E.AbilityPromptTitle", { ability: label });
     const rollData = foundry.utils.mergeObject(
@@ -1797,7 +1840,8 @@ export default class Actor5e extends Actor {
         data,
         title: `${flavor}: ${this.name}`,
         flavor,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeAptitude,
+        halflingLucky: flags.halflingLucky,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "ability", abilityId }
@@ -1843,6 +1887,7 @@ export default class Actor5e extends Actor {
    * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
    */
   async rollAbilitySave(abilityId, options = {}) {
+    const flags = this.flags.sw5e ?? {};
     const label = CONFIG.SW5E.abilities[abilityId] ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1872,6 +1917,11 @@ export default class Actor5e extends Actor {
       data.saveBonus = Roll.replaceFormulaData(globalBonuses.save, data);
     }
 
+    // Flags
+    const supremeDurability =
+      (flags.supremeDurability && CONFIG.SW5E.characterFlags.supremeDurability.abilities.includes(abilityId))
+      || undefined;
+
     // Roll and return
     const flavor = game.i18n.format("SW5E.SavePromptTitle", { ability: label });
     const rollData = foundry.utils.mergeObject(
@@ -1879,7 +1929,8 @@ export default class Actor5e extends Actor {
         data,
         title: `${flavor}: ${this.name}`,
         flavor,
-        halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        elvenAccuracy: supremeDurability,
+        halflingLucky: flags.halflingLucky,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "save", abilityId }
@@ -2954,12 +3005,13 @@ export default class Actor5e extends Actor {
    */
   async rollStarshipHullPoints(item, tier, { chatMessage=true }={}) {
     if (item.type !== "starshipsize") throw new Error("Hull points can only be rolled for a starship size item.");
+    const quant = (tier === 0) ? item.system?.hullDiceStart-1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
-      formula: `1${item.system.hullDice}`,
+      formula: `${quant}${item.system.hullDice}`,
       data: item.getRollData(),
       chatMessage
     };
-    if (tier === 0) rollData.formula = `${item.system.hullDice.substring(1)} + ${item.system.hullDiceStart-1}${item.system.hullDice}`;
+    if (tier === 0) rollData.formula += ` + ${item.system.hullDice.substring(1)}`
     const flavor = game.i18n.format("SW5E.AdvancementHullPointsRollMessage", { starship: item.name });
     const messageData = {
       title: `${flavor}: ${this.name}`,
@@ -3010,12 +3062,13 @@ export default class Actor5e extends Actor {
    */
   async rollStarshipShieldPoints(item, tier, { chatMessage=true }={}) {
     if (item.type !== "starshipsize") throw new Error("Shield points can only be rolled for a starship size item.");
+    const quant = (tier === 0) ? item.system?.shldDiceStart-1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
-      formula: `1${item.system.shldDice}`,
+      formula: `${quant}${item.system.shldDice}`,
       data: item.getRollData(),
       chatMessage
     };
-    if (tier === 0) rollData.formula = `${item.system.shldDice.substring(1)} + ${item.system.shldDiceStart-1}${item.system.shldDice}`;
+    if (tier === 0) rollData.formula += ` + ${item.system.shldDice.substring(1)}`
     const flavor = game.i18n.format("SW5E.AdvancementShieldPointsRollMessage", { starship: item.name });
     const messageData = {
       title: `${flavor}: ${this.name}`,
@@ -3676,7 +3729,7 @@ export default class Actor5e extends Actor {
     const dhd = this.system.attributes.hull.dice - hd0;
     const dhp = this.system.attributes.hp.value - hp0;
 
-    return this._repair(chat, newDay, false, regenShld, dhd, dhp);
+    return this._repair(config.chat, config.newDay, false, regenShld, dhd, dhp);
   }
 
   /* -------------------------------------------- */
@@ -3715,7 +3768,7 @@ export default class Actor5e extends Actor {
       }
     }
 
-    return this._repair(chat, newDay, true, true, 0, 0);
+    return this._repair(config.chat, config.newDay, true, true, 0, 0);
   }
 
   /* -------------------------------------------- */
@@ -4141,8 +4194,9 @@ export default class Actor5e extends Actor {
 
     let updates = [];
     for (let item of this.items) {
-      if (recovery.includes(item.system.uses?.per)) {
-        updates.push({ _id: item.id, "system.uses.value": item.system.uses.max });
+      const uses = item.system.uses;
+      if (recovery.includes(uses?.per)) {
+        updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverRefittingRepairUses && item.system.recharge?.value) {
         updates.push({ _id: item.id, "system.recharge.charged": true });

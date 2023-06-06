@@ -70,6 +70,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       });
     }
 
+    // Make the correct powerbook active when you open the tab
+    context.activePowerbook = this.actor.caster[0] ?? "force";
+
     const classes = this.actor.itemTypes.class;
     return foundry.utils.mergeObject(context, {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
@@ -124,7 +127,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       return arr;
     }, []);
     for (const archetype of categories.class.archetype.items) {
-      categories.features.feat.push(archetype);
+      categories.unsorted.items.push(archetype);
       const message = game.i18n.format("SW5E.ArchetypeMismatchWarn", {
         name: archetype.name,
         class: archetype.system.classIdentifier
@@ -260,8 +263,8 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       let itemId = li.attr("data-item-id");
       let item = this.actor.items.get(itemId);
       new Dialog({
-        title: `Deleting ${item.system.name}`,
-        content: `<p>Are you sure you want to delete ${item.system.name}?</p>`,
+        title: `Deleting ${item.name}`,
+        content: `<p>Are you sure you want to delete ${item.name}?</p>`,
         buttons: {
           Yes: {
             icon: '<i class="fa fa-check"></i>',

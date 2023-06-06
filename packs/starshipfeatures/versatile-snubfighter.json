@@ -1,0 +1,96 @@
+{
+  "name": "Versatile Snubfighter",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+  "effects": [],
+  "_id": "coOEQY872uAvwrPe",
+  "system": {
+    "description": {
+      "value": "<p>Starting at 3rd tier, when a deployed crew member makes an ability check, attack roll, or saving throw, they can use their reaction to have advantage on the roll. A deployed crew member can choose to use this feature after they make their roll, but before the GM says whether the roll succeeds or fails.</p>\n<p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship is refitted.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@details.tier",
+      "per": "refitting",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Small",
+    "tier": "3"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017955,
+    "modifiedTime": 1684687557635,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

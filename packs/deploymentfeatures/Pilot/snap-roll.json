@@ -1,0 +1,103 @@
+{
+  "_id": "cUyB5pogFQW0K1vl",
+  "name": "Snap Roll",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Pilot.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br>When you are hit by a ship attack, you can expend a power die and attempt to roll to mitigate the damage. When you do so, the damage you take from the attack is reduced by the amount rolled on the die.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Pilot 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": "When you are hit by a ship attack"
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.engines.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Pilot"
+    },
+    "featureType": {
+      "value": "Tactic"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963453,
+    "modifiedTime": 1685840610788,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

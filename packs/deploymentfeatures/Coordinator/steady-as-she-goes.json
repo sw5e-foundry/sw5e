@@ -1,0 +1,103 @@
+{
+  "_id": "FcEz9wGm9RTlQKVI",
+  "name": "Steady As She Goes",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Coordinator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>As an action, you can expend one power die to strengthen your allies' defenses. Roll a power die. Until the end of your next turn, your ship and all allied ships within 500 feet of you when you use this action have a bonus to any saving throws they make equal to the amount rolled.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Coordinator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Coordinator"
+    },
+    "featureType": {
+      "value": "Collaboration"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963424,
+    "modifiedTime": 1685840610757,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

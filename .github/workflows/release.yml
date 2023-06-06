@@ -1,0 +1,66 @@
+name: Automatic Versioning
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Get the most recent version number from the CHANGELOG.md file
+      - name: Get Most Recent Version Number
+        id: get_version
+        run: |
+          version=$(grep -oP '(?<=^## \[)[0-9.]+(?=\])' CHANGELOG.md | head -n 1)
+          echo "${version}"
+          echo "version=${version}" >> $GITHUB_OUTPUT
+
+      # Substitute the Manifest and Download URLs in the module.json with the most recent version number
+      - name: Substitute Manifest and Download Links For Versioned Ones
+        id: sub_manifest_link_version
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: static/system.json
+        env:
+          version: ${{ steps.get-version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
+
+      - name: Cache NPM
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: node_modules/
+          key: npm-${{ hashFiles('package-lock.json') }}
+
+      - name: Install NPM
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: npm ci
+
+      - name: Compile with Gulp
+        working-directory: ./
+        run: gulp buildAll --dist
+
+      - name: Zip Files
+        working-directory: ./
+        run: zip -r ./system.zip ./dist/*
+
+      - name: Create Release
+        id: create-release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: ${{ steps.get-version.outputs.version }}
+          draft: false
+          prerelease: false
+          token: ${{secrets.GITHUB_TOKEN}}
+          artifacts: "./system.zip, ./static/system.json"
+          generateReleaseNotes: true
+          tag: ${{ steps.get-version.outputs.version }}

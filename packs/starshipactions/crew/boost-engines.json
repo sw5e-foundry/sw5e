@@ -1,0 +1,95 @@
+{
+  "name": "Boost Engines",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/crew-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "cbGQLqMVWB7K5RI7",
+  "system": {
+    "description": {
+      "value": "<p>You can attempt to boost your speed. When you take the Boost Engines action, you make a DC 10 Strength (Boost) check. On a success you increase your speed by 50 until the end of your ship's next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": "self"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "abil",
+    "attackBonus": 0,
+    "chatFlavor": "DC 10",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.bst.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "crew"
+    },
+    "recharge": {
+      "value": 1,
+      "charged": true
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": "crew"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016675,
+    "modifiedTime": 1683589362579,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

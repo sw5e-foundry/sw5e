@@ -2,7 +2,7 @@ import gulp from "gulp";
 import less from "gulp-less";
 
 
-const LESS_DEST = "./";
+const LESS_DEST = "./dist";
 const LESS_WATCH = ["less/**/*.less"];
 
 

@@ -103,7 +103,8 @@ Hooks.once("init", function() {
   CONFIG.Dice.D20Roll = dice.D20Roll;
   CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
-  CONFIG.ui.combat = applications.combat.CombatTracker5e;
+  CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
+  CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
 
   // Add DND5e namespace for module compatibility
   game.dnd5e = game.sw5e;
@@ -315,8 +316,11 @@ Hooks.once("ready", async function() {
 
   if (migrations.needsMigration()) await migrations.migrateWorld();
 
+  // Configure compendium browser.
+  game.sw5e.compendiumBrowser = new applications.compendium.CompendiumBrowser();
+
   // Make deprecated item types unavailable to create
-  game.documentTypes.Item = game.documentTypes.Item.filter(t => !(t in CONFIG.SW5E.deprecatedItemTypes));
+  game.documentTypes.Item = game.documentTypes.Item.filter(t => !CONFIG.SW5E.deprecatedItemTypes.includes(t));
 });
 
 /* -------------------------------------------- */
@@ -359,7 +363,7 @@ Hooks.on("renderJournalDirectory", (app, html, data) => {
 Hooks.on("renderRollTableDirectory", (app, html, data) => {
   setFolderBackground(html);
 });
-// Remigrate button and links, adapted from PF2E
+// Remigrate button and links, adapted from sw5e
 Hooks.on("renderSettings", async (_app, html) => {
   const elements = ["<h2>Star Wars 5e</h2>"];
 
@@ -419,6 +423,10 @@ Handlebars.registerHelper("isUndefined", function(value) {
 
 Handlebars.registerHelper("isNull", function(value) {
   return value === null;
+});
+
+Handlebars.registerHelper("json", function(value) {
+  return JSON.stringify(value);
 });
 
 /**

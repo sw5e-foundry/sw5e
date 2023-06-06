@@ -1,0 +1,103 @@
+{
+  "_id": "OzcohUskPdHG9wId",
+  "name": "Battle Stations",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Coordinator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>If you are surprised at the start of combat and aren't incapacitated, you can expend one power die to act normally. Additionally, on your first turn in combat, as a bonus action you can choose a number of creatures equal to the amount rolled on the power die who can see or hear you to act normally on their first turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Coordinator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Coordinator"
+    },
+    "featureType": {
+      "value": "Collaboration"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963435,
+    "modifiedTime": 1685840610770,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

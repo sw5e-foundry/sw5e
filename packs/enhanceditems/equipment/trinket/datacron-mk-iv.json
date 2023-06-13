@@ -2,7 +2,7 @@
   "_id": "aObvxl48EiYk0Gkj",
   "name": "Datacron Mk IV",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Data%20Recording%20and%20Storage/Datacron.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,17 +80,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>This datacron contains a single 5th-level tech power, or multiple powers of 1st-4th level with a combined level no greater than 5. After tinkering with the datacron for at least 16 hours, a techcaster with a Max Power Level of 5th or higher can make a DC 22 techcasting ability check with proficiency. On a success, they learn the contained tech power(s), which does not count against their tech powers known. On a failure, the power is not learned and the techcaster can't try again for 24 hours.</p>\n<p><em>Datacrons are encrypted storage devices that contain an interactive projection, and are used to store high-value, sensitive information.</em></p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>This datacron contains a single 5th-level tech power, or multiple powers of 1st-4th level with a combined level no greater than 5. After tinkering with the datacron for at least 16 hours, a techcaster with a Max Power Level of 5th or higher can make a DC 22 techcasting ability check with proficiency. On a success, they learn the contained tech power(s), which does not count against their tech powers known. On a failure, the power is not learned and the techcaster can't try again for 24 hours.</p>\n<p><em>Datacrons are encrypted storage devices that contain an interactive projection, and are used to store high-value, sensitive information.</em></p>\n<p> </p>\n<h2>Datacron</h2>\n<p>A datacron is a type of holocron that can be accessed by non-Force-sensitives and are mainly used to store encrypted data. They are complete with an interactive projection to access the information.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
+    "weight": 2,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 1000,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -129,8 +129,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +145,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +193,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "datacron",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +201,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964778,
-    "modifiedTime": 1684819089302,
+    "modifiedTime": 1686621162985,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -2,7 +2,7 @@
   "_id": "4asOST8aVkMhkTRj",
   "name": "Restraining Bolt (Champion)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Utility/RestrainingBolt.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,17 +80,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>Restraining bolts are small, cylindrical devices that can be affixed to a droid in order to limit its functions and enforce its obedience. When inserted, a restraining bolt restricts the droid from any movement its master does not desire, and also forced it to respond to signals produced by a hand-held control unit.</p>\n<p>Installing a restraining bolt takes 1 minute. The droid must make a DC 24 Constitution saving throw. A hostile droid makes this save with advantage. On a successful save, the restraining bolt overloads and is rendered useless. On a failed save, the restraining bolt is correctly installed, and the control unit can be used to actively control the droid. While the control unit is inactive, the droid can act freely but it can not attempt to remove the restraining bolt.</p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>Restraining bolts are small, cylindrical devices that can be affixed to a droid in order to limit its functions and enforce its obedience. When inserted, a restraining bolt restricts the droid from any movement its master does not desire, and also forced it to respond to signals produced by a hand-held control unit.</p>\n<p>Installing a restraining bolt takes 1 minute. The droid must make a DC 24 Constitution saving throw. A hostile droid makes this save with advantage. On a successful save, the restraining bolt overloads and is rendered useless. On a failed save, the restraining bolt is correctly installed, and the control unit can be used to actively control the droid. While the control unit is inactive, the droid can act freely but it can not attempt to remove the restraining bolt.</p>\n<p> </p>\n<h2>Restraining bolt</h2>\n<p>Restraining bolts are small, cylindrical devices that can be affixed to a droid in order to limit its functions and enforce its obedience. When inserted, a restraining bolt restricts the droid from any movement its master does not desire, and also forced it to respond to signals produced by a hand-held control unit. </p>\n<p>Installing a restraining bolt takes 1 minute. The droid must make a DC 14 Constitution saving throw. A hostile droid makes this save with advantage. On a successful save, the restraining bolt overloads and is rendered useless. On a failed save, the restraining bolt is correctly installed, and the control unit can be used to actively control the droid. While the control unit is inactive, the droid can act freely but it can not attempt to remove the restraining bolt. </p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
+    "weight": 1,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 350,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,7 +104,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -129,7 +129,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -193,7 +193,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "restrainingbolt",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +201,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964397,
-    "modifiedTime": 1684819089226,
+    "modifiedTime": 1686621162888,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

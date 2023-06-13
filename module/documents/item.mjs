@@ -439,7 +439,7 @@ export default class Item5e extends Item {
    */
   get iconBackground() {
     if (this.system.rarity === undefined) return null;
-    const rarity = this.system.rarity?.toUpperCase() || "Mundane";
+    const rarity = this.system.rarity?.capitalize() || "Mundane";
     return `systems/sw5e/packs/Icons/ItemBackdrop/${rarity}.webp`;
   }
 

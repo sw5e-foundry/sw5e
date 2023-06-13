@@ -2,7 +2,7 @@
   "_id": "lhUmfBWeTdMPLzg9",
   "name": "Credit Chip (Improved)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Data%20Recording%20and%20Storage/CreditChip.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,7 +80,7 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>The credit chip is a small, flat card that features a security code and algorithm memory stripes. The chip can be preloaded with a specified number of credits, or it can draw directly from a specific account held by the user. The credit chip can be accessed with a pin, or by a DC 21 slicer's kit check.</p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>The credit chip is a small, flat card that features a security code and algorithm memory stripes. The chip can be preloaded with a specified number of credits, or it can draw directly from a specific account held by the user. The credit chip can be accessed with a pin, or by a DC 21 slicer's kit check.</p>\n<p> </p>\n<h2>Credit chip</h2>\n<p>The credit chip is a small, flat card that features a security code and algorithm memory stripes. The chip can be preloaded with a specified number of credits, or it can draw directly from a specific account held by the user. The credit chip can be accessed with a pin, or by a DC 15 slicer's kit check.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -89,8 +89,8 @@
     "quantity": 1,
     "weight": 0,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 100,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,7 +104,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -129,8 +129,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +145,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +193,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "creditchip",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +201,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964937,
-    "modifiedTime": 1684819089326,
+    "modifiedTime": 1686621163019,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

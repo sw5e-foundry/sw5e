@@ -2,7 +2,7 @@
   "_id": "ST5yO7AFSufjYSde",
   "name": "Holocron (Journeyman)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Data%20Recording%20and%20Storage/Holocron.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,17 +80,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>This holocron contains a single 3rd-level force power, or multiple powers of 1st-2nd level with a combined level no greater than 3. After meditating with the holocron for at least 8 hours, a forcecaster with a Max Power Level of 3rd or higher can make a DC 18 forcecasting ability check with proficiency based on the alignment of the power(s) stored within. On a success, they learn the contained force power(s), which does not count against their force powers known and can not be unlearned except through use of a <em>remove curse</em> power. On a failure, the power is not learned and the forcecaster can't try again for 24 hours.</p>\n<p><em>Holocrons are information-storage devices used by Force-wielders that contain ancient lessons or valuable information in holographic form.</em></p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>This holocron contains a single 3rd-level force power, or multiple powers of 1st-2nd level with a combined level no greater than 3. After meditating with the holocron for at least 8 hours, a forcecaster with a Max Power Level of 3rd or higher can make a DC 18 forcecasting ability check with proficiency based on the alignment of the power(s) stored within. On a success, they learn the contained force power(s), which does not count against their force powers known and can not be unlearned except through use of a <em>remove curse</em> power. On a failure, the power is not learned and the forcecaster can't try again for 24 hours.</p>\n<p><em>Holocrons are information-storage devices used by Force-wielders that contain ancient lessons or valuable information in holographic form.</em></p>\n<p> </p>\n<h2>Holocron</h2>\n<p>Holocrons are information-storage devices used by force wielders that contain ancient lessons or valuable information in holographic form. They appear as palm-sized, glowing polyhedrons of crystalline material and hardware, and can only be activated and used through the power of the Force.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "WH",
     "quantity": 1,
-    "weight": 0,
+    "weight": 2,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 1000,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -129,8 +129,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +145,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +193,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "holocron",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +201,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964692,
-    "modifiedTime": 1684819089285,
+    "modifiedTime": 1686621162964,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -49,45 +49,9 @@ globalThis.dnd5e = globalThis.sw5e;
 // Keep on while testing new SW5e build
 CONFIG.debug.hooks = false;
 
-Hooks.once("init", function() {
+Hooks.once("init", function () {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
-
-  /** @deprecated */
-  Object.defineProperty(sw5e, "entities", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.entities' property which has been deprecated and renamed to "
-          + "'sw5e.documents'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents;
-    }
-  });
-
-  /** @deprecated */
-  Object.defineProperty(sw5e, "rollItemMacro", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.rollItemMacro' method which has been deprecated and renamed to "
-          + "'sw5e.documents.macro.rollItem'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents.macro.rollItem;
-    }
-  });
-
-  /** @deprecated */
-  Object.defineProperty(sw5e, "macros", {
-    get() {
-      foundry.utils.logCompatibilityWarning(
-        "You are referencing the 'sw5e.macros' property which has been deprecated and renamed to "
-          + "'sw5e.documents.macro'. Support for this old path will be removed in a future version.",
-        { since: "SW5e 2.0", until: "SW5e 2.2" }
-      );
-      return sw5e.documents.macro;
-    }
-  });
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
@@ -110,30 +74,32 @@ Hooks.once("init", function() {
   game.dnd5e = game.sw5e;
   CONFIG.DND5E = CONFIG.SW5E;
   // Add 'spell' equivalent of 'power' config for module compatibility
-  for (const [power, val] of Object.entries(CONFIG.SW5E).filter(([k]) => k.search(/power(?!die|routing|coupling)/i) !== -1)) {
+  for (const [power, val] of Object.entries(CONFIG.SW5E).filter(
+    ([k]) => k.search(/power(?!die|routing|coupling)/i) !== -1
+  )) {
     const spell = power.replace(/power/g, "spell").replace(/Power/g, "Spell");
     if (CONFIG.SW5E[spell] !== undefined) console.warn(`CONFIG.SW5E.${spell} is already defined`);
     else CONFIG.SW5E[spell] = val;
   }
 
+  CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // backwards compatibility with v10
+  game.sw5e.isV10 = game.release.generation < 11;
+
+  // Configure trackable attributes.
+  _configureTrackableAttributes();
+
   // Register System Settings
   registerSystemSettings();
 
   // Validation strictness.
-  _determineValidationStrictness();
+  if (game.sw5e.isV10) _determineValidationStrictness();
 
   // Configure module art.
   game.sw5e.moduleArt = new ModuleArt();
 
   // Remove honor & sanity from configuration if they aren't enabled
-  if (!game.settings.get("sw5e", "honorScore")) {
-    delete SW5E.abilities.hon;
-    delete SW5E.abilityAbbreviations.hon;
-  }
-  if (!game.settings.get("sw5e", "sanityScore")) {
-    delete SW5E.abilities.san;
-    delete SW5E.abilityAbbreviations.san;
-  }
+  if (!game.settings.get("sw5e", "honorScore")) delete SW5E.abilities.hon;
+  if (!game.settings.get("sw5e", "sanityScore")) delete SW5E.abilities.san;
 
   // Patch Core Functions
   Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
@@ -144,9 +110,10 @@ Hooks.once("init", function() {
   CONFIG.Dice.rolls.push(dice.AttribDieRoll);
 
   // Hook up system data types
-  CONFIG.Actor.systemDataModels = dataModels.actor.config;
-  CONFIG.Item.systemDataModels = dataModels.item.config;
-  CONFIG.JournalEntryPage.systemDataModels = dataModels.journal.config;
+  const modelType = game.sw5e.isV10 ? "systemDataModels" : "dataModels";
+  CONFIG.Actor[modelType] = dataModels.actor.config;
+  CONFIG.Item[modelType] = dataModels.item.config;
+  CONFIG.JournalEntryPage[modelType] = dataModels.journal.config;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -243,13 +210,55 @@ function _determineValidationStrictness() {
  */
 async function _configureValidationStrictness() {
   if (!game.user.isGM) return;
-  const invalidDocuments = game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size;
+  const invalidDocuments =
+    game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size + game.scenes.invalidDocumentIds.size;
   const strictValidation = game.settings.get("sw5e", "strictValidation");
   if (invalidDocuments && strictValidation) {
     await game.settings.set("sw5e", "strictValidation", false);
     game.socket.emit("reload");
     foundry.utils.debouncedReload();
   }
+}
+
+/**
+ * Configure explicit lists of attributes that are trackable on the token HUD and in the combat tracker.
+ * @internal
+ */
+function _configureTrackableAttributes() {
+  const common = {
+    bar: [],
+    value: [
+      ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
+      ...Object.keys(SW5E.movementTypes).map(movement => `attributes.movement.${movement}`),
+      "attributes.ac.value",
+      "attributes.init.total"
+    ]
+  };
+
+  const creature = {
+    bar: [...common.bar, "attributes.hp"],
+    value: [
+      ...common.value,
+      ...Object.keys(SW5E.skills).map(skill => `skills.${skill}.passive`),
+      ...Object.keys(SW5E.senses).map(sense => `attributes.senses.${sense}`),
+      "attributes.powerdc"
+    ]
+  };
+
+  CONFIG.Actor.trackableAttributes = {
+    character: {
+      bar: [...creature.bar, "resources.primary", "resources.secondary", "resources.tertiary", "details.xp"],
+      value: [...creature.value]
+    },
+    npc: {
+      bar: [...creature.bar, "resources.legact", "resources.legres"],
+      value: [...creature.value, "details.cr", "details.powerLevel", "details.xp.value"]
+    },
+    vehicle: {
+      bar: [...common.bar],
+      value: [...common.value]
+    }
+  };
 }
 
 /* -------------------------------------------- */
@@ -259,11 +268,17 @@ async function _configureValidationStrictness() {
 /**
  * Prepare attribute lists.
  */
-Hooks.once("setup", function() {
+Hooks.once("setup", function () {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
   game.sw5e.moduleArt.registerModuleArt();
 
+  // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
+  // Apply custom compendium styles to the SRD rules compendium.
+  //  if ( !game.sw5e.isV10 ) {
+  //    const rules = game.packs.get("sw5e.rules");
+  //    rules.applicationClass = applications.journal.SRDCompendium;
+  //  }
   // Console.log(game.settings.get("sw5e", "colorTheme"));
   let theme = `${game.settings.get("sw5e", "colorTheme")}-theme`;
   document.body.classList.add(theme);
@@ -297,14 +312,16 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", async function() {
-  // Configure validation strictness.
-  _configureValidationStrictness();
+Hooks.once("ready", async function () {
+  if (game.sw5e.isV10) {
+    // Configure validation strictness.
+    _configureValidationStrictness();
 
-  // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
-  // // Apply custom compendium styles to the SRD rules compendium.
-  // const rules = game.packs.get("sw5e.rules");
-  // rules.apps = [new applications.journal.SRDCompendium(rules)];
+    // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
+    // // Apply custom compendium styles to the SRD rules compendium.
+    // const rules = game.packs.get("sw5e.rules");
+    // rules.apps = [new applications.journal.SRDCompendium(rules)];
+  }
 
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
@@ -408,24 +425,24 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
   console.log("renderSwaltSheet");
 });
 
-Handlebars.registerHelper("round", function(value) {
+Handlebars.registerHelper("round", function (value) {
   return Math.floor(value);
 });
 
-Handlebars.registerHelper("debug", function(value) {
+Handlebars.registerHelper("debug", function (value) {
   console.log(value);
   return value;
 });
 
-Handlebars.registerHelper("isUndefined", function(value) {
+Handlebars.registerHelper("isUndefined", function (value) {
   return value === undefined;
 });
 
-Handlebars.registerHelper("isNull", function(value) {
+Handlebars.registerHelper("isNull", function (value) {
   return value === null;
 });
 
-Handlebars.registerHelper("json", function(value) {
+Handlebars.registerHelper("json", function (value) {
   return JSON.stringify(value);
 });
 
@@ -434,7 +451,7 @@ Handlebars.registerHelper("json", function(value) {
  * @param {jQuery} html
  */
 function setFolderBackground(html) {
-  html.find("header.folder-header").each(function() {
+  html.find("header.folder-header").each(function () {
     let bgColor = $(this).css("background-color");
     if (bgColor === undefined) bgColor = "rgb(255,255,255)";
     $(this).closest("li").css("background-color", bgColor);

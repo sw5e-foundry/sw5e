@@ -1,4 +1,5 @@
 # Foundry Virtual Tabletop - SW5e Game System
+
 ![GitHub Latest Release](https://img.shields.io/github/release/sw5e-foundry/sw5e?style=flat-square)
 ![GitHub Downloads Latest](https://img.shields.io/github/downloads/sw5e-foundry/sw5e/latest/system.zip?style=flat-square)
 ![License](https://img.shields.io/github/license/sw5e-foundry/sw5e?style=flat-square)
@@ -23,7 +24,7 @@ https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json
 
 If you wish to manually install the system, you must clone or extract it into the `Data/systems/sw5e` folder. You
 may do this by cloning the repository or downloading a zip archive from the
-[Releases Page]([https://github.com/unrealkakeman89/sw5e](https://github.com/sw5e-foundry/sw5e/releases)).
+[Releases Page](<[https://github.com/unrealkakeman89/sw5e](https://github.com/sw5e-foundry/sw5e/releases)>).
 
 ## Community Contribution
 

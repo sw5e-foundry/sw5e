@@ -2,7 +2,7 @@
   "_id": "W5KgEUwQLdPwUADy",
   "name": "Binders (Improved)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Utility/Binders.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,17 +80,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>Binders can be used to restrain a Small or Medium creature with appropriate appendages. Applying binders takes an action, and the target must make a DC 18 Strength or Dexterity saving throw (the target chooses the ability to use). A hostile creature makes this save with advantage. A set of binders comes with one key. Breaking the binders requires a DC 24 Strength check. Escaping them requires a DC 24 Dexterity check. Without the key, unlocking the binders requires a DC 21 security kit to force open. Binders have an AC of 12 and 45 hit points. Destroying the binders frees the creature without harming it.</p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>Binders can be used to restrain a Small or Medium creature with appropriate appendages. Applying binders takes an action, and the target must make a DC 18 Strength or Dexterity saving throw (the target chooses the ability to use). A hostile creature makes this save with advantage. A set of binders comes with one key. Breaking the binders requires a DC 24 Strength check. Escaping them requires a DC 24 Dexterity check. Without the key, unlocking the binders requires a DC 21 security kit to force open. Binders have an AC of 12 and 45 hit points. Destroying the binders frees the creature without harming it.</p>\n<p> </p>\n<h2>Binders</h2>\n<p>Binders can be used to restrain a Small or Medium creature with appropriate appendages. Applying binders takes an action, and the target must make a DC 14 Strength or Dexterity saving throw (the target chooses the ability to use). A hostile creature makes this save with advantage. Breaking the binders requires a DC 20 Strength check. Escaping them requires a DC 20 Dexterity check. A set of binders comes with one key. Without the key, unlocking the binders requires a DC 15 security kit to force open. Binders have an AC of 10 and 15 hit points. Destroying the binders frees the creature without harming it.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
+    "weight": 6,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 50,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,7 +104,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "target": {
@@ -129,7 +129,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -193,7 +193,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "binders",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +201,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": false
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964732,
-    "modifiedTime": 1684819089293,
+    "modifiedTime": 1686621162974,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

@@ -4651,7 +4651,7 @@ export default class Actor5e extends Actor {
       if (ssDeployment) {
         if (ssDeployment.items) {
           ssDeployment.items.delete(target.uuid);
-          ssUpdates[`system.attributes.deployment.${key}.items`] = ssDeployment.items;
+          ssUpdates[`system.attributes.deployment.${key}.items`] = Array.from(ssDeployment.items);
         } else ssUpdates[`system.attributes.deployment.${key}.value`] = null;
 
         if (ssDeploy.active.value === target.uuid) {
@@ -4661,7 +4661,7 @@ export default class Actor5e extends Actor {
 
       if (tDeployed?.deployments?.has(key)) {
         tDeployed?.deployments?.delete(key);
-        tUpdates[`system.attributes.deployed.deployments`] = tDeployed.deployments;
+        tUpdates[`system.attributes.deployed.deployments`] = Array.from(tDeployed.deployments);
       }
     }
 

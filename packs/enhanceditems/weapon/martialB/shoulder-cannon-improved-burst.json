@@ -24,8 +24,8 @@
     "quantity": 1,
     "weight": null,
     "price": {
-      "denomination": "gc",
-      "value": 1625
+      "value": 1625,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -65,9 +65,9 @@
       "amount": null,
       "ammount": null
     },
-    "ability": "str",
+    "ability": "",
     "actionType": "save",
-    "attackBonus": "2 - @abilities.str.mod + 2 - @attributes.prof + 2",
+    "attackBonus": "2",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -84,9 +84,9 @@
     },
     "formula": "",
     "save": {
-      "ability": "dex",
-      "dc": null,
-      "scaling": "none"
+      "ability": "",
+      "dc": 12,
+      "scaling": "flat"
     },
     "armor": {
       "value": 10
@@ -158,10 +158,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
+    "systemVersion": "2.1.5.2.4.7",
     "coreVersion": "10.291",
     "createdTime": 1674493964756,
-    "modifiedTime": 1684819089298,
+    "modifiedTime": 1686621162979,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

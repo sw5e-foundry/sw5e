@@ -78,7 +78,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
       classLabels: classes.map(c => c.name).join(", "),
       multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
-      weightUnit: game.i18n.localize(`SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kgs" : "Lbs"}`),
+      weightUnit: game.i18n.localize(
+        `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kg" : "Lbs"}`
+      ),
       encumbrance: context.system.attributes.encumbrance
     });
   }
@@ -89,8 +91,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
   _prepareItems(context) {
     const categories = this._prepareItemCategories({
       splitActive: true,
-      featureTypes: Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes)
-        .map(([k, v]) => { if (k === "class") delete v.subtypes; return [k, v]; }))
+      featureTypes: Object.fromEntries(
+        Object.entries(CONFIG.SW5E.featureTypes).map(([k, v]) => {
+          if (k === "class") delete v.subtypes;
+          return [k, v];
+        })
+      )
     });
 
     this._prepareItemsCategorized(context, categories);
@@ -115,11 +121,13 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     categories.class.class.items.sort((a, b) => b.system.levels - a.system.levels);
     const maxLevelDelta = CONFIG.SW5E.maxLevel - this.actor.system.details.level;
     categories.class.class.items = categories.class.class.items.reduce((arr, cls) => {
-      const ctx = context.itemContext[cls.id] ??= {};
-      ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1).slice(1).map(level => {
-        const delta = level - cls.system.levels;
-        return { level, delta, disabled: delta > maxLevelDelta };
-      });
+      const ctx = (context.itemContext[cls.id] ??= {});
+      ctx.availableLevels = Array.fromRange(CONFIG.SW5E.maxLevel + 1)
+        .slice(1)
+        .map(level => {
+          const delta = level - cls.system.levels;
+          return { level, delta, disabled: delta > maxLevelDelta };
+        });
       arr.push(cls);
       const identifier = cls.system.identifier || cls.name.slugify({ strict: true });
       const archetype = categories.class.archetype.items.findSplice(s => s.system.classIdentifier === identifier);
@@ -139,7 +147,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     categories.class.deployment.items.sort((a, b) => b.system.rank - a.system.rank);
     const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.system.details.ranks;
     categories.class.deployment.items = categories.class.deployment.items.reduce((arr, dep) => {
-      const ctx = context.itemContext[dep.id] ??= {};
+      const ctx = (context.itemContext[dep.id] ??= {});
       ctx.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1)
         .slice(1)
         .map(rank => {
@@ -159,7 +167,10 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Organize Features
     categories.features = Object.values(categories.features).filter(f => f.dataset.featType !== "deployment");
     categories.features.unshift(categories.class.species);
-    const classFeatures = categories.features.splice(categories.features.findIndex(f => f.dataset.featType === "class"), 1);
+    const classFeatures = categories.features.splice(
+      categories.features.findIndex(f => f.dataset.featType === "class"),
+      1
+    );
     categories.features.unshift(...classFeatures);
     categories.features.unshift(categories.class.class);
     categories.features.unshift(categories.class.background);
@@ -221,7 +232,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     // Send Languages to Chat onClick
     html.find('[data-options="share-languages"]').click(event => {
       event.preventDefault();
-      let langs = Array.from(this.actor.system.traits.languages.value).map(l => CONFIG.SW5E.languages[l] || l).join(", ");
+      let langs = Array.from(this.actor.system.traits.languages.value)
+        .map(l => CONFIG.SW5E.languages[l] || l)
+        .join(", ");
       let custom = this.actor.system.traits.languages.custom;
       if (custom) langs += `, ${custom.replace(/;/g, ",")}`;
       let content = `
@@ -298,7 +311,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       case "rollDeathSave":
         return this.actor.rollDeathSave({ event });
       case "rollInitiative":
-        return this.actor.rollInitiativeDialog({event});
+        return this.actor.rollInitiativeDialog({ event });
     }
   }
 
@@ -330,7 +343,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch(err) {
+        } catch (err) {
           return;
         }
       }
@@ -604,9 +617,9 @@ async function addFavorites(app, html, context) {
       let dropData = JSON.parse(ev.originalEvent.dataTransfer.getData("text/plain"));
       let uuidParts = dropData.uuid.split(".");
       let actorIndex = uuidParts.indexOf("Actor");
-      let actorId = actorIndex === -1 ? undefined : uuidParts[actorIndex+1];
+      let actorId = actorIndex === -1 ? undefined : uuidParts[actorIndex + 1];
       let itemIndex = uuidParts.indexOf("Item");
-      let itemId = itemIndex === -1 ? undefined : uuidParts[itemIndex+1];
+      let itemId = itemIndex === -1 ? undefined : uuidParts[itemIndex + 1];
 
       if (actorId !== app.actor.id || dropData.type === "power") return;
 

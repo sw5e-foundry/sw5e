@@ -42,7 +42,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
       classLabels: classes.map(c => c.name).join(", "),
       multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
       weightUnit: game.i18n.localize(
-        `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kgs" : "Lbs"}`
+        `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kg" : "Lbs"}`
       ),
       encumbrance: context.system.attributes.encumbrance
     });
@@ -53,14 +53,10 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
   /** @override */
   _prepareItems(context) {
     // Categorize items as inventory, powerbook, features, and classes
-    const inventory = {
-      weapon: { label: "ITEM.TypeWeaponPl", items: [], dataset: { type: "weapon" } },
-      equipment: { label: "ITEM.TypeEquipmentPl", items: [], dataset: { type: "equipment" } },
-      consumable: { label: "ITEM.TypeConsumablePl", items: [], dataset: { type: "consumable" } },
-      tool: { label: "ITEM.TypeToolPl", items: [], dataset: { type: "tool" } },
-      backpack: { label: "ITEM.TypeContainerPl", items: [], dataset: { type: "backpack" } },
-      loot: { label: "ITEM.TypeLootPl", items: [], dataset: { type: "loot" } }
-    };
+    const inventory = {};
+    for (const type of ["weapon", "equipment", "consumable", "tool", "backpack", "loot"]) {
+      inventory[type] = { label: `${CONFIG.Item.typeLabels[type]}Pl`, items: [], dataset: { type } };
+    }
 
     // Partition items by category
     let {
@@ -115,10 +111,8 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
             if (item.system.type.subtype === "fightingMastery") obj.fightingmasteries.push(item);
             else if (item.system.type.subtype === "fightingStyle") obj.fightingstyles.push(item);
             else if (item.system.type.subtype === "lightsaberForm") obj.lightsaberforms.push(item);
-          }
-          else obj.feats.push(item);
-        }
-        else if (item.type === "class") obj.classes.push(item);
+          } else obj.feats.push(item);
+        } else if (item.type === "class") obj.classes.push(item);
         else if (item.type === "species") obj.species.push(item);
         else if (item.type === "archetype") obj.archetypes.push(item);
         else if (item.type === "background") obj.backgrounds.push(item);
@@ -188,14 +182,14 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     // Organize Features
     const features = {
       background: {
-        label: "ITEM.TypeBackground",
+        label: CONFIG.Item.typeLabels.background,
         items: backgrounds,
         hasActions: false,
         dataset: { type: "background" },
         isBackground: true
       },
       classes: {
-        label: "ITEM.TypeClassPl",
+        label: `${CONFIG.Item.typeLabels.class}Pl`,
         items: classes,
         hasActions: false,
         dataset: { type: "class" },
@@ -240,7 +234,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         label: "SW5E.FeatureActive",
         items: [],
         hasActions: true,
-        dataset: { type: "feat", "activation.type": "action" }
+        dataset: { "type": "feat", "activation.type": "action" }
       },
       passive: {
         label: "SW5E.FeaturePassive",
@@ -351,7 +345,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch(err) {
+        } catch (err) {
           return;
         }
       }

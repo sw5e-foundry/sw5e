@@ -14,13 +14,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set([
-    "background",
-    "class",
-    "archetype",
-    "starshipsize",
-    "starshipmod"
-  ]);
+  static unsupportedItemTypes = new Set(["background", "class", "archetype", "starshipsize", "starshipmod"]);
 
   /* -------------------------------------------- */
 
@@ -89,7 +83,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     context.toggleTitle = game.i18n.localize(`SW5E.${isCrewed ? "Crewed" : "Uncrewed"}`);
 
     // Handle crew actions
-    if (item.type === "crew" && item.system.activation.type === "crew") {
+    if (item.type === "feat" && item.system.activation.type === "crew") {
       context.cover = game.i18n.localize(`SW5E.${item.system.cover ? "CoverTotal" : "None"}`);
       if (item.system.cover === 0.5) context.cover = "½";
       else if (item.system.cover === 0.75) context.cover = "¾";
@@ -146,7 +140,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         items: [],
         hasActions: true,
         crewable: true,
-        dataset: { type: "feat", "activation.type": "crew" },
+        dataset: { "type": "feat", "activation.type": "crew" },
         columns: [
           {
             label: game.i18n.localize("SW5E.Cover"),
@@ -156,10 +150,10 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
         ]
       },
       equipment: {
-        label: game.i18n.localize("ITEM.TypeEquipment"),
+        label: game.i18n.localize(CONFIG.Item.typeLabels.equipment),
         items: [],
         crewable: true,
-        dataset: { type: "equipment", "armor.type": "vehicle" },
+        dataset: { "type": "equipment", "armor.type": "vehicle" },
         columns: equipmentColumns
       },
       passive: {
@@ -170,13 +164,13 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
       reactions: {
         label: game.i18n.localize("SW5E.ReactionPl"),
         items: [],
-        dataset: { type: "feat", "activation.type": "reaction" }
+        dataset: { "type": "feat", "activation.type": "reaction" }
       },
       weapons: {
-        label: game.i18n.localize("ITEM.TypeWeaponPl"),
+        label: game.i18n.localize(`${CONFIG.Item.typeLabels.weapon}Pl`),
         items: [],
         crewable: true,
-        dataset: { type: "weapon", "weapon-type": "siege" },
+        dataset: { "type": "weapon", "weapon-type": "siege" },
         columns: equipmentColumns
       }
     };
@@ -251,18 +245,18 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
 
       // Handle non-cargo item types
       switch (item.type) {
-        case "feat":
-        case "maneuver":
-          const act = item.system.activation;
-          if (act.type || act.type === "none") features.passive.items.push(item);
-          else if (act.type === "reaction") features.reactions.items.push(item);
-          else features.actions.items.push(item);
-          break;
         case "weapon":
           features.weapons.items.push(item);
           break;
         case "equipment":
           features.equipment.items.push(item);
+          break;
+        case "feat":
+        case "maneuver":
+          const act = item.system.activation;
+          if (!act.type || act.type === "none") features.passive.items.push(item);
+          else if (act.type === "reaction") features.reactions.items.push(item);
+          else features.actions.items.push(item);
           break;
         default:
           totalWeight += (item.system.weight || 0) * item.system.quantity;
@@ -423,8 +417,8 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     event.preventDefault();
     const itemID = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemID);
-    const hp = Math.clamped(0, parseInt(event.currentTarget.value), item.system.hp.max);
-    event.currentTarget.value = hp;
+    let hp = Math.clamped(0, parseInt(event.currentTarget.value), item.system.hp.max);
+    if (Number.isNaN(hp)) hp = 0;
     return item.update({ "system.hp.value": hp });
   }
 
@@ -440,8 +434,8 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     event.preventDefault();
     const itemID = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemID);
-    const qty = parseInt(event.currentTarget.value);
-    event.currentTarget.value = qty;
+    let qty = parseInt(event.currentTarget.value);
+    if (Number.isNaN(qty)) qty = 0;
     return item.update({ "system.quantity": qty });
   }
 

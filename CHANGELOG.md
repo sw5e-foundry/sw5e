@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Icon Backdrops should work correctly on linux.
 - Removing a deployed actor should once again work properly.
+- Backpacks with no rarity no longer show '&Nbsp;'.
+- Website character importer should now have the correct abilities for each skill.
+- Website character importer should now work with profiencies like `all martial vibroweapons with the finesse property` (treated as `all martial vibroweapons`).
+- Module Art Config button should now work.
 
 ### Changes
 

@@ -115,6 +115,7 @@ export default class CharacterImporter {
         value: sourceCharacter.attribs.find(e => e.name === "technology_type").current
       }
     };
+    for (const id of skills) skills[id] = globalThis.sw5e.dataModels.actor.CharacterData._initialSkillValue(id, skills[id]);
 
     const targetCharacter = {
       name: sourceCharacter.name,
@@ -344,7 +345,7 @@ export default class CharacterImporter {
         case "WEAPON":
         case "OTHER":
           name = name.toLowerCase().replace(/\s/g, "");
-          const match = name.match(/(all|simple|martial|exotic)(\w+)s/);
+          const match = name.match(/(all|simple|martial|exotic)(blaster|vibroweapon|lightweapon)s/);
           if (match) {
             const weapons = {
               blaster: ["smb", "mrb", "exb"],

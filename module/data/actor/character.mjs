@@ -186,8 +186,7 @@ export default class CharacterData extends CreatureTemplate {
           ...TraitsFields.common,
           ...TraitsFields.creature,
           weaponProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitWeaponProf" }),
-          armorProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitArmorProf" }),
-          toolProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitToolProf" })
+          armorProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitArmorProf" })
         },
         { label: "SW5E.Traits" }
       ),

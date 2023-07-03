@@ -28,6 +28,8 @@ export default class PowerData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {

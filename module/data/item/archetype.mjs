@@ -61,6 +61,8 @@ export default class ArchetypeData extends SystemDataModel.mixin(ItemDescription
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {

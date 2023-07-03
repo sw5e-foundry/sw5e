@@ -44,11 +44,38 @@ export default class CommonTemplate extends SystemDataModel.mixin(CurrencyTempla
             { label: "SW5E.AbilityBonuses" }
           )
         }),
-        { initialKeys: CONFIG.SW5E.abilities, label: "SW5E.Abilities" }
+        {
+          initialKeys: CONFIG.SW5E.abilities,
+          initialValue: this._initialAbilityValue.bind(this),
+          initialKeysOnly: true,
+          label: "SW5E.Abilities"
+        }
       )
     });
   }
 
+  /* -------------------------------------------- */
+
+  /**
+   * Populate the proper initial value for abilities.
+   * @param {string} key       Key for which the initial data will be created.
+   * @param {object} initial   The initial skill object created by SkillData.
+   * @param {object} existing  Any existing mapping data.
+   * @returns {object}         Initial ability object.
+   * @private
+   */
+  static _initialAbilityValue(key, initial, existing) {
+    const config = CONFIG.SW5E.abilities[key];
+    if (config) {
+      let defaultValue = config.defaults?.[this._systemType] ?? initial.value;
+      if (typeof defaultValue === "string") defaultValue = existing[defaultValue]?.value ?? initial.value;
+      initial.value = defaultValue;
+    }
+    return initial;
+  }
+
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -81,11 +108,11 @@ export default class CommonTemplate extends SystemDataModel.mixin(CurrencyTempla
     }
 
     // Remove invalid AC formula strings.
-    if ( ac?.formula ) {
+    if (ac?.formula) {
       try {
         const roll = new Roll(ac.formula);
         Roll.safeEval(roll.formula);
-      } catch( e ) {
+      } catch (e) {
         ac.formula = "";
       }
     }

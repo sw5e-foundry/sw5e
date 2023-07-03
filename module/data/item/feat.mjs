@@ -31,8 +31,8 @@ export default class FeatData extends SystemDataModel.mixin(
     return this.mergeSchema(super.defineSchema(), {
       type: new foundry.data.fields.SchemaField(
         {
-          value: new foundry.data.fields.StringField({ required: true }),
-          subtype: new foundry.data.fields.StringField({ required: true })
+          value: new foundry.data.fields.StringField({ required: true, label: "SW5E.Type" }),
+          subtype: new foundry.data.fields.StringField({ required: true, label: "SW5E.Subtype" })
         },
         { label: "SW5E.ItemFeatureType" }
       ),
@@ -71,11 +71,13 @@ export default class FeatData extends SystemDataModel.mixin(
             })
           },
           { required: true }
-        ),
+        )
       })
     });
   }
 
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -107,5 +109,24 @@ export default class FeatData extends SystemDataModel.mixin(
     if (value === 0 || value === "") source.recharge.value = null;
     else if (typeof value === "string" && Number.isNumeric(value)) source.recharge.value = Number(value);
     if (source.recharge.charged === null) source.recharge.charged = false;
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [this.requirements];
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  get hasLimitedUses() {
+    return !!this.recharge.value || super.hasLimitedUses;
   }
 }

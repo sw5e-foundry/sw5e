@@ -53,6 +53,8 @@ export default class PhysicalItemTemplate extends foundry.abstract.DataModel {
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {

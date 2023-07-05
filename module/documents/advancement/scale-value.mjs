@@ -7,7 +7,6 @@ import { ScaleValueConfigurationData, TYPES } from "../../data/advancement/scale
  * Advancement that represents a value that scales with class level. **Can only be added to classes or archetypes.**
  */
 export default class ScaleValueAdvancement extends Advancement {
-
   /** @inheritdoc */
   static get metadata() {
     return foundry.utils.mergeObject(super.metadata, {
@@ -19,7 +18,7 @@ export default class ScaleValueAdvancement extends Advancement {
       title: game.i18n.localize("SW5E.AdvancementScaleValueTitle"),
       hint: game.i18n.localize("SW5E.AdvancementScaleValueHint"),
       multiLevel: true,
-      validItemTypes: new Set(["class", "archetypee"]),
+      validItemTypes: new Set(["class", "archetype"]),
       apps: {
         config: ScaleValueConfig,
         flow: ScaleValueFlow
@@ -59,9 +58,9 @@ export default class ScaleValueAdvancement extends Advancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  titleForLevel(level, { configMode=false }={}) {
+  titleForLevel(level, { configMode = false } = {}) {
     const value = this.valueForLevel(level)?.display;
-    if ( !value ) return this.title;
+    if (!value) return this.title;
     return `${this.title}: <strong>${value}</strong>`;
   }
 
@@ -73,10 +72,12 @@ export default class ScaleValueAdvancement extends Advancement {
    * @returns {ScaleValueType}  Scale value at the given level or null if none exists.
    */
   valueForLevel(level) {
-    const key = Object.keys(this.configuration.scale).reverse().find(l => Number(l) <= level);
+    const key = Object.keys(this.configuration.scale)
+      .reverse()
+      .find(l => Number(l) <= level);
     const data = this.configuration.scale[key];
     const TypeClass = this.constructor.TYPES[this.configuration.type];
-    if ( !data || !TypeClass ) return null;
+    if (!data || !TypeClass) return null;
     return new TypeClass(data, { parent: this });
   }
 
@@ -90,11 +91,10 @@ export default class ScaleValueAdvancement extends Advancement {
    */
   testEquality(a, b) {
     const keys = Object.keys(a ?? {});
-    if ( keys.length !== Object.keys(b ?? {}).length ) return false;
-    for ( const k of keys ) {
-      if ( a[k] !== b[k] ) return false;
+    if (keys.length !== Object.keys(b ?? {}).length) return false;
+    for (const k of keys) {
+      if (a[k] !== b[k]) return false;
     }
     return true;
   }
-
 }

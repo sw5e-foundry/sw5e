@@ -3815,6 +3815,13 @@ SW5E.characterFlags = {
     type: Number,
     placeholder: 20
   },
+  manueverCriticalThreshold: {
+    name: "SW5E.FlagsManueverCritThreshold",
+    hint: "SW5E.FlagsManueverCritThresholdHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 20
+  },
   meleeCriticalDamageDice: {
     name: "SW5E.FlagsMeleeCriticalDice",
     hint: "SW5E.FlagsMeleeCriticalDiceHint",

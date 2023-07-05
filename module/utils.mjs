@@ -15,7 +15,7 @@ export function simplifyBonus(bonus, data = {}) {
   try {
     const roll = new Roll(bonus, data);
     return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     return 0;
   }
@@ -100,12 +100,17 @@ function isValidUUID(uuid) {
 
   // Compendium Document
   const packs = new Set(game.packs.keys());
-  if ((parts[0] === 'Compendium') && (parts.length >= 4) && (packs.has(`${parts[1]}.${parts[2]}`)) && foundry.data.validators.isValidId(parts[3])) {
+  if (
+    parts[0] === "Compendium" &&
+    parts.length >= 4 &&
+    packs.has(`${parts[1]}.${parts[2]}`) &&
+    foundry.data.validators.isValidId(parts[3])
+  ) {
     parts = parts.slice(4);
   }
 
   // World Document / Embedded Document
-  while ((parts.length >= 2) && (parts[0] in game.documentTypes) && foundry.data.validators.isValidId(parts[1])) {
+  while (parts.length >= 2 && parts[0] in game.documentTypes && foundry.data.validators.isValidId(parts[1])) {
     parts = parts.slice(2);
   }
 
@@ -177,7 +182,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs",
 
     // Compendium Browser Partials
-    "systems/sw5e/templates/apps/compendium-browser/filters.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/filters.hbs"
     // "systems/sw5e/templates/apps/compendium-browser/browser-settings.hbs",
     // "systems/sw5e/templates/apps/compendium-browser/partials/action.hbs",
     // "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs",
@@ -205,13 +210,13 @@ export async function preloadHandlebarsTemplates() {
  * @returns {string}
  */
 function itemContext(context, options) {
-  if ( arguments.length !== 2 ) throw new Error("#sw5e-with requires exactly one argument");
-  if ( foundry.utils.getType(context) === "function" ) context = context.call(this);
+  if (arguments.length !== 2) throw new Error("#sw5e-itemContext requires exactly one argument");
+  if (foundry.utils.getType(context) === "function") context = context.call(this);
 
   const ctx = options.data.root.itemContext?.[context.id];
-  if ( !ctx ) {
+  if (!ctx) {
     const inverse = options.inverse(this);
-    if ( inverse ) return options.inverse(this);
+    if (inverse) return options.inverse(this);
   }
 
   return options.fn(context, { data: options.data, blockParams: [ctx] });
@@ -224,7 +229,7 @@ function itemContext(context, options) {
  */
 export function registerHandlebarsHelpers() {
   Handlebars.registerHelper({
-    getProperty: foundry.utils.getProperty,
+    "getProperty": foundry.utils.getProperty,
     "sw5e-linkForUuid": linkForUuid,
     "sw5e-itemContext": itemContext
   });
@@ -263,10 +268,10 @@ export function preLocalize(configKeyPath, { key, keys = [], sort = false } = {}
  * @param {object} config  The `CONFIG.SW5E` object to localize and sort. *Will be mutated.*
  */
 export function performPreLocalization(config) {
-  for ( const [keyPath, settings] of Object.entries(_preLocalizationRegistrations) ) {
+  for (const [keyPath, settings] of Object.entries(_preLocalizationRegistrations)) {
     const target = foundry.utils.getProperty(config, keyPath);
     _localizeObject(target, settings.keys);
-    if ( settings.sort ) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
+    if (settings.sort) foundry.utils.setProperty(config, keyPath, sortObjectEntries(target, settings.keys[0]));
   }
 }
 
@@ -394,7 +399,8 @@ export function fromUuidSynchronous(uuid) {
   let doc;
 
   // Compendium Documents
-  if (parts[0] === "Compendium") return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
+  if (parts[0] === "Compendium")
+    return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
   // World Documents
   else {
     const [docName, docId] = parts.slice(0, 2);
@@ -554,10 +560,9 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * @param {string} selectors
  */
 export function htmlQueryAll(parent, selectors) {
-    if (!(parent instanceof Element || parent instanceof Document)) return [];
-    return Array.from(parent.querySelectorAll(selectors));
+  if (!(parent instanceof Element || parent instanceof Document)) return [];
+  return Array.from(parent.querySelectorAll(selectors));
 }
-
 
 /**
  * Check if a key is present in a given object in a type safe way
@@ -568,14 +573,13 @@ export function objectHasKey(obj, key) {
   return (typeof key === "string" || typeof key === "number") && key in obj;
 }
 
-
 /**
  * Check if a value is a non-null object
  * @param {unknown}
  * @returns {boolean}
  */
 export function isObject(value) {
-    return typeof value === "object" && value !== null;
+  return typeof value === "object" && value !== null;
 }
 
 /**
@@ -586,12 +590,12 @@ export function isObject(value) {
  * @returns An array of Actor5e elements according to the aforementioned filters.
  */
 export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
-    const actors = canvas.tokens.controlled
-        .flatMap((token) => (token.actor ? token.actor : []))
-        .filter((actor) => actor.isOwner)
-        .filter((actor) => !types || types.includes(actor.type));
+  const actors = canvas.tokens.controlled
+    .flatMap(token => (token.actor ? token.actor : []))
+    .filter(actor => actor.isOwner)
+    .filter(actor => !types || types.includes(actor.type));
 
-    if (actors.length === 0 && game.user.character && useOwnCharacter) actors.push(game.user.character);
+  if (actors.length === 0 && game.user.character && useOwnCharacter) actors.push(game.user.character);
 
-    return actors;
+  return actors;
 }

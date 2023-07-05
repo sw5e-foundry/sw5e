@@ -8,7 +8,6 @@ import ItemGrantConfigurationData from "../../data/advancement/item-grant.mjs";
  * skipping any or all of the items.
  */
 export default class ItemGrantAdvancement extends Advancement {
-
   /** @inheritdoc */
   static get metadata() {
     return foundry.utils.mergeObject(super.metadata, {
@@ -57,23 +56,36 @@ export default class ItemGrantAdvancement extends Advancement {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  summaryForLevel(level, { configMode=false }={}) {
+  summaryForLevel(level, { configMode = false } = {}) {
     // Link to compendium items
-    if ( !this.value.added || configMode ) {
+    if (!this.value.added || configMode) {
       return this.configuration.items.reduce((html, uuid) => html + sw5e.utils.linkForUuid(uuid), "");
     }
 
     // Link to items on the actor
     else {
-      return Object.keys(this.value.added).map(id => {
-        const item = this.actor.items.get(id);
-        return item?.toAnchor({classes: ["content-link"]}).outerHTML ?? "";
-      }).join("");
+      return Object.keys(this.value.added)
+        .map(id => {
+          const item = this.actor.items.get(id);
+          return item?.toAnchor({ classes: ["content-link"] }).outerHTML ?? "";
+        })
+        .join("");
     }
   }
 
   /* -------------------------------------------- */
   /*  Application Methods                         */
+  /* -------------------------------------------- */
+
+  /**
+   * Location where the added items are stored for the specified level.
+   * @param {number} level  Level being advanced.
+   * @returns {string}
+   */
+  storagePath(level) {
+    return "value.added";
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -83,30 +95,35 @@ export default class ItemGrantAdvancement extends Advancement {
    * @param {object} [retainedData={}]  Item data grouped by UUID. If present, this data will be used rather than
    *                                    fetching new data from the source.
    */
-  async apply(level, data, retainedData={}) {
+  async apply(level, data, retainedData = {}) {
     const items = [];
     const updates = {};
     const powerChanges = this.configuration.power?.powerChanges ?? {};
-    for ( const [uuid, selected] of Object.entries(data) ) {
-      if ( !selected ) continue;
+    for (const [uuid, selected] of Object.entries(data)) {
+      if (!selected) continue;
 
       let itemData = retainedData[uuid];
-      if ( !itemData ) {
+      if (!itemData) {
         const source = await fromUuid(uuid);
-        if ( !source ) continue;
-        itemData = source.clone({
-          _id: foundry.utils.randomID(),
-          "flags.sw5e.sourceId": uuid,
-          "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
-        }, {keepId: true}).toObject();
+        if (!source) continue;
+        itemData = source
+          .clone(
+            {
+              "_id": foundry.utils.randomID(),
+              "flags.sw5e.sourceId": uuid,
+              "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
+            },
+            { keepId: true }
+          )
+          .toObject();
       }
-      if ( itemData.type === "power" ) foundry.utils.mergeObject(itemData, powerChanges);
+      if (itemData.type === "power") foundry.utils.mergeObject(itemData, powerChanges);
 
       items.push(itemData);
       updates[itemData._id] = uuid;
     }
-    this.actor.updateSource({items});
-    this.updateSource({"value.added": updates});
+    this.actor.updateSource({ items });
+    this.updateSource({ [this.storagePath(level)]: updates });
   }
 
   /* -------------------------------------------- */
@@ -114,11 +131,11 @@ export default class ItemGrantAdvancement extends Advancement {
   /** @inheritdoc */
   restore(level, data) {
     const updates = {};
-    for ( const item of data.items ) {
-      this.actor.updateSource({items: [item]});
+    for (const item of data.items) {
+      this.actor.updateSource({ items: [item] });
       updates[item._id] = item.flags.sw5e.sourceId;
     }
-    this.updateSource({"value.added": updates});
+    this.updateSource({ [this.storagePath(level)]: updates });
   }
 
   /* -------------------------------------------- */
@@ -126,13 +143,30 @@ export default class ItemGrantAdvancement extends Advancement {
   /** @inheritdoc */
   reverse(level) {
     const items = [];
-    for ( const id of Object.keys(this.value.added ?? {}) ) {
+    const keyPath = this.storagePath(level);
+    for (const id of Object.keys(foundry.utils.getProperty(this, keyPath) ?? {})) {
       const item = this.actor.items.get(id);
-      if ( item ) items.push(item.toObject());
+      if (item) items.push(item.toObject());
       this.actor.items.delete(id);
     }
-    this.updateSource({ "value.-=added": null });
+    this.updateSource({ [keyPath.replace(/\.([\w\d]+)$/, ".-=$1")]: null });
     return { items };
   }
 
+  /* -------------------------------------------- */
+
+  /**
+   * Verify that the provided item can be used with this advancement based on the configuration.
+   * @param {Item5e} item                   Item that needs to be tested.
+   * @param {object} config
+   * @param {boolean} [config.strict=true]  Should an error be thrown when an invalid type is encountered?
+   * @returns {boolean}                     Is this type valid?
+   * @throws An error if the item is invalid and strict is `true`.
+   */
+  _validateItemType(item, { strict = true } = {}) {
+    if (this.constructor.VALID_TYPES.has(item.type)) return true;
+    const type = game.i18n.localize(CONFIG.Item.typeLabels[item.type]);
+    if (strict) throw new Error(game.i18n.format("SW5E.AdvancementItemTypeInvalidWarning", { type }));
+    return false;
+  }
 }

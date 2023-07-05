@@ -4,7 +4,7 @@ import { sluggifyPath } from "./utils.mjs";
  * Checks if the world needs migrating.
  * @returns {boolean}      Wheter migration is needed or not.
  */
-export const needsMigration = function() {
+export const needsMigration = function () {
   // Determine whether a system migration is required and feasible
   if (!game.user.isGM) return false;
   const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
@@ -29,7 +29,7 @@ export const needsMigration = function() {
  * @param {boolean}  [migrateSystemCompendiums=false]
  * @returns {Promise}      A Promise which resolves once the migration is completed
  */
-export const migrateWorld = async function(migrateSystemCompendiums = false) {
+export const migrateWorld = async function (migrateSystemCompendiums = false) {
   const version = game.system.version;
   ui.notifications.info(game.i18n.format("MIGRATION.5eBegin", { version }), { permanent: true });
 
@@ -44,9 +44,10 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
   await migrateItemTypes(migrateSystemCompendiums);
 
   // Migrate World Actors
-  const actors = game.actors.map(a => [a, true])
+  const actors = game.actors
+    .map(a => [a, true])
     .concat(Array.from(game.actors.invalidDocumentIds).map(id => [game.actors.getInvalid(id), false]));
-  for await ( const [actor, valid] of actors ) {
+  for await (const [actor, valid] of actors) {
     try {
       const source = valid ? actor.toObject() : game.data.actors.find(a => a._id === actor.id);
       const updateData = await migrateActorData(source, migrationData);
@@ -54,16 +55,17 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
         console.log(`Migrating Actor document ${actor.name}`);
         await actor.update(updateData, { enforceTypes: false });
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed sw5e system migration for Actor ${actor.name}: ${err.message}`;
       console.error(err);
     }
   }
 
   // Migrate World Items
-  const items = game.items.map(i => [i, true])
+  const items = game.items
+    .map(i => [i, true])
     .concat(Array.from(game.items.invalidDocumentIds).map(id => [game.items.getInvalid(id), false]));
-  for await ( const [item, valid] of items ) {
+  for await (const [item, valid] of items) {
     try {
       const source = valid ? item.toObject() : game.data.items.find(i => i._id === item.id);
       const updateData = await migrateItemData(source, migrationData);
@@ -71,7 +73,7 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
         console.log(`Migrating Item document ${item.name}`);
         await item.update(updateData, { enforceTypes: false });
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed sw5e system migration for Item ${item.name}: ${err.message}`;
       console.error(err);
     }
@@ -85,7 +87,7 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
         console.log(`Migrating Macro document ${m.name}`);
         await m.update(updateData, { enforceTypes: false });
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed sw5e system migration for Macro ${m.name}: ${err.message}`;
       console.error(err);
     }
@@ -102,7 +104,7 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
         // with the un-updated actorData.
         s.tokens.forEach(t => (t._actor = null));
       }
-    } catch(err) {
+    } catch (err) {
       err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
     }
@@ -128,7 +130,7 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
  * @param {CompendiumCollection} pack  Pack to be migrated.
  * @returns {Promise}
  */
-export const migrateCompendium = async function(pack) {
+export const migrateCompendium = async function (pack) {
   const documentName = pack.documentName;
   if (!["Actor", "Item", "Scene"].includes(documentName)) return;
 
@@ -162,7 +164,7 @@ export const migrateCompendium = async function(pack) {
       if (foundry.utils.isEmpty(updateData)) continue;
       await doc.update(updateData);
       console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
-    } catch(err) {
+    } catch (err) {
       // Handle migration failures
       err.message = `Failed sw5e system migration for document ${doc.name} in pack ${pack.collection}: ${err.message}`;
       console.error(err);
@@ -180,7 +182,7 @@ export const migrateCompendium = async function(pack) {
  * Update all compendium packs using the new system data model.
  */
 export async function refreshAllCompendiums() {
-  for ( const pack of game.packs ) {
+  for (const pack of game.packs) {
     await refreshCompendium(pack);
   }
 }
@@ -192,21 +194,21 @@ export async function refreshAllCompendiums() {
  * @param {CompendiumCollection} pack  Pack to refresh.
  */
 export async function refreshCompendium(pack) {
-  if ( !pack?.documentName ) return;
+  if (!pack?.documentName) return;
   sw5e.moduleArt.suppressArt = true;
   const DocumentClass = CONFIG[pack.documentName].documentClass;
   const wasLocked = pack.locked;
-  await pack.configure({locked: false});
+  await pack.configure({ locked: false });
   await pack.migrate();
 
   ui.notifications.info(`Beginning to refresh Compendium ${pack.collection}`);
   const documents = await pack.getDocuments();
-  for ( const doc of documents ) {
+  for (const doc of documents) {
     const data = doc.toObject();
     await doc.delete();
-    await DocumentClass.create(data, {keepId: true, keepEmbeddedIds: true, pack: pack.collection});
+    await DocumentClass.create(data, { keepId: true, keepEmbeddedIds: true, pack: pack.collection });
   }
-  await pack.configure({locked: wasLocked});
+  await pack.configure({ locked: wasLocked });
   sw5e.moduleArt.suppressArt = false;
   ui.notifications.info(`Refreshed all documents from Compendium ${pack.collection}`);
 }
@@ -220,7 +222,7 @@ export async function refreshCompendium(pack) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {Promise}
  */
-export const migrateArmorClass = async function(pack, migrationData) {
+export const migrateArmorClass = async function (pack, migrationData) {
   if (typeof pack === "string") pack = game.packs.get(pack);
   if (pack.documentName !== "Actor") return;
   const wasLocked = pack.locked;
@@ -256,7 +258,7 @@ export const migrateArmorClass = async function(pack, migrationData) {
       if (hasArmorEquipped || armorItem) update["system.attributes.ac.calc"] = "default";
       // CASE 2: NPC Natural Armor
       else if (src.type === "npc") update["system.attributes.ac.calc"] = "natural";
-    } catch(e) {
+    } catch (e) {
       console.warn(`Failed to migrate armor class for Actor ${actor.name}`, e);
     }
   }
@@ -278,7 +280,7 @@ export const migrateArmorClass = async function(pack, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply
  */
-export const migrateActorData = async function(actor, migrationData) {
+export const migrateActorData = async function (actor, migrationData) {
   const updateData = {};
   await _migrateTokenImage(actor, updateData, migrationData);
   _migrateActorAC(actor, updateData);
@@ -304,7 +306,8 @@ export const migrateActorData = async function(actor, migrationData) {
 
     // Prepared, Equipped, and Proficient for NPC actors
     if (actor.type === "npc") {
-      if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false) itemUpdate["system.preparation.prepared"] = true;
+      if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false)
+        itemUpdate["system.preparation.prepared"] = true;
       if (foundry.utils.getProperty(itemData.system, "equipped") === false) itemUpdate["system.equipped"] = true;
       if (foundry.utils.getProperty(itemData.system, "proficient") === false) itemUpdate["system.proficient"] = true;
     }
@@ -313,6 +316,14 @@ export const migrateActorData = async function(actor, migrationData) {
     if (!foundry.utils.isEmpty(itemUpdate)) {
       itemUpdate._id = itemData._id;
       arr.push(foundry.utils.expandObject(itemUpdate));
+    }
+
+    // Update tool expertise.
+    if (actor.system.tools) {
+      const hasToolProf = itemData.system.baseItem in actor.system.tools;
+      if (itemData.type === "tool" && itemData.system.proficient > 1 && hasToolProf) {
+        updateData[`system.tools.${itemData.system.baseItem}.value`] = itemData.system.proficient;
+      }
     }
 
     return arr;
@@ -362,7 +373,7 @@ export async function migrateItemData(item, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration.
  * @returns {object[]}              Updates to apply on the embedded effects.
  */
-export const migrateEffects = function(parent, migrationData) {
+export const migrateEffects = function (parent, migrationData) {
   if (!parent.effects) return {};
   return parent.effects.reduce((arr, e) => {
     const effectData = e instanceof CONFIG.ActiveEffect.documentClass ? e.toObject() : e;
@@ -383,7 +394,7 @@ export const migrateEffects = function(parent, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration.
  * @returns {object}                The updateData to apply.
  */
-export const migrateEffectData = function(effect, migrationData) {
+export const migrateEffectData = function (effect, migrationData) {
   const updateData = {};
   _migrateEffectArmorClass(effect, updateData);
   return updateData;
@@ -397,7 +408,7 @@ export const migrateEffectData = function(effect, migrationData) {
  * @param {object} [migrationData]  Additional data to perform the migration
  * @returns {object}                The updateData to apply
  */
-export const migrateMacroData = async function(macro, migrationData) {
+export const migrateMacroData = async function (macro, migrationData) {
   const updateData = {};
   _migrateMacroCommands(macro, updateData);
   return updateData;
@@ -408,11 +419,11 @@ export const migrateMacroData = async function(macro, migrationData) {
 /**
  * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
  * Return an Object of updateData to be applied
- * @param {object} scene   The Scene data to Update
+ * @param {object} scene            The Scene data to Update
  * @param {object} [migrationData]  Additional data to perform the migration
- * @returns {object}       The updateData to apply
+ * @returns {object}                The updateData to apply
  */
-export const migrateSceneData = async function(scene, migrationData) {
+export const migrateSceneData = async function (scene, migrationData) {
   const tokens = await Promise.all(
     scene.tokens.map(async token => {
       const t = token instanceof foundry.abstract.DataModel ? token.toObject() : token;
@@ -420,28 +431,24 @@ export const migrateSceneData = async function(scene, migrationData) {
       await _migrateTokenImage(t, update, migrationData);
 
       if (Object.keys(update).length) foundry.utils.mergeObject(t, update);
-
-      if (!t.actorId || t.actorLink) {
-        t.actorData = {};
-      } else if (!game.actors.has(t.actorId)) {
-        t.actorId = null;
-        t.actorData = {};
-      } else if (!t.actorLink) {
-        const actorData = duplicate(t.actorData);
+      if (!game.actors.has(t.actorId)) t.actorId = null;
+      if (!t.actorId || t.actorLink) t.actorData = {};
+      else if (!t.actorLink) {
+        const actorData = token.delta?.toObject() ?? foundry.utils.deepClone(t.actorData);
         actorData.type = token.actor?.type;
-        actorData.name = t.name;
         const update = await migrateActorData(actorData, migrationData);
-        ["items", "effects"].forEach(embeddedName => {
-          if (!update[embeddedName]?.length) return;
-          const updates = new Map(update[embeddedName].map(u => [u._id, u]));
-          t.actorData[embeddedName].forEach(original => {
-            const update = updates.get(original._id);
-            if (update) foundry.utils.mergeObject(original, update);
+        if (game.sw5e.isV10) {
+          ["items", "effects"].forEach(embeddedName => {
+            if (!update[embeddedName]?.length) return;
+            const updates = new Map(update[embeddedName].map(u => [u._id, u]));
+            t.actorData[embeddedName].forEach(original => {
+              const update = updates.get(original._id);
+              if (update) foundry.utils.mergeObject(original, update);
+            });
+            delete update[embeddedName];
           });
-          delete update[embeddedName];
-        });
-
-        foundry.utils.mergeObject(t.actorData, update);
+          foundry.utils.mergeObject(t.actorData, update);
+        } else t.delta = update;
       }
       return t;
     })
@@ -455,7 +462,7 @@ export const migrateSceneData = async function(scene, migrationData) {
  * Fetch bundled data for large-scale migrations.
  * @returns {Promise<object>}  Object mapping original system icons to their core replacements.
  */
-export const getMigrationData = async function() {
+export const getMigrationData = async function () {
   const data = {};
   try {
     const icons = await (await fetch("systems/sw5e/json/icon-migration.json")).json();
@@ -469,7 +476,7 @@ export const getMigrationData = async function() {
     data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
     data.armors = await (await game.packs.get("sw5e.armor")).getDocuments();
     data.modifications = await (await game.packs.get("sw5e.modifications")).getDocuments();
-  } catch(err) {
+  } catch (err) {
     console.warn(`Failed to retrieve migration data: ${err.message}`);
   }
   return data;
@@ -493,9 +500,10 @@ function _updateNPCData(actor) {
   // Shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = actor?.flags?.sw5e?.dataVersion !== undefined;
   if (
-    hasDataVersion
-    && (actor.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", actor.flags.sw5e.dataVersion))
-  ) return actor;
+    hasDataVersion &&
+    (actor.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", actor.flags.sw5e.dataVersion))
+  )
+    return actor;
   // Check to see what the source of NPC is
   const sourceId = actor.flags.core.sourceId;
   const coreSource = sourceId.split(".").slice(0, 2).join(".");
@@ -582,11 +590,11 @@ function _migrateActorAC(actorData, updateData) {
   }
 
   // Remove invalid AC formula strings.
-  if ( ac?.formula ) {
+  if (ac?.formula) {
     try {
       const roll = new Roll(ac.formula);
       Roll.safeEval(roll.formula);
-    } catch( e ) {
+    } catch (e) {
       updateData["system.attributes.ac.formula"] = "";
     }
   }
@@ -657,9 +665,10 @@ async function _migrateItemPower(item, updateData) {
   // Shortcut out if dataVersion flag is set to 1.2.4 or higher
   const hasDataVersion = item?.flags?.sw5e?.dataVersion !== undefined;
   if (
-    hasDataVersion
-    && (item.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", item.flags.sw5e.dataVersion))
-  ) return updateData;
+    hasDataVersion &&
+    (item.flags.sw5e.dataVersion === "1.2.4" || isNewerVersion("1.2.4", item.flags.sw5e.dataVersion))
+  )
+    return updateData;
 
   // Check to see what the source of Power is
   const sourceId = item.flags.core.sourceId;
@@ -807,7 +816,8 @@ function _migrateItemBackgroundDescription(item, updateData) {
     [item.system.flavorText, item.system.flavorName, item.system.flavorDescription, item.system.flavorOptions].every(
       attr => attr === undefined
     )
-  ) return updateData;
+  )
+    return updateData;
   if (item.system.flavorText !== undefined) updateData["system.-=flavorText"] = null;
   if (item.system.flavorName !== undefined) updateData["system.-=flavorName"] = null;
   if (item.system.flavorDescription !== undefined) updateData["system.-=flavorDescription"] = null;
@@ -815,84 +825,86 @@ function _migrateItemBackgroundDescription(item, updateData) {
 
   let text = "";
 
-  if (item.system.flavorText) text +=
-      "<div class=\"background\">\n"
-      + "  <p>\n"
-      + `      ${item.system.flavorText.value}\n`
-      + "  </p>\n"
-      + "</div>\n";
-  if (item.system.skillProficiencies) text +=
-      "<div class=\"background\">\n"
-      + `  <p><strong>Skill Proficiencies:</strong> ${item.system.skillProficiencies.value}</p>\n`
-      + "</div>\n";
-  if (item.system.toolProficiencies) text +=
-      "<div class=\"background\">\n"
-      + `  <p><strong>Tool Proficiencies:</strong> ${item.system.toolProficiencies.value}</p>\n`
-      + "</div>\n";
-  if (item.system.languages) text +=
-      "<div class=\"background\">\n"
-      + `  <p><strong>Languages:</strong> ${item.system.languages.value}</p>\n`
-      + "</div>\n";
-  if (item.system.equipment) text +=
-      "<div class=\"background\">\n"
-      + `  <p><strong>Equipment:</strong> ${item.system.equipment}</p>\n`
-      + "</div>\n";
-  if (item.system.flavorName && item.system.flavorDescription && item.system.flavorOptions) text +=
-      `<div class="background"><h3>${item.system.flavorName.value}</h3></div>\n`
-      + `<div class="background"><p>${item.system.flavorDescription.value}</p></div>\n`
-      + "<div class=\"smalltable\">\n"
-      + "  <p>\n"
-      + `      ${item.system.flavorOptions.value}\n`
-      + "  </p>\n"
-      + "</div>\n";
-  if (item.system.featureName && item.system.featureText) text +=
-      `<div class="background"><h2>Feature: ${item.system.featureName.value}</h2></div>\n`
-      + `<div class="background"><p>${item.system.featureText.value}</p></div>`;
-  if (item.system.featOptions) text +=
-      "<h2>Background Feat</h2>\n"
-      + "<p>\n"
-      + "  As a further embodiment of the experience and training of your background, you can choose from the\n"
-      + "  following feats:\n"
-      + "</p>\n"
-      + "<div class=\"smalltable\">\n"
-      + "  <p>\n"
-      + `      ${item.system.featOptions.value}\n`
-      + "  </p>\n"
-      + "</div>\n";
+  if (item.system.flavorText)
+    text +=
+      '<div class="background">\n' + "  <p>\n" + `      ${item.system.flavorText.value}\n` + "  </p>\n" + "</div>\n";
+  if (item.system.skillProficiencies)
+    text +=
+      '<div class="background">\n' +
+      `  <p><strong>Skill Proficiencies:</strong> ${item.system.skillProficiencies.value}</p>\n` +
+      "</div>\n";
+  if (item.system.toolProficiencies)
+    text +=
+      '<div class="background">\n' +
+      `  <p><strong>Tool Proficiencies:</strong> ${item.system.toolProficiencies.value}</p>\n` +
+      "</div>\n";
+  if (item.system.languages)
+    text +=
+      '<div class="background">\n' +
+      `  <p><strong>Languages:</strong> ${item.system.languages.value}</p>\n` +
+      "</div>\n";
+  if (item.system.equipment)
+    text +=
+      '<div class="background">\n' + `  <p><strong>Equipment:</strong> ${item.system.equipment}</p>\n` + "</div>\n";
+  if (item.system.flavorName && item.system.flavorDescription && item.system.flavorOptions)
+    text +=
+      `<div class="background"><h3>${item.system.flavorName.value}</h3></div>\n` +
+      `<div class="background"><p>${item.system.flavorDescription.value}</p></div>\n` +
+      '<div class="smalltable">\n' +
+      "  <p>\n" +
+      `      ${item.system.flavorOptions.value}\n` +
+      "  </p>\n" +
+      "</div>\n";
+  if (item.system.featureName && item.system.featureText)
+    text +=
+      `<div class="background"><h2>Feature: ${item.system.featureName.value}</h2></div>\n` +
+      `<div class="background"><p>${item.system.featureText.value}</p></div>`;
+  if (item.system.featOptions)
+    text +=
+      "<h2>Background Feat</h2>\n" +
+      "<p>\n" +
+      "  As a further embodiment of the experience and training of your background, you can choose from the\n" +
+      "  following feats:\n" +
+      "</p>\n" +
+      '<div class="smalltable">\n' +
+      "  <p>\n" +
+      `      ${item.system.featOptions.value}\n` +
+      "  </p>\n" +
+      "</div>\n";
   if (
-    item.system.personalityTraitOptions
-    || item.system.idealOptions
-    || item.system.flawOptions
-    || item.system.bondOptions
+    item.system.personalityTraitOptions ||
+    item.system.idealOptions ||
+    item.system.flawOptions ||
+    item.system.bondOptions
   ) {
-    text += "<div class=\"background\"><h2>Suggested Characteristics</h2></div>\n";
-    if (item.system.personalityTraitOptions) text +=
-        "<div class=\"medtable\">\n"
-        + "  <p>\n"
-        + `      ${item.system.personalityTraitOptions.value}\n`
-        + "  </p>\n"
-        + "</div>\n"
-        + "<p>&nbsp;</p>";
-    if (item.system.idealOptions) text +=
-        "<div class=\"medtable\">\n"
-        + "  <p>\n"
-        + `      ${item.system.idealOptions.value}\n`
-        + "  </p>\n"
-        + "</div>\n"
-        + "<p>&nbsp;</p>";
-    if (item.system.flawOptions) text +=
-        "<div class=\"medtable\">\n"
-        + "  <p>\n"
-        + `      ${item.system.flawOptions.value}\n`
-        + "  </p>\n"
-        + "</div>\n"
-        + "<p>&nbsp;</p>";
-    if (item.system.bondOptions) text +=
-        "<div class=\"medtable\">\n"
-        + "  <p>\n"
-        + `      ${item.system.bondOptions.value}\n`
-        + "  </p>\n"
-        + "</div>\n";
+    text += '<div class="background"><h2>Suggested Characteristics</h2></div>\n';
+    if (item.system.personalityTraitOptions)
+      text +=
+        '<div class="medtable">\n' +
+        "  <p>\n" +
+        `      ${item.system.personalityTraitOptions.value}\n` +
+        "  </p>\n" +
+        "</div>\n" +
+        "<p>&nbsp;</p>";
+    if (item.system.idealOptions)
+      text +=
+        '<div class="medtable">\n' +
+        "  <p>\n" +
+        `      ${item.system.idealOptions.value}\n` +
+        "  </p>\n" +
+        "</div>\n" +
+        "<p>&nbsp;</p>";
+    if (item.system.flawOptions)
+      text +=
+        '<div class="medtable">\n' +
+        "  <p>\n" +
+        `      ${item.system.flawOptions.value}\n` +
+        "  </p>\n" +
+        "</div>\n" +
+        "<p>&nbsp;</p>";
+    if (item.system.bondOptions)
+      text +=
+        '<div class="medtable">\n' + "  <p>\n" + `      ${item.system.bondOptions.value}\n` + "  </p>\n" + "</div>\n";
   }
 
   if (text) updateData["system.description.value"] = text;
@@ -998,7 +1010,7 @@ async function migrateItemTypes(migrateSystemCompendiums) {
  * @param {object} item        Item to migrate.
  */
 async function _migrateItemType(item) {
-  if (!(CONFIG.SW5E.deprecatedItemTypes.includes(item?.type))) return;
+  if (!CONFIG.SW5E.deprecatedItemTypes.includes(item?.type)) return;
 
   console.log(`Migrating item ${item.name} with deprecated type ${item.type}`);
 

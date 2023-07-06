@@ -6,10 +6,10 @@
 
 This unofficial implementation of the SW5e system for Foundry VTT is made by fans for fans and is not associated with SW5e, Disney, Wizards of the Coast, or their partners in any way.
 
-This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides character sheet and game system
+This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides a character sheet and game system
 support for the SW5E roleplaying game.
 
-This system provides character sheet support for Actors and Items, mechanical support for dice and rules necessary to
+This system provides character sheet support for Actors and Items, mechanical support for dice, and rules necessary to
 play games of SW5E, and compendium content for Monsters, Heroes, Items, Powers, Class Features, Monster
 Features, and more!
 
@@ -20,11 +20,11 @@ The software component of this system is distributed under the GNUv3 license.
 To install and use the SW5e system for Foundry Virtual Tabletop, simply paste the following URL into the
 **Install System** dialog on the Setup menu of the application.
 
-https://raw.githubusercontent.com/unrealkakeman89/sw5e/master/system.json
+(https://raw.githubusercontent.com/sw5e-foundry/sw5e/master/static/system.json)
 
 If you wish to manually install the system, you must clone or extract it into the `Data/systems/sw5e` folder. You
 may do this by cloning the repository or downloading a zip archive from the
-[Releases Page](<[https://github.com/unrealkakeman89/sw5e](https://github.com/sw5e-foundry/sw5e/releases)>).
+[Releases Page](https://github.com/sw5e-foundry/sw5e/releases).
 
 ## Community Contribution
 

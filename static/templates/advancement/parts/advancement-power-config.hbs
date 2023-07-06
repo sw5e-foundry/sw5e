@@ -2,7 +2,7 @@
   <label>{{localize "SW5E.AbilityModifier"}}</label>
   <div class="form-fields">
     <select name="configuration.power.ability">
-      {{selectOptions CONFIG.abilities selected=configuration.power.ability blank="—"}}
+      {{selectOptions CONFIG.abilities selected=configuration.power.ability labelAttr="label" blank="—"}}
     </select>
   </div>
 </div>
@@ -19,7 +19,12 @@
 <div class="form-group">
   <label>{{localize "SW5E.LimitedUses"}}</label>
   <div class="form-fields">
-    <input type="text" name="configuration.power.uses.max" value="{{configuration.power.uses.max}}" data-formula-editor />
+    <input
+      type="text"
+      name="configuration.power.uses.max"
+      value="{{configuration.power.uses.max}}"
+      data-formula-editor
+    />
     <select name="configuration.power.uses.per">
       {{selectOptions CONFIG.limitedUsePeriods selected=configuration.power.uses.per blank="—"}}
     </select>

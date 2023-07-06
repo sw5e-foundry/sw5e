@@ -1,4 +1,5 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
@@ -9,7 +10,7 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
             </h1>
 
             <div class="item-subtitle">
@@ -27,7 +28,7 @@
                     </select>
                 </li>
                 <li>
-                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}" />
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -43,6 +44,7 @@
 
     {{!-- Item Sheet Body --}}
     <section class="sheet-body">
+
         {{!-- Description Tab --}}
         {{> "sw5e.item-description"}}
 
@@ -77,8 +79,7 @@
                 </select>
             </div> -->
 
-            {{!-- Weapon Status --}}
-            {{#unless isMountable}}
+            {{#unless system.isMountable}}
                 {{#unless isStarshipItem}}
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
@@ -88,6 +89,7 @@
                     </div>
                 {{/unless}}
 
+            {{!-- Weapon Status --}}
                 <div class="form-group stacked">
                     <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
                     <div class="form-fields">
@@ -122,7 +124,7 @@
                 {{/if}} {{/each}}
             </div>
 
-            {{#if isMountable}}
+            {{#if system.isMountable}}
                 <div class="form-group">
                     <label>{{localize "SW5E.ArmorClass"}}</label>
                     <div class="form-fields">

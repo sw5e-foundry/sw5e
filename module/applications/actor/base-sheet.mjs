@@ -480,7 +480,7 @@ export default class ActorSheet5e extends ActorSheet {
       return max;
     }, 0);
 
-    // Level-based powercasters have cantrips and leveled slots
+    // Level-based powercasters have at-wills and leveled slots
     if ( maxLevel > 0 ) {
       registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
       for (let lvl = 1; lvl <= maxLevel; lvl++) {
@@ -489,7 +489,7 @@ export default class ActorSheet5e extends ActorSheet {
       }
     }
 
-    // Pact magic users have cantrips and a pact magic section
+    // Pact magic users have at-wills and a pact magic section
     if ( levels.pact && levels.pact.max ) {
       if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
       const l = levels.pact;

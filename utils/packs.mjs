@@ -261,7 +261,7 @@ function _getSubfolderName(data, pack) {
     // Powers should be grouped by level
     case "powers":
       if ( data.system?.level === undefined ) return "";
-      if ( data.system.level === 0 ) return "cantrip";
+      if ( data.system.level === 0 ) return "at-will";
       return `level-${data.system.level}`;
 
     default: return "";

@@ -1320,12 +1320,12 @@ export default class Item5e extends Item {
     // Scale damage from up-casting powers
     const scaling = this.system.scaling;
     if ( (this.type === "power") ) {
-      if ( scaling.mode === "cantrip" ) {
+      if ( scaling.mode === "at-will" ) {
         let level;
         if ( this.actor.type === "character" ) level = this.actor.system.details.level;
         else if ( this.system.preparation.mode === "innate" ) level = Math.ceil(this.actor.system.details.cr);
         else level = this.actor.system.details.powerLevel;
-        this._scaleCantripDamage(parts, scaling.formula, level, rollData);
+        this._scaleAt-WillDamage(parts, scaling.formula, level, rollData);
       }
       else if ( powerLevel && (scaling.mode === "level") && scaling.formula ) {
         this._scalePowerDamage(parts, this.system.level, powerLevel, scaling.formula, rollData);
@@ -1385,7 +1385,7 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Adjust a cantrip damage formula to scale it for higher level characters and monsters.
+   * Adjust an at-will damage formula to scale it for higher level characters and monsters.
    * @param {string[]} parts   The original parts of the damage formula.
    * @param {string} scale     The scaling formula.
    * @param {number} level     Level at which the power is being cast.
@@ -1393,7 +1393,7 @@ export default class Item5e extends Item {
    * @returns {string[]}       The parts of the damage formula with the scaling applied.
    * @private
    */
-  _scaleCantripDamage(parts, scale, level, rollData) {
+  _scaleAt-WillDamage(parts, scale, level, rollData) {
     const add = Math.floor((level + 1) / 6);
     if ( add === 0 ) return [];
     return this._scaleDamage(parts, scale || parts.join(" + "), add, rollData);
@@ -2020,9 +2020,10 @@ export default class Item5e extends Item {
     if ( data.system?.proficient === undefined ) {
       if ( isNPC ) updates["system.proficient"] = 1;
       else {
-        const actorToolProfs = this.parent.system.traits?.toolProf?.value || new Set();
-        const proficient = actorToolProfs.has(this.system.toolType) || actorToolProfs.has(this.system.baseItem);
-        updates["system.proficient"] = Number(proficient);
+        const actorToolProfs = this.parent.system.tools || {};
+        const toolProf = actorToolProfs[this.system.baseItem]?.value;
+        const generalProf = actorToolProfs[this.system.toolType]?.value;
+        updates["system.proficient"] = toolProf ?? generalProf ?? 0;
       }
     }
     return updates;

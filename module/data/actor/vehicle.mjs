@@ -97,7 +97,10 @@ export default class VehicleData extends CommonTemplate {
           })
         }, {label: "SW5E.VehicleCargoCrew"})
       }, {label: "SW5E.Attributes"}),
-      details: new foundry.data.fields.SchemaField(DetailsFields.common, {label: "SW5E.Details"}),
+      details: new foundry.data.fields.SchemaField({
+        ...DetailsFields.common,
+        source: new foundry.data.fields.StringField({required: true, label: "SW5E.Source"})
+      }, {label: "SW5E.Details"}),
       traits: new foundry.data.fields.SchemaField({
         ...TraitsFields.common,
         size: new foundry.data.fields.StringField({required: true, initial: "lg", label: "SW5E.Size"}),

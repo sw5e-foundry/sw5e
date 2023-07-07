@@ -1194,7 +1194,7 @@ preLocalize("powerLevels");
  */
 SW5E.powerScalingModes = {
   none: "SW5E.PowerNone",
-  cantrip: "SW5E.PowerCantrip",
+  at-will: "SW5E.PowerAt-Will",
   level: "SW5E.PowerLevel"
 };
 preLocalize("powerScalingModes", { sort: true });
@@ -1636,7 +1636,7 @@ SW5E.traits = {
   },
   tool: {
     label: "SW5E.TraitToolProf",
-    actorKeyPath: "traits.toolProf",
+    actorKeyPath: "tools",
     configKey: "toolProficiencies",
     subtypes: { keyPath: "toolType", ids: ["toolIds"] },
     children: { vehicle: "vehicleTypes" },

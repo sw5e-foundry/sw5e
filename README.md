@@ -22,15 +22,13 @@ To install and use the SW5e system for Foundry Virtual Tabletop, simply paste th
 
 (https://raw.githubusercontent.com/sw5e-foundry/sw5e/master/static/system.json)
 
-If you wish to manually install the system, you must clone or extract it into the `Data/systems/sw5e` folder. You
-may do this by cloning the repository or downloading a zip archive from the
-[Releases Page](https://github.com/sw5e-foundry/sw5e/releases).
+If you wish to manually install the system, you can download the release you want from the 
+[Releases Page](https://github.com/sw5e-foundry/sw5e/releases) on github and extract it into the `Data/systems/sw5e` 
+folder.
 
 ## Community Contribution
 
-Code and content contributions are accepted. Please feel free to submit issues to the issue tracker or submit merge
-requests for code changes. Approval for such requests involves code and (if necessary) design review by The Dev Team.
-Please reach out on the [SW5E Foundry Dev Discord](https://discord.gg/QMvJG6nHQD) with any questions.
+See the [CONTRIBUTING](/CONTRIBUTING.md) file for information about how you can help this project.
 
 ## Modules and Optimum Settings
 

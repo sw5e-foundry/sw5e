@@ -173,13 +173,12 @@ export default class AbilityUseDialog extends Dialog {
     }
 
     const canCast = powerLevels.some(l => l.hasSlots);
-    if (!canCast)
-      data.errors.push(
-        game.i18n.format("SW5E.PowerCastNoSlots", {
-          level: CONFIG.SW5E.powerLevels[lvl],
-          name: data.item.name
-        })
-      );
+    if (!canCast) data.errors.push(
+      game.i18n.format("SW5E.PowerCastNoSlots", {
+        level: CONFIG.SW5E.powerLevels[lvl],
+        name: data.item.name
+      })
+    );
 
     // Merge power casting data
     return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });

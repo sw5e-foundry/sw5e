@@ -246,18 +246,16 @@ function makePointsResource(schemaOptions = {}) {
       overall: new FormulaField({ deterministic: true, label: `${baseLabel}BonusOverall` })
     })
   };
-  if (schemaOptions.hasTemp)
-    schemaObj.temp = new foundry.data.fields.NumberField({
-      integer: true,
-      initial: 0,
-      min: 0,
-      label: `${baseLabel}Temp`
-    });
-  if (schemaOptions.hasTempMax)
-    schemaObj.tempmax = new foundry.data.fields.NumberField({
-      integer: true,
-      initial: 0,
-      label: `${baseLabel}TempMax`
-    });
+  if (schemaOptions.hasTemp) schemaObj.temp = new foundry.data.fields.NumberField({
+    integer: true,
+    initial: 0,
+    min: 0,
+    label: `${baseLabel}Temp`
+  });
+  if (schemaOptions.hasTempMax) schemaObj.tempmax = new foundry.data.fields.NumberField({
+    integer: true,
+    initial: 0,
+    label: `${baseLabel}TempMax`
+  });
   return new foundry.data.fields.SchemaField(schemaObj, schemaOptions);
 }

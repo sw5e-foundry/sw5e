@@ -14,9 +14,9 @@ export default class ActorSkillConfig extends BaseConfigSheet {
     this._skillId = skillId;
 
     foundry.utils.logCompatibilityWarning(
-      "ActorSkillConfig has been deprecated in favor of the more general " +
-        "ProficiencyConfig available at 'sw5e.applications.actor.ProficiencyConfig'. Support for the old application " +
-        "will be removed in a future version.",
+      "ActorSkillConfig has been deprecated in favor of the more general "
+        + "ProficiencyConfig available at 'sw5e.applications.actor.ProficiencyConfig'. Support for the old application "
+        + "will be removed in a future version.",
       { since: "SW5e 2.2", until: "SW5e 2.4" }
     );
   }

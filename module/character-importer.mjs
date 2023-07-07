@@ -5,6 +5,7 @@ export default class CharacterImporter {
   // and insert new actor
 
   static _itemsWithAdvancement = [];
+
   static _actor = null;
 
   static async transform(rawCharacter) {
@@ -416,7 +417,7 @@ export default class CharacterImporter {
       if (item.type === "class") {
         const classId = item.system.identifier;
         const classLvl = item.system.levels;
-        const clonedItem = manager.clone.items.find(i=>i.type === "class" && i.system.identifier === classId);
+        const clonedItem = manager.clone.items.find(i => i.type === "class" && i.system.identifier === classId);
         const levelDelta = classLvl - 1;
         if (!clonedItem || levelDelta < 1) continue;
         manager.createLevelChangeSteps(clonedItem, levelDelta);

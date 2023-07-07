@@ -64,8 +64,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
       height: Math.max(
         680,
         Math.max(
-          237 + Object.keys(CONFIG.SW5E.abilities).length * 70,
-          240 + Object.keys(CONFIG.SW5E.skills).length * 24
+          237 + (Object.keys(CONFIG.SW5E.abilities).length * 70),
+          240 + (Object.keys(CONFIG.SW5E.skills).length * 24)
         )
       )
     });
@@ -364,23 +364,21 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     // Shield
-    if (ac.shield !== 0)
-      attribution.push({
-        label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.shield
-      });
+    if (ac.shield !== 0) attribution.push({
+      label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
 
     // Bonus
     if (ac.bonus !== 0) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
 
     // Cover
-    if (ac.cover !== 0)
-      attribution.push({
-        label: game.i18n.localize("SW5E.Cover"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.cover
-      });
+    if (ac.cover !== 0) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
     return attribution;
   }
 
@@ -463,7 +461,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10, pact: 0.5 };
-    const useLabels = { "-20": "-", "-10": "-", "0": "&infin;" };
+    const useLabels = { "-20": "-", "-10": "-", 0: "&infin;" };
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
@@ -478,7 +476,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
         uses: useLabels[i] || value || 0,
         slots: useLabels[i] || max || 0,
         override: override || 0,
-        dataset: { "type": "power", "level": prepMode in sections ? 1 : i, "preparation.mode": prepMode },
+        dataset: { type: "power", level: prepMode in sections ? 1 : i, "preparation.mode": prepMode },
         prop: sl,
         editable: context.editable && !aeOverride
       };
@@ -825,20 +823,18 @@ export default class ActorSheetOrig5e extends ActorSheet {
     }
 
     // Toggle Equipped State
-    if ("equipped" in item.system)
-      options.push({
-        name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
-        icon: "<i class='fas fa-shield-alt fa-fw'></i>",
-        callback: () => item.update({ "system.equipped": !item.system.equipped })
-      });
+    if ("equipped" in item.system) options.push({
+      name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
+      icon: "<i class='fas fa-shield-alt fa-fw'></i>",
+      callback: () => item.update({ "system.equipped": !item.system.equipped })
+    });
 
     // Toggle Prepared State
-    if ("preparation" in item.system && item.system.preparation?.mode === "prepared")
-      options.push({
-        name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
-        icon: "<i class='fas fa-sun fa-fw'></i>",
-        callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
-      });
+    if ("preparation" in item.system && item.system.preparation?.mode === "prepared") options.push({
+      name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
+      icon: "<i class='fas fa-sun fa-fw'></i>",
+      callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
+    });
     return options;
   }
 
@@ -1092,8 +1088,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
     // TODO: This is pretty non functional as the base items for the scrolls,
     //       and the powers, are not defined, maybe consider using holocrons
     if (
-      itemData.type === "power" &&
-      (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
+      itemData.type === "power"
+      && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
     ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       return scroll.toObject();
@@ -1321,7 +1317,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
           try {
             const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
             if (shouldRemoveAdvancements) return manager.render(true);
-          } catch (err) {
+          } catch(err) {
             return;
           }
         } else {
@@ -1347,8 +1343,8 @@ export default class ActorSheetOrig5e extends ActorSheet {
       property = element.dataset.property;
       if (!property) return;
       foundry.utils.logCompatibilityWarning(
-        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value" +
-          " has been deprecated in favor of a single `data-attribution` value.",
+        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
+          + " has been deprecated in favor of a single `data-attribution` value.",
         { since: "SW5e 2.1.3", until: "SW5e 2.4" }
       );
     }

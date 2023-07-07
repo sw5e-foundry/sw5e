@@ -49,7 +49,7 @@ globalThis.dnd5e = globalThis.sw5e;
 // Keep on while testing new SW5e build
 CONFIG.debug.hooks = false;
 
-Hooks.once("init", function () {
+Hooks.once("init", function() {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
@@ -82,7 +82,7 @@ Hooks.once("init", function () {
     else CONFIG.SW5E[spell] = val;
   }
 
-  CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // backwards compatibility with v10
+  CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // Backwards compatibility with v10
   game.sw5e.isV10 = game.release.generation < 11;
 
   // Configure trackable attributes.
@@ -272,7 +272,7 @@ function _configureTrackableAttributes() {
 /**
  * Prepare attribute lists.
  */
-Hooks.once("setup", function () {
+Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
   game.sw5e.moduleArt.registerModuleArt();
@@ -316,7 +316,7 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
-Hooks.once("ready", async function () {
+Hooks.once("ready", async function() {
   if (game.sw5e.isV10) {
     // Configure validation strictness.
     _configureValidationStrictness();
@@ -429,24 +429,24 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
   console.log("renderSwaltSheet");
 });
 
-Handlebars.registerHelper("round", function (value) {
+Handlebars.registerHelper("round", function(value) {
   return Math.floor(value);
 });
 
-Handlebars.registerHelper("debug", function (value) {
+Handlebars.registerHelper("debug", function(value) {
   console.log(value);
   return value;
 });
 
-Handlebars.registerHelper("isUndefined", function (value) {
+Handlebars.registerHelper("isUndefined", function(value) {
   return value === undefined;
 });
 
-Handlebars.registerHelper("isNull", function (value) {
+Handlebars.registerHelper("isNull", function(value) {
   return value === null;
 });
 
-Handlebars.registerHelper("json", function (value) {
+Handlebars.registerHelper("json", function(value) {
   return JSON.stringify(value);
 });
 
@@ -455,7 +455,7 @@ Handlebars.registerHelper("json", function (value) {
  * @param {jQuery} html
  */
 function setFolderBackground(html) {
-  html.find("header.folder-header").each(function () {
+  html.find("header.folder-header").each(function() {
     let bgColor = $(this).css("background-color");
     if (bgColor === undefined) bgColor = "rgb(255,255,255)";
     $(this).closest("li").css("background-color", bgColor);

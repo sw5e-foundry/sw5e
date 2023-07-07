@@ -15,7 +15,7 @@ export function simplifyBonus(bonus, data = {}) {
   try {
     const roll = new Roll(bonus, data);
     return roll.isDeterministic ? Roll.safeEval(roll.formula) : 0;
-  } catch (error) {
+  } catch(error) {
     console.error(error);
     return 0;
   }
@@ -101,10 +101,10 @@ function isValidUUID(uuid) {
   // Compendium Document
   const packs = new Set(game.packs.keys());
   if (
-    parts[0] === "Compendium" &&
-    parts.length >= 4 &&
-    packs.has(`${parts[1]}.${parts[2]}`) &&
-    foundry.data.validators.isValidId(parts[3])
+    parts[0] === "Compendium"
+    && parts.length >= 4
+    && packs.has(`${parts[1]}.${parts[2]}`)
+    && foundry.data.validators.isValidId(parts[3])
   ) {
     parts = parts.slice(4);
   }
@@ -229,7 +229,7 @@ function itemContext(context, options) {
  */
 export function registerHandlebarsHelpers() {
   Handlebars.registerHelper({
-    "getProperty": foundry.utils.getProperty,
+    getProperty: foundry.utils.getProperty,
     "sw5e-linkForUuid": linkForUuid,
     "sw5e-itemContext": itemContext
   });
@@ -399,8 +399,7 @@ export function fromUuidSynchronous(uuid) {
   let doc;
 
   // Compendium Documents
-  if (parts[0] === "Compendium")
-    return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
+  if (parts[0] === "Compendium") return console.warn(`[Warning] fromUuidSynchronous does not work on Compendium uuids such as ${uuid}.`);
   // World Documents
   else {
     const [docName, docId] = parts.slice(0, 2);
@@ -576,6 +575,7 @@ export function objectHasKey(obj, key) {
 /**
  * Check if a value is a non-null object
  * @param {unknown}
+ * @param value
  * @returns {boolean}
  */
 export function isObject(value) {

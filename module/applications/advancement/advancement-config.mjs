@@ -182,11 +182,10 @@ export default class AdvancementConfig extends FormApplication {
 
   /** @inheritdoc */
   async _onDrop(event) {
-    if (!this.options.dropKeyPath)
-      throw new Error(
-        "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support" +
-          " drag and drop on advancement config items."
-      );
+    if (!this.options.dropKeyPath) throw new Error(
+      "AdvancementConfig#options.dropKeyPath must be configured or #_onDrop must be overridden to support"
+          + " drag and drop on advancement config items."
+    );
 
     // Try to extract the data
     const data = TextEditor.getDragEventData(event);
@@ -196,7 +195,7 @@ export default class AdvancementConfig extends FormApplication {
 
     try {
       this._validateDroppedItem(event, item);
-    } catch (err) {
+    } catch(err) {
       return ui.notifications.error(err.message);
     }
 

@@ -109,7 +109,7 @@ export default class ItemGrantAdvancement extends Advancement {
         itemData = source
           .clone(
             {
-              "_id": foundry.utils.randomID(),
+              _id: foundry.utils.randomID(),
               "flags.sw5e.sourceId": uuid,
               "flags.sw5e.advancementOrigin": `${this.item.id}.${this.id}`
             },

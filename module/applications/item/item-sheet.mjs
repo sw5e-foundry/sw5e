@@ -147,19 +147,18 @@ export default class ItemSheet5e extends ItemSheet {
           context.itemType = featureType.label;
           context.featureSubtypes = featureType.subtypes;
         }
-        if (featType?.value === "starship" && featType.subtype === "role")
-          context.starshipSpeed = {
-            space: {
-              label: "SW5E.BaseSpaceSpeed",
-              path: "system.attributes.speed.space",
-              value: item.system.attributes.speed.space
-            },
-            turn: {
-              label: "SW5E.BaseTurnSpeed",
-              path: "system.attributes.speed.turn",
-              value: item.system.attributes.speed.turn
-            }
-          };
+        if (featType?.value === "starship" && featType.subtype === "role") context.starshipSpeed = {
+          space: {
+            label: "SW5E.BaseSpaceSpeed",
+            path: "system.attributes.speed.space",
+            value: item.system.attributes.speed.space
+          },
+          turn: {
+            label: "SW5E.BaseTurnSpeed",
+            path: "system.attributes.speed.turn",
+            value: item.system.attributes.speed.turn
+          }
+        };
         break;
       case "modification":
         context.isEquipMod = item.system.modificationType in CONFIG.SW5E.modificationTypesEquipment;
@@ -359,9 +358,9 @@ export default class ItemSheet5e extends ItemSheet {
             uses.per === "charges"
               ? ` (${game.i18n.format("SW5E.AbilityUseChargesLabel", { value: uses.value })})`
               : ` (${game.i18n.format("SW5E.AbilityUseConsumableLabel", {
-                  max: uses.max,
-                  per: uses.per
-                })})`;
+                max: uses.max,
+                per: uses.per
+              })})`;
           obj[i.id] = i.name + label;
         }
 
@@ -413,12 +412,11 @@ export default class ItemSheet5e extends ItemSheet {
       case "equipment":
         props.push(CONFIG.SW5E.equipmentTypes[this.item.system.armor.type]);
         if (this.item.isArmor || this.item.isMountable) props.push(labels.armor);
-        if (this.item.system.properties)
-          props.push(
-            ...Object.entries(this.item.system.properties)
-              .filter(e => ![false, undefined, null, 0].includes(e[1]))
-              .map(e => game.i18n.format(CONFIG.SW5E.equipmentProperties[e[0]]?.full, { value: e[1] }))
-          );
+        if (this.item.system.properties) props.push(
+          ...Object.entries(this.item.system.properties)
+            .filter(e => ![false, undefined, null, 0].includes(e[1]))
+            .map(e => game.i18n.format(CONFIG.SW5E.equipmentProperties[e[0]]?.full, { value: e[1] }))
+        );
         break;
       case "feat":
         props.push(labels.featType);
@@ -427,12 +425,11 @@ export default class ItemSheet5e extends ItemSheet {
         props.push(labels.materials, ...labels.components.tags);
         break;
       case "weapon":
-        if (this.item.system.properties)
-          props.push(
-            ...Object.entries(this.item.system.properties)
-              .filter(e => ![false, undefined, null, 0].includes(e[1]))
-              .map(e => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]]?.full ?? "?", { value: e[1] }))
-          );
+        if (this.item.system.properties) props.push(
+          ...Object.entries(this.item.system.properties)
+            .filter(e => ![false, undefined, null, 0].includes(e[1]))
+            .map(e => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]]?.full ?? "?", { value: e[1] }))
+        );
         break;
 
       // TODO: Work out these
@@ -616,10 +613,9 @@ export default class ItemSheet5e extends ItemSheet {
       html.find(".trait-selector").click(this._onConfigureTraits.bind(this));
       html.find(".effect-control").click(ev => {
         const unsupported = game.sw5e.isV10 && this.item.isOwned;
-        if (unsupported)
-          return ui.notifications.warn(
-            "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
-          );
+        if (unsupported) return ui.notifications.warn(
+          "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
+        );
         ActiveEffect5e.onManageActiveEffect(ev, this.item);
       });
       html.find(".advancement .item-control").click(event => {
@@ -714,10 +710,9 @@ export default class ItemSheet5e extends ItemSheet {
     const a = event.currentTarget;
 
     // Don't allow adding or removing damage parts while there is a mod affecting those, to avoid duplication
-    if ("system.damage.parts" in flattenObject(this.item.overrides))
-      return ui.notifications.warn(
-        `Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`
-      );
+    if ("system.damage.parts" in flattenObject(this.item.overrides)) return ui.notifications.warn(
+      `Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`
+    );
 
     // Add new damage component
     if (a.classList.contains("add-damage")) {
@@ -846,9 +841,9 @@ export default class ItemSheet5e extends ItemSheet {
     }
     advancements = advancements.filter(a => {
       return (
-        !this.item.advancement.byId[a.id] &&
-        a.constructor.metadata.validItemTypes.has(this.item.type) &&
-        a.constructor.availableForItem(this.item)
+        !this.item.advancement.byId[a.id]
+        && a.constructor.metadata.validItemTypes.has(this.item.type)
+        && a.constructor.availableForItem(this.item)
       );
     });
 
@@ -856,7 +851,7 @@ export default class ItemSheet5e extends ItemSheet {
     if (showDialog) {
       try {
         advancements = await AdvancementMigrationDialog.createDialog(this.item, advancements);
-      } catch (err) {
+      } catch(err) {
         return false;
       }
     }
@@ -1023,8 +1018,7 @@ export default class ItemSheet5e extends ItemSheet {
         case "powerGenerator":
         case "projectorCanister":
         case "projectorTank":
-          if (oldLoad === wpnSysdata?.properties?.rel)
-            ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
+          if (oldLoad === wpnSysdata?.properties?.rel) ammoUpdates["system.quantity"] = oldAmmoSysdata?.quantity ?? 0 + 1;
           else {
             const confirm = await Dialog.confirm({
               title: game.i18n.localize("SW5E.WeaponAmmoConfirmEjectTitle"),

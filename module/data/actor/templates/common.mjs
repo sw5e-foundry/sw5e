@@ -112,7 +112,7 @@ export default class CommonTemplate extends SystemDataModel.mixin(CurrencyTempla
       try {
         const roll = new Roll(ac.formula);
         Roll.safeEval(roll.formula);
-      } catch (e) {
+      } catch(e) {
         ac.formula = "";
       }
     }

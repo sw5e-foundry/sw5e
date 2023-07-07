@@ -122,11 +122,10 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
    */
   static #migrateCritical(source) {
     if (!("critical" in source)) return;
-    if (typeof source.critical !== "object" || source.critical === null)
-      source.critical = {
-        threshold: null,
-        damage: ""
-      };
+    if (typeof source.critical !== "object" || source.critical === null) source.critical = {
+      threshold: null,
+      damage: ""
+    };
     if (source.critical.damage === null) source.critical.damage = "";
   }
 
@@ -170,15 +169,15 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
    */
   get abilityMod() {
     return (
-      this.ability ||
-      this._typeAbilityMod ||
-      {
+      this.ability
+      || this._typeAbilityMod
+      || {
         mwak: "str",
         rwak: "dex",
         mpak: this.parent?.actor?.system.attributes.powercasting || "int",
         rpak: this.parent?.actor?.system.attributes.powercasting || "int"
-      }[this.actionType] ||
-      null
+      }[this.actionType]
+      || null
     );
   }
 

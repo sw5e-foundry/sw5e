@@ -234,7 +234,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         label: "SW5E.FeatureActive",
         items: [],
         hasActions: true,
-        dataset: { "type": "feat", "activation.type": "action" }
+        dataset: { type: "feat", "activation.type": "action" }
       },
       passive: {
         label: "SW5E.FeaturePassive",
@@ -345,7 +345,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch (err) {
+        } catch(err) {
           return;
         }
       }

@@ -122,12 +122,11 @@ export default class Actor5e extends Actor {
 
   /**
    * Get which type of caster the actor is.
-   * @type {array<string>}
+   * @type {Array<string>}
    */
   get caster() {
     const types = [];
-    for (const prog of ["force", "tech"])
-      if (this.system.attributes[prog].level || this.system.attributes[prog].known.value) types.push(prog);
+    for (const prog of ["force", "tech"]) if (this.system.attributes[prog].level || this.system.attributes[prog].known.value) types.push(prog);
     if (this.system.attributes.super.level || this.system.attributes.super.known.value) types.push("super");
     return types;
   }
@@ -504,11 +503,10 @@ export default class Actor5e extends Actor {
           for (let d of [ad, cd]) {
             let override = d?.powercasting?.[`${castType}Override`];
             if (override in CONFIG.SW5E.abilities) {
-              if (progression.override)
-                this._preparationWarnings.push({
-                  message: game.i18n.localize("SW5E.WarnMultiplePowercastingOverride"),
-                  type: "warning"
-                });
+              if (progression.override) this._preparationWarnings.push({
+                message: game.i18n.localize("SW5E.WarnMultiplePowercastingOverride"),
+                type: "warning"
+              });
               progression.override = override;
             }
           }
@@ -780,14 +778,14 @@ export default class Actor5e extends Actor {
     this.system.attributes.fuel.cost = sizeData.fuelCost ?? 0;
     this.system.attributes.fuel.fuelCap = sizeData.fuelCap ?? 0;
 
-    const hullmax = (sizeData.hullDiceStart ?? 0) + (hugeOrGrg ? 2 : 1) * tiers;
+    const hullmax = (sizeData.hullDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
     this.system.attributes.hull = {
       die: sizeData.hullDice ?? "d1",
       dicemax: hullmax,
       dice: hullmax - parseInt(sizeData.hullDiceUsed ?? 0)
     };
 
-    const shldmax = (sizeData.shldDiceStart ?? 0) + (hugeOrGrg ? 2 : 1) * tiers;
+    const shldmax = (sizeData.shldDiceStart ?? 0) + ((hugeOrGrg ? 2 : 1) * tiers);
     this.system.attributes.shld = {
       die: sizeData.shldDice ?? "d1",
       dicemax: shldmax,
@@ -1029,11 +1027,10 @@ export default class Actor5e extends Actor {
         const tier = this.system.details.tier;
         ac.tier = Math.max(tier - 1, 0);
         if (armors.length) {
-          if (armors.length > 1)
-            this._preparationWarnings.push({
-              message: game.i18n.localize("SW5E.WarnMultipleArmor"),
-              type: "warning"
-            });
+          if (armors.length > 1) this._preparationWarnings.push({
+            message: game.i18n.localize("SW5E.WarnMultipleArmor"),
+            type: "warning"
+          });
           const armorData = armors[0].system.armor;
           ac.dex = Math.min(armorData.dex ?? Infinity, this.system.abilities.dex.mod);
           ac.base = (armorData.value ?? 0) + ac.tier + ac.dex;
@@ -1047,11 +1044,10 @@ export default class Actor5e extends Actor {
       default:
         let formula = ac.calc === "custom" ? ac.formula : cfg.formula;
         if (armors.length) {
-          if (armors.length > 1)
-            this._preparationWarnings.push({
-              message: game.i18n.localize("SW5E.WarnMultipleArmor"),
-              type: "warning"
-            });
+          if (armors.length > 1) this._preparationWarnings.push({
+            message: game.i18n.localize("SW5E.WarnMultipleArmor"),
+            type: "warning"
+          });
           const armorData = armors[0].system.armor;
           const isHeavy = armorData.type === "heavy";
           ac.armor = armorData.value ?? ac.armor;
@@ -1064,7 +1060,7 @@ export default class Actor5e extends Actor {
         try {
           const replaced = Roll.replaceFormulaData(formula, rollData);
           ac.base = Roll.safeEval(replaced);
-        } catch (err) {
+        } catch(err) {
           this._preparationWarnings.push({
             message: game.i18n.localize("SW5E.WarnBadACFormula"),
             link: "armor",
@@ -1078,11 +1074,10 @@ export default class Actor5e extends Actor {
 
     // Equipped Shield
     if (shields.length) {
-      if (shields.length > 1)
-        this._preparationWarnings.push({
-          message: game.i18n.localize("SW5E.WarnMultipleShields"),
-          type: "warning"
-        });
+      if (shields.length > 1) this._preparationWarnings.push({
+        message: game.i18n.localize("SW5E.WarnMultipleShields"),
+        type: "warning"
+      });
       ac.shield = shields[0].system.armor.value ?? 0;
       ac.equippedShield = shields[0];
     }
@@ -1109,7 +1104,7 @@ export default class Actor5e extends Actor {
       if (!physicalItems.includes(i.type)) return weight;
       const q = i.system.quantity || 0;
       const w = i.system.weight || 0;
-      return weight + q * w;
+      return weight + (q * w);
     }, 0);
 
     // [Optional] add Currency Weight (for non-transformed actors)
@@ -1212,12 +1207,12 @@ export default class Actor5e extends Actor {
     const initBonus = simplifyBonus(init.bonus, bonusData);
     const abilityBonus = simplifyBonus(ability.bonuses?.check, bonusData);
     init.total =
-      init.mod +
-      initBonus +
-      abilityBonus +
-      globalCheckBonus +
-      (flags.initiativeAlert ? 5 : 0) +
-      (Number.isNumeric(init.prof.term) ? init.prof.flat : 0);
+      init.mod
+      + initBonus
+      + abilityBonus
+      + globalCheckBonus
+      + (flags.initiativeAlert ? 5 : 0)
+      + (Number.isNumeric(init.prof.term) ? init.prof.flat : 0);
   }
 
   /* -------------------------------------------- */
@@ -1271,10 +1266,9 @@ export default class Actor5e extends Actor {
 
       let mod;
       if (cast.override) mod = abl[cast.override].mod;
-      else
-        mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, a) => {
-          return Math.max(best, abl[a]?.mod ?? Number.NEGATIVE_INFINITY);
-        }, Number.NEGATIVE_INFINITY);
+      else mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, a) => {
+        return Math.max(best, abl[a]?.mod ?? Number.NEGATIVE_INFINITY);
+      }, Number.NEGATIVE_INFINITY);
       if (mod !== Number.NEGATIVE_INFINITY) cast.points.max += mod;
 
       cast.points.max += Number(cast.points.bonuses?.overall ?? 0);
@@ -1337,25 +1331,23 @@ export default class Actor5e extends Actor {
 
     // Prepare Speeds
     if (game.settings.get("sw5e", "oldStarshipMovement")) {
-      attr.movement.space = (sizeData.baseSpaceSpeed ?? 0) + 50 * (abl.str.mod - abl.con.mod);
+      attr.movement.space = (sizeData.baseSpaceSpeed ?? 0) + (50 * (abl.str.mod - abl.con.mod));
       attr.movement.turn = Math.min(
         attr.movement.space,
-        Math.max(50, (sizeData.baseTurnSpeed ?? 0) - 50 * (abl.dex.mod - abl.con.mod))
+        Math.max(50, (sizeData.baseTurnSpeed ?? 0) - (50 * (abl.dex.mod - abl.con.mod)))
       );
     } else {
       const roles = this.itemTypes.feat.filter(
         f => f.system.type.value === "starship" && f.system.type.subtype === "role"
       );
-      if (roles.length === 0)
-        this._preparationWarnings.push({
-          message: game.i18n.localize("SW5E.WarnNoSSRole"),
-          type: "warning"
-        });
-      else if (roles.length > 1)
-        this._preparationWarnings.push({
-          message: game.i18n.localize("SW5E.WarnMultipleSSRole"),
-          type: "warning"
-        });
+      if (roles.length === 0) this._preparationWarnings.push({
+        message: game.i18n.localize("SW5E.WarnNoSSRole"),
+        type: "warning"
+      });
+      else if (roles.length > 1) this._preparationWarnings.push({
+        message: game.i18n.localize("SW5E.WarnMultipleSSRole"),
+        type: "warning"
+      });
       else {
         const role = roles[0];
         attr.movement.space = role?.system?.attributes?.speed?.space ?? 0;
@@ -1415,16 +1407,14 @@ export default class Actor5e extends Actor {
     if ("size" in (this.system.traits || {})) {
       const s = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
       const prototypeToken = { width: s, height: s };
-      if (this.type === "character")
-        Object.assign(prototypeToken, {
-          sight: { enabled: true },
-          actorLink: true,
-          disposition: 1
-        });
-      else if (this.type === "starship")
-        Object.assign(prototypeToken, {
-          actorLink: true
-        });
+      if (this.type === "character") Object.assign(prototypeToken, {
+        sight: { enabled: true },
+        actorLink: true,
+        disposition: 1
+      });
+      else if (this.type === "starship") Object.assign(prototypeToken, {
+        actorLink: true
+      });
       this.updateSource({ prototypeToken });
     }
   }
@@ -1627,7 +1617,7 @@ export default class Actor5e extends Actor {
    */
   static getHPColor(current, max) {
     const pct = Math.clamped(current, 0, max) / max;
-    return Color.fromRGB([1 - pct / 2, pct, 0]);
+    return Color.fromRGB([1 - (pct / 2), pct, 0]);
   }
 
   /* -------------------------------------------- */
@@ -1640,8 +1630,8 @@ export default class Actor5e extends Actor {
    */
   _isRemarkableAthlete(ability) {
     return (
-      this.getFlag("sw5e", "remarkableAthlete") &&
-      CONFIG.SW5E.characterFlags.remarkableAthlete.abilities.includes(ability)
+      this.getFlag("sw5e", "remarkableAthlete")
+      && CONFIG.SW5E.characterFlags.remarkableAthlete.abilities.includes(ability)
     );
   }
 
@@ -1715,8 +1705,8 @@ export default class Actor5e extends Actor {
 
     // Flags
     const supremeAptitude =
-      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod)) ||
-      undefined;
+      (flags.supremeAptitude && CONFIG.SW5E.characterFlags.supremeAptitude.abilities.includes(this.abilityMod))
+      || undefined;
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
@@ -1732,7 +1722,7 @@ export default class Actor5e extends Actor {
         halflingLucky: flags.halflingLucky,
         reliableTalent,
         messageData: {
-          "speaker": options.speaker || ChatMessage.getSpeaker({ actor: this }),
+          speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "skill", skillId }
         }
       },
@@ -1821,7 +1811,7 @@ export default class Actor5e extends Actor {
         chooseModifier: true,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
         messageData: {
-          "speaker": options.speaker || ChatMessage.implementation.getSpeaker({ actor: this }),
+          speaker: options.speaker || ChatMessage.implementation.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "tool", toolId }
         }
       },
@@ -1935,7 +1925,7 @@ export default class Actor5e extends Actor {
         elvenAccuracy: supremeAptitude,
         halflingLucky: flags.halflingLucky,
         messageData: {
-          "speaker": options.speaker || ChatMessage.getSpeaker({ actor: this }),
+          speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "ability", abilityId }
         }
       },
@@ -2011,8 +2001,8 @@ export default class Actor5e extends Actor {
 
     // Flags
     const supremeDurability =
-      (flags.supremeDurability && CONFIG.SW5E.characterFlags.supremeDurability.abilities.includes(abilityId)) ||
-      undefined;
+      (flags.supremeDurability && CONFIG.SW5E.characterFlags.supremeDurability.abilities.includes(abilityId))
+      || undefined;
 
     // Roll and return
     const flavor = game.i18n.format("SW5E.SavePromptTitle", { ability: label });
@@ -2024,7 +2014,7 @@ export default class Actor5e extends Actor {
         elvenAccuracy: supremeDurability,
         halflingLucky: flags.halflingLucky,
         messageData: {
-          "speaker": options.speaker || ChatMessage.getSpeaker({ actor: this }),
+          speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "save", abilityId }
         }
       },
@@ -2102,7 +2092,7 @@ export default class Actor5e extends Actor {
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
         targetValue: 10,
         messageData: {
-          "speaker": speaker,
+          speaker: speaker,
           "flags.sw5e.roll": { type: "death" }
         }
       },
@@ -2228,7 +2218,7 @@ export default class Actor5e extends Actor {
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
         targetValue: 10,
         messageData: {
-          "speaker": speaker,
+          speaker: speaker,
           "flags.sw5e.roll": { type: "destruction" }
         }
       },
@@ -2437,10 +2427,10 @@ export default class Actor5e extends Actor {
     const combat = await super.rollInitiative(options);
     const combatants = this.isToken
       ? this.getActiveTokens(false, true).reduce((arr, t) => {
-          const combatant = game.combat.getCombatantByToken(t.id);
-          if (combatant) arr.push(combatant);
-          return arr;
-        }, [])
+        const combatant = game.combat.getCombatantByToken(t.id);
+        if (combatant) arr.push(combatant);
+        return arr;
+      }, [])
       : [game.combat.getCombatantByActor(this.id)];
 
     /**
@@ -2473,10 +2463,9 @@ export default class Actor5e extends Actor {
     }
 
     // Otherwise, locate a class (if any) which has an available hit die of the requested denomination
-    else
-      cls = this.items.find(i => {
-        return i.system.hitDice === denomination && (i.system.hitDiceUsed || 0) < (i.system.levels || 1);
-      });
+    else cls = this.items.find(i => {
+      return i.system.hitDice === denomination && (i.system.hitDiceUsed || 0) < (i.system.levels || 1);
+    });
 
     // If no class is available, display an error notification
     if (!cls) {
@@ -2492,10 +2481,10 @@ export default class Actor5e extends Actor {
         data: this.getRollData(),
         chatMessage: true,
         messageData: {
-          "speaker": ChatMessage.getSpeaker({ actor: this }),
+          speaker: ChatMessage.getSpeaker({ actor: this }),
           flavor,
-          "title": `${flavor}: ${this.name}`,
-          "rollMode": game.settings.get("core", "rollMode"),
+          title: `${flavor}: ${this.name}`,
+          rollMode: game.settings.get("core", "rollMode"),
           "flags.sw5e.roll": { type: "hitDie" }
         }
       },
@@ -2567,20 +2556,19 @@ export default class Actor5e extends Actor {
     const hullMult = ["huge", "grg"].includes(this.system.traits.size) ? 2 : 1;
     if (!denomination) {
       sship = this.itemTypes.starshipsize.find(
-        s => s.system.hullDiceUsed < s.system.tier * hullMult + s.system.hullDiceStart
+        s => s.system.hullDiceUsed < (s.system.tier * hullMult) + s.system.hullDiceStart
       );
       if (!sship) return null;
       denomination = sship.system.hullDice;
     }
 
     // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
-    else
-      sship = this.items.find(i => {
-        return (
-          i.system.hullDice === denomination &&
-          (i.system.hullDiceUsed || 0) < (i.system.tier * hullMult || 0) + i.system.hullDiceStart
-        );
-      });
+    else sship = this.items.find(i => {
+      return (
+        i.system.hullDice === denomination
+          && (i.system.hullDiceUsed || 0) < (i.system.tier * hullMult || 0) + i.system.hullDiceStart
+      );
+    });
 
     // If no starship is available, display an error notification
     if (!sship) {
@@ -2604,7 +2592,7 @@ export default class Actor5e extends Actor {
         title: `${flavor}: ${this.name}`,
         dialogOptions: { width: 350 },
         messageData: {
-          "speaker": ChatMessage.getSpeaker({ actor: this }),
+          speaker: ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "hullDie" }
         }
       },
@@ -2714,8 +2702,8 @@ export default class Actor5e extends Actor {
     else {
       sship = this.itemTypes.starshipsize.find(i => {
         return (
-          i.system.shldDice === denomination &&
-          (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
+          i.system.shldDice === denomination
+          && (i.system.shldDiceUsed || 0) < (i.system.tier * shldMult || 0) + i.system.shldDiceStart
         );
       });
     }
@@ -2754,7 +2742,7 @@ export default class Actor5e extends Actor {
         title: `${flavor}: ${this.name}`,
         dialogOptions: { width: 350 },
         messageData: {
-          "speaker": ChatMessage.getSpeaker({ actor: this }),
+          speaker: ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "shldDie" }
         }
       },
@@ -2868,7 +2856,7 @@ export default class Actor5e extends Actor {
         fastForward: true,
         dialogOptions: { width: 350 },
         messageData: {
-          "speaker": ChatMessage.getSpeaker({ actor: this }),
+          speaker: ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "pwrDieRec" }
         }
       },
@@ -2891,8 +2879,7 @@ export default class Actor5e extends Actor {
 
     // If the roll is enough to fill all available slots
     if (pdMissing.total <= roll.total) {
-      for (const slot of Object.keys(slots))
-        result.actorUpdates[`system.attributes.power.${slot}.value`] = pd[slot].max;
+      for (const slot of Object.keys(slots)) result.actorUpdates[`system.attributes.power.${slot}.value`] = pd[slot].max;
       result.pd = pdMissing.total;
     }
     // If all new power die can fit into the central storage
@@ -2905,10 +2892,9 @@ export default class Actor5e extends Actor {
       result.actorUpdates["system.attributes.power.central.value"] = pd.central.max;
       try {
         const allocation = await AllocatePowerDice.allocatePowerDice(this, roll.total - pdMissing.central);
-        for (const slot of allocation)
-          result.actorUpdates[`system.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
+        for (const slot of allocation) result.actorUpdates[`system.attributes.power.${slot}.value`] = Number(pd[slot].value) + 1;
         result.pd = allocation.length + pdMissing.central;
-      } catch (err) {
+      } catch(err) {
         return result;
       }
     }
@@ -2960,7 +2946,7 @@ export default class Actor5e extends Actor {
     if (slot === null) {
       try {
         slot = await ExpendPowerDice.expendPowerDice(this);
-      } catch (err) {
+      } catch(err) {
         return null;
       }
     }
@@ -2994,7 +2980,7 @@ export default class Actor5e extends Actor {
         fastForward: true,
         dialogOptions: { width: 350 },
         messageData: {
-          "speaker": ChatMessage.getSpeaker({ actor: this }),
+          speaker: ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "pwrDieRoll" }
         }
       },
@@ -3057,9 +3043,9 @@ export default class Actor5e extends Actor {
     };
     const flavor = game.i18n.format("SW5E.AdvancementHitPointsRollMessage", { class: item.name });
     const messageData = {
-      "title": `${flavor}: ${this.name}`,
+      title: `${flavor}: ${this.name}`,
       flavor,
-      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
       "flags.sw5e.roll": { type: "hitPoints" }
     };
 
@@ -3115,9 +3101,9 @@ export default class Actor5e extends Actor {
     if (tier === 0) rollData.formula += ` + ${item.system.hullDice.substring(1)}`;
     const flavor = game.i18n.format("SW5E.AdvancementHullPointsRollMessage", { starship: item.name });
     const messageData = {
-      "title": `${flavor}: ${this.name}`,
+      title: `${flavor}: ${this.name}`,
       flavor,
-      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
       "flags.sw5e.roll": { type: "hitPoints" }
     };
 
@@ -3173,9 +3159,9 @@ export default class Actor5e extends Actor {
     if (tier === 0) rollData.formula += ` + ${item.system.shldDice.substring(1)}`;
     const flavor = game.i18n.format("SW5E.AdvancementShieldPointsRollMessage", { starship: item.name });
     const messageData = {
-      "title": `${flavor}: ${this.name}`,
+      title: `${flavor}: ${this.name}`,
       flavor,
-      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
       "flags.sw5e.roll": { type: "hitPoints" }
     };
 
@@ -3226,9 +3212,9 @@ export default class Actor5e extends Actor {
     };
     const flavor = game.i18n.format("SW5E.HPFormulaRollMessage");
     const messageData = {
-      "title": `${flavor}: ${this.name}`,
+      title: `${flavor}: ${this.name}`,
       flavor,
-      "speaker": ChatMessage.getSpeaker({ actor: this }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
       "flags.sw5e.roll": { type: "hitPoints" }
     };
 
@@ -3327,7 +3313,7 @@ export default class Actor5e extends Actor {
     if (config.dialog) {
       try {
         config.newDay = await ShortRestDialog.shortRestDialog({ actor: this, canRoll: hd0 > 0 });
-      } catch (err) {
+      } catch(err) {
         return;
       }
     }
@@ -3372,7 +3358,7 @@ export default class Actor5e extends Actor {
     if (config.dialog) {
       try {
         config.newDay = await LongRestDialog.longRestDialog({ actor: this });
-      } catch (err) {
+      } catch(err) {
         return;
       }
     }
@@ -3675,7 +3661,7 @@ export default class Actor5e extends Actor {
       if (hitDiceRecovered < maxHitDice && hitDiceUsed > 0) {
         let delta = Math.min(hitDiceUsed || 0, maxHitDice - hitDiceRecovered);
         hitDiceRecovered += delta;
-        updates.push({ "_id": item.id, "system.hitDiceUsed": hitDiceUsed - delta });
+        updates.push({ _id: item.id, "system.hitDiceUsed": hitDiceUsed - delta });
       }
     }
 
@@ -3710,10 +3696,10 @@ export default class Actor5e extends Actor {
     for (let item of this.items) {
       const uses = item.system.uses;
       if (recovery.includes(uses?.per)) {
-        updates.push({ "_id": item.id, "system.uses.value": uses.max });
+        updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverLongRestUses && item.system.recharge?.value) {
-        updates.push({ "_id": item.id, "system.recharge.charged": true });
+        updates.push({ _id: item.id, "system.recharge.charged": true });
       }
 
       // Items that roll to gain charges on a new day
@@ -3726,7 +3712,7 @@ export default class Actor5e extends Actor {
         let total = 0;
         try {
           total = (await roll.evaluate({ async: true })).total;
-        } catch (err) {
+        } catch(err) {
           ui.notifications.warn(
             game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
               name: item.name,
@@ -3740,7 +3726,7 @@ export default class Actor5e extends Actor {
           const diff = newValue - uses.value;
           const isMax = newValue === uses.max;
           const locKey = `SW5E.Item${diff < 0 ? "Loss" : "Recovery"}Roll${isMax ? "Max" : ""}`;
-          updates.push({ "_id": item.id, "system.uses.value": newValue });
+          updates.push({ _id: item.id, "system.uses.value": newValue });
           rolls.push(roll);
           await roll.toMessage({
             user: game.user.id,
@@ -3821,7 +3807,7 @@ export default class Actor5e extends Actor {
           actor: this,
           canRoll: hd0 > 0
         });
-      } catch (err) {
+      } catch(err) {
         return;
       }
     }
@@ -3867,7 +3853,7 @@ export default class Actor5e extends Actor {
     if (config.dialog) {
       try {
         config.newDay = await RefittingRepairDialog.refittingRepairDialog({ actor: this });
-      } catch (err) {
+      } catch(err) {
         return;
       }
     }
@@ -3890,7 +3876,7 @@ export default class Actor5e extends Actor {
     if (dialog) {
       try {
         useShieldDie = await RegenRepairDialog.regenRepairDialog({ actor: this });
-      } catch (err) {
+      } catch(err) {
         return;
       }
     }
@@ -4196,8 +4182,7 @@ export default class Actor5e extends Actor {
     const power = this.system.attributes.power;
     const updates = {};
 
-    for (const slot of Object.keys(CONFIG.SW5E.powerDieSlots))
-      updates[`system.attributes.power.${slot}.value`] = power[slot].max;
+    for (const slot of Object.keys(CONFIG.SW5E.powerDieSlots)) updates[`system.attributes.power.${slot}.value`] = power[slot].max;
 
     return { updates };
   }
@@ -4230,7 +4215,7 @@ export default class Actor5e extends Actor {
         let delta = Math.min(hullDiceUsed || 0, maxHullDice - hullDiceRecovered);
         hullDiceRecovered += delta;
         updates.push({
-          "_id": item.id,
+          _id: item.id,
           "system.hullDiceUsed": hullDiceUsed - delta
         });
       }
@@ -4265,7 +4250,7 @@ export default class Actor5e extends Actor {
         let delta = Math.min(shldDiceUsed || 0, maxShldDice - shldDiceRecovered);
         shldDiceRecovered += delta;
         updates.push({
-          "_id": item.id,
+          _id: item.id,
           "system.shldDiceUsed": shldDiceUsed - delta
         });
       }
@@ -4302,10 +4287,10 @@ export default class Actor5e extends Actor {
     for (let item of this.items) {
       const uses = item.system.uses;
       if (recovery.includes(uses?.per)) {
-        updates.push({ "_id": item.id, "system.uses.value": uses.max });
+        updates.push({ _id: item.id, "system.uses.value": uses.max });
       }
       if (recoverRefittingRepairUses && item.system.recharge?.value) {
-        updates.push({ "_id": item.id, "system.recharge.charged": true });
+        updates.push({ _id: item.id, "system.recharge.charged": true });
       }
 
       // Items that roll to gain charges on a new day
@@ -4315,7 +4300,7 @@ export default class Actor5e extends Actor {
         let total = 0;
         try {
           total = (await roll.evaluate({ async: true })).total;
-        } catch (err) {
+        } catch(err) {
           ui.notifications.warn(
             game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
               name: item.name,
@@ -4329,7 +4314,7 @@ export default class Actor5e extends Actor {
           const diff = newValue - uses.value;
           const isMax = newValue === uses.max;
           const locKey = `SW5E.Item${diff < 0 ? "Loss" : "Recovery"}Roll${isMax ? "Max" : ""}`;
-          updates.push({ "_id": item.id, "system.uses.value": newValue });
+          updates.push({ _id: item.id, "system.uses.value": newValue });
           rolls.push(roll);
           await roll.toMessage({
             user: game.user.id,
@@ -4762,8 +4747,8 @@ export default class Actor5e extends Actor {
       const idsToDelete = previousActorIds
         .filter(
           id =>
-            id !== original.id && // Is not original Actor Id
-            game.actors?.get(id) // Actor still exists
+            id !== original.id // Is not original Actor Id
+            && game.actors?.get(id) // Actor still exists
         )
         .concat([this.id]); // Add this id
 
@@ -4855,12 +4840,12 @@ export default class Actor5e extends Actor {
 
       if (tDeployed?.deployments?.has(key)) {
         tDeployed?.deployments?.delete(key);
-        tUpdates[`system.attributes.deployed.deployments`] = Array.from(tDeployed.deployments);
+        tUpdates["system.attributes.deployed.deployments"] = Array.from(tDeployed.deployments);
       }
     }
 
     if (tDeployed.deployments.size === 0) {
-      tUpdates[`system.attributes.depleted.uuid`] = null;
+      tUpdates["system.attributes.depleted.uuid"] = null;
       if (ssDeploy.active.value === target.uuid) await this.ssToggleActiveCrew();
     }
 
@@ -5025,7 +5010,7 @@ export default class Actor5e extends Actor {
       const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
       canvas.interface.createScrollingText(t.center, dhp.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
-        fontSize: 16 + 32 * pct, // Range between [16, 48]
+        fontSize: 16 + (32 * pct), // Range between [16, 48]
         fill: CONFIG.SW5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
         stroke: 0x000000,
         strokeThickness: 4,

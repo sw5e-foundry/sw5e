@@ -343,7 +343,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
         try {
           const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
           if (shouldRemoveAdvancements) return manager.render(true);
-        } catch (err) {
+        } catch(err) {
           return;
         }
       }

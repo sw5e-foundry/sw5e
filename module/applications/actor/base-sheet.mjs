@@ -85,8 +85,7 @@ export default class ActorSheet5e extends ActorSheet {
 
   /** @override */
   get template() {
-    if (!game.user.isGM && this.actor.limited)
-      return "systems/sw5e/templates/actors/newActor/expanded-limited-sheet.hbs";
+    if (!game.user.isGM && this.actor.limited) return "systems/sw5e/templates/actors/newActor/expanded-limited-sheet.hbs";
     return `systems/sw5e/templates/actors/newActor/${this.actor.type}-sheet.hbs`;
   }
 
@@ -383,23 +382,21 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     // Shield
-    if (ac.shield !== 0)
-      attribution.push({
-        label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.shield
-      });
+    if (ac.shield !== 0) attribution.push({
+      label: this.actor.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
 
     // Bonus
     if (ac.bonus !== 0) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
 
     // Cover
-    if (ac.cover !== 0)
-      attribution.push({
-        label: game.i18n.localize("SW5E.Cover"),
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: ac.cover
-      });
+    if (ac.cover !== 0) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
     return attribution;
   }
 
@@ -520,15 +517,14 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     for (const [type, val] of Object.entries(config.featureTypes ?? CONFIG.SW5E.featureTypes)) {
-      if ("subtypes" in val && config.expandSubtypes)
-        for (const [subtype, label] of Object.entries(val.subtypes)) {
-          categories.features[`feat.${type}.${subtype}`] = {
-            label,
-            items: [],
-            hasActions: true,
-            dataset: { type: "feat", featType: type, featSubtype: subtype }
-          };
-        }
+      if ("subtypes" in val && config.expandSubtypes) for (const [subtype, label] of Object.entries(val.subtypes)) {
+        categories.features[`feat.${type}.${subtype}`] = {
+          label,
+          items: [],
+          hasActions: true,
+          dataset: { type: "feat", featType: type, featSubtype: subtype }
+        };
+      }
       categories.features[`feat.${type}`] = {
         label: val.label,
         items: [],
@@ -542,7 +538,7 @@ export default class ActorSheet5e extends ActorSheet {
         items: [],
         hasActions: true,
         required: true,
-        dataset: { "type": "feat", "activation.type": "action" }
+        dataset: { type: "feat", "activation.type": "action" }
       };
       categories.features.passive = {
         label: "SW5E.FeaturePassive",
@@ -551,14 +547,13 @@ export default class ActorSheet5e extends ActorSheet {
         required: true,
         dataset: { type: "feat" }
       };
-    } else
-      categories.features.feat = {
-        label: "ITEM.TypeFeat",
-        items: [],
-        hasActions: true,
-        required: true,
-        dataset: { type: "feat" }
-      };
+    } else categories.features.feat = {
+      label: "ITEM.TypeFeat",
+      items: [],
+      hasActions: true,
+      required: true,
+      dataset: { type: "feat" }
+    };
 
     for (const [scl, label] of Object.entries(config.powerSchools ?? CONFIG.SW5E.powerSchools)) {
       if (config.combineForcePowers && ["lgt", "uni", "drk"].includes(scl)) continue;
@@ -566,12 +561,10 @@ export default class ActorSheet5e extends ActorSheet {
     }
     if (config.combineForcePowers) categories.powers.for = { items: [], dataset: { type: "power", school: "uni" } };
 
-    if (config.combineManeuvers)
-      categories.maneuvers = { items: [], dataset: { type: "maneuver", maneuverType: "general" } };
-    else
-      for (const [type, label] of Object.entries(config.maneuverTypes ?? CONFIG.SW5E.maneuverTypes)) {
-        categories.maneuvers[type] = { label, items: [], dataset: { type: "maneuver", maneuverType: type } };
-      }
+    if (config.combineManeuvers) categories.maneuvers = { items: [], dataset: { type: "maneuver", maneuverType: "general" } };
+    else for (const [type, label] of Object.entries(config.maneuverTypes ?? CONFIG.SW5E.maneuverTypes)) {
+      categories.maneuvers[type] = { label, items: [], dataset: { type: "maneuver", maneuverType: type } };
+    }
 
     return categories;
   }
@@ -678,7 +671,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10 };
-    const useLabels = { "-20": "-", "-10": "-", "0": "&infin;" };
+    const useLabels = { "-20": "-", "-10": "-", 0: "&infin;" };
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
@@ -694,10 +687,10 @@ export default class ActorSheet5e extends ActorSheet {
         slots: useLabels[i] || max || 0,
         override: override || 0,
         dataset: {
-          "type": "power",
-          "level": prepMode in sections ? 1 : i,
+          type: "power",
+          level: prepMode in sections ? 1 : i,
           "preparation.mode": prepMode,
-          "school": school
+          school: school
         },
         prop: sl,
         editable: context.editable && !aeOverride
@@ -775,7 +768,7 @@ export default class ActorSheet5e extends ActorSheet {
         canCreate: owner,
         maneuvers: [],
         dataset: {
-          "type": "maneuver",
+          type: "maneuver",
           "maneuver-type": t
         }
       };
@@ -1076,28 +1069,25 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     // Toggle Equipped State
-    if ("equipped" in item.system)
-      options.unshift({
-        name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
-        icon: "<i class='fas fa-shield-alt fa-fw'></i>",
-        callback: () => item.update({ "system.equipped": !item.system.equipped })
-      });
+    if ("equipped" in item.system) options.unshift({
+      name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
+      icon: "<i class='fas fa-shield-alt fa-fw'></i>",
+      callback: () => item.update({ "system.equipped": !item.system.equipped })
+    });
 
     // Toggle Prepared State
-    if ("preparation" in item.system && item.system.preparation?.mode === "prepared")
-      options.unshift({
-        name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
-        icon: "<i class='fas fa-sun fa-fw'></i>",
-        callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
-      });
+    if ("preparation" in item.system && item.system.preparation?.mode === "prepared") options.unshift({
+      name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
+      icon: "<i class='fas fa-sun fa-fw'></i>",
+      callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
+    });
 
     // Reload Weapon
-    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max))
-      options.unshift({
-        name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
-        icon: "<i class='fas fa-raygun fa-fw'></i>",
-        callback: () => item.sheet._onWeaponReload()
-      });
+    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max)) options.unshift({
+      name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
+      icon: "<i class='fas fa-raygun fa-fw'></i>",
+      callback: () => item.sheet._onWeaponReload()
+    });
 
     return options;
   }
@@ -1358,8 +1348,8 @@ export default class ActorSheet5e extends ActorSheet {
     // TODO: Possibly make this a holocron
     // Create a Consumable power scroll on the Inventory tab
     if (
-      itemData.type === "power" &&
-      (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
+      itemData.type === "power"
+      && (this._tabs[0].active === "inventory" || ["vehicle", "starship"].includes(this.actor.type))
     ) {
       const scroll = await Item5e.createScrollFromPower(itemData);
       return scroll.toObject();
@@ -1562,7 +1552,7 @@ export default class ActorSheet5e extends ActorSheet {
       let cfg = CONFIG.SW5E.featureTypes[featType];
       if (featSubtype) cfg = cfg.subtypes[featSubtype];
       else cfg = cfg.label;
-      //TODO: See if this works since format for item name was changed above
+      // TODO: See if this works since format for item name was changed above
       itemData.name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(cfg).capitalize() });
     }
 
@@ -1607,7 +1597,7 @@ export default class ActorSheet5e extends ActorSheet {
           try {
             const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
             if (shouldRemoveAdvancements) return manager.render(true);
-          } catch (err) {
+          } catch(err) {
             return;
           }
         } else {
@@ -1655,8 +1645,8 @@ export default class ActorSheet5e extends ActorSheet {
       property = element.dataset.property;
       if (!property) return;
       foundry.utils.logCompatibilityWarning(
-        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value" +
-          " has been deprecated in favor of a single `data-attribution` value.",
+        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
+          + " has been deprecated in favor of a single `data-attribution` value.",
         { since: "SW5e 2.1.3", until: "SW5e 2.4" }
       );
     }

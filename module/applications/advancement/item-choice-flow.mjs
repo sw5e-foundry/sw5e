@@ -38,8 +38,8 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
   /** @inheritdoc */
   async getContext() {
     this.selected ??= new Set(
-      this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId")) ??
-        Object.values(this.advancement.value[this.level] ?? {})
+      this.retainedData?.items.map(i => foundry.utils.getProperty(i, "flags.sw5e.sourceId"))
+        ?? Object.values(this.advancement.value[this.level] ?? {})
     );
     this.pool ??= await Promise.all(this.advancement.configuration.pool.map(uuid => fromUuid(uuid)));
     if (!this.dropped) {
@@ -117,7 +117,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     let data;
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    } catch (err) {
+    } catch(err) {
       return false;
     }
 
@@ -126,7 +126,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
 
     try {
       this.advancement._validateItemType(item);
-    } catch (err) {
+    } catch(err) {
       return ui.notifications.error(err.message);
     }
 
@@ -145,12 +145,11 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     const powerLevel = this.advancement.configuration.restriction.level;
     if (this.advancement.configuration.type === "power" && powerLevel === "available") {
       const maxSlot = this._maxPowerSlotLevel();
-      if (item.system.level > maxSlot)
-        return ui.notifications.error(
-          game.i18n.format("SW5E.AdvancementItemChoicePowerLevelAvailableWarning", {
-            level: CONFIG.SW5E.powerLevels[maxSlot]
-          })
-        );
+      if (item.system.level > maxSlot) return ui.notifications.error(
+        game.i18n.format("SW5E.AdvancementItemChoicePowerLevelAvailableWarning", {
+          level: CONFIG.SW5E.powerLevels[maxSlot]
+        })
+      );
     }
 
     // Mark the item as selected

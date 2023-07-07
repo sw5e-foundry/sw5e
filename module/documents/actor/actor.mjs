@@ -2345,9 +2345,9 @@ export default class Actor5e extends Actor {
         parts.push("@prof");
         data.prof = init.prof.term;
       }
-      if (init.bonus !== 0) {
+      if (init.bonus) {
         parts.push("@bonus");
-        data.bonus = init.bonus;
+        data.bonus = Roll.replaceFormulaData(init.bonus, data);
       }
     }
 
@@ -2356,7 +2356,7 @@ export default class Actor5e extends Actor {
       const abilityBonus = this.system.abilities[abilityId]?.bonuses?.check;
       if (abilityBonus) {
         parts.push("@abilityBonus");
-        data.abilityBonus = abilityBonus;
+        data.abilityBonus = Roll.replaceFormulaData(abilityBonus, data);
       }
     }
 
@@ -2365,7 +2365,7 @@ export default class Actor5e extends Actor {
       const globalCheckBonus = this.system.bonuses.abilities?.check;
       if (globalCheckBonus) {
         parts.push("@globalBonus");
-        data.globalBonus = globalCheckBonus;
+        data.globalBonus = Roll.replaceFormulaData(globalCheckBonus, data);
       }
     }
 
@@ -2521,7 +2521,7 @@ export default class Actor5e extends Actor {
     if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
 
     const hp = this.system.attributes.hp;
-    const dhp = Math.min(hp.max + (hp.tempmax ?? 0) - hp.value, roll.total);
+    const dhp = Math.min(Math.max(0, hp.max + (hp.tempmax ?? 0)) - hp.value, roll.total);
     const updates = {
       actor: { "system.attributes.hp.value": hp.value + dhp },
       class: { "system.hitDiceUsed": cls.system.hitDiceUsed + 1 }
@@ -2626,7 +2626,7 @@ export default class Actor5e extends Actor {
     if (!roll) return roll;
 
     const hp = this.system.attributes.hp;
-    const dhp = Math.min(hp.max - hp.value, roll.total);
+    const dhp = Math.min(Math.max(0, hp.max) - hp.value, roll.total);
     const updates = {
       actor: { "system.attributes.hp.value": hp.value + dhp },
       starship: { "system.hullDiceUsed": sship.system.hullDiceUsed + 1 }
@@ -2776,7 +2776,7 @@ export default class Actor5e extends Actor {
     if (!roll) return result;
     result.roll = roll;
 
-    const dsp = Math.min(hp.tempmax - hp.temp, roll.total);
+    const dsp = Math.min(Math.max(0, hp.tempmax) - hp.temp, roll.total);
     result.sp = dsp;
 
     const updates = {
@@ -3545,7 +3545,7 @@ export default class Actor5e extends Actor {
    */
   async autoSpendHitDice({ threshold = 3 } = {}) {
     const hp = this.system.attributes.hp;
-    const max = hp.max + hp.tempmax;
+    const max = Math.max(0, hp.max + hp.tempmax);
     let diceRolled = 0;
     while (this.system.attributes.hp.value + threshold <= max) {
       const r = await this.rollHitDie();
@@ -3570,7 +3570,7 @@ export default class Actor5e extends Actor {
     let max = hp.max;
     let updates = {};
     if (recoverTempMax) updates["system.attributes.hp.tempmax"] = 0;
-    else max += hp.tempmax;
+    else max = Math.max(0, max + (hp.tempmax || 0));
     updates["system.attributes.hp.value"] = max;
     if (recoverTemp) updates["system.attributes.hp.temp"] = 0;
     return { updates, hitPointsRecovered: max - hp.value };
@@ -4137,7 +4137,7 @@ export default class Actor5e extends Actor {
    */
   async autoSpendHullDice({ threshold = 3 } = {}) {
     const hp = this.system.attributes.hp;
-    const max = hp.max + hp.tempmax;
+    const max = MAth.max(0, hp.max);
     let diceRolled = 0;
     while (this.system.attributes.hp.value + threshold <= max) {
       const r = await this.rollHullDie(undefined, { dialog: false });
@@ -4157,7 +4157,7 @@ export default class Actor5e extends Actor {
    */
   _getRepairHullPointRecovery() {
     const hp = this.system.attributes.hp;
-    let max = hp.max;
+    let max = Math.max(0, hp.max);
     let updates = {};
 
     updates["system.attributes.hp.value"] = max;
@@ -4175,7 +4175,7 @@ export default class Actor5e extends Actor {
    */
   _getRepairShieldPointRecovery() {
     const hp = this.system.attributes.hp;
-    let max = hp.tempmax;
+    let max = Math.max(0, hp.tempmax);
     let updates = {};
 
     updates["system.attributes.hp.temp"] = max;

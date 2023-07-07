@@ -3465,7 +3465,7 @@ SW5E.traits = {
   },
   tool: {
     label: "SW5E.TraitToolProf",
-    actorKeyPath: "traits.toolProf",
+    actorKeyPath: "tools",
     configKey: "toolProficiencies",
     subtypes: { keyPath: "toolType", ids: ["toolIds"] },
     children: { vehicle: "vehicleTypes" },

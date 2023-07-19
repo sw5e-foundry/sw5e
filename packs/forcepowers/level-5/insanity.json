@@ -1,0 +1,202 @@
+{
+  "_id": "N6umsaSQEOnqMZfT",
+  "name": "Insanity",
+  "type": "power",
+  "img": "systems/sw5e/packs/Icons/Force%20Powers/Insanity.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true,
+          true
+        ],
+        "altValue": [
+          true,
+          true
+        ],
+        "context": []
+      },
+      "quickVersatile": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": false,
+          "resource": true
+        },
+        "altValue": {
+          "use": false,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:59.1127678+00:00",
+      "importer_version": 3,
+      "uid": "Power.name-insanity.level-5"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite</strong>: Horror</em></p>\n<p>This power assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 30-foot-radius sphere centered on you must succeed on a Wisdom saving throw when you cast this power or be affected by it.</p>\n<p>An affected target can't take reactions and must roll a [[/r d8]] at the start of each of its turns to determine its behavior for that turn. This power has no effect on constructs or droids.</p>\n<p>|[[/r d8]]|Behavior|</p>\n<p>|:--:|:--|</p>\n<p>|1| The creature uses all its movement to move in a random direction. To determine the direction, roll a [[/r d8]] and assign a direction to each die face. The creature doesn't take an action this turn.|</p>\n<p>|2-6| The creature doesn't move or take actions this turn.|</p>\n<p>|7-8|The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn.|</p>\n<p>At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.</p>\n<p><strong><em>Force Potency.</em></strong> When you cast this power using a power slot of 6th level or higher, the radius of the sphere increases by 5 feet for each force slot level above 5th.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Horror",
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "self"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8",
+          ""
+        ],
+        [
+          "1d8",
+          ""
+        ],
+        [
+          "1d8",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "power"
+    },
+    "level": 5,
+    "school": "drk",
+    "components": {
+      "vocal": false,
+      "somatic": false,
+      "material": false,
+      "ritual": false,
+      "concentration": true,
+      "value": ""
+    },
+    "materials": {
+      "value": "",
+      "consumed": false,
+      "cost": 0,
+      "supply": 0
+    },
+    "preparation": {
+      "mode": "prepared",
+      "prepared": true
+    },
+    "scaling": {
+      "mode": "level",
+      "formula": null
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493979219,
+    "modifiedTime": 1684819092776,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

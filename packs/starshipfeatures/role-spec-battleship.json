@@ -1,0 +1,135 @@
+{
+  "name": "Role Spec: Battleship",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+  "effects": [
+    {
+      "_id": "qQTMHDrpIch61Q7C",
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.details.role",
+          "value": "Battleship",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "system.bonuses.rwak.damage",
+          "value": "1",
+          "mode": 0,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+      "label": "Role Specialization: Battleship",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "0ukmJcPNeU4Sp8bN",
+  "system": {
+    "description": {
+      "value": "<p>At 2nd tier, you adopt a particular style of design for your ship.</p>\n<h3>Battleship</h3>\n<p>Your ship gains two Fixed Hardpoint modifications at no cost. Additionally, your ship has a +1 bonus to damage rolls with ship weapons.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 0,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": "roleSpecialization"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Huge",
+    "tier": "2"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017897,
+    "modifiedTime": 1683907656297,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

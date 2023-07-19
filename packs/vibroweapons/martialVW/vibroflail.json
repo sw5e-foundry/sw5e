@@ -1,0 +1,134 @@
+{
+  "_id": "ez4L9NPb3WxDn0vy",
+  "name": "Vibroflail",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/Vibroflail.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:06.0997158+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-vibroflail.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Dexterity 11</h3>\n<p>A weapon with this property requires more skill to control. While wielding it, you have disadvantage on attack rolls unless you meet the Dexterity requirement. </p>\nReckless 1",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": null,
+    "price": {
+      "denomination": "gc",
+      "value": 500
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d4 + @mod",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialVW",
+    "baseItem": "vibroflail",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "dex": 11,
+      "rck": 1
+    },
+    "proficient": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674494021705,
+    "modifiedTime": 1684819088389,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

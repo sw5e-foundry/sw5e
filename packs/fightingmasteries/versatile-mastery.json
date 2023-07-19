@@ -1,0 +1,171 @@
+{
+  "_id": "e0jzteXtJxXggpFH",
+  "name": "Versatile Mastery",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Fighting%20Styles%20and%20Masteries/VersatileMastery.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:00.3030782+00:00",
+      "importer_version": 3,
+      "uid": "FightingMastery.name-versatile_mastery"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You've mastered using weapons in different ways, altering your attack patterns mid-swing. You gain the following benefits:</p>\n<ul>\n<li>Once per turn, when you make a melee attack roll while wielding a weapon in two hands, you can attempt to follow up on the attack. If the attack hits, the creature must make a Strength saving throw (DC = 8 + your bonus to attacks with the weapon). On a failed save, the creature is pushed back 5 feet, and you can immediately move into the space it just vacated without provoking opportunity attacks.</li>\n<li>Once per turn, when you make a melee attack roll while wielding a weapon in one hand, the target is wielding a shield, and your other hand is empty, you can use your other hand to pull down the shield (no action required). If you do so, the creature gains no benefit to armor class from its shield for that attack.</li>\n<li>Before you make a melee weapon attack while wielding a versatile weapon in two hands, you can choose to forgo your proficiency bonus. If the attack hits, you add one and a half times your proficiency bonus to the attack's damage.</li>\n<li>Before you make a melee weapon attack while wielding a versatile weapon in one hand, you can choose to forgo your proficiency bonus. If the attack hits, you add your proficiency bonus to the attack's damage.</li></ul>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": null,
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "customizationOption",
+      "subtype": "fightingMastery"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493967822,
+    "modifiedTime": 1684819096317,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

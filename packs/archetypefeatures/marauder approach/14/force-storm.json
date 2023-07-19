@@ -1,0 +1,104 @@
+{
+  "_id": "dtp98aDdpaAZHTnu",
+  "name": "Force Storm",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-force_storm.source-archetype.sourceName-marauder_approach.level-14"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Marauder Approach:</strong> 14th level</em></p>\n<p>You can expel the might of your rage all at once to unleash a devastating storm of force energy. As an action, you can end your rage early, forcing each creature within 15 feet of you to make a Dexterity saving throw against your universal force save DC. On a failed save, a creature takes [[/r 1d12]] force damage for each round you've spent in rage, or half as much on a successful one.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Berserker (Marauder Approach) 14",
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "15",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d12",
+          "force"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Berserker"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957944,
+    "modifiedTime": 1685840600090,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

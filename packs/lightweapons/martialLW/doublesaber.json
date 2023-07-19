@@ -1,0 +1,136 @@
+{
+  "_id": "T3eHzkaSMMpLuBbr",
+  "name": "Doublesaber",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Lightweapons/Doublesaber.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:54.4005016+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-doublesaber.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Double ([[/r 1d8]] energy)</h3>\n<p>A weapon with this property can be used with one or two hands. A damage value in parentheses appears with the property—the damage when the weapon is used with Double-Weapon Fighting. See the rules for Double-Weapon Fighting in chapter 9.</p>\n<h3>Finesse</h3>\n<p>When making an attack with a weapon with this property, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.</p>\n<h3>Luminous</h3>\n<p>A weapon with this property sheds dim light in a 5-foot radius while activated. Additionally, Dexterity (Stealth) checks made while the weapon is activated have disadvantage.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "PHB",
+    "quantity": 1,
+    "weight": null,
+    "price": {
+      "denomination": "gc",
+      "value": 725
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d8 + @mod",
+          "energy"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialLW",
+    "baseItem": "doublesaber",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "dou": "1d8 energy",
+      "fin": true,
+      "lum": true
+    },
+    "proficient": false,
+    "equiped": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493982791,
+    "modifiedTime": 1684819088264,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

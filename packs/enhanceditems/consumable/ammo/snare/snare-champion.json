@@ -1,0 +1,180 @@
+{
+  "_id": "4BfgZnmR2aSwBVnb",
+  "name": "Snare (Champion)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Ammunition/Snare.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:20.4653878+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-snare_champion.subtype-ammunition"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When hit by this wrist launcher ammunition, a Medium or smaller creature is restrained until it is freed. A snare has no effect on formless or Large or larger creatures. A creature can use its action to make a DC 18 Strength or Dexterity check (the target chooses the ability to use), freeing itself or another creature within its reach on a success. The snare has an AC of 15, 30 hit points, immunity to all damage not dealt by melee weapons, and resistance to damage dealt by unenhanced melee weapons. Destroying the snare frees the creature without harming it and immediately ends the snare's effects. </p>\n<p> </p>\n<h2>Snare</h2>\n<p>When hit by this wrist launcher ammunition, a Medium or smaller creature is restrained until it is freed. A snare has no effect on formless or Large or larger creatures. A creature can use its action to make a DC 13 Strength or Dexterity check (the target chooses the ability to use), freeing itself or another creature within its reach on a success. The snare has an AC of 10, 5 hit points, and immunity to all damage not dealt by melee weapons. Destroying the snare frees the creature without harming it and immediately ends the snare's effects.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 2,
+    "price": {
+      "value": 300,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "artifact",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "30",
+          "hit"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "none"
+    },
+    "consumableType": "ammo",
+    "ammoType": "snare",
+    "properties": {}
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964390,
+    "modifiedTime": 1685833928326,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

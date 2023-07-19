@@ -1,0 +1,96 @@
+{
+  "_id": "o6vBVCGXFUFTYbqd",
+  "name": "Upper Hand",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:14.6757439+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-upper_hand.source-archetype.sourceName-scrapper_practice.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Scrapper Practice:</strong> 3rd level</em></p>\n<p>You learn to use underhanded tactics to gain the upper hand. When you deal Sneak Attack damage to a creature, you may choose to forgo two of your Sneak Attack Dice in order to perform an upper hand technique.</p>\n<p>Some of your upper hand techniques require your target to make a saving throw to resist the technique's effects. The saving throw DC is calculated as follows: </p>\n<p><em></em>_</p>\n<p><strong>Upper Hand save DC</strong> = 8 + your proficiency bonus + your Charisma modifier</p>\n<p><em></em>_</p>\n<h3>Brutal Hit</h3>\n<p>You attempt to knock the target prone while within 15 feet of it. The target must make a Strength saving throw or be knocked prone.</p>\n<h3>Low Blow</h3>\n<p>You attempt to stun the target while within 15 feet of it. The target must make a Constitution saving throw or be stunned until the start of its next turn.</p>\n<h3>Shank Shot</h3>\n<p>You attempt to hamper the target while within 15 feet of it. The target must make a Dexterity saving throw. If it fails, it gains 1 slowed level and makes Dexterity saving throws with disadvantage until the end of its next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Scrapper Practice) 3",
+    "source": "EC",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "15",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "str",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Operative"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958108,
+    "modifiedTime": 1685840600268,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

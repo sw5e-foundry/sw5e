@@ -1,0 +1,103 @@
+{
+  "_id": "5PaDhVwt5qs6DQob",
+  "name": "Barrel Roll",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Pilot.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Engines</em><br>When you are the target of an attack roll, you can expend a power die and attempt to maneuver out of the line of fire. Roll the die, take the result, and multiply it by 50. You immediately move that many feet in a direction of your choice. The orientation of your ship does not change.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Pilot 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": "When you are the target of an attack roll"
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.engines.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Pilot"
+    },
+    "featureType": {
+      "value": "Tactic"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963412,
+    "modifiedTime": 1685840610745,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

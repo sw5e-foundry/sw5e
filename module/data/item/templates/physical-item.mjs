@@ -41,7 +41,7 @@ export default class PhysicalItemTemplate extends foundry.abstract.DataModel {
           denomination: new foundry.data.fields.StringField({
             required: true,
             blank: false,
-            initial: "gp",
+            initial: "gc",
             label: "SW5E.Currency"
           })
         },

@@ -1,0 +1,161 @@
+{
+  "_id": "XXj7bTM70p14qEJ0",
+  "name": "Ion cannon",
+  "type": "weapon",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Weapons/starshipweapon.webp",
+  "effects": [],
+  "system": {
+    "description": {
+      "value": "Power (range 800/3200), constitution 13, ionizing, overheat 8",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 6100,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": 800,
+      "long": 3200,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "rwak",
+    "attackBonus": "0",
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "2d4 + @mod",
+          "ion"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": 13,
+      "scaling": "flat"
+    },
+    "armor": null,
+    "hp": null,
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null
+    },
+    "weaponType": "primary (starship)",
+    "baseItem": "",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "amm": false,
+      "aut": false,
+      "bur": null,
+      "con": 13,
+      "def": null,
+      "dex": null,
+      "dir": null,
+      "drm": false,
+      "dgd": false,
+      "dis": null,
+      "dpt": false,
+      "dou": false,
+      "exp": false,
+      "fin": false,
+      "fix": false,
+      "foc": false,
+      "hvy": false,
+      "hid": false,
+      "hom": false,
+      "ion": true,
+      "ken": null,
+      "lgt": false,
+      "lum": false,
+      "mlt": false,
+      "mig": false,
+      "ovr": 8,
+      "pic": null,
+      "pow": true,
+      "rap": null,
+      "rch": false,
+      "rel": null,
+      "ret": false,
+      "sat": false,
+      "shk": null,
+      "sil": false,
+      "spc": false,
+      "str": null,
+      "thr": false,
+      "two": false,
+      "ver": false,
+      "vic": null,
+      "zon": false,
+      "mgc": false,
+      "ran": false,
+      "smr": false
+    },
+    "proficient": true,
+    "attuned": false,
+    "weaponSize": "Small"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494019829,
+    "modifiedTime": 1685116092362,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "_id": "Kdl45Yv1B8aV6wb1",
+  "name": "Riot shocker",
+  "type": "weapon",
+  "img": "systems/sw5e/packs/Icons/Martial%20Vibroweapons/RiotShocker.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:13.4604494+00:00",
+      "importer_version": 3,
+      "uid": "Weapon.name-riot_shocker.equipmentCategory-weapon"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h3>Defensive 1</h3>\n<p>When you make your first attack on your turn with a weapon with the defensive property, you can choose to suffer a penalty to attack and damage rolls with that weapon up to the defensive number. If you do so, you gain the same bonus to AC. These effects last until the start of your next turn, as long as you're holding the weapon.</p>\n<h3>Light</h3>\n<p>A weapon with this property is small and easy to handle, making it ideal for use when engaging in Double- or Two-Weapon Fighting. See the rules for Double- and Two-Weapon Fighting in chapter 9.</p>\n<h3>Shocking 13</h3>\n<p>When you hit a creature with a weapon with the shocking property, you can force it to make a Dexterity saving throw, DC equal to the shocking number. On a failed save, the creature takes an additional [[/r 1d4]] lightning damage and becomes shocked until the end of its next turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 1,
+    "price": {
+      "denomination": "gc",
+      "value": 425
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null,
+      "ammount": null
+    },
+    "ability": "",
+    "actionType": "mwak",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d4 + @mod",
+          "kinetic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "modify": {
+      "chassis": "none",
+      "augmentSlots": 0,
+      "modSlots": 4,
+      "items": [],
+      "changes": {},
+      "type": null,
+      "overrides": {}
+    },
+    "weaponType": "martialVW",
+    "baseItem": "riotshocker",
+    "ammo": {
+      "target": null,
+      "value": null,
+      "use": null,
+      "types": []
+    },
+    "properties": {
+      "def": 1,
+      "lgt": true,
+      "shk": 13
+    },
+    "proficient": false,
+    "equiped": false
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674494021692,
+    "modifiedTime": 1684819088388,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

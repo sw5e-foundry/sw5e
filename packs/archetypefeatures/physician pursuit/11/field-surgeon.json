@@ -1,0 +1,105 @@
+{
+  "name": "Field Surgeon",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:57.9924175+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-field_surgeon.source-archetype.sourceName-physician_pursuit.level-11"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SCLR-ARCH-Action.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Physician Pursuit:</strong> 6th and 11th level</em></p>\n<p>Whenever you expend superiority dice to restore hit points or grant temporary hit points to a creature, you can roll an additional [[/r d6]] and add it to the roll. This die increases to [[/r d8]] at 9th level, [[/r d10]] at 13th level, and [[/r d12]] at 17th level.</p>\n<p>Additionally, whenever you expend superiority dice to restore hit points or grant temporary hit points to a creature, if the creature is the target of your Critical Analysis, you can instead choose the maximum on both dice. Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 11th level, you can use it twice before a rest, but only once on the same turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Scholar (Physician Pursuit) 11",
+    "source": "PHB",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "2",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    }
+  },
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1679609438366,
+    "modifiedTime": 1685840599454,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "1p3sW9bYXPPdRLhG"
+}

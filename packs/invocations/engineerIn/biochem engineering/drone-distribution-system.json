@@ -1,0 +1,99 @@
+{
+  "_id": "GhOjGr9fwGV6dZRc",
+  "name": "Drone Distribution System",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1684586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-drone_distribution_system.source-archetypeinvocation.sourceName-biochem_engineering.level-None"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p>You upgrade your distributor, interfacing it with the target of your <em>tracker droid interface</em> power. When you use your action to activate your distributor, while your tracker droid is within 100 feet of you, you can choose to have your tracker droid deliver the mixture. Your tracker droid must use its reaction to deliver the mixture.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You </p>\n<p>regain all expended uses when you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Biochem Engineering)",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "100",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 2,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981039,
+    "modifiedTime": 1684777308932,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

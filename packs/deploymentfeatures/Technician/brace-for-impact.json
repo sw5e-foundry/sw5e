@@ -1,0 +1,103 @@
+{
+  "_id": "9hfNnkr1SKOCZknx",
+  "name": "Brace for Impact",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Technician.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Shields</em><br>When you are reduced to zero shields, as a reaction, you can expend a power die to instead reduce your shields to one.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Technician 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "self",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.shields.value",
+      "amount": 1
+    },
+    "ability": "",
+    "actionType": "heal",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Technician"
+    },
+    "featureType": {
+      "value": "Stratagem"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963417,
+    "modifiedTime": 1685840610751,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

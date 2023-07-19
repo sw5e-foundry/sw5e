@@ -1,0 +1,180 @@
+{
+  "_id": "58nW4s5ojkNhY57D",
+  "name": "Projector Tank, Cryo (Devastating)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Ammunition/ProjectorTank-Cryo.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:20.3604486+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-projector_tank_cryo_devastating.subtype-ammunition"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>When triggered, this enhanced vapor projector ammunition produces a beam of carbonite energy in a line 15 feet long and 5 feet wide or a 15-foot cone. A single fuel tank holds enough fuel for three attacks in a line or a single attack in a cone. Each creature must make a DC 24 Constitution saving throw. On a failed save, a creature takes [[/r 7d4]] cold damage and gains 1 slowed level until the end of your next turn. On a successful save, a creature takes half damage and isn't slowed. If this damage reduces a creature to 0 hit points, that creature is frozen in carbonite for 1 hour.</p>\n<p> </p>\n<h2>Projector tank, cryo</h2>\n<p>When triggered, this vapor projector ammunition produces a beam of carbonite energy in a line 15 feet long and 5 feet wide or a 15-foot cone. A single fuel tank holds enough fuel for three attacks in a line or a single attack in a cone. Each creature must make a DC 14 Constitution saving throw. On a failed save, a creature takes [[/r 2d4]] cold damage and gains 1 slowed level until the end of your next turn. On a successful save, a creature takes half damage and isn't slowed. If this damage reduces a creature to 0 hit points, that creature is frozen in carbonite for 1 hour.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 3,
+    "price": {
+      "value": 675,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "artifact",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "hour"
+    },
+    "cover": null,
+    "target": {
+      "value": "15",
+      "width": null,
+      "units": "ft",
+      "type": "cone"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "7d4",
+          "cold"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": 24,
+      "scaling": "flat"
+    },
+    "consumableType": "ammo",
+    "ammoType": "projectorTank",
+    "properties": {}
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.7",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964423,
+    "modifiedTime": 1686621162890,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

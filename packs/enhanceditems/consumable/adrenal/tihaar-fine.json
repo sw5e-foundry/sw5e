@@ -1,0 +1,198 @@
+{
+  "_id": "5xjffBLRS2SKXNP7",
+  "name": "Tihaar (Fine)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Storage/Canteen.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "altValue": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:04.8204575+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-tihaar_fine.subtype-substance"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Substance)</h4>\n <p>This colorless spirit, favored by Mandalorians, burns the mouth and throat when consumed. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d4]] when making an ability check or saving throw using Constitution, and at the start of each of the creature's turns it gains [[/r 2d4]] temporary hit points. At the end of the high, the creature must succeed on a DC 16 Constitution saving throw or experience a low that lasts 1 hour, during which they must roll a [[/r d4]] and subtract the result when making an ability check or saving throw using Constitution, and for the duration their current and maximum hit points are reduced by [[/r 2d4]]. If this would reduce your maximum hit points below 1, it instead becomes 1. At the end of the low, the creature must make a DC 16 Wisdom saving throw to resist addiction.</p>\n<p> </p>\n<h2>Tihaar</h2>\n<p>This colorless spirit, favored by Mandalorians, burns the mouth and throat when consumed. As an action, you can apply this substance to a creature within 5 feet. For the next minute, the creature experiences a high that allows them to roll an additional [[/r d3]] when making an ability check or saving throw using Constitution, and at the start of each of the creature's turns it gains [[/r 2d3]] temporary hit points. At the end of the high, the creature must succeed on a DC 14 Constitution saving throw or experience a low that lasts 10 minutes, during which they must roll a [[/r d3]] and subtract the result when making an ability check or saving throw using Constitution, and for the duration their current and maximum hit points are reduced by [[/r 2d3]]. If this would reduce your maximum hit points below 1, it instead becomes 1. At the end of the low, the creature must make a DC 14 Wisdom saving throw to resist addiction.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "WH",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 85,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "premium",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "2d4",
+          "temphp"
+        ],
+        [
+          "1d4",
+          ""
+        ],
+        [
+          "1d4",
+          ""
+        ],
+        [
+          "2d4",
+          ""
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": 16,
+      "scaling": "flat"
+    },
+    "consumableType": "adrenal",
+    "ammoType": null,
+    "properties": {}
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.7",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964431,
+    "modifiedTime": 1686621162896,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

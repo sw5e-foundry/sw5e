@@ -1,0 +1,99 @@
+{
+  "_id": "d7wAQPshxavsna3o",
+  "name": "Distracting Countenance",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Bonus.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-distracting_countenance.source-archetype.sourceName-beguiler_practice.level-17"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Beguiler Practice:</strong> 17th level</em></p>\n<p>As a bonus action, you can mask yourself with the Force for 1 minute or until you are incapacitated. For the duration, whenever any creature tries to attack you for the first time on a turn, the attacker must make a Charisma saving throw (DC = 8 + your proficiency bonus + your Charisma modifier). On a failed save, it can't attack you on this turn, and it must choose a new target for its attack or the attack is wasted. On a successful save, it can attack you on this turn, but it has disadvantage on any saving throw it makes against your powers on your next turn.</p>\n<p>Once you've used this feature, you must complete a short or long rest before you can use it again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Operative (Beguiler Practice) 17",
+    "source": "PHB",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "cha",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Operative"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957935,
+    "modifiedTime": 1685840600077,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

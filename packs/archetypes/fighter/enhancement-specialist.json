@@ -1,0 +1,117 @@
+{
+  "_id": "CiOp71RlWtYdyBPi",
+  "name": "Enhancement Specialist",
+  "type": "archetype",
+  "img": "systems/sw5e/packs/Icons/Archetypes/EnhancementSpecialist.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1694583+00:00",
+      "importer_version": 3,
+      "uid": "Archetype.name-enhancement_specialist"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h1>Enhancement Specialist</h1>\n<p>Those fighters who choose to become Enhancement Specialists learn to apply their technological prowess to their blasters. With their deep understanding of both their weapon and how to manipulate its ammunition on the fly, they can often turn the tides of a battle with a single shot.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "invocations": {
+      "value": "<h1>Ammunition Enhancements</h1>\n<ul>\n<li>@Compendium[sw5e.invocations.1ui0usMgcu3ltRTe]{Carbonite shot}</li>\n<li>@Compendium[sw5e.invocations.QEDbsrXVZLmEQUKY]{Coercing shot}</li>\n<li>@Compendium[sw5e.invocations.YNyebOyvcX9vanR7]{Explosive shot}</li>\n<li>@Compendium[sw5e.invocations.yfFf4971uRTExdT0]{Hallucinogen shot}</li>\n<li>@Compendium[sw5e.invocations.uwrLn2xJzgxZbKyB]{Piercing shot}</li>\n<li>@Compendium[sw5e.invocations.jcdgGDu92cA0EyYu]{Quell shot}</li>\n<li>@Compendium[sw5e.invocations.erNtEGbyln1yHQXr]{Seeking shot}</li>\n</ul>"
+    },
+    "source": "EC",
+    "identifier": "enhancementspecialist",
+    "classIdentifier": "fighter",
+    "advancement": [
+      {
+        "_id": "uinHnXjjonJZpXdg",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.mHXnv3WYF2JEAB7n",
+            "Compendium.sw5e.archetypefeatures.IW35g90AQDat9ja4"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 3,
+        "title": "Features"
+      },
+      {
+        "_id": "1rhN9m09lEjScSV6",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.N8aZQvTPQWB41dGD"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 7,
+        "title": "Features"
+      },
+      {
+        "_id": "jlsHnAhrlbH13sLQ",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.m3M2C9172EHcPgsx"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 10,
+        "title": "Features"
+      },
+      {
+        "_id": "ePKntelIhxt1nFyG",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.yAdyUqUHFck92mEd"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 15,
+        "title": "Features"
+      },
+      {
+        "_id": "kEnHCK5ELxP1LZmm",
+        "type": "ItemGrant",
+        "configuration": {
+          "items": [
+            "Compendium.sw5e.archetypefeatures.ZbwvEeTXEPwoApqc"
+          ],
+          "optional": false
+        },
+        "value": {},
+        "level": 18,
+        "title": "Features"
+      }
+    ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493959723,
+    "modifiedTime": 1684819093622,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

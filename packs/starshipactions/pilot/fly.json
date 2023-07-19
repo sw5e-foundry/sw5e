@@ -1,0 +1,95 @@
+{
+  "name": "Fly",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/pilot-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "Q6q2jJrTvOWDr488",
+  "system": {
+    "description": {
+      "value": "<p>When you take the Fly action, you gain extra Movement for the current turn. The increase equals your speed, after applying any modifiers. With a speed of 300 feet, for example, your ship can move up to 600 feet on its turn if you Fly. Any increase or decrease to your speed changes this additional Movement by the same amount. If your ship's speed of 300 feet is reduced to 150 feet, for instance, your ship can move up to 300 feet this turn if you Fly.</p><p><span style=\"font-family:'Open Sans', sans-serif\">This action affects your ship's ability to stay on target: any ability check or attack made by your ship or anyone on it has disadvantage until the end of your ship's next turn.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "turn"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "pilot"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": "pilot"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016673,
+    "modifiedTime": 1683591601428,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

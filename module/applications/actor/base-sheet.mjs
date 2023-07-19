@@ -490,7 +490,7 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     if (config.splitEquipped) categories.equipped = {};
-    for (const itemType of (config.inventoryItems ?? CONFIG.SW5E.inventoryItems)) {
+    for (const itemType of (config.inventoryItems ?? CONFIG.SW5E.itemTypes.inventory)) {
       categories.inventory[itemType] = {
         label: `ITEM.Type${itemType.capitalize()}Pl`,
         items: [],
@@ -507,7 +507,7 @@ export default class ActorSheet5e extends ActorSheet {
       }
     }
 
-    for (const itemType of (config.classItems ?? CONFIG.SW5E.classItems)) {
+    for (const itemType of (config.classItems ?? CONFIG.SW5E.itemTypes.class)) {
       categories.class[itemType] = {
         label: `ITEM.Type${itemType.capitalize()}Pl`,
         items: [],

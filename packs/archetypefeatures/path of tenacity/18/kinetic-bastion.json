@@ -1,0 +1,99 @@
+{
+  "_id": "vh8gpSCT41sZMONL",
+  "name": "Kinetic Bastion",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SNTL-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-kinetic_bastion.source-archetype.sourceName-path_of_tenacity.level-18"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Path of Tenacity:</strong> 18th level</em></p>\n<p>You can protect allies even further from you. When a creature within 30 feet of you is hit by a melee weapon attack, you can use your reaction to teleport to them and extend your Kinetic Ward. If this damage is not reduced to 0, the warded creature takes any remaining damage.</p>\n<p>You can use this feature a number of times equal to your Wisdom or Charisma modifier (your choice, a minimum of once). You regain all expended uses when you finish a long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Sentinel (Path of Tenacity) 18",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "30",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": "max(max(@abilities.wis.mod, @abilities.cha.mod), 1)",
+      "per": "lr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Sentinel"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958227,
+    "modifiedTime": 1685840600460,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

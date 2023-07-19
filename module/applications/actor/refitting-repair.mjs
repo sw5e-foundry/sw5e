@@ -44,7 +44,7 @@ export default class RefittingRepairDialog extends Dialog {
   static async refittingRepairDialog({ actor } = {}) {
     return new Promise((resolve, reject) => {
       const dlg = new this(actor, {
-        title: `${game.i18n.localize("SW5E.Refitting Repair")}: ${actor.name}`,
+        title: `${game.i18n.localize("SW5E.RefittingRepair")}: ${actor.name}`,
         buttons: {
           rest: {
             icon: '<i class="fas fa-wrench"></i>',

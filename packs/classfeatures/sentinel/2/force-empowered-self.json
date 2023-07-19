@@ -1,0 +1,169 @@
+{
+  "_id": "4obIpzhQVjzV203q",
+  "name": "Force-Empowered Self",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/SNTL-Passive.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [],
+        "altValue": [],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        },
+        "altValue": {
+          "use": true,
+          "resource": true,
+          "charge": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:51:58.6730225+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-force_empowered_self.source-class.sourceName-sentinel.level-2"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Sentinel:</strong> 2nd level</em></p>\n<p>Your training allows you to harness the mystical energy of the Force throughout your body. You learn three effects: Deflection, Double Strike, and Slow Time. Each effect costs 1 force point and uses a [[/r d4]], which changes as you gain sentinel levels, as shown in the Kinetic Combat column of the sentinel table. You can only use each effect once per round.</p>\n<h3>Deflection</h3>\n<p>When you are the target of an attack, you can roll a Kinetic Combat die and add it to your AC (no action required). You can do so before or after the attack is made, but you must choose to do so before the GM determines if the attack hits.</p>\n<h3>Double Strike</h3>\n<p>When you hit a creature with a weapon attack, you can roll a Kinetic Combat die and deal additional damage of the same type equal to the amount rolled.</p>\n<h3>Slow Time</h3>\n<p>When you move on your turn, you can roll a Kinetic Combat die to increase your speed by 5 x the amount rolled until the end of your turn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Sentinel 2",
+    "source": "PHB",
+    "activation": {
+      "type": null,
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493962249,
+    "modifiedTime": 1685840608519,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

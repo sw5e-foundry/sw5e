@@ -1,0 +1,129 @@
+{
+  "name": "Role Mastery: Researcher",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
+  "effects": [
+    {
+      "_id": "qQTMHDrpIch61Q7C",
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "changes": [
+        {
+          "key": "system.details.role",
+          "value": "Researcher",
+          "mode": 2,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Gargantuan.webp",
+      "label": "Role Mastery: Researcher",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "zs3QstSyQeHLzs26",
+  "system": {
+    "description": {
+      "value": "<p>At 4th tier, you master a particular style of design for your ship.</p><h3>Researcher</h3><p>When you use your ship's Superweapon, you can alter its functionality. Instead of dealing damage, ships who fail a saving throw are blinded, ionized, and shocked for 1 minute. Ships who succeed on the saving throw suffer these effects until the start of the deployed operator's next turn, instead.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "none",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": "",
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": "roleMastery"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Gargantuan",
+    "tier": "4"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017987,
+    "modifiedTime": 1683839434425,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

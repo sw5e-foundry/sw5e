@@ -1,0 +1,125 @@
+{
+  "name": "Role Spec: Scrambler",
+  "type": "feat",
+  "flags": {},
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+  "effects": [
+    {
+      "_id": "qQTMHDrpIch61Q7C",
+      "flags": {},
+      "changes": [
+        {
+          "key": "system.details.role",
+          "value": "Scrambler",
+          "mode": 2,
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null,
+        "combat": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
+      "label": "Role Specialization: Scrambler",
+      "tint": null,
+      "transfer": true,
+      "origin": null,
+      "sort": 0
+    }
+  ],
+  "_id": "SZxO3J71LCWtZYVI",
+  "system": {
+    "description": {
+      "value": "<p>At 2nd tier, you adopt a particular style of design for your ship.</p>\n<h3>Scrambler</h3>\n<p>Your ship's crew can use interfere as a bonus action.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "bonus",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": "0",
+      "max": "0",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starship",
+      "subtype": "roleSpecialization"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "size": "Small",
+    "tier": "2"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674494017937,
+    "modifiedTime": 1685840664955,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

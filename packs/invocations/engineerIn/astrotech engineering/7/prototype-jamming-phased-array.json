@@ -1,0 +1,99 @@
+{
+  "_id": "gwRFGDnMTm1wSsoU",
+  "name": "Prototype Jamming Phased Array",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:15.1674586+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-prototype_jamming_phased_array.source-archetypeinvocation.sourceName-astrotech_engineering.level-7"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level, Jamming Phased Array</em></p>\n<p>While your jamming field is active, when a creature within your field attempts to cast a tech power, you can use your reaction to cast the <em>tech override</em> power at 3rd level without spending tech points. When you cast this power using this feature and you make the techcasting ability check as a part of this casting, you add your proficiency bonus to the check.</p>\n<p>Once you've used this feature, you must complete a short or long rest before you can use it again.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Astrotech Engineering) 7, Jamming Phased Array",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": "",
+      "unit": ""
+    },
+    "uses": {
+      "value": null,
+      "max": 1,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Engineer"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.4",
+    "coreVersion": "10.291",
+    "createdTime": 1674493981181,
+    "modifiedTime": 1684777308937,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

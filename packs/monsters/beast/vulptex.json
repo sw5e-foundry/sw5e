@@ -1,0 +1,1050 @@
+{
+  "name": "Vulptex",
+  "type": "npc",
+  "img": "systems/sw5e/packs/Icons/monsters/135_-_Vulptex/Avatar.webp",
+  "items": [
+    {
+      "_id": "NDI1NWFkNDkzY2E0",
+      "name": "Keen Sight and Smell",
+      "type": "feat",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/135_-_Vulptex/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p>The vulptex has advantage on Wisdom (Perception) checks that rely on sight or smell.</p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "activation": {
+          "type": "",
+          "cost": null,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": "",
+          "long": "",
+          "units": ""
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "",
+        "actionType": "",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "type": {
+          "value": "",
+          "subtype": ""
+        },
+        "recharge": {
+          "value": 0,
+          "charged": false
+        },
+        "attributes": {
+          "speed": {
+            "space": null,
+            "turn": null
+          }
+        },
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    },
+    {
+      "_id": "MTEyOWM1MDY2OTlk",
+      "name": "Claws",
+      "type": "weapon",
+      "sort": 0,
+      "flags": {},
+      "img": "systems/sw5e/packs/Icons/monsters/135_-_Vulptex/Avatar.webp",
+      "effects": [],
+      "folder": null,
+      "system": {
+        "description": {
+          "value": "<p><p><strong></strong><em>Melee Weapon Attack </em>+4, Reach 5 ft., One target. <em>Hit : </em>4 (1d4+2) kinetic damage</p></p>",
+          "chat": "",
+          "unidentified": ""
+        },
+        "requirements": "",
+        "source": "",
+        "quantity": 1,
+        "weight": 1,
+        "price": {
+          "value": 0,
+          "denomination": "gc"
+        },
+        "attunement": 0,
+        "equipped": true,
+        "rarity": "",
+        "identified": true,
+        "isCargo": false,
+        "activation": {
+          "type": "action",
+          "cost": 1,
+          "condition": ""
+        },
+        "duration": {
+          "value": 0,
+          "units": ""
+        },
+        "cover": null,
+        "target": {
+          "value": "",
+          "width": null,
+          "units": "",
+          "type": ""
+        },
+        "range": {
+          "value": 5,
+          "long": "",
+          "units": "ft"
+        },
+        "uses": {
+          "value": null,
+          "max": 0,
+          "per": "",
+          "recovery": ""
+        },
+        "consume": {
+          "type": "",
+          "target": null,
+          "amount": null
+        },
+        "ability": "dex",
+        "actionType": "mwak",
+        "attackBonus": 0,
+        "chatFlavor": "",
+        "critical": {
+          "threshold": null,
+          "damage": null
+        },
+        "damage": {
+          "parts": [
+            [
+              "1d4+2",
+              "kinetic"
+            ]
+          ],
+          "versatile": ""
+        },
+        "formula": "",
+        "save": {
+          "ability": "",
+          "dc": null,
+          "scaling": "power"
+        },
+        "armor": {
+          "value": 10
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "dt": null,
+          "conditions": ""
+        },
+        "modify": {
+          "chassis": "none",
+          "augmentSlots": 0,
+          "modSlots": 4,
+          "items": [],
+          "changes": {},
+          "type": null
+        },
+        "weaponType": "natural",
+        "baseItem": "",
+        "ammo": {
+          "target": null,
+          "value": null,
+          "use": null,
+          "types": [
+            "powerCell"
+          ]
+        },
+        "properties": {
+          "hvy": false,
+          "fin": false,
+          "lgt": false,
+          "rch": false,
+          "rel": null,
+          "ret": false,
+          "spc": false,
+          "thr": false,
+          "two": false,
+          "ver": false,
+          "mgc": null,
+          "aut": false,
+          "bur": null,
+          "dir": null,
+          "hid": false,
+          "ken": null,
+          "pic": null,
+          "ran": false,
+          "rap": null,
+          "smr": false,
+          "vic": null,
+          "bit": null,
+          "bri": null,
+          "bru": null,
+          "cor": null,
+          "def": null,
+          "dex": null,
+          "drm": false,
+          "dgd": false,
+          "dis": null,
+          "dpt": false,
+          "dou": false,
+          "fix": false,
+          "ilk": false,
+          "lum": false,
+          "mig": false,
+          "mod": false,
+          "neu": null,
+          "pen": null,
+          "pcl": false,
+          "rck": null,
+          "shk": null,
+          "sil": false,
+          "slg": false,
+          "son": null,
+          "spz": null,
+          "str": null,
+          "swi": false
+        },
+        "proficient": true,
+        "powercasting": {
+          "force": "none",
+          "tech": "none"
+        }
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e": {
+      "dataVersion": "1.2.4"
+    }
+  },
+  "_id": "NhEM56uIdAkIIBrr",
+  "system": {
+    "abilities": {
+      "str": {
+        "value": 10,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "dex": {
+        "value": 15,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 2,
+        "save": 2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 12
+      },
+      "con": {
+        "value": 11,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 0,
+        "save": 0,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 10
+      },
+      "int": {
+        "value": 4,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -3,
+        "save": -3,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 7
+      },
+      "wis": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": 2,
+        "save": 2,
+        "prof": 0,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 12
+      },
+      "cha": {
+        "value": 7,
+        "proficient": 1,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        },
+        "min": 3,
+        "mod": -2,
+        "save": 0,
+        "prof": 2,
+        "saveBonus": 0,
+        "checkBonus": 0,
+        "dc": 8
+      },
+      "hon": {
+        "value": 7,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      },
+      "san": {
+        "value": 14,
+        "proficient": 0,
+        "bonuses": {
+          "check": "",
+          "save": ""
+        }
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 12,
+        "calc": "natural",
+        "formula": "",
+        "min": 0
+      },
+      "hp": {
+        "value": 10,
+        "max": 10,
+        "temp": 0,
+        "tempmax": 0,
+        "formula": "3d6",
+        "min": 0
+      },
+      "init": {
+        "ability": "",
+        "bonus": 0,
+        "value": 0,
+        "mod": 2,
+        "prof": 0,
+        "total": 2
+      },
+      "movement": {
+        "burrow": 10,
+        "climb": 0,
+        "crawl": 0,
+        "fly": 0,
+        "roll": 0,
+        "space": 0,
+        "swim": 0,
+        "turn": 0,
+        "walk": 30,
+        "units": "ft",
+        "hover": false
+      },
+      "attunement": {
+        "max": 3
+      },
+      "senses": {
+        "darkvision": 60,
+        "blindsight": 0,
+        "tremorsense": 0,
+        "truesight": 0,
+        "units": "ft",
+        "special": ""
+      },
+      "force": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "tech": {
+        "points": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "min": 0,
+          "max": null,
+          "temp": 0,
+          "tempmax": 0
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "level": 0
+      },
+      "super": {
+        "dice": {
+          "value": 0,
+          "bonuses": {
+            "level": "",
+            "overall": ""
+          },
+          "max": null
+        },
+        "known": {
+          "value": 0,
+          "max": 0
+        },
+        "die": ""
+      },
+      "deployed": {
+        "uuid": null,
+        "deployments": []
+      },
+      "powercasting": "none",
+      "prof": 2,
+      "powerdc": 10,
+      "bar1": {
+        "value": 10,
+        "min": 0,
+        "max": 10
+      },
+      "bar2": {
+        "value": 12,
+        "min": 0,
+        "max": 0
+      },
+      "encumbrance": {
+        "value": 1,
+        "max": 150,
+        "pct": 0.6666666666666666,
+        "encumbered": false
+      },
+      "powerForceLightDC": 12,
+      "powerForceDarkDC": 8,
+      "powerForceUnivDC": 12,
+      "powerTechDC": 7,
+      "death": {
+        "success": null,
+        "failure": null
+      },
+      "exhaustion": null,
+      "inspiration": false
+    },
+    "details": {
+      "biography": {
+        "value": "<p>Vulptices (singular: vulptex) were a non-sentient species of omnivorous and gregarious canids from the mineral world Crait. They were distinguished by their coats made up of white crystalline bristles.</p><table class=\"userscript-table userscript-table-bordered\" style=\"width:615.455px\"><tbody><tr><td style=\"line-height:1.42857\"><u>Designation</u></td><td style=\"line-height:1.42857\">Non-sentient</td></tr><tr><td style=\"line-height:1.42857\"><u>Classification</u></td><td style=\"line-height:1.42857\">Canid</td></tr><tr><td style=\"line-height:1.42857\"><u>Hair color</u></td><td style=\"line-height:1.42857\">White</td></tr><tr><td style=\"line-height:1.42857\"><u>Eye color</u></td><td style=\"line-height:1.42857\"><ul><li>Blue</li><li>Red</li></ul></td></tr><tr><td style=\"line-height:1.42857\"><u>Distinctions</u></td><td style=\"line-height:1.42857\">Unique crystalline bristles/spikes</td></tr><tr><td style=\"line-height:1.42857\"><u>Homeworld</u><br /></td><td style=\"line-height:1.42857\">Crait<br /></td></tr><tr><td style=\"line-height:1.42857\"><u>Habitat</u></td><td style=\"line-height:1.42857\">Highland caves and canyons</td></tr><tr><td style=\"line-height:1.42857\"><u>Diet</u><br /></td><td style=\"line-height:1.42857\">Omnivorous</td></tr></tbody></table><h3>Biology and appearance</h3><p>The vulptices were a fox-like species of canids with a flexible body native to the mineral world Crait. Their most distinctive feature was a coat of crystaline bristles/spines that served as protection against their predators. Their facial bristles (or whiskers) also helped them gauge whether they could fit into a tight space. Vulptices had excellent low-light vision and keen senses. They were omnivorous, feeding on tubers and small burrowing mammals they dug out from under Crait's salt crust. According to Doctor Paqin Mesoli, who wrote field notes on the vulptices for the Nupayuni Mining Consortium, those creatures might also have been sensitive to magnetic fields.</p><h3>Behavior</h3><p>Vulptices dwelled in highland caves and canyon. In fact, Dr. Mesoli theorized that they had summer dens beneath Crait's salt crust, and winter dens in caverns. They lived in groups referred to as skulks, regrouping three to four families with as many as ten creatures by family. Dr. Mesoli, however, observed those skulks came together in larger social structures, with as many as one hundred vultpices sharing a particularly advantageous den.</p><p>Although not sentient, the vulptices were clever animals that formed strong bonds and hunted in cooperation. Dr. Mesoli suspected that they used their bristles to communicate, shaking them or brushing them against stones to generate specific sound patterns.</p><h3>History</h3><p>After the Rebel Alliance abandoned their outpost on the planet, a skulk of vulptices had come to roam free through the abandoned structures. Decades later an extremely curious skulk of vulptices was present on Crait during the time of a battle that broke out between the First Order and the Resistance on the planet surface. The skulk found their way into the abandoned outpost while the door was closing, and they remained in the outpost while the battle of Crait was going on. While Luke Skywalker was distracting the First Order, the vulptices had somehow found their way out of the outpost, which seemingly had no escape. Finn inquired where the \"crystal critters\" had gone. One was spotted and helped them escape through a tunnel near the back of the outpost. However, the exit was blocked by a large pile of rocks. Rey used the Force to move the rocks out of the way. The Resistance was then able to follow the creatures out of the base.</p>",
+        "public": ""
+      },
+      "description": {
+        "value": "",
+        "public": ""
+      },
+      "alignment": "Unaligned",
+      "species": "",
+      "type": {
+        "value": "beast",
+        "subtype": "",
+        "swarm": "",
+        "custom": ""
+      },
+      "environment": "",
+      "cr": 0.125,
+      "powerForceLevel": 0,
+      "powerTechLevel": 0,
+      "superiorityLevel": 0,
+      "source": "Roll 20",
+      "xp": {
+        "value": 25
+      },
+      "race": "",
+      "class": "",
+      "powerLevel": 1
+    },
+    "traits": {
+      "size": "sm",
+      "di": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dr": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "dv": {
+        "value": [],
+        "bypasses": [],
+        "custom": ""
+      },
+      "ci": {
+        "value": [],
+        "custom": ""
+      },
+      "languages": {
+        "value": [],
+        "custom": "—"
+      }
+    },
+    "currency": {
+      "gc": 0,
+      "pp": 0,
+      "gp": 0,
+      "ep": 0,
+      "sp": 0,
+      "cp": 0
+    },
+    "skills": {
+      "acr": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "ani": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "ath": {
+        "value": 0,
+        "ability": "str",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 0,
+        "passive": 10,
+        "prof": 0,
+        "total": 0
+      },
+      "dec": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "ins": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "itm": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "inv": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "lor": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "prof": 0,
+        "total": -3,
+        "passive": 7
+      },
+      "med": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "nat": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "passive": 7,
+        "prof": 0,
+        "total": -3
+      },
+      "pil": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "prof": 0,
+        "total": -3,
+        "passive": 7
+      },
+      "prc": {
+        "value": 2,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 16,
+        "prof": 4,
+        "total": 6
+      },
+      "prf": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "per": {
+        "value": 0,
+        "ability": "cha",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -2,
+        "passive": 8,
+        "prof": 0,
+        "total": -2
+      },
+      "slt": {
+        "value": 0,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "ste": {
+        "value": 1,
+        "ability": "dex",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 14,
+        "prof": 2,
+        "total": 4
+      },
+      "sur": {
+        "value": 0,
+        "ability": "wis",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": 2,
+        "passive": 12,
+        "prof": 0,
+        "total": 2
+      },
+      "tec": {
+        "value": 0,
+        "ability": "int",
+        "bonuses": {
+          "check": "",
+          "passive": ""
+        },
+        "bonus": 0,
+        "mod": -3,
+        "prof": 0,
+        "total": -3,
+        "passive": 7
+      }
+    },
+    "powers": {
+      "power1": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power2": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power3": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power4": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power5": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power6": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power7": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power8": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "power9": {
+        "fvalue": 0,
+        "foverride": null,
+        "tvalue": 0,
+        "toverride": null,
+        "fmax": 0,
+        "tmax": 0,
+        "max": 0
+      },
+      "pact": {
+        "value": 0,
+        "max": 0,
+        "override": null,
+        "level": 0
+      },
+      "power0": {
+        "value": 0,
+        "max": 0,
+        "fmax": 0,
+        "fvalue": 0,
+        "tmax": 0,
+        "tvalue": 0
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "mpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rpak": {
+        "attack": "",
+        "damage": ""
+      },
+      "abilities": {
+        "check": "",
+        "save": "",
+        "skill": ""
+      },
+      "power": {
+        "dc": "",
+        "forceLightDC": "",
+        "forceUnivDC": "",
+        "forceDarkDC": "",
+        "techDC": ""
+      }
+    },
+    "resources": {
+      "legact": {
+        "value": 0,
+        "max": 0
+      },
+      "legres": {
+        "value": 0,
+        "max": 0
+      },
+      "lair": {
+        "value": false,
+        "initiative": 0
+      }
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "prototypeToken": {
+    "flags": {},
+    "name": "Vulptex",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "attributes.hp"
+    },
+    "bar2": {
+      "attribute": "attributes.bar2"
+    },
+    "randomImg": false,
+    "alpha": 1,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "texture": {
+      "src": "systems/sw5e/packs/Icons/monsters/135_-_Vulptex/Token.webp",
+      "tint": null,
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 5,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": []
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493984164,
+    "modifiedTime": 1685840636822,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

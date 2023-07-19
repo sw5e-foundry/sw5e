@@ -1,4 +1,4 @@
-import { slugifyIcon } from "./utils.mjs";
+import { sluggifyPath } from "./utils.mjs";
 
 /**
  * Checks if the world needs migrating.
@@ -282,6 +282,7 @@ export const migrateActorData = async function(actor, migrationData) {
   const updateData = {};
   await _migrateTokenImage(actor, updateData, migrationData);
   _migrateActorAC(actor, updateData);
+  _migrateActorTraits(actor, updateData);
   if (["character", "npc"].includes(actor.type)) {
     _migrateActorAttribRank(actor, updateData);
   }
@@ -460,7 +461,7 @@ export const getMigrationData = async function() {
     const icons = await (await fetch("systems/sw5e/json/icon-migration.json")).json();
     data.iconMap = {};
     for (const [old_path, new_path] of Object.entries(icons)) {
-      const slug = slugifyIcon(old_path);
+      const slug = sluggifyPath(old_path);
       data.iconMap[slug] = new_path;
     }
 
@@ -614,6 +615,26 @@ function _migrateActorAttribRank(actorData, updateData) {
   return updateData;
 }
 
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor's traits
+ * @param {object} actorData
+ * @param {object} updateData
+ * @returns {object}
+ * @private
+ */
+function _migrateActorTraits(actorData, updateData) {
+  const flags = actorData?.flags?.sw5e ?? {};
+
+  if (flags.powerfulBuild !== undefined) {
+    updateData["flags.sw5e.-=powerfulBuild"] = null;
+    updateData["flags.sw5e.encumbranceMultiplier"] = 2;
+  }
+
+  return updateData;
+}
+
 /* --------------------------------------------- */
 
 /**
@@ -688,7 +709,7 @@ async function _migrateTokenImage(actorData, updateData, { iconMap } = {}) {
     if (!path?.startsWith(prefix)) return;
 
     const img = path.substring(prefix.length);
-    let slug = slugifyIcon(img);
+    let slug = sluggifyPath(img);
 
     if (iconMap && slug in iconMap) slug = iconMap[slug];
 
@@ -716,7 +737,7 @@ async function _migrateItemIcon(item, updateData, { iconMap } = {}) {
   if (!item.img?.startsWith(prefix)) return updateData;
 
   const img = item.img.substring(prefix.length);
-  let slug = slugifyIcon(img);
+  let slug = sluggifyPath(img);
 
   if (iconMap && slug in iconMap) slug = iconMap[slug];
 
@@ -920,6 +941,10 @@ function _migrateItemSpeciesDroid(item, updateData) {
  * @param {boolean} migrateSystemCompendiums  Migrate items in system compendiums.
  */
 async function migrateItemTypes(migrateSystemCompendiums) {
+  // Make deprecated item types temporarily valid
+  const validTypes = game.documentTypes.Item;
+  game.documentTypes.Item = game.documentTypes.Item.concat(CONFIG.SW5E.deprecatedItemTypes);
+
   const items = new Set(game.items);
   const actors = new Set(game.actors);
   const scenes = new Set(game.scenes);
@@ -961,6 +986,9 @@ async function migrateItemTypes(migrateSystemCompendiums) {
     const pack = await game.packs.get(collection);
     pack.configure({ locked: lock });
   }
+
+  // Restore valid item types
+  game.documentTypes.Item = validTypes;
 }
 
 /* -------------------------------------------- */

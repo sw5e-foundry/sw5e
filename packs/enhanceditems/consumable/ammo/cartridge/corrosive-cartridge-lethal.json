@@ -1,0 +1,181 @@
+{
+  "_id": "5mLIsgR4FSphffoJ",
+  "name": "Corrosive Cartridge (Lethal)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Ammunition/CorrosiveCartridge.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:20.4763807+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-corrosive_cartridge_lethal.subtype-ammunition"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +3 bonus to attack and damage rolls made with this enhanced corrosive cartridge. This bonus is in addition to any bonuses granted by the weapon. Once the corrosive cartridge has been fired, it no longer gives a bonus. Additionally, when you hit with a shot with the loaded weapon, the creature must make a DC 22 Constitution saving throw, taking [[/r 1d10]] acid damage on a failed save or half as much on a successful one. If you reduce a creature to 0 hit points with the loaded weapon, it must make a DC 13 Constitution saving throw. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything unenhanced it is wearing and carrying are reduced to a pile of fine gray dust. A creature destroyed in this way can not be revitalized.</p>\n<p> </p>\n<h2>Corrosive cartridge</h2>\n<p>A corrosive cartridge is a specialized slug cartridge for use with blaster weapons that deal kinetic damage. When you hit with a shot with the loaded weapon, the creature must make a DC 14 Constitution saving throw, taking [[/r 1d8]] acid damage on a failed save or half as much on a successful one. If you reduce a creature to 0 hit points with the loaded weapon, it must make a DC 13 Constitution saving throw. On a failed save, it dies immediately without making death saving throws. A disintegrated creature and everything unenhanced it is wearing or carrying are reduced to a pile of fine gray dust. A creature destroyed in this way can not be revitalized. </p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 42,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "legendary",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": "3",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d10 + 3",
+          "acid"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": 22,
+      "scaling": "flat"
+    },
+    "consumableType": "ammo",
+    "ammoType": "cartridge",
+    "properties": {},
+    "damageBonus": "3"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.7",
+    "coreVersion": "10.291",
+    "createdTime": 1674493964427,
+    "modifiedTime": 1686621162893,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

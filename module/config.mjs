@@ -996,30 +996,33 @@ SW5E.deprecatedItemTypes = [
 ];
 
 /**
- * Item types that should show up in an 'inventory'.
+ * Categorization of all item types.
  */
-SW5E.inventoryItems = [
-  "weapon",
-  "equipment",
-  "consumable",
-  "tool",
-  "backpack",
-  "modification",
-  "loot",
-  "starshipmod"
-];
-
-/**
- * Item types that behave like a 'class'.
- */
-SW5E.classItems = [
-  "archetype",
-  "background",
-  "class",
-  "deployment",
-  "starshipsize",
-  "species"
-];
+SW5E.itemTypes = {
+  inventory: [
+    "weapon",
+    "equipment",
+    "consumable",
+    "tool",
+    "backpack",
+    "modification",
+    "loot",
+    "starshipmod"
+  ],
+  class: [
+    "archetype",
+    "background",
+    "class",
+    "deployment",
+    "starshipsize",
+    "species"
+  ],
+  other: [
+    "feat",
+    "maneuver",
+    "power",
+  ]
+}
 
 /* -------------------------------------------- */
 
@@ -3389,6 +3392,18 @@ SW5E.traits = {
     label: "SW5E.DamVuln",
     configKey: "damageTypes"
   },
+  sdi: {
+    label: "SW5E.ShldDamImm",
+    configKey: "damageTypes"
+  },
+  sdr: {
+    label: "SW5E.ShldDamRes",
+    configKey: "damageTypes"
+  },
+  sdv: {
+    label: "SW5E.ShldDamVuln",
+    configKey: "damageTypes"
+  },
   ci: {
     label: "SW5E.ConImm",
     configKey: "conditionTypes"
@@ -3591,12 +3606,6 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  powerfulBuild: {
-    name: "SW5E.FlagsPowerfulBuild",
-    hint: "SW5E.FlagsPowerfulBuildHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
   precognition: {
     name: "SW5E.FlagsPrecognition",
     hint: "SW5E.FlagsPrecognitionHint",
@@ -3769,6 +3778,49 @@ SW5E.characterFlags = {
     section: "SW5E.Features",
     type: Number,
     placeholder: 0
+  },
+  forcePowerDiscount: {
+    name: "SW5E.FlagsForcePowerDiscount",
+    hint: "SW5E.FlagsForcePowerDiscountHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 0
+  },
+  techPowerDiscount: {
+    name: "SW5E.FlagsTechPowerDiscount",
+    hint: "SW5E.FlagsTechPowerDiscountHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 0
+  },
+  // Keeping the id as 'elvenAccuracy' for DND5E compatibility
+  elvenAccuracy: {
+    name: "SW5E.FlagsSupremeAccuracy",
+    hint: "SW5E.FlagsSupremeAccuracyHint",
+    section: "SW5E.Features",
+    abilities: ["dex", "int", "wis", "cha"],
+    type: Boolean
+  },
+  supremeAptitude: {
+    name: "SW5E.FlagsSupremeAptitude",
+    hint: "SW5E.FlagsSupremeAptitudeHint",
+    section: "SW5E.Features",
+    abilities: ["str", "dex", "con", "int"],
+    type: Boolean
+  },
+  supremeDurability: {
+    name: "SW5E.FlagsSupremeDurability",
+    hint: "SW5E.FlagsSupremeDurabilityHint",
+    section: "SW5E.Features",
+    abilities: ["str", "con", "wis", "cha"],
+    type: Boolean
+  },
+  encumbranceMultiplier: {
+    name: "SW5E.FlagsEncumbranceMultiplier",
+    hint: "SW5E.FlagsEncumbranceMultiplierHint",
+    section: "SW5E.Features",
+    type: Number,
+    placeholder: 1
   }
 };
 preLocalize("characterFlags", { keys: ["name", "hint", "section"] });

@@ -1,0 +1,181 @@
+{
+  "_id": "x2B3GZYMVw4x2hX6",
+  "name": "Gas Cartridge (Average)",
+  "type": "consumable",
+  "img": "systems/sw5e/packs/Icons/Ammunition/GasCartridge.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "betterRollssw5e": {
+      "critRange": {
+        "type": "String",
+        "value": ""
+      },
+      "critDamage": {
+        "type": "String",
+        "value": ""
+      },
+      "quickDesc": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickAttack": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickSave": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickDamage": {
+        "type": "Array",
+        "value": [
+          true
+        ],
+        "altValue": [
+          true
+        ],
+        "context": []
+      },
+      "quickProperties": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickCharges": {
+        "type": "Boolean",
+        "value": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        },
+        "altValue": {
+          "quantity": false,
+          "use": true,
+          "resource": true
+        }
+      },
+      "quickTemplate": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickOther": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true,
+        "context": ""
+      },
+      "quickFlavor": {
+        "type": "Boolean",
+        "value": true,
+        "altValue": true
+      },
+      "quickPrompt": {
+        "type": "Boolean",
+        "value": false,
+        "altValue": false
+      }
+    },
+    "sw5e-importer": {
+      "timestamp": "2023-03-09T01:52:20.4773813+00:00",
+      "importer_version": 3,
+      "uid": "EnhancedItem.name-gas_cartridge_average.subtype-ammunition"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<h4>Consumable (Ammunition)</h4>\n <p>You have a +1 bonus to attack and damage rolls made with this enhanced gas cartridge. This bonus is in addition to any bonuses granted by the weapon. Once the gas cartridge has been fired, it no longer gives a bonus. Additionally, when you hit with a shot with the loaded weapon, the creature must make a DC 16 Constitution saving throw. On a failed save, the creature takes [[/r 1d6]] poison damage and is poisoned until the start of its next turn. On a successful save, a creature takes half damage and isn't poisoned.</p>\n<p> </p>\n<h2>Gas cartridge</h2>\n<p>A gas cartridge is a specialized slug cartridge for use with blaster weapons that deal kinetic damage. When you hit with a shot with the loaded weapon, the creature must make a DC 14 Constitution saving throw. On a failed save, the creature takes [[/r 1d6]] poison damage and is poisoned until the start of its next turn. On a successful save, a creature takes half damage and isn't poisoned.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "EC",
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 36,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "premium",
+    "identified": true,
+    "isCargo": false,
+    "activation": {
+      "type": null,
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": "",
+      "autoDestroy": false
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": "1",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "1d6 + 1",
+          "poison"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": 16,
+      "scaling": "flat"
+    },
+    "consumableType": "ammo",
+    "ammoType": "cartridge",
+    "properties": {},
+    "damageBonus": "1"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.7",
+    "coreVersion": "10.291",
+    "createdTime": 1674493965072,
+    "modifiedTime": 1686621163050,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

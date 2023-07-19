@@ -1,0 +1,96 @@
+{
+  "_id": "gtzwgunkGHxVh7Ec",
+  "name": "Commanding Rage",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-ARCH-Reaction.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2022-05-29T01:36:27.7380074+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-commanding_rage.source-archetype.sourceName-warchief_approach.level-3"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Warchief Approach:</strong> 3rd level</em></p>\n<p>You become more aware of your allies, and their intent when fighting at your side. While you are raging, when an ally within 10 feet of you makes an attack roll against an enemy, you can use your reaction to grant advantage to that attack and add your rage damage bonus to the damage roll, if the attack hits.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Berserker (Warchief Approach) 3",
+    "source": "EC",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "10",
+      "long": null,
+      "units": "",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": 2,
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "other",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": "",
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Berserker"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493957973,
+    "modifiedTime": 1685840600158,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

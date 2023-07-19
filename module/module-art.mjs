@@ -122,7 +122,7 @@ export class ModuleArtConfig extends FormApplication {
     return foundry.utils.mergeObject(super.defaultOptions, {
       title: game.i18n.localize("SW5E.ModuleArtConfigL"),
       id: "module-art-config",
-      template: "systems/sw5e/templates/apps/module-art-config.html",
+      template: "systems/sw5e/templates/apps/module-art-config.hbs",
       popOut: true,
       width: 600,
       height: "auto"

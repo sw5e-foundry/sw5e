@@ -1,0 +1,104 @@
+{
+  "_id": "yMSvK9SmLoLI29p2",
+  "name": "Spirit Blade Assault",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/MNK-ARCH-Action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "?",
+      "importer_version": 3,
+      "uid": "Feature.name-spirit_blade_assault.source-archetype.sourceName-nightsister_order.level-17"
+    }
+  },
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Nightsister Order:</strong> 17th level</em></p>\n<p>As an action, you conjure a blade of spirit energy and strike one creature within 5 feet of you with it, expending 1 to 10 focus points. The target must make a Constitution saving throw. On a failed save, it takes [[/r 2d10]] necrotic damage per focus point spent, or half as much on a successful one.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Monk (Nightsister Order) 17",
+    "source": "PHB",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": "5",
+      "long": null,
+      "units": "ft",
+      "unit": "feet"
+    },
+    "uses": {
+      "value": null,
+      "max": null,
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "2d10",
+          "necrotic"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "con",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "className": "Monk"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493958262,
+    "modifiedTime": 1685840600518,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

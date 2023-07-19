@@ -174,7 +174,17 @@ export async function preloadHandlebarsTemplates() {
 
     // Advancement Partials
     "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
-    "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs"
+    "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs",
+
+    // Compendium Browser Partials
+    "systems/sw5e/templates/apps/compendium-browser/filters.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/browser-settings.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/action.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/hazard.hbs",
+    // "systems/sw5e/templates/apps/compendium-browser/partials/spell.hbs",
   ];
 
   const paths = {};
@@ -482,11 +492,35 @@ export function htmlFindClosingBracket(html, index = 0) {
 }
 
 /**
- * Given an icon path, slugify it
- * @param {string} path    The icon path
- * @returns {string}        The slugified name
+ * Given an string, sluggify it
+ * @param {string} orig    The original string
+ * @returns {string}       The slugified string
  */
-export function slugifyIcon(path) {
+export function sluggify(orig) {
+  // Replace %20 and underscores with spaces
+  orig = orig.replace(/%20|_/g, " ");
+  // Capitalize each word
+  orig = orig.replace(/\b\w+\b/g, w => w.capitalize());
+  // Replace slashes and commas with dashes
+  orig = orig.replace(/[/,]/g, "-");
+  // Remove all whitespaces
+  orig = orig.replace(/[\s]/g, "");
+  // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
+  orig = orig.replace(/^\(([^)]*)\)/g, "$1-");
+  // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
+  orig = orig.replace(/-*\(([^)]*)\)/g, "-$1");
+  // Remove all non-word characters but dashes
+  orig = orig.replace(/[^\w-]/g, "");
+
+  return orig;
+}
+
+/**
+ * Given an file path, sluggify it
+ * @param {string} path    The icon path
+ * @returns {string}       The slugified path
+ */
+export function sluggifyPath(path) {
   let folder_index = path.search(/\/[^/]*$/) + 1;
   let extension_index = path.search(/\.\w+$/);
   if (extension_index === -1) extension_index = path.length;
@@ -495,20 +529,7 @@ export function slugifyIcon(path) {
   let icon = path.substring(folder_index, extension_index);
   let extension = path.substring(extension_index);
 
-  // Replace %20 and underscores with spaces
-  icon = icon.replace(/%20|_/g, " ");
-  // Capitalize each word
-  icon = icon.replace(/\b\w+\b/g, w => w.capitalize());
-  // Replace slashes and commas with dashes
-  icon = icon.replace(/[/,]/g, "-");
-  // Remove all whitespaces
-  icon = icon.replace(/[\s]/g, "");
-  // Replace all (ParenthesisedText) at the beggining of words with 'ParenthesisedText-'
-  icon = icon.replace(/^\(([^)]*)\)/g, "$1-");
-  // Replace all (ParenthesisedText) elsewhere '-ParenthesisedText'
-  icon = icon.replace(/-*\(([^)]*)\)/g, "-$1");
-  // Remove all non-word characters but dashes
-  icon = icon.replace(/[^\w-]/g, "");
+  icon = sluggify(icon);
 
   return folder + icon + extension;
 }
@@ -525,4 +546,52 @@ export function fontAwesomeIcon(glyph, style = "solid") {
   const icon = document.createElement("i");
   icon.classList.add(styleClass, glyphClass);
   return icon;
+}
+
+/**
+ * Querries from parent
+ * @param {HTMLElement} parent
+ * @param {string} selectors
+ */
+export function htmlQueryAll(parent, selectors) {
+    if (!(parent instanceof Element || parent instanceof Document)) return [];
+    return Array.from(parent.querySelectorAll(selectors));
+}
+
+
+/**
+ * Check if a key is present in a given object in a type safe way
+ * @param obj The object to check
+ * @param key The key to check
+ */
+export function objectHasKey(obj, key) {
+  return (typeof key === "string" || typeof key === "number") && key in obj;
+}
+
+
+/**
+ * Check if a value is a non-null object
+ * @param {unknown}
+ * @returns {boolean}
+ */
+export function isObject(value) {
+    return typeof value === "object" && value !== null;
+}
+
+/**
+ * Collects every actor whose token is controlled on the canvas, and if none are, collects the current user's character, if it exists.
+ *
+ * @param {string[]} [types]          The actor types the function should take into consideration.
+ * @param {boolean} [useOwnCharacter] If true, the function will append the user's own character to the list of collected actors.
+ * @returns An array of Actor5e elements according to the aforementioned filters.
+ */
+export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
+    const actors = canvas.tokens.controlled
+        .flatMap((token) => (token.actor ? token.actor : []))
+        .filter((actor) => actor.isOwner)
+        .filter((actor) => !types || types.includes(actor.type));
+
+    if (actors.length === 0 && game.user.character && useOwnCharacter) actors.push(game.user.character);
+
+    return actors;
 }

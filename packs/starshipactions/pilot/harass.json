@@ -1,0 +1,95 @@
+{
+  "name": "Harass",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Starship%20Actions/pilot-action.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "_id": "fE0uUdSA8JkHduaJ",
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You can harass an enemy and lock them into a series of close-combat maneuvers in order to prevent their escape. When you take the harass action, make an opposed Dexterity (Maneuvering) check against a target within one size category of you and within normal range of at least one of your forward facing primary weapons. This weapon cannot be Fired this turn. On a success, if the target voluntarily leaves it's square before the beginning of your next turn, it takes damage as though it suffered a critical hit with the primary weapon used to harass.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": "SotG",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "abil",
+    "attackBonus": 0,
+    "chatFlavor": "Contested by Dexterity (Maneuver)",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d20 + @skills.man.total",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "starshipAction",
+      "subtype": "pilot"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": "pilot"
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.5",
+    "coreVersion": "10.291",
+    "createdTime": 1674494016677,
+    "modifiedTime": 1683591714928,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

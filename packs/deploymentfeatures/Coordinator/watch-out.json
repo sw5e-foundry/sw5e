@@ -1,0 +1,103 @@
+{
+  "_id": "tdCvvsmTpTmDSvcm",
+  "name": "Watch Out",
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Deployments/Coordinator.webp",
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Power Die Location:</strong> Comms</em><br>When a friendly ship, including your own, who can see or hear you makes a saving throw, you can use your reaction and expend a power die, adding the number rolled to the result of the saving throw. You can use this collaboration before or after making the saving throw, but before any effects of the saving throw are determined.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Coordinator 1st Rank",
+    "source": "",
+    "activation": {
+      "type": "reaction",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "powerdice",
+      "target": "attributes.power.comms.value",
+      "amount": 1
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "deployment",
+      "subtype": ""
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": null,
+        "turn": null
+      }
+    },
+    "deployment": {
+      "value": "Coordinator"
+    },
+    "featureType": {
+      "value": "Collaboration"
+    },
+    "rank": {
+      "value": "1st Rank"
+    }
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.1.5.2.4.6",
+    "coreVersion": "10.291",
+    "createdTime": 1674493963468,
+    "modifiedTime": 1685840610802,
+    "lastModifiedBy": "sw5ebuilder0000"
+  }
+}

@@ -52,6 +52,7 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
   delete data.flags?.dae;
   delete data.flags?.['midi-qol'];
   delete data.flags?.['midi-properties'];
+  delete data.flags?.['midiProperties'];
   if ( data._stats?.lastModifiedBy ) data._stats.lastModifiedBy = "sw5ebuilder0000";
 
   // Remove empty entries in flags

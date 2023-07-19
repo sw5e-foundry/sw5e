@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Website character importer should now work with profiencies like `all martial vibroweapons with the finesse property` (treated as `all martial vibroweapons`).
 - Module Art Config button should now work.
 - Datamodel issues on starship creation.
+- Species characteristics should once again be editable.
 
 ### Changes
 

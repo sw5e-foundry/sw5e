@@ -66,7 +66,7 @@ export default class ProficiencyConfig extends BaseConfigSheet {
   getData(options={}) {
     return {
       abilities: CONFIG.SW5E.abilities,
-      proficiencyLevels: CONFIG.SW5E.proficiencyLevels,
+      proficiencyLevels: CONFIG.SW5E.proficiencyLevelsLabels,
       entry: this.document.system[this.options.property]?.[this.options.key],
       isTool: this.isTool,
       isSkill: this.isSkill,

@@ -151,7 +151,7 @@ export default class ActorSheet5e extends ActorSheet {
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient];
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
       abl.label = CONFIG.SW5E.abilities[a]?.label;
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
@@ -161,7 +161,7 @@ export default class ActorSheet5e extends ActorSheet {
       for (const [key, entry] of Object.entries(context[prop])) {
         entry.abbreviation = CONFIG.SW5E.abilities[entry.ability]?.abbreviation;
         entry.icon = this._getProficiencyIcon(entry.value);
-        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value];
+        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value].label;
         entry.label =
           prop === "skills"
             ? context.isStarship
@@ -509,7 +509,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     for (const itemType of config.classItems ?? CONFIG.SW5E.itemTypes.class) {
       categories.class[itemType] = {
-        label: `${CONFIG.Item.typeLabels.class}}Pl`,
+        label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
         items: [],
         required: true,
         dataset: { type: itemType }

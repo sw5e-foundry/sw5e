@@ -71,7 +71,7 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @override */
   async getData(options) {
-    const context = await super.getData(options);
+    let context = await super.getData(options);
     const item = context.item;
     const source = item.toObject();
 

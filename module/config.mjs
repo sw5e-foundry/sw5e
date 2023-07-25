@@ -3109,6 +3109,9 @@ SW5E.proficiencyLevelsOrdered = Object.keys(SW5E.proficiencyLevels)
   .map(p => Number(p))
   .sort((a, b) => a - b);
 
+SW5E.proficiencyLevelsLabels = Object.fromEntries(Object.entries(SW5E.proficiencyLevels).map(([k, v]) => [k, v.label]));
+preLocalize("proficiencyLevelsLabels");
+
 /* -------------------------------------------- */
 
 /**

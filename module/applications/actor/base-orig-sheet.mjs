@@ -138,7 +138,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient];
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
       abl.label = CONFIG.SW5E.abilities[a]?.label;
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
@@ -148,7 +148,7 @@ export default class ActorSheetOrig5e extends ActorSheet {
       for (const [key, entry] of Object.entries(context[prop])) {
         entry.abbreviation = CONFIG.SW5E.abilities[entry.ability]?.abbreviation;
         entry.icon = this._getProficiencyIcon(entry.value);
-        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value];
+        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value].label;
         entry.label = prop === "skills" ? CONFIG.SW5E.skills[key]?.label : Trait.keyLabel("tool", key);
         entry.baseValue = source.system[prop]?.[key]?.value ?? 0;
       }

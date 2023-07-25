@@ -4,7 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.1.5.2.4.7]
+## [2.1.5.2.4.8] - 2023-07-19
+
+### Fixed
+
+- Icon Backdrops should work correctly on linux.
+- Removing a deployed actor should once again work properly.
+- Backpacks with no rarity no longer show '&Nbsp;'.
+- Website character importer should now have the correct abilities for each skill.
+- Website character importer should now work with profiencies like `all martial vibroweapons with the finesse property` (treated as `all martial vibroweapons`).
+- Module Art Config button should now work.
+- Datamodel issues on starship creation.
+- Species characteristics should once again be editable.
+
+### Changes
+
+- Compendium Updates.
+- The deployment features compendium has been updated to match the website. (Credits to GreyCouncil#8804).
+
+
+## [2.1.5.2.4.7] - 2023-06-9
 
 ### Fixed
 

@@ -268,12 +268,12 @@ export default class StarshipData extends CommonTemplate {
       traits: new foundry.data.fields.SchemaField(
         {
           ci: TraitsFields.makeSimpleTrait({ label: "SW5E.ConImm" }),
-          dr: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamRes", initial: ["ion", "lightning", "necrotic"] }),
+          dr: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamRes" }, { initial: ["ion", "lightning", "necrotic"] }),
           dv: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamVuln" }),
-          di: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamImm", initial: ["poison", "psychic"] }),
-          sdr: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamRes", initial: ["acid", "cold", "fire", "necrotic"] }),
+          di: TraitsFields.makeDamageTrait({ label: "SW5E.HullDamImm" }, { initial: ["poison", "psychic"] }),
+          sdr: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamRes" }, { initial: ["acid", "cold", "fire", "necrotic"] }),
           sdv: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamVuln" }),
-          sdi: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamImm", initial: ["poison", "psychic"] })
+          sdi: TraitsFields.makeDamageTrait({ label: "SW5E.ShieldDamImm" }, { initial: ["poison", "psychic"] })
         },
         { label: "SW5E.Traits" }
       )

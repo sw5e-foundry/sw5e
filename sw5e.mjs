@@ -227,6 +227,11 @@ Hooks.once("init", function() {
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
   utils.preloadHandlebarsTemplates();
+
+  // Register Babele stuff
+  if (typeof Babele !== "undefined") {
+    Babele.get().setSystemTranslationsDir("babele");
+  }
 });
 
 /**

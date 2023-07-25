@@ -98,7 +98,23 @@
                                 </div>
                             {{/if}}
                         </div>
-
+            {{#if section.columns}}
+                {{#each section.columns}}
+                    <div class="item-detail {{css}}">
+                        {{#if editable}}
+                            <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
+                                   value="{{#if (getProperty item property)}}{{getProperty item property}}
+                                   {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
+                        {{else}}
+                            {{#if (getProperty item property)}}
+                                {{getProperty item property}}
+                            {{else}}
+                                {{getProperty ctx property}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/each}}
+            {{/if}}
                         {{#if ctx.totalWeight}}
                             <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
                         {{else}}

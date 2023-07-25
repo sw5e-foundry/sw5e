@@ -44,12 +44,12 @@ export default class D20Roll extends Roll {
    * @returns {{advantageMode: D20Roll.ADV_MODE, isFF: boolean}}  Whether the roll is fast-forwarded, and its advantage
    *                                                              mode.
    */
-  static determineAdvantageMode({event, advantage=false, disadvantage=false, fastForward}={}) {
+  static determineAdvantageMode({ event, advantage = false, disadvantage = false, fastForward } = {}) {
     const isFF = fastForward ?? (event?.shiftKey || event?.altKey || event?.ctrlKey || event?.metaKey);
     let advantageMode = this.ADV_MODE.NORMAL;
-    if ( advantage || event?.altKey ) advantageMode = this.ADV_MODE.ADVANTAGE;
-    else if ( disadvantage || event?.ctrlKey || event?.metaKey ) advantageMode = this.ADV_MODE.DISADVANTAGE;
-    return {isFF: !!isFF, advantageMode};
+    if (advantage || event?.altKey) advantageMode = this.ADV_MODE.ADVANTAGE;
+    else if (disadvantage || event?.ctrlKey || event?.metaKey) advantageMode = this.ADV_MODE.DISADVANTAGE;
+    return { isFF: !!isFF, advantageMode };
   }
 
   /* -------------------------------------------- */
@@ -301,7 +301,7 @@ export default class D20Roll extends Roll {
         }
         return t;
       });
-      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]})`;
+      this.options.flavor += ` (${CONFIG.SW5E.abilities[form.ability.value]?.label ?? ""})`;
     }
 
     // Apply advantage or disadvantage

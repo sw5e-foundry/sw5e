@@ -11,6 +11,7 @@ import { FormulaField } from "../../fields.mjs";
  * @property {object} duration              Effect's duration.
  * @property {number} duration.value        How long the effect lasts.
  * @property {string} duration.units        Time duration period as defined in `SW5E.timePeriods`.
+ * @property {number} cover                 Amount of cover does this item affords to its crew on a vehicle.
  * @property {object} target                Effect's valid targets.
  * @property {number} target.value          Length or radius of target depending on targeting mode selected.
  * @property {number} target.width          Width of line when line type is selected.
@@ -49,6 +50,14 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
         },
         { label: "SW5E.Duration" }
       ),
+      cover: new foundry.data.fields.NumberField({
+        required: true,
+        nullable: true,
+        min: 0,
+        max: 1,
+        label: "SW5E.Cover"
+      }),
+      crewed: new foundry.data.fields.BooleanField({ label: "SW5E.Crewed" }),
       target: new foundry.data.fields.SchemaField(
         {
           value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.TargetValue" }),
@@ -104,6 +113,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
             per: new foundry.data.fields.StringField({
               required: true,
               nullable: true,
+              blank: false,
               initial: null,
               label: "SW5E.LimitedUsesPer"
             }),
@@ -116,6 +126,8 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
     }
   };
 
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -151,6 +163,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    */
   static #migrateRanges(source) {
     if (!("range" in source)) return;
+    source.range ??= {};
     if (source.range.units === null) source.range.units = "";
     if (typeof source.range.long === "number" && Number.isNaN(source.range.long)) source.range.long = null;
     if (typeof source.range.long === "string") {
@@ -168,7 +181,6 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
       if (Number.isNumeric(long)) source.range.long = Number(long);
     }
   }
-
 
   /* -------------------------------------------- */
 
@@ -194,9 +206,11 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateTargets(source) {
-    if (source.target?.value === "") source.target.value = null;
-    if (source.target?.units === null) source.target.units = "";
-    if (source.target?.type === null) source.target.type = "";
+    if (!("target" in source)) return;
+    source.target ??= {};
+    if (source.target.value === "") source.target.value = null;
+    if (source.target.units === null) source.target.units = "";
+    if (source.target.type === null) source.target.type = "";
   }
 
   /* -------------------------------------------- */
@@ -207,6 +221,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    */
   static #migrateUses(source) {
     if (!("uses" in source)) return;
+    source.uses ??= {};
     const value = source.uses.value;
     if (typeof value === "string") {
       if (value === "") source.uses.value = null;
@@ -223,11 +238,99 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    */
   static #migrateConsume(source) {
     if (!("consume" in source)) return;
+    source.consume ??= {};
     if (source.consume.type === null) source.consume.type = "";
     const amount = source.consume.amount;
     if (typeof amount === "string") {
       if (amount === "") source.consume.amount = null;
       else if (Number.isNumeric(amount)) source.consume.amount = Number(amount);
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Chat properties for activated effects.
+   * @type {string[]}
+   */
+  get activatedEffectChatProperties() {
+    return [
+      this.parent.labels.activation + (this.activation.condition ? ` (${this.activation.condition})` : ""),
+      this.parent.labels.target,
+      this.parent.labels.range,
+      this.parent.labels.duration
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item have an area of effect target?
+   * @type {boolean}
+   */
+  get hasAreaTarget() {
+    return this.target.type in CONFIG.SW5E.areaTargetTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item target one or more distinct targets?
+   * @type {boolean}
+   */
+  get hasIndividualTarget() {
+    return this.target.type in CONFIG.SW5E.individualTargetTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this Item limited in its ability to be used by charges or by recharge?
+   * @type {boolean}
+   */
+  get hasLimitedUses() {
+    return !!this.uses.per && this.uses.max > 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item duration accept an associated numeric value or formula?
+   * @type {boolean}
+   */
+  get hasScalarDuration() {
+    return this.duration.units in CONFIG.SW5E.scalarTimePeriods;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item range accept an associated numeric value?
+   * @type {boolean}
+   */
+  get hasScalarRange() {
+    return this.range.units in CONFIG.SW5E.movementUnits;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item target accept an associated numeric value?
+   * @type {boolean}
+   */
+  get hasScalarTarget() {
+    return ![null, "", "self"].includes(this.target.type);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does the Item have a target?
+   * @type {boolean}
+   */
+  get hasTarget() {
+    return !["", null].includes(this.target.type);
   }
 }

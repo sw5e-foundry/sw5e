@@ -4,14 +4,14 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
 /**
- * Data definition for Power items.
+ * Data definition for Maneuver items.
  * @mixes ItemDescriptionTemplate
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
- * @property {string} modificationType      Modification type as defined in `SW5E.maneuverTypes`.
+ * @property {string} maneuverTypes      Maneuver type as defined in `SW5E.maneuverTypes`.
  */
-export default class PowerData extends SystemDataModel.mixin(
+export default class ManueverData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
   ActivatedEffectTemplate,
   ActionTemplate
@@ -28,35 +28,43 @@ export default class PowerData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {
     super.migrateData(source);
-    PowerData.#migrateComponentData(source);
-    PowerData.#migrateScaling(source);
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  get _typeAbilityMod() {
+    const type = this.system.maneuverType;
+
+    let attrs = [];
+    if (type === "physical") attrs = ["str", "dex", "con"];
+    else if (type === "mental") attrs = ["int", "wis", "cha"];
+    else attrs = ["str", "dex", "con", "int", "wis", "cha"];
+
+    return attrs.reduce(
+      (acc, attr) => {
+        const mod = abilities[attr]?.mod ?? -Infinity;
+        if (mod > acc.mod) acc = { attr, mod };
+        return acc;
+      },
+      { attr: "str", mod: -Infinity }
+    ).attr;
   }
 
   /* -------------------------------------------- */
 
-  /**
-   * Migrate the power's component object to remove any old, non-boolean values.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migrateComponentData(source) {
-    if (!source.components) return;
-    for (const [key, value] of Object.entries(source.components)) {
-      if (typeof value !== "boolean") delete source.components[key];
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Migrate power scaling.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migrateScaling(source) {
-    if (!("scaling" in source)) return;
-    if (source.scaling.mode === "" || source.scaling.mode === null) source.scaling.mode = "none";
+  /** @inheritdoc */
+  get _typeCriticalThreshold() {
+    return this.parent?.actor?.flags.sw5e?.manueverCriticalThreshold ?? Infinity;
   }
 }

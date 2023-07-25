@@ -40,7 +40,6 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {object} traits
  * @property {SimpleTraitData} traits.weaponProf          Character's weapon proficiencies.
  * @property {SimpleTraitData} traits.armorProf           Character's armor proficiencies.
- * @property {SimpleTraitData} traits.toolProf            Character's tool proficiencies.
  * @property {object} resources
  * @property {CharacterResourceData} resources.primary    Resource number one.
  * @property {CharacterResourceData} resources.secondary  Resource number two.
@@ -186,8 +185,7 @@ export default class CharacterData extends CreatureTemplate {
           ...TraitsFields.common,
           ...TraitsFields.creature,
           weaponProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitWeaponProf" }),
-          armorProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitArmorProf" }),
-          toolProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitToolProf" })
+          armorProf: TraitsFields.makeSimpleTrait({ label: "SW5E.TraitArmorProf" })
         },
         { label: "SW5E.Traits" }
       ),

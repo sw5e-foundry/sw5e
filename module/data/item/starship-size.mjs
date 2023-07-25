@@ -253,6 +253,8 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {

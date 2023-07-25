@@ -121,7 +121,23 @@
                                 </select>
                             </div>
                         {{/if}}
-
+            {{#if section.columns}}
+                {{#each section.columns}}
+                    <div class="item-detail {{css}}">
+                        {{#if editable}}
+                            <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
+                                   value="{{#if (getProperty item property)}}{{getProperty item property}}
+                                   {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
+                        {{else}}
+                            {{#if (getProperty item property)}}
+                                {{getProperty item property}}
+                            {{else}}
+                                {{getProperty ctx property}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/each}}
+            {{/if}}
                         {{#if @root.owner}}
                             <div class="item-controls item-detail">
                                 <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>

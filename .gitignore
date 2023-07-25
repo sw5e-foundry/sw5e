@@ -28,9 +28,6 @@ dist/**/*
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Mac-OS file
-.DS_Store
-
 # IDE Folders
 .idea/
 .nova/
@@ -41,3 +38,16 @@ hs_err_pid*
 
 # Node Modules
 node_modules/
+
+# Mac-OS file
+.DS_Store
+
+# Don't commit LevelDB files for now for v10 back-compat
+packs/**/*.log
+packs/**/*.old
+packs/**/*.ldb
+packs/**/LOCK
+packs/**/MANIFEST
+packs/**/CURRENT
+packs/**/LOG
+packs/**/MANIFEST-*

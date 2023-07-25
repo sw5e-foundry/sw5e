@@ -5,10 +5,20 @@ import * as javascript from "./utils/javascript.mjs";
 import * as packs from "./utils/packs.mjs";
 import * as staticGulp from "./utils/static.mjs";
 import {deleteAsync} from "del";
+import {existsSync} from "fs";
+import {mkdir} from "fs/promises"
 
-export function cleanDist() {
+function cleanDist() {
   return deleteAsync(["dist/**", "!dist/.gitkeep"], {force: true});
 }
+
+async function ensureDist() {
+  if (!existsSync("dist")) return mkdir("dist");
+  else return Promise.resolve();
+}
+
+// Clean
+export const clean = gulp.series(cleanDist, ensureDist);
 
 // Javascript compiling & linting
 export const buildJS = gulp.series(javascript.compile);
@@ -35,7 +45,7 @@ export const copyStatic = gulp.parallel(
 
 // Build all artifacts
 export const buildAll = gulp.series(
-  cleanDist,
+  clean,
   gulp.parallel(
     css.compile,
     javascript.compile,
@@ -46,15 +56,13 @@ export const buildAll = gulp.series(
 
 // Watch for updates
 export const watchUpdates = gulp.series(
-  gulp.series(
-    buildAll,
-    gulp.parallel(
-      css.watchUpdates,
-      javascript.watchUpdates,
-      staticGulp.watchUpdates
-    )
+  buildAll,
+  gulp.parallel(
+    css.watchUpdates,
+    javascript.watchUpdates,
+    staticGulp.watchUpdates
   )
 );
 
-// Default export - build CSS
-export default buildAll;
+// Default export - watch
+export default watchUpdates;

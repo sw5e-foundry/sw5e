@@ -78,7 +78,7 @@
             </div>
 
             {{!-- Equipment Attunement and Status --}}
-            {{#unless isMountable}}
+            {{#unless system.isMountable}}
                 {{#unless isStarshipItem}}
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
@@ -215,7 +215,7 @@
             {{/if}}
 
             {{!-- Armor Class --}}
-            {{#if hasAC}}
+            {{#if (or system.isArmor system.isMountable)}}
                 <div class="form-group">
                     <label>{{ localize "SW5E.ArmorClass" }}</label>
                     <div class="form-fields">
@@ -234,7 +234,7 @@
                 </div>
             {{/if}}
 
-            {{#if isArmor}}
+            {{#if system.isArmor}}
                 {{!-- Required Strength --}}
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
@@ -250,7 +250,7 @@
                 </div>
             {{/if}}
 
-            {{#if isMountable}}
+            {{#if system.isMountable}}
                 {{> "sw5e.item-mountable"}}
                 <div class="form-group">
                     <label>{{localize 'SW5E.Speed'}}</label>

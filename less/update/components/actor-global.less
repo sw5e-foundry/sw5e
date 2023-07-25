@@ -115,6 +115,8 @@
         .charlevel {
           .russoOne(17px);
           text-align: right;
+          overflow: hidden;
+          text-overflow: ellipsis;
           input {
             display: inline-block;
             width: 42px;
@@ -1001,6 +1003,33 @@
               }
             }
           }
+
+          /* ----------------------------------------- */
+          /*  Tools                                    */
+          /* ----------------------------------------- */
+
+          .tag.tool {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 1px 4px;
+
+            a:is(.proficiency-toggle, .config-button) {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 13px;
+              height: 13px;
+
+              > i { margin: 0; }
+            }
+
+            h4 { margin: 0; }
+          }
+
+          /* ----------------------------------------- */
+          /*  Statuses                                 */
+          /* ----------------------------------------- */
 
           .counters {
             border: none;

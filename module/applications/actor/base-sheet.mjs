@@ -492,14 +492,14 @@ export default class ActorSheet5e extends ActorSheet {
     if (config.splitEquipped) categories.equipped = {};
     for (const itemType of config.inventoryItems ?? CONFIG.SW5E.itemTypes.inventory) {
       categories.inventory[itemType] = {
-        label: `${CONFIG.Item.typeLabels[type]}Pl`,
+        label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
         items: [],
         required: true,
         dataset: { type: itemType }
       };
       if (config.splitEquipped) {
         categories.equipped[itemType] = {
-          label: `${CONFIG.Item.typeLabels[type]}Pl`,
+          label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
           items: [],
           required: true,
           dataset: { type: itemType, equipped: true }

@@ -21,6 +21,7 @@ export const extractPacks = gulp.series(packs.extract);
 
 // Static copy
 export const copyStatic = gulp.parallel(
+  staticGulp.copyBabele,
   staticGulp.copyFonts,
   staticGulp.copyIcons,
   staticGulp.copyJson,

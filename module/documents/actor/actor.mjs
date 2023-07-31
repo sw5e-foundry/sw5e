@@ -955,7 +955,7 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareTools(bonusData, globalBonuses, checkBonus) {
-    if (this.type === "vehicle") return;
+    if (this.type === "vehicle" || this.type === "starship") return;
     const flags = this.flags.sw5e ?? {};
     for (const tool of Object.values(this.system.tools)) {
       const ability = this.system.abilities[tool.ability];

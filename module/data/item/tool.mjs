@@ -29,8 +29,7 @@ export default class ToolData extends SystemDataModel.mixin(
       baseItem: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemToolBase" }),
       ability: new foundry.data.fields.StringField({
         required: true,
-        initial: "int",
-        blank: false,
+        blank: true,
         label: "SW5E.DefaultAbilityCheck"
       }),
       chatFlavor: new foundry.data.fields.StringField({ required: true, label: "SW5E.ChatFlavor" }),
@@ -45,6 +44,8 @@ export default class ToolData extends SystemDataModel.mixin(
     });
   }
 
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -61,5 +62,27 @@ export default class ToolData extends SystemDataModel.mixin(
    */
   static #migrateAbility(source) {
     if (Array.isArray(source.ability)) source.ability = source.ability[0];
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [CONFIG.SW5E.abilities[this.ability]?.label];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Which ability score modifier is used by this item?
+   * @type {string|null}
+   */
+  get abilityMod() {
+    return this.ability || "int";
   }
 }

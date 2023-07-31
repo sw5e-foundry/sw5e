@@ -23,12 +23,12 @@
       </ul>
     </div>
 
-    <div class="form-group {{system.traits.languages.cssClass}}">
+    <div class="form-group {{traits.traits.languages.cssClass}}">
       <label>{{localize "SW5E.Languages"}}</label>
       <a
         class="trait-selector"
         data-trait="languages"
-        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.Languages')}}"
+        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.Languages")}}"
         tabindex="0"
       >
         <i class="fas fa-edit"></i>
@@ -46,7 +46,7 @@
     <a
       class="trait-selector"
       data-trait="di"
-      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamImm')}}"
+      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.DamImm")}}"
       tabindex="0"
     >
       <i class="fas fa-edit"></i>
@@ -63,7 +63,7 @@
     <a
       class="trait-selector"
       data-trait="dr"
-      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamRes')}}"
+      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.DamRes")}}"
       tabindex="0"
     >
       <i class="fas fa-edit"></i>
@@ -80,7 +80,7 @@
     <a
       class="trait-selector"
       data-trait="dv"
-      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.DamVuln')}}"
+      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.DamVuln")}}"
       tabindex="0"
     >
       <i class="fas fa-edit"></i>
@@ -97,7 +97,7 @@
     <a
       class="trait-selector"
       data-trait="ci"
-      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.ConImm')}}"
+      data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.ConImm")}}"
       tabindex="0"
     >
       <i class="fas fa-edit"></i>
@@ -112,8 +112,11 @@
   {{#if isCharacter}}
     <div class="form-group {{traits.traits.weaponProf.cssClass}}">
       <label>{{localize "SW5E.TraitWeaponProf"}}</label>
-      <a class="trait-selector" data-trait="weapon"
-         data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitWeaponProf')}}">
+      <a
+        class="trait-selector"
+        data-trait="weapon"
+        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.TraitWeaponProf")}}"
+      >
         <i class="fas fa-edit"></i>
       </a>
       <ul class="traits-list">
@@ -125,8 +128,11 @@
 
     <div class="form-group {{traits.traits.armorProf.cssClass}}">
       <label>{{localize "SW5E.TraitArmorProf"}}</label>
-      <a class="trait-selector" data-trait="armor"
-         data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitArmorProf')}}">
+      <a
+        class="trait-selector"
+        data-trait="armor"
+        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.TraitArmorProf")}}"
+      >
         <i class="fas fa-edit"></i>
       </a>
       <ul class="traits-list">
@@ -138,13 +144,24 @@
 
     <div class="form-group {{traits.traits.toolProf.cssClass}}">
       <label>{{localize "SW5E.TraitToolProf"}}</label>
-      <a class="trait-selector" data-trait="tool"
-         data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.TraitToolProf')}}">
+      <a
+        class="trait-selector"
+        data-trait="tool"
+        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.TraitToolProf")}}"
+      >
         <i class="fas fa-edit"></i>
       </a>
       <ul class="traits-list">
-        {{#each traits.traits.toolProf.selected as |v k|}}
-          <li class="tag {{k}}">{{v}}</li>
+        {{#each tools}}
+          <li class="tag tool proficiency-row" data-property="tools" data-key="{{@key}}">
+            <input type="hidden" name="system.tools.{{@key}}.value" value="{{baseValue}}" data-dtype="Number" />
+            <input type="hidden" name="system.tools.{{@key}}.ability" value="{{ability}}" />
+            <a class="proficiency-toggle tool-proficiency" data-tooltip="{{hover}}">{{{icon}}}</a>
+            <h4 class="tool-name rollable">{{label}}</h4>
+            <a class="config-button" data-action="tool" data-tooltip="SW5E.ToolConfigure">
+              <i class="fas fa-cog"></i>
+            </a>
+          </li>
         {{/each}}
       </ul>
     </div>
@@ -155,7 +172,7 @@
       <a
         class="config-button"
         data-action="flags"
-        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize 'SW5E.SpecialTraits')}}"
+        data-tooltip="{{localize 'SW5E.TraitConfig' trait=(localize "SW5E.SpecialTraits")}}"
       >
         <i class="fas fa-cog"></i>
       </a>

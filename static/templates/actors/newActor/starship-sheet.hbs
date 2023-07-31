@@ -56,7 +56,7 @@
             data-dtype="Number"
           >
           <span class="value-separator">/</span>
-          <span class="value-number" data-tooltip="{{#if sourceHP.max}}SW5E.HullPointsOverride{{else}}SW5E.HullPointsMax{{/if}}">
+          <span class="value-number" data-tooltip="{{#if source.attributes.hp.max}}SW5E.HullPointsOverride{{else}}SW5E.HullPointsMax{{/if}}">
             {{hp.max}}
           </span>
         </div>
@@ -83,7 +83,7 @@
               data-dtype="Number"
             >
             <span class="value-separator">/</span>
-            <span class="value-number" data-tooltip="{{#if sourceHP.tempmax}}SW5E.ShieldPointsOverride{{else}}SW5E.ShieldPointsMax{{/if}}">
+            <span class="value-number" data-tooltip="{{#if source.attributes.hp.tempmax}}SW5E.ShieldPointsOverride{{else}}SW5E.ShieldPointsMax{{/if}}">
               {{hp.tempmax}}
             </span>
           </div>

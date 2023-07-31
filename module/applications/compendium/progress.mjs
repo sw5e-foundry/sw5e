@@ -7,49 +7,49 @@
  */
 export class Progress {
     /**
-     * @type {number} 
+     * @type {number}
      * @private
      */
     steps;
 
     /**
-     * @type {number} 
+     * @type {number}
      * @private
      */
     counter;
 
     /**
-     * @type {string} 
+     * @type {string}
      * @private
      */
     label;
 
     constructor({ steps = 1 } = {}) {
-        this.steps = steps;
-        this.counter = -1;
-        this.label = "";
+      this.steps = steps;
+      this.counter = -1;
+      this.label = "";
     }
 
     advance(label) {
-        this.counter += 1;
-        this.label = label;
-        this.updateUI();
+      this.counter += 1;
+      this.label = label;
+      this.updateUI();
     }
 
     close(label) {
-        if (label) this.label = game.i18n.localize(label);
-        this.counter = this.steps;
-        this.updateUI();
+      if (label) this.label = game.i18n.localize(label);
+      this.counter = this.steps;
+      this.updateUI();
     }
 
     updateUI() {
-        const loader = $("#loading");
-        if (loader.length === 0) return;
-        const pct = Math.clamped((100 * this.counter) / this.steps, 0, 100);
-        loader.find("#context").text(this.label);
-        loader.find("#loading-bar").css({ width: `${pct}%`, whiteSpace: "nowrap" });
-        loader.find("#progress").text(`${this.counter} / ${this.steps}`);
-        loader.css({ display: "block" });
-        if (this.counter === this.steps && !loader.is(":hidden")) loader.fadeOut(2000);
+      const loader = $("#loading");
+      if (loader.length === 0) return;
+      const pct = Math.clamped((100 * this.counter) / this.steps, 0, 100);
+      loader.find("#context").text(this.label);
+      loader.find("#loading-bar").css({ width: `${pct}%`, whiteSpace: "nowrap" });
+      loader.find("#progress").text(`${this.counter} / ${this.steps}`);
+      loader.css({ display: "block" });
+      if (this.counter === this.steps && !loader.is(":hidden")) loader.fadeOut(2000);
     }
 }

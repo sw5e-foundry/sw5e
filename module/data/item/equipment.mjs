@@ -178,6 +178,8 @@ export default class EquipmentData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {
@@ -195,6 +197,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateArmor(source) {
+    if (!("armor" in source)) return;
     source.armor ??= {};
     if (source.armor.type === "bonus") source.armor.type = "trinket";
     if (typeof source.armor.dex === "string") {
@@ -232,5 +235,42 @@ export default class EquipmentData extends SystemDataModel.mixin(
         delete source[attr];
       }
     }
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [
+      CONFIG.SW5E.equipmentTypes[this.armor.type],
+      this.parent.labels?.armor ?? null,
+      this.stealth ? game.i18n.localize("SW5E.StealthDisadvantage") : null
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this Item any of the armor subtypes?
+   * @type {boolean}
+   */
+  get isArmor() {
+    return this.armor.type in CONFIG.SW5E.armorTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this item a separate large object like a siege engine or vehicle component that is
+   * usually mounted on fixtures rather than equipped, and has its own AC and HP?
+   * @type {boolean}
+   */
+  get isMountable() {
+    return this.armor.type === "vehicle";
   }
 }

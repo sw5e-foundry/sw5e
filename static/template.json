@@ -320,6 +320,7 @@
             "custom": ""
           }
         },
+        "tools": {},
         "powers": {
           "power1": {
             "fvalue": 1000,
@@ -408,7 +409,14 @@
         }
       }
     },
-    "htmlFields": ["details.biography.value", "details.biography.public", "details.description.value", "details.description.public", "description.full", "description.summary"],
+    "htmlFields": [
+      "details.biography.value",
+      "details.biography.public",
+      "details.description.value",
+      "details.description.public",
+      "description.full",
+      "description.summary"
+    ],
     "character": {
       "templates": ["common", "creature"],
       "attributes": {
@@ -758,6 +766,9 @@
           "cargo": 0
         }
       },
+      "details": {
+        "source": ""
+      },
       "traits": {
         "size": "lg",
         "dimensions": "",
@@ -936,6 +947,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -1285,7 +1297,13 @@
   },
   "JournalEntryPage": {
     "types": ["class"],
-    "htmlFields": ["description.value", "description.additionalHitPoints", "description.additionalTraits", "description.additionalEquipment", "description.archetype"],
+    "htmlFields": [
+      "description.value",
+      "description.additionalHitPoints",
+      "description.additionalTraits",
+      "description.additionalEquipment",
+      "description.archetype"
+    ],
     "class": {
       "item": "",
       "description": {

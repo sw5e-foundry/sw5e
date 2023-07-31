@@ -77,22 +77,21 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
    * @protected
    */
   _prepareCrewedItem(item, context) {
-
     // Determine crewed status
     const isCrewed = item.system.crewed;
     context.toggleClass = isCrewed ? "active" : "";
     context.toggleTitle = game.i18n.localize(`SW5E.${isCrewed ? "Crewed" : "Uncrewed"}`);
 
     // Handle crew actions
-    if ( item.type === "feat" && item.system.activation.type === "crew" ) {
+    if (item.type === "feat" && item.system.activation.type === "crew") {
       context.cover = game.i18n.localize(`SW5E.${item.system.cover ? "CoverTotal" : "None"}`);
-      if ( item.system.cover === .5 ) context.cover = "½";
-      else if ( item.system.cover === .75 ) context.cover = "¾";
-      else if ( item.system.cover === null ) context.cover = "—";
+      if (item.system.cover === 0.5) context.cover = "½";
+      else if (item.system.cover === 0.75) context.cover = "¾";
+      else if (item.system.cover === null) context.cover = "—";
     }
 
     // Prepare vehicle weapons
-    if ( (item.type === "equipment") || (item.type === "weapon") ) {
+    if (item.type === "equipment" || item.type === "weapon") {
       context.threshold = item.system.hp.dt ? item.system.hp.dt : "—";
     }
   }
@@ -151,7 +150,7 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
         ]
       },
       equipment: {
-        label: game.i18n.localize("ITEM.TypeEquipment"),
+        label: game.i18n.localize(CONFIG.Item.typeLabels.equipment),
         items: [],
         crewable: true,
         dataset: { type: "equipment", "armor.type": "vehicle" },
@@ -168,7 +167,7 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
         dataset: { type: "feat", "activation.type": "reaction" }
       },
       weapons: {
-        label: game.i18n.localize("ITEM.TypeWeaponPl"),
+        label: game.i18n.localize(`${CONFIG.Item.typeLabels.weapon}Pl`),
         items: [],
         crewable: true,
         dataset: { type: "weapon", "weapon-type": "siege" },
@@ -177,12 +176,13 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
     };
 
     context.items.forEach(item => {
-      const ctx = context.itemContext[item.id] ??= {};
+      const { uses, recharge } = item.system;
+      const ctx = (context.itemContext[item.id] ??= {});
       ctx.canToggle = false;
       ctx.isExpanded = this._expanded.has(item.id);
-      ctx.hasUses = uses && (uses.max > 0);
-      ctx.isOnCooldown = recharge && !!recharge.value && (recharge.charged === false);
-      ctx.isDepleted = item.isOnCooldown && (uses.per && (uses.value > 0));
+      ctx.hasUses = uses && uses.max > 0;
+      ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+      ctx.isDepleted = item.isOnCooldown && uses.per && uses.value > 0;
     });
 
     const cargo = {
@@ -231,8 +231,8 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
 
     // Classify items owned by the vehicle and compute total cargo weight
     let totalWeight = 0;
-    for ( const item of context.items ) {
-      const ctx = context.itemContext[item.id] ??= {};
+    for (const item of context.items) {
+      const ctx = (context.itemContext[item.id] ??= {});
       this._prepareCrewedItem(item, ctx);
 
       // Handle cargo explicitly
@@ -416,8 +416,8 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
     event.preventDefault();
     const itemID = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemID);
-    const hp = Math.clamped(0, parseInt(event.currentTarget.value), item.system.hp.max);
-    event.currentTarget.value = hp;
+    let hp = Math.clamped(0, parseInt(event.currentTarget.value), item.system.hp.max);
+    if (Number.isNaN(hp)) hp = 0;
     return item.update({ "system.hp.value": hp });
   }
 
@@ -433,8 +433,8 @@ export default class ActorSheetOrig5eVehicle extends ActorSheet5e {
     event.preventDefault();
     const itemID = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemID);
-    const qty = parseInt(event.currentTarget.value);
-    event.currentTarget.value = qty;
+    let qty = parseInt(event.currentTarget.value);
+    if (Number.isNaN(qty)) qty = 0;
     return item.update({ "system.quantity": qty });
   }
 

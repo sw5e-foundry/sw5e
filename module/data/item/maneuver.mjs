@@ -44,7 +44,10 @@ export default class ManueverData extends SystemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    const type = this.system.maneuverType;
+    const type = this.maneuverType;
+    const item = this?.parent;
+    const actor = item?.parent;
+    const abilities = actor?.system?.abilities;
 
     let attrs = [];
     if (type === "physical") attrs = ["str", "dex", "con"];
@@ -53,7 +56,7 @@ export default class ManueverData extends SystemDataModel.mixin(
 
     return attrs.reduce(
       (acc, attr) => {
-        const mod = abilities[attr]?.mod ?? -Infinity;
+        const mod = abilities?.[attr]?.mod ?? -Infinity;
         if (mod > acc.mod) acc = { attr, mod };
         return acc;
       },

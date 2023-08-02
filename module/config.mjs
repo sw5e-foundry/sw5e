@@ -3817,9 +3817,9 @@ SW5E.characterFlags = {
     type: Number,
     placeholder: 20
   },
-  manueverCriticalThreshold: {
-    name: "SW5E.FlagsManueverCritThreshold",
-    hint: "SW5E.FlagsManueverCritThresholdHint",
+  maneuverCriticalThreshold: {
+    name: "SW5E.FlagsManeuverCritThreshold",
+    hint: "SW5E.FlagsManeuverCritThresholdHint",
     section: "SW5E.Features",
     type: Number,
     placeholder: 20

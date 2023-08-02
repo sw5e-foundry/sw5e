@@ -11,7 +11,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  *
  * @property {string} maneuverTypes      Maneuver type as defined in `SW5E.maneuverTypes`.
  */
-export default class ManueverData extends SystemDataModel.mixin(
+export default class ManeuverData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
   ActivatedEffectTemplate,
   ActionTemplate
@@ -68,6 +68,6 @@ export default class ManueverData extends SystemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeCriticalThreshold() {
-    return this.parent?.actor?.flags.sw5e?.manueverCriticalThreshold ?? Infinity;
+    return this.parent?.actor?.flags.sw5e?.maneuverCriticalThreshold ?? Infinity;
   }
 }

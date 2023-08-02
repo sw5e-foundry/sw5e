@@ -34,6 +34,7 @@ export function makeItemProperties( config, schemaOptions = {} ) {
  * @param {object} config  Object describing the internal properties of the field.
  */
 export function migrateItemProperties( source, config ) {
+  if (!source) return;
   const schemaObj = {};
   for (const [key, prop] of Object.entries(config)) {
     if (typeof source[key] !== prop.type.toLowerCase()) source[key] = null;

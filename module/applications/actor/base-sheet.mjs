@@ -19,6 +19,8 @@ import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 import PropertyAttribution from "../property-attribution.mjs";
 import TraitSelector from "./trait-selector.mjs";
+import ProficiencyConfig from "./proficiency-config.mjs";
+import ToolSelector from "./tool-selector.mjs";
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
@@ -64,7 +66,8 @@ export default class ActorSheet5e extends ActorSheet {
         ".force-powerbook .group-list",
         ".tech-powerbook .group-list",
         ".superiority-powerbook .group-list",
-        ".effects .effects-list"
+        ".effects .effects-list",
+        ".center-pane"
       ],
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
@@ -104,6 +107,7 @@ export default class ActorSheet5e extends ActorSheet {
       itemContext: {},
       abilities: foundry.utils.deepClone(this.actor.system.abilities),
       skills: foundry.utils.deepClone(this.actor.system.skills ?? {}),
+      tools: foundry.utils.deepClone(this.actor.system.tools ?? {}),
       labels: this._getLabels(),
       movement: this._getMovementSpeed(this.actor.system),
       senses: this._getSenses(this.actor.system),
@@ -123,16 +127,6 @@ export default class ActorSheet5e extends ActorSheet {
       rollableClass: this.isEditable ? "rollable" : "",
       rollData: this.actor.getRollData()
     };
-
-    /** @deprecated */
-    Object.defineProperty(context, "data", {
-      get() {
-        const msg = `You are accessing the "data" attribute within the rendering context provided by the ActorSheet5e 
-          class. This attribute has been deprecated in favor of "system" and will be removed in a future release`;
-        foundry.utils.logCompatibilityWarning(msg, { since: "SW5e 2.0", until: "SW5e 2.2" });
-        return context.system;
-      }
-    });
 
     // Sort Owned Items
     context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
@@ -157,23 +151,26 @@ export default class ActorSheet5e extends ActorSheet {
     // Ability Scores
     for (const [a, abl] of Object.entries(context.abilities)) {
       abl.icon = this._getProficiencyIcon(abl.proficient);
-      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient ?? 0].label;
-      abl.label = CONFIG.SW5E.abilities[a];
+      abl.hover = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+      abl.label = CONFIG.SW5E.abilities[a]?.label;
       abl.baseProf = source.system.abilities[a]?.proficient ?? 0;
     }
 
-    // Skills
-    for (const [s, skl] of Object.entries(context.skills)) {
-      skl.abbreviation = CONFIG.SW5E.abilityAbbreviations[skl.ability];
-      skl.icon = this._getProficiencyIcon(skl.value);
-      skl.hover = CONFIG.SW5E.proficiencyLevels[skl.value ?? 0].label;
-      if (context.actor.type === "starship") {
-        skl.label = CONFIG.SW5E.starshipSkills[s]?.label;
-      } else {
-        skl.label = CONFIG.SW5E.skills[s]?.label;
+    // Skills & Tools
+    ["skills", "tools"].forEach(prop => {
+      for (const [key, entry] of Object.entries(context[prop])) {
+        entry.abbreviation = CONFIG.SW5E.abilities[entry.ability]?.abbreviation;
+        entry.icon = this._getProficiencyIcon(entry.value);
+        entry.hover = CONFIG.SW5E.proficiencyLevels[entry.value].label;
+        entry.label =
+          prop === "skills"
+            ? context.isStarship
+              ? CONFIG.SW5E.starshipSkills[key]?.label
+              : CONFIG.SW5E.skills[key]?.label
+            : Trait.keyLabel("tool", key);
+        entry.baseValue = source.system[prop]?.[key]?.value ?? 0;
       }
-      skl.baseValue = source.system.skills[s]?.value ?? 0;
-    }
+    });
 
     // Update traits
     context.traits = this._prepareTraits(context.system);
@@ -183,7 +180,7 @@ export default class ActorSheet5e extends ActorSheet {
     context.expandedData = {};
     for (const id of this._expanded) {
       const item = this.actor.items.get(id);
-      if ( item ) context.expandedData[id] = await item.getChatData({secrets: this.actor.isOwner});
+      if (item) context.expandedData[id] = await item.getChatData({ secrets: this.actor.isOwner });
     }
 
     // Biography HTML enrichment
@@ -415,7 +412,7 @@ export default class ActorSheet5e extends ActorSheet {
     const traits = {};
     for (const [trait, traitConfig] of Object.entries(CONFIG.SW5E.traits)) {
       const key = traitConfig.actorKeyPath ?? `traits.${trait}`;
-      let data = foundry.utils.getProperty(systemData, key);
+      const data = foundry.utils.deepClone(foundry.utils.getProperty(systemData, key));
       const choices = CONFIG.SW5E[traitConfig.configKey];
       if (!data) continue;
 
@@ -472,13 +469,16 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   _prepareItemCategories(config = {}) {
-    config = foundry.utils.mergeObject({
-      expandSubtypes: true,
-      combineForcePowers: true,
-      combineManeuvers: true,
-      splitActive: false,
-      splitEquipped: false
-    }, config);
+    config = foundry.utils.mergeObject(
+      {
+        expandSubtypes: true,
+        combineForcePowers: true,
+        combineManeuvers: true,
+        splitActive: false,
+        splitEquipped: false
+      },
+      config
+    );
     const categories = {
       inventory: {},
       class: {},
@@ -490,16 +490,16 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     if (config.splitEquipped) categories.equipped = {};
-    for (const itemType of (config.inventoryItems ?? CONFIG.SW5E.itemTypes.inventory)) {
+    for (const itemType of config.inventoryItems ?? CONFIG.SW5E.itemTypes.inventory) {
       categories.inventory[itemType] = {
-        label: `ITEM.Type${itemType.capitalize()}Pl`,
+        label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
         items: [],
         required: true,
         dataset: { type: itemType }
       };
       if (config.splitEquipped) {
         categories.equipped[itemType] = {
-          label: `ITEM.Type${itemType.capitalize()}Pl`,
+          label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
           items: [],
           required: true,
           dataset: { type: itemType, equipped: true }
@@ -507,9 +507,9 @@ export default class ActorSheet5e extends ActorSheet {
       }
     }
 
-    for (const itemType of (config.classItems ?? CONFIG.SW5E.itemTypes.class)) {
+    for (const itemType of config.classItems ?? CONFIG.SW5E.itemTypes.class) {
       categories.class[itemType] = {
-        label: `ITEM.Type${itemType.capitalize()}Pl`,
+        label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
         items: [],
         required: true,
         dataset: { type: itemType }
@@ -547,8 +547,7 @@ export default class ActorSheet5e extends ActorSheet {
         required: true,
         dataset: { type: "feat" }
       };
-    }
-    else categories.features.feat = {
+    } else categories.features.feat = {
       label: "ITEM.TypeFeat",
       items: [],
       hasActions: true,
@@ -576,7 +575,7 @@ export default class ActorSheet5e extends ActorSheet {
       const { quantity, uses, recharge, target, equipped } = item.system;
 
       // Item details
-      const ctx = context.itemContext[item.id] ??= {};
+      const ctx = (context.itemContext[item.id] ??= {});
       ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
       ctx.id = item.id;
       ctx.attunement = {
@@ -616,43 +615,35 @@ export default class ActorSheet5e extends ActorSheet {
       if (config.splitEquipped && equipped && item.type in categories.equipped) {
         categories.equipped[item.type].items.push(item);
         continue;
-      }
-      else if (item.type in categories.inventory) {
+      } else if (item.type in categories.inventory) {
         categories.inventory[item.type].items.push(item);
         continue;
-      }
-      else if (item.type in categories.class) {
+      } else if (item.type in categories.class) {
         categories.class[item.type].items.push(item);
         continue;
-      }
-      else if (item.type === "feat") {
+      } else if (item.type === "feat") {
         const featType = item.system.type.value ? `feat.${item.system.type.value}` : null;
-        const featSubtype = (featType && item.system.type.subtype) ? `${featType}.${item.system.type.subtype}` : null;
+        const featSubtype = featType && item.system.type.subtype ? `${featType}.${item.system.type.subtype}` : null;
         if (featSubtype in categories.features) categories.features[featSubtype].items.push(item);
         else if (featType in categories.features) categories.features[featType].items.push(item);
         else if (config.splitActive) {
           if (item.system.activation?.type) categories.features.active.items.push(item);
           else categories.features.passive.items.push(item);
-        }
-        else categories.features.feat.items.push(item);
+        } else categories.features.feat.items.push(item);
         continue;
-      }
-      else if (item.type === "power") {
+      } else if (item.type === "power") {
         if (["lgt", "uni", "drk"].includes(item.system.school) && config.combineForcePowers) {
           categories.powers.for.items.push(item);
           continue;
-        }
-        else if (item.system.school in categories.powers) {
+        } else if (item.system.school in categories.powers) {
           categories.powers[item.system.school]?.items?.push(item);
           continue;
         }
-      }
-      else if (item.type === "maneuver") {
+      } else if (item.type === "maneuver") {
         if (config.combineManeuvers) {
           categories.maneuvers.items.push(item);
           continue;
-        }
-        else {
+        } else {
           categories.maneuvers[item.system.maneuverType]?.items.push(item);
           continue;
         }
@@ -687,7 +678,7 @@ export default class ActorSheet5e extends ActorSheet {
       const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.override`);
       powerbook[i] = {
         order: i,
-        label,
+        label: label,
         usesSlots: i > 0,
         canCreate: owner,
         canPrepare: context.actor.type === "character" && i >= 1,
@@ -876,10 +867,13 @@ export default class ActorSheet5e extends ActorSheet {
       inputs.addBack().find('[type="text"][data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
 
       // Ability Proficiency
-      html.find(".ability-proficiency").on("click contextmenu", this._onCycleAbilityProficiency.bind(this));
+      html.find(".ability-proficiency").click(this._onCycleAbilityProficiency.bind(this));
 
       // Toggle Skill Proficiency
-      html.find(".skill-proficiency").on("click contextmenu", this._onCycleSkillProficiency.bind(this));
+      html.find(".skill-proficiency").on("click contextmenu", event => this._onCycleProficiency(event, "skill"));
+
+      // Toggle Tool Proficiency
+      html.find(".tool-proficiency").on("click contextmenu", event => this._onCycleProficiency(event, "tool"));
 
       // Trait Selector
       html.find(".trait-selector").click(this._onTraitSelector.bind(this));
@@ -916,6 +910,9 @@ export default class ActorSheet5e extends ActorSheet {
       // Roll Skill Checks
       html.find(".skill-name").click(this._onRollSkillCheck.bind(this));
 
+      // Roll Tool Checks.
+      html.find(".tool-name").on("click", this._onRollToolCheck.bind(this));
+
       // Item Rolling
       html.find(".rollable .item-image").click(event => this._onItemUse(event));
       html.find(".item .item-recharge").click(event => this._onItemRecharge(event));
@@ -941,24 +938,25 @@ export default class ActorSheet5e extends ActorSheet {
    * @protected
    */
   _disableOverriddenFields(html) {
+    const proficiencyToggles = {
+      ability: /system\.abilities\.([^.]+)\.proficient/,
+      skill: /system\.skills\.([^.]+)\.value/,
+      tool: /system\.tools\.([^.]+)\.value/
+    };
+
     for (const override of Object.keys(foundry.utils.flattenObject(this.actor.overrides))) {
       html.find(`input[name="${override}"],select[name="${override}"]`).each((i, el) => {
         el.disabled = true;
         el.dataset.tooltip = "SW5E.ActiveEffectOverrideWarning";
       });
 
-      const [, ability] = override.match(/system\.abilities\.([^.]+)\.proficient/) || [];
-      if (ability) {
-        const toggle = html.find(`li[data-ability="${ability}"] .proficiency-toggle`);
-        toggle.addClass("disabled");
-        toggle.attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
-      }
-
-      const [, skill] = override.match(/system\.skills\.([^.]+)\.value/) || [];
-      if (skill) {
-        const toggle = html.find(`li[data-skill="${skill}"] .proficiency-toggle`);
-        toggle.addClass("disabled");
-        toggle.attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
+      for (const [key, regex] of Object.entries(proficiencyToggles)) {
+        const [, match] = override.match(regex) || [];
+        if (match) {
+          const toggle = html.find(`li[data-${key}="${match}"] .proficiency-toggle`);
+          toggle.addClass("disabled");
+          toggle.attr("data-tooltip", "SW5E.ActiveEffectOverrideWarning");
+        }
       }
 
       const [, power] = override.match(/system\.powers\.(power\d)\.override/) || [];
@@ -1178,8 +1176,13 @@ export default class ActorSheet5e extends ActorSheet {
         break;
       }
       case "skill": {
-        const skill = event.currentTarget.closest("[data-skill]").dataset.skill;
-        app = new ActorSkillConfig(this.actor, null, skill);
+        const skill = event.currentTarget.closest("[data-key]").dataset.key;
+        app = new ProficiencyConfig(this.actor, { property: "skills", key: skill });
+        break;
+      }
+      case "tool": {
+        const tool = event.currentTarget.closest("[data-key]").dataset.key;
+        app = new ProficiencyConfig(this.actor, { property: "tools", key: tool });
         break;
       }
     }
@@ -1189,25 +1192,26 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle cycling proficiency in a Skill.
-   * @param {Event} event     A click or contextmenu event which triggered the handler.
+   * Handle cycling proficiency in a skill or tool.
+   * @param {Event} event     A click or contextmenu event which triggered this action.
    * @returns {Promise|void}  Updated data for this actor after changes are applied.
-   * @private
+   * @protected
    */
-  _onCycleSkillProficiency(event) {
+  _onCycleProficiency(event) {
     if (event.currentTarget.classList.contains("disabled")) return;
     event.preventDefault();
-    const parent = event.currentTarget.closest(".skill");
+    const parent = event.currentTarget.closest(".proficiency-row");
     const field = parent.querySelector('[name$=".value"]');
-    const value = this.actor._source.system.skills[parent.dataset.skill]?.value ?? 0;
+    const { property, key } = parent.dataset;
+    const value = this.actor._source.system[property]?.[key]?.value ?? 0;
 
-    // Cycle to the next or previous skill proficiency level
+    // Cycle to the next or previous skill level.
     const levels = CONFIG.SW5E.proficiencyLevelsOrdered;
     const idx = levels.indexOf(value);
-    const next = (idx + (event.type === "click" ? 1 : levels.length - 1)) % levels.length;
-    field.value = levels[next];
+    const next = idx + (event.type === "contextmenu" ? levels.length - 1 : 1);
+    field.value = levels[next % levels.length];
 
-    // Update the field value and save the form
+    // Update the field value and save the form.
     return this._onSubmit(event);
   }
 
@@ -1530,8 +1534,8 @@ export default class ActorSheet5e extends ActorSheet {
     }
 
     const itemData = {
-      name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(`ITEM.Type${type.capitalize()}`) }),
-      type,
+      name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(CONFIG.Item.typeLabels[type]) }),
+      type: type,
       system: foundry.utils.expandObject({ ...header.dataset })
     };
 
@@ -1548,6 +1552,7 @@ export default class ActorSheet5e extends ActorSheet {
       let cfg = CONFIG.SW5E.featureTypes[featType];
       if (featSubtype) cfg = cfg.subtypes[featSubtype];
       else cfg = cfg.label;
+      // TODO: See if this works since format for item name was changed above
       itemData.name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(cfg).capitalize() });
     }
 
@@ -1636,12 +1641,12 @@ export default class ActorSheet5e extends ActorSheet {
   async _onPropertyAttribution(event) {
     const element = event.target;
     let property = element.dataset.attribution;
-    if ( !property ) {
+    if (!property) {
       property = element.dataset.property;
-      if ( !property ) return;
+      if (!property) return;
       foundry.utils.logCompatibilityWarning(
         "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
-        + " has been deprecated in favor of a single `data-attribution` value.",
+          + " has been deprecated in favor of a single `data-attribution` value.",
         { since: "SW5e 2.1.3", until: "SW5e 2.4" }
       );
     }
@@ -1649,12 +1654,13 @@ export default class ActorSheet5e extends ActorSheet {
     const rollData = this.actor.getRollData({ deterministic: true });
     const title = game.i18n.localize(element.dataset.attributionCaption);
     let attributions;
-    switch ( property ) {
+    switch (property) {
       case "attributes.ac":
-        attributions = this._prepareArmorClassAttribution(rollData); break;
+        attributions = this._prepareArmorClassAttribution(rollData);
+        break;
     }
-    if ( !attributions ) return;
-    new PropertyAttribution(this.actor, attributions, property, {title}).renderTooltip(element);
+    if (!attributions) return;
+    new PropertyAttribution(this.actor, attributions, property, { title }).renderTooltip(element);
   }
 
   /* -------------------------------------------- */
@@ -1667,7 +1673,7 @@ export default class ActorSheet5e extends ActorSheet {
   _onRollAbilityTest(event) {
     event.preventDefault();
     let ability = event.currentTarget.parentElement.dataset.ability;
-    this.actor.rollAbility(ability, { event });
+    this.actor.rollAbility(ability, { event: event });
   }
 
   /* -------------------------------------------- */
@@ -1680,16 +1686,24 @@ export default class ActorSheet5e extends ActorSheet {
    */
   _onRollSkillCheck(event) {
     event.preventDefault();
-    const skill = event.currentTarget.closest("[data-skill]").dataset.skill;
-    return this.actor.rollSkill(skill, { event });
+    const skill = event.currentTarget.closest("[data-key]").dataset.key;
+    return this.actor.rollSkill(skill, { event: event });
+  }
+
+  /* -------------------------------------------- */
+
+  _onRollToolCheck(event) {
+    event.preventDefault();
+    const tool = event.currentTarget.closest("[data-key]").dataset.key;
+    return this.actor.rollToolCheck(tool, { event });
   }
 
   /* -------------------------------------------- */
 
   /**
    * Handle cycling proficiency in an Ability score.
-   * @param {Event} event     A click or contextmenu event which triggered the handler.
-   * @returns {Promise|void}  Updated data for this actor after changes are applied.
+   * @param {Event} event              A click or contextmenu event which triggered the handler.
+   * @returns {Promise<Actor5e>|void}  Updated data for this actor after changes are applied.
    * @private
    */
   _onCycleAbilityProficiency(event) {
@@ -1735,7 +1749,9 @@ export default class ActorSheet5e extends ActorSheet {
    */
   _onTraitSelector(event) {
     event.preventDefault();
-    return new TraitSelector(this.actor, event.currentTarget.dataset.trait).render(true);
+    const trait = event.currentTarget.dataset.trait;
+    if (trait === "tool") return new ToolSelector(this.actor, trait).render(true);
+    return new TraitSelector(this.actor, trait).render(true);
   }
 
   /* -------------------------------------------- */

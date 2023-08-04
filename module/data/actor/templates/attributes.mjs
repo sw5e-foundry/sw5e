@@ -172,11 +172,11 @@ export default class AttributesFields {
         { label: "SW5E.Senses" }
       ),
       force: new foundry.data.fields.SchemaField(
-        { points: makePointsResource({label: "SW5E.ForcePoint", hasTemp: true}) },
+        { points: makePointsResource({ label: "SW5E.ForcePoint", hasTemp: true }) },
         { label: "SW5E.ForceCasting" }
       ),
       tech: new foundry.data.fields.SchemaField(
-        { points: makePointsResource({label: "SW5E.TechPoint", hasTemp: true}) },
+        { points: makePointsResource({ label: "SW5E.TechPoint", hasTemp: true }) },
         { label: "SW5E.TechCasting" }
       ),
       super: new foundry.data.fields.SchemaField(
@@ -188,14 +188,16 @@ export default class AttributesFields {
             initial: null,
             label: "SW5E.SuperiorityDieOverride"
           }),
-          dice: makePointsResource({label: "SW5E.SuperDice"})
+          dice: makePointsResource({ label: "SW5E.SuperDice" })
         },
         { label: "SW5E.Superiority" }
       ),
       deployed: new foundry.data.fields.SchemaField(
         {
           uuid: new UUIDField({ label: "SW5E.DeployedStarship", nullable: true }),
-          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), { label: "SW5E.DeployedPositions" })
+          deployments: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+            label: "SW5E.DeployedPositions"
+          })
         },
         { label: "SW5E.Deployed" }
       )
@@ -211,7 +213,7 @@ export default class AttributesFields {
    */
   static _migrateInitiative(source) {
     const init = source?.init;
-    if (!init?.value) return;
+    if (!init?.value || typeof init?.bonus === "string") return;
     if (init.bonus) init.bonus += init.value < 0 ? ` - ${init.value * -1}` : ` + ${init.value}`;
     else init.bonus = `${init.value}`;
   }
@@ -222,7 +224,7 @@ export default class AttributesFields {
  * @param {object} [schemaOptions]    Options passed to the outer schema.
  * @returns {PowerCastingData}
  */
-function makePointsResource( schemaOptions = {} ) {
+function makePointsResource(schemaOptions = {}) {
   const baseLabel = schemaOptions.label;
   const schemaObj = {
     value: new foundry.data.fields.NumberField({
@@ -244,13 +246,13 @@ function makePointsResource( schemaOptions = {} ) {
       overall: new FormulaField({ deterministic: true, label: `${baseLabel}BonusOverall` })
     })
   };
-  if ( schemaOptions.hasTemp ) schemaObj.temp = new foundry.data.fields.NumberField({
+  if (schemaOptions.hasTemp) schemaObj.temp = new foundry.data.fields.NumberField({
     integer: true,
     initial: 0,
     min: 0,
     label: `${baseLabel}Temp`
   });
-  if ( schemaOptions.hasTempMax ) schemaObj.tempmax = new foundry.data.fields.NumberField({
+  if (schemaOptions.hasTempMax) schemaObj.tempmax = new foundry.data.fields.NumberField({
     integer: true,
     initial: 0,
     label: `${baseLabel}TempMax`

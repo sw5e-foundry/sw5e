@@ -18,7 +18,7 @@ export default class CurrencyTemplate extends foundry.abstract.DataModel {
           min: 0,
           initial: 0
         }),
-        { initialKeys: CONFIG.SW5E.currencies, label: "SW5E.Currency" }
+        { initialKeys: CONFIG.SW5E.currencies, initialKeysOnly: true, label: "SW5E.Currency" }
       )
     };
   }

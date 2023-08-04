@@ -37,7 +37,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.title = Object.fromEntries(Array.fromRange(4, 1).map(n => [`level${n}`, context.data.title.level + n - 1]));
 
     const linked = await fromUuid(this.document.system.item);
-    context.subclasses = await this._getSubclasses(this.document.system.subclassItems);
+    context.archetypes = await this._getArchetypes(this.document.system.archetypeItems);
 
     if (!linked) return context;
     context.linked = {
@@ -51,7 +51,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
     context.table = await this._getTable(linked);
     context.optionalTable = await this._getOptionalTable(linked);
     context.features = await this._getFeatures(linked);
-    context.archetypes = await this._getArchetypes(this.document.system.archetypeItems);
+    context.optionalFeatures = await this._getFeatures(linked, true);
     context.archetypes?.sort((lhs, rhs) => lhs.name.localeCompare(rhs.name));
 
     return context;
@@ -67,7 +67,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
   _getAdvancement(item) {
     const advancement = {};
 
-    const hp = item.advancement.byType.HitPoints[0];
+    const hp = item.advancement.byType.HitPoints?.[0];
     if (hp) {
       advancement.hp = {
         hitDice: `1${hp.hitDie}`,
@@ -149,7 +149,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
           case "ItemGrant":
             if (advancement.configuration.optional) continue;
             features.push(...(await Promise.all(advancement.configuration.items.map(makeLink))));
-            continue;
+            break;
         }
       }
 
@@ -197,7 +197,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
       ];
       table.cols = [{ class: "powercasting", span: 3 }];
 
-      const basePoints = CONFIG.SW5E.powerPointsBase[progression] / ((progType === "tech") ? 2 : 1);
+      const basePoints = CONFIG.SW5E.powerPointsBase[progression] / (progType === "tech" ? 2 : 1);
       const maxKnown = CONFIG.SW5E.powersKnown[progType][progression];
       const maxLevel = CONFIG.SW5E.powerMaxLevel[progression];
 
@@ -239,7 +239,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
           case "ItemGrant":
             if (!advancement.configuration.optional) continue;
             features.push(...(await Promise.all(advancement.configuration.items.map(makeLink))));
-            continue;
+            break;
         }
       }
       if (!features.length) continue;
@@ -384,7 +384,7 @@ export default class JournalClassPageSheet extends JournalPageSheet {
    */
   _onLaunchTextEditor(event) {
     event.preventDefault();
-    const textKeyPath = event.target.dataset.target;
+    const textKeyPath = event.currentTarget.dataset.target;
     const label = event.target.closest(".form-group").querySelector("label");
     const editor = new JournalEditor(this.document, { textKeyPath, title: label?.innerText });
     editor.render(true);

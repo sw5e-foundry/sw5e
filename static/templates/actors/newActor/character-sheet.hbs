@@ -22,7 +22,7 @@
             {{/unless}}
         </div>
         <div class="summary">
-            <input
+            <input class="species"
                 type="text"
                 name="system.details.species"
                 value="{{system.details.species}}"
@@ -31,14 +31,14 @@
             {{#if labels.background}}
                 <span data-tooltip="SW5E.Background">{{labels.background}}</span>
             {{else}}
-                <input
+                <input class="background"
                     type="text"
                     name="system.details.background"
                     value="{{system.details.background}}"
                     placeholder="{{ localize 'SW5E.Background' }}"
                 />
             {{/if}}
-            <input
+            <input class="alignment"
                 type="text"
                 name="system.details.alignment"
                 value="{{system.details.alignment}}"
@@ -84,7 +84,7 @@
                         data-dtype="Number"
                     >
                     <span class="value-separator">/</span>
-                    <span class="value-number" data-tooltip="{{#if sourceHP.max}}SW5E.HitPointsOverride{{else}}SW5E.HitPointsMax{{/if}}">
+                    <span class="value-number" data-tooltip="{{#if source.attributes.hp.max}}SW5E.HitPointsOverride{{else}}SW5E.HitPointsMax{{/if}}">
                         {{hp.max}}
                     </span>
                 </div>

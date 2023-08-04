@@ -116,6 +116,8 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {

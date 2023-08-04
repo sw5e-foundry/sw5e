@@ -5,6 +5,7 @@ export default class CharacterImporter {
   // and insert new actor
 
   static _itemsWithAdvancement = [];
+
   static _actor = null;
 
   static async transform(rawCharacter) {
@@ -115,7 +116,7 @@ export default class CharacterImporter {
         value: sourceCharacter.attribs.find(e => e.name === "technology_type").current
       }
     };
-    for (const id of skills) skills[id] = globalThis.sw5e.dataModels.actor.CharacterData._initialSkillValue(id, skills[id]);
+    for (const id of Object.keys(skills)) skills[id] = globalThis.sw5e.dataModels.actor.CharacterData._initialSkillValue(id, skills[id]);
 
     const targetCharacter = {
       name: sourceCharacter.name,
@@ -417,7 +418,7 @@ export default class CharacterImporter {
       if (item.type === "class") {
         const classId = item.system.identifier;
         const classLvl = item.system.levels;
-        const clonedItem = manager.clone.items.find(i=>i.type === "class" && i.system.identifier === classId);
+        const clonedItem = manager.clone.items.find(i => i.type === "class" && i.system.identifier === classId);
         const levelDelta = classLvl - 1;
         if (!clonedItem || levelDelta < 1) continue;
         manager.createLevelChangeSteps(clonedItem, levelDelta);

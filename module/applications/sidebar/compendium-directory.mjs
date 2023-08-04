@@ -9,6 +9,6 @@ export default class CompendiumDirectory5e extends CompendiumDirectory {
     super.activateListeners(html);
 
     const browseButton = CompendiumBrowser.browseButton;
-    html.find("footer.directory-footer")?.append(browseButton)
+    html.find("footer.directory-footer")?.append(browseButton);
   }
 }

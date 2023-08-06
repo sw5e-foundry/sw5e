@@ -30,9 +30,9 @@ jobs:
         with:
           files: static/system.json
         env:
-          version: ${{ steps.get-version.outputs.version }}
-          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.json
-          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get-version.outputs.version }}/system.zip
+          version: ${{ steps.get_version.outputs.version }}
+          manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
+          download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
 
       - name: Cache NPM
         id: cache-npm

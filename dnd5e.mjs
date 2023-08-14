@@ -60,9 +60,6 @@ Hooks.once("init", function() {
   CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // backwards compatibility with v10
   game.sw5e.isV10 = game.release.generation < 11;
 
-  // Configure trackable attributes.
-  _configureTrackableAttributes();
-
   // Register System Settings
   registerSystemSettings();
 
@@ -75,6 +72,10 @@ Hooks.once("init", function() {
   // Remove honor & sanity from configuration if they aren't enabled
   if ( !game.settings.get("sw5e", "honorScore") ) delete SW5E.abilities.hon;
   if ( !game.settings.get("sw5e", "sanityScore") ) delete SW5E.abilities.san;
+
+  // Configure trackable & consumable attributes.
+  _configureTrackableAttributes();
+  _configureConsumableAttributes();
 
   // Patch Core Functions
   Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
@@ -166,7 +167,7 @@ function _configureTrackableAttributes() {
   };
 
   const creature = {
-    bar: [...common.bar, "attributes.hp"],
+    bar: [...common.bar, "attributes.hp", "powers.pact"],
     value: [
       ...common.value,
       ...Object.keys(SW5E.skills).map(skill => `skills.${skill}.passive`),
@@ -195,6 +196,26 @@ function _configureTrackableAttributes() {
   };
 }
 
+/**
+ * Configure which attributes are available for item consumption.
+ * @internal
+ */
+function _configureConsumableAttributes() {
+  CONFIG.SW5E.consumableResources = [
+    ...Object.keys(SW5E.abilities).map(ability => `abilities.${ability}.value`),
+    "attributes.ac.flat",
+    "attributes.hp.value",
+    ...Object.keys(SW5E.senses).map(sense => `attributes.senses.${sense}`),
+    ...Object.keys(SW5E.movementTypes).map(type => `attributes.movement.${type}`),
+    ...Object.keys(SW5E.currencies).map(denom => `currency.${denom}`),
+    "details.xp.value",
+    "resources.primary.value", "resources.secondary.value", "resources.tertiary.value",
+    "resources.legact.value", "resources.legres.value",
+    "powers.pact.value",
+    ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(level => `powers.power${level}.value`)
+  ];
+}
+
 /* -------------------------------------------- */
 /*  Foundry VTT Setup                           */
 /* -------------------------------------------- */
@@ -204,7 +225,6 @@ function _configureTrackableAttributes() {
  */
 Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
-  CONFIG.SW5E.consumableResources = expandAttributeList(CONFIG.SW5E.consumableResources);
   game.sw5e.moduleArt.registerModuleArt();
 
   // Apply custom compendium styles to the SRD rules compendium.

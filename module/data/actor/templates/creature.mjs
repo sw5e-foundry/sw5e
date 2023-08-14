@@ -46,7 +46,7 @@ export default class CreatureTemplate extends CommonTemplate {
       }, {label: "SW5E.Bonuses"}),
       skills: new MappingField(new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({
-          required: true, min: 0, max: 2, step: 0.5, initial: 0, label: "SW5E.ProficiencyLevel"
+          required: true, nullable: false, min: 0, max: 2, step: 0.5, initial: 0, label: "SW5E.ProficiencyLevel"
         }),
         ability: new foundry.data.fields.StringField({required: true, initial: "dex", label: "SW5E.Ability"}),
         bonuses: new foundry.data.fields.SchemaField({
@@ -59,7 +59,7 @@ export default class CreatureTemplate extends CommonTemplate {
       }),
       tools: new MappingField(new foundry.data.fields.SchemaField({
         value: new foundry.data.fields.NumberField({
-          required: true, min: 0, max: 2, step: 0.5, initial: 1, label: "SW5E.ProficiencyLevel"
+          required: true, nullable: false, min: 0, max: 2, step: 0.5, initial: 1, label: "SW5E.ProficiencyLevel"
         }),
         ability: new foundry.data.fields.StringField({required: true, initial: "int", label: "SW5E.Ability"}),
         bonuses: new foundry.data.fields.SchemaField({
@@ -157,7 +157,7 @@ export default class CreatureTemplate extends CommonTemplate {
     if ( !original || foundry.utils.isEmpty(original.value) ) return;
     source.tools ??= {};
     for ( const prof of original.value ) {
-      const validProf = (prof in CONFIG.SW5E.toolProficiencies) || (prof in CONST.SW5E.toolIds);
+      const validProf = (prof in CONFIG.SW5E.toolProficiencies) || (prof in CONFIG.SW5E.toolIds);
       if ( !validProf || (prof in source.tools) ) continue;
       source.tools[prof] = {
         value: 1,

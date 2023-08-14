@@ -2,14 +2,14 @@
   "id": "sw5e",
   "title": "SW5e - Fifth Edition System",
   "description": "A system for playing the fifth edition of the worlds most popular role-playing game in the Foundry Virtual Tabletop environment.",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "compatibility": {
-    "minimum": "10.291",
+    "minimum": "10.303",
     "verified": "11"
   },
   "url": "https://github.com/foundryvtt/sw5e/",
   "manifest": "https://raw.githubusercontent.com/foundryvtt/sw5e/master/system.json",
-  "download": "https://github.com/foundryvtt/sw5e/releases/download/release-2.2.2/sw5e-release-2.2.2.zip",
+  "download": "https://github.com/foundryvtt/sw5e/releases/download/release-2.3.0/sw5e-release-2.3.0.zip",
   "authors": [
     {
       "name": "Atropos",
@@ -142,6 +142,52 @@
       "flags": {}
     }
   ],
+  "packFolders": [
+    {
+      "name": "SW5e SRD Content",
+      "sorting": "m",
+      "color": "#cd2c1e",
+      "packs": [
+        "rules",
+        "tables",
+        "heroes"
+      ],
+      "folders":[
+        {
+          "name": "Character Features",
+          "sorting": "m",
+          "color": "#b72c1f",
+          "packs": [
+            "classes",
+            "archetypes",
+            "classfeatures",
+            "backgrounds",
+            "species",
+            "heroes"
+          ]
+        },
+        {
+          "name": "Items & Powers",
+          "sorting": "m",
+          "color": "#941919 ",
+          "packs": [
+            "items",
+            "powers",
+            "tradegoods"
+          ]
+        },
+        {
+          "name": "Monsters",
+          "sorting": "m",
+          "color": "#7d160c",
+          "packs": [
+            "monsters",
+            "monsterfeatures"
+          ]
+        }
+      ]
+    }
+  ],
   "languages": [
     {
       "lang": "en",
@@ -162,7 +208,7 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
   "flags": {
-    "needsMigrationVersion": "2.2.2",
+    "needsMigrationVersion": "2.3.0",
     "compatibleMigrationVersion": "0.8"
   }
 }

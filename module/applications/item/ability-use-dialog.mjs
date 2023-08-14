@@ -99,13 +99,13 @@ export default class AbilityUseDialog extends Dialog {
     const consumePowerSlot = (lvl > 0) && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
 
     // If can't upcast, return early and don't bother calculating available power slots
-    if (!consumePowerSlot) {
+    if ( !consumePowerSlot ) {
       return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot });
     }
 
     // Determine the levels which are feasible
     let lmax = 0;
-    const powerLevels = Array.fromRange(10).reduce((arr, i) => {
+    const powerLevels = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length).reduce((arr, i) => {
       if ( i < lvl ) return arr;
       const label = CONFIG.SW5E.powerLevels[i];
       const l = actorData.powers[`power${i}`] || {max: 0, override: null};
@@ -123,7 +123,7 @@ export default class AbilityUseDialog extends Dialog {
 
     // If this character has pact slots, present them as an option for casting the power.
     const pact = actorData.powers.pact;
-    if (pact.level >= lvl) {
+    if ( pact.level >= lvl ) {
       powerLevels.push({
         level: "pact",
         label: `${game.i18n.format("SW5E.PowerLevelPact", {level: pact.level, n: pact.value})}`,

@@ -390,7 +390,7 @@ export default class ItemSheet5e extends ItemSheet {
       case "power":
         return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation];
       case "tool":
-        return CONFIG.SW5E.proficiencyLevels[this.item.system.prof?.multiplier || 0];
+        return CONFIG.SW5E.proficiencyLevels[this.item.system.prof?.multiplier || 0].label;
     }
     return null;
   }

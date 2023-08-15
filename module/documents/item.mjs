@@ -2451,9 +2451,6 @@ export default class Item5e extends Item {
         case "power":
           updates = this._onCreateOwnedPower(data, isNPC);
           break;
-        case "tool":
-          updates = this._onCreateOwnedTool(data, isNPC);
-          break;
         case "weapon":
           updates = this._onCreateOwnedWeapon(data, isNPC);
           break;

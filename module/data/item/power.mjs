@@ -155,4 +155,14 @@ export default class PowerData extends SystemDataModel.mixin(
   get _typeCriticalThreshold() {
     return this.parent?.actor?.flags.sw5e?.powerCriticalThreshold ?? Infinity;
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The proficiency multiplier for this item.
+   * @returns {number}
+   */
+  get proficiencyMultiplier() {
+    return 1;
+  }
 }

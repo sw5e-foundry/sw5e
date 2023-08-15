@@ -556,29 +556,37 @@ export default class Actor5e extends Actor {
         }
       }
 
-      // Set the 'power slots'
+      // Shortcuts to make the code cleaner
       const p = progression.prefix;
-      for (const [n, lvl] of Object.entries(this.system.powers)) {
-        const i = parseInt(n.slice(-1));
-        if (Number.isNaN(i)) continue;
+      const pmin = `${p}min`;
+      const pmax = `${p}max`;
+      const pval = `${p}value`;
+      const povr = `${p}override`;
 
-        if (Number.isNumeric(lvl[`${p}override`])) lvl[`${p}max`] = Math.max(parseInt(lvl[`${p}override`]), 0);
-        else lvl[`${p}max`] = i > progression.maxPowerLevel ? 0 : i >= progression.limit ? 1 : 1000;
+      // Set the 'power slots'
+      const powers = this.system.powers;
+      for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
+        const slot = powers[`power${level}`] ??= { [pval]: 0 };
+
+        const override = slot[povr];
+        const regular = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
+        slot[pmax] = Number.isNumeric(override) ? Math.max(parseInt(override), 0) : regular;
 
         if (isNPC) {
-          lvl[`${p}value`] = lvl[`${p}max`];
+          slot[pval] = slot[pmax];
         } else {
-          lvl[`${p}value`] = Math.min(parseInt(lvl[`${p}value`] ?? lvl.value ?? lvl[`${p}max`]), lvl[`${p}max`]);
+          slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
         }
       }
 
       // Apply the calculated values to the sheet
-      this.system.attributes[progression.castType].known ??= {};
-      this.system.attributes[progression.castType].known.value = progression.powersKnownCur;
-      this.system.attributes[progression.castType].known.max = progression.powersKnownMax;
-      this.system.attributes[progression.castType].points.max ??= progression.points;
-      this.system.attributes[progression.castType].level = progression.casterLevel;
-      this.system.attributes[progression.castType].override = progression.override;
+      const target = this.system.attributes[progression.castType];
+      target.known ??= {};
+      target.known.value = progression.powersKnownCur;
+      target.known.max = progression.powersKnownMax;
+      target.points.max ??= progression.points;
+      target.level = progression.casterLevel;
+      target.override = progression.override;
     }
   }
 
@@ -887,6 +895,8 @@ export default class Actor5e extends Actor {
       abl.save = abl.mod + abl.saveBonus;
       if (Number.isNumeric(abl.saveProf.term)) abl.save += abl.saveProf.flat;
       abl.dc = 8 + abl.mod + this.system.attributes.prof + dcBonus;
+
+      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.SW5E.maxAbilityScore;
 
       // If we merged saves when transforming, take the highest bonus here.
       if (originalSaves && abl.proficient) abl.save = Math.max(abl.save, originalSaves[id].save);
@@ -1404,13 +1414,15 @@ export default class Actor5e extends Actor {
     if (sourceId?.startsWith("Compendium.")) return;
 
     // Configure prototype token settings
+    const prototypeToken = {};
     if ("size" in (this.system.traits || {})) {
-      const s = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
-      const prototypeToken = { width: s, height: s };
-      if (this.type === "character") Object.assign(prototypeToken, {
+      const size = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
+      if ( !foundry.utils.hasProperty(data, "prototypeToken.width") ) prototypeToken.width = size;
+      if ( !foundry.utils.hasProperty(data, "prototypeToken.height") ) prototypeToken.height = size;
+      if ( this.type === "character" ) Object.assign(prototypeToken, {
         sight: { enabled: true },
         actorLink: true,
-        disposition: 1
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
       });
       else if (this.type === "starship") Object.assign(prototypeToken, {
         actorLink: true
@@ -1768,7 +1780,7 @@ export default class Actor5e extends Actor {
   async rollToolCheck(toolId, options = {}) {
     // Prepare roll data.
     const tool = this.system.tools[toolId];
-    const ability = this.system.abilities[tool?.ability ?? "int"];
+    const ability = this.system.abilities[options.ability || (tool?.ability ?? "int")];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
     const data = this.getRollData();
@@ -1778,9 +1790,10 @@ export default class Actor5e extends Actor {
     data.defaultAbility = options.ability || (tool?.ability ?? "int");
 
     // Add proficiency.
-    if (tool?.prof.hasProficiency) {
+    const prof = options.prof ?? tool?.prof;
+    if ( prof?.hasProficiency ) {
       parts.push("@prof");
-      data.prof = tool.prof.term;
+      data.prof = prof.term;
     }
 
     // Global ability check bonus.
@@ -4345,7 +4358,7 @@ export default class Actor5e extends Actor {
    * @property {boolean} [mergeSkills=false]        Take the maximum of the skill proficiencies
    * @property {boolean} [keepClass=false]          Keep proficiency bonus
    * @property {boolean} [keepFeats=false]          Keep features
-   * @property {boolean} [keepPowers=false]         Keep powers
+   * @property {boolean} [keepPowers=false]         Keep powers and powercasting ability
    * @property {boolean} [keepItems=false]          Keep items
    * @property {boolean} [keepBio=false]            Keep biography
    * @property {boolean} [keepVision=false]         Keep vision
@@ -4416,7 +4429,7 @@ export default class Actor5e extends Actor {
 
     // Prepare new data to merge from the source
     const d = foundry.utils.mergeObject(
-      {
+      foundry.utils.deepClone({
         type: o.type, // Remain the same actor type
         name: `${o.name} (${source.name})`, // Append the new shape to your old name
         system: source.system, // Get the systemdata model of your new form
@@ -4427,7 +4440,7 @@ export default class Actor5e extends Actor {
         folder: o.folder, // Be displayed in the same sidebar folder
         flags: o.flags, // Use the original actor flags
         prototypeToken: { name: `${o.name} (${source.name})`, texture: {}, sight: {}, detectionModes: [] } // Set a new empty token
-      },
+      }),
       keepSelf ? o : {}
     ); // Keeps most of original actor
 
@@ -4435,6 +4448,7 @@ export default class Actor5e extends Actor {
     delete d.system.resources; // Don't change your resource pools
     delete d.system.currency; // Don't lose currency
     delete d.system.bonuses; // Don't lose global bonuses
+    if ( keepPowers ) delete d.system.attributes.powercasting; // Keep powercasting ability if retaining powers.
 
     // Specific additional adjustments
     d.system.details.alignment = o.system.details.alignment; // Don't change alignment
@@ -4479,8 +4493,11 @@ export default class Actor5e extends Actor {
         const type = CONFIG.SW5E.abilities[k]?.type;
         if (keepPhysical && type === "physical") abilities[k] = oa;
         else if (keepMental && type === "mental") abilities[k] = oa;
+
+        // Set saving throw proficiencies.
         if (keepSaves) abilities[k].proficient = oa.proficient;
         else if (mergeSaves) abilities[k].proficient = Math.max(prof, oa.proficient);
+        else abilities[k].proficient = source.system.abilities[k].proficient;
       }
 
       // Transfer skills
@@ -5007,6 +5024,7 @@ export default class Actor5e extends Actor {
     dhp = Number(dhp);
     const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
     for (const t of tokens) {
+      if ( !t.visible || !t.renderable ) continue;
       const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
       canvas.interface.createScrollingText(t.center, dhp.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,

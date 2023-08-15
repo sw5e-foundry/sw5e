@@ -491,6 +491,15 @@
     flex: 0 0 20px;
     justify-content: flex-end;
 
+    .attunement {
+      color: @colorTan;
+      font-size: 12px;
+      [name="system.attributes.attunement.max"] {
+        display: inline;
+        max-width: 23px;
+        text-align: center;
+      }
+    }
     .currency {
       flex: 0 0 100%;
       list-style: none;
@@ -528,10 +537,13 @@
           background-image: url("icons/svg/d20-black.svg") !important;
         }
         i.attuned {
-          color: @colorTan;
+          color: @colorCrimson;
         }
         i.not-attuned {
-          color: @colorCrimson;
+          color: @colorTan;
+        }
+        h4 {
+          line-height: 30px;
         }
       }
 
@@ -576,6 +588,9 @@
       }
       &.item-action {
         flex: 0 0 100px;
+      }
+      &.item-quantity {
+        flex: 0 0 40px;
       }
       &.attunement {
         flex: 0 0 24px;

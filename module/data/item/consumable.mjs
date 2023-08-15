@@ -40,16 +40,16 @@ export default class ConsumableData extends SystemDataModel.mixin(
         nullable: true,
         label: "SW5E.ItemAmmoType"
       }),
+      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
+        required: true,
+        label: "SW5E.ItemWeaponProperties"
+      }),
       uses: new ActivatedEffectTemplate.ItemUsesField(
         {
           autoDestroy: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemDestroyEmpty" })
         },
         { label: "SW5E.LimitedUses" }
-      ),
-      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
-        required: true,
-        label: "SW5E.ItemWeaponProperties"
-      })
+      )
     });
   }
 

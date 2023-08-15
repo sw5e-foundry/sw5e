@@ -452,6 +452,16 @@ SW5E.weaponIds = {
 /* -------------------------------------------- */
 
 /**
+ * The basic ammunition types.
+ * @enum {string}
+ */
+SW5E.ammoIds = {
+  // TODO: get the ids
+};
+
+/* -------------------------------------------- */
+
+/**
  * The categories into which Tool items can be grouped.
  *
  * @enum {string}
@@ -1017,6 +1027,45 @@ preLocalize("ammoTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * Types of containers.
+ * @enum {string}
+ */
+SW5E.containerTypes = {
+  // TODO: get the ids
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for powercasting foci.
+ *
+ * @typedef {object} PowercastingFocusConfiguration
+ * @property {string} label                    Localized label for this category.
+ * @property {Object<string, string>} itemIds  Item IDs or UUIDs.
+ */
+
+/**
+ * Type of powercasting foci.
+ * @enum {PowercastingFocusConfiguration}
+ */
+SW5E.focusTypes = {
+  force: {
+    label: "SW5E.Focus.Force",
+    itemIds: {
+      // TODO: get the ids
+    }
+  },
+  tech: {
+    label: "SW5E.Focus.Tech",
+    itemIds: {
+      // TODO: get the ids
+    }
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
  * Migration data for old 'feat-like items'.
  * @enum {object}
  * @property {string} value       system.type.value data after migration
@@ -1469,6 +1518,9 @@ SW5E.individualTargetTypes = {
   droid: "SW5E.TargetDroid",
   object: "SW5E.TargetObject",
   space: "SW5E.TargetSpace",
+  creatureOrObject: "SW5E.TargetCreatureOrObject",
+  any: "SW5E.TargetAny",
+  willing: "SW5E.TargetWilling",
   starship: "SW5E.TargetStarship",
   weapon: "SW5E.TargetWeapon"
 };
@@ -3115,6 +3167,18 @@ preLocalize("proficiencyLevelsLabels");
 /* -------------------------------------------- */
 
 /**
+ * Weapon and armor item proficiency levels.
+ * @enum {string}
+ */
+SW5E.weaponAndArmorProficiencyLevels = {
+  0: "SW5E.NotProficient",
+  1: "SW5E.Proficient"
+};
+preLocalize("weaponAndArmorProficiencyLevels");
+
+/* -------------------------------------------- */
+
+/**
  * The amount of cover provided by an object. In cases where multiple pieces
  * of cover are in play, we take the highest value.
  * @enum {string}
@@ -3158,19 +3222,7 @@ SW5E.trackableAttributes = [
  * @type {string[]}
  */
 SW5E.consumableResources = [
-  "item.quantity",
-  "item.weight",
-  "item.duration.value",
-  "currency",
-  "details.xp.value",
-  "abilities.*.value",
-  "attributes.senses",
-  "attributes.movement",
-  "attributes.ac.flat",
-  "item.armor.value",
-  "item.target",
-  "item.range",
-  "item.save.dc"
+  // Configured during init.
 ];
 
 /* -------------------------------------------- */
@@ -3345,6 +3397,12 @@ SW5E.maxIndividualRank = 5;
  * @type {number}
  */
 SW5E.maxTier = 5;
+
+/**
+ * Maximum ability score value allowed by default.
+ * @type {number}
+ */
+SW5E.maxAbilityScore = 20;
 
 /* -------------------------------------------- */
 
@@ -3890,6 +3948,7 @@ SW5E.allowedActorFlags = ["isPolymorphed", "originalActor", "dataVersion"].conca
  * @enum {*}
  */
 SW5E.advancementTypes = {
+  AbilityScoreImprovement: advancement.AbilityScoreImprovementAdvancement,
   HitPoints: advancement.HitPointsAdvancement,
   HullPoints: advancement.HullPointsAdvancement,
   ShieldPoints: advancement.ShieldPointsAdvancement,

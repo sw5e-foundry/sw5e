@@ -1,0 +1,13 @@
+<form autocomplete="off" data-id="{{_id}}" data-type="{{type}}">
+  {{> "sw5e.advancement-controls"}}
+
+  <ul class="ability-scores">
+    {{> "sw5e.advancement-ability-score-control" points canAdjust=true}}
+    <li class="hint">
+      {{localize "SW5E.AdvancementAbilityScoreImprovementPointsHint"}}
+    </li>
+    {{#each abilities}}
+      {{> "sw5e.advancement-ability-score-control" this canAdjust=true}}
+    {{/each}}
+  </ul>
+</form>

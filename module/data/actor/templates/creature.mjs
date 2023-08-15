@@ -73,6 +73,7 @@ export default class CreatureTemplate extends CommonTemplate {
         new foundry.data.fields.SchemaField({
           value: new foundry.data.fields.NumberField({
             required: true,
+            nullable: false,
             min: 0,
             max: 6,
             step: 0.5,
@@ -99,6 +100,7 @@ export default class CreatureTemplate extends CommonTemplate {
         new foundry.data.fields.SchemaField({
           value: new foundry.data.fields.NumberField({
             required: true,
+            nullable: false,
             min: 0,
             max: 6,
             step: 0.5,
@@ -228,7 +230,7 @@ export default class CreatureTemplate extends CommonTemplate {
     if (!original || foundry.utils.isEmpty(original.value)) return;
     source.tools ??= {};
     for (const prof of original.value) {
-      const validProf = prof in CONFIG.SW5E.toolProficiencies || prof in CONST.SW5E.toolIds;
+      const validProf = prof in CONFIG.SW5E.toolProficiencies || prof in CONFIG.SW5E.toolIds;
       if (!validProf || prof in source.tools) continue;
       source.tools[prof] = {
         value: 1,

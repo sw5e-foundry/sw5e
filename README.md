@@ -26,6 +26,9 @@ If you wish to manually install the system, you can download the release you wan
 [Releases Page](https://github.com/sw5e-foundry/sw5e/releases) on github and extract it into the `Data/systems/sw5e` 
 folder.
 
+## Frequently Asked Questions  
+Check the [Wiki](../../wiki) for answers to our most [frequently asked questions](../../wiki/faq)
+
 ## Community Contribution
 
 See the [CONTRIBUTING](/CONTRIBUTING.md) file for information about how you can help this project.

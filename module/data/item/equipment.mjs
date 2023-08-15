@@ -101,7 +101,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
         integer: true,
         initial: null,
         label: "SW5E.ProficiencyLevel"
-      })
+      }),
       properties: makeItemProperties(CONFIG.SW5E.equipmentProperties, {
         required: true,
         label: "SW5E.ItemEquipmentProperties"

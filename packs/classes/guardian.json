@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "1IA1m9Q504T51L1V",
+        "_id": "aWrA6IJpKgs1FTTm",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "GAFwW8IxjRVBFl8j",
+        "_id": "1zFvEBdlgb3woMb9",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "focused-strikes",
@@ -70,7 +70,7 @@
         "title": "Focused Strikes"
       },
       {
-        "_id": "EL4eSSKHFbX1bYKt",
+        "_id": "1HwVwy8RSOtTdmlW",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "auras-known",
@@ -91,7 +91,7 @@
         "title": "Auras Known"
       },
       {
-        "_id": "RhDn57hnVs5ovjCg",
+        "_id": "e5BuObUgwmlhcYYr",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "aura-radius",
@@ -115,7 +115,57 @@
         "title": "Aura Radius"
       },
       {
-        "_id": "XVtZkkHW1Q86uqXW",
+        "_id": "1KeueWaf2DADwX8D",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 4
+      },
+      {
+        "_id": "1CsoodsxwIk9FQ4m",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 8
+      },
+      {
+        "_id": "GLyIwjsSKOG1arj8",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 12
+      },
+      {
+        "_id": "oNPM3Q3ZUCn1eL3o",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 16
+      },
+      {
+        "_id": "yXd891rxLyl1BXzh",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 19
+      },
+      {
+        "_id": "coZemFMIQJGzURgP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -129,7 +179,7 @@
         "title": "Features"
       },
       {
-        "_id": "5s8EicfvQ4X1Jsju",
+        "_id": "pKFmHrYBAy81osGF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -143,7 +193,7 @@
         "title": "Features"
       },
       {
-        "_id": "sPeYiJ8ClBdvKg7A",
+        "_id": "qk2VR6P6j4L11y1A",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -157,20 +207,7 @@
         "title": "Features"
       },
       {
-        "_id": "1p8eTy07kTPn1m4O",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.classfeatures.wyZZH9eS4rjO19YW"
-          ],
-          "optional": false
-        },
-        "value": {},
-        "level": 4,
-        "title": "Features"
-      },
-      {
-        "_id": "RLQl07IBmK3sXNLz",
+        "_id": "2tvnCKz8EYp1OMED",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -183,7 +220,7 @@
         "title": "Features"
       },
       {
-        "_id": "1D0lreBxKVZkX7RA",
+        "_id": "1bHDZV6KxGoTcyAI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -196,7 +233,7 @@
         "title": "Features"
       },
       {
-        "_id": "ckcTAhumo7H1b4DN",
+        "_id": "13fwCXGsGG7oYr8P",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -209,7 +246,7 @@
         "title": "Features"
       },
       {
-        "_id": "1uvyvZQeLPCe10db",
+        "_id": "1mg5Dwko09ybXGhy",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -220,6 +257,87 @@
         "value": {},
         "level": 14,
         "title": "Features"
+      },
+      {
+        "_id": "B9MeeFtzvSb9cLBl",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "You gain an aura of your choice, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Auras Known column of the guardian table. Your aura has a radius of 5 feet, which increases at higher levels, as shown in the Aura Radius column of the guardian table.",
+          "choices": {
+            "3": 1,
+            "10": 1,
+            "18": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.6a5x09cmtiNUxIaS",
+            "Compendium.sw5e.invocations.IKvPm9KSasMXBYf4",
+            "Compendium.sw5e.invocations.IRr9SZnIRP05mxTE",
+            "Compendium.sw5e.invocations.VFSJrfOZXd7yKvec",
+            "Compendium.sw5e.invocations.0RnJECNGdGTiaaB6",
+            "Compendium.sw5e.invocations.IqoO3lGbY1tI6j1W",
+            "Compendium.sw5e.invocations.RnL9f6keUkIO790f"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "guardianInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Guardian Auras"
+      },
+      {
+        "_id": "17kaMXHV5doJ8Q1u",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "Different guardians focus on different lightsaber styles, called Forms, as they hone their powers. Your focus grants you features at 3rd, 7th, 15th, and 20th level.",
+          "choices": {
+            "3": 1
+          },
+          "allowDrops": true,
+          "type": "archetype",
+          "pool": [
+            "Compendium.sw5e.archetypes.YgIJacJUsc2MSQ7C",
+            "Compendium.sw5e.archetypes.Zw2G0DDXo3uaDN4r",
+            "Compendium.sw5e.archetypes.qXYcepno6c5cYqZC",
+            "Compendium.sw5e.archetypes.HT7t6njBrKPe6dB1",
+            "Compendium.sw5e.archetypes.tte2PRr3ou7adFjZ",
+            "Compendium.sw5e.archetypes.Mgp8Eo9BqTJtu6s6",
+            "Compendium.sw5e.archetypes.MzyAyoDzy2DBadru",
+            "Compendium.sw5e.archetypes.odCsSvAG0Tmn6AoK",
+            "Compendium.sw5e.archetypes.9FkoSl6i5rQwWnLk",
+            "Compendium.sw5e.archetypes.pU28YNzK3zCzxIPv",
+            "Compendium.sw5e.archetypes.SZB325oKrWryDexC",
+            "Compendium.sw5e.archetypes.Yt9gDW1G5GDaVAJd",
+            "Compendium.sw5e.archetypes.5gfIN2jExDwxmY15",
+            "Compendium.sw5e.archetypes.XKpKuW4WGO0M31co"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "",
+            "subtype": "",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Guardian Foci"
       }
     ],
     "saves": [
@@ -257,10 +375,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.0.2.6.0",
+    "coreVersion": "10.303",
     "createdTime": 1674493961817,
-    "modifiedTime": 1684819094477,
+    "modifiedTime": 1692481125254,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

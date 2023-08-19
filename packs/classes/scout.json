@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "12Px6lb3UxTt12q6",
+        "_id": "tdRO8nQM2Spcbfx2",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "yRTBBLzIyhpDksUA",
+        "_id": "BCU4G04eLRH1dnPB",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "rangers-quarry",
@@ -70,7 +70,7 @@
         "title": "Ranger's Quarry"
       },
       {
-        "_id": "ikvWMa2SDfjsf8za",
+        "_id": "1gyswNi3jXJB1rrU",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "routines-known",
@@ -91,7 +91,7 @@
         "title": "Routines Known"
       },
       {
-        "_id": "102DPcCEhAHk10mR",
+        "_id": "1vlvzTghMAa41fGI",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "routine-radius",
@@ -115,7 +115,57 @@
         "title": "Routine Radius"
       },
       {
-        "_id": "1gNHpZp0FpYDvOjZ",
+        "_id": "x98JnEoVq8l1mIqY",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 4
+      },
+      {
+        "_id": "1SAADIueBJWU1jgE",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 8
+      },
+      {
+        "_id": "9QXbQt3hflI3VDuo",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 12
+      },
+      {
+        "_id": "3slnanUoQFyd7zSu",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 16
+      },
+      {
+        "_id": "Yd9gq39CxACEUMcD",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 19
+      },
+      {
+        "_id": "3kUhzwyj9XgQNGWF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -129,7 +179,7 @@
         "title": "Features"
       },
       {
-        "_id": "1G4UsY1PKYkk1IZh",
+        "_id": "UgcDMH9iP7C18Bej",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -143,7 +193,7 @@
         "title": "Features"
       },
       {
-        "_id": "1OGZETPJSppfXs77",
+        "_id": "QQfJU9bz0BvQiJQW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -157,20 +207,7 @@
         "title": "Features"
       },
       {
-        "_id": "13SnBaS7cDgP15iO",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.classfeatures.P4tlOzaZ1dGLcehD"
-          ],
-          "optional": false
-        },
-        "value": {},
-        "level": 4,
-        "title": "Features"
-      },
-      {
-        "_id": "17N2ByY8gqss1rf2",
+        "_id": "4rmydhcy9GZAqqJe",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -183,7 +220,7 @@
         "title": "Features"
       },
       {
-        "_id": "16JEQkZ8LsQP1dIq",
+        "_id": "SC9PtCtH7kJ1kIQG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -196,7 +233,7 @@
         "title": "Features"
       },
       {
-        "_id": "1Rnd24QQek14gH9o",
+        "_id": "HK8xVkiPc1zuzrEx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -209,7 +246,7 @@
         "title": "Features"
       },
       {
-        "_id": "1GcQKbJSoWk31GSY",
+        "_id": "1dUGc923fRcUWFVT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -222,7 +259,7 @@
         "title": "Features"
       },
       {
-        "_id": "XPLvzh9bCQB1qOPj",
+        "_id": "nOznCWRByqM1f9rE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -235,7 +272,7 @@
         "title": "Features"
       },
       {
-        "_id": "IAouSdU4Nly1JS9d",
+        "_id": "1iu8RHAES7lu12I6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -246,6 +283,89 @@
         "value": {},
         "level": 20,
         "title": "Features"
+      },
+      {
+        "_id": "1GcDamRWioEm17xQ",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "You've developed one routine, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Routines Known column of the scout table. Your routine has a radius of 5 feet, which increases at higher levels, as shown in the Routine Radius column of the scout table.",
+          "choices": {
+            "3": 1,
+            "7": 1,
+            "15": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.xsx6etflqpANTJn4",
+            "Compendium.sw5e.invocations.Zr0dK8pAXXWWL5lm",
+            "Compendium.sw5e.invocations.Iu1wYYanefSvWwGB",
+            "Compendium.sw5e.invocations.EaNHkFYFZHz48MJX",
+            "Compendium.sw5e.invocations.mBqSLUlpr2r9KV5m",
+            "Compendium.sw5e.invocations.7nPFo8nxg2fJ5ahy",
+            "Compendium.sw5e.invocations.48dKGfcqw2JNXCPx",
+            "Compendium.sw5e.invocations.IFMOx6Vg8Vh7sSax"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "scoutInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Scout Routines"
+      },
+      {
+        "_id": "PsF5f7HmrHM1lnwU",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "Scouts tend to share knowledge amongst them selves, focusing on specific techniques and honing them to perfection. Your technique grants you features at 3rd, 7th, 11th, and 15th level.",
+          "choices": {
+            "3": 1
+          },
+          "allowDrops": true,
+          "type": "archetype",
+          "pool": [
+            "Compendium.sw5e.archetypes.Tpq3FQTwrazsbPoW",
+            "Compendium.sw5e.archetypes.7SAaAtkq5aoatrJ2",
+            "Compendium.sw5e.archetypes.Fv2rHXRwvn46CNEk",
+            "Compendium.sw5e.archetypes.snMUCDEc49pFQlM0",
+            "Compendium.sw5e.archetypes.V2bcLrwUYGQpV2PI",
+            "Compendium.sw5e.archetypes.M2q46N6qURpjJ0AG",
+            "Compendium.sw5e.archetypes.aniOJe8eRRoL440j",
+            "Compendium.sw5e.archetypes.UzpUR5lA4YOM5XVs",
+            "Compendium.sw5e.archetypes.KF8kUycWL7wOhhnO",
+            "Compendium.sw5e.archetypes.roFtZBQryEKA1WlJ",
+            "Compendium.sw5e.archetypes.4ldzxHJd8qW1LGDA",
+            "Compendium.sw5e.archetypes.NdmBGQIL4dFm7prB",
+            "Compendium.sw5e.archetypes.1NArAZ8FKBEoN6Bg",
+            "Compendium.sw5e.archetypes.OdXeuVLVdK7O0H24",
+            "Compendium.sw5e.archetypes.GbB3NiPHq2kyAQMO"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "",
+            "subtype": "",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Scout Techniques"
       }
     ],
     "saves": [
@@ -283,10 +403,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.0.2.6.0",
+    "coreVersion": "10.303",
     "createdTime": 1674493961822,
-    "modifiedTime": 1684819094478,
+    "modifiedTime": 1692481125258,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

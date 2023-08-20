@@ -186,6 +186,13 @@
                 }
               }
             }
+
+            i.attuned {
+              color: @actorAttunementActiveColor;
+            }
+            i.not-attuned {
+              color: @actorAttunementColor;
+            }
           }
 
           .item-control {
@@ -334,6 +341,10 @@
     }
 
     .tab.inventory {
+      .attunement {
+        color: @headingColor;
+      }
+
       .currency {
         color: @headingColor;
       }

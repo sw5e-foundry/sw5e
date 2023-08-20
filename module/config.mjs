@@ -456,7 +456,56 @@ SW5E.weaponIds = {
  * @enum {string}
  */
 SW5E.ammoIds = {
-  // TODO: get the ids
+    arrow: "sw5e.ammo.kW97lhvo8rYMypG0",
+    arrowcombustive: "sw5e.ammo.n1gjy0mheXViYfsE",
+    arrowelectroshock: "sw5e.ammo.q5XpHt4TEi7JY4IM",
+    arrownoisemaker: "sw5e.ammo.rWNnt31Qc8vijcUb",
+    bolt: "sw5e.ammo.bXgrfvShJWyNygV0",
+    boltdeafening: "sw5e.ammo.dmodQxWAT6Bfrhns",
+    boltelectrifying: "sw5e.ammo.NNjJbfRx67JdirSR",
+    boltpanic: "sw5e.ammo.z7ztMrbJCh3cl5LM",
+    corrosivecartridge: "sw5e.ammo.eNEdlWIHLR3yflJM",
+    cryocell: "sw5e.ammo.0gGP4fOTbT5Nr0UP",
+    dart: "sw5e.ammo.ld3OaEeYKbfHUtUC",
+    deafeningcalibrator: "sw5e.ammo.4PPbZh3aWNVgkGEE",
+    deafeningcell: "sw5e.ammo.HwoQydBMvGIrHcxI",
+    deafeningcollimator: "sw5e.ammo.21IMgkOdo3vPnJlo",
+    deafeningdart: "sw5e.ammo.9Fgu4ImgnUh3nALy",
+    electrifyingcalibrator: "sw5e.ammo.Ir6H3twcOBgEKEVe",
+    electrifyingcartridge: "sw5e.ammo.Ebbb4CPzKhzF1hNk",
+    electrifyingcollimator: "sw5e.ammo.CFAPdZKogjI5VDsC",
+    electrifyingdart: "sw5e.ammo.PhZJjeGTlaftiIX5",
+    flechetteclipfragmentation: "sw5e.ammo.S0hF8VlOBRPiKzJc",
+    flechetteclipion: "sw5e.ammo.AhnNsZEaSyt5vQoa",
+    flechetteclipplasma: "sw5e.ammo.JhA6Fk0CmRAhWQqs",
+    flechettemagfragmentation: "sw5e.ammo.WFGBHjctJW2G8Ous",
+    flechettemagion: "sw5e.ammo.mZ0ZWeKLLAPTWzos",
+    flechettemagplasma: "sw5e.ammo.YpAiDCFvnJ9DFH0q",
+    fluxcollimator: "sw5e.ammo.8pm1jGUlEEcYXXZG",
+    gascartridge: "sw5e.ammo.HLuN9PeH3L2SEV01",
+    incendiarycell: "sw5e.ammo.aIRzZOPc6kfGQjpQ",
+    missilefragmentation: "sw5e.ammo.dP1OJg8DNYwKRbbN",
+    missileincendiary: "sw5e.ammo.NtAv7g53vVoHGGbQ",
+    missileion: "sw5e.ammo.I8TXYDvGwMmBcYuS",
+    oscillationcalibrator: "sw5e.ammo.sPAXclp1H3d1OinS",
+    paniccalibrator: "sw5e.ammo.SrUO28T2x6jeNReS",
+    paniccollimator: "sw5e.ammo.F89IDxtKvqG9MIbD",
+    panicdart: "sw5e.ammo.LlVD11rEsLRXu6M3",
+    powercell: "sw5e.ammo.oeJaLYngzLX0x6Yj",
+    powergenerator: "sw5e.ammo.yeyBmy7LpYNzP5GN",
+    projectorcanistercorrosive: "sw5e.ammo.DTHeXNdbxQNWCSuR",
+    projectorcanistercryo: "sw5e.ammo.F6zNyxxWi8TiUb4m",
+    projectorcanisterincendiary: "sw5e.ammo.F1uipGbRDApT0sMX",
+    projectortankcorrosive: "sw5e.ammo.FFHbfcWjrvgf8ld6",
+    projectortankcryo: "sw5e.ammo.A2Dpmn2IDuhwFgS4",
+    projectortankincendiary: "sw5e.ammo.YcEOLA1eLtDmlJOI",
+    rocketfragmentation: "sw5e.ammo.JcaUDwCQIjqhvHUn",
+    rocketincendiary: "sw5e.ammo.0bQtnYFq1LxRqNeJ",
+    rocketion: "sw5e.ammo.eRVG9TORFV6YGuA0",
+    slugcartridge: "sw5e.ammo.td6veREVMHQB6kiU",
+    snare: "sw5e.ammo.pyFkRdUK4sZZrJtG",
+    torpedofragmentation: "sw5e.ammo.rkYFnv2yNA9mh8Jk",
+    torpedoplasma: "sw5e.ammo.6fDA5yg8WAoCBGlk"
 };
 
 /* -------------------------------------------- */
@@ -1031,7 +1080,23 @@ preLocalize("ammoTypes", { sort: true });
  * @enum {string}
  */
 SW5E.containerTypes = {
-  // TODO: get the ids
+  backpack: "sw5e.adventuringgear.PN7A13FrDSyo2Neg",
+  bottle: "sw5e.adventuringgear.WmT9R9tLTJ9yRTfP",
+  camtono: "sw5e.adventuringgear.XuAbKi14AZTKnouv",
+  canteen: "sw5e.adventuringgear.diDeGGcu9chi0Sys",
+  chest: "sw5e.adventuringgear.MjUTZY5SnDWCaX0o",
+  crate: "sw5e.adventuringgear.Y3cPZev6cVmfYpDz",
+  pitcher: "sw5e.adventuringgear.tNDMj0ofQupjYbUP",
+  pouch: "sw5e.adventuringgear.3hZYvPRii0zqaOdh",
+  smugglepack: "sw5e.adventuringgear.xxl1lBqJaegzesdU",
+  bucket: "sw5e.adventuringgear.b3D7Wid3bik2Xlst",
+  flask: "sw5e.adventuringgear.3IZ4M5tgF6sVeleY",
+  hovercart: "sw5e.adventuringgear.NV7w8EsXcNOjGfdy",
+  jug: "sw5e.adventuringgear.9ssHBQvPFrSeB9nu",
+  pot: "sw5e.adventuringgear.V6HwYvTHkJiubxJS",
+  sack: "sw5e.adventuringgear.7ahkqGMiHMWRFtg3",
+  tankard: "sw5e.adventuringgear.9hOQLERdixohVRLB",
+  vial: "sw5e.adventuringgear.VONgs3pCXP5fPWYc",
 };
 
 /* -------------------------------------------- */
@@ -1052,13 +1117,13 @@ SW5E.focusTypes = {
   force: {
     label: "SW5E.Focus.Force",
     itemIds: {
-      // TODO: get the ids
+      focusgenerator: "sw5e.adventuringgear.mcGJhS8B2IJgomSB",
     }
   },
   tech: {
     label: "SW5E.Focus.Tech",
     itemIds: {
-      // TODO: get the ids
+      wristpad: "sw5e.adventuringgear.1t8Bxbq4vlbkAUzo",
     }
   }
 };

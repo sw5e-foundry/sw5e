@@ -543,7 +543,7 @@
       }
 
       .group-grid-inventory {
-        grid-template-columns: auto 60px 100px 100px 100px;
+        grid-template-columns: auto 60px 100px 100px 100px 100px;
 
         &.group-list-title {
           .item-controls {
@@ -1100,6 +1100,15 @@
         grid-template-columns: 200px auto;
         margin-bottom: 8px;
         align-items: center;
+      }
+
+      .attunement {
+        font-size: 12px;
+        [name="system.attributes.attunement.max"] {
+          display: inline;
+          max-width: 23px;
+          text-align: center;
+        }
       }
 
       .currency {

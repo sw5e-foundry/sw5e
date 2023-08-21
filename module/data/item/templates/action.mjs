@@ -168,6 +168,7 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
    * @type {string|null}
    */
   get abilityMod() {
+    if ( this.ability === "none" ) return null;
     return (
       this.ability
       || this._typeAbilityMod

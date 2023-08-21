@@ -1,6 +1,7 @@
 import { FormulaField } from "../fields.mjs";
 
 export default class PowerConfigurationData extends foundry.abstract.DataModel {
+  /** @inheritdoc */
   static defineSchema() {
     return {
       ability: new foundry.data.fields.StringField({ label: "SW5E.AbilityModifier" }),

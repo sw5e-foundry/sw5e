@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "1JNrYCNGetss1rSa",
+        "_id": "m9TcOou3KVxiYimF",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "x8MEdGIn3lK1itlZ",
+        "_id": "1RBv1yuUVqVv1dJt",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "superiority-dice-quantity",
@@ -65,7 +65,7 @@
         "title": "Superiority Dice Quantity"
       },
       {
-        "_id": "19vJJDqyfCAD17no",
+        "_id": "ymJG6JENeG4muBpW",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "superiority-dice-size",
@@ -97,7 +97,7 @@
         "title": "Superiority Dice Size"
       },
       {
-        "_id": "RIDyIGCbdoXPV36z",
+        "_id": "1zXIiEePwat5Ezyq",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "strategies-known",
@@ -121,7 +121,77 @@
         "title": "Strategies Known"
       },
       {
-        "_id": "HjyNZWKU0fhmwV3D",
+        "_id": "Xb8uwCj70da1HeX2",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 4
+      },
+      {
+        "_id": "13YS6OPmzJtB16wa",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 6
+      },
+      {
+        "_id": "16pJA5ggafu6TUgJ",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 8
+      },
+      {
+        "_id": "erNowITr7SiiQ9Uc",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 12
+      },
+      {
+        "_id": "1gkLPQn1WARa1sSh",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 14
+      },
+      {
+        "_id": "IvyxKmbcxO51jkFa",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 16
+      },
+      {
+        "_id": "rX2Qg7ZO6sS1PGVd",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 19
+      },
+      {
+        "_id": "WY2pIk3I1n2MTxm3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -135,7 +205,7 @@
         "title": "Features"
       },
       {
-        "_id": "SdKs1Tl9zmK19GuJ",
+        "_id": "Ne5RqKVUvJr78sTL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -149,7 +219,7 @@
         "title": "Features"
       },
       {
-        "_id": "78C7r2RmcU61269m",
+        "_id": "wDtC8E0oVUR1xbMW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -163,20 +233,7 @@
         "title": "Features"
       },
       {
-        "_id": "1G8nF2VdVdhIJPvF",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.classfeatures.Nr6ODEjnP5hTOk1h"
-          ],
-          "optional": false
-        },
-        "value": {},
-        "level": 4,
-        "title": "Features"
-      },
-      {
-        "_id": "VxVEbVqYSm910oIV",
+        "_id": "1eGINnkI9mgc1vXt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -189,7 +246,7 @@
         "title": "Features"
       },
       {
-        "_id": "15DgEm3GbVL8aUjF",
+        "_id": "1AY1iYKzWoJQSdQW",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -202,7 +259,7 @@
         "title": "Features"
       },
       {
-        "_id": "9aGOD8c83rO1Urri",
+        "_id": "ZKr7PInP7L11IIOc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -215,7 +272,7 @@
         "title": "Features"
       },
       {
-        "_id": "4c0huK1TJiX1v4fb",
+        "_id": "yBFVw8W3iqxeSlOE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -226,6 +283,89 @@
         "value": {},
         "level": 20,
         "title": "Features"
+      },
+      {
+        "_id": "12PwNZi59tOPpaZ1",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.",
+          "choices": {
+            "3": 1,
+            "7": 1,
+            "13": 1,
+            "17": 1
+          },
+          "allowDrops": true,
+          "type": "feat",
+          "pool": [
+            "Compendium.sw5e.invocations.bt5snFsMdujdukar",
+            "Compendium.sw5e.invocations.vMhH7IkJuz06ezjQ",
+            "Compendium.sw5e.invocations.hpjdV8P6g5TRIaAB",
+            "Compendium.sw5e.invocations.TgDbV1U1ZVEyTHXI",
+            "Compendium.sw5e.invocations.MApkBu7CbS7PvUKd",
+            "Compendium.sw5e.invocations.i9woKSe8O7ytFSmW",
+            "Compendium.sw5e.invocations.OsHl6B9rE3x4zLZJ",
+            "Compendium.sw5e.invocations.7BWl2NtrrFyDUm3V"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "class",
+            "subtype": "fighterInvocation",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Fighter Strategies"
+      },
+      {
+        "_id": "1ulrbOctrCWuY5u5",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "Different fighters choose different approaches to perfecting their fighting prowess. The fighter specialty you choose to emulate reflects your approach. Your specialty grants you features at 3rd, 7th, 10th, 15th, and 18th level.",
+          "choices": {
+            "3": 1
+          },
+          "allowDrops": true,
+          "type": "archetype",
+          "pool": [
+            "Compendium.sw5e.archetypes.3WEDJ9aje4WwK0b1",
+            "Compendium.sw5e.archetypes.ZxZIxuRgZGwmbqjo",
+            "Compendium.sw5e.archetypes.9Jn2XBZYoWAH2JQR",
+            "Compendium.sw5e.archetypes.Ayxbhs6ruoY7Z5ob",
+            "Compendium.sw5e.archetypes.pvyvyWl3ij5b0HAM",
+            "Compendium.sw5e.archetypes.vSVMYgksB6ufATIK",
+            "Compendium.sw5e.archetypes.CiOp71RlWtYdyBPi",
+            "Compendium.sw5e.archetypes.D847Oc3BCSbSdBIF",
+            "Compendium.sw5e.archetypes.AjQlu5orqGkxLmpc",
+            "Compendium.sw5e.archetypes.BGIYzeSUkzZBa4Sq",
+            "Compendium.sw5e.archetypes.9f42qUr5X4XtJqF5",
+            "Compendium.sw5e.archetypes.A4u1vnQHssjTs3r7",
+            "Compendium.sw5e.archetypes.yUx9ULyHJ85dUe1v",
+            "Compendium.sw5e.archetypes.27M1azt4WBz5Vmwy"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "",
+            "subtype": "",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Fighter Specialties"
       }
     ],
     "saves": [
@@ -262,10 +402,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.0.2.6.0",
+    "coreVersion": "10.303",
     "createdTime": 1674493961822,
-    "modifiedTime": 1684819094478,
+    "modifiedTime": 1692481125256,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

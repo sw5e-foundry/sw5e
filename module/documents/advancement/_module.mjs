@@ -1,5 +1,6 @@
 export { default as Advancement } from "./advancement.mjs";
 
+export {default as AbilityScoreImprovementAdvancement} from "./ability-score-improvement.mjs";
 export { default as HitPointsAdvancement } from "./hit-points.mjs";
 export { default as HullPointsAdvancement } from "./hull-points.mjs";
 export { default as ShieldPointsAdvancement } from "./shield-points.mjs";

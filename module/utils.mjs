@@ -178,6 +178,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/journal/parts/journal-table.hbs",
 
     // Advancement Partials
+    "systems/sw5e/templates/advancement/parts/advancement-ability-score-control.hbs",
     "systems/sw5e/templates/advancement/parts/advancement-controls.hbs",
     "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs",
 

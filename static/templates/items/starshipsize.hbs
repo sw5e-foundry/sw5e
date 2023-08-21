@@ -22,6 +22,11 @@
                         placeholder="{{ localize 'SW5E.Source' }}"
                     />
                 </li>
+                <li>
+                    <select name="system.size">
+                        {{ selectOptions config.actorSizes selected=system.size }}
+                    </select>
+                </li>
             </ul>
         </div>
     </header>
@@ -41,9 +46,9 @@
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor 
 				descriptionHTML
-				target="system.description.value" 
-				button=true 
-				owner=owner 
+				target="system.description.value"
+				button=true
+				owner=owner
 				editable=editable
 			}}
         </div>

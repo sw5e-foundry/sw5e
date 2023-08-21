@@ -64,7 +64,7 @@ export default class EquippableItemTemplate extends foundry.abstract.DataModel {
     return [
       this.attunement === req ? CONFIG.SW5E.attunements[req] : null,
       game.i18n.localize(this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped"),
-      "proficient" in this ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0] : null
+      "proficient" in this ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0].label : null
     ];
   }
 }

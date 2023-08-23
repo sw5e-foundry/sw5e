@@ -10,7 +10,7 @@ import BaseConfigSheet from "./base-config.mjs";
  * @param {boolean} [options.allowCustom=true]  Support user custom trait entries.
  */
 export default class TraitSelector extends BaseConfigSheet {
-  constructor(actor, trait, options) {
+  constructor(actor, trait, options = {}) {
     if (!CONFIG.SW5E.traits[trait]) throw new Error(`Cannot instantiate TraitSelector with a trait not defined in CONFIG.SW5E.traits: ${trait}.`);
     if (["saves", "skills"].includes(trait)) throw new Error(
       `TraitSelector does not support selection of ${trait}. That should be handled through `
@@ -61,6 +61,7 @@ export default class TraitSelector extends BaseConfigSheet {
   async getData() {
     const path = `system.${Trait.actorKeyPath(this.trait)}`;
     const data = foundry.utils.getProperty(this.document, path);
+    if (!data) return super.getData();
 
     return {
       ...super.getData(),

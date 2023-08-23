@@ -4,7 +4,7 @@
 
             {{#if (or isCharacter showCurrency)}}
                 <label class="currency">
-                    {{localize "SW5E.Currency"}}
+                    <!-- {{localize "SW5E.Currency"}} -->
                     {{#each system.currency as |v k|}}
                         <label class="denomination {{k}}">{{ lookup ../labels.currencies k }}</label>
                         <input type="text" name="system.currency.{{k}}" value="{{v}}" data-dtype="Number">
@@ -27,6 +27,21 @@
         </div>
     {{/if}}
 
+    {{#if isCharacter}}
+        <div class="attunement">
+            <label>{{localize "SW5E.Attunement"}}</label>
+            <span class="attunement-value">{{system.attributes.attunement.value}}</span>
+            <span class="sep"> / </span>
+            <span class="attunement-max" {{#if overrides.attunement}}data-tooltip="SW5E.ActiveEffectOverrideWarning"{{/if}}>
+            {{system.attributes.attunement.max}}
+            {{#unless (or overrides.attunement (not editable))}}
+                <a class="attunement-max-override" data-tooltip="SW5E.AttunementOverride">
+                    <i class="fa-solid fa-edit"></i>
+                </a>
+                {{/unless}}
+            </span>
+        </div>
+    {{/if}}
     {{#if inventoryFilters}}
         <ul class="filter-list" data-filter="inventory">
             <li class="filter-title">{{localize "SW5E.Filter"}}</li>
@@ -46,6 +61,7 @@
         {{else}}
             <div></div>
         {{/if}}
+        <div class="item-detail item-quantity">{{localize "SW5E.QuantityAbbr"}}</div>
         <div class="item-detail item-uses">{{localize "SW5E.Charges"}}</div>
         <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
         <div class="item-detail"></div>
@@ -90,7 +106,8 @@
                                     {{/if}}
                                     {{#if ctx.hasUses}}
                                         <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
-                                            <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
+                                            <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
+                                                   data-dtype="Number" data-name="system.quantity" {{disabled ctx.reloadDisabled}}/>
                                             <span class="sep">/</span>
                                             <span>{{ item.system.ammo.max }}</span>
                                         </div>
@@ -98,23 +115,45 @@
                                 </div>
                             {{/if}}
                         </div>
-
+            {{#if section.columns}}
+                {{#each section.columns}}
+                    <div class="item-detail {{css}}">
+                        {{#if editable}}
+                            <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
+                                   value="{{#if (getProperty item property)}}{{getProperty item property}}
+                                   {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
+                        {{else}}
+                            {{#if (getProperty item property)}}
+                                {{getProperty item property}}
+                            {{else}}
+                                {{getProperty ctx property}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/each}}
+            {{/if}}
                         {{#if ctx.totalWeight}}
                             <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
                         {{else}}
                             <div></div>
                         {{/if}}
 
+                        <div class="item-detail item-quantity">
+                            <input type="text" value="{{item.system.quantity}}" placeholder="0" data-dtype="Number" data-name="system.quantity">
+                        </div>
+
                         <div class="item-detail item-uses">
                             {{#if ctx.hasUses}}
                                 <div class="form-group uses-per" data-tooltip="SW5E.ConsumeCharges" data-attr="uses">
-                                    <input type="text" value="{{item.system.uses.value}}" placeholder="0"/>
+                                    <input type="text" value="{{item.system.uses.value}}" placeholder="0"
+                                           data-dtype="Number" data-name="system.quantity"/>
                                     <span class="sep">/</span>
                                     <span>{{ item.system.uses.max }}</span>
                                 </div>
                             {{else if ctx.hasReload}}
                                 <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
-                                    <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
+                                    <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
+                                           data-dtype="Number" data-name="system.quantity" {{disabled ctx.reloadDisabled}}/>
                                     <span class="sep">/</span>
                                     <span>{{ item.system.ammo.max }}</span>
                                 </div>

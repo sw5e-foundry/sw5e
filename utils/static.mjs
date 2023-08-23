@@ -5,6 +5,7 @@ import {deleteSync} from "del";
 const src = "./static/"
 const dest = "./dist/"
 
+const BABELE_WATCH = ["static/babele/**/*"];
 const FONTS_WATCH = ["static/fonts/**/*"];
 const ICONS_WATCH = ["static/icons/**/*"];
 const JSON_WATCH = ["static/json/**/*"];
@@ -14,6 +15,11 @@ const TEMPLATES_WATCH = ["static/templates/**/*"];
 const UI_WATCH = ["static/ui/**/*"];
 const STATIC_ROOT_WATCH = ["static/system.json", "static/template.json"];
 const ROOT_WATCH = ["LICENSE", "README.md", "CONTRIBUTIONS.md", "CHANGELOG.md"];
+
+export function copyBabele() {
+  return gulp.src(src + "babele/**/*")
+      .pipe(gulp.dest(dest + "babele"));
+}
 
 export function copyFonts() {
   return gulp.src(src + "fonts/**/*")
@@ -61,6 +67,7 @@ export function copyRoot() {
 }
 
 export function watchUpdates() {
+  gulp.watch(BABELE_WATCH, copyBabele);
   gulp.watch(FONTS_WATCH, copyFonts);
   gulp.watch(ICONS_WATCH, copyIcons);
   gulp.watch(JSON_WATCH, copyJson);

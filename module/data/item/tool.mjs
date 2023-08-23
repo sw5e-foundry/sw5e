@@ -29,22 +29,24 @@ export default class ToolData extends SystemDataModel.mixin(
       baseItem: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemToolBase" }),
       ability: new foundry.data.fields.StringField({
         required: true,
-        initial: "int",
-        blank: false,
+        blank: true,
         label: "SW5E.DefaultAbilityCheck"
       }),
       chatFlavor: new foundry.data.fields.StringField({ required: true, label: "SW5E.ChatFlavor" }),
       proficient: new foundry.data.fields.NumberField({
         required: true,
-        nullable: false,
-        initial: 0,
+        initial: null,
         min: 0,
+        max: 5,
+        step: 0.5,
         label: "SW5E.ItemToolProficiency"
       }),
       bonus: new FormulaField({ required: true, label: "SW5E.ItemToolBonus" })
     });
   }
 
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
@@ -61,5 +63,43 @@ export default class ToolData extends SystemDataModel.mixin(
    */
   static #migrateAbility(source) {
     if (Array.isArray(source.ability)) source.ability = source.ability[0];
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [CONFIG.SW5E.abilities[this.ability]?.label];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Which ability score modifier is used by this item?
+   * @type {string|null}
+   */
+  get abilityMod() {
+    return this.ability || "int";
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The proficiency multiplier for this item.
+   * @returns {number}
+   */
+  get proficiencyMultiplier() {
+    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    const actor = this.parent.actor;
+    if ( !actor ) return 0;
+    if ( actor.type === "npc" ) return 1;
+    const baseItemProf = actor.system.tools?.[this.baseItem];
+    const categoryProf = actor.system.tools?.[this.toolType];
+    return Math.min(Math.max(baseItemProf?.value ?? 0, categoryProf?.value ?? 0), 2);
   }
 }

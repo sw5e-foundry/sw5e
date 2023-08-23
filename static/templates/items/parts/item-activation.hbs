@@ -2,30 +2,33 @@
 <div class="form-group input-select">
   <label>{{localize "SW5E.ItemActivationCost"}}</label>
   <div class="form-fields">
-    <input
-      type="number"
-      step="any"
-      name="system.activation.cost"
-      value="{{system.activation.cost}}"
-      placeholder="&mdash;"
-    >
+    {{#if system.activation.type}}
+      <input
+        type="number"
+        step="any"
+        name="system.activation.cost"
+        value="{{system.activation.cost}}"
+        placeholder="&mdash;"
+      />
+    {{/if}}
     <select name="system.activation.type" data-tooltip="SW5E.ItemActivationType">
-      {{selectOptions config.abilityActivationTypes selected=system.activation.type}}
+      {{selectOptions config.abilityActivationTypes selected=system.activation.type blank=(localize "SW5E.None")}}
     </select>
   </div>
 </div>
 {{#if system.activation.type}}
+
   {{! Activation Condition }}
   <div class="form-group">
     <label>{{localize "SW5E.ItemActivationCondition"}}</label>
     <div class="form-fields">
-      <input type="text" name="system.activation.condition" value="{{system.activation.condition}}" >
+      <input type="text" name="system.activation.condition" value="{{system.activation.condition}}" />
     </div>
   </div>
 
   {{#if isCrewed}}
     <div class="form-group">
-      <label>{{ localize "SW5E.Cover" }}</label>
+      <label>{{localize "SW5E.Cover"}}</label>
       <div class="form-fields">
         <select name="system.cover" data-dtype="Number">
           {{selectOptions config.cover selected=system.cover blank=""}}
@@ -38,16 +41,20 @@
   <div class="form-group input-select-select">
     <label>{{localize "SW5E.Target"}}</label>
     <div class="form-fields">
-      <input
-        type="number"
-        step="any"
-        name="system.target.value"
-        value="{{system.target.value}}"
-        placeholder="&mdash;"
-      >
-      <select name="system.target.units" data-tooltip="SW5E.TargetUnits">
-        {{selectOptions config.movementUnits selected=system.target.units blank=""}}
-      </select>
+      {{#if system.hasScalarTarget}}
+        <input
+          type="number"
+          step="any"
+          name="system.target.value"
+          value="{{system.target.value}}"
+          placeholder="&mdash;"
+        />
+      {{/if}}
+      {{#if system.hasAreaTarget}}
+        <select name="system.target.units" data-tooltip="SW5E.TargetUnits">
+          {{selectOptions config.movementUnits selected=system.target.units blank=""}}
+        </select>
+      {{/if}}
       <select name="system.target.type" data-tooltip="SW5E.TargetType">
         {{#select system.target.type}}
           <option value="">{{localize "SW5E.None"}}</option>
@@ -58,6 +65,7 @@
             {{selectOptions config.areaTargetTypes labelAttr="label"}}
           </optgroup>
         {{/select}}
+      </select>
     </div>
   </div>
 
@@ -72,7 +80,7 @@
           name="system.target.width"
           value="{{system.target.width}}"
           placeholder="&mdash;"
-        >
+        />
       </div>
     </div>
   {{/if}}
@@ -81,25 +89,33 @@
   <div class="form-group input-select">
     <label>{{localize "SW5E.Range"}}</label>
     <div class="form-fields">
-      <input
-        type="number"
-        step="any"
-        name="system.range.value"
-        value="{{system.range.value}}"
-        placeholder="{{localize 'SW5E.Normal'}}"
-        data-tooltip="SW5E.RangeNormal"
-      />
-      <span class="sep">/</span>
-      <input
-        type="number"
-        step="any"
-        name="system.range.long"
-        value="{{system.range.long}}"
-        placeholder="{{localize 'SW5E.Max'}}"
-        data-tooltip="SW5E.RangeLong"
-      >
+      {{#if system.hasScalarRange}}
+        <input
+          type="number"
+          step="any"
+          name="system.range.value"
+          value="{{system.range.value}}"
+          placeholder="{{localize 'SW5E.Normal'}}"
+          data-tooltip="SW5E.RangeNormal"
+        />
+        <span class="sep">/</span>
+        <input
+          type="number"
+          step="any"
+          name="system.range.long"
+          value="{{system.range.long}}"
+          placeholder="{{localize 'SW5E.Long'}}"
+          data-tooltip="SW5E.RangeLong"
+        />
+      {{/if}}
       <select name="system.range.units" data-tooltip="SW5E.RangeUnits">
-        {{selectOptions config.distanceUnits selected=system.range.units blank=(localize "SW5E.None")}}
+        {{#select system.range.units}}
+          <option value="">{{localize "SW5E.None"}}</option>
+          <optgroup label="{{localize 'SW5E.RangeDistance'}}">
+            {{selectOptions config.movementUnits}}
+          </optgroup>
+          {{selectOptions config.rangeTypes}}
+        {{/select}}
       </select>
     </div>
   </div>
@@ -108,20 +124,26 @@
   <div class="form-group input-select">
     <label>{{localize "SW5E.Duration"}}</label>
     <div class="form-fields">
-      <input
-        type="text"
-        name="system.duration.value"
-        value="{{source.duration.value}}"
-        placeholder="&mdash;"
-        data-tooltip="SW5E.DurationValue"
-        data-formula-editor
-      >
+      {{#if system.hasScalarDuration}}
+        <input
+          type="text"
+          name="system.duration.value"
+          value="{{source.duration.value}}"
+          placeholder="&mdash;"
+          data-tooltip="SW5E.DurationValue"
+          data-formula-editor
+        />
+      {{/if}}
       <select name="system.duration.units" data-tooltip="SW5E.DurationType">
         {{#select system.duration.units}}
-          <option value=""></option>
-          {{#each config.timePeriods as |name key|}}
-            <option value="{{key}}">{{name}}</option>
-          {{/each}}
+          <option value="">{{localize "SW5E.None"}}</option>
+          <optgroup label="{{localize 'SW5E.DurationTime'}}">
+            {{selectOptions config.scalarTimePeriods}}
+          </optgroup>
+          <optgroup label="{{localize 'SW5E.DurationPermanent'}}">
+            {{selectOptions config.permanentTimePeriods}}
+          </optgroup>
+          {{selectOptions config.specialTimePeriods}}
         {{/select}}
       </select>
     </div>
@@ -137,7 +159,7 @@
         name="system.uses.value"
         value="{{system.uses.value}}"
         data-tooltip="SW5E.UsesAvailable"
-      >
+      />
       <span class="sep">{{localize "SW5E.of"}}</span>
       <input
         type="text"
@@ -145,7 +167,7 @@
         value="{{source.uses.max}}"
         data-tooltip="SW5E.UsesMax"
         data-formula-editor
-      >
+      />
       <span class="sep">{{localize "SW5E.per"}}</span>
       <select name="system.uses.per" data-tooltip="SW5E.UsesPeriod">
         {{selectOptions config.limitedUsePeriods selected=system.uses.per blank=""}}
@@ -163,16 +185,24 @@
   {{/if}}
 
   {{! Consumption }}
-  <div class="form-group uses-per">
+  <div class="form-group consumption">
     <label>{{localize "SW5E.ConsumeTitle"}}</label>
     <div class="form-fields">
+      {{#if system.consume.type}}
+        <input
+          type="number"
+          step="any"
+          name="system.consume.amount"
+          value="{{system.consume.amount}}"
+          data-tooltip="SW5E.ConsumeQuanity"
+        />
+        <select name="system.consume.target" data-tooltip="SW5E.ConsumeTarget">
+          {{selectOptions abilityConsumptionTargets selected=system.consume.target blank=""}}
+        </select>
+      {{/if}}
       <select name="system.consume.type" data-tooltip="SW5E.ConsumeType">
-        {{selectOptions config.abilityConsumptionTypes selected=system.consume.type blank=""}}
+        {{selectOptions config.abilityConsumptionTypes selected=system.consume.type blank=(localize "SW5E.None")}}
       </select>
-      <select name="system.consume.target" data-tooltip="SW5E.ConsumeTarget">
-        {{selectOptions abilityConsumptionTargets selected=system.consume.target blank=""}}
-      </select>
-      <input type="number" step="any" name="system.consume.amount" value="{{system.consume.amount}}" data-tooltip="SW5E.ConsumeQuanity">
     </div>
   </div>
 {{/if}}

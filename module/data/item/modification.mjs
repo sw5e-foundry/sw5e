@@ -42,28 +42,34 @@ export default class ModificationData extends SystemDataModel.mixin(
         {
           id: new foundry.data.fields.ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
           disabled: new foundry.data.fields.BooleanField({})
-        }, {}
+        },
+        {}
       ),
-      properties: makeItemProperties({
-        ...CONFIG.SW5E.weaponProperties,
-        ...CONFIG.SW5E.castingProperties,
-        ...CONFIG.SW5E.equipmentProperties
-      }, {
-        required: true,
-        extraFields: {
-          indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), {
-            required: true,
-            initialKeys: {
-              ...CONFIG.SW5E.weaponProperties,
-              ...CONFIG.SW5E.castingProperties,
-              ...CONFIG.SW5E.equipmentProperties
-            }
-          })
+      properties: makeItemProperties(
+        {
+          ...CONFIG.SW5E.weaponProperties,
+          ...CONFIG.SW5E.castingProperties,
+          ...CONFIG.SW5E.equipmentProperties
+        },
+        {
+          required: true,
+          extraFields: {
+            indeterminate: new MappingField(new foundry.data.fields.BooleanField({ initial: true }), {
+              required: true,
+              initialKeys: {
+                ...CONFIG.SW5E.weaponProperties,
+                ...CONFIG.SW5E.castingProperties,
+                ...CONFIG.SW5E.equipmentProperties
+              }
+            })
+          }
         }
-      })
+      )
     });
   }
 
+  /* -------------------------------------------- */
+  /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */

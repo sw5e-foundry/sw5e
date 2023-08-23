@@ -25,10 +25,10 @@
 
             {{!-- Character Summary --}}
             <ul class="summary flexrow">
-                <li>
+                <li class="size">
                     <span>{{lookup config.actorSizes system.traits.size}}</span>
                 </li>
-                <li>
+                <li class="alignment">
                     <input
                         type="text"
                         name="system.details.alignment"
@@ -42,7 +42,7 @@
                         <i class="fas fa-cog"></i>
                     </a>
                 </li>
-                <li>
+                <li class="source">
                     <input
                         type="text"
                         name="system.details.source"
@@ -149,7 +149,8 @@
             <ul class="skills-list">
                 {{#each config.skills as |obj s|}} 
                 {{#with (lookup ../skills s) as |skill|}}
-                <li class="skill flexrow {{#if skill.value}}proficient{{/if}}" data-skill="{{s}}">
+                <li class="skill proficiency-row flexrow {{#if skill.value}}proficient{{/if}}" data-property="skills"
+                    data-key="{{s}}">
                     <input type="hidden" name="system.skills.{{s}}.value"
                            value="{{skill.baseValue}}" data-dtype="Number">
                     <input type="hidden" name="system.skills.{{s}}.ability" value="{{skill.ability}}">

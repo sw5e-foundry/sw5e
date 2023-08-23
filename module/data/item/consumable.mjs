@@ -40,17 +40,40 @@ export default class ConsumableData extends SystemDataModel.mixin(
         nullable: true,
         label: "SW5E.ItemAmmoType"
       }),
+      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
+        required: true,
+        label: "SW5E.ItemWeaponProperties"
+      }),
       uses: new ActivatedEffectTemplate.ItemUsesField(
         {
           autoDestroy: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemDestroyEmpty" })
         },
         { label: "SW5E.LimitedUses" }
-      ),
-      properties: makeItemProperties(CONFIG.SW5E.weaponProperties, {
-        required: true,
-        label: "SW5E.ItemWeaponProperties"
-      })
+      )
     });
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [
+      CONFIG.SW5E.consumableTypes[this.consumableType],
+      this.hasLimitedUses ? `${this.uses.value}/${this.uses.max} ${game.i18n.localize("SW5E.Charges")}` : null
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  get _typeAbilityMod() {
+    if (this.consumableType !== "scroll") return null;
+    return this.parent?.actor?.system.attributes.powercasting || "int";
   }
 
   /* -------------------------------------------- */

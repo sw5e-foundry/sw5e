@@ -7,7 +7,6 @@ import path from "path";
 import through2 from "through2";
 import yargs from "yargs";
 
-
 /**
  * Parsed arguments passed in through the command line.
  * @type {object}
@@ -33,7 +32,6 @@ const PACK_SRC = "./packs/";
  */
 const DB_CACHE = {};
 
-
 /* ----------------------------------------- */
 /*  Clean Packs
 /* ----------------------------------------- */
@@ -44,51 +42,54 @@ const DB_CACHE = {};
  * @param {object} [options]
  * @param {boolean} [options.clearSourceId]  Should the core sourceId flag be deleted.
  */
-function cleanPackEntry(data, { clearSourceId=true }={}) {
-  if ( data.ownership ) data.ownership = { default: 0 };
-  if ( clearSourceId ) delete data.flags?.core?.sourceId;
+function cleanPackEntry(data, { clearSourceId = true } = {}) {
+  if (data.ownership) data.ownership = { default: 0 };
+  if (clearSourceId) delete data.flags?.core?.sourceId;
+  if (typeof data.folder === "string") data.folder = null;
   delete data.flags?.importSource;
   delete data.flags?.exportSource;
   delete data.flags?.dae;
-  delete data.flags?.['midi-qol'];
-  delete data.flags?.['midi-properties'];
+  delete data.flags?.["midi-qol"];
+  delete data.flags?.["midi-properties"];
   delete data.flags?.['midiProperties'];
-  if ( data._stats?.lastModifiedBy ) data._stats.lastModifiedBy = "sw5ebuilder0000";
+  if (data._stats?.lastModifiedBy) data._stats.lastModifiedBy = "sw5ebuilder0000";
 
   // Remove empty entries in flags
-  if ( !data.flags ) data.flags = {};
+  if (!data.flags) data.flags = {};
   Object.entries(data.flags).forEach(([key, contents]) => {
-    if ( Object.keys(contents).length === 0 ) delete data.flags[key];
+    if (Object.keys(contents).length === 0) delete data.flags[key];
   });
 
-  if ( data.system?.activation?.cost === 0 ) data.system.activation.cost = null;
-  if ( data.system?.duration?.value === "0" ) data.system.duration.value = "";
-  if ( data.system?.target?.value === 0 ) data.system.target.value = null;
-  if ( data.system?.target?.width === 0 ) data.system.target.width = null;
-  if ( data.system?.range?.value === 0 ) data.system.range.value = null;
-  if ( data.system?.range?.long === 0 ) data.system.range.long = null;
-  if ( data.system?.uses?.value === 0 ) data.system.uses.value = null;
-  if ( data.system?.uses?.max === "0" ) data.system.duration.value = "";
-  if ( data.system?.save?.dc === 0 ) data.system.save.dc = null;
-  if ( data.system?.capacity?.value === 0 ) data.system.capacity.value = null;
-  if ( data.system?.strength === 0 ) data.system.strength = null;
-  if ( data.system?.properties ) data.system.properties = Object.fromEntries(Object.entries(data.system.properties).filter(([k,v])=>!k.startsWith('c_c_')));
-  if ( typeof data.system?.price === "number" ) data.system.price = { denomination: "gc", value: data.system.price };
+  if (data.system?.activation?.cost === 0) data.system.activation.cost = null;
+  if (data.system?.duration?.value === "0") data.system.duration.value = "";
+  if (data.system?.target?.value === 0) data.system.target.value = null;
+  if (data.system?.target?.width === 0) data.system.target.width = null;
+  if (data.system?.range?.value === 0) data.system.range.value = null;
+  if (data.system?.range?.long === 0) data.system.range.long = null;
+  if (data.system?.uses?.value === 0) data.system.uses.value = null;
+  if (data.system?.uses?.max === "0") data.system.duration.value = "";
+  if (data.system?.save?.dc === 0) data.system.save.dc = null;
+  if (data.system?.capacity?.value === 0) data.system.capacity.value = null;
+  if (data.system?.strength === 0) data.system.strength = null;
+  if (data.system?.properties)
+    data.system.properties = Object.fromEntries(
+      Object.entries(data.system.properties).filter(([k, v]) => !k.startsWith("c_c_"))
+    );
+  if (typeof data.system?.price === "number") data.system.price = { denomination: "gc", value: data.system.price };
 
   // Remove mystery-man.svg from Actors
-  if ( ["character", "npc", "starship"].includes(data.type) && data.img === "icons/svg/mystery-man.svg" ) {
+  if (["character", "npc", "starship"].includes(data.type) && data.img === "icons/svg/mystery-man.svg") {
     data.img = "";
     data.prototypeToken.texture.src = "";
   }
 
-  if ( data.effects ) data.effects.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
-  if ( data.items ) data.items.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
-  if ( data.system?.description?.value ) data.system.description.value = cleanString(data.system.description.value);
-  if ( data.label ) data.label = cleanString(data.label);
-  if ( data.name ) data.name = cleanString(data.name);
+  if (data.effects) data.effects.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
+  if (data.items) data.items.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
+  if (data.system?.description?.value) data.system.description.value = cleanString(data.system.description.value);
+  if (data.label) data.label = cleanString(data.label);
+  if (data.name) data.name = cleanString(data.name);
   data.sort = 0;
 }
-
 
 /**
  * Attempts to find an existing matching ID for an item of this name, otherwise generates a new unique ID.
@@ -98,7 +99,7 @@ function cleanPackEntry(data, { clearSourceId=true }={}) {
  */
 function determineId(data, pack) {
   const db_path = path.join(PACK_DEST, `${pack}.db`);
-  if ( !DB_CACHE[db_path] ) {
+  if (!DB_CACHE[db_path]) {
     DB_CACHE[db_path] = new Datastore({ filename: db_path, autoload: true });
     DB_CACHE[db_path].loadDatabase();
   }
@@ -106,7 +107,7 @@ function determineId(data, pack) {
 
   return new Promise((resolve, reject) => {
     db.findOne({ name: data.name }, (err, entry) => {
-      if ( entry ) {
+      if (entry) {
         resolve(entry._id);
       } else {
         resolve(db.createNewId());
@@ -121,7 +122,10 @@ function determineId(data, pack) {
  * @returns {string}    The cleaned string.
  */
 function cleanString(str) {
-  return str.replace(/\u2060/gu, "").replace(/[‘’]/gu, "'").replace(/[“”]/gu, '"');
+  return str
+    .replace(/\u2060/gu, "")
+    .replace(/[‘’]/gu, "'")
+    .replace(/[“”]/gu, '"');
 }
 
 /**
@@ -135,29 +139,29 @@ function cleanString(str) {
 function cleanPacks() {
   const packName = parsedArgs.pack;
   const entryName = parsedArgs.name?.toLowerCase();
-  const folders = fs.readdirSync(PACK_SRC, { withFileTypes: true }).filter(file =>
-    file.isDirectory() && ( !packName || (packName === file.name) )
-  );
+  const folders = fs
+    .readdirSync(PACK_SRC, { withFileTypes: true })
+    .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
   const packs = folders.map(folder => {
     logger.info(`Cleaning pack ${folder.name}`);
-    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json"))
-      .pipe(through2.obj(async (file, enc, callback) => {
+    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json")).pipe(
+      through2.obj(async (file, enc, callback) => {
         const json = JSON.parse(file.contents.toString());
         const name = json.name.toLowerCase();
-        if ( entryName && (entryName !== name) ) return callback(null, file);
+        if (entryName && entryName !== name) return callback(null, file);
         cleanPackEntry(json);
-        if ( !json._id ) json._id = await determineId(json, folder.name);
+        if (!json._id) json._id = await determineId(json, folder.name);
         fs.rmSync(file.path, { force: true });
         fs.writeFileSync(file.path, `${JSON.stringify(json, null, 2)}\n`, { mode: 0o664 });
         callback(null, file);
-      }));
+      })
+    );
   });
 
   return mergeStream(packs);
 }
 export const clean = cleanPacks;
-
 
 /* ----------------------------------------- */
 /*  Compile Packs
@@ -172,9 +176,9 @@ export const clean = cleanPacks;
 function compilePacks() {
   const packName = parsedArgs.pack;
   // Determine which source folders to process
-  const folders = fs.readdirSync(PACK_SRC, { withFileTypes: true }).filter(file =>
-    file.isDirectory() && ( !packName || (packName === file.name) )
-  );
+  const folders = fs
+    .readdirSync(PACK_SRC, { withFileTypes: true })
+    .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
   const packs = folders.map(folder => {
     const filePath = path.join(PACK_DEST, `${folder.name}.db`);
@@ -183,22 +187,25 @@ function compilePacks() {
     const db = fs.createWriteStream(filePath, { flags: "a", mode: 0o664 });
     const data = [];
     logger.info(`Compiling pack ${folder.name}`);
-    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json"))
-      .pipe(through2.obj((file, enc, callback) => {
-        const json = JSON.parse(file.contents.toString());
-        cleanPackEntry(json);
-        data.push(json);
-        callback(null, file);
-      }, callback => {
-        data.sort((lhs, rhs) => lhs._id > rhs._id ? 1 : -1);
-        data.forEach(entry => db.write(`${JSON.stringify(entry)}\n`));
-        callback();
-      }));
+    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json")).pipe(
+      through2.obj(
+        (file, enc, callback) => {
+          const json = JSON.parse(file.contents.toString());
+          cleanPackEntry(json);
+          data.push(json);
+          callback(null, file);
+        },
+        callback => {
+          data.sort((lhs, rhs) => (lhs._id > rhs._id ? 1 : -1));
+          data.forEach(entry => db.write(`${JSON.stringify(entry)}\n`));
+          callback();
+        }
+      )
+    );
   });
   return mergeStream(packs);
 }
 export const compile = compilePacks;
-
 
 /* ----------------------------------------- */
 /*  Extract Packs
@@ -213,11 +220,11 @@ function sortObject(object) {
   const isArray = object instanceof Array;
   var sortedObj = {};
   if (isArray) {
-    sortedObj = object.map((item) => sortObject(item));
+    sortedObj = object.map(item => sortObject(item));
   } else {
     var keys = Object.keys(object);
     // console.log(keys);
-    keys.sort(function(key1, key2) {
+    keys.sort(function (key1, key2) {
       (key1 = key1.toLowerCase()), (key2 = key2.toLowerCase());
       if (key1 < key2) return -1;
       if (key1 > key2) return 1;
@@ -226,7 +233,7 @@ function sortObject(object) {
 
     for (var index in keys) {
       var key = keys[index];
-      if (typeof object[key] == 'object') {
+      if (typeof object[key] == "object") {
         sortedObj[key] = sortObject(object[key]);
       } else {
         sortedObj[key] = object[key];
@@ -247,11 +254,11 @@ function sortObject(object) {
 function extractPacks() {
   const packName = parsedArgs.pack ?? "*";
   const entryName = parsedArgs.name?.toLowerCase();
-  const packs = gulp.src(`${PACK_DEST}/**/${packName}.db`)
-    .pipe(through2.obj((file, enc, callback) => {
+  const packs = gulp.src(`${PACK_DEST}/**/${packName}.db`).pipe(
+    through2.obj((file, enc, callback) => {
       const filename = path.parse(file.path).name;
       const folder = path.join(PACK_SRC, filename);
-      if ( !fs.existsSync(folder) ) fs.mkdirSync(folder, { recursive: true, mode: 0o775 });
+      if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true, mode: 0o775 });
 
       const db = new Datastore({ filename: file.path, autoload: true });
       db.loadDatabase();
@@ -259,31 +266,37 @@ function extractPacks() {
       db.find({}, (err, entries) => {
         entries.forEach(entry => {
           const name = entry.name.toLowerCase();
-          if ( entryName && (entryName !== name) ) return;
+          if (entryName && entryName !== name) return;
           cleanPackEntry(entry);
 
           const subfolder = path.join(folder, _getSubfolderName(entry, filename) ?? "");
-          if ( !fs.existsSync(subfolder) ) fs.mkdirSync(subfolder, { recursive: true, mode: 0o775 });
+          if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder, { recursive: true, mode: 0o775 });
 
-          const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+          const outputName = name
+            .replace("'", "")
+            .replace(/[^a-z0-9]+/gi, " ")
+            .trim()
+            .replace(/\s+|-{2,}/g, "-");
           const outputPath = path.join(subfolder, `${outputName}.json`);
 
           let hasChanges = true;
           if (fs.existsSync(outputPath)) {
-            const oldFile = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8"}));
+            const oldFile = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8" }));
             // Do not update item if only changes are flags, stats, or advancement ids
             if (oldFile._stats && entry._stats) oldFile._stats = entry._stats;
-            if (oldFile.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"]) oldFile.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
+            if (oldFile.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"])
+              oldFile.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
             if (oldFile.system?.advancement && entry.system?.advancement) {
               const length = Math.min(oldFile.system.advancement.length, entry.system.advancement.length);
-              for (let i=0; i<length; i++) oldFile.system.advancement[i]._id = entry.system.advancement[i]._id;
+              for (let i = 0; i < length; i++) oldFile.system.advancement[i]._id = entry.system.advancement[i]._id;
             }
             if (oldFile.items && entry.items) {
               const length = Math.min(oldFile.items.length, entry.items.length);
-              for (let i=0; i<length; i++) {
+              for (let i = 0; i < length; i++) {
                 const oldItem = oldFile.items[i];
                 const newItem = entry.items[i];
-                if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"]) oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
+                if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"])
+                  oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
                 if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
               }
             }
@@ -301,12 +314,12 @@ function extractPacks() {
 
       logger.info(`Extracting pack ${filename}`);
       callback(null, file);
-    }));
+    })
+  );
 
   return mergeStream(packs);
 }
 export const extract = extractPacks;
-
 
 function deslugify(string) {
   return string.split("_").join(" ");
@@ -320,9 +333,8 @@ function deslugify(string) {
  * @private
  */
 function _getSubfolderName(data, pack) {
-
   const iID = data.flags["sw5e-importer"]?.uid ?? "";
-  const iData = Object.fromEntries(`type-${iID}`.split('.').map(s=>s.split('-')));
+  const iData = Object.fromEntries(`type-${iID}`.split(".").map(s => s.split("-")));
   let parts = new Set();
 
   switch (pack) {
@@ -381,8 +393,8 @@ function _getSubfolderName(data, pack) {
     // powers
     case "forcepowers":
     case "techpowers":
-      if ( data.system?.level === undefined ) return "";
-      if ( data.system.level === 0 ) return "at-will";
+      if (data.system?.level === undefined) return "";
+      if (data.system.level === 0) return "at-will";
       return `level-${data.system.level}`;
     case "maneuver":
       return data.system.maneuverType;
@@ -395,6 +407,7 @@ function _getSubfolderName(data, pack) {
     case "monstertraits":
       return data.system?.weaponType ?? data.system?.type?.value ?? data.type;
 
-    default: return "";
+    default:
+      return "";
   }
 }

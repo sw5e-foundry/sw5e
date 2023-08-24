@@ -45,7 +45,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
   async getData() {
     const points = {
       assigned: Object.keys(CONFIG.SW5E.abilities).reduce((assigned, key) => {
-          return assigned + (this.advancement.configuration.fixed[key] ?? 0) + (this.assignments[key] ?? 0);
+        return assigned + (this.advancement.configuration.fixed[key] ?? 0) + (this.assignments[key] ?? 0);
       }, 0),
       total: this.advancement.points.total
     };

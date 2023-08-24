@@ -1422,7 +1422,7 @@ export default class Actor5e extends Actor {
       if ( this.type === "character" ) Object.assign(prototypeToken, {
         sight: { enabled: true },
         actorLink: true,
-        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
       });
       else if (this.type === "starship") Object.assign(prototypeToken, {
         actorLink: true

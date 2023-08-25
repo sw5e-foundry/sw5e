@@ -2753,10 +2753,10 @@ export default class Item5e extends Item {
     const scrollDetails = scrollDescription.slice(scrollIntroEnd + pdel.length);
 
     // Create a composite description from the scroll description and the power details
-    const desc = scrollIntro
-    + `<hr><h3>${itemData.name} (${game.i18n.format("SW5E.LevelNumber", {level})})</h3>`
-    + (components.concentration ? `<p><em>${game.i18n.localize("SW5E.ScrollRequiresConcentration")}</em></p>` : "")
-    + `<hr>${description.value}<hr>`
+    const desc = `${scrollIntro
+    }<hr><h3>${itemData.name} (${game.i18n.format("SW5E.LevelNumber", {level})})</h3>${
+      components.concentration ? `<p><em>${game.i18n.localize("SW5E.ScrollRequiresConcentration")}</em></p>` : ""
+    }<hr>${description.value}<hr>`
     + `<h3>${game.i18n.localize("SW5E.ScrollDetails")}</h3><hr>${scrollDetails}`;
 
     // Used a fixed attack modifier and saving throw according to the level of power scroll.

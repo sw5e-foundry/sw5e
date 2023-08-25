@@ -290,7 +290,7 @@ function _configureConsumableAttributes() {
     // ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(level => `powers.power${level}.value`)
     "attributes.force.points.value",
     "attributes.tech.points.value",
-    "attributes.super.dice.value",
+    "attributes.super.dice.value"
     // TODO: Check if this would work for consuming power dice
     // ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`),
   ];

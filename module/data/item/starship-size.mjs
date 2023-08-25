@@ -51,7 +51,7 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
         required: true,
         initial: "med",
         blank: false,
-        label: "SW5E.StarshipSize",
+        label: "SW5E.StarshipSize"
       }),
       hullDice: new foundry.data.fields.StringField({
         required: true,

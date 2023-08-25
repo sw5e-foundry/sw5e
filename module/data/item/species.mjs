@@ -22,56 +22,56 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
         { label: "SW5E.Details" }
       ),
 
-      // non-droid visual characteristics
+      // Non-droid visual characteristics
       skinColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.skinColorOptions" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.skinColorOptions" })
       }),
       hairColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.hairColorOptions" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.hairColorOptions" })
       }),
       eyeColorOptions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.eyeColorOptions" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.eyeColorOptions" })
       }),
       distinctions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.distinctions" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.distinctions" })
       }),
 
-      // droid visual characteristics
+      // Droid visual characteristics
       colorScheme: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.ColorScheme" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.ColorScheme" })
       }),
       droidDistinctions: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.DroidDistinctions" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.DroidDistinctions" })
       }),
 
-      // physical characteristics
+      // Physical characteristics
       heightAverage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightAverage" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightAverage" })
       }),
       heightRollMod: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightRollMod" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.HeightRollMod" })
       }),
       weightAverage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightAverage" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightAverage" })
       }),
       weightRollMod: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightRollMod" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.WeightRollMod" })
       }),
 
-      // non-droid sociocultural characteristics
+      // Non-droid sociocultural characteristics
       homeworld: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.homeworld" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.homeworld" })
       }),
       slanguage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" })
       }),
 
-      // droid sociocultural characteristics
+      // Droid sociocultural characteristics
       manufacturer: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.manufacturer" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.manufacturer" })
       }),
       droidLanguage: new foundry.data.fields.SchemaField({
-        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" }),
+        value: new foundry.data.fields.StringField({ required: true, label: "SW5E.slanguage" })
       })
     });
   }

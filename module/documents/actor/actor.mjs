@@ -2574,7 +2574,6 @@ export default class Actor5e extends Actor {
       if (!sship) return null;
       denomination = sship.system.hullDice;
     }
-
     // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
     else sship = this.items.find(i => {
       return (
@@ -2594,18 +2593,21 @@ export default class Actor5e extends Actor {
       return null;
     }
 
+
+
     // Prepare roll data
-    const flavor = game.i18n.localize("SW5E.HullDiceRoll");
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const rollData = foundry.utils.mergeObject(
+    const flavor = game.i18n.localize("SW5E.HullDiceRoll");
+    const rollConfig = foundry.utils.mergeObject(
       {
-        event: new Event("hullDie"),
-        parts: [`${numDice}${denomination}${keep}`, "@abilities.con.mod"],
+        formula: `max(0, ${numDice}${denomination}${keep} + @abilities.con.mod)`,
         data: this.getRollData(),
-        title: `${flavor}: ${this.name}`,
-        dialogOptions: { width: 350 },
+        chatMessage: true,
         messageData: {
           speaker: ChatMessage.getSpeaker({ actor: this }),
+          flavor,
+          title: `${flavor}: ${this.name}`,
+          rollMode: game.settings.get("core", "rollMode"),
           "flags.sw5e.roll": { type: "hullDie" }
         }
       },
@@ -2616,15 +2618,20 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a hull die is rolled for an Actor.
      * @function sw5e.preRollHullDie
      * @memberof hookEvents
-     * @param {Actor5e} actor         Actor for which the hull die is to be rolled.
-     * @param {object} rollData       Configuration data for the pending roll.
-     * @param {string} denomination   Size of hull die to be rolled.
-     * @returns {boolean}             Explicitly return `false` to prevent hull die from being rolled.
+     * @param {Actor5e} actor               Actor for which the hull die is to be rolled.
+     * @param {object} config               Configuration data for the pending roll.
+     * @param {string} config.formula       Formula that will be rolled.
+     * @param {object} config.data          Data used when evaluating the roll.
+     * @param {boolean} config.chatMessage  Should a chat message be created for this roll?
+     * @param {object} config.messageData   Data used to create the chat message.
+     * @param {string} denomination         Size of hull die to be rolled.
+     * @returns {boolean}                   Explicitly return `false` to prevent hull die from being rolled.
      */
-    if (Hooks.call("sw5e.preRollHullDie", this, rollData, denomination) === false) return;
+    if (Hooks.call("sw5e.preRollHullDie", this, rollConfig, denomination) === false) return;
 
-    const roll = await attribDieRoll(rollData);
+    const roll = await new Roll(rollConfig.formula, rollConfig.data).roll({ async: true });
     if (!roll) return roll;
+    if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
 
     const hp = this.system.attributes.hp;
     const dhp = Math.min(Math.max(0, hp.max) - hp.value, roll.total);
@@ -2743,20 +2750,22 @@ export default class Actor5e extends Actor {
     }
 
     // Prepare roll data
-    // if natural regeneration roll max
-    const dieRoll = natural ? denomination : numDice + denimination + keep;
-    const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const rollData = foundry.utils.mergeObject(
+    const dieRoll = natural ?
+      `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult` :
+      `max(0, 1${denomination} + @abilities.str.mod)`;
+    const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
+    const rollConfig = foundry.utils.mergeObject(
       {
-        event: new Event("shldDie"),
-        parts: [`${dieRoll} * @attributes.equip.shields.regenRateMult`],
+        formula: dieRoll,
         data: this.getRollData(),
-        title: `${flavor}: ${this.name}`,
-        dialogOptions: { width: 350 },
+        chatMessage: true,
         messageData: {
           speaker: ChatMessage.getSpeaker({ actor: this }),
-          "flags.sw5e.roll": { type: "shldDie" }
+          flavor,
+          title: `${flavor}: ${this.name}`,
+          rollMode: game.settings.get("core", "rollMode"),
+          "flags.sw5e.roll": { type: "shieldDie" }
         }
       },
       options
@@ -2766,15 +2775,20 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a shield die is rolled for an Actor.
      * @function sw5e.preRollShieldDie
      * @memberof hookEvents
-     * @param {Actor5e} actor         Actor for which the shield die is to be rolled.
-     * @param {object} rollData       Configuration data for the pending roll.
-     * @param {string} denomination   Size of shield die to be rolled.
-     * @returns {boolean}             Explicitly return `false` to prevent shield die from being rolled.
+     * @param {Actor5e} actor               Actor for which the shield die is to be rolled.
+     * @param {object} config               Configuration data for the pending roll.
+     * @param {string} config.formula       Formula that will be rolled.
+     * @param {object} config.data          Data used when evaluating the roll.
+     * @param {boolean} config.chatMessage  Should a chat message be created for this roll?
+     * @param {object} config.messageData   Data used to create the chat message.
+     * @param {string} denomination         Size of shield die to be rolled.
+     * @returns {boolean}                   Explicitly return `false` to prevent shield die from being rolled.
      */
-    if (Hooks.call("sw5e.preRollShieldDie", this, rollData, denomination) === false) return result;
+    if (Hooks.call("sw5e.preRollShieldDie", this, rollConfig, denomination) === false) return;
 
-    const roll = await attribDieRoll(rollData);
+    const roll = await new Roll(rollConfig.formula, rollConfig.data)?.roll({ async: true });
     if (!roll) return result;
+    if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
     result.roll = roll;
 
     const dsp = Math.min(Math.max(0, hp.tempmax) - hp.temp, roll.total);

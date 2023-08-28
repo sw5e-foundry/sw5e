@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changes
 
-- Updated core to match [dnd5e 2.3.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.3.0).
+- Updated core to match [dnd5e 2.3.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.3.1).
+- Compendium Updates.
 
 ### Fixed
 

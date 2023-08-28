@@ -31,7 +31,12 @@ export default class ItemSheet5e extends ItemSheet {
       height: 400,
       classes: ["sw5e", "sheet", "item"],
       resizable: true,
-      scrollY: [".tab.details"],
+      scrollY: [
+        ".tab[data-tab=details]",
+        ".tab[data-tab=effects] .items-list",
+        ".tab[data-tab=description] .editor-content",
+        ".tab[data-tab=advancement] .items-list",
+      ],
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description" }],
       dragDrop: [
         { dragSelector: "[data-effect-id]", dropSelector: ".effects-list" },
@@ -797,7 +802,7 @@ export default class ItemSheet5e extends ItemSheet {
   async _onDropActiveEffect(event, data) {
     const effect = await ActiveEffect.implementation.fromDropData(data);
     if (!this.item.isOwner || !effect) return false;
-    if (this.item.uuid === effect.parent.uuid || this.item.uuid === effect.origin) return false;
+    if ( (this.item.uuid === effect.parent?.uuid) || (this.item.uuid === effect.origin) ) return false;
     return ActiveEffect.create(
       {
         ...effect.toObject(),
@@ -865,7 +870,7 @@ export default class ItemSheet5e extends ItemSheet {
     }
 
     // If no advancements need to be applied, just add them to the item
-    const advancementArray = foundry.utils.deepClone(this.item.system.advancement);
+    const advancementArray = this.item.system.toObject().advancement;
     advancementArray.push(...advancements.map(a => a.toObject()));
     this.item.update({ "system.advancement": advancementArray });
   }

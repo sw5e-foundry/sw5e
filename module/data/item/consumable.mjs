@@ -83,4 +83,15 @@ export default class ConsumableData extends SystemDataModel.mixin(
     super.migrateData(source);
     migrateItemProperties(source.properties, CONFIG.SW5E.weaponProperties);
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The proficiency multiplier for this item.
+   * @returns {number}
+   */
+  get proficiencyMultiplier() {
+    const isProficient = this.parent?.actor?.getFlag("sw5e", "tavernBrawlerFeat");
+    return isProficient ? 1 : 0;
+  }
 }

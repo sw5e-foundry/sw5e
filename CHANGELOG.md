@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - #705 'All Starships are displayed as "Medium" regardless of Stats'.
 - Starship shield regen now correctly uses the maximum value instead of rolling.
 - NPC sheet now properly displays temp and +max HP.
+- 'Power Slot' overrides should now work with active effects. DAE seems to break this.
 
 ## [2.2.2.2.5.0] - 2023-08-04
 

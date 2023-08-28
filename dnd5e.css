@@ -1394,6 +1394,12 @@ h5 {
 .sw5e.advancement select {
   height: var(--form-field-height);
 }
+.sw5e.advancement input[type="text"][readonly],
+.sw5e.advancement input[type="number"][readonly],
+.sw5e.advancement select[readonly] {
+  color: var(--color-text-dark-6);
+  box-shadow: none;
+}
 .sw5e.advancement .form-group .form-fields button {
   flex: 0;
 }

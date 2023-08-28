@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - #722 'Item proficiency label not showing correctly on character sheet'.
 - #705 'All Starships are displayed as "Medium" regardless of Stats'.
 - Starship shield regen now correctly uses the maximum value instead of rolling.
+- NPC sheet now properly displays temp and +max HP.
 
 ## [2.2.2.2.5.0] - 2023-08-04
 

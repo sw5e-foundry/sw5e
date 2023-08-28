@@ -57,13 +57,15 @@ SW5E.abilities = {
     label: "SW5E.AbilityHon",
     abbreviation: "SW5E.AbilityHonAbbr",
     type: "mental",
-    defaults: { npc: "cha", vehicle: 0 }
+    defaults: { npc: "cha", vehicle: 0 },
+    improvement: false
   },
   san: {
     label: "SW5E.AbilitySan",
     abbreviation: "SW5E.AbilitySanAbbr",
     type: "mental",
-    defaults: { npc: "wis", vehicle: 0 }
+    defaults: { npc: "wis", vehicle: 0 },
+    improvement: false
   }
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
@@ -230,7 +232,6 @@ preLocalize("weaponProficiencies");
  * @enum {(boolean|string)}
  */
 SW5E.weaponProficienciesMap = {
-  natural: true,
   simpleB: "smb",
   simpleLW: "slw",
   simpleVW: "svb",
@@ -3766,6 +3767,12 @@ SW5E.characterFlags = {
     name: "SW5E.FlagsNimbleness",
     hint: "SW5E.FlagsNimblenessHint",
     section: "SW5E.SpeciesTraits",
+    type: Boolean
+  },
+  tavernBrawlerFeat: {
+    name: "SW5E.FlagsTavernBrawler",
+    hint: "SW5E.FlagsTavernBrawlerHint",
+    section: "SW5E.Feats",
     type: Boolean
   },
   pintsized: {

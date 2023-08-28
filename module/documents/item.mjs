@@ -475,7 +475,7 @@ export default class Item5e extends Item {
    * @protected
    */
   _prepareProficiency() {
-    if ( !["power", "weapon", "equipment", "tool"].includes(this.type) ) return;
+    if ( !["power", "weapon", "equipment", "tool", "feat", "consumable"].includes(this.type) ) return;
     if ( !this.actor?.system.attributes?.prof ) {
       this.system.prof = new Proficiency(0, 0);
       return;
@@ -1404,7 +1404,7 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Adjust a at-will damage formula to scale it for higher level characters and monsters.
+   * Adjust an at-will damage formula to scale it for higher level characters and monsters.
    * @param {string[]} parts   The original parts of the damage formula.
    * @param {string} scale     The scaling formula.
    * @param {number} level     Level at which the power is being cast.

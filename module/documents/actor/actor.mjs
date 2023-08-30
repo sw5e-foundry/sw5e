@@ -558,25 +558,18 @@ export default class Actor5e extends Actor {
 
       // Shortcuts to make the code cleaner
       const p = progression.prefix;
-      const pmin = `${p}min`;
       const pmax = `${p}max`;
       const pval = `${p}value`;
-      const povr = `${p}override`;
 
       // Set the 'power slots'
       const powers = this.system.powers;
       for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
         const slot = powers[`power${level}`] ??= { [pval]: 0 };
 
-        const override = slot[povr];
-        const regular = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
-        slot[pmax] = Number.isNumeric(override) ? Math.max(parseInt(override), 0) : regular;
+        slot[pmax] = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
 
-        if (isNPC) {
-          slot[pval] = slot[pmax];
-        } else {
-          slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
-        }
+        if (isNPC) slot[pval] = slot[pmax];
+        else slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
       }
 
       // Apply the calculated values to the sheet
@@ -1283,6 +1276,24 @@ export default class Actor5e extends Actor {
 
       cast.points.max += Number(cast.points.bonuses?.overall ?? 0);
       cast.points.max += Number(cast.points.bonuses?.level ?? 0) * lvl;
+    }
+
+    // Apply any 'power slot' overrides
+    const powers = this.system.powers;
+    for (const castType of ["f", "t"]) {
+      const pmax = `${castType}max`;
+      const pval = `${castType}value`;
+      const povr = `${castType}override`;
+      for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
+        const slot = powers[`power${level}`];
+
+        const override = Number.isNumeric(slot[povr]) ? Math.max(parseInt(slot[povr]), 0) : null;
+        if ( Number.isNumeric(override) ) {
+          if ( this.type === "npc" || slot[pval] === slot[pmax] ) slot[pval] = override;
+          else slot[pval] = Math.min(slot[pval], override);
+          slot[pmax] = override;
+        }
+      }
     }
   }
 

@@ -1,11 +1,11 @@
 <form id="{{appId}}" data-level="{{level}}" data-id="{{advancement.id}}" data-type="{{type}}">
   <h3>{{{this.title}}}</h3>
 
-  <ul class="ability-scores {{#if feat}}disabled{{/if}}">
+  <ul class="ability-scores {{#if asilocked}}disabled{{/if}}">
     {{#unless staticIncrease}}
     <label>
-      {{#if feat}}
-        {{localize "SW5E.AdvancementAbilityScoreImprovementLockedHint"}}
+      {{#if asilocked}}
+        {{ localize "SW5E.AdvancementAbilityScoreImprovementLockedHint" }}
       {{else}}
         {{ pointsRemaining }}
       {{/if}}

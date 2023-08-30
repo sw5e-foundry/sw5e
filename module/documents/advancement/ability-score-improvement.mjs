@@ -45,6 +45,16 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
   /* -------------------------------------------- */
 
   /**
+   * Does this advancement allow feats and ASI?
+   * @type {boolean}
+   */
+  get allowFeatAndASI() {
+    return this.allowFeat && game.settings.get("sw5e", "allowFeatsAndASI");
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Information on the ASI points available.
    * @type {{ assigned: number, total: number }}
    */
@@ -88,23 +98,23 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
 
   /** @inheritdoc */
   summaryForLevel(level, { configMode=false }={}) {
-    if ( (this.value.type === "feat") && this.value.feat ) {
+    let html = "";
 
+    if ( (["feat", "asi+feat"].includes(this.value.type)) && this.value.feat ) {
       const id = Object.keys(this.value.feat)[0];
       const feat = this.actor.items.get(id);
-      if ( feat ) return feat.toAnchor({classes: ["content-link"]}).outerHTML;
-
-    } else if ( (this.value.type === "asi") && this.value.assignments ) {
-
-      const formatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
-      return Object.entries(this.value.assignments).reduce((html, [key, value]) => {
-        const name = CONFIG.SW5E.abilities[key]?.label ?? key;
-        html += `<span class="tag">${name} <strong>${formatter.format(value)}</strong></span>\n`;
-        return html;
-      }, "");
-
+      if ( feat ) html += feat.toAnchor({classes: ["content-link"]}).outerHTML;
     }
-    return "";
+
+    if ( (["asi", "asi+feat"].includes(this.value.type)) && this.value.assignments ) {
+      const formatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
+      html += Object.entries(this.value.assignments).reduce((asi_html, [key, value]) => {
+        const name = CONFIG.SW5E.abilities[key]?.label ?? key;
+        asi_html += `<span class="tag">${name} <strong>${formatter.format(value)}</strong></span>\n`;
+        return asi_html;
+      }, "");
+    }
+    return html;
   }
 
   /* -------------------------------------------- */
@@ -113,9 +123,10 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
 
   /** @inheritdoc */
   async apply(level, data) {
-    if ( data.type === "asi" ) {
+    const updates = {};
+
+    if ( ["asi", "asi+feat"].includes(data.type) ) {
       const assignments = foundry.utils.mergeObject(this.configuration.fixed, data.assignments, {inplace: false});
-      const updates = {};
       for ( const key of Object.keys(assignments) ) {
         const ability = this.actor.system.abilities[key];
         if ( !ability || !this.canImprove(key) ) continue;
@@ -124,11 +135,10 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
         else delete assignments[key];
       }
       data.assignments = assignments;
-      data.feat = null;
-      this.actor.updateSource(updates);
+      if ( data.type === "asi" ) data.feat = null;
     }
 
-    else {
+    if ( ["feat", "asi+feat"].includes(data.type) ) {
       let itemData = data.retainedItems?.[data.featUuid];
       if ( !itemData ) {
         const source = await fromUuid(data.featUuid);
@@ -140,13 +150,14 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
           }, {keepId: true}).toObject();
         }
       }
-      data.assignments = null;
+      if ( data.type === "feat" ) data.assignments = null;
       if ( itemData ) {
         data.feat = { [itemData._id]: data.featUuid };
-        this.actor.updateSource({items: [itemData]});
+        updates[items] = [itemData];
       }
     }
 
+    this.actor.updateSource(updates);
     this.updateSource({value: data});
   }
 
@@ -164,7 +175,7 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
   reverse(level) {
     const source = this.value.toObject();
 
-    if ( this.value.type === "asi" ) {
+    if ( ["asi", "asi+feat"].includes(this.value.type) ) {
       const updates = {};
       for ( const [key, change] of Object.entries(this.value.assignments ?? {}) ) {
         const ability = this.actor.system.abilities[key];
@@ -174,7 +185,7 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
       this.actor.updateSource(updates);
     }
 
-    else {
+    if ( ["feat", "asi+feat"].includes(this.value.type) ) {
       const [id, uuid] = Object.entries(this.value.feat ?? {})[0] ?? [];
       const item = this.actor.items.get(id);
       if ( item ) source.retainedItems = {[uuid]: item.toObject()};

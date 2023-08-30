@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- "ASI and a Feat" variant rule.
+
 ### Changes
 
 - Updated core to match [dnd5e 2.3.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.3.1).
@@ -16,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - #722 'Item proficiency label not showing correctly on character sheet'.
 - #705 'All Starships are displayed as "Medium" regardless of Stats'.
 - Starship shield regen now correctly uses the maximum value instead of rolling.
+- NPC sheet now properly displays temp and +max HP.
+- 'Power Slot' overrides should now work with active effects. DAE seems to break this.
 
 ## [2.2.2.2.5.0] - 2023-08-04
 

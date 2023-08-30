@@ -37,7 +37,7 @@ export class AbilityScoreImprovementValueData extends SparseDataModel {
   static defineSchema() {
     return {
       type: new foundry.data.fields.StringField({
-        required: true, initial: "asi", choices: ["asi", "feat"]
+        required: true, initial: "asi", choices: ["asi", "feat", "asi+feat"]
       }),
       assignments: new MappingField(new foundry.data.fields.NumberField({
         nullable: false, integer: true

@@ -1,4 +1,5 @@
 import AdvancementFlow from "./advancement-flow.mjs";
+import Advancement from "../../documents/advancement/advancement.mjs";
 
 /**
  * Inline application that presents the player with a choice between ability score improvement and taking a feat.
@@ -43,14 +44,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
 
   /** @inheritdoc */
   async getData() {
-    const points = {
-      assigned: Object.keys(CONFIG.SW5E.abilities).reduce((assigned, key) => {
-        if ( !this.advancement.canImprove(key) || this.advancement.configuration.fixed[key] ) return assigned;
-        return assigned + (this.assignments[key] ?? 0);
-      }, 0),
-      total: this.advancement.configuration.points
-    };
-    points.available = points.total - points.assigned;
+    const points = this.points;
 
     const formatter = new Intl.NumberFormat(game.i18n.lang, { signDisplay: "always" });
 
@@ -70,8 +64,8 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
         showDelta: true,
         isDisabled: !!this.feat,
         isFixed: !!fixed,
-        canIncrease: (value < max) && !fixed && !this.feat,
-        canDecrease: (value > ability.value) && !fixed && !this.feat
+        canIncrease: (value < max) && !fixed && (this.advancement.allowFeatAndASI || !this.feat),
+        canDecrease: (value > ability.value) && !fixed && (this.advancement.allowFeatAndASI || !this.feat)
       };
       return obj;
     }, {});
@@ -80,6 +74,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
     return foundry.utils.mergeObject(super.getData(), {
       abilities, points,
       feat: this.feat,
+      asilocked: this.feat && !this.advancement.allowFeatAndASI,
       staticIncrease: !this.advancement.configuration.points,
       pointsRemaining: game.i18n.format(
         `SW5E.AdvancementAbilityScoreImprovementPointsRemaining.${pluralRule}`, {points: points.available}
@@ -147,12 +142,13 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
   /** @inheritdoc */
   async _updateObject(event, formData) {
     // TODO: Pass through retained feat data
-    await this.advancement.apply(this.level, {
-      type: this.feat ? "feat" : "asi",
+    if (this.points.available >= 0) return await this.advancement.apply(this.level, {
+      type: this.feat ? ((this.advancement.allowFeatAndASI && this.assignments) ? "asi+feat" : "feat") : "asi",
       assignments: this.assignments,
       featUuid: this.feat?.uuid,
       retainedItems: this.retainedData?.retainedItems
     });
+    throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementAbilityScoreImprovementInvalidError`));
   }
 
   /* -------------------------------------------- */
@@ -193,5 +189,26 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
 
     this.feat = item;
     this.render();
+  }
+
+  /* -------------------------------------------- */
+  /*  Other                                       */
+  /* -------------------------------------------- */
+
+  /**
+   * Handle deleting a dropped feat.
+   * @param {Event} event  The originating click event.
+   * @protected
+   */
+  get points() {
+    const points = {
+      assigned: Object.keys(CONFIG.SW5E.abilities).reduce((assigned, key) => {
+        if ( !this.advancement.canImprove(key) || this.advancement.configuration.fixed[key] ) return assigned;
+        return assigned + (this.assignments[key] ?? 0);
+      }, 0),
+      total: (this.advancement.allowFeatAndASI && this.feat) ? 1 : this.advancement.configuration.points
+    };
+    points.available = points.total - points.assigned;
+    return points;
   }
 }

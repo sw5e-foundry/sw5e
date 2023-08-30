@@ -3,6 +3,7 @@ import BackgroundData from "./background.mjs";
 import ClassData from "./class.mjs";
 import ConsumableData from "./consumable.mjs";
 import ContainerData from "./container.mjs";
+import DeploymentData from "./deployment.mjs";
 import EquipmentData from "./equipment.mjs";
 import FeatData from "./feat.mjs";
 import LootData from "./loot.mjs";
@@ -18,6 +19,7 @@ export {
   ArchetypeData,
   BackgroundData,
   ClassData,
+  DeploymentData,
   ConsumableData,
   ContainerData,
   EquipmentData,
@@ -44,6 +46,7 @@ export const config = {
   backpack: ContainerData,
   class: ClassData,
   consumable: ConsumableData,
+  deployment: DeploymentData,
   equipment: EquipmentData,
   feat: FeatData,
   loot: LootData,

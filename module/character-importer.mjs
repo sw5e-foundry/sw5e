@@ -340,6 +340,11 @@ export default class CharacterImporter {
     const languages = CharacterImporter._actor.system.traits.languages;
     const weaponProf = CharacterImporter._actor.system.traits.weaponProf;
 
+    // #733: Convert values from Set to Array for actor.update()
+    armorProf.value = Array.from(armorProf.value);
+    languages.value = Array.from(languages.value);
+    weaponProf.value = Array.from(weaponProf.value);
+
     for (const prof of profs) {
       let name = prof.name;
       switch (prof.type) {
@@ -350,7 +355,7 @@ export default class CharacterImporter {
           if (match) {
             const weapons = {
               blaster: ["smb", "mrb", "exb"],
-              vibroweapon: ["svw", "mvw", "evw"],
+              vibroweapon: ["svb", "mvb", "evw"],
               lightweapon: ["slw", "mlw", "elw"]
             };
             const which = match[1];
@@ -456,7 +461,7 @@ export default class CharacterImporter {
           Cancel: {
             icon: "<i class=\"fas fa-times-circle\"></i>",
             label: "Cancel",
-            callback: () => {}
+            callback: () => { }
           }
         }
       });

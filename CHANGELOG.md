@@ -14,11 +14,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Updated core to match [dnd5e 2.3.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.3.1).
 - Compendium Updates.
+    - Classes now have 'Choose Item' advancements for Invocations and Archetypes.
+    - Classes now have 'Ability Score Improvement' advancements.
+    - Backgrounds now have 'Choose Item' advancements for feats.
 
 ### Fixed
 
-- #707 'Issue with character import'.
 - #705 'All Starships are displayed as "Medium" regardless of Stats'.
+- #707 'Issue with character import'.
 - #722 'Item proficiency label not showing correctly on character sheet'.
 - #728 'Editing and Rolling Starship Skills throwing errors'.
 - #733 'Imported Character Traits (armorProf, languages, weaponProf) showing as [object Set]'.

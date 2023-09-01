@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - NPC sheet now properly displays temp and +max HP.
 - 'Power Slot' overrides should now work with active effects. DAE seems to break this.
 - 'Deployments' now have a DataModel, and thus should be able to receive advancements.
+- 'Buy Item' on the compendium browser should now work properly.
 
 ## [2.2.2.2.5.0] - 2023-08-04
 

@@ -634,8 +634,6 @@ export default class Item5e extends Item {
       { all: [], vsm: [], tags: [] }
     );
     this.labels.materials = this.system?.materials?.value ?? null;
-
-    this.system.critical.baseThreshold = 20;
   }
 
   /* -------------------------------------------- */
@@ -681,7 +679,6 @@ export default class Item5e extends Item {
       this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
       this.system.ammo.baseUse = 1;
     }
-    this.system.critical.baseThreshold = Math.max(15, 20 - (this.system.properties.keen ?? 0));
   }
 
   /* -------------------------------------------- */

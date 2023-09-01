@@ -143,6 +143,13 @@ export default class WeaponData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
+  get _typeBaseCriticalThreshold() {
+    return Math.max(15, 20 - (this.properties.ken ?? 0));
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
   get _typeCriticalThreshold() {
     return this.parent?.actor?.flags.sw5e?.weaponCriticalThreshold ?? Infinity;
   }

@@ -17,8 +17,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- #722 'Item proficiency label not showing correctly on character sheet'.
+- #707 'Issue with character import'.
 - #705 'All Starships are displayed as "Medium" regardless of Stats'.
+- #722 'Item proficiency label not showing correctly on character sheet'.
+- #728 'Editing and Rolling Starship Skills throwing errors'.
+- #733 'Imported Character Traits (armorProf, languages, weaponProf) showing as [object Set]'.
 - Starship shield regen now correctly uses the maximum value instead of rolling.
 - NPC sheet now properly displays temp and +max HP.
 - 'Power Slot' overrides should now work with active effects. DAE seems to break this.

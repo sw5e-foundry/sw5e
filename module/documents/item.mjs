@@ -634,8 +634,6 @@ export default class Item5e extends Item {
       { all: [], vsm: [], tags: [] }
     );
     this.labels.materials = this.system?.materials?.value ?? null;
-
-    this.system.critical.baseThreshold = 20;
   }
 
   /* -------------------------------------------- */
@@ -681,7 +679,6 @@ export default class Item5e extends Item {
       this.system.ammo.max = this.system.properties.rel || this.system.properties.ovr || 0;
       this.system.ammo.baseUse = 1;
     }
-    this.system.critical.baseThreshold = Math.max(15, 20 - (this.system.properties.keen ?? 0));
   }
 
   /* -------------------------------------------- */
@@ -783,17 +780,29 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
+   * Determine an item's proficiency level based on its parent actor's proficiencies.
+   * @protected
+   */
+  _prepareProficiency() {
+    if ( !["power", "weapon", "equipment", "tool", "feat", "consumable"].includes(this.type) ) return;
+    if ( !this.actor?.system.attributes?.prof ) {
+      this.system.prof = new Proficiency(0, 0);
+      return;
+    }
+
+    this.system.prof = new Proficiency(this.actor.system.attributes.prof, this.system.proficiencyMultiplier ?? 0);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Compute item attributes which might depend on prepared actor data. If this item is embedded this method will
    * be called after the actor's data is prepared.
    * Otherwise, it will be called at the end of `Item5e#prepareDerivedData`.
    */
   prepareFinalAttributes() {
     // Proficiency
-    if (this.actor?.system.attributes?.prof) {
-      const isStarshipWeapon = this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes;
-      const isProficient = isStarshipWeapon || this.type === "power" || this.system.proficient; // Always proficient in power attacks.
-      this.system.prof = new Proficiency(this.actor?.system.attributes.prof, isProficient);
-    }
+    this._prepareProficiency();
 
     // Class data
     if (this.type === "class") this.system.isOriginalClass = this.isOriginalClass;
@@ -920,14 +929,12 @@ export default class Item5e extends Item {
     if (!this.isOwned) return { rollData, parts };
 
     // Ability score modifier
-    parts.push("@mod");
+    if ( this.system.ability !== "none" ) parts.push("@mod");
 
-    // Add proficiency bonus if an explicit proficiency flag is present or for non-item features
-    if (!["weapon", "consumable"].includes(this.type) || this.system.proficient) {
+    // Add proficiency bonus.
+    if ( this.system.prof?.hasProficiency ) {
       parts.push("@prof");
-      if (this.system.prof?.hasProficiency) {
-        rollData.prof = this.system.prof.term;
-      }
+      rollData.prof = this.system.prof.term;
     }
 
     // Actor-level global bonus to attack rolls
@@ -1262,7 +1269,13 @@ export default class Item5e extends Item {
     if (config.createMeasuredTemplate) {
       try {
         templates = await sw5e.canvas.AbilityTemplate.fromItem(item)?.drawPreview();
-      } catch(err) {}
+      } catch(err) {
+        Hooks.onError("Item5e#use", err, {
+          msg: game.i18n.localize("SW5E.PlaceTemplateError"),
+          log: "error",
+          notify: "error"
+        });
+      }
     }
 
     /**
@@ -2096,6 +2109,7 @@ export default class Item5e extends Item {
     return this.actor?.rollToolCheck(this.system.baseItem, {
       ability: this.system.ability,
       bonus: this.system.bonus,
+      prof: this.system.prof,
       ...options
     });
   }
@@ -2213,7 +2227,13 @@ export default class Item5e extends Item {
       case "placeTemplate":
         try {
           await sw5e.canvas.AbilityTemplate.fromItem(item)?.drawPreview();
-        } catch(err) {}
+        } catch(err) {
+          Hooks.onError("Item5e._onChatCardAction", err, {
+            msg: game.i18n.localize("SW5E.PlaceTemplateError"),
+            log: "error",
+            notify: "error"
+          });
+        }
         break;
       case "abilityCheck":
         targets = this._getChatCardTargets(card);
@@ -2428,11 +2448,11 @@ export default class Item5e extends Item {
         case "power":
           updates = this._onCreateOwnedPower(data, isNPC);
           break;
-        case "tool":
-          updates = this._onCreateOwnedTool(data, isNPC);
-          break;
         case "weapon":
           updates = this._onCreateOwnedWeapon(data, isNPC);
+          break;
+        case "feat":
+          updates = this._onCreateOwnedFeature(data, isNPC);
           break;
       }
     }
@@ -2594,30 +2614,6 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
 
   /**
-   * Pre-creation logic for the automatic configuration of owned tool type Items.
-   * @param {object} data       Data for the newly created item.
-   * @param {boolean} isNPC     Is this actor an NPC?
-   * @returns {object}          Updates to apply to the item data.
-   * @private
-   */
-  _onCreateOwnedTool(data, isNPC) {
-    const updates = {};
-    if (data.system?.proficient === undefined) {
-      if (isNPC) {
-        updates["system.proficient"] = 1;
-      } else if (this.parent.type !== "starship") {
-        const actorToolProfs = this.parent.system.tools || {};
-        const toolProf = actorToolProfs[this.system.baseItem]?.value;
-        const generalProf = actorToolProfs[this.system.toolType]?.value;
-        updates["system.proficient"] = toolProf ?? generalProf ?? 0;
-      }
-    }
-    return updates;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Pre-creation logic for the automatic configuration of owned weapon type Items.
    * @param {object} data       Data for the newly created item.
    * @param {boolean} isNPC     Is this actor an NPC?
@@ -2625,25 +2621,27 @@ export default class Item5e extends Item {
    * @private
    */
   _onCreateOwnedWeapon(data, isNPC) {
+    if ( !isNPC ) return;
+    // NPCs automatically equip items.
     const updates = {};
+    if ( !foundry.utils.hasProperty(data, "system.equipped") ) updates["system.equipped"] = true;
+    return updates;
+  }
 
-    // NPCs automatically equip items and are proficient with them
-    if (foundry.utils.getProperty(data, "system.equipped") === undefined) {
-      updates["system.equipped"] = isNPC; // NPCs automatically equip equipment
+  /* -------------------------------------------- */
+
+  /**
+   * Pre-creation logic for the automatic configuration of owned feature type Items.
+   * @param {object} data       Data for the newly created item.
+   * @param {boolean} isNPC     Is this actor an NPC?
+   * @returns {object}          Updates to apply to the item data.
+   * @private
+   */
+  _onCreateOwnedFeature(data, isNPC) {
+    const updates = {};
+    if ( isNPC && !foundry.utils.getProperty(data, "system.type.value") ) {
+      updates["system.type.value"] = "monster"; // Set features on NPCs to be 'monster features'.
     }
-
-    if (foundry.utils.getProperty(data, "system.proficient") === undefined) {
-      if (isNPC) updates["system.proficient"] = true; // NPCs automatically have equipment proficiency
-      else {
-        // Some weapon types are always proficient
-        // Characters may have proficiency in this weapon type, or specific base weapon
-        const weaponProf = CONFIG.SW5E.weaponProficienciesMap[this.system.weaponType];
-        const actorWeaponProfs = this.parent.system.traits?.weaponProf?.value || new Set();
-        updates["system.proficient"] =
-          weaponProf === true || actorWeaponProfs.has(weaponProf) || actorWeaponProfs.has(this.system.baseItem);
-      }
-    }
-
     return updates;
   }
 
@@ -2714,12 +2712,13 @@ export default class Item5e extends Item {
   // TODO: Make work properly
   /**
    * Create a consumable power scroll Item from a power Item.
-   * @param {Item5e} power      The power to be made into a scroll
-   * @returns {Item5e}          The created scroll consumable item
+   * @param {Item5e|object} power     The power or item data to be made into a scroll
+   * @param {object} [options]        Additional options that modify the created scroll
+   * @returns {Item5e}                The created scroll consumable item
    */
-  static async createScrollFromPower(power) {
+  static async createScrollFromPower(power, options={}) {
     // Get power data
-    const itemData = power instanceof Item5e ? power.toObject() : power;
+    const itemData = (power instanceof Item5e) ? power.toObject() : power;
     let {
       actionType,
       description,
@@ -2732,7 +2731,9 @@ export default class Item5e extends Item {
       formula,
       save,
       level,
-      attackBonus
+      attackBonus,
+      ability,
+      components
     } = itemData.system;
 
     // Get scroll data
@@ -2749,11 +2750,16 @@ export default class Item5e extends Item {
     const scrollDetails = scrollDescription.slice(scrollIntroEnd + pdel.length);
 
     // Create a composite description from the scroll description and the power details
-    const desc = `${scrollIntro}<hr/><h3>${itemData.name} (Level ${level})</h3><hr/>${description.value}<hr/><h3>Scroll Details</h3><hr/>${scrollDetails}`;
+    const desc = `${scrollIntro
+    }<hr><h3>${itemData.name} (${game.i18n.format("SW5E.LevelNumber", {level})})</h3>${
+      components.concentration ? `<p><em>${game.i18n.localize("SW5E.ScrollRequiresConcentration")}</em></p>` : ""
+    }<hr>${description.value}<hr>`
+    + `<h3>${game.i18n.localize("SW5E.ScrollDetails")}</h3><hr>${scrollDetails}`;
 
     // Used a fixed attack modifier and saving throw according to the level of power scroll.
     if (["mwak", "rwak", "mpak", "rpak"].includes(actionType)) {
-      attackBonus = `${scrollData.system.attackBonus} - @mod`;
+      attackBonus = scrollData.system.attackBonus;
+      ability = "none";
     }
     if (save.ability) {
       save.scaling = "flat";
@@ -2776,9 +2782,20 @@ export default class Item5e extends Item {
         formula,
         save,
         level,
-        attackBonus
+        attackBonus,
+        ability
       }
     });
+    foundry.utils.mergeObject(powerScrollData, options);
+
+    /**
+     * A hook event that fires after the item data for a scroll is created but before the item is returned.
+     * @function sw5e.createScrollFromPower
+     * @memberof hookEvents
+     * @param {Item5e|object} power       The power or item data to be made into a scroll.
+     * @param {object} powerScrollData    The final item data used to make the scroll.
+     */
+    Hooks.callAll("sw5e.createScrollFromPower", power, powerScrollData);
     return new this(powerScrollData);
   }
 

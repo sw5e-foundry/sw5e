@@ -56,7 +56,8 @@
                                     {{/if}}
                                     {{#if ctx.hasUses}}
                                         <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
-                                            <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
+                                            <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
+                                                   data-dtype="Number" data-name="system.uses.value" {{disabled ctx.reloadDisabled}}/>
                                             <span class="sep">/</span>
                                             <span>{{ item.system.ammo.max }}</span>
                                         </div>
@@ -73,13 +74,15 @@
                                     {{localize "SW5E.Charged"}}
                                 {{else if ctx.hasUses}}
                                     <div class="form-group uses-per" data-tooltip="SW5E.ConsumeCharges" data-attr="uses">
-                                        <input type="text" value="{{item.system.uses.value}}" placeholder="0"/>
+                                        <input type="text" value="{{item.system.uses.value}}" placeholder="0"
+                                               data-dtype="Number" data-name="system.uses.value"/>
                                         <span class="sep">/</span>
                                         <span>{{ item.system.uses.max }}</span>
                                     </div>
                                 {{else if ctx.hasReload}}
                                     <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
-                                        <input type="text" value="{{item.system.ammo.value}}" {{disabled ctx.reloadDisabled}}/>
+                                        <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
+                                               data-dtype="Number" data-name="system.ammo.value" {{disabled ctx.reloadDisabled}}/>
                                         <span class="sep">/</span>
                                         <span>{{ item.system.ammo.max }}</span>
                                     </div>

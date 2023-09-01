@@ -6,6 +6,7 @@ import CurrencyTemplate from "../../shared/currency.mjs";
  * @typedef {object} AbilityData
  * @property {number} value          Ability score.
  * @property {number} proficient     Proficiency value for saves.
+ * @property {number} max Maximum possible score for the ability.
  * @property {object} bonuses        Bonuses that modify ability checks and saves.
  * @property {string} bonuses.check  Numeric or dice bonus to ability checks.
  * @property {string} bonuses.save   Numeric or dice bonus to ability saving throws.
@@ -33,8 +34,19 @@ export default class CommonTemplate extends SystemDataModel.mixin(CurrencyTempla
           }),
           proficient: new foundry.data.fields.NumberField({
             required: true,
+            min: 0,
+            max: 5,
+            step: 0.5,
             initial: 0,
             label: "SW5E.ProficiencyLevel"
+          }),
+          max: new foundry.data.fields.NumberField({
+            required: true,
+            integer: true,
+            nullable: true,
+            min: 0,
+            initial: null,
+            label: "SW5E.AbilityScoreMax"
           }),
           bonuses: new foundry.data.fields.SchemaField(
             {

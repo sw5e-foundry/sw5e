@@ -58,6 +58,26 @@ export default function registerSystemSettings() {
     }
   });
 
+  // Allow feats during Ability Score Improvements
+  game.settings.register("sw5e", "allowFeats", {
+    name: "SETTINGS.5eFeatsN",
+    hint: "SETTINGS.5eFeatsL",
+    scope: "world",
+    config: true,
+    default: true,
+    type: Boolean
+  });
+
+  // Allow 'feat + 1 ASI' variant rule
+  game.settings.register("sw5e", "allowFeatsAndASI", {
+    name: "SETTINGS.5eFeatsAndASIN",
+    hint: "SETTINGS.5eFeatsAndASIL",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
   // Use Honor ability score
   game.settings.register("sw5e", "honorScore", {
     name: "SETTINGS.5eHonorN",

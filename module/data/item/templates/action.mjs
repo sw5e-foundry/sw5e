@@ -168,6 +168,7 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
    * @type {string|null}
    */
   get abilityMod() {
+    if ( this.ability === "none" ) return null;
     return (
       this.ability
       || this._typeAbilityMod
@@ -195,6 +196,21 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
   /* -------------------------------------------- */
 
   /**
+   * What is the base critical hit threshold for this item? Only used when no overrides are set:
+   *  - `critical.threshold` defined on the item
+   *  - `critical.threshold` defined on ammunition, if consumption mode is set to ammo
+   *  - Type-specific critical threshold
+   * @type {number}
+   */
+  get baseCriticalThreshold() {
+    if (!this.hasAttack) return null;
+    const threshold = this._typeBaseCriticalThreshold;
+    return threshold < Infinity ? threshold : 20;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * What is the critical hit threshold for this item? Uses the smallest value from among the following sources:
    *  - `critical.threshold` defined on the item
    *  - `critical.threshold` defined on ammunition, if consumption mode is set to ammo
@@ -208,7 +224,18 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
       ammoThreshold = this.parent?.actor?.items.get(this.consume.target).system.critical.threshold ?? Infinity;
     }
     const threshold = Math.min(this.critical.threshold ?? Infinity, this._typeCriticalThreshold, ammoThreshold);
-    return threshold < Infinity ? threshold : 20;
+    return threshold < Infinity ? threshold : this.baseCriticalThreshold;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Default base critical threshold for this type.
+   * @type {number}
+   * @internal
+   */
+  get _typeBaseCriticalThreshold() {
+    return Infinity;
   }
 
   /* -------------------------------------------- */

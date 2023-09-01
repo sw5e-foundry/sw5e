@@ -556,29 +556,30 @@ export default class Actor5e extends Actor {
         }
       }
 
-      // Set the 'power slots'
+      // Shortcuts to make the code cleaner
       const p = progression.prefix;
-      for (const [n, lvl] of Object.entries(this.system.powers)) {
-        const i = parseInt(n.slice(-1));
-        if (Number.isNaN(i)) continue;
+      const pmax = `${p}max`;
+      const pval = `${p}value`;
 
-        if (Number.isNumeric(lvl[`${p}override`])) lvl[`${p}max`] = Math.max(parseInt(lvl[`${p}override`]), 0);
-        else lvl[`${p}max`] = i > progression.maxPowerLevel ? 0 : i >= progression.limit ? 1 : 1000;
+      // Set the 'power slots'
+      const powers = this.system.powers;
+      for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
+        const slot = powers[`power${level}`] ??= { [pval]: 0 };
 
-        if (isNPC) {
-          lvl[`${p}value`] = lvl[`${p}max`];
-        } else {
-          lvl[`${p}value`] = Math.min(parseInt(lvl[`${p}value`] ?? lvl.value ?? lvl[`${p}max`]), lvl[`${p}max`]);
-        }
+        slot[pmax] = (level > progression.maxPowerLevel) ? 0 : ((level >= progression.limit) ? 1 : 1000);
+
+        if (isNPC) slot[pval] = slot[pmax];
+        else slot[pval] = Math.min(parseInt(slot[pval] ?? slot.value ?? slot[pmax]), slot[pmax]);
       }
 
       // Apply the calculated values to the sheet
-      this.system.attributes[progression.castType].known ??= {};
-      this.system.attributes[progression.castType].known.value = progression.powersKnownCur;
-      this.system.attributes[progression.castType].known.max = progression.powersKnownMax;
-      this.system.attributes[progression.castType].points.max ??= progression.points;
-      this.system.attributes[progression.castType].level = progression.casterLevel;
-      this.system.attributes[progression.castType].override = progression.override;
+      const target = this.system.attributes[progression.castType];
+      target.known ??= {};
+      target.known.value = progression.powersKnownCur;
+      target.known.max = progression.powersKnownMax;
+      target.points.max ??= progression.points;
+      target.level = progression.casterLevel;
+      target.override = progression.override;
     }
   }
 
@@ -887,6 +888,8 @@ export default class Actor5e extends Actor {
       abl.save = abl.mod + abl.saveBonus;
       if (Number.isNumeric(abl.saveProf.term)) abl.save += abl.saveProf.flat;
       abl.dc = 8 + abl.mod + this.system.attributes.prof + dcBonus;
+
+      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.SW5E.maxAbilityScore;
 
       // If we merged saves when transforming, take the highest bonus here.
       if (originalSaves && abl.proficient) abl.save = Math.max(abl.save, originalSaves[id].save);
@@ -1274,6 +1277,24 @@ export default class Actor5e extends Actor {
       cast.points.max += Number(cast.points.bonuses?.overall ?? 0);
       cast.points.max += Number(cast.points.bonuses?.level ?? 0) * lvl;
     }
+
+    // Apply any 'power slot' overrides
+    const powers = this.system.powers;
+    for (const castType of ["f", "t"]) {
+      const pmax = `${castType}max`;
+      const pval = `${castType}value`;
+      const povr = `${castType}override`;
+      for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
+        const slot = powers[`power${level}`];
+
+        const override = Number.isNumeric(slot[povr]) ? Math.max(parseInt(slot[povr]), 0) : null;
+        if ( Number.isNumeric(override) ) {
+          if ( this.type === "npc" || slot[pval] === slot[pmax] ) slot[pval] = override;
+          else slot[pval] = Math.min(slot[pval], override);
+          slot[pmax] = override;
+        }
+      }
+    }
   }
 
   /* -------------------------------------------- */
@@ -1404,13 +1425,15 @@ export default class Actor5e extends Actor {
     if (sourceId?.startsWith("Compendium.")) return;
 
     // Configure prototype token settings
+    const prototypeToken = {};
     if ("size" in (this.system.traits || {})) {
-      const s = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
-      const prototypeToken = { width: s, height: s };
-      if (this.type === "character") Object.assign(prototypeToken, {
+      const size = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
+      if ( !foundry.utils.hasProperty(data, "prototypeToken.width") ) prototypeToken.width = size;
+      if ( !foundry.utils.hasProperty(data, "prototypeToken.height") ) prototypeToken.height = size;
+      if ( this.type === "character" ) Object.assign(prototypeToken, {
         sight: { enabled: true },
         actorLink: true,
-        disposition: 1
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY
       });
       else if (this.type === "starship") Object.assign(prototypeToken, {
         actorLink: true
@@ -1768,7 +1791,7 @@ export default class Actor5e extends Actor {
   async rollToolCheck(toolId, options = {}) {
     // Prepare roll data.
     const tool = this.system.tools[toolId];
-    const ability = this.system.abilities[tool?.ability ?? "int"];
+    const ability = this.system.abilities[options.ability || (tool?.ability ?? "int")];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
     const data = this.getRollData();
@@ -1778,9 +1801,10 @@ export default class Actor5e extends Actor {
     data.defaultAbility = options.ability || (tool?.ability ?? "int");
 
     // Add proficiency.
-    if (tool?.prof.hasProficiency) {
+    const prof = options.prof ?? tool?.prof;
+    if ( prof?.hasProficiency ) {
       parts.push("@prof");
-      data.prof = tool.prof.term;
+      data.prof = prof.term;
     }
 
     // Global ability check bonus.
@@ -2561,7 +2585,6 @@ export default class Actor5e extends Actor {
       if (!sship) return null;
       denomination = sship.system.hullDice;
     }
-
     // Otherwise locate a starship (if any) which has an available hit die of the requested denomination
     else sship = this.items.find(i => {
       return (
@@ -2581,18 +2604,21 @@ export default class Actor5e extends Actor {
       return null;
     }
 
+
+
     // Prepare roll data
-    const flavor = game.i18n.localize("SW5E.HullDiceRoll");
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const rollData = foundry.utils.mergeObject(
+    const flavor = game.i18n.localize("SW5E.HullDiceRoll");
+    const rollConfig = foundry.utils.mergeObject(
       {
-        event: new Event("hullDie"),
-        parts: [`${numDice}${denomination}${keep}`, "@abilities.con.mod"],
+        formula: `max(0, ${numDice}${denomination}${keep} + @abilities.con.mod)`,
         data: this.getRollData(),
-        title: `${flavor}: ${this.name}`,
-        dialogOptions: { width: 350 },
+        chatMessage: true,
         messageData: {
           speaker: ChatMessage.getSpeaker({ actor: this }),
+          flavor,
+          title: `${flavor}: ${this.name}`,
+          rollMode: game.settings.get("core", "rollMode"),
           "flags.sw5e.roll": { type: "hullDie" }
         }
       },
@@ -2603,15 +2629,20 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a hull die is rolled for an Actor.
      * @function sw5e.preRollHullDie
      * @memberof hookEvents
-     * @param {Actor5e} actor         Actor for which the hull die is to be rolled.
-     * @param {object} rollData       Configuration data for the pending roll.
-     * @param {string} denomination   Size of hull die to be rolled.
-     * @returns {boolean}             Explicitly return `false` to prevent hull die from being rolled.
+     * @param {Actor5e} actor               Actor for which the hull die is to be rolled.
+     * @param {object} config               Configuration data for the pending roll.
+     * @param {string} config.formula       Formula that will be rolled.
+     * @param {object} config.data          Data used when evaluating the roll.
+     * @param {boolean} config.chatMessage  Should a chat message be created for this roll?
+     * @param {object} config.messageData   Data used to create the chat message.
+     * @param {string} denomination         Size of hull die to be rolled.
+     * @returns {boolean}                   Explicitly return `false` to prevent hull die from being rolled.
      */
-    if (Hooks.call("sw5e.preRollHullDie", this, rollData, denomination) === false) return;
+    if (Hooks.call("sw5e.preRollHullDie", this, rollConfig, denomination) === false) return;
 
-    const roll = await attribDieRoll(rollData);
+    const roll = await new Roll(rollConfig.formula, rollConfig.data).roll({ async: true });
     if (!roll) return roll;
+    if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
 
     const hp = this.system.attributes.hp;
     const dhp = Math.min(Math.max(0, hp.max) - hp.value, roll.total);
@@ -2730,20 +2761,22 @@ export default class Actor5e extends Actor {
     }
 
     // Prepare roll data
-    // if natural regeneration roll max
-    const dieRoll = natural ? denomination : numDice + denimination + keep;
-    const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const rollData = foundry.utils.mergeObject(
+    const dieRoll = natural ?
+      `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult` :
+      `max(0, 1${denomination} + @abilities.str.mod)`;
+    const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
+    const rollConfig = foundry.utils.mergeObject(
       {
-        event: new Event("shldDie"),
-        parts: [`${dieRoll} * @attributes.equip.shields.regenRateMult`],
+        formula: dieRoll,
         data: this.getRollData(),
-        title: `${flavor}: ${this.name}`,
-        dialogOptions: { width: 350 },
+        chatMessage: true,
         messageData: {
           speaker: ChatMessage.getSpeaker({ actor: this }),
-          "flags.sw5e.roll": { type: "shldDie" }
+          flavor,
+          title: `${flavor}: ${this.name}`,
+          rollMode: game.settings.get("core", "rollMode"),
+          "flags.sw5e.roll": { type: "shieldDie" }
         }
       },
       options
@@ -2753,15 +2786,20 @@ export default class Actor5e extends Actor {
      * A hook event that fires before a shield die is rolled for an Actor.
      * @function sw5e.preRollShieldDie
      * @memberof hookEvents
-     * @param {Actor5e} actor         Actor for which the shield die is to be rolled.
-     * @param {object} rollData       Configuration data for the pending roll.
-     * @param {string} denomination   Size of shield die to be rolled.
-     * @returns {boolean}             Explicitly return `false` to prevent shield die from being rolled.
+     * @param {Actor5e} actor               Actor for which the shield die is to be rolled.
+     * @param {object} config               Configuration data for the pending roll.
+     * @param {string} config.formula       Formula that will be rolled.
+     * @param {object} config.data          Data used when evaluating the roll.
+     * @param {boolean} config.chatMessage  Should a chat message be created for this roll?
+     * @param {object} config.messageData   Data used to create the chat message.
+     * @param {string} denomination         Size of shield die to be rolled.
+     * @returns {boolean}                   Explicitly return `false` to prevent shield die from being rolled.
      */
-    if (Hooks.call("sw5e.preRollShieldDie", this, rollData, denomination) === false) return result;
+    if (Hooks.call("sw5e.preRollShieldDie", this, rollConfig, denomination) === false) return;
 
-    const roll = await attribDieRoll(rollData);
+    const roll = await new Roll(rollConfig.formula, rollConfig.data)?.roll({ async: true });
     if (!roll) return result;
+    if (rollConfig.chatMessage) roll.toMessage(rollConfig.messageData);
     result.roll = roll;
 
     const dsp = Math.min(Math.max(0, hp.tempmax) - hp.temp, roll.total);
@@ -4345,7 +4383,7 @@ export default class Actor5e extends Actor {
    * @property {boolean} [mergeSkills=false]        Take the maximum of the skill proficiencies
    * @property {boolean} [keepClass=false]          Keep proficiency bonus
    * @property {boolean} [keepFeats=false]          Keep features
-   * @property {boolean} [keepPowers=false]         Keep powers
+   * @property {boolean} [keepPowers=false]         Keep powers and powercasting ability
    * @property {boolean} [keepItems=false]          Keep items
    * @property {boolean} [keepBio=false]            Keep biography
    * @property {boolean} [keepVision=false]         Keep vision
@@ -4416,7 +4454,7 @@ export default class Actor5e extends Actor {
 
     // Prepare new data to merge from the source
     const d = foundry.utils.mergeObject(
-      {
+      foundry.utils.deepClone({
         type: o.type, // Remain the same actor type
         name: `${o.name} (${source.name})`, // Append the new shape to your old name
         system: source.system, // Get the systemdata model of your new form
@@ -4427,7 +4465,7 @@ export default class Actor5e extends Actor {
         folder: o.folder, // Be displayed in the same sidebar folder
         flags: o.flags, // Use the original actor flags
         prototypeToken: { name: `${o.name} (${source.name})`, texture: {}, sight: {}, detectionModes: [] } // Set a new empty token
-      },
+      }),
       keepSelf ? o : {}
     ); // Keeps most of original actor
 
@@ -4435,6 +4473,7 @@ export default class Actor5e extends Actor {
     delete d.system.resources; // Don't change your resource pools
     delete d.system.currency; // Don't lose currency
     delete d.system.bonuses; // Don't lose global bonuses
+    if ( keepPowers ) delete d.system.attributes.powercasting; // Keep powercasting ability if retaining powers.
 
     // Specific additional adjustments
     d.system.details.alignment = o.system.details.alignment; // Don't change alignment
@@ -4479,8 +4518,11 @@ export default class Actor5e extends Actor {
         const type = CONFIG.SW5E.abilities[k]?.type;
         if (keepPhysical && type === "physical") abilities[k] = oa;
         else if (keepMental && type === "mental") abilities[k] = oa;
+
+        // Set saving throw proficiencies.
         if (keepSaves) abilities[k].proficient = oa.proficient;
         else if (mergeSaves) abilities[k].proficient = Math.max(prof, oa.proficient);
+        else abilities[k].proficient = source.system.abilities[k].proficient;
       }
 
       // Transfer skills
@@ -5007,6 +5049,7 @@ export default class Actor5e extends Actor {
     dhp = Number(dhp);
     const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
     for (const t of tokens) {
+      if ( !t.visible || !t.renderable ) continue;
       const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
       canvas.interface.createScrollingText(t.center, dhp.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,

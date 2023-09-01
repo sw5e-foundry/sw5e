@@ -543,7 +543,7 @@
       }
 
       .group-grid-inventory {
-        grid-template-columns: auto 60px 100px 100px 100px;
+        grid-template-columns: auto 60px 100px 100px 100px 100px;
 
         &.group-list-title {
           .item-controls {
@@ -1102,6 +1102,15 @@
         align-items: center;
       }
 
+      .attunement {
+        font-size: 12px;
+        [name="system.attributes.attunement.max"] {
+          display: inline;
+          max-width: 23px;
+          text-align: center;
+        }
+      }
+
       .currency {
         .russoOne(14px);
 
@@ -1358,7 +1367,7 @@
             text-align: center;
             margin-top: -2px;
             &.hit-points {
-              display: block;
+              // display: block;
               margin-top: -3px;
               input {
                 height: 16px;

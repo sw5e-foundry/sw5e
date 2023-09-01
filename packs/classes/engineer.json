@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "YQQN0FqaN2h1UDOl",
+        "_id": "DVJzKzCLV1BI98ZC",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "1zy1LbiKuJVj1ySt",
+        "_id": "1PN0fkoEjEQ0Wz8A",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "potent-aptitude",
@@ -70,7 +70,7 @@
         "title": "Potent Aptitude"
       },
       {
-        "_id": "nfxXcny3aFqGHpqE",
+        "_id": "1hd4nXngmZz16s43",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "modification-slots",
@@ -100,7 +100,57 @@
         "title": "Modification Slots"
       },
       {
-        "_id": "1bOv9cBdES9Jh4y7",
+        "_id": "1TfpYzPUNGtVg27U",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 4
+      },
+      {
+        "_id": "1Lfqx4A98sQ9dE8S",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 8
+      },
+      {
+        "_id": "CPIHdx2eo971hwbp",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 12
+      },
+      {
+        "_id": "1QPTFsBqj7TZfGlv",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 16
+      },
+      {
+        "_id": "1Nr52Aw5vq5oWiS3",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {},
+          "points": 2
+        },
+        "value": {},
+        "level": 19
+      },
+      {
+        "_id": "On5JwZtQch91PQ0G",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -114,7 +164,7 @@
         "title": "Features"
       },
       {
-        "_id": "bh7PveUx0CIQIAZw",
+        "_id": "4KAsN7kLKW8amqX6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -128,7 +178,7 @@
         "title": "Features"
       },
       {
-        "_id": "2SNAf8lwwxFtDvjj",
+        "_id": "uZ10d677ss5tnSD2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -141,20 +191,7 @@
         "title": "Features"
       },
       {
-        "_id": "J4y1gTqs2BHO4L9a",
-        "type": "ItemGrant",
-        "configuration": {
-          "items": [
-            "Compendium.sw5e.classfeatures.NX3hTB7JOGrKCCby"
-          ],
-          "optional": false
-        },
-        "value": {},
-        "level": 4,
-        "title": "Features"
-      },
-      {
-        "_id": "WufE09OH6v41NUiO",
+        "_id": "RYOI6pCrIEX1481X",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -165,6 +202,48 @@
         "value": {},
         "level": 20,
         "title": "Features"
+      },
+      {
+        "_id": "17ZV3HQxK04h5SHM",
+        "type": "ItemChoice",
+        "configuration": {
+          "hint": "Each discipline focuses on maximizing the personal use of a certain tool. Your discipline grants you features at 3rd, 6th, 14th, and 18th level.",
+          "choices": {
+            "3": 1
+          },
+          "allowDrops": true,
+          "type": "archetype",
+          "pool": [
+            "Compendium.sw5e.archetypes.DSaorO1E42ZAoYko",
+            "Compendium.sw5e.archetypes.ozOP9vSQ4uwXFdGQ",
+            "Compendium.sw5e.archetypes.TkSzn6cSCBsySMql",
+            "Compendium.sw5e.archetypes.80auw3hdVYZAXGtr",
+            "Compendium.sw5e.archetypes.1xihjITntU4T6OfP",
+            "Compendium.sw5e.archetypes.p5sUTfZ2GnjkmpdC",
+            "Compendium.sw5e.archetypes.QHBh0MLldjImDdoX",
+            "Compendium.sw5e.archetypes.4WitHCdI0QiCuS8A",
+            "Compendium.sw5e.archetypes.DAq5ZmQ6aQ88Q9oI",
+            "Compendium.sw5e.archetypes.FaKY07usa5nH8I08",
+            "Compendium.sw5e.archetypes.f7POhRSg0x4UXp1i",
+            "Compendium.sw5e.archetypes.Y8uZyqAuOWmUZEDP",
+            "Compendium.sw5e.archetypes.O3vgskHkhroUKBaZ"
+          ],
+          "power": {
+            "ability": "",
+            "preparation": "",
+            "uses": {
+              "per": "",
+              "max": ""
+            }
+          },
+          "restriction": {
+            "type": "",
+            "subtype": "",
+            "level": ""
+          }
+        },
+        "value": {},
+        "title": "Engineering Disciplines"
       }
     ],
     "saves": [
@@ -199,10 +278,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.0.2.6.0",
+    "coreVersion": "10.303",
     "createdTime": 1674493961827,
-    "modifiedTime": 1684819094480,
+    "modifiedTime": 1692481125262,
     "lastModifiedBy": "sw5ebuilder0000"
   }
 }

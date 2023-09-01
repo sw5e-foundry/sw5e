@@ -4,11 +4,11 @@ export default class CharacterImporter {
   // Transform JSON from sw5e.com to Foundry friendly format
   // and insert new actor
 
-  static _itemsWithAdvancement = [];
+  _itemsWithAdvancement = [];
 
-  static _actor = null;
+  _actor = null;
 
-  static async transform(rawCharacter) {
+  async transform(rawCharacter) {
     const sourceCharacter = JSON.parse(rawCharacter); // Source character
 
     const details = {
@@ -132,9 +132,9 @@ export default class CharacterImporter {
       }
     };
 
-    CharacterImporter._actor = await Actor.create(targetCharacter);
+    this._actor = await Actor.create(targetCharacter);
 
-    await CharacterImporter.addClasses(
+    await this.addClasses(
       sourceCharacter.attribs
         .filter(e => CharacterImporter.classOrMulticlass(e.name))
         .map(e => {
@@ -147,15 +147,15 @@ export default class CharacterImporter {
         })
     );
 
-    await CharacterImporter.addSpecies(sourceCharacter.attribs.find(e => e.name === "race").current);
+    await this.addSpecies(sourceCharacter.attribs.find(e => e.name === "race").current);
 
-    await CharacterImporter.addBackground(sourceCharacter.attribs.find(e => e.name === "background").current);
+    await this.addBackground(sourceCharacter.attribs.find(e => e.name === "background").current);
 
-    await CharacterImporter.addPowers(
+    await this.addPowers(
       sourceCharacter.attribs.filter(e => e.name.search(/repeating_power.+_powername/g) !== -1).map(e => e.current)
     );
 
-    await CharacterImporter.addItems(
+    await this.addItems(
       sourceCharacter.attribs
         .filter(e => e.name.search(/repeating_(?:inventory|traits).+_(?:item)?name/g) !== -1)
         .map(item => {
@@ -167,7 +167,7 @@ export default class CharacterImporter {
         })
     );
 
-    await CharacterImporter.addProficiencies(
+    await this.addProficiencies(
       sourceCharacter.attribs
         .filter(e => e.name.search(/repeating_proficiencies.+_name/g) !== -1)
         .map(prof => {
@@ -182,10 +182,10 @@ export default class CharacterImporter {
         })
     );
 
-    await CharacterImporter.addAdvancements();
+    await this.addAdvancements();
   }
 
-  static async addClasses(classes) {
+  async addClasses(classes) {
     const packClasses = await game.packs.get("sw5e.classes").getDocuments();
     const packArchs = await game.packs.get("sw5e.archetypes").getDocuments();
 
@@ -204,7 +204,7 @@ export default class CharacterImporter {
       const packArch = packArchs.find(o => o.name === cls.arch)?.toObject();
       if (packArch) toCreate.push(packArch);
     }
-    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
+    await this._actor.createEmbeddedDocuments("Item", toCreate.filter(this.checkAdvancement.bind(this)));
   }
 
   static classOrMulticlass(name) {
@@ -253,34 +253,34 @@ export default class CharacterImporter {
     else obj.custom = value;
   }
 
-  static async addSpecies(race) {
+  async addSpecies(race) {
     const species = await game.packs.get("sw5e.species").getDocuments();
     const assignedSpecies = species.find(c => c.name === race)?.toObject();
 
     if (assignedSpecies) {
       const activeEffects = [...assignedSpecies.effects][0]?.changes ?? [];
-      const actorData = { system: { abilities: { ...CharacterImporter._actor.system.abilities } } };
+      const actorData = { system: { abilities: { ...this._actor.system.abilities } } };
 
       for (const effect of activeEffects) {
         const attr = effect.key.match(/system\.abilities\.(str|dex|con|int|wis|cha)\.value/)?.[1];
         if (attr) actorData.system.abilities[attr].value -= effect.value;
       }
 
-      await CharacterImporter._actor.update(actorData);
+      await this._actor.update(actorData);
 
-      await CharacterImporter._actor.createEmbeddedDocuments("Item", [assignedSpecies].filter(CharacterImporter.checkAdvancement));
+      await this._actor.createEmbeddedDocuments("Item", [assignedSpecies].filter(this.checkAdvancement.bind(this)));
     }
   }
 
-  static async addBackground(bg) {
+  async addBackground(bg) {
     const bgs = await game.packs.get("sw5e.backgrounds").getDocuments();
     const packBg = bgs.find(c => c.name === bg)?.toObject();
     if (packBg) {
-      await CharacterImporter._actor.createEmbeddedDocuments("Item", [packBg].filter(CharacterImporter.checkAdvancement));
+      await this._actor.createEmbeddedDocuments("Item", [packBg].filter(this.checkAdvancement.bind(this)));
     }
   }
 
-  static async addPowers(powers) {
+  async addPowers(powers) {
     const packPowers = [
       ...(await game.packs.get("sw5e.forcepowers").getDocuments()),
       ...(await game.packs.get("sw5e.techpowers").getDocuments())
@@ -292,10 +292,10 @@ export default class CharacterImporter {
       if (packPower) toCreate.push(packPower);
     }
 
-    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
+    await this._actor.createEmbeddedDocuments("Item", toCreate.filter(this.checkAdvancement.bind(this)));
   }
 
-  static async addItems(items) {
+  async addItems(items) {
     const packItems = [
       ...(await game.packs.get("sw5e.lightweapons").getDocuments()),
       ...(await game.packs.get("sw5e.vibroweapons").getDocuments()),
@@ -303,9 +303,7 @@ export default class CharacterImporter {
       ...(await game.packs.get("sw5e.armor").getDocuments()),
       ...(await game.packs.get("sw5e.adventuringgear").getDocuments()),
       ...(await game.packs.get("sw5e.ammo").getDocuments()),
-      ...(await game.packs.get("sw5e.archetypes").getDocuments()),
       ...(await game.packs.get("sw5e.implements").getDocuments()),
-      ...(await game.packs.get("sw5e.backgrounds").getDocuments()),
       ...(await game.packs.get("sw5e.invocations").getDocuments()),
       ...(await game.packs.get("sw5e.consumables").getDocuments()),
       ...(await game.packs.get("sw5e.enhanceditems").getDocuments()),
@@ -330,15 +328,20 @@ export default class CharacterImporter {
       }
     }
 
-    await CharacterImporter._actor.createEmbeddedDocuments("Item", toCreate.filter(CharacterImporter.checkAdvancement));
+    await this._actor.createEmbeddedDocuments("Item", toCreate.filter(this.checkAdvancement.bind(this)));
   }
 
-  static async addProficiencies(profs) {
+  async addProficiencies(profs) {
     const updates = {};
 
-    const armorProf = CharacterImporter._actor.system.traits.armorProf;
-    const languages = CharacterImporter._actor.system.traits.languages;
-    const weaponProf = CharacterImporter._actor.system.traits.weaponProf;
+    const armorProf = this._actor.system.traits.armorProf;
+    const languages = this._actor.system.traits.languages;
+    const weaponProf = this._actor.system.traits.weaponProf;
+
+    // #733: Convert values from Set to Array for actor.update()
+    armorProf.value = Array.from(armorProf.value);
+    languages.value = Array.from(languages.value);
+    weaponProf.value = Array.from(weaponProf.value);
 
     for (const prof of profs) {
       let name = prof.name;
@@ -350,7 +353,7 @@ export default class CharacterImporter {
           if (match) {
             const weapons = {
               blaster: ["smb", "mrb", "exb"],
-              vibroweapon: ["svw", "mvw", "evw"],
+              vibroweapon: ["svb", "mvb", "evw"],
               lightweapon: ["slw", "mlw", "elw"]
             };
             const which = match[1];
@@ -394,22 +397,22 @@ export default class CharacterImporter {
     updates["system.traits.languages"] = languages;
     updates["system.traits.weaponProf"] = weaponProf;
 
-    await CharacterImporter._actor.update(updates);
+    await this._actor.update(updates);
   }
 
-  static checkAdvancement(item) {
+  checkAdvancement(item) {
     // Bypass normal creation flow for any items with advancement
     if (item?.system?.advancement?.length && !game.settings.get("sw5e", "disableAdvancements")) {
-      CharacterImporter._itemsWithAdvancement.push(item);
+      this._itemsWithAdvancement.push(item);
       return false;
     }
     return true;
   }
 
-  static async addAdvancements() {
-    let actor = CharacterImporter._actor;
+  async addAdvancements() {
+    let actor = this._actor;
     let manager = null;
-    for (const item of CharacterImporter._itemsWithAdvancement) {
+    for (const item of this._itemsWithAdvancement) {
       if (!item) return;
       if (!manager) manager = AdvancementManager.forNewItem(actor, item);
       else manager.addNewItem(item);
@@ -450,13 +453,14 @@ export default class CharacterImporter {
             callback: () => {
               let characterData = $("#character-json").val();
               console.log("Parsing Character JSON");
-              CharacterImporter.transform(characterData);
+              const ci = new CharacterImporter();
+              ci.transform(characterData);
             }
           },
           Cancel: {
             icon: "<i class=\"fas fa-times-circle\"></i>",
             label: "Cancel",
-            callback: () => {}
+            callback: () => { }
           }
         }
       });

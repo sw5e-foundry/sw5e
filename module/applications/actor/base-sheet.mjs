@@ -125,7 +125,10 @@ export default class ActorSheet5e extends ActorSheet {
       isVehicle: this.actor.type === "vehicle",
       config: CONFIG.SW5E,
       rollableClass: this.isEditable ? "rollable" : "",
-      rollData: this.actor.getRollData()
+      rollData: this.actor.getRollData(),
+      overrides: {
+        attunement: foundry.utils.hasProperty(this.actor.overrides, "system.attributes.attunement.max")
+      }
     };
 
     // Sort Owned Items
@@ -698,10 +701,9 @@ export default class ActorSheet5e extends ActorSheet {
     };
 
     // Determine the maximum power level which has a slot
-    const maxLevel = Array.fromRange(10).reduce((max, i) => {
-      if (i === 0) return max;
+    const maxLevel = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1).reduce((max, i) => {
       const level = levels[`power${i}`];
-      if ((level.max || level.override) && i > max) max = i;
+      if ( level && (level.max || level.override ) && ( i > max ) ) max = i;
       return max;
     }, 0);
 
@@ -885,10 +887,8 @@ export default class ActorSheet5e extends ActorSheet {
       html.find(".item-create").click(this._onItemCreate.bind(this));
       html.find(".item-delete").click(this._onItemDelete.bind(this));
       html.find(".item-collapse").click(this._onItemCollapse.bind(this));
-      html
-        .find(".item-uses input, .item-reload input")
-        .click(ev => ev.target.select())
-        .change(this._onUsesChange.bind(this));
+      html.find(".item-uses input, .item-reload input").click(ev => ev.target.select()).change(this._onUsesChange.bind(this));
+      html.find(".item-quantity input").click(ev => ev.target.select()).change(this._onQuantityChange.bind(this));
       html.find(".weapon-select-ammo").change(event => {
         event.preventDefault();
         const itemId = event.currentTarget.closest(".item").dataset.itemId;
@@ -896,6 +896,7 @@ export default class ActorSheet5e extends ActorSheet {
         item.sheet._onWeaponSelectAmmo(event);
       });
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
+      html.find(".attunement-max-override").click(this._onAttunementOverride.bind(this));
 
       // Active Effect management
       html.find(".effect-control").click(ev => ActiveEffect5e.onManageActiveEffect(ev, this.actor));
@@ -1122,7 +1123,9 @@ export default class ActorSheet5e extends ActorSheet {
     const value = input.value;
     if (["+", "-"].includes(value[0])) {
       const delta = parseFloat(value);
-      input.value = Number(foundry.utils.getProperty(this.actor, input.name)) + delta;
+      const item = this.actor.items.get(input.closest("[data-item-id]")?.dataset.itemId);
+      if ( item ) input.value = Number(foundry.utils.getProperty(item, input.dataset.name)) + delta;
+      else input.value = Number(foundry.utils.getProperty(this.actor, input.name)) + delta;
     } else if (value[0] === "=") input.value = value.slice(1);
   }
 
@@ -1412,7 +1415,7 @@ export default class ActorSheet5e extends ActorSheet {
   /**
    * Handle enabling editing for a power slot override value.
    * @param {MouseEvent} event    The originating click event.
-   * @private
+   * @protected
    */
   async _onPowerSlotOverride(event) {
     const span = event.currentTarget.parentElement;
@@ -1424,6 +1427,30 @@ export default class ActorSheet5e extends ActorSheet {
     input.value = override;
     input.placeholder = span.dataset.slots;
     input.dataset.dtype = "Number";
+    input.addEventListener("focus", event => event.currentTarget.select());
+
+    // Replace the HTML
+    const parent = span.parentElement;
+    parent.removeChild(span);
+    parent.appendChild(input);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle enabling editing for attunement maximum.
+   * @param {MouseEvent} event    The originating click event.
+   * @private
+   */
+  async _onAttunementOverride(event) {
+    const span = event.currentTarget.parentElement;
+    const input = document.createElement("INPUT");
+    input.type = "text";
+    input.name = "system.attributes.attunement.max";
+    input.value = this.actor.system.attributes.attunement.max;
+    input.placeholder = 3;
+    input.dataset.dtype = "Number";
+    input.addEventListener("focus", event => event.currentTarget.select());
 
     // Replace the HTML
     const parent = span.parentElement;
@@ -1437,7 +1464,7 @@ export default class ActorSheet5e extends ActorSheet {
    * Change the uses amount of an Owned Item within the Actor.
    * @param {Event} event        The triggering click event.
    * @returns {Promise<Item5e>}  Updated item.
-   * @private
+   * @protected
    */
   async _onUsesChange(event) {
     event.preventDefault();
@@ -1447,6 +1474,23 @@ export default class ActorSheet5e extends ActorSheet {
     const value = Math.clamped(item.system[attr].min ?? 0, parseInt(event.target.value), item.system[attr].max);
     event.target.value = value;
     return item.update({ [`system.${attr}.value`]: value });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Change the quantity of an Owned Item within the actor.
+   * @param {Event} event        The triggering click event.
+   * @returns {Promise<Item5e>}  Updated item.
+   * @protected
+   */
+  async _onQuantityChange(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    const quantity = Math.max(0, parseInt(event.target.value));
+    event.target.value = quantity;
+    return item.update({"system.quantity": quantity});
   }
 
   /* -------------------------------------------- */

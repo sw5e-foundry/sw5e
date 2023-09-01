@@ -31,7 +31,12 @@ export default class ItemSheet5e extends ItemSheet {
       height: 400,
       classes: ["sw5e", "sheet", "item"],
       resizable: true,
-      scrollY: [".tab.details"],
+      scrollY: [
+        ".tab[data-tab=details]",
+        ".tab[data-tab=effects] .items-list",
+        ".tab[data-tab=description] .editor-content",
+        ".tab[data-tab=advancement] .items-list",
+      ],
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description" }],
       dragDrop: [
         { dragSelector: "[data-effect-id]", dropSelector: ".effects-list" },
@@ -317,11 +322,8 @@ export default class ItemSheet5e extends ItemSheet {
     // Attributes
     else if (consume.type === "attribute") {
       const attrData = game.sw5e.isV10 ? actor.system : actor.type;
-      const attributes = TokenDocument.implementation.getConsumedAttributes(attrData);
-      attributes.bar.forEach(a => a.push("value"));
-      return attributes.bar.concat(attributes.value).reduce((obj, a) => {
-        let k = a.join(".");
-        obj[k] = k;
+      return TokenDocument.implementation.getConsumedAttributes(attrData).reduce((obj, attr) => {
+        obj[attr] = attr;
         return obj;
       }, {});
     }
@@ -393,7 +395,7 @@ export default class ItemSheet5e extends ItemSheet {
       case "power":
         return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation];
       case "tool":
-        return game.i18n.localize(this.item.system.proficient ? "SW5E.Proficient" : "SW5E.NotProficient");
+        return CONFIG.SW5E.proficiencyLevels[this.item.system.prof?.multiplier || 0].label;
     }
     return null;
   }
@@ -409,6 +411,11 @@ export default class ItemSheet5e extends ItemSheet {
     const props = [];
     const labels = this.item.labels;
     switch (this.item.type) {
+      case "consumable":
+        for ( const [k, v] of Object.entries(this.item.system.properties ?? {}) ) {
+          if ( v === true ) props.push(CONFIG.SW5E.physicalWeaponProperties[k]);
+        }
+        break;
       case "equipment":
         props.push(CONFIG.SW5E.equipmentTypes[this.item.system.armor.type]);
         if (this.item.isArmor || this.item.isMountable) props.push(labels.armor);
@@ -795,7 +802,7 @@ export default class ItemSheet5e extends ItemSheet {
   async _onDropActiveEffect(event, data) {
     const effect = await ActiveEffect.implementation.fromDropData(data);
     if (!this.item.isOwner || !effect) return false;
-    if (this.item.uuid === effect.parent.uuid || this.item.uuid === effect.origin) return false;
+    if ( (this.item.uuid === effect.parent?.uuid) || (this.item.uuid === effect.origin) ) return false;
     return ActiveEffect.create(
       {
         ...effect.toObject(),
@@ -863,7 +870,7 @@ export default class ItemSheet5e extends ItemSheet {
     }
 
     // If no advancements need to be applied, just add them to the item
-    const advancementArray = foundry.utils.deepClone(this.item.system.advancement);
+    const advancementArray = this.item.system.toObject().advancement;
     advancementArray.push(...advancements.map(a => a.toObject()));
     this.item.update({ "system.advancement": advancementArray });
   }

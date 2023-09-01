@@ -8,6 +8,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  *
  * @property {string} identifier         Identifier slug for this.
  * @property {number} tier               Current tier.
+ * @property {string} size               Short code for size as defined in `SW5E.actorSizes`.
  * @property {string} hullDice           Denomination of hull dice available as defined in `SW5E.hullDieTypes`.
  * @property {number} hullDiceStart      Number of hull dice at tier 0.
  * @property {number} hullDiceUsed       Number of hull dice consumed.
@@ -45,6 +46,12 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
         // Min: 0, // Min removed because of advancements
         initial: 0,
         label: "SW5E.StarshipTiers"
+      }),
+      size: new foundry.data.fields.StringField({
+        required: true,
+        initial: "med",
+        blank: false,
+        label: "SW5E.StarshipSize"
       }),
       hullDice: new foundry.data.fields.StringField({
         required: true,
@@ -259,5 +266,24 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
   /** @inheritdoc */
   static migrateData(source) {
     super.migrateData(source);
+    StarshipSizeData.#migrateSize(source);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Apply migrations to the size field.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateSize(source) {
+    const sizes = CONFIG.SW5E.actorSizes;
+    if (Object.keys(sizes).includes(source.size)) return;
+    for (const [key, label] of Object.entries(sizes)) {
+      if (label.toLowerCase().match(source.identifier)) {
+        source.size = key;
+        return;
+      }
+    }
+    source.size = "med";
   }
 }

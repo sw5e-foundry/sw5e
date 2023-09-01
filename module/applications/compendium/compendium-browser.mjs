@@ -767,7 +767,7 @@ export default class CompendiumBrowser extends Application {
     let purchasesSucceeded = 0;
 
     for (const actor of actors) {
-      if (await actor.removeCurrency(item.price.value)) {
+      if (await actor.removeCurrency(item.system.price.value)) {
         purchasesSucceeded = purchasesSucceeded + 1;
         await actor.createEmbeddedDocuments("Item", [item.toObject()]);
       }

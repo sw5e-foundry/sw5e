@@ -55,11 +55,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       "bond",
       "flaw",
       "description",
-      "notes",
-      "notes1",
-      "notes2",
-      "notes3",
-      "notes4"
+      "notes"
     ]) {
       const value = context.system.details[field]?.value ?? context.system.details[field];
       context[`${field}HTML`] = await TextEditor.enrichHTML(value, {

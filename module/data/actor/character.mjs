@@ -37,6 +37,17 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {string} details.ideal                       Character's ideals.
  * @property {string} details.bond                        Character's bonds.
  * @property {string} details.flaw                        Character's flaws.
+ * @property {object} details.notes
+ * @property {string} details.notes1.name                  Title of the 1st note.
+ * @property {string} details.notes1.value                 Content of the 1st note.
+ * @property {string} details.notes2.name                  Title of the 2nd note.
+ * @property {string} details.notes2.value                 Content of the 2nd note.
+ * @property {string} details.notes3.name                  Title of the 3rd note.
+ * @property {string} details.notes3.value                 Content of the 3rd note.
+ * @property {string} details.notes4.name                  Title of the 4th note.
+ * @property {string} details.notes4.value                 Content of the 4th note.
+ * @property {string} details.notes5.name                  Title of the 5th note.
+ * @property {string} details.notes5.value                 Content of the 5th note.
  * @property {object} traits
  * @property {SimpleTraitData} traits.weaponProf          Character's weapon proficiencies.
  * @property {SimpleTraitData} traits.armorProf           Character's armor proficiencies.
@@ -176,7 +187,14 @@ export default class CharacterData extends CreatureTemplate {
           trait: new foundry.data.fields.StringField({ required: true, label: "SW5E.PersonalityTraits" }),
           ideal: new foundry.data.fields.StringField({ required: true, label: "SW5E.Ideals" }),
           bond: new foundry.data.fields.StringField({ required: true, label: "SW5E.Bonds" }),
-          flaw: new foundry.data.fields.StringField({ required: true, label: "SW5E.Flaws" })
+          flaw: new foundry.data.fields.StringField({ required: true, label: "SW5E.Flaws" }),
+          notes: new foundry.data.fields.SchemaField(
+            {
+              value: new foundry.data.fields.HTMLField({ label: "SW5E.Notes" }),
+              public: new foundry.data.fields.HTMLField({ label: "SW5E.NotesPublic" })
+            },
+            { label: "SW5E.Notes" }
+          )
         },
         { label: "SW5E.Details" }
       ),

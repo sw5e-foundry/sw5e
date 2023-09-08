@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changes
+
+- Split the 'Favorites and Notes' subtab of the 'Core' tab.
+- Notes have been merged into a single note, with proper editor support.
+
 ### Fixed
 
 - Force/Tech/Superiority points bonuses should now accept non-numeric values, like `@abilities.cha.mod`.

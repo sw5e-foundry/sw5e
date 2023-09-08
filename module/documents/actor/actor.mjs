@@ -2609,7 +2609,6 @@ export default class Actor5e extends Actor {
     }
 
 
-
     // Prepare roll data
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
     const flavor = game.i18n.localize("SW5E.HullDiceRoll");
@@ -2766,9 +2765,9 @@ export default class Actor5e extends Actor {
 
     // Prepare roll data
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const dieRoll = natural ?
-      `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult` :
-      `max(0, 1${denomination} + @abilities.str.mod)`;
+    const dieRoll = natural
+      ? `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult`
+      : `max(0, 1${denomination} + @abilities.str.mod)`;
     const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
     const rollConfig = foundry.utils.mergeObject(
       {

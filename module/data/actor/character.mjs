@@ -26,6 +26,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {number} attributes.exhaustion               Number of levels of exhaustion.
  * @property {number} attributes.inspiration              Does this character have inspiration?
  * @property {object} details
+ * @property {string} details.description                 Character's description.
  * @property {string} details.background                  Name of character's background.
  * @property {string} details.originalClass               ID of first class taken by character.
  * @property {XPData} details.xp                          Experience points gained.
@@ -38,16 +39,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {string} details.bond                        Character's bonds.
  * @property {string} details.flaw                        Character's flaws.
  * @property {object} details.notes
- * @property {string} details.notes1.name                  Title of the 1st note.
- * @property {string} details.notes1.value                 Content of the 1st note.
- * @property {string} details.notes2.name                  Title of the 2nd note.
- * @property {string} details.notes2.value                 Content of the 2nd note.
- * @property {string} details.notes3.name                  Title of the 3rd note.
- * @property {string} details.notes3.value                 Content of the 3rd note.
- * @property {string} details.notes4.name                  Title of the 4th note.
- * @property {string} details.notes4.value                 Content of the 4th note.
- * @property {string} details.notes5.name                  Title of the 5th note.
- * @property {string} details.notes5.value                 Content of the 5th note.
+ * @property {string} details.notes.value                 Player notes.
  * @property {object} traits
  * @property {SimpleTraitData} traits.weaponProf          Character's weapon proficiencies.
  * @property {SimpleTraitData} traits.armorProf           Character's armor proficiencies.

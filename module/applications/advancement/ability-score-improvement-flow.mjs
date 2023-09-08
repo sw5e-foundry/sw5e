@@ -148,7 +148,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
       featUuid: this.feat?.uuid,
       retainedItems: this.retainedData?.retainedItems
     });
-    throw new Advancement.ERROR(game.i18n.localize(`SW5E.AdvancementAbilityScoreImprovementInvalidError`));
+    throw new Advancement.ERROR(game.i18n.localize("SW5E.AdvancementAbilityScoreImprovementInvalidError"));
   }
 
   /* -------------------------------------------- */

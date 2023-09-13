@@ -1260,6 +1260,7 @@ export default class Actor5e extends Actor {
     attr.powerTechDC += bonusTech;
 
     // Set Force and tech bonus points for PC Actors
+    const ability = {};
     for (const castType of ["force", "tech"]) {
       const cast = attr[castType];
       const castSource = this._source.system.attributes[castType];
@@ -1267,12 +1268,21 @@ export default class Actor5e extends Actor {
       if (castSource.points.max !== null) continue;
       if (cast.level === 0) continue;
 
-      let mod;
-      if (cast.override) mod = abl[cast.override].mod;
-      else mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, a) => {
-        return Math.max(best, abl[a]?.mod ?? Number.NEGATIVE_INFINITY);
-      }, Number.NEGATIVE_INFINITY);
-      if (mod !== Number.NEGATIVE_INFINITY) cast.points.max += mod;
+      if (cast.override) ability[castType] = {
+        id: cast.override,
+        mod: abl[cast.override]?.mod ?? 0
+      }
+      else {
+        ability[castType] = CONFIG.SW5E.powerPointsBonus[castType].reduce(
+          (acc, id) => {
+            const mod = abl?.[id]?.mod ?? -Infinity;
+            if (mod > acc.mod) acc = { id, mod };
+            return acc;
+          },
+          { id: "str", mod: -Infinity }
+        );
+      }
+      if ( ability[castType]?.mod ) cast.points.max += ability[castType].mod;
 
       const levelBonus = simplifyBonus(cast.points.bonuses.level ?? 0, rollData) * lvl;
       const overallBonus = simplifyBonus(cast.points.bonuses.overall ?? 0, rollData);
@@ -1297,6 +1307,11 @@ export default class Actor5e extends Actor {
         }
       }
     }
+
+    // Set a fallback 'powercasting stat', based on the highest caster level
+    // This is used for non-power items with power attacks or powercasting based saving throws
+    if ( attr.force.level >= attr.tech.level ) attr.powercasting = ability.force?.id;
+    else attr.powercasting = ability.tech?.id;
   }
 
   /* -------------------------------------------- */

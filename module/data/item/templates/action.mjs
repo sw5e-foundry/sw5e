@@ -175,8 +175,8 @@ export default class ActionTemplate extends foundry.abstract.DataModel {
       || {
         mwak: "str",
         rwak: "dex",
-        mpak: this.parent?.actor?.system.attributes.powercasting || "int",
-        rpak: this.parent?.actor?.system.attributes.powercasting || "int"
+        mpak: this.parent?.actor?.system?.attributes?.powercasting || "int",
+        rpak: this.parent?.actor?.system?.attributes?.powercasting || "int"
       }[this.actionType]
       || null
     );

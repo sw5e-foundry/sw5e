@@ -560,6 +560,16 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * @param {HTMLElement} parent
  * @param {string} selectors
  */
+export function htmlQuery(parent, selectors) {
+    if (!(parent instanceof Element || parent instanceof Document)) return null;
+    return parent.querySelector(selectors);
+}
+
+/**
+ * Querries from parent
+ * @param {HTMLElement} parent
+ * @param {string} selectors
+ */
 export function htmlQueryAll(parent, selectors) {
   if (!(parent instanceof Element || parent instanceof Document)) return [];
   return Array.from(parent.querySelectorAll(selectors));

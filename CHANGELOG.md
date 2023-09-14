@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Split the 'Favorites and Notes' subtab of the 'Core' tab.
 - Notes have been merged into a single note, with proper editor support.
+- Updated Compendium Browser to match [pf2e 2.4.4](https://github.com/foundryvtt/pf2e/releases/tag/5.4.4).
 
 ### Fixed
 
@@ -17,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Skill bonuses on the NPC sheet should be properly aligned.
 - #737 'Powercasting Issues'.
 - Warning about migration issues related to NPC's CR.
+- Compendium browser 'Equipment' tab should now open again.
 
 ## [2.3.1.2.6.1] - 2023-09-01
 

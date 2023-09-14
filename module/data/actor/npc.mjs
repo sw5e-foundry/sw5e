@@ -291,6 +291,8 @@ export default class NPCData extends CreatureTemplate {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migratePowercastingData(source) {
+    if (!source.details) return;
+
     let level = Number(source.details.cr);
     let hasCasting = false;
 
@@ -300,7 +302,7 @@ export default class NPCData extends CreatureTemplate {
       delete source.details.powerLevel;
     }
 
-    if (source.attributes.powercasting) {
+    if (source.attributes?.powercasting) {
       hasCasting = true;
       switch (source.attributes.powercasting) {
         case "consular":

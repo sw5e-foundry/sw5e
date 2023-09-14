@@ -230,7 +230,6 @@ export class CompendiumBrowserTab {
     }
 
     generateMultiselectOptions(optionsRecord, sort = true) {
-      console.debug(optionsRecord);
       const options = Object.entries(optionsRecord).map(([value, label]) => ({
         value,
         label: game.i18n.localize(label)

@@ -529,7 +529,7 @@ export default class Actor5e extends Actor {
 
       // Calculate known powers
       for (const pwr of this.itemTypes.power) {
-        if (pwr?.system?.preparation?.mode === "innate") continue;
+        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
         const school = pwr?.system?.school;
         if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
         if ("tec" === school) charProgression.tech.powersKnownCur++;

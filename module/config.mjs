@@ -2034,6 +2034,10 @@ SW5E.powerTags = {
   ritual: {
     label: "SW5E.Ritual",
     abbr: "SW5E.RitualAbbr"
+  },
+  freeLearn: {
+    label: "SW5E.FreeLearn",
+    abbr: "SW5E.FreeLearnAbbr"
   }
 };
 preLocalize("powerTags", { keys: ["label", "abbr"] });

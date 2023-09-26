@@ -1939,7 +1939,7 @@ SW5E.powersKnown = {
 
 /**
  * The number of base force/tech points available to each class per level
- * @type {number} progressionType[classLevel]
+ * @type {number} progressionType
  */
 SW5E.powerPointsBase = {
   full: 4,
@@ -1957,6 +1957,27 @@ SW5E.powerPointsBase = {
 SW5E.powerPointsBonus = {
   force: ["wis", "cha"],
   tech: ["int"]
+};
+
+/* -------------------------------------------- */
+
+/**
+ * The focus that affects this type of powercasting
+ * @type {string} progressionType
+ */
+SW5E.powerFocus = {
+  force: "focusgenerator",
+  tech: "wristpad"
+};
+
+/* -------------------------------------------- */
+/**
+ * The focus property that adds bonus power points
+ * @type {string} progressionType
+ */
+SW5E.powerFocusBonus = {
+  force: "c_Bolstering",
+  tech: "c_Surging"
 };
 
 /* -------------------------------------------- */

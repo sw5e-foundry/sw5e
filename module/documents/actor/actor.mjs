@@ -35,6 +35,13 @@ export default class Actor5e extends Actor {
    */
   _starships;
 
+  /**
+   * The data source for Actor5e.focuses allowing it to be lazily computed.
+   * @type {Object<Item5e>}
+   * @private
+   */
+  _focuses;
+
   /* -------------------------------------------- */
   /*  Properties                                  */
   /* -------------------------------------------- */
@@ -84,6 +91,31 @@ export default class Actor5e extends Actor {
       .filter(item => item.type === "starshipsize")
       .reduce((obj, sship) => {
         obj[sship.identifier] = sship;
+        return obj;
+      }, {}));
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * A mapping of focuses equipped by this Actor.
+   * @type {Object<Item5e>}
+   */
+  get focuses() {
+    if (this._focuses !== undefined) return this._focuses;
+    if (!["character", "npc"].includes(this.type)) return (this._focuses = {});
+    return (this._focuses = this.items
+      .filter(item => 
+        item.type === "equipment" &&
+        Object.values(CONFIG.SW5E.powerFocus).includes(item.system.armor.type) &&
+        item.system.equipped
+      ).reduce((obj, focus) => {
+        const type = focus.system.armor.type;
+        if (obj[type] !== undefined) this._preparationWarnings.push({
+          message: game.i18n.format("SW5E.WarnMultiplePowercastingFocus", { type }),
+          type: "warning"
+        });;
+        obj[type] = focus;
         return obj;
       }, {}));
   }
@@ -163,6 +195,7 @@ export default class Actor5e extends Actor {
     this._classes = undefined;
     this._deployments = undefined;
     this._starships = undefined;
+    this._focuses = undefined;
     this._preparationWarnings = [];
     super.prepareData();
     this.items.forEach(item => item.prepareFinalAttributes());
@@ -1286,8 +1319,11 @@ export default class Actor5e extends Actor {
 
       const levelBonus = simplifyBonus(cast.points.bonuses.level ?? 0, rollData) * lvl;
       const overallBonus = simplifyBonus(cast.points.bonuses.overall ?? 0, rollData);
+      const focus = this.focuses[CONFIG.SW5E.powerFocus[castType]];
+      const focusProperty = CONFIG.SW5E.powerFocusBonus[castType];
+      const focusBonus = focus?.system?.properties?.[focusProperty] ?? 0;
 
-      cast.points.max += levelBonus + overallBonus;
+      cast.points.max += levelBonus + overallBonus + focusBonus;
     }
 
     // Apply any 'power slot' overrides

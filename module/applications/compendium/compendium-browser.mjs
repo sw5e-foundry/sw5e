@@ -71,7 +71,7 @@ class PackLoader {
 export default class CompendiumBrowser extends Application {
   settings;
 
-  dataTabsList = ["equipment"];
+  dataTabsList = ["equipment", "power", "maneuver"];
 
   navigationTab;
 
@@ -89,10 +89,11 @@ export default class CompendiumBrowser extends Application {
     this.tabs = {
       // Action: new browserTabs.Actions(this),
       // bestiary: new browserTabs.Bestiary(this),
-      equipment: new browserTabs.Equipment(this)
+      equipment: new browserTabs.Equipment(this),
       // Feat: new browserTabs.Feats(this),
       // hazard: new browserTabs.Hazards(this),
-      // power: new browserTabs.Powers(this),
+      power: new browserTabs.Powers(this),
+      maneuver: new browserTabs.Maneuvers(this)
     };
 
     this.initCompendiumList();
@@ -153,10 +154,12 @@ export default class CompendiumBrowser extends Application {
       bestiary: {},
       shipyard: {},
 
+      feat: {},
+      power: {},
+      maneuver: {},
+
       equipment: {},
-      class: {},
-      other: {},
-      feat: {}
+      class: {}
     };
 
     // NPCs and Hazards are all loaded by default other packs can be set here.
@@ -221,13 +224,15 @@ export default class CompendiumBrowser extends Application {
 
         if ( types.has("starship") ) return "shipyard";
 
+        if ( types.has("feat") ) return "feat";
+
+        if ( types.has("power") ) return "power";
+
+        if ( types.has("maneuver") ) return "maneuver";
+
         if ( CONFIG.SW5E.itemTypes.inventory.some((type) => types.has(type)) ) return "equipment";
 
         if ( CONFIG.SW5E.itemTypes.class.some((type) => types.has(type)) ) return "class";
-
-        if ( types.has("feat") ) return "feat";
-
-        if ( CONFIG.SW5E.itemTypes.other.some((type) => types.has(type)) ) return "other";
 
         return null;
       })();
@@ -269,26 +274,12 @@ export default class CompendiumBrowser extends Application {
     const filter = await powerTab.getFilterData();
     const { category, level, traditions } = filter.checkboxes;
 
-    if (entry.isRitual || entry.isFocusPool) {
-      category.options[entry.category].selected = true;
-      category.selected.push(entry.category);
-    }
-
     if (maxLevel) {
       const levels = Array.from(Array(maxLevel).keys()).map(l => String(l + 1));
       for (const l of levels) {
         level.options[l].selected = true;
         level.selected.push(l);
       }
-      if (entry.isPrepared || entry.isSpontaneous || entry.isInnate) {
-        category.options.power.selected = true;
-        category.selected.push("power");
-      }
-    }
-
-    if (entry.tradition && !entry.isFocusPool && !entry.isRitual) {
-      traditions.options[entry.tradition].selected = true;
-      traditions.selected.push(entry.tradition);
     }
 
     powerTab.open(filter);
@@ -304,7 +295,7 @@ export default class CompendiumBrowser extends Application {
     }
 
     // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment" works so far.`);
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment", "Power", and "Maneuver" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
@@ -457,19 +448,6 @@ export default class CompendiumBrowser extends Application {
         directionAnchor.addEventListener("click", () => {
           const direction = (directionAnchor.dataset.direction) ?? "asc";
           currentTab.filterData.order.direction = direction === "asc" ? "desc" : "asc";
-          this.clearScrollLimit(true);
-        });
-      }
-    }
-
-    if (activeTabName === "power") {
-      const timeFilter = controlArea.querySelector("select[name=timefilter]");
-      if (timeFilter) {
-        timeFilter.addEventListener("change", () => {
-          if (!currentTab.isOfType("power")) return;
-          const filterData = currentTab.filterData;
-          if (!filterData.selects?.timefilter) return;
-          filterData.selects.timefilter.selected = timeFilter.value;
           this.clearScrollLimit(true);
         });
       }

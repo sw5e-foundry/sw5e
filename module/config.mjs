@@ -2050,7 +2050,8 @@ preLocalize("powerComponents", { keys: ["label", "abbr"] });
 SW5E.powerTags = {
   concentration: {
     label: "SW5E.Concentration",
-    abbr: "SW5E.ConcentrationAbbr"
+    abbr: "SW5E.ConcentrationAbbr",
+    filter: true
   },
   ritual: {
     label: "SW5E.Ritual",

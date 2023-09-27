@@ -71,7 +71,7 @@ class PackLoader {
 export default class CompendiumBrowser extends Application {
   settings;
 
-  dataTabsList = ["equipment"];
+  dataTabsList = ["equipment", "power"];
 
   navigationTab;
 
@@ -89,10 +89,10 @@ export default class CompendiumBrowser extends Application {
     this.tabs = {
       // Action: new browserTabs.Actions(this),
       // bestiary: new browserTabs.Bestiary(this),
-      equipment: new browserTabs.Equipment(this)
+      equipment: new browserTabs.Equipment(this),
       // Feat: new browserTabs.Feats(this),
       // hazard: new browserTabs.Hazards(this),
-      // power: new browserTabs.Powers(this),
+      power: new browserTabs.Powers(this)
     };
 
     this.initCompendiumList();
@@ -155,7 +155,7 @@ export default class CompendiumBrowser extends Application {
 
       equipment: {},
       class: {},
-      other: {},
+      power: {},
       feat: {}
     };
 
@@ -227,7 +227,7 @@ export default class CompendiumBrowser extends Application {
 
         if ( types.has("feat") ) return "feat";
 
-        if ( CONFIG.SW5E.itemTypes.other.some((type) => types.has(type)) ) return "other";
+        if ( CONFIG.SW5E.itemTypes.other.some((type) => types.has(type)) ) return "power";
 
         return null;
       })();

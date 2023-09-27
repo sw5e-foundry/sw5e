@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - #748 'Powercasting Checkbox- "Does not count against powers known"'.
 - Compendium Folders.
 - Bolstering and Surging properties on equipped focuses now properly add force/tech points.
+- Compendium Browser 'Powers' tab.
 
 ### Changes
 

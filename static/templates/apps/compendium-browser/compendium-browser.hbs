@@ -11,6 +11,7 @@
             <a data-tab="hazard">{{localize "SW5E.CompendiumBrowser.TabHazard"}}</a>
         {{/if}}
         <a data-tab="power">{{localize "SW5E.CompendiumBrowser.TabPower"}}</a>
+        <a data-tab="maneuver">{{localize "SW5E.CompendiumBrowser.TabManeuver"}}</a>
         {{#if user.isGM}}
             <a data-tab="settings">{{localize "SW5E.CompendiumBrowser.TabSettings"}}</a>
         {{/if}}
@@ -71,6 +72,15 @@
 
         {{#with power}}
             <div class="tab browser" data-group="primary" data-tab="power">
+                <div class="spell-browser">
+                    {{> "sw5e.filters"}}
+                    <ul class="item-list result-list"></ul>
+                </div>
+            </div>
+        {{/with}}
+
+        {{#with maneuver}}
+            <div class="tab browser" data-group="primary" data-tab="maneuver">
                 <div class="spell-browser">
                     {{> "sw5e.filters"}}
                     <ul class="item-list result-list"></ul>

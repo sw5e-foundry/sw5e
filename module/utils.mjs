@@ -611,3 +611,14 @@ export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
 
   return actors;
 }
+
+/**
+ * Composes multiple regex objects into a single one.
+ * 
+ * @param {string} flags               The regex flags of the composed object.
+ * @param {RegExp[]} regexes           The regex objects to compose.
+ * @returns {RegExp}                   The composed regex object.
+ */
+export function getComposedRegex(flags, ...regexes) {
+  return new RegExp("(" + regexes.map(regex => regex.source).join("|") + ")", flags ?? "");
+}

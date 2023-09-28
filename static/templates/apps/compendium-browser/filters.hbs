@@ -82,9 +82,9 @@
                 {{/if}}
             </div>
             <div {{#if (not range.isExpanded)}}style="display: none;"{{/if}}>
-                <input type="search" name="lowerBound-level" value="{{range.values.inputMin}}" placeholder="0">
+                <input type="search" name="lowerBound-level" value="{{range.values.inputMin}}" placeholder="{{range.values.min}}">
                 -
-                <input type="search" name="upperBound-level" value="{{range.values.inputMax}}" placeholder="20,000,000">
+                <input type="search" name="upperBound-level" value="{{range.values.inputMax}}" placeholder="{{range.values.max}}">
             </div>
         </div>
     {{/each}}

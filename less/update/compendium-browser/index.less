@@ -1,5 +1,6 @@
 // Height variables (appears count calculates by raw css)
-@indexheight0: 92%; // Appears 2 times
+@indexheight0: 96%; // Appears 2 times
+@indexheight1: 98%; // Appears 2 times
 
 #compendium-browser>section.window-content>.content-box {
     @import "filter-slider";
@@ -50,6 +51,12 @@
     ul {
         grid-column-start: 2;
     }
+}
+#compendium-browser>section.window-content>.content-box>section.content>.tab.settings.active {
+    height: @indexheight1;
+}
+#license-viewer>section.window-content>.content-box>section.content>.tab.settings.active {
+    height: @indexheight1;
 }
 
 @import "tags";

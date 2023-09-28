@@ -2,6 +2,7 @@ import { Progress } from "./progress.mjs";
 import { fontAwesomeIcon, htmlQuery, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs";
 import * as browserTabs from "./tabs/_module.mjs";
 import Tagify from "@yaireo/tagify";
+import noUiSlider from "nouislider";
 
 class PackLoader {
   loadedPacks = { Actor: {}, Item: {} };
@@ -71,7 +72,15 @@ class PackLoader {
 export default class CompendiumBrowser extends Application {
   settings;
 
-  dataTabsList = ["equipment", "power", "maneuver"];
+  dataTabsList = [
+    // "action",
+    // "bestiary",
+    "equipment",
+    "feat",
+    // "hazard",
+    "power",
+    "maneuver"
+  ];
 
   navigationTab;
 
@@ -87,10 +96,10 @@ export default class CompendiumBrowser extends Application {
     this.settings = {} ?? game.settings.get("sw5e", "compendiumBrowserPacks");
     this.navigationTab = this.hookTab();
     this.tabs = {
-      // Action: new browserTabs.Actions(this),
+      // action: new browserTabs.Actions(this),
       // bestiary: new browserTabs.Bestiary(this),
       equipment: new browserTabs.Equipment(this),
-      // Feat: new browserTabs.Feats(this),
+      feat: new browserTabs.Feats(this),
       // hazard: new browserTabs.Hazards(this),
       power: new browserTabs.Powers(this),
       maneuver: new browserTabs.Maneuvers(this)
@@ -295,7 +304,7 @@ export default class CompendiumBrowser extends Application {
     }
 
     // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment", "Power", and "Maneuver" work so far.`);
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
@@ -492,13 +501,11 @@ export default class CompendiumBrowser extends Application {
               break;
             }
             case "ranges": {
-              if (currentTab.isOfType("equipment")) {
-                const ranges = currentTab.filterData.ranges;
-                if (objectHasKey(ranges, filterName)) {
-                  ranges[filterName].values = currentTab.defaultFilterData.ranges[filterName].values;
-                  ranges[filterName].changed = false;
-                  this.render(true);
-                }
+              const ranges = currentTab.filterData.ranges;
+              if (objectHasKey(ranges, filterName)) {
+                ranges[filterName].values = currentTab.defaultFilterData.ranges[filterName].values;
+                ranges[filterName].changed = false;
+                this.render(true);
               }
             }
           }
@@ -524,7 +531,6 @@ export default class CompendiumBrowser extends Application {
             break;
           }
           case "ranges": {
-            if (!currentTab.isOfType("equipment")) return;
             if (objectHasKey(currentTab.filterData.ranges, filterName)) {
               toggleFilter(currentTab.filterData.ranges[filterName]);
             }
@@ -560,7 +566,6 @@ export default class CompendiumBrowser extends Application {
       if (filterType === "ranges") {
         container.querySelectorAll("input[name*=Bound]").forEach(range => {
           range.addEventListener("keyup", event => {
-            if (!currentTab.isOfType("equipment")) return;
             if (event.key !== "Enter") return;
             const ranges = currentTab.filterData.ranges;
             if (ranges && objectHasKey(ranges, filterName)) {

@@ -6,6 +6,7 @@ import mergeStream from "merge-stream";
 import path from "path";
 import through2 from "through2";
 import yargs from "yargs";
+import { compilePack, extractPack } from "@foundryvtt/foundryvtt-cli";
 
 /**
  * Parsed arguments passed in through the command line.
@@ -51,7 +52,8 @@ function cleanPackEntry(data, { clearSourceId = true } = {}) {
   delete data.flags?.dae;
   delete data.flags?.["midi-qol"];
   delete data.flags?.["midi-properties"];
-  delete data.flags?.['midiProperties'];
+  delete data.flags?.["midiProperties"];
+  delete data.flags?.["betterrollssw5e"];
   if (data._stats?.lastModifiedBy) data._stats.lastModifiedBy = "sw5ebuilder0000";
 
   // Remove empty entries in flags
@@ -172,38 +174,22 @@ export const clean = cleanPacks;
  *
  * - `gulp compilePacks` - Compile all JSON files into their NEDB files.
  * - `gulp compilePacks --pack classes` - Only compile the specified pack.
+ * - `gulp compilePacks --levelDB` - Compile files into levelDB files instead of NEDB.
  */
-function compilePacks() {
+async function compilePacks() {
   const packName = parsedArgs.pack;
+  const nedb = !parsedArgs.levelDB;
   // Determine which source folders to process
   const folders = fs
     .readdirSync(PACK_SRC, { withFileTypes: true })
     .filter(file => file.isDirectory() && (!packName || packName === file.name));
 
-  const packs = folders.map(folder => {
-    const filePath = path.join(PACK_DEST, `${folder.name}.db`);
-    fs.rmSync(filePath, { force: true });
-    fs.mkdirSync(PACK_DEST, { recursive: true });
-    const db = fs.createWriteStream(filePath, { flags: "a", mode: 0o664 });
-    const data = [];
+  for ( const folder of folders ) {
+    const src = path.join(PACK_SRC, folder.name);
+    const dest = path.join(PACK_DEST, nedb ? `${folder.name}.db` : `${folder.name}/`);
     logger.info(`Compiling pack ${folder.name}`);
-    return gulp.src(path.join(PACK_SRC, folder.name, "/**/*.json")).pipe(
-      through2.obj(
-        (file, enc, callback) => {
-          const json = JSON.parse(file.contents.toString());
-          cleanPackEntry(json);
-          data.push(json);
-          callback(null, file);
-        },
-        callback => {
-          data.sort((lhs, rhs) => (lhs._id > rhs._id ? 1 : -1));
-          data.forEach(entry => db.write(`${JSON.stringify(entry)}\n`));
-          callback();
-        }
-      )
-    );
-  });
-  return mergeStream(packs);
+    await compilePack(src, dest, { nedb, recursive: true, log: false, transformEntry: cleanPackEntry });
+  }
 }
 export const compile = compilePacks;
 
@@ -250,74 +236,37 @@ function sortObject(object) {
  * - `gulp extractPacks` - Extract all compendium NEDB files into JSON files.
  * - `gulp extractPacks --pack classes` - Only extract the contents of the specified compendium.
  * - `gulp extractPacks --pack classes --name Barbarian` - Only extract a single item from the specified compendium.
+ * - `gulp extractPacks --levelDB` - Extracts levelDB files instead of NEDB.
  */
-function extractPacks() {
-  const packName = parsedArgs.pack ?? "*";
+async function extractPacks() {
+  const packName = parsedArgs.pack;
   const entryName = parsedArgs.name?.toLowerCase();
-  const packs = gulp.src(`${PACK_DEST}/**/${packName}.db`).pipe(
-    through2.obj((file, enc, callback) => {
-      const filename = path.parse(file.path).name;
-      const folder = path.join(PACK_SRC, filename);
-      if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true, mode: 0o775 });
+  const nedb = !parsedArgs.levelDB;
+  // Load system.json.
+  const system = JSON.parse(fs.readFileSync("./static/system.json", { encoding: "utf8" }));
 
-      const db = new Datastore({ filename: file.path, autoload: true });
-      db.loadDatabase();
+  // Determine which source packs to process.
+  const packs = fs.readdirSync(PACK_DEST, { withFileTypes: true }).filter(file => {
+    if ( !file.isFile() || (path.extname(file.name) !== ".db") ) return false;
+    return !packName || (packName === path.basename(file.name, ".db"));
+  });
 
-      db.find({}, (err, entries) => {
-        entries.forEach(entry => {
-          const name = entry.name.toLowerCase();
-          if (entryName && entryName !== name) return;
-          cleanPackEntry(entry);
-
-          const subfolder = path.join(folder, _getSubfolderName(entry, filename) ?? "");
-          if (!fs.existsSync(subfolder)) fs.mkdirSync(subfolder, { recursive: true, mode: 0o775 });
-
-          const outputName = name
-            .replace("'", "")
-            .replace(/[^a-z0-9]+/gi, " ")
-            .trim()
-            .replace(/\s+|-{2,}/g, "-");
-          const outputPath = path.join(subfolder, `${outputName}.json`);
-
-          let hasChanges = true;
-          if (fs.existsSync(outputPath)) {
-            const oldFile = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8" }));
-            // Do not update item if only changes are flags, stats, or advancement ids
-            if (oldFile._stats && entry._stats) oldFile._stats = entry._stats;
-            if (oldFile.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"])
-              oldFile.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
-            if (oldFile.system?.advancement && entry.system?.advancement) {
-              const length = Math.min(oldFile.system.advancement.length, entry.system.advancement.length);
-              for (let i = 0; i < length; i++) oldFile.system.advancement[i]._id = entry.system.advancement[i]._id;
-            }
-            if (oldFile.items && entry.items) {
-              const length = Math.min(oldFile.items.length, entry.items.length);
-              for (let i = 0; i < length; i++) {
-                const oldItem = oldFile.items[i];
-                const newItem = entry.items[i];
-                if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"])
-                  oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
-                if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
-              }
-            }
-            const oldJson = JSON.stringify(sortObject(oldFile));
-            const newJson = JSON.stringify(sortObject(entry));
-            hasChanges = oldJson !== newJson;
-          }
-
-          if (hasChanges) {
-            const output = `${JSON.stringify(entry, null, 2)}\n`;
-            fs.writeFileSync(outputPath, output, { mode: 0o664 });
-          }
-        });
-      });
-
-      logger.info(`Extracting pack ${filename}`);
-      callback(null, file);
-    })
-  );
-
-  return mergeStream(packs);
+  for ( const pack of packs ) {
+    const packName = path.basename(pack.name, ".db");
+    const packInfo = system.packs.find(p => p.name === packName);
+    const src = path.join(PACK_DEST, nedb ? pack.name : packName);
+    const dest = path.join(PACK_SRC, packName);
+    logger.info(`Extracting pack ${pack.name}`);
+    await extractPack(src, dest, { nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
+      if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
+      cleanPackEntry(entry);
+    }, transformName: entry => {
+      const name = entry.name.toLowerCase();
+      const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+      const subfolder = _getSubfolderName(entry, packName);
+      return path.join(subfolder, `${outputName}.json`);
+    } });
+  }
 }
 export const extract = extractPacks;
 

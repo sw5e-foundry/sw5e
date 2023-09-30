@@ -35,6 +35,13 @@ export default class Actor5e extends Actor {
    */
   _starships;
 
+  /**
+   * The data source for Actor5e.focuses allowing it to be lazily computed.
+   * @type {Object<Item5e>}
+   * @private
+   */
+  _focuses;
+
   /* -------------------------------------------- */
   /*  Properties                                  */
   /* -------------------------------------------- */
@@ -84,6 +91,31 @@ export default class Actor5e extends Actor {
       .filter(item => item.type === "starshipsize")
       .reduce((obj, sship) => {
         obj[sship.identifier] = sship;
+        return obj;
+      }, {}));
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * A mapping of focuses equipped by this Actor.
+   * @type {Object<Item5e>}
+   */
+  get focuses() {
+    if (this._focuses !== undefined) return this._focuses;
+    if (!["character", "npc"].includes(this.type)) return (this._focuses = {});
+    return (this._focuses = this.items
+      .filter(item => 
+        item.type === "equipment" &&
+        Object.values(CONFIG.SW5E.powerFocus).includes(item.system.armor.type) &&
+        item.system.equipped
+      ).reduce((obj, focus) => {
+        const type = focus.system.armor.type;
+        if (obj[type] !== undefined) this._preparationWarnings.push({
+          message: game.i18n.format("SW5E.WarnMultiplePowercastingFocus", { type }),
+          type: "warning"
+        });;
+        obj[type] = focus;
         return obj;
       }, {}));
   }
@@ -163,6 +195,7 @@ export default class Actor5e extends Actor {
     this._classes = undefined;
     this._deployments = undefined;
     this._starships = undefined;
+    this._focuses = undefined;
     this._preparationWarnings = [];
     super.prepareData();
     this.items.forEach(item => item.prepareFinalAttributes());
@@ -529,7 +562,7 @@ export default class Actor5e extends Actor {
 
       // Calculate known powers
       for (const pwr of this.itemTypes.power) {
-        if (pwr?.system?.preparation?.mode === "innate") continue;
+        if ( pwr?.system?.preparation?.mode === "innate" || pwr?.system?.components?.freeLearn ) continue;
         const school = pwr?.system?.school;
         if (["lgt", "uni", "drk"].includes(school)) charProgression.force.powersKnownCur++;
         if ("tec" === school) charProgression.tech.powersKnownCur++;
@@ -862,27 +895,27 @@ export default class Actor5e extends Actor {
 
   /**
    * Prepare abilities.
-   * @param {object} bonusData      Data produced by `getRollData` to be applied to bonus formulas.
+   * @param {object} rollData      Data produced by `getRollData` to be applied to bonus formulas.
    * @param {object} globalBonuses  Global bonus data.
    * @param {number} checkBonus     Global ability check bonus.
    * @param {object} originalSaves  A transformed actor's original actor's abilities.
    * @protected
    */
-  _prepareAbilities(bonusData, globalBonuses, checkBonus, originalSaves) {
+  _prepareAbilities(rollData, globalBonuses, checkBonus, originalSaves) {
     const flags = this.flags.sw5e ?? {};
-    const dcBonus = simplifyBonus(this.system.bonuses?.power?.dc, bonusData);
-    const saveBonus = simplifyBonus(globalBonuses.save, bonusData);
+    const dcBonus = simplifyBonus(this.system.bonuses?.power?.dc, rollData);
+    const saveBonus = simplifyBonus(globalBonuses.save, rollData);
     for (const [id, abl] of Object.entries(this.system.abilities)) {
       if (flags.diamondSoul) abl.proficient = 1; // Diamond Soul is proficient in all saves
       abl.mod = Math.floor((abl.value - 10) / 2);
 
       const isRA = this._isRemarkableAthlete(id);
       abl.checkProf = new Proficiency(this.system.attributes.prof, isRA || flags.jackOfAllTrades ? 0.5 : 0);
-      const saveBonusAbl = simplifyBonus(abl.bonuses?.save, bonusData);
+      const saveBonusAbl = simplifyBonus(abl.bonuses?.save, rollData);
       abl.saveBonus = saveBonusAbl + saveBonus;
 
       abl.saveProf = new Proficiency(this.system.attributes.prof, abl.proficient);
-      const checkBonusAbl = simplifyBonus(abl.bonuses?.check, bonusData);
+      const checkBonusAbl = simplifyBonus(abl.bonuses?.check, rollData);
       abl.checkBonus = checkBonusAbl + checkBonus;
 
       abl.save = abl.mod + abl.saveBonus;
@@ -900,22 +933,22 @@ export default class Actor5e extends Actor {
 
   /**
    * Prepare skill checks. Mutates the values of system.skills.
-   * @param {object} bonusData       Data produced by `getRollData` to be applied to bonus formulas.
+   * @param {object} rollData       Data produced by `getRollData` to be applied to bonus formulas.
    * @param {object} globalBonuses   Global bonus data.
    * @param {number} checkBonus      Global ability check bonus.
    * @param {object} originalSkills  A transformed actor's original actor's skills.
    * @protected
    */
-  _prepareSkills(bonusData, globalBonuses, checkBonus, originalSkills) {
+  _prepareSkills(rollData, globalBonuses, checkBonus, originalSkills) {
     if (this.type === "vehicle") return;
     const flags = this.flags.sw5e ?? {};
 
     // Skill modifiers
     const feats = CONFIG.SW5E.characterFlags;
-    const skillBonus = simplifyBonus(globalBonuses.skill, bonusData);
+    const skillBonus = simplifyBonus(globalBonuses.skill, rollData);
     for (const [id, skl] of Object.entries(this.system.skills)) {
       const ability = this.system.abilities[skl.ability];
-      const baseBonus = simplifyBonus(skl.bonuses?.check, bonusData);
+      const baseBonus = simplifyBonus(skl.bonuses?.check, rollData);
 
       // Remarkable Athlete
       if (this._isRemarkableAthlete(skl.ability) && skl.value < 0.5) {
@@ -933,7 +966,7 @@ export default class Actor5e extends Actor {
       }
 
       // Compute modifier
-      const checkBonusAbl = simplifyBonus(ability?.bonuses?.check, bonusData);
+      const checkBonusAbl = simplifyBonus(ability?.bonuses?.check, rollData);
       skl.bonus = baseBonus + checkBonus + checkBonusAbl + skillBonus;
       skl.mod = ability?.mod ?? 0;
       skl.prof = new Proficiency(this.system.attributes.prof, skl.value);
@@ -943,7 +976,7 @@ export default class Actor5e extends Actor {
 
       // Compute passive bonus
       const passive = flags.observantFeat && feats.observantFeat.skills.includes(id) ? 5 : 0;
-      const passiveBonus = simplifyBonus(skl.bonuses?.passive, bonusData);
+      const passiveBonus = simplifyBonus(skl.bonuses?.passive, rollData);
       skl.passive = 10 + skl.mod + skl.bonus + skl.prof.flat + passive + passiveBonus;
     }
   }
@@ -952,17 +985,17 @@ export default class Actor5e extends Actor {
 
   /**
    * Prepare tool checks. Mutates the values of system.tools.
-   * @param {object} bonusData       Data produced by `getRollData` to be applied to bonus formulae.
+   * @param {object} rollData       Data produced by `getRollData` to be applied to bonus formulae.
    * @param {object} globalBonuses   Global bonus data.
    * @param {number} checkBonus      Global ability check bonus.
    * @protected
    */
-  _prepareTools(bonusData, globalBonuses, checkBonus) {
+  _prepareTools(rollData, globalBonuses, checkBonus) {
     if (this.type === "vehicle" || this.type === "starship") return;
     const flags = this.flags.sw5e ?? {};
     for (const tool of Object.values(this.system.tools)) {
       const ability = this.system.abilities[tool.ability];
-      const baseBonus = simplifyBonus(tool.bonuses.check, bonusData);
+      const baseBonus = simplifyBonus(tool.bonuses.check, rollData);
       let roundDown = true;
 
       // Remarkable Athlete.
@@ -974,7 +1007,7 @@ export default class Actor5e extends Actor {
       // Jack of All Trades.
       else if (flags.jackOfAllTrades && tool.value < 0.5) tool.value = 0.5;
 
-      const checkBonusAbl = simplifyBonus(ability?.bonuses?.check, bonusData);
+      const checkBonusAbl = simplifyBonus(ability?.bonuses?.check, rollData);
       tool.bonus = baseBonus + checkBonus + checkBonusAbl;
       tool.mod = ability?.mod ?? 0;
       tool.prof = new Proficiency(this.system.attributes.prof, tool.value, roundDown);
@@ -1188,11 +1221,11 @@ export default class Actor5e extends Actor {
   /**
    * Prepare the initiative data for an actor.
    * Mutates the value of the system.attributes.init object.
-   * @param {object} bonusData         Data produced by getRollData to be applied to bonus formulas
+   * @param {object} rollData         Data produced by getRollData to be applied to bonus formulas
    * @param {number} globalCheckBonus  Global ability check bonus
    * @protected
    */
-  _prepareInitiative(bonusData, globalCheckBonus = 0) {
+  _prepareInitiative(rollData, globalCheckBonus = 0) {
     const init = (this.system.attributes.init ??= {});
     const flags = this.flags.sw5e || {};
 
@@ -1207,8 +1240,8 @@ export default class Actor5e extends Actor {
     init.prof = new Proficiency(prof, flags.jackOfAllTrades || ra ? 0.5 : 0);
 
     // Total initiative includes all numeric terms
-    const initBonus = simplifyBonus(init.bonus, bonusData);
-    const abilityBonus = simplifyBonus(ability.bonuses?.check, bonusData);
+    const initBonus = simplifyBonus(init.bonus, rollData);
+    const abilityBonus = simplifyBonus(ability.bonuses?.check, rollData);
     init.total =
       init.mod
       + initBonus
@@ -1224,17 +1257,17 @@ export default class Actor5e extends Actor {
 
   /**
    * Prepare data related to the power-casting capabilities of the Actor.
-   * @param {object} bonusData
+   * @param {object} rollData  Data produced by `getRollData` to be applied to bonus formulas.
    * @protected
    */
-  _preparePowercasting(bonusData) {
+  _preparePowercasting(rollData) {
     if (!this.system.powers) return;
 
-    const bonusAll = simplifyBonus(this.system.bonuses?.power?.dc, bonusData);
-    const bonusLight = simplifyBonus(this.system.bonuses?.power?.forceLightDC, bonusData) + bonusAll;
-    const bonusDark = simplifyBonus(this.system.bonuses?.power?.forceDarkDC, bonusData) + bonusAll;
-    const bonusUniv = simplifyBonus(this.system.bonuses?.power?.forceUnivDC, bonusData) + bonusAll;
-    const bonusTech = simplifyBonus(this.system.bonuses?.power?.techDC, bonusData) + bonusAll;
+    const bonusAll = simplifyBonus(this.system.bonuses?.power?.dc, rollData);
+    const bonusLight = simplifyBonus(this.system.bonuses?.power?.forceLightDC, rollData) + bonusAll;
+    const bonusDark = simplifyBonus(this.system.bonuses?.power?.forceDarkDC, rollData) + bonusAll;
+    const bonusUniv = simplifyBonus(this.system.bonuses?.power?.forceUnivDC, rollData) + bonusAll;
+    const bonusTech = simplifyBonus(this.system.bonuses?.power?.techDC, rollData) + bonusAll;
 
     const abl = this.system.abilities;
     const attr = this.system.attributes;
@@ -1260,6 +1293,7 @@ export default class Actor5e extends Actor {
     attr.powerTechDC += bonusTech;
 
     // Set Force and tech bonus points for PC Actors
+    const ability = {};
     for (const castType of ["force", "tech"]) {
       const cast = attr[castType];
       const castSource = this._source.system.attributes[castType];
@@ -1267,15 +1301,29 @@ export default class Actor5e extends Actor {
       if (castSource.points.max !== null) continue;
       if (cast.level === 0) continue;
 
-      let mod;
-      if (cast.override) mod = abl[cast.override].mod;
-      else mod = CONFIG.SW5E.powerPointsBonus[castType].reduce((best, a) => {
-        return Math.max(best, abl[a]?.mod ?? Number.NEGATIVE_INFINITY);
-      }, Number.NEGATIVE_INFINITY);
-      if (mod !== Number.NEGATIVE_INFINITY) cast.points.max += mod;
+      if (cast.override) ability[castType] = {
+        id: cast.override,
+        mod: abl[cast.override]?.mod ?? 0
+      }
+      else {
+        ability[castType] = CONFIG.SW5E.powerPointsBonus[castType].reduce(
+          (acc, id) => {
+            const mod = abl?.[id]?.mod ?? -Infinity;
+            if (mod > acc.mod) acc = { id, mod };
+            return acc;
+          },
+          { id: "str", mod: -Infinity }
+        );
+      }
+      if ( ability[castType]?.mod ) cast.points.max += ability[castType].mod;
 
-      cast.points.max += Number(cast.points.bonuses?.overall ?? 0);
-      cast.points.max += Number(cast.points.bonuses?.level ?? 0) * lvl;
+      const levelBonus = simplifyBonus(cast.points.bonuses.level ?? 0, rollData) * lvl;
+      const overallBonus = simplifyBonus(cast.points.bonuses.overall ?? 0, rollData);
+      const focus = this.focuses[CONFIG.SW5E.powerFocus[castType]];
+      const focusProperty = CONFIG.SW5E.powerFocusBonus[castType];
+      const focusBonus = focus?.system?.properties?.[focusProperty] ?? 0;
+
+      cast.points.max += levelBonus + overallBonus + focusBonus;
     }
 
     // Apply any 'power slot' overrides
@@ -1295,22 +1343,27 @@ export default class Actor5e extends Actor {
         }
       }
     }
+
+    // Set a fallback 'powercasting stat', based on the highest caster level
+    // This is used for non-power items with power attacks or powercasting based saving throws
+    if ( attr.force.level >= attr.tech.level ) attr.powercasting = ability.force?.id;
+    else attr.powercasting = ability.tech?.id;
   }
 
   /* -------------------------------------------- */
 
   /**
    * Prepare data related to the superiority capabilities of the Actor
-   * @param {object} bonusData
+   * @param {object} rollData  Data produced by `getRollData` to be applied to bonus formulas.
    * @protected
    */
-  _prepareSuperiority(bonusData) {
+  _prepareSuperiority(rollData) {
     if (!(this.type === "character" || this.type === "npc")) return;
 
-    const bonusAll = simplifyBonus(this.system.bonuses?.super?.dc, bonusData);
-    const bonusGeneral = simplifyBonus(this.system.bonuses?.super?.generalDC, bonusData) + bonusAll;
-    const bonusPhysical = simplifyBonus(this.system.bonuses?.super?.physicalDC, bonusData) + bonusAll;
-    const bonusMental = simplifyBonus(this.system.bonuses?.super?.mentalDC, bonusData) + bonusAll;
+    const bonusAll = simplifyBonus(this.system.bonuses?.super?.dc, rollData);
+    const bonusGeneral = simplifyBonus(this.system.bonuses?.super?.generalDC, rollData) + bonusAll;
+    const bonusPhysical = simplifyBonus(this.system.bonuses?.super?.physicalDC, rollData) + bonusAll;
+    const bonusMental = simplifyBonus(this.system.bonuses?.super?.mentalDC, rollData) + bonusAll;
 
     const abl = this.system.abilities;
     const spr = this.system.attributes.super;
@@ -1325,8 +1378,10 @@ export default class Actor5e extends Actor {
     spr.physicalDC += bonusPhysical;
     spr.mentalDC += bonusMental;
 
-    spr.dice.max += Number(spr.dice.bonuses?.overall ?? 0);
-    spr.dice.max += Number(spr.dice.bonuses?.level ?? 0) * Number(this.system.details?.level ?? 0);
+    const levelBonus = simplifyBonus(spr.dice.bonuses.level ?? 0, rollData) * Number(this.system.details?.level ?? 0);
+    const overallBonus = simplifyBonus(spr.dice.bonuses.overall ?? 0, rollData);
+
+    spr.dice.max += levelBonus + overallBonus;
   }
 
   /* -------------------------------------------- */
@@ -2605,7 +2660,6 @@ export default class Actor5e extends Actor {
     }
 
 
-
     // Prepare roll data
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
     const flavor = game.i18n.localize("SW5E.HullDiceRoll");
@@ -2762,9 +2816,9 @@ export default class Actor5e extends Actor {
 
     // Prepare roll data
     if (options.fastForward === undefined) options.fastForward = !options.dialog;
-    const dieRoll = natural ?
-      `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult` :
-      `max(0, 1${denomination} + @abilities.str.mod)`;
+    const dieRoll = natural
+      ? `${denomination.substring(1)} * @attributes.equip.shields.regenRateMult`
+      : `max(0, 1${denomination} + @abilities.str.mod)`;
     const flavor = game.i18n.localize("SW5E.ShieldDiceRoll");
     const rollConfig = foundry.utils.mergeObject(
       {

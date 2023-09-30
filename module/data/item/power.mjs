@@ -146,7 +146,17 @@ export default class PowerData extends SystemDataModel.mixin(
 
   /** @inheritdoc */
   get _typeAbilityMod() {
-    return this.parent?.actor?.system.attributes.powercasting || "int";
+    const abilities = this.parent?.actor?.system?.abilities;
+    const attributes = this.parent?.actor?.system?.attributes;
+    let school = this.school;
+    if ( game.settings.get("sw5e", "simplifiedForcecasting") && ["lgt", "drk", "univ"].includes(school) ) school = "univ";
+    return {
+      lgt: attributes?.force?.override || "wis",
+      drk: attributes?.force?.override || "cha",
+      univ: attributes?.force?.override || (abilities.wis?.mod ?? 0) >= (abilities.cha?.mod ?? 0) ? "wis" : "cha",
+      tech: attributes?.tech?.override || "int",
+    }[school]
+    || attributes?.powercasting || "int";
   }
 
   /* -------------------------------------------- */

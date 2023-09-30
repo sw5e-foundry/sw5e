@@ -1,12 +1,15 @@
-// Height variables (appears count calculates by raw css)
-@settingsheight0: 100%; // Appears 2 times
+// Width variables (appears count calculates by raw css)
+@settingswidth1: 100%; // Appears 3 times
+
 
 .compendium-browser-settings {
-  height: @settingsheight0;
+  @import "nav";
+  height: 100%;
   form {
     display: flex;
     flex-direction: column;
-    height: @settingsheight0;
+    height: 88%;
+    margin-bottom: 10px;
     .setting-section {
       border-radius: 5px;
       border: 1px solid #bbbbbb;
@@ -46,10 +49,32 @@
       display: flex;
       flex-wrap: wrap;
       overflow-y: auto;
+      .tab[data-tab].active {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: @settingswidth1;
+      }
+      .single-column {
+        width: @settingswidth1;
+      }
+      h2 {
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+        width: @settingswidth1;
+      }
       div {
         margin-right: 1em;
-        width: 375px;
+        width: 365px;
       }
     }
+  }
+  nav {
+    border-width: unset;
+  }
+  button.save-settings {
+    background: rgba(0, 0, 0, 0.1);
+    border: 2px groove var(--color-border-light-highlight);
   }
 }

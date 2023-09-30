@@ -889,7 +889,7 @@ export default class Item5e extends Item {
 
     // Ability-score based scaling
     else if (save.scaling !== "flat") {
-      save.dc = this.isOwned ? this.actor.system.abilities[save.scaling].dc : null;
+      save.dc = this.isOwned ? this.actor.system.abilities[save.scaling]?.dc : null;
     }
 
     // Update labels

@@ -4,14 +4,11 @@ import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     tabName = "equipment";
-
     filterData;
-
     templatePath = "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs";
 
     /* MiniSearch */
     searchFields = ["name", "uuid"];
-
     storeFields = [
       "type",
       "name",
@@ -33,7 +30,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     }
 
     async loadData() {
-      console.debug("SW5e System | Compendium Browser | Started loading inventory items");
+      console.log("SW5e System | Compendium Browser | Started loading inventory items");
 
       const inventoryItems = [];
       const itemTypes = CONFIG.SW5E.itemTypes.inventory;
@@ -68,17 +65,15 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         ...Object.values(properties),
         ...Object.values(category),
         ...Object.values(subcategory)
-      ])];
+      ])].filter(v => !!v);
       const sources = new Set();
-
-      console.debug("indexFields", indexFields);
 
       for await (const { pack, index } of this.browser.packLoader.loadPacks(
         "Item",
         this.browser.loadedPacks("equipment"),
         indexFields
       )) {
-        console.debug(`SW5e System | Compendium Browser | ${pack.metadata.label} - ${index.size} entries found`);
+        console.log(`SW5e System | Compendium Browser | ${pack.metadata.label} - ${index.size} entries found`);
         for (const itemData of index) {
           if (itemTypes.includes(itemData.type)) {
             const _fields = [
@@ -95,7 +90,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
                             + ` Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
                             + ` Fields: ${_fields}`
               );
-              for (const field of _fields) if (getProperty(itemData, field) === undefined) console.debug(`Missing ${field}`);
+              for (const field of _fields) if (getProperty(itemData, field) === undefined) console.log(`Missing ${field}`);
               continue;
             }
 
@@ -153,7 +148,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.itemRarity, false);
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
 
-      console.debug("SW5e System | Compendium Browser | Finished loading inventory items");
+      console.log("SW5e System | Compendium Browser | Finished loading inventory items");
     }
 
     filterIndexData(entry) {

@@ -1,7 +1,7 @@
 import { Progress } from "./progress.mjs";
-import { fontAwesomeIcon, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs"
+import { fontAwesomeIcon, htmlQueryAll, objectHasKey, isObject, getSelectedOrOwnActors } from "../../utils.mjs";
 import * as browserTabs from "./tabs/_module.mjs";
-import Tagify from '@yaireo/tagify';
+import Tagify from "@yaireo/tagify";
 
 class PackLoader {
   loadedPacks = { Actor: {}, Item: {} };
@@ -34,7 +34,7 @@ class PackLoader {
           const firstResult = index.contents.at(0) ?? {};
           // Every result should have the "system" property otherwise the indexFields were wrong for that pack
           if (firstResult.system) {
-            // this.setModuleArt(packId, index);
+            // This.setModuleArt(packId, index);
             data = { pack, index };
             this.loadedPacks[documentType][packId] = data;
           } else {
@@ -70,11 +70,15 @@ class PackLoader {
 
 export default class CompendiumBrowser extends Application {
   settings;
-  dataTabsList = [ "equipment" ];
+
+  dataTabsList = ["equipment"];
+
   navigationTab;
+
   tabs;
 
   packLoader = new PackLoader();
+
   activeTab;
 
   constructor(options = {}) {
@@ -83,10 +87,10 @@ export default class CompendiumBrowser extends Application {
     this.settings = {} ?? game.settings.get("sw5e", "compendiumBrowserPacks");
     this.navigationTab = this.hookTab();
     this.tabs = {
-      // action: new browserTabs.Actions(this),
+      // Action: new browserTabs.Actions(this),
       // bestiary: new browserTabs.Bestiary(this),
-      equipment: new browserTabs.Equipment(this),
-      // feat: new browserTabs.Feats(this),
+      equipment: new browserTabs.Equipment(this)
+      // Feat: new browserTabs.Feats(this),
       // hazard: new browserTabs.Hazards(this),
       // power: new browserTabs.Powers(this),
     };
@@ -113,10 +117,10 @@ export default class CompendiumBrowser extends Application {
         {
           navSelector: "nav",
           contentSelector: "section.content",
-          initial: "landing-page",
-        },
+          initial: "landing-page"
+        }
       ],
-      scrollY: [".control-area", ".item-list"],
+      scrollY: [".control-area", ".item-list"]
     });
   }
 
@@ -125,7 +129,10 @@ export default class CompendiumBrowser extends Application {
   //   return super.render(force, options);
   // }
 
-  /** Reset initial filtering */
+  /**
+   * Reset initial filtering
+   * @param options
+   */
   async close(options) {
     for (const tab of Object.values(this.tabs)) tab.filterData.search.text = "";
     await super.close(options);
@@ -149,7 +156,7 @@ export default class CompendiumBrowser extends Application {
       equipment: {},
       class: {},
       other: {},
-      feat: {},
+      feat: {}
     };
 
     // NPCs and Hazards are all loaded by default other packs can be set here.
@@ -200,12 +207,12 @@ export default class CompendiumBrowser extends Application {
       // "sw5e.tables": true,
       "sw5e.techpowers": true,
       "sw5e.ventures": true,
-      "sw5e.vibroweapons": true,
+      "sw5e.vibroweapons": true
       // "sw5e.weaponproperties": true,
     };
 
     for (const pack of game.packs) {
-      const types = new Set(pack.index.map((entry) => entry.type));
+      const types = new Set(pack.index.map(entry => entry.type));
       types.delete(undefined);
       if (types.size === 0) continue;
 
@@ -213,42 +220,42 @@ export default class CompendiumBrowser extends Application {
         const load = this.settings.bestiary?.[pack.collection]?.load ?? true;
         settings.bestiary[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
       }
       if (types.has("starship")) {
         const load = this.settings.shipyard?.[pack.collection]?.load ?? true;
         settings.shipyard[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
       }
 
-      let t = CONFIG.SW5E.itemTypes.inventory.find((type) => types.has(type));
+      let t = CONFIG.SW5E.itemTypes.inventory.find(type => types.has(type));
       if (t !== undefined) {
         const load = this.settings.equipment?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
         settings.equipment[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
         continue;
       }
 
-      t = CONFIG.SW5E.itemTypes.class.find((type) => types.has(type));
+      t = CONFIG.SW5E.itemTypes.class.find(type => types.has(type));
       if (t !== undefined) {
         const load = this.settings.class?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
         settings.class[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
       }
 
-      t = CONFIG.SW5E.itemTypes.other.find((type) => types.has(type));
+      t = CONFIG.SW5E.itemTypes.other.find(type => types.has(type));
       if (t !== undefined) {
         const load = this.settings.other?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
         settings.other[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
       }
 
@@ -256,7 +263,7 @@ export default class CompendiumBrowser extends Application {
         const load = this.settings.feat?.[pack.collection]?.load ?? !!loadDefault[pack.collection];
         settings.feat[pack.collection] = {
           load,
-          name: pack.metadata.label,
+          name: pack.metadata.label
         };
       }
     }
@@ -294,13 +301,13 @@ export default class CompendiumBrowser extends Application {
     }
 
     if (maxLevel) {
-      const levels = Array.from(Array(maxLevel).keys()).map((l) => String(l + 1));
+      const levels = Array.from(Array(maxLevel).keys()).map(l => String(l + 1));
       for (const l of levels) {
         level.options[l].selected = true;
         level.selected.push(l);
       }
       if (entry.isPrepared || entry.isSpontaneous || entry.isInnate) {
-        category.options["power"].selected = true;
+        category.options.power.selected = true;
         category.selected.push("power");
       }
     }
@@ -323,7 +330,7 @@ export default class CompendiumBrowser extends Application {
 
     // TODO: Remove this once the other tabs are working
     if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment" works so far.`);
-    // if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
+    // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
 
@@ -436,7 +443,7 @@ export default class CompendiumBrowser extends Application {
       // Clear this filter button
       container
         .querySelector("button[data-action=clear-filter]")
-        ?.addEventListener("click", (event) => {
+        ?.addEventListener("click", event => {
           event.stopImmediatePropagation();
           switch (filterType) {
             case "checkboxes": {
@@ -466,7 +473,7 @@ export default class CompendiumBrowser extends Application {
       // Toggle visibility of filter container
       const title = container.querySelector("div.title");
       title?.addEventListener("click", () => {
-        const toggleFilter = (filter) => {
+        const toggleFilter = filter => {
           filter.isExpanded = !filter.isExpanded;
           const contentElement = title.nextElementSibling;
           if (contentElement instanceof HTMLElement) {
@@ -500,7 +507,7 @@ export default class CompendiumBrowser extends Application {
       });
 
       if (filterType === "checkboxes") {
-        container.querySelectorAll("input[type=checkbox]").forEach((checkboxElement) => {
+        container.querySelectorAll("input[type=checkbox]").forEach(checkboxElement => {
           checkboxElement.addEventListener("click", () => {
             if (objectHasKey(currentTab.filterData.checkboxes, filterName)) {
               const optionName = checkboxElement.name;
@@ -509,7 +516,7 @@ export default class CompendiumBrowser extends Application {
               option.selected = !option.selected;
               option.selected
                 ? checkbox.selected.push(optionName)
-                : (checkbox.selected = checkbox.selected.filter((name) => name !== optionName));
+                : (checkbox.selected = checkbox.selected.filter(name => name !== optionName));
               this.clearScrollLimit(true);
             }
           });
@@ -517,8 +524,8 @@ export default class CompendiumBrowser extends Application {
       }
 
       if (filterType === "ranges") {
-        container.querySelectorAll("input[name*=Bound]").forEach((range) => {
-          range.addEventListener("keyup", (event) => {
+        container.querySelectorAll("input[name*=Bound]").forEach(range => {
+          range.addEventListener("keyup", event => {
             if (!currentTab.isOfType("equipment")) return;
             if (event.key !== "Enter") return;
             const ranges = currentTab.filterData.ranges;
@@ -556,32 +563,32 @@ export default class CompendiumBrowser extends Application {
               fuzzySearch: false,
               mapValueTo: "label",
               maxItems: data.options.length,
-              searchKeys: ["label"],
+              searchKeys: ["label"]
             },
             whitelist: data.options,
             transformTag(tagData) {
-              const selected = data.selected.find((s) => s.value === tagData.value);
+              const selected = data.selected.find(s => s.value === tagData.value);
               if (selected?.not) tagData.class = "conjunction-not";
-            },
+            }
           });
 
-          tagify.on("click", (event) => {
+          tagify.on("click", event => {
             const target = event.detail.event.target;
             if (!target) return;
 
             const value = event.detail.data.value;
-            const selected = data.selected.find((s) => s.value === value);
+            const selected = data.selected.find(s => s.value === value);
             if (selected) {
               const current = !!selected.not;
               selected.not = !current;
               this.render();
             }
           });
-          tagify.on("change", (event) => {
+          tagify.on("change", event => {
             const selections = JSON.parse(event.detail.value || "[]");
             const isValid =
-              Array.isArray(selections) &&
-              selections.every(s => isObject(s) && typeof s.value === "string");
+              Array.isArray(selections)
+              && selections.every(s => isObject(s) && typeof s.value === "string");
 
             if (isValid) {
               data.selected = selections;
@@ -615,21 +622,21 @@ export default class CompendiumBrowser extends Application {
           const slider = noUiSlider.create(sliderElement, {
             range: {
               min: data.values.lowerLimit,
-              max: data.values.upperLimit,
+              max: data.values.upperLimit
             },
             start: [data.values.min, data.values.max],
             tooltips: {
               to(value) {
                 return Math.floor(value).toString();
-              },
+              }
             },
             connect: [false, true, false],
             behaviour: "snap",
-            step: data.values.step,
+            step: data.values.step
           });
 
-          slider.on("change", (values) => {
-            const [min, max] = values.map((value) => Number(value));
+          slider.on("change", values => {
+            const [min, max] = values.map(value => Number(value));
             data.values.min = min;
             data.values.max = max;
 
@@ -642,10 +649,10 @@ export default class CompendiumBrowser extends Application {
           });
 
           // Set styling
-          sliderElement.querySelectorAll(".noUi-handle").forEach((element) => {
+          sliderElement.querySelectorAll(".noUi-handle").forEach(element => {
             element.classList.add("handle");
           });
-          sliderElement.querySelectorAll(".noUi-connect").forEach((element) => {
+          sliderElement.querySelectorAll(".noUi-connect").forEach(element => {
             element.classList.add("range_selected");
           });
         }
@@ -700,7 +707,10 @@ export default class CompendiumBrowser extends Application {
     for (const dragDropHandler of this._dragDrop) dragDropHandler.bind(html);
   }
 
-  /** Activate click listeners on loaded actors and items */
+  /**
+   * Activate click listeners on loaded actors and items
+   * @param liElements
+   */
   activateResultListeners(liElements = []) {
     for (const liElement of liElements) {
       const { entryUuid } = liElement.dataset;
@@ -742,7 +752,7 @@ export default class CompendiumBrowser extends Application {
       ui.notifications.info(
         game.i18n.format("SW5E.CompendiumBrowser.AddedItemToCharacter", {
           item: item.name,
-          character: game.user.character.name,
+          character: game.user.character.name
         })
       );
     } else ui.notifications.info(game.i18n.format("SW5E.CompendiumBrowser.AddedItem", { item: item.name }));
@@ -757,7 +767,7 @@ export default class CompendiumBrowser extends Application {
     let purchasesSucceeded = 0;
 
     for (const actor of actors) {
-      if (await actor.removeCurrency(item.price.value)) {
+      if (await actor.removeCurrency(item.system.price.value)) {
         purchasesSucceeded = purchasesSucceeded + 1;
         await actor.createEmbeddedDocuments("Item", [item.toObject()]);
       }
@@ -768,31 +778,29 @@ export default class CompendiumBrowser extends Application {
         ui.notifications.info(
           game.i18n.format("SW5E.CompendiumBrowser.BoughtItemWithCharacter", {
             item: item.name,
-            character: actors[0].name,
+            character: actors[0].name
           })
         );
       } else {
         ui.notifications.warn(
           game.i18n.format("SW5E.CompendiumBrowser.FailedToBuyItemWithCharacter", {
             item: item.name,
-            character: actors[0].name,
+            character: actors[0].name
           })
         );
       }
+    } else if (purchasesSucceeded === actors.length) {
+      ui.notifications.info(
+        game.i18n.format("SW5E.CompendiumBrowser.BoughtItemWithAllCharacters", {
+          item: item.name
+        })
+      );
     } else {
-      if (purchasesSucceeded === actors.length) {
-        ui.notifications.info(
-          game.i18n.format("SW5E.CompendiumBrowser.BoughtItemWithAllCharacters", {
-            item: item.name,
-          })
-        );
-      } else {
-        ui.notifications.warn(
-          game.i18n.format("SW5E.CompendiumBrowser.FailedToBuyItemWithSomeCharacters", {
-            item: item.name,
-          })
-        );
-      }
+      ui.notifications.warn(
+        game.i18n.format("SW5E.CompendiumBrowser.FailedToBuyItemWithSomeCharacters", {
+          item: item.name
+        })
+      );
     }
   }
 
@@ -800,7 +808,7 @@ export default class CompendiumBrowser extends Application {
     const item = await fromUuid(uuid);
     if (!item) throw Error("Unexpected failure retrieving compendium item");
     if (!CONFIG.SW5E.itemTypes.inventory.includes(item.type)) throw Error(`Item "${item.name}" is not a physical item.`);
-    // if (!(item instanceof PhysicalItemsw5e || item instanceof Kitsw5e)) {
+    // If (!(item instanceof PhysicalItemsw5e || item instanceof Kitsw5e)) {
     //   throw Error("Unexpected failure retrieving compendium item");
     // }
 
@@ -815,7 +823,10 @@ export default class CompendiumBrowser extends Application {
     return true;
   }
 
-  /** Set drag data and lower opacity of the application window to reveal any tokens */
+  /**
+   * Set drag data and lower opacity of the application window to reveal any tokens
+   * @param event
+   */
   _onDragStart(event) {
     this.element.animate({ opacity: 0.125 }, 250);
 
@@ -824,7 +835,7 @@ export default class CompendiumBrowser extends Application {
       "text/plain",
       JSON.stringify({
         type: item.dataset.type,
-        uuid: item.dataset.entryUuid,
+        uuid: item.dataset.entryUuid
       })
     );
     item.addEventListener(
@@ -850,14 +861,14 @@ export default class CompendiumBrowser extends Application {
     // Settings
     if (activeTab === "settings") return {
       user: game.user,
-      settings: this.settings,
+      settings: this.settings
     };
     // Active tab
     const tab = this.tabs[activeTab];
     if (tab) return {
       user: game.user,
       [activeTab]: { filterData: tab.filterData },
-      scrollLimit: tab.scrollLimit,
+      scrollLimit: tab.scrollLimit
     };
     // No active tab
     return { user: game.user };

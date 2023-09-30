@@ -1,4 +1,5 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+    
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
@@ -9,7 +10,7 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
             </h1>
 
             <div class="item-subtitle">
@@ -31,12 +32,7 @@
                     </select>
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        name="system.source"
-                        value="{{system.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+                    <input type="text" name="system.source" value="{{system.source}}" placeholder="{{ localize 'SW5E.Source' }}"/>
                 </li>
             </ul>
         </div>
@@ -57,6 +53,18 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+
+            {{!-- Tool Status --}}
+            <div class="form-group stacked">
+                <label>{{ localize "SW5E.ItemToolStatus" }}</label>
+                <div class="form-fields">
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.equipped" {{ checked system.equipped }}>
+                        {{ localize "SW5E.Equipped" }}
+                    </label>
+                </div>
+            </div>
+
             {{!-- Tool Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemToolType" }}</label>
@@ -83,7 +91,7 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemToolProficiency" }}</label>
                 <select name="system.proficient" data-dtype="Number">
-                    {{selectOptions config.proficiencyLevels selected=system.proficient labelAttr="label"}}
+                    {{selectOptions config.proficiencyLevelsLabels selected=system.proficient blank=(localize "SW5E.Automatic")}}
                 </select>
             </div>
 
@@ -91,20 +99,20 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.DefaultAbilityCheck" }}</label>
                 <select name="system.ability">
-                    {{selectOptions config.abilities selected=system.ability}}
+                    {{selectOptions config.abilities selected=system.ability labelAttr="label" blank=(localize "SW5E.Default")}}
                 </select>
             </div>
 
             {{!-- Tool Bonus --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemToolBonus" }}</label>
-                <input type="text" name="system.bonus" value="{{system.bonus}}" data-formula-editor />
+                <input type="text" name="system.bonus" value="{{system.bonus}}" data-formula-editor/>
             </div>
 
             {{!-- Chat Message Flavor --}}
             <div class="form-group stacked">
                 <label>{{ localize "SW5E.ChatFlavor" }}</label>
-                <input type="text" name="system.chatFlavor" value="{{system.chatFlavor}}" />
+                <input type="text" name="system.chatFlavor" value="{{system.chatFlavor}}"/>
             </div>
         </div>
 

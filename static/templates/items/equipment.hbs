@@ -78,7 +78,7 @@
             </div>
 
             {{!-- Equipment Attunement and Status --}}
-            {{#unless isMountable}}
+            {{#unless system.isMountable}}
                 {{#unless isStarshipItem}}
                     <div class="form-group">
                         <label>{{localize "SW5E.Attunement"}}</label>
@@ -88,14 +88,18 @@
                     </div>
                 {{/unless}}
 
+                {{#unless isStarshipItem}}
+                    <div class="form-group">
+                        <label>{{localize "SW5E.Proficiency"}}</label>
+                        <select name="system.proficient" data-dtype="Number">
+                            {{selectOptions config.weaponAndArmorProficiencyLevels selected=system.proficient blank=(localize "SW5E.Automatic")}}
+                        </select>
+                    </div>
+                {{/unless}}
+
                 {{!-- Equipment Status --}}
                 <div class="form-group stacked">
                     <label>{{ localize "SW5E.ItemEquipmentStatus" }}</label>
-                    {{#unless isStarshipItem}}
-                        <label class="checkbox">
-                            <input type="checkbox" name="system.proficient" {{checked system.proficient}} /> {{ localize "SW5E.Proficient" }}
-                        </label>
-                    {{/unless}}
                     <label class="checkbox">
                         <input type="checkbox" name="system.equipped" {{checked system.equipped}} /> {{ localize "SW5E.Equipped" }}
                     </label>
@@ -215,7 +219,7 @@
             {{/if}}
 
             {{!-- Armor Class --}}
-            {{#if hasAC}}
+            {{#if (or system.isArmor system.isMountable)}}
                 <div class="form-group">
                     <label>{{ localize "SW5E.ArmorClass" }}</label>
                     <div class="form-fields">
@@ -234,7 +238,7 @@
                 </div>
             {{/if}}
 
-            {{#if isArmor}}
+            {{#if system.isArmor}}
                 {{!-- Required Strength --}}
                 <div class="form-group">
                     <label>{{ localize "SW5E.ItemRequiredStr" }}</label>
@@ -250,7 +254,7 @@
                 </div>
             {{/if}}
 
-            {{#if isMountable}}
+            {{#if system.isMountable}}
                 {{> "sw5e.item-mountable"}}
                 <div class="form-group">
                     <label>{{localize 'SW5E.Speed'}}</label>

@@ -8,15 +8,15 @@
                 <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'SW5E.Name'}}">
             </h1>
             <ul class="summary flexrow">
-                <li>
+                <li class="size">
                     <span>{{lookup config.actorSizes system.traits.size}}</span>
                 </li>
-                <li>
+                <li class="vehicle-type">
                     <select name="system.vehicleType">
                         {{selectOptions config.vehicleTypes selected=system.vehicleType}}
                     </select>
                 </li>
-                <li>
+                <li class="dimensions">
                     <input
                         type="text"
                         name="system.traits.dimensions"
@@ -24,7 +24,7 @@
                         placeholder="{{localize 'SW5E.Dimensions'}}"
                     >
                 </li>
-                <li>
+                <li class="source">
                     <input
                         type="text"
                         name="system.details.source"

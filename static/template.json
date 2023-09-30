@@ -7,6 +7,7 @@
           "str": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -15,6 +16,7 @@
           "dex": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -23,6 +25,7 @@
           "con": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -31,6 +34,7 @@
           "int": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -39,6 +43,7 @@
           "wis": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -47,6 +52,7 @@
           "cha": {
             "value": 10,
             "proficient": 0,
+            "max": null,
             "bonuses": {
               "check": "",
               "save": ""
@@ -320,62 +326,8 @@
             "custom": ""
           }
         },
-        "powers": {
-          "power1": {
-            "fvalue": 1000,
-            "foverride": null,
-            "tvalue": 1000,
-            "toverride": null
-          },
-          "power2": {
-            "fvalue": 1000,
-            "foverride": null,
-            "tvalue": 1000,
-            "toverride": null
-          },
-          "power3": {
-            "fvalue": 1000,
-            "foverride": null,
-            "tvalue": 1000,
-            "toverride": null
-          },
-          "power4": {
-            "fvalue": 1000,
-            "foverride": null,
-            "tvalue": 1000,
-            "toverride": null
-          },
-          "power5": {
-            "fvalue": 1000,
-            "foverride": null,
-            "tvalue": 1000,
-            "toverride": null
-          },
-          "power6": {
-            "fvalue": 1,
-            "foverride": null,
-            "tvalue": 1,
-            "toverride": null
-          },
-          "power7": {
-            "fvalue": 1,
-            "foverride": null,
-            "tvalue": 1,
-            "toverride": null
-          },
-          "power8": {
-            "fvalue": 1,
-            "foverride": null,
-            "tvalue": 1,
-            "toverride": null
-          },
-          "power9": {
-            "fvalue": 1,
-            "foverride": null,
-            "tvalue": 1,
-            "toverride": null
-          }
-        },
+        "tools": {},
+        "powers": {},
         "bonuses": {
           "mwak": {
             "attack": "",
@@ -408,7 +360,14 @@
         }
       }
     },
-    "htmlFields": ["details.biography.value", "details.biography.public", "details.description.value", "details.description.public", "description.full", "description.summary"],
+    "htmlFields": [
+      "details.biography.value",
+      "details.biography.public",
+      "details.description.value",
+      "details.description.public",
+      "description.full",
+      "description.summary"
+    ],
     "character": {
       "templates": ["common", "creature"],
       "attributes": {
@@ -758,6 +717,9 @@
           "cargo": 0
         }
       },
+      "details": {
+        "source": ""
+      },
       "traits": {
         "size": "lg",
         "dimensions": "",
@@ -936,6 +898,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -1129,7 +1092,7 @@
       "strength": null,
       "stealth": false,
       "properties": {},
-      "proficient": true
+      "proficient": null
     },
     "feat": {
       "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1166,7 +1129,7 @@
       "baseItem": "",
       "ability": "int",
       "chatFlavor": "",
-      "proficient": 0,
+      "proficient": null,
       "bonus": ""
     },
     "maneuver": {
@@ -1280,12 +1243,18 @@
         "types": ["powerCell"]
       },
       "properties": {},
-      "proficient": true
+      "proficient": null
     }
   },
   "JournalEntryPage": {
     "types": ["class"],
-    "htmlFields": ["description.value", "description.additionalHitPoints", "description.additionalTraits", "description.additionalEquipment", "description.archetype"],
+    "htmlFields": [
+      "description.value",
+      "description.additionalHitPoints",
+      "description.additionalTraits",
+      "description.additionalEquipment",
+      "description.archetype"
+    ],
     "class": {
       "item": "",
       "description": {

@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1.2.6.2] - 2023-09-01
+
+### Added
+
+- "ASI and a Feat" variant rule.
+
+### Changes
+
+- Updated core to match [dnd5e 2.3.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.3.1).
+- Compendium Updates.
+    - Classes now have 'Choose Item' advancements for Invocations and Archetypes.
+    - Classes now have 'Ability Score Improvement' advancements.
+    - Backgrounds now have 'Choose Item' advancements for feats.
+
+### Fixed
+
+- #705 'All Starships are displayed as "Medium" regardless of Stats'.
+- #707 'Issue with character import'.
+- #722 'Item proficiency label not showing correctly on character sheet'.
+- #728 'Editing and Rolling Starship Skills throwing errors'.
+- #733 'Imported Character Traits (armorProf, languages, weaponProf) showing as [object Set]'.
+- Starship shield regen now correctly uses the maximum value instead of rolling.
+- NPC sheet now properly displays temp and +max HP.
+- 'Power Slot' overrides should now work with active effects. DAE seems to break this.
+- 'Deployments' now have a DataModel, and thus should be able to receive advancements.
+- 'Buy Item' on the compendium browser should now work properly.
+
+## [2.2.2.2.5.0] - 2023-08-04
+
+### Changes
+
+- Updated core to match [dnd5e 2.2.2](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.2.2).
+
 ## [2.1.5.2.4.8] - 2023-07-19
 
 ### Fixed

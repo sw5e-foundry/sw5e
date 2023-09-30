@@ -42,14 +42,14 @@ export default class AbilityUseDialog extends Dialog {
     const data = {
       item,
       title: game.i18n.format("SW5E.AbilityUseHint", {
-        type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`),
+        type: game.i18n.localize(CONFIG.Item.typeLabels[item.type]),
         name: item.name
       }),
       note: this._getAbilityUseNote(item, uses, recharge),
       consumePowerSlot: false,
       consumeSuperiorityDie: item.type === "maneuver",
       consumeRecharge: recharges,
-      consumeResource: resource.target && (!item.hasAttack || (resource.type !== "ammo")),
+      consumeResource: resource.target && (!item.hasAttack || resource.type !== "ammo"),
       consumeUses: uses.per && uses.max > 0,
       canUse: recharges ? recharge.charged : sufficientUses,
       createTemplate: game.user.can("TEMPLATE_CREATE") && item.hasAreaTarget,
@@ -102,8 +102,8 @@ export default class AbilityUseDialog extends Dialog {
     const consumePowerSlot = lvl > 0 && CONFIG.SW5E.powerUpcastModes.includes(itemData.preparation.mode);
 
     // If can't upcast, return early and don't bother calculating available power slots
-    if (!consumePowerSlot) {
-      return foundry.utils.mergeObject(data, {isPower: true, consumePowerSlot});
+    if ( !consumePowerSlot ) {
+      return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot });
     }
 
     // TODO: Disable slots for all but high level powers
@@ -131,18 +131,18 @@ export default class AbilityUseDialog extends Dialog {
 
     let powerLevels;
     if (powerType === "force") {
-      powerLevels = Array.fromRange(10)
+      powerLevels = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length)
         .reduce((arr, i) => {
           if (i < lvl) return arr;
           const label = CONFIG.SW5E.powerLevels[i];
-          const l = actorData.powers[`power${i}`] || {fmax: 0, foverride: null};
+          const l = actorData.powers[`power${i}`] || { fmax: 0, foverride: null };
           let max = parseInt(l.foverride || l.fmax || 0);
           let slots = Math.clamped(parseInt(l.fvalue || 0), 0, max);
           if (max > 0) lmax = i;
           if (max > 0 && slots > 0 && points > i) {
             arr.push({
               level: i,
-              label: i > 0 ? game.i18n.format("SW5E.PowerLevelSlot", {level: label, n: slots}) : label,
+              label: i > 0 ? game.i18n.format("SW5E.PowerLevelSlot", { level: label, n: slots }) : label,
               canCast: max > 0,
               hasSlots: slots > 0
             });
@@ -151,18 +151,18 @@ export default class AbilityUseDialog extends Dialog {
         }, [])
         .filter(sl => sl.level <= lmax);
     } else if (powerType === "tech") {
-      powerLevels = Array.fromRange(10)
+      powerLevels = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length)
         .reduce((arr, i) => {
           if (i < lvl) return arr;
           const label = CONFIG.SW5E.powerLevels[i];
-          const l = actorData.powers[`power${i}`] || {tmax: 0, toverride: null};
+          const l = actorData.powers[`power${i}`] || { tmax: 0, toverride: null };
           let max = parseInt(l.override || l.tmax || 0);
           let slots = Math.clamped(parseInt(l.tvalue || 0), 0, max);
           if (max > 0) lmax = i;
           if (max > 0 && slots > 0 && points > i) {
             arr.push({
               level: i,
-              label: i > 0 ? game.i18n.format("SW5E.PowerLevelSlot", {level: label, n: slots}) : label,
+              label: i > 0 ? game.i18n.format("SW5E.PowerLevelSlot", { level: label, n: slots }) : label,
               canCast: max > 0,
               hasSlots: slots > 0
             });
@@ -181,7 +181,7 @@ export default class AbilityUseDialog extends Dialog {
     );
 
     // Merge power casting data
-    return foundry.utils.mergeObject(data, {isPower: true, consumePowerSlot, powerLevels});
+    return foundry.utils.mergeObject(data, { isPower: true, consumePowerSlot, powerLevels });
   }
 
   /* -------------------------------------------- */
@@ -202,7 +202,7 @@ export default class AbilityUseDialog extends Dialog {
     // Abilities which use Recharge
     if (recharge.value) {
       return game.i18n.format(recharge.charged ? "SW5E.AbilityUseChargedHint" : "SW5E.AbilityUseRechargeHint", {
-        type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`)
+        type: game.i18n.localize(CONFIG.Item.typeLabels[item.type])
       });
     }
 
@@ -227,7 +227,7 @@ export default class AbilityUseDialog extends Dialog {
     // Other Items
     else {
       return game.i18n.format("SW5E.AbilityUseNormalHint", {
-        type: game.i18n.localize(`ITEM.Type${item.type.capitalize()}`),
+        type: game.i18n.localize(CONFIG.Item.typeLabels[item.type]),
         value: uses.value,
         max: uses.max,
         per: CONFIG.SW5E.limitedUsePeriods[uses.per]

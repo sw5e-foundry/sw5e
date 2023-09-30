@@ -31,7 +31,7 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @property {number} strength              Minimum strength required to use a piece of armor.
  * @property {boolean} stealth              Does this equipment grant disadvantage on stealth checks when used?
  * @property {object} properties            Mapping of various weapon property booleans and numbers.
- * @property {boolean} proficient           Does the owner have proficiency in this piece of equipment?
+ * @property {number} proficient            Does the owner have proficiency in this piece of equipment?
  * @property {object} attributes
  * @property {object} attributes.capx
  * @property {number} attributes.capx.value            Starship: Multiplier for shield capacity.
@@ -94,7 +94,14 @@ export default class EquipmentData extends SystemDataModel.mixin(
         label: "SW5E.ItemRequiredStr"
       }),
       stealth: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ItemEquipmentStealthDisav" }),
-      proficient: new foundry.data.fields.BooleanField({ required: true, initial: true, label: "SW5E.Proficient" }),
+      proficient: new foundry.data.fields.NumberField({
+        required: true,
+        min: 0,
+        max: 1,
+        integer: true,
+        initial: null,
+        label: "SW5E.ProficiencyLevel"
+      }),
       properties: makeItemProperties(CONFIG.SW5E.equipmentProperties, {
         required: true,
         label: "SW5E.ItemEquipmentProperties"
@@ -178,12 +185,15 @@ export default class EquipmentData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Migrations                                  */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {
     super.migrateData(source);
     EquipmentData.#migrateArmor(source);
     EquipmentData.#migrateStrength(source);
+    EquipmentData.#migrateProficient(source);
     EquipmentData.#migrateStarshipData(source);
     migrateItemProperties(source.properties, CONFIG.SW5E.equipmentProperties);
   }
@@ -195,6 +205,7 @@ export default class EquipmentData extends SystemDataModel.mixin(
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateArmor(source) {
+    if (!("armor" in source)) return;
     source.armor ??= {};
     if (source.armor.type === "bonus") source.armor.type = "trinket";
     if (typeof source.armor.dex === "string") {
@@ -232,5 +243,70 @@ export default class EquipmentData extends SystemDataModel.mixin(
         delete source[attr];
       }
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the proficient field to convert boolean values.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateProficient(source) {
+    if ( typeof source.proficient === "boolean" ) source.proficient = Number(source.proficient);
+  }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed in chat.
+   * @type {string[]}
+   */
+  get chatProperties() {
+    return [
+      CONFIG.SW5E.equipmentTypes[this.armor.type],
+      this.parent.labels?.armor ?? null,
+      this.stealth ? game.i18n.localize("SW5E.StealthDisadvantage") : null
+    ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this Item any of the armor subtypes?
+   * @type {boolean}
+   */
+  get isArmor() {
+    return this.armor.type in CONFIG.SW5E.armorTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this item a separate large object like a siege engine or vehicle component that is
+   * usually mounted on fixtures rather than equipped, and has its own AC and HP?
+   * @type {boolean}
+   */
+  get isMountable() {
+    return this.armor.type === "vehicle";
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * The proficiency multiplier for this item.
+   * @returns {number}
+   */
+  get proficiencyMultiplier() {
+    if ( Number.isFinite(this.proficient) ) return this.proficient;
+    const actor = this.parent.actor;
+    if ( !actor ) return 0;
+    if ( actor.type === "npc" ) return 1; // NPCs are always considered proficient with any armor in their stat block.
+    const config = CONFIG.SW5E.armorProficienciesMap;
+    const itemProf = config[this.armor?.type];
+    const actorProfs = actor.system.traits?.armorProf?.value ?? new Set();
+    const isProficient = (itemProf === true) || actorProfs.has(itemProf) || actorProfs.has(this.baseItem);
+    return Number(isProficient);
   }
 }

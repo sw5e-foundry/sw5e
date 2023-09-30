@@ -14,7 +14,7 @@
         {{/if}}
       </div>
       <p class="hint type-hint">
-        {{localize typeHint}}
+        {{localize type.hint}}
       </p>
     </div>
     <hr>
@@ -26,11 +26,14 @@
       </div>
       <p class="hint identifier-hint">
         {{{localize "SW5E.AdvancementScaleValueIdentifierHint" class=classIdentifier identifier=previewIdentifier}}}
+        <a class="identifier-hint-copy" data-tooltip="SW5E.IdentifierCopy">
+          <i class="far fa-clipboard"></i>
+        </a>
       </p>
     </div>
   </div>
 
-  <div class="right-column scale-values">
+  <div class="right-column level-list scale-values">
     {{#each levels as |data level|}}
       <div class="form-group">
         <label>{{level}}</label>
@@ -38,7 +41,7 @@
           {{#if (eq @root.configuration.type "dice")}}
             {{numberInput data.value.number name=(concat "configuration.scale." level ".number") min=1 step=1
                           placeholder=data.placeholder.number}}
-            <select name="data.configuration.scale.{{level}}.faces" data-dtype="Number" class="{{data.className}}">
+            <select name="configuration.scale.{{level}}.faces" data-dtype="Number" class="{{data.className}}">
               {{selectOptions @root.faces selected=data.value.faces blank=data.placeholder.faces}}
             </select>
           {{else}}

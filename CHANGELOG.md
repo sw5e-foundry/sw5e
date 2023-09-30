@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.3.1.2.6.3] - 2023-09-30
 
 ### Added
 
@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - #737 'Powercasting Issues'.
 - Warning about migration issues related to NPC's CR.
 - Compendium browser 'Equipment' tab should now open again.
+- Species features no longer have 'None (Species name)' as their requirement.
 
 ## [2.3.1.2.6.1] - 2023-09-01
 

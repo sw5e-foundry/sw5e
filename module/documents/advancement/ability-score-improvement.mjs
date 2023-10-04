@@ -153,7 +153,7 @@ export default class AbilityScoreImprovementAdvancement extends Advancement {
       if ( data.type === "feat" ) data.assignments = null;
       if ( itemData ) {
         data.feat = { [itemData._id]: data.featUuid };
-        updates["items"] = [itemData];
+        updates.items = [itemData];
       }
     }
 

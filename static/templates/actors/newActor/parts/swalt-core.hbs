@@ -72,14 +72,20 @@
         <button type="button" class="item active" data-subgroup="coreattributes" data-target="traits">
             {{localize "SW5E.ResourcesAndTraits"}}
         </button>
-        <button type="button" class="item" data-subgroup="coreattributes" data-target="resources">
-            {{localize "SW5E.FavoritesAndNotes" }}
+        <button type="button" class="item" data-subgroup="coreattributes" data-target="favorites">
+            {{localize "SW5E.Favorites" }}
+        </button>
+        <button type="button" class="item" data-subgroup="coreattributes" data-target="notes">
+            {{localize "SW5E.Notes" }}
         </button>
     </nav>
     <div class="tab core-traits active" data-subgroup="coreattributes" data-target="traits">
         {{> "sw5e.swalt-traits"}}
     </div>
-    <div class="tab core-resources" data-subgroup="coreattributes" data-target="resources">
-        {{> "sw5e.swalt-resources"}}
+    <div class="tab core-favorites" data-subgroup="coreattributes" data-target="favorites">
+        {{> "sw5e.swalt-favorites"}}
+    </div>
+    <div class="tab core-notes" data-subgroup="coreattributes" data-target="notes">
+        {{> "sw5e.swalt-notes"}}
     </div>
 </section>

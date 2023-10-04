@@ -132,7 +132,7 @@ export default class WeaponData extends SystemDataModel.mixin(
   get _typeAbilityMod() {
     if (["simpleB", "martialB"].includes(this.weaponType)) return "dex";
 
-    const abilities = this.parent?.actor?.system.abilities;
+    const abilities = this.parent?.actor?.system?.abilities;
     if (this.properties.fin && abilities) {
       return (abilities.dex?.mod ?? 0) >= (abilities.str?.mod ?? 0) ? "dex" : "str";
     }

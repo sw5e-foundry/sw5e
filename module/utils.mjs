@@ -145,18 +145,19 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/actors/origActor/parts/actor-powerbook.hbs",
     "systems/sw5e/templates/actors/origActor/parts/actor-warnings.hbs",
 
+    "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-biography.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-core.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-crew.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-crewactions.hbs",
-    "systems/sw5e/templates/actors/newActor/parts/swalt-active-effects.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-favorites.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-features.hbs",
-    "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-force-powerbook.hbs",
-    "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.hbs",
-    "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.hbs",
-    "systems/sw5e/templates/actors/newActor/parts/swalt-resources.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-inventory.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-notes.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-starships.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-superiority-powerbook.hbs",
+    "systems/sw5e/templates/actors/newActor/parts/swalt-tech-powerbook.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-traits.hbs",
     "systems/sw5e/templates/actors/newActor/parts/swalt-warnings.hbs",
 
@@ -559,6 +560,16 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * @param {HTMLElement} parent
  * @param {string} selectors
  */
+export function htmlQuery(parent, selectors) {
+    if (!(parent instanceof Element || parent instanceof Document)) return null;
+    return parent.querySelector(selectors);
+}
+
+/**
+ * Querries from parent
+ * @param {HTMLElement} parent
+ * @param {string} selectors
+ */
 export function htmlQueryAll(parent, selectors) {
   if (!(parent instanceof Element || parent instanceof Document)) return [];
   return Array.from(parent.querySelectorAll(selectors));
@@ -599,4 +610,15 @@ export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
   if (actors.length === 0 && game.user.character && useOwnCharacter) actors.push(game.user.character);
 
   return actors;
+}
+
+/**
+ * Composes multiple regex objects into a single one.
+ * 
+ * @param {string} flags               The regex flags of the composed object.
+ * @param {RegExp[]} regexes           The regex objects to compose.
+ * @returns {RegExp}                   The composed regex object.
+ */
+export function getComposedRegex(flags, ...regexes) {
+  return new RegExp("(" + regexes.map(regex => regex.source).join("|") + ")", flags ?? "");
 }

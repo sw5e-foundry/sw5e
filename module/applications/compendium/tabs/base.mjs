@@ -168,7 +168,7 @@ export class CompendiumBrowserTab {
           case "name":
             return entryA.name.localeCompare(entryB.name, lang);
           case "level":
-            return entryA.level - entryB.level || entryA.name.localeCompare(entryB.name, lang);
+            return (entryA.level ?? 0) - (entryB.level ?? 0) || entryA.name.localeCompare(entryB.name, lang);
           case "price":
             return entryA.price - entryB.price || entryA.name.localeCompare(entryB.name, lang);
           default:
@@ -230,7 +230,6 @@ export class CompendiumBrowserTab {
     }
 
     generateMultiselectOptions(optionsRecord, sort = true) {
-      console.debug(optionsRecord);
       const options = Object.entries(optionsRecord).map(([value, label]) => ({
         value,
         label: game.i18n.localize(label)

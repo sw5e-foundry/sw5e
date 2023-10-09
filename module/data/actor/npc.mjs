@@ -227,6 +227,7 @@ export default class NPCData extends CreatureTemplate {
     super.migrateData(source);
     NPCData.#migrateTypeData(source);
     NPCData.#migratePowercastingData(source);
+    NPCData.#migrateArmorClass(source);
     AttributesFields._migrateInitiative(source.attributes);
   }
 
@@ -281,6 +282,25 @@ export default class NPCData extends CreatureTemplate {
     else {
       source.type.value = "custom";
       source.type.custom = original;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Migrate the actor type string to type object.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateArmorClass(source) {
+    const ac = source.attributes.ac;
+    // Remove invalid AC formula strings.
+    if (ac?.formula) {
+      try {
+        const roll = new Roll(ac.formula);
+        Roll.safeEval(roll.formula);
+      } catch(e) {
+        ac.formula = "";
+      }
     }
   }
 

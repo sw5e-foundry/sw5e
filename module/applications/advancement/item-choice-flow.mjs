@@ -171,27 +171,24 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
    * @returns {number}
    */
   _maxPowerSlotLevel() {
-    const powercasting = this.advancement.item.powercasting;
-    let powers;
+    // TODO: Adapt this to work with force and tech powers
+    // const powercasting = this.advancement.item.powercasting;
+    // let powers;
 
-    // For advancements on classes or archetypes, use the largest slot available for that class
-    if (powercasting) {
-      const progression = { slot: 0, pact: {} };
-      const maxPowerLevel = CONFIG.SW5E.SPELL_SLOT_TABLE[CONFIG.SW5E.SPELL_SLOT_TABLE.length - 1].length;
-      powers = Object.fromEntries(Array.fromRange(maxPowerLevel, 1).map(l => [`power${l}`, {}]));
-      Actor5e.computeClassProgression(progression, this.advancement.item, { powercasting });
-      Actor5e.preparePowercastingSlots(powers, powercasting.type, progression);
-    }
+    // // For advancements on classes or archetypes, use the largest slot available for that class
+    // if (powercasting) {
+    //   const progression = { slot: 0, pact: {} };
+    //   const maxPowerLevel = CONFIG.SW5E.SPELL_SLOT_TABLE[CONFIG.SW5E.SPELL_SLOT_TABLE.length - 1].length;
+    //   powers = Object.fromEntries(Array.fromRange(maxPowerLevel, 1).map(l => [`power${l}`, {}]));
+    //   Actor5e.computeClassProgression(progression, this.advancement.item, { powercasting });
+    //   Actor5e.preparePowercastingSlots(powers, powercasting.type, progression);
+    // }
 
-    // For all other items, use the largest slot possible
-    else powers = this.advancement.actor.system.powers;
+    // // For all other items, use the largest slot possible
+    // else powers = this.advancement.actor.system.powers;
 
-    const largestSlot = Object.entries(powers).reduce((slot, [key, data]) => {
-      if (data.max === 0) return slot;
-      const level = parseInt(key.replace("power", ""));
-      if (!Number.isNaN(level) && level > slot) return level;
-      return slot;
-    }, -1);
-    return Math.max(powers.pact?.level ?? 0, largestSlot);
+    const attr = this.advancement.actor.system.attributes;
+    const largestSlot = Math.max(attr.force.maxPowerLevel, attr.tech.maxPowerLevel);
+    return largestSlot;
   }
 }

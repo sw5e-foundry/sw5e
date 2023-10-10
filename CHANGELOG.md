@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Class overview journal should once again work.
 - Clothing equipment should now have the proper artwork.
 - Website Importer should once again work.
+- Currency should no longer be reset after any update.
+- JournalEntry migration should once again work.
 
 ## [2.3.1.2.6.3] - 2023-10-04
 

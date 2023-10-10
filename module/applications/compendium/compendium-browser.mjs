@@ -198,7 +198,7 @@ export default class CompendiumBrowser extends Application {
       "sw5e.implements": true,
       "sw5e.invocations": true,
       "sw5e.kits": true,
-      "sw5e.lightsaberform": true,
+      "sw5e.lightsaberforms": true,
       "sw5e.lightweapons": true,
       "sw5e.maneuvers": true,
       "sw5e.monsters": true,

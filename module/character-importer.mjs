@@ -312,7 +312,7 @@ export default class CharacterImporter {
       ...(await game.packs.get("sw5e.fightingstyles").getDocuments()),
       ...(await game.packs.get("sw5e.fightingmasteries").getDocuments()),
       ...(await game.packs.get("sw5e.gamingsets").getDocuments()),
-      ...(await game.packs.get("sw5e.lightsaberform").getDocuments()),
+      ...(await game.packs.get("sw5e.lightsaberforms").getDocuments()),
       ...(await game.packs.get("sw5e.modifications").getDocuments()),
       ...(await game.packs.get("sw5e.kits").getDocuments()),
       ...(await game.packs.get("sw5e.maneuvers").getDocuments())

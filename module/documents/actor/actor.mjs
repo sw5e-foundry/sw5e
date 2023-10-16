@@ -612,6 +612,7 @@ export default class Actor5e extends Actor {
       target.known.max = progression.powersKnownMax;
       target.points.max ??= progression.points;
       target.level = progression.casterLevel;
+      target.maxPowerLevel = progression.maxPowerLevel;
       target.override = progression.override;
     }
   }

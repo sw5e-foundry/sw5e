@@ -300,11 +300,11 @@ export default class Item5e extends Item {
     if (!finalPC) return null;
     finalPC.levels = this.isEmbedded ? this.system.levels ?? this.class?.system.levels : null;
 
-    // Temp method for determining powercasting type until this data is available directly using advancement
-    if (CONFIG.SW5E.powercastingTypes[finalPC.progression]) finalPC.type = finalPC.progression;
-    else finalPC.type = Object.entries(CONFIG.SW5E.powercastingTypes).find(([type, data]) => {
-      return !!data.progression?.[finalPC.progression];
-    })?.[0];
+    // // Temp method for determining powercasting type until this data is available directly using advancement
+    // if (CONFIG.SW5E.powercastingTypes[finalPC.progression]) finalPC.type = finalPC.progression;
+    // else finalPC.type = Object.entries(CONFIG.SW5E.powercastingTypes).find(([type, data]) => {
+    //   return !!data.progression?.[finalPC.progression];
+    // })?.[0];
 
     return finalPC;
   }

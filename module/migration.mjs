@@ -436,11 +436,9 @@ export const migrateMacroData = async function(macro, migrationData) {
  */
 export function migrateRollTableData(table, migrationData) {
   const updateData = {};
-  _migrateDocumentIcon(table, updateData, migrationData);
   if ( !table.results?.length ) return updateData;
   const results = table.results.reduce((arr, result) => {
     const resultUpdate = {};
-    _migrateDocumentIcon(result, resultUpdate, migrationData);
     if ( !foundry.utils.isEmpty(resultUpdate) ) {
       resultUpdate._id = result._id;
       arr.push(foundry.utils.expandObject(resultUpdate));

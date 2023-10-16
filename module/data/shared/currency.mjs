@@ -38,8 +38,9 @@ export default class CurrencyTemplate extends foundry.abstract.DataModel {
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateCurrencyData(source) {
+    if (source.currency === undefined) return;
     // If currency if for some reason null, set it to default values
-    if ([null, undefined].includes(source.currency)) source.currency = { gc: 0 };
+    if (source.currency === null) source.currency = { gc: 0 };
     // If the actor has a numeric currency, then it has not been migrated yet.
     else if (Number.isNumeric(source.currency)) source.currency = { gc: source.currency };
     // If currency is an object, remove all but galactic credit

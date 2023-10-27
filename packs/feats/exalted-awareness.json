@@ -3,7 +3,39 @@
   "name": "Exalted Awareness",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/ExaltedAwareness.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Exalted Awareness",
+      "icon": "systems/sw5e/packs/Icons/Feats/ExaltedAwareness.webp",
+      "origin": "Compendium.sw5e.feats.Item.N3jNRgXwtZ8VsuWj",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "Ljo5yJb635PSmQ1O",
+      "changes": [
+        {
+          "key": "system.abilities.wis.proficient",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!N3jNRgXwtZ8VsuWj.Ljo5yJb635PSmQ1O",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.3",
     "coreVersion": "11.308",
     "createdTime": 1674493966789,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698718317786,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!N3jNRgXwtZ8VsuWj"

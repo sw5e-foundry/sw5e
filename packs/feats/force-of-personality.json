@@ -8,9 +8,9 @@
       "_id": "IJoxm3NhIdtw6E6s",
       "changes": [
         {
-          "key": "system.attributes.str.mod",
-          "value": "1",
+          "key": "system.abilities.cha.value",
           "mode": 2,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -33,6 +33,37 @@
       "description": "",
       "statuses": [],
       "_key": "!items.effects!Beg3ouX2K8W2x1lr.IJoxm3NhIdtw6E6s",
+      "sort": 0
+    },
+    {
+      "name": "Force of Personality - Cha Insight",
+      "icon": "systems/sw5e/packs/Icons/Feats/ForceOfPersonality.webp",
+      "origin": "Compendium.sw5e.feats.Item.Beg3ouX2K8W2x1lr",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "urYwpkjLxBV3VM3d",
+      "changes": [
+        {
+          "key": "system.skills.ins.ability",
+          "mode": 5,
+          "value": "cha",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!Beg3ouX2K8W2x1lr.urYwpkjLxBV3VM3d",
       "sort": 0
     }
   ],
@@ -157,7 +188,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -192,10 +223,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.3",
     "coreVersion": "11.308",
     "createdTime": 1674493966772,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698725784536,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Beg3ouX2K8W2x1lr"

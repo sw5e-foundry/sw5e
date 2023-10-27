@@ -314,7 +314,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({ event });
       case "rollPowerDie":
-        return this.actor.rollPowerDie({ slot: event.target.dataset.location });
+        return this.actor.rollPowerDie(event.target.dataset.location);
     }
   }
 

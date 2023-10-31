@@ -56,7 +56,8 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         starshipmod: "system.system.value"
       };
       const subcategory = {
-        consumable: "system.ammoType"
+        consumable: "system.ammoType",
+        weapon: "system.weaponClass"
       };
       const indexFields = [...new Set([
         ...fields,
@@ -135,6 +136,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       this.filterData.checkboxes.starshipmodTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ssModSystems);
       this.filterData.checkboxes.toolTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.toolTypes);
       this.filterData.checkboxes.weaponTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.weaponTypes);
+      this.filterData.checkboxes.weaponClasses.options = this.generateCheckboxOptions(CONFIG.SW5E.weaponClasses);
 
       this.filterData.multiselects.properties.options = this.generateMultiselectOptions({
         ...Object.fromEntries(Object.entries(CONFIG.SW5E.equipmentProperties).map(([k, v]) => [k, v.name])),
@@ -170,6 +172,8 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       if (checkboxes.toolTypes.selected.length > 0 && !checkboxes.toolTypes.selected.includes(entry.category)) return false;
       // Weapon categories
       if (checkboxes.weaponTypes.selected.length > 0 && !checkboxes.weaponTypes.selected.includes(entry.category)) return false;
+      // Weapon subcategories
+      if (checkboxes.weaponClasses.selected.length > 0 && !checkboxes.weaponClasses.selected.includes(entry.subcategory)) return false;
       // Source
       if (checkboxes.source.selected.length > 0 && !checkboxes.source.selected.includes(entry.source)) return false;
       // Rarity
@@ -238,7 +242,13 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
           },
           weaponTypes: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterWeaponFilters",
+            label: "SW5E.CompendiumBrowser.FilterWeaponTypeFilters",
+            options: {},
+            selected: []
+          },
+          weaponClasses: {
+            isExpanded: false,
+            label: "SW5E.CompendiumBrowser.FilterWeaponClassFilters",
             options: {},
             selected: []
           },

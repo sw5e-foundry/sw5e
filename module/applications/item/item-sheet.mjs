@@ -81,7 +81,9 @@ export default class ItemSheet5e extends ItemSheet {
     const source = item.toObject();
 
     let armorType;
+    let wpnType;
     let isAmmo;
+    let isRanged;
 
     // Game system configuration
     context.config = CONFIG.SW5E;
@@ -116,9 +118,11 @@ export default class ItemSheet5e extends ItemSheet {
 
       // Item Type
       armorType: (armorType = item.system?.armor?.type ?? ""),
-      wpnType: item.system?.weaponType ?? "",
+      wpnType: (wpnType = item.system?.weaponType ?? ""),
       isAmmo: (isAmmo = item.system?.consumableType === "ammo"),
       ammoType: isAmmo ? item.system?.ammoType ?? "" : "",
+      isRanged: (isRanged = ["simpleB", "martialB", "exoticB"].includes(wpnType)),
+      isMelee: (!isRanged && !isAmmo && Object.keys(CONFIG.SW5E.weaponStandardTypes).includes(wpnType)),
 
       // Starship Items
       isStarshipItem: item.isStarshipItem,
@@ -177,6 +181,11 @@ export default class ItemSheet5e extends ItemSheet {
         context.powerComponents = { ...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags };
         break;
       case "weapon":
+        const wpnType = item.system.weaponType;
+        const weaponType = CONFIG.SW5E.weaponTypes[wpnType];
+        if (weaponType) {
+          context.itemType = weaponType;
+        }
         context = this._getWeaponReloadProperties(context);
         break;
       case "starshipsize":

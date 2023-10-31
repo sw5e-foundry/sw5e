@@ -3,7 +3,39 @@
   "name": "Blinding Agility",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/BlindingAgility.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Blinding Agility",
+      "icon": "systems/sw5e/packs/Icons/Feats/BlindingAgility.webp",
+      "origin": "Compendium.sw5e.feats.Item.Raj7ax628fmECZjB",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "LD7QpcPGV6Xjd8Ft",
+      "changes": [
+        {
+          "key": "system.abilities.dex.proficient",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!Raj7ax628fmECZjB.LD7QpcPGV6Xjd8Ft",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.3",
     "coreVersion": "11.308",
     "createdTime": 1674493966795,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698712477538,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Raj7ax628fmECZjB"

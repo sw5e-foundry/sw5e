@@ -3,7 +3,45 @@
   "name": "Muscled Menace",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/MuscledMenace.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Muscled Menace",
+      "icon": "systems/sw5e/packs/Icons/Feats/MuscledMenace.webp",
+      "origin": "Compendium.sw5e.feats.Item.jpWBzw0pFU5CLSjO",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "tXcYjABXky3iTA1Y",
+      "changes": [
+        {
+          "key": "system.abilities.str.value",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 2,
+          "value": "5",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!jpWBzw0pFU5CLSjO.tXcYjABXky3iTA1Y",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -55,7 +93,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -93,10 +131,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.3",
     "coreVersion": "11.308",
     "createdTime": 1674493966822,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698719217812,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!jpWBzw0pFU5CLSjO"

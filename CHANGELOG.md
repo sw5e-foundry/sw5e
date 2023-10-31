@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Art Updates.
 - Compendium updates.
 - All feats should now have proper active effects. (Thanks to `Florenc#5173`)
+- All species should now have their ability score improvements granted by advancements instead of active effects.
 
 ### Fixed
 
@@ -24,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Website Importer should once again work.
 - Currency should no longer be reset after any update.
 - JournalEntry migration should once again work.
+- Rolling power die in Starship Sheet should once again work.
 
 ## [2.3.1.2.6.3] - 2023-10-04
 

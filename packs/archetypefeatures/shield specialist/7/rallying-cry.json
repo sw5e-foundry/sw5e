@@ -56,12 +56,17 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "other",
+    "actionType": "heal",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.fighter.levels",
+          "healing"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -88,10 +93,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493958062,
-    "modifiedTime": 1698185224868,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!nhdJJnUPWYmkEQid"

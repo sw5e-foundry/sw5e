@@ -8,12 +8,6 @@
       "_id": "1QGm5ILFRToMUhLq",
       "changes": [
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 0,
@@ -159,7 +153,7 @@
     "identifier": "droid-classii",
     "advancement": [
       {
-        "_id": "1MdcCXMRFVAlhiHI",
+        "_id": "jyG2yl8ytLWjLlFO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -186,6 +180,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "yHMqbCPCgnGlfrIX",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -239,10 +245,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002055,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!2GDkToD7IMnp4Xb7"

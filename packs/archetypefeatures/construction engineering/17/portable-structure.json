@@ -27,6 +27,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": 5,
       "width": null,
@@ -58,7 +59,12 @@
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "5 * (@classes.engineer.levels)",
+          "healing"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -90,10 +96,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1679683269077,
-    "modifiedTime": 1685840600275,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "oXMNwia3Sw6hCBHe",

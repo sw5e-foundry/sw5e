@@ -14,12 +14,6 @@
           "priority": 20
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -99,7 +93,7 @@
     "identifier": "nikto",
     "advancement": [
       {
-        "_id": "1qKNagV7luRyd9Cj",
+        "_id": "1JG42SDpyQod4Kuc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -119,6 +113,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1IXGrvMHFcMb1DZh",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "any": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -163,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002134,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pH1vtMbWHzyrGDKW"

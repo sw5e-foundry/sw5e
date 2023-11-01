@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 0,
@@ -117,7 +105,7 @@
     "identifier": "lannik",
     "advancement": [
       {
-        "_id": "1CaJOoqepdzIku1h",
+        "_id": "1UnvHHPqbEFbvMkt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -138,6 +126,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1cWtlcW1rm8M14yC",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -182,10 +183,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002098,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Rk10Hp7sOKiIVrVJ"

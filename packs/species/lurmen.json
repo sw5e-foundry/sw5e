@@ -8,18 +8,6 @@
       "_id": "gzV1BSf7YoTCOLpN",
       "changes": [
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 5,
@@ -135,7 +123,7 @@
     "identifier": "lurmen",
     "advancement": [
       {
-        "_id": "1KV0CKybtuPraErh",
+        "_id": "gVbeQdJMQ0pnXWq1",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -157,6 +145,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "mH53TGrC2ZdOrBIM",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -201,10 +202,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002121,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!hwVFMa2cmXcXBPLj"

@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "mode": 2,
-          "value": "2",
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "mode": 2,
-          "value": "1",
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "mode": 5,
           "value": "sm",
@@ -135,7 +123,7 @@
     "identifier": "ewok",
     "advancement": [
       {
-        "_id": "1xs6sRzKLLRw1S3m",
+        "_id": "PsqLcm0mf3t1f0QA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -158,6 +146,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "FRNYz1cb7ox1Oh9Q",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -202,10 +203,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.3",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002096,
-    "modifiedTime": 1698721366104,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!QZMVzQJspLNa5lSS"

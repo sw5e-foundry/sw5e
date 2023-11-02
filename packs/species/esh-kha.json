@@ -14,12 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -105,7 +99,7 @@
     "identifier": "esh-kha",
     "advancement": [
       {
-        "_id": "1vrRu9ilxSAe1t5d",
+        "_id": "1vAvhGYWVsEw1uGq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -127,6 +121,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1U1yAh54SmvytXht",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 1
+          },
+          "points": 2
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -171,10 +177,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002148,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!y9srMEmADsqiQNI9"

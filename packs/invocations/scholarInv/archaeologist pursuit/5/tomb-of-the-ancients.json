@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:52:15.1774524+00:00",
+      "timestamp": "2023-05-30T20:14:20.0051171+00:00",
       "importer_version": 3,
       "uid": "Feature.name-tomb_of_the_ancients.source-archetypeinvocation.sourceName-archaeologist_pursuit.level-5"
     }
@@ -31,6 +31,7 @@
       "units": "turn"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -62,7 +63,7 @@
     "damage": {
       "parts": [
         [
-          "1d10 + @mod",
+          "1d10 + @mod + @classes.scholar.levels",
           "temphp"
         ]
       ],
@@ -95,10 +96,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493981238,
-    "modifiedTime": 1684777308939,
+    "modifiedTime": 1698794204218,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!talYZt1amuwSxg56"

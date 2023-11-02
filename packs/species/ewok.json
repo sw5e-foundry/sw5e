@@ -9,92 +9,74 @@
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Ewok",
           "mode": 5,
+          "value": "Ewok",
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "sm",
           "mode": 5,
+          "value": "sm",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.skills.nat.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.attributes.movement.climb",
-          "value": "25",
           "mode": 2,
+          "value": "25",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "ewokese",
           "mode": 0,
+          "value": "ewokese",
           "priority": 0
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
+          "value": "basic",
           "priority": 0
         },
         {
           "key": "flags.sw5e.crudeWeaponSpecialists",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.toolProf.value",
-          "value": "music",
           "mode": 0,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "flags.sw5e.maskOfTheWild",
+          "mode": 0,
           "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
+          "mode": 0,
           "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
           "key": "flags.sw5e.keenSenses",
+          "mode": 0,
           "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -141,7 +123,7 @@
     "identifier": "ewok",
     "advancement": [
       {
-        "_id": "1PbHX3TL3qEWwtD6",
+        "_id": "PsqLcm0mf3t1f0QA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -164,6 +146,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "FRNYz1cb7ox1Oh9Q",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -208,10 +203,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002096,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!QZMVzQJspLNa5lSS"

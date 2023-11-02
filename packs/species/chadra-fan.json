@@ -9,24 +9,6 @@
       "changes": [
         {
           "key": "system.traits.size",
-          "value": "grg",
-          "mode": 5,
-          "priority": 5
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.traits.size",
           "value": "sm",
           "mode": 5,
           "priority": 5
@@ -141,7 +123,7 @@
     "identifier": "chadra-fan",
     "advancement": [
       {
-        "_id": "HL8hxh029Un1ClIk",
+        "_id": "Cr4RoYZ9fBILrZgI",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -163,6 +145,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "rhZBKvZwN1v1hKJN",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -207,10 +202,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002090,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Nhk7H4YrE05zsDqT"

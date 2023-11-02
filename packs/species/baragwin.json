@@ -20,18 +20,6 @@
           "priority": 20
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.attributes.movement.walk",
           "value": "25",
           "mode": 5,
@@ -105,7 +93,7 @@
     "identifier": "baragwin",
     "advancement": [
       {
-        "_id": "IqEVfJiYsdGNOY3t",
+        "_id": "3Xns9iXZxLILVOAc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -127,6 +115,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "ThBMvJrt5fjsaQry",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -171,10 +172,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002068,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9I4FSaNm2b5OadQx"

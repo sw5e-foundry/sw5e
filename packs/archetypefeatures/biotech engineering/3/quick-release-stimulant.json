@@ -31,6 +31,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -62,7 +63,7 @@
     "damage": {
       "parts": [
         [
-          "1d10 + @abilities.con.mod",
+          "1d10 + @abilities.con.mod + @classes.engineer.levels",
           ""
         ]
       ],
@@ -92,10 +93,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493958063,
-    "modifiedTime": 1685840600261,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!njrNclVWb7ByppS2"

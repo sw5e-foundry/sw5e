@@ -14,12 +14,6 @@
           "priority": 20
         },
         {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -99,7 +93,7 @@
     "identifier": "mikkian",
     "advancement": [
       {
-        "_id": "UVYPZBl2K4U1R3bu",
+        "_id": "ldIakfI4J7KicDzO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,6 +112,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "Oy6OGqLvuEh1cTGB",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "any": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -162,10 +169,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002109,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!aWyQIk0yQVEBWiY6"

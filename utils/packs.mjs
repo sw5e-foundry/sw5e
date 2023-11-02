@@ -230,6 +230,40 @@ function sortObject(object) {
   return sortedObj;
 }
 
+function transformName(entry, packName) {
+  const name = entry.name.toLowerCase();
+  const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+  const subfolder = _getSubfolderName(entry, packName);
+  return path.join(subfolder, `${outputName}.json`);
+}
+
+function checkChanges(entry, packName, dest) {
+  const outputPath = (dest + "/" + transformName(entry, packName)).replace(/\\/g, "/");
+  if (fs.existsSync(outputPath)) {
+    const oldEntry = JSON.parse(fs.readFileSync(outputPath, { encoding: "utf8"}));
+    // Do not update item if only changes are flags, stats, or advancement ids
+    if (oldEntry._stats && entry._stats) oldEntry._stats = entry._stats;
+    if (oldEntry.flags?.["sw5e-importer"] && entry.flags?.["sw5e-importer"]) oldEntry.flags["sw5e-importer"] = entry.flags["sw5e-importer"];
+    if (oldEntry.system?.advancement && entry.system?.advancement) {
+      const length = Math.min(oldEntry.system.advancement.length, entry.system.advancement.length);
+      for (let i=0; i<length; i++) oldEntry.system.advancement[i]._id = entry.system.advancement[i]._id;
+    }
+    if (oldEntry.items && entry.items) {
+      const length = Math.min(oldEntry.items.length, entry.items.length);
+      for (let i=0; i<length; i++) {
+        const oldItem = oldEntry.items[i];
+        const newItem = entry.items[i];
+        if (oldItem.flags?.["sw5e-importer"] && newItem.flags?.["sw5e-importer"]) oldItem.flags["sw5e-importer"] = newItem.flags["sw5e-importer"];
+        if (oldItem.stats && newItem.stats) oldItem.stats = newItem.stats;
+      }
+    }
+    const oldJson = JSON.stringify(sortObject(oldEntry));
+    const newJson = JSON.stringify(sortObject(entry));
+    return oldJson !== newJson;
+  }
+  return true;
+}
+
 /**
  * Extract the contents of compendium packs to JSON files.
  *
@@ -260,12 +294,8 @@ async function extractPacks() {
     await extractPack(src, dest, { nedb, log: false, documentType: packInfo.type, transformEntry: entry => {
       if ( entryName && (entryName !== entry.name.toLowerCase()) ) return false;
       cleanPackEntry(entry);
-    }, transformName: entry => {
-      const name = entry.name.toLowerCase();
-      const outputName = name.replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
-      const subfolder = _getSubfolderName(entry, packName);
-      return path.join(subfolder, `${outputName}.json`);
-    } });
+      if ( !checkChanges(entry, packName, dest) ) return false;
+    }, transformName: entry => { return transformName(entry, packName)} });
   }
 }
 export const extract = extractPacks;

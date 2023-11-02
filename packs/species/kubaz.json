@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -123,7 +111,7 @@
     "identifier": "kubaz",
     "advancement": [
       {
-        "_id": "1d4TKKgAsx0XJ0W3",
+        "_id": "19nmltj4KWNH1aXZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -145,6 +133,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "uvIwlgwbHYp1yrgo",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -189,10 +190,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002089,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!MtBnA2VnLwqdnBvc"

@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.3.1.2.6.4] - 2023-10-16
+
+### Added
+
+- Weapon classes (`carbine`, `polearm`, `sidearm`...).
+
+### Changes
+
+- Art Updates.
+- Compendium updates.
+- All feats should now have proper active effects. (Thanks to `Florenc#5173`)
+- All species should now have their ability score improvements granted by advancements instead of active effects.
 
 ### Fixed
 
@@ -14,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Website Importer should once again work.
 - Currency should no longer be reset after any update.
 - JournalEntry migration should once again work.
+- Rolling power die in Starship Sheet should once again work.
 
 ## [2.3.1.2.6.3] - 2023-10-04
 
@@ -108,7 +120,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changes
 
-- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to GreyCouncil#8804).
+- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to `GreyCouncil#8804`).
 - Backdrop Icons were moved to `packs/Icons/ItemBackdrop`.
 - Some items that were previously loot (rations, spikes) have been made consumables.
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.

@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -123,7 +111,7 @@
     "identifier": "quarren",
     "advancement": [
       {
-        "_id": "ntc8OwGMN6UJhVmU",
+        "_id": "1BM6WNavXlrO14p2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -145,6 +133,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1lthd7Cl3zQ61MMa",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -189,10 +190,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002059,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3LOMgdmvO9QADv10"

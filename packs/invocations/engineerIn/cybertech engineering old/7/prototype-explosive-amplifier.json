@@ -1,0 +1,107 @@
+{
+  "name": "Prototype Explosive Amplifier",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-30T20:14:19.9961229+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-prototype_explosive_amplifier.source-archetypeinvocation.sourceName-cybertech_engineering_old.level-7"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Passive.webp",
+  "system": {
+    "description": {
+      "value": "<p><em><strong>Prerequisite:</strong> 7th level, Explosive Amplifier</em></p>\n<p>You fine tune your Explosive Amplifier. When you activate this amplifier, the creature is also ignited for 1 minute. At the start of each of its turns, the creature </p>\n<p>takes additional fire damage equal to your Intelligence modifier and then makes a Dexterity saving throw against your tech save DC, ending this effect on a success. If the target or a creature within 5 feet of it uses an action to put out the flames, or if some other effect douses the flames, the effect ends.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Cybertech Engineering (Old)) 7, Explosive Amplifier",
+    "source": "EC",
+    "activation": {
+      "type": "",
+      "cost": null,
+      "condition": ""
+    },
+    "duration": {
+      "value": "1",
+      "units": "minute"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": 5,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": null,
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "save",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "@abilities.int.mod",
+          "fire"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "_id": "NdNdUxnZNDuzP1tI",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.3.1.2.6.3",
+    "coreVersion": "11.308",
+    "createdTime": 1698185225687,
+    "modifiedTime": 1698185225687,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!NdNdUxnZNDuzP1tI"
+}

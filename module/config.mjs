@@ -2255,6 +2255,40 @@ SW5E.weaponSizes = {
 };
 preLocalize("weaponSizes");
 
+/**
+ * The set of melee weapon classifications.
+ * @enum {string}
+ */
+SW5E.meleeWeaponClasses = {
+  blade: "SW5E.WeaponClassBlade",
+  crushing: "SW5E.WeaponClassCrushing",
+  polearm: "SW5E.WeaponClassPolearm",
+  trip: "SW5E.WeaponClassTrip"
+};
+preLocalize("meleeWeaponClasses");
+
+/**
+ * The set of ranged weapon classifications.
+ * @enum {string}
+ */
+SW5E.rangedWeaponClasses = {
+  carbine: "SW5E.WeaponClassCarbine",
+  heavy: "SW5E.WeaponClassHeavy",
+  rifle: "SW5E.WeaponClassRifle",
+  sidearm: "SW5E.WeaponClassSidearm"
+};
+preLocalize("rangedWeaponClasses");
+
+/**
+ * The set of weapon classifications.
+ * @enum {string}
+ */
+SW5E.weaponClasses = {
+  ...SW5E.meleeWeaponClasses,
+  ...SW5E.rangedWeaponClasses
+}
+preLocalize("weaponClasses");
+
 /* -------------------------------------------- */
 
 /**

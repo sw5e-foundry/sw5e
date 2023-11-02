@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -135,7 +123,7 @@
     "identifier": "rakata",
     "advancement": [
       {
-        "_id": "1iKDFJfGAs4J15dJ",
+        "_id": "1jsoBDwq2DXd16MU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -159,6 +147,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "19VAiP1col733PtZ",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -203,10 +204,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002080,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JPy6am7eCdhK0zKf"

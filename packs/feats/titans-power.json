@@ -3,7 +3,39 @@
   "name": "Titan's Power",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/TitanSPower.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Titan's Power",
+      "icon": "systems/sw5e/packs/Icons/Feats/TitanSPower.webp",
+      "origin": "Compendium.sw5e.feats.Item.hTvif2roWQW7BceW",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "7c6BO7ePzTjTFwzI",
+      "changes": [
+        {
+          "key": "system.abilities.str.proficient",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!hTvif2roWQW7BceW.7c6BO7ePzTjTFwzI",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -165,10 +197,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.3",
     "coreVersion": "11.308",
     "createdTime": 1674493966815,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698719906003,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!hTvif2roWQW7BceW"

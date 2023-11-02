@@ -45,7 +45,16 @@ export default class WeaponData extends SystemDataModel.mixin(
         initial: "simpleM",
         label: "SW5E.ItemWeaponType"
       }),
-      baseItem: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ItemWeaponBase" }),
+      weaponClass: new foundry.data.fields.StringField({
+        required: true,
+        blank: true,
+        label: "SW5E.ItemWeaponClass"
+      }),
+      baseItem: new foundry.data.fields.StringField({
+        required: true,
+        blank: true,
+        label: "SW5E.ItemWeaponBase"
+      }),
       ammo: new foundry.data.fields.SchemaField(
         {
           target: new foundry.data.fields.StringField({

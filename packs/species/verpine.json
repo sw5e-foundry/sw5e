@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -99,7 +87,7 @@
     "identifier": "verpine",
     "advancement": [
       {
-        "_id": "1wcC81IjOPvr11hy",
+        "_id": "1gJWvH8r55uRcjaG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,6 +106,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "oOnkDDITkgPz73LL",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -162,10 +163,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002082,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KLAbeG2Iyq9iTdHJ"

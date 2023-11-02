@@ -109,8 +109,6 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
       this.filterData.checkboxes.class.options = this.generateSourceCheckboxOptions(classes);
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
 
-      console.debug('filterData', this.filterData);
-
       console.debug("SW5e System | Compendium Browser | Finished loading feats");
     }
 

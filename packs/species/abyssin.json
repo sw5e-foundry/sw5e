@@ -8,18 +8,6 @@
       "_id": "JhHAOQyteRjEJhyC",
       "changes": [
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.details.species",
           "value": "Abyssin",
           "mode": 5,
@@ -117,7 +105,7 @@
     "identifier": "abyssin",
     "advancement": [
       {
-        "_id": "1K4MgiL1xLL1vyqJ",
+        "_id": "Ub3EkVecOuV1kzhG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -137,6 +125,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1sG4MxJykzDSW3AB",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -181,10 +182,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002103,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698797615396,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Wt8ZuNA1PUXmKvzS"

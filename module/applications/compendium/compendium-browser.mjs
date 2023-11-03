@@ -73,12 +73,10 @@ export default class CompendiumBrowser extends Application {
   settings;
 
   dataTabsList = [
-    // "action",
-    // "bestiary",
+    "bestiary",
     "classification",
     "equipment",
     "feat",
-    // "hazard",
     "power",
     "maneuver"
   ];
@@ -97,12 +95,10 @@ export default class CompendiumBrowser extends Application {
     this.settings = {} ?? game.settings.get("sw5e", "compendiumBrowserPacks");
     this.navigationTab = this.hookTab();
     this.tabs = {
-      // action: new browserTabs.Actions(this),
-      // bestiary: new browserTabs.Bestiary(this),
+      bestiary: new browserTabs.Bestiary(this),
       classification: new browserTabs.Classification(this),
       equipment: new browserTabs.Equipment(this),
       feat: new browserTabs.Feats(this),
-      // hazard: new browserTabs.Hazards(this),
       power: new browserTabs.Powers(this),
       maneuver: new browserTabs.Maneuvers(this)
     };
@@ -306,7 +302,7 @@ export default class CompendiumBrowser extends Application {
     }
 
     // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Classification", Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Bestiaries", "Classification", "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
@@ -539,7 +535,6 @@ export default class CompendiumBrowser extends Application {
             break;
           }
           case "sliders": {
-            if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
             if (objectHasKey(currentTab.filterData.sliders, filterName)) {
               toggleFilter(currentTab.filterData.sliders[filterName]);
             }
@@ -651,7 +646,6 @@ export default class CompendiumBrowser extends Application {
 
       if (filterType === "sliders") {
         // Slider filters
-        if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
         const sliders = currentTab.filterData.sliders;
         if (!sliders) continue;
 

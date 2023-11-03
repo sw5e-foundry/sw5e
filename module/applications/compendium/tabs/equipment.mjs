@@ -294,7 +294,6 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             }
           }
         },
-        sliders: {},
         search: {
           text: ""
         }

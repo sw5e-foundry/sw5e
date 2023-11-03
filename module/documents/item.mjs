@@ -1648,7 +1648,6 @@ export default class Item5e extends Item {
    */
   async getChatData(htmlOptions = {}) {
     const data = this.toObject().system;
-    const labels = this.labels;
 
     // Rich text description
     data.description.value = await TextEditor.enrichHTML(data.description.value, {
@@ -2621,7 +2620,7 @@ export default class Item5e extends Item {
    * @private
    */
   _onCreateOwnedWeapon(data, isNPC) {
-    if ( !isNPC ) return;
+    if ( !isNPC ) return {};
     // NPCs automatically equip items.
     const updates = {};
     if ( !foundry.utils.hasProperty(data, "system.equipped") ) updates["system.equipped"] = true;

@@ -154,7 +154,7 @@ export default class PowerData extends SystemDataModel.mixin(
       lgt: attributes?.force?.override || "wis",
       drk: attributes?.force?.override || "cha",
       univ: attributes?.force?.override || (abilities.wis?.mod ?? 0) >= (abilities.cha?.mod ?? 0) ? "wis" : "cha",
-      tech: attributes?.tech?.override || "int",
+      tech: attributes?.tech?.override || "int"
     }[school]
     || attributes?.powercasting || "int";
   }

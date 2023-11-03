@@ -1,5 +1,4 @@
 import { sluggify } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {

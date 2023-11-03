@@ -1,4 +1,3 @@
-import { CompendiumBrowser } from "../_module.mjs";
 import { sluggify } from "../../../utils.mjs";
 import MiniSearch from "minisearch";
 

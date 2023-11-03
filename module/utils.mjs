@@ -190,7 +190,7 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
     "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
     "systems/sw5e/templates/apps/compendium-browser/partials/maneuver.hbs",
-    "systems/sw5e/templates/apps/compendium-browser/partials/power.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/power.hbs"
   ];
 
   const paths = {};
@@ -560,8 +560,8 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * @param {string} selectors
  */
 export function htmlQuery(parent, selectors) {
-    if (!(parent instanceof Element || parent instanceof Document)) return null;
-    return parent.querySelector(selectors);
+  if (!(parent instanceof Element || parent instanceof Document)) return null;
+  return parent.querySelector(selectors);
 }
 
 /**
@@ -613,11 +613,11 @@ export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
 
 /**
  * Composes multiple regex objects into a single one.
- * 
+ *
  * @param {string} flags               The regex flags of the composed object.
  * @param {RegExp[]} regexes           The regex objects to compose.
  * @returns {RegExp}                   The composed regex object.
  */
 export function getComposedRegex(flags, ...regexes) {
-  return new RegExp("(" + regexes.map(regex => regex.source).join("|") + ")", flags ?? "");
+  return new RegExp(`(${regexes.map(regex => regex.source).join("|")})`, flags ?? "");
 }

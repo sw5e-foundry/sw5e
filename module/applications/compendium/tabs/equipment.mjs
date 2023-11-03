@@ -4,11 +4,14 @@ import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     tabName = "equipment";
+
     filterData;
+
     templatePath = "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs";
 
     /* MiniSearch */
     searchFields = ["name", "uuid"];
+
     storeFields = [
       "type",
       "name",
@@ -60,7 +63,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         weapon: "system.weaponClass"
       };
       const optional = {
-        weapon: ["system.weaponClass"],
+        weapon: ["system.weaponClass"]
       };
       const indexFields = [...new Set([
         ...fields,

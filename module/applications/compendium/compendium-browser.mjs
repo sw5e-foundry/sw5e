@@ -134,7 +134,7 @@ export default class CompendiumBrowser extends Application {
         {
           navSelector: "nav[data-group=settings]",
           contentSelector: ".settings-container",
-          initial: "packs",
+          initial: "packs"
         }
       ],
       scrollY: [".control-area", ".item-list", ".settings-container"]
@@ -241,9 +241,9 @@ export default class CompendiumBrowser extends Application {
 
         if ( types.has("maneuver") ) return "maneuver";
 
-        if ( CONFIG.SW5E.itemTypes.inventory.some((type) => types.has(type)) ) return "equipment";
+        if ( CONFIG.SW5E.itemTypes.inventory.some(type => types.has(type)) ) return "equipment";
 
-        if ( CONFIG.SW5E.itemTypes.class.some((type) => types.has(type)) ) return "classification";
+        if ( CONFIG.SW5E.itemTypes.class.some(type => types.has(type)) ) return "classification";
 
         return null;
       })();
@@ -253,7 +253,7 @@ export default class CompendiumBrowser extends Application {
         settings[type][pack.collection] = {
           load,
           name: pack.metadata.label,
-          package: pack.metadata.packageName,
+          package: pack.metadata.packageName
         };
       }
     }
@@ -327,7 +327,7 @@ export default class CompendiumBrowser extends Application {
   loadedPacksAll() {
     const loadedPacks = new Set();
     for (const tabName of this.dataTabsList) {
-      this.loadedPacks(tabName).forEach((item) => loadedPacks.add(item));
+      this.loadedPacks(tabName).forEach(item => loadedPacks.add(item));
     }
     return Array.from(loadedPacks).sort();
   }
@@ -359,7 +359,7 @@ export default class CompendiumBrowser extends Application {
 
         for (const [key, source] of Object.entries(this.packLoader.sourcesSettings.sources)) {
           if (!source || isBlank(source.name)) {
-            delete this.packLoader.sourcesSettings.sources[key]; // just to make sure we clean up
+            delete this.packLoader.sourcesSettings.sources[key]; // Just to make sure we clean up
             continue;
           }
           source.load = formData.has(`source-${key}`);
@@ -415,7 +415,7 @@ export default class CompendiumBrowser extends Application {
             <p>
               ${localize("DeleteAllInfo")}
             </p>
-            `,
+            `
         });
 
         if (confirm) {
@@ -888,7 +888,7 @@ export default class CompendiumBrowser extends Application {
         uuid: item.dataset.entryUuid
       })
     );
-    // awful hack (dataTransfer.types will include "from-browser")
+    // Awful hack (dataTransfer.types will include "from-browser")
     event.dataTransfer.setData("from-browser", "true");
 
     item.addEventListener(
@@ -917,13 +917,13 @@ export default class CompendiumBrowser extends Application {
 
     const settings = {
       settings: this.settings,
-      sources: this.packLoader.sourcesSettings,
+      sources: this.packLoader.sourcesSettings
     };
 
     return {
       user: game.user,
       [activeTab]: activeTab === "settings" ? settings : { filterData: tab?.filterData },
-      scrollLimit: tab?.scrollLimit,
+      scrollLimit: tab?.scrollLimit
     };
   }
 

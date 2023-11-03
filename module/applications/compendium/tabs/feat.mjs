@@ -40,7 +40,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
         /^(?<level_a>\d+)(?:st|nd|rd|th) (?:level|rank|tier)/,
         /^At least (?<level_b>\d+) (?:levels|ranks|tiers) in (?<class_b>.*)$/,
         /^(?<class_c>[^,\d]+) (?<level_c>\d+)(?:st|nd|rd|th)?(?: level| rank| tier)?(?:,|$)/,
-        /^(?<class_d>[^,\d]+)(?:,|$)/,
+        /^(?<class_d>[^,\d]+)(?:,|$)/
       );
       const neg_pattern = /(strength|dexterity|constitution|intelligence|wisdom|charisma|ability to cast|type|size|no levels in)/i;
       const sources = new Set();
@@ -101,7 +101,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
 
       // Filters
       this.filterData.checkboxes.category.options = this.generateCheckboxOptions(
-        Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes).map(([k,v]) => [k, v.label]))
+        Object.fromEntries(Object.entries(CONFIG.SW5E.featureTypes).map(([k, v]) => [k, v.label]))
       );
       this.filterData.checkboxes.subcategory.options = this.generateCheckboxOptions(
         Object.fromEntries(Object.values(CONFIG.SW5E.featureTypes).map(v => Object.entries(v.subtypes ?? {})).flat())

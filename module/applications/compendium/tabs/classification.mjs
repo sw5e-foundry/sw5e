@@ -38,16 +38,16 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
       const commonFields = [
         "img",
         "type",
-        "system.source",
+        "system.source"
       ];
       const specificFields = {
         archetype: [
-          "system.classIdentifier",
+          "system.classIdentifier"
         ]
-      }
+      };
       const indexFields = [...new Set([
         ...commonFields,
-        ...specificFields.archetype,
+        ...specificFields.archetype
       ])];
 
       for await (const { pack, index } of this.browser.packLoader.loadPacks(
@@ -60,7 +60,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
           if (itemTypes.includes(classificationData.type)) {
             const _fields = [
               ...commonFields,
-              ...(specificFields[classificationData.type] ?? []),
+              ...(specificFields[classificationData.type] ?? [])
             ];
             if (!this.hasAllIndexFields(classificationData, _fields)) {
               console.warn(
@@ -88,7 +88,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
               img: classificationData.img,
               uuid: `Compendium.${pack.collection}.${classificationData._id}`,
               class: classSlug,
-              source: sourceSlug,
+              source: sourceSlug
             });
           }
         }
@@ -157,7 +157,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
           by: "name",
           direction: "asc",
           options: {
-            name: "SW5E.CompendiumBrowser.SortyByNameLabel",
+            name: "SW5E.CompendiumBrowser.SortyByNameLabel"
           }
         },
         ranges: {},

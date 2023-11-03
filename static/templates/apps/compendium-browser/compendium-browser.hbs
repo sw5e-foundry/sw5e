@@ -5,6 +5,7 @@
         {{#if user.isGM}}
             <a data-tab="bestiary">{{localize "SW5E.CompendiumBrowser.TabBestiary"}}</a>
         {{/if}}
+        <a data-tab="classification">{{localize "SW5E.CompendiumBrowser.TabClassification"}}</a>
         <a data-tab="equipment">{{localize "SW5E.CompendiumBrowser.TabEquipment"}}</a>
         <a data-tab="feat">{{localize "SW5E.CompendiumBrowser.TabFeat"}}</a>
         {{#if user.isGM}}
@@ -40,6 +41,15 @@
                 </div>
             {{/with}}
         {{/if}}
+
+        {{#with classification}}
+            <div class="tab browser" data-group="primary" data-tab="classification">
+                <div class="spell-browser">
+                    {{> "sw5e.filters"}}
+                    <ul class="item-list result-list"></ul>
+                </div>
+            </div>
+        {{/with}}
 
         {{#with equipment}}
             <div class="tab browser" data-group="primary" data-tab="equipment">

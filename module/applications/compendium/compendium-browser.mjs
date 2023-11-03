@@ -75,6 +75,7 @@ export default class CompendiumBrowser extends Application {
   dataTabsList = [
     // "action",
     // "bestiary",
+    "classification",
     "equipment",
     "feat",
     // "hazard",
@@ -98,6 +99,7 @@ export default class CompendiumBrowser extends Application {
     this.tabs = {
       // action: new browserTabs.Actions(this),
       // bestiary: new browserTabs.Bestiary(this),
+      classification: new browserTabs.Classification(this),
       equipment: new browserTabs.Equipment(this),
       feat: new browserTabs.Feats(this),
       // hazard: new browserTabs.Hazards(this),
@@ -168,7 +170,7 @@ export default class CompendiumBrowser extends Application {
       maneuver: {},
 
       equipment: {},
-      class: {}
+      classification: {}
     };
 
     // NPCs and Hazards are all loaded by default other packs can be set here.
@@ -241,7 +243,7 @@ export default class CompendiumBrowser extends Application {
 
         if ( CONFIG.SW5E.itemTypes.inventory.some((type) => types.has(type)) ) return "equipment";
 
-        if ( CONFIG.SW5E.itemTypes.class.some((type) => types.has(type)) ) return "class";
+        if ( CONFIG.SW5E.itemTypes.class.some((type) => types.has(type)) ) return "classification";
 
         return null;
       })();
@@ -304,7 +306,7 @@ export default class CompendiumBrowser extends Application {
     }
 
     // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Classification", Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];

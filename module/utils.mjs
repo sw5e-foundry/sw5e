@@ -184,14 +184,13 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs",
 
     // Compendium Browser Partials
-    "systems/sw5e/templates/apps/compendium-browser/filters.hbs"
+    "systems/sw5e/templates/apps/compendium-browser/filters.hbs",
     // "systems/sw5e/templates/apps/compendium-browser/browser-settings.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/action.hbs",
     // "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/hazard.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/spell.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/maneuver.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/power.hbs",
   ];
 
   const paths = {};

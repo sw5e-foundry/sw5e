@@ -59,6 +59,9 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         consumable: "system.ammoType",
         weapon: "system.weaponClass"
       };
+      const optional = {
+        weapon: ["system.weaponClass"],
+      };
       const indexFields = [...new Set([
         ...fields,
         ...Object.values(rarity),
@@ -84,7 +87,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               properties[itemData.type],
               category[itemData.type],
               subcategory[itemData.type]
-            ].filter(f => !!f);
+            ].filter(f => !!f && !(optional[itemData.type]??[]).includes(f));
             if (!this.hasAllIndexFields(itemData, _fields)) {
               console.warn(
                 `Item '${itemData.name}' does not have all required data fields.`

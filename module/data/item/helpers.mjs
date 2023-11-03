@@ -35,7 +35,6 @@ export function makeItemProperties( config, schemaOptions = {} ) {
  */
 export function migrateItemProperties( source, config ) {
   if (!source) return;
-  const schemaObj = {};
   for (const [key, prop] of Object.entries(config)) {
     if (typeof source[key] !== prop.type.toLowerCase()) source[key] = null;
     else if (prop.type === "Number" && Number.isNaN(source[key])) source[key] = null;

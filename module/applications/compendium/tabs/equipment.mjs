@@ -160,7 +160,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, ranges, sliders } = this.filterData;
+      const { checkboxes, multiselects, ranges } = this.filterData;
 
       // Price
       if (!(entry.price >= ranges.price.values.min && entry.price <= ranges.price.values.max)) return false;

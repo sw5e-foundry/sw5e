@@ -66,7 +66,7 @@ export default class HitPointsFlow extends AdvancementFlow {
    */
   _updateRollResult() {
     if (!this.form.elements.useAverage?.checked) return;
-    this.form.elements.value.value = this.advancement.hitDieValue / 2 + 1;
+    this.form.elements.value.value = (this.advancement.hitDieValue / 2) + 1;
   }
 
   /* -------------------------------------------- */

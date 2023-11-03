@@ -1,5 +1,4 @@
 import { sluggify } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
@@ -35,7 +34,6 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
       console.debug("SW5e System | Compendium Browser | Started loading powers");
 
       const powers = [];
-      const times = new Set();
       const sources = new Set();
       const indexFields = [
         "img",
@@ -98,7 +96,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, selects } = this.filterData;
+      const { checkboxes, multiselects } = this.filterData;
 
       // Level
       if (checkboxes.level.selected.length) {

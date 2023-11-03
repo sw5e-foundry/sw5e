@@ -558,6 +558,7 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * Querries from parent
  * @param {HTMLElement} parent
  * @param {string} selectors
+ * @returns {HTMLElement} Result of the query
  */
 export function htmlQuery(parent, selectors) {
   if (!(parent instanceof Element || parent instanceof Document)) return null;
@@ -568,6 +569,7 @@ export function htmlQuery(parent, selectors) {
  * Querries from parent
  * @param {HTMLElement} parent
  * @param {string} selectors
+ * @returns {HTMLElement} Result of the query
  */
 export function htmlQueryAll(parent, selectors) {
   if (!(parent instanceof Element || parent instanceof Document)) return [];
@@ -576,8 +578,9 @@ export function htmlQueryAll(parent, selectors) {
 
 /**
  * Check if a key is present in a given object in a type safe way
- * @param obj The object to check
- * @param key The key to check
+ * @param {object} obj The object to check
+ * @param {string|number} key The key to check
+ * @returns {boolean}
  */
 export function objectHasKey(obj, key) {
   return (typeof key === "string" || typeof key === "number") && key in obj;
@@ -585,8 +588,7 @@ export function objectHasKey(obj, key) {
 
 /**
  * Check if a value is a non-null object
- * @param {unknown}
- * @param value
+ * @param {unknown} value
  * @returns {boolean}
  */
 export function isObject(value) {
@@ -598,7 +600,7 @@ export function isObject(value) {
  *
  * @param {string[]} [types]          The actor types the function should take into consideration.
  * @param {boolean} [useOwnCharacter] If true, the function will append the user's own character to the list of collected actors.
- * @returns An array of Actor5e elements according to the aforementioned filters.
+ * @returns {Actors5e[]} An array of Actor5e elements according to the aforementioned filters.
  */
 export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
   const actors = canvas.tokens.controlled

@@ -1,5 +1,4 @@
-import { sluggify, getComposedRegex } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
+import { sluggify } from "../../../utils.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
@@ -109,7 +108,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, ranges, sliders } = this.filterData;
+      const { checkboxes } = this.filterData;
 
       console.debug("filterIndexData");
       console.debug(checkboxes.type);

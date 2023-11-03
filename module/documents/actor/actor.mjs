@@ -3872,7 +3872,8 @@ export default class Actor5e extends Actor {
         dialog: true,
         chat: true,
         autoHD: false,
-        autoHDThreshold: 3
+        autoHDThreshold: 3,
+        newDay: false
       },
       config
     );
@@ -3891,12 +3892,11 @@ export default class Actor5e extends Actor {
     const hd0 = this.system.attributes.hull.dice;
     const hp0 = this.system.attributes.hp.value;
     const regenShld = !this.system.attributes.shld.depleted;
-    let newDay = false;
 
     // Display a Dialog for rolling hull dice
     if (config.dialog) {
       try {
-        newDay = await RechargeRepairDialog.rechargeRepairDialog({
+        config.newDay = await RechargeRepairDialog.rechargeRepairDialog({
           actor: this,
           canRoll: hd0 > 0
         });

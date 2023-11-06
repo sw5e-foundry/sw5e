@@ -4,11 +4,14 @@ import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     tabName = "equipment";
+
     filterData;
+
     templatePath = "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs";
 
     /* MiniSearch */
     searchFields = ["name", "uuid"];
+
     storeFields = [
       "type",
       "name",
@@ -59,6 +62,9 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         consumable: "system.ammoType",
         weapon: "system.weaponClass"
       };
+      const optional = {
+        weapon: ["system.weaponClass"]
+      };
       const indexFields = [...new Set([
         ...fields,
         ...Object.values(rarity),
@@ -84,7 +90,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               properties[itemData.type],
               category[itemData.type],
               subcategory[itemData.type]
-            ].filter(f => !!f);
+            ].filter(f => !!f && !(optional[itemData.type]??[]).includes(f));
             if (!this.hasAllIndexFields(itemData, _fields)) {
               console.warn(
                 `Item '${itemData.name}' does not have all required data fields.`
@@ -154,7 +160,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, ranges, sliders } = this.filterData;
+      const { checkboxes, multiselects, ranges } = this.filterData;
 
       // Price
       if (!(entry.price >= ranges.price.values.min && entry.price <= ranges.price.values.max)) return false;
@@ -288,7 +294,6 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             }
           }
         },
-        sliders: {},
         search: {
           text: ""
         }

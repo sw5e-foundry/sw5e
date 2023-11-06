@@ -73,11 +73,10 @@ export default class CompendiumBrowser extends Application {
   settings;
 
   dataTabsList = [
-    // "action",
-    // "bestiary",
+    "bestiary",
+    "classification",
     "equipment",
     "feat",
-    // "hazard",
     "power",
     "maneuver"
   ];
@@ -96,11 +95,10 @@ export default class CompendiumBrowser extends Application {
     this.settings = {} ?? game.settings.get("sw5e", "compendiumBrowserPacks");
     this.navigationTab = this.hookTab();
     this.tabs = {
-      // action: new browserTabs.Actions(this),
-      // bestiary: new browserTabs.Bestiary(this),
+      bestiary: new browserTabs.Bestiary(this),
+      classification: new browserTabs.Classification(this),
       equipment: new browserTabs.Equipment(this),
       feat: new browserTabs.Feats(this),
-      // hazard: new browserTabs.Hazards(this),
       power: new browserTabs.Powers(this),
       maneuver: new browserTabs.Maneuvers(this)
     };
@@ -132,7 +130,7 @@ export default class CompendiumBrowser extends Application {
         {
           navSelector: "nav[data-group=settings]",
           contentSelector: ".settings-container",
-          initial: "packs",
+          initial: "packs"
         }
       ],
       scrollY: [".control-area", ".item-list", ".settings-container"]
@@ -168,7 +166,7 @@ export default class CompendiumBrowser extends Application {
       maneuver: {},
 
       equipment: {},
-      class: {}
+      classification: {}
     };
 
     // NPCs and Hazards are all loaded by default other packs can be set here.
@@ -239,9 +237,9 @@ export default class CompendiumBrowser extends Application {
 
         if ( types.has("maneuver") ) return "maneuver";
 
-        if ( CONFIG.SW5E.itemTypes.inventory.some((type) => types.has(type)) ) return "equipment";
+        if ( CONFIG.SW5E.itemTypes.inventory.some(type => types.has(type)) ) return "equipment";
 
-        if ( CONFIG.SW5E.itemTypes.class.some((type) => types.has(type)) ) return "class";
+        if ( CONFIG.SW5E.itemTypes.class.some(type => types.has(type)) ) return "classification";
 
         return null;
       })();
@@ -251,7 +249,7 @@ export default class CompendiumBrowser extends Application {
         settings[type][pack.collection] = {
           load,
           name: pack.metadata.label,
-          package: pack.metadata.packageName,
+          package: pack.metadata.packageName
         };
       }
     }
@@ -304,7 +302,7 @@ export default class CompendiumBrowser extends Application {
     }
 
     // TODO: Remove this once the other tabs are working
-    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
+    if (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Tab "${tabName}" is not implemented yet, only "Bestiaries", "Classification", "Equipment", "Powers", "Maneuvers", and "Features" work so far.`);
     // If (!this.dataTabsList.includes(tabName)) return ui.notifications.error(`Unknown tab "${tabName}"`);
 
     const currentTab = this.tabs[tabName];
@@ -325,7 +323,7 @@ export default class CompendiumBrowser extends Application {
   loadedPacksAll() {
     const loadedPacks = new Set();
     for (const tabName of this.dataTabsList) {
-      this.loadedPacks(tabName).forEach((item) => loadedPacks.add(item));
+      this.loadedPacks(tabName).forEach(item => loadedPacks.add(item));
     }
     return Array.from(loadedPacks).sort();
   }
@@ -357,7 +355,7 @@ export default class CompendiumBrowser extends Application {
 
         for (const [key, source] of Object.entries(this.packLoader.sourcesSettings.sources)) {
           if (!source || isBlank(source.name)) {
-            delete this.packLoader.sourcesSettings.sources[key]; // just to make sure we clean up
+            delete this.packLoader.sourcesSettings.sources[key]; // Just to make sure we clean up
             continue;
           }
           source.load = formData.has(`source-${key}`);
@@ -413,7 +411,7 @@ export default class CompendiumBrowser extends Application {
             <p>
               ${localize("DeleteAllInfo")}
             </p>
-            `,
+            `
         });
 
         if (confirm) {
@@ -537,7 +535,6 @@ export default class CompendiumBrowser extends Application {
             break;
           }
           case "sliders": {
-            if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
             if (objectHasKey(currentTab.filterData.sliders, filterName)) {
               toggleFilter(currentTab.filterData.sliders[filterName]);
             }
@@ -649,7 +646,6 @@ export default class CompendiumBrowser extends Application {
 
       if (filterType === "sliders") {
         // Slider filters
-        if (!currentTab.isOfType("bestiary", "equipment", "feat", "hazard")) return;
         const sliders = currentTab.filterData.sliders;
         if (!sliders) continue;
 
@@ -886,7 +882,7 @@ export default class CompendiumBrowser extends Application {
         uuid: item.dataset.entryUuid
       })
     );
-    // awful hack (dataTransfer.types will include "from-browser")
+    // Awful hack (dataTransfer.types will include "from-browser")
     event.dataTransfer.setData("from-browser", "true");
 
     item.addEventListener(
@@ -915,13 +911,13 @@ export default class CompendiumBrowser extends Application {
 
     const settings = {
       settings: this.settings,
-      sources: this.packLoader.sourcesSettings,
+      sources: this.packLoader.sourcesSettings
     };
 
     return {
       user: game.user,
       [activeTab]: activeTab === "settings" ? settings : { filterData: tab?.filterData },
-      scrollLimit: tab?.scrollLimit,
+      scrollLimit: tab?.scrollLimit
     };
   }
 

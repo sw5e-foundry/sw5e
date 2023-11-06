@@ -2,7 +2,7 @@
   "_id": "PPyN4VxIhzPHjDMu",
   "name": "Camtono (Fine)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Storage/Camtono.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,7 +80,7 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>A camtono is a secured, handle container used for transporting valuable goods. A camtono comes with one key. Without the key, unlocking the camtono requires a DC 18 security kit to force open. It stores 6 lb., not exceeding 1/4 cubic foot, has an AC of 11, and 30 hit points. Destroying the camtono risks damaging any goods stored inside.</p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>A camtono is a secured, handle container used for transporting valuable goods. A camtono comes with one key. Without the key, unlocking the camtono requires a DC 18 security kit to force open. It stores 6 lb., not exceeding 1/4 cubic foot, has an AC of 11, and 30 hit points. Destroying the camtono risks damaging any goods stored inside.</p>\n<p> </p>\n<h2>Camtono</h2>\n<p>A camtono is a secured, handle container used for transporting valuable goods. A camtono comes with one key. Without the key, unlocking the camtono requires a DC 15 security kit to force open. It stores 5 lb., not exceeding 1/4 cubic foot, has an AC of 10, and 15 hit points. Destroying the camtono risks damaging any goods stored inside.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -89,8 +89,8 @@
     "quantity": 1,
     "weight": 0,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 750,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,9 +104,10 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -129,8 +130,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +146,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +194,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "camtono",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +202,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493964670,
-    "modifiedTime": 1684819089281,
+    "modifiedTime": 1699295312927,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!PPyN4VxIhzPHjDMu"

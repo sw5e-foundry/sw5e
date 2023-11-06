@@ -105,16 +105,16 @@ export default class Actor5e extends Actor {
     if (this._focuses !== undefined) return this._focuses;
     if (!["character", "npc"].includes(this.type)) return (this._focuses = {});
     return (this._focuses = this.items
-      .filter(item => 
-        item.type === "equipment" &&
-        Object.values(CONFIG.SW5E.powerFocus).includes(item.system.armor.type) &&
-        item.system.equipped
+      .filter(item =>
+        item.type === "equipment"
+        && Object.values(CONFIG.SW5E.powerFocus).includes(item.system.armor.type)
+        && item.system.equipped
       ).reduce((obj, focus) => {
         const type = focus.system.armor.type;
         if (obj[type] !== undefined) this._preparationWarnings.push({
           message: game.i18n.format("SW5E.WarnMultiplePowercastingFocus", { type }),
           type: "warning"
-        });;
+        });
         obj[type] = focus;
         return obj;
       }, {}));
@@ -1305,7 +1305,7 @@ export default class Actor5e extends Actor {
       if (cast.override) ability[castType] = {
         id: cast.override,
         mod: abl[cast.override]?.mod ?? 0
-      }
+      };
       else {
         ability[castType] = CONFIG.SW5E.powerPointsBonus[castType].reduce(
           (acc, id) => {
@@ -1759,6 +1759,12 @@ export default class Actor5e extends Actor {
       data.prof = skl.prof.term;
     }
 
+    // Mastery proficiency
+    if (skl.proficient >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (skl.proficient >= 4) options.elvenAccuracy = skl.proficient - 3;
+
     // Global ability check bonus
     if (globalBonuses.check) {
       parts.push("@checkBonus");
@@ -1862,6 +1868,12 @@ export default class Actor5e extends Actor {
       parts.push("@prof");
       data.prof = prof.term;
     }
+
+    // Mastery proficiency
+    if (tool?.value >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (tool?.value >= 4) options.elvenAccuracy = tool?.value - 3;
 
     // Global ability check bonus.
     if (globalBonuses.check) {
@@ -2065,6 +2077,12 @@ export default class Actor5e extends Actor {
       parts.push("@prof");
       data.prof = abl.saveProf.term;
     }
+
+    // Mastery proficiency
+    if (abl?.proficient >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (abl?.proficient >= 4) options.elvenAccuracy = abl?.proficient - 3;
 
     // Include ability-specific saving throw bonus
     if (abl?.bonuses?.save) {
@@ -3872,7 +3890,8 @@ export default class Actor5e extends Actor {
         dialog: true,
         chat: true,
         autoHD: false,
-        autoHDThreshold: 3
+        autoHDThreshold: 3,
+        newDay: false
       },
       config
     );
@@ -3891,12 +3910,11 @@ export default class Actor5e extends Actor {
     const hd0 = this.system.attributes.hull.dice;
     const hp0 = this.system.attributes.hp.value;
     const regenShld = !this.system.attributes.shld.depleted;
-    let newDay = false;
 
     // Display a Dialog for rolling hull dice
     if (config.dialog) {
       try {
-        newDay = await RechargeRepairDialog.rechargeRepairDialog({
+        config.newDay = await RechargeRepairDialog.rechargeRepairDialog({
           actor: this,
           canRoll: hd0 > 0
         });

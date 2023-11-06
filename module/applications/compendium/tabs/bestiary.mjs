@@ -1,5 +1,4 @@
 import { sluggify } from "../../../utils.mjs";
-import { CompendiumBrowser } from "../_module.mjs";
 import { CompendiumBrowserTab } from "./base.mjs";
 
 export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
@@ -9,14 +8,6 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
 
     templatePath = "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs";
 
-    index = [
-      "img",
-      "system.details.level.value",
-      "system.details.alignment.value",
-      "system.details.source.value",
-      "system.traits"
-    ];
-
     /* MiniSearch */
     searchFields = ["name"];
 
@@ -25,12 +16,13 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
       "name",
       "img",
       "uuid",
-      "level",
-      "alignment",
+      "cr",
       "actorSize",
-      "traits",
-      "rarity",
-      "source"
+      "alignment",
+      "creatureType",
+      "creatureSubtype",
+      "source",
+      "traits"
     ];
 
     constructor(browser) {
@@ -44,41 +36,87 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
       console.debug("SW5e System | Compendium Browser | Started loading Bestiary actors");
 
       const bestiaryActors = [];
+      const actorTypes = [
+        "npc",
+        "starship"
+      ];
+      const alignments = new Set();
+      const creatureTypes = new Set();
+      const creatureSubtypes = new Set();
       const sources = new Set();
-      const indexFields = [...this.index, "system.details.isComplex"];
+      const indexFields = [
+        "img",
+        "system.details.cr",
+        "system.traits.size",
+        "system.details.source"
+      ];
+      const optionals = [
+        "system.details.alignment",
+        "system.details.type",
+        "system.details.powerForceLevel",
+        "system.details.powerTechLevel",
+        "system.details.superiorityLevel",
+        "system.resources"
+      ];
 
       for await (const { pack, index } of this.browser.packLoader.loadPacks(
         "Actor",
         this.browser.loadedPacks("bestiary"),
-        indexFields
+        [...indexFields, ...optionals]
       )) {
         console.debug(`SW5e System | Compendium Browser | ${pack.metadata.label} - ${index.size} entries found`);
         for (const actorData of index) {
-          if (actorData.type === "npc") {
-            if (!this.hasAllIndexFields(actorData, this.index)) {
+          if (actorTypes.includes(actorData.type)) {
+            if (!this.hasAllIndexFields(actorData, indexFields)) {
               console.warn(
                 `Actor '${actorData.name}' does not have all required data fields. Consider unselecting pack '${pack.metadata.label}' in the compendium browser settings.`
               );
               continue;
             }
+
+            // Prepare alignment
+            const alignment = actorData.system.details.alignment;
+            const alignmentSlug = sluggify(alignment);
+            if (alignment) alignments.add(alignment);
+
+            // Prepare creature type
+            const creatureType = actorData.system.details.type.value;
+            const typeSlug = sluggify(creatureType);
+            if (creatureType) creatureTypes.add(creatureType);
+
+            // Prepare creature subtype
+            const creatureSubtype = actorData.system.details.type.subtype;
+            const subtypeSlug = sluggify(creatureSubtype);
+            if (creatureSubtype) creatureSubtypes.add(creatureSubtype);
+
             // Prepare source
-            const source = actorData.system.details.source.value;
-            if (source) {
-              sources.add(source);
-              actorData.system.details.source.value = sluggify(source);
-            }
+            const source = actorData.system.details.source;
+            const sourceSlug = sluggify(source);
+            if (source) sources.add(source);
+
+            // Prepare traits
+            const traits = {
+              isForceCaster: !!actorData.system.details.powerForceLevel,
+              isTechCaster: !!actorData.system.details.powerTechLevel,
+              isSuperiorityCaster: !!actorData.system.details.superiorityLevel,
+              isSwarm: !!actorData.system.details.type.swarm,
+              hasLairAct: !!actorData.system.resources.lair.value,
+              hasLegAct: !!actorData.system.resources.legact.max,
+              hasLegRes: !!actorData.system.resources.legres.max,
+            };
 
             bestiaryActors.push({
               type: actorData.type,
               name: actorData.name,
               img: actorData.img,
               uuid: `Compendium.${pack.collection}.${actorData._id}`,
-              level: actorData.system.details.level.value,
-              alignment: actorData.system.details.alignment.value,
-              actorSize: actorData.system.traits.size.value,
-              traits: actorData.system.traits.value,
-              rarity: actorData.system.traits.rarity,
-              source: actorData.system.details.source.value
+              cr: actorData.system.details.cr,
+              actorSize: actorData.system.traits.size,
+              alignment: alignmentSlug,
+              creatureType: typeSlug,
+              creatureSubtype: subtypeSlug,
+              source: sourceSlug,
+              traits: traits
             });
           }
         }
@@ -90,29 +128,41 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
 
       // Filters
       this.filterData.checkboxes.sizes.options = this.generateCheckboxOptions(CONFIG.SW5E.actorSizes);
-      this.filterData.checkboxes.alignments.options = this.generateCheckboxOptions(CONFIG.SW5E.alignments, false);
-      this.filterData.multiselects.traits.options = this.generateMultiselectOptions(CONFIG.SW5E.monsterTraits);
-      this.filterData.checkboxes.rarity.options = this.generateCheckboxOptions(CONFIG.SW5E.rarityTraits, false);
+      this.filterData.checkboxes.alignment.options = this.generateSourceCheckboxOptions(alignments);
+      this.filterData.checkboxes.creatureType.options = this.generateSourceCheckboxOptions(creatureTypes);
+      this.filterData.checkboxes.creatureSubtype.options = this.generateSourceCheckboxOptions(creatureSubtypes);
       this.filterData.checkboxes.source.options = this.generateSourceCheckboxOptions(sources);
+
+      this.filterData.multiselects.traits.options = this.generateMultiselectOptions({
+        isForceCaster: "SW5E.CompendiumBrowser.FilterForceCaster",
+        isTechCaster: "SW5E.CompendiumBrowser.FilterTechCaster",
+        isSuperiorityCaster: "SW5E.CompendiumBrowser.FilterSuperiorityCaster",
+        isSwarm: "SW5E.CompendiumBrowser.FilterSwarm",
+        hasLairAct: "SW5E.CompendiumBrowser.FilterLairAct",
+        hasLegAct: "SW5E.CompendiumBrowser.FilterLegAct",
+        hasLegRes: "SW5E.CompendiumBrowser.FilterLegRes",
+      });
 
       console.debug("SW5e System | Compendium Browser | Finished loading Bestiary actors");
     }
 
     filterIndexData(entry) {
-      const { checkboxes, multiselects, sliders } = this.filterData;
+      const { checkboxes, multiselects, ranges } = this.filterData;
 
-      // Level
-      if (!(entry.level >= sliders.level.values.min && entry.level <= sliders.level.values.max)) return false;
+      // CR
+      if (!(entry.cr >= ranges.cr.values.min && entry.cr <= ranges.cr.values.max)) return false;
       // Size
       if (checkboxes.sizes.selected.length) if (!checkboxes.sizes.selected.includes(entry.actorSize)) return false;
       // Alignment
-      if (checkboxes.alignments.selected.length) if (!checkboxes.alignments.selected.includes(entry.alignment)) return false;
-      // Traits
-      if (!this.filterTraits(entry.traits, multiselects.traits.selected, multiselects.traits.conjunction)) return false;
+      if (checkboxes.alignment.selected.length) if (!checkboxes.alignment.selected.includes(entry.alignment)) return false;
+      // Creature Type
+      if (checkboxes.creatureType.selected.length) if (!checkboxes.creatureType.selected.includes(entry.creatureType)) return false;
+      // Creature Subtype
+      if (checkboxes.creatureSubtype.selected.length) if (!checkboxes.creatureSubtype.selected.includes(entry.creatureSubtype)) return false;
       // Source
       if (checkboxes.source.selected.length) if (!checkboxes.source.selected.includes(entry.source)) return false;
-      // Rarity
-      if (checkboxes.rarity.selected.length) if (!checkboxes.rarity.selected.includes(entry.rarity)) return false;
+      // Traits
+      if (!this.filterTraits(entry.traits, multiselects.traits.selected, multiselects.traits.conjunction, entry)) return false;
       return true;
     }
 
@@ -125,15 +175,21 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
             options: {},
             selected: []
           },
-          alignments: {
+          alignment: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterAlignments",
+            label: "SW5E.CompendiumBrowser.FilterAlignment",
             options: {},
             selected: []
           },
-          rarity: {
+          creatureType: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterRarities",
+            label: "SW5E.CompendiumBrowser.FilterCreatureType",
+            options: {},
+            selected: []
+          },
+          creatureSubtype: {
+            isExpanded: false,
+            label: "SW5E.CompendiumBrowser.FilterCreatureSubtype",
             options: {},
             selected: []
           },
@@ -153,23 +209,22 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
           }
         },
         order: {
-          by: "level",
+          by: "cr",
           direction: "asc",
           options: {
             name: "SW5E.CompendiumBrowser.SortyByNameLabel",
-            level: "SW5E.CompendiumBrowser.SortyByLevelLabel"
+            cr: "SW5E.CompendiumBrowser.SortyByCRLabel"
           }
         },
-        sliders: {
-          level: {
+        ranges: {
+          cr: {
             isExpanded: false,
-            label: "SW5E.CompendiumBrowser.FilterLevels",
+            label: "SW5E.CompendiumBrowser.FilterCR",
             values: {
-              lowerLimit: -1,
-              upperLimit: 25,
-              min: -1,
-              max: 25,
-              step: 1
+              min: 0,
+              max: 30,
+              lowerLimit: 0,
+              upperLimit: 30,
             }
           }
         },

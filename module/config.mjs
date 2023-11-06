@@ -2286,7 +2286,7 @@ preLocalize("rangedWeaponClasses");
 SW5E.weaponClasses = {
   ...SW5E.meleeWeaponClasses,
   ...SW5E.rangedWeaponClasses
-}
+};
 preLocalize("weaponClasses");
 
 /* -------------------------------------------- */

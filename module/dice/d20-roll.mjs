@@ -148,7 +148,7 @@ export default class D20Roll extends Roll {
 
     // Handle Advantage or Disadvantage
     if (this.hasAdvantage) {
-      d20.number = this.options.elvenAccuracy ? 3 : 2;
+      d20.number = 2 + (this.options.elvenAccuracy ?? 0);
       d20.modifiers.push("kh");
       d20.options.advantage = true;
     } else if (this.hasDisadvantage) {

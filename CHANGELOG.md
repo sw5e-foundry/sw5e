@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Weapon classes (`carbine`, `polearm`, `sidearm`...).
 - Compendium Browser 'Classification' tab.
+- Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
 
 ### Changes
 
@@ -28,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - JournalEntry migration should once again work.
 - Rolling power die in Starship Sheet should once again work.
 - Errors about reading JSON during migration.
+- When making a roll with `Advantage` or `Disadvantage` as the default, the button should now have the proper color.
 
 ## [2.3.1.2.6.3] - 2023-10-04
 

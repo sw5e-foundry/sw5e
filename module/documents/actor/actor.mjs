@@ -1759,6 +1759,12 @@ export default class Actor5e extends Actor {
       data.prof = skl.prof.term;
     }
 
+    // Mastery proficiency
+    if (skl.proficient >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (skl.proficient >= 4) options.elvenAccuracy = skl.proficient - 3;
+
     // Global ability check bonus
     if (globalBonuses.check) {
       parts.push("@checkBonus");
@@ -1862,6 +1868,12 @@ export default class Actor5e extends Actor {
       parts.push("@prof");
       data.prof = prof.term;
     }
+
+    // Mastery proficiency
+    if (tool?.value >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (tool?.value >= 4) options.elvenAccuracy = tool?.value - 3;
 
     // Global ability check bonus.
     if (globalBonuses.check) {
@@ -2065,6 +2077,12 @@ export default class Actor5e extends Actor {
       parts.push("@prof");
       data.prof = abl.saveProf.term;
     }
+
+    // Mastery proficiency
+    if (abl?.proficient >= 3 && !options.disadvantage) options.advantage = true;
+
+    // High/Grand Mastery proficiency
+    if (abl?.proficient >= 4) options.elvenAccuracy = abl?.proficient - 3;
 
     // Include ability-specific saving throw bonus
     if (abl?.bonuses?.save) {

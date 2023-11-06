@@ -54,9 +54,10 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       const category = {
         consumable: "system.consumableType",
         equipment: "system.armor.type",
+        modification: "system.modificationType",
+        starshipmod: "system.system.value",
         tool: "system.toolType",
-        weapon: "system.weaponType",
-        starshipmod: "system.system.value"
+        weapon: "system.weaponType"
       };
       const subcategory = {
         consumable: "system.ammoType",
@@ -139,6 +140,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       this.filterData.checkboxes.consumableTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.consumableTypes);
       this.filterData.checkboxes.consumableSubtypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ammoTypes);
       this.filterData.checkboxes.equipmentTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.equipmentTypes);
+      this.filterData.checkboxes.modificationTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.modificationTypes);
       this.filterData.checkboxes.starshipmodTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.ssModSystems);
       this.filterData.checkboxes.toolTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.toolTypes);
       this.filterData.checkboxes.weaponTypes.options = this.generateCheckboxOptions(CONFIG.SW5E.weaponTypes);
@@ -172,6 +174,8 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       if (checkboxes.consumableSubtypes.selected.length > 0 && !checkboxes.consumableSubtypes.selected.includes(entry.subcategory)) return false;
       // Equipment categories
       if (checkboxes.equipmentTypes.selected.length > 0 && !checkboxes.equipmentTypes.selected.includes(entry.category)) return false;
+      // Modification categories
+      if (checkboxes.modificationTypes.selected.length > 0 && !checkboxes.modificationTypes.selected.includes(entry.category)) return false;
       // Starship Modification categories
       if (checkboxes.starshipmodTypes.selected.length > 0 && !checkboxes.starshipmodTypes.selected.includes(entry.category)) return false;
       // Tool categories
@@ -231,6 +235,12 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
           equipmentTypes: {
             isExpanded: false,
             label: "SW5E.CompendiumBrowser.FilterEquipmentFilters",
+            options: {},
+            selected: []
+          },
+          modificationTypes: {
+            isExpanded: false,
+            label: "SW5E.CompendiumBrowser.FilterModificationFilters",
             options: {},
             selected: []
           },

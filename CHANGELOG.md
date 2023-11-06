@@ -4,12 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.3.1.2.6.4] - 2023-10-16
+## [Unreleased]
 
 ### Added
 
 - Weapon classes (`carbine`, `polearm`, `sidearm`...).
 - Compendium Browser 'Classification' tab.
+- Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
 
 ### Changes
 
@@ -20,14 +21,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- Rolling power die in Starship Sheet should once again work.
+- Errors about reading JSON during migration.
+- When making a roll with `Advantage` or `Disadvantage` as the default, the button should now have the proper color.
+
+## [2.3.1.2.6.4] - 2023-10-16
+
+### Changes
+
+- Art Updates.
+
+### Fixed
+
 - Old NPCs armor class will be properly migrated.
 - Class overview journal should once again work.
 - Clothing equipment should now have the proper artwork.
 - Website Importer should once again work.
 - Currency should no longer be reset after any update.
 - JournalEntry migration should once again work.
-- Rolling power die in Starship Sheet should once again work.
-- Errors about reading JSON during migration.
 
 ## [2.3.1.2.6.3] - 2023-10-04
 

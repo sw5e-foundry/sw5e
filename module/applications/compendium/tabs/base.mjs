@@ -167,9 +167,9 @@ export class CompendiumBrowserTab {
           case "name":
             return entryA.name.localeCompare(entryB.name, lang);
           case "level":
-            return (entryA.level ?? 0) - (entryB.level ?? 0) || entryA.name.localeCompare(entryB.name, lang);
           case "price":
-            return entryA.price - entryB.price || entryA.name.localeCompare(entryB.name, lang);
+          case "cr":
+            return (entryA[order.by] ?? 0) - (entryB[order.by] ?? 0) || entryA.name.localeCompare(entryB.name, lang);
           default:
             return 0;
         }

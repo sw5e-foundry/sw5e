@@ -2,7 +2,7 @@
   "_id": "DSxFSoGoVftJw7he",
   "name": "Handwraps (Exceptional)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Clothing/Handwraps.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -93,8 +93,8 @@
     "quantity": 1,
     "weight": 0,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 0,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -108,9 +108,10 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -133,8 +134,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": "3",
     "chatFlavor": "",
     "critical": {
@@ -154,7 +155,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -202,7 +203,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "handwraps",
     "speed": {
       "value": null,
       "conditions": ""
@@ -210,7 +211,7 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true,
+    "proficient": null,
     "damageBonus": "1d8"
   },
   "ownership": {
@@ -218,10 +219,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493964512,
-    "modifiedTime": 1684819089251,
+    "modifiedTime": 1699339626946,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!DSxFSoGoVftJw7he"

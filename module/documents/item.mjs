@@ -2191,6 +2191,8 @@ export default class Item5e extends Item {
       return ui.notifications.error(err);
     }
     const powerLevel = parseInt(card.dataset.powerLevel) || null;
+    const isForcePower = Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school);
+    const isTechPower = Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school);
 
     // Handle different actions
     let targets;
@@ -2217,7 +2219,7 @@ export default class Item5e extends Item {
         targets = this._getChatCardTargets(card);
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });
-          await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker });
+          await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker, isForcePower, isTechPower });
         }
         break;
       case "toolCheck":

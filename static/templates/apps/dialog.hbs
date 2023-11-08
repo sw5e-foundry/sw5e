@@ -1,0 +1,11 @@
+<div class="dialog-content">
+    {{{content}}}
+</div>
+<div class="dialog-buttons">
+    {{#each buttons as |button id|}}
+    <button class="dialog-button {{cssClass}}" data-button="{{id}}" {{disabled button.disabled}} data-tooltip="{{button.hint}}">
+        {{{button.icon}}}
+        {{{button.label}}}
+    </button>
+    {{/each}}
+</div>

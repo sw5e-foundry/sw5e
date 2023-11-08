@@ -1760,7 +1760,10 @@ export default class Actor5e extends Actor {
     }
 
     // Mastery proficiency
-    if (skl.proficient >= 3 && !options.disadvantage) options.advantage = true;
+    if (skl.proficient >= 3 && !options.disadvantage) {
+      options.advantage = true;
+      options.advantageHint = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+    }
 
     // High/Grand Mastery proficiency
     if (skl.proficient >= 4) options.elvenAccuracy = skl.proficient - 3;
@@ -1870,7 +1873,10 @@ export default class Actor5e extends Actor {
     }
 
     // Mastery proficiency
-    if (tool?.value >= 3 && !options.disadvantage) options.advantage = true;
+    if (tool?.value >= 3 && !options.disadvantage) {
+      options.advantage = true;
+      options.advantageHint = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+    }
 
     // High/Grand Mastery proficiency
     if (tool?.value >= 4) options.elvenAccuracy = tool?.value - 3;
@@ -2079,7 +2085,10 @@ export default class Actor5e extends Actor {
     }
 
     // Mastery proficiency
-    if (abl?.proficient >= 3 && !options.disadvantage) options.advantage = true;
+    if (abl?.proficient >= 3 && !options.disadvantage) {
+      options.advantage = true;
+      options.advantageHint = CONFIG.SW5E.proficiencyLevels[abl.proficient].label;
+    }
 
     // High/Grand Mastery proficiency
     if (abl?.proficient >= 4) options.elvenAccuracy = abl?.proficient - 3;
@@ -2098,9 +2107,14 @@ export default class Actor5e extends Actor {
     }
 
     // Flags
-    const supremeDurability =
-      (flags.supremeDurability && CONFIG.SW5E.characterFlags.supremeDurability.abilities.includes(abilityId))
-      || undefined;
+    const checkFlagsWithAbilities = (keys) => keys.reduce(
+      ((acc, key) => (flags[key] && CONFIG.SW5E.characterFlags[key].abilities.includes(abilityId)) ? key : acc),
+      false
+    );
+    const supremeDurability = checkFlagsWithAbilities(['supremeDurability']);
+    const forceAdvantage = options.isForcePower && checkFlagsWithAbilities(['closedMind', 'forceContention', 'nimbleReflexes']);
+    const techAdvantage = options.isTechPower && checkFlagsWithAbilities(['adaptiveResilience', 'techResistance']);
+    const advantage = forceAdvantage || techAdvantage;
 
     // Roll and return
     const flavor = game.i18n.format("SW5E.SavePromptTitle", { ability: label });
@@ -2111,6 +2125,8 @@ export default class Actor5e extends Actor {
         flavor,
         elvenAccuracy: supremeDurability,
         halflingLucky: flags.halflingLucky,
+        advantage,
+        advantageHint: CONFIG.SW5E.characterFlags[advantage]?.name ?? '',
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
           "flags.sw5e.roll": { type: "save", abilityId }

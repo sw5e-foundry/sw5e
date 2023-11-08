@@ -2067,14 +2067,36 @@ preLocalize("powerTags", { keys: ["label", "abbr"] });
 /* -------------------------------------------- */
 
 /**
+ * Schools to which a force power can belong.
+ * @enum {string}
+ */
+SW5E.powerSchoolsForce = {
+  lgt: "SW5E.SchoolLgt",
+  uni: "SW5E.SchoolUni",
+  drk: "SW5E.SchoolDrk",
+};
+preLocalize("powerSchoolsForce");
+
+/* -------------------------------------------- */
+
+/**
+ * Schools to which a tech power can belong.
+ * @enum {string}
+ */
+SW5E.powerSchoolsTech = {
+  tec: "SW5E.SchoolTec",
+};
+preLocalize("powerSchoolsTech");
+
+/* -------------------------------------------- */
+
+/**
  * Schools to which a power can belong.
  * @enum {string}
  */
 SW5E.powerSchools = {
-  lgt: "SW5E.SchoolLgt",
-  uni: "SW5E.SchoolUni",
-  drk: "SW5E.SchoolDrk",
-  tec: "SW5E.SchoolTec",
+  ...SW5E.powerSchoolsForce,
+  ...SW5E.powerSchoolsTech,
   enh: "SW5E.SchoolEnh"
 };
 preLocalize("powerSchools");
@@ -3670,6 +3692,7 @@ SW5E.characterFlags = {
   adaptiveResilience: {
     name: "SW5E.FlagsAdaptiveResilience",
     hint: "SW5E.FlagsAdaptiveResilienceHint",
+    abilities: ["str", "con"],
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3706,6 +3729,7 @@ SW5E.characterFlags = {
   closedMind: {
     name: "SW5E.FlagsClosedMind",
     hint: "SW5E.FlagsClosedMindHint",
+    abilities: ["wis", "cha"],
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3742,6 +3766,7 @@ SW5E.characterFlags = {
   forceContention: {
     name: "SW5E.FlagsForceContention",
     hint: "SW5E.FlagsForceContentionHint",
+    abilities: ["str", "con"],
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3826,6 +3851,13 @@ SW5E.characterFlags = {
   nimbleness: {
     name: "SW5E.FlagsNimbleness",
     hint: "SW5E.FlagsNimblenessHint",
+    section: "SW5E.SpeciesTraits",
+    type: Boolean
+  },
+  nimbleReflexes: {
+    name: "SW5E.FlagsNimbleReflexes",
+    hint: "SW5E.FlagsNimbleReflexesHint",
+    abilities: ["dex", "int"],
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3916,6 +3948,7 @@ SW5E.characterFlags = {
   techResistance: {
     name: "SW5E.FlagsTechResistance",
     hint: "SW5E.FlagsTechResistanceHint",
+    abilities: ["dex", "int"],
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },

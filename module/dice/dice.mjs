@@ -34,6 +34,9 @@
  * @property {string} [template]               The HTML template used to display the roll configuration dialog.
  * @property {string} [title]                  Title of the roll configuration dialog.
  * @property {object} [dialogOptions]          Additional options passed to the roll configuration dialog.
+ * @property {string} [normalHint]             Hint to be displayed on the dialog's normal button.
+ * @property {string} [advantageHint]          Hint to be displayed on the dialog's advantage button.
+ * @property {string} [disadvantageHint]       Hint to be displayed on the dialog's disadvantage button.
  *
  * ## Chat Message
  * @property {boolean} [chatMessage=true]  Should a chat message be created for this roll?
@@ -67,6 +70,9 @@ export async function d20Roll({
   template,
   title,
   dialogOptions,
+  normalHint = '',
+  advantageHint = '',
+  disadvantageHint = '',
   chatMessage = true,
   messageData = {},
   rollMode,
@@ -106,7 +112,10 @@ export async function d20Roll({
         defaultRollMode,
         defaultAction: advantageMode,
         defaultAbility: data?.item?.ability || data?.defaultAbility,
-        template
+        template,
+        normalHint,
+        advantageHint,
+        disadvantageHint
       },
       dialogOptions
     );

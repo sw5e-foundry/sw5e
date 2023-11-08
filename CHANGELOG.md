@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Weapon classes (`carbine`, `polearm`, `sidearm`...).
 - Compendium Browser 'Classification' tab.
 - Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
+- Character Flag `Nimble Reflexes`.
+- When the system grants (dis)advantage on a roll, a tooltip will mention where the advantage is coming from.
 
 ### Changes
 
@@ -18,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Compendium updates.
 - All feats should now have proper active effects. (Thanks to `Florenc#5173`)
 - All species should now have their ability score improvements granted by advancements instead of active effects.
+- Character flags that grant advantage on saving throws against force/tech powers should now work.
 
 ### Fixed
 

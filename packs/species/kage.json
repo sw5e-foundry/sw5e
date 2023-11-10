@@ -5,78 +5,60 @@
   "img": "systems/sw5e/packs/Icons/Species/Kage.webp",
   "effects": [
     {
-      "_id": "i0cnHmFVkjW8q1nQ",
+      "_id": "G3YZPkTcIi4dDM7Y",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Kage",
           "mode": 5,
+          "value": "Kage",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 20
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.ani.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.skills.ath.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "120",
           "mode": 2,
+          "value": "120",
           "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
-          "value": "electroprod",
           "mode": 0,
-          "priority": 0
+          "value": "electroprod",
+          "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
-          "value": "electrostaff",
           "mode": 0,
-          "priority": 0
+          "value": "electrostaff",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.strongLegged",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.unarmedCombatant",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -93,12 +75,57 @@
       "icon": "systems/sw5e/packs/Icons/Species/Kage.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.WQrjYmqGB0tHwxeE.ActiveEffect.i0cnHmFVkjW8q1nQ"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.WQrjYmqGB0tHwxeE",
       "name": "Kage",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!WQrjYmqGB0tHwxeE.i0cnHmFVkjW8q1nQ",
+      "_key": "!items.effects!WQrjYmqGB0tHwxeE.G3YZPkTcIi4dDM7Y",
+      "sort": 0
+    },
+    {
+      "_id": "fQtntxWSsAPYiSJL",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kage.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.WQrjYmqGB0tHwxeE.ActiveEffect.i0cnHmFVkjW8q1nQ"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.WQrjYmqGB0tHwxeE",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!WQrjYmqGB0tHwxeE.fQtntxWSsAPYiSJL",
       "sort": 0
     }
   ],
@@ -123,7 +150,7 @@
     "identifier": "kage",
     "advancement": [
       {
-        "_id": "1llM1fy7QT1L8NuF",
+        "_id": "ceh9I7DAl2rgBFCN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -148,7 +175,7 @@
         "title": "Traits"
       },
       {
-        "_id": "h1Ey99UDmLh5O72E",
+        "_id": "MmseRTUcySFLRf82",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -204,9 +231,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002102,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!WQrjYmqGB0tHwxeE"

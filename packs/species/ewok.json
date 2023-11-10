@@ -5,7 +5,7 @@
   "img": "systems/sw5e/packs/Icons/Species/Ewok.webp",
   "effects": [
     {
-      "_id": "jwNxli358V22lYXu",
+      "_id": "YF5Ro8qNuBwzpwvV",
       "changes": [
         {
           "key": "system.details.species",
@@ -41,40 +41,22 @@
           "key": "system.attributes.movement.climb",
           "mode": 2,
           "value": "25",
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
           "mode": 0,
           "value": "ewokese",
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
           "mode": 0,
           "value": "basic",
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.crudeWeaponSpecialists",
-          "mode": 0,
-          "value": "1",
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.maskOfTheWild",
-          "mode": 0,
-          "value": "1",
           "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
-          "mode": 0,
-          "value": "1",
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
           "mode": 0,
           "value": "1",
           "priority": 20
@@ -93,12 +75,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Ewok.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.QZMVzQJspLNa5lSS.ActiveEffect.jwNxli358V22lYXu"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.QZMVzQJspLNa5lSS",
       "name": "Ewok",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!QZMVzQJspLNa5lSS.jwNxli358V22lYXu",
+      "_key": "!items.effects!QZMVzQJspLNa5lSS.YF5Ro8qNuBwzpwvV",
+      "sort": 0
+    },
+    {
+      "_id": "yPVoqgu4JugIxUlr",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ewok.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.QZMVzQJspLNa5lSS.ActiveEffect.jwNxli358V22lYXu"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.QZMVzQJspLNa5lSS",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!QZMVzQJspLNa5lSS.yPVoqgu4JugIxUlr",
       "sort": 0
     }
   ],
@@ -123,7 +144,7 @@
     "identifier": "ewok",
     "advancement": [
       {
-        "_id": "PsqLcm0mf3t1f0QA",
+        "_id": "sWKptlTUEYBiM5p2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -148,7 +169,7 @@
         "title": "Traits"
       },
       {
-        "_id": "FRNYz1cb7ox1Oh9Q",
+        "_id": "yORVrqy4cHB176AO",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -204,9 +225,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002096,
-    "modifiedTime": 1698797615396,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!QZMVzQJspLNa5lSS"

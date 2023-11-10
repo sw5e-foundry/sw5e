@@ -5,54 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Squib.webp",
   "effects": [
     {
-      "_id": "JyXU6gNsxf6u3HUH",
+      "_id": "nu2OtSBRydV6qbHh",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Squib",
           "mode": 5,
+          "value": "Squib",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "sm",
           "mode": 0,
+          "value": "sm",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "squibbian",
           "mode": 0,
-          "priority": 0
+          "value": "squibbian",
+          "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
-          "value": "1",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.businessSavvy",
           "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -69,12 +57,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Squib.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.252n5KfccLRdbysj.ActiveEffect.JyXU6gNsxf6u3HUH"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.252n5KfccLRdbysj",
       "name": "Squib",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!252n5KfccLRdbysj.JyXU6gNsxf6u3HUH",
+      "_key": "!items.effects!252n5KfccLRdbysj.nu2OtSBRydV6qbHh",
+      "sort": 0
+    },
+    {
+      "_id": "hVGaUSK9JuJrYec5",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Squib.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.252n5KfccLRdbysj.ActiveEffect.JyXU6gNsxf6u3HUH"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.252n5KfccLRdbysj",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!252n5KfccLRdbysj.hVGaUSK9JuJrYec5",
       "sort": 0
     }
   ],
@@ -99,7 +126,7 @@
     "identifier": "squib",
     "advancement": [
       {
-        "_id": "UPSumLs1Ac1TR5kB",
+        "_id": "7jyapRWwiquz1OIs",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,7 +151,7 @@
         "title": "Traits"
       },
       {
-        "_id": "ajjEUlD1vZu1lHIA",
+        "_id": "F8FwVs3fZh959jtF",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -180,9 +207,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002055,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!252n5KfccLRdbysj"

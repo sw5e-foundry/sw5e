@@ -110,10 +110,6 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
     filterIndexData(entry) {
       const { checkboxes } = this.filterData;
 
-      console.debug("filterIndexData");
-      console.debug(checkboxes.type);
-      console.debug(entry);
-
       // Type
       if (checkboxes.type.selected.length) {
         if (!checkboxes.type.selected.includes(entry.type)) return false;

@@ -5,66 +5,66 @@
   "img": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
   "effects": [
     {
-      "_id": "teRJPynVl1RXWsN8",
+      "_id": "qx2PgWl7zOL8lWE9",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Gamorrean",
           "mode": 5,
+          "value": "Gamorrean",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.traits.weaponProf.custom",
+          "mode": 0,
           "value": "vibroaxe",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "vibromace",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "vibrosword",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "gamorrese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.savageAttacks",
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "vibromace",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.weaponProf.custom",
+          "mode": 0,
+          "value": "vibrosword",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "gamorrese",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
           "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -81,12 +81,16 @@
       "icon": "systems/sw5e/packs/Icons/Species/Gamorrean.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.W4oIea3LqP1dAXGu.ActiveEffect.teRJPynVl1RXWsN8"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.W4oIea3LqP1dAXGu",
       "name": "Gamorrean",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!W4oIea3LqP1dAXGu.teRJPynVl1RXWsN8",
+      "_key": "!items.effects!W4oIea3LqP1dAXGu.qx2PgWl7zOL8lWE9",
       "sort": 0
     }
   ],
@@ -111,7 +115,7 @@
     "identifier": "gamorrean",
     "advancement": [
       {
-        "_id": "Zc9d30PQKszHSXmL",
+        "_id": "Z8pT91RKKq28einp",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -132,7 +136,7 @@
         "title": "Traits"
       },
       {
-        "_id": "14edJo5bnU2jQxbn",
+        "_id": "1OXbG5STiamkGGMb",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -188,9 +192,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002101,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!W4oIea3LqP1dAXGu"

@@ -5,78 +5,72 @@
   "img": "systems/sw5e/packs/Icons/Species/Kaleesh.webp",
   "effects": [
     {
-      "_id": "uRB8h6A9A9SrsbWe",
+      "_id": "HRnJjfYiLrAdD5dg",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Kaleesh",
           "mode": 5,
+          "value": "Kaleesh",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
+          "mode": 0,
           "value": "blaster carbine",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
+          "mode": 0,
           "value": "vibroblade",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
+          "mode": 0,
           "value": "vibropike",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
-          "value": "vibrospear",
           "mode": 0,
-          "priority": 0
+          "value": "vibrospear",
+          "priority": 20
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "kaleesh",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -93,12 +87,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Kaleesh.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.RFOrxqZ3boFYO4PY.ActiveEffect.uRB8h6A9A9SrsbWe"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.RFOrxqZ3boFYO4PY",
       "name": "Kaleesh",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!RFOrxqZ3boFYO4PY.uRB8h6A9A9SrsbWe",
+      "_key": "!items.effects!RFOrxqZ3boFYO4PY.HRnJjfYiLrAdD5dg",
+      "sort": 0
+    },
+    {
+      "_id": "Zl8vs9WkiOoL83ih",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kaleesh.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.RFOrxqZ3boFYO4PY.ActiveEffect.uRB8h6A9A9SrsbWe"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.RFOrxqZ3boFYO4PY",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!RFOrxqZ3boFYO4PY.Zl8vs9WkiOoL83ih",
       "sort": 0
     }
   ],
@@ -123,7 +156,7 @@
     "identifier": "kaleesh",
     "advancement": [
       {
-        "_id": "1EXKWgIQx1Z11Pmk",
+        "_id": "1GjicvsvwZzP1zzA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -145,7 +178,7 @@
         "title": "Traits"
       },
       {
-        "_id": "AOWE15R84uu1U85a",
+        "_id": "1ppei2lBaduD1TpX",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -201,9 +234,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002097,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!RFOrxqZ3boFYO4PY"

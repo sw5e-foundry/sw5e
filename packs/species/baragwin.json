@@ -5,48 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Baragwin.webp",
   "effects": [
     {
-      "_id": "C7M9etD11dPHPBAr",
+      "_id": "ygBLONc021h8kHLW",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Baragwin",
           "mode": 5,
-          "priority": 20
+          "value": "Baragwin",
+          "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 20
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
-          "priority": 20
+          "value": "25",
+          "priority": 5
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 2,
+          "value": "basic",
           "priority": 20
         },
         {
           "key": "system.traits.languages.custom",
+          "mode": 0,
           "value": "Baragwinian",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -60,15 +54,54 @@
         "startRound": null,
         "startTurn": null
       },
-      "icon": "systems/sw5e/packs/Icons/HGTTG/Baragwin.webp",
+      "icon": "systems/sw5e/packs/Icons/Species/Baragwin.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.9I4FSaNm2b5OadQx.ActiveEffect.C7M9etD11dPHPBAr"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.9I4FSaNm2b5OadQx",
       "name": "Baragwin",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!9I4FSaNm2b5OadQx.C7M9etD11dPHPBAr",
+      "_key": "!items.effects!9I4FSaNm2b5OadQx.ygBLONc021h8kHLW",
+      "sort": 0
+    },
+    {
+      "_id": "nKa8zU0nbYU67Xh1",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Baragwin.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.9I4FSaNm2b5OadQx.ActiveEffect.C7M9etD11dPHPBAr"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.9I4FSaNm2b5OadQx",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!9I4FSaNm2b5OadQx.nKa8zU0nbYU67Xh1",
       "sort": 0
     }
   ],
@@ -93,7 +126,7 @@
     "identifier": "baragwin",
     "advancement": [
       {
-        "_id": "3Xns9iXZxLILVOAc",
+        "_id": "1xFwYYwvqyXc1BFm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -117,7 +150,7 @@
         "title": "Traits"
       },
       {
-        "_id": "ThBMvJrt5fjsaQry",
+        "_id": "nIpncarh3aX1sx0o",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -173,9 +206,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002068,
-    "modifiedTime": 1698797615396,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9I4FSaNm2b5OadQx"

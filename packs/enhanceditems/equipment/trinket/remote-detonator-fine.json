@@ -2,7 +2,7 @@
   "_id": "CvEdNBm23RuMskyF",
   "name": "Remote Detonator (Fine)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Weapon%20or%20Armor%20Accessory/RemoteDetonator.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,17 +80,17 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear</h4>\n <p>A small handhold device with a single button, used to activate explosives. Over the course of 1 minute, you can pair the detonator with up to four mines within 10 feet. As an action, you can remotely detonate all of the paired mines. You must be within 60 feet of the mines to detonate them.</p>",
+      "value": "<h4>Adventuring Gear</h4>\n <p>A small handhold device with a single button, used to activate explosives. Over the course of 1 minute, you can pair the detonator with up to four mines within 10 feet. As an action, you can remotely detonate all of the paired mines. You must be within 60 feet of the mines to detonate them.</p>\n<p> </p>\n<h2>Remote detonator</h2>\n<p>A small handhold device with a single button, used to activate explosives. Over the course of 1 minute, you can pair the detonator with up to two mines within 10 feet. As an action, you can remotely detonate all of the paired mines. You must be within 30 feet of the mines to detonate them.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "",
     "source": "EC",
     "quantity": 1,
-    "weight": 0,
+    "weight": 1,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 150,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,9 +104,10 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -129,8 +130,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +146,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +194,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "remotedetonator",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +202,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493964507,
-    "modifiedTime": 1684819089250,
+    "modifiedTime": 1699635151299,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CvEdNBm23RuMskyF"

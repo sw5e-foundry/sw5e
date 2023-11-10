@@ -5,60 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
   "effects": [
     {
-      "_id": "mHet1jKAIkSgtPbd",
+      "_id": "Gx9lsS3BpF2SIXCX",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Ssi-Ruu",
           "mode": 5,
+          "value": "Ssi-Ruu",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "35",
           "mode": 5,
+          "value": "35",
           "priority": 5
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "ssi-ruuvi",
           "mode": 0,
-          "priority": 0
+          "value": "ssi-ruuvi",
+          "priority": 20
         },
         {
           "key": "flags.sw5e.forceInsensitive",
-          "value": "1",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
           "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -75,12 +63,92 @@
       "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
       "name": "Ssi-Ruu",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!jaZL0M2Xrc57PzTj.mHet1jKAIkSgtPbd",
+      "_key": "!items.effects!jaZL0M2Xrc57PzTj.Gx9lsS3BpF2SIXCX",
+      "sort": 0
+    },
+    {
+      "_id": "01RnAkk6wVZbHnyn",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!jaZL0M2Xrc57PzTj.01RnAkk6wVZbHnyn",
+      "sort": 0
+    },
+    {
+      "_id": "FEGxoE3psTus1z2D",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ssi-Ruu.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj.ActiveEffect.mHet1jKAIkSgtPbd"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.jaZL0M2Xrc57PzTj",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!jaZL0M2Xrc57PzTj.FEGxoE3psTus1z2D",
       "sort": 0
     }
   ],
@@ -105,7 +173,7 @@
     "identifier": "ssi-ruu",
     "advancement": [
       {
-        "_id": "1CXW4tS5aw3jWBNI",
+        "_id": "1Nk00HlGnuJO1hX8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,7 +199,7 @@
         "title": "Traits"
       },
       {
-        "_id": "Jp8pJzrcbWdzM22m",
+        "_id": "StXo30YAyNS1z3K8",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -187,9 +255,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002123,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!jaZL0M2Xrc57PzTj"

@@ -11,12 +11,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Weapon classes (`carbine`, `polearm`, `sidearm`...).
 - Compendium Browser 'Classification' tab.
 - Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
-- Character Flag `Nimble Reflexes`.
-- When the system grants (dis)advantage on a roll, a tooltip will mention where the advantage is coming from.
+- Character flags `dangerSense`, `sonicSensitivity`, `twoLivered`.
+- Various advantage and disadvantage character flags, similar to midi-qol. For a full list type `CONFIG.SW5E.midiFlags` in the console.
+- When the system grants (dis)advantage on a roll, a tooltip will mention where it is coming from.
 
 ### Changes
 
-- Art Updates.
+- Art updates.
 - Compendium updates.
 - All feats should now have proper active effects. (Thanks to `Florenc#5173`)
 - All species should now have their ability score improvements granted by advancements instead of active effects.
@@ -28,11 +29,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Errors about reading JSON during migration.
 - When making a roll with `Advantage` or `Disadvantage` as the default, the button should now have the proper color.
 
+### Removed
+
+- The following character flags, which had no effect: `agressive`, `amphibious`, `armorIntegration`, `businessSavy`, `canibalize`, `crudeWeaponSpecialist`, `defiant`, `detailOriented`, `enthrallingPheromones`, `foreignBiology`, `furyOfTheSmall`, `grovelCowerAndBeg`, `heatAdaptation`, `inscrutable`, `keenSenses`, `longLimbed`, `maintanenceMode`, `maskOfTheWild`, `multipleHearts`, `naturallyStealthy`, `nimbleAgility`, `nibleEscape`, `nimbleness`, `precognition`, `programmer`, `rapidReconstruction`, `rapidlyRegenerative`, `regenerative`, `savageAttacks`, `shapechanger`, `strongLegged`, `sunlightSensitivity`, `tinker`, `toughness`, `trance`, `unarmedCombatant`, `unsettlingVisage`.
+
 ## [2.3.1.2.6.4] - 2023-10-16
 
 ### Changes
 
-- Art Updates.
+- Art updates.
 
 ### Fixed
 

@@ -5,66 +5,54 @@
   "img": "systems/sw5e/packs/Icons/Species/Quarren.webp",
   "effects": [
     {
-      "_id": "IS0m3cc1VZFBsy2j",
+      "_id": "Yz0kDSJZzldZd1Af",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Quarren",
           "mode": 5,
+          "value": "Quarren",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.climb",
-          "value": "30",
           "mode": 2,
-          "priority": 20
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.swim",
-          "value": "30",
           "mode": 2,
-          "priority": 20
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "quarrenese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.amphibious",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
+          "key": "system.traits.languages.value",
           "mode": 0,
+          "value": "quarrenese",
           "priority": 20
         }
       ],
@@ -81,12 +69,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Quarren.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10.ActiveEffect.IS0m3cc1VZFBsy2j"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10",
       "name": "Quarren",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!3LOMgdmvO9QADv10.IS0m3cc1VZFBsy2j",
+      "_key": "!items.effects!3LOMgdmvO9QADv10.Yz0kDSJZzldZd1Af",
+      "sort": 0
+    },
+    {
+      "_id": "bE4O6BrwZ9dmfqbZ",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Quarren.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10.ActiveEffect.IS0m3cc1VZFBsy2j"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3LOMgdmvO9QADv10",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!3LOMgdmvO9QADv10.bE4O6BrwZ9dmfqbZ",
       "sort": 0
     }
   ],
@@ -111,7 +138,7 @@
     "identifier": "quarren",
     "advancement": [
       {
-        "_id": "1BM6WNavXlrO14p2",
+        "_id": "eJ7uRk9DG1812QFo",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -135,7 +162,7 @@
         "title": "Traits"
       },
       {
-        "_id": "1lthd7Cl3zQ61MMa",
+        "_id": "11VR88CKrLNb12kp",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -191,9 +218,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002059,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3LOMgdmvO9QADv10"

@@ -414,7 +414,7 @@ Hooks.on("renderJournalDirectory", (app, html, data) => {
 Hooks.on("renderRollTableDirectory", (app, html, data) => {
   setFolderBackground(html);
 });
-// Remigrate button and links, adapted from sw5e
+// Remigrate button and links, adapted from pf2e
 Hooks.on("renderSettings", async (_app, html) => {
   const elements = ["<h2>Star Wars 5e</h2>"];
 

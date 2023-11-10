@@ -30,6 +30,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -129,6 +130,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -228,6 +230,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -327,6 +330,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -426,6 +430,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -525,6 +530,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -707,6 +713,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": 20,
           "width": null,
@@ -770,6 +777,7 @@
           "type": null
         },
         "weaponType": "natural",
+        "weaponClass": "",
         "baseItem": "",
         "ammo": {
           "target": null,
@@ -887,12 +895,14 @@
         "startTurn": null
       },
       "icon": "icons/svg/aura.svg",
-      "label": "Damage reduction",
       "origin": "Actor.3707fmQ0ztsleyJq",
       "tint": null,
       "transfer": true,
-      "sort": 0,
-      "_key": "!actors.effects!QrAd9O9yZ5je1CD5.d39rPmk1VW8m1UmO"
+      "name": "Damage reduction",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!QrAd9O9yZ5je1CD5.d39rPmk1VW8m1UmO",
+      "sort": 0
     }
   ],
   "folder": null,
@@ -908,6 +918,7 @@
       "str": {
         "value": 16,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -923,6 +934,7 @@
       "dex": {
         "value": 2,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -938,6 +950,7 @@
       "con": {
         "value": 15,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -953,6 +966,7 @@
       "int": {
         "value": 14,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -968,6 +982,7 @@
       "wis": {
         "value": 11,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -983,6 +998,7 @@
       "cha": {
         "value": 4,
         "proficient": 1,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1450,6 +1466,7 @@
         "passive": 12
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
@@ -1657,14 +1674,16 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493984204,
-    "modifiedTime": 1685840636863,
+    "modifiedTime": 1699591677350,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!QrAd9O9yZ5je1CD5"

@@ -1680,6 +1680,9 @@ export default class Item5e extends Item {
    */
   async rollAttack(options = {}) {
     const flags = this.actor.flags.sw5e ?? {};
+    const flagsCfg = CONFIG.SW5E.characterFlags;
+    const target = [...game.user?.targets ?? []][0]?.actor;
+    const midi = game.modules.get("midi-qol")?.active;
     if (!this.hasAttack) throw new Error("You may not place an Attack Roll with this Item.");
     let title = `${this.name} - ${game.i18n.localize("SW5E.AttackRoll")}`;
 
@@ -1743,9 +1746,28 @@ export default class Item5e extends Item {
       }
     }
     // Flags
-    const elvenAccuracy =
-      (flags.elvenAccuracy && CONFIG.SW5E.characterFlags.elvenAccuracy.abilities.includes(this.abilityMod))
-      || undefined;
+    const elvenAccuracy = this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
+
+    const grantsAdvantageFlag = target?._getCharacterFlag([
+      "grants.advantage.attack.all",
+      `grants.advantage.attack.${this.system.actionType}`
+    ], { situational: true });
+    const grantsAdvantageHint = target?._getCharacterFlagTooltip(grantsAdvantageFlag);
+    const advantageFlag = grantsAdvantageFlag || this.actor?._getCharacterFlag([
+      "advantage.all",
+      "advantage.attack.all",
+      `advantage.attack.${this.abilityMod}`,
+      `advantage.attack.${this.system.actionType}`
+    ], { situational: true });
+    const advantageHint = grantsAdvantageHint || this.actor?._getCharacterFlagTooltip(advantageFlag);
+
+    const disadvantageFlag = this.actor?._getCharacterFlag([
+      "disadvantage.all",
+      "disadvantage.ability.save.all",
+      `disadvantage.attack.${this.abilityMod}`,
+      `disadvantage.attack.${this.system.actionType}`
+    ], { situational: true });
+    const disadvantageHint = this.actor?._getCharacterFlagTooltip(disadvantageFlag);
 
     // Compose roll options
     const rollConfig = foundry.utils.mergeObject(
@@ -1757,6 +1779,10 @@ export default class Item5e extends Item {
         flavor: title,
         elvenAccuracy,
         halflingLucky: flags.halflingLucky,
+        advantage: advantageFlag && !disadvantageFlag,
+        advantageHint,
+        disadvantage: disadvantageFlag && !advantageFlag,
+        disadvantageHint,
         dialogOptions: {
           width: 400,
           top: options.event ? options.event.clientY - 80 : null,
@@ -2191,8 +2217,6 @@ export default class Item5e extends Item {
       return ui.notifications.error(err);
     }
     const powerLevel = parseInt(card.dataset.powerLevel) || null;
-    const isForcePower = Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school);
-    const isTechPower = Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school);
 
     // Handle different actions
     let targets;
@@ -2217,9 +2241,16 @@ export default class Item5e extends Item {
         break;
       case "save":
         targets = this._getChatCardTargets(card);
+        const saveOptions = {
+          isForcePower: Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school),
+          isTechPower: Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school),
+          isPoison: item.system.consumableType === "poison",
+          dealsPoisonDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "poison"), false),
+          dealsSonicDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "sonic"), false),
+        };
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });
-          await token.actor.rollAbilitySave(button.dataset.ability, { event, speaker, isForcePower, isTechPower });
+          await token.actor.rollAbilitySave(button.dataset.ability, foundry.utils.mergeObject({ event, speaker }, saveOptions));
         }
         break;
       case "toolCheck":

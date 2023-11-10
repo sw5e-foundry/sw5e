@@ -1,0 +1,172 @@
+{
+  "detailOriented": {
+    "name": "Detail Oriented - within 5 feet",
+    "changes": [
+      {
+        "flag": "situational.advantage.skill.inv",
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "heatAdaptation": {
+    "name": "Heat Adaptation - avoid exhaustion due to extreme heat",
+    "changes": [
+      {
+        "flag": "situational.advantage.ability.save.con",
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "inscrutable": {
+    "name": "Inscrutable - against effects that read thoughts",
+    "changes": [
+      {
+        "flag": "situational.advantage.ability.save.all" ,
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "keenSenses": {
+    "name": "Keen Senses - involving a particular sense",
+    "changes": [
+      {
+        "flag": "situational.advantage.skill.prc",
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "precognition": {
+    "name": "Precognition",
+    "changes": [
+      {
+        "flag": "halflingLucky",
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "savageAttacks": {
+    "name": "Savage Attacks",
+    "changes": [
+      {
+        "flag": "meleeCriticalDamageDice",
+        "mode": "ADD",
+        "value": 1
+      }
+    ]
+  },
+  "sunlightSensitivity": {
+    "name": "Sunlight Sensitivity - you or your target is in sunlight",
+    "changes": [
+      {
+        "flag": "situational.disadvantage.attack.all",
+        "mode": "OVERRIDE",
+        "value": 1
+      },
+      {
+        "flag": "situational.disadvantage.skill.prc",
+        "mode": "OVERRIDE",
+        "value": 1
+      }
+    ]
+  },
+  "toughness": {
+    "name": "Toughness",
+    "changes": [
+      {
+        "field": "system.attributes.hp.bonuses.level",
+        "mode": "ADD",
+        "value": "+1"
+      }
+    ]
+  },
+  "powerfulBuild": {
+    "name": "Powerful Build",
+    "changes": [
+      {
+        "flag": "encumbranceMultiplier",
+        "mode": "ADD",
+        "value": "+1"
+      }
+    ]
+  },
+  "closedMind": {
+    "name": "Closed Mind",
+    "changes": [
+      {
+        "flag": "advantage.ability.save.force.wis",
+        "mode": "OVERRIDE",
+        "value": "1"
+      },
+      {
+        "flag": "advantage.ability.save.force.cha",
+        "mode": "OVERRIDE",
+        "value": "1"
+      }
+    ]
+  },
+  "forceContention": {
+    "name": "Force Contention",
+    "changes": [
+      {
+        "flag": "advantage.ability.save.force.str",
+        "mode": "OVERRIDE",
+        "value": "1"
+      },
+      {
+        "flag": "advantage.ability.save.force.con",
+        "mode": "OVERRIDE",
+        "value": "1"
+      }
+    ]
+  },
+  "nimbleReflexes": {
+    "name": "Nimble Reflexes",
+    "changes": [
+      {
+        "flag": "advantage.ability.save.force.dex",
+        "mode": "OVERRIDE",
+        "value": "1"
+      },
+      {
+        "flag": "advantage.ability.save.force.int",
+        "mode": "OVERRIDE",
+        "value": "1"
+      }
+    ]
+  },
+  "adaptiveResilience": {
+    "name": "Adaptive Resilience",
+    "changes": [
+      {
+        "flag": "advantage.ability.save.tech.str",
+        "mode": "OVERRIDE",
+        "value": "1"
+      },
+      {
+        "flag": "advantage.ability.save.tech.con",
+        "mode": "OVERRIDE",
+        "value": "1"
+      }
+    ]
+  },
+  "techResistance": {
+    "name": "Tech Resistance",
+    "changes": [
+      {
+        "flag": "advantage.ability.save.tech.dex",
+        "mode": "OVERRIDE",
+        "value": "1"
+      },
+      {
+        "flag": "advantage.ability.save.tech.int",
+        "mode": "OVERRIDE",
+        "value": "1"
+      }
+    ]
+  }
+}

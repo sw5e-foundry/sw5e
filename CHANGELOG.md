@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - All feats should now have proper active effects. (Thanks to `Florenc#5173`)
 - All species should now have their ability score improvements granted by advancements instead of active effects.
 - Character flags that grant advantage on saving throws against force/tech powers should now work.
+- `Free Power` renamed to `Ignores Powers Known`.
 
 ### Fixed
 

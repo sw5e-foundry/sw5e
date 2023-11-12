@@ -56,9 +56,15 @@
           "priority": 5
         },
         {
-          "key": "flags.sw5e.techResistance",
+          "key": "flags.sw5e.advantage.ability.save.tech.dex",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.tech.int",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -105,7 +111,7 @@
     "identifier": "duros",
     "advancement": [
       {
-        "_id": "1yKqXqzphBwP16G7",
+        "_id": "1h3IuXsMa25lHsC8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -128,7 +134,7 @@
         "title": "Traits"
       },
       {
-        "_id": "y7X9bXkjFS2YM1nX",
+        "_id": "QwjGJe1nr1x1CNQ1",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -184,9 +190,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002079,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JKY9oduwDnq2aYJZ"

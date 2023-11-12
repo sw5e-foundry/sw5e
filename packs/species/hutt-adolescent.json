@@ -44,15 +44,21 @@
           "priority": 0
         },
         {
-          "key": "flags.sw5e.closedMind",
+          "key": "flags.sw5e.advantage.ability.save.force.wis",
           "value": "1",
           "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.powerfulBuild",
-          "value": "1",
+          "key": "flags.sw5e.encumbranceMultiplier",
+          "value": "+1",
+          "mode": 2,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.force.cha",
           "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -99,7 +105,7 @@
     "identifier": "hutt-adolescent",
     "advancement": [
       {
-        "_id": "KtBvjtUt71Q1ks4u",
+        "_id": "DaYAGBdLfa6I8DHJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,14 +130,13 @@
         "title": "Traits"
       },
       {
-        "_id": "TFeHXHWVdyPktvWc",
+        "_id": "1TLXRhbxE3qF16En",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
-            "con": 2,
-            "any": 1
+            "con": 2
           },
-          "points": 0
+          "points": 2
         },
         "value": {},
         "level": 0
@@ -180,9 +185,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002091,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!OapmhR1hOTAgvgB2"

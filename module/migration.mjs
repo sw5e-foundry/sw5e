@@ -167,7 +167,7 @@ export const migrateCompendium = async function(pack) {
           updateData = await migrateActorData(doc.toObject(), migrationData);
           break;
         case "Item":
-          updateData = migrateItemData(doc.toObject(), migrationData);
+          updateData = await migrateItemData(doc.toObject(), migrationData);
           break;
         case "Scene":
           updateData = await migrateSceneData(doc.toObject(), migrationData);
@@ -409,6 +409,7 @@ export const migrateEffects = function(parent, migrationData) {
 export const migrateEffectData = function(effect, migrationData) {
   const updateData = {};
   _migrateEffectArmorClass(effect, updateData);
+  _migrateEffectCharacterFlags(effect, updateData, migrationData);
   return updateData;
 };
 
@@ -506,6 +507,9 @@ export const getMigrationData = async function() {
       const slug = sluggifyPath(old_path);
       data.iconMap[slug] = new_path;
     }
+
+    const characterFlags = await (await fetch("systems/sw5e/json/character-flags-migration.json")).json();
+    data.characterFlags = Object.fromEntries(Object.entries(characterFlags).map(([k,v]) => [`flags.sw5e.${k}`, v]));
 
     data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
     data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
@@ -1082,6 +1086,46 @@ function _migrateEffectArmorClass(effect, updateData) {
     containsUpdates = true;
     return c;
   });
+  if (containsUpdates) updateData.changes = changes;
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Change active effects that target character flags.
+ * @param {object} effect           Effect data to migrate.
+ * @param {object} updateData       Existing update to expand upon.
+ * @param {object} migrationData    Additional data to perform the migration
+ * @returns {object}                The updateData to apply.
+ */
+function _migrateEffectCharacterFlags(effect, updateData, migrationData) {
+  let containsUpdates = false;
+  const newChanges = [];
+  const changes = (effect.changes || []).map(c => {
+    if (c.key in migrationData.characterFlags) {
+      containsUpdates = true;
+      const data = migrationData.characterFlags[c.key];
+      for (const [i, change] of data.changes.entries()) {
+        const key = change.flag ? `flags.sw5e.${change.flag}` : change.field;
+        const mode = CONST.ACTIVE_EFFECT_MODES[change.mode];
+        if (i === 0) {
+          c.key = key;
+          c.mode = mode;
+          c.value = change.value;
+        }
+        else {
+          newChanges.push({
+            key,
+            mode,
+            value: change.value
+          });
+        }
+      }
+    }
+    return c;
+  });
+  if (!foundry.utils.isEmpty(newChanges)) changes.push(...newChanges);
   if (containsUpdates) updateData.changes = changes;
   return updateData;
 }

@@ -11,24 +11,24 @@
           "key": "system.details.species",
           "value": "Anomid",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "30",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
-          "key": "flags.sw5e.techResistance",
+          "key": "flags.sw5e.advantage.ability.save.tech.dex",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
           "priority": 20
         },
         {
@@ -47,6 +47,12 @@
           "key": "system.traits.languages.custom",
           "value": "Anomid Sign Language",
           "mode": 0,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.tech.int",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -93,7 +99,7 @@
     "identifier": "anomid",
     "advancement": [
       {
-        "_id": "1mYAqjfdlYwx1SKj",
+        "_id": "1BHJ8z6j7hGk1UsJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -117,7 +123,7 @@
         "title": "Traits"
       },
       {
-        "_id": "L89r3ZNGc2Q7LSzw",
+        "_id": "1rpYVLhxtcn0hRC7",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -173,9 +179,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002122,
-    "modifiedTime": 1698797615396,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!jE9ERw2FFthDT1fn"

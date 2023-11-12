@@ -68,9 +68,15 @@
           "priority": 0
         },
         {
-          "key": "flags.sw5e.techResistance",
+          "key": "flags.sw5e.advantage.ability.save.tech.dex",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.tech.int",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -117,7 +123,7 @@
     "identifier": "chiss",
     "advancement": [
       {
-        "_id": "1l7ixrxTihSy1MBM",
+        "_id": "18fcEnUBQUWrFZzV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -139,7 +145,7 @@
         "title": "Traits"
       },
       {
-        "_id": "MhyqEzcOkOWvGkST",
+        "_id": "1vAeXE6wjYdFxLwc",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -195,9 +201,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002081,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JrTt6KD14Paqfg3c"

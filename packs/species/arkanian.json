@@ -5,48 +5,83 @@
   "img": "systems/sw5e/packs/Icons/Species/Arkanian.webp",
   "effects": [
     {
-      "_id": "s3slbKvtOar4zl7y",
+      "_id": "RAp3oZRuCxtSNaQn",
       "changes": [
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 20
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
-          "priority": 20
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "arkanian",
-          "mode": 0,
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
+          "value": "basic",
           "priority": 20
         },
         {
           "key": "system.details.species",
-          "value": "Arkanian",
           "mode": 5,
+          "value": "Arkanian",
+          "priority": 5
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Arkanian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.XoFN88whSWZafSbn.ActiveEffect.s3slbKvtOar4zl7y"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.XoFN88whSWZafSbn",
+      "name": "Arkanian",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!XoFN88whSWZafSbn.RAp3oZRuCxtSNaQn",
+      "sort": 0
+    },
+    {
+      "_id": "hfIgOZCRsvfzi2qj",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         },
         {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
           "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -63,12 +98,16 @@
       "icon": "systems/sw5e/packs/Icons/Species/Arkanian.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
-      "name": "Arkanian",
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.XoFN88whSWZafSbn.ActiveEffect.s3slbKvtOar4zl7y"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.XoFN88whSWZafSbn",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!XoFN88whSWZafSbn.s3slbKvtOar4zl7y",
+      "_key": "!items.effects!XoFN88whSWZafSbn.hfIgOZCRsvfzi2qj",
       "sort": 0
     }
   ],
@@ -93,7 +132,7 @@
     "identifier": "arkanian",
     "advancement": [
       {
-        "_id": "1ll5cMP43pzzH2hN",
+        "_id": "1Qa3bUjF6UZgyrPL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -117,7 +156,7 @@
         "title": "Traits"
       },
       {
-        "_id": "tgo1ClZnBJo4A4tO",
+        "_id": "omOMNHM8EyqxAYuR",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -173,9 +212,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002104,
-    "modifiedTime": 1698797615396,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!XoFN88whSWZafSbn"

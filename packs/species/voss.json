@@ -5,72 +5,66 @@
   "img": "systems/sw5e/packs/Icons/Species/Voss.webp",
   "effects": [
     {
-      "_id": "g7qkdxQGBYGcMDU9",
+      "_id": "X002u29n7yM4vH3l",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Voss",
           "mode": 5,
+          "value": "Voss",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.skills.med.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
+          "mode": 0,
           "value": "blaster rifle",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.weaponProf.custom",
-          "value": "techblade",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "voss",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.inscrutable",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.precognition",
-          "value": "1",
+          "key": "system.traits.weaponProf.custom",
           "mode": 0,
+          "value": "techblade",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "voss",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.halflingLucky",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -87,12 +81,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Voss.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25.ActiveEffect.g7qkdxQGBYGcMDU9"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25",
       "name": "Voss",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!aRLy0IIuWoqiSh25.g7qkdxQGBYGcMDU9",
+      "_key": "!items.effects!aRLy0IIuWoqiSh25.X002u29n7yM4vH3l",
+      "sort": 0
+    },
+    {
+      "_id": "Sc6Z4txdrv4ABykb",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.ability.save.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Voss.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25.ActiveEffect.g7qkdxQGBYGcMDU9"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aRLy0IIuWoqiSh25",
+      "name": "Inscrutable - against effects that read thoughts",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!aRLy0IIuWoqiSh25.Sc6Z4txdrv4ABykb",
       "sort": 0
     }
   ],
@@ -117,7 +150,7 @@
     "identifier": "voss",
     "advancement": [
       {
-        "_id": "1dgoVtKqNnKs18O3",
+        "_id": "17RIgD61Ului1zmG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -140,7 +173,7 @@
         "title": "Traits"
       },
       {
-        "_id": "pPdE8LTVkUA1qaDC",
+        "_id": "1GnOe2GGpjyMBqMi",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -196,9 +229,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002108,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!aRLy0IIuWoqiSh25"

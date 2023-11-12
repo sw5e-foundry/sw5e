@@ -5,78 +5,89 @@
   "img": "systems/sw5e/packs/Icons/Species/Chadra-Fan.webp",
   "effects": [
     {
-      "_id": "6clSr6rfOZJaWWiM",
+      "_id": "Sb2vQ8ADsGynND7i",
       "changes": [
         {
           "key": "system.traits.size",
-          "value": "sm",
           "mode": 5,
+          "value": "sm",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.climb",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.traits.toolProf.value",
+          "mode": 0,
           "value": "tin",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "chadra-fan",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.tinker",
-          "value": "1",
-          "mode": 5,
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "chadra-fan",
           "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
-          "value": "1",
           "mode": 5,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.details.species",
+          "mode": 5,
           "value": "Chadra-Fan",
-          "mode": 5,
-          "priority": 20
-        },
+          "priority": 5
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Chadra-Fan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.Nhk7H4YrE05zsDqT.ActiveEffect.6clSr6rfOZJaWWiM"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.Nhk7H4YrE05zsDqT",
+      "name": "Chadra-Fan",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!Nhk7H4YrE05zsDqT.Sb2vQ8ADsGynND7i",
+      "sort": 0
+    },
+    {
+      "_id": "DZ1AIMRGrytCLsfV",
+      "changes": [
         {
-          "key": "flags.sw5e.multipleHearts",
-          "value": "1",
+          "key": "flags.sw5e.situational.advantage.skill.prc",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.trance",
           "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -93,12 +104,16 @@
       "icon": "systems/sw5e/packs/Icons/Species/Chadra-Fan.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
-      "name": "Chadra-Fan",
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.Nhk7H4YrE05zsDqT.ActiveEffect.6clSr6rfOZJaWWiM"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.Nhk7H4YrE05zsDqT",
+      "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Nhk7H4YrE05zsDqT.6clSr6rfOZJaWWiM",
+      "_key": "!items.effects!Nhk7H4YrE05zsDqT.DZ1AIMRGrytCLsfV",
       "sort": 0
     }
   ],
@@ -123,7 +138,7 @@
     "identifier": "chadra-fan",
     "advancement": [
       {
-        "_id": "Cr4RoYZ9fBILrZgI",
+        "_id": "Gv61vU4Fq9o11OEv",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -147,7 +162,7 @@
         "title": "Traits"
       },
       {
-        "_id": "rhZBKvZwN1v1hKJN",
+        "_id": "1vsRq9W7ryxjmJjP",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -203,9 +218,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002090,
-    "modifiedTime": 1698797615396,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Nhk7H4YrE05zsDqT"

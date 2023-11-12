@@ -5,54 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
   "effects": [
     {
-      "_id": "NSowTSCKpURLCCPz",
+      "_id": "R30RcPR3JR2NURpz",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Sullustan",
           "mode": 5,
+          "value": "Sullustan",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.skills.pil.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "sullustese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -69,12 +63,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf.ActiveEffect.NSowTSCKpURLCCPz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf",
       "name": "Sullustan",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!3YMAETyv0Sm0OdRf.NSowTSCKpURLCCPz",
+      "_key": "!items.effects!3YMAETyv0Sm0OdRf.R30RcPR3JR2NURpz",
+      "sort": 0
+    },
+    {
+      "_id": "Olkrr0lY5hrJVL5a",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Sullustan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf.ActiveEffect.NSowTSCKpURLCCPz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.3YMAETyv0Sm0OdRf",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!3YMAETyv0Sm0OdRf.Olkrr0lY5hrJVL5a",
       "sort": 0
     }
   ],
@@ -99,7 +132,7 @@
     "identifier": "sullustan",
     "advancement": [
       {
-        "_id": "1k3UzvrMi1KP194y",
+        "_id": "XkNbGrctqhXftwKY",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -121,7 +154,7 @@
         "title": "Traits"
       },
       {
-        "_id": "150hW6L3quyFyOTp",
+        "_id": "9SnlHwzc90QOxKKa",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -177,9 +210,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674494002060,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3YMAETyv0Sm0OdRf"

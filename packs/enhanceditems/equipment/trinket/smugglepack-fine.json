@@ -2,7 +2,7 @@
   "_id": "4U87YXiNJfVftiIX",
   "name": "Smugglepack (Fine)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Storage/Smugglepack.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -80,7 +80,7 @@
   },
   "system": {
     "description": {
-      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>This backpack comes with a main compartment that stores 14 lb., not exceeding 1/2 cubic foot. Additionally, it has a hidden storage compartment that stores 6 lb., not exceeding 1/4 cubic foot. Finding the hidden compartment requires a DC 18 Investigation check.</p>",
+      "value": "<h4>Adventuring Gear (Back)</h4>\n <p>This backpack comes with a main compartment that stores 14 lb., not exceeding 1/2 cubic foot. Additionally, it has a hidden storage compartment that stores 6 lb., not exceeding 1/4 cubic foot. Finding the hidden compartment requires a DC 18 Investigation check.</p>\n<p> </p>\n<h2>Smugglepack</h2>\n<p>This backpack comes with a main compartment that stores 15.00 lb., not exceeding 1/2 cubic foot. Additionally, it has a hidden storage compartment that stores 5 lb., not exceeding 1/4 cubic foot. Finding the hidden compartment requires a DC 15 Investigation check.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -89,8 +89,8 @@
     "quantity": 1,
     "weight": 0,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 400,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -104,9 +104,10 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -129,8 +130,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -145,7 +146,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -193,7 +194,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "smugglepack",
     "speed": {
       "value": null,
       "conditions": ""
@@ -201,17 +202,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493964396,
-    "modifiedTime": 1684819089225,
+    "modifiedTime": 1699635151299,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!4U87YXiNJfVftiIX"

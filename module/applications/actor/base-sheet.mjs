@@ -312,14 +312,21 @@ export default class ActorSheet5e extends ActorSheet {
     return this.actor.effects.reduce((arr, e) => {
       let source = e.sourceName;
       if (e.origin === this.actor.uuid) source = e.label;
+      if (source && source !== e.label) source = `${source}/${e.label}`;
       if (!source || e.disabled || e.isSuppressed) return arr;
+      let override = null;
       const value = e.changes.reduce((n, change) => {
         if (change.key !== target || !Number.isNumeric(change.value)) return n;
-        if (change.mode !== CONST.ACTIVE_EFFECT_MODES.ADD) return n;
+        if (override) return n;
+        if ([CONST.ACTIVE_EFFECT_MODES.OVERRIDE, CONST.ACTIVE_EFFECT_MODES.CUSTOM].includes(change.mode)) {
+          override = change;
+          return Number(change.value);
+        }
+        else if (change.mode !== CONST.ACTIVE_EFFECT_MODES.ADD) return n;
         return n + Number(change.value);
       }, 0);
       if (!value) return arr;
-      arr.push({ value, label: source, mode: CONST.ACTIVE_EFFECT_MODES.ADD });
+      arr.push({ value, label: source, mode: override?.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD });
       return arr;
     }, []);
   }

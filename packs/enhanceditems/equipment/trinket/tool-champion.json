@@ -1,7 +1,7 @@
 {
   "name": "Tool (Champion)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/Generic/Tool.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -33,13 +33,13 @@
     "identified": true,
     "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "crewed": false,
@@ -65,8 +65,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "int",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -81,7 +81,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -129,7 +129,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "tool",
     "speed": {
       "value": null,
       "conditions": ""
@@ -137,7 +137,7 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": null
   },
   "ownership": {
     "default": 0
@@ -147,7 +147,7 @@
     "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.315",
     "createdTime": 1674493964694,
-    "modifiedTime": 1699591632839,
+    "modifiedTime": 1699981618833,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!So4Cf6oWDnppkn3S"

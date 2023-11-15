@@ -2,7 +2,7 @@
   "_id": "Nn7rJ06zANtHNUYE",
   "name": "Lightweapon Chassis (Legendary)",
   "type": "weapon",
-  "img": "systems/sw5e/packs/Icons/Modifications/LightweaponBASE.webp",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/Generic/Lightweapon.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -114,7 +114,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "crewed": false,
@@ -127,7 +127,7 @@
     "range": {
       "value": null,
       "long": null,
-      "units": ""
+      "units": "ft"
     },
     "uses": {
       "value": null,
@@ -137,10 +137,10 @@
     },
     "consume": {
       "type": "",
-      "target": null,
+      "target": "",
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "mwak",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -156,7 +156,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": 10
@@ -178,17 +178,15 @@
     },
     "weaponType": "simpleLW",
     "weaponClass": "",
-    "baseItem": "",
+    "baseItem": "lightweapon",
     "ammo": {
       "target": null,
       "value": null,
       "use": null,
-      "types": [
-        "powerCell"
-      ]
+      "types": []
     },
     "properties": {},
-    "proficient": true,
+    "proficient": null,
     "modifications": {
       "chassisType": "none",
       "augmentSlots": 0,
@@ -221,9 +219,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674493964655,
-    "modifiedTime": 1699339653018,
+    "modifiedTime": 1699982381543,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Nn7rJ06zANtHNUYE"

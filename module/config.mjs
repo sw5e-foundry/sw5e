@@ -3985,6 +3985,12 @@ SW5E.characterFlags = {
     section: "SW5E.Features",
     type: Boolean
   },
+  halflingLucky: {
+    name: "SW5E.FlagsHalflingLucky",
+    hint: "SW5E.FlagsHalflingLuckyHint",
+    section: "SW5E.Features",
+    type: Boolean
+  },
   initiativeAdv: {
     name: "SW5E.FlagsInitiativeAdv",
     hint: "SW5E.FlagsInitiativeAdvHint",

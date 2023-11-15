@@ -2,7 +2,7 @@
   "_id": "OsfRTTsevMuWsjOS",
   "name": "Weapon (Exceptional)",
   "type": "weapon",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/Generic/Weapon.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -118,7 +118,7 @@
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
     "crewed": false,
@@ -131,7 +131,7 @@
     "range": {
       "value": null,
       "long": null,
-      "units": ""
+      "units": "ft"
     },
     "uses": {
       "value": null,
@@ -141,10 +141,10 @@
     },
     "consume": {
       "type": "",
-      "target": null,
+      "target": "",
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "mwak",
     "attackBonus": "3",
     "chatFlavor": "",
@@ -153,14 +153,19 @@
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "1d8",
+          ""
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": 10
@@ -182,17 +187,15 @@
     },
     "weaponType": "improv",
     "weaponClass": "",
-    "baseItem": "",
+    "baseItem": "weapon",
     "ammo": {
       "target": null,
       "value": null,
       "use": null,
-      "types": [
-        "powerCell"
-      ]
+      "types": []
     },
     "properties": {},
-    "proficient": true,
+    "proficient": null,
     "damageBonus": "1d8"
   },
   "ownership": {
@@ -201,9 +204,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674493964665,
-    "modifiedTime": 1699339626946,
+    "modifiedTime": 1699982381543,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!OsfRTTsevMuWsjOS"

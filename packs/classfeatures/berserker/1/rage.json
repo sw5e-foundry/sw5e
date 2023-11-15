@@ -11,22 +11,34 @@
           "key": "system.bonuses.mwak.damage",
           "mode": 2,
           "value": "@scale.berserker.rage-damage",
-          "priority": 20
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
           "value": "kinetic",
-          "priority": 20
+          "priority": null
         },
         {
           "key": "system.traits.dr.value",
           "mode": 2,
           "value": "energy",
-          "priority": 20
+          "priority": null
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.check.str",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.str",
+          "mode": 5,
+          "value": "1",
+          "priority": null
         }
       ],
-      "disabled": false,
+      "disabled": true,
       "duration": {
         "rounds": 10,
         "startTime": null,
@@ -173,7 +185,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -210,9 +222,9 @@
   "_stats": {
     "systemId": "sw5e",
     "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "coreVersion": "11.315",
     "createdTime": 1674493962278,
-    "modifiedTime": 1699295283902,
+    "modifiedTime": 1700067486761,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!DAk6NKEfJq4gEyhB"

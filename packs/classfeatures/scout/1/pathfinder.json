@@ -3,7 +3,38 @@
   "name": "Pathfinder",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/SCT-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/SCT-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.IvWufgONo62OsPU4",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "While travelling",
+      "_id": "lWhxtMKB2CKj5Jf1",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.suv",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!IvWufgONo62OsPU4.lWhxtMKB2CKj5Jf1",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +156,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -161,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962297,
-    "modifiedTime": 1695981491168,
+    "modifiedTime": 1700067847356,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!IvWufgONo62OsPU4"

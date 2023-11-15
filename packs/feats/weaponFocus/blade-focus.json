@@ -2,8 +2,40 @@
   "_id": "F8FtJ6LuwSohQgjk",
   "name": "Blade Focus",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
-  "effects": [],
+  "img": "systems/sw5e/packs/Icons/Feats/BladeFocus.webp",
+  "effects": [
+    {
+      "name": "Blade Focus",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.F8FtJ6LuwSohQgjk",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "cCgHC6FS3lVblXlv",
+      "changes": [
+        {
+          "key": "system.bonuses.mwak.damage",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!F8FtJ6LuwSohQgjk.cCgHC6FS3lVblXlv",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493966778,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698949179154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!F8FtJ6LuwSohQgjk"

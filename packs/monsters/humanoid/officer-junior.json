@@ -30,6 +30,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -129,6 +130,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -239,6 +241,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -302,6 +305,7 @@
           "type": null
         },
         "weaponType": "natural",
+        "weaponClass": "",
         "baseItem": "",
         "ammo": {
           "target": null,
@@ -407,6 +411,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -593,12 +598,14 @@
             "startTurn": null
           },
           "icon": "systems/dnd5e/icons/skills/blue_13.jpg",
-          "label": "Aura of Command",
           "origin": "Actor.EpoaWZEp9JQImEp7.Item.U9mmYyuLA70eaKUB",
           "tint": null,
           "transfer": true,
-          "sort": 0,
-          "_key": "!actors.items.effects!DgHD7qkQnpmmb65r.661t29HwMYiYjPNJ.Pwq0j7VG4ePDGAWl"
+          "name": "Aura of Command",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!DgHD7qkQnpmmb65r.661t29HwMYiYjPNJ.Pwq0j7VG4ePDGAWl",
+          "sort": 0
         }
       ],
       "folder": null,
@@ -620,6 +627,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -801,6 +809,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -1039,12 +1048,14 @@
         "turns": null
       },
       "icon": "systems/dnd5e/icons/skills/blue_13.jpg",
-      "label": "Aura of Command",
       "origin": "Actor.EpoaWZEp9JQImEp7.Item.661t29HwMYiYjPNJ",
       "tint": null,
       "transfer": true,
-      "sort": 0,
-      "_key": "!actors.effects!DgHD7qkQnpmmb65r.P7SEmWw3SgbGR0pj"
+      "name": "Aura of Command",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!DgHD7qkQnpmmb65r.P7SEmWw3SgbGR0pj",
+      "sort": 0
     }
   ],
   "folder": null,
@@ -1060,6 +1071,7 @@
       "str": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1075,6 +1087,7 @@
       "dex": {
         "value": 12,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1090,6 +1103,7 @@
       "con": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1105,6 +1119,7 @@
       "int": {
         "value": 14,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1120,6 +1135,7 @@
       "wis": {
         "value": 11,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1135,6 +1151,7 @@
       "cha": {
         "value": 12,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1598,6 +1615,7 @@
         "passive": 12
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
@@ -1805,14 +1823,16 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493984085,
-    "modifiedTime": 1685840636737,
+    "modifiedTime": 1699591677291,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!DgHD7qkQnpmmb65r"

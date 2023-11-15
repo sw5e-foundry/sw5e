@@ -20,7 +20,7 @@
 
             <ul class="summary flexrow">
                 <li>
-                    {{lookup config.weaponTypes system.weaponType }}
+                    {{lookup config.weaponClasses system.weaponClass }}
                 </li>
                 <li>
                     <select name="system.rarity">
@@ -60,6 +60,20 @@
                 </select>
             </div>
 
+            {{#if (or isRanged isMelee)}}
+                {{!-- Weapon Class --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemWeaponClass" }}</label>
+                    <select name="system.weaponClass">
+                        {{#if isRanged}}
+                            {{selectOptions config.rangedWeaponClasses selected=system.weaponClass blank=""}}
+                        {{else if isMelee}}
+                            {{selectOptions config.meleeWeaponClasses selected=system.weaponClass blank=""}}
+                        {{/if}}
+                    </select>
+                </div>
+            {{/if}}
+
             {{!-- Base Weapon --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
@@ -89,16 +103,16 @@
                     </div>
                 {{/unless}}
 
-            {{#unless isStarshipItem}}
-                <div class="form-group">
-                    <label>{{localize "SW5E.Proficiency"}}</label>
-                    <select name="system.proficient" data-dtype="Number">
-                        {{selectOptions config.weaponAndArmorProficiencyLevels selected=system.proficient blank=(localize "SW5E.Automatic")}}
-                    </select>
-                </div>
-            {{/unless}}
+                {{#unless isStarshipItem}}
+                    <div class="form-group">
+                        <label>{{localize "SW5E.Proficiency"}}</label>
+                        <select name="system.proficient" data-dtype="Number">
+                            {{selectOptions config.weaponAndArmorProficiencyLevels selected=system.proficient blank=(localize "SW5E.Automatic")}}
+                        </select>
+                    </div>
+                {{/unless}}
 
-            {{!-- Weapon Status --}}
+                {{!-- Weapon Status --}}
                 <div class="form-group stacked">
                     <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
                     <div class="form-fields">

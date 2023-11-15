@@ -28,6 +28,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -60,7 +61,12 @@
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.consular.levels + @mod",
+          "force"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -92,10 +98,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1667426104228,
-    "modifiedTime": 1685840599794,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "OhXiVC1z2GvVuL6P",

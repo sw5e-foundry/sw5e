@@ -11,25 +11,25 @@
           "key": "system.details.species",
           "value": "Patrolian",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "25",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.swim",
           "value": "25",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "flags.sw5e.amphibious",
@@ -71,12 +71,6 @@
           "key": "system.traits.languages.custom",
           "value": "Patrolian",
           "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
           "priority": 20
         }
       ],
@@ -123,7 +117,7 @@
     "identifier": "patrolian",
     "advancement": [
       {
-        "_id": "1N1vfD0g1ceM1UKx",
+        "_id": "1JvttuI78QWt1UUb",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -147,6 +141,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1NzAeGU24lNrtLyk",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -191,10 +197,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002132,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!oUZfKfMMr6ZXXQ4J"

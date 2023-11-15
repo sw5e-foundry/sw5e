@@ -14,12 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -74,8 +68,8 @@
       "name": "Gotal",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!AuUOkjlsuVccRXkn.rNPBs7jT9wzHZoaG",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!AuUOkjlsuVccRXkn.rNPBs7jT9wzHZoaG"
     }
   ],
   "folder": null,
@@ -99,7 +93,7 @@
     "identifier": "gotal",
     "advancement": [
       {
-        "_id": "IJcAEOWfmHP1nGSy",
+        "_id": "4lxCwZfKsnC1aXpP",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,6 +112,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "K74KOAs1Zi8JbPXZ",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -162,10 +168,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002070,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!AuUOkjlsuVccRXkn"

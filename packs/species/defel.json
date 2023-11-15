@@ -5,84 +5,60 @@
   "img": "systems/sw5e/packs/Icons/Species/Defel.webp",
   "effects": [
     {
-      "_id": "avJjg9zlYNomK9Uw",
+      "_id": "YsLIrMCUxkbLtaaK",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Defel",
           "mode": 5,
+          "value": "Defel",
           "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "sm",
           "mode": 5,
+          "value": "sm",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.skills.ste.value",
-          "value": "1",
           "mode": 4,
-          "priority": 5
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "defel",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
+          "value": "1",
           "priority": 20
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "defel",
           "priority": 20
         },
         {
           "key": "system.traits.toolProf.value",
-          "value": "scav",
           "mode": 0,
-          "priority": 0
+          "value": "scav",
+          "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
-          "value": "1",
           "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
           "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.surpriseAttack",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -99,12 +75,57 @@
       "icon": "systems/sw5e/packs/Icons/Species/Defel.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.FLrIaqeiRgG7XO4D.ActiveEffect.avJjg9zlYNomK9Uw"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.FLrIaqeiRgG7XO4D",
       "name": "Defel",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!FLrIaqeiRgG7XO4D.avJjg9zlYNomK9Uw",
+      "_key": "!items.effects!FLrIaqeiRgG7XO4D.YsLIrMCUxkbLtaaK",
+      "sort": 0
+    },
+    {
+      "_id": "qdcZdJhN1aN2ONoa",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Defel.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.FLrIaqeiRgG7XO4D.ActiveEffect.avJjg9zlYNomK9Uw"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.FLrIaqeiRgG7XO4D",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!FLrIaqeiRgG7XO4D.qdcZdJhN1aN2ONoa",
       "sort": 0
     }
   ],
@@ -129,7 +150,7 @@
     "identifier": "defel",
     "advancement": [
       {
-        "_id": "SxlVWVNnHfF1GKER",
+        "_id": "1CXZY3kUFrgI15uN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -153,6 +174,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "9J1ihoaTYiB1Q7QC",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -197,10 +231,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002075,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!FLrIaqeiRgG7XO4D"

@@ -196,8 +196,8 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
   /* -------------------------------------------- */
 
   /**
-   * Handle deleting a dropped feat.
-   * @param {Event} event  The originating click event.
+   * Calculates the assigned, total and available points.
+   * @returns {object} points  The calculated points.
    * @protected
    */
   get points() {

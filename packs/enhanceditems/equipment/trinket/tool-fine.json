@@ -1,7 +1,7 @@
 {
   "name": "Tool (Fine)",
   "type": "equipment",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/sw5e/packs/Icons/Enhanced%20Items/Generic/Tool.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
@@ -24,8 +24,8 @@
     "quantity": 1,
     "weight": 0,
     "price": {
-      "denomination": "gc",
-      "value": 0
+      "value": 0,
+      "denomination": "gc"
     },
     "attunement": 0,
     "equipped": false,
@@ -33,15 +33,16 @@
     "identified": true,
     "isCargo": false,
     "activation": {
-      "type": null,
+      "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
       "value": null,
-      "units": "inst"
+      "units": ""
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -64,8 +65,8 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
-    "actionType": "other",
+    "ability": "int",
+    "actionType": "",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": {
@@ -80,7 +81,7 @@
     "save": {
       "ability": "",
       "dc": null,
-      "scaling": "power"
+      "scaling": "none"
     },
     "armor": {
       "value": null,
@@ -128,7 +129,7 @@
       "type": null,
       "overrides": {}
     },
-    "baseItem": "",
+    "baseItem": "tool",
     "speed": {
       "value": null,
       "conditions": ""
@@ -136,17 +137,17 @@
     "strength": null,
     "stealth": false,
     "properties": {},
-    "proficient": true
+    "proficient": null
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493964519,
-    "modifiedTime": 1684819089253,
+    "modifiedTime": 1699981618833,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!E9AoM9QJeEHszUJn"

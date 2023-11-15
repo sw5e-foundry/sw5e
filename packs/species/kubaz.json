@@ -5,78 +5,54 @@
   "img": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
   "effects": [
     {
-      "_id": "KTMeZ69AIhp6lmIz",
+      "_id": "KjYCOmNuADd9tQHN",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Kubaz",
           "mode": 5,
+          "value": "Kubaz",
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "120",
           "mode": 2,
+          "value": "120",
           "priority": 20
         },
         {
           "key": "system.skills.tec.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "kubazian",
           "mode": 0,
-          "priority": 0
+          "value": "kubazian",
+          "priority": 20
         },
         {
           "key": "system.traits.toolProf.value",
+          "mode": 0,
           "value": "slic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
-          "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -93,12 +69,92 @@
       "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
       "name": "Kubaz",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!MtBnA2VnLwqdnBvc.KTMeZ69AIhp6lmIz",
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.KjYCOmNuADd9tQHN",
+      "sort": 0
+    },
+    {
+      "_id": "L67WRXxiXupihqw1",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.L67WRXxiXupihqw1",
+      "sort": 0
+    },
+    {
+      "_id": "nupkXSrVF3uQnHZI",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Kubaz.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc.ActiveEffect.KTMeZ69AIhp6lmIz"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.MtBnA2VnLwqdnBvc",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.nupkXSrVF3uQnHZI",
       "sort": 0
     }
   ],
@@ -123,7 +179,7 @@
     "identifier": "kubaz",
     "advancement": [
       {
-        "_id": "1d4TKKgAsx0XJ0W3",
+        "_id": "18oLAjNGWrZT1ICQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -145,6 +201,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "19hMHrWVBElQ1tts",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -189,10 +258,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002089,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!MtBnA2VnLwqdnBvc"

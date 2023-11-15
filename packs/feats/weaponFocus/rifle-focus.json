@@ -2,8 +2,46 @@
   "_id": "ySSiGAy9312rbnI6",
   "name": "Rifle Focus",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
-  "effects": [],
+  "img": "systems/sw5e/packs/Icons/Feats/RifleFocus.webp",
+  "effects": [
+    {
+      "name": "Rifle Focus",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.ySSiGAy9312rbnI6",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "SV8wjd4RYAKdjbkE",
+      "changes": [
+        {
+          "key": "system.bonuses.rpak.damage",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.rangedCriticalDamageDice",
+          "mode": 2,
+          "value": "+1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!ySSiGAy9312rbnI6.SV8wjd4RYAKdjbkE",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +163,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +198,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493966853,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698949179154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ySSiGAy9312rbnI6"

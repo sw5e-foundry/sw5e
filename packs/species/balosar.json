@@ -5,66 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Balosar.webp",
   "effects": [
     {
-      "_id": "DkWzA7SfsdXIq6aA",
+      "_id": "FzG2zpKDM6Elr24P",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Balosar",
           "mode": 5,
+          "value": "Balosar",
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.traits.dr.value",
+          "mode": 0,
           "value": "poison",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "balosur",
           "mode": 0,
-          "priority": 0
+          "value": "balosur",
+          "priority": 20
         },
         {
           "key": "system.traits.toolProf.value",
-          "value": "spice",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
+          "value": "spice",
           "priority": 20
         }
       ],
@@ -81,12 +63,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Balosar.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc.ActiveEffect.DkWzA7SfsdXIq6aA"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc",
       "name": "Balosar",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!fxX6jiB6zMh5LHdc.DkWzA7SfsdXIq6aA",
+      "_key": "!items.effects!fxX6jiB6zMh5LHdc.FzG2zpKDM6Elr24P",
+      "sort": 0
+    },
+    {
+      "_id": "mebaLEwfl4QjrFOD",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Balosar.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc.ActiveEffect.DkWzA7SfsdXIq6aA"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.fxX6jiB6zMh5LHdc",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!fxX6jiB6zMh5LHdc.mebaLEwfl4QjrFOD",
       "sort": 0
     }
   ],
@@ -111,7 +132,7 @@
     "identifier": "balosar",
     "advancement": [
       {
-        "_id": "1brCqC5pGLxisQ7y",
+        "_id": "1KkkEw6p0gNGaTHj",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,6 +152,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1ekyKYWKyzDH1g3c",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -175,10 +209,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002118,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!fxX6jiB6zMh5LHdc"

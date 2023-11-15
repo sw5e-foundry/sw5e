@@ -5,54 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Umbaran.webp",
   "effects": [
     {
-      "_id": "UYCnNjKYqbeNq6n8",
+      "_id": "bZfvXqxEtFLb9Mcw",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Umbaran",
           "mode": 5,
+          "value": "Umbaran",
           "priority": 5
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "120",
           "mode": 2,
+          "value": "120",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "umbaran",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.sunlightSensitivity",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         }
       ],
@@ -69,12 +57,57 @@
       "icon": "systems/sw5e/packs/Icons/Species/Umbaran.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sm8q9UjqMxguQcG2.ActiveEffect.UYCnNjKYqbeNq6n8"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sm8q9UjqMxguQcG2",
       "name": "Umbaran",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!sm8q9UjqMxguQcG2.UYCnNjKYqbeNq6n8",
+      "_key": "!items.effects!sm8q9UjqMxguQcG2.bZfvXqxEtFLb9Mcw",
+      "sort": 0
+    },
+    {
+      "_id": "fGimngedPaLedZyI",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.disadvantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.situational.disadvantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Umbaran.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sm8q9UjqMxguQcG2.ActiveEffect.UYCnNjKYqbeNq6n8"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sm8q9UjqMxguQcG2",
+      "name": "Sunlight Sensitivity - you or your target is in sunlight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!sm8q9UjqMxguQcG2.fGimngedPaLedZyI",
       "sort": 0
     }
   ],
@@ -99,7 +132,7 @@
     "identifier": "umbaran",
     "advancement": [
       {
-        "_id": "1ttEFlEubvHU1lqE",
+        "_id": "SJBoiIfxioU11hON",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -120,6 +153,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "Cci3MaLb4yw11InR",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -164,10 +209,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002141,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!sm8q9UjqMxguQcG2"

@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -41,7 +29,7 @@
           "key": "system.attributes.movement.swim",
           "value": "30",
           "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
@@ -111,7 +99,7 @@
     "identifier": "karkarodon",
     "advancement": [
       {
-        "_id": "1TxV0v2rUmi17Mal",
+        "_id": "98QK6o6mEqU1rIEx",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,6 +119,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1kygu5rutRQU1NSE",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -175,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002116,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!fUcg8MZDdEi43heY"

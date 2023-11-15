@@ -9,80 +9,62 @@
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Anzellan",
           "mode": 5,
+          "value": "Anzellan",
           "priority": 5
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "tiny",
           "mode": 5,
+          "value": "tiny",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "20",
           "mode": 5,
+          "value": "20",
           "priority": 5
         },
         {
           "key": "system.attributes.ac.value",
-          "value": "1",
           "mode": 2,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.skills.tec.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.toolProf.custom",
+          "mode": 0,
           "value": "Tinker's tools",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "anzellan",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.detailOriented",
-          "value": "1",
-          "mode": 5,
+          "value": "anzellan",
           "priority": 20
         },
         {
           "key": "flags.sw5e.pintsized",
-          "value": "1",
           "mode": 5,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "flags.sw5e.puny",
-          "value": "1",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.tinker",
           "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -105,6 +87,41 @@
       "description": "",
       "statuses": [],
       "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.ZGdzAq1Gl4xaxDRD",
+      "sort": 0
+    },
+    {
+      "_id": "J6me2fxX06OUbUSS",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.inv",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Anzellan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.4NVv8yQ6Vu6PvtCA.ActiveEffect.ZGdzAq1Gl4xaxDRD"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.4NVv8yQ6Vu6PvtCA",
+      "name": "Detail Oriented - within 5 feet",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.J6me2fxX06OUbUSS",
       "sort": 0
     }
   ],
@@ -129,7 +146,7 @@
     "identifier": "anzellan",
     "advancement": [
       {
-        "_id": "sjyBtk04ODg1xvbP",
+        "_id": "35RmjlAQtyD13Xvm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -153,6 +170,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "hFsfA9vaUxRiG675",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2
+          },
+          "points": 2
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -197,10 +226,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002063,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!4NVv8yQ6Vu6PvtCA"

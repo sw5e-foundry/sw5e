@@ -5,54 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
   "effects": [
     {
-      "_id": "2FSlkSzlsfoQSsQs",
+      "_id": "XFMDt0NURO4CUw4v",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Mikkian",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
+          "value": "Mikkian",
+          "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 20
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 2,
-          "priority": 20
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.attributes.senses.blindsight",
-          "value": "30",
           "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
+          "value": "30",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 2,
+          "value": "basic",
           "priority": 20
         },
         {
           "key": "system.traits.languages.custom",
-          "value": "Mikkian",
           "mode": 0,
+          "value": "Mikkian",
           "priority": 20
         }
       ],
@@ -69,12 +57,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6.ActiveEffect.2FSlkSzlsfoQSsQs"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6",
       "name": "Mikkian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!aWyQIk0yQVEBWiY6.2FSlkSzlsfoQSsQs",
+      "_key": "!items.effects!aWyQIk0yQVEBWiY6.XFMDt0NURO4CUw4v",
+      "sort": 0
+    },
+    {
+      "_id": "jELd0cuLorurmLHV",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Mikkian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6.ActiveEffect.2FSlkSzlsfoQSsQs"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.aWyQIk0yQVEBWiY6",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!aWyQIk0yQVEBWiY6.jELd0cuLorurmLHV",
       "sort": 0
     }
   ],
@@ -99,7 +126,7 @@
     "identifier": "mikkian",
     "advancement": [
       {
-        "_id": "UVYPZBl2K4U1R3bu",
+        "_id": "12PKhLKgnQcmwCFt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,6 +145,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "16BZBlObnyZ51lf8",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -162,10 +201,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002109,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!aWyQIk0yQVEBWiY6"

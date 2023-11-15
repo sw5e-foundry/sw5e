@@ -5,54 +5,36 @@
   "img": "systems/sw5e/packs/Icons/Species/Arcona.webp",
   "effects": [
     {
-      "_id": "NGgLg9M06MvvWwAh",
+      "_id": "vkpTLAXvTHpP9S6H",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Arcona",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
+          "value": "Arcona",
+          "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 20
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
+          "mode": 5,
           "value": "30",
-          "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "arconese",
-          "mode": 0,
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
+          "value": "basic",
           "priority": 20
         }
       ],
@@ -69,12 +51,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Arcona.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.KwDQepuVGtneaTTY.ActiveEffect.NGgLg9M06MvvWwAh"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.KwDQepuVGtneaTTY",
       "name": "Arcona",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!KwDQepuVGtneaTTY.NGgLg9M06MvvWwAh",
+      "_key": "!items.effects!KwDQepuVGtneaTTY.vkpTLAXvTHpP9S6H",
+      "sort": 0
+    },
+    {
+      "_id": "P9LXrkukSdERPtiq",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Arcona.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.KwDQepuVGtneaTTY.ActiveEffect.NGgLg9M06MvvWwAh"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.KwDQepuVGtneaTTY",
+      "name": "Keen Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!KwDQepuVGtneaTTY.P9LXrkukSdERPtiq",
       "sort": 0
     }
   ],
@@ -99,7 +120,7 @@
     "identifier": "arcona",
     "advancement": [
       {
-        "_id": "1eUeXjphLeVs1UvK",
+        "_id": "1u6Z37gS9cENlSbw",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -121,6 +142,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "vs3zoRFFBUZa6qGk",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -165,10 +199,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002085,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KwDQepuVGtneaTTY"

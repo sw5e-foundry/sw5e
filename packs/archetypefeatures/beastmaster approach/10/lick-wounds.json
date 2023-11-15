@@ -27,6 +27,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -50,7 +51,7 @@
       "amount": null
     },
     "ability": null,
-    "actionType": "other",
+    "actionType": "heal",
     "attackBonus": "",
     "chatFlavor": "",
     "critical": {
@@ -58,7 +59,12 @@
       "damage": ""
     },
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.berserker.levels",
+          "temphp"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -90,10 +96,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1679609438385,
-    "modifiedTime": 1685840600590,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "zPefcpvQYV1o1ooJ",

@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 5,
@@ -41,7 +29,7 @@
           "key": "system.attributes.movement.fly",
           "value": "25",
           "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
@@ -68,7 +56,7 @@
           "priority": 20
         },
         {
-          "key": "flags.sw5e.closedMind",
+          "key": "flags.sw5e.advantage.ability.save.force.wis",
           "value": "1",
           "mode": 5,
           "priority": 20
@@ -77,6 +65,12 @@
           "key": "flags.sw5e.undersized",
           "value": "1",
           "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.force.cha",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -123,7 +117,7 @@
     "identifier": "toydarian",
     "advancement": [
       {
-        "_id": "JM8dKWT95sr1HrVl",
+        "_id": "1jKL6c13pxfK1qcu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -144,6 +138,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1koq7PIzF3r0cWUH",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -188,10 +195,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002136,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pVgUFVDyG2TN7T1s"

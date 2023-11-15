@@ -8,14 +8,14 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:57.9464448+00:00",
+      "timestamp": "2022-05-29T01:36:47.5785442+00:00",
       "importer_version": 3,
       "uid": "Feature.name-adaptive_fighting.source-archetype.sourceName-blademaster_specialist.level-3"
     }
   },
   "system": {
     "description": {
-      "value": "<p><em><strong>Blademaster Specialist:</strong> 3rd level</em></p>\n<p>You've learned to make adaptations to your fighting style on the fly. You have three such effects: Change Up, Draw, and Stow. When you use your Adaptive Fighting, you choose which effect to create.</p>\n<p>You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a short or long rest.</p>\n<h3>Change Up</h3>\n<p>You can use your object interaction and expend a use of your Adaptive Fighting to change the Fighting Style option granted to you by your fighter class feature.</p>\n<h3>Draw</h3>\n<p>When you use your object interaction to draw one or more weapons, you can expend a use of your Adaptive Fighting (no action required) to increase your critical hit range by 1 with the weapon(s) until the start of your next turn.</p>\n<h3>Stow</h3>\n<p>When you use your object interaction to stow a weapon, you can expend a use of your Adaptive Fighting (no action required) to take the Disengage action.</p>",
+      "value": "<p><em><strong>Blademaster Specialist:</strong> 3rd level</em></p>\n<p>You've learned to make adaptations to your fighting style on the fly. You have three such effects: Change Up, Draw, and Stow. When you use your Adaptive Fighting, you choose which effect to create.</p>\n<p>You can use this features a number of times equal to your Strength or Dexterity modifier (your choice, a minimum of once). You regain all expended uses when you complete a short or long rest.</p>\n<h3>Change Up</h3>\n<p>You can use your object interaction and expend a use of your Adaptive Fighting to change the Fighting Style option granted to you by your fighter class feature.</p>\n<h3>Draw</h3>\n<p>When you use your object interaction to draw one or more weapons, you can expend a use of your Adaptive Fighting (no action required) to increase your critical hit range by 1 with the weapon(s) until the start of your next turn.</p>\n<h3>Stow</h3>\n<p>When you use your object interaction to stow a weapon, you can expend a use of your Adaptive Fighting (no action required) to take the Disengage action.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -31,6 +31,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -45,7 +46,7 @@
     },
     "uses": {
       "value": null,
-      "max": 2,
+      "max": "max(max(@abilities.str.mod, @abilities.dex.mod), 1)",
       "per": "sr",
       "recovery": ""
     },
@@ -87,10 +88,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.3",
+    "coreVersion": "11.308",
     "createdTime": 1674493958215,
-    "modifiedTime": 1685840600442,
+    "modifiedTime": 1698185224868,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!uebPbFIehWkIXUOM"

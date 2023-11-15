@@ -2,8 +2,40 @@
   "_id": "ZuG4NATrxUyHedRG",
   "name": "Heavy Weapon Supremacy",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
-  "effects": [],
+  "img": "systems/sw5e/packs/Icons/Feats/HeavyWeaponSupremacy.webp",
+  "effects": [
+    {
+      "name": "Heavy Weapon Supremacy",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.ZuG4NATrxUyHedRG",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "h0lzlxfZRzzHcFmO",
+      "changes": [
+        {
+          "key": "system.bonuses.rpak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!ZuG4NATrxUyHedRG.h0lzlxfZRzzHcFmO",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493966804,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698949179154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ZuG4NATrxUyHedRG"

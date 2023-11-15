@@ -2,8 +2,52 @@
   "_id": "PRt3Mf8aQAJuSEW3",
   "name": "Blade Supremacy",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
-  "effects": [],
+  "img": "systems/sw5e/packs/Icons/Feats/BladeSupremacy.webp",
+  "effects": [
+    {
+      "name": "Blade Supremacy",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.PRt3Mf8aQAJuSEW3",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "6bLijwwDdyWlzr6L",
+      "changes": [
+        {
+          "key": "system.bonuses.mwak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.weaponCriticalThreshold",
+          "mode": 4,
+          "value": "20",
+          "priority": 1
+        },
+        {
+          "key": "flags.sw5e.weaponCriticalThreshold",
+          "mode": 2,
+          "value": "-1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!PRt3Mf8aQAJuSEW3.6bLijwwDdyWlzr6L",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +169,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +204,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493966794,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698949179154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!PRt3Mf8aQAJuSEW3"

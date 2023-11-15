@@ -31,6 +31,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -62,7 +63,7 @@
     "damage": {
       "parts": [
         [
-          "1d10 + @abilities.dex.mod",
+          "1d10 + @abilities.dex.mod + @classes.monk.levels",
           ""
         ]
       ],
@@ -95,10 +96,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.4",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493981191,
-    "modifiedTime": 1684777308938,
+    "modifiedTime": 1698794204218,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!i4MuwTBDHUmndtp3"

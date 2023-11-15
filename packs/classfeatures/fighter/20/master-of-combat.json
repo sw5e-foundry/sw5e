@@ -3,7 +3,53 @@
   "name": "Master of Combat",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/FGTR-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/FGTR-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.0L38TGkU8ViI7klt",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Master of Combat",
+      "_id": "2FxsF8ev6xFw81dv",
+      "changes": [
+        {
+          "key": "system.abilities.str.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.str.value",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.con.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.con.value",
+          "mode": 2,
+          "value": "2"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!0L38TGkU8ViI7klt.2FxsF8ev6xFw81dv",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -31,6 +77,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -54,7 +101,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -90,10 +137,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962235,
-    "modifiedTime": 1685840608507,
+    "modifiedTime": 1700066777998,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0L38TGkU8ViI7klt"

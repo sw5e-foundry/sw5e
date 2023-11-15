@@ -22,8 +22,8 @@ export default class ActiveEffect5e extends ActiveEffect {
   /**
    * Transform the data type of the change to match the type expected for flags.
    * @param {Actor5e} actor              The Actor to whom this effect should be applied.
-   * @param {EffectChangeData} change  The change being applied.
-   * @returns {EffectChangeData}       The change with altered types if necessary.
+   * @param {EffectChangeData} change    The change being applied.
+   * @returns {EffectChangeData}         The change with altered types if necessary.
    */
   _prepareFlagChange(actor, change) {
     const { key, value } = change;

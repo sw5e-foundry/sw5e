@@ -8,7 +8,7 @@
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:57.9474436+00:00",
+      "timestamp": "2023-05-30T20:15:42.7249456+00:00",
       "importer_version": 3,
       "uid": "Feature.name-rallying_cry.source-archetype.sourceName-shield_specialist.level-7"
     }
@@ -31,6 +31,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -55,12 +56,17 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "other",
+    "actionType": "heal",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "@classes.fighter.levels",
+          "healing"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
@@ -87,10 +93,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493958062,
-    "modifiedTime": 1685840600261,
+    "modifiedTime": 1698794203484,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!nhdJJnUPWYmkEQid"

@@ -1,0 +1,102 @@
+{
+  "name": "Imaging Amplifier",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-30T20:14:19.9961229+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-imaging_amplifier.source-archetypeinvocation.sourceName-cybertech_engineering_old.level-None"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "system": {
+    "description": {
+      "value": "<p>You integrate a booster in your wristpad that enhances your illusionary tech powers. While wielding this amplifier, when a creature attempts an Intelligence (Investigation) check against a tech power you cast to discern the illusion for what it is, you can force the creature to have disadvantage on the roll (no action required). Alternatively, when you cast the <em>mirror image</em> tech power, you create a fourth duplicate. While you have four duplicates, you must roll a 5 or higher on the [[/r d20]] roll to change an attack's target to a duplicate.</p>\n<p>You can use this amplifier a number of times equal to your Intelligence modifier (a minimum of once). You regain all expended uses when you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Cybertech Engineering (Old))",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "max(@abilities.int.mod, 1)",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "_id": "GmOuLhHB3UXFNfdY",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.3.1.2.6.3",
+    "coreVersion": "11.308",
+    "createdTime": 1698185225687,
+    "modifiedTime": 1698185225687,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!GmOuLhHB3UXFNfdY"
+}

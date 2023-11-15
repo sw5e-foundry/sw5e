@@ -2,8 +2,40 @@
   "_id": "XPSqkn2DqgmJ3y7Q",
   "name": "Rifle Supremacy",
   "type": "feat",
-  "img": "icons/svg/item-bag.svg",
-  "effects": [],
+  "img": "systems/sw5e/packs/Icons/Feats/RifleSupremacy.webp",
+  "effects": [
+    {
+      "name": "Rifle Supremacy",
+      "icon": "icons/svg/item-bag.svg",
+      "origin": "Compendium.sw5e.feats.Item.XPSqkn2DqgmJ3y7Q",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "XOmPrWie4Hf2Hvu3",
+      "changes": [
+        {
+          "key": "system.bonuses.rpak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!XPSqkn2DqgmJ3y7Q.XOmPrWie4Hf2Hvu3",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +157,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674493966801,
-    "modifiedTime": 1695981493697,
+    "modifiedTime": 1698949179154,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!XPSqkn2DqgmJ3y7Q"

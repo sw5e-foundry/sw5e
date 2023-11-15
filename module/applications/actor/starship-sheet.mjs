@@ -190,7 +190,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (!actor) continue;
       const features = actor.itemTypes.feat.filter(item => item.system.type.value === "deployment");
       for (const feature of features) {
-        const { quantity, uses, recharge, target, equipped } = feature.system;
+        const { uses, recharge, target } = feature.system;
         const ctx = context.itemContext[feature.id] ??= {};
         ctx.active = ssDeploy.active.value === uuid;
         ctx.isExpanded = this._expanded.has(feature.id);
@@ -314,7 +314,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       case "rollInitiative":
         return this.actor.rollInitiativeDialog({ event });
       case "rollPowerDie":
-        return this.actor.rollPowerDie({ slot: event.target.dataset.location });
+        return this.actor.rollPowerDie(event.target.dataset.location);
     }
   }
 

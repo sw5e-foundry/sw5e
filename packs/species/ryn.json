@@ -11,25 +11,19 @@
           "key": "system.details.species",
           "value": "Ryn",
           "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "30",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.toolProf.value",
@@ -111,7 +105,7 @@
     "identifier": "ryn",
     "advancement": [
       {
-        "_id": "ZGHpWt3F87e11csJ",
+        "_id": "1KfFfnusOyXie2PE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -133,6 +127,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "QMUd8BWo8Sk1y1fN",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 1
+          },
+          "points": 2
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -177,10 +183,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002072,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CIJAnH2n8sZN4X7n"

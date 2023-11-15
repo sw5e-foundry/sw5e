@@ -8,22 +8,16 @@
       "_id": "yyg9z15jh6tMBTrg",
       "changes": [
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 0,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "30",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.dr.value",
@@ -89,7 +83,7 @@
           "key": "system.details.species",
           "value": "Droid, Class IV",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "flags.sw5e.forceInsensitive",
@@ -153,7 +147,7 @@
     "identifier": "droid-classiv",
     "advancement": [
       {
-        "_id": "F75seGdxzw013aRs",
+        "_id": "1wl0BmEHYBMY1B5k",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -178,6 +172,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1qGa5sFGt3UW1pcb",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -231,10 +237,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002119,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!g757RyHCGYLVqo5d"

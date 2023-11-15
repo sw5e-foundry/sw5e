@@ -5,84 +5,66 @@
   "img": "systems/sw5e/packs/Icons/Species/Lasat.webp",
   "effects": [
     {
-      "_id": "W5MLBoopu6UEzuac",
+      "_id": "LjgyVnQWeAfawcjh",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Lasat",
           "mode": 5,
+          "value": "Lasat",
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.traits.weaponProf.custom",
-          "value": "blaster rifles",
           "mode": 0,
-          "priority": 0
+          "value": "blaster rifles",
+          "priority": 20
         },
         {
           "key": "system.traits.weaponProf.custom",
-          "value": "vibrostaffs",
           "mode": 0,
-          "priority": 0
+          "value": "vibrostaffs",
+          "priority": 20
         },
         {
           "key": "system.attributes.movement.climb",
-          "value": "30",
           "mode": 2,
-          "priority": 20
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "lasat",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.powerfulBuild",
-          "value": "1",
-          "mode": 0,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
+          "key": "system.traits.languages.value",
           "mode": 0,
+          "value": "lasat",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.encumbranceMultiplier",
+          "mode": 2,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -99,12 +81,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Lasat.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.ObArlzuGAnSFkUlj.ActiveEffect.W5MLBoopu6UEzuac"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.ObArlzuGAnSFkUlj",
       "name": "Lasat",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!ObArlzuGAnSFkUlj.W5MLBoopu6UEzuac",
+      "_key": "!items.effects!ObArlzuGAnSFkUlj.LjgyVnQWeAfawcjh",
+      "sort": 0
+    },
+    {
+      "_id": "TLEE6Ci63oP53CuM",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Lasat.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.ObArlzuGAnSFkUlj.ActiveEffect.W5MLBoopu6UEzuac"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.ObArlzuGAnSFkUlj",
+      "name": "Keen Hearing and Sight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!ObArlzuGAnSFkUlj.TLEE6Ci63oP53CuM",
       "sort": 0
     }
   ],
@@ -129,7 +150,7 @@
     "identifier": "lasat",
     "advancement": [
       {
-        "_id": "1QZjGZCEGVLV1typ",
+        "_id": "1qzwQH1Ev8RoTun8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -150,6 +171,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1JZQ0tta6nlfuYH3",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -194,10 +228,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002092,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ObArlzuGAnSFkUlj"

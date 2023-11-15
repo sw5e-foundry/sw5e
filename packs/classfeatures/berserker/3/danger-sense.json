@@ -3,7 +3,38 @@
   "name": "Danger Sense",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.tt5qug0uGnvi19Xi",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Danger Sense",
+      "_id": "0tABhrpbhVs3j44V",
+      "changes": [
+        {
+          "key": "flags.sw5e.dangerSense",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!tt5qug0uGnvi19Xi.0tABhrpbhVs3j44V",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -101,6 +132,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -124,7 +156,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962394,
-    "modifiedTime": 1685840608689,
+    "modifiedTime": 1700066278807,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!tt5qug0uGnvi19Xi"

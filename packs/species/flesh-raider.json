@@ -14,12 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -68,9 +62,15 @@
           "priority": 20
         },
         {
-          "key": "flags.sw5e.forceContention",
+          "key": "flags.sw5e.advantage.ability.save.force.str",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.force.con",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -117,7 +117,7 @@
     "identifier": "fleshraider",
     "advancement": [
       {
-        "_id": "1IK3QUNxD1lkSopW",
+        "_id": "1SNtNANnliKfqYfc",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -139,6 +139,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1Jcmaf8zP5QAcm34",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -183,10 +195,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002131,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!na2GEY0B6fljF9uL"

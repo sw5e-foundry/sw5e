@@ -5,72 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Bith.webp",
   "effects": [
     {
-      "_id": "064LQEqCktTG9phA",
+      "_id": "gTnfCIujqHy3PcrS",
       "changes": [
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.details.species",
-          "value": "Bith",
           "mode": 5,
+          "value": "Bith",
           "priority": 5
         },
         {
           "key": "system.traits.languages.value",
-          "value": "bith",
           "mode": 0,
-          "priority": 0
+          "value": "bith",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.toolProf.value",
-          "value": "music",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.detailOriented",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.programmer",
-          "value": "1",
-          "mode": 5,
+          "value": "music",
           "priority": 20
         }
       ],
@@ -87,12 +57,86 @@
       "icon": "systems/sw5e/packs/Icons/Species/Bith.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k",
       "name": "Bith",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!6tVXIOLALv7F5F4k.064LQEqCktTG9phA",
+      "_key": "!items.effects!6tVXIOLALv7F5F4k.gTnfCIujqHy3PcrS",
+      "sort": 0
+    },
+    {
+      "_id": "JaW7kmJADu0cckOM",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.inv",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Bith.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k",
+      "name": "Detail Oriented - within 5 feet",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!6tVXIOLALv7F5F4k.JaW7kmJADu0cckOM",
+      "sort": 0
+    },
+    {
+      "_id": "5ofYHXAAmxFb8fqE",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Bith.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k.ActiveEffect.064LQEqCktTG9phA"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.6tVXIOLALv7F5F4k",
+      "name": "Keen Hearing and Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!6tVXIOLALv7F5F4k.5ofYHXAAmxFb8fqE",
       "sort": 0
     }
   ],
@@ -117,7 +161,7 @@
     "identifier": "bith",
     "advancement": [
       {
-        "_id": "1yZHfDFmpzaR12UF",
+        "_id": "1nTuJmYiEfeE1ssK",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -139,6 +183,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "wYzo2tDN1ef1ntoO",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -183,10 +240,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002066,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!6tVXIOLALv7F5F4k"

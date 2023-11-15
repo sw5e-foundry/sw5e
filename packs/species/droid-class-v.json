@@ -8,28 +8,22 @@
       "_id": "Z3v7Cj4aSpJg4K8C",
       "changes": [
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.details.species",
           "value": "Droid, Class V",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.size",
           "value": "med",
           "mode": 0,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "30",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.dr.value",
@@ -74,9 +68,9 @@
           "priority": 20
         },
         {
-          "key": "flags.sw5e.powerfulBuild",
-          "value": "1",
-          "mode": 5,
+          "key": "flags.sw5e.encumbranceMultiplier",
+          "value": "+1",
+          "mode": 2,
           "priority": 20
         },
         {
@@ -153,7 +147,7 @@
     "identifier": "droid-classv",
     "advancement": [
       {
-        "_id": "JRp7zsxqwJT1yR2v",
+        "_id": "EFwJhj8KL0x1fHC9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -179,6 +173,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1rDRJjSPcwoz1qZY",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -232,10 +238,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002114,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!dXv4mSmPXasKS0Qf"

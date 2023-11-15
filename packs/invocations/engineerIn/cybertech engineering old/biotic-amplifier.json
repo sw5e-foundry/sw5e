@@ -1,0 +1,102 @@
+{
+  "name": "Biotic Amplifier",
+  "flags": {
+    "sw5e-importer": {
+      "timestamp": "2023-05-30T20:14:19.9961229+00:00",
+      "importer_version": 3,
+      "uid": "Feature.name-biotic_amplifier.source-archetypeinvocation.sourceName-cybertech_engineering_old.level-None"
+    }
+  },
+  "type": "feat",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/ENGR-Action.webp",
+  "system": {
+    "description": {
+      "value": "<p>You integrate a biotic amplifier in your wristpad that increases the potency of your healing tech powers. While wielding this amplifier, when a creature regains hit points from a tech power you cast, you can grant them temporary hit points equal to the amount of tech points spent. This amount can't exceed the number of hit points restored.</p>\n<p>You can use this amplifier a number of times equal to your Intelligence modifier. You regain all expended uses when you complete a short or long rest.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "Engineer (Cybertech Engineering (Old))",
+    "source": "EC",
+    "activation": {
+      "type": "special",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": "",
+      "units": "inst"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": null,
+      "max": "@abilities.int.mod",
+      "per": "sr",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": null,
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "other",
+    "attackBonus": "",
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "power"
+    },
+    "type": {
+      "value": "class",
+      "subtype": "engineerInvocation"
+    },
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "speed": {
+        "space": 300,
+        "turn": 250
+      }
+    }
+  },
+  "effects": [],
+  "_id": "mZ09e52sSmTF5Og6",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.3.1.2.6.3",
+    "coreVersion": "11.308",
+    "createdTime": 1698185225687,
+    "modifiedTime": 1698185225687,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_key": "!items!mZ09e52sSmTF5Og6"
+}

@@ -9,68 +9,56 @@
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Togorian",
           "mode": 5,
+          "value": "Togorian",
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.skills.ste.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "togorese",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.savageAttacks",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.toughness",
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "togorese",
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
           "value": "1",
-          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
           "priority": 20
         }
       ],
@@ -117,7 +105,7 @@
     "identifier": "togorian",
     "advancement": [
       {
-        "_id": "fAOdZY0nspO1lDzh",
+        "_id": "1S4HDNGiGjKK993C",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -137,6 +125,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "pmm4qEN4pFS11CN6",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -181,10 +181,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002106,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!YqhBPIMydXukWNKG"

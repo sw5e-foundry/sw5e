@@ -5,66 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Gran.webp",
   "effects": [
     {
-      "_id": "2cpzxKWagRwrN2wf",
+      "_id": "itZRTygDRiXSQt39",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Gran",
           "mode": 5,
+          "value": "Gran",
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
+          "mode": 5,
           "value": "med",
-          "mode": 0,
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.ins.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 2,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "gran",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "gran",
+          "priority": 20
+        },
+        {
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
           "priority": 20
         }
       ],
@@ -81,12 +63,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Gran.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu.ActiveEffect.2cpzxKWagRwrN2wf"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu",
       "name": "Gran",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!zUPGpaizRcj9ZiOu.2cpzxKWagRwrN2wf",
+      "_key": "!items.effects!zUPGpaizRcj9ZiOu.itZRTygDRiXSQt39",
+      "sort": 0
+    },
+    {
+      "_id": "hGBd9EFJmN9bujvF",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Gran.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu.ActiveEffect.2cpzxKWagRwrN2wf"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.zUPGpaizRcj9ZiOu",
+      "name": "Keen Sight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!zUPGpaizRcj9ZiOu.hGBd9EFJmN9bujvF",
       "sort": 0
     }
   ],
@@ -111,7 +132,7 @@
     "identifier": "gran",
     "advancement": [
       {
-        "_id": "Mon3ffVQEkw1udUn",
+        "_id": "1loZER0aOTZk6DtE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,6 +152,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1Nu83GhQ2KFb1oap",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -175,10 +209,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002150,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!zUPGpaizRcj9ZiOu"

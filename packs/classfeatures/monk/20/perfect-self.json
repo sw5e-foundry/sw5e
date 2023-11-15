@@ -3,7 +3,53 @@
   "name": "Perfect Self",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/MNK-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/MNK-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.z517Qm5VFOUCEYyk",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Perfect Self",
+      "_id": "lvrzOEJia8PaIrn3",
+      "changes": [
+        {
+          "key": "system.abilities.dex.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.dex.value",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.wis.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.wis.value",
+          "mode": 2,
+          "value": "2"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!z517Qm5VFOUCEYyk.lvrzOEJia8PaIrn3",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -101,6 +147,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -124,7 +171,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +207,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962420,
-    "modifiedTime": 1685840608718,
+    "modifiedTime": 1700067476386,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!z517Qm5VFOUCEYyk"

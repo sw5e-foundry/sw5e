@@ -5,72 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Thisspiasian.webp",
   "effects": [
     {
-      "_id": "4WoMle31KAvAHxvk",
+      "_id": "BPpKJqS5i9yfJIHs",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Thisspiasian",
           "mode": 5,
+          "value": "Thisspiasian",
           "priority": 5
         },
         {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.lor.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "thisspiasian",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.inscrutable",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         },
         {
-          "key": "flags.sw5e.trance",
-          "value": "1",
-          "mode": 5,
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "thisspiasian",
           "priority": 20
         },
         {
           "key": "flags.sw5e.extraArms",
-          "value": "1",
           "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -87,12 +63,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Thisspiasian.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.0EcNY9y4DSoYS8Vk.ActiveEffect.4WoMle31KAvAHxvk"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.0EcNY9y4DSoYS8Vk",
       "name": "Thisspiasian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!0EcNY9y4DSoYS8Vk.4WoMle31KAvAHxvk",
+      "_key": "!items.effects!0EcNY9y4DSoYS8Vk.BPpKJqS5i9yfJIHs",
+      "sort": 0
+    },
+    {
+      "_id": "6sFYvuWTUi9YMb9J",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.ability.save.all",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Thisspiasian.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.0EcNY9y4DSoYS8Vk.ActiveEffect.4WoMle31KAvAHxvk"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.0EcNY9y4DSoYS8Vk",
+      "name": "Inscrutable - against effects that read thoughts",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!0EcNY9y4DSoYS8Vk.6sFYvuWTUi9YMb9J",
       "sort": 0
     }
   ],
@@ -117,7 +132,7 @@
     "identifier": "thisspiasian",
     "advancement": [
       {
-        "_id": "Gibyr26yzxKmMaYL",
+        "_id": "1mpagJ85I5guzUsE",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -139,6 +154,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1t7TjZdkPraJ15O0",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -183,10 +211,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002052,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0EcNY9y4DSoYS8Vk"

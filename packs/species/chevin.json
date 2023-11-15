@@ -5,60 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Chevin.webp",
   "effects": [
     {
-      "_id": "xyKlxEBAGLcMBv2n",
+      "_id": "ux3hsIeZ5o8oWfqV",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Chevin",
           "mode": 5,
+          "value": "Chevin",
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "chevin",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
+          "value": "chevin",
           "priority": 20
         }
       ],
@@ -75,12 +57,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Chevin.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.KOwV2N1l4bDeGSlb.ActiveEffect.xyKlxEBAGLcMBv2n"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.KOwV2N1l4bDeGSlb",
       "name": "Chevin",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!KOwV2N1l4bDeGSlb.xyKlxEBAGLcMBv2n",
+      "_key": "!items.effects!KOwV2N1l4bDeGSlb.ux3hsIeZ5o8oWfqV",
+      "sort": 0
+    },
+    {
+      "_id": "RIqvwh6158o9GGyJ",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Chevin.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.KOwV2N1l4bDeGSlb.ActiveEffect.xyKlxEBAGLcMBv2n"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.KOwV2N1l4bDeGSlb",
+      "name": "Keen Hearing",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!KOwV2N1l4bDeGSlb.RIqvwh6158o9GGyJ",
       "sort": 0
     }
   ],
@@ -105,7 +126,7 @@
     "identifier": "chevin",
     "advancement": [
       {
-        "_id": "1hcrs5XEwjuL36oZ",
+        "_id": "1MWEvcFjdzrH1FWT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -125,6 +146,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "3iESv0B0fwk1IzLl",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -169,10 +203,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002082,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KOwV2N1l4bDeGSlb"

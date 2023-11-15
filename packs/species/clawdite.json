@@ -14,12 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -74,8 +68,8 @@
       "name": "Clawdite",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!9wQb9MtRdTrqZK8G.hd9gJJ4PBwD8kWf5",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!9wQb9MtRdTrqZK8G.hd9gJJ4PBwD8kWf5"
     }
   ],
   "folder": null,
@@ -99,7 +93,7 @@
     "identifier": "clawdite",
     "advancement": [
       {
-        "_id": "7wo8eIXzW9Vav3t9",
+        "_id": "3ELKAGKb7wo1Mjmq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,6 +112,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1j119msHI6Bi15RB",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -162,10 +168,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002069,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9wQb9MtRdTrqZK8G"

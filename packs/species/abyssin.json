@@ -8,70 +8,52 @@
       "_id": "JhHAOQyteRjEJhyC",
       "changes": [
         {
-          "key": "system.abilities.con.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.details.species",
-          "value": "Abyssin",
           "mode": 5,
-          "priority": 50
+          "value": "Abyssin",
+          "priority": 5
         },
         {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
-          "priority": 50
+          "value": "med",
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
-          "priority": 50
+          "value": "30",
+          "priority": 5
         },
         {
           "key": "system.skills.sur.value",
-          "value": "1",
           "mode": 4,
-          "priority": 40
-        },
-        {
-          "key": "system.traits.languages.value",
-          "value": "abyssin",
-          "mode": 2,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 2,
+          "value": "abyssin",
+          "priority": 20
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 2,
+          "value": "basic",
           "priority": 20
         },
         {
           "key": "flags.sw5e.techImpaired",
-          "value": "1",
           "mode": 5,
-          "priority": 50
+          "value": "1",
+          "priority": 20
         },
         {
-          "key": "flags.sw5e.savageAttacks",
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
           "value": "1",
-          "mode": 5,
-          "priority": 50
-        },
-        {
-          "key": "flags.sw5e.rapidlyRegenerative",
-          "value": "1",
-          "mode": 5,
-          "priority": 50
+          "priority": 20
         }
       ],
       "disabled": false,
@@ -117,7 +99,7 @@
     "identifier": "abyssin",
     "advancement": [
       {
-        "_id": "1K4MgiL1xLL1vyqJ",
+        "_id": "NsX6ATNp9u61PnwL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -137,6 +119,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1I18Vbm4imRGfV7S",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -181,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002103,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Wt8ZuNA1PUXmKvzS"

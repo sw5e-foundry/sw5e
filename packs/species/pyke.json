@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 0,
@@ -105,7 +93,7 @@
     "identifier": "pyke",
     "advancement": [
       {
-        "_id": "C1p7yLHq6yGgMY9W",
+        "_id": "1226TdReuQ4WTN26",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -125,6 +113,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1FiHSw5wWaz91OZ2",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -169,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002114,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!dDYjW5FVzO3XsKfP"

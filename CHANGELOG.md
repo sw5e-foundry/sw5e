@@ -4,11 +4,42 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1.2.6.5] - 2023-11-15
+
+### Added
+
+- Weapon classes (`carbine`, `polearm`, `sidearm`...).
+- Compendium Browser 'Classification' tab.
+- Mastery, High Mastery, and Grand Mastery proficiency will now set the default roll mode and add the additional rolls when appropriate.
+- Character flags `dangerSense`, `halflingLucky`, `sonicSensitivity`, `twoLivered`.
+- Various advantage and disadvantage character flags, similar to midi-qol. For a full list type `CONFIG.SW5E.midiFlags` in the console.
+- When the system grants (dis)advantage on a roll, a tooltip will mention where it is coming from.
+- Active Effects on most class features.
+
+### Changes
+
+- Art updates.
+- Compendium updates.
+- All feats should now have proper active effects. (Thanks to `Florenc#5173`)
+- All species should now have their ability score improvements granted by advancements instead of active effects.
+- Character flags that grant advantage on saving throws against force/tech powers should now work.
+- `Free Power` renamed to `Ignores Powers Known`.
+
+### Fixed
+
+- Rolling power die in Starship Sheet should once again work.
+- Errors about reading JSON during migration.
+- When making a roll with `Advantage` or `Disadvantage` as the default, the button should now have the proper color.
+
+### Removed
+
+- The following character flags, which had no effect: `agressive`, `amphibious`, `armorIntegration`, `businessSavy`, `canibalize`, `crudeWeaponSpecialist`, `defiant`, `detailOriented`, `enthrallingPheromones`, `foreignBiology`, `furyOfTheSmall`, `grovelCowerAndBeg`, `heatAdaptation`, `inscrutable`, `keenSenses`, `longLimbed`, `maintanenceMode`, `maskOfTheWild`, `multipleHearts`, `naturallyStealthy`, `nimbleAgility`, `nibleEscape`, `nimbleness`, `precognition`, `programmer`, `rapidReconstruction`, `rapidlyRegenerative`, `regenerative`, `savageAttacks`, `shapechanger`, `strongLegged`, `sunlightSensitivity`, `tinker`, `toughness`, `trance`, `unarmedCombatant`, `unsettlingVisage`.
+
 ## [2.3.1.2.6.4] - 2023-10-16
 
 ### Changes
 
-- Art Updates.
+- Art updates.
 
 ### Fixed
 
@@ -112,7 +143,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changes
 
-- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to GreyCouncil#8804).
+- The starship actions, armor, equipment, features, and weapons compendiums have been updated to match the website. (Credits to `GreyCouncil#8804`).
 - Backdrop Icons were moved to `packs/Icons/ItemBackdrop`.
 - Some items that were previously loot (rations, spikes) have been made consumables.
 - Some items that were previously equipment (life support except suits, respirators and rations) have been made loot.

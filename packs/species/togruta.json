@@ -14,12 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.wis.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -105,7 +99,7 @@
     "identifier": "togruta",
     "advancement": [
       {
-        "_id": "CSxePSSEwBf1H7vt",
+        "_id": "17uH1FSyF1QQ1dwU",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,6 +118,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "4J6hz4MdLwMBJF9F",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -168,10 +174,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
+    "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.308",
     "createdTime": 1674494002097,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1698794204429,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!R3hUHLGX9szFZCbx"

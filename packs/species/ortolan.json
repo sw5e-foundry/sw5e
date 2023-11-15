@@ -5,78 +5,54 @@
   "img": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
   "effects": [
     {
-      "_id": "Dh3FLNKo1HFJ7pqF",
+      "_id": "2qQDQApwHSwk85jt",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Ortolan",
           "mode": 5,
+          "value": "Ortolan",
           "priority": 5
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.cha.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "sm",
           "mode": 0,
+          "value": "sm",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "25",
           "mode": 5,
+          "value": "25",
           "priority": 5
         },
         {
           "key": "system.skills.prf.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "ortolan",
           "mode": 0,
-          "priority": 0
+          "value": "ortolan",
+          "priority": 20
         },
         {
           "key": "system.traits.toolProf.value",
-          "value": "music",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.grovelCowerAndBeg",
-          "value": "1",
-          "mode": 5,
-          "priority": 20
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
+          "value": "music",
           "priority": 20
         },
         {
           "key": "flags.sw5e.undersized",
-          "value": "1",
           "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -93,12 +69,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB.ActiveEffect.Dh3FLNKo1HFJ7pqF"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB",
       "name": "Ortolan",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!sUIVVJzeUIAm51ZB.Dh3FLNKo1HFJ7pqF",
+      "_key": "!items.effects!sUIVVJzeUIAm51ZB.2qQDQApwHSwk85jt",
+      "sort": 0
+    },
+    {
+      "_id": "LtZ1px6YzHzoE10s",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Ortolan.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB.ActiveEffect.Dh3FLNKo1HFJ7pqF"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.sUIVVJzeUIAm51ZB",
+      "name": "Keen Hearing and Smell",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!sUIVVJzeUIAm51ZB.LtZ1px6YzHzoE10s",
       "sort": 0
     }
   ],
@@ -123,7 +138,7 @@
     "identifier": "ortolan",
     "advancement": [
       {
-        "_id": "1nHf9EQlzWyQ1FCY",
+        "_id": "wIsEqVxXdHK1x9UG",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -145,6 +160,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "Igm31SqIr3p1rkgM",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "cha": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -189,10 +217,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002139,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!sUIVVJzeUIAm51ZB"

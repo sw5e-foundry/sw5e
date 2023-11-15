@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.dex.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 0,
@@ -50,7 +38,7 @@
           "priority": 0
         },
         {
-          "key": "flags.sw5e.closedMind",
+          "key": "flags.sw5e.advantage.ability.save.force.wis",
           "value": "1",
           "mode": 5,
           "priority": 20
@@ -65,6 +53,12 @@
           "key": "flags.sw5e.enthrallingPheromones",
           "value": "1",
           "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.force.cha",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -111,7 +105,7 @@
     "identifier": "falleen",
     "advancement": [
       {
-        "_id": "12LlfiD2Nba81tOQ",
+        "_id": "162geuhzytBB1Crq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,6 +125,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "4WkVblOLLKcgOwf3",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "cha": 2,
+            "dex": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -175,10 +182,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002150,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!ytbUrJGQL1JCiaEi"

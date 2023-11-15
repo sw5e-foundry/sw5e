@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -68,9 +56,15 @@
           "priority": 5
         },
         {
-          "key": "flags.sw5e.techResistance",
+          "key": "flags.sw5e.advantage.ability.save.tech.dex",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.tech.int",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -117,7 +111,7 @@
     "identifier": "duros",
     "advancement": [
       {
-        "_id": "1ILH9jDP7hWX15US",
+        "_id": "1h3IuXsMa25lHsC8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -138,6 +132,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "QwjGJe1nr1x1CNQ1",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -182,10 +189,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002079,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JKY9oduwDnq2aYJZ"

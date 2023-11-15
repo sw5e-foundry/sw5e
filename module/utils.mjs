@@ -184,14 +184,13 @@ export async function preloadHandlebarsTemplates() {
     "systems/sw5e/templates/advancement/parts/advancement-power-config.hbs",
 
     // Compendium Browser Partials
-    "systems/sw5e/templates/apps/compendium-browser/filters.hbs"
+    "systems/sw5e/templates/apps/compendium-browser/filters.hbs",
     // "systems/sw5e/templates/apps/compendium-browser/browser-settings.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/action.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/hazard.hbs",
-    // "systems/sw5e/templates/apps/compendium-browser/partials/spell.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/bestiary.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/equipment.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/feat.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/maneuver.hbs",
+    "systems/sw5e/templates/apps/compendium-browser/partials/power.hbs"
   ];
 
   const paths = {};
@@ -559,16 +558,18 @@ export function fontAwesomeIcon(glyph, style = "solid") {
  * Querries from parent
  * @param {HTMLElement} parent
  * @param {string} selectors
+ * @returns {HTMLElement} Result of the query
  */
 export function htmlQuery(parent, selectors) {
-    if (!(parent instanceof Element || parent instanceof Document)) return null;
-    return parent.querySelector(selectors);
+  if (!(parent instanceof Element || parent instanceof Document)) return null;
+  return parent.querySelector(selectors);
 }
 
 /**
  * Querries from parent
  * @param {HTMLElement} parent
  * @param {string} selectors
+ * @returns {HTMLElement} Result of the query
  */
 export function htmlQueryAll(parent, selectors) {
   if (!(parent instanceof Element || parent instanceof Document)) return [];
@@ -577,8 +578,9 @@ export function htmlQueryAll(parent, selectors) {
 
 /**
  * Check if a key is present in a given object in a type safe way
- * @param obj The object to check
- * @param key The key to check
+ * @param {object} obj The object to check
+ * @param {string|number} key The key to check
+ * @returns {boolean}
  */
 export function objectHasKey(obj, key) {
   return (typeof key === "string" || typeof key === "number") && key in obj;
@@ -586,8 +588,7 @@ export function objectHasKey(obj, key) {
 
 /**
  * Check if a value is a non-null object
- * @param {unknown}
- * @param value
+ * @param {unknown} value
  * @returns {boolean}
  */
 export function isObject(value) {
@@ -599,7 +600,7 @@ export function isObject(value) {
  *
  * @param {string[]} [types]          The actor types the function should take into consideration.
  * @param {boolean} [useOwnCharacter] If true, the function will append the user's own character to the list of collected actors.
- * @returns An array of Actor5e elements according to the aforementioned filters.
+ * @returns {Actors5e[]} An array of Actor5e elements according to the aforementioned filters.
  */
 export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
   const actors = canvas.tokens.controlled
@@ -614,11 +615,11 @@ export function getSelectedOrOwnActors(types, useOwnCharacter = true) {
 
 /**
  * Composes multiple regex objects into a single one.
- * 
+ *
  * @param {string} flags               The regex flags of the composed object.
  * @param {RegExp[]} regexes           The regex objects to compose.
  * @returns {RegExp}                   The composed regex object.
  */
 export function getComposedRegex(flags, ...regexes) {
-  return new RegExp("(" + regexes.map(regex => regex.source).join("|") + ")", flags ?? "");
+  return new RegExp(`(${regexes.map(regex => regex.source).join("|")})`, flags ?? "");
 }

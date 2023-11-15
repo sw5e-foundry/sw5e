@@ -9,74 +9,56 @@
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Klatooinian",
           "mode": 5,
+          "value": "Klatooinian",
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.itm.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.skills.lor.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "basic",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
+          "mode": 0,
           "value": "klatooinian",
-          "mode": 0,
-          "priority": 0
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "huttese",
           "mode": 0,
-          "priority": 0
+          "value": "huttese",
+          "priority": 20
         },
         {
-          "key": "flags.sw5e.toughness",
-          "value": "1",
-          "mode": 5,
+          "key": "system.attributes.hp.bonuses.level",
+          "mode": 2,
+          "value": "+1",
           "priority": 20
         }
       ],
@@ -123,7 +105,7 @@
     "identifier": "klatooinian",
     "advancement": [
       {
-        "_id": "e3nXqFnBYNLTrIRA",
+        "_id": "lvQNjnmS8TphXQ90",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -143,6 +125,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "jvPoVtcY9xJ1BhSB",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "wis": 1
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -187,10 +181,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002137,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!qEBkequEiXsa9YbE"

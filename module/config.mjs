@@ -2067,14 +2067,36 @@ preLocalize("powerTags", { keys: ["label", "abbr"] });
 /* -------------------------------------------- */
 
 /**
+ * Schools to which a force power can belong.
+ * @enum {string}
+ */
+SW5E.powerSchoolsForce = {
+  lgt: "SW5E.SchoolLgt",
+  uni: "SW5E.SchoolUni",
+  drk: "SW5E.SchoolDrk",
+};
+preLocalize("powerSchoolsForce");
+
+/* -------------------------------------------- */
+
+/**
+ * Schools to which a tech power can belong.
+ * @enum {string}
+ */
+SW5E.powerSchoolsTech = {
+  tec: "SW5E.SchoolTec",
+};
+preLocalize("powerSchoolsTech");
+
+/* -------------------------------------------- */
+
+/**
  * Schools to which a power can belong.
  * @enum {string}
  */
 SW5E.powerSchools = {
-  lgt: "SW5E.SchoolLgt",
-  uni: "SW5E.SchoolUni",
-  drk: "SW5E.SchoolDrk",
-  tec: "SW5E.SchoolTec",
+  ...SW5E.powerSchoolsForce,
+  ...SW5E.powerSchoolsTech,
   enh: "SW5E.SchoolEnh"
 };
 preLocalize("powerSchools");
@@ -2254,6 +2276,40 @@ SW5E.weaponSizes = {
   grg: "SW5E.SizeGargantuan"
 };
 preLocalize("weaponSizes");
+
+/**
+ * The set of melee weapon classifications.
+ * @enum {string}
+ */
+SW5E.meleeWeaponClasses = {
+  blade: "SW5E.WeaponClassBlade",
+  crushing: "SW5E.WeaponClassCrushing",
+  polearm: "SW5E.WeaponClassPolearm",
+  trip: "SW5E.WeaponClassTrip"
+};
+preLocalize("meleeWeaponClasses");
+
+/**
+ * The set of ranged weapon classifications.
+ * @enum {string}
+ */
+SW5E.rangedWeaponClasses = {
+  carbine: "SW5E.WeaponClassCarbine",
+  heavy: "SW5E.WeaponClassHeavy",
+  rifle: "SW5E.WeaponClassRifle",
+  sidearm: "SW5E.WeaponClassSidearm"
+};
+preLocalize("rangedWeaponClasses");
+
+/**
+ * The set of weapon classifications.
+ * @enum {string}
+ */
+SW5E.weaponClasses = {
+  ...SW5E.meleeWeaponClasses,
+  ...SW5E.rangedWeaponClasses
+};
+preLocalize("weaponClasses");
 
 /* -------------------------------------------- */
 
@@ -3628,86 +3684,254 @@ preLocalize("traits", { key: "label" });
 
 /* -------------------------------------------- */
 
+SW5E.midiFlags = {
+  // Attacks
+  "advantage.all": {
+    name: "SW5E.CharacterFlags.Advantage.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  "advantage.attack.all": {
+    name: "SW5E.CharacterFlags.Advantage.Attack.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+    `advantage.attack.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+    `advantage.attack.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+  "grants.advantage.attack.all": {
+    name: "SW5E.CharacterFlags.Grants.Advantage.Attack.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+    `grants.advantage.attack.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Grants.Advantage.Attack.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+
+  // Critical
+  // "critical.all": {
+  //   name: "SW5E.CharacterFlags.Critical.All.Name",
+  //   section: "midiFlags",
+  //   midiClone: true,
+  //   type: Boolean
+  // },
+  // ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  //   `critical.${key}`,
+  //   {
+  //     name: `SW5E.CharacterFlags.Critical.Attack.${key}.Name`,
+  //     section: "midiFlags",
+  //     midiClone: true,
+  //     type: Boolean
+  //   }
+  // ]))),
+  // "noCritical.all": {
+  //   name: "SW5E.CharacterFlags.NoCritical.All.Name",
+  //   section: "midiFlags",
+  //   midiClone: true,
+  //   type: Boolean
+  // },
+  // ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  //   `noCritical.${key}`,
+  //   {
+  //     name: `SW5E.CharacterFlags.NoCritical.Attack.${key}.Name`,
+  //     section: "midiFlags",
+  //     midiClone: true,
+  //     type: Boolean
+  //   }
+  // ]))),
+  // "grants.critical.all": {
+  //   name: "SW5E.CharacterFlags.Grants.Critical.All.Name",
+  //   section: "midiFlags",
+  //   midiClone: true,
+  //   type: Boolean
+  // },
+  // ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  //   `grants.critical.${key}`,
+  //   {
+  //     name: `SW5E.CharacterFlags.Grants.Critical.Attack.${key}.Name`,
+  //     section: "midiFlags",
+  //     midiClone: true,
+  //     type: Boolean
+  //   }
+  // ]))),
+  // "fail.critical.all": {
+  //   name: "SW5E.CharacterFlags.Fail.Critical.All.Name",
+  //   section: "midiFlags",
+  //   midiClone: true,
+  //   type: Boolean
+  // },
+  // ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  //   `fail.critical.${key}`,
+  //   {
+  //     name: `SW5E.CharacterFlags.Fail.Critical.Attack.${key}.Name`,
+  //     section: "midiFlags",
+  //     midiClone: true,
+  //     type: Boolean
+  //   }
+  // ]))),
+
+  // Ability checks
+  "advantage.ability.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  "advantage.ability.check.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Check.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+    `advantage.ability.check.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Check.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+
+  // Skill Checks
+  "advantage.skill.all": {
+    name: "SW5E.CharacterFlags.Advantage.Skill.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.skills).map(((key) => [
+    `advantage.skill.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+
+  // Tool Checks
+  "advantage.tool.all": {
+    name: "SW5E.CharacterFlags.Advantage.Tool.All.Name",
+    section: "midiFlags",
+    midiClone: false,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map(((key) => [
+    `advantage.tool.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Tool.${key}.Name`,
+      section: "midiFlags",
+      midiClone: false,
+      type: Boolean
+    }
+  ]))),
+
+  // Saving Throws
+  "advantage.ability.save.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.All.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+    `advantage.ability.save.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Save.${key}.Name`,
+      section: "midiFlags",
+      midiClone: true,
+      type: Boolean
+    }
+  ]))),
+  "advantage.ability.save.tech.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.All.Name",
+    section: "midiFlags",
+    midiClone: false,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+    `advantage.ability.save.tech.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Save.Tech.${key}.Name`,
+      section: "midiFlags",
+      midiClone: false,
+      type: Boolean
+    }
+  ]))),
+  "advantage.ability.save.force.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.All.Name",
+    section: "midiFlags",
+    midiClone: false,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+    `advantage.ability.save.force.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Save.Force.${key}.Name`,
+      section: "midiFlags",
+      midiClone: false,
+      type: Boolean
+    }
+  ]))),
+  "advantage.deathSave": {
+    name: "SW5E.CharacterFlags.Advantage.DeathSave.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  }
+};
+for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
+  if (!id.startsWith("advantage")) continue;
+  SW5E.midiFlags[id.replace("advantage", "disadvantage")] = {
+    name: flag.name.replace("Advantage", "Disadvantage"),
+    section: flag.section,
+    midiClone: flag.midiClone,
+    type: flag.type
+  };
+}
+for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
+  SW5E.midiFlags["situational." + id] = {
+    name: flag.name.replace("CharacterFlags", "CharacterFlags.Situational"),
+    section: flag.section,
+    midiClone: false,
+    type: flag.type
+  };
+}
+preLocalize("midiFlags", { keys: ["name", "condition", "section"] });
+
 /**
  * Special character flags.
  * * @enum {CharacterFlagConfig}
  */
 SW5E.characterFlags = {
-  adaptiveResilience: {
-    name: "SW5E.FlagsAdaptiveResilience",
-    hint: "SW5E.FlagsAdaptiveResilienceHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  aggressive: {
-    name: "SW5E.FlagsAggressive",
-    hint: "SW5E.FlagsAggressiveHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  amphibious: {
-    name: "SW5E.FlagsAmphibious",
-    hint: "SW5E.FlagsAmphibiousHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  armorIntegration: {
-    name: "SW5E.FlagsArmorIntegration",
-    hint: "SW5E.FlagsArmorIntegrationHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  businessSavvy: {
-    name: "SW5E.FlagsBusinessSavvy",
-    hint: "SW5E.FlagsBusinessSavvyHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  cannibalize: {
-    name: "SW5E.FlagsCannibalize",
-    hint: "SW5E.FlagsCannibalizeHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  closedMind: {
-    name: "SW5E.FlagsClosedMind",
-    hint: "SW5E.FlagsClosedMindHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  crudeWeaponSpecialists: {
-    name: "SW5E.FlagsCrudeWeaponSpecialists",
-    hint: "SW5E.FlagsCrudeWeaponSpecialistsHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  defiant: {
-    name: "SW5E.FlagsDefiant",
-    hint: "SW5E.FlagsDefiantHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  detailOriented: {
-    name: "SW5E.FlagsDetailOriented",
-    hint: "SW5E.FlagsDetailOrientedHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  enthrallingPheromones: {
-    name: "SW5E.FlagsEnthrallingPheromones",
-    hint: "SW5E.FlagsEnthrallingPheromonesHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
+  ...SW5E.midiFlags,
   extraArms: {
     name: "SW5E.FlagsExtraArms",
     hint: "SW5E.FlagsExtraArmsHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  forceContention: {
-    name: "SW5E.FlagsForceContention",
-    hint: "SW5E.FlagsForceContentionHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3717,105 +3941,9 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  foreignBiology: {
-    name: "SW5E.FlagsForeignBiology",
-    hint: "SW5E.FlagsForeignBiologyHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  furyOfTheSmall: {
-    name: "SW5E.FlagsFuryOfTheSmall",
-    hint: "SW5E.FlagsFuryOfTheSmallHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  grovelCowerAndBeg: {
-    name: "SW5E.FlagsGrovelCowerAndBeg",
-    hint: "SW5E.FlagsGrovelCowerAndBegHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  inscrutable: {
-    name: "SW5E.FlagsInscrutable",
-    hint: "SW5E.FlagsInscrutableHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  keenSenses: {
-    name: "SW5E.FlagsKeenSenses",
-    hint: "SW5E.FlagsKeenSensesHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  longlimbed: {
-    name: "SW5E.FlagsLongLimbed",
-    hint: "SW5E.FlagsLongLimbedHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  maintenanceMode: {
-    name: "SW5E.FlagsMaintenanceMode",
-    hint: "SW5E.FlagsMaintenanceModeHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  maskOfTheWild: {
-    name: "SW5E.FlagsMaskOfTheWild",
-    hint: "SW5E.FlagsMaskOfTheWildHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  multipleHearts: {
-    name: "SW5E.FlagsMultipleHearts",
-    hint: "SW5E.FlagsMultipleHeartsHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  naturallyStealthy: {
-    name: "SW5E.FlagsNaturallyStealthy",
-    hint: "SW5E.FlagsNaturallyStealthyHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  nimbleAgility: {
-    name: "SW5E.FlagsNimbleAgility",
-    hint: "SW5E.FlagsNimbleAgilityHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  nimbleEscape: {
-    name: "SW5E.FlagsNimbleEscape",
-    hint: "SW5E.FlagsNimbleEscapeHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  nimbleness: {
-    name: "SW5E.FlagsNimbleness",
-    hint: "SW5E.FlagsNimblenessHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  tavernBrawlerFeat: {
-    name: "SW5E.FlagsTavernBrawler",
-    hint: "SW5E.FlagsTavernBrawlerHint",
-    section: "SW5E.Feats",
-    type: Boolean
-  },
   pintsized: {
     name: "SW5E.FlagsPintsized",
     hint: "SW5E.FlagsPintsizedHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  precognition: {
-    name: "SW5E.FlagsPrecognition",
-    hint: "SW5E.FlagsPrecognitionHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  programmer: {
-    name: "SW5E.FlagsProgrammer",
-    hint: "SW5E.FlagsProgrammerHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3825,51 +3953,9 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  rapidReconstruction: {
-    name: "SW5E.FlagsRapidReconstruction",
-    hint: "SW5E.FlagsRapidReconstructionHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  rapidlyRegenerative: {
-    name: "SW5E.FlagsRapidlyRegenerative",
-    hint: "SW5E.FlagsRapidlyRegenerativeHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  regenerative: {
-    name: "SW5E.FlagsRegenerative",
-    hint: "SW5E.FlagsRegenerativeHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  savageAttacks: {
-    name: "SW5E.FlagsSavageAttacks",
-    hint: "SW5E.FlagsSavageAttacksHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  shapechanger: {
-    name: "SW5E.FlagsShapechanger",
-    hint: "SW5E.FlagsShapechangerHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  strongLegged: {
-    name: "SW5E.FlagsStrongLegged",
-    hint: "SW5E.FlagsStrongLeggedHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  sunlightSensitivity: {
-    name: "SW5E.FlagsSunlightSensitivity",
-    hint: "SW5E.FlagsSunlightSensitivityHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  surpriseAttack: {
-    name: "SW5E.FlagsSurpriseAttack",
-    hint: "SW5E.FlagsSurpriseAttackHint",
+  sonicSensitivity: {
+    name: "SW5E.FlagsSonicSensitivity",
+    hint: "SW5E.FlagsSonicSensitivityHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3879,33 +3965,10 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  techResistance: {
-    name: "SW5E.FlagsTechResistance",
-    hint: "SW5E.FlagsTechResistanceHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  tinker: {
-    name: "SW5E.FlagsTinker",
-    hint: "SW5E.FlagsTinkerHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  toughness: {
-    name: "SW5E.FlagsToughness",
-    hint: "SW5E.FlagsToughnessHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  trance: {
-    name: "SW5E.FlagsTrance",
-    hint: "SW5E.FlagsTranceHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  unarmedCombatant: {
-    name: "SW5E.FlagsUnarmedCombatant",
-    hint: "SW5E.FlagsUnarmedCombatantHint",
+  twoLivered: {
+    name: "SW5E.FlagsTwoLivered",
+    hint: "SW5E.FlagsTwoLiveredHint",
+    condition: "SW5E.FlagsTwoLiveredCondition",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -3915,10 +3978,17 @@ SW5E.characterFlags = {
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
-  unsettlingVisage: {
-    name: "SW5E.FlagsUnsettlingVisage",
-    hint: "SW5E.FlagsUnsettlingVisageHint",
-    section: "SW5E.SpeciesTraits",
+  dangerSense: {
+    name: "SW5E.FlagsDangerSense",
+    hint: "SW5E.FlagsDangerSenseHint",
+    abilities: ["dex"],
+    section: "SW5E.Features",
+    type: Boolean
+  },
+  halflingLucky: {
+    name: "SW5E.FlagsHalflingLucky",
+    hint: "SW5E.FlagsHalflingLuckyHint",
+    section: "SW5E.Features",
     type: Boolean
   },
   initiativeAdv: {
@@ -3956,6 +4026,12 @@ SW5E.characterFlags = {
     name: "SW5E.FlagsRemarkableAthlete",
     hint: "SW5E.FlagsRemarkableAthleteHint",
     abilities: ["str", "dex", "con"],
+    section: "SW5E.Features",
+    type: Boolean
+  },
+  tavernBrawlerFeat: {
+    name: "SW5E.FlagsTavernBrawler",
+    hint: "SW5E.FlagsTavernBrawlerHint",
     section: "SW5E.Features",
     type: Boolean
   },
@@ -4031,7 +4107,7 @@ SW5E.characterFlags = {
     placeholder: 1
   }
 };
-preLocalize("characterFlags", { keys: ["name", "hint", "section"] });
+preLocalize("characterFlags", { keys: ["name", "hint", "condition", "section"] });
 
 /**
  * Flags allowed on actors. Any flags not in the list may be deleted during a migration.

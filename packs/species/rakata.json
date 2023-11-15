@@ -14,18 +14,6 @@
           "priority": 5
         },
         {
-          "key": "system.abilities.str.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.int.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "med",
           "mode": 5,
@@ -68,9 +56,9 @@
           "priority": 0
         },
         {
-          "key": "flags.sw5e.adaptiveResilience",
+          "key": "flags.sw5e.advantage.ability.save.tech.str",
           "value": "1",
-          "mode": 0,
+          "mode": 5,
           "priority": 20
         },
         {
@@ -89,6 +77,12 @@
           "key": "flags.sw5e.forceInsensitive",
           "value": "1",
           "mode": 0,
+          "priority": 20
+        },
+        {
+          "key": "flags.sw5e.advantage.ability.save.tech.con",
+          "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -135,7 +129,7 @@
     "identifier": "rakata",
     "advancement": [
       {
-        "_id": "1iKDFJfGAs4J15dJ",
+        "_id": "1dDhtCMRPgVh61c2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -159,6 +153,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "uqYNV8rpxkv11yMJ",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "str": 2,
+            "int": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -203,10 +210,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002080,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JPy6am7eCdhK0zKf"

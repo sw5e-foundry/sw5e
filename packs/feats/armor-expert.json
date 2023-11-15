@@ -3,7 +3,132 @@
   "name": "Armor Expert",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Armor Expert - Light Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "2pC4zqFBjb1Qo0dq",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "lgt",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.2pC4zqFBjb1Qo0dq",
+      "sort": 0
+    },
+    {
+      "name": "Armor Expert - Light Armor Effect",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "NJw9puV3IveuaU8j",
+      "changes": [
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 2,
+          "value": "5",
+          "priority": 5
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.NJw9puV3IveuaU8j",
+      "sort": 0
+    },
+    {
+      "name": "Armor Expert - Medium Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "6m6SxonZ0nLrBrCe",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "med",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.6m6SxonZ0nLrBrCe",
+      "sort": 0
+    },
+    {
+      "name": "Armor Expert - Heavy Armor Prof",
+      "icon": "systems/sw5e/packs/Icons/Feats/ArmorExpert.webp",
+      "origin": "Compendium.sw5e.feats.Item.TVHebhZpaHYvZifT",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": true,
+      "_id": "t64LLT7W4lLpamEF",
+      "changes": [
+        {
+          "key": "system.traits.armorProf.value",
+          "mode": 2,
+          "value": "hvy",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!TVHebhZpaHYvZifT.t64LLT7W4lLpamEF",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -105,7 +230,7 @@
     "target": {
       "value": null,
       "width": null,
-      "units": "",
+      "units": null,
       "type": ""
     },
     "range": {
@@ -125,7 +250,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +285,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493966796,
-    "modifiedTime": 1693532143522,
+    "modifiedTime": 1699635157655,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!TVHebhZpaHYvZifT"

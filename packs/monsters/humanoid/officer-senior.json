@@ -30,6 +30,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -198,6 +199,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -261,6 +263,7 @@
           "type": null
         },
         "weaponType": "natural",
+        "weaponClass": "",
         "baseItem": "",
         "ammo": {
           "target": null,
@@ -366,6 +369,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": "",
           "width": null,
@@ -523,6 +527,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -709,12 +714,14 @@
             "startTurn": null
           },
           "icon": "systems/sw5e/packs/Icons/monsters/227_-_Officer_2C_Junior/avatar.webp",
-          "label": "Aura of Command",
           "origin": "Actor.oz1MItZ6zknCWBbl.Item.UYlxnuMo4uLcJTYV",
           "tint": null,
           "transfer": true,
-          "sort": 0,
-          "_key": "!actors.items.effects!bqJcqZatDW4AsgRq.7ajwcD60NJOSGpI7.Pwq0j7VG4ePDGAWl"
+          "name": "Aura of Command",
+          "description": "",
+          "statuses": [],
+          "_key": "!actors.items.effects!bqJcqZatDW4AsgRq.7ajwcD60NJOSGpI7.Pwq0j7VG4ePDGAWl",
+          "sort": 0
         }
       ],
       "folder": null,
@@ -736,6 +743,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -917,6 +925,7 @@
           "units": ""
         },
         "cover": null,
+        "crewed": false,
         "target": {
           "value": null,
           "width": null,
@@ -1155,12 +1164,14 @@
         "turns": null
       },
       "icon": "systems/sw5e/packs/Icons/monsters/227_-_Officer_2C_Junior/avatar.webp",
-      "label": "Aura of Command",
       "origin": "Actor.oz1MItZ6zknCWBbl.Item.7ajwcD60NJOSGpI7",
       "tint": null,
       "transfer": true,
-      "sort": 0,
-      "_key": "!actors.effects!bqJcqZatDW4AsgRq.pQaRNbsGVG3shk9W"
+      "name": "Aura of Command",
+      "description": "",
+      "statuses": [],
+      "_key": "!actors.effects!bqJcqZatDW4AsgRq.pQaRNbsGVG3shk9W",
+      "sort": 0
     }
   ],
   "folder": null,
@@ -1176,6 +1187,7 @@
       "str": {
         "value": 10,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1191,6 +1203,7 @@
       "dex": {
         "value": 12,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1206,6 +1219,7 @@
       "con": {
         "value": 12,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1221,6 +1235,7 @@
       "int": {
         "value": 16,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1236,6 +1251,7 @@
       "wis": {
         "value": 11,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1251,6 +1267,7 @@
       "cha": {
         "value": 13,
         "proficient": 0,
+        "max": null,
         "bonuses": {
           "check": "",
           "save": ""
@@ -1714,6 +1731,7 @@
         "passive": 13
       }
     },
+    "tools": {},
     "powers": {
       "power1": {
         "fvalue": 0,
@@ -1921,14 +1939,16 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": []
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493984300,
-    "modifiedTime": 1685840636948,
+    "modifiedTime": 1699591677389,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!actors!bqJcqZatDW4AsgRq"

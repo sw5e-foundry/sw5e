@@ -5,60 +5,54 @@
   "img": "systems/sw5e/packs/Icons/Species/Esh-Kha.webp",
   "effects": [
     {
-      "_id": "aUdPMqzH9ntC1KQB",
+      "_id": "ffzoK411b5xIiB1l",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Esh-kha",
           "mode": 5,
+          "value": "Esh-kha",
           "priority": 5
         },
         {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.skills.inv.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "kharan",
           "mode": 0,
-          "priority": 0
+          "value": "kharan",
+          "priority": 20
         },
         {
-          "key": "flags.sw5e.savageAttacks",
-          "value": "1",
-          "mode": 0,
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
+          "value": "+1",
           "priority": 20
         }
       ],
@@ -75,12 +69,16 @@
       "icon": "systems/sw5e/packs/Icons/Species/Esh-Kha.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.y9srMEmADsqiQNI9.ActiveEffect.aUdPMqzH9ntC1KQB"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.y9srMEmADsqiQNI9",
       "name": "Esh-Kha",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!y9srMEmADsqiQNI9.aUdPMqzH9ntC1KQB",
+      "_key": "!items.effects!y9srMEmADsqiQNI9.ffzoK411b5xIiB1l",
       "sort": 0
     }
   ],
@@ -105,7 +103,7 @@
     "identifier": "esh-kha",
     "advancement": [
       {
-        "_id": "1vrRu9ilxSAe1t5d",
+        "_id": "90Zt3pnL7dQ6W6HJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -127,6 +125,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "8nIx3YJpH571KUbV",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 1
+          },
+          "points": 2
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -171,10 +181,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002148,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!y9srMEmADsqiQNI9"

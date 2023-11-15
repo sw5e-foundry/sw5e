@@ -3,7 +3,38 @@
   "name": "Reliable Talent",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/OPRT-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.SICFNyKCxZ45o0QE",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Reliable Talent",
+      "_id": "nJYgAqb75QbLWCrK",
+      "changes": [
+        {
+          "key": "system.sw5e.flags.reliableTalent",
+          "mode": 5,
+          "value": "1"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!SICFNyKCxZ45o0QE.nJYgAqb75QbLWCrK",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -101,6 +132,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -124,7 +156,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +192,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962320,
-    "modifiedTime": 1685840608589,
+    "modifiedTime": 1700067554073,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!SICFNyKCxZ45o0QE"

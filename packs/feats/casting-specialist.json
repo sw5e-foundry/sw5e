@@ -3,7 +3,119 @@
   "name": "Casting Specialist",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Feats/CastingSpecialist.webp",
-  "effects": [],
+  "effects": [
+    {
+      "name": "Casting Specialist - Both",
+      "icon": "systems/sw5e/packs/Icons/Feats/CastingSpecialist.webp",
+      "origin": "Compendium.sw5e.feats.Item.msmwv2EKYVQdcBUo",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "Z471rnHOhEOIG8jX",
+      "changes": [
+        {
+          "key": "system.bonuses.mpak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.bonuses.rpak.attack",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!msmwv2EKYVQdcBUo.Z471rnHOhEOIG8jX",
+      "sort": 0
+    },
+    {
+      "name": "Casting Specialist - Force",
+      "icon": "systems/sw5e/packs/Icons/Feats/CastingSpecialist.webp",
+      "origin": "Compendium.sw5e.feats.Item.msmwv2EKYVQdcBUo",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "aMsqMcYmFcDg0Jba",
+      "changes": [
+        {
+          "key": "system.bonuses.power.forceDarkDC",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.bonuses.power.forceLightDC",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        },
+        {
+          "key": "system.bonuses.power.forceUnivDC",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!msmwv2EKYVQdcBUo.aMsqMcYmFcDg0Jba",
+      "sort": 0
+    },
+    {
+      "name": "Casting Specialist - Tech",
+      "icon": "systems/sw5e/packs/Icons/Feats/CastingSpecialist.webp",
+      "origin": "Compendium.sw5e.feats.Item.msmwv2EKYVQdcBUo",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "transfer": true,
+      "disabled": false,
+      "_id": "sR1iYoRbyb1A8zfs",
+      "changes": [
+        {
+          "key": "system.bonuses.power.techDC",
+          "mode": 2,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "description": "",
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!msmwv2EKYVQdcBUo.sR1iYoRbyb1A8zfs",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -105,7 +217,7 @@
     "target": {
       "value": null,
       "width": null,
-      "units": "",
+      "units": null,
       "type": ""
     },
     "range": {
@@ -125,7 +237,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +272,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "10.303",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493966827,
-    "modifiedTime": 1693532143528,
+    "modifiedTime": 1699295286005,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!msmwv2EKYVQdcBUo"

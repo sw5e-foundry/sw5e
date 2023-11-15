@@ -2,28 +2,28 @@
   "_id": "3QsYHEnhJ3Hty7F2",
   "name": "Assassinate",
   "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Action.webp",
+  "img": "systems/sw5e/packs/Icons/Class%20Features/OPRT-ARCH-Passive.webp",
   "effects": [],
   "folder": null,
   "sort": 0,
   "flags": {
     "sw5e-importer": {
-      "timestamp": "2023-03-09T01:51:57.9894189+00:00",
+      "timestamp": "2022-08-17T00:39:51.1248481+00:00",
       "importer_version": 3,
       "uid": "Feature.name-assassinate.source-archetype.sourceName-lethality_practice.level-3"
     }
   },
   "system": {
     "description": {
-      "value": "<p><em><strong>Lethality Practice:</strong> 3rd level</em></p>\n<p>When you hit a creature that you are hidden from with a weapon attack, you can choose to turn that hit into a critical hit. If the attack reduces the creature to 0 hit points, it does not automatically reveal your presence to any remaining creatures. Make a Dexterity (Stealth) check contested by the creatures' Wisdom (Perception) check. On a success, you remain hidden. If you would already be able to make a Dexterity (Stealth) check to remain hidden as part of the attack, you instead gain advantage on the check.</p>\n<p>You can use this feature once. You gain an additional use at 9th and 17th level. You regain all expended uses when you finish a long rest.</p>",
+      "value": "<p><em><strong>Lethality Practice:</strong> 3rd level</em></p>\n<p>You are at your deadliest when you get the drop on your enemies. You have advantage on attack rolls against any creature that hasn't taken a turn in the combat yet. Additionally, any hit you score against a creature that is surprised is a critical hit.</p>",
       "chat": "",
       "unidentified": ""
     },
     "requirements": "Operative (Lethality Practice) 3",
     "source": "PHB",
     "activation": {
-      "type": "special",
-      "cost": 1,
+      "type": "",
+      "cost": null,
       "condition": ""
     },
     "duration": {
@@ -31,6 +31,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -45,8 +46,8 @@
     },
     "uses": {
       "value": null,
-      "max": 1,
-      "per": "lr",
+      "max": "",
+      "per": null,
       "recovery": ""
     },
     "consume": {
@@ -87,10 +88,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.3",
+    "coreVersion": "11.308",
     "createdTime": 1674493957333,
-    "modifiedTime": 1685840599476,
+    "modifiedTime": 1698185224868,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3QsYHEnhJ3Hty7F2"

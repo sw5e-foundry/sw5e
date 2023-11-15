@@ -5,60 +5,42 @@
   "img": "systems/sw5e/packs/Icons/Species/Rishii.webp",
   "effects": [
     {
-      "_id": "EG1cQYESSqx7uV17",
+      "_id": "zwbVjLE2T6fdsb9I",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Rishii",
           "mode": 5,
+          "value": "Rishii",
           "priority": 5
         },
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
+          "mode": 5,
           "value": "med",
-          "mode": 0,
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.fly",
-          "value": "30",
           "mode": 2,
+          "value": "30",
+          "priority": 5
+        },
+        {
+          "key": "system.traits.languages.value",
+          "mode": 0,
+          "value": "basic",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "system.traits.languages.value",
           "value": "rishii",
-          "mode": 0,
-          "priority": 0
-        },
-        {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 5,
           "priority": 20
         }
       ],
@@ -75,12 +57,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Rishii.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR.ActiveEffect.EG1cQYESSqx7uV17"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR",
       "name": "Rishii",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!gP8Y6RuZ1cHmNbAR.EG1cQYESSqx7uV17",
+      "_key": "!items.effects!gP8Y6RuZ1cHmNbAR.zwbVjLE2T6fdsb9I",
+      "sort": 0
+    },
+    {
+      "_id": "tArIqvo5Lix6635C",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Rishii.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR.ActiveEffect.EG1cQYESSqx7uV17"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.gP8Y6RuZ1cHmNbAR",
+      "name": "Keen Hearing and Sight",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!gP8Y6RuZ1cHmNbAR.tArIqvo5Lix6635C",
       "sort": 0
     }
   ],
@@ -105,7 +126,7 @@
     "identifier": "rishii",
     "advancement": [
       {
-        "_id": "1sACnlEL2MhwAgVz",
+        "_id": "1J7TRhKCJZNhEUOq",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,6 +145,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1brUsAGEhLbV177N",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "con": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -168,10 +202,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002120,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!gP8Y6RuZ1cHmNbAR"

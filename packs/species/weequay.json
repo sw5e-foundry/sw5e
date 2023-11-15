@@ -5,60 +5,48 @@
   "img": "systems/sw5e/packs/Icons/Species/Weequay.webp",
   "effects": [
     {
-      "_id": "wsSPpwrkO8w3mi04",
+      "_id": "N1tC15fGu1NNo2AX",
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Weequay",
           "mode": 5,
+          "value": "Weequay",
           "priority": 5
         },
         {
-          "key": "system.abilities.cha.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.con.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 5,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
-          "value": "60",
           "mode": 2,
+          "value": "60",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "sriluurian",
           "mode": 0,
-          "priority": 0
+          "value": "sriluurian",
+          "priority": 20
         },
         {
-          "key": "flags.sw5e.keenSenses",
-          "value": "1",
-          "mode": 0,
+          "key": "flags.sw5e.meleeCriticalDamageDice",
+          "mode": 2,
+          "value": "+1",
           "priority": 20
         }
       ],
@@ -75,12 +63,51 @@
       "icon": "systems/sw5e/packs/Icons/Species/Weequay.webp",
       "tint": null,
       "transfer": true,
-      "flags": {},
-      "origin": null,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.Hc4GsnEUNuueTMDE.ActiveEffect.wsSPpwrkO8w3mi04"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.Hc4GsnEUNuueTMDE",
       "name": "Weequay",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Hc4GsnEUNuueTMDE.wsSPpwrkO8w3mi04",
+      "_key": "!items.effects!Hc4GsnEUNuueTMDE.N1tC15fGu1NNo2AX",
+      "sort": 0
+    },
+    {
+      "_id": "CV9Qp2KXunAZ8Ey9",
+      "changes": [
+        {
+          "key": "flags.sw5e.situational.advantage.skill.prc",
+          "mode": 5,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Species/Weequay.webp",
+      "tint": null,
+      "transfer": true,
+      "flags": {
+        "core": {
+          "sourceId": "Compendium.sw5e.species.Item.Hc4GsnEUNuueTMDE.ActiveEffect.wsSPpwrkO8w3mi04"
+        }
+      },
+      "origin": "Compendium.sw5e.species.Item.Hc4GsnEUNuueTMDE",
+      "name": "Keen Senses - involving a particular sense",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!Hc4GsnEUNuueTMDE.CV9Qp2KXunAZ8Ey9",
       "sort": 0
     }
   ],
@@ -105,7 +132,7 @@
     "identifier": "weequay",
     "advancement": [
       {
-        "_id": "79n52zj6GmD13VMF",
+        "_id": "1BszNqu9ZM803LJ3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -125,6 +152,18 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "U8rvLD08hZiZxBrl",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "con": 2
+          },
+          "points": 1
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -169,10 +208,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002077,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Hc4GsnEUNuueTMDE"

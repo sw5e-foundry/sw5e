@@ -12,6 +12,7 @@
     </div>
 
     {{#each flags as |fs section|}}
+    {{#unless (eq section "midiFlags")}}
       <h3 class="form-header">{{section}}</h3>
       {{#each fs as |flag key|}}
         <div class="form-group">
@@ -36,6 +37,7 @@
           <p class="notes">{{flag.hint}}</p>
         </div>
       {{/each}}
+    {{/unless}}
     {{/each}}
 
     <h3 class="form-header">{{localize "SW5E.Bonuses"}}</h3>

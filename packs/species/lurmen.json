@@ -8,28 +8,16 @@
       "_id": "gzV1BSf7YoTCOLpN",
       "changes": [
         {
-          "key": "system.abilities.dex.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.wis.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
           "value": "sm",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
           "value": "25",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.attributes.senses.darkvision",
@@ -59,7 +47,7 @@
           "key": "system.attributes.movement.climb",
           "value": "25",
           "mode": 2,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "system.traits.languages.value",
@@ -77,7 +65,7 @@
           "key": "system.details.species",
           "value": "Lurmen",
           "mode": 5,
-          "priority": 20
+          "priority": 5
         },
         {
           "key": "flags.sw5e.nimbleAgility",
@@ -135,7 +123,7 @@
     "identifier": "lurmen",
     "advancement": [
       {
-        "_id": "1KV0CKybtuPraErh",
+        "_id": "1ag7Tzr9cqvS19tm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -157,6 +145,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "riDxZC9qIVz1AawD",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "dex": 2,
+            "wis": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -201,10 +202,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002121,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!hwVFMa2cmXcXBPLj"

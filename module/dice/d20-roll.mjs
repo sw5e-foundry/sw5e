@@ -148,7 +148,7 @@ export default class D20Roll extends Roll {
 
     // Handle Advantage or Disadvantage
     if (this.hasAdvantage) {
-      d20.number = this.options.elvenAccuracy ? 3 : 2;
+      d20.number = 2 + (this.options.elvenAccuracy ?? 0);
       d20.modifiers.push("kh");
       d20.options.advantage = true;
     } else if (this.hasDisadvantage) {
@@ -207,6 +207,9 @@ export default class D20Roll extends Roll {
    * @param {boolean} [data.chooseModifier]   Choose which ability modifier should be applied to the roll?
    * @param {string} [data.defaultAbility]    For tool rolls, the default ability modifier applied to the roll
    * @param {string} [data.template]          A custom path to an HTML template to use instead of the default
+   * @param {string} [normalHint]             Hint to be displayed on the normal button.
+   * @param {string} [advantageHint]          Hint to be displayed on the advantage button.
+   * @param {string} [disadvantageHint]       Hint to be displayed on the disadvantage button.
    * @param {object} options                  Additional Dialog customization options
    * @returns {Promise<D20Roll|null>}         A resulting D20Roll object constructed with the dialog,
    *                                          or null if the dialog was closed
@@ -218,7 +221,10 @@ export default class D20Roll extends Roll {
       defaultAction = D20Roll.ADV_MODE.NORMAL,
       chooseModifier = false,
       defaultAbility,
-      template
+      template,
+      normalHint,
+      advantageHint,
+      disadvantageHint
     } = {},
     options = {}
   ) {
@@ -229,7 +235,10 @@ export default class D20Roll extends Roll {
       rollModes: CONFIG.Dice.rollModes,
       chooseModifier,
       defaultAbility,
-      abilities: CONFIG.SW5E.abilities
+      abilities: CONFIG.SW5E.abilities,
+      normalHint,
+      advantageHint,
+      disadvantageHint
     });
 
     let defaultButton = "normal";
@@ -251,21 +260,24 @@ export default class D20Roll extends Roll {
           buttons: {
             advantage: {
               label: game.i18n.localize("SW5E.Advantage"),
+              hint: advantageHint,
               callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
             },
             normal: {
               label: game.i18n.localize("SW5E.Normal"),
+              hint: normalHint,
               callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
             },
             disadvantage: {
               label: game.i18n.localize("SW5E.Disadvantage"),
+              hint: disadvantageHint,
               callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
             }
           },
           default: defaultButton,
           close: () => resolve(null)
         },
-        options
+        foundry.utils.mergeObject({ template: "systems/sw5e/templates/apps/dialog.hbs" }, options )
       ).render(true);
     });
   }

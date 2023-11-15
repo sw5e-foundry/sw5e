@@ -3,7 +3,43 @@
   "name": "One with the Force",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/CSLR-Action.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/CSLR-Action.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.SRvdjRxU3cpcEdcw",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "One with the Force",
+      "_id": "9Q7CRnMUso8f5CN5",
+      "changes": [
+        {
+          "key": "system.abilities.wis.max",
+          "mode": 2,
+          "value": "4"
+        },
+        {
+          "key": "system.abilities.wis.value",
+          "mode": 2,
+          "value": "4"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!SRvdjRxU3cpcEdcw.9Q7CRnMUso8f5CN5",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -36,6 +72,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -59,7 +96,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -101,10 +138,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962321,
-    "modifiedTime": 1685840608590,
+    "modifiedTime": 1700066592129,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!SRvdjRxU3cpcEdcw"

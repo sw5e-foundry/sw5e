@@ -105,6 +105,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -136,7 +137,7 @@
     "damage": {
       "parts": [
         [
-          "1d10",
+          "1d10 + @classes.fighter.levels",
           "healing"
         ]
       ],
@@ -169,10 +170,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.308",
     "createdTime": 1674493962374,
-    "modifiedTime": 1685840608650,
+    "modifiedTime": 1698794203848,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!mrFQ2l9wzPmfb0dv"

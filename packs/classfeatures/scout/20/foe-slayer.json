@@ -3,7 +3,53 @@
   "name": "Foe Slayer",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/SCT-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/SCT-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.KAVTEkNRyWghicEE",
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": false,
+      "name": "Foe Slayer",
+      "_id": "zCwH3nJSjb6783hH",
+      "changes": [
+        {
+          "key": "system.abilities.str.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.str.value",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.int.max",
+          "mode": 2,
+          "value": "2"
+        },
+        {
+          "key": "system.abilities.int.value",
+          "mode": 2,
+          "value": "2"
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!KAVTEkNRyWghicEE.zCwH3nJSjb6783hH",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -101,6 +147,7 @@
       "units": "inst"
     },
     "cover": null,
+    "crewed": false,
     "target": {
       "value": null,
       "width": null,
@@ -124,7 +171,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -160,10 +207,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.1.5.2.4.6",
-    "coreVersion": "10.291",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674493962299,
-    "modifiedTime": 1685840608566,
+    "modifiedTime": 1700067941826,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KAVTEkNRyWghicEE"

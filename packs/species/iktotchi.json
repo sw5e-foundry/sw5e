@@ -9,62 +9,50 @@
       "changes": [
         {
           "key": "system.details.species",
-          "value": "Iktotchi",
           "mode": 5,
+          "value": "Iktotchi",
           "priority": 5
         },
         {
-          "key": "system.abilities.int.value",
-          "value": "2",
-          "mode": 2,
-          "priority": 20
-        },
-        {
-          "key": "system.abilities.str.value",
-          "value": "1",
-          "mode": 2,
-          "priority": 20
-        },
-        {
           "key": "system.traits.size",
-          "value": "med",
           "mode": 0,
+          "value": "med",
           "priority": 5
         },
         {
           "key": "system.attributes.movement.walk",
-          "value": "30",
           "mode": 5,
+          "value": "30",
           "priority": 5
         },
         {
           "key": "system.skills.pil.value",
-          "value": "1",
           "mode": 4,
+          "value": "1",
           "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "basic",
           "mode": 0,
-          "priority": 0
+          "value": "basic",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.value",
-          "value": "iktotchese",
           "mode": 0,
-          "priority": 0
+          "value": "iktotchese",
+          "priority": 20
         },
         {
           "key": "system.traits.languages.custom",
-          "value": "telepathy (30 ft.)",
           "mode": 0,
-          "priority": 0
+          "value": "telepathy (30 ft.)",
+          "priority": 20
         },
         {
-          "key": "flags.sw5e.precognition",
-          "value": "1",
+          "key": "flags.sw5e.halflingLucky",
           "mode": 5,
+          "value": "1",
           "priority": 20
         }
       ],
@@ -111,7 +99,7 @@
     "identifier": "iktotchi",
     "advancement": [
       {
-        "_id": "OGCfvfyqzvubrLZR",
+        "_id": "5seVBx5t2kn1fT6G",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,6 +119,19 @@
         "value": {},
         "level": 0,
         "title": "Traits"
+      },
+      {
+        "_id": "1IGPV6mC2QQfz1RE",
+        "type": "AbilityScoreImprovement",
+        "configuration": {
+          "fixed": {
+            "int": 2,
+            "str": 1
+          },
+          "points": 0
+        },
+        "value": {},
+        "level": 0
       }
     ],
     "details": {
@@ -175,10 +176,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.3.1.2.6.4",
+    "coreVersion": "11.315",
     "createdTime": 1674494002128,
-    "modifiedTime": 1695981491737,
+    "modifiedTime": 1699635156316,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!n1ooHsFijtOk81ov"

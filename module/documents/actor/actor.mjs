@@ -1849,14 +1849,20 @@ export default class Actor5e extends Actor {
     const advantageFlag =  mastery || this._getCharacterFlag([
       "advantage.all",
       "advantage.skill.all",
-      `advantage.skill.${skillId}`
+      `advantage.skill.${skillId}`,
+      "advantage.ability.all",
+      "advantage.ability.check.all",
+      `advantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
       "disadvantage.all",
       "disadvantage.skill.all",
-      `disadvantage.skill.${skillId}`
+      `disadvantage.skill.${skillId}`,
+      "disadvantage.ability.all",
+      "disadvantage.ability.check.all",
+      `disadvantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
@@ -1968,14 +1974,20 @@ export default class Actor5e extends Actor {
     const advantageFlag = mastery || this._getCharacterFlag([
       "advantage.all",
       "advantage.tool.all",
-      `advantage.tool.${tool.system.toolType}`
+      `advantage.tool.${tool.system.toolType}`,
+      "advantage.ability.all",
+      "advantage.ability.check.all",
+      `advantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
       "disadvantage.all",
       "disadvantage.tool.all",
-      `disadvantage.tool.${tool.system.toolType}`
+      `disadvantage.tool.${tool.system.toolType}`,
+      "disadvantage.ability.all",
+      "disadvantage.ability.check.all",
+      `disadvantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 

@@ -3,7 +3,45 @@
   "name": "Reckless Attack",
   "type": "feat",
   "img": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
-  "effects": [],
+  "effects": [
+    {
+      "icon": "systems/sw5e/packs/Icons/Class%20Features/BSKR-Passive.webp",
+      "origin": "Compendium.sw5e.classfeatures.Item.DqNRgYsYggcj2Shl",
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "disabled": true,
+      "name": "Reckless Attack",
+      "_id": "zzOesxeGFHtn9AdN",
+      "changes": [
+        {
+          "key": "flags.sw5e.advantage.attack.str",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        },
+        {
+          "key": "flags.sw5e.grants.advantage.attack.all",
+          "mode": 5,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "description": "",
+      "transfer": true,
+      "statuses": [],
+      "flags": {},
+      "tint": null,
+      "_key": "!items.effects!DqNRgYsYggcj2Shl.zzOesxeGFHtn9AdN",
+      "sort": 0
+    }
+  ],
   "folder": null,
   "sort": 0,
   "flags": {
@@ -125,7 +163,7 @@
       "target": null,
       "amount": null
     },
-    "ability": null,
+    "ability": "",
     "actionType": "other",
     "attackBonus": 0,
     "chatFlavor": "",
@@ -164,7 +202,7 @@
     "systemVersion": "2.3.1.2.6.4",
     "coreVersion": "11.315",
     "createdTime": 1674493962282,
-    "modifiedTime": 1699591625673,
+    "modifiedTime": 1700067491025,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!DqNRgYsYggcj2Shl"

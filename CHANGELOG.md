@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Character flags `dangerSense`, `halflingLucky`, `sonicSensitivity`, `twoLivered`.
 - Various advantage and disadvantage character flags, similar to midi-qol. For a full list type `CONFIG.SW5E.midiFlags` in the console.
 - When the system grants (dis)advantage on a roll, a tooltip will mention where it is coming from.
+- Active Effects on most class features.
 
 ### Changes
 

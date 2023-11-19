@@ -1745,6 +1745,7 @@ export default class Item5e extends Item {
         ammoUpdate = usage.resourceUpdates ?? [];
       }
     }
+
     // Flags
     const elvenAccuracy = this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
 
@@ -1759,6 +1760,7 @@ export default class Item5e extends Item {
       `advantage.attack.${this.abilityMod}`,
       `advantage.attack.${this.system.actionType}`
     ], { situational: true });
+    const advantage = !!(advantageFlag || options.advantage);
     const advantageHint = grantsAdvantageHint || this.actor?._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this.actor?._getCharacterFlag([
@@ -1767,6 +1769,7 @@ export default class Item5e extends Item {
       `disadvantage.attack.${this.abilityMod}`,
       `disadvantage.attack.${this.system.actionType}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this.actor?._getCharacterFlagTooltip(disadvantageFlag);
 
     // Compose roll options
@@ -1779,9 +1782,7 @@ export default class Item5e extends Item {
         flavor: title,
         elvenAccuracy,
         halflingLucky: flags.halflingLucky,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         dialogOptions: {
           width: 400,
@@ -1796,6 +1797,8 @@ export default class Item5e extends Item {
       options
     );
     rollConfig.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before an attack is rolled for an Item.
@@ -2245,8 +2248,10 @@ export default class Item5e extends Item {
           isForcePower: Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school),
           isTechPower: Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school),
           isPoison: item.system.consumableType === "poison",
-          dealsPoisonDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "poison"), false),
-          dealsSonicDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "sonic"), false),
+          damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
+            if (part[1]) set.add(part[1]);
+            return set;
+          }), new Set()),
         };
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });

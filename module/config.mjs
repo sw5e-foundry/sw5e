@@ -3687,13 +3687,13 @@ preLocalize("traits", { key: "label" });
 SW5E.midiFlags = {
   // Attacks
   "advantage.all": {
-    name: "SW5E.CharacterFlags.Advantage.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
   "advantage.attack.all": {
-    name: "SW5E.CharacterFlags.Advantage.Attack.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
@@ -3717,7 +3717,7 @@ SW5E.midiFlags = {
     }
   ]))),
   "grants.advantage.attack.all": {
-    name: "SW5E.CharacterFlags.Grants.Advantage.Attack.All.Name",
+    name: "SW5E.CharacterFlags.Grants.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
@@ -3734,7 +3734,7 @@ SW5E.midiFlags = {
 
   // Critical
   // "critical.all": {
-  //   name: "SW5E.CharacterFlags.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3749,7 +3749,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "noCritical.all": {
-  //   name: "SW5E.CharacterFlags.NoCritical.All.Name",
+  //   name: "SW5E.CharacterFlags.NoCritical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3764,7 +3764,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "grants.critical.all": {
-  //   name: "SW5E.CharacterFlags.Grants.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Grants.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3779,7 +3779,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "fail.critical.all": {
-  //   name: "SW5E.CharacterFlags.Fail.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Fail.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3796,13 +3796,13 @@ SW5E.midiFlags = {
 
   // Ability checks
   "advantage.ability.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
   "advantage.ability.check.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Check.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Check.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
@@ -3819,7 +3819,7 @@ SW5E.midiFlags = {
 
   // Skill Checks
   "advantage.skill.all": {
-    name: "SW5E.CharacterFlags.Advantage.Skill.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Skill.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
@@ -3836,7 +3836,7 @@ SW5E.midiFlags = {
 
   // Tool Checks
   "advantage.tool.all": {
-    name: "SW5E.CharacterFlags.Advantage.Tool.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Tool.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
@@ -3853,7 +3853,7 @@ SW5E.midiFlags = {
 
   // Saving Throws
   "advantage.ability.save.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
@@ -3867,8 +3867,23 @@ SW5E.midiFlags = {
       type: Boolean
     }
   ]))),
+  "advantage.ability.save.dmg.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map(((key) => [
+    `advantage.ability.save.dmg.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.${key}.Name`,
+      section: "midiFlags",
+      midiClone: false,
+      type: Boolean
+    }
+  ]))),
   "advantage.ability.save.tech.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
@@ -3883,7 +3898,7 @@ SW5E.midiFlags = {
     }
   ]))),
   "advantage.ability.save.force.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
@@ -3950,12 +3965,6 @@ SW5E.characterFlags = {
   puny: {
     name: "SW5E.FlagsPuny",
     hint: "SW5E.FlagsPunyHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  sonicSensitivity: {
-    name: "SW5E.FlagsSonicSensitivity",
-    hint: "SW5E.FlagsSonicSensitivityHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },

@@ -1846,7 +1846,7 @@ export default class Actor5e extends Actor {
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
-    const advantageFlag =  mastery || this._getCharacterFlag([
+    const advantageFlag =  this._getCharacterFlag([
       "advantage.all",
       "advantage.skill.all",
       `advantage.skill.${skillId}`,
@@ -1854,6 +1854,7 @@ export default class Actor5e extends Actor {
       "advantage.ability.check.all",
       `advantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
+    const advantage = !!(mastery || advantageFlag || options.advantage);
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
@@ -1864,6 +1865,7 @@ export default class Actor5e extends Actor {
       "disadvantage.ability.check.all",
       `disadvantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Roll and return
@@ -1877,9 +1879,7 @@ export default class Actor5e extends Actor {
         elvenAccuracy: supremeAptitude,
         halflingLucky: flags.halflingLucky,
         reliableTalent,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -1889,6 +1889,8 @@ export default class Actor5e extends Actor {
       options
     );
     rollData.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before a skill check is rolled for an Actor.
@@ -1971,7 +1973,7 @@ export default class Actor5e extends Actor {
     }
 
     // Flags
-    const advantageFlag = mastery || this._getCharacterFlag([
+    const advantageFlag = this._getCharacterFlag([
       "advantage.all",
       "advantage.tool.all",
       `advantage.tool.${tool.system.toolType}`,
@@ -1979,6 +1981,7 @@ export default class Actor5e extends Actor {
       "advantage.ability.check.all",
       `advantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
+    const advantage = !!(mastery || advantageFlag || options.advantage);
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
@@ -1989,6 +1992,7 @@ export default class Actor5e extends Actor {
       "disadvantage.ability.check.all",
       `disadvantage.ability.check.${data.defaultAbility}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     const flavor = game.i18n.format("SW5E.ToolPromptTitle", { tool: Trait.keyLabel("tool", toolId) ?? "" });
@@ -1999,9 +2003,7 @@ export default class Actor5e extends Actor {
         title: `${flavor}: ${this.name}`,
         chooseModifier: true,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         messageData: {
           speaker: options.speaker || ChatMessage.implementation.getSpeaker({ actor: this }),
@@ -2011,6 +2013,8 @@ export default class Actor5e extends Actor {
       options
     );
     rollData.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before a tool check is rolled for an Actor.
@@ -2115,6 +2119,7 @@ export default class Actor5e extends Actor {
       "advantage.ability.check.all",
       `advantage.ability.check.${abilityId}`
     ], { situational: true });
+    const advantage = !!(advantageFlag || options.advantage);
     const advantageHint = this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
@@ -2123,6 +2128,7 @@ export default class Actor5e extends Actor {
       "disadvantage.ability.check.all",
       `disadvantage.ability.check.${abilityId}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Roll and return
@@ -2134,9 +2140,7 @@ export default class Actor5e extends Actor {
         flavor,
         elvenAccuracy: supremeAptitude,
         halflingLucky: flags.halflingLucky,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -2146,6 +2150,8 @@ export default class Actor5e extends Actor {
       options
     );
     rollData.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before an ability test is rolled for an Actor.
@@ -2224,12 +2230,15 @@ export default class Actor5e extends Actor {
 
     // Flags
     const supremeDurability = this._getCharacterFlag("supremeDurability", { ability: abilityId });
-    // TODO: Check for inflinting poisoned condition for twoLivered
-    const twoLivered = (options.isPoison || options.dealsPoisonDmg) && this._getCharacterFlag("twoLivered");
+    // TODO: Check for inflicting poisoned condition for twoLivered
+    const twoLivered = (options.isPoison) && this._getCharacterFlag("twoLivered");
     // TODO: Check for blinded, deafened, or incapacitated for dangerSense
     const dangerSense = this._getCharacterFlag("dangerSense", { ability: abilityId });
-    const sonicSensitivity = options.dealsSonicDmg && this._getCharacterFlag("sonicSensitivity");
 
+    const dmgAdvantageFlag = options.damageTypes.size && this._getCharacterFlag([
+      "advantage.ability.save.dmg.all",
+      ...Array.from(options.damageTypes).map((dmg) => `advantage.ability.save.dmg.${dmg}`),
+    ], { situational: true });
     const forceAdvantageFlag = options.isForcePower && this._getCharacterFlag([
       "advantage.ability.save.force.all",
       `advantage.ability.save.force.${abilityId}`
@@ -2238,14 +2247,22 @@ export default class Actor5e extends Actor {
       "advantage.ability.save.tech.all",
       `advantage.ability.save.tech.${abilityId}`
     ], { situational: true });
-    const advantageFlag = mastery || twoLivered || dangerSense || forceAdvantageFlag || techAdvantageFlag || this._getCharacterFlag([
+    const advantageFlag = twoLivered || dangerSense || dmgAdvantageFlag || forceAdvantageFlag || techAdvantageFlag || this._getCharacterFlag([
       "advantage.all",
       "advantage.ability.all",
       "advantage.ability.save.all",
       `advantage.ability.save.${abilityId}`
     ], { situational: true });
+    const advantage = !!(mastery || advantageFlag || options.advantage);
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
+    const dmgDisadvantageFlag = options.damageTypes.size && this._getCharacterFlag([
+      "disadvantage.ability.save.dmg.all",
+      ...Array.from(options.damageTypes).map((dmg) => `disadvantage.ability.save.dmg.${dmg}`),
+    ], { situational: true });
+    console.debug('dmgDisadvantageFlag', dmgDisadvantageFlag);
+    console.debug(Array.from(options.damageTypes).map((dmg) => `disadvantage.ability.save.dmg.${dmg}`));
+    console.debug(foundry.utils.flattenObject(flags));
     const forceDisadvantageFlag = options.isForcePower && this._getCharacterFlag([
       "disadvantage.ability.save.force.all",
       `disadvantage.ability.save.force.${abilityId}`
@@ -2254,12 +2271,13 @@ export default class Actor5e extends Actor {
       "disadvantage.ability.save.tech.all",
       `disadvantage.ability.save.tech.${abilityId}`
     ], { situational: true });
-    const disadvantageFlag = sonicSensitivity || forceDisadvantageFlag || techDisadvantageFlag || this._getCharacterFlag([
+    const disadvantageFlag = dmgDisadvantageFlag || forceDisadvantageFlag || techDisadvantageFlag || this._getCharacterFlag([
       "disadvantage.all",
       "disadvantage.ability.all",
       "disadvantage.ability.save.all",
       `disadvantage.ability.save.${abilityId}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Roll and return
@@ -2271,9 +2289,7 @@ export default class Actor5e extends Actor {
         flavor,
         elvenAccuracy: supremeDurability,
         halflingLucky: flags.halflingLucky,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         messageData: {
           speaker: options.speaker || ChatMessage.getSpeaker({ actor: this }),
@@ -2283,6 +2299,8 @@ export default class Actor5e extends Actor {
       options
     );
     rollData.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before an ability save is rolled for an Actor.
@@ -2346,6 +2364,7 @@ export default class Actor5e extends Actor {
       "advantage.ability.save.all",
       "advantage.deathSave"
     ], { situational: true });
+    const advantage = !!(advantageFlag || options.advantage);
     const advantageHint = this._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this._getCharacterFlag([
@@ -2353,6 +2372,7 @@ export default class Actor5e extends Actor {
       "disadvantage.ability.save.all",
       "disadvantage.deathSave"
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Include a global actor ability save bonus
@@ -2370,9 +2390,7 @@ export default class Actor5e extends Actor {
         flavor,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
         targetValue: 10,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         messageData: {
           speaker: speaker,
@@ -2382,6 +2400,8 @@ export default class Actor5e extends Actor {
       options
     );
     rollData.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before a death saving throw is rolled for an Actor.
@@ -2486,6 +2506,22 @@ export default class Actor5e extends Actor {
     const parts = [];
     const data = this.getRollData();
 
+    const advantageFlag = this._getCharacterFlag([
+      "advantage.all",
+      "advantage.ability.save.all",
+      "advantage.deathSave"
+    ], { situational: true });
+    const advantage = !!(advantageFlag || options.advantage);
+    const advantageHint = this._getCharacterFlagTooltip(advantageFlag);
+
+    const disadvantageFlag = this._getCharacterFlag([
+      "disadvantage.all",
+      "disadvantage.ability.save.all",
+      "disadvantage.deathSave"
+    ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
+    const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
+
     // Include a global actor ability save bonus
     if (globalBonuses.save) {
       parts.push("@saveBonus");
@@ -2499,6 +2535,8 @@ export default class Actor5e extends Actor {
         data,
         title: `${game.i18n.localize("SW5E.DestructionSavingThrow")}: ${this.name}`,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        advantageHint,
+        disadvantageHint,
         targetValue: 10,
         messageData: {
           speaker: speaker,
@@ -2507,6 +2545,8 @@ export default class Actor5e extends Actor {
       },
       options
     );
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before a destruction saving throw is rolled for an Actor.

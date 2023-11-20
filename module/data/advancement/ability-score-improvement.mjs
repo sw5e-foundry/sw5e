@@ -11,16 +11,19 @@ export class AbilityScoreImprovementConfigurationData extends foundry.abstract.D
   /** @inheritdoc */
   static defineSchema() {
     return {
-      // TODO: This should default to 2 if added to a class, or 0 if added to anything else
       points: new foundry.data.fields.NumberField({
-        integer: true, min: 0, initial: 2,
+        integer: true, min: 0, initial: 0,
         label: "SW5E.AdvancementAbilityScoreImprovementPoints",
         hint: "SW5E.AdvancementAbilityScoreImprovementPointsHint"
       }),
       fixed: new MappingField(
         new foundry.data.fields.NumberField({nullable: false, integer: true, initial: 0}),
         {label: "SW5E.AdvancementAbilityScoreImprovementFixed"}
-      )
+      ),
+      cap: new foundry.data.fields.NumberField({
+        integer: true, min: 1, initial: 2, label: "SW5E.AdvancementAbilityScoreImprovementCap",
+        hint: "SW5E.AdvancementAbilityScoreImprovementCapHint"
+      })
     };
   }
 }

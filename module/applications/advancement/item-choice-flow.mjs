@@ -128,7 +128,8 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     try {
       this.advancement._validateItemType(item);
     } catch(err) {
-      return ui.notifications.error(err.message);
+      ui.notifications.error(err.message);
+      return null;
     }
 
     // If the item is already been marked as selected, no need to go further
@@ -138,7 +139,8 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     for ( const [level, data] of Object.entries(this.advancement.value.added ?? {}) ) {
       if ( level >= this.level ) continue;
       if ( Object.values(data).includes(item.uuid) ) {
-        return ui.notifications.error(game.i18n.localize("SW5E.AdvancementItemChoicePreviouslyChosenWarning"));
+        ui.notifications.error("SW5E.AdvancementItemChoicePreviouslyChosenWarning", {localize: true});
+        return null;
       }
     }
 
@@ -146,9 +148,12 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
     const powerLevel = this.advancement.configuration.restriction.level;
     if ( (this.advancement.configuration.type === "power") && powerLevel === "available" ) {
       const maxSlot = this._maxPowerSlotLevel();
-      if ( item.system.level > maxSlot ) return ui.notifications.error(game.i18n.format(
-        "SW5E.AdvancementItemChoicePowerLevelAvailableWarning", { level: CONFIG.SW5E.powerLevels[maxSlot] }
-      ));
+      if ( item.system.level > maxSlot ) {
+        ui.notifications.error(game.i18n.format("SW5E.AdvancementItemChoicePowerLevelAvailableWarning", {
+          level: CONFIG.SW5E.powerLevels[maxSlot]
+        }));
+        return null;
+      }
     }
 
     // Mark the item as selected

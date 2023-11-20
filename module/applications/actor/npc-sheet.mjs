@@ -16,7 +16,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set(["background", "class", "archetype"]);
+  static unsupportedItemTypes = new Set(["background", "class", "species", "archetype"]);
 
   /* -------------------------------------------- */
   /*  Context Preparation                         */
@@ -33,7 +33,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     return foundry.utils.mergeObject(context, {
       labels: {
         cr: cr >= 1 ? String(cr) : crLabels[cr] ?? 1,
-        type: this.actor.constructor.formatCreatureType(context.system.details.type),
+        type: context.system.details.type.label,
         armorType: this.getArmorLabel()
       }
     });

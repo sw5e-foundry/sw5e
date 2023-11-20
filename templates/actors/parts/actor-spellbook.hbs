@@ -30,7 +30,7 @@
 
 <ol class="items-list inventory-list">
 {{#each powerbook as |section|}}
-    <li class="items-header powerbook-header flexrow">
+    <li class="items-header powerbook-header flexrow" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
         <div class="item-name flexrow">
             <h3>{{section.label}}</h3>
             <div class="power-slots">
@@ -59,8 +59,7 @@
 
         <div class="item-controls flexrow">
             {{#if section.canCreate}}
-            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate"
-                {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
                 <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
             </a>
             {{/if}}
@@ -74,8 +73,10 @@
             <div class="item-name flexrow rollable">
                 <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                 <h4>{{item.name}}</h4>
-                {{#if item.system.uses.per }}
-                <div class="item-detail power-uses">Uses {{item.system.uses.value}} / {{item.system.uses.max}}</div>
+                {{#if item.hasLimitedUses}}
+                <div class="item-detail power-uses">
+                  {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
+                </div>
                 {{/if}}
                 <div class="power-comps">
                     {{#each item.labels.components.all}}
@@ -120,9 +121,9 @@
     {{#if filters.powerbook.size}}
     <li class="item flexrow"><p class="notes">{{localize "SW5E.FilterNoPowers"}}</p></li>
     {{else}}
-    <li class="item flexrow inventory-header powerbook-header powerbook-empty">
+    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="{{lvl}}">
         <div class="item-controls flexrow">
-            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate" data-type="power" data-level="{{lvl}}">
+            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
                 <i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}
             </a>
         </div>

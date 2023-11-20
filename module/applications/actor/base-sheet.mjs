@@ -453,7 +453,7 @@ export default class ActorSheet5e extends ActorSheet {
         const bypassFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
         data.selected.physical = game.i18n.format("SW5E.DamagePhysicalBypasses", {
           damageTypes: damageTypesFormatter.format(physical.map(t => choices[t])),
-          bypassTypes: bypassFormatter.format(data.bypasses.map(t => CONFIG.SW5E.physicalWeaponProperties[t].full))
+          bypassTypes: bypassFormatter.format(data.bypasses.map(t => CONFIG.SW5E.physicalWeaponProperties[t]?.full))
         });
       }
 

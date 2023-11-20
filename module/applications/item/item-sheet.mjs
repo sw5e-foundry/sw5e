@@ -422,7 +422,7 @@ export default class ItemSheet5e extends ItemSheet {
     switch (this.item.type) {
       case "consumable":
         for ( const [k, v] of Object.entries(this.item.system.properties ?? {}) ) {
-          if ( v === true ) props.push(CONFIG.SW5E.physicalWeaponProperties[k]);
+          if ( v === true ) props.push(CONFIG.SW5E.physicalWeaponProperties[k]?.full);
         }
         break;
       case "equipment":

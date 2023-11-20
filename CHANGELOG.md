@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - SW5E specific (dis)advantage flags should now work properly with midi-qol.
+- Fixed Old NPC sheet not working on actors with damage resistance bypasses.
 
 ### Removed
 

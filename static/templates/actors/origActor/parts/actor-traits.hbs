@@ -10,6 +10,22 @@
     </select>
   </div>
 
+  {{#if isCharacter}}
+    <div class="form-group">
+      <label>{{localize "SW5E.CreatureType"}}</label>
+      {{#if system.details.species.id}}
+        <a class="config-button" data-action="type" data-tooltip="SW5E.CreatureTypeConfig">
+            <i class="fas fa-cog"></i>
+        </a>
+      {{/if}}
+      <ul class="traits-list">
+          {{#if labels.type}}
+              <li class="tag">{{labels.type}}</li>
+          {{/if}}
+      </ul>
+    </div>
+  {{/if}}
+
   {{#unless isVehicle}}
     <div class="form-group">
       <label>{{localize "SW5E.Senses"}}</label>

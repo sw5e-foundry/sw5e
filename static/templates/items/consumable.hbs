@@ -25,12 +25,7 @@
                     </select>
                 </li>
                 <li>
-                    <input
-                        type="text"
-                        name="system.source"
-                        value="{{system.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    >
+                    {{> "sw5e.item-source"}}
                 </li>
             </ul>
         </div>
@@ -116,14 +111,6 @@
 
             {{!-- Item Activation Template --}}
             {{> "sw5e.item-activation"}}
-            {{#if system.activation.type}}
-                <div class="form-group">
-                    <label class="checkbox">
-                        <input type="checkbox" name="system.uses.autoDestroy" {{checked system.uses.autoDestroy}}> {{ localize
-                        "SW5E.ItemDestroyEmpty" }}
-                    </label>
-                </div>
-            {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemConsumableActivation" }}</h3>
 

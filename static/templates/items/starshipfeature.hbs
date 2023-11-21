@@ -29,13 +29,7 @@
                     <input style="max-width: 50px" type="text" name="system.tier" value="{{system.tier}}" placeholder="0" />
                 </li>
                 <li>
-                    <input
-                        style="max-width: 150px"
-                        type="text"
-                        name="system.source"
-                        value="{{system.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+                    {{> "sw5e.item-source"}}
                 </li>
             </ul>
         </div>

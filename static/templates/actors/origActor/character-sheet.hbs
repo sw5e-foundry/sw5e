@@ -30,17 +30,19 @@
 
             {{!-- Character Summary --}}
             <ul class="summary flexrow">
-                <li class="species">
+                {{#if system.details.species.name}}
+                    <span data-tooltip="SW5E.Species">{{system.details.species.name}}</span>
+                {{else}}
                     <input
                         type="text"
                         name="system.details.species"
                         value="{{system.details.species}}"
                         placeholder="{{ localize 'SW5E.Species' }}"
                     />
-                </li>
+                {{/if}}
                 <li class="background">
-                    {{#if labels.background}}
-                        <span data-tooltip="SW5E.Background">{{labels.background}}</span>
+                    {{#if system.details.background.name}}
+                        <span data-tooltip="SW5E.Background">{{system.details.background.name}}</span>
                     {{else}}
                         <input
                             type="text"
@@ -263,11 +265,10 @@
                         </div>
                     </div>
                     <div class="counter flexrow inspiration">
-                        <h4>{{ localize "SW5E.Inspiration" }}</h4>
-                        <div class="counter-value">
-                            <input type="checkbox" name="system.attributes.inspiration" data-dtype="Boolean"
-                                   {{checked system.attributes.inspiration}}/>
-                        </div>
+                        <label class="flexrow">
+                            <h4>{{ localize "SW5E.Inspiration" }}</h4>
+                            <input type="checkbox" name="system.attributes.inspiration" {{checked system.attributes.inspiration}}>
+                        </label>
                     </div>
                 </div>
 

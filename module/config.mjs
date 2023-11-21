@@ -2144,7 +2144,7 @@ preLocalize("powerTags", { keys: ["label", "abbr"] });
 SW5E.powerSchoolsForce = {
   lgt: "SW5E.SchoolLgt",
   uni: "SW5E.SchoolUni",
-  drk: "SW5E.SchoolDrk",
+  drk: "SW5E.SchoolDrk"
 };
 preLocalize("powerSchoolsForce");
 
@@ -2155,7 +2155,7 @@ preLocalize("powerSchoolsForce");
  * @enum {string}
  */
 SW5E.powerSchoolsTech = {
-  tec: "SW5E.SchoolTec",
+  tec: "SW5E.SchoolTec"
 };
 preLocalize("powerSchoolsTech");
 
@@ -3872,7 +3872,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3881,7 +3881,7 @@ SW5E.midiFlags = {
       type: Boolean
     }
   ]))),
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3896,7 +3896,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
     `grants.advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Grants.Advantage.Attack.${key}.Name`,
@@ -3981,7 +3981,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.check.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Check.${key}.Name`,
@@ -3998,7 +3998,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.skills).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.skills).map((key => [
     `advantage.skill.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
@@ -4015,7 +4015,7 @@ SW5E.midiFlags = {
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map((key => [
     `advantage.tool.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Tool.${key}.Name`,
@@ -4032,7 +4032,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.${key}.Name`,
@@ -4047,7 +4047,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [
     `advantage.ability.save.dmg.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.${key}.Name`,
@@ -4062,7 +4062,7 @@ SW5E.midiFlags = {
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.tech.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Tech.${key}.Name`,
@@ -4077,7 +4077,7 @@ SW5E.midiFlags = {
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.force.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Force.${key}.Name`,
@@ -4103,7 +4103,7 @@ for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
   };
 }
 for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  SW5E.midiFlags["situational." + id] = {
+  SW5E.midiFlags[`situational.${id}`] = {
     name: flag.name.replace("CharacterFlags", "CharacterFlags.Situational"),
     section: flag.section,
     midiClone: false,
@@ -4325,11 +4325,11 @@ SW5E.advancementTypes = {
  * @enum {string}
  */
 SW5E.sourceBooks = {
-  "PHB": "SOURCE.BOOK.PHB",
-  "SnV": "SOURCE.BOOK.SnV",
-  "SotG": "SOURCE.BOOK.SotG",
-  "WH": "SOURCE.BOOK.WH",
-  "EC": "SOURCE.BOOK.EC"
+  PHB: "SOURCE.BOOK.PHB",
+  SnV: "SOURCE.BOOK.SnV",
+  SotG: "SOURCE.BOOK.SotG",
+  WH: "SOURCE.BOOK.WH",
+  EC: "SOURCE.BOOK.EC"
 };
 preLocalize("sourceBooks", { sort: true });
 

@@ -1136,7 +1136,6 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * Configuration data for an item usage being prepared.
    *
    * @typedef {object} ItemUseConfiguration
-   * 
    * @property {boolean} createMeasuredTemplate     Should this item create a template?
    * @property {boolean} consumeResource            Should this item consume a (non-ammo) resource?
    * @property {boolean} consumePowerSlot           Should this item (a power) consume a power slot?
@@ -1307,7 +1306,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @returns {ItemUseConfiguration}  Configuration data for the roll.
    */
   _getUsageConfig() {
-    const { consume, uses, target, level, preparation } = this.system;
+    const { consume, uses, target, level } = this.system;
 
     const config = {
       consumePowerSlot: null,
@@ -1334,7 +1333,9 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       if ( consume.target === this.id ) config.consumeUsage = null;
     }
     // For attacks, the ammo is consumed on the attack roll
-    if ( item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) config.consumeSuperiorityDie = true;
+    if ( item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
+      config.consumeSuperiorityDie = true;
+    }
     if ( item.type === "maneuver" ) config.consumeSuperiorityDie = true;
     if ( game.user.can("TEMPLATE_CREATE") && this.hasAreaTarget ) config.createMeasuredTemplate = target.prompt;
 
@@ -1389,7 +1390,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       const level = this.actor?.system.powers[config.slotLevel];
       const powers = Number(level?.value ?? 0);
       const powerType = CONFIG.SW5E.powerSchoolsForce.includes(this.system.school) ? "force" : "tech";
-      const pAbbr = powerType.subtring(0,1);
+      const pAbbr = powerType.subtring(0, 1);
       const points = this.actor?.system?.attributes?.[powerType]?.points ?? 0;
       const discount = this.actor?.getFlag("sw5e", `${powerType}PowerDiscount`) ?? 0;
       const cost = Math.max(levelNumber + 1 - discount, 1);
@@ -1480,6 +1481,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @param {object} itemUpdates                An object of data updates applied to this item
    * @param {object} actorUpdates               An object of data updates applied to the item owner (Actor)
    * @param {object[]} resourceUpdates          An array of updates to apply to other items owned by the actor
+   * @param {object} starshipUpdates            An object of data updates applied to the starship the item owner (Actor) is deployed to
    * @param {Set<string>} deleteIds             A set of item ids that will be deleted off the actor
    * @returns {boolean|void}                    Return false to block further progress, or return nothing to continue
    * @protected
@@ -1728,9 +1730,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    */
   async rollAttack(options = {}) {
     const flags = this.actor.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
     const target = [...game.user?.targets ?? []][0]?.actor;
-    const midi = game.modules.get("midi-qol")?.active;
     if (!this.hasAttack) throw new Error("You may not place an Attack Roll with this Item.");
     let title = `${this.name} - ${game.i18n.localize("SW5E.AttackRoll")}`;
 
@@ -1766,24 +1766,6 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       const usage = this._getUsageUpdates({ consumeResource: true });
       if (usage === false) return null;
       ammoUpdate = usage.resourceUpdates ?? [];
-    } else if (consume?.type === "charges") {
-      ammo = this.actor.items.get(consume.target);
-      if (ammo?.system?.consumableType === "ammo") {
-        const uses = ammo.system.uses;
-        if (uses.per && uses.max) {
-          const q = ammo.system.uses.value;
-          const consumeAmount = consume.amount ?? 0;
-          if (q && q - consumeAmount >= 0) {
-            this._ammo = ammo;
-            title += ` [${ammo.name}]`;
-          }
-        }
-
-        // Get pending ammunition update
-        const usage = this._getUsageUpdates({ consumeResource: true });
-        if (usage === false) return null;
-        ammoUpdate = usage.resourceUpdates ?? [];
-      }
     }
 
     // Flags
@@ -2294,7 +2276,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
           damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
             if (part[1]) set.add(part[1]);
             return set;
-          }), new Set()),
+          }), new Set())
         };
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });

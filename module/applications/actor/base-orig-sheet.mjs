@@ -1242,7 +1242,7 @@ export default class ActorSheetOrig5e extends ActorSheetMixin(ActorSheet) {
   async _onPropertyAttribution(event) {
     const element = event.target;
     let property = element.dataset.attribution;
-    if (!property) return.
+    if (!property) return;
 
     const rollData = this.actor.getRollData({ deterministic: true });
     const title = game.i18n.localize(element.dataset.attributionCaption);

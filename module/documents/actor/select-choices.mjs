@@ -10,7 +10,7 @@ import { sortObjectEntries } from "../../utils.mjs";
  *                                       a level, unsorted values are listed first followed by sorted values.
  * @property {SelectChoices} [children]  Nested choices. If wildcard filtering support is desired, then trait keys
  *                                       should be provided prefixed for children (e.g. `parent:child`, rather than
-  *                                      just `child`).
+ *                                       just `child`).
  */
 
 /**

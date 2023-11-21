@@ -37,7 +37,7 @@ export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTe
       advancement: new foundry.data.fields.ArrayField(new AdvancementField(), { label: "SW5E.AdvancementTitle" }),
       movement: new MovementField(),
       senses: new SensesField(),
-      type: new CreatureTypeField({ swarm: false }, { initial: { value: "humanoid" } })
+      type: new CreatureTypeField({ swarm: false }, { initial: { value: "humanoid" } }),
 
       details: new foundry.data.fields.SchemaField(
         {

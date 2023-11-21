@@ -102,7 +102,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
               isSwarm: !!actorData.system.details.type.swarm,
               hasLairAct: !!actorData.system.resources.lair.value,
               hasLegAct: !!actorData.system.resources.legact.max,
-              hasLegRes: !!actorData.system.resources.legres.max,
+              hasLegRes: !!actorData.system.resources.legres.max
             };
 
             bestiaryActors.push({
@@ -140,7 +140,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
         isSwarm: "SW5E.CompendiumBrowser.FilterSwarm",
         hasLairAct: "SW5E.CompendiumBrowser.FilterLairAct",
         hasLegAct: "SW5E.CompendiumBrowser.FilterLegAct",
-        hasLegRes: "SW5E.CompendiumBrowser.FilterLegRes",
+        hasLegRes: "SW5E.CompendiumBrowser.FilterLegRes"
       });
 
       console.debug("SW5e System | Compendium Browser | Finished loading Bestiary actors");
@@ -224,7 +224,7 @@ export class CompendiumBrowserBestiaryTab extends CompendiumBrowserTab {
               min: 0,
               max: 30,
               lowerLimit: 0,
-              upperLimit: 30,
+              upperLimit: 30
             }
           }
         },

@@ -534,7 +534,7 @@ export const getMigrationData = async function() {
     }
 
     const characterFlags = await (await fetch("systems/sw5e/json/character-flags-migration.json")).json();
-    data.characterFlags = Object.fromEntries(Object.entries(characterFlags).map(([k,v]) => [`flags.sw5e.${k}`, v]));
+    data.characterFlags = Object.fromEntries(Object.entries(characterFlags).map(([k, v]) => [`flags.sw5e.${k}`, v]));
 
     data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
     data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();

@@ -3,8 +3,6 @@ import GroupData from "./group.mjs";
 import NPCData from "./npc.mjs";
 import VehicleData from "./vehicle.mjs";
 import StarshipData from "./starship.mjs";
-export * from "./size.mjs";
-export {TraitConfigurationData, TraitValueData} from "./trait.mjs";
 
 export { CharacterData, GroupData, NPCData, VehicleData, StarshipData };
 export { default as AttributesFields } from "./templates/attributes.mjs";

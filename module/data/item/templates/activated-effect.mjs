@@ -37,10 +37,9 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
     return {
       activation: new foundry.data.fields.SchemaField(
         {
-        type: new foundry.data.fields.StringField({required: true, blank: true, label: "SW5E.TargetType"}),
-        prompt: new foundry.data.fields.BooleanField({initial: true, label: "SW5E.TemplatePrompt"})
-          cost: new foundry.data.fields.NumberField({ required: true, label: "SW5E.ItemActivationCost" }),
-          condition: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemActivationCondition" })
+          type: new foundry.data.fields.StringField({required: true, blank: true, label: "SW5E.ItemActivationType"}),
+          cost: new foundry.data.fields.NumberField({required: true, label: "SW5E.ItemActivationCost"}),
+          condition: new foundry.data.fields.StringField({required: true, label: "SW5E.ItemActivationCondition"})
         },
         { label: "SW5E.ItemActivation" }
       ),

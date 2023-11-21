@@ -11,7 +11,6 @@ import RefittingRepairDialog from "../../applications/actor/refitting-repair.mjs
 import RegenRepairDialog from "../../applications/actor/regen-repair.mjs";
 import AllocatePowerDice from "../../applications/actor/allocate-power-dice.mjs";
 import ExpendPowerDice from "../../applications/actor/expend-power-dice.mjs";
-import * as Trait from "./trait.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
@@ -1707,18 +1706,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let result = false;
     if (options.situational && !midi) result = flags.reduce(
       ((acc, flag) => (
-        foundry.utils.getProperty(flagsChar, `situational.${flag}`) &&
-        (!options.ability || (flagsCfg[`situational.${flag}`].abilities?.includes(options.ability) ?? true)) &&
-        (!options.skill || (flagsCfg[`situational.${flag}`].skills?.includes(options.skill) ?? true))
+        foundry.utils.getProperty(flagsChar, `situational.${flag}`)
+        && (!options.ability || (flagsCfg[`situational.${flag}`].abilities?.includes(options.ability) ?? true))
+        && (!options.skill || (flagsCfg[`situational.${flag}`].skills?.includes(options.skill) ?? true))
       ) ? `situational.${flag}` : acc),
       result
     );
     result = flags.reduce(
       ((acc, flag) => (
-        foundry.utils.getProperty(flagsChar, flag) &&
-        (!flagsCfg[flag].midiClone || !midi) &&
-        (!options.ability || (flagsCfg[flag].abilities?.includes(options.ability) ?? true)) &&
-        (!options.skill || (flagsCfg[flag].skills?.includes(options.skill) ?? true))
+        foundry.utils.getProperty(flagsChar, flag)
+        && (!flagsCfg[flag].midiClone || !midi)
+        && (!options.ability || (flagsCfg[flag].abilities?.includes(options.ability) ?? true))
+        && (!options.skill || (flagsCfg[flag].skills?.includes(options.skill) ?? true))
       ) ? flag : acc),
       result
     );
@@ -1735,17 +1734,17 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _getCharacterFlagTooltip(flagId) {
     const flag = CONFIG.SW5E.characterFlags[flagId];
-    if (!flag) return '';
+    if (!flag) return "";
 
     if (flagId in CONFIG.SW5E.midiFlags) {
       const arr = [
         ...this.sheet._prepareActiveEffectAttributions(`flags.sw5e.${flagId}`),
         ...this.sheet._prepareActiveEffectAttributions(`flags.sw5e.situational.${flagId}`),
         ...this.sheet._prepareActiveEffectAttributions(`flags.midi-qol.${flagId}`),
-        ...this.sheet._prepareActiveEffectAttributions(`flags.midi-qol.situational.${flagId}`),
+        ...this.sheet._prepareActiveEffectAttributions(`flags.midi-qol.situational.${flagId}`)
       ];
 
-      const source = arr.map((attribution) => attribution.label).join(", ");
+      const source = arr.map(attribution => attribution.label).join(", ");
       return `${flag.name} (${source})`;
     }
 
@@ -1782,8 +1781,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollSkill(skillId, options = {}) {
     const flags = this.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
-    const midi = game.modules.get("midi-qol")?.active;
     const skl = this.system.skills[skillId];
     const abl = this.system.abilities[options.ability ?? skl.ability];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -1835,7 +1832,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
-    const advantageFlag =  this._getCharacterFlag([
+    const advantageFlag = this._getCharacterFlag([
       "advantage.all",
       "advantage.skill.all",
       `advantage.skill.${skillId}`,
@@ -1940,7 +1937,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const masteryHint = mastery ? CONFIG.SW5E.proficiencyLevels[tool?.value].label : null;
 
     // High/Grand Mastery proficiency
-    if (tool?.value >= 4) options.elvenAccuracy = tool?.value - 3;
+    if (tool?.value >= 4) options.elvenAccuracy = (tool.value) - 3;
 
     // Global ability check bonus.
     if (globalBonuses.check) {
@@ -2068,8 +2065,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollAbilityTest(abilityId, options = {}) {
     const flags = this.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
-    const midi = game.modules.get("midi-qol")?.active;
     const label = CONFIG.SW5E.abilities[abilityId]?.label ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -2179,8 +2174,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollAbilitySave(abilityId, options = {}) {
     const flags = this.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
-    const midi = game.modules.get("midi-qol")?.active;
     const label = CONFIG.SW5E.abilities[abilityId]?.label ?? "";
     const abl = this.system.abilities[abilityId];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
@@ -2202,7 +2195,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const masteryHint = mastery ? CONFIG.SW5E.proficiencyLevels[abl?.proficient].label : null;
 
     // High/Grand Mastery proficiency
-    if (abl?.proficient >= 4) options.elvenAccuracy = abl?.proficient - 3;
+    if (abl?.proficient >= 4) options.elvenAccuracy = abl.proficient - 3;
 
     // Include ability-specific saving throw bonus
     if (abl?.bonuses?.save) {
@@ -2226,7 +2219,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     const dmgAdvantageFlag = options.damageTypes.size && this._getCharacterFlag([
       "advantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes).map((dmg) => `advantage.ability.save.dmg.${dmg}`),
+      ...Array.from(options.damageTypes).map(dmg => `advantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
     const forceAdvantageFlag = options.isForcePower && this._getCharacterFlag([
       "advantage.ability.save.force.all",
@@ -2247,11 +2240,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     const dmgDisadvantageFlag = options.damageTypes.size && this._getCharacterFlag([
       "disadvantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes).map((dmg) => `disadvantage.ability.save.dmg.${dmg}`),
+      ...Array.from(options.damageTypes).map(dmg => `disadvantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
-    console.debug('dmgDisadvantageFlag', dmgDisadvantageFlag);
-    console.debug(Array.from(options.damageTypes).map((dmg) => `disadvantage.ability.save.dmg.${dmg}`));
-    console.debug(foundry.utils.flattenObject(flags));
     const forceDisadvantageFlag = options.isForcePower && this._getCharacterFlag([
       "disadvantage.ability.save.force.all",
       `disadvantage.ability.save.force.${abilityId}`
@@ -2325,9 +2315,6 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<D20Roll|null>} A Promise which resolves to the Roll instance
    */
   async rollDeathSave(options = {}) {
-    const flags = this.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
-    const midi = game.modules.get("midi-qol")?.active;
     const death = this.system.attributes.death;
 
     // Display a warning if we are not at zero HP or if we already have reached 3
@@ -3420,7 +3407,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   async rollStarshipHullPoints(item, tier, { chatMessage = true } = {}) {
     if (item.type !== "starshipsize") throw new Error("Hull points can only be rolled for a starship size item.");
     const quant =
-      tier === 0 ? item.system?.hullDiceStart - 1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
+      (tier === 0) ? (item.system?.hullDiceStart ?? 2) - 1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
       formula: `${quant}${item.system.hullDice}`,
       data: item.getRollData(),
@@ -3478,7 +3465,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   async rollStarshipShieldPoints(item, tier, { chatMessage = true } = {}) {
     if (item.type !== "starshipsize") throw new Error("Shield points can only be rolled for a starship size item.");
     const quant =
-      tier === 0 ? item.system?.shldDiceStart - 1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
+      (tier === 0) ? (item.system?.shldDiceStart ?? 2) - 1 : ["huge", "gargantuan"].includes(item.system.identifier) ? 2 : 1;
     const rollData = {
       formula: `${quant}${item.system.shldDice}`,
       data: item.getRollData(),

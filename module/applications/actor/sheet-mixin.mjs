@@ -1,5 +1,6 @@
 /**
  * Mixin method for common uses between all actor sheets.
+ * @param Base
  * @mixin
  */
 export const ActorSheetMixin = Base => class extends Base {
@@ -199,4 +200,4 @@ export const ActorSheetMixin = Base => class extends Base {
       "system.quantity": similarItem.system.quantity + Math.max(itemData.system.quantity, 1)
     });
   }
-}
+};

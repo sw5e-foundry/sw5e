@@ -666,10 +666,12 @@ export function isObject(value) {
 }
 
 /**
- * Collects every actor whose token is controlled on the canvas, and if none are, collects the current user's character, if it exists.
+ * Collects every actor whose token is controlled on the canvas, and if none are,
+ * collects the current user's character, if it exists.
  *
  * @param {string[]} [types]          The actor types the function should take into consideration.
- * @param {boolean} [useOwnCharacter] If true, the function will append the user's own character to the list of collected actors.
+ * @param {boolean} [useOwnCharacter] If true, the function will append the user's own character
+ *                                    to the list of collected actors.
  * @returns {Actors5e[]} An array of Actor5e elements according to the aforementioned filters.
  */
 export function getSelectedOrOwnActors(types, useOwnCharacter = true) {

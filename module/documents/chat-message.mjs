@@ -179,7 +179,7 @@ function applyChatCardDamage(li, multiplier) {
       const rolls = message.flags["mre-dnd5e"].rolls;
       for (let i = 0; i < rolls.length; i++) {
         damages.push({
-          ammount: rolls[i].total,
+          amount: rolls[i].total,
           type: damageTypes[i]
         });
       }

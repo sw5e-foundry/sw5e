@@ -14,7 +14,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
   /* -------------------------------------------- */
 
   /** @override */
-  static unsupportedItemTypes = new Set(["background", "class", "archetype", "starshipsize", "starshipmod"]);
+  static unsupportedItemTypes = new Set(["background", "class", "species", "archetype", "starshipsize", "starshipmod"]);
 
   /* -------------------------------------------- */
 

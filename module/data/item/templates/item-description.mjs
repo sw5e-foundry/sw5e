@@ -1,3 +1,6 @@
+import SystemDataModel from "../../abstract.mjs";
+import SourceField from "../../shared/source-field.mjs";
+
 /**
  * Data model template with item description & source.
  *
@@ -5,10 +8,10 @@
  * @property {string} description.value         Full item description.
  * @property {string} description.chat          Description displayed in chat card.
  * @property {string} description.unidentified  Description displayed if item is unidentified.
- * @property {string} source                    Adventure or sourcebook where this item originated.
+ * @property {SourceField} source               Adventure or sourcebook where this item originated.
  * @mixin
  */
-export default class ItemDescriptionTemplate extends foundry.abstract.DataModel {
+export default class ItemDescriptionTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
@@ -21,7 +24,7 @@ export default class ItemDescriptionTemplate extends foundry.abstract.DataModel 
           label: "SW5E.DescriptionUnidentified"
         })
       }),
-      source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" })
+      source: new SourceField()
     };
   }
 
@@ -30,17 +33,20 @@ export default class ItemDescriptionTemplate extends foundry.abstract.DataModel 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
+  static _migrateData(source) {
+    super._migrateData(source);
     ItemDescriptionTemplate.#migrateSource(source);
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Convert null source to the blank string.
+   * Convert source string into custom object.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
   static #migrateSource(source) {
-    if (source.source === null) source.source = "";
+    if ( foundry.utils.getType(source.source) !== "Object" ) {
+      source.source = { custom: source.source };
+    }
   }
 }

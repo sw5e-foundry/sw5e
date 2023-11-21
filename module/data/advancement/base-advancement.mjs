@@ -25,7 +25,7 @@ export default class BaseAdvancement extends foundry.abstract.DataModel {
       value: new AdvancementDataField(this, { required: true }),
       level: new foundry.data.fields.NumberField({
         integer: true,
-        initial: this.metadata?.multiLevel ? undefined : 1,
+        initial: this.metadata?.multiLevel ? undefined : 0,
         min: 0,
         label: "SW5E.Level"
       }),

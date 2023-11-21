@@ -39,7 +39,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {object} attributes.deployment.active
  * @property {string} attributes.deployment.active.value       UUID of the active actor.
  * @property {object} attributes.fuel
- * @property {number} attributes.fuel.value                    Ammount of units of fuel stored.
+ * @property {number} attributes.fuel.value                    Amount of units of fuel stored.
  * @property {object} attributes.power
  * @property {string} attributes.power.routing                 Power routing as defined in `SW5E.powerRoutingOpts`.
  * @property {object} attributes.power.central

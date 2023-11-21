@@ -1,3 +1,5 @@
+import { LocalDocumentField } from "../../fields.mjs";
+
 /**
  * Shared contents of the details schema between various actor types.
  */
@@ -28,13 +30,15 @@ export default class DetailsField {
    * Fields shared between characters and NPCs.
    *
    * @type {object}
-   * @property {string} alignment  Creature's alignment.
-   * @property {string} species    Creature's species.
+   * @property {string} alignment       Creature's alignment.
+   * @property {Item5e|string} species  Creature's species item or name.
    */
   static get creature() {
     return {
       alignment: new foundry.data.fields.StringField({ required: true, label: "SW5E.Alignment" }),
-      species: new foundry.data.fields.StringField({ required: true, label: "SW5E.Species" })
+      species: new LocalDocumentField(foundry.documents.BaseItem, {
+        required: true, fallback: true, label: "SW5E.Species"
+      })
     };
   }
 }

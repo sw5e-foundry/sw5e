@@ -22,8 +22,8 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @property {string} baseItem            Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
  * @property {object} ammo
  * @property {string} ammo.target         Id of the selected ammo item.
- * @property {string} ammo.value          Current ammount of loaded ammo.
- * @property {string} ammo.use            Ammount of ammo spent per shot.
+ * @property {string} ammo.value          Current amount of loaded ammo.
+ * @property {string} ammo.use            Amount of ammo spent per shot.
  * @property {Array<string>} ammo.types   Types of ammo this ammo can accept.
  * @property {object} properties          Mapping of various equipment property booleans and numbers.
  * @property {number} proficient          Does the weapon's owner have proficiency?
@@ -96,8 +96,8 @@ export default class WeaponData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     WeaponData.#migrateProficient(source);
     WeaponData.#migrateWeaponType(source);
     migrateItemProperties(source.properties, CONFIG.SW5E.weaponProperties);

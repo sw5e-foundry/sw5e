@@ -35,11 +35,10 @@
   .summary {
     font-size: 18px;
 
-    li.creature-type {
+    li {
       display: flex;
       justify-content: space-between;
-      width: 1em;
-      padding: 0 3px;
+      gap: 0.25em;
 
       span {
         overflow: hidden;
@@ -56,6 +55,14 @@
       &:hover .config-button {
         display: block;
       }
+    }
+
+    .creature-type {
+      width: 1em;
+      padding: 0 3px;
+    }
+    .source {
+      width: 1em;
     }
   }
 }

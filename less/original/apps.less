@@ -591,6 +591,19 @@ h5 {
 
 .proficiency-selector,
 .trait-selector {
+  max-height: 700px;
+
+  form {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    > .trait-list {
+      overflow: auto;
+      border-bottom: @borderGroove;
+    }
+  }
+
   .trait-list {
     list-style: none;
     margin: 0;
@@ -598,6 +611,12 @@ h5 {
 
     li ol.trait-list {
       margin-left: 1.5em;
+    }
+    .category > label {
+      font-weight: bold;
+    }
+    .wildcard > label {
+      font-style: italic;
     }
   }
 
@@ -696,6 +715,7 @@ h5 {
     font-size: 12px;
     line-height: 20px;
     font-weight: normal;
+    align-items: baseline;
     > input[type="radio"] {
       margin: 0 5px 0 0;
     }
@@ -826,4 +846,37 @@ h5 {
       }
     }
   }
+}
+
+/* ----------------------------------------- */
+/*  Accordion                                */
+/* ----------------------------------------- */
+
+.accordion {
+  transition: margin-bottom 500ms ease;
+}
+.accordion.collapsed {
+  > .accordion-content { height: 0; }
+}
+
+.accordion-indicator {
+  display: none;
+  transition: transform 500ms ease;
+}
+.accordion .accordion-indicator {
+  display: inherit;
+  transform: rotate(0deg);
+}
+.accordion.collapsed .accordion-indicator {
+  transform: rotate(-90deg);
+}
+
+.accordion-heading {
+  cursor: pointer;
+  position: relative;
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: height 500ms ease;
 }

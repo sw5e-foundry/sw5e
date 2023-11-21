@@ -3,8 +3,8 @@ import Actor5e from "../../documents/actor/actor.mjs";
 /**
  * A specialized form used to select from a checklist of attributes, traits, or properties
  */
-export default class ActorTypeConfig extends FormApplication {
-  /** @inheritDoc */
+export default class ActorTypeConfig extends DocumentSheet {
+  /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["sw5e", "actor-type", "trait-selector"],
@@ -14,13 +14,15 @@ export default class ActorTypeConfig extends FormApplication {
       choices: {},
       allowCustom: true,
       minimum: 0,
-      maximum: null
+      maximum: null,
+      sheetConfig: false,
+      keyPath: "system.details.type"
     });
   }
 
   /* -------------------------------------------- */
 
-  /** @inheritDoc */
+  /** @inheritdoc */
   get title() {
     return `${game.i18n.localize("SW5E.CreatureTypeTitle")}: ${this.object.name}`;
   }
@@ -34,12 +36,25 @@ export default class ActorTypeConfig extends FormApplication {
 
   /* -------------------------------------------- */
 
+  /**
+   * Return a reference to the Actor. Either the NPCs themselves if they are being edited, otherwise the parent Actor
+   * if a species Item is being edited.
+   * @returns {Actor5e}
+   */
+  get actor() {
+    return this.object.actor ?? this.object;
+  }
+
+  /* -------------------------------------------- */
+
   /** @override */
   getData(options = {}) {
     // Get current value or new default
-    let attr = foundry.utils.getProperty(this.object.system, "details.type");
+    let attr = foundry.utils.getProperty(this.object, this.options.keyPath);
     if (foundry.utils.getType(attr) !== "Object") attr = {
       value: attr in CONFIG.SW5E.creatureTypes ? attr : "humanoid",
+      showCustom: Object.hasOwn(attr, "custom"),
+      showSwarm: Object.hasOwn(attr, "swarm"),
       subtype: "",
       swarm: "",
       custom: ""
@@ -79,7 +94,7 @@ export default class ActorTypeConfig extends FormApplication {
   /** @override */
   async _updateObject(event, formData) {
     const typeObject = foundry.utils.expandObject(formData);
-    return this.object.update({ "system.details.type": typeObject });
+    return this.object.update({[this.options.keyPath]: typeObject});
   }
 
   /* -------------------------------------------- */
@@ -90,6 +105,15 @@ export default class ActorTypeConfig extends FormApplication {
   activateListeners(html) {
     super.activateListeners(html);
     html.find("input[name='custom']").focusin(this._onCustomFieldFocused.bind(this));
+
+    const overrides = Object.keys(foundry.utils.flattenObject(this.actor.overrides || {}));
+    if ( overrides.some(k => k.startsWith("system.details.type.")) ) {
+      // Disable editing any type field if one of them is overridden by an Active Effect.
+      html.find("input, select").each((i, el) => {
+        el.disabled = true;
+        el.dataset.tooltip = "SW5E.ActiveEffectOverrideWarning";
+      });
+    }
   }
 
   /* -------------------------------------------- */

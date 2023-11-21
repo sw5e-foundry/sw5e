@@ -27,7 +27,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {number} modMaxSuitesBase   Base capacity of suite mods on a starship of this size.
  * @property {number} modMaxSuitesMult   Increase in capacity of suite mods per CON mod on a starship of this size.
  * @property {number} modMinWorkforce    Minimum workforce needed to install a mod on a starship of this size.
- * @property {number} hardpointMult      Multiplier to the ammount of Fires per turn on a starship of this size.
+ * @property {number} hardpointMult      Multiplier to the amount of Fires per turn on a starship of this size.
  * @property {number} equipCostMult      Multiplier to the cost of equipment for a starship of this size.
  * @property {number} equipMinWorkforce  Minimum workforce needed to install equipment on a starship of this size.
  * @property {number} cargoCap           Starship's cargo capacity.
@@ -259,13 +259,15 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
     });
   }
 
+  // TODO SW5E: Copy the Singleton code from species or background
+
   /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     StarshipSizeData.#migrateSize(source);
   }
 

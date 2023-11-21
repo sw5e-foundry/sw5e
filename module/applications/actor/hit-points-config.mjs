@@ -126,7 +126,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
       this.clone.updateSource({ "system.attributes.hp.max": roll.total });
       this.render();
     } catch(error) {
-      ui.notifications.error(game.i18n.localize("SW5E.HPFormulaError"));
+      ui.notifications.error("SW5E.HPFormulaError", { localize: true });
       throw error;
     }
   }

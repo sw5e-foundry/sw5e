@@ -1,4 +1,7 @@
 import Proficiency from "./proficiency.mjs";
+import * as Trait from "./trait.mjs";
+import ScaleValueAdvancement from "../advancement/scale-value.mjs";
+import { SystemDocumentMixin } from "../mixin.mjs";
 import { d20Roll, attribDieRoll } from "../../dice/dice.mjs";
 import { simplifyBonus, fromUuidSynchronous } from "../../utils.mjs";
 import ShortRestDialog from "../../applications/actor/short-rest.mjs";
@@ -13,7 +16,7 @@ import * as Trait from "./trait.mjs";
 /**
  * Extend the base Actor class to implement additional system-specific logic for SW5e.
  */
-export default class Actor5e extends Actor {
+export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * The data source for Actor5e.classes allowing it to be lazily computed.
    * @type {Object<Item5e>}
@@ -190,8 +193,7 @@ export default class Actor5e extends Actor {
 
   /** @inheritDoc */
   prepareData() {
-    // Do not attempt to prepare non-system types.
-    if (!game.template.Actor.types.includes(this.type)) return;
+    if ( !game.template.Actor.types.includes(this.type) ) return super.prepareData();
     this._classes = undefined;
     this._deployments = undefined;
     this._starships = undefined;
@@ -205,13 +207,9 @@ export default class Actor5e extends Actor {
 
   /** @inheritDoc */
   prepareBaseData() {
-    // Delegate preparation to type-subclass
-    if (this.type === "group") {
-      // Eventually other types will also support this
-      return this.system._prepareBaseData();
-    }
-
-    this._prepareBaseArmorClass();
+    if ( !game.template.Actor.types.includes(this.type) ) return;
+    if ( this.type !== "group" ) this._prepareBaseArmorClass();
+    else if ( game.release.generation < 11 ) this.system.prepareBaseData();
 
     // Type-specific preparation
     switch (this.type) {
@@ -241,11 +239,7 @@ export default class Actor5e extends Actor {
 
   /** @inheritDoc */
   prepareDerivedData() {
-    // Delegate preparation to type-subclass
-    if (this.type === "group") {
-      // Eventually other types will also support this
-      return this.system._prepareDerivedData();
-    }
+    if ( !game.template.Actor.types.includes(this.type) || (this.type === "group") ) return;
 
     const flags = this.flags.sw5e || {};
     this.labels = {};
@@ -444,7 +438,8 @@ export default class Actor5e extends Actor {
   _prepareBaseArmorClass() {
     const ac = this.system.attributes.ac;
     ac.armor = 10;
-    ac.shield = ac.bonus = ac.cover = 0;
+    ac.shield = ac.cover = 0;
+    ac.bonus = "";
   }
 
   /* -------------------------------------------- */
@@ -455,24 +450,15 @@ export default class Actor5e extends Actor {
    * @protected
    */
   _prepareScaleValues() {
-    const scale = (this.system.scale = {});
-    for (const [identifier, obj] of Object.entries(this.classes)) {
-      scale[identifier] = obj.scaleValues;
-      if (obj.archetype) scale[obj.archetype.identifier] = obj.archetype.scaleValues;
-    }
-
-    for (const [identifier, obj] of Object.entries(this.deployments)) {
-      scale[identifier] = obj.scaleValues;
-    }
-
-    for (const [identifier, obj] of Object.entries(this.starships)) {
-      scale[identifier] = obj.scaleValues;
-    }
+    this.system.scale = this.items.reduce((scale, item) => {
+      if ( ScaleValueAdvancement.metadata.validItemTypes.has(item.type) ) scale[item.identifier] = item.scaleValues;
+      return scale;
+    }, {});
 
     const superiority = this.system?.attributes?.super;
     if (superiority?.level) {
-      if (scale.superiority) ui.notifications.warn("SW5E.SuperiorityIdentifierWarn");
-      scale.superiority = superiority;
+      if (this.system.scale.superiority) ui.notifications.warn("SW5E.SuperiorityIdentifierWarn");
+      this.system.scale.superiority = superiority;
     }
   }
 
@@ -1045,6 +1031,7 @@ export default class Actor5e extends Actor {
       },
       { armors: [], shields: [] }
     );
+    const rollData = this.getRollData({ deterministic: true });
 
     // Determine base AC
     switch (ac.calc) {
@@ -1119,6 +1106,7 @@ export default class Actor5e extends Actor {
     }
 
     // Compute total AC and return
+    ac.bonus = simplifyBonus(ac.bonus, rollData);
     ac.value = ac.base + ac.shield + ac.bonus + ac.cover;
   }
 
@@ -1475,7 +1463,8 @@ export default class Actor5e extends Actor {
 
   /** @inheritdoc */
   async _preCreate(data, options, user) {
-    await super._preCreate(data, options, user);
+    if ( (await super._preCreate(data, options, user)) === false ) return false;
+
     const sourceId = this.getFlag("core", "sourceId");
     if (sourceId?.startsWith("Compendium.")) return;
 
@@ -1511,7 +1500,7 @@ export default class Actor5e extends Actor {
 
   /** @inheritdoc */
   async _preUpdate(changed, options, user) {
-    await super._preUpdate(changed, options, user);
+    if ( (await super._preUpdate(changed, options, user)) === false ) return false;
 
     // Apply changes in Actor size to Token width/height
     if ("size" in (this.system.traits || {})) {
@@ -1672,12 +1661,12 @@ export default class Actor5e extends Actor {
 
   /**
    * Apply an array of damages to the health pool of the Actor
-   * @param {{Number: ammount, String: type}[]} damages   Ammount and Types of the damages to apply
+   * @param {{Number: amount, String: type}[]} damages    Amount and Types of the damages to apply
    * @param {string} [itemUuid]                           The uuid of the item dealing the damage
    */
   async applyDamages(damages, itemUuid = null) {
     for (const damage of damages) {
-      await this.applyDamage(Math.abs(damage.ammount), damage.ammount >= 0 ? 1 : -1, {
+      await this.applyDamage(Math.abs(damage.amount), damage.amount >= 0 ? 1 : -1, {
         damageType: damage.type,
         itemUuid
       });
@@ -1768,13 +1757,13 @@ export default class Actor5e extends Actor {
 
   /**
    * Removes currency from the actor
-   * @param {number} ammount  Ammount to remove.
+   * @param {number} amount   Amount to remove.
    * @returns {boolean}       Wheter the operation was succesfull.
    */
-  async removeCurrency(ammount) {
+  async removeCurrency(amount) {
     const cur = this.system.currency.gc;
-    if (cur >= ammount) {
-      await this.update({ "system.currency.gc": cur - ammount });
+    if (cur >= amount) {
+      await this.update({ "system.currency.gc": cur - amount });
       return true;
     }
     return false;
@@ -1796,14 +1785,14 @@ export default class Actor5e extends Actor {
     const flagsCfg = CONFIG.SW5E.characterFlags;
     const midi = game.modules.get("midi-qol")?.active;
     const skl = this.system.skills[skillId];
-    const abl = this.system.abilities[skl.ability];
+    const abl = this.system.abilities[options.ability ?? skl.ability];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
     const data = this.getRollData();
 
     // Add ability modifier
-    data.mod = skl.mod;
-    data.defaultAbility = skl.ability;
+    data.mod = abl?.mod;
+    data.defaultAbility = options.ability ?? skl.ability;
 
     // Include proficiency bonus
     if (skl.prof.hasProficiency) {
@@ -1842,7 +1831,7 @@ export default class Actor5e extends Actor {
     }
 
     // Flags
-    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: skl.ability });
+    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: abl });
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
@@ -1936,7 +1925,7 @@ export default class Actor5e extends Actor {
     const data = this.getRollData();
 
     // Add ability modifier.
-    data.mod = tool?.mod ?? 0;
+    data.mod = ability?.mod ?? 0;
     data.defaultAbility = options.ability || (tool?.ability ?? "int");
 
     // Add proficiency.
@@ -1995,7 +1984,7 @@ export default class Actor5e extends Actor {
     const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
-    const flavor = game.i18n.format("SW5E.ToolPromptTitle", { tool: Trait.keyLabel("tool", toolId) ?? "" });
+    const flavor = game.i18n.format("SW5E.ToolPromptTitle", {tool: Trait.keyLabel(toolId, {trait: "tool"}) ?? ""});
     const rollData = foundry.utils.mergeObject(
       {
         data,
@@ -2343,7 +2332,7 @@ export default class Actor5e extends Actor {
 
     // Display a warning if we are not at zero HP or if we already have reached 3
     if (this.system.attributes.hp.value > 0 || death.failure >= 3 || death.success >= 3) {
-      ui.notifications.warn(game.i18n.localize("SW5E.DeathSaveUnnecessary"));
+      ui.notifications.warn("SW5E.DeathSaveUnnecessary", { localize: true });
       return null;
     }
 
@@ -2737,7 +2726,9 @@ export default class Actor5e extends Actor {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  async rollInitiative(options = {}) {
+  async rollInitiative(options={}, rollOptions={}) {
+    this._cachedInitiativeRoll ??= this.getInitiativeRoll(rollOptions);
+
     /**
      * A hook event that fires before initiative is rolled for an Actor.
      * @function sw5e.preRollInitiative
@@ -2745,17 +2736,17 @@ export default class Actor5e extends Actor {
      * @param {Actor5e} actor  The Actor that is rolling initiative.
      * @param {D20Roll} roll   The initiative roll.
      */
-    if (Hooks.call("sw5e.preRollInitiative", this, this._cachedInitiativeRoll) === false) return;
+    if ( Hooks.call("sw5e.preRollInitiative", this, this._cachedInitiativeRoll) === false ) {
+      delete this._cachedInitiativeRoll;
+      return null;
+    }
 
     const combat = await super.rollInitiative(options);
-    const combatants = this.isToken
-      ? this.getActiveTokens(false, true).reduce((arr, t) => {
-        const combatant = game.combat.getCombatantByToken(t.id);
-        if (combatant) arr.push(combatant);
-        return arr;
-      }, [])
-      : [game.combat.getCombatantByActor(this.id)];
-
+    const combatants = this.isToken ? this.getActiveTokens(false, true).reduce((arr, t) => {
+      const combatant = game.combat.getCombatantByToken(t.id);
+      if ( combatant ) arr.push(combatant);
+      return arr;
+    }, []) : [game.combat.getCombatantByActor(this.id)];
     /**
      * A hook event that fires after an Actor has rolled for initiative.
      * @function sw5e.rollInitiative
@@ -2764,6 +2755,7 @@ export default class Actor5e extends Actor {
      * @param {Combatant[]} combatants  The associated Combatants in the Combat.
      */
     Hooks.callAll("sw5e.rollInitiative", this, combatants);
+    delete this._cachedInitiativeRoll;
     return combat;
   }
 
@@ -3769,8 +3761,8 @@ export default class Actor5e extends Actor {
     if (Hooks.call("sw5e.preRestCompleted", this, result) === false) return result;
 
     // Perform updates
-    await this.update(result.updateData);
-    await this.updateEmbeddedDocuments("Item", result.updateItems);
+    await this.update(result.updateData, { isRest: true });
+    await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
     // Display a Chat Message summarizing the rest effects
     if (chat) await this._displayRestResultMessage(result, longRest);
@@ -4039,7 +4031,7 @@ export default class Actor5e extends Actor {
       }
 
       // Items that roll to gain charges on a new day
-      if (recoverDailyUses && uses?.recovery && uses?.per === "charges") {
+      if (recoverDailyUses && uses?.recovery && uses?.per in CONFIG.SW5E.limitedUseFormulaPeriods) {
         const roll = new Roll(uses.recovery, item.getRollData());
         if (recoverLongRestUses && game.settings.get("sw5e", "restVariant") === "gritty") {
           roll.alter(7, 0, { multiplyNumeric: true });
@@ -4325,8 +4317,8 @@ export default class Actor5e extends Actor {
     if (Hooks.call("sw5e.preRepairCompleted", this, result) === false) return result;
 
     // Perform updates
-    await this.update(result.updateData);
-    await this.updateEmbeddedDocuments("Item", result.updateItems);
+    await this.update(result.updateData, { isRest: true });
+    await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
     // Display a Chat Message summarizing the repair effects
     if (chat) await this._displayRepairResultMessage(result, refittingRepair);
@@ -4630,7 +4622,7 @@ export default class Actor5e extends Actor {
       }
 
       // Items that roll to gain charges on a new day
-      if (recoverDailyUses && uses?.recovery && uses?.per === "charges") {
+      if (recoverDailyUses && uses?.recovery && uses?.per in CONFIG.SW5E.limitedUseFormulaPeriods) {
         const roll = new Roll(uses.recovery, this.getRollData());
 
         let total = 0;
@@ -4736,7 +4728,8 @@ export default class Actor5e extends Actor {
     // Ensure the player is allowed to polymorph
     const allowed = game.settings.get("sw5e", "allowPolymorphing");
     if (!allowed && !game.user.isGM) {
-      return ui.notifications.warn(game.i18n.localize("SW5E.PolymorphWarn"));
+      ui.notifications.warn(game.i18n.localize("SW5E.PolymorphWarn"));
+      return null;
     }
 
     // Get the original Actor data and the new source data
@@ -4818,8 +4811,8 @@ export default class Actor5e extends Actor {
         else if (keepMental && type === "mental") abilities[k] = oa;
 
         // Set saving throw proficiencies.
-        if (keepSaves) abilities[k].proficient = oa.proficient;
-        else if (mergeSaves) abilities[k].proficient = Math.max(prof, oa.proficient);
+        if (keepSaves && oa) abilities[k].proficient = oa.proficient;
+        else if (mergeSaves && oa) abilities[k].proficient = Math.max(prof, oa.proficient);
         else abilities[k].proficient = source.system.abilities[k].proficient;
       }
 
@@ -4827,7 +4820,7 @@ export default class Actor5e extends Actor {
       if (keepSkills) d.system.skills = o.system.skills;
       else if (mergeSkills) {
         for (let [k, s] of Object.entries(d.system.skills)) {
-          s.value = Math.max(s.value, o.system.skills[k].value);
+          s.value = Math.max(s.value, o.system.skills[k]?.value ?? 0);
         }
       }
 
@@ -4993,7 +4986,10 @@ export default class Actor5e extends Actor {
    */
   async revertOriginalForm({ renderSheet = true } = {}) {
     if (!this.isPolymorphed) return;
-    if (!this.isOwner) return ui.notifications.warn(game.i18n.localize("SW5E.PolymorphRevertWarn"));
+    if ( !this.isOwner ) {
+      ui.notifications.warn("SW5E.PolymorphRevertWarn", {localize: true});
+      return null;
+    }
 
     /**
      * A hook event that fires just before the actor is reverted to original form.

@@ -73,8 +73,8 @@ export default class ModificationData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     migrateItemProperties(source.properties, {
       ...CONFIG.SW5E.weaponProperties,
       ...CONFIG.SW5E.castingProperties,

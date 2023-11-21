@@ -1,3 +1,5 @@
+import SystemDataModel from "../../abstract.mjs";
+
 /**
  * Data model template with information on moddable items.
  *
@@ -9,7 +11,7 @@
  * @property {object} changes             Precalculated 'overrides' object to apply modification changes.
  * @mixin
  */
-export default class ModdableTemplate extends foundry.abstract.DataModel {
+export default class ModdableTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {

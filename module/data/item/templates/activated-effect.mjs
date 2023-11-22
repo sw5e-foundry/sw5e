@@ -371,7 +371,6 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
     };
   }
 
-
   /* -------------------------------------------- */
 
   /**

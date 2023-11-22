@@ -325,8 +325,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasReload() {
-    const reload = this.ammo;
-    return this.isActive && !!reload.target;
+    return this.isActive && !!this.ammo?.target;
   }
 
   /* -------------------------------------------- */
@@ -352,7 +351,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
       return {
         item: actor?.items?.get(this.ammo.target),
         quantity: this.ammo.value,
-        consumeAmount: this.system.ammo?.use ?? this.system.ammo?.baseUse ?? 1,
+        consumeAmount: this.ammo?.use ?? this.ammo?.baseUse ?? 1,
         max: this.ammo.max
       };
     } else if (this.hasAmmo) {

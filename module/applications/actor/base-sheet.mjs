@@ -1445,8 +1445,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     event.preventDefault();
     const dataset = (event.currentTarget.closest(".powerbook-header") ?? event.currentTarget).dataset;
     const type = dataset.type;
-    const featType = header.dataset.feattype ?? "";
-    const featSubtype = header.dataset.featsubtype ?? "";
+    const featType = dataset.feattype ?? "";
+    const featSubtype = dataset.featsubtype ?? "";
 
     // Check to make sure the newly created class doesn't take player over level cap
     if (type === "class" && this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel) {

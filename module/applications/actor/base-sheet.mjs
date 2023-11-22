@@ -435,7 +435,6 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     for (const [trait, traitConfig] of Object.entries(CONFIG.SW5E.traits)) {
       const key = traitConfig.actorKeyPath?.replace("system.", "") ?? `traits.${trait}`;
       const data = foundry.utils.deepClone(foundry.utils.getProperty(systemData, key));
-      const choices = CONFIG.SW5E[traitConfig.configKey];
       if (!data) continue;
 
       foundry.utils.setProperty(traits, key, data);
@@ -456,7 +455,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
       // Fill out trait values
       data.selected = values.reduce((obj, key) => {
-        obj[key] = Trait.keyLabel(key { trait }) ?? key;
+        obj[key] = Trait.keyLabel(key, { trait }) ?? key;
         return obj;
       }, {});
 
@@ -594,7 +593,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
   _prepareItemsCategorized(context, categories) {
     const config = categories.config;
     for (const item of context.items) {
-      const { quantity, uses, recharge, target, equipped } = item.system;
+      const { quantity, uses, recharge, equipped } = item.system;
 
       // Item details
       const ctx = (context.itemContext[item.id] ??= {});

@@ -1751,7 +1751,6 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     // Handle ammunition consumption
     let ammoUpdate = [];
     let itemUpdate = {};
-    const consume = this.system.consume;
     const ammo = this.getAmmo;
     if (ammo) {
       const quant = ammo.quantity;
@@ -2955,14 +2954,16 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     }
 
     const modCount = mods.filter(m => m.type === modType).length;
-    if (modCount >= itemMods[`${modType}Slots`])
+    if (modCount >= itemMods[`${modType}Slots`]) {
       ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModNoSpace", {
-        itemName: item.name,
-        modName: mod.name,
-        modType
-      })
-    );
+        game.i18n.format("SW5E.ErrorModNoSpace", {
+          itemName: item.name,
+          modName: mod.name,
+          modType
+        })
+      );
+      return null;
+    }
 
     // Apply the changes
     const objData = mod.toObject();

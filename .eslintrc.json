@@ -13,6 +13,7 @@
   "plugins": [
     "jsdoc"
   ],
+  "ignorePatterns": [ "module/applications/compendium/*.mjs", "module/applications/compendium/tabs/*.mjs" ],
   "rules": {
     "array-bracket-spacing": ["warn", "never"],
     "array-callback-return": "warn",

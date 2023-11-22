@@ -910,6 +910,7 @@ function _migrateItemBackgroundDescription(item, updateData) {
 
   let text = "";
 
+  /* eslint-disable no-useless-concat */
   if (item.system.flavorText) text +=
       '<div class="background">\n' + "  <p>\n" + `      ${item.system.flavorText.value}\n` + "  </p>\n" + "</div>\n";
   if (item.system.skillProficiencies) text +=
@@ -979,6 +980,7 @@ function _migrateItemBackgroundDescription(item, updateData) {
     if (item.system.bondOptions) text +=
         '<div class="medtable">\n' + "  <p>\n" + `      ${item.system.bondOptions.value}\n` + "  </p>\n" + "</div>\n";
   }
+  /* eslint-enable no-useless-concat */
 
   if (text) updateData["system.description.value"] = text;
 

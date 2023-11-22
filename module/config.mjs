@@ -4342,7 +4342,7 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
       _enrichmentLookup = {
         abilities: {},
         skills: {},
-        tools: {},
+        tools: {}
       };
       Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[k] = _enrichmentLookup.abilities[a.fullKey] = a);
       Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);

@@ -354,7 +354,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
         quantity: this.ammo.value,
         consumeAmount: this.system.ammo?.use ?? this.system.ammo?.baseUse ?? 1,
         max: this.ammo.max
-      }
+      };
     } else if (this.hasAmmo) {
       const item = actor?.items?.get(this.consume.target);
       return {
@@ -362,7 +362,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
         quantity: item?.system?.quantity,
         consumeAmount: this.consume.ammount ?? 0,
         max: null
-      }
+      };
     }
     return {
       item: null,

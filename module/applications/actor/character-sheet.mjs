@@ -47,6 +47,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       }, {inplace: false});
       if ( res.value === 0 ) delete res.value;
       if ( res.max === 0 ) delete res.max;
+      return arr.concat([res]);
     }, []);
 
     // HTML enrichment

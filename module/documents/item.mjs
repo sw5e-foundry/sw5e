@@ -738,6 +738,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const C = CONFIG.SW5E;
 
     // Ability Activation Label
+    const act = this.system.activation ?? {};
     if ( !act.type ) act.type = null;   // Backwards compatibility
     this.labels.activation = act.type ? [
       (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
@@ -1333,10 +1334,10 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       if ( consume.target === this.id ) config.consumeUsage = null;
     }
     // For attacks, the ammo is consumed on the attack roll
-    if ( item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
+    if ( this.system.ammo?.max && !(this.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
       config.consumeSuperiorityDie = true;
     }
-    if ( item.type === "maneuver" ) config.consumeSuperiorityDie = true;
+    if ( this.type === "maneuver" ) config.consumeSuperiorityDie = true;
     if ( game.user.can("TEMPLATE_CREATE") && this.hasAreaTarget ) config.createMeasuredTemplate = target.prompt;
 
     return config;

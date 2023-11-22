@@ -74,9 +74,10 @@
                 <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
                 <h4>{{item.name}}</h4>
                 {{#if item.hasLimitedUses}}
-                <div class="item-detail power-uses">
-                    {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
-                </div>
+                    <div class="item-detail power-uses">
+                        {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
+                    </div>
+                {{/if}}
                 <div class="power-comps">
                     {{#each item.labels.components.all}}
                         <span class="power-component{{#if tag}} tag{{/if}}">{{abbr}}</span>

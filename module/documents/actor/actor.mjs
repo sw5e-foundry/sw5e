@@ -228,6 +228,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /** @inheritDoc */
   applyActiveEffects() {
     this._prepareScaleValues();
+    if ( this.system?.prepareEmbeddedData instanceof Function ) this.system.prepareEmbeddedData();
     // The Active Effects do not have access to their parent at preparation time, so we wait until this stage to
     // determine whether they are suppressed or not.
     this.effects.forEach(e => e.determineSuppression());
@@ -2217,9 +2218,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // TODO: Check for blinded, deafened, or incapacitated for dangerSense
     const dangerSense = this._getCharacterFlag("dangerSense", { ability: abilityId });
 
-    const dmgAdvantageFlag = options.damageTypes.size && this._getCharacterFlag([
+    const dmgAdvantageFlag = options.damageTypes?.size && this._getCharacterFlag([
       "advantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes).map(dmg => `advantage.ability.save.dmg.${dmg}`)
+      ...Array.from(options.damageTypes ?? {}).map(dmg => `advantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
     const forceAdvantageFlag = options.isForcePower && this._getCharacterFlag([
       "advantage.ability.save.force.all",
@@ -2238,9 +2239,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const advantage = !!(mastery || advantageFlag || options.advantage);
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
-    const dmgDisadvantageFlag = options.damageTypes.size && this._getCharacterFlag([
+    const dmgDisadvantageFlag = options.damageTypes?.size && this._getCharacterFlag([
       "disadvantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes).map(dmg => `disadvantage.ability.save.dmg.${dmg}`)
+      ...Array.from(options.damageTypes ?? {}).map(dmg => `disadvantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
     const forceDisadvantageFlag = options.isForcePower && this._getCharacterFlag([
       "disadvantage.ability.save.force.all",

@@ -174,8 +174,8 @@ export class UUIDField extends foundry.data.fields.StringField {
  */
 export class LocalDocumentField extends foundry.data.fields.DocumentIdField {
   constructor(model, options={}) {
-    if ( !foundry.utils.isArchetype(model, foundry.abstract.DataModel) ) {
-      throw new Error("A ForeignDocumentField must specify a DataModel archetype as its type");
+    if ( !foundry.utils.isSubclass(model, foundry.abstract.DataModel) ) {
+      throw new Error("A ForeignDocumentField must specify a DataModel subclass as its type");
     }
 
     super(options);

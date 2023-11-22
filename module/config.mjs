@@ -55,7 +55,7 @@ SW5E.abilities = {
     label: "SW5E.AbilityInt",
     abbreviation: "SW5E.AbilityIntAbbr",
     type: "mental",
-    fullKey: "intteligence",
+    fullKey: "intelligence",
     defaults: { vehicle: 0 }
   },
   wis: {
@@ -90,7 +90,6 @@ SW5E.abilities = {
   }
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
-patchConfig("abilities", "label", { since: 2.2, until: 2.4 });
 
 /**
  * Configure which ability score is used as the default modifier for initiative rolls.
@@ -3603,7 +3602,6 @@ SW5E.languages = {
 preLocalize("languages", { key: "label" });
 preLocalize("languages.standard.children", { sort: true });
 preLocalize("languages.exotic.children", { key: "label", sort: true });
-preLocalize("languages.exotic.children.primordial.children", { sort: true });
 patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 2.6" });
 
 /* -------------------------------------------- */
@@ -4342,12 +4340,13 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
   get() {
     if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
-        abilities: foundry.utils.deepClone(SW5E.abilities),
-        skills: foundry.utils.deepClone(SW5E.skills),
-        tools: foundry.utils.deepClone(SW5E.toolIds)
+        abilities: {},
+        skills: {},
+        tools: {},
       };
-      Object.values(SW5E.abilities).forEach(a => _enrichmentLookup.abilities[a.fullKey] = a);
-      Object.values(SW5E.skills).forEach(s => _enrichmentLookup.skills[s.fullKey] = s);
+      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[k] = _enrichmentLookup.abilities[a.fullKey] = a);
+      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);
+      Object.entries(SW5E.toolIds).forEach(([k, t]) => _enrichmentLookup.tools[k] = t);
     }
     return _enrichmentLookup;
   },

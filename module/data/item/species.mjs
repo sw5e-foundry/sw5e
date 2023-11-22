@@ -1,3 +1,4 @@
+import Actor5e from "../../documents/actor/actor.mjs";
 import SystemDataModel from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import { CreatureTypeField, MovementField, SensesField } from "../shared/_module.mjs";

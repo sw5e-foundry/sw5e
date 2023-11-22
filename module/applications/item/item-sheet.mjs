@@ -681,7 +681,6 @@ export default class ItemSheet5e extends ItemSheet {
     if (this.isEditable) {
       html.find(".config-button").click(this._onConfigMenu.bind(this));
       html.find(".damage-control").click(this._onDamageControl.bind(this));
-      html.find(".trait-selector").click(this._onConfigureTraits.bind(this));
       html.find(".effect-control").click(ev => {
         const unsupported = game.sw5e.isV10 && this.item.isOwned;
         if (unsupported) return ui.notifications.warn(

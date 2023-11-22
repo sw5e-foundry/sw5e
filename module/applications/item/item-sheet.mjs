@@ -683,9 +683,12 @@ export default class ItemSheet5e extends ItemSheet {
       html.find(".damage-control").click(this._onDamageControl.bind(this));
       html.find(".effect-control").click(ev => {
         const unsupported = game.sw5e.isV10 && this.item.isOwned;
-        if (unsupported) return ui.notifications.warn(
-          "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
-        );
+        if (unsupported) {
+          ui.notifications.warn(
+            "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
+          );
+          return null;
+        }
         ActiveEffect5e.onManageActiveEffect(ev, this.item);
       });
       html.find(".advancement .item-control").click(event => {
@@ -813,9 +816,10 @@ export default class ItemSheet5e extends ItemSheet {
     const a = event.currentTarget;
 
     // Don't allow adding or removing damage parts while there is a mod affecting those, to avoid duplication
-    if ("system.damage.parts" in flattenObject(this.item.overrides)) return ui.notifications.warn(
-      `Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`
-    );
+    if ("system.damage.parts" in flattenObject(this.item.overrides)) {
+      ui.notifications.warn(`Can't change ${this.item.name}'s damage formulas while there is a mod affecting those.`);
+      return null;
+    }
 
     // Add new damage component
     if (a.classList.contains("add-damage")) {

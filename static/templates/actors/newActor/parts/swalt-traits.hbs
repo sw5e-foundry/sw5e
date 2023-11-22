@@ -73,17 +73,34 @@
                 {{/each}} {{/select}}
             </select>
         </label>
+
+        {{#if isCharacter}}
+            <div class="form-group">
+                <label>{{localize "SW5E.CreatureType"}}</label>
+                {{#if system.details.species.id}}
+                  <a class="config-button" data-action="type" data-tooltip="SW5E.CreatureTypeConfig">
+                      <i class="fas fa-cog"></i>
+                  </a>
+                {{/if}}
+                <ul class="traits-list">
+                    {{#if labels.type}}
+                        <li class="tag">{{labels.type}}</li>
+                    {{/if}}
+                </ul>
+            </div>
+        {{/if}}
+
         <label class="{{#unless system.traits.senses}}inactive{{/unless}}">
             {{#unless isVehicle}}
-            <label>{{localize "SW5E.Senses"}}</label>
-            <a class="config-button" data-action="senses" data-tooltip="SW5E.SensesConfig">
-                <i class="fas fa-cog"></i>
-            </a>
-            <ul class="traits-list">
-                {{#each senses as |v k|}}
-                <li class="tag {{k}}">{{v}}</li>
-                {{/each}}
-            </ul>
+                <label>{{localize "SW5E.Senses"}}</label>
+                <a class="config-button" data-action="senses" data-tooltip="SW5E.SensesConfig">
+                    <i class="fas fa-cog"></i>
+                </a>
+                <ul class="traits-list">
+                    {{#each senses as |v k|}}
+                        <li class="tag {{k}}">{{v}}</li>
+                    {{/each}}
+                </ul>
             {{/unless}}
         </label>
         <div class="form-group {{traits.traits.armorProf.cssClass}}">

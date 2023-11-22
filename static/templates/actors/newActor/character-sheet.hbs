@@ -22,14 +22,18 @@
             {{/unless}}
         </div>
         <div class="summary">
-            <input class="species"
-                type="text"
-                name="system.details.species"
-                value="{{system.details.species}}"
-                placeholder="{{ localize 'SW5E.Species' }}"
-            />
-            {{#if labels.background}}
-                <span data-tooltip="SW5E.Background">{{labels.background}}</span>
+            {{#if system.details.species.name}}
+                <span data-tooltip="SW5E.Species">{{system.details.species.name}}</span>
+            {{else}}
+                <input
+                    type="text"
+                    name="system.details.species"
+                    value="{{system.details.species}}"
+                    placeholder="{{ localize 'SW5E.Species' }}"
+                >
+            {{/if}}
+            {{#if system.details.background.name}}
+                <span data-tooltip="SW5E.Background">{{system.details.background.name}}</span>
             {{else}}
                 <input class="background"
                     type="text"

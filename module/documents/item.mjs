@@ -2894,11 +2894,14 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     // Validate the installation
     if (mod?.type !== "modification") return;
 
-    if (["none", "enhanced"].includes(itemMods.chassis)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModNoChassis", {
-        name: item.name
-      })
-    );
+    if (["none", "enhanced"].includes(itemMods.chassis)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModNoChassis", {
+          name: item.name
+        })
+      );
+      return null;
+    }
 
     const rarityMap = {
       standard: 1,
@@ -2909,40 +2912,51 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       artifact: 6
     };
     if (itemMods.chassis === "chassis" && (rarityMap[itemSysData.rarity] ?? 0) < (rarityMap[modSysData.rarity] ?? 0)) {
-      return ui.notifications.warn(
+      ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModWrongRarity", {
           name: item.name,
           rarity: itemSysData.rarity ?? "common"
         })
       );
+      return null;
     }
 
-    if (!(modificationsType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-        name: item.name,
-        type: modificationsType
-      })
-    );
+    if (!(modificationsType in CONFIG.SW5E.modificationTypes)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+          name: item.name,
+          type: modificationsType
+        })
+      );
+      return null;
+    }
 
-    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-        name: mod.name,
-        type: modSysData.modificationType
-      })
-    );
+    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+          name: mod.name,
+          type: modSysData.modificationType
+        })
+      );
+      return null;
+    }
 
     const modType = modSysData.modificationType === "augment" ? "augment" : "mod";
-    if (modType === "mod" && modificationsType !== modSysData.modificationType) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModWrongType", {
-        modName: mod.name,
-        modType: modSysData.modificationType,
-        itemName: item.name,
-        itemType: modificationsType
-      })
-    );
+    if (modType === "mod" && modificationsType !== modSysData.modificationType) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModWrongType", {
+          modName: mod.name,
+          modType: modSysData.modificationType,
+          itemName: item.name,
+          itemType: modificationsType
+        })
+      );
+      return null;
+    }
 
     const modCount = mods.filter(m => m.type === modType).length;
-    if (modCount >= itemMods[`${modType}Slots`]) return ui.notifications.warn(
+    if (modCount >= itemMods[`${modType}Slots`])
+      ui.notifications.warn(
       game.i18n.format("SW5E.ErrorModNoSpace", {
         itemName: item.name,
         modName: mod.name,

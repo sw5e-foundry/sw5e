@@ -12,6 +12,7 @@ import ActorMovementConfig from "./movement-config.mjs";
 import ActorSensesConfig from "./senses-config.mjs";
 import ActorSheetFlags from "./sheet-flags.mjs";
 import ActorTypeConfig from "./type-config.mjs";
+import SourceConfig from "../source-config.mjs";
 
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
@@ -20,12 +21,14 @@ import PropertyAttribution from "../property-attribution.mjs";
 import TraitSelector from "./trait-selector.mjs";
 import ProficiencyConfig from "./proficiency-config.mjs";
 import ToolSelector from "./tool-selector.mjs";
+import { simplifyBonus } from "../../utils.mjs";
+import { ActorSheetMixin } from "./sheet-mixin.mjs";
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
  * @abstract
  */
-export default class ActorSheet5e extends ActorSheet {
+export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
   /**
    * Track the set of item filters which are applied
    * @type {Object<string, Set>}
@@ -42,6 +45,15 @@ export default class ActorSheet5e extends ActorSheet {
     ssequipment: new Set(),
     effects: new Set()
   };
+
+  /* -------------------------------------------- */
+
+  /**
+   * Track the most recent drag event.
+   * @type {DragEvent}
+   * @protected
+   */
+  _event = null;
 
   /* -------------------------------------------- */
 
@@ -169,7 +181,7 @@ export default class ActorSheet5e extends ActorSheet {
             ? context.isStarship
               ? CONFIG.SW5E.starshipSkills[key]?.label
               : CONFIG.SW5E.skills[key]?.label
-            : Trait.keyLabel("tool", key);
+            : Trait.keyLabel(key, { trait: "tool" });
         entry.baseValue = source.system[prop]?.[key]?.value ?? 0;
       }
     });
@@ -256,7 +268,7 @@ export default class ActorSheet5e extends ActorSheet {
     if (largestPrimary) {
       let primary = speeds.shift();
       return {
-        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        primary: `${primary ? primary[1] : "0"} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
         special: speeds.map(s => s[1]).join(", ")
       };
     }
@@ -264,7 +276,7 @@ export default class ActorSheet5e extends ActorSheet {
     // Case 2: Walk as primary
     else {
       return {
-        primary: `${movement.walk || 0} ${movement.units}`,
+        primary: `${movement.walk || 0} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
         special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
       };
     }
@@ -286,7 +298,7 @@ export default class ActorSheet5e extends ActorSheet {
       if (v === 0) continue;
       tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units}`;
     }
-    if (senses.special) tags.special = senses.special;
+    if (senses.special) senses.special.split(";").forEach((c, i) => tags[`custom${i+1}`] = c.trim());
     return tags;
   }
 
@@ -309,24 +321,25 @@ export default class ActorSheet5e extends ActorSheet {
    * @protected
    */
   _prepareActiveEffectAttributions(target) {
+    const rollData = this.actor.getRollData({deterministic: true});
     return this.actor.effects.reduce((arr, e) => {
       let source = e.sourceName;
-      if (e.origin === this.actor.uuid) source = e.label;
-      if (source && source !== e.label) source = `${source}/${e.label}`;
+      if (e.origin === this.actor.uuid) source = e.name;
+      if (source && source !== e.name) source = `${source}/${e.name}`;
       if (!source || e.disabled || e.isSuppressed) return arr;
       let override = null;
       const value = e.changes.reduce((n, change) => {
-        if (change.key !== target || !Number.isNumeric(change.value)) return n;
+        if (change.key !== target) return n;
         if (override) return n;
         if ([CONST.ACTIVE_EFFECT_MODES.OVERRIDE, CONST.ACTIVE_EFFECT_MODES.CUSTOM].includes(change.mode)) {
-          override = change;
-          return Number(change.value);
+          override = change.mode;
+          return simplifyBonus(change.value, rollData);
         }
         else if (change.mode !== CONST.ACTIVE_EFFECT_MODES.ADD) return n;
-        return n + Number(change.value);
+        return n + simplifyBonus(change.value, rollData);
       }, 0);
       if (!value) return arr;
-      arr.push({ value, label: source, mode: override?.mode ?? CONST.ACTIVE_EFFECT_MODES.ADD });
+      arr.push({ value, label: source, mode: override ?? CONST.ACTIVE_EFFECT_MODES.ADD });
       return arr;
     }, []);
   }
@@ -420,7 +433,7 @@ export default class ActorSheet5e extends ActorSheet {
   _prepareTraits(systemData) {
     const traits = {};
     for (const [trait, traitConfig] of Object.entries(CONFIG.SW5E.traits)) {
-      const key = traitConfig.actorKeyPath ?? `traits.${trait}`;
+      const key = traitConfig.actorKeyPath?.replace("system.", "") ?? `traits.${trait}`;
       const data = foundry.utils.deepClone(foundry.utils.getProperty(systemData, key));
       const choices = CONFIG.SW5E[traitConfig.configKey];
       if (!data) continue;
@@ -443,7 +456,7 @@ export default class ActorSheet5e extends ActorSheet {
 
       // Fill out trait values
       data.selected = values.reduce((obj, key) => {
-        obj[key] = Trait.keyLabel(trait, key) ?? key;
+        obj[key] = Trait.keyLabel(key { trait }) ?? key;
         return obj;
       }, {});
 
@@ -452,7 +465,7 @@ export default class ActorSheet5e extends ActorSheet {
         const damageTypesFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
         const bypassFormatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "disjunction" });
         data.selected.physical = game.i18n.format("SW5E.DamagePhysicalBypasses", {
-          damageTypes: damageTypesFormatter.format(physical.map(t => choices[t])),
+          damageTypes: damageTypesFormatter.format(physical.map(t => Trait.keyLabel(t, { trait }))),
           bypassTypes: bypassFormatter.format(data.bypasses.map(t => CONFIG.SW5E.physicalWeaponProperties[t]?.full))
         });
       }
@@ -518,7 +531,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     for (const itemType of config.classItems ?? CONFIG.SW5E.itemTypes.class) {
       categories.class[itemType] = {
-        label: `${CONFIG.Item.typeLabels[itemType]}Pl`,
+        label: CONFIG.Item.typeLabels[itemType],
         items: [],
         required: true,
         dataset: { type: itemType }
@@ -604,10 +617,10 @@ export default class ActorSheet5e extends ActorSheet {
       ctx.isExpanded = this._expanded.has(item.id);
 
       // Item usage
-      ctx.hasUses = uses && uses.max > 0;
+      ctx.hasUses = item.hasLimitedUses;
       ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-      ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-      ctx.hasTarget = !!target && !["none", ""].includes(target.type);
+      ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
+      ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
 
       // Item toggle state
       this._prepareItemToggleState(item, ctx);
@@ -909,8 +922,8 @@ export default class ActorSheet5e extends ActorSheet {
       this._disableOverriddenFields(html);
     }
 
-    // Owner Only Listeners
-    if (this.actor.isOwner) {
+    // Owner Only Listeners, for non-compendium actors.
+    if ( this.actor.isOwner && !this.actor.compendium ) {
       // Ability Checks
       html.find(".ability-name").click(this._onRollAbilityTest.bind(this));
 
@@ -923,15 +936,15 @@ export default class ActorSheet5e extends ActorSheet {
       // Item Rolling
       html.find(".rollable .item-image").click(event => this._onItemUse(event));
       html.find(".item .item-recharge").click(event => this._onItemRecharge(event));
-
-      // Item Context Menu
-      new ContextMenu(html, ".item-list .item", [], { onOpen: this._onItemContext.bind(this) });
     }
 
     // Otherwise, remove rollable classes
     else {
       html.find(".rollable").each((i, el) => el.classList.remove("rollable"));
     }
+
+    // Item Context Menu
+    new ContextMenu(html, ".item-list .item", [], { onOpen: this._onItemContext.bind(this) });
 
     // Handle default listeners last so system listeners are triggered first
     super.activateListeners(html);
@@ -1002,106 +1015,6 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Prepare an array of context menu options which are available for owned ActiveEffect documents.
-   * @param {ActiveEffect5e} effect         The ActiveEffect for which the context menu is activated
-   * @returns {ContextMenuEntry[]}          An array of context menu options offered for the ActiveEffect
-   * @protected
-   */
-  _getActiveEffectContextOptions(effect) {
-    return [
-      {
-        name: "SW5E.ContextMenuActionEdit",
-        icon: "<i class='fas fa-edit fa-fw'></i>",
-        callback: () => effect.sheet.render(true)
-      },
-      {
-        name: "SW5E.ContextMenuActionDuplicate",
-        icon: "<i class='fas fa-copy fa-fw'></i>",
-        callback: () =>
-          effect.clone({ label: game.i18n.format("DOCUMENT.CopyOf", { name: effect.label }) }, { save: true })
-      },
-      {
-        name: "SW5E.ContextMenuActionDelete",
-        icon: "<i class='fas fa-trash fa-fw'></i>",
-        callback: () => effect.deleteDialog()
-      },
-      {
-        name: effect.disabled ? "SW5E.ContextMenuActionEnable" : "SW5E.ContextMenuActionDisable",
-        icon: effect.disabled ? "<i class='fas fa-check fa-fw'></i>" : "<i class='fas fa-times fa-fw'></i>",
-        callback: () => effect.update({ disabled: !effect.disabled })
-      }
-    ];
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare an array of context menu options which are available for owned Item documents.
-   * @param {Item5e} item                   The Item for which the context menu is activated
-   * @returns {ContextMenuEntry[]}          An array of context menu options offered for the Item
-   * @protected
-   */
-  _getItemContextOptions(item) {
-    // Standard Options
-    const options = [
-      {
-        name: "SW5E.ContextMenuActionEdit",
-        icon: "<i class='fas fa-edit fa-fw'></i>",
-        callback: () => item.sheet.render(true)
-      },
-      {
-        name: "SW5E.ContextMenuActionDuplicate",
-        icon: "<i class='fas fa-copy fa-fw'></i>",
-        condition: () => !["species", "background", "class", "archetype"].includes(item.type),
-        callback: () => item.clone({ name: game.i18n.format("DOCUMENT.CopyOf", { name: item.name }) }, { save: true })
-      },
-      {
-        name: "SW5E.ContextMenuActionDelete",
-        icon: "<i class='fas fa-trash fa-fw'></i>",
-        callback: () => item.deleteDialog()
-      }
-    ];
-
-    // Toggle Attunement State
-    if ("attunement" in item.system && item.system.attunement !== CONFIG.SW5E.attunementTypes.NONE) {
-      const isAttuned = item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED;
-      options.unshift({
-        name: isAttuned ? "SW5E.ContextMenuActionUnattune" : "SW5E.ContextMenuActionAttune",
-        icon: "<i class='fas fa-sun fa-fw'></i>",
-        callback: () =>
-          item.update({
-            "system.attunement": CONFIG.SW5E.attunementTypes[isAttuned ? "REQUIRED" : "ATTUNED"]
-          })
-      });
-    }
-
-    // Toggle Equipped State
-    if ("equipped" in item.system) options.unshift({
-      name: item.system.equipped ? "SW5E.ContextMenuActionUnequip" : "SW5E.ContextMenuActionEquip",
-      icon: "<i class='fas fa-shield-alt fa-fw'></i>",
-      callback: () => item.update({ "system.equipped": !item.system.equipped })
-    });
-
-    // Toggle Prepared State
-    if ("preparation" in item.system && item.system.preparation?.mode === "prepared") options.unshift({
-      name: item.system?.preparation?.prepared ? "SW5E.ContextMenuActionUnprepare" : "SW5E.ContextMenuActionPrepare",
-      icon: "<i class='fas fa-sun fa-fw'></i>",
-      callback: () => item.update({ "system.preparation.prepared": !item.system.preparation?.prepared })
-    });
-
-    // Reload Weapon
-    if ("ammo" in item.system && ![0, item.system.ammo.value].includes(item.system.ammo.max)) options.unshift({
-      name: item.system.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
-      icon: "<i class='fas fa-raygun fa-fw'></i>",
-      callback: () => item.sheet._onWeaponReload()
-    });
-
-    return options;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Initialize Item list filters by activating the set of filters which are currently applied
    * @param {number} i  Index of the filter in the list.
    * @param {HTML} ul   HTML object for the list item surrounding the filter.
@@ -1117,24 +1030,6 @@ export default class ActorSheet5e extends ActorSheet {
 
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers                */
-  /* -------------------------------------------- */
-
-  /**
-   * Handle input changes to numeric form fields, allowing them to accept delta-typed inputs.
-   * @param {Event} event  Triggering event.
-   * @protected
-   */
-  _onChangeInputDelta(event) {
-    const input = event.target;
-    const value = input.value;
-    if (["+", "-"].includes(value[0])) {
-      const delta = parseFloat(value);
-      const item = this.actor.items.get(input.closest("[data-item-id]")?.dataset.itemId);
-      if ( item ) input.value = Number(foundry.utils.getProperty(item, input.dataset.name)) + delta;
-      else input.value = Number(foundry.utils.getProperty(this.actor, input.name)) + delta;
-    } else if (value[0] === "=") input.value = value.slice(1);
-  }
-
   /* -------------------------------------------- */
 
   /**
@@ -1176,24 +1071,24 @@ export default class ActorSheet5e extends ActorSheet {
       case "senses":
         app = new ActorSensesConfig(this.actor);
         break;
+      case "source":
+        app = new SourceConfig(this.actor);
+        break;
       case "type":
         app = new ActorTypeConfig(this.actor);
         break;
-      case "ability": {
+      case "ability":
         const ability = event.currentTarget.closest("[data-ability]").dataset.ability;
         app = new ActorAbilityConfig(this.actor, null, ability);
         break;
-      }
-      case "skill": {
+      case "skill":
         const skill = event.currentTarget.closest("[data-key]").dataset.key;
         app = new ProficiencyConfig(this.actor, { property: "skills", key: skill });
         break;
-      }
-      case "tool": {
+      case "tool":
         const tool = event.currentTarget.closest("[data-key]").dataset.key;
         app = new ProficiencyConfig(this.actor, { property: "tools", key: tool });
         break;
-      }
     }
     app?.render(true);
   }
@@ -1314,6 +1209,14 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
+  async _onDrop(event) {
+    this._event = event;
+    return super._onDrop(event);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
   async _onDropItemCreate(itemData) {
     let items = itemData instanceof Array ? itemData : [itemData];
     const itemsWithoutAdvancement = items.filter(i => !i.system.advancement?.length);
@@ -1379,6 +1282,10 @@ export default class ActorSheet5e extends ActorSheet {
         return false;
       }
     }
+
+    // Adjust the preparation mode of a leveled power depending on the section on which it is dropped.
+    if ( itemData.type === "power" ) this._onDropPower(itemData);
+
     return itemData;
   }
 
@@ -1399,21 +1306,54 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Stack identical consumables when a new one is dropped rather than creating a duplicate item.
-   * @param {object} itemData         The item data requested for creation.
-   * @returns {Promise<Item5e>|null}  If a duplicate was found, returns the adjusted item stack.
+   * Adjust the preparation mode of a dropped power depending on the drop location on the sheet.
+   * @param {object} itemData    The item data requested for creation. **Will be mutated.**
    */
-  _onDropStackConsumables(itemData) {
-    const droppedSourceId = itemData.flags.core?.sourceId;
-    if (itemData.type !== "consumable" || !droppedSourceId) return null;
-    const similarItem = this.actor.items.find(i => {
-      const sourceId = i.getFlag("core", "sourceId");
-      return sourceId && sourceId === droppedSourceId && i.type === "consumable" && i.name === itemData.name;
-    });
-    if (!similarItem) return null;
-    return similarItem.update({
-      "system.quantity": similarItem.system.quantity + Math.max(itemData.system.quantity, 1)
-    });
+  _onDropPower(itemData) {
+    if ( !["npc", "character"].includes(this.document.type) ) return;
+
+    // Determine the section it is dropped on, if any.
+    let header = this._event.target.closest(".items-header"); // Dropped directly on the header.
+    if ( !header ) {
+      const list = this._event.target.closest(".item-list"); // Dropped inside an existing list.
+      header = list?.previousElementSibling;
+    }
+    const mode = header?.dataset ?? {};
+    const isForcePower = Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school);
+    const isTechPower = Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school);
+
+    // Determine the actor's power slot progressions, if any.
+    const progs = Object.values(this.document.classes).reduce((acc, cls) => {
+      if ( isForcePower && cls.powercasting?.force !== "none" ) acc.leveled = true;
+      if ( isTechPower && cls.powercasting?.tech !== "none" ) acc.leveled = true;
+      return acc;
+    }, { leveled: false } );
+
+    // Case 1: Drop an at-will.
+    if ( itemData.system.level === 0 ) {
+      if ( ["prepared"].includes(mode["preparation.mode"]) ) {
+        itemData.system.preparation.mode = "prepared";
+      } else if ( !mode["preparation.mode"] ) {
+        const isCaster = this.document.system.details.powerLevel || progs.leveled;
+        itemData.system.preparation.mode = isCaster ? "prepared" : "innate";
+      } else {
+        itemData.system.preparation.mode = mode["preparation.mode"];
+      }
+    }
+
+    // Case 2: Drop a leveled power in a section without a mode.
+    else if ( (mode.level === 0) || !mode["preparation.mode"] ) {
+      if ( this.document.type === "npc" ) {
+        itemData.system.preparation.mode = this.document.system.details.powerLevel ? "prepared" : "innate";
+      } else {
+        itemData.system.preparation.mode = progs.leveled ? "prepared" : "innate";
+      }
+    }
+
+    // Case 3: Drop a leveled power in a specific section.
+    else {
+      itemData.system.preparation.mode = mode["preparation.mode"];
+    }
   }
 
   /* -------------------------------------------- */
@@ -1467,41 +1407,6 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Change the uses amount of an Owned Item within the Actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Updated item.
-   * @protected
-   */
-  async _onUsesChange(event) {
-    event.preventDefault();
-    const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const attr = event.currentTarget.closest(".uses-per").dataset.attr;
-    const item = this.actor.items.get(itemId);
-    const value = Math.clamped(item.system[attr].min ?? 0, parseInt(event.target.value), item.system[attr].max);
-    event.target.value = value;
-    return item.update({ [`system.${attr}.value`]: value });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Change the quantity of an Owned Item within the actor.
-   * @param {Event} event        The triggering click event.
-   * @returns {Promise<Item5e>}  Updated item.
-   * @protected
-   */
-  async _onQuantityChange(event) {
-    event.preventDefault();
-    const itemId = event.currentTarget.closest(".item").dataset.itemId;
-    const item = this.actor.items.get(itemId);
-    const quantity = Math.max(0, parseInt(event.target.value));
-    event.target.value = quantity;
-    return item.update({"system.quantity": quantity});
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Handle using an item from the Actor sheet, obtaining the Item instance, and dispatching to its use method.
    * @param {Event} event  The triggering click event.
    * @returns {Promise}    Results of the usage.
@@ -1532,33 +1437,6 @@ export default class ActorSheet5e extends ActorSheet {
   /* -------------------------------------------- */
 
   /**
-   * Handle toggling and items expanded description.
-   * @param {Event} event   Triggering event.
-   * @private
-   */
-  async _onItemSummary(event) {
-    event.preventDefault();
-    const li = $(event.currentTarget).parents(".item");
-    const item = this.actor.items.get(li.data("item-id"));
-    const chatData = await item.getChatData({ secrets: this.actor.isOwner });
-
-    // Toggle summary
-    if (li.hasClass("expanded")) {
-      const summary = li.children(".item-summary");
-      summary.slideUp(200, () => summary.remove());
-      this._expanded.delete(item.id);
-    } else {
-      const summary = $(await renderTemplate("systems/sw5e/templates/items/parts/item-summary.hbs", chatData));
-      li.append(summary.hide());
-      summary.slideDown(200);
-      this._expanded.add(item.id);
-    }
-    li.toggleClass("expanded");
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset.
    * @param {Event} event          The originating click event.
    * @returns {Promise<Item5e[]>}  The newly created item.
@@ -1566,27 +1444,29 @@ export default class ActorSheet5e extends ActorSheet {
    */
   _onItemCreate(event) {
     event.preventDefault();
-    const header = event.currentTarget;
-    const type = header.dataset.type;
+    const dataset = (event.currentTarget.closest(".powerbook-header") ?? event.currentTarget).dataset;
+    const type = dataset.type;
     const featType = header.dataset.feattype ?? "";
     const featSubtype = header.dataset.featsubtype ?? "";
 
     // Check to make sure the newly created class doesn't take player over level cap
     if (type === "class" && this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel) {
       const errClass = game.i18n.format("SW5E.MaxCharacterLevelExceededWarn", { max: CONFIG.SW5E.maxLevel });
-      return ui.notifications.error(errClass);
+      ui.notifications.error(errClass);
+      return null;
     }
 
     // Check to make sure the newly created deployment doesn't take player over rank cap
     if (type === "deployment" && this.actor.system.details.ranks + 1 > CONFIG.SW5E.maxRank) {
       const errDeploy = game.i18n.format("SW5E.MaxCharacterRankExceededWarn", { max: CONFIG.SW5E.maxRank });
-      return ui.notifications.error(errDeploy);
+      ui.notifications.error(errDeploy);
+      return null;
     }
 
     const itemData = {
       name: game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(CONFIG.Item.typeLabels[type]) }),
       type: type,
-      system: foundry.utils.expandObject({ ...header.dataset })
+      system: foundry.utils.expandObject({ ...dataset })
     };
 
     delete itemData.system.tooltip;
@@ -1643,15 +1523,12 @@ export default class ActorSheet5e extends ActorSheet {
     if (!game.settings.get("sw5e", "disableAdvancements")) {
       const manager = AdvancementManager.forDeletedItem(this.actor, item.id);
       if (manager.steps.length) {
-        if (["class", "archetype"].includes(item.type)) {
-          try {
-            const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
-            if (shouldRemoveAdvancements) return manager.render(true);
-          } catch(err) {
-            return;
-          }
-        } else {
-          return manager.render(true);
+        try {
+          const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forDelete(item);
+          if ( shouldRemoveAdvancements ) return manager.render(true);
+          return item.delete({ shouldRemoveAdvancements });
+        } catch(err) {
+          return;
         }
       }
     }
@@ -1691,15 +1568,7 @@ export default class ActorSheet5e extends ActorSheet {
   async _onPropertyAttribution(event) {
     const element = event.target;
     let property = element.dataset.attribution;
-    if (!property) {
-      property = element.dataset.property;
-      if (!property) return;
-      foundry.utils.logCompatibilityWarning(
-        "Defining attributable properties on sheets with the `.attributable` class and `data-property` value"
-          + " has been deprecated in favor of a single `data-attribution` value.",
-        { since: "SW5e 2.1.3", until: "SW5e 2.4" }
-      );
-    }
+    if (!property) return;
 
     const rollData = this.actor.getRollData({ deterministic: true });
     const title = game.i18n.localize(element.dataset.attributionCaption);

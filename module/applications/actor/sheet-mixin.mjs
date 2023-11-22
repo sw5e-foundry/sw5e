@@ -78,7 +78,7 @@ export const ActorSheetMixin = Base => class extends Base {
       {
         name: "SW5E.ContextMenuActionDuplicate",
         icon: "<i class='fas fa-copy fa-fw'></i>",
-        condition: () => !["species", "background", "class", "archetype"].includes(item.type) && item.actor.isOwner,
+        condition: () => !["species", "background", "class", "archetype", "starshipsize"].includes(item.type) && item.actor.isOwner,
         callback: () => item.clone({name: game.i18n.format("DOCUMENT.CopyOf", {name: item.name})}, {save: true})
       },
       {

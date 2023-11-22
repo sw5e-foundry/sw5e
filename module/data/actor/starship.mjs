@@ -57,6 +57,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {boolean} attributes.used                         Does the ship have the 'used' condition.
  * @property {object} details
  * @property {string} details.source                           What book or adventure is this Starship from.
+ * @property {Item5e|string} details.starshipsize              Starships's size item or name.
  * @property {Object<string, SkillData>} skills                Starship's skills.
  * @property {object} traits
  * @property {SimpleTraitData} traits.ci                       Condition immunities.
@@ -247,7 +248,10 @@ export default class StarshipData extends CommonTemplate {
       details: new foundry.data.fields.SchemaField(
         {
           ...DetailsFields.common,
-          source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" })
+          source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" }),
+          starshipsize: new LocalDocumentField(foundry.documents.BaseItem, {
+            required: true, fallback: true, label: "SW5E.StarshipSize"
+          })
         },
         { label: "SW5E.Details"
         }),

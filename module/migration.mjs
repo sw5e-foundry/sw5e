@@ -338,6 +338,10 @@ export const migrateActorData = async function(actor, migrationData, flags={}) {
       updateData["system.details.species"] = itemData._id;
     }
 
+    if ( (itemData.type === "starshipsize") && (actor.system?.details?.starshipsize !== itemData._id) ) {
+      updateData["system.details.starshipsize"] = itemData._id;
+    }
+
     // Prepared, Equipped, and Proficient for NPC actors
     if (actor.type === "npc") {
       if (foundry.utils.getProperty(itemData.system, "preparation.prepared") === false) itemUpdate["system.preparation.prepared"] = true;

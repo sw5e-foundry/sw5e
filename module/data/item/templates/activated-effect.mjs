@@ -321,6 +321,17 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   /* -------------------------------------------- */
 
   /**
+   * Does this Item store ammunition internally?
+   * @type {boolean}
+   */
+  get hasReload() {
+    const reload = this.ammo;
+    return this.isActive && !!reload.target;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Does this Item draw from ammunition?
    * @type {boolean}
    */
@@ -328,6 +339,39 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
     const consume = this.consume;
     return this.isActive && !!consume.target && !!consume.type && this.hasAttack && (consume.type === "ammo");
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * What item does this item use as ammunition?
+   * @type {object|null}
+   */
+  get getAmmo() {
+    const actor = this.parent?.actor;
+    if (this.hasReload) {
+      return {
+        item: actor?.items?.get(this.ammo.target),
+        quantity: this.ammo.value,
+        consumeAmount: this.system.ammo?.use ?? this.system.ammo?.baseUse ?? 1,
+        max: this.ammo.max
+      }
+    } else if (this.hasAmmo) {
+      const item = actor?.items?.get(this.consume.target);
+      return {
+        item,
+        quantity: item?.system?.quantity,
+        consumeAmount: this.consume.ammount ?? 0,
+        max: null
+      }
+    }
+    return {
+      item: null,
+      quantity: 0,
+      consumeAmount: 0,
+      max: null
+    };
+  }
+
 
   /* -------------------------------------------- */
 

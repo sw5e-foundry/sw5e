@@ -148,10 +148,22 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   /**
    * Does this Item draw from ammunition?
    * @type {boolean}
-   * @see {@link ActivatedEffectTemplate#hasAmmo}
+   * @see {@link ActivatedEffectTemplate#hasReload} and {@link ActivatedEffectTemplate#hasAmmo}
    */
   get hasAmmo() {
-    return this.system.hasAmmo ?? false;
+    return (this.system.hasReload || this.system.hasAmmo) ?? false;
+  }
+
+
+  /* -------------------------------------------- */
+
+  /**
+   * What item does this item use as ammunition?
+   * @type {object}
+   * @see {@link ActivatedEffectTemplate#getAmmo}
+   */
+  get getAmmo() {
+    return this.system.getAmmo ?? {};
   }
 
   /* -------------------------------------------- */
@@ -990,16 +1002,13 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     if (actorBonus.attack) parts.push(actorBonus.attack);
 
     // One-time bonus provided by consumed ammunition
-    const ammo = this.hasAmmo ? this.actor.items.get(this.system.consume.target) : null;
-    const reloadAmmo = this.system.ammo?.target ? this.actor.items.get(this.system.ammo.target) : null;
-    if (ammo || reloadAmmo) {
-      const ammoItemQuantity = reloadAmmo ? this.system.ammo?.value : ammo.system?.quantity;
-      const ammoConsumeAmount = reloadAmmo
-        ? (this.system.ammo?.use ?? this.system.ammo?.baseUse)
-        : (this.system.consume.amount ?? 0);
+    const ammo = this.getAmmo;
+    if (ammo.item) {
+      const ammoItemQuantity = ammo.quantity;
+      const ammoConsumeAmount = ammo.consumeAmount;
       const ammoCanBeConsumed = ammoItemQuantity && (ammoItemQuantity - ammoConsumeAmount >= 0);
-      const ammoItemAttackBonus = (reloadAmmo ?? ammo).system.attackBonus;
-      const ammoIsTypeConsumable = reloadAmmo || ((ammo.type === "consumable") && (ammo.system.consumableType === "ammo"));
+      const ammoItemAttackBonus = ammo.item.system.attackBonus;
+      const ammoIsTypeConsumable = (ammo.item.type === "consumable") && (ammo.item.system.consumableType === "ammo");
       if (ammoCanBeConsumed && ammoItemAttackBonus && ammoIsTypeConsumable) {
         parts.push("@ammo");
         rollData.ammo = ammoItemAttackBonus;
@@ -1743,25 +1752,11 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     let ammoUpdate = [];
     let itemUpdate = {};
     const consume = this.system.consume;
-    const ammo = this.hasAmmo ? this.actor.items.get(this.system.consume.target) : null;
-    const reloadAmmo = this.system.ammo?.target ? this.actor.items.get(this.system.ammo.target) : null;
-    if (reloadAmmo) {
-      const q = this.system.ammo.value;
-      const consumeAmount = this.system.ammo.use ?? this.system.ammo.baseUse;
-      if (q && q - consumeAmount >= 0) {
-        title += ` [${ammo.name}]`;
-      }
-
-      // Get pending reload update
-      const usage = this._getUsageUpdates({ consumeReload: true });
-      if (usage === false) return null;
-      itemUpdate = usage.itemUpdates ?? {};
-    } else if (ammo) {
-      const quant = ammo.system.quantity;
-      const consumeAmount = consume.amount ?? 0;
-      if (quant && quant - consumeAmount >= 0) {
-        title += ` [${ammo.name}]`;
-      }
+    const ammo = this.getAmmo;
+    if (ammo) {
+      const quant = ammo.quantity;
+      const consumeAmount = ammo.consumeAmount;
+      if (quant && quant - consumeAmount >= 0) title += ` [${ammo.name}]`;
 
       // Get pending ammunition update
       const usage = this._getUsageUpdates({ consumeResource: true });

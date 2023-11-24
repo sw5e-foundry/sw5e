@@ -313,26 +313,26 @@
             </div>
             <div class="biography">
                 {{editor 
-					biographyHTML 
-					target="system.details.biography.value" 
-					button=true 
-					editable=editable
-					engine="prosemirror" 
-					collaborate=false
-				}}
+                    biographyHTML 
+                    target="system.details.biography.value" 
+                    button=true 
+                    editable=editable
+                    engine="prosemirror" 
+                    collaborate=false
+                }}
             </div>
         </div>
 
         {{!-- Notes Tab --}}
         <div class="tab notes flexcol" data-group="primary" data-tab="notes">
             {{editor
-            notesHTML
-            target="system.details.notes.value"
-            button=true
-            editable=editable
-            engine="prosemirror"
-            collaborate=false
-			}}
+                enriched.notes
+                target="system.details.notes.value"
+                button=true
+                editable=editable
+                engine="prosemirror"
+                collaborate=false
+            }}
         </div>
     </section>
 </form>

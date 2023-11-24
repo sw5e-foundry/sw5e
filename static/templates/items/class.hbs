@@ -33,12 +33,12 @@
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor 
-				enriched.description
-				target="system.description.value"
-				button=true editable=editable
+                enriched.description
+                target="system.description.value"
+                button=true editable=editable
                 engine="prosemirror"
-				collaborate=false
-			}}
+                collaborate=false
+            }}
         </div>
 
         {{!-- Details Tab --}}
@@ -93,23 +93,31 @@
         {{!-- Archetypes Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="archetypes">
             {{editor 
-				atFlavorTextHTML
-				target="system.atFlavorText.value"
+                enriched.atFlavorText
+                target="system.atFlavorText.value"
                 button=true editable=editable
                 engine="prosemirror"
                 collaborate=false
-			}}
+            }}
+
+            {{editor 
+                enriched.description
+                target="system.description.value"
+                button=true editable=editable
+                engine="prosemirror"
+                collaborate=false
+            }}
         </div>
 
         {{!-- Invocations Tab --}}
         <div class="tab flexrow" data-group="primary" data-tab="invocations">
             {{editor 
-				invocationsHTML
-				target="system.invocations.value" 
+                enriched.invocations
+                target="system.invocations.value" 
                 button=true editable=editable
                 engine="prosemirror"
                 collaborate=false
-			}}
+            }}
         </div>
 
         {{!-- Advancement Tab --}} 

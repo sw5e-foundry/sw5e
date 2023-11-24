@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - (Dis)advantage flags on saves against specific damage types.
 
+### Changes
+
+- Updated core to match [dnd5e 2.4.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.0).
+
 ### Fixed
 
 - SW5E specific (dis)advantage flags should now work properly with midi-qol.

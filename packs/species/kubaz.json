@@ -78,8 +78,8 @@
       "name": "Kubaz",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!MtBnA2VnLwqdnBvc.KjYCOmNuADd9tQHN",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.KjYCOmNuADd9tQHN"
     },
     {
       "_id": "L67WRXxiXupihqw1",
@@ -113,8 +113,8 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!MtBnA2VnLwqdnBvc.L67WRXxiXupihqw1",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.L67WRXxiXupihqw1"
     },
     {
       "_id": "nupkXSrVF3uQnHZI",
@@ -154,8 +154,8 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!MtBnA2VnLwqdnBvc.nupkXSrVF3uQnHZI",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!MtBnA2VnLwqdnBvc.nupkXSrVF3uQnHZI"
     }
   ],
   "folder": null,
@@ -179,7 +179,7 @@
     "identifier": "kubaz",
     "advancement": [
       {
-        "_id": "18oLAjNGWrZT1ICQ",
+        "_id": "1w4UlRBpoiUr1thA",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -200,10 +200,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "19hMHrWVBElQ1tts",
+        "_id": "1pe5AeivEQgTECrS",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -211,6 +211,40 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "juJRLCsKcdS7lmlk",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "J0hbf5u5uJ6keWav",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:slt",
+                "skills:ste"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec",
+            "tool:slicerskit"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -258,10 +292,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002089,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!MtBnA2VnLwqdnBvc"

@@ -98,8 +98,8 @@
       "name": "Chiss",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!JrTt6KD14Paqfg3c.VaDVQFvsbGNJ3yew",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!JrTt6KD14Paqfg3c.VaDVQFvsbGNJ3yew"
     }
   ],
   "folder": null,
@@ -123,7 +123,7 @@
     "identifier": "chiss",
     "advancement": [
       {
-        "_id": "18fcEnUBQUWrFZzV",
+        "_id": "13zqzBbQ91CQ1fua",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -142,10 +142,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1vAeXE6wjYdFxLwc",
+        "_id": "1IbaWpgrYqrn1q4F",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -153,6 +153,34 @@
             "cha": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1i2XT4fTsnYfVyDN",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "5P1HUn3OBrp13wLT",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armors:lgt",
+            "armors:med",
+            "weapons:heavy pistol",
+            "weapons:sniper rifle",
+            "skills:ins"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -200,10 +228,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002081,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JrTt6KD14Paqfg3c"

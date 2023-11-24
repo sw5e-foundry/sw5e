@@ -104,8 +104,8 @@
       "name": "Gungan",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!H8CHzVz9ltcdXzlb.kgqVkH4CH10efNNT",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!H8CHzVz9ltcdXzlb.kgqVkH4CH10efNNT"
     }
   ],
   "folder": null,
@@ -129,7 +129,7 @@
     "identifier": "gungan",
     "advancement": [
       {
-        "_id": "xTPOZnexCFH1JJ0g",
+        "_id": "11UTw7WU9Yea1EFM",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -151,10 +151,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1dzfNk51Nwfl1sFF",
+        "_id": "QQOtMw8hNCW19oEc",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -162,6 +162,33 @@
             "str": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "wYVioRsEY2uZdKR0",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ugwC2HKechI1cuem",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armors:lgt",
+            "armors:med",
+            "weapons:techstaff",
+            "weapons:vibropike"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -209,10 +236,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002076,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!H8CHzVz9ltcdXzlb"

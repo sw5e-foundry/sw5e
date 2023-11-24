@@ -84,8 +84,8 @@
       "name": "Ewok",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!QZMVzQJspLNa5lSS.YF5Ro8qNuBwzpwvV",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!QZMVzQJspLNa5lSS.YF5Ro8qNuBwzpwvV"
     },
     {
       "_id": "yPVoqgu4JugIxUlr",
@@ -119,8 +119,8 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!QZMVzQJspLNa5lSS.yPVoqgu4JugIxUlr",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!QZMVzQJspLNa5lSS.yPVoqgu4JugIxUlr"
     }
   ],
   "folder": null,
@@ -144,7 +144,7 @@
     "identifier": "ewok",
     "advancement": [
       {
-        "_id": "sWKptlTUEYBiM5p2",
+        "_id": "1oT1nEEvEJQRfic9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -166,10 +166,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "yORVrqy4cHB176AO",
+        "_id": "1cwLK7n9D1y413Hh",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -177,6 +177,38 @@
             "con": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "h3tsZarC6Wq1uRRk",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1GCEbKmJme171fyw",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:nat",
+            "skills:sur"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -224,10 +256,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002096,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!QZMVzQJspLNa5lSS"

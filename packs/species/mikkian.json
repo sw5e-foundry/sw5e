@@ -66,8 +66,8 @@
       "name": "Mikkian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!aWyQIk0yQVEBWiY6.XFMDt0NURO4CUw4v",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!aWyQIk0yQVEBWiY6.XFMDt0NURO4CUw4v"
     },
     {
       "_id": "jELd0cuLorurmLHV",
@@ -101,8 +101,8 @@
       "name": "Keen Hearing",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!aWyQIk0yQVEBWiY6.jELd0cuLorurmLHV",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!aWyQIk0yQVEBWiY6.jELd0cuLorurmLHV"
     }
   ],
   "folder": null,
@@ -126,7 +126,7 @@
     "identifier": "mikkian",
     "advancement": [
       {
-        "_id": "12PKhLKgnQcmwCFt",
+        "_id": "DMCwmWENGFD23MEQ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -144,16 +144,46 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "16BZBlObnyZ51lf8",
+        "_id": "13LqqAdwhb7g1cxf",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1PaGHvQRPUJbRAq3",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "Va58UfLFv2U1P0Jt",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:per",
+                "skills:itm"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -201,10 +231,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002109,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!aWyQIk0yQVEBWiY6"

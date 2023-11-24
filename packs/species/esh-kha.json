@@ -78,8 +78,8 @@
       "name": "Esh-Kha",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!y9srMEmADsqiQNI9.ffzoK411b5xIiB1l",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!y9srMEmADsqiQNI9.ffzoK411b5xIiB1l"
     }
   ],
   "folder": null,
@@ -103,7 +103,7 @@
     "identifier": "esh-kha",
     "advancement": [
       {
-        "_id": "90Zt3pnL7dQ6W6HJ",
+        "_id": "GQ0fbUmvj61RxCVi",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,16 +124,56 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "8nIx3YJpH571KUbV",
+        "_id": "xh112ZKvx8Z1UJ4Y",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 1
           },
           "points": 2
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1DPe3KONdFVK1KfN",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1ipHzDeesDvI15lf",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:*"
+              ]
+            },
+            {
+              "count": 2,
+              "pool": [
+                "weapons:svb:*",
+                "weapons:mvb:*",
+                "weapons:smb:*",
+                "weapons:mrb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:inv"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -181,10 +221,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002148,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!y9srMEmADsqiQNI9"

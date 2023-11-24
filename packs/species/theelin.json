@@ -25,7 +25,7 @@
     "identifier": "theelin",
     "advancement": [
       {
-        "_id": "1SgYX6hdfunJ1mfG",
+        "_id": "1IsHfZ624OGsJrCJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -44,16 +44,56 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1Hp8Nc8xP7EY1oQO",
+        "_id": "tgtRotyqITwXTZuF",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "cha": 2
           },
           "points": 2
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1usQw9vRqxKbpTR3",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1F1Fn03erMDf18ep",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artistsimplements",
+                "tool:disguisekit",
+                "tool:synthweaversimplements",
+                "tool:music:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -101,10 +141,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002144,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!uc6ZPNeufLZ0lEX9"

@@ -60,8 +60,8 @@
       "name": "Arcona",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!KwDQepuVGtneaTTY.vkpTLAXvTHpP9S6H",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!KwDQepuVGtneaTTY.vkpTLAXvTHpP9S6H"
     },
     {
       "_id": "P9LXrkukSdERPtiq",
@@ -95,8 +95,8 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!KwDQepuVGtneaTTY.P9LXrkukSdERPtiq",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!KwDQepuVGtneaTTY.P9LXrkukSdERPtiq"
     }
   ],
   "folder": null,
@@ -120,7 +120,7 @@
     "identifier": "arcona",
     "advancement": [
       {
-        "_id": "1u6Z37gS9cENlSbw",
+        "_id": "1nZkcDb5o7Dv1db3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -141,10 +141,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "vs3zoRFFBUZa6qGk",
+        "_id": "15ljLiZAxRCa1uw3",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -152,6 +152,40 @@
             "con": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "AiqShFBKFsY1rx7s",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ElzOZc2kygT17vq8",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -199,10 +233,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002085,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KwDQepuVGtneaTTY"

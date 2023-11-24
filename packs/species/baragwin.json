@@ -66,8 +66,8 @@
       "name": "Baragwin",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!9I4FSaNm2b5OadQx.ygBLONc021h8kHLW",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!9I4FSaNm2b5OadQx.ygBLONc021h8kHLW"
     },
     {
       "_id": "nKa8zU0nbYU67Xh1",
@@ -101,8 +101,8 @@
       "name": "Keen Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!9I4FSaNm2b5OadQx.nKa8zU0nbYU67Xh1",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!9I4FSaNm2b5OadQx.nKa8zU0nbYU67Xh1"
     }
   ],
   "folder": null,
@@ -126,7 +126,7 @@
     "identifier": "baragwin",
     "advancement": [
       {
-        "_id": "1xFwYYwvqyXc1BFm",
+        "_id": "152CBjcVlaMjYtdN",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -147,10 +147,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "nIpncarh3aX1sx0o",
+        "_id": "1UCExKtB8vqObzVJ",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -158,6 +158,39 @@
             "con": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "kOPC5vVnWok1BD1Z",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1dLoFKlxYt9nWd5r",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "tool:armstechsimplements",
+                "tool:munitionskit",
+                "weapons:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:sur"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -205,10 +238,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002068,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!9I4FSaNm2b5OadQx"

@@ -90,8 +90,8 @@
       "name": "Gamorrean",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!W4oIea3LqP1dAXGu.qx2PgWl7zOL8lWE9",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!W4oIea3LqP1dAXGu.qx2PgWl7zOL8lWE9"
     }
   ],
   "folder": null,
@@ -115,7 +115,7 @@
     "identifier": "gamorrean",
     "advancement": [
       {
-        "_id": "Z8pT91RKKq28einp",
+        "_id": "oB7pqqOal1n2TmKS",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -133,10 +133,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1OXbG5STiamkGGMb",
+        "_id": "1OwVleFG3rHp1QPk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -144,6 +144,32 @@
             "con": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "r8QW8DRnnEH15Ej7",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "10MM9gxnL5JaHsW7",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapons:vibroaxe",
+            "weapons:vibromace",
+            "weapons:vibrosword"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -191,10 +217,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002101,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!W4oIea3LqP1dAXGu"

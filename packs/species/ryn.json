@@ -80,8 +80,8 @@
       "name": "Ryn",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!CIJAnH2n8sZN4X7n.XGMDXcDtlSfQQgFZ",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!CIJAnH2n8sZN4X7n.XGMDXcDtlSfQQgFZ"
     }
   ],
   "folder": null,
@@ -105,7 +105,7 @@
     "identifier": "ryn",
     "advancement": [
       {
-        "_id": "1KfFfnusOyXie2PE",
+        "_id": "tIrToMnRX71IRbjD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -126,16 +126,60 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "QMUd8BWo8Sk1y1fN",
+        "_id": "1hJLMpZ6PMBGU2xw",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "dex": 1
           },
           "points": 2
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "ooJeaTMrJvUzYDtC",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "Rn7jtDvRmcAFCRgn",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:game:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:lor",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -183,10 +227,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002072,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!CIJAnH2n8sZN4X7n"

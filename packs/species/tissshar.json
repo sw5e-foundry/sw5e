@@ -25,7 +25,7 @@
     "identifier": "tissshar",
     "advancement": [
       {
-        "_id": "o3FvU5n1ggv1cf3t",
+        "_id": "h0Q2IdiF9dZ1Bak0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -44,16 +44,48 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "4oqF9xCcFmk1cceL",
+        "_id": "1IcyHb8mY413uuE5",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "dex": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1d3okNQpBQSaqoRW",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1U4ed4KDZouv1eTA",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:acr",
+                "skills:slt",
+                "skills:ste",
+                "skills:tec"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -101,10 +133,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002111,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!bnb5FtmZs1HID0d8"

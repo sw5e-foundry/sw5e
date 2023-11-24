@@ -80,8 +80,8 @@
       "name": "Klatooinian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!qEBkequEiXsa9YbE.G6pCpdwb6FUA1ViV",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!qEBkequEiXsa9YbE.G6pCpdwb6FUA1ViV"
     }
   ],
   "folder": null,
@@ -105,7 +105,7 @@
     "identifier": "klatooinian",
     "advancement": [
       {
-        "_id": "lvQNjnmS8TphXQ90",
+        "_id": "1h90Eah22mVtlJ3D",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -124,16 +124,48 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "jvPoVtcY9xJ1BhSB",
+        "_id": "1vzuOiNOldQm1E1N",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "wis": 1
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "Gxytsx9o8EN1GlYQ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1v95dWqNJ1PZ3gN0",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapons:mvb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:itm",
+            "skills:lor"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -181,10 +213,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002137,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!qEBkequEiXsa9YbE"

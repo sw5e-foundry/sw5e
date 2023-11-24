@@ -86,8 +86,8 @@
       "name": "Anzellan",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.ZGdzAq1Gl4xaxDRD",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.ZGdzAq1Gl4xaxDRD"
     },
     {
       "_id": "J6me2fxX06OUbUSS",
@@ -121,8 +121,8 @@
       "name": "Detail Oriented - within 5 feet",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.J6me2fxX06OUbUSS",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!4NVv8yQ6Vu6PvtCA.J6me2fxX06OUbUSS"
     }
   ],
   "folder": null,
@@ -146,7 +146,7 @@
     "identifier": "anzellan",
     "advancement": [
       {
-        "_id": "35RmjlAQtyD13Xvm",
+        "_id": "SpKePK5hu5W1xw3W",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -169,16 +169,48 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "hFsfA9vaUxRiG675",
+        "_id": "1DqvBQYptfxN1pju",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "int": 2
           },
           "points": 2
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "20ggcIG3pv7ZYjYs",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "tiny"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "sUNnF7sm4JUvG7Ui",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec",
+            "tool:tinkersimplements"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -226,10 +258,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002063,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!4NVv8yQ6Vu6PvtCA"

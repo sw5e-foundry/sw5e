@@ -25,7 +25,7 @@
     "identifier": "gank",
     "advancement": [
       {
-        "_id": "1qRElehGnG2AUhYD",
+        "_id": "1SC8Y7W6Zo3W19s0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -44,16 +44,61 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1GdtjWQcNO3M1FNw",
+        "_id": "1Dn4cvQN4gdqcnBR",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "str": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "5Y6qZyvZGR6YJ2MM",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "tFPByVvhE1J1rNgx",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapons:svb:*",
+                "weapons:mvb:*",
+                "weapons:smb:*",
+                "weapons:mrb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:itm",
+                "skills:per",
+                "skills:ste",
+                "skills:prc"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:ath",
+            "armors:lgt",
+            "armors:med"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -101,10 +146,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002146,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!wf7TWmgCK7OXS4ro"

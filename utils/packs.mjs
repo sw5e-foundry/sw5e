@@ -47,6 +47,7 @@ function cleanPackEntry(data, { clearSourceId = true } = {}) {
   if (data.ownership) data.ownership = { default: 0 };
   if (clearSourceId) delete data.flags?.core?.sourceId;
   if (typeof data.folder === "string") data.folder = null;
+  delete data.system?.consume?.ammount;
   delete data.flags?.importSource;
   delete data.flags?.exportSource;
   delete data.flags?.dae;
@@ -54,6 +55,7 @@ function cleanPackEntry(data, { clearSourceId = true } = {}) {
   delete data.flags?.["midi-properties"];
   delete data.flags?.["midiProperties"];
   delete data.flags?.["betterrollssw5e"];
+  delete data.flags?.sw5e?.persistSourceMigration;
   if (data._stats?.lastModifiedBy) data._stats.lastModifiedBy = "sw5ebuilder0000";
 
   // Remove empty entries in flags

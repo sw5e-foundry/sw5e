@@ -22,7 +22,7 @@
     "identifier": "quermian",
     "advancement": [
       {
-        "_id": "iW0N7zcTO8a8ddzL",
+        "_id": "1SVA5Qeg93io1emF",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -42,10 +42,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1bBOrvgetLMt1Kej",
+        "_id": "1Lxg6g73NQOR1k0A",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -53,6 +53,38 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1gJzsIxSRSq61v64",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "jEXnruUB8lN1Kk3h",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:ins",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prc"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -106,10 +138,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1667426105595,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_id": "uuQ3PGBLgHt7Oy8I",

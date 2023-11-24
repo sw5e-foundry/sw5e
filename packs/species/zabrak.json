@@ -74,8 +74,8 @@
       "name": "Zabrak",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!PnwyP9DTF7IUItOB.o7n6csSMm1fhRWhM",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!PnwyP9DTF7IUItOB.o7n6csSMm1fhRWhM"
     }
   ],
   "folder": null,
@@ -99,7 +99,7 @@
     "identifier": "zabrak",
     "advancement": [
       {
-        "_id": "WLKdtmtaEDElBf5q",
+        "_id": "1m88oev54tuqNbVn",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -119,16 +119,52 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "sIuhM6HapJj1yPCL",
+        "_id": "1HaNre2Dn8cA1aXo",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1cAEU9IDXnA3YlHw",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1opU8fglZQ8JuJCB",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:per",
+                "skills:itm"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -176,10 +212,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002095,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!PnwyP9DTF7IUItOB"

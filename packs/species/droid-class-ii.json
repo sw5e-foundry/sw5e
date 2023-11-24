@@ -128,8 +128,8 @@
       "name": "Droid, Class II",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!2GDkToD7IMnp4Xb7.1QGm5ILFRToMUhLq",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!2GDkToD7IMnp4Xb7.1QGm5ILFRToMUhLq"
     }
   ],
   "folder": null,
@@ -153,7 +153,7 @@
     "identifier": "droid-classii",
     "advancement": [
       {
-        "_id": "1auKiVC34icnBUxI",
+        "_id": "1gMEKIWVWfS8Emj5",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -179,16 +179,51 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1JPJpRUceIPG1pPb",
+        "_id": "17DZyyLKHHdjenbU",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "int": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "yzfo2Ux6mjl15LCO",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1EJSPPI3cp9p1H1z",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:specialist:*"
+              ]
+            },
+            {
+              "count": 2,
+              "pool": [
+                "skills:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -245,10 +280,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002055,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!2GDkToD7IMnp4Xb7"

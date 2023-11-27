@@ -1215,7 +1215,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Display configuration dialog
     if (options.configureDialog !== false && needsConfiguration) {
-      const configuration = await AbilityUseDialog.create(item, dialog);
+      const configuration = await AbilityUseDialog.create(item, config);
       if (!configuration) return;
       foundry.utils.mergeObject(config, configuration);
     }

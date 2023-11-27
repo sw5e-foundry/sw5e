@@ -33,7 +33,6 @@ export default class AbilityUseDialog extends Dialog {
     config ??= item._getUsageConfig();
     const slotOptions = config.consumePowerSlot ? this._createPowerSlotOptions(item.actor, item) : [];
     const resourceOptions = this._createResourceOptions(item);
-    const superiorityOptions = this._createSuperiorityOptions(item);
     // Prepare dialog form data
     const data = {
       item,
@@ -41,6 +40,7 @@ export default class AbilityUseDialog extends Dialog {
       slotOptions,
       resourceOptions,
       superiorityOptions,
+      consumeSuperiorityDie: item.type === "maneuver",
       scaling: item.usageScaling,
       note: this._getAbilityUseNote(item, config),
       title: game.i18n.format("SW5E.AbilityUseHint", {

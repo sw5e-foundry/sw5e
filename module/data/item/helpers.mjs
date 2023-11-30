@@ -36,6 +36,7 @@ export function makeItemProperties( config, schemaOptions = {} ) {
 export function migrateItemProperties( source, config ) {
   if (!source) return;
   for (const [key, prop] of Object.entries(config)) {
+    // eslint-disable-next-line valid-typeof
     if (typeof source[key] !== prop.type.toLowerCase()) source[key] = null;
     else if (prop.type === "Number" && Number.isNaN(source[key])) source[key] = null;
     else if (prop.type === "Number") source[key] = Math.max(source[key], prop.min || -Infinity);

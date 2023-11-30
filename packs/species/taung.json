@@ -25,7 +25,7 @@
     "identifier": "taung",
     "advancement": [
       {
-        "_id": "t4sfGBUdLEJ1znwv",
+        "_id": "6Fgdeb3eiUYap9hr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -46,10 +46,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1LH4E45Y3zYx1QoF",
+        "_id": "EoizsHTteWK7rhWm",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -57,6 +57,45 @@
             "str": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "LssX15IGSfGzOpa4",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "KajdD6xkI2VraTP9",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:svb:*",
+                "weapon:mvb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:smb:*",
+                "weapon:mrb:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:itm"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -104,10 +143,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002144,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!upWeT0htm7X1KySj"

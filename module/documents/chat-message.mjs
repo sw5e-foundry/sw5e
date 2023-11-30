@@ -163,7 +163,7 @@ function applyChatCardDamage(li, multiplier) {
     const flavor = message.rolls.options.flavor;
     const regexp = /[(]([^()]*)[)]/g;
     const types = [...flavor.matchAll(regexp)].map(i => i[1].split(", ")).flat(1);
-    const damageTypes = types.filter(d => Object.keys(CONFIG.SW5E.damageTypes).includes(d.toLowerCase()));
+    const damageTypes = types.filter(d => d.toLowerCase() in CONFIG.SW5E.damageTypes);
     if (damageTypes.length) extraData.damageType = damageTypes[0];
     // Get item uuid from the message data
     const actorId = message.speaker.actor;
@@ -179,7 +179,7 @@ function applyChatCardDamage(li, multiplier) {
       const rolls = message.flags["mre-dnd5e"].rolls;
       for (let i = 0; i < rolls.length; i++) {
         damages.push({
-          ammount: rolls[i].total,
+          amount: rolls[i].total,
           type: damageTypes[i]
         });
       }

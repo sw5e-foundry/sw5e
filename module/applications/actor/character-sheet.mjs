@@ -1,4 +1,5 @@
 import ActorSheet5e from "./base-sheet.mjs";
+import ActorTypeConfig from "./type-config.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
@@ -40,11 +41,12 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
     // Resources
     context.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
-      const res = context.actor.system.resources[r] || {};
-      res.name = r;
-      res.placeholder = game.i18n.localize(`SW5E.Resource${r.titleCase()}`);
-      if (res && res.value === 0) delete res.value;
-      if (res && res.max === 0) delete res.max;
+      const res = foundry.utils.mergeObject(context.actor.system.resources[r] || {}, {
+        name: r,
+        placeholder: game.i18n.localize(`SW5E.Resource${r.titleCase()}`)
+      }, {inplace: false});
+      if ( res.value === 0 ) delete res.value;
+      if ( res.max === 0 ) delete res.max;
       return arr.concat([res]);
     }, []);
 
@@ -74,6 +76,9 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
       classLabels: classes.map(c => c.name).join(", "),
       multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
+      labels: {
+        type: context.system.details.type.label
+      },
       weightUnit: game.i18n.localize(
         `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kg" : "Lbs"}`
       ),
@@ -182,7 +187,6 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     context.superiorityPowerbook = categories.maneuvers.items;
     context.features = categories.features;
     context.ssfeatures = categories.ssfeatures;
-    context.labels.background = categories.class.background[0]?.name;
   }
 
   /* -------------------------------------------- */
@@ -294,6 +298,19 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
 
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
+  _onConfigMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if ( (event.currentTarget.dataset.action === "type") && (this.actor.system.details.species?.id) ) {
+      new ActorTypeConfig(this.actor.system.details.species, { keyPath: "system.type" }).render(true);
+    } else if ( event.currentTarget.dataset.action !== "type" ) {
+      return super._onConfigMenu(event);
+    }
+  }
+
+  /* -------------------------------------------- */
+
   /**
    * Handle mouse click events for character sheet actions.
    * @param {MouseEvent} event  The originating click event.
@@ -359,7 +376,7 @@ export default class ActorSheet5eCharacter extends ActorSheet5e {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    const attr = item.data.type === "power" ? "system.preparation.prepared" : "system.equipped";
+    const attr = item.type === "power" ? "system.preparation.prepared" : "system.equipped";
     return item.update({ [attr]: !foundry.utils.getProperty(item, attr) });
   }
 

@@ -86,8 +86,8 @@
       "name": "Mon Calamari",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!3KwKUdES9oq82zLB.N9qNmjh0vP0dzWIA",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!3KwKUdES9oq82zLB.N9qNmjh0vP0dzWIA"
     }
   ],
   "folder": null,
@@ -111,7 +111,7 @@
     "identifier": "moncalamari",
     "advancement": [
       {
-        "_id": "2hTy6p3Ae1f11JHv",
+        "_id": "97zd67M33qhcuqG5",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,16 +131,45 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1DbV85OTj6YlY6Ma",
+        "_id": "1UlJgdcm15rl1QHI",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "cha": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "aVNksaoLo8FwmBnh",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "xMXL0FRyOx3c41uP",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -188,10 +217,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002059,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!3KwKUdES9oq82zLB"

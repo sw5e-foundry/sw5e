@@ -74,8 +74,8 @@
       "name": "Geonosian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!axhsa64akVnjd47D.pjSHHuM2UzrJ1wY8",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!axhsa64akVnjd47D.pjSHHuM2UzrJ1wY8"
     }
   ],
   "folder": null,
@@ -99,7 +99,7 @@
     "identifier": "geonosian",
     "advancement": [
       {
-        "_id": "4Da6Pqgwii51MDJe",
+        "_id": "IUNb01KohQUIlSuV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,16 +118,52 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "INbioTBNsqB1vT4r",
+        "_id": "1IQRFo532lbW2MB5",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "dex": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "Tbg3oVlyzYkSybiQ",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "FXgIwEnMyNmrRctx",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:smb:*",
+                "weapon:mrb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -175,10 +211,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002110,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!axhsa64akVnjd47D"

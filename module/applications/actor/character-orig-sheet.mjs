@@ -1,4 +1,5 @@
 import ActorSheetOrig5e from "./base-orig-sheet.mjs";
+import ActorTypeConfig from "./type-config.mjs";
 import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
@@ -28,11 +29,12 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
 
     // Resources
     context.resources = ["primary", "secondary", "tertiary"].reduce((arr, r) => {
-      const res = context.actor.system.resources[r] || {};
-      res.name = r;
-      res.placeholder = game.i18n.localize(`SW5E.Resource${r.titleCase()}`);
-      if (res && res.value === 0) delete res.value;
-      if (res && res.max === 0) delete res.max;
+      const res = foundry.utils.mergeObject(context.actor.system.resources[r] || {}, {
+        name: r,
+        placeholder: game.i18n.localize(`SW5E.Resource${r.titleCase()}`)
+      }, {inplace: false});
+      if ( res.value === 0 ) delete res.value;
+      if ( res.max === 0 ) delete res.max;
       return arr.concat([res]);
     }, []);
 
@@ -40,6 +42,9 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     return foundry.utils.mergeObject(context, {
       disableExperience: game.settings.get("sw5e", "disableExperienceTracking"),
       classLabels: classes.map(c => c.name).join(", "),
+      labels: {
+        type: context.system.details.type.label
+      },
       multiclassLabels: classes.map(c => [c.archetype?.name ?? "", c.name, c.system.levels].filterJoin(" ")).join(", "),
       weightUnit: game.i18n.localize(
         `SW5E.Abbreviation${game.settings.get("sw5e", "metricWeightUnits") ? "Kg" : "Lbs"}`
@@ -73,7 +78,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
       lightsaberforms
     } = context.items.reduce(
       (obj, item) => {
-        const { quantity, uses, recharge, target } = item.system;
+        const { quantity, uses, recharge } = item.system;
 
         // Item details
         const ctx = (context.itemContext[item.id] ??= {});
@@ -95,10 +100,10 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         ctx.isExpanded = this._expanded.has(item.id);
 
         // Item usage
-        ctx.hasUses = uses && uses.max > 0;
+        ctx.hasUses = item.hasLimitedUses;
         ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
+        ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
+        ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
 
         // Item toggle state
         this._prepareItemToggleState(item, ctx);
@@ -112,11 +117,12 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
             else if (item.system.type.subtype === "fightingStyle") obj.fightingstyles.push(item);
             else if (item.system.type.subtype === "lightsaberForm") obj.lightsaberforms.push(item);
           } else obj.feats.push(item);
-        } else if (item.type === "class") obj.classes.push(item);
+        }
+        else if (item.type === "class") obj.classes.push(item);
         else if (item.type === "species") obj.species.push(item);
         else if (item.type === "archetype") obj.archetypes.push(item);
         else if (item.type === "background") obj.backgrounds.push(item);
-        else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
+        else if (item.type in inventory) obj.items.push(item);
         return obj;
       },
       {
@@ -203,7 +209,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         isClassfeature: true
       },
       species: {
-        label: "ITEM.TypeSpecies",
+        label: CONFIG.Item.typeLabels.species,
         items: species,
         hasActions: false,
         dataset: { type: "species" },
@@ -255,7 +261,6 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     context.powerbook = powerbook;
     context.preparedPowers = nPrepared;
     context.features = Object.values(features);
-    context.labels.background = backgrounds[0]?.name;
   }
 
   /* -------------------------------------------- */
@@ -297,6 +302,19 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
     html.find(".short-rest").click(this._onShortRest.bind(this));
     html.find(".long-rest").click(this._onLongRest.bind(this));
     html.find(".rollable[data-action]").click(this._onSheetAction.bind(this));
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  _onConfigMenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if ( (event.currentTarget.dataset.action === "type") && (this.actor.system.details.species?.id) ) {
+      new ActorTypeConfig(this.actor.system.details.species, { keyPath: "system.type" }).render(true);
+    } else if ( event.currentTarget.dataset.action !== "type" ) {
+      return super._onConfigMenu(event);
+    }
   }
 
   /* -------------------------------------------- */

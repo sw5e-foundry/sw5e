@@ -78,8 +78,8 @@
       "name": "Ortolan",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!sUIVVJzeUIAm51ZB.2qQDQApwHSwk85jt",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!sUIVVJzeUIAm51ZB.2qQDQApwHSwk85jt"
     },
     {
       "_id": "LtZ1px6YzHzoE10s",
@@ -113,8 +113,8 @@
       "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!sUIVVJzeUIAm51ZB.LtZ1px6YzHzoE10s",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!sUIVVJzeUIAm51ZB.LtZ1px6YzHzoE10s"
     }
   ],
   "folder": null,
@@ -138,7 +138,7 @@
     "identifier": "ortolan",
     "advancement": [
       {
-        "_id": "wIsEqVxXdHK1x9UG",
+        "_id": "13O5OWjFrgWJ19f0",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -159,10 +159,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "Igm31SqIr3p1rkgM",
+        "_id": "1l526ZU7gmQ91ORM",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -170,6 +170,37 @@
             "cha": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "oIrPPflWuK51JAtc",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1Jl0IZB2abbg1ITY",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:music:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:prf"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -217,10 +248,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002139,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!sUIVVJzeUIAm51ZB"

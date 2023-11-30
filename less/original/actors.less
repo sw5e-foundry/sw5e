@@ -383,6 +383,15 @@
       height: 20px;
       line-height: 20px;
 
+      label {
+        cursor: pointer;
+        align-items: center;
+        input[type=checkbox] {
+          top: unset;
+          flex: none;
+        }
+      }
+
       h4 {
         flex: auto;
         margin: 0;
@@ -530,6 +539,7 @@
     .item {
       .item-name {
         cursor: pointer;
+        flex: auto;
         &.rollable:hover .item-image {
           background-image: url("icons/svg/d20-grey.svg") !important;
         }

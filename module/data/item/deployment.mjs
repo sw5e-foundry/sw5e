@@ -36,8 +36,8 @@ export default class DeploymentData extends SystemDataModel.mixin(ItemDescriptio
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     DeploymentData.#migrateRank(source);
   }
 

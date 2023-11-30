@@ -74,8 +74,8 @@
       "name": "Ho'Din",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!x97YOPdsDzT93Uiy.BtKp61FR6tISnPzc",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!x97YOPdsDzT93Uiy.BtKp61FR6tISnPzc"
     }
   ],
   "folder": null,
@@ -99,7 +99,7 @@
     "identifier": "hodin",
     "advancement": [
       {
-        "_id": "1V1SO1qoJjvN1Mgd",
+        "_id": "1uJqCuSmRpfh1Apu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -122,10 +122,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "P1U578v7BX877ENK",
+        "_id": "7eIEwzCzo5418QSF",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -133,6 +133,44 @@
             "wis": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1dij4WL8JWB1Y3Ow",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "EBem1c0py7d1reXU",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:med",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:artisan:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:nat"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -180,10 +218,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002148,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!x97YOPdsDzT93Uiy"

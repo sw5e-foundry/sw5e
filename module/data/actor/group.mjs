@@ -71,11 +71,8 @@ export default class GroupActor extends SystemDataModel.mixin(CurrencyTemplate) 
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
-  /**
-   * Prepare base data for group actors.
-   * @internal
-   */
-  _prepareBaseData() {
+  /** @inheritdoc */
+  prepareBaseData() {
     this.members.clear();
     for (const id of this._source.members) {
       const a = game.actors.get(id);
@@ -85,14 +82,6 @@ export default class GroupActor extends SystemDataModel.mixin(CurrencyTemplate) 
         } else this.members.add(a);
       } else console.warn(`Actor "${id}" in group "${this._id}" does not exist within the World.`);
     }
-  }
-
-  /**
-   * Prepare derived data for group actors.
-   * @internal
-   */
-  _prepareDerivedData() {
-    // No preparation needed at this time
   }
 
   /* -------------------------------------------- */

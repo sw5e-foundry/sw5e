@@ -74,8 +74,8 @@
       "name": "Mustafarian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!BHqYrG7NqrUf6NgA.4l39OCAp9Bu8kztj",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!BHqYrG7NqrUf6NgA.4l39OCAp9Bu8kztj"
     }
   ],
   "folder": null,
@@ -99,7 +99,7 @@
     "identifier": "mustafarian",
     "advancement": [
       {
-        "_id": "Cj9KJljIV1p17ZUQ",
+        "_id": "10b8a1s7KMjjUIJt",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -118,16 +118,47 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1CfEwJjK9nOV1SG5",
+        "_id": "23z2TErEeXG12h70",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "VYY7GGn3ZJF5dEs4",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "N8viGvFIOYUE2EJR",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:constructorsimplements",
+                "tool:scavengingkit",
+                "tool:surveyorsimplements"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -175,10 +206,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002071,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!BHqYrG7NqrUf6NgA"

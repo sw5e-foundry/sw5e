@@ -645,18 +645,19 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     const sourceActor = await cls.fromDropData(data);
     if (!sourceActor) return;
 
-    if (!CONFIG.SW5E.ssDeployableTypes.includes(sourceActor.type)) return ui.notifications.warn(
-      game.i18n.format("SW5E.DeploymentInvalidActorType", {
+    if (!CONFIG.SW5E.ssDeployableTypes.includes(sourceActor.type)) {
+      ui.notifications.warn( game.i18n.format("SW5E.DeploymentInvalidActorType", {
         actorType: game.i18n.localize(CONFIG.Actor.typeLabels[sourceActor.type])
-      })
-    );
+      }));
+      return null;
+    }
 
     // Pre-select the deployment slot with the highest rank
     let preselected = Object.entries(sourceActor.system.details.ranks ?? {}).reduce(
       (prev, cur) => (cur[0] === "total" ? prev : cur[1] > prev[1] ? cur : prev),
       ["passenger", 0]
     )[0];
-    if (!Object.keys(CONFIG.SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
+    if (!(preselected in CONFIG.SW5E.ssCrewStationTypes)) preselected = "crew";
 
     // Create and render the Dialog
     // Define a function to record starship deployment selection

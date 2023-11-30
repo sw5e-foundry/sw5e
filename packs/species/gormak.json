@@ -25,7 +25,7 @@
     "identifier": "gormak",
     "advancement": [
       {
-        "_id": "1N6VyuNY8acf1wg3",
+        "_id": "1oZSEBGnE1Rf1LPS",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -44,10 +44,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1jha5PA1xOYJ1bG8",
+        "_id": "1jkDGJrLGDQiR7ZA",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -55,6 +55,55 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1JmyJf5wXxrL1bsc",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "E2wyE6M3n0NEKOxh",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "weapon:svb:*",
+                "weapon:mvb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "weapon:smb:*",
+                "weapon:mrb:*"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:armstechsimplements",
+                "tool:biotechsimplements",
+                "tool:constructorsimplements",
+                "tool:mechanicskit",
+                "tool:tinkersimplements"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -102,10 +151,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002147,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!x5uJxt0mB2FjQTd6"

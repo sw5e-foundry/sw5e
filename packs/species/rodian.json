@@ -84,8 +84,8 @@
       "name": "Rodian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!adaUHwGfIrAKGSn5.zFqjAOHt16NLbAVN",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!adaUHwGfIrAKGSn5.zFqjAOHt16NLbAVN"
     },
     {
       "_id": "gdc1EmOSoDmqyFii",
@@ -119,8 +119,8 @@
       "name": "Keen Hearing and Smell",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!adaUHwGfIrAKGSn5.gdc1EmOSoDmqyFii",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!adaUHwGfIrAKGSn5.gdc1EmOSoDmqyFii"
     }
   ],
   "folder": null,
@@ -144,7 +144,7 @@
     "identifier": "rodian",
     "advancement": [
       {
-        "_id": "1OJ87TA3Et6x1zA6",
+        "_id": "1a5Gqs3Ijihgq27q",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -163,10 +163,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1qRT83TeczCcrYWq",
+        "_id": "16UR8budOCzOeFao",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -174,6 +174,31 @@
             "con": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1dPYyDL22VlCz30I",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1H8m9QdaIy4TVsJP",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:sur",
+            "skills:ste"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -221,10 +246,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002110,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!adaUHwGfIrAKGSn5"

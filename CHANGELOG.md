@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0.2.7.0] - 2033-11-30
+
+### Added
+
+- (Dis)advantage flags on saves against specific damage types.
+
+### Changes
+
+- Updated core to match [dnd5e 2.4.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.0).
+- Resource Consumption dialog when casting a power now hides # of slots you have 1000 of.
+- Resource Consumption dialog when casting a power now displays a warning if you don't have enough power points.
+- Resource Consumption dialog when casting a power now has a toggle on wheter to spend power points.
+- Casting a power no longer spends 'slots' you have 1000 of.
+
+### Fixed
+
+- SW5E specific (dis)advantage flags should now work properly with midi-qol.
+- Fixed Old NPC sheet not working on actors with damage resistance bypasses.
+
+### Removed
+
+- Character flag `sonicSensitivity`.
+
 ## [2.3.1.2.6.5] - 2023-11-15
 
 ### Added
@@ -168,7 +191,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The website character importer now properly triggers all advancements.
 - Modifications can once again modify boolean properties.
 - Deprecated item types no longer show up to be created.
-- Huge and Gargantuan ships should now have the proper ammount of hull and shield dice at higher levels.
+- Huge and Gargantuan ships should now have the proper amount of hull and shield dice at higher levels.
 - Deployments can once again be ranked up.
 - Shield Damage Resistances/Immunities/Vulnerabilities should once again be editable.
 

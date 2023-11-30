@@ -86,8 +86,8 @@
       "name": "Tusken",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!0kBe86dDygtRVdzL.bwSDTAnMbEikuqSv",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!0kBe86dDygtRVdzL.bwSDTAnMbEikuqSv"
     }
   ],
   "folder": null,
@@ -111,7 +111,7 @@
     "identifier": "tusken",
     "advancement": [
       {
-        "_id": "1MQH2KCr6xVMCANx",
+        "_id": "6U6ExAwqcBa14P0A",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -133,16 +133,43 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "APtq8ay2NQC1Lc0I",
+        "_id": "hxvrmjgXb081yFDk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "hIgSCAefNAf1Npoy",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "9p3FdufuSgI10Q7p",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani",
+            "skills:sur",
+            "weapon:cycler rifle",
+            "weapon:vibroaxe"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -190,10 +217,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002054,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0kBe86dDygtRVdzL"

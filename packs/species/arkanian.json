@@ -66,8 +66,8 @@
       "name": "Arkanian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!XoFN88whSWZafSbn.RAp3oZRuCxtSNaQn",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!XoFN88whSWZafSbn.RAp3oZRuCxtSNaQn"
     },
     {
       "_id": "hfIgOZCRsvfzi2qj",
@@ -107,8 +107,8 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!XoFN88whSWZafSbn.hfIgOZCRsvfzi2qj",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!XoFN88whSWZafSbn.hfIgOZCRsvfzi2qj"
     }
   ],
   "folder": null,
@@ -132,7 +132,7 @@
     "identifier": "arkanian",
     "advancement": [
       {
-        "_id": "1Qa3bUjF6UZgyrPL",
+        "_id": "1qbmLAfIR2VE12Pu",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -153,10 +153,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "omOMNHM8EyqxAYuR",
+        "_id": "lQLBSJK0ZQPQtIX8",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -164,6 +164,35 @@
             "wis": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "y9HsA6n6oWh1P1vF",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1bJ5v3DadkoU19F4",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -211,10 +240,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002104,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!XoFN88whSWZafSbn"

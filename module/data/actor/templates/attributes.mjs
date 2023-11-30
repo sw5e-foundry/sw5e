@@ -1,4 +1,6 @@
 import { FormulaField, UUIDField } from "../../fields.mjs";
+import MovementField from "../../shared/movement-field.mjs";
+import SensesField from "../../shared/senses-field.mjs";
 
 /**
  * Shared contents of the attributes schema between various actor types.
@@ -29,48 +31,7 @@ export default class AttributesFields {
         },
         { label: "SW5E.Initiative" }
       ),
-      movement: new foundry.data.fields.SchemaField(
-        {
-          burrow: new foundry.data.fields.NumberField({
-            nullable: false,
-            min: 0,
-            step: 0.1,
-            initial: 0,
-            label: "SW5E.MovementBurrow"
-          }),
-          climb: new foundry.data.fields.NumberField({
-            nullable: false,
-            min: 0,
-            step: 0.1,
-            initial: 0,
-            label: "SW5E.MovementClimb"
-          }),
-          fly: new foundry.data.fields.NumberField({
-            nullable: false,
-            min: 0,
-            step: 0.1,
-            initial: 0,
-            label: "SW5E.MovementFly"
-          }),
-          swim: new foundry.data.fields.NumberField({
-            nullable: false,
-            min: 0,
-            step: 0.1,
-            initial: 0,
-            label: "SW5E.MovementSwim"
-          }),
-          walk: new foundry.data.fields.NumberField({
-            nullable: false,
-            min: 0,
-            step: 0.1,
-            initial: 30,
-            label: "SW5E.MovementWalk"
-          }),
-          units: new foundry.data.fields.StringField({ initial: "ft", label: "SW5E.MovementUnits" }),
-          hover: new foundry.data.fields.BooleanField({ label: "SW5E.MovementHover" })
-        },
-        { label: "SW5E.Movement" }
-      )
+      movement: new MovementField()
     };
   }
 
@@ -132,45 +93,7 @@ export default class AttributesFields {
         },
         { label: "SW5E.Attunement" }
       ),
-      senses: new foundry.data.fields.SchemaField(
-        {
-          darkvision: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.SenseDarkvision"
-          }),
-          blindsight: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.SenseBlindsight"
-          }),
-          tremorsense: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.SenseTremorsense"
-          }),
-          truesight: new foundry.data.fields.NumberField({
-            required: true,
-            nullable: false,
-            integer: true,
-            min: 0,
-            initial: 0,
-            label: "SW5E.SenseTruesight"
-          }),
-          units: new foundry.data.fields.StringField({ required: true, initial: "ft", label: "SW5E.SenseUnits" }),
-          special: new foundry.data.fields.StringField({ required: true, label: "SW5E.SenseSpecial" })
-        },
-        { label: "SW5E.Senses" }
-      ),
+      senses: new SensesField(),
       force: new foundry.data.fields.SchemaField(
         { points: makePointsResource({ label: "SW5E.ForcePoint", hasTemp: true }) },
         { label: "SW5E.ForceCasting" }

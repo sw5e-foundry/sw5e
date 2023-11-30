@@ -15,12 +15,7 @@
 
             <ul class="summary flexrow">
                 <li>
-                    <input
-                        type="text"
-                        name="system.source"
-                        value="{{system.source}}"
-                        placeholder="{{ localize 'SW5E.Source' }}"
-                    />
+                    {{> "sw5e.item-source"}}
                 </li>
                 <li>
                     <select name="system.size">
@@ -45,7 +40,7 @@
         {{!-- Description Tab --}}
         <div class="tab flexrow active" data-group="primary" data-tab="description">
             {{editor 
-				descriptionHTML
+				enriched.description
 				target="system.description.value"
 				button=true
 				owner=owner

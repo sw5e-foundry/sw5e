@@ -86,8 +86,8 @@
       "name": "Ugnaught",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!sap5fZAWwade6HEd.cEL26hyVYxGjv0si",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!sap5fZAWwade6HEd.cEL26hyVYxGjv0si"
     }
   ],
   "folder": null,
@@ -111,7 +111,7 @@
     "identifier": "ugnaught",
     "advancement": [
       {
-        "_id": "3OmOZXmXBWT6zk0L",
+        "_id": "1gq3QUEk3gNMabI2",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -133,10 +133,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "F3Sq32EgoDHROZKn",
+        "_id": "dnIABmic1yrSGHqk",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -144,6 +144,37 @@
             "str": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "gMwSJHNRkDp1EEmf",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1OAHMKlZHzpW1b3j",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:*"
+              ]
+            }
+          ],
+          "grants": [
+            "tool:tinkersimplements"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -191,10 +222,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002140,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!sap5fZAWwade6HEd"

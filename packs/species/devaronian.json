@@ -80,8 +80,8 @@
       "name": "Devaronian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!fipZDFA6EVkp1dxY.NXVgSk9AHJm492iG",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!fipZDFA6EVkp1dxY.NXVgSk9AHJm492iG"
     }
   ],
   "folder": null,
@@ -105,7 +105,7 @@
     "identifier": "devaronian",
     "advancement": [
       {
-        "_id": "1N1056fjvJOTPEuk",
+        "_id": "2Xop0fZCLHI1AEsL",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -126,10 +126,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1AVyiV6YZbEGiYmQ",
+        "_id": "1PH67J5SBa0l1EcG",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -137,6 +137,43 @@
             "cha": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "inSLhwf6wvno2iWp",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1sfZBm3MxcdQCL8U",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:sur",
+                "skills:inv"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -184,10 +221,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002117,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!fipZDFA6EVkp1dxY"

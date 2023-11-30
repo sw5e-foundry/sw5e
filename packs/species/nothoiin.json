@@ -68,8 +68,8 @@
       "name": "Nothoiin",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!KYirdDikaWKFaOXN.JhHAOQyteRjEJhyC",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!KYirdDikaWKFaOXN.JhHAOQyteRjEJhyC"
     }
   ],
   "folder": null,
@@ -93,7 +93,7 @@
     "identifier": "nothoiin",
     "advancement": [
       {
-        "_id": "1N2DEjl7EYVeer0B",
+        "_id": "1cHBQkcAybjCuYI6",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -114,10 +114,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "16fsPPp7WNxwFzTw",
+        "_id": "pkfwWZugBTx1eXpZ",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -125,6 +125,40 @@
             "dex": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1mxwXcJnOjHdaqAV",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1hLfeOynMCclTX7M",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "tool:jewelersimplements",
+                "tool:scavengingkit",
+                "tool:archaeologistkit"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:pil",
+            "skills:lor"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -172,10 +206,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002083,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!KYirdDikaWKFaOXN"

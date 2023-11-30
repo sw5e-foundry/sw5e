@@ -81,8 +81,8 @@ export default class FeatData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     FeatData.#migrateType(source);
     FeatData.#migrateRecharge(source);
   }
@@ -128,7 +128,7 @@ export default class FeatData extends SystemDataModel.mixin(
 
   /** @inheritdoc */
   get hasLimitedUses() {
-    return !!this.recharge.value || super.hasLimitedUses;
+    return this.isActive && (!!this.recharge.value || super.hasLimitedUses);
   }
 
   /* -------------------------------------------- */

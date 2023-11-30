@@ -53,7 +53,7 @@ export default class ProficiencyConfig extends BaseConfigSheet {
       ? this.document.type === "starship"
         ? CONFIG.SW5E.starshipSkills[this.options.key].label
         : CONFIG.SW5E.skills[this.options.key].label
-      : Trait.keyLabel("tool", this.options.key);
+      : Trait.keyLabel(this.options.key, { trait: "tool" });
     return `${game.i18n.format("SW5E.ProficiencyConfigureTitle", {label})}: ${this.document.name}`;
   }
 

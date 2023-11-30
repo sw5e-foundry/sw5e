@@ -84,8 +84,8 @@
       "name": "Kage",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!WQrjYmqGB0tHwxeE.G3YZPkTcIi4dDM7Y",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!WQrjYmqGB0tHwxeE.G3YZPkTcIi4dDM7Y"
     },
     {
       "_id": "fQtntxWSsAPYiSJL",
@@ -125,8 +125,8 @@
       "name": "Sunlight Sensitivity - you or your target is in sunlight",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!WQrjYmqGB0tHwxeE.fQtntxWSsAPYiSJL",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!WQrjYmqGB0tHwxeE.fQtntxWSsAPYiSJL"
     }
   ],
   "folder": null,
@@ -150,7 +150,7 @@
     "identifier": "kage",
     "advancement": [
       {
-        "_id": "ceh9I7DAl2rgBFCN",
+        "_id": "1EW87oyQXDqo1KSp",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -172,10 +172,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "MmseRTUcySFLRf82",
+        "_id": "1fGWgJdAJVWo1q00",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -183,6 +183,33 @@
             "wis": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "8ZkuACkRumwU0mDa",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "14unagiIOg5J1LPS",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:ani",
+            "skills:ath",
+            "weapon:electroprod",
+            "weapon:electrostaff"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -230,10 +257,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002102,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!WQrjYmqGB0tHwxeE"

@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "m9TcOou3KVxiYimF",
+        "_id": "18zy1FQhCgjx1LAR",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "1RBv1yuUVqVv1dJt",
+        "_id": "1jfkoFWIXfWeAd5i",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "superiority-dice-quantity",
@@ -65,7 +65,7 @@
         "title": "Superiority Dice Quantity"
       },
       {
-        "_id": "ymJG6JENeG4muBpW",
+        "_id": "1FIe9rD7pEMDYJW4",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "superiority-dice-size",
@@ -97,7 +97,7 @@
         "title": "Superiority Dice Size"
       },
       {
-        "_id": "1zXIiEePwat5Ezyq",
+        "_id": "o2G4bZFDbed1BAk2",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "strategies-known",
@@ -121,7 +121,7 @@
         "title": "Strategies Known"
       },
       {
-        "_id": "Xb8uwCj70da1HeX2",
+        "_id": "19fIPWeFDaRLx1pD",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -131,7 +131,7 @@
         "level": 4
       },
       {
-        "_id": "13YS6OPmzJtB16wa",
+        "_id": "CM12InSgvb0tGHEo",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -141,7 +141,7 @@
         "level": 6
       },
       {
-        "_id": "16pJA5ggafu6TUgJ",
+        "_id": "xQGWWhWtdJH1hlli",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -151,7 +151,7 @@
         "level": 8
       },
       {
-        "_id": "erNowITr7SiiQ9Uc",
+        "_id": "1AhD1rLhSZe61DLc",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -161,7 +161,7 @@
         "level": 12
       },
       {
-        "_id": "1gkLPQn1WARa1sSh",
+        "_id": "OCPXrXS1Zbcy0IMw",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -171,7 +171,7 @@
         "level": 14
       },
       {
-        "_id": "IvyxKmbcxO51jkFa",
+        "_id": "1FCRAY6xMkWE1bcv",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -181,7 +181,7 @@
         "level": 16
       },
       {
-        "_id": "rX2Qg7ZO6sS1PGVd",
+        "_id": "fZVuM9qTJW51y7RO",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -191,7 +191,101 @@
         "level": 19
       },
       {
-        "_id": "WY2pIk3I1n2MTxm3",
+        "_id": "17uGCdZTGojfkQD4",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt",
+            "armor:med",
+            "armor:hvy"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "8O5lQhmVsCF1QYLt",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:smb",
+            "weapon:mrb",
+            "weapon:svb",
+            "weapon:mvb"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "EGQ8AWUfChVOKBzz",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "saves:str",
+            "saves:con"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "1qnkSW8nPQ2w1dFj",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "skills:acr",
+                "skills:ani",
+                "skills:ath",
+                "skills:lor",
+                "skills:ins",
+                "skills:itm",
+                "skills:prc",
+                "skills:sur"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "KM8TdpSzEwyx3xXm",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "armor:lgt",
+            "weapon:smb",
+            "weapon:mrb",
+            "weapon:svb",
+            "weapon:mvb",
+            "armor:med"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "secondary",
+        "level": 1,
+        "title": "Multiclass Proficiencies"
+      },
+      {
+        "_id": "1KA5dFFhdM2o1I7d",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -205,7 +299,7 @@
         "title": "Features"
       },
       {
-        "_id": "Ne5RqKVUvJr78sTL",
+        "_id": "1pFxiCKXu5n9GwWD",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -219,7 +313,7 @@
         "title": "Features"
       },
       {
-        "_id": "wDtC8E0oVUR1xbMW",
+        "_id": "YtZST7xUe001Eyvg",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -233,7 +327,7 @@
         "title": "Features"
       },
       {
-        "_id": "1eGINnkI9mgc1vXt",
+        "_id": "WZVMmreAnGnjbo4H",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -246,7 +340,7 @@
         "title": "Features"
       },
       {
-        "_id": "1AY1iYKzWoJQSdQW",
+        "_id": "ztdCD6YPM5D1an9q",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -259,7 +353,7 @@
         "title": "Features"
       },
       {
-        "_id": "ZKr7PInP7L11IIOc",
+        "_id": "pNz0UOROM8Qy5a80",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -272,7 +366,7 @@
         "title": "Features"
       },
       {
-        "_id": "yBFVw8W3iqxeSlOE",
+        "_id": "1aaTkEUmqkec1uqJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -285,7 +379,7 @@
         "title": "Features"
       },
       {
-        "_id": "12PwNZi59tOPpaZ1",
+        "_id": "gTbaEJtxqHJ1KYW6",
         "type": "ItemChoice",
         "configuration": {
           "hint": "You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.",
@@ -325,7 +419,7 @@
         "title": "Fighter Strategies"
       },
       {
-        "_id": "1ulrbOctrCWuY5u5",
+        "_id": "UFjM12Q1M5W1z6bs",
         "type": "ItemChoice",
         "configuration": {
           "hint": "Different fighters choose different approaches to perfecting their fighting prowess. The fighter specialty you choose to emulate reflects your approach. Your specialty grants you features at 3rd, 7th, 10th, 15th, and 18th level.",
@@ -368,6 +462,15 @@
         "title": "Fighter Specialties"
       }
     ],
+    "powercasting": {
+      "force": "none",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0.5"
+    },
     "saves": [
       "str",
       "con"
@@ -386,15 +489,6 @@
       ],
       "value": []
     },
-    "powercasting": {
-      "force": "none",
-      "forceOverride": "",
-      "tech": "none",
-      "techOverride": ""
-    },
-    "superiority": {
-      "progression": "0.5"
-    },
     "archetype": ""
   },
   "ownership": {
@@ -402,10 +496,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493961822,
-    "modifiedTime": 1695981490925,
+    "modifiedTime": 1700848701769,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!N7adJQsbRDhNO1ie"

@@ -72,8 +72,8 @@
       "name": "Weequay",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Hc4GsnEUNuueTMDE.N1tC15fGu1NNo2AX",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!Hc4GsnEUNuueTMDE.N1tC15fGu1NNo2AX"
     },
     {
       "_id": "CV9Qp2KXunAZ8Ey9",
@@ -107,8 +107,8 @@
       "name": "Keen Senses - involving a particular sense",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Hc4GsnEUNuueTMDE.CV9Qp2KXunAZ8Ey9",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!Hc4GsnEUNuueTMDE.CV9Qp2KXunAZ8Ey9"
     }
   ],
   "folder": null,
@@ -132,7 +132,7 @@
     "identifier": "weequay",
     "advancement": [
       {
-        "_id": "1BszNqu9ZM803LJ3",
+        "_id": "8K8ztqHgT80atBu3",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -151,16 +151,48 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "U8rvLD08hZiZxBrl",
+        "_id": "KTrH0dRq6JE1JW1l",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "con": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1pirinvaTXYnwN1v",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "QbjfuzlL3jo1MHMF",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "weapon:svb:*",
+                "weapon:mvb:*",
+                "weapon:smb:*",
+                "weapon:mrb:*"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -208,10 +240,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002077,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!Hc4GsnEUNuueTMDE"

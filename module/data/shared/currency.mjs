@@ -1,3 +1,4 @@
+import SystemDataModel from "../abstract.mjs";
 import { MappingField } from "../fields.mjs";
 
 /**
@@ -6,7 +7,7 @@ import { MappingField } from "../fields.mjs";
  * @property {object} currency  Object containing currencies as numbers.
  * @mixin
  */
-export default class CurrencyTemplate extends foundry.abstract.DataModel {
+export default class CurrencyTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
@@ -26,8 +27,8 @@ export default class CurrencyTemplate extends foundry.abstract.DataModel {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     CurrencyTemplate.#migrateCurrencyData(source);
   }
 

@@ -1,4 +1,6 @@
 import { FormulaField } from "../fields.mjs";
+import CreatureTypeField from "../shared/creature-type-field.mjs";
+import SourceField from "../shared/source-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
@@ -29,7 +31,7 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {number} details.powerForceLevel    Forcecasting level of this NPC.
  * @property {number} details.powerTechLevel     Techcasting level of this NPC.
  * @property {number} details.superiorityLevel   Superiority level of this NPC.
- * @property {string} details.source             What book or adventure is this NPC from?
+ * @property {SourceField} details.source        Adventure or sourcebook where this NPC originated.
  * @property {object} resources
  * @property {object} resources.legact           NPC's legendary actions.
  * @property {number} resources.legact.value     Currently available legendary actions.
@@ -100,22 +102,7 @@ export default class NPCData extends CreatureTemplate {
         {
           ...DetailsFields.common,
           ...DetailsFields.creature,
-          type: new foundry.data.fields.SchemaField(
-            {
-              value: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.CreatureType" }),
-              subtype: new foundry.data.fields.StringField({
-                required: true,
-                label: "SW5E.CreatureTypeSelectorSubtype"
-              }),
-              swarm: new foundry.data.fields.StringField({
-                required: true,
-                blank: true,
-                label: "SW5E.CreatureSwarmSize"
-              }),
-              custom: new foundry.data.fields.StringField({ required: true, label: "SW5E.CreatureTypeSelectorCustom" })
-            },
-            { label: "SW5E.CreatureType" }
-          ),
+          type: new CreatureTypeField(),
           environment: new foundry.data.fields.StringField({ required: true, label: "SW5E.Environment" }),
           cr: new foundry.data.fields.NumberField({
             required: true,
@@ -148,7 +135,7 @@ export default class NPCData extends CreatureTemplate {
             initial: 0,
             label: "SW5E.SuperiorityLevel"
           }),
-          source: new foundry.data.fields.StringField({ required: true, label: "SW5E.Source" })
+          source: new SourceField()
         },
         { label: "SW5E.Details" }
       ),
@@ -223,12 +210,25 @@ export default class NPCData extends CreatureTemplate {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
+    NPCData.#migrateSource(source);
     NPCData.#migrateTypeData(source);
     NPCData.#migratePowercastingData(source);
     NPCData.#migrateArmorClass(source);
     AttributesFields._migrateInitiative(source.attributes);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Convert source string into custom object.
+   * @param {object} source  The candidate source data from which the model will be constructed.
+   */
+  static #migrateSource(source) {
+    if ( source.details?.source && (foundry.utils.getType(source.details.source) !== "Object") ) {
+      source.details.source = { custom: source.details.source };
+    }
   }
 
   /* -------------------------------------------- */

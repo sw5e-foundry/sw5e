@@ -207,9 +207,9 @@ export default class D20Roll extends Roll {
    * @param {boolean} [data.chooseModifier]   Choose which ability modifier should be applied to the roll?
    * @param {string} [data.defaultAbility]    For tool rolls, the default ability modifier applied to the roll
    * @param {string} [data.template]          A custom path to an HTML template to use instead of the default
-   * @param {string} [normalHint]             Hint to be displayed on the normal button.
-   * @param {string} [advantageHint]          Hint to be displayed on the advantage button.
-   * @param {string} [disadvantageHint]       Hint to be displayed on the disadvantage button.
+   * @param {string} [data.normalHint]        Hint to be displayed on the normal button.
+   * @param {string} [data.advantageHint]     Hint to be displayed on the advantage button.
+   * @param {string} [data.disadvantageHint]  Hint to be displayed on the disadvantage button.
    * @param {object} options                  Additional Dialog customization options
    * @returns {Promise<D20Roll|null>}         A resulting D20Roll object constructed with the dialog,
    *                                          or null if the dialog was closed

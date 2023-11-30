@@ -92,8 +92,8 @@
       "name": "Patrolian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!oUZfKfMMr6ZXXQ4J.6ONrHdnvLzAAXP1o",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!oUZfKfMMr6ZXXQ4J.6ONrHdnvLzAAXP1o"
     }
   ],
   "folder": null,
@@ -117,7 +117,7 @@
     "identifier": "patrolian",
     "advancement": [
       {
-        "_id": "1JvttuI78QWt1UUb",
+        "_id": "B0SD1wBsho410P5l",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -140,16 +140,54 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1NzAeGU24lNrtLyk",
+        "_id": "4egiNEBkMal15agO",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "int": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1f7ZMx0WJ3l51lE7",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "CSIZu7No1jhrFcTQ",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:dec",
+                "skills:ste"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "tool:specialist:*"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:tec"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -197,10 +235,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002132,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!oUZfKfMMr6ZXXQ4J"

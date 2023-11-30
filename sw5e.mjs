@@ -3,8 +3,8 @@
  * Author: Kakeman89
  * Software License: GNU GPLv3
  * Content License: https://media.wizards.com/2016/downloads/SW5E/SRD-OGL_V5.1.pdf
- * Repository: https://github.com/foundrynet/sw5e
- * Issue Tracker: https://github.com/foundrynet/sw5e/issues
+ * Repository: https://github.com/sw5e-foundry/sw5e
+ * Issue Tracker: https://github.com/sw5e-foundry/sw5e/issues
  */
 
 // Import Configuration
@@ -21,6 +21,7 @@ import * as canvas from "./module/canvas/_module.mjs";
 import * as dataModels from "./module/data/_module.mjs";
 import * as dice from "./module/dice/_module.mjs";
 import * as documents from "./module/documents/_module.mjs";
+import * as enrichers from "./module/enrichers.mjs";
 import * as migrations from "./module/migration.mjs";
 import * as utils from "./module/utils.mjs";
 import { ModuleArt } from "./module/module-art.mjs";
@@ -36,6 +37,7 @@ globalThis.sw5e = {
   dataModels,
   dice,
   documents,
+  enrichers,
   migrations,
   utils
 };
@@ -82,7 +84,6 @@ Hooks.once("init", function() {
     else CONFIG.SW5E[spell] = val;
   }
 
-  CONFIG.compatibility.excludePatterns.push(/\bActiveEffect5e#label\b/); // Backwards compatibility with v10
   game.sw5e.isV10 = game.release.generation < 11;
 
   // Register System Settings
@@ -195,6 +196,8 @@ Hooks.once("init", function() {
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
   utils.preloadHandlebarsTemplates();
+
+  enrichers.registerCustomEnrichers();
 
   // Register Babele stuff
   if (typeof Babele !== "undefined") {
@@ -496,4 +499,14 @@ function setFolderBackground(html) {
 /*  Bundled Module Exports                      */
 /* -------------------------------------------- */
 
-export { applications, canvas, dataModels, dice, documents, migrations, utils, SW5E };
+export {
+  applications,
+  canvas,
+  dataModels,
+  dice,
+  documents,
+  enrichers,
+  migrations,
+  utils,
+  SW5E
+};

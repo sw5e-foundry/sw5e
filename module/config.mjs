@@ -16,6 +16,19 @@ SW5E.ASCII = `
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for abilities.
+ *
+ * @typedef {object} AbilityConfiguration
+ * @property {string} label                               Localized label.
+ * @property {string} abbreviation                        Localized abbreviation.
+ * @property {string} fullKey                             Fully written key used as alternate for enrichers.
+ * @property {string} [type]                              Whether this is a "physical" or "mental" ability.
+ * @property {Object<string, number|string>}  [defaults]  Default values for this ability based on actor type.
+ *                                                        If a string is used, the system will attempt to fetch.
+ *                                                        the value of the specified ability.
+ */
+
+/**
  * The set of Ability Scores used within the system.
  * @enum {AbilityConfiguration}
  */
@@ -23,40 +36,47 @@ SW5E.abilities = {
   str: {
     label: "SW5E.AbilityStr",
     abbreviation: "SW5E.AbilityStrAbbr",
-    type: "physical"
+    type: "physical",
+    fullKey: "strength"
   },
   dex: {
     label: "SW5E.AbilityDex",
     abbreviation: "SW5E.AbilityDexAbbr",
-    type: "physical"
+    type: "physical",
+    fullKey: "dexterity"
   },
   con: {
     label: "SW5E.AbilityCon",
     abbreviation: "SW5E.AbilityConAbbr",
-    type: "physical"
+    type: "physical",
+    fullKey: "constitution"
   },
   int: {
     label: "SW5E.AbilityInt",
     abbreviation: "SW5E.AbilityIntAbbr",
     type: "mental",
+    fullKey: "intelligence",
     defaults: { vehicle: 0 }
   },
   wis: {
     label: "SW5E.AbilityWis",
     abbreviation: "SW5E.AbilityWisAbbr",
     type: "mental",
+    fullKey: "wisdom",
     defaults: { vehicle: 0 }
   },
   cha: {
     label: "SW5E.AbilityCha",
     abbreviation: "SW5E.AbilityChaAbbr",
     type: "mental",
+    fullKey: "charisma",
     defaults: { vehicle: 0 }
   },
   hon: {
     label: "SW5E.AbilityHon",
     abbreviation: "SW5E.AbilityHonAbbr",
     type: "mental",
+    fullKey: "honor",
     defaults: { npc: "cha", vehicle: 0 },
     improvement: false
   },
@@ -64,22 +84,12 @@ SW5E.abilities = {
     label: "SW5E.AbilitySan",
     abbreviation: "SW5E.AbilitySanAbbr",
     type: "mental",
+    fullKey: "sanity",
     defaults: { npc: "wis", vehicle: 0 },
     improvement: false
   }
 };
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
-patchConfig("abilities", "label", { since: 2.2, until: 2.4 });
-
-Object.defineProperty(SW5E, "abilityAbbreviations", {
-  get() {
-    foundry.utils.logCompatibilityWarning(
-      "The `abilityAbbreviations` configuration object has been merged with `abilities`.",
-      { since: "SW5e 2.2", until: "SW5e 2.4" }
-    );
-    return Object.fromEntries(Object.entries(SW5E.abilities).map(([k, v]) => [k, v.abbreviation]));
-  }
-});
 
 /**
  * Configure which ability score is used as the default modifier for initiative rolls.
@@ -113,6 +123,7 @@ SW5E.shieldPointsAbility = "str";
  * @typedef {object} SkillConfiguration
  * @property {string} label    Localized label.
  * @property {string} ability  Key for the default ability used by this skill.
+ * @property {string} fullKey  Fully written key used as alternate for enrichers.
  */
 
 /**
@@ -120,24 +131,24 @@ SW5E.shieldPointsAbility = "str";
  * @enum {SkillConfiguration}
  */
 SW5E.skills = {
-  acr: { label: "SW5E.SkillAcr", ability: "dex" },
-  ani: { label: "SW5E.SkillAni", ability: "wis" },
-  ath: { label: "SW5E.SkillAth", ability: "str" },
-  dec: { label: "SW5E.SkillDec", ability: "cha" },
-  ins: { label: "SW5E.SkillIns", ability: "wis" },
-  itm: { label: "SW5E.SkillItm", ability: "cha" },
-  inv: { label: "SW5E.SkillInv", ability: "int" },
-  lor: { label: "SW5E.SkillLor", ability: "int" },
-  med: { label: "SW5E.SkillMed", ability: "wis" },
-  nat: { label: "SW5E.SkillNat", ability: "int" },
-  prc: { label: "SW5E.SkillPrc", ability: "wis" },
-  prf: { label: "SW5E.SkillPrf", ability: "cha" },
-  per: { label: "SW5E.SkillPer", ability: "cha" },
-  pil: { label: "SW5E.SkillPil", ability: "int" },
-  slt: { label: "SW5E.SkillSlt", ability: "dex" },
-  ste: { label: "SW5E.SkillSte", ability: "dex" },
-  sur: { label: "SW5E.SkillSur", ability: "wis" },
-  tec: { label: "SW5E.SkillTec", ability: "int" }
+  acr: { label: "SW5E.SkillAcr", ability: "dex", fullKey: "acrobatics" },
+  ani: { label: "SW5E.SkillAni", ability: "wis", fullKey: "animalHandling" },
+  ath: { label: "SW5E.SkillAth", ability: "str", fullKey: "athletics" },
+  dec: { label: "SW5E.SkillDec", ability: "cha", fullKey: "deception" },
+  ins: { label: "SW5E.SkillIns", ability: "wis", fullKey: "insight" },
+  itm: { label: "SW5E.SkillItm", ability: "cha", fullKey: "intimidation" },
+  inv: { label: "SW5E.SkillInv", ability: "int", fullKey: "investigation" },
+  lor: { label: "SW5E.SkillLor", ability: "int", fullKey: "lore" },
+  med: { label: "SW5E.SkillMed", ability: "wis", fullKey: "medicine" },
+  nat: { label: "SW5E.SkillNat", ability: "int", fullKey: "nature" },
+  prc: { label: "SW5E.SkillPrc", ability: "wis", fullKey: "perception" },
+  prf: { label: "SW5E.SkillPrf", ability: "cha", fullKey: "performance" },
+  per: { label: "SW5E.SkillPer", ability: "cha", fullKey: "persuasion" },
+  pil: { label: "SW5E.SkillPil", ability: "int", fullKey: "pilloting" },
+  slt: { label: "SW5E.SkillSlt", ability: "dex", fullKey: "sleightOfHand" },
+  ste: { label: "SW5E.SkillSte", ability: "dex", fullKey: "stealth" },
+  sur: { label: "SW5E.SkillSur", ability: "wis", fullKey: "survival" },
+  tec: { label: "SW5E.SkillTec", ability: "int", fullKey: "technology" }
 };
 preLocalize("skills", { key: "label", sort: true });
 
@@ -146,20 +157,20 @@ preLocalize("skills", { key: "label", sort: true });
  * @enum {SkillConfiguration}
  */
 SW5E.starshipSkills = {
-  ast: { label: "SW5E.StarshipSkillAst", ability: "int" },
-  bst: { label: "SW5E.StarshipSkillBst", ability: "str" },
-  dat: { label: "SW5E.StarshipSkillDat", ability: "int" },
-  hid: { label: "SW5E.StarshipSkillHid", ability: "dex" },
-  imp: { label: "SW5E.StarshipSkillImp", ability: "cha" },
-  inf: { label: "SW5E.StarshipSkillInf", ability: "cha" },
-  man: { label: "SW5E.StarshipSkillMan", ability: "dex" },
-  men: { label: "SW5E.StarshipSkillMen", ability: "cha" },
-  pat: { label: "SW5E.StarshipSkillPat", ability: "con" },
-  prb: { label: "SW5E.StarshipSkillPrb", ability: "int" },
-  ram: { label: "SW5E.StarshipSkillRam", ability: "str" },
-  reg: { label: "SW5E.StarshipSkillReg", ability: "con" },
-  scn: { label: "SW5E.StarshipSkillScn", ability: "wis" },
-  swn: { label: "SW5E.StarshipSkillSwn", ability: "cha" }
+  ast: { label: "SW5E.StarshipSkillAst", ability: "int", fullKey: "astrogation" },
+  bst: { label: "SW5E.StarshipSkillBst", ability: "str", fullKey: "boost" },
+  dat: { label: "SW5E.StarshipSkillDat", ability: "int", fullKey: "data" },
+  hid: { label: "SW5E.StarshipSkillHid", ability: "dex", fullKey: "hide" },
+  imp: { label: "SW5E.StarshipSkillImp", ability: "cha", fullKey: "impress" },
+  inf: { label: "SW5E.StarshipSkillInf", ability: "cha", fullKey: "interfere" },
+  man: { label: "SW5E.StarshipSkillMan", ability: "dex", fullKey: "maneuvering" },
+  men: { label: "SW5E.StarshipSkillMen", ability: "cha", fullKey: "menace" },
+  pat: { label: "SW5E.StarshipSkillPat", ability: "con", fullKey: "patch" },
+  prb: { label: "SW5E.StarshipSkillPrb", ability: "int", fullKey: "probe" },
+  ram: { label: "SW5E.StarshipSkillRam", ability: "str", fullKey: "ram" },
+  reg: { label: "SW5E.StarshipSkillReg", ability: "con", fullKey: "regulation" },
+  scn: { label: "SW5E.StarshipSkillScn", ability: "wis", fullKey: "scan" },
+  swn: { label: "SW5E.StarshipSkillSwn", ability: "cha", fullKey: "swindle" }
 };
 preLocalize("starshipSkills", { key: "label", sort: true });
 
@@ -820,18 +831,26 @@ preLocalize("timePeriods");
 /* -------------------------------------------- */
 
 /**
+ * Ways in which to activate an item that cannot be labeled with a cost.
+ * @enum {string}
+ */
+SW5E.staticAbilityActivationTypes = {
+  none: "SW5E.NoneActionLabel",
+  special: SW5E.timePeriods.spec
+};
+
+/**
  * Various ways in which an item or ability can be activated.
  * @enum {string}
  */
 SW5E.abilityActivationTypes = {
-  none: "SW5E.None",
+  ...SW5E.staticAbilityActivationTypes,
   action: "SW5E.Action",
   bonus: "SW5E.BonusAction",
   reaction: "SW5E.Reaction",
   minute: SW5E.timePeriods.minute,
   hour: SW5E.timePeriods.hour,
   day: SW5E.timePeriods.day,
-  special: SW5E.timePeriods.spec,
   legendary: "SW5E.LegendaryActionLabel",
   mythic: "SW5E.MythicActionLabel",
   lair: "SW5E.LairActionLabel",
@@ -977,6 +996,18 @@ preLocalize("itemRarity");
 /* -------------------------------------------- */
 
 /**
+ * The limited use periods that support a recovery formula.
+ * @enum {string}
+ */
+SW5E.limitedUseFormulaPeriods = {
+  charges: "SW5E.Charges",
+  dawn: "SW5E.Dawn",
+  dusk: "SW5E.Dusk"
+};
+
+/* -------------------------------------------- */
+
+/**
  * Enumerate the lengths of time over which an item can have limited use ability
  * @enum {string}
  */
@@ -984,9 +1015,9 @@ SW5E.limitedUsePeriods = {
   sr: "SW5E.ShortRest",
   lr: "SW5E.LongRest",
   day: "SW5E.Day",
-  charges: "SW5E.Charges",
   recharge: "SW5E.Recharge",
-  refitting: "SW5E.Refitting"
+  refitting: "SW5E.Refitting",
+  ...SW5E.limitedUseFormulaPeriods
 };
 preLocalize("limitedUsePeriods");
 
@@ -1267,6 +1298,45 @@ SW5E.featureTypes = {
 };
 preLocalize("featureTypes", { key: "label" });
 for (const [key, type] of Object.entries(SW5E.featureTypes)) if ("subtypes" in type) preLocalize(`featureTypes.${key}.subtypes`, { sort: true });
+
+/* -------------------------------------------- */
+
+
+/**
+ * Configuration data for an item with the "loot" type.
+ *
+ * @typedef {object} LootTypeConfiguration
+ * @property {string} label                       Localized label for this type.
+ */
+
+/**
+ * Types of "loot" items.
+ * @enum {LootTypeConfiguration}
+ */
+SW5E.lootTypes = {
+  art: {
+    label: "SW5E.Loot.Art"
+  },
+  gear: {
+    label: "SW5E.Loot.Gear"
+  },
+  gem: {
+    label: "SW5E.Loot.Gem"
+  },
+  junk: {
+    label: "SW5E.Loot.Junk"
+  },
+  material: {
+    label: "SW5E.Loot.Material"
+  },
+  resource: {
+    label: "SW5E.Loot.Resource"
+  },
+  treasure: {
+    label: "SW5E.Loot.Treasure"
+  }
+};
+preLocalize("lootTypes", { key: "label" });
 
 /* -------------------------------------------- */
 
@@ -1895,7 +1965,7 @@ preLocalize("powerPreparationModes");
 
 /**
  * Subset of `SW5E.powerPreparationModes` that consume power points.
- * @type {boolean[]}
+ * @type {string[]}
  */
 SW5E.powerUpcastModes = ["always", "prepared"];
 
@@ -2073,7 +2143,7 @@ preLocalize("powerTags", { keys: ["label", "abbr"] });
 SW5E.powerSchoolsForce = {
   lgt: "SW5E.SchoolLgt",
   uni: "SW5E.SchoolUni",
-  drk: "SW5E.SchoolDrk",
+  drk: "SW5E.SchoolDrk"
 };
 preLocalize("powerSchoolsForce");
 
@@ -2084,7 +2154,7 @@ preLocalize("powerSchoolsForce");
  * @enum {string}
  */
 SW5E.powerSchoolsTech = {
-  tec: "SW5E.SchoolTec",
+  tec: "SW5E.SchoolTec"
 };
 preLocalize("powerSchoolsTech");
 
@@ -3405,120 +3475,134 @@ SW5E.conditionTypes = {
 preLocalize("conditionTypes", { sort: true });
 
 /* -------------------------------------------- */
+/*  Languages                                   */
+/* -------------------------------------------- */
 
 /**
  * Languages a character can learn.
  * @enum {string}
  */
 SW5E.languages = {
-  abyssin: "SW5E.LanguagesAbyssin",
-  aleena: "SW5E.LanguagesAleena",
-  antarian: "SW5E.LanguagesAntarian",
-  anzellan: "SW5E.LanguagesAnzellan",
-  aqualish: "SW5E.LanguagesAqualish",
-  arconese: "SW5E.LanguagesArconese",
-  ardennian: "SW5E.LanguagesArdennian",
-  arkanian: "SW5E.LanguagesArkanian",
-  balosur: "SW5E.LanguagesBalosur",
-  barabel: "SW5E.LanguagesBarabel",
-  basic: "SW5E.LanguagesBasic",
-  besalisk: "SW5E.LanguagesBesalisk",
-  binary: "SW5E.LanguagesBinary",
-  bith: "SW5E.LanguagesBith",
-  bocce: "SW5E.LanguagesBocce",
-  bothese: "SW5E.LanguagesBothese",
-  catharese: "SW5E.LanguagesCatharese",
-  cerean: "SW5E.LanguagesCerean",
-  "chadra-fan": "SW5E.LanguagesChadra-Fan",
-  chagri: "SW5E.LanguagesChagri",
-  cheunh: "SW5E.LanguagesCheunh",
-  chevin: "SW5E.LanguagesChevin",
-  chironan: "SW5E.LanguagesChironan",
-  clawdite: "SW5E.LanguagesClawdite",
-  codruese: "SW5E.LanguagesCodruese",
-  colicoid: "SW5E.LanguagesColicoid",
-  dashadi: "SW5E.LanguagesDashadi",
-  defel: "SW5E.LanguagesDefel",
-  devaronese: "SW5E.LanguagesDevaronese",
-  dosh: "SW5E.LanguagesDosh",
-  draethos: "SW5E.LanguagesDraethos",
-  durese: "SW5E.LanguagesDurese",
-  dug: "SW5E.LanguagesDug",
-  ewokese: "SW5E.LanguagesEwokese",
-  falleen: "SW5E.LanguagesFalleen",
-  felucianese: "SW5E.LanguagesFelucianese",
-  gamorrese: "SW5E.LanguagesGamorrese",
-  gand: "SW5E.LanguagesGand",
-  geonosian: "SW5E.LanguagesGeonosian",
-  givin: "SW5E.LanguagesGivin",
-  gran: "SW5E.LanguagesGran",
-  gungan: "SW5E.LanguagesGungan",
-  hapan: "SW5E.LanguagesHapan",
-  harchese: "SW5E.LanguagesHarchese",
-  herglese: "SW5E.LanguagesHerglese",
-  honoghran: "SW5E.LanguagesHonoghran",
-  huttese: "SW5E.LanguagesHuttese",
-  iktotchese: "SW5E.LanguagesIktotchese",
-  ithorese: "SW5E.LanguagesIthorese",
-  jawaese: "SW5E.LanguagesJawaese",
-  kaleesh: "SW5E.LanguagesKaleesh",
-  kaminoan: "SW5E.LanguagesKaminoan",
-  karkaran: "SW5E.LanguagesKarkaran",
-  keldor: "SW5E.LanguagesKelDor",
-  kharan: "SW5E.LanguagesKharan",
-  killik: "SW5E.LanguagesKillik",
-  klatooinian: "SW5E.LanguagesKlatooinian",
-  kubazian: "SW5E.LanguagesKubazian",
-  kushiban: "SW5E.LanguagesKushiban",
-  kyuzo: "SW5E.LanguagesKyuzo",
-  lannik: "SW5E.LanguagesLannik",
-  lasat: "SW5E.LanguagesLasat",
-  lowickese: "SW5E.LanguagesLowickese",
-  lurmese: "SW5E.LanguagesLurmese",
-  mandoa: "SW5E.LanguagesMandoa",
-  miralukese: "SW5E.LanguagesMiralukese",
-  mirialan: "SW5E.LanguagesMirialan",
-  moncal: "SW5E.LanguagesMonCal",
-  mustafarian: "SW5E.LanguagesMustafarian",
-  muun: "SW5E.LanguagesMuun",
-  nautila: "SW5E.LanguagesNautila",
-  ortolan: "SW5E.LanguagesOrtolan",
-  pakpak: "SW5E.LanguagesPakPak",
-  pyke: "SW5E.LanguagesPyke",
-  quarrenese: "SW5E.LanguagesQuarrenese",
-  rakata: "SW5E.LanguagesRakata",
-  rattataki: "SW5E.LanguagesRattataki",
-  rishii: "SW5E.LanguagesRishii",
-  rodese: "SW5E.LanguagesRodese",
-  ryn: "SW5E.LanguagesRyn",
-  selkatha: "SW5E.LanguagesSelkatha",
-  semblan: "SW5E.LanguagesSemblan",
-  shistavanen: "SW5E.LanguagesShistavanen",
-  shyriiwook: "SW5E.LanguagesShyriiwook",
-  sith: "SW5E.LanguagesSith",
-  squibbian: "SW5E.LanguagesSquibbian",
-  sriluurian: "SW5E.LanguagesSriluurian",
-  "ssi-ruuvi": "SW5E.LanguagesSsi-ruuvi",
-  sullustese: "SW5E.LanguagesSullustese",
-  talzzi: "SW5E.LanguagesTalzzi",
-  tarasinese: "SW5E.LanguagesTarasinese",
-  thisspiasian: "SW5E.LanguagesThisspiasian",
-  togorese: "SW5E.LanguagesTogorese",
-  togruti: "SW5E.LanguagesTogruti",
-  toydarian: "SW5E.LanguagesToydarian",
-  tusken: "SW5E.LanguagesTusken",
-  "twi'leki": "SW5E.LanguagesTwileki",
-  ugnaught: "SW5E.LanguagesUgnaught",
-  umbaran: "SW5E.LanguagesUmbaran",
-  utapese: "SW5E.LanguagesUtapese",
-  verpine: "SW5E.LanguagesVerpine",
-  vong: "SW5E.LanguagesVong",
-  voss: "SW5E.LanguagesVoss",
-  yevethan: "SW5E.LanguagesYevethan",
-  zabraki: "SW5E.LanguagesZabraki",
-  zygerrian: "SW5E.LanguagesZygerrian"
+  standard: {
+    label: "SW5E.LanguagesStandard",
+    children: {
+      abyssin: "SW5E.LanguagesAbyssin",
+      aleena: "SW5E.LanguagesAleena",
+      antarian: "SW5E.LanguagesAntarian",
+      anzellan: "SW5E.LanguagesAnzellan",
+      aqualish: "SW5E.LanguagesAqualish",
+      arconese: "SW5E.LanguagesArconese",
+      ardennian: "SW5E.LanguagesArdennian",
+      arkanian: "SW5E.LanguagesArkanian",
+      balosur: "SW5E.LanguagesBalosur",
+      barabel: "SW5E.LanguagesBarabel",
+      basic: "SW5E.LanguagesBasic",
+      besalisk: "SW5E.LanguagesBesalisk",
+      binary: "SW5E.LanguagesBinary",
+      bith: "SW5E.LanguagesBith",
+      bocce: "SW5E.LanguagesBocce",
+      bothese: "SW5E.LanguagesBothese",
+      catharese: "SW5E.LanguagesCatharese",
+      cerean: "SW5E.LanguagesCerean",
+      "chadra-fan": "SW5E.LanguagesChadra-Fan",
+      chagri: "SW5E.LanguagesChagri",
+      cheunh: "SW5E.LanguagesCheunh",
+      chevin: "SW5E.LanguagesChevin",
+      chironan: "SW5E.LanguagesChironan",
+      clawdite: "SW5E.LanguagesClawdite",
+      codruese: "SW5E.LanguagesCodruese",
+      colicoid: "SW5E.LanguagesColicoid",
+      dashadi: "SW5E.LanguagesDashadi",
+      defel: "SW5E.LanguagesDefel",
+      devaronese: "SW5E.LanguagesDevaronese",
+      dosh: "SW5E.LanguagesDosh",
+      draethos: "SW5E.LanguagesDraethos",
+      durese: "SW5E.LanguagesDurese",
+      dug: "SW5E.LanguagesDug",
+      ewokese: "SW5E.LanguagesEwokese",
+      falleen: "SW5E.LanguagesFalleen",
+      felucianese: "SW5E.LanguagesFelucianese",
+      gamorrese: "SW5E.LanguagesGamorrese",
+      gand: "SW5E.LanguagesGand",
+      geonosian: "SW5E.LanguagesGeonosian",
+      givin: "SW5E.LanguagesGivin",
+      gran: "SW5E.LanguagesGran",
+      gungan: "SW5E.LanguagesGungan",
+      hapan: "SW5E.LanguagesHapan",
+      harchese: "SW5E.LanguagesHarchese",
+      herglese: "SW5E.LanguagesHerglese",
+      honoghran: "SW5E.LanguagesHonoghran",
+      huttese: "SW5E.LanguagesHuttese",
+      iktotchese: "SW5E.LanguagesIktotchese",
+      ithorese: "SW5E.LanguagesIthorese",
+      jawaese: "SW5E.LanguagesJawaese",
+      kaleesh: "SW5E.LanguagesKaleesh",
+      kaminoan: "SW5E.LanguagesKaminoan",
+      karkaran: "SW5E.LanguagesKarkaran",
+      keldor: "SW5E.LanguagesKelDor",
+      kharan: "SW5E.LanguagesKharan",
+      killik: "SW5E.LanguagesKillik",
+      klatooinian: "SW5E.LanguagesKlatooinian",
+      kubazian: "SW5E.LanguagesKubazian",
+      kushiban: "SW5E.LanguagesKushiban",
+      kyuzo: "SW5E.LanguagesKyuzo",
+      lannik: "SW5E.LanguagesLannik",
+      lasat: "SW5E.LanguagesLasat",
+      lowickese: "SW5E.LanguagesLowickese",
+      lurmese: "SW5E.LanguagesLurmese",
+      mandoa: "SW5E.LanguagesMandoa",
+      miralukese: "SW5E.LanguagesMiralukese",
+      mirialan: "SW5E.LanguagesMirialan",
+      moncal: "SW5E.LanguagesMonCal",
+      mustafarian: "SW5E.LanguagesMustafarian",
+      muun: "SW5E.LanguagesMuun",
+      nautila: "SW5E.LanguagesNautila",
+      ortolan: "SW5E.LanguagesOrtolan",
+      pakpak: "SW5E.LanguagesPakPak",
+      pyke: "SW5E.LanguagesPyke",
+      quarrenese: "SW5E.LanguagesQuarrenese",
+      rakata: "SW5E.LanguagesRakata",
+      rattataki: "SW5E.LanguagesRattataki",
+      rishii: "SW5E.LanguagesRishii",
+      rodese: "SW5E.LanguagesRodese",
+      ryn: "SW5E.LanguagesRyn",
+      selkatha: "SW5E.LanguagesSelkatha",
+      semblan: "SW5E.LanguagesSemblan",
+      shistavanen: "SW5E.LanguagesShistavanen",
+      shyriiwook: "SW5E.LanguagesShyriiwook",
+      sith: "SW5E.LanguagesSith",
+      squibbian: "SW5E.LanguagesSquibbian",
+      sriluurian: "SW5E.LanguagesSriluurian",
+      "ssi-ruuvi": "SW5E.LanguagesSsi-ruuvi",
+      sullustese: "SW5E.LanguagesSullustese",
+      talzzi: "SW5E.LanguagesTalzzi",
+      tarasinese: "SW5E.LanguagesTarasinese",
+      thisspiasian: "SW5E.LanguagesThisspiasian",
+      togorese: "SW5E.LanguagesTogorese",
+      togruti: "SW5E.LanguagesTogruti",
+      toydarian: "SW5E.LanguagesToydarian",
+      tusken: "SW5E.LanguagesTusken",
+      "twi'leki": "SW5E.LanguagesTwileki",
+      ugnaught: "SW5E.LanguagesUgnaught",
+      umbaran: "SW5E.LanguagesUmbaran",
+      utapese: "SW5E.LanguagesUtapese",
+      verpine: "SW5E.LanguagesVerpine",
+      vong: "SW5E.LanguagesVong",
+      voss: "SW5E.LanguagesVoss",
+      yevethan: "SW5E.LanguagesYevethan",
+      zabraki: "SW5E.LanguagesZabraki",
+      zygerrian: "SW5E.LanguagesZygerrian"
+    }
+  },
+  exotic: {
+    label: "SW5E.LanguagesExotic",
+    children: {}
+  }
 };
-preLocalize("languages", { sort: true });
+preLocalize("languages", { key: "label" });
+preLocalize("languages.standard.children", { sort: true });
+preLocalize("languages.exotic.children", { key: "label", sort: true });
+patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 2.6" });
 
 /* -------------------------------------------- */
 
@@ -3601,17 +3685,22 @@ SW5E.CHARACTER_RANK_LEVELS = [
  * Trait configuration information.
  *
  * @typedef {object} TraitConfiguration
- * @property {string} label               Localization key for the trait name.
- * @property {string} [actorKeyPath]      If the trait doesn't directly map to an entry as `traits.[key]`, where is
- *                                        this trait's data stored on the actor?
- * @property {string} [configKey]         If the list of trait options doesn't match the name of the trait, where can
- *                                        the options be found within `CONFIG.SW5E`?
- * @property {string} [labelKey]          If config is an enum of objects, where can the label be found?
- * @property {object} [subtypes]          Configuration for traits that take some sort of base item.
- * @property {string} [subtypes.keyPath]  Path to subtype value on base items, should match a category key.
- * @property {string[]} [subtypes.ids]    Key for base item ID objects within `CONFIG.SW5E`.
- * @property {object} [children]          Mapping of category key to an object defining its children.
- * @property {boolean} [sortCategories]   Whether top-level categories should be sorted.
+ * @property {object} labels
+ * @property {string} labels.title         Localization key for the trait name.
+ * @property {string} labels.localization  Prefix for a localization key that can be used to generate various
+ *                                         plural variants of the trait type.
+ * @property {string} icon                 Path to the icon used to represent this trait.
+ * @property {string} [actorKeyPath]       If the trait doesn't directly map to an entry as `traits.[key]`, where is
+ *                                         this trait's data stored on the actor?
+ * @property {string} [configKey]          If the list of trait options doesn't match the name of the trait, where can
+ *                                         the options be found within `CONFIG.SW5E`?
+ * @property {string} [labelKeyPath]       If config is an enum of objects, where can the label be found?
+ * @property {object} [subtypes]           Configuration for traits that take some sort of base item.
+ * @property {string} [subtypes.keyPath]   Path to subtype value on base items, should match a category key.
+ * @property {string[]} [subtypes.ids]     Key for base item ID objects within `CONFIG.SW5E`.
+ * @property {object} [children]           Mapping of category key to an object defining its children.
+ * @property {boolean} [sortCategories]    Whether top-level categories should be sorted.
+ * @property {boolean} [expertise]         Can an actor receive expertise in this trait?
  */
 
 /**
@@ -3620,85 +3709,168 @@ SW5E.CHARACTER_RANK_LEVELS = [
  */
 SW5E.traits = {
   saves: {
-    label: "SW5E.ClassSaves",
+    labels: {
+      title: "SW5E.ClassSaves",
+      localization: "SW5E.TraitSavesPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-saves.svg",
+    actorKeyPath: "system.abilities",
     configKey: "abilities",
-    labelKey: "label"
+    labelKeyPath: "label"
   },
   skills: {
-    label: "SW5E.TraitSkillProf",
-    labelKey: "label"
+    labels: {
+      title: "SW5E.Skills",
+      localization: "SW5E.TraitSkillsPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-skills.svg",
+    actorKeyPath: "system.skills",
+    labelKeyPath: "label",
+    expertise: true
   },
   languages: {
-    label: "SW5E.Languages"
-  },
-  di: {
-    label: "SW5E.DamImm",
-    configKey: "damageTypes"
-  },
-  dr: {
-    label: "SW5E.DamRes",
-    configKey: "damageTypes"
-  },
-  dv: {
-    label: "SW5E.DamVuln",
-    configKey: "damageTypes"
-  },
-  sdi: {
-    label: "SW5E.ShldDamImm",
-    configKey: "damageTypes"
-  },
-  sdr: {
-    label: "SW5E.ShldDamRes",
-    configKey: "damageTypes"
-  },
-  sdv: {
-    label: "SW5E.ShldDamVuln",
-    configKey: "damageTypes"
-  },
-  ci: {
-    label: "SW5E.ConImm",
-    configKey: "conditionTypes"
-  },
-  weapon: {
-    label: "SW5E.TraitWeaponProf",
-    actorKeyPath: "traits.weaponProf",
-    configKey: "weaponProficiencies",
-    subtypes: { keyPath: "weaponType", ids: ["weaponIds"] }
+    labels: {
+      title: "SW5E.Languages",
+      localization: "SW5E.TraitLanguagesPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-languages.svg"
   },
   armor: {
-    label: "SW5E.TraitArmorProf",
-    actorKeyPath: "traits.armorProf",
+    labels: {
+      title: "SW5E.TraitArmorProf",
+      localization: "SW5E.TraitArmorPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-armor-proficiencies.svg",
+    actorKeyPath: "system.traits.armorProf",
     configKey: "armorProficiencies",
     subtypes: { keyPath: "armor.type", ids: ["armorIds", "shieldIds"] }
   },
+  weapon: {
+    labels: {
+      title: "SW5E.TraitWeaponProf",
+      localization: "SW5E.TraitWeaponPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-weapon-proficiencies.svg",
+    actorKeyPath: "system.traits.weaponProf",
+    configKey: "weaponProficiencies",
+    subtypes: { keyPath: "weaponType", ids: ["weaponIds"] }
+  },
   tool: {
-    label: "SW5E.TraitToolProf",
-    actorKeyPath: "tools",
+    labels: {
+      title: "SW5E.TraitToolProf",
+      localization: "SW5E.TraitToolPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-tool-proficiencies.svg",
+    actorKeyPath: "system.tools",
     configKey: "toolProficiencies",
     subtypes: { keyPath: "toolType", ids: ["toolIds"] },
     children: { vehicle: "vehicleTypes" },
-    sortCategories: true
+    sortCategories: true,
+    expertise: true
+  },
+  di: {
+    labels: {
+      title: "SW5E.DamImm",
+      localization: "SW5E.TraitDIPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
+    configKey: "damageTypes"
+  },
+  dr: {
+    labels: {
+      title: "SW5E.DamRes",
+      localization: "SW5E.TraitDRPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
+    configKey: "damageTypes"
+  },
+  dv: {
+    labels: {
+      title: "SW5E.DamVuln",
+      localization: "SW5E.TraitDVPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",
+    configKey: "damageTypes"
+  },
+  sdi: {
+    labels: {
+      title: "SW5E.ShldDamImm",
+      localization: "SW5E.TraitSDIPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-immunities.svg",
+    configKey: "damageTypes"
+  },
+  sdr: {
+    labels: {
+      title: "SW5E.ShldDamRes",
+      localization: "SW5E.TraitSDRPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-resistances.svg",
+    configKey: "damageTypes"
+  },
+  sdv: {
+    labels: {
+      title: "SW5E.ShldDamVuln",
+      localization: "SW5E.TraitSDVPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-damage-vulnerabilities.svg",
+    configKey: "damageTypes"
+  },
+  ci: {
+    labels: {
+      title: "SW5E.ConImm",
+      localization: "SW5E.TraitCIPlural"
+    },
+    icon: "systems/sw5e/icons/svg/trait-condition-immunities.svg",
+    configKey: "conditionTypes"
   }
 };
-preLocalize("traits", { key: "label" });
+preLocalize("traits", { key: "labels.title" });
+
+/* -------------------------------------------- */
+
+/**
+ * Modes used within a trait advancement.
+ * @enum {object}
+ */
+SW5E.traitModes = {
+  default: {
+    label: "SW5E.AdvancementTraitModeDefaultLabel",
+    hint: "SW5E.AdvancementTraitModeDefaultHint"
+  },
+  expertise: {
+    label: "SW5E.AdvancementTraitModeExpertiseLabel",
+    hint: "SW5E.AdvancementTraitModeExpertiseHint"
+  },
+  forcedExpertise: {
+    label: "SW5E.AdvancementTraitModeForceLabel",
+    hint: "SW5E.AdvancementTraitModeForceHint"
+  },
+  upgrade: {
+    label: "SW5E.AdvancementTraitModeUpgradeLabel",
+    hint: "SW5E.AdvancementTraitModeUpgradeHint"
+  }
+  // TODO SW5E: Mastery proficiencies?
+};
+preLocalize("traitModes", { keys: ["label", "hint"] });
 
 /* -------------------------------------------- */
 
 SW5E.midiFlags = {
   // Attacks
   "advantage.all": {
-    name: "SW5E.CharacterFlags.Advantage.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
   "advantage.attack.all": {
-    name: "SW5E.CharacterFlags.Advantage.Attack.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3707,7 +3879,7 @@ SW5E.midiFlags = {
       type: Boolean
     }
   ]))),
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Attack.${key}.Name`,
@@ -3717,12 +3889,12 @@ SW5E.midiFlags = {
     }
   ]))),
   "grants.advantage.attack.all": {
-    name: "SW5E.CharacterFlags.Grants.Advantage.Attack.All.Name",
+    name: "SW5E.CharacterFlags.Grants.Advantage.Attack.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.itemActionTypesAttack).map((key => [
     `grants.advantage.attack.${key}`,
     {
       name: `SW5E.CharacterFlags.Grants.Advantage.Attack.${key}.Name`,
@@ -3734,7 +3906,7 @@ SW5E.midiFlags = {
 
   // Critical
   // "critical.all": {
-  //   name: "SW5E.CharacterFlags.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3749,7 +3921,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "noCritical.all": {
-  //   name: "SW5E.CharacterFlags.NoCritical.All.Name",
+  //   name: "SW5E.CharacterFlags.NoCritical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3764,7 +3936,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "grants.critical.all": {
-  //   name: "SW5E.CharacterFlags.Grants.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Grants.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3779,7 +3951,7 @@ SW5E.midiFlags = {
   //   }
   // ]))),
   // "fail.critical.all": {
-  //   name: "SW5E.CharacterFlags.Fail.Critical.All.Name",
+  //   name: "SW5E.CharacterFlags.Fail.Critical.all.Name",
   //   section: "midiFlags",
   //   midiClone: true,
   //   type: Boolean
@@ -3796,18 +3968,18 @@ SW5E.midiFlags = {
 
   // Ability checks
   "advantage.ability.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
   "advantage.ability.check.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Check.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Check.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.check.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Check.${key}.Name`,
@@ -3819,12 +3991,12 @@ SW5E.midiFlags = {
 
   // Skill Checks
   "advantage.skill.all": {
-    name: "SW5E.CharacterFlags.Advantage.Skill.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Skill.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.skills).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.skills).map((key => [
     `advantage.skill.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
@@ -3836,12 +4008,12 @@ SW5E.midiFlags = {
 
   // Tool Checks
   "advantage.tool.all": {
-    name: "SW5E.CharacterFlags.Advantage.Tool.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Tool.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.toolTypes).map((key => [
     `advantage.tool.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Tool.${key}.Name`,
@@ -3853,12 +4025,12 @@ SW5E.midiFlags = {
 
   // Saving Throws
   "advantage.ability.save.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.all.Name",
     section: "midiFlags",
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.${key}.Name`,
@@ -3867,13 +4039,28 @@ SW5E.midiFlags = {
       type: Boolean
     }
   ]))),
+  "advantage.ability.save.dmg.all": {
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
+    section: "midiFlags",
+    midiClone: true,
+    type: Boolean
+  },
+  ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [
+    `advantage.ability.save.dmg.${key}`,
+    {
+      name: `SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.${key}.Name`,
+      section: "midiFlags",
+      midiClone: false,
+      type: Boolean
+    }
+  ]))),
   "advantage.ability.save.tech.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Tech.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.tech.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Tech.${key}.Name`,
@@ -3883,12 +4070,12 @@ SW5E.midiFlags = {
     }
   ]))),
   "advantage.ability.save.force.all": {
-    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.All.Name",
+    name: "SW5E.CharacterFlags.Advantage.Ability.Save.Force.all.Name",
     section: "midiFlags",
     midiClone: false,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.abilities).map(((key) => [
+  ...Object.fromEntries(Object.keys(SW5E.abilities).map((key => [
     `advantage.ability.save.force.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Ability.Save.Force.${key}.Name`,
@@ -3905,7 +4092,7 @@ SW5E.midiFlags = {
   }
 };
 for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  if (!id.startsWith("advantage")) continue;
+  if (!(id.startsWith("advantage") || id.startsWith("grants.advantage"))) continue;
   SW5E.midiFlags[id.replace("advantage", "disadvantage")] = {
     name: flag.name.replace("Advantage", "Disadvantage"),
     section: flag.section,
@@ -3914,7 +4101,7 @@ for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
   };
 }
 for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  SW5E.midiFlags["situational." + id] = {
+  SW5E.midiFlags[`situational.${id}`] = {
     name: flag.name.replace("CharacterFlags", "CharacterFlags.Situational"),
     section: flag.section,
     midiClone: false,
@@ -3950,12 +4137,6 @@ SW5E.characterFlags = {
   puny: {
     name: "SW5E.FlagsPuny",
     hint: "SW5E.FlagsPunyHint",
-    section: "SW5E.SpeciesTraits",
-    type: Boolean
-  },
-  sonicSensitivity: {
-    name: "SW5E.FlagsSonicSensitivity",
-    hint: "SW5E.FlagsSonicSensitivityHint",
     section: "SW5E.SpeciesTraits",
     type: Boolean
   },
@@ -4128,8 +4309,49 @@ SW5E.advancementTypes = {
   ShieldPoints: advancement.ShieldPointsAdvancement,
   ItemChoice: advancement.ItemChoiceAdvancement,
   ItemGrant: advancement.ItemGrantAdvancement,
-  ScaleValue: advancement.ScaleValueAdvancement
+  ScaleValue: advancement.ScaleValueAdvancement,
+  Size: advancement.SizeAdvancement,
+  Trait: advancement.TraitAdvancement
 };
+
+/* -------------------------------------------- */
+/*  Sources                                     */
+/* -------------------------------------------- */
+
+/**
+ * List of books available as sources.
+ * @enum {string}
+ */
+SW5E.sourceBooks = {
+  PHB: "SOURCE.BOOK.PHB",
+  SnV: "SOURCE.BOOK.SnV",
+  SotG: "SOURCE.BOOK.SotG",
+  WH: "SOURCE.BOOK.WH",
+  EC: "SOURCE.BOOK.EC"
+};
+preLocalize("sourceBooks", { sort: true });
+
+/* -------------------------------------------- */
+/*  Enrichment                                  */
+/* -------------------------------------------- */
+
+let _enrichmentLookup;
+Object.defineProperty(SW5E, "enrichmentLookup", {
+  get() {
+    if ( !_enrichmentLookup ) {
+      _enrichmentLookup = {
+        abilities: {},
+        skills: {},
+        tools: {}
+      };
+      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[k] = _enrichmentLookup.abilities[a.fullKey] = a);
+      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);
+      Object.entries(SW5E.toolIds).forEach(([k, t]) => _enrichmentLookup.tools[k] = t);
+    }
+    return _enrichmentLookup;
+  },
+  enumerable: true
+});
 
 /* -------------------------------------------- */
 
@@ -4150,7 +4372,10 @@ function patchConfig(key, fallbackKey, options) {
     return this[fallbackKey];
   }
 
-  Object.values(SW5E[key]).forEach(o => (o.toString = toString));
+  Object.values(SW5E[key]).forEach(o => {
+    if ( foundry.utils.getType(o) !== "Object" ) return;
+    o.toString = toString;
+  });
 }
 
 /* -------------------------------------------- */

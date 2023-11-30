@@ -31,15 +31,15 @@ import { FormulaField } from "../../fields.mjs";
  * @property {number} consume.amount        Quantity of the resource to consume per use.
  * @mixin
  */
-export default class ActivatedEffectTemplate extends foundry.abstract.DataModel {
+export default class ActivatedEffectTemplate extends SystemDataModel {
   /** @inheritdoc */
   static defineSchema() {
     return {
       activation: new foundry.data.fields.SchemaField(
         {
-          type: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.ItemActivationType" }),
-          cost: new foundry.data.fields.NumberField({ required: true, label: "SW5E.ItemActivationCost" }),
-          condition: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemActivationCondition" })
+          type: new foundry.data.fields.StringField({required: true, blank: true, label: "SW5E.ItemActivationType"}),
+          cost: new foundry.data.fields.NumberField({required: true, label: "SW5E.ItemActivationCost"}),
+          condition: new foundry.data.fields.StringField({required: true, label: "SW5E.ItemActivationCondition"})
         },
         { label: "SW5E.ItemActivation" }
       ),
@@ -63,7 +63,8 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
           value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.TargetValue" }),
           width: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.TargetWidth" }),
           units: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.TargetUnits" }),
-          type: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.TargetType" })
+          type: new foundry.data.fields.StringField({ required: true, blank: true, label: "SW5E.TargetType" }),
+          prompt: new foundry.data.fields.BooleanField({ initial: true, label: "SW5E.TemplatePrompt" })
         },
         { label: "SW5E.Target" }
       ),
@@ -85,7 +86,8 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
             initial: null,
             label: "SW5E.ConsumeTarget"
           }),
-          amount: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ConsumeAmount" })
+          amount: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ConsumeAmount" }),
+          scale: new foundry.data.fields.BooleanField({ label: "SW5E.ConsumeScaling" })
         },
         { label: "SW5E.ConsumeTitle" }
       )
@@ -117,7 +119,8 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
               initial: null,
               label: "SW5E.LimitedUsesPer"
             }),
-            recovery: new FormulaField({ required: true, label: "SW5E.RecoveryFormula" })
+            recovery: new FormulaField({ required: true, label: "SW5E.RecoveryFormula" }),
+            prompt: new foundry.data.fields.BooleanField({ initial: true, label: "SW5E.LimitedUsesPrompt" })
           },
           extraSchema
         ),
@@ -131,7 +134,8 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
+  static _migrateData(source) {
+    super._migrateData(source);
     ActivatedEffectTemplate.#migrateFormulaFields(source);
     ActivatedEffectTemplate.#migrateRanges(source);
     ActivatedEffectTemplate.#migrateDuration(source);
@@ -266,11 +270,21 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
   /* -------------------------------------------- */
 
   /**
+   * Is this Item an activatable item?
+   * @type {boolean}
+   */
+  get isActive() {
+    return !!this.activation.type;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Does the Item have an area of effect target?
    * @type {boolean}
    */
   get hasAreaTarget() {
-    return this.target.type in CONFIG.SW5E.areaTargetTypes;
+    return this.isActive && (this.target.type in CONFIG.SW5E.areaTargetTypes);
   }
 
   /* -------------------------------------------- */
@@ -280,7 +294,7 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    * @type {boolean}
    */
   get hasIndividualTarget() {
-    return this.target.type in CONFIG.SW5E.individualTargetTypes;
+    return this.isActive && (this.target.type in CONFIG.SW5E.individualTargetTypes);
   }
 
   /* -------------------------------------------- */
@@ -290,7 +304,71 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    * @type {boolean}
    */
   get hasLimitedUses() {
-    return !!this.uses.per && this.uses.max > 0;
+    return this.isActive && (this.uses.per in CONFIG.SW5E.limitedUsePeriods) && (this.uses.max > 0);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this Item draw from a resource?
+   * @type {boolean}
+   */
+  get hasResource() {
+    const consume = this.consume;
+    return this.isActive && !!consume.target && !!consume.type && (!this.hasAttack || (consume.type !== "ammo"));
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this Item store ammunition internally?
+   * @type {boolean}
+   */
+  get hasReload() {
+    return this.isActive && !!this.ammo?.target;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this Item draw from ammunition?
+   * @type {boolean}
+   */
+  get hasAmmo() {
+    const consume = this.consume;
+    return this.isActive && !!consume.target && !!consume.type && this.hasAttack && (consume.type === "ammo");
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * What item does this item use as ammunition?
+   * @type {object|null}
+   */
+  get getAmmo() {
+    const actor = this.parent?.actor;
+    if (this.hasReload) {
+      return {
+        item: actor?.items?.get(this.ammo.target),
+        quantity: this.ammo.value,
+        consumeAmount: this.ammo?.use ?? this.ammo?.baseUse ?? 1,
+        max: this.ammo.max
+      };
+    } else if (this.hasAmmo) {
+      const item = actor?.items?.get(this.consume.target);
+      return {
+        item,
+        quantity: item?.system?.quantity,
+        consumeAmount: this.consume.ammount ?? 0,
+        max: null
+      };
+    }
+    return {
+      item: null,
+      quantity: 0,
+      consumeAmount: 0,
+      max: null
+    };
   }
 
   /* -------------------------------------------- */
@@ -330,6 +408,6 @@ export default class ActivatedEffectTemplate extends foundry.abstract.DataModel 
    * @type {boolean}
    */
   get hasTarget() {
-    return !["", null].includes(this.target.type);
+    return this.isActive && !["", null].includes(this.target.type);
   }
 }

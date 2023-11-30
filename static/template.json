@@ -76,16 +76,16 @@
             "bonus": ""
           },
           "movement": {
-            "burrow": 0,
-            "climb": 0,
-            "crawl": 0,
-            "fly": 0,
-            "roll": 0,
-            "space": 0,
-            "swim": 0,
-            "turn": 0,
-            "walk": 30,
-            "units": "ft",
+            "burrow": null,
+            "climb": null,
+            "crawl": null,
+            "fly": null,
+            "roll": null,
+            "space": null,
+            "swim": null,
+            "turn": null,
+            "walk": null,
+            "units": null,
             "hover": false
           }
         },
@@ -131,11 +131,11 @@
             "max": 3
           },
           "senses": {
-            "darkvision": 0,
-            "blindsight": 0,
-            "tremorsense": 0,
-            "truesight": 0,
-            "units": "ft",
+            "darkvision": null,
+            "blindsight": null,
+            "tremorsense": null,
+            "truesight": null,
+            "units": null,
             "special": ""
           },
           "force": {
@@ -458,7 +458,7 @@
         "powerForceLevel": 0,
         "powerTechLevel": 0,
         "superiorityLevel": 0,
-        "source": ""
+        "source": {}
       },
       "resources": {
         "legact": {
@@ -542,7 +542,8 @@
         "used": false
       },
       "details": {
-        "source": ""
+        "source": {},
+        "starshipsize": ""
       },
       "skills": {
         "ast": {
@@ -718,7 +719,7 @@
         }
       },
       "details": {
-        "source": ""
+        "source": {}
       },
       "traits": {
         "size": "lg",
@@ -802,7 +803,7 @@
         "invocations": {
           "value": ""
         },
-        "source": ""
+        "source": {}
       },
       "backgroundDescription": {
         "description": {
@@ -831,7 +832,7 @@
         "featOptions": {
           "value": ""
         },
-        "source": ""
+        "source": {}
       },
       "itemDescription": {
         "description": {
@@ -840,7 +841,7 @@
           "unidentified": ""
         },
         "requirements": "",
-        "source": ""
+        "source": {}
       },
       "classDescription": {
         "description": {
@@ -854,7 +855,7 @@
         "invocations": {
           "value": ""
         },
-        "source": ""
+        "source": {}
       },
       "deploymentDescription": {
         "description": {
@@ -862,7 +863,7 @@
           "chat": "",
           "unidentified": ""
         },
-        "source": ""
+        "source": {}
       },
       "speciesDescription": {
         "data": "$characteristics-table",
@@ -872,7 +873,7 @@
           "unidentified": ""
         },
         "traits": "",
-        "source": ""
+        "source": {}
       },
       "physicalItem": {
         "quantity": 1,
@@ -1030,12 +1031,6 @@
       "hitDice": "d6",
       "hitDiceUsed": 0,
       "advancement": [],
-      "saves": [],
-      "skills": {
-        "number": 2,
-        "choices": [],
-        "value": []
-      },
       "powercasting": {
         "force": "none",
         "forceOverride": "",
@@ -1053,7 +1048,7 @@
       "rank": 1,
       "flavorText": "",
       "advancement": [],
-      "source": ""
+      "source": {}
     },
     "deploymentfeature": {},
     "fightingmastery": {},

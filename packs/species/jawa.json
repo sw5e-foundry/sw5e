@@ -92,8 +92,8 @@
       "name": "Jawa",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!U9D6kgX8pglkFmYo.7xmo1x6YCPktrmG7",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!U9D6kgX8pglkFmYo.7xmo1x6YCPktrmG7"
     }
   ],
   "folder": null,
@@ -117,7 +117,7 @@
     "identifier": "jawa",
     "advancement": [
       {
-        "_id": "naX2LSAdM5q1TMkf",
+        "_id": "1FbDPwxnylISvEW8",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -139,10 +139,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1dG9BShXdj2v1lRg",
+        "_id": "zUfmRlD6qRl10T1F",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -150,6 +150,31 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1zKKDOMnfjSLfh9W",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1htPcBev8mzUE8Zq",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:slt",
+            "tool:tinkersimplements"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -197,10 +222,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002099,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!U9D6kgX8pglkFmYo"

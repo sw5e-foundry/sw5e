@@ -86,8 +86,8 @@
       "name": "Sith Pureblood",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!oRWQrcgMIgC247Oo.C3lStl981RznrCtr",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!oRWQrcgMIgC247Oo.C3lStl981RznrCtr"
     }
   ],
   "folder": null,
@@ -111,7 +111,7 @@
     "identifier": "sithpureblood",
     "advancement": [
       {
-        "_id": "1NKVtQwVsy8Y18PB",
+        "_id": "1iptB91DYJ0P1tPV",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -130,16 +130,41 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1hEDIZ9xFOeg1iTB",
+        "_id": "1Ng45lDeE2PD1K5k",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
             "cha": 2
           },
           "points": 1
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1hfT3imfmqiu1ysT",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "arO2ToMiEooV8W3v",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:prc",
+            "skills:itm"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -187,10 +212,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002131,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!oRWQrcgMIgC247Oo"

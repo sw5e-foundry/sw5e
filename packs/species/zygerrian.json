@@ -86,8 +86,8 @@
       "name": "Zygerrian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!YAGuRN3X4Z1n58I7.zFWMZ7TZhGP32ghr",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!YAGuRN3X4Z1n58I7.zFWMZ7TZhGP32ghr"
     }
   ],
   "folder": null,
@@ -111,7 +111,7 @@
     "identifier": "zygerrian",
     "advancement": [
       {
-        "_id": "1bQ9zdfYiApumFmd",
+        "_id": "1fZ3Qcyph3zqbTWo",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -131,10 +131,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1V4fBsBifXy21u6z",
+        "_id": "1cEsPsS2Wz3E1lRU",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -142,6 +142,33 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "64ST7wi5McHE30Cx",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "med"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "MfXeaAjtd5xKlo30",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:acr",
+            "skills:itm",
+            "weapon:saberwhip",
+            "weapon:vibrowhip"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -189,10 +216,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674494002105,
-    "modifiedTime": 1698794204429,
+    "modifiedTime": 1700785368468,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!YAGuRN3X4Z1n58I7"

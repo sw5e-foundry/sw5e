@@ -16,7 +16,7 @@ export const needsMigration = function() {
   if (cv && !isNewerVersion(game.system.flags.needsMigrationVersion, cv)) return false;
 
   if (cv && isNewerVersion(game.system.flags.compatibleMigrationVersion, cv)) {
-    ui.notifications.error(game.i18n.localize("MIGRATION.5eVersionTooOldWarning"), { permanent: true });
+    ui.notifications.error("MIGRATION.5eVersionTooOldWarning", { localize: true, permanent: true });
   }
 
   return true;
@@ -49,11 +49,15 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
     .concat(Array.from(game.actors.invalidDocumentIds).map(id => [game.actors.getInvalid(id), false]));
   for await (const [actor, valid] of actors) {
     try {
+      const flags = { persistSourceMigration: false };
       const source = valid ? actor.toObject() : game.data.actors.find(a => a._id === actor.id);
-      const updateData = await migrateActorData(source, migrationData);
+      let updateData = await migrateActorData(source, migrationData, flags);
       if (!foundry.utils.isEmpty(updateData)) {
         console.log(`Migrating Actor document ${actor.name}`);
-        await actor.update(updateData, { enforceTypes: false });
+        if ( flags.persistSourceMigration ) {
+          updateData = foundry.utils.mergeObject(source, updateData, {inplace: false});
+        }
+        await actor.update(updateData, {enforceTypes: false, diff: valid && !flags.persistSourceMigration});
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Actor ${actor.name}: ${err.message}`;
@@ -67,11 +71,15 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
     .concat(Array.from(game.items.invalidDocumentIds).map(id => [game.items.getInvalid(id), false]));
   for await (const [item, valid] of items) {
     try {
+      const flags = { persistSourceMigration: false };
       const source = valid ? item.toObject() : game.data.items.find(i => i._id === item.id);
-      const updateData = await migrateItemData(source, migrationData);
+      let updateData = await migrateItemData(source, migrationData, flags);
       if (!foundry.utils.isEmpty(updateData)) {
         console.log(`Migrating Item document ${item.name}`);
-        await item.update(updateData, { enforceTypes: false });
+        if ( flags.persistSourceMigration ) {
+          updateData = foundry.utils.mergeObject(source, updateData, {inplace: false});
+        }
+        await item.update(updateData, {enforceTypes: false, diff: valid && !flags.persistSourceMigration});
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Item ${item.name}: ${err.message}`;
@@ -160,23 +168,26 @@ export const migrateCompendium = async function(pack) {
 
   // Iterate over compendium entries - applying fine-tuned migration functions
   for await (let doc of documents) {
+    const flags = { persistSourceMigration: false };
+    const source = doc.toObject();
     let updateData = {};
     try {
       switch (documentName) {
         case "Actor":
-          updateData = await migrateActorData(doc.toObject(), migrationData);
+          updateData = await migrateActorData(source, migrationData, flags);
           break;
         case "Item":
-          updateData = await migrateItemData(doc.toObject(), migrationData);
+          updateData = await migrateItemData(source, migrationData, flags);
           break;
         case "Scene":
-          updateData = await migrateSceneData(doc.toObject(), migrationData);
+          updateData = await migrateSceneData(source, migrationData, flags);
           break;
       }
 
       // Save the entry, if data was changed
       if (foundry.utils.isEmpty(updateData)) continue;
-      await doc.update(updateData);
+      if ( flags.persistSourceMigration ) updateData = foundry.utils.mergeObject(source, updateData);
+      await doc.update(updateData, { diff: !flags.persistSourceMigration });
       console.log(`Migrated ${documentName} document ${doc.name} in Compendium ${pack.collection}`);
     } catch(err) {
       // Handle migration failures
@@ -292,16 +303,16 @@ export const migrateArmorClass = async function(pack, migrationData) {
  * Return an Object of updateData to be applied
  * @param {object} actor            The actor data object to update
  * @param {object} [migrationData]  Additional data to perform the migration
+ * @param {object} [flags={}] Track the needs migration flag.
  * @returns {object}                The updateData to apply
  */
-export const migrateActorData = async function(actor, migrationData) {
+export const migrateActorData = async function(actor, migrationData, flags={}) {
   const updateData = {};
   await _migrateTokenImage(actor, updateData, migrationData);
   _migrateActorAC(actor, updateData);
+  _migrateActorMovementSenses(actor, updateData);
   _migrateActorTraits(actor, updateData);
-  if (["character", "npc"].includes(actor.type)) {
-    _migrateActorAttribRank(actor, updateData);
-  }
+  _migrateActorAttribRank(actor, updateData);
 
   // Migrate embedded effects
   if (actor.effects) {
@@ -316,7 +327,20 @@ export const migrateActorData = async function(actor, migrationData) {
 
     // Migrate the Owned Item
     const itemData = i instanceof CONFIG.Item.documentClass ? i.toObject() : i;
-    let itemUpdate = await migrateItemData(itemData, migrationData);
+    const itemFlags = { persistSourceMigration: false };
+    let itemUpdate = migrateItemData(itemData, migrationData, itemFlags);
+
+    if ( (itemData.type === "background") && (actor.system?.details?.background !== itemData._id) ) {
+      updateData["system.details.background"] = itemData._id;
+    }
+
+    if ( (itemData.type === "species") && (actor.system?.details?.species !== itemData._id) ) {
+      updateData["system.details.species"] = itemData._id;
+    }
+
+    if ( (itemData.type === "starshipsize") && (actor.system?.details?.starshipsize !== itemData._id) ) {
+      updateData["system.details.starshipsize"] = itemData._id;
+    }
 
     // Prepared, Equipped, and Proficient for NPC actors
     if (actor.type === "npc") {
@@ -326,8 +350,11 @@ export const migrateActorData = async function(actor, migrationData) {
 
     // Update the Owned Item
     if (!foundry.utils.isEmpty(itemUpdate)) {
-      itemUpdate._id = itemData._id;
-      arr.push(foundry.utils.expandObject(itemUpdate));
+      if ( itemFlags.persistSourceMigration ) {
+        itemUpdate = foundry.utils.mergeObject(itemData, itemUpdate, {inplace: false});
+        flags.persistSourceMigration = true;
+      }
+      arr.push({ ...itemUpdate, _id: itemData._id });
     }
 
     // Update tool expertise.
@@ -357,9 +384,10 @@ export const migrateActorData = async function(actor, migrationData) {
  *
  * @param {object} item             Item data to migrate
  * @param {object} [migrationData]  Additional data to perform the migration
+ * @param {object} [flags={}] Track the needs migration flag.
  * @returns {object}                The updateData to apply
  */
-export async function migrateItemData(item, migrationData) {
+export async function migrateItemData(item, migrationData, flags={}) {
   const updateData = {};
   await _migrateItemPower(item, updateData);
   await _migrateItemIcon(item, updateData, migrationData);
@@ -372,6 +400,11 @@ export async function migrateItemData(item, migrationData) {
   if (item.effects) {
     const effects = migrateEffects(item, migrationData);
     if (effects.length > 0) updateData.effects = effects;
+  }
+
+  if ( foundry.utils.getProperty(item, "flags.sw5e.persistSourceMigration") ) {
+    flags.persistSourceMigration = true;
+    updateData["flags.sw5e.-=persistSourceMigration"] = null;
   }
 
   return updateData;
@@ -509,7 +542,7 @@ export const getMigrationData = async function() {
     }
 
     const characterFlags = await (await fetch("systems/sw5e/json/character-flags-migration.json")).json();
-    data.characterFlags = Object.fromEntries(Object.entries(characterFlags).map(([k,v]) => [`flags.sw5e.${k}`, v]));
+    data.characterFlags = Object.fromEntries(Object.entries(characterFlags).map(([k, v]) => [`flags.sw5e.${k}`, v]));
 
     data.forcePowers = await (await game.packs.get("sw5e.forcepowers")).getDocuments();
     data.techPowers = await (await game.packs.get("sw5e.techpowers")).getDocuments();
@@ -650,6 +683,7 @@ function _migrateActorAC(actorData, updateData) {
  * @private
  */
 function _migrateActorAttribRank(actorData, updateData) {
+  if (!["character", "npc"].includes(actorData.type)) return updateData;
   const asd = actorData.system;
 
   // If Rank data is present, remove it
@@ -732,6 +766,29 @@ async function _migrateItemPower(item, updateData) {
     updateData.flags = { core: { "-=sourceId": null } };
   }
 
+  return updateData;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Migrate the actor movement & senses to replace `0` with `null`.
+ * @param {object} actorData   Actor data being migrated.
+ * @param {object} updateData  Existing updates being applied to actor. *Will be mutated.*
+ * @returns {object}           Modified version of update data.
+ * @private
+ */
+function _migrateActorMovementSenses(actorData, updateData) {
+  if ( actorData._stats?.systemVersion && foundry.utils.isNewerVersion("2.4.0", actorData._stats.systemVersion) ) {
+    for ( const key of Object.keys(CONFIG.SW5E.movementTypes) ) {
+      const keyPath = `system.attributes.movement.${key}`;
+      if ( foundry.utils.getProperty(actorData, keyPath) === 0 ) updateData[keyPath] = null;
+    }
+    for ( const key of Object.keys(CONFIG.SW5E.senses) ) {
+      const keyPath = `system.attributes.senses.${key}`;
+      if ( foundry.utils.getProperty(actorData, keyPath) === 0 ) updateData[keyPath] = null;
+    }
+  }
   return updateData;
 }
 
@@ -861,6 +918,7 @@ function _migrateItemBackgroundDescription(item, updateData) {
 
   let text = "";
 
+  /* eslint-disable no-useless-concat */
   if (item.system.flavorText) text +=
       '<div class="background">\n' + "  <p>\n" + `      ${item.system.flavorText.value}\n` + "  </p>\n" + "</div>\n";
   if (item.system.skillProficiencies) text +=
@@ -930,6 +988,7 @@ function _migrateItemBackgroundDescription(item, updateData) {
     if (item.system.bondOptions) text +=
         '<div class="medtable">\n' + "  <p>\n" + `      ${item.system.bondOptions.value}\n` + "  </p>\n" + "</div>\n";
   }
+  /* eslint-enable no-useless-concat */
 
   if (text) updateData["system.description.value"] = text;
 

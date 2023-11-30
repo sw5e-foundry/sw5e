@@ -1,13 +1,15 @@
+import ClassData from "../data/item/class.mjs";
 import { d20Roll, damageRoll } from "../dice/dice.mjs";
 import simplifyRollFormula from "../dice/simplify-roll-formula.mjs";
 import Advancement from "./advancement/advancement.mjs";
 import AbilityUseDialog from "../applications/item/ability-use-dialog.mjs";
 import Proficiency from "./actor/proficiency.mjs";
+import { SystemDocumentMixin } from "./mixin.mjs";
 
 /**
  * Override and extend the basic Item implementation.
  */
-export default class Item5e extends Item {
+export default class Item5e extends SystemDocumentMixin(Item) {
   /**
    * Caches an item linked to this one, such as a archetype associated with a class.
    * @type {Item5e}
@@ -24,6 +26,14 @@ export default class Item5e extends Item {
   /* -------------------------------------------- */
   /*  Item Properties                             */
   /* -------------------------------------------- */
+
+  /**
+   * Is this Item an activatable item?
+   * @type {boolean}
+   */
+  get isActive() {
+    return this.system.isActive ?? false;
+  }
 
   /**
    * Which ability score modifier is used by this item?
@@ -120,6 +130,40 @@ export default class Item5e extends Item {
    */
   get hasLimitedUses() {
     return this.system.hasLimitedUses ?? false;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this Item draw from a resource?
+   * @type {boolean}
+   * @see {@link ActivatedEffectTemplate#hasResource}
+   */
+  get hasResource() {
+    return this.system.hasResource ?? false;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this Item draw from ammunition?
+   * @type {boolean}
+   * @see {@link ActivatedEffectTemplate#hasReload} and {@link ActivatedEffectTemplate#hasAmmo}
+   */
+  get hasAmmo() {
+    return (this.system.hasReload || this.system.hasAmmo) ?? false;
+  }
+
+
+  /* -------------------------------------------- */
+
+  /**
+   * What item does this item use as ammunition?
+   * @type {object}
+   * @see {@link ActivatedEffectTemplate#getAmmo}
+   */
+  get getAmmo() {
+    return this.system.getAmmo ?? {};
   }
 
   /* -------------------------------------------- */
@@ -263,13 +307,27 @@ export default class Item5e extends Item {
    * @type {object}
    */
   get scaleValues() {
-    if (!this.advancement?.byType?.ScaleValue?.length) return {};
+    if (!this.advancement?.byType?.ScaleValue) return {};
     if (!this.advancement.byType.ScaleValue[0].constructor.metadata.validItemTypes.has(this.type)) return {};
     const level = this.curAdvancementLevel;
     return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
       obj[advancement.identifier] = advancement.valueForLevel(level);
       return obj;
     }, {});
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Does this item scale with any kind of consumption?
+   * @type {string|null}
+   */
+  get usageScaling() {
+    const { level, preparation, consume } = this.system;
+    const isLeveled = (this.type === "power") && (level > 0);
+    if ( isLeveled && CONFIG.SW5E.powerUpcastModes.includes(preparation.mode) ) return "slot";
+    else if ( isLeveled && this.hasResource && consume.scale ) return "resource";
+    return null;
   }
 
   /* -------------------------------------------- */
@@ -693,25 +751,29 @@ export default class Item5e extends Item {
 
     // Ability Activation Label
     const act = this.system.activation ?? {};
-    if (["none", ""].includes(act.type)) act.type = null; // Backwards compatibility
-    this.labels.activation = act.type ? [act.cost, C.abilityActivationTypes[act.type]].filterJoin(" ") : "";
+    if ( !act.type ) act.type = null;   // Backwards compatibility
+    this.labels.activation = act.type ? [
+      (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
+      C.abilityActivationTypes[act.type]
+    ].filterJoin(" ") : "";
 
     // Target Label
     let tgt = this.system.target ?? {};
     if (["none", ""].includes(tgt.type)) tgt.type = null; // Backwards compatibility
     if ([null, "self"].includes(tgt.type)) tgt.value = tgt.units = null;
     else if (tgt.units === "touch") tgt.value = null;
-    this.labels.target = tgt.type
-      ? [tgt.value, C.distanceUnits[tgt.units], C.targetTypes[tgt.type]].filterJoin(" ")
-      : "";
+
+    if ( this.hasTarget ) {
+      this.labels.target = [tgt.value, C.distanceUnits[tgt.units], C.targetTypes[tgt.type]].filterJoin(" ");
+    }
 
     // Range Label
     let rng = this.system.range ?? {};
     if (["none", ""].includes(rng.units)) rng.units = null; // Backwards compatibility
     if ([null, "touch", "self"].includes(rng.units)) rng.value = rng.long = null;
-    this.labels.range = rng.units
-      ? [rng.value, rng.long ? `/ ${rng.long}` : null, C.distanceUnits[rng.units]].filterJoin(" ")
-      : "";
+    if ( this.isActive && rng.units ) {
+      this.labels.range = [rng.value, rng.long ? `/ ${rng.long}` : null, C.distanceUnits[rng.units]].filterJoin(" ");
+    } else this.labels.range = game.i18n.localize("SW5E.None");
 
     // Duration Label
     let dur = this.system.duration ?? {};
@@ -755,9 +817,7 @@ export default class Item5e extends Item {
     this.advancement = {
       byId: {},
       byLevel: Object.fromEntries(
-        Array.fromRange(maxLevel + 1)
-          .slice(minAdvancementLevel)
-          .map(l => [l, []])
+        Array.fromRange(maxLevel + 1, minAdvancementLevel).map(l => [l, []])
       ),
       byType: {},
       needingConfiguration: []
@@ -767,7 +827,7 @@ export default class Item5e extends Item {
       this.advancement.byId[advancement.id] = advancement;
       this.advancement.byType[advancement.type] ??= [];
       this.advancement.byType[advancement.type].push(advancement);
-      advancement.levels.forEach(l => this.advancement.byLevel[l].push(advancement));
+      advancement.levels.forEach(l => this.advancement.byLevel[l]?.push(advancement));
       if (!advancement.levels.length) this.advancement.needingConfiguration.push(advancement);
     }
     Object.entries(this.advancement.byLevel).forEach(([lvl, data]) =>
@@ -942,23 +1002,16 @@ export default class Item5e extends Item {
     if (actorBonus.attack) parts.push(actorBonus.attack);
 
     // One-time bonus provided by consumed ammunition
-    if ((this.system.ammo?.target || this.system.consume?.type === "ammo") && this.actor.items) {
-      const isReload = this.system.ammo?.target;
-
-      const ammoItem = this.actor.items.get(this.system.consume?.target || this.system.ammo?.target);
-
-      if (ammoItem) {
-        const ammoItemQuantity = isReload ? this.system.ammo?.value : ammoItem.system?.quantity;
-        const ammoConsumeAmmount = isReload
-          ? this.system.ammo?.use ?? this.system.ammo?.baseUse
-          : this.system.consume.amount ?? 0;
-        const ammoCanBeConsumed = ammoItemQuantity && ammoItemQuantity - ammoConsumeAmmount >= 0;
-        const ammoItemAttackBonus = ammoItem.system.attackBonus;
-        const ammoIsTypeConsumable = ammoItem.type === "consumable" && ammoItem.system.consumableType === "ammo";
-        if (ammoCanBeConsumed && ammoItemAttackBonus && ammoIsTypeConsumable) {
-          parts.push("@ammo");
-          rollData.ammo = ammoItemAttackBonus;
-        }
+    const ammo = this.getAmmo;
+    if (ammo.item) {
+      const ammoItemQuantity = ammo.quantity;
+      const ammoConsumeAmount = ammo.consumeAmount;
+      const ammoCanBeConsumed = ammoItemQuantity && (ammoItemQuantity - ammoConsumeAmount >= 0);
+      const ammoItemAttackBonus = ammo.item.system.attackBonus;
+      const ammoIsTypeConsumable = (ammo.item.type === "consumable") && (ammo.item.system.consumableType === "ammo");
+      if (ammoCanBeConsumed && ammoItemAttackBonus && ammoIsTypeConsumable) {
+        parts.push("@ammo");
+        rollData.ammo = ammoItemAttackBonus;
       }
     }
 
@@ -1093,16 +1146,14 @@ export default class Item5e extends Item {
    * Configuration data for an item usage being prepared.
    *
    * @typedef {object} ItemUseConfiguration
-   * @property {boolean} createMeasuredTemplate  Trigger a template creation
-   * @property {boolean} consumeQuantity         Should the item's quantity be consumed?
-   * @property {boolean} consumeRecharge         Should a recharge be consumed?
-   * @property {boolean} consumeReload           Whether the item consumes loaded ammo
-   * @property {boolean} consumeResource         Should a linked (non-ammo) resource be consumed?
-   * @property {number|string|null} consumePowerLevel  Specific power level to consume.
-   * @property {boolean} consumePowerSlot        Should any power slot be consumed?
-   * @property {boolean} consumeSuperiorityDie   Should superiority die be consumed?
-   * @property {boolean} consumeUsage            Should limited uses be consumed?
-   * @property {boolean} needsConfiguration      Is user-configuration needed?
+   * @property {boolean} createMeasuredTemplate     Should this item create a template?
+   * @property {boolean} consumeResource            Should this item consume a (non-ammo) resource?
+   * @property {boolean} consumePowerSlot           Should this item (a power) consume a power slot?
+   * @property {boolean} consumeReload              Should this item consume loaded ammo?
+   * @property {boolean} consumeSuperiorityDie      Should this item consume a superiority die?
+   * @property {boolean} consumeUsage               Should this item consume its limited uses or recharge?
+   * @property {string|number|null} slotLevel       The power slot type or level to consume by default.
+   * @property {number|null} resourceAmount         The amount to consume by default when scaling with consumption.
    */
 
   /**
@@ -1116,21 +1167,6 @@ export default class Item5e extends Item {
    * @property {object} flags             Additional flags added to the chat message.
    * @property {Event} event              The browser event which triggered the item usage, if any.
    */
-
-  /**
-   * Trigger an item usage, optionally creating a chat message with followup actions.
-   * @param {ItemUseOptions} [options]           Options used for configuring item usage.
-   * @returns {Promise<ChatMessage|object|void>} Chat message if options.createMessage is true, message data if it is
-   *                                             false, and nothing if the roll wasn't performed.
-   * @deprecated since 2.0 in favor of `Item5e#use`, targeted for removal in 2.4
-   */
-  async roll(options = {}) {
-    foundry.utils.logCompatibilityWarning(
-      "Item5e#roll has been renamed Item5e#use. Support for the old name will be removed in future versions.",
-      { since: "SW5e 2.0", until: "SW5e 2.4" }
-    );
-    return this.use(undefined, options);
-  }
 
   /**
    * Trigger an item usage, optionally creating a chat message with followup actions.
@@ -1155,43 +1191,13 @@ export default class Item5e extends Item {
       options
     );
 
-    // Reference aspects of the item data necessary for usage
-    const resource = is.consume || {}; // Resource consumption
-    const isPower = item.type === "power"; // Does the item require a power slot?
-    // TODO: Possibly Mod this to not consume slots based on class?
-    // We could use this for feats and architypes that let a character cast one slot every rest or so
-    const requirePowerSlot = isPower && is.level > 0 && CONFIG.SW5E.powerUpcastModes.includes(is.preparation.mode);
-
     // Define follow-up actions resulting from the item usage
-    config = foundry.utils.mergeObject(
-      {
-        createMeasuredTemplate: item.hasAreaTarget,
-        consumeQuantity: is.uses?.autoDestroy ?? false,
-        consumeRecharge: !!is.recharge?.value,
-        // Only consume ammo when the attack is rolled
-        consumeReload: item.system.ammo?.max && !(item.system.actionType in CONFIG.SW5E.itemActionTypesAttack),
-        consumeResource:
-          !!resource.target
-          && (!item.hasAttack
-            || (resource.type !== "ammo"
-              && !(resource.type === "charges" && resource.target.system?.consumableType === "ammo"))),
-        consumePowerLevel: requirePowerSlot ? is.level : null,
-        consumePowerSlot: requirePowerSlot,
-        consumeSuperiorityDie: item.type === "maneuver",
-        consumeUsage: !!is.uses?.per && is.uses?.max > 0
-      },
-      config
-    );
-
-    // Display a configuration dialog to customize the usage
-    if (config.needsConfiguration === undefined) config.needsConfiguration =
-        config.createMeasuredTemplate
-        || config.consumeRecharge
-        || config.consumeReload
-        || (config.consumeResource && !["simpleB", "martialB"].includes(is.weaponType))
-        || config.consumePowerSlot
-        || config.consumeSuperiorityDie
-        || (config.consumeUsage && !["simpleB", "martialB"].includes(is.weaponType));
+    if ( config.consumeSlotLevel ) {
+      console.warn("You are passing 'consumeSlotLevel' to the ItemUseConfiguration object, which now expects a key as 'slotLevel'.");
+      config.slotLevel = config.consumeSlotLevel;
+      delete config.consumeSlotLevel;
+    }
+    config = foundry.utils.mergeObject(this._getUsageConfig(), config);
 
     /**
      * A hook event that fires before an item usage is configured.
@@ -1204,23 +1210,35 @@ export default class Item5e extends Item {
      */
     if (Hooks.call("sw5e.preUseItem", item, config, options) === false) return;
 
+    // Are any default values necessitating a prompt?
+    const needsConfiguration = Object.values(config).includes(true);
+
     // Display configuration dialog
-    if (options.configureDialog !== false && config.needsConfiguration) {
-      const configuration = await AbilityUseDialog.create(item);
+    if (options.configureDialog !== false && needsConfiguration) {
+      const configuration = await AbilityUseDialog.create(item, config);
       if (!configuration) return;
       foundry.utils.mergeObject(config, configuration);
     }
 
-    // Handle power upcasting
-    if (isPower && (config.consumePowerSlot || config.consumePowerLevel)) {
-      const upcastLevel = parseInt(config.consumePowerLevel);
-      if (upcastLevel && upcastLevel !== is.level) {
-        item = item.clone({ "system.level": upcastLevel }, { keepId: true });
+
+    // Handle upcasting
+    if ( item.type === "power" ) {
+      let level = null;
+      if ( config.slotLevel ) {
+        // A power slot was consumed.
+        level = Number.isInteger(config.slotLevel) ? config.slotLevel : parseInt(config.slotLevel.replace("power", ""));
+      } else if ( config.resourceAmount ) {
+        // A quantity of the resource was consumed.
+        const diff = config.resourceAmount - (this.system.consume.amount || 1);
+        level = is.level + diff;
+      }
+      if ( level && (level !== is.level) ) {
+        item = item.clone({"system.level": level}, {keepId: true});
         item.prepareData();
         item.prepareFinalAttributes();
       }
     }
-    if (isPower) foundry.utils.mergeObject(options.flags, { "sw5e.use.powerLevel": item.system.level });
+    if ( item.type === "power" ) foundry.utils.mergeObject(options.flags, {"sw5e.use.powerLevel": item.system.level});
 
     /**
      * A hook event that fires before an item's resource consumption has been calculated.
@@ -1249,17 +1267,18 @@ export default class Item5e extends Item {
      * @param {object} usage.actorUpdates       Updates that will be applied to the actor.
      * @param {object} usage.itemUpdates        Updates that will be applied to the item being used.
      * @param {object[]} usage.resourceUpdates  Updates that will be applied to other items on the actor.
+     * @param {Set<string>} usage.deleteIds Item ids for those which consumption will delete.
      * @returns {boolean}                       Explicitly return `false` to prevent item from being used.
      */
     if (Hooks.call("sw5e.itemUsageConsumption", item, config, options, usage) === false) return;
 
     // Commit pending data updates
-    const { actorUpdates, itemUpdates, resourceUpdates, starshipUpdates } = usage;
+    const { actorUpdates, itemUpdates, resourceUpdates, starshipUpdates, deleteIds } = usage;
     if (!foundry.utils.isEmpty(itemUpdates)) await item.update(itemUpdates);
-    if (config.consumeQuantity && item.system.quantity === 0) await item.delete();
+    if ( !foundry.utils.isEmpty(deleteIds) ) await this.actor.deleteEmbeddedDocuments("Item", [...deleteIds]);
     if (!foundry.utils.isEmpty(actorUpdates)) await actor.update(actorUpdates);
     if (starship && !foundry.utils.isEmpty(starshipUpdates)) await starship.update(starshipUpdates);
-    if (resourceUpdates.length) await actor.updateEmbeddedDocuments("Item", resourceUpdates);
+    if ( !foundry.utils.isEmpty(resourceUpdates) ) await this.actor.updateEmbeddedDocuments("Item", resourceUpdates);
 
     // Prepare card data & display it if options.createMessage is true
     const cardData = await item.displayCard(options);
@@ -1292,6 +1311,49 @@ export default class Item5e extends Item {
     return cardData;
   }
 
+  /**
+   * Prepare an object of possible and default values for item usage. A value that is `null` is ignored entirely.
+   * @returns {ItemUseConfiguration}  Configuration data for the roll.
+   */
+  _getUsageConfig() {
+    const { consume, uses, target, level } = this.system;
+
+    const config = {
+      consumePowerSlot: null,
+      consumePowerPoints: null,
+      slotLevel: null,
+      consumeUsage: null,
+      consumeResource: null,
+      consumeReload: null,
+      consumeSuperiorityDie: null,
+      resourceAmount: null,
+      createMeasuredTemplate: null
+    };
+
+    const scaling = this.usageScaling;
+    if ( scaling === "slot" ) {
+      config.consumePowerSlot = true;
+      config.consumePowerPoints = true;
+      config.slotLevel = `power${level}`;
+    } else if ( scaling === "resource" ) {
+      config.resourceAmount = consume.amount || 1;
+    }
+    if ( this.hasLimitedUses ) config.consumeUsage = uses.prompt;
+    if ( this.hasResource ) {
+      config.consumeResource = true;
+      // Do not suggest consuming your own uses if also consuming them through resources.
+      if ( consume.target === this.id ) config.consumeUsage = null;
+    }
+    // For attacks, the ammo is consumed on the attack roll
+    if ( this.system.ammo?.max && !(this.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
+      config.consumeSuperiorityDie = true;
+    }
+    if ( this.type === "maneuver" ) config.consumeSuperiorityDie = true;
+    if ( game.user.can("TEMPLATE_CREATE") && this.hasAreaTarget ) config.createMeasuredTemplate = target.prompt;
+
+    return config;
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -1301,34 +1363,23 @@ export default class Item5e extends Item {
    * @returns {object|boolean}             A set of data changes to apply when the item is used, or false.
    * @protected
    */
-  _getUsageUpdates({
-    consumeQuantity,
-    consumeRecharge,
-    consumeReload,
-    consumeResource,
-    consumePowerLevel,
-    consumeSuperiorityDie,
-    consumeUsage
-  }) {
+  _getUsageUpdates(config) {
     // Reference item system data
     const is = this.system;
     const actorUpdates = {};
     const itemUpdates = {};
     const resourceUpdates = [];
     const starshipUpdates = {};
+    const deleteIds = new Set();
 
-    // Consume Recharge
-    if (consumeRecharge) {
-      const recharge = is.recharge || {};
-      if (recharge.charged === false) {
-        ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", { name: this.name }));
-        return false;
-      }
-      itemUpdates["system.recharge.charged"] = false;
+    // Consume own limited uses or recharge
+    if ( config.consumeUsage ) {
+      const canConsume = this._handleConsumeUses(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds);
+      if ( canConsume === false ) return false;
     }
 
     // Consume Weapon Reload
-    if (consumeReload) {
+    if ( config.consumeReload ) {
       const use = this.system.ammo?.use ?? this.system.ammo?.baseUse;
       if (is.ammo.value < use) {
         if (is.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", { name: this.name }));
@@ -1339,114 +1390,119 @@ export default class Item5e extends Item {
     }
 
     // Consume Limited Resource
-    if (consumeResource) {
-      const canConsume = this._handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates);
+    if (config.consumeResource) {
+      const canConsume = this._handleConsumeResource(config, itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds);
       if (canConsume === false) return false;
     }
 
-    // Consume Power Slots and Force/Tech Points
-    if (consumePowerLevel) {
-      if (Number.isNumeric(consumePowerLevel)) consumePowerLevel = `power${consumePowerLevel}`;
-      const level = this.actor?.system.powers[consumePowerLevel];
-      const fp = this.actor.system.attributes.force.points;
-      const tp = this.actor.system.attributes.tech.points;
-      const fd = this.actor.getFlag("sw5e", "forcePowerDiscount") ?? 0;
-      const td = this.actor.getFlag("sw5e", "techPowerDiscount") ?? 0;
-      const powerCost = parseInt(is.level, 10) + 1;
-      const innatePower = this.actor.system.attributes.powercasting === "innate";
-      if (!innatePower) {
-        switch (is.school) {
-          case "lgt":
-          case "uni":
-          case "drk": {
-            const powers = Number(level?.fvalue ?? 0);
-            const discountedCost = Math.max(powerCost - fd, 1);
-            if (powers === 0) {
-              const label = game.i18n.localize(`SW5E.PowerLevel${is.level}`);
-              ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", { name: this.name, level: label }));
-              return false;
-            }
-            actorUpdates[`system.powers.${consumePowerLevel}.fvalue`] = Math.max(powers - 1, 0);
-            if (fp.temp >= discountedCost) {
-              actorUpdates["system.attributes.force.points.temp"] = fp.temp - discountedCost;
-            } else {
-              actorUpdates["system.attributes.force.points.value"] = fp.value + fp.temp - discountedCost;
-              actorUpdates["system.attributes.force.points.temp"] = 0;
-            }
-            break;
-          }
-          case "tec": {
-            const powers = Number(level?.tvalue ?? 0);
-            const discountedCost = Math.max(powerCost - td, 1);
-            if (powers === 0) {
-              const label = game.i18n.localize(`SW5E.PowerLevel${is.level}`);
-              ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", { name: this.name, level: label }));
-              return false;
-            }
-            actorUpdates[`system.powers.${consumePowerLevel}.tvalue`] = Math.max(powers - 1, 0);
-            if (tp.temp >= discountedCost) {
-              actorUpdates["system.attributes.tech.points.temp"] = tp.temp - discountedCost;
-            } else {
-              actorUpdates["system.attributes.tech.points.value"] = tp.value + tp.temp - discountedCost;
-              actorUpdates["system.attributes.tech.points.temp"] = 0;
-            }
-            break;
-          }
+
+    // Consume Power Slots and Power Points
+    if ( config.consumePowerSlot || config.consumePowerPoints ) {
+      const levelNumber = Number(config.slotLevel.substring(5));
+      const level = this.actor?.system.powers[config.slotLevel];
+      const powerType = (this.system.school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
+      const pAbbr = powerType.substring(0, 1);
+      const maxSlots = Number(level?.[`${pAbbr}max`] ?? 0);
+      const infSlots = maxSlots === 1000;
+      const slots = infSlots ? 1000 : Number(level?.[`${pAbbr}value`] ?? 0);
+      const points = this.actor?.system?.attributes?.[powerType]?.points ?? 0;
+      const discount = this.actor?.getFlag("sw5e", `${powerType}PowerDiscount`) ?? 0;
+      const cost = Math.max(levelNumber + 1 - discount, 1);
+      if ( config.consumePowerSlot && (slots === 0) ) {
+        const label = game.i18n.localize(`SW5E.PowerLevel${this.system.level}`);
+        ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
+        return false;
+      }
+      if ( config.consumePowerPoints && ((points.value + points.temp) < cost) ) {
+        ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoPoints", {name: this.name, type: powerType}));
+        return false;
+      }
+      if ( config.consumePowerSlot && !infSlots ) actorUpdates[`system.powers.${config.slotLevel}.${pAbbr}value`] = Math.max(slots - 1, 0);
+      if ( config.consumePowerPoints ) {
+        if (points.temp >= cost) {
+          actorUpdates[`system.attributes.${powerType}.points.temp`] = points.temp - cost;
+        } else {
+          actorUpdates[`system.attributes.${powerType}.points.value`] = points.value + points.temp - cost;
+          actorUpdates[`system.attributes.${powerType}.points.temp`] = 0;
         }
       }
     }
 
     // Consume Superiority Die
-    if (consumeSuperiorityDie) {
+    if (config.consumeSuperiorityDie) {
       const curDice = this.actor?.system?.attributes?.super?.dice?.value;
       if (!curDice) return false;
       actorUpdates["system.attributes.super.dice.value"] = curDice - 1;
     }
 
-    // Consume Limited Usage
-    if (consumeUsage) {
-      const uses = is.uses || {};
-      const available = Number(uses.value ?? 0);
-      let used = false;
-      const remaining = Math.max(available - 1, 0);
-      if (available >= 1) {
+    // Return the configured usage
+    return { itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds };
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle update actions required when consuming an item's uses or recharge
+   * @param {object} itemUpdates        An object of data updates applied to this item
+   * @param {object} actorUpdates       An object of data updates applied to the item owner (Actor)
+   * @param {object[]} resourceUpdates  An array of updates to apply to other items owned by the actor
+   * @param {object} starshipUpdates    An object of data updates applied to the starship the item owner (Actor) is deployed to
+   * @param {Set<string>} deleteIds     A set of item ids that will be deleted off the actor
+   * @returns {boolean|void}            Return false to block further progress, or return nothing to continue
+   * @protected
+   */
+  _handleConsumeUses(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds) {
+    const recharge = this.system.recharge || {};
+    const uses = this.system.uses || {};
+    const quantity = this.system.quantity ?? 1;
+    let used = false;
+
+    // Consume recharge.
+    if ( recharge.value ) {
+      if ( recharge.charged ) {
+        itemUpdates["system.recharge.charged"] = false;
         used = true;
-        itemUpdates["system.uses.value"] = remaining;
-      }
-
-      // Reduce quantity if not reducing usages or if usages hit zero and we are set to consumeQuantity
-      if (consumeQuantity && (!used || remaining === 0)) {
-        const q = Number(is.quantity ?? 1);
-        if (q >= 1) {
-          used = true;
-          itemUpdates["system.quantity"] = Math.max(q - 1, 0);
-          itemUpdates["system.uses.value"] = uses.max ?? 1;
-        }
-      }
-
-      // If the item was not used, return a warning
-      if (!used) {
-        ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", { name: this.name }));
-        return false;
       }
     }
 
-    // Return the configured usage
-    return { itemUpdates, actorUpdates, resourceUpdates, starshipUpdates };
+    // Consume uses (or quantity).
+    else if ( uses.max && uses.per && (uses.value > 0) ) {
+      const remaining = Math.max(uses.value - 1, 0);
+
+      if ( remaining > 0 || (!remaining && !uses.autoDestroy) ) {
+        used = true;
+        itemUpdates["system.uses.value"] = remaining;
+      } else if ( quantity >= 2 ) {
+        used = true;
+        itemUpdates["system.quantity"] = quantity - 1;
+        itemUpdates["system.uses.value"] = uses.max;
+      } else if ( quantity === 1 ) {
+        used = true;
+        deleteIds.add(this.id);
+      }
+    }
+
+    // If the item was not used, return a warning
+    if ( !used ) {
+      ui.notifications.warn(game.i18n.format("SW5E.ItemNoUses", {name: this.name}));
+      return false;
+    }
   }
 
   /* -------------------------------------------- */
 
   /**
    * Handle update actions required when consuming an external resource
-   * @param {object} itemUpdates        An object of data updates applied to this item
-   * @param {object} actorUpdates       An object of data updates applied to the item owner (Actor)
-   * @param {object[]} resourceUpdates  An array of updates to apply to other items owned by the actor
-   * @param {object} starshipUpdates    An object of data updates applied to the item owner's deployed starship (Actor)
-   * @returns {boolean|void}            Return false to block further progress, or return nothing to continue
+   * @param {ItemUseConfiguration} usageConfig  Configuration data for an item usage being prepared.
+   * @param {object} itemUpdates                An object of data updates applied to this item
+   * @param {object} actorUpdates               An object of data updates applied to the item owner (Actor)
+   * @param {object[]} resourceUpdates          An array of updates to apply to other items owned by the actor
+   * @param {object} starshipUpdates            An object of data updates applied to the starship the item owner (Actor) is deployed to
+   * @param {Set<string>} deleteIds             A set of item ids that will be deleted off the actor
+   * @returns {boolean|void}                    Return false to block further progress, or return nothing to continue
    * @protected
    */
-  _handleConsumeResource(itemUpdates, actorUpdates, resourceUpdates, starshipUpdates) {
+  _handleConsumeResource(usageConfig, itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds) {
     const actor = this.actor;
     const starship = actor.getStarship();
     const itemSystemdata = this.system;
@@ -1462,7 +1518,7 @@ export default class Item5e extends Item {
 
     // Identify the consumed resource and its current quantity
     let resource = null;
-    let amount = Number(consume.amount ?? 1);
+    let amount = usageConfig.resourceAmount ? usageConfig.resourceAmount : (consume.amount || 1);
     let quantity = 0;
     switch (consume.type) {
       case "attribute":
@@ -1535,7 +1591,7 @@ export default class Item5e extends Item {
           if (consume.target === "largest") sort *= -1;
           return sort;
         });
-        let toConsume = consume.amount;
+        let toConsume = amount;
         for (const cls of resource) {
           const cs = cls.system;
           const available = (toConsume > 0 ? cs.levels : 0) - cs.hitDiceUsed;
@@ -1551,6 +1607,16 @@ export default class Item5e extends Item {
         const uses = resource.system.uses || {};
         const recharge = resource.system.recharge || {};
         const update = { _id: consume.target };
+        // Reduce quantity of, or delete, the external resource.
+        if ( uses.per && uses.max && uses.autoDestroy && (remaining === 0) ) {
+          update["system.quantity"] = Math.max(resource.system.quantity - 1, 0);
+          update["system.uses.value"] = uses.max ?? 1;
+          if ( update["system.quantity"] === 0 ) deleteIds.add(resource.id);
+          else resourceUpdates.push(update);
+          break;
+        }
+
+        // Regular consumption.
         if (uses.per && uses.max) update["system.uses.value"] = remaining;
         else if (recharge.value) update["system.recharge.charged"] = false;
         resourceUpdates.push(update);
@@ -1680,9 +1746,7 @@ export default class Item5e extends Item {
    */
   async rollAttack(options = {}) {
     const flags = this.actor.flags.sw5e ?? {};
-    const flagsCfg = CONFIG.SW5E.characterFlags;
     const target = [...game.user?.targets ?? []][0]?.actor;
-    const midi = game.modules.get("midi-qol")?.active;
     if (!this.hasAttack) throw new Error("You may not place an Attack Roll with this Item.");
     let title = `${this.name} - ${game.i18n.localize("SW5E.AttackRoll")}`;
 
@@ -1691,60 +1755,20 @@ export default class Item5e extends Item {
     if (options.powerLevel) rollData.item.level = options.powerLevel;
 
     // Handle ammunition consumption
-    delete this._ammo;
-    let ammo = null;
     let ammoUpdate = [];
     let itemUpdate = {};
-    const consume = this.system.consume;
-    if (this.system.ammo?.max) {
-      ammo = this.actor.items.get(this.system.ammo.target);
-      if (ammo) {
-        const q = this.system.ammo.value;
-        const consumeAmount = this.system.ammo.use ?? this.system.ammo.baseUse;
-        if (q && q - consumeAmount >= 0) {
-          this._ammo = ammo;
-          title += ` [${ammo.name}]`;
-        }
-      }
-
-      // Get pending reload update
-      const usage = this._getUsageUpdates({ consumeReload: true });
-      if (usage === false) return null;
-      itemUpdate = usage.itemUpdates ?? {};
-    } else if (consume?.type === "ammo") {
-      ammo = this.actor.items.get(consume.target);
-      if (ammo?.system) {
-        const quant = ammo.system.quantity;
-        const consumeAmount = consume.amount ?? 0;
-        if (quant && quant - consumeAmount >= 0) {
-          this._ammo = ammo;
-          title += ` [${ammo.name}]`;
-        }
-      }
+    const ammo = this.getAmmo;
+    if (ammo) {
+      const quant = ammo.quantity;
+      const consumeAmount = ammo.consumeAmount;
+      if (quant && quant - consumeAmount >= 0) title += ` [${ammo.name}]`;
 
       // Get pending ammunition update
       const usage = this._getUsageUpdates({ consumeResource: true });
       if (usage === false) return null;
       ammoUpdate = usage.resourceUpdates ?? [];
-    } else if (consume?.type === "charges") {
-      ammo = this.actor.items.get(consume.target);
-      if (ammo?.system?.consumableType === "ammo") {
-        const uses = ammo.system.uses;
-        if (uses.per && uses.max) {
-          const q = ammo.system.uses.value;
-          const consumeAmount = consume.amount ?? 0;
-          if (q && q - consumeAmount >= 0) {
-            this._ammo = ammo;
-            title += ` [${ammo.name}]`;
-          }
-        }
-
-        // Get pending ammunition update
-        const usage = this._getUsageUpdates({ consumeResource: true });
-        if (usage === false) return null;
-        ammoUpdate = usage.resourceUpdates ?? [];
-      }
     }
+
     // Flags
     const elvenAccuracy = this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
 
@@ -1759,6 +1783,7 @@ export default class Item5e extends Item {
       `advantage.attack.${this.abilityMod}`,
       `advantage.attack.${this.system.actionType}`
     ], { situational: true });
+    const advantage = !!(advantageFlag || options.advantage);
     const advantageHint = grantsAdvantageHint || this.actor?._getCharacterFlagTooltip(advantageFlag);
 
     const disadvantageFlag = this.actor?._getCharacterFlag([
@@ -1767,6 +1792,7 @@ export default class Item5e extends Item {
       `disadvantage.attack.${this.abilityMod}`,
       `disadvantage.attack.${this.system.actionType}`
     ], { situational: true });
+    const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this.actor?._getCharacterFlagTooltip(disadvantageFlag);
 
     // Compose roll options
@@ -1779,9 +1805,7 @@ export default class Item5e extends Item {
         flavor: title,
         elvenAccuracy,
         halflingLucky: flags.halflingLucky,
-        advantage: advantageFlag && !disadvantageFlag,
         advantageHint,
-        disadvantage: disadvantageFlag && !advantageFlag,
         disadvantageHint,
         dialogOptions: {
           width: 400,
@@ -1796,6 +1820,8 @@ export default class Item5e extends Item {
       options
     );
     rollConfig.parts = parts.concat(options.parts ?? []);
+    rollData.advantage = advantage && !disadvantage;
+    rollData.disadvantage = !advantage && disadvantage;
 
     /**
      * A hook event that fires before an attack is rolled for an Item.
@@ -2213,8 +2239,11 @@ export default class Item5e extends Item {
     const storedData = message.getFlag("sw5e", "itemData");
     const item = storedData ? new this(storedData, { parent: actor }) : actor.items.get(card.dataset.itemId);
     if (!item) {
-      const err = game.i18n.format("SW5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
-      return ui.notifications.error(err);
+      ui.notifications.error(game.i18n.format("SW5E.ActionWarningNoItem", {
+        item: card.dataset.itemId,
+        name: actor.name
+      }));
+      return null;
     }
     const powerLevel = parseInt(card.dataset.powerLevel) || null;
 
@@ -2242,11 +2271,13 @@ export default class Item5e extends Item {
       case "save":
         targets = this._getChatCardTargets(card);
         const saveOptions = {
-          isForcePower: Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school),
-          isTechPower: Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school),
+          isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
+          isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
           isPoison: item.system.consumableType === "poison",
-          dealsPoisonDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "poison"), false),
-          dealsSonicDmg: (item?.system?.damage?.parts ?? []).reduce(((acc, part) => acc || part[1] === "sonic"), false),
+          damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
+            if (part[1]) set.add(part[1]);
+            return set;
+          }), new Set())
         };
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });
@@ -2258,7 +2289,7 @@ export default class Item5e extends Item {
         break;
       case "placeTemplate":
         try {
-          await sw5e.canvas.AbilityTemplate.fromItem(item)?.drawPreview();
+          await sw5e.canvas.AbilityTemplate.fromItem(item, { "flags.sw5e.powerLevel": powerLevel })?.drawPreview();
         } catch(err) {
           Hooks.onError("Item5e._onChatCardAction", err, {
             msg: game.i18n.localize("SW5E.PlaceTemplateError"),
@@ -2327,7 +2358,7 @@ export default class Item5e extends Item {
   static _getChatCardTargets(card) {
     let targets = canvas.tokens.controlled.filter(t => !!t.actor);
     if (!targets.length && game.user.character) targets = targets.concat(game.user.character.getActiveTokens());
-    if (!targets.length) ui.notifications.warn(game.i18n.localize("SW5E.ActionWarningNoToken"));
+    if (!targets.length) ui.notifications.warn("SW5E.ActionWarningNoToken", { localize: true });
     return targets;
   }
 
@@ -2355,7 +2386,10 @@ export default class Item5e extends Item {
       throw new Error(`${type} advancement cannot be added to ${this.name}`);
     }
 
+    const createData = foundry.utils.deepClone(data);
     const advancement = new Advancement(data, { parent: this });
+    if ( advancement._preCreate(createData) === false ) return;
+
     const advancementCollection = this.toObject().system.advancement;
     advancementCollection.push(advancement.toObject());
     if (source) return this.updateSource({ "system.advancement": advancementCollection });
@@ -2455,7 +2489,7 @@ export default class Item5e extends Item {
 
   /** @inheritdoc */
   async _preCreate(data, options, user) {
-    await super._preCreate(data, options, user);
+    if ( (await super._preCreate(data, options, user)) === false ) return false;
 
     // Create class identifier based on name
     if (["class", "archetype"].includes(this.type) && !this.system.identifier) {
@@ -2517,12 +2551,13 @@ export default class Item5e extends Item {
 
   /** @inheritdoc */
   async _preUpdate(changed, options, user) {
-    await super._preUpdate(changed, options, user);
+    if ( (await super._preUpdate(changed, options, user)) === false ) return false;
+
     if (this.type !== "class" || !("levels" in (changed.system || {}))) return;
 
     // Check to make sure the updated class level isn't below zero
     if (changed.system.levels <= 0) {
-      ui.notifications.warn(game.i18n.localize("SW5E.MaxClassLevelMinimumWarn"));
+      ui.notifications.warn("SW5E.MaxClassLevelMinimumWarn", {localize: true});
       changed.system.levels = 1;
     }
 
@@ -2649,11 +2684,11 @@ export default class Item5e extends Item {
    * Pre-creation logic for the automatic configuration of owned weapon type Items.
    * @param {object} data       Data for the newly created item.
    * @param {boolean} isNPC     Is this actor an NPC?
-   * @returns {object}          Updates to apply to the item data.
+   * @returns {object|void}     Updates to apply to the item data.
    * @private
    */
   _onCreateOwnedWeapon(data, isNPC) {
-    if ( !isNPC ) return {};
+    if ( !isNPC ) return;
     // NPCs automatically equip items.
     const updates = {};
     if ( !foundry.utils.hasProperty(data, "system.equipped") ) updates["system.equipped"] = true;
@@ -2751,6 +2786,17 @@ export default class Item5e extends Item {
   static async createScrollFromPower(power, options={}) {
     // Get power data
     const itemData = (power instanceof Item5e) ? power.toObject() : power;
+
+    /**
+     * A hook event that fires before the item data for a scroll is created.
+     * @function sw5e.preCreateScrollFromPower
+     * @memberof hookEvents
+     * @param {object} itemData    The initial item data of the power to convert to a scroll
+     * @param {object} [options]   Additional options that modify the created scroll
+     * @returns {boolean}          Explicitly return false to prevent the scroll to be created.
+     */
+    if ( Hooks.call("sw5e.preCreateScrollFromPower", itemData, options) === false ) return;
+
     let {
       actionType,
       description,
@@ -2782,11 +2828,13 @@ export default class Item5e extends Item {
     const scrollDetails = scrollDescription.slice(scrollIntroEnd + pdel.length);
 
     // Create a composite description from the scroll description and the power details
-    const desc = `${scrollIntro
-    }<hr><h3>${itemData.name} (${game.i18n.format("SW5E.LevelNumber", {level})})</h3>${
-      components.concentration ? `<p><em>${game.i18n.localize("SW5E.ScrollRequiresConcentration")}</em></p>` : ""
-    }<hr>${description.value}<hr>`
-    + `<h3>${game.i18n.localize("SW5E.ScrollDetails")}</h3><hr>${scrollDetails}`;
+    const desc = `
+      ${scrollIntro}
+      <hr><h3>${itemData.name} (${game.i18n.format("SW5E.LevelNumber", {level})})</h3>
+      ${(components.concentration ? `<p><em>${game.i18n.localize("SW5E.ScrollRequiresConcentration")}</em></p>` : "")}
+      <hr>${description.value}<hr>
+      <h3>${game.i18n.localize("SW5E.ScrollDetails")}</h3><hr>${scrollDetails}
+    `;
 
     // Used a fixed attack modifier and saving throw according to the level of power scroll.
     if (["mwak", "rwak", "mpak", "rpak"].includes(actionType)) {
@@ -2851,11 +2899,14 @@ export default class Item5e extends Item {
     // Validate the installation
     if (mod?.type !== "modification") return;
 
-    if (["none", "enhanced"].includes(itemMods.chassis)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModNoChassis", {
-        name: item.name
-      })
-    );
+    if (["none", "enhanced"].includes(itemMods.chassis)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModNoChassis", {
+          name: item.name
+        })
+      );
+      return null;
+    }
 
     const rarityMap = {
       standard: 1,
@@ -2866,46 +2917,59 @@ export default class Item5e extends Item {
       artifact: 6
     };
     if (itemMods.chassis === "chassis" && (rarityMap[itemSysData.rarity] ?? 0) < (rarityMap[modSysData.rarity] ?? 0)) {
-      return ui.notifications.warn(
+      ui.notifications.warn(
         game.i18n.format("SW5E.ErrorModWrongRarity", {
           name: item.name,
           rarity: itemSysData.rarity ?? "common"
         })
       );
+      return null;
     }
 
-    if (!(modificationsType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-        name: item.name,
-        type: modificationsType
-      })
-    );
+    if (!(modificationsType in CONFIG.SW5E.modificationTypes)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+          name: item.name,
+          type: modificationsType
+        })
+      );
+      return null;
+    }
 
-    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes)) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModUnrecognizedType", {
-        name: mod.name,
-        type: modSysData.modificationType
-      })
-    );
+    if (!(modSysData.modificationType in CONFIG.SW5E.modificationTypes)) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModUnrecognizedType", {
+          name: mod.name,
+          type: modSysData.modificationType
+        })
+      );
+      return null;
+    }
 
     const modType = modSysData.modificationType === "augment" ? "augment" : "mod";
-    if (modType === "mod" && modificationsType !== modSysData.modificationType) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModWrongType", {
-        modName: mod.name,
-        modType: modSysData.modificationType,
-        itemName: item.name,
-        itemType: modificationsType
-      })
-    );
+    if (modType === "mod" && modificationsType !== modSysData.modificationType) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModWrongType", {
+          modName: mod.name,
+          modType: modSysData.modificationType,
+          itemName: item.name,
+          itemType: modificationsType
+        })
+      );
+      return null;
+    }
 
     const modCount = mods.filter(m => m.type === modType).length;
-    if (modCount >= itemMods[`${modType}Slots`]) return ui.notifications.warn(
-      game.i18n.format("SW5E.ErrorModNoSpace", {
-        itemName: item.name,
-        modName: mod.name,
-        modType
-      })
-    );
+    if (modCount >= itemMods[`${modType}Slots`]) {
+      ui.notifications.warn(
+        game.i18n.format("SW5E.ErrorModNoSpace", {
+          itemName: item.name,
+          modName: mod.name,
+          modType
+        })
+      );
+      return null;
+    }
 
     // Apply the changes
     const objData = mod.toObject();
@@ -3054,23 +3118,13 @@ export default class Item5e extends Item {
   }
 
   /* -------------------------------------------- */
-  /*  Deprecations                                */
+  /*  Migrations & Deprecations                   */
   /* -------------------------------------------- */
 
-  /**
-   * Retrieve an item's critical hit threshold. Uses the smallest value from among the following sources:
-   * - item document
-   * - item document's actor (if it has one)
-   * - item document's ammunition (if it has any)
-   * - the constant '20'
-   * @returns {number|null}  The minimum value that must be rolled to be considered a critical hit.
-   * @deprecated since sw5e 2.2, targeted for removal in 2.4
-   */
-  getCriticalThreshold() {
-    foundry.utils.logCompatibilityWarning(
-      "Item5e#getCriticalThreshold has been replaced with the Item5e#criticalThreshold getter.",
-      { since: "SW5e 2.2", until: "SW5e 2.4" }
-    );
-    return this.criticalThreshold;
+  /** @inheritdoc */
+  static migrateData(source) {
+    source = super.migrateData(source);
+    if ( source.type === "class" ) ClassData._migrateTraitAdvancement(source);
+    return source;
   }
 }

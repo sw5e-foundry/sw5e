@@ -50,8 +50,8 @@ export default class ToolData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  static migrateData(source) {
-    super.migrateData(source);
+  static _migrateData(source) {
+    super._migrateData(source);
     ToolData.#migrateAbility(source);
   }
 

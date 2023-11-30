@@ -33,12 +33,22 @@
                     <i class="fas fa-cog"></i>
                 </a>
             </div>
-            <input class="source"
-                type="text"
-                name="system.details.source"
-                value="{{system.details.source}}"
-                placeholder="{{ localize 'SW5E.Source' }}"
-            />
+
+            {{#if (eq system.details.source.custom system.details.source.label)}}
+                <input
+                    type="text"
+                    name="system.details.source.custom"
+                    value="{{system.details.source.custom}}"
+                    placeholder="{{ localize 'SW5E.Source' }}"
+                >
+            {{else}}
+                <span data-tooltip="{{system.details.source.label}}">{{system.details.source.label}}</span>
+            {{/if}}
+            {{#if editable}}
+                <a class="config-button" data-action="source" data-tooltip="SW5E.SourceConfig">
+                    <i class="fas fa-cog"></i>
+                </a>
+            {{/if}}
         </div>
         {{!-- Header Attributes --}}
         <div class="attributes">

@@ -32,13 +32,13 @@
     "hitDiceUsed": 0,
     "advancement": [
       {
-        "_id": "n8JrMRklF7O1PpZ2",
+        "_id": "adAEOlf0xY34jCih",
         "type": "HitPoints",
         "configuration": {},
         "value": {}
       },
       {
-        "_id": "1zIGkSoq8szW17oe",
+        "_id": "13i7QmZLX3XKXTvG",
         "type": "ScaleValue",
         "configuration": {
           "identifier": "force-empowered-casting-options",
@@ -59,7 +59,7 @@
         "title": "Force-Empowered Casting Options"
       },
       {
-        "_id": "1zCt4T2Jk8twu9iZ",
+        "_id": "x1hoihvPCf71rYyy",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -69,7 +69,7 @@
         "level": 4
       },
       {
-        "_id": "RPfouxaPUTkbjTWX",
+        "_id": "CIu7GnAHRoG1F0pO",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -79,7 +79,7 @@
         "level": 8
       },
       {
-        "_id": "LHF1N5Xyfjb1vlBy",
+        "_id": "1OkMMgFU7FkyA7uP",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -89,7 +89,7 @@
         "level": 12
       },
       {
-        "_id": "1wz8IPU2MJYyf1ru",
+        "_id": "1M0DcThx60NA55HE",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -99,7 +99,7 @@
         "level": 16
       },
       {
-        "_id": "1954DeR0gHVc1Mpg",
+        "_id": "1PaE3o5n3I8ShYEA",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {},
@@ -109,7 +109,77 @@
         "level": 19
       },
       {
-        "_id": "8wPdL8yEDTE1w5Wb",
+        "_id": "wL3TE9WXsZ8OeaVD",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:slw",
+            "weapon:svb"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "VqtqJzjfbdJ1PNFH",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "saves:wis",
+            "saves:cha"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "DYNxTXpKDWT1m1sA",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "skills:dec",
+                "skills:ins",
+                "skills:itm",
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "primary",
+        "level": 1
+      },
+      {
+        "_id": "1ft8dnCLQTYZ1kpq",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "weapon:slw"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "classRestriction": "secondary",
+        "level": 1,
+        "title": "Multiclass Proficiencies"
+      },
+      {
+        "_id": "pB7EHYue2Ib1B88n",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -123,7 +193,7 @@
         "title": "Features"
       },
       {
-        "_id": "1c7AtzXF8Mfj1z89",
+        "_id": "OqjGALrH4g42nDam",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -137,7 +207,7 @@
         "title": "Features"
       },
       {
-        "_id": "mcgk7AKWpyI1IomZ",
+        "_id": "zCUvSzpvkMT1PdfO",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -151,7 +221,7 @@
         "title": "Features"
       },
       {
-        "_id": "1woPjbrU5RV51Ruq",
+        "_id": "1N4ZNel7QT09PZzl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -164,7 +234,7 @@
         "title": "Features"
       },
       {
-        "_id": "9LFpFUhgsqjgKfcV",
+        "_id": "1Qb5JZ7emojGv4xs",
         "type": "ItemChoice",
         "configuration": {
           "hint": "You gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain two Force-Empowered Casting options, located at the end of the class description, and you learn more at higher levels, as shown in the Force-Empowered Casting Options of the cnosular table.\nYou can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.",
@@ -206,7 +276,7 @@
         "title": "Force-Empowered Castings"
       },
       {
-        "_id": "1ow8nakiZ5CX1UUL",
+        "_id": "1sgetJT8K5Ja9gnZ",
         "type": "ItemChoice",
         "configuration": {
           "hint": "Different consulars select different traditions, called Ways, to follow as they hone their powers. Your tradition grants you features at 3rd, 6th, 10th, 14th, and 18th level.",
@@ -247,6 +317,15 @@
         "title": "Consular Traditions"
       }
     ],
+    "powercasting": {
+      "force": "full",
+      "forceOverride": "",
+      "tech": "none",
+      "techOverride": ""
+    },
+    "superiority": {
+      "progression": "0"
+    },
     "saves": [
       "wis",
       "cha"
@@ -264,15 +343,6 @@
       ],
       "value": []
     },
-    "powercasting": {
-      "force": "full",
-      "forceOverride": "",
-      "tech": "none",
-      "techOverride": ""
-    },
-    "superiority": {
-      "progression": "0"
-    },
     "archetype": ""
   },
   "ownership": {
@@ -280,10 +350,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493961825,
-    "modifiedTime": 1695981490925,
+    "modifiedTime": 1700848701769,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!dNmwCgz4jAlXBln0"

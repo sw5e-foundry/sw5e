@@ -1,5 +1,7 @@
 export { default as BaseAdvancement } from "./base-advancement.mjs";
 export { default as PowerConfigurationData } from "./power-config.mjs";
+export * from "./size.mjs";
+export {TraitConfigurationData, TraitValueData} from "./trait.mjs";
 
 export { default as ItemChoiceConfigurationData } from "./item-choice.mjs";
 export { default as ItemGrantConfigurationData } from "./item-grant.mjs";

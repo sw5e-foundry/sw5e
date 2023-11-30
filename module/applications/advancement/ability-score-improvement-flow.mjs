@@ -51,8 +51,9 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
     const abilities = Object.entries(CONFIG.SW5E.abilities).reduce((obj, [key, data]) => {
       if ( !this.advancement.canImprove(key) ) return obj;
       const ability = this.advancement.actor.system.abilities[key];
+      const assignment = this.assignments[key] ?? 0;
       const fixed = this.advancement.configuration.fixed[key] ?? 0;
-      const value = Math.min(ability.value + ((fixed || this.assignments[key]) ?? 0), ability.max);
+      const value = Math.min(ability.value + ((fixed || assignment) ?? 0), ability.max);
       const max = fixed ? value : Math.min(value + points.available, ability.max);
       obj[key] = {
         key, max, value,
@@ -63,21 +64,25 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
         delta: (value - ability.value) ? formatter.format(value - ability.value) : null,
         showDelta: true,
         isDisabled: !!this.feat,
-        isFixed: !!fixed,
-        canIncrease: (value < max) && !fixed && (this.advancement.allowFeatAndASI || !this.feat),
+        isFixed: !!fixed || (ability.value >= ability.max),
+        canIncrease: (value < max) && (assignment < points.cap) && !fixed && !this.feat,
         canDecrease: (value > ability.value) && !fixed && (this.advancement.allowFeatAndASI || !this.feat)
       };
       return obj;
     }, {});
 
-    const pluralRule = new Intl.PluralRules(game.i18n.lang).select(points.available);
+    const pluralRules = new Intl.PluralRules(game.i18n.lang);
     return foundry.utils.mergeObject(super.getData(), {
       abilities, points,
       feat: this.feat,
       asilocked: this.feat && !this.advancement.allowFeatAndASI,
       staticIncrease: !this.advancement.configuration.points,
+      pointCap: game.i18n.format(
+        `SW5E.AdvancementAbilityScoreImprovementCapDisplay.${pluralRules.select(points.cap)}`, {points: points.cap}
+      ),
       pointsRemaining: game.i18n.format(
-        `SW5E.AdvancementAbilityScoreImprovementPointsRemaining.${pluralRule}`, {points: points.available}
+        `SW5E.AdvancementAbilityScoreImprovementPointsRemaining.${pluralRules.select(points.available)}`,
+        {points: points.available}
       )
     });
   }
@@ -183,9 +188,10 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
     if ( data.type !== "Item" ) return false;
     const item = await Item.implementation.fromDropData(data);
 
-    if ( (item.type !== "feat") || (item.system.type.value !== "feat") ) return ui.notifications.error(
-      game.i18n.localize("SW5E.AdvancementAbilityScoreImprovementFeatWarning")
-    );
+    if ( (item.type !== "feat") || (item.system.type.value !== "feat") ) {
+      ui.notifications.error("SW5E.AdvancementAbilityScoreImprovementFeatWarning", {localize: true});
+      return null;
+    }
 
     this.feat = item;
     this.render();
@@ -206,6 +212,7 @@ export default class AbilityScoreImprovementFlow extends AdvancementFlow {
         if ( !this.advancement.canImprove(key) || this.advancement.configuration.fixed[key] ) return assigned;
         return assigned + (this.assignments[key] ?? 0);
       }, 0),
+      cap: this.advancement.configuration.cap ?? Infinity,
       total: (this.advancement.allowFeatAndASI && this.feat) ? 1 : this.advancement.configuration.points
     };
     points.available = points.total - points.assigned;

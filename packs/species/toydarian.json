@@ -92,8 +92,8 @@
       "name": "Toydarian",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!pVgUFVDyG2TN7T1s.uswPAoIbJ2GUTyBM",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!pVgUFVDyG2TN7T1s.uswPAoIbJ2GUTyBM"
     }
   ],
   "folder": null,
@@ -117,7 +117,7 @@
     "identifier": "toydarian",
     "advancement": [
       {
-        "_id": "1jKL6c13pxfK1qcu",
+        "_id": "M7Q91LQieGblNRQl",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -137,10 +137,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "1koq7PIzF3r0cWUH",
+        "_id": "s1uwaOJoH0V1xHJ8",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -148,6 +148,48 @@
             "int": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "1MFZzVge6s817v9o",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "13sXlOOL37Vc1kuu",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 2,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec",
+                "skills:ani",
+                "skills:ins",
+                "skills:prc",
+                "skills:sur",
+                "skills:dec",
+                "skills:itm",
+                "skills:prf",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -195,10 +237,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002136,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!pVgUFVDyG2TN7T1s"

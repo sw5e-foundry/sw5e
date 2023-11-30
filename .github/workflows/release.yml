@@ -32,6 +32,7 @@ jobs:
           version: ${{ steps.get_version.outputs.version }}
           manifest: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.json
           download: https://github.com/sw5e-foundry/sw5e/releases/download/${{ steps.get_version.outputs.version }}/system.zip
+          flags.hotReload: false
 
       - name: Cache NPM
         id: cache-npm

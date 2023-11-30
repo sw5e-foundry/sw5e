@@ -98,8 +98,8 @@
       "name": "Lurmen",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!hwVFMa2cmXcXBPLj.gzV1BSf7YoTCOLpN",
-      "sort": 0
+      "sort": 0,
+      "_key": "!items.effects!hwVFMa2cmXcXBPLj.gzV1BSf7YoTCOLpN"
     }
   ],
   "folder": null,
@@ -123,7 +123,7 @@
     "identifier": "lurmen",
     "advancement": [
       {
-        "_id": "1ag7Tzr9cqvS19tm",
+        "_id": "6Qu31s6kt1j1j3fT",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -144,10 +144,10 @@
         },
         "value": {},
         "level": 0,
-        "title": "Traits"
+        "title": "Features"
       },
       {
-        "_id": "riDxZC9qIVz1AawD",
+        "_id": "1xIvIJhxLkipez8Z",
         "type": "AbilityScoreImprovement",
         "configuration": {
           "fixed": {
@@ -155,6 +155,32 @@
             "wis": 1
           },
           "points": 0
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "DaVN5zDdEHM2KNap",
+        "type": "Size",
+        "configuration": {
+          "sizes": [
+            "sm"
+          ]
+        },
+        "value": {},
+        "level": 0
+      },
+      {
+        "_id": "4BrMr6ZaTozTIqAI",
+        "type": "Trait",
+        "configuration": {
+          "choices": [],
+          "grants": [
+            "skills:med",
+            "skills:nat",
+            "tool:bioanalysiskit"
+          ],
+          "mode": "default"
         },
         "value": {},
         "level": 0
@@ -202,10 +228,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.315",
     "createdTime": 1674494002121,
-    "modifiedTime": 1699635156316,
+    "modifiedTime": 1700783476331,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!hwVFMa2cmXcXBPLj"

@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changes
 
 - Updated core to match [dnd5e 2.4.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.0).
+- Resource Consumption dialog when casting a power now hides # of slots you have 1000 of.
+- Resource Consumption dialog when casting a power now displays a warning if you don't have enough power points.
+- Resource Consumption dialog when casting a power now has a toggle on wheter to spend power points.
+- Casting a power no longer spends 'slots' you have 1000 of.
 
 ### Fixed
 

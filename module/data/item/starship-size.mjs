@@ -284,7 +284,7 @@ export default class StarshipSizeData extends SystemDataModel.mixin(ItemDescript
    */
   static #migrateSize(source) {
     const sizes = CONFIG.SW5E.actorSizes;
-    if (Object.keys(sizes).includes(source.size)) return;
+    if (source.size in sizes) return;
     for (const [key, label] of Object.entries(sizes)) {
       if (label.toLowerCase().match(source.identifier)) {
         source.size = key;

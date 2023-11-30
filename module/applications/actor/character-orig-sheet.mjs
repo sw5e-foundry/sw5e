@@ -122,7 +122,7 @@ export default class ActorSheetOrig5eCharacter extends ActorSheetOrig5e {
         else if (item.type === "species") obj.species.push(item);
         else if (item.type === "archetype") obj.archetypes.push(item);
         else if (item.type === "background") obj.backgrounds.push(item);
-        else if (Object.keys(inventory).includes(item.type)) obj.items.push(item);
+        else if (item.type in inventory) obj.items.push(item);
         return obj;
       },
       {

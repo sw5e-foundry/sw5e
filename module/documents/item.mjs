@@ -1320,6 +1320,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     const config = {
       consumePowerSlot: null,
+      consumePowerPoints: null,
       slotLevel: null,
       consumeUsage: null,
       consumeResource: null,
@@ -1332,6 +1333,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     const scaling = this.usageScaling;
     if ( scaling === "slot" ) {
       config.consumePowerSlot = true;
+      config.consumePowerPoints = true;
       config.slotLevel = `power${level}`;
     } else if ( scaling === "resource" ) {
       config.resourceAmount = consume.amount || 1;
@@ -1395,30 +1397,34 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
 
     // Consume Power Slots and Power Points
-    if ( config.consumePowerSlot ) {
+    if ( config.consumePowerSlot || config.consumePowerPoints ) {
       const levelNumber = Number(config.slotLevel.substring(5));
       const level = this.actor?.system.powers[config.slotLevel];
-      const powers = Number(level?.value ?? 0);
-      const powerType = CONFIG.SW5E.powerSchoolsForce.includes(this.system.school) ? "force" : "tech";
-      const pAbbr = powerType.subtring(0, 1);
+      const powerType = (this.system.school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
+      const pAbbr = powerType.substring(0, 1);
+      const maxSlots = Number(level?.[`${pAbbr}max`] ?? 0);
+      const infSlots = maxSlots === 1000;
+      const slots = infSlots ? 1000 : Number(level?.[`${pAbbr}value`] ?? 0);
       const points = this.actor?.system?.attributes?.[powerType]?.points ?? 0;
       const discount = this.actor?.getFlag("sw5e", `${powerType}PowerDiscount`) ?? 0;
       const cost = Math.max(levelNumber + 1 - discount, 1);
-      if ( powers === 0 ) {
+      if ( config.consumePowerSlot && (slots === 0) ) {
         const label = game.i18n.localize(`SW5E.PowerLevel${this.system.level}`);
         ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoSlots", {name: this.name, level: label}));
         return false;
       }
-      if ( (points.value + points.temp) < cost) {
+      if ( config.consumePowerPoints && ((points.value + points.temp) < cost) ) {
         ui.notifications.warn(game.i18n.format("SW5E.PowerCastNoPoints", {name: this.name, type: powerType}));
         return false;
       }
-      actorUpdates[`system.powers.${config.slotLevel}.${pAbbr}value`] = Math.max(powers - 1, 0);
-      if (points.temp >= cost) {
-        actorUpdates[`system.attributes.${powerType}.points.temp`] = points.temp - cost;
-      } else {
-        actorUpdates[`system.attributes.${powerType}.points.value`] = points.value + points.temp - cost;
-        actorUpdates[`system.attributes.${powerType}.points.temp`] = 0;
+      if ( config.consumePowerSlot && !infSlots ) actorUpdates[`system.powers.${config.slotLevel}.${pAbbr}value`] = Math.max(slots - 1, 0);
+      if ( config.consumePowerPoints ) {
+        if (points.temp >= cost) {
+          actorUpdates[`system.attributes.${powerType}.points.temp`] = points.temp - cost;
+        } else {
+          actorUpdates[`system.attributes.${powerType}.points.value`] = points.value + points.temp - cost;
+          actorUpdates[`system.attributes.${powerType}.points.temp`] = 0;
+        }
       }
     }
 
@@ -2265,8 +2271,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       case "save":
         targets = this._getChatCardTargets(card);
         const saveOptions = {
-          isForcePower: Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school),
-          isTechPower: Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school),
+          isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
+          isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
           isPoison: item.system.consumableType === "poison",
           damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
             if (part[1]) set.add(part[1]);

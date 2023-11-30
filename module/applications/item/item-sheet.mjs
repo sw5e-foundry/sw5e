@@ -149,7 +149,7 @@ export default class ItemSheet5e extends ItemSheet {
       isAmmo: (isAmmo = item.system?.consumableType === "ammo"),
       ammoType: isAmmo ? item.system?.ammoType ?? "" : "",
       isRanged: (isRanged = ["simpleB", "martialB", "exoticB"].includes(wpnType)),
-      isMelee: (!isRanged && !isAmmo && Object.keys(CONFIG.SW5E.weaponStandardTypes).includes(wpnType)),
+      isMelee: (!isRanged && !isAmmo && (wpnType in CONFIG.SW5E.weaponStandardTypes)),
 
       // Starship Items
       isStarshipItem: item.isStarshipItem,

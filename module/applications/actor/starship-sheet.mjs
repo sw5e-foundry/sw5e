@@ -657,7 +657,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       (prev, cur) => (cur[0] === "total" ? prev : cur[1] > prev[1] ? cur : prev),
       ["passenger", 0]
     )[0];
-    if (!Object.keys(CONFIG.SW5E.ssCrewStationTypes).includes(preselected)) preselected = "crew";
+    if (!(preselected in CONFIG.SW5E.ssCrewStationTypes)) preselected = "crew";
 
     // Create and render the Dialog
     // Define a function to record starship deployment selection

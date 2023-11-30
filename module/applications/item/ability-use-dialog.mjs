@@ -39,8 +39,6 @@ export default class AbilityUseDialog extends Dialog {
       ...config,
       slotOptions,
       resourceOptions,
-      superiorityOptions,
-      consumeSuperiorityDie: item.type === "maneuver",
       scaling: item.usageScaling,
       note: this._getAbilityUseNote(item, config),
       title: game.i18n.format("SW5E.AbilityUseHint", {
@@ -91,10 +89,10 @@ export default class AbilityUseDialog extends Dialog {
   static _createPowerSlotOptions(actor, item) {
     const level = item.system.level;
     const school = item.system.school;
-    const powerType = CONFIG.SW5E.powerSchoolsForce.includes(school) ? "force" : "tech";
+    const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
     const points = actor.system.attributes[powerType]?.points?.value ?? 0;
 
-    const pabbr = powerType.subtring(0, 1);
+    const pabbr = powerType.substring(0, 1);
     const pmax = `${pabbr}max`;
     const pval = `${pabbr}value`;
     const povr = `${pabbr}override`;
@@ -106,14 +104,16 @@ export default class AbilityUseDialog extends Dialog {
       const label = CONFIG.SW5E.powerLevels[i];
       const l = actor.system.powers[`power${i}`] || { [pmax]: 0, [povr]: null };
       const max = parseInt(l[povr] || l[pmax] || 0);
-      const slots = Math.clamped(parseInt(l[pval] || 0), 0, max);
+      const infSlots = max === 1000;
+      const slots = infSlots ? 1000 : Math.clamped(parseInt(l[pval] || 0), 0, max);
       if ( max > 0 ) lmax = i;
       arr.push({
         key: `power${i}`,
         level: i,
-        label: i > 0 ? game.i18n.format("SW5E.PowerLevelSlot", { level: label, n: slots }) : label,
-        canCast: school === "innate" || max > 0,
-        hasSlots: school === "innate" || (slots > 0 && points > i)
+        label: (!infSlots && i > 0) ? game.i18n.format("SW5E.PowerLevelSlot", { level: label, n: `${slots}/${max}` }) : label,
+        canCast: max > 0,
+        hasSlots: slots > 0,
+        hasPoints: points > i
       });
       return arr;
     }, []).filter(sl => sl.level <= lmax);
@@ -245,8 +245,9 @@ export default class AbilityUseDialog extends Dialog {
   static _getAbilityUseWarnings(data) {
     const warnings = [];
     const item = data.item;
-    const { quantity, level, consume, consumableType } = item.system;
+    const { quantity, level, consume, consumableType, school } = item.system;
     const scale = item.usageScaling;
+    const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
 
     if ( (scale === "slot") && data.slotOptions.every(o => !o.hasSlots) ) {
       // Warn that the actor has no power slots of any level with which to use this item.
@@ -259,7 +260,24 @@ export default class AbilityUseDialog extends Dialog {
         level: CONFIG.SW5E.powerLevels[level],
         name: item.name
       }));
-    } else if ( (scale === "resource") && foundry.utils.isEmpty(data.resourceOptions) ) {
+    }
+
+    if ( (scale === "slot") && data.slotOptions.every(o => !o.hasPoints) ) {
+      // Warn that the actor does not have enough power points to use this item at any level.
+      warnings.push(game.i18n.format("SW5E.PowerCastNoPointsLeft", {
+        name: item.name,
+        type: powerType
+      }));
+    } else if ( (scale === "slot") && !data.slotOptions.some(o => (o.level === level) && o.hasPoints) ) {
+      // Warn that the actor does not have enough power points to use this item at this particular level.
+      warnings.push(game.i18n.format("SW5E.PowerCastNoPoints", {
+        level: CONFIG.SW5E.powerLevels[level],
+        name: item.name,
+        type: powerType
+      }));
+    }
+
+    if ( (scale === "resource") && foundry.utils.isEmpty(data.resourceOptions) ) {
       // Warn that the resource does not have enough left.
       warnings.push(game.i18n.format("SW5E.ConsumeWarningNoQuantity", {
         name: item.name,

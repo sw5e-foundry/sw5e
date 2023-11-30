@@ -1917,6 +1917,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   async rollToolCheck(toolId, options = {}) {
     // Prepare roll data.
     const tool = this.system.tools[toolId];
+    const toolItem = await Trait.getBaseItem(CONFIG.SW5E.toolIds[toolId]);
+    console.debug("toolItem", toolItem);
+    const toolType = toolItem.system.toolType;
+    console.debug("toolType", toolType);
     const ability = this.system.abilities[options.ability || (tool?.ability ?? "int")];
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const parts = ["@mod", "@abilityCheckBonus"];
@@ -1963,7 +1967,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const advantageFlag = this._getCharacterFlag([
       "advantage.all",
       "advantage.tool.all",
-      `advantage.tool.${tool.system.toolType}`,
+      `advantage.tool.${toolType}`,
       "advantage.ability.all",
       "advantage.ability.check.all",
       `advantage.ability.check.${data.defaultAbility}`
@@ -1974,7 +1978,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantageFlag = this._getCharacterFlag([
       "disadvantage.all",
       "disadvantage.tool.all",
-      `disadvantage.tool.${tool.system.toolType}`,
+      `disadvantage.tool.${toolType}`,
       "disadvantage.ability.all",
       "disadvantage.ability.check.all",
       `disadvantage.ability.check.${data.defaultAbility}`
@@ -3266,7 +3270,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         return null;
       }
     }
-    if (!Object.keys(slots).includes(slot)) {
+    if (!(slot in slots)) {
       ui.notifications.warn(
         game.i18n.format("SW5E.PowerDieInvalidSlot", {
           slot

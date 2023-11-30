@@ -1058,8 +1058,8 @@ export default class ActorSheetOrig5e extends ActorSheetMixin(ActorSheet) {
       header = list?.previousElementSibling;
     }
     const mode = header?.dataset ?? {};
-    const isForcePower = Object.keys(CONFIG.SW5E.powerSchoolsForce).includes(item.system.school);
-    const isTechPower = Object.keys(CONFIG.SW5E.powerSchoolsTech).includes(item.system.school);
+    const isForcePower = item.system.school in CONFIG.SW5E.powerSchoolsForce;
+    const isTechPower = item.system.school in CONFIG.SW5E.powerSchoolsTech;
 
     // Determine the actor's power slot progressions, if any.
     const progs = Object.values(this.document.classes).reduce((acc, cls) => {

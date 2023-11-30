@@ -4092,7 +4092,7 @@ SW5E.midiFlags = {
   }
 };
 for (const [id, flag] of Object.entries(SW5E.midiFlags)) {
-  if (!id.startsWith("advantage")) continue;
+  if (!(id.startsWith("advantage") || id.startsWith("grants.advantage"))) continue;
   SW5E.midiFlags[id.replace("advantage", "disadvantage")] = {
     name: flag.name.replace("Advantage", "Disadvantage"),
     section: flag.section,

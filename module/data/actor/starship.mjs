@@ -1,4 +1,4 @@
-import { FormulaField, MappingField, UUIDField } from "../fields.mjs";
+import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
 import DetailsFields from "./templates/details.mjs";

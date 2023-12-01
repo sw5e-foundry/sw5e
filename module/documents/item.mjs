@@ -1851,8 +1851,9 @@ export default class Item5e extends SystemDocumentMixin(Item) {
      * @param {Item5e} item          Item for which the roll was performed.
      * @param {D20Roll} roll         The resulting roll.
      * @param {object[]} ammoUpdate  Updates that will be applied to ammo Items as a result of this attack.
+     * @param {object[]} itemUpdate  Updates that will be applied to the weapon as a result of this attack.
      */
-    Hooks.callAll("sw5e.rollAttack", this, roll, ammoUpdate);
+    Hooks.callAll("sw5e.rollAttack", this, roll, ammoUpdate, itemUpdate);
 
     // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
     if (ammoUpdate.length) await this.actor?.updateEmbeddedDocuments("Item", ammoUpdate);

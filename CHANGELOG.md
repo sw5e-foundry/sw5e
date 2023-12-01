@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship migration should once again work.
 - Weapons should once again consume ammunition.
 - Weapon properties should now longer be weirdly spaced out vertically.
+- Character's bigraphy and description should no longer be invisible.
 
 ## [2.4.0.2.7.0] - 2033-11-30
 

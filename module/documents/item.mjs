@@ -1778,7 +1778,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     }
 
     // Flags
-    const elvenAccuracy = this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
+    const elvenAccuracy = !!this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
 
     const grantsAdvantageFlag = target?._getCharacterFlag([
       "grants.advantage.attack.all",

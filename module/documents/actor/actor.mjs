@@ -1829,7 +1829,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: abl });
+    const supremeAptitude = !!this._getCharacterFlag("supremeAptitude", { ability: abl });
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
@@ -2100,7 +2100,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: abilityId });
+    const supremeAptitude = !!this._getCharacterFlag("supremeAptitude", { ability: abilityId });
 
     const advantageFlag = this._getCharacterFlag([
       "advantage.all",
@@ -2216,7 +2216,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeDurability = this._getCharacterFlag("supremeDurability", { ability: abilityId });
+    const supremeDurability = !!this._getCharacterFlag("supremeDurability", { ability: abilityId });
     // TODO: Check for inflicting poisoned condition for twoLivered
     const twoLivered = (options.isPoison) && this._getCharacterFlag("twoLivered");
     // TODO: Check for blinded, deafened, or incapacitated for dangerSense

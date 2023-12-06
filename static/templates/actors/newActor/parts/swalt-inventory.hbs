@@ -107,7 +107,7 @@
                                     {{#if ctx.hasUses}}
                                         <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
                                             <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
-                                                   data-dtype="Number" data-name="system.quantity" {{disabled ctx.reloadDisabled}}/>
+                                                   data-dtype="Number" data-name="system.ammo.quantity" {{disabled ctx.reloadDisabled}}/>
                                             <span class="sep">/</span>
                                             <span>{{ item.system.ammo.max }}</span>
                                         </div>
@@ -115,23 +115,23 @@
                                 </div>
                             {{/if}}
                         </div>
-            {{#if section.columns}}
-                {{#each section.columns}}
-                    <div class="item-detail {{css}}">
-                        {{#if editable}}
-                            <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
-                                   value="{{#if (getProperty item property)}}{{getProperty item property}}
-                                   {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
-                        {{else}}
-                            {{#if (getProperty item property)}}
-                                {{getProperty item property}}
-                            {{else}}
-                                {{getProperty ctx property}}
-                            {{/if}}
+                        {{#if section.columns}}
+                            {{#each section.columns}}
+                                <div class="item-detail {{css}}">
+                                    {{#if editable}}
+                                        <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
+                                               value="{{#if (getProperty item property)}}{{getProperty item property}}
+                                               {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
+                                    {{else}}
+                                        {{#if (getProperty item property)}}
+                                            {{getProperty item property}}
+                                        {{else}}
+                                            {{getProperty ctx property}}
+                                        {{/if}}
+                                    {{/if}}
+                                </div>
+                            {{/each}}
                         {{/if}}
-                    </div>
-                {{/each}}
-            {{/if}}
                         {{#if ctx.totalWeight}}
                             <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
                         {{else}}
@@ -153,7 +153,7 @@
                             {{else if ctx.hasReload}}
                                 <div class="form-group uses-per" data-tooltip="SW5E.ItemReload" data-attr="ammo">
                                     <input type="text" value="{{item.system.ammo.value}}" placeholder="0"
-                                           data-dtype="Number" data-name="system.quantity" {{disabled ctx.reloadDisabled}}/>
+                                           data-dtype="Number" data-name="system.ammo.value" {{disabled ctx.reloadDisabled}}/>
                                     <span class="sep">/</span>
                                     <span>{{ item.system.ammo.max }}</span>
                                 </div>

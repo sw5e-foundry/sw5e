@@ -134,7 +134,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     if (largestPrimary) {
       let primary = speeds.shift();
       return {
-        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        primary: `${primary ? primary[1] : "0"} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
         special: speeds.map(s => s[1]).join(", ")
       };
     }
@@ -142,8 +142,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Case 2: Space as primary
     else {
       return {
-        primary: `${movement.space || 0} ${movement.units}`,
-        special: speeds.length ? `${speeds.map(s => s[1]).join(", ")} ${movement.units}` : ""
+        primary: `${movement.space || 0} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
+        special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
       };
     }
   }

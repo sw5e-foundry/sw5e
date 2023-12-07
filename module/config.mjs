@@ -2381,6 +2381,19 @@ SW5E.weaponClasses = {
 };
 preLocalize("weaponClasses");
 
+/**
+ * The set of firing arcs for starship weapons.
+ * @enum {string}
+ */
+SW5E.weaponFiringArcs = {
+  forward: "SW5E.FiringArcForward",
+  left: "SW5E.FiringArcLeft",
+  rear: "SW5E.FiringArcRear",
+  right: "SW5E.FiringArcRight",
+  turret: "SW5E.FiringArcTurret"
+};
+preLocalize("weaponFiringArcs", { sort: false });
+
 /* -------------------------------------------- */
 
 /**

@@ -627,6 +627,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       // Item Weight
       if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
 
+      // Weapon Firing Arc
+      if ("firingArc" in item.system) ctx.firingArc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc];
+
       // Item properties
       ctx.propertiesList = item.propertiesList;
       ctx.isStarshipItem = item.isStarshipItem;

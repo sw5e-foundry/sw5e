@@ -58,6 +58,8 @@
         <div>&nbsp;</div>
         {{#if isCharacter}}
             <div class="item-detail item-weight">{{localize "SW5E.Weight"}}</div>
+        {{else if showFiringArc}}
+            <div class="item-detail item-firingArc">{{localize "SW5E.FiringArcAbbr"}}</div>
         {{else}}
             <div></div>
         {{/if}}
@@ -115,6 +117,7 @@
                                 </div>
                             {{/if}}
                         </div>
+
                         {{#if section.columns}}
                             {{#each section.columns}}
                                 <div class="item-detail {{css}}">
@@ -132,10 +135,19 @@
                                 </div>
                             {{/each}}
                         {{/if}}
-                        {{#if ctx.totalWeight}}
-                            <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
+
+                        {{#if ../../showFiringArc}}
+                            {{#if ctx.firingArc)}}
+                                <div class="item-detail item-firingArc">{{ ctx.firingArc }} </div>
+                            {{else}}
+                                <div></div>
+                            {{/if}}
                         {{else}}
-                            <div></div>
+                            {{#if ctx.totalWeight}}
+                                <div class="item-detail item-weight">{{ ctx.totalWeight }} {{ @root.weightUnit }}</div>
+                            {{else}}
+                                <div></div>
+                            {{/if}}
                         {{/if}}
 
                         <div class="item-detail item-quantity">

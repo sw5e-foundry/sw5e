@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Starship weapon firing arcs.
+
 ### Fixed
 
 - Starship migration should once again work.

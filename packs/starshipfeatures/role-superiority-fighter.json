@@ -1,7 +1,7 @@
 {
-  "name": "Role: Colonizer",
+  "name": "Role: Superiority Fighter",
   "type": "feat",
-  "img": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+  "img": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
   "effects": [
     {
       "_id": "qQTMHDrpIch61Q7C",
@@ -12,13 +12,7 @@
       },
       "changes": [
         {
-          "key": "system.abilities.con.value",
-          "mode": 2,
-          "value": "1",
-          "priority": 1
-        },
-        {
-          "key": "system.abilities.int.value",
+          "key": "system.abilities.dex.value",
           "mode": 2,
           "value": "1",
           "priority": 1
@@ -34,14 +28,14 @@
         "startRound": null,
         "startTurn": null
       },
-      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Huge.webp",
+      "icon": "systems/sw5e/packs/Icons/Starship%20Features/Small.webp",
       "tint": null,
       "transfer": true,
       "origin": null,
-      "name": "Role: Colonizer",
+      "name": "Role: Superiority Fighter",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!yHeIxWMECzXxNnLg.qQTMHDrpIch61Q7C",
+      "_key": "!items.effects!vyc2GIsA50ilVSyg.qQTMHDrpIch61Q7C",
       "sort": 0
     }
   ],
@@ -49,11 +43,11 @@
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Command Ship</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Constitution </span>and <span style=\"font-family:'Open Sans', sans-serif\">Intelligence </span>attributes.</p>",
+      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Superiority Fighter</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Dexterity </span>attribute.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "requirements": "Huge Starship",
+    "requirements": "Small Starship",
     "source": {
       "custom": "SotG"
     },
@@ -122,7 +116,7 @@
     "attributes": {
       "speed": {
         "space": 400,
-        "turn": 600
+        "turn": 150
       }
     }
   },
@@ -133,11 +127,11 @@
     "systemId": "sw5e",
     "systemVersion": "2.4.0.2.7.0",
     "coreVersion": "11.313",
-    "createdTime": 1674494017954,
-    "modifiedTime": 1702045621334,
+    "createdTime": 1674494017907,
+    "modifiedTime": 1701987108176,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_id": "yHeIxWMECzXxNnLg",
+  "_id": "vyc2GIsA50ilVSyg",
   "sort": 0,
-  "_key": "!items!yHeIxWMECzXxNnLg"
+  "_key": "!items!vyc2GIsA50ilVSyg"
 }

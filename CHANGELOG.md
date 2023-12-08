@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Starship weapon firing arcs.
+- When hovering over a weapon with a firing arc, a template will be rendered in the canvas, representing that fire arc.
 
 ### Fixed
 

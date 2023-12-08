@@ -2383,16 +2383,43 @@ preLocalize("weaponClasses");
 
 /**
  * The set of firing arcs for starship weapons.
- * @enum {string}
+ * @enum {{
+ *    label: string,
+ *    direction: [number],
+ *    angle: [number],
+ * }}
  */
 SW5E.weaponFiringArcs = {
-  forward: "SW5E.FiringArcForward",
-  left: "SW5E.FiringArcLeft",
-  rear: "SW5E.FiringArcRear",
-  right: "SW5E.FiringArcRight",
-  turret: "SW5E.FiringArcTurret"
+  forward: {
+    label: "SW5E.FiringArcForward",
+    direction: 0,
+    shape: "cone"
+  },
+  rear: {
+    label: "SW5E.FiringArcRear",
+    direction: 180,
+    shape: "cone"
+  },
+  left: {
+    label: "SW5E.FiringArcLeft",
+    direction: 270,
+    shape: "cone"
+  },
+  right: {
+    label: "SW5E.FiringArcRight",
+    direction: 90,
+    shape: "cone"
+  },
+  turret: {
+    label: "SW5E.FiringArcTurret",
+    direction: 0,
+    shape: "circle"
+  },
+  broadside: {
+    label: "SW5E.FiringArcBroadside"
+  }
 };
-preLocalize("weaponFiringArcs", { sort: false });
+preLocalize("weaponFiringArcs", { keys: ["label"], sort: false });
 
 /* -------------------------------------------- */
 

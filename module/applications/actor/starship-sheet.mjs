@@ -295,6 +295,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".deploy-control").click(this._onDeployControl.bind(this));
     // Item State Toggling
     html.find(".item-toggle").click(this._onToggleItem.bind(this));
+    // Display firing arc
+    html.find(".item.group-grid-inventory").mouseover(this._onMouseOverItem.bind(this));
+    html.find(".item.group-grid-inventory").mouseout(this._onMouseOutItem.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -395,6 +398,53 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       }),
       yes: callback
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mousing over an Owned Item within the Actor.
+   * @param {Event} event             The triggering mouseover event.
+   * @returns {void}
+   * @private
+   */
+  _onMouseOverItem(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+
+    if (item?.system?.firingArc && item.system.range?.value && !item.firingArcTemplate) {
+      try {
+        item.firingArcTemplate = sw5e.canvas.FiringArcTemplate.fromItem(item);
+        item.firingArcTemplate?.drawPreview();
+      } catch(err) {
+        Hooks.onError("ActorSheet5eStarship._onMouseOverItem", err, {
+          msg: game.i18n.localize("SW5E.PlaceTemplateError"),
+          log: "error",
+          notify: "error"
+        });
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mousing out of an Owned Item within the Actor.
+   * @param {Event} event             The triggering mouseover event.
+   * @returns {void}
+   * @private
+   */
+  _onMouseOutItem(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+
+    if (item?.firingArcTemplate) {
+      item.firingArcTemplate._onCancelPlacement(event);
+      item.firingArcTemplate = undefined;
+    }
+
   }
 
   /* -------------------------------------------- */

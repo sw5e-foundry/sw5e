@@ -104,9 +104,15 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             // Add properties into the correct format for filtering
             if (itemData?.system?.itemTypes?.value === undefined) itemData.system.itemTypes = { value: itemData.type };
             if (itemData?.system?.rarity?.value === undefined) itemData.system.rarity = { value: itemData.system.rarity };
-            if (itemData?.system?.source?.value === undefined) itemData.system.source = { value: itemData.system.source };
-            if (itemData?.system?.category?.value === undefined) itemData.system.category = { value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null };
-            if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = { value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null };
+            if (itemData?.system?.source?.value === undefined) itemData.system.source = {
+              value: itemData.system.source.label ?? itemData.system.source.custom ?? itemData.system.source
+            };
+            if (itemData?.system?.category?.value === undefined) itemData.system.category = {
+              value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null
+            };
+            if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = {
+              value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null
+            };
             itemData.filters = {};
 
             // Prepare source

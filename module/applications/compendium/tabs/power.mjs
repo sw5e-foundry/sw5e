@@ -59,7 +59,7 @@ export class CompendiumBrowserPowerTab extends CompendiumBrowserTab {
             }
 
             // Prepare source
-            const source = powerData.system.source;
+            const source = powerData.system.source.label ?? powerData.system.source.custom ?? powerData.system.source;
             const sourceSlug = sluggify(source);
             if (source) sources.add(source);
 

@@ -55,7 +55,7 @@ export class CompendiumBrowserManeuverTab extends CompendiumBrowserTab {
             }
 
             // Prepare source
-            const source = maneuverData.system.source;
+            const source = maneuverData.system.source.label ?? maneuverData.system.source.custom ?? maneuverData.system.source;
             const sourceSlug = sluggify(source);
             if (source) sources.add(source);
 

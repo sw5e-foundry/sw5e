@@ -76,7 +76,7 @@ export class CompendiumBrowserClassificationTab extends CompendiumBrowserTab {
             if (_class) classes.add(_class);
 
             // Prepare source
-            const source = classificationData.system.source;
+            const source = classificationData.system.source.label ?? classificationData.system.source.custom ?? classificationData.system.source;
             const sourceSlug = sluggify(source ?? "");
             if (source) sources.add(source);
 

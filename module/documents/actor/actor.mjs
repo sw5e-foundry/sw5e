@@ -1420,7 +1420,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Prepare Mods
-    attr.mods.cap.value = this.itemTypes.starshipmod.filter(i => i.system.equipped && !i.system.free.slot).length;
+    attr.mods.cap.value = this.itemTypes.starshipmod.filter(i => i.system.equipped && !i.system.free.slot).reduce((acc, i) => acc + i.system.quantity, 0);
 
     // Prepare Suites
     attr.mods.suite.max += (sizeData.modMaxSuitesMult ?? 1) * abl.con.mod;

@@ -20,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Modifying a weapon's reload value in the character sheet should once again work.
 - Supreme Accuracy/Aptitude/Durability should once again work.
 - Starship speed units should be displayed correctly.
+- NPC Powerbooks should now create items properly.
+- NPC Powerbooks should now only the display the 'no powerlevel' message if the npc really has no powerlevel.
 
 ## [2.4.0.2.7.0] - 2033-11-30
 

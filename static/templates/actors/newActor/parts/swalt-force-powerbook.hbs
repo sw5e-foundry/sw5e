@@ -97,7 +97,7 @@
 
     <ol class="group-list">
         {{#each forcePowerbook as |section|}}
-            <li class="items-header powerbook-header flexrow" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+            <li class="items-header powerbook-header" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
                 <div class="group-list-title group-grid-powers">
                     <div class="item-name">
                         <h3>{{section.label}}</h3>
@@ -156,9 +156,9 @@
                         <p class="notes">{{localize "SW5E.FilterNoPowers"}}</p>
                     </li>
                 {{else}}
-                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="{{lvl}}">
+                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="0" data-school="uni">
                         <div class="item-controls">
-                            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate" data-school="uni">
+                            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
                                 <i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}
                             </a>
                         </div>

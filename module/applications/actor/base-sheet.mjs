@@ -692,6 +692,12 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const owner = this.actor.isOwner;
     const levels = context.actor.system.powers;
     const powerbook = {};
+    const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
+
+    const abbr = powerType[0];
+    const aMax = `${abbr}max`;
+    const aVal = `${abbr}val`;
+    const aOverride = `${abbr}override`;
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10 };
@@ -699,7 +705,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
-      const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.override`);
+      const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.${aOverride}`);
       powerbook[i] = {
         order: i,
         label: label,
@@ -722,11 +728,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     };
 
     // Determine the maximum power level which has a slot
-    const maxLevel = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1).reduce((max, i) => {
-      const level = levels[`power${i}`];
-      if ( level && (level.max || level.override ) && ( i > max ) ) max = i;
-      return max;
-    }, 0);
+    const maxLevel = context.actor.system.attributes[powerType].maxPowerLevel;
 
     // Level-based powercasters have cantrips and leveled slots
     if (maxLevel > 0) {
@@ -751,9 +753,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
           const config = CONFIG.SW5E.powerPreparationModes[mode];
           registerSection(mode, s, config, {
             prepMode: mode,
-            value: l.value,
-            max: l.max,
-            override: l.override
+            value: l[aVal],
+            max: l[aMax],
+            override: l[aOverride]
           });
         }
       }
@@ -1346,7 +1348,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     // Case 2: Drop a leveled power in a section without a mode.
     else if ( (mode.level === 0) || !mode["preparation.mode"] ) {
       if ( this.document.type === "npc" ) {
-        itemData.system.preparation.mode = this.document.system.details.powerLevel ? "prepared" : "innate";
+        const powerCaster = this.document.system.attributes[isForcePower ? "force" : isTechPower ? "tech" : "nope"]?.level;
+        itemData.system.preparation.mode = powerCaster ? "prepared" : "innate";
       } else {
         itemData.system.preparation.mode = progs.leveled ? "prepared" : "innate";
       }

@@ -389,7 +389,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const isMod = item.type === "starshipmod";
     const isWpn = item.type === "weapon";
 
-    const baseCost = isMod ? itemData.basecost?.value ?? 0 : itemData.price?.value ?? 0;
+    const baseCost = isMod ? itemData.baseCost?.value ?? 0 : itemData.price?.value ?? 0;
     const sizeMult = isMod ? shipData.modCostMult ?? 1 : isWpn ? 1 : shipData.equipCostMult ?? 1;
     const gradeMult = isMod ? Number(itemData.grade.value) || 1 : 1;
     const fullCost = baseCost * sizeMult * gradeMult;

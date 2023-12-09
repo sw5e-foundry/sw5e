@@ -309,4 +309,14 @@ export default class EquipmentData extends SystemDataModel.mixin(
     const isProficient = (itemProf === true) || actorProfs.has(itemProf) || actorProfs.has(this.baseItem);
     return Number(isProficient);
   }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return (this.armor.type in CONFIG.SW5E.ssEquipmentTypes) || this.armor.type === "starship"
+  }
 }

@@ -194,6 +194,16 @@ export default class WeaponData extends SystemDataModel.mixin(
   /* -------------------------------------------- */
 
   /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return this.isStarshipWeapon;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * The proficiency multiplier for this item.
    * @returns {number}
    */

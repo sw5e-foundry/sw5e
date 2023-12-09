@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Starship weapon firing arcs.
 - When hovering over a weapon with a firing arc, a template will be rendered in the canvas, representing that fire arc.
+- Starship Modification DataModel.
 
 ### Changes
 
@@ -28,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - NPC Powerbooks should now only the display the 'no powerlevel' message if the npc really has no powerlevel.
 - Quantity of starship modifiations will be used for the modifications counter.
 - Deployments and their features should now work properly on the NPC sheet.
+- Uses for starship modifications should now appear in the inventory.
 
 ## [2.4.0.2.7.0] - 2033-11-30
 

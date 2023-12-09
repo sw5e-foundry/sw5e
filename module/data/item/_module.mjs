@@ -11,6 +11,7 @@ import ManeuverData from "./maneuver.mjs";
 import ModificationData from "./modification.mjs";
 import PowerData from "./power.mjs";
 import SpeciesData from "./species.mjs";
+import StarshipModData from "./starshipmod.mjs";
 import StarshipSizeData from "./starship-size.mjs";
 import ToolData from "./tool.mjs";
 import WeaponData from "./weapon.mjs";
@@ -29,6 +30,7 @@ export {
   ModificationData,
   PowerData,
   SpeciesData,
+  StarshipModData,
   StarshipSizeData,
   ToolData,
   WeaponData
@@ -55,6 +57,7 @@ export const config = {
   power: PowerData,
   tool: ToolData,
   species: SpeciesData,
+  starshipmod: StarshipModData,
   starshipsize: StarshipSizeData,
   weapon: WeaponData
 };

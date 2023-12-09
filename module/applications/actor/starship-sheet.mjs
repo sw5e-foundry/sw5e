@@ -190,18 +190,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (!actor) continue;
       const features = actor.itemTypes.feat.filter(item => item.system.type.value === "deployment");
       for (const feature of features) {
-        const { uses, recharge, target } = feature.system;
         const ctx = context.itemContext[feature.id] ??= {};
+        this._prepareItemContext(feature, ctx);
+
         ctx.active = ssDeploy.active.value === uuid;
-        ctx.isExpanded = this._expanded.has(feature.id);
-        ctx.hasUses = uses && uses.max > 0;
-        ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
-        ctx.id = feature.id;
         ctx.derived = uuid;
         ctx.name = feature.name;
         if (!this._filters.ssactions.has("activeDeploy")) ctx.name += ` (${actor.name})`;
+
         if (feature.system.type.subtype === "venture") categories.ssactions.venture.items.push(feature);
         else categories.ssactions.deployment.items.push(feature);
       }

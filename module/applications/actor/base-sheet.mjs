@@ -595,45 +595,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     for (const item of context.items) {
       const { quantity, uses, recharge, equipped } = item.system;
 
-      // Item details
-      const ctx = (context.itemContext[item.id] ??= {});
-      ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
-      ctx.id = item.id;
-      ctx.attunement = {
-        [CONFIG.SW5E.attunementTypes.REQUIRED]: {
-          icon: "fa-sun",
-          cls: "not-attuned",
-          title: "SW5E.AttunementRequired"
-        },
-        [CONFIG.SW5E.attunementTypes.ATTUNED]: {
-          icon: "fa-sun",
-          cls: "attuned",
-          title: "SW5E.AttunementAttuned"
-        }
-      }[item.system.attunement];
-
-      // Prepare data needed to display expanded sections
-      ctx.isExpanded = this._expanded.has(item.id);
-
-      // Item usage
-      ctx.hasUses = item.hasLimitedUses;
-      ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-      ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
-      ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
-
-      // Item toggle state
-      this._prepareItemToggleState(item, ctx);
-
-      // Item Weight
-      if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
-
-      // Weapon Firing Arc
-      if ("firingArc" in item.system) ctx.firingArc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc]?.label;
-
-      // Item properties
-      ctx.propertiesList = item.propertiesList;
-      ctx.isStarshipItem = item.isStarshipItem;
-      item.sheet._getWeaponReloadProperties(ctx);
+      // Item context
+      const ctx = context.itemContext[item.id] ??= {};
+      this._prepareItemContext(item, ctx);
 
       // Categorize the item
       if (config.splitEquipped && equipped && item.type in categories.equipped) {
@@ -676,6 +640,51 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       categories.unsorted.items.push(item);
       console.warn(`Item ${item.name} of type ${item.type} is unsorted.`);
     }
+  }
+
+  _prepareItemContext(item, ctx={}) {
+    const { quantity, uses, recharge, equipped } = item.system;
+
+    // Item details
+    ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
+    ctx.id = item.id;
+    ctx.attunement = {
+      [CONFIG.SW5E.attunementTypes.REQUIRED]: {
+        icon: "fa-sun",
+        cls: "not-attuned",
+        title: "SW5E.AttunementRequired"
+      },
+      [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+        icon: "fa-sun",
+        cls: "attuned",
+        title: "SW5E.AttunementAttuned"
+      }
+    }[item.system.attunement];
+
+    // Prepare data needed to display expanded sections
+    ctx.isExpanded = this._expanded.has(item.id);
+
+    // Item usage
+    ctx.hasUses = item.hasLimitedUses;
+    ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+    ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
+    ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
+
+    // Item toggle state
+    this._prepareItemToggleState(item, ctx);
+
+    // Item Weight
+    if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
+
+    // Weapon Firing Arc
+    if ("firingArc" in item.system) ctx.firingArc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc]?.label;
+
+    // Item properties
+    ctx.propertiesList = item.propertiesList;
+    ctx.isStarshipItem = item.isStarshipItem;
+    item.sheet._getWeaponReloadProperties(ctx);
+
+    return ctx;
   }
 
   /* -------------------------------------------- */

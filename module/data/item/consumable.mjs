@@ -86,6 +86,8 @@ export default class ConsumableData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
 
   /**
    * The proficiency multiplier for this item.
@@ -94,5 +96,15 @@ export default class ConsumableData extends SystemDataModel.mixin(
   get proficiencyMultiplier() {
     const isProficient = this.parent?.actor?.getFlag("sw5e", "tavernBrawlerFeat");
     return isProficient ? 1 : 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return this.consumableType === "ammo" && (this.ammoType in CONFIG.SW5E.ammoStarshipTypes);
   }
 }

@@ -288,16 +288,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @type {boolean}
    */
   get isStarshipItem() {
-    return (
-      false
-      || (this.type === "equipment" && this.system.armor.type in CONFIG.SW5E.ssEquipmentTypes)
-      || (this.type === "equipment" && this.system.armor.type === "starship")
-      || (this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes)
-      || (this.type === "consumable"
-        && this.system.consumableType === "ammo"
-        && this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes)
-      || this.type === "starshipmod"
-    );
+    return this.system.isStarshipItem ?? false;
   }
 
   /* -------------------------------------------- */

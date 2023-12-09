@@ -44,7 +44,7 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       };
       const price = {
         default: "system.price.value",
-        starshipmod: "system.basecost.value"
+        starshipmod: "system.baseCost.value"
       };
       const properties = {
         weapon: "system.properties",

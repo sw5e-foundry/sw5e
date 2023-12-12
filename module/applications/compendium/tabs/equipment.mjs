@@ -60,9 +60,11 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
       };
       const subcategory = {
         consumable: "system.ammoType",
-        weapon: "system.weaponClass"
+        starshipmod: "system.grade.value",
+        weapon: "system.weaponClass",
       };
       const optional = {
+        starshipmod: ["system.baseCost.value", "system.grade.value"],
         weapon: ["system.weaponClass"]
       };
       const indexFields = [...new Set([
@@ -113,6 +115,11 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
             if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = {
               value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null
             };
+            if (itemData.type === "starshipmod" && [null,undefined].includes(itemData.system.baseCost?.value)) {
+              const baseCost = CONFIG.SW5E.ssModSystemsBaseCost[itemData.system.system.value.toLowerCase()];
+              const gradeMult = Number.isNumeric(itemData.system.grade?.value) ? itemData.system.grade?.value || 1 : 1;
+              itemData.system.baseCost = { value: baseCost * gradeMult };
+            }
             itemData.filters = {};
 
             // Prepare source

@@ -1,15 +1,13 @@
 {
-  "_id": "Pd0sEF20lQlgBqB8",
   "name": "Inertial Dampeners",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This system lessens the transfer of external impacts into the ship's interior.  When you are forced to make a Concentration check due to damage, impacts, or explosions exterior to the ship, you have advantage.</p><p>Additionally, when you take the Evade action, skill checks and attack rolls made by your ship or anyone on it do not suffer from disadvantage from the evasion.  Once this feature has been used, it can't be used again until the ship recharges.  </p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This system lessens the transfer of external impacts into the ship's interior. When you are forced to make a Concentration check due to damage, impacts, or explosions exterior to the ship, you have advantage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, when you take the Evade action, skill checks and attack rolls made by your ship or anyone on it do not suffer from disadvantage from the evasion. </span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Once this feature has been used, it can't be used again until the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -29,7 +27,7 @@
     "identified": false,
     "isCargo": false,
     "activation": {
-      "type": "",
+      "type": "special",
       "cost": null,
       "condition": ""
     },
@@ -42,8 +40,8 @@
     "target": {
       "value": null,
       "width": null,
-      "units": "",
-      "type": ""
+      "units": null,
+      "type": "self"
     },
     "range": {
       "value": null,
@@ -51,10 +49,11 @@
       "units": ""
     },
     "uses": {
-      "value": null,
-      "max": "",
-      "per": null,
-      "recovery": ""
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Universal"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "4000"
+      "value": 4000
     },
     "prerequisites": {
       "value": ""
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018673,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "No6B3R37GbU4cj0s",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018673,
-    "modifiedTime": 1699591744180,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!Pd0sEF20lQlgBqB8"
+  "_key": "!items!No6B3R37GbU4cj0s"
 }

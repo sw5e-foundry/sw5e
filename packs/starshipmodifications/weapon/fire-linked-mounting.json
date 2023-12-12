@@ -4,12 +4,10 @@
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Weapon.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
-  "_id": "pKn0hQsmQqtZOOW8",
   "system": {
     "description": {
-      "value": "<p>The Fire-Linked Mounting is a modification to two Fixed Hardpoints that allow primary weapons to synchronize their fire when the same type of primary weapon with no constitution requirement is installed. This modification installs a dedicated gunner station for the hardpoints.</p>\n<p> </p>\n<p>When you Fire one of the primary weapons from this dedicated gunner station, you can use a bonus action to attack with the other primary weapon in the same firing arc if it has not yet been Fired this round. You don't add the ship's ability modifier to the damage roll of the bonus attack, unless that modifier is negative. A weapon that has been activated using your bonus action in this way cannot be Fired this round.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">The Fire-Linked Mounting is a modification to a Hardpoint that allows a primary weapon with no constitution requirement to synchronize it's fire with another identical primary weapon having no constitution requirement.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">When you Fire a primary weapon equipped to this hardpoint, you can use an object interaction to link an eligible weapon and a bonus action to Fire the linked weapon in the same firing arc if it has not yet been Fired this round. You don't add the ship's ability modifier to the damage roll of the bonus attack, unless that modifier is negative. A weapon that has been Fired using your bonus action in this way cannot be Fired again this round.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -87,13 +85,13 @@
       "value": "Weapon"
     },
     "grade": {
-      "value": "0"
+      "value": 0
     },
     "basecost": {
-      "value": "3000"
+      "value": 3000
     },
     "prerequisites": {
-      "value": "Ship size Medium or smaller, Two Fixed Hardpoints"
+      "value": "Ship size Medium or smaller, A Hardpoint"
     },
     "free": {
       "slot": false,
@@ -143,16 +141,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018744,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "pa1DzHAExLc3Wp4j",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018744,
-    "modifiedTime": 1699591744195,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!pKn0hQsmQqtZOOW8"
+  "_key": "!items!pa1DzHAExLc3Wp4j"
 }

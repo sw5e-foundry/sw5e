@@ -1,15 +1,13 @@
 {
-  "_id": "BfYGRVsdNeusS884",
   "name": "Repulsor Ray",
   "type": "starshipmod",
-  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>As an action, a crew member can unleash a beam of focused energy from a tractor beam of the ship in a 50-foot-wide, 600-foot-long line. Each ship in the line must make a Constitution saving throw (DC = 8 + ship tier + the ship's Strength modifier). On a failed save, a ship takes 8d6 kinetic damage and is shocked. On a successful save, it takes half as much damage and isn't shocked.</p>\n<p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action, a crewmember can unleash a beam of focused energy from a tractor beam of the ship in a 50-foot-wide, 600-foot-long line. Each ship in the line must make a Constitution saving throw (DC = 8 + ship tier + the ship's Strength modifier). On a failed save, a ship takes 8d6 kinetic damage and is shocked until the beginning of their next turn. On a successful save, it takes half as much damage and isn't shocked.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -92,10 +91,10 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": "5"
+      "value": 5
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": "Pressor Lensing"
@@ -148,16 +147,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018633,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "qEFEMIAeRISiIsum",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018633,
-    "modifiedTime": 1699591744171,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!BfYGRVsdNeusS884"
+  "_key": "!items!qEFEMIAeRISiIsum"
 }

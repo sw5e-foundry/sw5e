@@ -1,15 +1,13 @@
 {
-  "_id": "Hir2WB20wyrA4Qbe",
   "name": "Blinding Rounds",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Weapon.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>When you have advantage on the attack roll and hit, and the lower of the two d20 rolls would also hit, or when the target ship has disadvantage on the saving throw and fails, and the higher of the two rolls would also fail, you can force the target to make a Constitution saving throw (DC = 8 + your proficiency bonus + the ship's Strength modifier). On a failed save, the ship is blinded until the start of your next turn.</p><p>If the damaged ship is larger than your ship, it has advantage on the saving throw. If the damaged ship is smaller than your ship, it instead has disadvantage.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When you have advantage on the attack roll and hit, and the lower of the two d20 rolls would also hit, or when the target ship has disadvantage on the saving throw and fails, and the higher of the two rolls would also fail, you can force the target to make a Constitution saving throw (DC = 8 + your proficiency bonus + the ship's Strength modifier). On a failed save, the ship is blinded until the start of your next turn.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">If the damaged ship is larger than your ship, it has advantage on the saving throw. If the damaged ship is smaller than your ship, it instead has disadvantage.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -87,13 +85,13 @@
       "value": "Weapon"
     },
     "grade": {
-      "value": null
+      "value": 0
     },
     "basecost": {
       "value": 3000
     },
     "prerequisites": {
-      "value": "Weapon that deals thermite damage"
+      "value": "Weapon that deals fire damage"
     },
     "free": {
       "slot": false,
@@ -143,16 +141,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018647,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "HMDNyFKWCIOPlggM",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018647,
-    "modifiedTime": 1699591744174,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!Hir2WB20wyrA4Qbe"
+  "_key": "!items!HMDNyFKWCIOPlggM"
 }

@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changes
 
 - Starship features compendium now has all the starship roles.
+- Starship modifications compendium has been updated to match the website.
 
 ### Fixed
 

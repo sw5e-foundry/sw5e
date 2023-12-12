@@ -1,5 +1,4 @@
 {
-  "_id": "XUX3PVyQPsEQQZPp",
   "name": "Interdiction Drive",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
@@ -42,16 +41,15 @@
       "name": "Interdiction Drive",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!XUX3PVyQPsEQQZPp.zmu5o2aLxPJDGPGb",
+      "_key": "!items.effects!aF9Z8g2Y344DnYek.zmu5o2aLxPJDGPGb",
       "sort": 0
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>You install an interdiction drive on your ship, which can be activated to impede ships around it. As an action, a crew member can engage the interdiction drive. Each ship within 100 feet of your ship must make a Strength saving throw (DC = 8 + the crew members's proficiency bonus + the ship's Strength modifier). On a failed save, a ship's flying speed is reduced by 100 feet and its turning speed is increased by 50 feet until the end of your ship's next turn.</p><p>If a ship is two or more sizes larger than your ship, it has advantage on the saving throw. If it is two or more sizes smaller, it instead has disadvantage. </p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">You install an interdiction drive on your ship, which can be activated to impede ships around it.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">As an action, a crewmember can engage the interdiction drive. Each ship within 300 feet of your ship must make a Strength saving throw (DC = 8 + the crewmembers's proficiency bonus + the ship's Strength modifier). On a failed save, a ship gains 1 level of slowed until the end of your ship's next turn.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">If a ship is two or more sizes larger than your ship, it has advantage on the saving throw. If it is two or more sizes smaller, it instead has disadvantage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -96,7 +94,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -129,10 +128,10 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": "1"
+      "value": 2
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": ""
@@ -185,16 +184,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018692,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "aF9Z8g2Y344DnYek",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018692,
-    "modifiedTime": 1699591744184,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!XUX3PVyQPsEQQZPp"
+  "_key": "!items!aF9Z8g2Y344DnYek"
 }

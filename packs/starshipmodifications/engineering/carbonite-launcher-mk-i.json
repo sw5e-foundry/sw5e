@@ -1,11 +1,9 @@
 {
-  "_id": "i3g2QxJpw5Xs7iQH",
   "name": "Carbonite Launcher, Mk I",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -72,7 +71,7 @@
     "damage": {
       "parts": [
         [
-          "2d6+@mod",
+          "2d6",
           "cold"
         ]
       ],
@@ -148,16 +147,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018721,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "wcDKLqOsl7ELQ94x",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018721,
-    "modifiedTime": 1699591744190,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!i3g2QxJpw5Xs7iQH"
+  "_key": "!items!wcDKLqOsl7ELQ94x"
 }

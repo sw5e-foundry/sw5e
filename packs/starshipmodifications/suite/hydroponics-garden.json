@@ -1,5 +1,4 @@
 {
-  "_id": "CHUwghAkez6ETMyL",
   "name": "Hydroponics Garden",
   "type": "starshipmod",
   "flags": {},
@@ -7,7 +6,7 @@
   "effects": [],
   "system": {
     "description": {
-      "value": "<p>This suite grows plants for either consumption or commerce.</p>\n<p>If the Garden is configured for consumption, every day it produces common food in an amount capable of supporting a number of civilians, crew members, or troopers equal to one-tenth the ship's suite capacity, as shown in the @JournalEntry[FP3ZDd5KEXJIpqkZ]{Starship Size Food Capacity} table.</p>\n<p>If the Garden is configured for commerce, at the end of every month (7 weeks of 5 days) it produces plant goods with a market value in Credits of 10 times the ship's suite capacity, as shown in the @JournalEntry[FP3ZDd5KEXJIpqkZ]{Starship Size Food Capacity}&nbsp;table. In some cases, a GM may determine that this value could be increased if a particularly rare plant good is produced. In such cases, the players may need to procure rare starter material such as seeds or cuttings to start or continue production.</p>",
+      "value": "<p>This suite grows plants for either consumption or commerce.</p><p>If the Garden is configured for consumption, every day it produces common food in an amount capable of supporting a number of civilians, crewmembers, or troopers equal to one-eighth the ship's suite capacity, as shown in the Starship Size Suite Capacity table.</p><p>If the Garden is configured for commerce, at the end of every month (7 weeks of 5 days) it produces plant goods with a market value in Credits of 10 times the ship's suite capacity, as shown in the Starship Size Suite Capacity table. In some cases, a GM may determine that this value could be increased if a particularly rare plant good is produced. In such cases, the players may need to procure rare starter material such as seeds or cuttings to start or continue production.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -85,31 +84,32 @@
       "value": "Suite"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "5000"
+      "value": 5000
     },
     "prerequisites": {
-      "value": "Ship size Large or larger"
+      "value": "Ship size Medium or larger"
     },
     "free": {
       "slot": false,
       "suite": false
     }
   },
+  "folder": null,
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018635,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "3aUO9RcmfHQfaNFS",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "folder": null,
-  "sort": 0,
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018635,
-    "modifiedTime": 1699591744172,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!CHUwghAkez6ETMyL"
+  "_key": "!items!3aUO9RcmfHQfaNFS"
 }

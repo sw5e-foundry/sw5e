@@ -1,5 +1,4 @@
 {
-  "_id": "H1PmkigBok9ThtyJ",
   "name": "Adaptive Ailerons",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
@@ -10,7 +9,7 @@
         {
           "key": "system.attributes.movement.turn",
           "mode": 2,
-          "value": "+100",
+          "value": "-100",
           "priority": 20
         },
         {
@@ -42,18 +41,33 @@
       "flags": {
         "core": {
           "statusId": ""
+        },
+        "ActiveAuras": {
+          "isAura": false,
+          "aura": "None",
+          "nameOverride": "",
+          "radius": "",
+          "alignment": "",
+          "type": "",
+          "customCheck": "",
+          "ignoreSelf": false,
+          "height": false,
+          "hidden": false,
+          "displayTemp": false,
+          "hostile": false,
+          "onlyOnce": false,
+          "wallsBlock": "system"
         }
       },
       "tint": null,
       "name": "Adaptive Ailerons",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!H1PmkigBok9ThtyJ.yie6lRqE4olXJrK3",
+      "_key": "!items.effects!6WjkUMegKn0XeCNz.yie6lRqE4olXJrK3",
       "sort": 0
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
@@ -135,7 +149,7 @@
       "value": "Universal"
     },
     "grade": {
-      "value": null
+      "value": 0
     },
     "basecost": {
       "value": 4000
@@ -191,16 +205,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018644,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "6WjkUMegKn0XeCNz",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018644,
-    "modifiedTime": 1699591744174,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!H1PmkigBok9ThtyJ"
+  "_key": "!items!6WjkUMegKn0XeCNz"
 }

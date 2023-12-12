@@ -1,15 +1,13 @@
 {
-  "_id": "aSXtsSxKtBbloWYx",
   "name": "EMP Device",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This modification adds a reusable EMP device to disable nearby electronics.  As an action, a crew member can activate the device.  Each ship, within 100 feet must make a Constitution saving throw (DC = 8 + the crew member's proficiency bonus + the ship's Strength modifier). On a failed save, a ship is stunned for 1 minute. As an action on each of the ship's turns, a crew member can have the ship repeat the saving throw, ending the effect on a success.  You ship automatically fails the initial saving throw, but has advantage on subsequent saving throws against this effect.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This modification adds a reusable EMP device to disable nearby electronics. As an action, a crewmember can activate the device. Each ship, within 100 feet must make a Constitution saving throw (DC = 8 + the crewmember's proficiency bonus + the ship's Strength modifier). On a failed save, a ship is stunned for 1 minute. As an action on each of the ship's turns, a crewmember can have the ship repeat the saving throw, ending the effect on a success. You ship automatically fails the initial saving throw, but has advantage on subsequent saving throws against this effect.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Operation"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": ""
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018701,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "VyJNUrjK7pGsfPPE",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018701,
-    "modifiedTime": 1699591744186,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!aSXtsSxKtBbloWYx"
+  "_key": "!items!VyJNUrjK7pGsfPPE"
 }

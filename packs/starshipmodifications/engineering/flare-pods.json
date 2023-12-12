@@ -1,15 +1,13 @@
 {
-  "_id": "3RMeXwni1xyQbw0J",
   "name": "Flare Pods",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>Your ship is a equipped with a series of counter-measure flares. When your ship is forced to make a Dexterity saving throw, a crew member can use their reaction to release a flare. When they do so, your ship has advantage on the triggering saving throw. The crew member can choose to use this feature after the roll is made, but before the GM says whether the roll succeeds or fails. If they already have advantage on the saving throw, they can instead reroll one of the dice once.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship undergoes refitting.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Your ship is equipped with a series of counter-measure flares. When your ship is forced to make a Dexterity saving throw, a crewmember can use their reaction to release a flare. When they do so, your ship has advantage on the triggering saving throw. The crewmember can choose to use this feature after the roll is made, but before the GM says whether the roll succeeds or fails. If they already have advantage on the saving throw, they can instead reroll one of the dice once.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship undergoes refitting.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "refitting",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": ""
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018599,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "VdLZPgxGoj75jeYW",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018599,
-    "modifiedTime": 1699591744166,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!3RMeXwni1xyQbw0J"
+  "_key": "!items!VdLZPgxGoj75jeYW"
 }

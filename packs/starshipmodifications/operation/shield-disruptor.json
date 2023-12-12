@@ -1,15 +1,13 @@
 {
-  "_id": "k81N2qizzLdaHCk1",
   "name": "Shield Disruptor",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This modification adds a shield disruptor to a ship, which is used to interfere with another ship's shield. As an action, a crew member can activate the shield disruptor and choose a ship they can see within 1,000 feet. You make a Charisma (Interfere) check contested by the target's Constitution (Regulate) check. On a failed save, the ship's shield capacity and shield regeneration rate are reduced by half for 1 minute. If the ship's current shield points would exceed the new shield capacity, they are reduced accordingly. At the start of each of the target ship's turns, a crew member can use an action to repeat the saving throw, ending the effect on a success.</p><p>If a ship is targeted by a larger ship, it has disadvantage on the saving throw. If targeted by a smaller ship, it instead has advantage.</p><p>You can end the shield disruptor at any time (no action required).</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This modification adds a shield disruptor to a ship, which is used to interfere with another ship's shield. As an action, a crewmember can activate the shield disruptor and choose a ship they can see within 1,000 feet. You make a Charisma (Interfere) check contested by the target's Constitution (Regulate) check. On a failed save, the ship's shield regeneration rate is reduced by half for 1 minute. Additionally they take damage to their shields equal to two of their shield dice.</span></p><p>At the start of each of the target ship's turns, a crewmember can use an action to repeat the saving throw, ending the effect on a success.</p><p>If a ship is targeted by a larger ship, it has disadvantage on the saving throw. If targeted by a smaller ship, it instead has advantage.</p><p>You can end the shield disruptor at any time (no action required). This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship recharges.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,7 +86,7 @@
       "value": "Operation"
     },
     "grade": {
-      "value": 1
+      "value": 2
     },
     "basecost": {
       "value": 3500
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018727,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "8f4aA9xI5lGtQmcE",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018727,
-    "modifiedTime": 1699591744192,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!k81N2qizzLdaHCk1"
+  "_key": "!items!8f4aA9xI5lGtQmcE"
 }

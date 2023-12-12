@@ -1,15 +1,13 @@
 {
-  "_id": "4gyWfS6apf3osttd",
   "name": "Power Backup",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>Your ship is equipped with a back up battery, which can give it renewed energy. When your ship is reduced to 0 hull points but not destroyed outright, a crew member can use their reaction to have it drop to 1 hull point instead. Alternatively, if the ship is making Destruction saving throws, a crew member can use their action to have the ship automatically succeed on a Destruction saving throw.</p><p>Once either feature has been used, the power backup can't be used again until the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">Your ship is equipped with a back up battery, which can give it renewed energy. When your ship is reduced to 0 hull points but not destroyed outright, a crewmember can use their reaction to have it drop to 1 hull point instead. Alternatively, if the ship is making Destruction saving throws, a crewmember can use their action to have the ship automatically succeed on a Destruction saving throw.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Once either feature has been used, the power backup can't be used again until the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": ""
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018607,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "Mw5mhtqKumtA7AwL",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018607,
-    "modifiedTime": 1699591744167,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!4gyWfS6apf3osttd"
+  "_key": "!items!Mw5mhtqKumtA7AwL"
 }

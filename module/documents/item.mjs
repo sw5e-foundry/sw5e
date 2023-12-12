@@ -702,8 +702,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @protected
    */
   _prepareStarshipMod() {
-    const baseCost =
-      this.system?.baseCost?.value ?? CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const defaultBaseCost = CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const baseCost = this.system?.baseCost?.value ?? defaultBaseCost;
     const sizeMult = this.actor?.itemTypes?.starshipsize?.[0]?.system?.modCostMult;
     const gradeMult = Number.isNumeric(this.system.grade.value) ? this.system.grade.value || 1 : 1;
     if (baseCost && sizeMult && gradeMult) this.labels.cost = game.i18n.format("SW5E.ModFullCost", {
@@ -714,7 +714,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     });
     else this.labels.cost = game.i18n.format("SW5E.ModBaseCost");
 
-    foundry.utils.setProperty(this.system, "baseCost.value", baseCost);
+    foundry.utils.setProperty(this.system, "baseCost.default", defaultBaseCost);
   }
 
   /* -------------------------------------------- */

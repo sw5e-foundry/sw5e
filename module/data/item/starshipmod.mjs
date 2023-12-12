@@ -2,6 +2,7 @@ import { MappingField } from "../fields.mjs";
 import SystemDataModel from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
+import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
@@ -10,6 +11,7 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * Data definition for Starship Modification items.
  * @mixes ItemDescriptionTemplate
  * @mixes PhysicalItemTemplate
+ * @mixes EquippableItemTemplate
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
@@ -18,6 +20,7 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 export default class StarshipModData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
   PhysicalItemTemplate,
+  EquippableItemTemplate,
   ActivatedEffectTemplate,
   ActionTemplate
 ) {
@@ -36,7 +39,7 @@ export default class StarshipModData extends SystemDataModel.mixin(
       ),
       grade: new foundry.data.fields.SchemaField(
         {
-          proficient: new foundry.data.fields.NumberField({
+          value: new foundry.data.fields.NumberField({
             required: true,
             min: 0,
             max: 5,
@@ -53,7 +56,7 @@ export default class StarshipModData extends SystemDataModel.mixin(
             required: true,
             min: 0,
             integer: true,
-            initial: 0,
+            nullable: true,
             label: "SW5E.ModBaseCost"
           })
         },
@@ -64,6 +67,16 @@ export default class StarshipModData extends SystemDataModel.mixin(
           slot: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ModFreeSlot" }),
           suite: new foundry.data.fields.BooleanField({ required: true, label: "SW5E.ModFreeSuite" })
         }
+      ),
+      prerequisites: new foundry.data.fields.SchemaField(
+        {
+          value: new foundry.data.fields.StringField({
+            required: true,
+            initial: "",
+            label: "SW5E.PrerequisitePl"
+          })
+        },
+        { label: "SW5E.PrerequisitePl" }
       )
     });
   }

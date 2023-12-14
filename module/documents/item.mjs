@@ -1372,7 +1372,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     // Consume Weapon Ammo
     if ( config.consumeAmmo ) {
       const ammo = this.getAmmo;
-      if (!ammo.item) return false;
+      if (!ammo.max) return false;
       const remaining = ammo.quantity - ammo.consumeAmount;
       if (is.hasReload) {
         if (remaining < 0) {

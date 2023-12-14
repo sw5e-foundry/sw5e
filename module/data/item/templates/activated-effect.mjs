@@ -325,7 +325,7 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @type {boolean}
    */
   get hasReload() {
-    return this.isActive && !!this.ammo?.target;
+    return this.isActive && !!this.ammo?.max;
   }
 
   /* -------------------------------------------- */

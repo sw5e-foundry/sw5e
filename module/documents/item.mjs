@@ -1869,7 +1869,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   async rollDamage({ critical, event = null, powerLevel = null, versatile = false, options = {} } = {}) {
     if (!this.hasDamage) throw new Error("You may not make a Damage Roll with this Item.");
     const messageData = {
-      "flags.sw5e.roll": { type: "damage", itemId: this.id, itemUuid: this.uuid },
+      "flags.sw5e.roll": { type: "damage", itemId: this.id, itemUuid: this.uuid, damageTypes: this.labels.damageTypes },
       speaker: ChatMessage.getSpeaker({ actor: this.actor })
     };
 

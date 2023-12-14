@@ -1578,7 +1578,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       // Apply Damage Reduction
       if (this.type === "starship" && itemUuid) {
         // TODO: maybe expand this to work with characters as well?
-        const dr = this.system?.attributes?.equip?.armor?.dr || 0;
+        const dr = this.system?.attributes?.equip?.armor?.dr ?? 0;
         // Starship damage resistance applies only to attacks
         const item = fromUuidSynchronous(itemUuid);
         if (item && ["mwak", "rwak"].includes(item.system.actionType)) {
@@ -1856,7 +1856,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Roll and return
-    const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.skills[skillId]?.label ?? "" });
+    const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.allSkills[skillId]?.label ?? "" });
     const rollData = foundry.utils.mergeObject(
       {
         data,
@@ -1885,7 +1885,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * @memberof hookEvents
      * @param {Actor5e} actor                Actor for which the skill check is being rolled.
      * @param {D20RollConfiguration} config  Configuration data for the pending roll.
-     * @param {string} skillId               ID of the skill being rolled as defined in `SW5E.skills`.
+     * @param {string} skillId               ID of the skill being rolled as defined in `SW5E.allSkills`.
      * @returns {boolean}                    Explicitly return `false` to prevent skill check from being rolled.
      */
     if (Hooks.call("sw5e.preRollSkill", this, rollData, skillId) === false) return;
@@ -1898,7 +1898,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * @memberof hookEvents
      * @param {Actor5e} actor   Actor for which the skill check has been rolled.
      * @param {D20Roll} roll    The resulting roll.
-     * @param {string} skillId  ID of the skill that was rolled as defined in `SW5E.skills`.
+     * @param {string} skillId  ID of the skill that was rolled as defined in `SW5E.allSkills`.
      */
     if (roll) Hooks.callAll("sw5e.rollSkill", this, roll, skillId);
 

@@ -270,6 +270,15 @@ function _configureTrackableAttributes() {
     group: {
       bar: [],
       value: []
+    },
+    starship: {
+      bar: [...creature.bar, "resources.primary", "resources.secondary", "resources.tertiary"],
+      value: [
+        ...common.value,
+        ...Object.keys(SW5E.starshipSkills).map(skill => `skills.${skill}.passive`),
+        ...Object.keys(SW5E.powerDieSlots).map(slot => `attributes.power.${slot}.value`),
+        "attributes.fuel.value"
+      ]
     }
   };
 }

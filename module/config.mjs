@@ -127,7 +127,7 @@ SW5E.shieldPointsAbility = "str";
  */
 
 /**
- * The set of skill which can be trained with their default ability scores.
+ * The set of skills which can be trained by characters with their default ability scores.
  * @enum {SkillConfiguration}
  */
 SW5E.skills = {
@@ -153,7 +153,7 @@ SW5E.skills = {
 preLocalize("skills", { key: "label", sort: true });
 
 /**
- * The set of skill which can be trained on starships with their default ability scores.
+ * The set of skills which can be trained on starships with their default ability scores.
  * @enum {SkillConfiguration}
  */
 SW5E.starshipSkills = {
@@ -173,6 +173,15 @@ SW5E.starshipSkills = {
   swn: { label: "SW5E.StarshipSkillSwn", ability: "cha", fullKey: "swindle" }
 };
 preLocalize("starshipSkills", { key: "label", sort: true });
+
+/**
+ * The set of skills which can be trained by characters or starships with their default ability scores.
+ * @enum {SkillConfiguration}
+ */
+SW5E.allSkills = {
+  ...SW5E.skills,
+  ...SW5E.starshipSkills
+};
 
 /* -------------------------------------------- */
 
@@ -4036,7 +4045,7 @@ SW5E.midiFlags = {
     midiClone: true,
     type: Boolean
   },
-  ...Object.fromEntries(Object.keys(SW5E.skills).map((key => [
+  ...Object.fromEntries(Object.keys(SW5E.allSkills).map((key => [
     `advantage.skill.${key}`,
     {
       name: `SW5E.CharacterFlags.Advantage.Skill.${key}.Name`,
@@ -4385,7 +4394,7 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
         tools: {}
       };
       Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[k] = _enrichmentLookup.abilities[a.fullKey] = a);
-      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);
+      Object.entries(SW5E.allSkills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);
       Object.entries(SW5E.toolIds).forEach(([k, t]) => _enrichmentLookup.tools[k] = t);
     }
     return _enrichmentLookup;

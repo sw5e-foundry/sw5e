@@ -1729,8 +1729,8 @@ SW5E.languages = {
       undercommon: "SW5E.LanguagesUndercommon"
     }
   },
-  cant: "SW5E.LanguagesThievesCant",
-  druidic: "SW5E.LanguagesDruidic"
+  druidic: "SW5E.LanguagesDruidic",
+  cant: "SW5E.LanguagesThievesCant"
 };
 preLocalize("languages", { key: "label" });
 preLocalize("languages.standard.children", { sort: true });
@@ -2080,8 +2080,8 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
         skills: foundry.utils.deepClone(SW5E.skills),
         tools: foundry.utils.deepClone(SW5E.toolIds)
       };
-      Object.values(SW5E.abilities).forEach(a => _enrichmentLookup.abilities[a.fullKey] = a);
-      Object.values(SW5E.skills).forEach(s => _enrichmentLookup.skills[s.fullKey] = s);
+      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[a.fullKey] = { ...a, key: k });
+      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[s.fullKey] = { ...s, key: k });
     }
     return _enrichmentLookup;
   },

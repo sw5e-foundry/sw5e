@@ -245,15 +245,16 @@ export default class AbilityUseDialog extends Dialog {
   static _getAbilityUseWarnings(data) {
     const warnings = [];
     const item = data.item;
-    const { quantity, level, consume, consumableType } = item.system;
+    const { quantity, level, consume, consumableType, preparation } = item.system;
     const scale = item.usageScaling;
+    const levels = (preparation?.mode === "pact") ? [level, item.actor.system.powers.pact.level] : [level];
 
     if ( (scale === "slot") && data.slotOptions.every(o => !o.hasSlots) ) {
       // Warn that the actor has no power slots of any level with which to use this item.
       warnings.push(game.i18n.format("SW5E.PowerCastNoSlotsLeft", {
         name: item.name
       }));
-    } else if ( (scale === "slot") && !data.slotOptions.some(o => (o.level === level) && o.hasSlots) ) {
+    } else if ( (scale === "slot") && !data.slotOptions.some(o => levels.includes(o.level) && o.hasSlots) ) {
       // Warn that the actor has no power slots of this particular level with which to use this item.
       warnings.push(game.i18n.format("SW5E.PowerCastNoSlots", {
         level: CONFIG.SW5E.powerLevels[level],

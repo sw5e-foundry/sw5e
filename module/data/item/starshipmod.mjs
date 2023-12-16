@@ -56,6 +56,7 @@ export default class StarshipModData extends SystemDataModel.mixin(
             required: true,
             min: 0,
             integer: true,
+            initial: null,
             nullable: true,
             label: "SW5E.ModBaseCost"
           })

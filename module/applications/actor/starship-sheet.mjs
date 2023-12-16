@@ -440,7 +440,6 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       item.firingArcTemplate._onCancelPlacement(event);
       item.firingArcTemplate = undefined;
     }
-
   }
 
   /* -------------------------------------------- */

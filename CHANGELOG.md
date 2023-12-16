@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Deployments and their features should now work properly on the NPC sheet.
 - Uses for starship modifications should now appear in the inventory.
 - "Apply damage with resistances" context button should once again work.
+- Starship actors should now properly support the `bonuses` field.
 
 ## [2.4.0.2.7.0] - 2033-11-30
 

@@ -33,7 +33,7 @@ export default class FiringArcTemplate extends MeasuredTemplate {
    * @returns {FiringArcTemplate|null}    The template object, or null if the item does not produce a template
    */
   static fromItem(item, options={}) {
-    const token = item.actor?.sheet?.token;
+    const token = options.token ?? item.actor?.sheet?.token;
     if (!token) return;
     const arc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc];
     if (!arc?.shape) return;

@@ -1,6 +1,7 @@
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
+import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
@@ -80,6 +81,8 @@ export default class StarshipData extends CommonTemplate {
       attributes: new foundry.data.fields.SchemaField(
         {
           ...AttributesFields.common,
+          CreatureTemplate.defineSchema().bonuses,
+          AttributesFields.creature.,
           ac: new foundry.data.fields.SchemaField(
             {
               flat: new foundry.data.fields.NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),

@@ -1986,6 +1986,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
+    // Reliable Talent applies to any tool check we have full or better proficiency in
+    const reliableTalent = (prof.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
+
     const flavor = game.i18n.format("SW5E.ToolPromptTitle", {tool: Trait.keyLabel(toolId, {trait: "tool"}) ?? ""});
     const rollData = foundry.utils.mergeObject(
       {
@@ -1994,6 +1997,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         title: `${flavor}: ${this.name}`,
         chooseModifier: true,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        reliableTalent,
         advantageHint,
         disadvantageHint,
         messageData: {

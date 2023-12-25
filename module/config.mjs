@@ -4389,13 +4389,12 @@ Object.defineProperty(SW5E, "enrichmentLookup", {
   get() {
     if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
-        abilities: {},
-        skills: {},
-        tools: {}
+        abilities: foundry.utils.deepClone(SW5E.abilities),
+        skills: foundry.utils.deepClone(SW5E.skills),
+        tools: foundry.utils.deepClone(SW5E.toolIds)
       };
-      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[k] = _enrichmentLookup.abilities[a.fullKey] = a);
-      Object.entries(SW5E.allSkills).forEach(([k, s]) => _enrichmentLookup.skills[k] = _enrichmentLookup.skills[s.fullKey] = s);
-      Object.entries(SW5E.toolIds).forEach(([k, t]) => _enrichmentLookup.tools[k] = t);
+      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[a.fullKey] = { ...a, key: k });
+      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[s.fullKey] = { ...s, key: k });
     }
     return _enrichmentLookup;
   },

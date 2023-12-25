@@ -1,7 +1,6 @@
 import { FormulaField, MappingField, UUIDField, LocalDocumentField } from "../fields.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CommonTemplate from "./templates/common.mjs";
-import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
 
@@ -81,8 +80,21 @@ export default class StarshipData extends CommonTemplate {
       attributes: new foundry.data.fields.SchemaField(
         {
           ...AttributesFields.common,
-          CreatureTemplate.defineSchema().bonuses,
-          AttributesFields.creature.,
+          bonuses: new foundry.data.fields.SchemaField(
+            {
+              mwak: makeAttackBonuses({ label: "SW5E.BonusMWAttack" }),
+              rwak: makeAttackBonuses({ label: "SW5E.BonusRWAttack" }),
+              abilities: new foundry.data.fields.SchemaField(
+                {
+                  check: new FormulaField({ required: true, label: "SW5E.BonusAbilityCheck" }),
+                  save: new FormulaField({ required: true, label: "SW5E.BonusAbilitySave" }),
+                  skill: new FormulaField({ required: true, label: "SW5E.BonusAbilitySkill" })
+                },
+                { label: "SW5E.BonusAbility" }
+              )
+            },
+            { label: "SW5E.Bonuses" }
+          ),
           ac: new foundry.data.fields.SchemaField(
             {
               flat: new foundry.data.fields.NumberField({ integer: true, min: 0, label: "SW5E.ArmorClassFlat" }),
@@ -318,4 +330,29 @@ export default class StarshipData extends CommonTemplate {
     if (CONFIG.SW5E.starshipSkills[key]?.ability) initial.ability = CONFIG.SW5E.starshipSkills[key].ability;
     return initial;
   }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Data structure for actor's attack bonuses.
+ *
+ * @typedef {object} AttackBonusesData
+ * @property {string} attack  Numeric or dice bonus to attack rolls.
+ * @property {string} damage  Numeric or dice bonus to damage rolls.
+ */
+
+/**
+ * Produce the schema field for a simple trait.
+ * @param {object} schemaOptions  Options passed to the outer schema.
+ * @returns {AttackBonusesData}
+ */
+export function makeAttackBonuses(schemaOptions = {}) {
+  return new foundry.data.fields.SchemaField(
+    {
+      attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),
+      damage: new FormulaField({ required: true, label: "SW5E.BonusDamage" })
+    },
+    schemaOptions
+  );
 }

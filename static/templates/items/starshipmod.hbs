@@ -37,9 +37,9 @@
                     <input
                         type="text"
                         data-dtype="Number"
-                        name="system.basecost.value"
-                        value="{{system.basecost.value}}"
-                        placeholder="{{ lookup config.ssModSystemsBaseCost system.system.value }}"
+                        name="system.baseCost.value"
+                        value="{{system.baseCost.value}}"
+                        placeholder="{{ system.baseCost.default }}"
                         data-tooltip="{{ labels.cost }}"
                     />
                 </li>
@@ -68,7 +68,7 @@
     <section class="sheet-body">
 
         {{!-- Description Tab --}}
-        {{> "sw5e.item-description"}}
+        {{> "sw5e.item-description" hidePrice="true"}}
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
@@ -82,9 +82,9 @@
                       <input type="checkbox" name="system.free.slot" {{checked system.free.slot}} /> {{ localize "SW5E.ModFreeSlot"}}
                 </label>
                 {{#if (eq system.system.value "Suite")}}
-                <label class="checkbox">
-                      <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
-                </label>
+                    <label class="checkbox">
+                          <input type="checkbox" name="system.free.suite" {{checked system.free.suite}} /> {{ localize "SW5E.ModFreeSuite"}}
+                    </label>
                 {{/if}}
             </div>
 

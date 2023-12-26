@@ -288,16 +288,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @type {boolean}
    */
   get isStarshipItem() {
-    return (
-      false
-      || (this.type === "equipment" && this.system.armor.type in CONFIG.SW5E.ssEquipmentTypes)
-      || (this.type === "equipment" && this.system.armor.type === "starship")
-      || (this.type === "weapon" && this.system.weaponType in CONFIG.SW5E.weaponStarshipTypes)
-      || (this.type === "consumable"
-        && this.system.consumableType === "ammo"
-        && this.system.ammoType in CONFIG.SW5E.ammoStarshipTypes)
-      || this.type === "starshipmod"
-    );
+    return this.system.isStarshipItem ?? false;
   }
 
   /* -------------------------------------------- */
@@ -711,8 +702,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @protected
    */
   _prepareStarshipMod() {
-    const baseCost =
-      this.system?.baseCost?.value ?? CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const defaultBaseCost = CONFIG.SW5E.ssModSystemsBaseCost[this.system.system.value.toLowerCase()];
+    const baseCost = this.system?.baseCost?.value ?? defaultBaseCost;
     const sizeMult = this.actor?.itemTypes?.starshipsize?.[0]?.system?.modCostMult;
     const gradeMult = Number.isNumeric(this.system.grade.value) ? this.system.grade.value || 1 : 1;
     if (baseCost && sizeMult && gradeMult) this.labels.cost = game.i18n.format("SW5E.ModFullCost", {
@@ -723,7 +714,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     });
     else this.labels.cost = game.i18n.format("SW5E.ModBaseCost");
 
-    foundry.utils.setProperty(this.system, "baseCost.value", baseCost);
+    foundry.utils.setProperty(this.system, "baseCost.default", defaultBaseCost);
   }
 
   /* -------------------------------------------- */
@@ -764,7 +755,10 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     else if (tgt.units === "touch") tgt.value = null;
 
     if ( this.hasTarget ) {
-      this.labels.target = [tgt.value, C.distanceUnits[tgt.units], C.targetTypes[tgt.type]].filterJoin(" ");
+      const target = [tgt.value];
+      if ( this.hasAreaTarget ) target.push(C.distanceUnits[tgt.units]);
+      target.push(C.targetTypes[tgt.type]);
+      this.labels.target = target.filterJoin(" ");
     }
 
     // Range Label
@@ -1149,7 +1143,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
    * @property {boolean} createMeasuredTemplate     Should this item create a template?
    * @property {boolean} consumeResource            Should this item consume a (non-ammo) resource?
    * @property {boolean} consumePowerSlot           Should this item (a power) consume a power slot?
-   * @property {boolean} consumeReload              Should this item consume loaded ammo?
+   * @property {boolean} consumeAmmo                Should this item consume ammo?
    * @property {boolean} consumeSuperiorityDie      Should this item consume a superiority die?
    * @property {boolean} consumeUsage               Should this item consume its limited uses or recharge?
    * @property {string|number|null} slotLevel       The power slot type or level to consume by default.
@@ -1324,7 +1318,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       slotLevel: null,
       consumeUsage: null,
       consumeResource: null,
-      consumeReload: null,
+      consumeAmmo: null,
       consumeSuperiorityDie: null,
       resourceAmount: null,
       createMeasuredTemplate: null
@@ -1345,8 +1339,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       if ( consume.target === this.id ) config.consumeUsage = null;
     }
     // For attacks, the ammo is consumed on the attack roll
-    if ( this.system.ammo?.max && !(this.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
-      config.consumeSuperiorityDie = true;
+    if ( this.hasAmmo && !(this.system.actionType in CONFIG.SW5E.itemActionTypesAttack) ) {
+      config.consumeAmmo = true;
     }
     if ( this.type === "maneuver" ) config.consumeSuperiorityDie = true;
     if ( game.user.can("TEMPLATE_CREATE") && this.hasAreaTarget ) config.createMeasuredTemplate = target.prompt;
@@ -1378,15 +1372,26 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       if ( canConsume === false ) return false;
     }
 
-    // Consume Weapon Reload
-    if ( config.consumeReload ) {
-      const use = this.system.ammo?.use ?? this.system.ammo?.baseUse;
-      if (is.ammo.value < use) {
-        if (is.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", { name: this.name }));
-        else if (is.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", { name: this.name }));
-        return false;
+    // Consume Weapon Ammo
+    if ( config.consumeAmmo ) {
+      const ammo = this.getAmmo;
+      if (!ammo.max) return false;
+      const remaining = ammo.quantity - ammo.consumeAmount;
+      if (is.hasReload) {
+        if (remaining < 0) {
+          if (is.properties.rel) ui.notifications.warn(game.i18n.format("SW5E.ItemReloadNeeded", { name: this.name }));
+          else if (is.properties.ovr) ui.notifications.warn(game.i18n.format("SW5E.ItemCoolDownNeeded", { name: this.name }));
+          return false;
+        } else itemUpdates["system.ammo.value"] = remaining;
+      } else {
+        const consume = is.consume;
+        const typeLabel = CONFIG.SW5E.abilityConsumptionTypes[consume.type];
+        if (remaining < 0) {
+          if (!ammo.item) ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoSource", { name: this.name, type: typeLabel }));
+          else ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoQuantity", { name: this.name, type: typeLabel }));
+          return false;
+        } else resourceUpdates.push({ _id: consume.target, "system.quantity": remaining });
       }
-      itemUpdates["system.ammo.value"] = is.ammo.value - use;
     }
 
     // Consume Limited Resource
@@ -1394,7 +1399,6 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       const canConsume = this._handleConsumeResource(config, itemUpdates, actorUpdates, resourceUpdates, starshipUpdates, deleteIds);
       if (canConsume === false) return false;
     }
-
 
     // Consume Power Slots and Power Points
     if ( config.consumePowerSlot || config.consumePowerPoints ) {
@@ -1518,14 +1522,13 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Identify the consumed resource and its current quantity
     let resource = null;
-    let amount = usageConfig.resourceAmount ? usageConfig.resourceAmount : (consume.amount || 1);
+    let amount = usageConfig.resourceAmount ? usageConfig.resourceAmount : (consume.amount || 0);
     let quantity = 0;
     switch (consume.type) {
       case "attribute":
         resource = foundry.utils.getProperty(actor.system, consume.target);
         quantity = resource || 0;
         break;
-      case "ammo":
       case "material":
         resource = actor.items.get(consume.target);
         quantity = resource ? resource.system.quantity : 0;
@@ -1581,7 +1584,6 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       case "attribute":
         actorUpdates[`system.${consume.target}`] = remaining;
         break;
-      case "ammo":
       case "material":
         resourceUpdates.push({ _id: consume.target, "system.quantity": remaining });
         break;
@@ -1757,20 +1759,20 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     // Handle ammunition consumption
     let ammoUpdate = [];
     let itemUpdate = {};
+
     const ammo = this.getAmmo;
     if (ammo) {
-      const quant = ammo.quantity;
-      const consumeAmount = ammo.consumeAmount;
-      if (quant && quant - consumeAmount >= 0) title += ` [${ammo.name}]`;
-
       // Get pending ammunition update
-      const usage = this._getUsageUpdates({ consumeResource: true });
+      const usage = this._getUsageUpdates({ consumeAmmo: true });
       if (usage === false) return null;
+
+      if (ammo?.item) title += ` [${ammo.item.name}]`;
       ammoUpdate = usage.resourceUpdates ?? [];
+      itemUpdate = usage.itemUpdates ?? [];
     }
 
     // Flags
-    const elvenAccuracy = this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
+    const elvenAccuracy = !!this.actor?._getCharacterFlag("elvenAccuracy", this.abilityMod);
 
     const grantsAdvantageFlag = target?._getCharacterFlag([
       "grants.advantage.attack.all",
@@ -1843,8 +1845,9 @@ export default class Item5e extends SystemDocumentMixin(Item) {
      * @param {Item5e} item          Item for which the roll was performed.
      * @param {D20Roll} roll         The resulting roll.
      * @param {object[]} ammoUpdate  Updates that will be applied to ammo Items as a result of this attack.
+     * @param {object[]} itemUpdate  Updates that will be applied to the weapon as a result of this attack.
      */
-    Hooks.callAll("sw5e.rollAttack", this, roll, ammoUpdate);
+    Hooks.callAll("sw5e.rollAttack", this, roll, ammoUpdate, itemUpdate);
 
     // Commit ammunition consumption on attack rolls resource consumption if the attack roll was made
     if (ammoUpdate.length) await this.actor?.updateEmbeddedDocuments("Item", ammoUpdate);
@@ -1869,7 +1872,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   async rollDamage({ critical, event = null, powerLevel = null, versatile = false, options = {} } = {}) {
     if (!this.hasDamage) throw new Error("You may not make a Damage Roll with this Item.");
     const messageData = {
-      "flags.sw5e.roll": { type: "damage", itemId: this.id, itemUuid: this.uuid },
+      "flags.sw5e.roll": { type: "damage", itemId: this.id, itemUuid: this.uuid, damageTypes: this.labels.damageTypes },
       speaker: ChatMessage.getSpeaker({ actor: this.actor })
     };
 

@@ -245,8 +245,9 @@ export default class AbilityUseDialog extends Dialog {
   static _getAbilityUseWarnings(data) {
     const warnings = [];
     const item = data.item;
-    const { quantity, level, consume, consumableType, school } = item.system;
+    const { quantity, level, consume, consumableType, preparation, school } = item.system;
     const scale = item.usageScaling;
+    const levels = (preparation?.mode === "pact") ? [level, item.actor.system.powers.pact.level] : [level];
     const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
 
     if ( (scale === "slot") && data.slotOptions.every(o => !o.hasSlots) ) {
@@ -254,7 +255,7 @@ export default class AbilityUseDialog extends Dialog {
       warnings.push(game.i18n.format("SW5E.PowerCastNoSlotsLeft", {
         name: item.name
       }));
-    } else if ( (scale === "slot") && !data.slotOptions.some(o => (o.level === level) && o.hasSlots) ) {
+    } else if ( (scale === "slot") && !data.slotOptions.some(o => levels.includes(o.level) && o.hasSlots) ) {
       // Warn that the actor has no power slots of this particular level with which to use this item.
       warnings.push(game.i18n.format("SW5E.PowerCastNoSlots", {
         level: CONFIG.SW5E.powerLevels[level],
@@ -268,7 +269,7 @@ export default class AbilityUseDialog extends Dialog {
         name: item.name,
         type: powerType
       }));
-    } else if ( (scale === "slot") && !data.slotOptions.some(o => (o.level === level) && o.hasPoints) ) {
+    } else if ( (scale === "slot") && !data.slotOptions.some(o => levels.includes(o.level) && o.hasPoints) ) {
       // Warn that the actor does not have enough power points to use this item at this particular level.
       warnings.push(game.i18n.format("SW5E.PowerCastNoPoints", {
         level: CONFIG.SW5E.powerLevels[level],

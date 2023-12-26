@@ -1,0 +1,222 @@
+{
+  "name": "Comms Suppressor, Mk I",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+  "effects": [
+    {
+      "_id": "qJBFsKFIMXNDvqnc",
+      "changes": [
+        {
+          "key": "system.skills.inf.value",
+          "mode": 4,
+          "value": "1",
+          "priority": 20
+        }
+      ],
+      "disabled": false,
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
+      "origin": "Compendium.sw5e.starshipmodifications.oie2WIjNeQ48HydG",
+      "transfer": true,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "name": "Communications Suppressor, Premium",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!UXxgtlUwspHD3I1h.qJBFsKFIMXNDvqnc",
+      "sort": 0
+    },
+    {
+      "_id": "XuBx5ZOj16OVn5pZ",
+      "changes": [],
+      "disabled": false,
+      "duration": {
+        "rounds": 1,
+        "startTime": null,
+        "seconds": 3600,
+        "combat": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "icon": "systems/sw5e/packs/Icons/Communications/CommJammer.webp",
+      "origin": "Compendium.sw5e.starshipmodifications.oie2WIjNeQ48HydG",
+      "transfer": false,
+      "flags": {
+        "core": {
+          "statusId": ""
+        }
+      },
+      "tint": null,
+      "name": "Communications Suppressed",
+      "description": "",
+      "statuses": [],
+      "_key": "!items.effects!UXxgtlUwspHD3I1h.XuBx5ZOj16OVn5pZ",
+      "sort": 0
+    }
+  ],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This modification adds a device designed to suppress the communications of a space station or starship within 1,000 feet of your ship. As an action, a crewmember can attempt to suppress the target's communications by forcing them to succeed at a Charisma saving throw (DC equal to 8 + your Charisma (Interfere) bonus). On a failure, the target's communications are suppressed for 1 hour, preventing any communication to or from external sources. On a success, they become immune to this feature for one day.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, your ship is proficiently equipped for Charisma (Interfere) checks.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "hour"
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "enemy"
+    },
+    "range": {
+      "value": 1,
+      "long": null,
+      "units": "mi"
+    },
+    "uses": {
+      "value": null,
+      "max": "",
+      "per": "",
+      "recovery": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "cha",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "cha",
+      "dc": null,
+      "scaling": "cha"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Operation"
+    },
+    "grade": {
+      "value": 1
+    },
+    "basecost": {
+      "value": 3500
+    },
+    "prerequisites": {
+      "value": ""
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "proficient": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Steadfast": false,
+      "Strength": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018739,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "UXxgtlUwspHD3I1h",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!UXxgtlUwspHD3I1h"
+}

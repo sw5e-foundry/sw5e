@@ -1,15 +1,13 @@
 {
-  "_id": "4rKESBEskTCQuqqP",
   "name": "Slave Circuit",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>You install a slave circuit in your ship to improve automation. You reduce the minimum crew requirement by half.</p>",
+      "value": "<p>You install a slave circuit in your ship to improve automation. <span style=\"font-family:'Open Sans', sans-serif\">You reduce the minimum crew requirement by half (minimum of 1).</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -87,13 +85,13 @@
       "value": "Universal"
     },
     "grade": {
-      "value": "NA"
+      "value": 2
     },
     "basecost": {
-      "value": "4000"
+      "value": 4000
     },
     "prerequisites": {
-      "value": "Ship size Large or larger"
+      "value": "Ship size Medium or larger"
     },
     "free": {
       "slot": false,
@@ -143,16 +141,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018613,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "WosCDOyBpooyizF0",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018613,
-    "modifiedTime": 1699591744168,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!4rKESBEskTCQuqqP"
+  "_key": "!items!WosCDOyBpooyizF0"
 }

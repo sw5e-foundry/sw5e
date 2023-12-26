@@ -389,7 +389,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const isMod = item.type === "starshipmod";
     const isWpn = item.type === "weapon";
 
-    const baseCost = isMod ? itemData.basecost?.value ?? 0 : itemData.price?.value ?? 0;
+    const baseCost = isMod ? itemData.baseCost?.value ?? itemData.baseCost?.default ?? 0 : itemData.price?.value ?? 0;
     const sizeMult = isMod ? shipData.modCostMult ?? 1 : isWpn ? 1 : shipData.equipCostMult ?? 1;
     const gradeMult = isMod ? Number(itemData.grade.value) || 1 : 1;
     const fullCost = baseCost * sizeMult * gradeMult;
@@ -1420,7 +1420,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Prepare Mods
-    attr.mods.cap.value = this.itemTypes.starshipmod.filter(i => i.system.equipped && !i.system.free.slot).length;
+    attr.mods.cap.value = this.itemTypes.starshipmod.filter(i => i.system.equipped && !i.system.free.slot).reduce((acc, i) => acc + i.system.quantity, 0);
 
     // Prepare Suites
     attr.mods.suite.max += (sizeData.modMaxSuitesMult ?? 1) * abl.con.mod;
@@ -1578,7 +1578,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       // Apply Damage Reduction
       if (this.type === "starship" && itemUuid) {
         // TODO: maybe expand this to work with characters as well?
-        const dr = this.system?.attributes?.equip?.armor?.dr || 0;
+        const dr = this.system?.attributes?.equip?.armor?.dr ?? 0;
         // Starship damage resistance applies only to attacks
         const item = fromUuidSynchronous(itemUuid);
         if (item && ["mwak", "rwak"].includes(item.system.actionType)) {
@@ -1829,7 +1829,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: abl });
+    const supremeAptitude = !!this._getCharacterFlag("supremeAptitude", { ability: abl });
     // Reliable Talent applies to any skill check we have full or better proficiency in
     const reliableTalent = skl.value >= 1 && flags.reliableTalent;
 
@@ -1856,7 +1856,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
     // Roll and return
-    const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.skills[skillId]?.label ?? "" });
+    const flavor = game.i18n.format("SW5E.SkillPromptTitle", { skill: CONFIG.SW5E.allSkills[skillId]?.label ?? "" });
     const rollData = foundry.utils.mergeObject(
       {
         data,
@@ -1885,7 +1885,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * @memberof hookEvents
      * @param {Actor5e} actor                Actor for which the skill check is being rolled.
      * @param {D20RollConfiguration} config  Configuration data for the pending roll.
-     * @param {string} skillId               ID of the skill being rolled as defined in `SW5E.skills`.
+     * @param {string} skillId               ID of the skill being rolled as defined in `SW5E.allSkills`.
      * @returns {boolean}                    Explicitly return `false` to prevent skill check from being rolled.
      */
     if (Hooks.call("sw5e.preRollSkill", this, rollData, skillId) === false) return;
@@ -1898,7 +1898,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      * @memberof hookEvents
      * @param {Actor5e} actor   Actor for which the skill check has been rolled.
      * @param {D20Roll} roll    The resulting roll.
-     * @param {string} skillId  ID of the skill that was rolled as defined in `SW5E.skills`.
+     * @param {string} skillId  ID of the skill that was rolled as defined in `SW5E.allSkills`.
      */
     if (roll) Hooks.callAll("sw5e.rollSkill", this, roll, skillId);
 
@@ -1986,6 +1986,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const disadvantage = !!(disadvantageFlag || options.disadvantage);
     const disadvantageHint = this._getCharacterFlagTooltip(disadvantageFlag);
 
+    // Reliable Talent applies to any tool check we have full or better proficiency in
+    const reliableTalent = (prof.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
+
     const flavor = game.i18n.format("SW5E.ToolPromptTitle", {tool: Trait.keyLabel(toolId, {trait: "tool"}) ?? ""});
     const rollData = foundry.utils.mergeObject(
       {
@@ -1994,6 +1997,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         title: `${flavor}: ${this.name}`,
         chooseModifier: true,
         halflingLucky: this.getFlag("sw5e", "halflingLucky"),
+        reliableTalent,
         advantageHint,
         disadvantageHint,
         messageData: {
@@ -2100,7 +2104,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeAptitude = this._getCharacterFlag("supremeAptitude", { ability: abilityId });
+    const supremeAptitude = !!this._getCharacterFlag("supremeAptitude", { ability: abilityId });
 
     const advantageFlag = this._getCharacterFlag([
       "advantage.all",
@@ -2216,7 +2220,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Flags
-    const supremeDurability = this._getCharacterFlag("supremeDurability", { ability: abilityId });
+    const supremeDurability = !!this._getCharacterFlag("supremeDurability", { ability: abilityId });
     // TODO: Check for inflicting poisoned condition for twoLivered
     const twoLivered = (options.isPoison) && this._getCharacterFlag("twoLivered");
     // TODO: Check for blinded, deafened, or incapacitated for dangerSense

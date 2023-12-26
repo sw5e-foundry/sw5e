@@ -4,6 +4,40 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Starship weapon firing arcs.
+- When hovering over a weapon with a firing arc, a template will be rendered in the canvas, representing that fire arc.
+- Starship Modification DataModel.
+- Starship tokens can now track passive skill values, power dice, and fuel amount.
+- (Dis)Advantage flags for starship skills.
+- Enrichment lookup (`[[/skill skillName]]`) for starship skills.
+
+### Changes
+
+- Starship features compendium now has all the starship roles.
+- Starship modifications compendium has been updated to match the website.
+- Updated core to match [dnd5e 2.4.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.1).
+
+### Fixed
+
+- Starship migration should once again work.
+- Weapons should once again consume ammunition.
+- Weapon properties should now longer be weirdly spaced out vertically.
+- Character's bigraphy and description should no longer be invisible.
+- Modifying a weapon's reload value in the character sheet should once again work.
+- Supreme Accuracy/Aptitude/Durability should once again work.
+- Starship speed units should be displayed correctly.
+- NPC Powerbooks should now create items properly.
+- NPC Powerbooks should now only the display the 'no powerlevel' message if the npc really has no powerlevel.
+- Quantity of starship modifiations will be used for the modifications counter.
+- Deployments and their features should now work properly on the NPC sheet.
+- Uses for starship modifications should now appear in the inventory.
+- "Apply damage with resistances" context button should once again work.
+- Starship actors should now properly support the `bonuses` field.
+
 ## [2.4.0.2.7.0] - 2033-11-30
 
 ### Added

@@ -1,5 +1,4 @@
 {
-  "_id": "Hzhx4W4JfDvPXnbU",
   "name": "Ablative Plating Layer",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Universal.webp",
@@ -9,7 +8,7 @@
       "changes": [
         {
           "key": "system.traits.dr.value",
-          "mode": 2,
+          "mode": 0,
           "value": "energy",
           "priority": 20
         }
@@ -30,18 +29,33 @@
       "flags": {
         "core": {
           "statusId": ""
+        },
+        "ActiveAuras": {
+          "isAura": false,
+          "aura": "None",
+          "nameOverride": "",
+          "radius": "",
+          "alignment": "",
+          "type": "",
+          "customCheck": "",
+          "ignoreSelf": false,
+          "height": false,
+          "hidden": false,
+          "displayTemp": false,
+          "hostile": false,
+          "onlyOnce": false,
+          "wallsBlock": "system"
         }
       },
       "tint": null,
       "name": "Ablative Plating Layer",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Hzhx4W4JfDvPXnbU.lm6YbgBL0DgtLN1a",
+      "_key": "!items.effects!pyAWG8vgEu7h1qNt.lm6YbgBL0DgtLN1a",
       "sort": 0
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
@@ -179,16 +193,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018648,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "pyAWG8vgEu7h1qNt",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018648,
-    "modifiedTime": 1699591744175,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!Hzhx4W4JfDvPXnbU"
+  "_key": "!items!pyAWG8vgEu7h1qNt"
 }

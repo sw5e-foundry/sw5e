@@ -1,15 +1,13 @@
 {
-  "_id": "bXKJ23YuPt7XJwZO",
   "name": "Weapon Slave Array",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Weapon.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>A weapon slave array is attached to a hardpoint and used to fire the weapon from the cockpit or other crew station rather than from a dedicated gunner station at the hardpoint.  A crew member deployed remote from a dedicated gunner station can now fire this weapon and utilize the additional limited or unlimited arc at disadvantage.  </p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">A weapon slave array is attached to a hardpoint and used to fire the weapon effectively from a remote station. A crewmember taking the Attack Run, Dogfight, or Harass action and using a weapon equipped to this hardpoint is no longer limited to a forward facing arc.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, when taking the Fire action with a weapon equipped to this hardpoint, a crewmember at the helm no longer suffers disadvantage with a forward-facing limited arc.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -87,29 +85,31 @@
       "value": "Weapon"
     },
     "grade": {
-      "value": null
+      "value": 1
     },
     "basecost": {
       "value": 3000
     },
     "prerequisites": {
-      "value": "Ship size Medium or larger; Fixed Hardpoint"
+      "value": "Hardpoint"
     },
     "free": {
       "slot": false,
       "suite": false
     }
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018703,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "oGHmnEbvrcgMOUw6",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018703,
-    "modifiedTime": 1699591744187,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!bXKJ23YuPt7XJwZO"
+  "_key": "!items!oGHmnEbvrcgMOUw6"
 }

@@ -35,21 +35,23 @@
       "name": "Role: Droid",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!it8KTU3DZHwrGPOR.qQTMHDrpIch61Q7C",
+      "_key": "!items.effects!lcAH5aI83aLh7QXr.qQTMHDrpIch61Q7C",
       "sort": 0
     }
   ],
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Droid</h3><p>Your ship gains a +1 bonus to the Intelligence attribute.</p>",
+      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Droid</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Intelligence </span>attribute.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "requirements": "Tiny Starship",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
-      "type": "none",
+      "type": "",
       "cost": null,
       "condition": ""
     },
@@ -63,7 +65,8 @@
       "value": null,
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -74,12 +77,14 @@
       "value": null,
       "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
@@ -119,14 +124,14 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
     "createdTime": 1674494017965,
-    "modifiedTime": 1699591742520,
+    "modifiedTime": 1701986847073,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "folder": null,
+  "_id": "lcAH5aI83aLh7QXr",
   "sort": 0,
-  "_id": "it8KTU3DZHwrGPOR",
-  "_key": "!items!it8KTU3DZHwrGPOR"
+  "_key": "!items!lcAH5aI83aLh7QXr"
 }

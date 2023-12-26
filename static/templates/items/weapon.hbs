@@ -74,6 +74,16 @@
                 </div>
             {{/if}}
 
+            {{#if isStarshipItem}}
+                {{!-- Weapon Firing Arc --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.FiringArc" }}</label>
+                    <select name="system.firingArc">
+                        {{selectOptions config.weaponFiringArcs selected=system.firingArc blank="" labelAttr="label"}}
+                    </select>
+                </div>
+            {{/if}}
+
             {{!-- Base Weapon --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponBase" }}</label>

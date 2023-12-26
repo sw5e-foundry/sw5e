@@ -266,7 +266,7 @@ export default class CreatureTemplate extends CommonTemplate {
  * @param {object} schemaOptions  Options passed to the outer schema.
  * @returns {AttackBonusesData}
  */
-function makeAttackBonuses(schemaOptions = {}) {
+export function makeAttackBonuses(schemaOptions = {}) {
   return new foundry.data.fields.SchemaField(
     {
       attack: new FormulaField({ required: true, label: "SW5E.BonusAttack" }),

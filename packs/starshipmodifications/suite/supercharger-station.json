@@ -1,15 +1,13 @@
 {
-  "_id": "Tt5GVwK05lU1s8C3",
   "name": "Supercharger Station",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Suite.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This suite comes with a number of separate unique stations equal to one-fourth the ship's suite capacity by size, as shown in the @JournalEntry[Mnvw9iBw8gxgfCXw]{Starship Size Suite Capacity}&nbsp;table. When a techcaster completes a long rest involving this suite, as long as they have their techcasting focus, they gain temporary tech points equal to their tech power maximum power level + their Intelligence modifier (minimum of one). When you would spend a tech point while you have temporary tech points, the temporary tech points are spent first. All temporary tech points are lost at the end of your next long rest.</p>",
+      "value": "<p>This suite comes with a number of separate unique stations equal to one-fourth the ship's suite capacity by size (minimum of one), as shown in the Starship Size Suite Capacity table. When a techcaster completes a long rest involving this suite, as long as they have their techcasting focus, they gain temporary tech points equal to their tech power maximum power level + their Intelligence modifier (minimum of one). When you would spend a tech point while you have temporary tech points, the temporary tech points are spent first. All temporary tech points are lost at the end of your next long rest.</p><p>Additionally each station is equipped with integrated cybertech's implements. While making a check with these tools in a supercharger station, you can add your proficiency bonus to checks you make if you do not already do so. If you already add your proficiency bonus to checks you make, you instead add double your proficiency bonus. If you already double your proficiency bonus to checks you make, you instead add half of your governing ability modifier (rounded down, minimum of +1), in addition to your ability modifier.</p>",
       "chat": "",
       "unidentified": ""
     },
@@ -87,10 +85,10 @@
       "value": "Suite"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "5000"
+      "value": 5000
     },
     "prerequisites": {
       "value": "Ship size Medium or larger"
@@ -143,16 +141,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018683,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "g6FAa0RZAOxPssos",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018683,
-    "modifiedTime": 1699591744182,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!Tt5GVwK05lU1s8C3"
+  "_key": "!items!g6FAa0RZAOxPssos"
 }

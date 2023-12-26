@@ -1,0 +1,164 @@
+{
+  "name": "Tibana Gas Projector, Mk V",
+  "type": "starshipmod",
+  "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "system": {
+    "description": {
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action, a crewmember can launch tibanna gas canisters, creating a firestorm in a location they choose within 1,500 feet. The area of the storm consists of up to ten 100-foot cubes, which you can arrange as you wish. Each cube must have at least one face adjacent to the face of another cube. Each ship in the area must make a Dexterity saving throw (DC = 8 + prof. bonus + ship's constitution modifier). It takes 7d10 fire damage on a failed save, or half as much damage on a successful one. A ship in the area of more than one cube is affected only once.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">The fire ignites any flammable objects in the area.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "requirements": "",
+    "source": {
+      "value": "SotG"
+    },
+    "quantity": 1,
+    "weight": 0,
+    "price": {
+      "value": 0,
+      "denomination": "gc"
+    },
+    "attunement": 0,
+    "equipped": false,
+    "rarity": "",
+    "identified": false,
+    "isCargo": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "cover": null,
+    "crewed": false,
+    "target": {
+      "value": 150,
+      "width": null,
+      "units": "ft",
+      "type": "cone"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 1,
+      "max": "1",
+      "per": "recharge",
+      "recovery": "",
+      "prompt": false
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
+    "damage": {
+      "parts": [
+        [
+          "7d10",
+          "fire"
+        ]
+      ],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": null,
+      "scaling": "con"
+    },
+    "recharge": {
+      "charged": false,
+      "value": null
+    },
+    "system": {
+      "value": "Engineering"
+    },
+    "grade": {
+      "value": 5
+    },
+    "basecost": {
+      "value": 3500
+    },
+    "prerequisites": {
+      "value": "Tibana Gas Projector, Mk IV"
+    },
+    "free": {
+      "slot": false,
+      "suite": false
+    },
+    "armor": {
+      "type": "",
+      "value": null,
+      "dex": null
+    },
+    "proficient": false,
+    "properties": {
+      "Absorptive": false,
+      "Agile": false,
+      "Anchor": false,
+      "Avoidant": false,
+      "Barbed": false,
+      "Bulky": false,
+      "Charging": false,
+      "Concealing": false,
+      "Cumbersome": false,
+      "Gauntleted": false,
+      "Imbalanced": false,
+      "Impermeable": false,
+      "Insulated": false,
+      "Interlocking": false,
+      "Lambent": false,
+      "Lightweight": false,
+      "Magnetic": false,
+      "Obscured": false,
+      "Obtrusive": false,
+      "Powered": false,
+      "Reactive": false,
+      "Regulated": false,
+      "Reinforced": false,
+      "Responsive": false,
+      "Rigid": false,
+      "Silent": false,
+      "Spiked": false,
+      "Strength": false,
+      "Steadfast": false,
+      "Versatile": false
+    },
+    "attributes": {
+      "dr": ""
+    },
+    "strength": null,
+    "stealth": false
+  },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018680,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "HOUItgPcMNu6Mkkw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "_key": "!items!HOUItgPcMNu6Mkkw"
+}

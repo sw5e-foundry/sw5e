@@ -1,15 +1,13 @@
 {
-  "_id": "kUnEuzg9el3MrYTa",
   "name": "Electronic Baffle",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Operation.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>When your ship would become ionized, shocked, or stunned, a crew member can use their reaction to roll one hull die and suffer damage to the hull equal to the amount rolled in order to ignore the triggering condition.</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship undergoes refitting.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">When your ship would become ionized, shocked, or stunned, a crewmember can use their reaction to roll one hull die and suffer damage to the hull equal to the amount rolled in order to ignore the triggering condition.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship undergoes refitting.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "refitting",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Operation"
     },
     "grade": {
-      "value": "NA"
+      "value": 0
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": ""
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018729,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "rKmQk8ipysU6HK96",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018729,
-    "modifiedTime": 1699591744192,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!kUnEuzg9el3MrYTa"
+  "_key": "!items!rKmQk8ipysU6HK96"
 }

@@ -167,10 +167,12 @@ export const ActorSheetMixin = Base => class extends Base {
   async _onUsesChange(event) {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const attr = event.currentTarget.closest(".uses-per")?.dataset?.attr ?? "uses";
     const item = this.actor.items.get(itemId);
+    const value = Math.clamped(item.system[attr]?.min ?? 0, parseInt(event.target.value), item.system[attr]?.max ?? Infinity);
     const uses = Math.clamped(0, parseInt(event.target.value || 0), item.system.uses.max);
     event.target.value = uses;
-    return item.update({"system.uses.value": uses});
+    return item.update({ [`system.${attr}.value`]: value });
   }
 
   /* -------------------------------------------- */

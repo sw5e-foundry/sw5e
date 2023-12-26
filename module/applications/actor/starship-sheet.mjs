@@ -134,7 +134,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     if (largestPrimary) {
       let primary = speeds.shift();
       return {
-        primary: `${primary ? primary[1] : "0"} ${movement.units}`,
+        primary: `${primary ? primary[1] : "0"} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
         special: speeds.map(s => s[1]).join(", ")
       };
     }
@@ -142,8 +142,8 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     // Case 2: Space as primary
     else {
       return {
-        primary: `${movement.space || 0} ${movement.units}`,
-        special: speeds.length ? `${speeds.map(s => s[1]).join(", ")} ${movement.units}` : ""
+        primary: `${movement.space || 0} ${movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0]}`,
+        special: speeds.length ? speeds.map(s => s[1]).join(", ") : ""
       };
     }
   }
@@ -190,18 +190,14 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (!actor) continue;
       const features = actor.itemTypes.feat.filter(item => item.system.type.value === "deployment");
       for (const feature of features) {
-        const { uses, recharge, target } = feature.system;
         const ctx = context.itemContext[feature.id] ??= {};
+        this._prepareItemContext(feature, ctx);
+
         ctx.active = ssDeploy.active.value === uuid;
-        ctx.isExpanded = this._expanded.has(feature.id);
-        ctx.hasUses = uses && uses.max > 0;
-        ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-        ctx.isDepleted = ctx.isOnCooldown && uses.per && uses.value > 0;
-        ctx.hasTarget = !!target && !["none", ""].includes(target.type);
-        ctx.id = feature.id;
         ctx.derived = uuid;
         ctx.name = feature.name;
         if (!this._filters.ssactions.has("activeDeploy")) ctx.name += ` (${actor.name})`;
+
         if (feature.system.type.subtype === "venture") categories.ssactions.venture.items.push(feature);
         else categories.ssactions.deployment.items.push(feature);
       }
@@ -295,6 +291,9 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     html.find(".deploy-control").click(this._onDeployControl.bind(this));
     // Item State Toggling
     html.find(".item-toggle").click(this._onToggleItem.bind(this));
+    // Display firing arc
+    html.find(".item.group-grid-inventory").mouseover(this._onMouseOverItem.bind(this));
+    html.find(".item.group-grid-inventory").mouseout(this._onMouseOutItem.bind(this));
   }
 
   /* -------------------------------------------- */
@@ -395,6 +394,52 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       }),
       yes: callback
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mousing over an Owned Item within the Actor.
+   * @param {Event} event             The triggering mouseover event.
+   * @returns {void}
+   * @private
+   */
+  _onMouseOverItem(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+
+    if (item?.system?.firingArc && item.system.range?.value && !item.firingArcTemplate) {
+      try {
+        item.firingArcTemplate = sw5e.canvas.FiringArcTemplate.fromItem(item);
+        item.firingArcTemplate?.drawPreview();
+      } catch(err) {
+        Hooks.onError("ActorSheet5eStarship._onMouseOverItem", err, {
+          msg: game.i18n.localize("SW5E.PlaceTemplateError"),
+          log: "error",
+          notify: "error"
+        });
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle mousing out of an Owned Item within the Actor.
+   * @param {Event} event             The triggering mouseover event.
+   * @returns {void}
+   * @private
+   */
+  _onMouseOutItem(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.dataset.itemId;
+    const item = this.actor.items.get(itemId);
+
+    if (item?.firingArcTemplate) {
+      item.firingArcTemplate._onCancelPlacement(event);
+      item.firingArcTemplate = undefined;
+    }
   }
 
   /* -------------------------------------------- */

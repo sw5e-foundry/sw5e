@@ -35,29 +35,29 @@
       "name": "Role: Courier",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!Ep2i8cByXDvwBJIw.qQTMHDrpIch61Q7C",
+      "_key": "!items.effects!AfbWdsK0d05G5XfG.qQTMHDrpIch61Q7C",
       "sort": 0
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
-  "_id": "Ep2i8cByXDvwBJIw",
   "system": {
     "description": {
-      "value": "<p><span style=\"font-family:'Open Sans'\">At tier 0, you adopt a particular style of design for your ship.</span></p><h3>Courier</h3><p><span style=\"font-family:'Open Sans'\">Your ship gains a +1 bonus to the Dexterity attribute.</span></p>",
+      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Courier</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Dexterity </span>attribute.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "requirements": "Medium Starship",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
-      "type": "none",
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
@@ -66,7 +66,8 @@
       "value": null,
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -75,18 +76,20 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -112,23 +115,23 @@
     },
     "attributes": {
       "speed": {
-        "space": 400,
-        "turn": 250
+        "space": 300,
+        "turn": 150
       }
-    },
-    "size": "Medium",
-    "tier": "0"
+    }
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494017920,
-    "modifiedTime": 1699591742517,
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494017962,
+    "modifiedTime": 1701987310547,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!Ep2i8cByXDvwBJIw"
+  "_id": "AfbWdsK0d05G5XfG",
+  "sort": 0,
+  "_key": "!items!AfbWdsK0d05G5XfG"
 }

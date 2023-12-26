@@ -84,7 +84,7 @@
 
     <ol class="group-list">
         {{#each superiorityPowerbook as |section|}}
-            <li>
+            <li class="items-header powerbook-header" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
                 <div class="group-list-title group-grid-maneuvers">
                     <div class="item-name">
                         <h3>{{section.label}}</h3>
@@ -106,8 +106,8 @@
                             </div>
 
                             <div class="item-detail item-uses">
-                                {{#if item.system.uses.per }}
-                                    Uses {{item.system.uses.value}} / {{item.system.uses.max}}
+                                {{#if item.hasLimitedUses }}
+                                    {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
                                 {{/if}}
                             </div>
 
@@ -118,16 +118,17 @@
                             </div>
 
                             {{#if @root.owner}}
-                            <div class="item-detail item-controls">
-                                {{#if section.canPrepare}}
-                                    <a class="item-control item-toggle {{item.toggleClass}}" data-tooltip="{{item.toggleTitle}}">
-                                        <i class="fas fa-check-circle"></i>
-                                    </a>
-                                {{/if}}
-                                <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
-                                <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
-                            </div>
+                                <div class="item-detail item-controls">
+                                    {{#if section.canPrepare}}
+                                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-tooltip="{{ctx.toggleTitle}}">
+                                            <i class="fas fa-check-circle"></i>
+                                        </a>
+                                    {{/if}}
+                                    <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
+                                </div>
                             {{/if}}
+
                             {{#if ctx.isExpanded}}
                                 {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
                             {{/if}}
@@ -143,9 +144,9 @@
                         <p class="notes">{{localize "SW5E.FilterNoManeuvers"}}</p>
                     </li>
                 {{else}}
-                    <li class="item flexrow inventory-header powerbook-header powerbook-empty">
+                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-school="general">
                         <div class="item-controls">
-                            <a class="item-control item-create" data-tooltip="SW5E.ManeuverCreate" data-type="power" data-type="general">
+                            <a class="item-control item-create" data-tooltip="SW5E.ManeuverCreate">
                                 <i class="fas fa-plus"></i> {{localize "SW5E.ManeuverAdd"}}
                             </a>
                         </div>

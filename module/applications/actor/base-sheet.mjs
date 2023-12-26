@@ -296,7 +296,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     for (let [k, label] of Object.entries(CONFIG.SW5E.senses)) {
       const v = senses[k] ?? 0;
       if (v === 0) continue;
-      tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units}`;
+      tags[k] = `${game.i18n.localize(label)} ${v} ${senses.units ?? Object.keys(CONFIG.SW5E.movementUnits)[0]}`;
     }
     if (senses.special) senses.special.split(";").forEach((c, i) => tags[`custom${i+1}`] = c.trim());
     return tags;
@@ -595,42 +595,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     for (const item of context.items) {
       const { quantity, uses, recharge, equipped } = item.system;
 
-      // Item details
-      const ctx = (context.itemContext[item.id] ??= {});
-      ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
-      ctx.id = item.id;
-      ctx.attunement = {
-        [CONFIG.SW5E.attunementTypes.REQUIRED]: {
-          icon: "fa-sun",
-          cls: "not-attuned",
-          title: "SW5E.AttunementRequired"
-        },
-        [CONFIG.SW5E.attunementTypes.ATTUNED]: {
-          icon: "fa-sun",
-          cls: "attuned",
-          title: "SW5E.AttunementAttuned"
-        }
-      }[item.system.attunement];
-
-      // Prepare data needed to display expanded sections
-      ctx.isExpanded = this._expanded.has(item.id);
-
-      // Item usage
-      ctx.hasUses = item.hasLimitedUses;
-      ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
-      ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
-      ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
-
-      // Item toggle state
-      this._prepareItemToggleState(item, ctx);
-
-      // Item Weight
-      if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
-
-      // Item properties
-      ctx.propertiesList = item.propertiesList;
-      ctx.isStarshipItem = item.isStarshipItem;
-      item.sheet._getWeaponReloadProperties(ctx);
+      // Item context
+      const ctx = context.itemContext[item.id] ??= {};
+      this._prepareItemContext(item, ctx);
 
       // Categorize the item
       if (config.splitEquipped && equipped && item.type in categories.equipped) {
@@ -675,6 +642,51 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     }
   }
 
+  _prepareItemContext(item, ctx={}) {
+    const { quantity, uses, recharge, equipped } = item.system;
+
+    // Item details
+    ctx.isStack = Number.isNumeric(quantity) && quantity !== 1;
+    ctx.id = item.id;
+    ctx.attunement = {
+      [CONFIG.SW5E.attunementTypes.REQUIRED]: {
+        icon: "fa-sun",
+        cls: "not-attuned",
+        title: "SW5E.AttunementRequired"
+      },
+      [CONFIG.SW5E.attunementTypes.ATTUNED]: {
+        icon: "fa-sun",
+        cls: "attuned",
+        title: "SW5E.AttunementAttuned"
+      }
+    }[item.system.attunement];
+
+    // Prepare data needed to display expanded sections
+    ctx.isExpanded = this._expanded.has(item.id);
+
+    // Item usage
+    ctx.hasUses = item.hasLimitedUses;
+    ctx.isOnCooldown = recharge && !!recharge.value && recharge.charged === false;
+    ctx.isDepleted = ctx.isOnCooldown && ctx.hasUses && (uses.value > 0);
+    ctx.hasTarget = item.hasAreaTarget || item.hasIndividualTarget;
+
+    // Item toggle state
+    this._prepareItemToggleState(item, ctx);
+
+    // Item Weight
+    if ("weight" in item.system) ctx.totalWeight = ((item.system.quantity ?? 1) * item.system.weight).toNearest(0.1);
+
+    // Weapon Firing Arc
+    if ("firingArc" in item.system) ctx.firingArc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc]?.label;
+
+    // Item properties
+    ctx.propertiesList = item.propertiesList;
+    ctx.isStarshipItem = item.isStarshipItem;
+    item.sheet._getWeaponReloadProperties(ctx);
+
+    return ctx;
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -689,6 +701,12 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const owner = this.actor.isOwner;
     const levels = context.actor.system.powers;
     const powerbook = {};
+    const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
+
+    const abbr = powerType[0];
+    const aMax = `${abbr}max`;
+    const aVal = `${abbr}val`;
+    const aOverride = `${abbr}override`;
 
     // Define section and label mappings
     const sections = { atwill: -20, innate: -10 };
@@ -696,7 +714,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
 
     // Format a powerbook entry for a certain indexed level
     const registerSection = (sl, i, label, { prepMode = "prepared", value, max, override } = {}) => {
-      const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.override`);
+      const aeOverride = foundry.utils.hasProperty(this.actor.overrides, `system.powers.power${i}.${aOverride}`);
       powerbook[i] = {
         order: i,
         label: label,
@@ -719,11 +737,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     };
 
     // Determine the maximum power level which has a slot
-    const maxLevel = Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1).reduce((max, i) => {
-      const level = levels[`power${i}`];
-      if ( level && (level.max || level.override ) && ( i > max ) ) max = i;
-      return max;
-    }, 0);
+    const maxLevel = context.actor.system.attributes[powerType].maxPowerLevel;
 
     // Level-based powercasters have cantrips and leveled slots
     if (maxLevel > 0) {
@@ -748,9 +762,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
           const config = CONFIG.SW5E.powerPreparationModes[mode];
           registerSection(mode, s, config, {
             prepMode: mode,
-            value: l.value,
-            max: l.max,
-            override: l.override
+            value: l[aVal],
+            max: l[aMax],
+            override: l[aOverride]
           });
         }
       }
@@ -1273,6 +1287,18 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const stacked = this._onDropStackConsumables(itemData);
     if (stacked) return false;
 
+    // Ensure that this item isn't violating the singleton rule
+    // TODO: When v10 support is dropped, this will only need to be handled for items with advancement
+    const dataModel = CONFIG.Item[sw5e.isV10 ? "systemDataModels" : "dataModels"][itemData.type];
+    const singleton = dataModel?.metadata.singleton ?? false;
+    if ( singleton && this.actor.itemTypes[itemData.type].length ) {
+      ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
+        itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
+        actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
+      }));
+      return false;
+    }
+
     // Bypass normal creation flow for any items with advancement
     if (itemData.system.advancement?.length && !game.settings.get("sw5e", "disableAdvancements")) {
       const manager = AdvancementManager.forNewItem(this.actor, itemData);
@@ -1343,7 +1369,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     // Case 2: Drop a leveled power in a section without a mode.
     else if ( (mode.level === 0) || !mode["preparation.mode"] ) {
       if ( this.document.type === "npc" ) {
-        itemData.system.preparation.mode = this.document.system.details.powerLevel ? "prepared" : "innate";
+        const powerCaster = this.document.system.attributes[isForcePower ? "force" : isTechPower ? "tech" : "nope"]?.level;
+        itemData.system.preparation.mode = powerCaster ? "prepared" : "innate";
       } else {
         itemData.system.preparation.mode = progs.leveled ? "prepared" : "innate";
       }

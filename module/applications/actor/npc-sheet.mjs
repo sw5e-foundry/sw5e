@@ -1,4 +1,6 @@
 import ActorSheet5e from "./base-sheet.mjs";
+import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
+import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 /**
  * An Actor sheet for NPC type characters in the SW5E system.
@@ -137,7 +139,7 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
         else if (item.type === "power" && ["tec"].includes(item.system.school)) obj.techpowers.push(item);
         else if (item.type === "deployment") obj.deployments.push(item);
         else if (item.type === "feat") {
-          if (item.system.type.value === "deploymentFeature") {
+          if (item.system.type.value === "deployment") {
             if (item.system.type.subtype === "venture") obj.ventures.push(item);
             else obj.deploymentfeatures.push(item);
           }
@@ -178,6 +180,19 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
     // Organize Starship Features
     deployments.sort((a, b) => b.system.rank - a.system.rank);
+    const maxRankDelta = CONFIG.SW5E.maxRank - this.actor.system.details.ranks;
+    deployments = deployments.reduce((arr, dep) => {
+      const ctx = (context.itemContext[dep.id] ??= {});
+      ctx.availableRanks = Array.fromRange(CONFIG.SW5E.maxIndividualRank + 1)
+        .slice(1)
+        .map(rank => {
+          const delta = rank - dep.system.rank;
+          return { rank, delta, disabled: delta > maxRankDelta };
+        });
+      arr.push(dep);
+      return arr;
+    }, []);
+
     ssfeatures.deployments.items = deployments;
     ssfeatures.deploymentfeatures.items = deploymentfeatures;
     ssfeatures.ventures.items = ventures;
@@ -224,6 +239,50 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
 
   /* -------------------------------------------- */
   /*  Event Listeners and Handlers                */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  activateListeners(html) {
+    super.activateListeners(html);
+    if (!this.isEditable) return;
+    html.find(".level-selector").change(this._onLevelChange.bind(this));
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Respond to a new level being selected from the level selector.
+   * @param {Event} event                           The originating change.
+   * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated item.
+   * @private
+   */
+  async _onLevelChange(event) {
+    event.preventDefault();
+
+    const delta = Number(event.target.value);
+    const itemId = event.target.closest(".item")?.dataset.itemId;
+    if (!delta || !itemId) return;
+    const item = this.actor.items.get(itemId);
+
+    let attr = null;
+    if (item.type === "deployment") attr = "rank";
+    if (!attr) return ui.error(`Unexpected item.type '${item.type}'`);
+
+    if (!game.settings.get("sw5e", "disableAdvancements")) {
+      const manager = AdvancementManager.forLevelChange(this.actor, itemId, delta);
+      if (manager.steps.length) {
+        if (delta > 0) return manager.render(true);
+        try {
+          const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(item);
+          if (shouldRemoveAdvancements) return manager.render(true);
+        } catch(err) {
+          return;
+        }
+      }
+    }
+    return item.update({ [`system.${attr}`]: item.system[attr] + delta });
+  }
+
   /* -------------------------------------------- */
 
   /** @override */

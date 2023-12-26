@@ -19,6 +19,7 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @mixes ModdableTemplate
  *
  * @property {string} weaponType          Weapon category as defined in `SW5E.weaponTypes`.
+ * @property {string} weaponClass         Weapon class as defined in `SW5E.weaponClasses`.
  * @property {string} baseItem            Base weapon as defined in `SW5E.weaponIds` for determining proficiency.
  * @property {object} ammo
  * @property {string} ammo.target         Id of the selected ammo item.
@@ -27,6 +28,7 @@ import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
  * @property {Array<string>} ammo.types   Types of ammo this ammo can accept.
  * @property {object} properties          Mapping of various equipment property booleans and numbers.
  * @property {number} proficient          Does the weapon's owner have proficiency?
+ * @property {string} firingArc           In which direction can the weapon fire? Options defined in `SW5E.weaponFiringArcs`.
  */
 export default class WeaponData extends SystemDataModel.mixin(
   ItemDescriptionTemplate,
@@ -87,6 +89,11 @@ export default class WeaponData extends SystemDataModel.mixin(
         integer: true,
         initial: null,
         label: "SW5E.ProficiencyLevel"
+      }),
+      firingArc: new foundry.data.fields.StringField({
+        required: true,
+        blank: true,
+        label: "SW5E.ItemFiringArc"
       })
     });
   }
@@ -182,6 +189,16 @@ export default class WeaponData extends SystemDataModel.mixin(
    */
   get isStarshipWeapon() {
     return this.weaponType in CONFIG.SW5E.weaponStarshipTypes;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this a starship item.
+   * @type {boolean}
+   */
+  get isStarshipItem() {
+    return this.isStarshipWeapon;
   }
 
   /* -------------------------------------------- */

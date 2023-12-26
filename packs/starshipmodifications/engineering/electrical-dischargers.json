@@ -1,15 +1,13 @@
 {
-  "_id": "4RfHRs8adL6tbBHi",
   "name": "Electrical Dischargers",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>As an action a crew member may cause your ship to emit a burst of electricity. Each ship within 50 feet, other than you, must succeed on a Dexterity saving throw (DC = 8 + prof. bonus + ship's strength modifier) or take 1d6 lightning damage.</p><p>This power's damage increases by 1d6 for every tier your ship is above first tier: 2nd tier (2d6), 3rd tier (3d6), 4th tier (4d6), and 5th tier (5d6).</p><p>This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">As an action a crewmember may cause your ship to emit a burst of electricity. Each ship within 150 feet, other than you, must succeed on a Dexterity saving throw (DC = 8 + prof. bonus + ship's strength modifier) or take 1d6 lightning damage.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This power's damage increases by 1d6 for every tier your ship is above first tier: 2nd tier (2d6), 3rd tier (3d6), 4th tier (4d6), and 5th tier (5d6).</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier (a minimum of once). All expended uses are regained when the ship recharges.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "recharge",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -92,7 +91,7 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": 1
+      "value": 0
     },
     "basecost": {
       "value": 3500
@@ -148,16 +147,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018606,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "T616WC5yZV5NyvQD",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018606,
-    "modifiedTime": 1699591744167,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!4RfHRs8adL6tbBHi"
+  "_key": "!items!T616WC5yZV5NyvQD"
 }

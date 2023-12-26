@@ -156,23 +156,12 @@ function applyChatCardDamage(li, multiplier) {
   const roll = message.rolls[0];
 
   // If no multiplier is received, pass extra data to automatically calculate it based on resistances
-  const extraData = {};
+  const extraData = message.flags.sw5e.roll;
   if (multiplier === null) {
     multiplier = 1;
     // Get damage type from the roll flavor
-    const flavor = message.rolls.options.flavor;
-    const regexp = /[(]([^()]*)[)]/g;
-    const types = [...flavor.matchAll(regexp)].map(i => i[1].split(", ")).flat(1);
-    const damageTypes = types.filter(d => d.toLowerCase() in CONFIG.SW5E.damageTypes);
+    const damageTypes = extraData.damageTypes?.split(", ") ?? [];
     if (damageTypes.length) extraData.damageType = damageTypes[0];
-    // Get item uuid from the message data
-    const actorId = message.speaker.actor;
-    const actor = fromUuidSynchronous(`Actor.${actorId}`);
-    if (actor) {
-      const itemId = message.flags.sw5e.roll.itemId;
-      const item = actor.items.get(itemId);
-      if (item) extraData.itemUuid = item.uuid;
-    }
     // MRE rolls each damage type separately
     if (message.flags["mre-dnd5e"]) {
       const damages = [];

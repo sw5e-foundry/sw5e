@@ -75,7 +75,7 @@ export class CompendiumBrowserFeatTab extends CompendiumBrowserTab {
             if (p_class) classes.add(p_class);
 
             // Prepare source
-            const source = featData.system.source;
+            const source = featData.system.source.label ?? featData.system.source.custom ?? featData.system.source;
             const sourceSlug = sluggify(source ?? "");
             if (source) sources.add(source);
 

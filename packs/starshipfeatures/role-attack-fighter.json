@@ -35,29 +35,29 @@
       "name": "Role: Attack Fighter",
       "description": "",
       "statuses": [],
-      "_key": "!items.effects!nE5oQmhOrK0Coirv.qQTMHDrpIch61Q7C",
+      "_key": "!items.effects!Xxjz0gT579YzJV29.qQTMHDrpIch61Q7C",
       "sort": 0
     }
   ],
   "folder": null,
-  "sort": 0,
   "flags": {},
-  "_id": "nE5oQmhOrK0Coirv",
   "system": {
     "description": {
-      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Attack Fighter</h3><p>Your ship gains a +1 bonus to the Strength attribute.</p>",
+      "value": "<p>At tier 0, you adopt a particular style of design for your ship.</p><h3>Attack Fighter</h3><p>Your ship gains a +1 bonus to the <span style=\"font-family:'Open Sans', sans-serif\">Strength </span>attribute.</p>",
       "chat": "",
       "unidentified": ""
     },
-    "requirements": "",
-    "source": "SotG",
+    "requirements": "Small Starship",
+    "source": {
+      "custom": "SotG"
+    },
     "activation": {
-      "type": "none",
+      "type": "",
       "cost": null,
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "cover": null,
@@ -66,7 +66,8 @@
       "value": null,
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -75,18 +76,20 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
+      "max": "",
       "per": null,
-      "recovery": ""
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": null,
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
+    "attackBonus": "",
     "chatFlavor": "",
     "critical": {
       "threshold": null,
@@ -115,20 +118,20 @@
         "space": 350,
         "turn": 100
       }
-    },
-    "size": "Small",
-    "tier": "0"
+    }
   },
   "ownership": {
     "default": 0
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494017966,
-    "modifiedTime": 1699591742520,
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494017907,
+    "modifiedTime": 1701987149723,
     "lastModifiedBy": "sw5ebuilder0000"
   },
-  "_key": "!items!nE5oQmhOrK0Coirv"
+  "_id": "Xxjz0gT579YzJV29",
+  "sort": 0,
+  "_key": "!items!Xxjz0gT579YzJV29"
 }

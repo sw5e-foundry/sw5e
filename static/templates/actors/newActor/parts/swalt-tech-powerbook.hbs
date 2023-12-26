@@ -83,7 +83,7 @@
 
     <ol class="group-list">
         {{#each techPowerbook as |section|}}
-            <li>
+            <li class="items-header powerbook-header" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
                 <div class="group-list-title group-grid-powers">
                     <div class="item-name">
                         <h3>{{section.label}}</h3>
@@ -105,8 +105,8 @@
                             </div>
                             
                             <div class="item-detail item-uses">
-                                {{#if item.system.uses.per }}
-                                    Uses {{item.system.uses.value}} / {{item.system.uses.max}}
+                                {{#if item.hasLimitedUses }}
+                                    {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
                                 {{/if}}
                             </div>
 
@@ -143,10 +143,11 @@
                         <p class="notes">{{localize "SW5E.FilterNoPowers"}}</p>
                     </li>
                 {{else}}
-                    <li class="item flexrow inventory-header powerbook-header powerbook-empty">
+                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="0" data-school="tec">
                         <div class="item-controls">
-                            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate" data-type="power"
-                                data-level="{{lvl}}" data-school="tec"><i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}</a>
+                            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
+                                <i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}
+                            </a>
                         </div>
                     </li>
                     <li class="item flexrow">

@@ -1,15 +1,13 @@
 {
-  "_id": "XHkoaKBkRZpc6F88",
   "name": "Improved Countermeasures",
   "type": "starshipmod",
   "img": "systems/sw5e/packs/Icons/Starship%20Modifications/Engineering.webp",
   "effects": [],
   "folder": null,
-  "sort": 0,
   "flags": {},
   "system": {
     "description": {
-      "value": "<p>This modification enhances your ship's countermeasures, allowing it to quickly clear lingering effects. As an action, a crew member can activate this feature, ending the blinded, ionized, shocked, stalled, and stunned conditions.</p><p>This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship undergoes refitting.</p><p>Additionally, your ship is expertly equipped for Wisdom saving throws.  If it was already expertly equipped, the ship can now add half its Constitution modifier (rounded down) to its Wisdom saving throws.</p>",
+      "value": "<p><span style=\"font-family:'Open Sans', sans-serif\">This modification enhances your ship's countermeasures, allowing it to quickly clear lingering effects. As an action, a crewmember can activate this feature, ending the blinded, ionized, shocked, stalled, stunned, and tractored conditions.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">This feature can be used a number of times equal to your ship's tier. All expended uses are regained when the ship undergoes refitting.</span></p><p><span style=\"font-family:'Open Sans', sans-serif\">Additionally, your ship can now add half its Wisdom modifier (rounded down) to its Dexterity saving throws.</span></p>",
       "chat": "",
       "unidentified": ""
     },
@@ -54,7 +52,8 @@
       "value": 1,
       "max": "1",
       "per": "refitting",
-      "recovery": ""
+      "recovery": "",
+      "prompt": false
     },
     "consume": {
       "type": "",
@@ -87,10 +86,10 @@
       "value": "Engineering"
     },
     "grade": {
-      "value": "2"
+      "value": 2
     },
     "basecost": {
-      "value": "3500"
+      "value": 3500
     },
     "prerequisites": {
       "value": "Countermeasures"
@@ -143,16 +142,18 @@
     "strength": null,
     "stealth": false
   },
+  "_stats": {
+    "systemId": "sw5e",
+    "systemVersion": "2.4.0.2.7.0",
+    "coreVersion": "11.313",
+    "createdTime": 1674494018691,
+    "modifiedTime": 1702330072748,
+    "lastModifiedBy": "sw5ebuilder0000"
+  },
+  "_id": "Z8GDtLVFElNOtRGa",
+  "sort": 0,
   "ownership": {
     "default": 0
   },
-  "_stats": {
-    "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
-    "coreVersion": "11.315",
-    "createdTime": 1674494018691,
-    "modifiedTime": 1699591744183,
-    "lastModifiedBy": "sw5ebuilder0000"
-  },
-  "_key": "!items!XHkoaKBkRZpc6F88"
+  "_key": "!items!Z8GDtLVFElNOtRGa"
 }

@@ -1374,8 +1374,11 @@ export default class Item5e extends SystemDocumentMixin(Item) {
 
     // Consume Weapon Ammo
     if ( config.consumeAmmo ) {
+      if (!this.hasAmmo) {
+        ui.notifications.warn(game.i18n.format("SW5E.ConsumeWarningNoSource", { name: this.name, type: "ammo" }));
+        return false;
+      }
       const ammo = this.getAmmo;
-      if (!ammo.max) return false;
       const remaining = ammo.quantity - ammo.consumeAmount;
       if (is.hasReload) {
         if (remaining < 0) {
@@ -1760,8 +1763,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
     let ammoUpdate = [];
     let itemUpdate = {};
 
-    const ammo = this.getAmmo;
-    if (ammo) {
+    if (this.hasAmmo) {
+      const ammo = this.getAmmo;
       // Get pending ammunition update
       const usage = this._getUsageUpdates({ consumeAmmo: true });
       if (usage === false) return null;

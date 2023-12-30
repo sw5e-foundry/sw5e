@@ -34,27 +34,29 @@
                 </a>
             </div>
 
-            {{#if (eq system.details.source.custom system.details.source.label)}}
-                <input
-                    type="text"
-                    name="system.details.source.custom"
-                    value="{{system.details.source.custom}}"
-                    placeholder="{{ localize 'SW5E.Source' }}"
-                >
-            {{else}}
-                <span data-tooltip="{{system.details.source.label}}">{{system.details.source.label}}</span>
-            {{/if}}
-            {{#if editable}}
-                <a class="config-button" data-action="source" data-tooltip="SW5E.SourceConfig">
-                    <i class="fas fa-cog"></i>
-                </a>
-            {{/if}}
+            <div class="source">
+                {{#if (eq system.details.source.custom system.details.source.label)}}
+                    <input
+                        type="text"
+                        name="system.details.source.custom"
+                        value="{{system.details.source.custom}}"
+                        placeholder="{{ localize 'SW5E.Source' }}"
+                    >
+                {{else}}
+                    <span data-tooltip="{{system.details.source.label}}">{{system.details.source.label}}</span>
+                {{/if}}
+                {{#if editable}}
+                    <a class="config-button" data-action="source" data-tooltip="SW5E.SourceConfig">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                {{/if}}
+            </div>
         </div>
         {{!-- Header Attributes --}}
         <div class="attributes">
             {{!-- ARMOR CLASS --}}
             <section class="attrib armor">
-                <h4 class="attribute-name box-title"> {{ localize "SW5E.ArmorClass" }} </h4>
+                <h1 class="attribute-name box-title"> {{ localize "SW5E.ArmorClass" }} </h1>
                 <a class="config-button" data-action="armor" data-tooltip="SW5E.ArmorConfig">
                     <i class="fas fa-cog"></i>
                 </a>

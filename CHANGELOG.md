@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated core to match [dnd5e 2.4.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.1).
 - Actor sheet tab names are now centered.
 - Compendium Updates.
+- Item prices no longer have a 'denomination' dropdown (as there is only one currency).
 
 ### Fixed
 

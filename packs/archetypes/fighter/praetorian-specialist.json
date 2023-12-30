@@ -27,7 +27,7 @@
     "classIdentifier": "fighter",
     "advancement": [
       {
-        "_id": "1lHd30rVOgAqK9aA",
+        "_id": "D5kHHeSKHTe1FYIJ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -41,7 +41,7 @@
         "title": "Features"
       },
       {
-        "_id": "M1O7ROuHn8M1U554",
+        "_id": "10wATrlEcrM71KXm",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -54,7 +54,7 @@
         "title": "Features"
       },
       {
-        "_id": "OFjzwF68bB61wpMo",
+        "_id": "ZVF2ULbasBG1e8c9",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -67,7 +67,7 @@
         "title": "Features"
       },
       {
-        "_id": "1prbYNF7r5CYdACF",
+        "_id": "O1iTeodMSzt1h7cr",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -80,7 +80,7 @@
         "title": "Features"
       },
       {
-        "_id": "uKY7z3YrBii9wyWq",
+        "_id": "TaVi2Zsffio1m5wZ",
         "type": "ItemGrant",
         "configuration": {
           "items": [
@@ -91,6 +91,65 @@
         "value": {},
         "level": 18,
         "title": "Features"
+      },
+      {
+        "_id": "PTn4LdEUN7upL96J",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:ins",
+                "skills:lor",
+                "skills:prf",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 3
+      },
+      {
+        "_id": "G7DKlOWhQ2A1uDtY",
+        "type": "Trait",
+        "configuration": {
+          "choices": [
+            {
+              "count": 1,
+              "pool": [
+                "skills:ani",
+                "skills:ins",
+                "skills:prc",
+                "skills:sur"
+              ]
+            },
+            {
+              "count": 1,
+              "pool": [
+                "skills:inv",
+                "skills:lor",
+                "skills:med",
+                "skills:nat",
+                "skills:pil",
+                "skills:tec",
+                "skills:dec",
+                "skills:itm",
+                "skills:prf",
+                "skills:per"
+              ]
+            }
+          ],
+          "grants": [
+            "skills:per"
+          ],
+          "mode": "default"
+        },
+        "value": {},
+        "level": 7
       }
     ],
     "powercasting": {
@@ -108,10 +167,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.1",
-    "coreVersion": "11.308",
+    "systemVersion": "2.4.1.2.8.0",
+    "coreVersion": "11.315",
     "createdTime": 1674493959785,
-    "modifiedTime": 1695981489837,
+    "modifiedTime": 1703969496781,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!yUx9ULyHJ85dUe1v"

@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship features compendium now has all the starship roles.
 - Starship modifications compendium has been updated to match the website.
 - Updated core to match [dnd5e 2.4.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-2.4.1).
+- Actor sheet tab names are now centered.
 
 ### Fixed
 
@@ -37,6 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Uses for starship modifications should now appear in the inventory.
 - "Apply damage with resistances" context button should once again work.
 - Starship actors should now properly support the `bonuses` field.
+- `advantage.ability.save.dmg.all` will no longer disable itself if `midi-qol` is enabled.
 
 ## [2.4.0.2.7.0] - 2033-11-30
 

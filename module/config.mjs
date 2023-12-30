@@ -4091,7 +4091,7 @@ SW5E.midiFlags = {
   "advantage.ability.save.dmg.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
     section: "midiFlags",
-    midiClone: true,
+    midiClone: false,
     type: Boolean
   },
   ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [

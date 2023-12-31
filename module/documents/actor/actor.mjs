@@ -2189,6 +2189,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const parts = [];
     const data = this.getRollData();
 
+    // Item data
+    const itemData = options.item ? {
+      isForcePower: options.item.system.school in CONFIG.SW5E.powerSchoolsForce,
+      isTechPower: options.item.system.school in CONFIG.SW5E.powerSchoolsTech,
+      isPoison: options.item.system.consumableType === "poison",
+      damageTypes: (options.item?.system?.damage?.parts ?? []).reduce(((set, part) => {
+        if (part[1]) set.add(part[1]);
+        return set;
+      }), new Set())
+    } : {};
+
+
     // Add ability modifier
     parts.push("@mod");
     data.mod = abl?.mod ?? 0;
@@ -2222,19 +2234,19 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Flags
     const supremeDurability = !!this._getCharacterFlag("supremeDurability", { ability: abilityId });
     // TODO: Check for inflicting poisoned condition for twoLivered
-    const twoLivered = (options.isPoison) && this._getCharacterFlag("twoLivered");
+    const twoLivered = (itemData.isPoison) && this._getCharacterFlag("twoLivered");
     // TODO: Check for blinded, deafened, or incapacitated for dangerSense
     const dangerSense = this._getCharacterFlag("dangerSense", { ability: abilityId });
 
-    const dmgAdvantageFlag = options.damageTypes?.size && this._getCharacterFlag([
+    const dmgAdvantageFlag = itemData.damageTypes?.size && this._getCharacterFlag([
       "advantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes ?? {}).map(dmg => `advantage.ability.save.dmg.${dmg}`)
+      ...Array.from(itemData.damageTypes ?? {}).map(dmg => `advantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
-    const forceAdvantageFlag = options.isForcePower && this._getCharacterFlag([
+    const forceAdvantageFlag = itemData.isForcePower && this._getCharacterFlag([
       "advantage.ability.save.force.all",
       `advantage.ability.save.force.${abilityId}`
     ], { situational: true });
-    const techAdvantageFlag = options.isTechPower && this._getCharacterFlag([
+    const techAdvantageFlag = itemData.isTechPower && this._getCharacterFlag([
       "advantage.ability.save.tech.all",
       `advantage.ability.save.tech.${abilityId}`
     ], { situational: true });
@@ -2247,15 +2259,15 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const advantage = !!(mastery || advantageFlag || options.advantage);
     const advantageHint = masteryHint || this._getCharacterFlagTooltip(advantageFlag);
 
-    const dmgDisadvantageFlag = options.damageTypes?.size && this._getCharacterFlag([
+    const dmgDisadvantageFlag = itemData.damageTypes?.size && this._getCharacterFlag([
       "disadvantage.ability.save.dmg.all",
-      ...Array.from(options.damageTypes ?? {}).map(dmg => `disadvantage.ability.save.dmg.${dmg}`)
+      ...Array.from(itemData.damageTypes ?? {}).map(dmg => `disadvantage.ability.save.dmg.${dmg}`)
     ], { situational: true });
-    const forceDisadvantageFlag = options.isForcePower && this._getCharacterFlag([
+    const forceDisadvantageFlag = itemData.isForcePower && this._getCharacterFlag([
       "disadvantage.ability.save.force.all",
       `disadvantage.ability.save.force.${abilityId}`
     ], { situational: true });
-    const techDisadvantageFlag = options.isTechPower && this._getCharacterFlag([
+    const techDisadvantageFlag = itemData.isTechPower && this._getCharacterFlag([
       "disadvantage.ability.save.tech.all",
       `disadvantage.ability.save.tech.${abilityId}`
     ], { situational: true });

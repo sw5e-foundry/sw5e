@@ -9,7 +9,7 @@
 
     <ol class="group-list">
         <li>
-            <!-- Deployments (pilot, crew, passenger) -->
+            <!-- Deployments (crew, passenger) -->
             {{#each config.ssCrewStationTypes as | name key |}}
             {{#with (lookup @root.system.attributes.deployment key) as | deployment |}}
             {{#if deployment.actorsVisible}}
@@ -17,6 +17,9 @@
                     <h3 class="item-name">
                         {{localize (lookup @root.config.ssCrewStationTypesPlural key)}}
                     </h3>
+                    <a class="deploy-control" data-action="clear" data-key="{{key}}">
+                        {{localize "SW5E.Clear"}}
+                    </a>
                 </div>
                 <ol class="group-items item-list">
                     {{#each deployment.items as | deploy |}}

@@ -578,23 +578,33 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
   _onDeployControl(event) {
     event.preventDefault();
     const a = event.currentTarget;
-    const li = a.closest("li");
 
-    const uuid = li.dataset.uuid;
-    const actor = fromUuidSynchronous(uuid);
-    const deployments = this.actor.system.attributes.deployment;
-
-    switch (a.dataset.action) {
-      case "pilot-toggle":
-        if (deployments.pilot.value === uuid) this.actor.ssUndeployCrew(actor, ["pilot"]);
-        else this.actor.ssDeployCrew(actor, "pilot");
-        break;
-      case "delete":
+    if (a.dataset.action === "clear") {
+      const key = a.dataset.key;
+      const deploy = this.actor.system.attributes.deployment[key];
+      if (deploy) for (const uuid of deploy.items ?? [ deploy.value ]) {
+        const actor = fromUuidSynchronous(uuid);
         this.actor.ssUndeployCrew(actor);
-        break;
-      case "toggle":
-        this.actor.ssToggleActiveCrew(uuid);
-        break;
+      }
+    } else {
+      const li = a.closest("li");
+
+      const uuid = li.dataset.uuid;
+      const actor = fromUuidSynchronous(uuid);
+      const deployments = this.actor.system.attributes.deployment;
+
+      switch (a.dataset.action) {
+        case "pilot-toggle":
+          if (deployments.pilot.value === uuid) this.actor.ssUndeployCrew(actor, ["pilot"]);
+          else this.actor.ssDeployCrew(actor, "pilot");
+          break;
+        case "delete":
+          this.actor.ssUndeployCrew(actor);
+          break;
+        case "toggle":
+          this.actor.ssToggleActiveCrew(uuid);
+          break;
+      }
     }
   }
 

@@ -39,7 +39,7 @@
     },
     "duration": {
       "value": null,
-      "units": ""
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
@@ -50,9 +50,9 @@
       "type": ""
     },
     "range": {
-      "value": null,
+      "value": 15,
       "long": null,
-      "units": ""
+      "units": "feet"
     },
     "uses": {
       "value": null,
@@ -67,19 +67,28 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "",
+    "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "2d6",
+          "kinetic"
+        ],
+        [
+          "2d6",
+          "ion"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "dex",
+      "dc": 14,
+      "scaling": "flat"
     },
     "consumableType": "ammo",
     "ammoType": "rocket",
@@ -101,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956747,
-    "modifiedTime": 1699591593415,
+    "modifiedTime": 1704036410852,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!eRVG9TORFV6YGuA0"

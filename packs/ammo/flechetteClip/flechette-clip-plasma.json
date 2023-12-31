@@ -39,7 +39,7 @@
     },
     "duration": {
       "value": null,
-      "units": ""
+      "units": "inst"
     },
     "cover": null,
     "crewed": false,
@@ -67,19 +67,24 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "",
+    "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "1d10",
+          "energy"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "dex",
+      "dc": 14,
+      "scaling": "flat"
     },
     "consumableType": "ammo",
     "ammoType": "flechetteClip",
@@ -101,10 +106,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956734,
-    "modifiedTime": 1699591593414,
+    "modifiedTime": 1704036410852,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!JhA6Fk0CmRAhWQqs"

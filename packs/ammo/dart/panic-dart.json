@@ -38,8 +38,8 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "1",
+      "units": "minute"
     },
     "cover": null,
     "crewed": false,
@@ -67,19 +67,28 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "",
+    "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "1d6",
+          "kinetic"
+        ],
+        [
+          "1d4",
+          "psychic"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "wis",
+      "dc": 14,
+      "scaling": "flat"
     },
     "consumableType": "ammo",
     "ammoType": "dart",
@@ -101,10 +110,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956735,
-    "modifiedTime": 1699591593414,
+    "modifiedTime": 1704036410852,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!LlVD11rEsLRXu6M3"

@@ -63,7 +63,7 @@ Hooks.once("init", function() {
   CONFIG.Token.documentClass = documents.TokenDocument5e;
   CONFIG.Token.objectClass = canvas.Token5e;
   CONFIG.time.roundTime = 6;
-  // TODO: Figure out if this is still necessary / how to make this work
+  // TODO SW5E: Figure out if this is still necessary / how to make this work
   // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
   CONFIG.Dice.DamageRoll = dice.DamageRoll;
   CONFIG.Dice.D20Roll = dice.D20Roll;
@@ -303,7 +303,7 @@ function _configureConsumableAttributes() {
     "attributes.force.points.value",
     "attributes.tech.points.value",
     "attributes.super.dice.value"
-    // TODO: Check if this would work for consuming power dice
+    // TODO SW5E: Check if this would work for consuming power dice
     // ...Object.keys(SW5E.ssModSystems).map(system => `attributes.power.${system.lower()}.value`),
   ];
 }
@@ -319,7 +319,7 @@ Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   game.sw5e.moduleArt.registerModuleArt();
 
-  // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
+  // TODO SW5E: Uncomment this once/if we ever add a rules compendium like dnd5e
   // Apply custom compendium styles to the SRD rules compendium.
   //  if ( !game.sw5e.isV10 ) {
   //    const rules = game.packs.get("sw5e.rules");
@@ -363,7 +363,7 @@ Hooks.once("ready", async function() {
     // Configure validation strictness.
     _configureValidationStrictness();
 
-    // TODO: Uncomment this once/if we ever add a rules compendium like dnd5e
+    // TODO SW5E: Uncomment this once/if we ever add a rules compendium like dnd5e
     // // Apply custom compendium styles to the SRD rules compendium.
     // const rules = game.packs.get("sw5e.rules");
     // rules.apps = [new applications.journal.SRDCompendium(rules)];

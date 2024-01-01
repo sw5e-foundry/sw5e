@@ -2200,7 +2200,7 @@ SW5E.powerLevels = {
 };
 preLocalize("powerLevels");
 
-// TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
+// TODO SW5E: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /**
  * Power Scroll Compendium UUIDs

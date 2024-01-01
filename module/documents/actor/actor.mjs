@@ -397,7 +397,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const minCrew = isMod ? shipData.modMinWorkforce : shipData.equipMinWorkforce;
     const installCost = Math.ceil(fullCost / 2);
     const installTime = (baseCost * sizeMult) / (500 * minCrew);
-    // TODO: accept a 'crew' parameter to use instead of minCrew in the install time calculation
+    // TODO SW5E: accept a 'crew' parameter to use instead of minCrew in the install time calculation
     //       pottentially add a checkbox for players working, to decrease/remove the installation cost
 
     return { minCrew, installCost, installTime };
@@ -1577,7 +1577,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if (multiplier > 0) {
       // Apply Damage Reduction
       if (this.type === "starship" && itemUuid) {
-        // TODO: maybe expand this to work with characters as well?
+        // TODO SW5E: maybe expand this to work with characters as well?
         const dr = this.system?.attributes?.equip?.armor?.dr ?? 0;
         // Starship damage resistance applies only to attacks
         const item = fromUuidSynchronous(itemUuid);
@@ -2190,11 +2190,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const data = this.getRollData();
 
     // Item data
-    const itemData = options.item ? {
-      isForcePower: options.item.system.school in CONFIG.SW5E.powerSchoolsForce,
-      isTechPower: options.item.system.school in CONFIG.SW5E.powerSchoolsTech,
-      isPoison: options.item.system.consumableType === "poison",
-      damageTypes: (options.item?.system?.damage?.parts ?? []).reduce(((set, part) => {
+    const item = fromUuidSync(options.saveItemUuid);
+    const itemData = item ? {
+      isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
+      isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
+      isPoison: item.system.consumableType === "poison",
+      damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
         if (part[1]) set.add(part[1]);
         return set;
       }), new Set())
@@ -2233,9 +2234,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Flags
     const supremeDurability = !!this._getCharacterFlag("supremeDurability", { ability: abilityId });
-    // TODO: Check for inflicting poisoned condition for twoLivered
+    // TODO SW5E: Check for inflicting poisoned condition for twoLivered
     const twoLivered = (itemData.isPoison) && this._getCharacterFlag("twoLivered");
-    // TODO: Check for blinded, deafened, or incapacitated for dangerSense
+    // TODO SW5E: Check for blinded, deafened, or incapacitated for dangerSense
     const dangerSense = this._getCharacterFlag("dangerSense", { ability: abilityId });
 
     const dmgAdvantageFlag = itemData.damageTypes?.size && this._getCharacterFlag([

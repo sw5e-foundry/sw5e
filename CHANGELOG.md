@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship Modification DataModel.
 - Starship tokens can now track passive skill values, power dice, and fuel amount.
 - (Dis)Advantage flags for starship skills.
-- Enrichment lookup (`[[/skill skillName]]`) for starship skills.
+- Enrichment lookup '`[[/skill skillName]]`'' for starship skills.
 - `Clear` button on starship crew tab.
 
 ### Changes

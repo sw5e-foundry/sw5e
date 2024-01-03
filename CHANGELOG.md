@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Actor sheet tab names are now centered.
 - Compendium Updates.
 - Item prices no longer have a 'denomination' dropdown (as there is only one currency).
+- Item properties (weight, quantity, ...) are now centered in the inventory tab.
 
 ### Fixed
 

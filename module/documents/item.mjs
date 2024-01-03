@@ -747,6 +747,10 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
       C.abilityActivationTypes[act.type]
     ].filterJoin(" ") : "";
+    this.labels.activationShort = act.type ? [
+      (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
+      C.abilityActivationTypes[act.type].split(" ")[0]
+    ].filterJoin(" ") : "";
 
     // Target Label
     let tgt = this.system.target ?? {};

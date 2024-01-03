@@ -2200,7 +2200,7 @@ SW5E.powerLevels = {
 };
 preLocalize("powerLevels");
 
-// TODO: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
+// TODO SW5E: This is used for spell scrolls, it maps the level to the compendium ID of the item the spell would be bound to
 // We could use this with, say, holocrons to produce scrolls
 /**
  * Power Scroll Compendium UUIDs
@@ -4091,7 +4091,7 @@ SW5E.midiFlags = {
   "advantage.ability.save.dmg.all": {
     name: "SW5E.CharacterFlags.Advantage.Ability.Save.Dmg.all.Name",
     section: "midiFlags",
-    midiClone: true,
+    midiClone: false,
     type: Boolean
   },
   ...Object.fromEntries(Object.keys(SW5E.damageTypes).map((key => [

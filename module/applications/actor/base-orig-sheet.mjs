@@ -511,7 +511,7 @@ export default class ActorSheetOrig5e extends ActorSheetMixin(ActorSheet) {
     }
 
     // Pact magic users have cantrips and a pact magic section
-    // TODO: Check if this is needed, we've removed pacts everywhere else
+    // TODO SW5E: Check if this is needed, we've removed pacts everywhere else
     if (levels.pact && levels.pact.max) {
       if (!powerbook["0"]) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
       const l = levels.pact;
@@ -996,7 +996,7 @@ export default class ActorSheetOrig5e extends ActorSheetMixin(ActorSheet) {
     }
 
     // Create a Consumable power scroll on the Inventory tab
-    // TODO: This is pretty non functional as the base items for the scrolls,
+    // TODO SW5E: This is pretty non functional as the base items for the scrolls,
     //       and the powers, are not defined, maybe consider using holocrons
     if (
       itemData.type === "power"

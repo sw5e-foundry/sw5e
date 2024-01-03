@@ -334,6 +334,7 @@
         padding: 3px 0 0;
         line-height: 1;
         .russoOne(16px);
+        text-align: center;
       }
     }
 
@@ -423,9 +424,12 @@
       .group-list-header,
       .group-list {
         .item-detail {
-          text-align: left;
+          text-align: center;
           padding: 4px;
         }
+      }
+      .group-list .item-detail .item-uses {
+        text-align: left;
       }
 
       .group-list {
@@ -1335,34 +1339,43 @@
         h1.character-name {
           align-self: auto;
         }
-        .npc-size,
-        .creature-type {
-          .russoOne(18px);
-          line-height: 28px;
-        }
 
-        div.creature-type {
-          display: flex;
-          justify-content: space-between;
-          padding: 1px 4px;
-          border: 1px solid transparent;
-          overflow-x: auto;
-          position: relative;
+        .summary {
+          div {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.25em;
 
-          span {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            span {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .config-button {
+              display: none;
+              font-size: 12px;
+              font-weight: normal;
+              line-height: 2em;
+            }
+            &:hover .config-button {
+              display: block;
+            }
           }
 
-          .config-button {
-            display: none;
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 2em;
+          .npc-size,
+          .creature-type {
+            .russoOne(18px);
+            line-height: 28px;
           }
-          &:hover .config-button {
-            display: block;
+
+          .creature-type {
+            width: unset;
+            padding: unset;
+          }
+
+          .source {
+            width: unset;
           }
         }
 

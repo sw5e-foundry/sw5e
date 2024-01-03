@@ -1270,7 +1270,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       return false;
     }
 
-    // TODO: Possibly make this a holocron
+    // TODO SW5E: Possibly make this a holocron
     // Create a Consumable power scroll on the Inventory tab
     if (
       itemData.type === "power"

@@ -11,7 +11,7 @@
  * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
  */
-// TODO: Check elven accuracy, halfling lucky, and reliable talent are required
+// TODO SW5E: Check elven accuracy, halfling lucky, and reliable talent are required
 // Elven Accuracy is Supreme accuracy feat, Reliable Talent is operative's Reliable Talent Class Feat
 export default class D20Roll extends Roll {
   constructor(formula, data, options) {

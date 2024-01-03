@@ -24,6 +24,9 @@ export const clean = gulp.series(cleanDist, ensureDist);
 export const buildJS = gulp.series(javascript.compile);
 export const lint = gulp.series(javascript.lint);
 
+// CSS compiling
+export const buildCSS = gulp.series(css.compile);
+
 // Compendium pack management
 export const cleanPacks = gulp.series(packs.clean);
 export const compilePacks = gulp.series(packs.compile);

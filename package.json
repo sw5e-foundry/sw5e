@@ -7,7 +7,7 @@
     "build:js": "gulp buildJS",
     "build:static": "gulp copyStatic",
     "build:db": "gulp compilePacks",
-    "build:json": "gulp extractPacks",
+    "build:json": "gulp extractPacks --levelDB",
     "build:cleanJson": "gulp cleanPacks",
     "build:watch": "gulp",
     "lint": "gulp lint",

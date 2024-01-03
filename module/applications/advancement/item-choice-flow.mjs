@@ -173,7 +173,7 @@ export default class ItemChoiceFlow extends ItemGrantFlow {
    * @returns {number}
    */
   _maxPowerSlotLevel() {
-    // TODO: Adapt this to work with force and tech powers
+    // TODO SW5E: Adapt this to work with force and tech powers
     // const powercasting = this.advancement.item.powercasting;
     // let powers;
 

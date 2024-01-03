@@ -38,8 +38,8 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
-      "units": ""
+      "value": "1",
+      "units": "hour"
     },
     "cover": null,
     "crewed": false,
@@ -67,19 +67,24 @@
       "amount": null
     },
     "ability": "",
-    "actionType": "",
+    "actionType": "save",
     "attackBonus": 0,
     "chatFlavor": "",
     "critical": null,
     "damage": {
-      "parts": [],
+      "parts": [
+        [
+          "1d4",
+          "cold"
+        ]
+      ],
       "versatile": ""
     },
     "formula": "",
     "save": {
-      "ability": "",
-      "dc": null,
-      "scaling": "power"
+      "ability": "con",
+      "dc": 14,
+      "scaling": "flat"
     },
     "consumableType": "ammo",
     "ammoType": "powerCell",
@@ -101,10 +106,10 @@
   },
   "_stats": {
     "systemId": "sw5e",
-    "systemVersion": "2.3.1.2.6.4",
+    "systemVersion": "2.4.1.2.8.0",
     "coreVersion": "11.315",
     "createdTime": 1674493956719,
-    "modifiedTime": 1699591593411,
+    "modifiedTime": 1704036410852,
     "lastModifiedBy": "sw5ebuilder0000"
   },
   "_key": "!items!0gGP4fOTbT5Nr0UP"

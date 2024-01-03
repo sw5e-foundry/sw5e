@@ -747,6 +747,10 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
       C.abilityActivationTypes[act.type]
     ].filterJoin(" ") : "";
+    this.labels.activationShort = act.type ? [
+      (act.type in C.staticAbilityActivationTypes) ? null : act.cost,
+      C.abilityActivationTypes[act.type].split(" ")[0]
+    ].filterJoin(" ") : "";
 
     // Target Label
     let tgt = this.system.target ?? {};
@@ -2259,7 +2263,8 @@ export default class Item5e extends SystemDocumentMixin(Item) {
       case "attack":
         await item.rollAttack({
           event,
-          powerLevel
+          powerLevel,
+          attackItemUuid: item.uuid
         });
         break;
       case "damage":
@@ -2276,26 +2281,27 @@ export default class Item5e extends SystemDocumentMixin(Item) {
         break;
       case "save":
         targets = this._getChatCardTargets(card);
-        const saveOptions = {
-          isForcePower: item.system.school in CONFIG.SW5E.powerSchoolsForce,
-          isTechPower: item.system.school in CONFIG.SW5E.powerSchoolsTech,
-          isPoison: item.system.consumableType === "poison",
-          damageTypes: (item?.system?.damage?.parts ?? []).reduce(((set, part) => {
-            if (part[1]) set.add(part[1]);
-            return set;
-          }), new Set())
-        };
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });
-          await token.actor.rollAbilitySave(button.dataset.ability, foundry.utils.mergeObject({ event, speaker }, saveOptions));
+          await token.actor.rollAbilitySave(button.dataset.ability, {
+            event,
+            speaker,
+            saveItemUuid: item.uuid
+          });
         }
         break;
       case "toolCheck":
-        await item.rollToolCheck({ event });
+        await item.rollToolCheck({
+          event,
+          toolItemUuid: item.uuid
+        });
         break;
       case "placeTemplate":
         try {
-          await sw5e.canvas.AbilityTemplate.fromItem(item, { "flags.sw5e.powerLevel": powerLevel })?.drawPreview();
+          await sw5e.canvas.AbilityTemplate.fromItem(item, {
+            "flags.sw5e.powerLevel": powerLevel,
+            templateItemUuid: item.uuid
+          })?.drawPreview();
         } catch(err) {
           Hooks.onError("Item5e._onChatCardAction", err, {
             msg: game.i18n.localize("SW5E.PlaceTemplateError"),
@@ -2308,7 +2314,11 @@ export default class Item5e extends SystemDocumentMixin(Item) {
         targets = this._getChatCardTargets(card);
         for (let token of targets) {
           const speaker = ChatMessage.getSpeaker({ scene: canvas.scene, token: token.document });
-          await token.actor.rollAbilityTest(button.dataset.ability, { event, speaker });
+          await token.actor.rollAbilityTest(button.dataset.ability, {
+            event,
+            speaker,
+            abilityItemUuid: item.uuid
+          });
         }
         break;
     }
@@ -2782,7 +2792,7 @@ export default class Item5e extends SystemDocumentMixin(Item) {
   /* -------------------------------------------- */
   /*  Factory Methods                             */
   /* -------------------------------------------- */
-  // TODO: Make work properly
+  // TODO SW5E: Make work properly
   /**
    * Create a consumable power scroll Item from a power Item.
    * @param {Item5e|object} power     The power or item data to be made into a scroll

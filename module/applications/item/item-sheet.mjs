@@ -82,7 +82,7 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @inheritdoc */
   get isEditable() {
-    // TODO: Remove this and make fake modification items update their data on the modified item
+    // TODO SW5E: Remove this and make fake modification items update their data on the modified item
     if (this.item.system.fakeItem) return false;
     return super.isEditable;
   }
@@ -495,7 +495,7 @@ export default class ItemSheet5e extends ItemSheet {
         );
         break;
 
-      // TODO: Work out these
+      // TODO SW5E: Work out these
       case "species":
         // Props.push(labels.species);
         break;

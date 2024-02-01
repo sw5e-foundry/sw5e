@@ -1,5 +1,5 @@
 import TraitAdvancement from "../../documents/advancement/trait.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
@@ -16,7 +16,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} powercasting.progression  Power progression granted by class as from `SW5E.powerProgression`.
  * @property {string} powercasting.ability      Ability score to use for powercasting.
  */
-export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ClassData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
@@ -39,6 +39,18 @@ export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemp
         ability: new foundry.data.fields.StringField({required: true, label: "SW5E.PowerAbility"})
       }, {label: "SW5E.Powercasting"})
     });
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    const context = await super.getFavoriteData();
+    if ( this.parent.archetype ) context.subtitle = this.parent.archetype.name;
+    context.value = this.levels;
+    return context;
   }
 
   /* -------------------------------------------- */

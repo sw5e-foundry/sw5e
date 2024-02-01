@@ -71,8 +71,8 @@ export default class ActorSheet5eNPC extends ActorSheet5e {
     }, [[], []]);
 
     // Apply item filters
-    powers = this._filterItems(powers, this._filters.powerbook);
-    other = this._filterItems(other, this._filters.features);
+    powers = this._filterItems(powers, this._filters.powerbook.properties);
+    other = this._filterItems(other, this._filters.features.properties);
 
     // Organize Powerbook
     const powerbook = this._preparePowerbook(context, powers);

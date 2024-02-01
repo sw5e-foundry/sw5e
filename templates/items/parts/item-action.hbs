@@ -28,7 +28,11 @@
 <div class="form-group">
     <label>{{ localize "SW5E.ItemAttackBonus" }}</label>
     <div class="form-fields">
-        <input type="text" name="system.attackBonus" value="{{system.attackBonus}}" data-formula-editor/>
+        <input type="text" name="system.attack.bonus" value="{{system.attack.bonus}}" data-formula-editor>
+        <label class="checkbox" data-tooltip="SW5E.ItemAttackFlatHint">
+          <input type="checkbox" name="system.attack.flat" {{checked system.attack.flat}}>
+          {{localize "SW5E.ItemAttackFlat"}}
+        </label>
     </div>
 </div>
 
@@ -63,10 +67,10 @@
             {{#select (lookup this "1")}}
                 <option value="">{{ localize "SW5E.None" }}</option>
                 <optgroup label="{{localize 'SW5E.Damage'}}">
-                    {{selectOptions @root.config.damageTypes}}
+                    {{selectOptions @root.config.damageTypes labelAttr="label"}}
                 </optgroup>
                 <optgroup label="{{localize 'SW5E.Healing'}}">
-                    {{selectOptions @root.config.healingTypes}}
+                    {{selectOptions @root.config.healingTypes labelAttr="label"}}
                 </optgroup>
             {{/select}}
         </select>
@@ -115,6 +119,23 @@
         </select>
     </div>
 </div>
+
+{{!-- Summoning --}}
+{{#if (eq system.actionType "summ")}}
+<div class="form-group summoning">
+    <label>{{ localize "SW5E.Summoning.Label" }}</label>
+    <div class="form-fields">
+        <a class="config-button" data-action="summoning">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+            {{ localize "SW5E.Summoning.Action.Configure" }}
+        </a>
+        <label class="checkbox" data-tooltip="SW5E.Summoning.Prompt.Hint">
+            <input type="checkbox" name="system.summons.prompt" {{ checked system.summons.prompt }}>
+            {{ localize "SW5E.Summoning.Prompt.Label" }}
+        </label>
+    </div>
+</div>
+{{/if}}
 
 {{!-- Chat Message Flavor --}}
 <div class="form-group stacked">

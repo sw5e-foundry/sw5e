@@ -1,11 +1,15 @@
 import TraitAdvancement from "../../documents/advancement/trait.mjs";
-import SystemDataModel from "../abstract.mjs";
-import { AdvancementField, IdentifierField } from "../fields.mjs";
+import { ItemDataModel } from "../abstract.mjs";
+import { AdvancementField, FormulaField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import StartingEquipmentTemplate from "./templates/starting-equipment.mjs";
+
+const { ArrayField, NumberField, SchemaField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Class items.
  * @mixes ItemDescriptionTemplate
+ * @mixes StartingEquipmentTemplate
  *
  * @property {string} identifier        Identifier slug for this class.
  * @property {number} levels            Current number of levels in this class.
@@ -15,30 +19,44 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {object} powercasting      Details on class's powercasting ability.
  * @property {string} powercasting.progression  Power progression granted by class as from `SW5E.powerProgression`.
  * @property {string} powercasting.ability      Ability score to use for powercasting.
+ * @property {string} wealth            Formula used to determine starting wealth.
  */
-export default class ClassData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ClassData extends ItemDataModel.mixin(ItemDescriptionTemplate, StartingEquipmentTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       identifier: new IdentifierField({required: true, label: "SW5E.Identifier"}),
-      levels: new foundry.data.fields.NumberField({
+      levels: new NumberField({
         required: true, nullable: false, integer: true, min: 0, initial: 1, label: "SW5E.ClassLevels"
       }),
-      hitDice: new foundry.data.fields.StringField({
+      hitDice: new StringField({
         required: true, initial: "d6", blank: false, label: "SW5E.HitDice",
         validate: v => /d\d+/.test(v), validationError: "must be a dice value in the format d#"
       }),
-      hitDiceUsed: new foundry.data.fields.NumberField({
+      hitDiceUsed: new NumberField({
         required: true, nullable: false, integer: true, initial: 0, min: 0, label: "SW5E.HitDiceUsed"
       }),
-      advancement: new foundry.data.fields.ArrayField(new AdvancementField(), {label: "SW5E.AdvancementTitle"}),
-      powercasting: new foundry.data.fields.SchemaField({
-        progression: new foundry.data.fields.StringField({
+      advancement: new ArrayField(new AdvancementField(), {label: "SW5E.AdvancementTitle"}),
+      powercasting: new SchemaField({
+        progression: new StringField({
           required: true, initial: "none", blank: false, label: "SW5E.PowerProgression"
         }),
-        ability: new foundry.data.fields.StringField({required: true, label: "SW5E.PowerAbility"})
-      }, {label: "SW5E.Powercasting"})
+        ability: new StringField({required: true, label: "SW5E.PowerAbility"})
+      }, {label: "SW5E.Powercasting"}),
+      wealth: new FormulaField({label: "SW5E.StartingEquipment.Wealth.Label"})
     });
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    const context = await super.getFavoriteData();
+    if ( this.parent.archetype ) context.subtitle = this.parent.archetype.name;
+    context.value = this.levels;
+    return context;
   }
 
   /* -------------------------------------------- */

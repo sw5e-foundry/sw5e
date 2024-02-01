@@ -21,6 +21,7 @@ _______________________________`;
  * @property {string} label                               Localized label.
  * @property {string} abbreviation                        Localized abbreviation.
  * @property {string} fullKey                             Fully written key used as alternate for enrichers.
+ * @property {string} [reference]                         Reference to a rule page describing this ability.
  * @property {string} [type]                              Whether this is a "physical" or "mental" ability.
  * @property {Object<string, number|string>}  [defaults]  Default values for this ability based on actor type.
  *                                                        If a string is used, the system will attempt to fetch.
@@ -36,25 +37,29 @@ SW5E.abilities = {
     label: "SW5E.AbilityStr",
     abbreviation: "SW5E.AbilityStrAbbr",
     type: "physical",
-    fullKey: "strength"
+    fullKey: "strength",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.nUPv6C66Ur64BIUH"
   },
   dex: {
     label: "SW5E.AbilityDex",
     abbreviation: "SW5E.AbilityDexAbbr",
     type: "physical",
-    fullKey: "dexterity"
+    fullKey: "dexterity",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ER8CKDUWLsFXuARJ"
   },
   con: {
     label: "SW5E.AbilityCon",
     abbreviation: "SW5E.AbilityConAbbr",
     type: "physical",
-    fullKey: "constitution"
+    fullKey: "constitution",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MpA4jnwD17Q0RPg7"
   },
   int: {
     label: "SW5E.AbilityInt",
     abbreviation: "SW5E.AbilityIntAbbr",
     type: "mental",
     fullKey: "intelligence",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.WzWWcTIppki35YvF",
     defaults: { vehicle: 0 }
   },
   wis: {
@@ -62,6 +67,7 @@ SW5E.abilities = {
     abbreviation: "SW5E.AbilityWisAbbr",
     type: "mental",
     fullKey: "wisdom",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.v3IPyTtqvXqN934s",
     defaults: { vehicle: 0 }
   },
   cha: {
@@ -69,6 +75,7 @@ SW5E.abilities = {
     abbreviation: "SW5E.AbilityChaAbbr",
     type: "mental",
     fullKey: "charisma",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9FyghudYFV5QJOuG",
     defaults: { vehicle: 0 }
   },
   hon: {
@@ -91,16 +98,51 @@ SW5E.abilities = {
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
 
 /**
- * Configure which ability score is used as the default modifier for initiative rolls.
- * @type {string}
+ * Configure which ability score is used as the default modifier for initiative rolls,
+ * when calculating hit points per level and hit dice, and as the default modifier for
+ * saving throws to maintain concentration.
+ * @enum {string}
  */
-SW5E.initiativeAbility = "dex";
+SW5E.defaultAbilities = {
+  initiative: "dex",
+  hitPoints: "con",
+  concentration: "con"
+};
 
-/**
- * Configure which ability score is used when calculating hit points per level.
- * @type {string}
- */
-SW5E.hitPointsAbility = "con";
+Object.defineProperties(SW5E, {
+  hitPointsAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.hitPoints;
+    },
+    set: function(value) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.hitPoints = value;
+    }
+  },
+  initiativeAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.initiative;
+    },
+    set: function(value) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.initiative = value;
+    }
+  }
+});
 
 /* -------------------------------------------- */
 
@@ -108,9 +150,10 @@ SW5E.hitPointsAbility = "con";
  * Configuration data for skills.
  *
  * @typedef {object} SkillConfiguration
- * @property {string} label    Localized label.
- * @property {string} ability  Key for the default ability used by this skill.
- * @property {string} fullKey  Fully written key used as alternate for enrichers.
+ * @property {string} label        Localized label.
+ * @property {string} ability      Key for the default ability used by this skill.
+ * @property {string} fullKey      Fully written key used as alternate for enrichers.
+ * @property {string} [reference]  Reference to a rule page describing this skill.
  */
 
 /**
@@ -118,24 +161,132 @@ SW5E.hitPointsAbility = "con";
  * @enum {SkillConfiguration}
  */
 SW5E.skills = {
-  acr: { label: "SW5E.SkillAcr", ability: "dex", fullKey: "acrobatics" },
-  ani: { label: "SW5E.SkillAni", ability: "wis", fullKey: "animalHandling" },
-  arc: { label: "SW5E.SkillArc", ability: "int", fullKey: "arcana" },
-  ath: { label: "SW5E.SkillAth", ability: "str", fullKey: "athletics" },
-  dec: { label: "SW5E.SkillDec", ability: "cha", fullKey: "deception" },
-  his: { label: "SW5E.SkillHis", ability: "int", fullKey: "history" },
-  ins: { label: "SW5E.SkillIns", ability: "wis", fullKey: "insight" },
-  itm: { label: "SW5E.SkillItm", ability: "cha", fullKey: "intimidation" },
-  inv: { label: "SW5E.SkillInv", ability: "int", fullKey: "investigation" },
-  med: { label: "SW5E.SkillMed", ability: "wis", fullKey: "medicine" },
-  nat: { label: "SW5E.SkillNat", ability: "int", fullKey: "nature" },
-  prc: { label: "SW5E.SkillPrc", ability: "wis", fullKey: "perception" },
-  prf: { label: "SW5E.SkillPrf", ability: "cha", fullKey: "performance" },
-  per: { label: "SW5E.SkillPer", ability: "cha", fullKey: "persuasion" },
-  rel: { label: "SW5E.SkillRel", ability: "int", fullKey: "religion" },
-  slt: { label: "SW5E.SkillSlt", ability: "dex", fullKey: "sleightOfHand" },
-  ste: { label: "SW5E.SkillSte", ability: "dex", fullKey: "stealth" },
-  sur: { label: "SW5E.SkillSur", ability: "wis", fullKey: "survival" }
+  acr: {
+    label: "SW5E.SkillAcr",
+    ability: "dex",
+    fullKey: "acrobatics",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AvvBLEHNl7kuwPkN",
+    icon: "icons/equipment/feet/shoes-simple-leaf-green.webp"
+  },
+  ani: {
+    label: "SW5E.SkillAni",
+    ability: "wis",
+    fullKey: "animalHandling",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.xb3MCjUvopOU4viE",
+    icon: "icons/environment/creatures/horse-brown.webp"
+  },
+  arc: {
+    label: "SW5E.SkillArc",
+    ability: "int",
+    fullKey: "arcana",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.h3bYSPge8IOqne1N",
+    icon: "icons/sundries/books/book-embossed-jewel-silver-green.webp"
+  },
+  ath: {
+    label: "SW5E.SkillAth",
+    ability: "str",
+    fullKey: "athletics",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.rIR7ttYDUpH3tMzv",
+    icon: "icons/magic/control/buff-strength-muscle-damage-orange.webp"
+  },
+  dec: {
+    label: "SW5E.SkillDec",
+    ability: "cha",
+    fullKey: "deception",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.mqVZ2fz0L7a9VeKJ",
+    icon: "icons/magic/control/mouth-smile-deception-purple.webp"
+  },
+  his: {
+    label: "SW5E.SkillHis",
+    ability: "int",
+    fullKey: "history",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kRBZbdWMGW9K3wdY",
+    icon: "icons/sundries/books/book-embossed-bound-brown.webp"
+  },
+  ins: {
+    label: "SW5E.SkillIns",
+    ability: "wis",
+    fullKey: "insight",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8R5SMbAGbECNgO8z",
+    icon: "icons/magic/perception/orb-crystal-ball-scrying-blue.webp"
+  },
+  itm: {
+    label: "SW5E.SkillItm",
+    ability: "cha",
+    fullKey: "intimidation",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4VHHI2gJ1jEsppfg",
+    icon: "icons/skills/social/intimidation-impressing.webp"
+  },
+  inv: {
+    label: "SW5E.SkillInv",
+    ability: "int",
+    fullKey: "investigation",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Y7nmbQAruWOs7WRM",
+    icon: "icons/tools/scribal/magnifying-glass.webp"
+  },
+  med: {
+    label: "SW5E.SkillMed",
+    ability: "wis",
+    fullKey: "medicine",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.GeYmM7BVfSCAga4o",
+    icon: "icons/tools/cooking/mortar-herbs-yellow.webp"
+  },
+  nat: {
+    label: "SW5E.SkillNat",
+    ability: "int",
+    fullKey: "nature",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ueMx3uF2PQlcye31",
+    icon: "icons/magic/nature/plant-sprout-snow-green.webp"
+  },
+  prc: {
+    label: "SW5E.SkillPrc",
+    ability: "wis",
+    fullKey: "perception",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zjEeHCUqfuprfzhY",
+    icon: "icons/magic/perception/eye-ringed-green.webp"
+  },
+  prf: {
+    label: "SW5E.SkillPrf",
+    ability: "cha",
+    fullKey: "performance",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hYT7Z06yDNBcMtGe",
+    icon: "icons/tools/instruments/lute-gold-brown.webp"
+  },
+  per: {
+    label: "SW5E.SkillPer",
+    ability: "cha",
+    fullKey: "persuasion",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4R5H8iIsdFQTsj3X",
+    icon: "icons/skills/social/diplomacy-handshake.webp"
+  },
+  rel: {
+    label: "SW5E.SkillRel",
+    ability: "int",
+    fullKey: "religion",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.CXVzERHdP4qLhJXM",
+    icon: "icons/magic/holy/saint-glass-portrait-halo.webp"
+  },
+  slt: {
+    label: "SW5E.SkillSlt",
+    ability: "dex",
+    fullKey: "sleightOfHand",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.yg6SRpGNVz9nDW0A",
+    icon: "icons/sundries/gaming/playing-cards.webp"
+  },
+  ste: {
+    label: "SW5E.SkillSte",
+    ability: "dex",
+    fullKey: "stealth",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4MfrpERNiQXmvgCI",
+    icon: "icons/magic/perception/shadow-stealth-eyes-purple.webp"
+  },
+  sur: {
+    label: "SW5E.SkillSur",
+    ability: "wis",
+    fullKey: "survival",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.t3EzDU5b9BVAIEVi",
+    icon: "icons/magic/fire/flame-burning-campfire-yellow-blue.webp"
+  }
 };
 preLocalize("skills", { key: "label", sort: true });
 
@@ -435,31 +586,78 @@ preLocalize("abilityConsumptionTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
- * Creature sizes.
- * @enum {string}
+ * Configuration data for actor sizes.
+ *
+ * @typedef {object} ActorSizeConfiguration
+ * @property {string} label                   Localized label.
+ * @property {string} abbreviation            Localized abbreviation.
+ * @property {number} [token=1]               Default token size.
+ * @property {number} [capacityMultiplier=1]  Multiplier used to calculate carrying capacities.
+ */
+
+/**
+ * Creature sizes ordered from smallest to largest.
+ * @enum {ActorSizeConfiguration}
  */
 SW5E.actorSizes = {
-  tiny: "SW5E.SizeTiny",
-  sm: "SW5E.SizeSmall",
-  med: "SW5E.SizeMedium",
-  lg: "SW5E.SizeLarge",
-  huge: "SW5E.SizeHuge",
-  grg: "SW5E.SizeGargantuan"
+  tiny: {
+    label: "SW5E.SizeTiny",
+    abbreviation: "SW5E.SizeTinyAbbr",
+    token: 0.5,
+    capacityMultiplier: 0.5
+  },
+  sm: {
+    label: "SW5E.SizeSmall",
+    abbreviation: "SW5E.SizeSmallAbbr",
+    dynamicTokenScale: 0.8
+  },
+  med: {
+    label: "SW5E.SizeMedium",
+    abbreviation: "SW5E.SizeMediumAbbr"
+  },
+  lg: {
+    label: "SW5E.SizeLarge",
+    abbreviation: "SW5E.SizeLargeAbbr",
+    token: 2,
+    capacityMultiplier: 2
+  },
+  huge: {
+    label: "SW5E.SizeHuge",
+    abbreviation: "SW5E.SizeHugeAbbr",
+    token: 3,
+    capacityMultiplier: 4
+  },
+  grg: {
+    label: "SW5E.SizeGargantuan",
+    abbreviation: "SW5E.SizeGargantuanAbbr",
+    token: 4,
+    capacityMultiplier: 8
+  }
 };
-preLocalize("actorSizes");
+preLocalize("actorSizes", { keys: ["label", "abbreviation"] });
+patchConfig("actorSizes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /**
  * Default token image size for the values of `SW5E.actorSizes`.
  * @enum {number}
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  */
-SW5E.tokenSizes = {
-  tiny: 0.5,
-  sm: 1,
-  med: 1,
-  lg: 2,
-  huge: 3,
-  grg: 4
-};
+Object.defineProperty(SW5E, "tokenSizes", {
+  get() {
+    foundry.utils.logCompatibilityWarning(
+      "SW5E.tokenSizes has been deprecated and is now accessible through the .token property on SW5E.actorSizes.",
+      { since: "SW5e 3.0", until: "SW5e 3.2" }
+    );
+    return Object.entries(SW5E.actorSizes).reduce((obj, [k, v]) => {
+      obj[k] = v.token ?? 1;
+      return obj;
+    }, {});
+  }
+});
+
+/* -------------------------------------------- */
+/*  Canvas                                      */
+/* -------------------------------------------- */
 
 /**
  * Colors used to visualize temporary and temporary maximum HP in token health bars.
@@ -476,26 +674,142 @@ SW5E.tokenHPColors = {
 /* -------------------------------------------- */
 
 /**
+ * Colors used when a dynamic token ring effects.
+ * @enum {number}
+ */
+SW5E.tokenRingColors = {
+  damage: 0xFF0000,
+  defeated: 0x000000,
+  healing: 0x00FF00,
+  temp: 0x33AAFF
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Settings used to render map location markers on the canvas.
+ * @type {object}
+ */
+SW5E.mapLocationMarker = {
+  default: {
+    backgroundColor: 0xFBF8F5,
+    borderColor: 0x000000,
+    borderHoverColor: 0xFF5500,
+    font: null,
+    textColor: 0x000000
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for creature types.
+ *
+ * @typedef {object} CreatureTypeConfiguration
+ * @property {string} label               Localized label.
+ * @property {string} plural              Localized plural form used in swarm name.
+ * @property {string} [reference]         Reference to a rule page describing this type.
+ * @property {boolean} [detectAlignment]  Is this type detectable by powers such as "Detect Evil and Good"?
+ */
+
+/**
  * Default types of creatures.
- * *Note: Not pre-localized to allow for easy fetching of pluralized forms.*
- * @enum {string}
+ * @enum {CreatureTypeConfiguration}
  */
 SW5E.creatureTypes = {
-  aberration: "SW5E.CreatureAberration",
-  beast: "SW5E.CreatureBeast",
-  celestial: "SW5E.CreatureCelestial",
-  construct: "SW5E.CreatureConstruct",
-  dragon: "SW5E.CreatureDragon",
-  elemental: "SW5E.CreatureElemental",
-  fey: "SW5E.CreatureFey",
-  fiend: "SW5E.CreatureFiend",
-  giant: "SW5E.CreatureGiant",
-  humanoid: "SW5E.CreatureHumanoid",
-  monstrosity: "SW5E.CreatureMonstrosity",
-  ooze: "SW5E.CreatureOoze",
-  plant: "SW5E.CreaturePlant",
-  undead: "SW5E.CreatureUndead"
+  aberration: {
+    label: "SW5E.CreatureAberration",
+    plural: "SW5E.CreatureAberrationPl",
+    icon: "/icons/creatures/tentacles/tentacle-eyes-yellow-pink.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.yy50qVC1JhPHt4LC",
+    detectAlignment: true
+  },
+  beast: {
+    label: "SW5E.CreatureBeast",
+    plural: "SW5E.CreatureBeastPl",
+    icon: "/icons/creatures/claws/claw-bear-paw-swipe-red.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6bTHn7pZek9YX2tv"
+  },
+  celestial: {
+    label: "SW5E.CreatureCelestial",
+    plural: "SW5E.CreatureCelestialPl",
+    icon: "/icons/creatures/abilities/wings-birdlike-blue.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.T5CJwxjhBbi6oqaM",
+    detectAlignment: true
+  },
+  construct: {
+    label: "SW5E.CreatureConstruct",
+    plural: "SW5E.CreatureConstructPl",
+    icon: "/icons/creatures/magical/construct-stone-earth-gray.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jQGAJZBZTqDFod8d"
+  },
+  dragon: {
+    label: "SW5E.CreatureDragon",
+    plural: "SW5E.CreatureDragonPl",
+    icon: "/icons/creatures/abilities/dragon-fire-breath-orange.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.k2IRXZwGk9W0PM2S"
+  },
+  elemental: {
+    label: "SW5E.CreatureElemental",
+    plural: "SW5E.CreatureElementalPl",
+    icon: "/icons/creatures/magical/spirit-fire-orange.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.7z1LXGGkXpHuzkFh",
+    detectAlignment: true
+  },
+  fey: {
+    label: "SW5E.CreatureFey",
+    plural: "SW5E.CreatureFeyPl",
+    icon: "/icons/creatures/magical/fae-fairy-winged-glowing-green.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.OFsRUt3pWljgm8VC",
+    detectAlignment: true
+  },
+  fiend: {
+    label: "SW5E.CreatureFiend",
+    plural: "SW5E.CreatureFiendPl",
+    icon: "/icons/magic/death/skull-horned-goat-pentagram-red.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ElHKBJeiJPC7gj6k",
+    detectAlignment: true
+  },
+  giant: {
+    label: "SW5E.CreatureGiant",
+    plural: "SW5E.CreatureGiantPl",
+    icon: "/icons/creatures/magical/humanoid-giant-forest-blue.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AOXn3Mv5vPZwo0Uf"
+  },
+  humanoid: {
+    label: "SW5E.CreatureHumanoid",
+    plural: "SW5E.CreatureHumanoidPl",
+    icon: "/icons/magic/unholy/strike-body-explode-disintegrate.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iFzQs4AenN8ALRvw"
+  },
+  monstrosity: {
+    label: "SW5E.CreatureMonstrosity",
+    plural: "SW5E.CreatureMonstrosityPl",
+    icon: "/icons/creatures/abilities/mouth-teeth-rows-red.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TX0yPEFTn79AMZ8P"
+  },
+  ooze: {
+    label: "SW5E.CreatureOoze",
+    plural: "SW5E.CreatureOozePl",
+    icon: "/icons/creatures/slimes/slime-movement-pseudopods-green.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.cgzIC1ecG03D97Fg"
+  },
+  plant: {
+    label: "SW5E.CreaturePlant",
+    plural: "SW5E.CreaturePlantPl",
+    icon: "/icons/magic/nature/tree-animated-strike.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1oT7t6tHE4kZuSN1"
+  },
+  undead: {
+    label: "SW5E.CreatureUndead",
+    plural: "SW5E.CreatureUndeadPl",
+    icon: "/icons/magic/death/skull-horned-worn-fire-blue.webp",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.D2BdqS1GeD5rcZ6q",
+    detectAlignment: true
+  }
 };
+preLocalize("creatureTypes", { keys: ["label", "plural"], sort: true });
+patchConfig("creatureTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -509,6 +823,7 @@ SW5E.itemActionTypes = {
   mpak: "SW5E.ActionMPAK",
   rpak: "SW5E.ActionRPAK",
   save: "SW5E.ActionSave",
+  summ: "SW5E.ActionSumm",
   heal: "SW5E.ActionHeal",
   abil: "SW5E.ActionAbil",
   util: "SW5E.ActionUtil",
@@ -548,6 +863,7 @@ preLocalize("itemRarity");
 
 /**
  * The limited use periods that support a recovery formula.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
  * @enum {string}
  */
 SW5E.limitedUseFormulaPeriods = {
@@ -559,16 +875,49 @@ SW5E.limitedUseFormulaPeriods = {
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for limited use periods.
+ *
+ * @typedef {object} LimitedUsePeriodConfiguration
+ * @property {string} label           Localized label.
+ * @property {string} abbreviation    Shorthand form of the label.
+ * @property {boolean} [formula]      Whether this limited use period restores chargs via formula.
+ */
+
+/**
  * Enumerate the lengths of time over which an item can have limited use ability.
- * @enum {string}
+ * @enum {LimitedUsePeriodConfiguration}
  */
 SW5E.limitedUsePeriods = {
-  sr: "SW5E.ShortRest",
-  lr: "SW5E.LongRest",
-  day: "SW5E.Day",
-  ...SW5E.limitedUseFormulaPeriods
+  sr: {
+    label: "SW5E.UsesPeriods.Sr",
+    abbreviation: "SW5E.UsesPeriods.SrAbbreviation"
+  },
+  lr: {
+    label: "SW5E.UsesPeriods.Lr",
+    abbreviation: "SW5E.UsesPeriods.LrAbbreviation"
+  },
+  day: {
+    label: "SW5E.UsesPeriods.Day",
+    abbreviation: "SW5E.UsesPeriods.DayAbbreviation"
+  },
+  charges: {
+    label: "SW5E.UsesPeriods.Charges",
+    abbreviation: "SW5E.UsesPeriods.ChargesAbbreviation",
+    formula: true
+  },
+  dawn: {
+    label: "SW5E.UsesPeriods.Dawn",
+    abbreviation: "SW5E.UsesPeriods.DawnAbbreviation",
+    formula: true
+  },
+  dusk: {
+    label: "SW5E.UsesPeriods.Dusk",
+    abbreviation: "SW5E.UsesPeriods.DuskAbbreviation",
+    formula: true
+  }
 };
-preLocalize("limitedUsePeriods");
+preLocalize("limitedUsePeriods", { keys: ["label", "abbreviation"] });
+patchConfig("limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
 
 /* -------------------------------------------- */
 
@@ -631,9 +980,9 @@ preLocalize("vehicleTypes", { sort: true });
  * @type {object}
  */
 SW5E.armorProficiencies = {
-  lgt: SW5E.equipmentTypes.light,
-  med: SW5E.equipmentTypes.medium,
-  hvy: SW5E.equipmentTypes.heavy,
+  lgt: "SW5E.ArmorLightProficiency",
+  med: "SW5E.ArmorMediumProficiency",
+  hvy: "SW5E.ArmorHeavyProficiency",
   shl: "SW5E.EquipmentShieldProficiency"
 };
 preLocalize("armorProficiencies");
@@ -722,20 +1071,59 @@ preLocalize("armorClasses", { key: "label" });
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for an items that have sub-types.
+ *
+ * @typedef {object} SubtypeTypeConfiguration
+ * @property {string} label                       Localized label for this type.
+ * @property {Record<string, string>} [subtypes]  Enum containing localized labels for subtypes.
+ */
+
+/**
  * Enumerate the valid consumable types which are recognized by the system.
- * @enum {string}
+ * @enum {SubtypeTypeConfiguration}
  */
 SW5E.consumableTypes = {
-  ammo: "SW5E.ConsumableAmmo",
-  potion: "SW5E.ConsumablePotion",
-  poison: "SW5E.ConsumablePoison",
-  food: "SW5E.ConsumableFood",
-  scroll: "SW5E.ConsumableScroll",
-  wand: "SW5E.ConsumableWand",
-  rod: "SW5E.ConsumableRod",
-  trinket: "SW5E.ConsumableTrinket"
+  ammo: {
+    label: "SW5E.ConsumableAmmo",
+    subtypes: {
+      arrow: "SW5E.ConsumableAmmoArrow",
+      blowgunNeedle: "SW5E.ConsumableAmmoBlowgunNeedle",
+      crossbowBolt: "SW5E.ConsumableAmmoCrossbowBolt",
+      slingBullet: "SW5E.ConsumableAmmoSlingBullet"
+    }
+  },
+  potion: {
+    label: "SW5E.ConsumablePotion"
+  },
+  poison: {
+    label: "SW5E.ConsumablePoison",
+    subtypes: {
+      contact: "SW5E.ConsumablePoisonContact",
+      ingested: "SW5E.ConsumablePoisonIngested",
+      inhaled: "SW5E.ConsumablePoisonInhaled",
+      injury: "SW5E.ConsumablePoisonInjury"
+    }
+  },
+  food: {
+    label: "SW5E.ConsumableFood"
+  },
+  scroll: {
+    label: "SW5E.ConsumableScroll"
+  },
+  wand: {
+    label: "SW5E.ConsumableWand"
+  },
+  rod: {
+    label: "SW5E.ConsumableRod"
+  },
+  trinket: {
+    label: "SW5E.ConsumableTrinket"
+  }
 };
-preLocalize("consumableTypes", { sort: true });
+patchConfig("consumableTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
+preLocalize("consumableTypes", { key: "label", sort: true });
+preLocalize("consumableTypes.ammo.subtypes", { sort: true });
+preLocalize("consumableTypes.poison.subtypes", { sort: true });
 
 /* -------------------------------------------- */
 
@@ -807,44 +1195,37 @@ SW5E.focusTypes = {
     }
   }
 };
+preLocalize("focusTypes", { key: "label" });
 
 /* -------------------------------------------- */
 
 /**
- * Configuration data for an item with the "feature" type.
- *
- * @typedef {object} FeatureTypeConfiguration
- * @property {string} label                       Localized label for this type.
- * @property {Object<string, string>} [subtypes]  Enum containing localized labels for subtypes.
- */
-
-/**
  * Types of "features" items.
- * @enum {FeatureTypeConfiguration}
+ * @enum {SubtypeTypeConfiguration}
  */
 SW5E.featureTypes = {
   background: {
     label: "SW5E.Feature.Background"
   },
   class: {
-    label: "SW5E.Feature.Class",
+    label: "SW5E.Feature.Class.Label",
     subtypes: {
-      arcaneShot: "SW5E.ClassFeature.ArcaneShot",
-      artificerInfusion: "SW5E.ClassFeature.ArtificerInfusion",
-      channelDivinity: "SW5E.ClassFeature.ChannelDivinity",
-      defensiveTactic: "SW5E.ClassFeature.DefensiveTactic",
-      eldritchInvocation: "SW5E.ClassFeature.EldritchInvocation",
-      elementalDiscipline: "SW5E.ClassFeature.ElementalDiscipline",
-      fightingStyle: "SW5E.ClassFeature.FightingStyle",
-      huntersPrey: "SW5E.ClassFeature.HuntersPrey",
-      ki: "SW5E.ClassFeature.Ki",
-      maneuver: "SW5E.ClassFeature.Maneuver",
-      metamagic: "SW5E.ClassFeature.Metamagic",
-      multiattack: "SW5E.ClassFeature.Multiattack",
-      pact: "SW5E.ClassFeature.PactBoon",
-      psionicPower: "SW5E.ClassFeature.PsionicPower",
-      rune: "SW5E.ClassFeature.Rune",
-      superiorHuntersDefense: "SW5E.ClassFeature.SuperiorHuntersDefense"
+      arcaneShot: "SW5E.Feature.Class.ArcaneShot",
+      artificerInfusion: "SW5E.Feature.Class.ArtificerInfusion",
+      channelDivinity: "SW5E.Feature.Class.ChannelDivinity",
+      defensiveTactic: "SW5E.Feature.Class.DefensiveTactic",
+      eldritchInvocation: "SW5E.Feature.Class.EldritchInvocation",
+      elementalDiscipline: "SW5E.Feature.Class.ElementalDiscipline",
+      fightingStyle: "SW5E.Feature.Class.FightingStyle",
+      huntersPrey: "SW5E.Feature.Class.HuntersPrey",
+      ki: "SW5E.Feature.Class.Ki",
+      maneuver: "SW5E.Feature.Class.Maneuver",
+      metamagic: "SW5E.Feature.Class.Metamagic",
+      multiattack: "SW5E.Feature.Class.Multiattack",
+      pact: "SW5E.Feature.Class.PactBoon",
+      psionicPower: "SW5E.Feature.Class.PsionicPower",
+      rune: "SW5E.Feature.Class.Rune",
+      superiorHuntersDefense: "SW5E.Feature.Class.SuperiorHuntersDefense"
     }
   },
   monster: {
@@ -855,10 +1236,189 @@ SW5E.featureTypes = {
   },
   feat: {
     label: "SW5E.Feature.Feat"
+  },
+  supernaturalGift: {
+    label: "SW5E.Feature.SupernaturalGift.Label",
+    subtypes: {
+      blessing: "SW5E.Feature.SupernaturalGift.Blessing",
+      charm: "SW5E.Feature.SupernaturalGift.Charm",
+      epicBoon: "SW5E.Feature.SupernaturalGift.EpicBoon"
+    }
   }
 };
 preLocalize("featureTypes", { key: "label" });
 preLocalize("featureTypes.class.subtypes", { sort: true });
+preLocalize("featureTypes.supernaturalGift.subtypes", { sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for item properties.
+ *
+ * @typedef {object} ItemPropertyConfiguration
+ * @property {string} label           Localized label.
+ * @property {string} [abbreviation]  Localized abbreviation.
+ * @property {string} [icon]          Icon that can be used in certain places to represent this property.
+ * @property {string} [reference]     Reference to a rule page describing this property.
+ * @property {boolean} [isPhysical]   Is this property one that can cause damage resistance bypasses?
+ * @property {boolean} [isTag]        Is this power property a tag, rather than a component?
+ */
+
+/**
+ * The various properties of all item types.
+ * @enum {ItemPropertyConfiguration}
+ */
+SW5E.itemProperties = {
+  ada: {
+    label: "SW5E.Item.Property.Adamantine",
+    isPhysical: true
+  },
+  amm: {
+    label: "SW5E.Item.Property.Ammunition"
+  },
+  concentration: {
+    label: "SW5E.Item.Property.Concentration",
+    abbreviation: "SW5E.ConcentrationAbbr",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
+    isTag: true
+  },
+  fin: {
+    label: "SW5E.Item.Property.Finesse"
+  },
+  fir: {
+    label: "SW5E.Item.Property.Firearm"
+  },
+  foc: {
+    label: "SW5E.Item.Property.Focus"
+  },
+  hvy: {
+    label: "SW5E.Item.Property.Heavy"
+  },
+  lgt: {
+    label: "SW5E.Item.Property.Light"
+  },
+  lod: {
+    label: "SW5E.Item.Property.Loading"
+  },
+  material: {
+    label: "SW5E.Item.Property.Material",
+    abbreviation: "SW5E.ComponentMaterialAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AeH5eDS4YeM9RETC"
+  },
+  mgc: {
+    label: "SW5E.Item.Property.Magical",
+    icon: "systems/sw5e/icons/svg/properties/magical.svg",
+    isPhysical: true
+  },
+  rch: {
+    label: "SW5E.Item.Property.Reach"
+  },
+  rel: {
+    label: "SW5E.Item.Property.Reload"
+  },
+  ret: {
+    label: "SW5E.Item.Property.Returning"
+  },
+  ritual: {
+    label: "SW5E.Item.Property.Ritual",
+    abbreviation: "SW5E.RitualAbbr",
+    icon: "systems/sw5e/icons/svg/items/power.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA",
+    isTag: true
+  },
+  sil: {
+    label: "SW5E.Item.Property.Silvered",
+    isPhysical: true
+  },
+  somatic: {
+    label: "SW5E.Item.Property.Somatic",
+    abbreviation: "SW5E.ComponentSomaticAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qwUNgUNilEmZkSC9"
+  },
+  spc: {
+    label: "SW5E.Item.Property.Special"
+  },
+  stealthDisadvantage: {
+    label: "SW5E.Item.Property.StealthDisadvantage"
+  },
+  thr: {
+    label: "SW5E.Item.Property.Thrown"
+  },
+  two: {
+    label: "SW5E.Item.Property.TwoHanded"
+  },
+  ver: {
+    label: "SW5E.Item.Property.Versatile"
+  },
+  vocal: {
+    label: "SW5E.Item.Property.Verbal",
+    abbreviation: "SW5E.ComponentVerbalAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6UXTNWMCQ0nSlwwx"
+  },
+  weightlessContents: {
+    label: "SW5E.Item.Property.WeightlessContents"
+  }
+};
+preLocalize("itemProperties", { keys: ["label", "abbreviation"], sort: true });
+
+/* -------------------------------------------- */
+
+/**
+ * The various properties of an item per item type.
+ * @enum {object}
+ */
+SW5E.validProperties = {
+  consumable: new Set([
+    "mgc"
+  ]),
+  container: new Set([
+    "mgc",
+    "weightlessContents"
+  ]),
+  equipment: new Set([
+    "concentration",
+    "mgc",
+    "stealthDisadvantage"
+  ]),
+  feat: new Set([
+    "concentration",
+    "mgc"
+  ]),
+  loot: new Set([
+    "mgc"
+  ]),
+  weapon: new Set([
+    "ada",
+    "amm",
+    "fin",
+    "fir",
+    "foc",
+    "hvy",
+    "lgt",
+    "lod",
+    "mgc",
+    "rch",
+    "rel",
+    "ret",
+    "sil",
+    "spc",
+    "thr",
+    "two",
+    "ver"
+  ]),
+  power: new Set([
+    "vocal",
+    "somatic",
+    "material",
+    "concentration",
+    "ritual"
+  ]),
+  tool: new Set([
+    "concentration",
+    "mgc"
+  ])
+};
 
 /* -------------------------------------------- */
 
@@ -947,6 +1507,7 @@ preLocalize("currencies", { keys: ["label", "abbreviation"] });
 
 /**
  * Types of damage that are considered physical.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {string}
  */
 SW5E.physicalDamageTypes = {
@@ -959,36 +1520,91 @@ preLocalize("physicalDamageTypes", { sort: true });
 /* -------------------------------------------- */
 
 /**
- * Types of damage the can be caused by abilities.
- * @enum {string}
+ * Configuration data for damage types.
+ *
+ * @typedef {object} DamageTypeConfiguration
+ * @property {string} label          Localized label.
+ * @property {string} icon           Icon representing this type.
+ * @property {boolean} [isPhysical]  Is this a type that can be bypassed by magical or silvered weapons?
+ * @property {string} [reference]    Reference to a rule page describing this damage type.
  */
-SW5E.damageTypes = {
-  ...SW5E.physicalDamageTypes,
-  acid: "SW5E.DamageAcid",
-  cold: "SW5E.DamageCold",
-  fire: "SW5E.DamageFire",
-  force: "SW5E.DamageForce",
-  lightning: "SW5E.DamageLightning",
-  necrotic: "SW5E.DamageNecrotic",
-  poison: "SW5E.DamagePoison",
-  psychic: "SW5E.DamagePsychic",
-  radiant: "SW5E.DamageRadiant",
-  thunder: "SW5E.DamageThunder"
-};
-preLocalize("damageTypes", { sort: true });
-
-/* -------------------------------------------- */
 
 /**
- * Types of damage to which an actor can possess resistance, immunity, or vulnerability.
- * @enum {string}
- * @deprecated
+ * Types of damage the can be caused by abilities.
+ * @enum {DamageTypeConfiguration}
  */
-SW5E.damageResistanceTypes = {
-  ...SW5E.damageTypes,
-  physical: "SW5E.DamagePhysical"
+SW5E.damageTypes = {
+  acid: {
+    label: "SW5E.DamageAcid",
+    icon: "systems/sw5e/icons/svg/damage/acid.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.IQhbKRPe1vCPdh8v"
+  },
+  bludgeoning: {
+    label: "SW5E.DamageBludgeoning",
+    icon: "systems/sw5e/icons/svg/damage/bludgeoning.svg",
+    isPhysical: true,
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.39LFrlef94JIYO8m"
+  },
+  cold: {
+    label: "SW5E.DamageCold",
+    icon: "systems/sw5e/icons/svg/damage/cold.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4xsFUooHDEdfhw6g"
+  },
+  fire: {
+    label: "SW5E.DamageFire",
+    icon: "systems/sw5e/icons/svg/damage/fire.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.f1S66aQJi4PmOng6"
+  },
+  force: {
+    label: "SW5E.DamageForce",
+    icon: "systems/sw5e/icons/svg/damage/force.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eFTWzngD8dKWQuUR"
+  },
+  lightning: {
+    label: "SW5E.DamageLightning",
+    icon: "systems/sw5e/icons/svg/damage/lightning.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9SaxFJ9bM3SutaMC"
+  },
+  necrotic: {
+    label: "SW5E.DamageNecrotic",
+    icon: "systems/sw5e/icons/svg/damage/necrotic.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.klOVUV5G1U7iaKoG"
+  },
+  piercing: {
+    label: "SW5E.DamagePiercing",
+    icon: "systems/sw5e/icons/svg/damage/piercing.svg",
+    isPhysical: true,
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.95agSnEGTdAmKhyC"
+  },
+  poison: {
+    label: "SW5E.DamagePoison",
+    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.k5wOYXdWPzcWwds1"
+  },
+  psychic: {
+    label: "SW5E.DamagePsychic",
+    icon: "systems/sw5e/icons/svg/damage/psychic.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.YIKbDv4zYqbE5teJ"
+  },
+  radiant: {
+    label: "SW5E.DamageRadiant",
+    icon: "systems/sw5e/icons/svg/damage/radiant.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5tcK9buXWDOw8yHH"
+  },
+  slashing: {
+    label: "SW5E.DamageSlashing",
+    icon: "systems/sw5e/icons/svg/damage/slashing.svg",
+    isPhysical: true,
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.sz2XKQ5lgsdPEJOa"
+  },
+  thunder: {
+    label: "SW5E.DamageThunder",
+    icon: "systems/sw5e/icons/svg/damage/thunder.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iqsmMHk7FSpiNkQy"
+  }
 };
-preLocalize("damageResistanceTypes", { sort: true });
+patchConfig("damageTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
+preLocalize("damageTypes", { keys: ["label"], sort: true });
 
 /* -------------------------------------------- */
 /*  Movement                                    */
@@ -999,10 +1615,17 @@ preLocalize("damageResistanceTypes", { sort: true });
  * @enum {string}
  */
 SW5E.healingTypes = {
-  healing: "SW5E.Healing",
-  temphp: "SW5E.HealingTemp"
+  healing: {
+    label: "SW5E.Healing",
+    icon: "systems/sw5e/icons/svg/damage/healing.svg"
+  },
+  temphp: {
+    label: "SW5E.HealingTemp",
+    icon: "systems/sw5e/icons/svg/damage/temphp.svg"
+  }
 };
-preLocalize("healingTypes");
+patchConfig("healingTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
+preLocalize("healingTypes", { keys: ["label"] });
 
 /* -------------------------------------------- */
 
@@ -1067,23 +1690,85 @@ preLocalize("distanceUnits");
 /* -------------------------------------------- */
 
 /**
+ * Encumbrance configuration data.
+ *
+ * @typedef {object} EncumbranceConfiguration
+ * @property {Record<string, number>} currencyPerWeight  Pieces of currency that equal a base weight (lbs or kgs).
+ * @property {Record<string, object>} effects            Data used to create encumbrance-replated Active Effects.
+ * @property {object} threshold                          Amount to multiply strength to get given capacity threshold.
+ * @property {Record<string, number>} threshold.encumbered
+ * @property {Record<string, number>} threshold.heavilyEncumbered
+ * @property {Record<string, number>} threshold.maximum
+ * @property {Record<string, {ft: number, m: number}>} speedReduction  Speed reduction caused by encumbered status.
+ * @property {Record<string, number>} vehicleWeightMultiplier  Multiplier used to determine vehicle carrying capacity.
+ */
+
+/**
  * Configure aspects of encumbrance calculation so that it could be configured by modules.
- * @enum {{ imperial: number, metric: number }}
+ * @type {EncumbranceConfiguration}
  */
 SW5E.encumbrance = {
   currencyPerWeight: {
     imperial: 50,
     metric: 110
   },
-  strMultiplier: {
-    imperial: 15,
-    metric: 6.8
+  effects: {
+    encumbered: {
+      name: "EFFECT.SW5E.StatusEncumbered",
+      icon: "systems/sw5e/icons/svg/statuses/encumbered.svg"
+    },
+    heavilyEncumbered: {
+      name: "EFFECT.SW5E.StatusHeavilyEncumbered",
+      icon: "systems/sw5e/icons/svg/statuses/heavily-encumbered.svg"
+    },
+    exceedingCarryingCapacity: {
+      name: "EFFECT.SW5E.StatusExceedingCarryingCapacity",
+      icon: "systems/sw5e/icons/svg/statuses/exceeding-carrying-capacity.svg"
+    }
+  },
+  threshold: {
+    encumbered: {
+      imperial: 5,
+      metric: 2.2
+    },
+    heavilyEncumbered: {
+      imperial: 10,
+      metric: 4.5
+    },
+    maximum: {
+      imperial: 15,
+      metric: 6.8
+    }
+  },
+  speedReduction: {
+    encumbered: {
+      ft: 10,
+      m: 3
+    },
+    heavilyEncumbered: {
+      ft: 20,
+      m: 6
+    },
+    exceedingCarryingCapacity: {
+      ft: 5,
+      m: 1.5
+    }
   },
   vehicleWeightMultiplier: {
     imperial: 2000, // 2000 lbs in an imperial ton
     metric: 1000 // 1000 kg in a metric ton
   }
 };
+Object.defineProperty(SW5E.encumbrance, "strMultiplier", {
+  get() {
+    foundry.utils.logCompatibilityWarning(
+      "`SW5E.encumbrance.strMultiplier` has been moved to `SW5E.encumbrance.threshold.maximum`.",
+      { since: "SW5e 3.0", until: "SW5e 3.2" }
+    );
+    return this.threshold.maximum;
+  }
+});
+preLocalize("encumbrance.effects", { key: "name" });
 
 /* -------------------------------------------- */
 /*  Targeting                                   */
@@ -1112,8 +1797,9 @@ preLocalize("individualTargetTypes");
  * Information needed to represent different area of effect target types.
  *
  * @typedef {object} AreaTargetDefinition
- * @property {string} label     Localized label for this type.
- * @property {string} template  Type of `MeasuredTemplate` create for this target type.
+ * @property {string} label        Localized label for this type.
+ * @property {string} template     Type of `MeasuredTemplate` create for this target type.
+ * @property {string} [reference]  Reference to a rule page describing this area of effect.
  */
 
 /**
@@ -1127,15 +1813,18 @@ SW5E.areaTargetTypes = {
   },
   sphere: {
     label: "SW5E.TargetSphere",
-    template: "circle"
+    template: "circle",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.npdEWb2egUPnB5Fa"
   },
   cylinder: {
     label: "SW5E.TargetCylinder",
-    template: "circle"
+    template: "circle",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jZFp4R7tXsIqkiG3"
   },
   cone: {
     label: "SW5E.TargetCone",
-    template: "cone"
+    template: "cone",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DqqAOr5JnX71OCOw"
   },
   square: {
     label: "SW5E.TargetSquare",
@@ -1143,11 +1832,13 @@ SW5E.areaTargetTypes = {
   },
   cube: {
     label: "SW5E.TargetCube",
-    template: "rect"
+    template: "rect",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.dRfDIwuaHmUQ06uA"
   },
   line: {
     label: "SW5E.TargetLine",
-    template: "ray"
+    template: "ray",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6DOoBgg7okm9gBc6"
   },
   wall: {
     label: "SW5E.TargetWall",
@@ -1175,6 +1866,36 @@ preLocalize("targetTypes", { sort: true });
  * @type {string[]}
  */
 SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration data for rest types.
+ *
+ * @typedef {object} RestConfiguration
+ * @property {Record<string, number>} duration  Duration of different rest variants in minutes.
+ */
+
+/**
+ * Types of rests.
+ * @enum {RestConfiguration}
+ */
+SW5E.restTypes = {
+  short: {
+    duration: {
+      normal: 60,
+      gritty: 480,
+      epic: 1
+    }
+  },
+  long: {
+    duration: {
+      normal: 480,
+      gritty: 10080,
+      epic: 60
+    }
+  }
+};
 
 /* -------------------------------------------- */
 
@@ -1250,21 +1971,54 @@ SW5E.pactCastingProgression = {
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power preparation modes.
+ *
+ * @typedef {object} PowerPreparationModeConfiguration
+ * @property {string} label           Localized name of this power preparation type.
+ * @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
+ * @property {boolean} [at-wills]     Whether this mode allows for at-wills in a powerbook.
+ * @property {number} [order]         The sort order of this mode in a powerbook.
+ * @property {boolean} [prepares]     Whether this preparation mode prepares powers.
+ */
+
+/**
  * Various different ways a power can be prepared.
+ * @enum {PowerPreparationModeConfiguration}
  */
 SW5E.powerPreparationModes = {
-  prepared: "SW5E.PowerPrepPrepared",
-  pact: "SW5E.PactMagic",
-  always: "SW5E.PowerPrepAlways",
-  atwill: "SW5E.PowerPrepAtWill",
-  innate: "SW5E.PowerPrepInnate"
+  prepared: {
+    label: "SW5E.PowerPrepPrepared",
+    upcast: true,
+    prepares: true
+  },
+  pact: {
+    label: "SW5E.PactMagic",
+    upcast: true,
+    at-wills: true,
+    order: 0.5
+  },
+  always: {
+    label: "SW5E.PowerPrepAlways",
+    upcast: true,
+    prepares: true
+  },
+  atwill: {
+    label: "SW5E.PowerPrepAtWill",
+    order: -20
+  },
+  innate: {
+    label: "SW5E.PowerPrepInnate",
+    order: -10
+  }
 };
-preLocalize("powerPreparationModes");
+preLocalize("powerPreparationModes", { key: "label" });
+patchConfig("powerPreparationModes", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
 
 /* -------------------------------------------- */
 
 /**
  * Subset of `SW5E.powerPreparationModes` that consume power slots.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
  * @type {string[]}
  */
 SW5E.powerUpcastModes = ["always", "pact", "prepared"];
@@ -1374,60 +2128,139 @@ preLocalize("powerScalingModes", { sort: true });
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power components.
+ *
+ * @typedef {object} PowerComponentConfiguration
+ * @property {string} label         Localized label.
+ * @property {string} abbr          Localized abbreviation.
+ * @property {string} [reference]   Reference to a rule page describing this component.
+ */
+
+/**
  * Types of components that can be required when casting a power.
- * @enum {object}
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @enum {PowerComponentConfiguration}
  */
 SW5E.powerComponents = {
   vocal: {
     label: "SW5E.ComponentVerbal",
-    abbr: "SW5E.ComponentVerbalAbbr"
+    abbr: "SW5E.ComponentVerbalAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6UXTNWMCQ0nSlwwx"
   },
   somatic: {
     label: "SW5E.ComponentSomatic",
-    abbr: "SW5E.ComponentSomaticAbbr"
+    abbr: "SW5E.ComponentSomaticAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qwUNgUNilEmZkSC9"
   },
   material: {
     label: "SW5E.ComponentMaterial",
-    abbr: "SW5E.ComponentMaterialAbbr"
+    abbr: "SW5E.ComponentMaterialAbbr",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AeH5eDS4YeM9RETC"
   }
 };
-preLocalize("powerComponents", {keys: ["label", "abbr"]});
+preLocalize("powerComponents", { keys: ["label", "abbr"] });
 
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power tags.
+ *
+ * @typedef {object} PowerTagConfiguration
+ * @property {string} label         Localized label.
+ * @property {string} abbr          Localized abbreviation.
+ * @property {string} icon          Icon representing this tag.
+ * @property {string} [reference]   Reference to a rule page describing this tag.
+ */
+
+/**
  * Supplementary rules keywords that inform a power's use.
- * @enum {object}
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
+ * @enum {PowerTagConfiguration}
  */
 SW5E.powerTags = {
   concentration: {
     label: "SW5E.Concentration",
-    abbr: "SW5E.ConcentrationAbbr"
+    abbr: "SW5E.ConcentrationAbbr",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH"
   },
   ritual: {
     label: "SW5E.Ritual",
-    abbr: "SW5E.RitualAbbr"
+    abbr: "SW5E.RitualAbbr",
+    icon: "systems/sw5e/icons/svg/items/power.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA"
   }
 };
-preLocalize("powerTags", {keys: ["label", "abbr"]});
+preLocalize("powerTags", { keys: ["label", "abbr"] });
 
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power schools.
+ *
+ * @typedef {object} PowerSchoolConfiguration
+ * @property {string} label        Localized label.
+ * @property {string} icon         Power school icon.
+ * @property {string} fullKey      Fully written key used as alternate for enrichers.
+ * @property {string} [reference]  Reference to a rule page describing this school.
+ */
+
+/**
  * Schools to which a power can belong.
- * @enum {string}
+ * @enum {PowerSchoolConfiguration}
  */
 SW5E.powerSchools = {
-  abj: "SW5E.SchoolAbj",
-  con: "SW5E.SchoolCon",
-  div: "SW5E.SchoolDiv",
-  enc: "SW5E.SchoolEnc",
-  evo: "SW5E.SchoolEvo",
-  ill: "SW5E.SchoolIll",
-  nec: "SW5E.SchoolNec",
-  trs: "SW5E.SchoolTrs"
+  abj: {
+    label: "SW5E.SchoolAbj",
+    icon: "systems/sw5e/icons/svg/schools/abjuration.svg",
+    fullKey: "abjuration",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.849AYEWw9FHD6JNz"
+  },
+  con: {
+    label: "SW5E.SchoolCon",
+    icon: "systems/sw5e/icons/svg/schools/conjuration.svg",
+    fullKey: "conjuration",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TWyKMhZJZGqQ6uls"
+  },
+  div: {
+    label: "SW5E.SchoolDiv",
+    icon: "systems/sw5e/icons/svg/schools/divination.svg",
+    fullKey: "divination",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HoD2MwzmVbMqj9se"
+  },
+  enc: {
+    label: "SW5E.SchoolEnc",
+    icon: "systems/sw5e/icons/svg/schools/enchantment.svg",
+    fullKey: "enchantment",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.SehPXk24ySBVOwCZ"
+  },
+  evo: {
+    label: "SW5E.SchoolEvo",
+    icon: "systems/sw5e/icons/svg/schools/evocation.svg",
+    fullKey: "evocation",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kGp1RNuxL2SELLRC"
+  },
+  ill: {
+    label: "SW5E.SchoolIll",
+    icon: "systems/sw5e/icons/svg/schools/illusion.svg",
+    fullKey: "illusion",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.smEk7kvVyslFozrB"
+  },
+  nec: {
+    label: "SW5E.SchoolNec",
+    icon: "systems/sw5e/icons/svg/schools/necromancy.svg",
+    fullKey: "necromancy",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.W0eyiV1FBmngb6Qh"
+  },
+  trs: {
+    label: "SW5E.SchoolTrs",
+    icon: "systems/sw5e/icons/svg/schools/transmutation.svg",
+    fullKey: "transmutation",
+    reference: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.IYWewSailtmv6qEb"
+  }
 };
-preLocalize("powerSchools", { sort: true });
+preLocalize("powerSchools", { key: "label", sort: true });
+patchConfig("powerSchools", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
 
 /* -------------------------------------------- */
 
@@ -1472,6 +2305,7 @@ preLocalize("weaponTypes");
 /**
  * A subset of weapon properties that determine the physical characteristics of the weapon.
  * These properties are used for determining physical resistance bypasses.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {string}
  */
 SW5E.physicalWeaponProperties = {
@@ -1485,6 +2319,7 @@ preLocalize("physicalWeaponProperties", { sort: true });
 
 /**
  * The set of weapon property flags which can exist on a weapon.
+ * @deprecated since SW5e 3.0, available until SW5e 3.2
  * @enum {string}
  */
 SW5E.weaponProperties = {
@@ -1660,28 +2495,224 @@ SW5E.consumableResources = [
 /* -------------------------------------------- */
 
 /**
+ * @typedef {object} _StatusEffectConfig5e
+ * @property {string} icon         Icon used to represent the condition on the token.
+ * @property {string} [reference]  UUID of a journal entry with details on this condition.
+ * @property {string} [special]    Set this condition as a special status effect under this name.
+ */
+
+/**
+ * Configuration data for system status effects.
+ * @typedef {Omit<StatusEffectConfig, "img"> & _StatusEffectConfig5e} StatusEffectConfig5e
+ */
+
+/**
+ * @typedef {object} _ConditionConfiguration
+ * @property {string} label        Localized label for the condition.
+ * @property {boolean} [pseudo]    Is this a pseudo-condition, i.e. one that does not appear in the conditions appendix
+ *                                 but acts as a status effect?
+ * @property {number} [levels]     The number of levels of exhaustion an actor can obtain.
+ */
+
+/**
+ * Configuration data for system conditions.
+ * @typedef {Omit<StatusEffectConfig5e, "name"> & _ConditionConfiguration} ConditionConfiguration
+ */
+
+/**
  * Conditions that can affect an actor.
- * @enum {string}
+ * @enum {ConditionConfiguration}
  */
 SW5E.conditionTypes = {
-  blinded: "SW5E.ConBlinded",
-  charmed: "SW5E.ConCharmed",
-  deafened: "SW5E.ConDeafened",
-  diseased: "SW5E.ConDiseased",
-  exhaustion: "SW5E.ConExhaustion",
-  frightened: "SW5E.ConFrightened",
-  grappled: "SW5E.ConGrappled",
-  incapacitated: "SW5E.ConIncapacitated",
-  invisible: "SW5E.ConInvisible",
-  paralyzed: "SW5E.ConParalyzed",
-  petrified: "SW5E.ConPetrified",
-  poisoned: "SW5E.ConPoisoned",
-  prone: "SW5E.ConProne",
-  restrained: "SW5E.ConRestrained",
-  stunned: "SW5E.ConStunned",
-  unconscious: "SW5E.ConUnconscious"
+  bleeding: {
+    label: "EFFECT.SW5E.StatusBleeding",
+    icon: "systems/sw5e/icons/svg/statuses/bleeding.svg",
+    pseudo: true
+  },
+  blinded: {
+    label: "SW5E.ConBlinded",
+    icon: "systems/sw5e/icons/svg/statuses/blinded.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.0b8N4FymGGfbZGpJ",
+    special: "BLIND"
+  },
+  charmed: {
+    label: "SW5E.ConCharmed",
+    icon: "systems/sw5e/icons/svg/statuses/charmed.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.zZaEBrKkr66OWJvD"
+  },
+  cursed: {
+    label: "EFFECT.SW5E.StatusCursed",
+    icon: "systems/sw5e/icons/svg/statuses/cursed.svg",
+    pseudo: true
+  },
+  deafened: {
+    label: "SW5E.ConDeafened",
+    icon: "systems/sw5e/icons/svg/statuses/deafened.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.6G8JSjhn701cBITY"
+  },
+  diseased: {
+    label: "SW5E.ConDiseased",
+    icon: "systems/sw5e/icons/svg/statuses/diseased.svg",
+    pseudo: true
+  },
+  exhaustion: {
+    label: "SW5E.ConExhaustion",
+    icon: "systems/sw5e/icons/svg/statuses/exhaustion.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cspWveykstnu3Zcv",
+    levels: 6
+  },
+  frightened: {
+    label: "SW5E.ConFrightened",
+    icon: "systems/sw5e/icons/svg/statuses/frightened.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.oreoyaFKnvZCrgij"
+  },
+  grappled: {
+    label: "SW5E.ConGrappled",
+    icon: "systems/sw5e/icons/svg/statuses/grappled.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.gYDAhd02ryUmtwZn"
+  },
+  incapacitated: {
+    label: "SW5E.ConIncapacitated",
+    icon: "systems/sw5e/icons/svg/statuses/incapacitated.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.TpkZgLfxCmSndmpb"
+  },
+  invisible: {
+    label: "SW5E.ConInvisible",
+    icon: "systems/sw5e/icons/svg/statuses/invisible.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.3UU5GCTVeRDbZy9u"
+  },
+  paralyzed: {
+    label: "SW5E.ConParalyzed",
+    icon: "systems/sw5e/icons/svg/statuses/paralyzed.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.xnSV5hLJIMaTABXP",
+    statuses: ["incapacitated"]
+  },
+  petrified: {
+    label: "SW5E.ConPetrified",
+    icon: "systems/sw5e/icons/svg/statuses/petrified.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.xaNDaW6NwQTgHSmi",
+    statuses: ["incapacitated"]
+  },
+  poisoned: {
+    label: "SW5E.ConPoisoned",
+    icon: "systems/sw5e/icons/svg/statuses/poisoned.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.lq3TRI6ZlED8ABMx"
+  },
+  prone: {
+    label: "SW5E.ConProne",
+    icon: "systems/sw5e/icons/svg/statuses/prone.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.y0TkcdyoZlOTmAFT"
+  },
+  restrained: {
+    label: "SW5E.ConRestrained",
+    icon: "systems/sw5e/icons/svg/statuses/restrained.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc"
+  },
+  silenced: {
+    label: "EFFECT.SW5E.StatusSilenced",
+    icon: "systems/sw5e/icons/svg/statuses/silenced.svg",
+    pseudo: true
+  },
+  stunned: {
+    label: "SW5E.ConStunned",
+    icon: "systems/sw5e/icons/svg/statuses/stunned.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.ZyZMUwA2rboh4ObS",
+    statuses: ["incapacitated"]
+  },
+  surprised: {
+    label: "EFFECT.SW5E.StatusSurprised",
+    icon: "systems/sw5e/icons/svg/statuses/surprised.svg",
+    pseudo: true
+  },
+  transformed: {
+    label: "EFFECT.SW5E.StatusTransformed",
+    icon: "systems/sw5e/icons/svg/statuses/transformed.svg",
+    pseudo: true
+  },
+  unconscious: {
+    label: "SW5E.ConUnconscious",
+    icon: "systems/sw5e/icons/svg/statuses/unconscious.svg",
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.UWw13ISmMxDzmwbd",
+    statuses: ["incapacitated", "prone"]
+  }
 };
-preLocalize("conditionTypes", { sort: true });
+preLocalize("conditionTypes", { key: "label", sort: true });
+patchConfig("conditionTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" });
+
+/* -------------------------------------------- */
+
+/**
+ * Various effects of conditions and which conditions apply it. Either keys for the conditions,
+ * and with a number appended for a level of exhaustion.
+ * @enum {object}
+ */
+SW5E.conditionEffects = {
+  noMovement: new Set(["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"]),
+  halfMovement: new Set(["exhaustion-2"]),
+  crawl: new Set(["prone", "exceedingCarryingCapacity"]),
+  petrification: new Set(["petrified"]),
+  halfHealth: new Set(["exhaustion-4"])
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Extra status effects not specified in `conditionTypes`. If the ID matches a core-provided effect, then this
+ * data will be merged into the core data.
+ * @enum {Omit<StatusEffectConfig5e, "img"> & {icon: string}}
+ */
+SW5E.statusEffects = {
+  burrowing: {
+    name: "EFFECT.SW5E.StatusBurrowing",
+    icon: "systems/sw5e/icons/svg/statuses/burrowing.svg",
+    special: "BURROW"
+  },
+  concentrating: {
+    name: "EFFECT.SW5E.StatusConcentrating",
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    special: "CONCENTRATING"
+  },
+  dead: {
+    name: "EFFECT.SW5E.StatusDead",
+    icon: "systems/sw5e/icons/svg/statuses/dead.svg",
+    special: "DEFEATED"
+  },
+  dodging: {
+    name: "EFFECT.SW5E.StatusDodging",
+    icon: "systems/sw5e/icons/svg/statuses/dodging.svg"
+  },
+  ethereal: {
+    name: "EFFECT.SW5E.StatusEthereal",
+    icon: "systems/sw5e/icons/svg/statuses/ethereal.svg"
+  },
+  flying: {
+    name: "EFFECT.SW5E.StatusFlying",
+    icon: "systems/sw5e/icons/svg/statuses/flying.svg",
+    special: "FLY"
+  },
+  hiding: {
+    name: "EFFECT.SW5E.StatusHiding",
+    icon: "systems/sw5e/icons/svg/statuses/hiding.svg"
+  },
+  hovering: {
+    name: "EFFECT.SW5E.StatusHovering",
+    icon: "systems/sw5e/icons/svg/statuses/hovering.svg",
+    special: "HOVER"
+  },
+  marked: {
+    name: "EFFECT.SW5E.StatusMarked",
+    icon: "systems/sw5e/icons/svg/statuses/marked.svg"
+  },
+  sleeping: {
+    name: "EFFECT.SW5E.StatusSleeping",
+    icon: "systems/sw5e/icons/svg/statuses/sleeping.svg",
+    statuses: ["incapacitated", "prone", "unconscious"]
+  },
+  stable: {
+    name: "EFFECT.SW5E.StatusStable",
+    icon: "systems/sw5e/icons/svg/statuses/stable.svg"
+  }
+};
 
 /* -------------------------------------------- */
 /*  Languages                                   */
@@ -1733,10 +2764,10 @@ SW5E.languages = {
   cant: "SW5E.LanguagesThievesCant"
 };
 preLocalize("languages", { key: "label" });
-preLocalize("languages.standard.children", { sort: true });
+preLocalize("languages.standard.children", { key: "label", sort: true });
 preLocalize("languages.exotic.children", { key: "label", sort: true });
 preLocalize("languages.exotic.children.primordial.children", { sort: true });
-patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 2.6" });
+patchConfig("languages", "label", { since: "SW5e 2.4", until: "SW5e 3.1" });
 
 /* -------------------------------------------- */
 
@@ -1800,6 +2831,7 @@ SW5E.CR_EXP_LEVELS = [
  * @property {string} [labelKeyPath]       If config is an enum of objects, where can the label be found?
  * @property {object} [subtypes]           Configuration for traits that take some sort of base item.
  * @property {string} [subtypes.keyPath]   Path to subtype value on base items, should match a category key.
+ *                                         Deprecated in favor of the standardized `system.type.value`.
  * @property {string[]} [subtypes.ids]     Key for base item ID objects within `CONFIG.SW5E`.
  * @property {object} [children]           Mapping of category key to an object defining its children.
  * @property {boolean} [sortCategories]    Whether top-level categories should be sorted.
@@ -2041,18 +3073,325 @@ SW5E.allowedActorFlags = ["isPolymorphed", "originalActor"].concat(Object.keys(S
 /* -------------------------------------------- */
 
 /**
+ * Different types of actor structures that groups can represent.
+ * @enum {object}
+ */
+SW5E.groupTypes = {
+  party: "SW5E.Group.TypeParty",
+  encounter: "SW5E.Group.TypeEncounter"
+};
+preLocalize("groupTypes");
+
+/* -------------------------------------------- */
+
+/**
+ * Configuration information for advancement types.
+ *
+ * @typedef {object} AdvancementTypeConfiguration
+ * @property {typeof Advancement} documentClass  The advancement's document class.
+ * @property {Set<string>} validItemTypes        What item types this advancement can be used with.
+ */
+
+const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype"];
+
+/**
  * Advancement types that can be added to items.
- * @enum {*}
+ * @enum {AdvancementTypeConfiguration}
  */
 SW5E.advancementTypes = {
-  AbilityScoreImprovement: advancement.AbilityScoreImprovementAdvancement,
-  HitPoints: advancement.HitPointsAdvancement,
-  ItemChoice: advancement.ItemChoiceAdvancement,
-  ItemGrant: advancement.ItemGrantAdvancement,
-  ScaleValue: advancement.ScaleValueAdvancement,
-  Size: advancement.SizeAdvancement,
-  Trait: advancement.TraitAdvancement
+  AbilityScoreImprovement: {
+    documentClass: advancement.AbilityScoreImprovementAdvancement,
+    validItemTypes: new Set(["background", "class", "species"])
+  },
+  HitPoints: {
+    documentClass: advancement.HitPointsAdvancement,
+    validItemTypes: new Set(["class"])
+  },
+  ItemChoice: {
+    documentClass: advancement.ItemChoiceAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  ItemGrant: {
+    documentClass: advancement.ItemGrantAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  ScaleValue: {
+    documentClass: advancement.ScaleValueAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  Size: {
+    documentClass: advancement.SizeAdvancement,
+    validItemTypes: new Set(["species"])
+  },
+  Trait: {
+    documentClass: advancement.TraitAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  }
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Default artwork configuration for each Document type and sub-type.
+ * @type {Record<string, Record<string, string>>}
+ */
+SW5E.defaultArtwork = {
+  Item: {
+    background: "systems/sw5e/icons/svg/items/background.svg",
+    class: "systems/sw5e/icons/svg/items/class.svg",
+    consumable: "systems/sw5e/icons/svg/items/consumable.svg",
+    container: "systems/sw5e/icons/svg/items/container.svg",
+    equipment: "systems/sw5e/icons/svg/items/equipment.svg",
+    feat: "systems/sw5e/icons/svg/items/feature.svg",
+    loot: "systems/sw5e/icons/svg/items/loot.svg",
+    species: "systems/sw5e/icons/svg/items/species.svg",
+    power: "systems/sw5e/icons/svg/items/power.svg",
+    archetype: "systems/sw5e/icons/svg/items/archetype.svg",
+    tool: "systems/sw5e/icons/svg/items/tool.svg",
+    weapon: "systems/sw5e/icons/svg/items/weapon.svg"
+  }
+};
+
+/* -------------------------------------------- */
+/*  Rules                                       */
+/* -------------------------------------------- */
+
+/**
+ * Configuration information for rule types.
+ *
+ * @typedef {object} RuleTypeConfiguration
+ * @property {string} label         Localized label for the rule type.
+ * @property {string} [references]  Key path for a configuration object that contains reference data.
+ */
+
+/**
+ * Types of rules that can be used in rule pages and the &Reference enricher.
+ * @enum {RuleTypeConfiguration}
+ */
+SW5E.ruleTypes = {
+  rule: {
+    label: "SW5E.Rule.Type.Rule",
+    references: "rules"
+  },
+  ability: {
+    label: "SW5E.Ability",
+    references: "enrichmentLookup.abilities"
+  },
+  areaOfEffect: {
+    label: "SW5E.AreaOfEffect",
+    references: "areaTargetTypes"
+  },
+  condition: {
+    label: "SW5E.Rule.Type.Condition",
+    references: "conditionTypes"
+  },
+  creatureType: {
+    label: "SW5E.CreatureType",
+    references: "creatureTypes"
+  },
+  damage: {
+    label: "SW5E.DamageType",
+    references: "damageTypes"
+  },
+  skill: {
+    label: "SW5E.Skill",
+    references: "enrichmentLookup.skills"
+  },
+  powerComponent: {
+    label: "SW5E.PowerComponent",
+    references: "itemProperties"
+  },
+  powerSchool: {
+    label: "SW5E.PowerSchool",
+    references: "enrichmentLookup.powerSchools"
+  },
+  powerTag: {
+    label: "SW5E.PowerTag",
+    references: "itemProperties"
+  }
+};
+preLocalize("ruleTypes", { key: "label" });
+
+/* -------------------------------------------- */
+
+/**
+ * List of rules that can be referenced from enrichers.
+ * @enum {string}
+ */
+SW5E.rules = {
+  inspiration: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.nkEPI89CiQnOaLYh",
+  carryingcapacity: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1PnjDBKbQJIVyc2t",
+  push: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  lift: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  drag: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Hni8DjqLzoqsVjb6",
+  encumbrance: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JwqYf9qb6gJAWZKs",
+  hiding: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.plHuoNdS0j3umPNS",
+  passiveperception: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.988C2hQNyvqkdbND",
+  time: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eihqNjwpZ3HM4IqY",
+  speed: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HhqeIiSj8sE1v1qZ",
+  travelpace: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.eFAISahBloR2X8MX",
+  forcedmarch: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uQWQpRKQ1kWhuvjZ",
+  difficultterrainpace: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hFW5BR2yHHwwgurD",
+  climbing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KxUXbMrUCIAhv4AF",
+  swimming: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KxUXbMrUCIAhv4AF",
+  longjump: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1U0myNrOvIVBUdJV",
+  highjump: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.raPwIkqKSv60ELmy",
+  falling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kREHL5pgNUOhay9f",
+  suffocating: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BIlnr0xYhqt4TGsi",
+  vision: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.O6hamUbI9kVASN8b",
+  light: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.O6hamUbI9kVASN8b",
+  lightlyobscured: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MAxtfJyvJV7EpzWN",
+  heavilyobscured: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wPFjfRruboxhtL4b",
+  brightlight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RnMokVPyKGbbL8vi",
+  dimlight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.n1Ocpbyhr6HhgbCG",
+  darkness: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4dfREIDjG5N4fvxd",
+  blindsight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.sacjsfm9ZXnw4Tqc",
+  darkvision: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ldmA1PbnEGVkmE11",
+  tremorsense: "Compendium.sw5e.rules.JournalEntry.eVtpEGXjA2tamEIJ.JournalEntryPage.8AIlZ95v54mL531X",
+  truesight: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kNa8rJFbtaTM3Rmk",
+  food: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jayo7XVgGnRCpTW0",
+  water: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iIEI87J7lr2sqtb5",
+  resting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.dpHJXYLigIdEseIb",
+  shortrest: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.1s2swI3UsjUUgbt2",
+  longrest: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6cLtjbHn4KV2R7G9",
+  surprise: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.YmOt8HderKveA19K",
+  initiative: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RcwElV4GAcVXKWxo",
+  bonusaction: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2fu2CXsDg8gQmGGw",
+  reaction: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2VqLyxMyMxgXe2wC",
+  difficultterrain: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6tqz947qO8vPyxvD",
+  beingprone: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.bV8akkBdVUUG21CO",
+  droppingprone: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hwTLpAtSS5OqQsI1",
+  standingup: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hwTLpAtSS5OqQsI1",
+  crawling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.VWG9qe8PUNtS28Pw",
+  movingaroundothercreatures: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9ZWCknaXCOdhyOrX",
+  flying: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.0B1fxfmw0a48tPsc",
+  size: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HWHRQVBVG7K0RVVW",
+  space: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.WIA5bs3P45PmO3OS",
+  squeezing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wKtOwagDAiNfVoPS",
+  attack: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.u4GQCzoBig20yRLj",
+  castapower: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.GLwN36E4WXn3Cp4Z",
+  dash: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Jqn0MEvq6fduYNo6",
+  disengage: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ZOPRfI48NyjoloEF",
+  dodge: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.V1BkwK2HQrtEfa4d",
+  help: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KnrD3u2AnQfmtOWj",
+  hide: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BXlHhE4ZoiFwiXLK",
+  ready: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8xJzZVelP2AmQGfU",
+  search: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5cn1ZTLgQq95vfZx",
+  useanobject: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ljqhJx8Qxu2ivo69",
+  attackrolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5wkqEqhbBD5kDeE7",
+  unseenattackers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5ZJNwEPlsGurecg5",
+  unseentargets: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.5ZJNwEPlsGurecg5",
+  rangedattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.S9aclVOCbusLE3kC",
+  range: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HjKXuB8ndjcqOds7",
+  rangedattacksinclosecombat: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qEZvxW0NM7ixSQP5",
+  meleeattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.GTk6emvzNxl8Oosl",
+  reach: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hgZ5ZN4B3y7tmFlt",
+  unarmedstrike: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.xJjJ4lhymAYXAOvO",
+  opportunityattacks: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zeU0NyCyP10lkLg3",
+  twoweaponfighting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FQTS08uH74A6psL2",
+  grappling: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Sl4bniSPSbyrakM2",
+  escapingagrapple: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.2TZKy9YbMN3ZY3h8",
+  movingagrappledcreature: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.x5bUdhAD7u5Bt2rg",
+  shoving: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hrdqMF8hRXJdNzJx",
+  cover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.W7f7PcRubNUMIq2S",
+  halfcover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hv0J61IAfofuhy3Q",
+  threequarterscover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zAMStUjUrPV10dFm",
+  totalcover: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.BKUAxXuPEzxiEOeL",
+  hitpoints: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.PFbzoMBviI2DD9QP",
+  damagerolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.hd26AqKrCqtcQBWy",
+  criticalhits: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gFL1VhSEljL1zvje",
+  damagetypes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jVOgf7DNEhkzYNIe",
+  damageresistance: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.v0WE18nT5SJO8Ft7",
+  damagevulnerability: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.v0WE18nT5SJO8Ft7",
+  healing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ICketFqbFslqKiX9",
+  instantdeath: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8BG05mA0mEzwmrHU",
+  deathsavingthrows: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JL8LePEJQYFdNuLL",
+  deathsaves: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.JL8LePEJQYFdNuLL",
+  stabilizing: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.r1CgZXLcqFop6Dlx",
+  knockingacreatureout: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uEwjgKGuCRTNADYv",
+  temporaryhitpoints: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AW6HpJZHqxfESXaq",
+  temphp: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.AW6HpJZHqxfESXaq",
+  mounting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MFpyvUIdcBpC9kIE",
+  dismounting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.MFpyvUIdcBpC9kIE",
+  controllingamount: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.khmR2xFk1NxoQUgZ",
+  underwatercombat: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6zVOeLyq4iMnrQT4",
+  powerlevel: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.A6k5fS0kFqPXTW3v",
+  knownpowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oezg742GlxmEwT85",
+  preparedpowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.oezg742GlxmEwT85",
+  powerslots: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Su6wbb0O9UN4ZDIH",
+  castingatahigherlevel: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
+  upcasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.4H9SLM95OCLfFizz",
+  castinginarmor: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.z4A8vHSK2pb8YA9X",
+  at-wills: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.jZD5mCTnMPJ9jW67",
+  rituals: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.FjWqT5iyJ89kohdA",
+  castingtime: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.zRVW8Tvyk6BECjZD",
+  bonusactioncasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RP1WL9FXI3aknlxZ",
+  reactioncasting: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.t62lCfinwU9H7Lji",
+  longercastingtimes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.gOAIRFCyPUx42axn",
+  powerrange: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.RBYPyE5z5hAZSbH6",
+  components: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.xeHthAF9lxfn2tII",
+  verbal: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6UXTNWMCQ0nSlwwx",
+  powerduration: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9mp0SRsptjvJcq1e",
+  instantaneous: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kdlgZOpRMB6bGCod",
+  concentrating: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.ow58p27ctAnr4VPH",
+  powertargets: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.G80AIQr04sxdVpw4",
+  areaofeffect: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.wvtCeGHgnUmh0cuj",
+  pointoforigin: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8HxbRceQQUAhyWRt",
+  powersavingthrows: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.8DajfNll90eeKcmB",
+  powerattackrolls: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.qAFzmGZKhVvAEUF3",
+  combiningmagicaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TMIN963hG773yZzO",
+  schoolsofmagic: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.TeF6CKMDRpYpsLd4",
+  detectingtraps: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DZ7AhdQ94xggG4bj",
+  disablingtraps: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DZ7AhdQ94xggG4bj",
+  curingmadness: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.6Icem7G3CICdNOkM",
+  damagethreshold: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9LJZhqvCburpags3",
+  poisontypes: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.I6OMMWUaYCWR9xip",
+  contactpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.kXnCEqqGUWRZeZDj",
+  ingestedpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.Y0vsJYSWeQcFpJ27",
+  inhaledpoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.KUyN4eK1xTBzXsjP",
+  injurypoison: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.LUL48OUq6SJeMGc7",
+  attunement: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.UQ65OwIyGK65eiOK",
+  wearingitems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iPB8mGKuQx3X0Z2J",
+  wieldingitems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.iPB8mGKuQx3X0Z2J",
+  multipleitemsofthesamekind: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.rLJdvz4Mde8GkEYQ",
+  paireditems: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.rd9pCH8yFraSGN34",
+  commandword: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.HiXixxLYesv6Ff3t",
+  consumables: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.UEPAcZFzQ5x196zE",
+  itempowers: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.DABoaeeF6w31UCsj",
+  charges: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.NLRXcgrpRCfsA5mO",
+  creaturetags: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.9jV1fFF163dr68vd",
+  telepathy: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.geTidcFIYWuUvD2L",
+  legendaryactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.C1awOyZh78pq1xmY",
+  lairactions: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.07PtjpMxiRIhkBEp",
+  regionaleffects: "Compendium.sw5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.uj8W27NKFyzygPUd"
+};
+
+/* -------------------------------------------- */
+/*  Token Rings Framework                       */
+/* -------------------------------------------- */
+
+/**
+ * Token Rings configuration data
+ *
+ * @typedef {object} TokenRingsConfiguration
+ * @property {Record<string, string>} effects        Localized names of the configurable ring effects.
+ * @property {string} spriteSheet                    The sprite sheet json source.
+ * @property {typeof BaseSamplerShader} shaderClass  The shader class definition associated with the token ring.
+ */
+
+/**
+ * @type {TokenRingsConfiguration}
+ */
+SW5E.tokenRings = {
+  effects: {
+    RING_PULSE: "SW5E.TokenRings.Effects.RingPulse",
+    RING_GRADIENT: "SW5E.TokenRings.Effects.RingGradient",
+    BKG_WAVE: "SW5E.TokenRings.Effects.BackgroundWave"
+  },
+  spriteSheet: "systems/sw5e/tokens/composite/token-rings.json",
+  shaderClass: null
+};
+preLocalize("tokenRings.effects");
 
 /* -------------------------------------------- */
 /*  Sources                                     */
@@ -2068,20 +3407,40 @@ SW5E.sourceBooks = {
 preLocalize("sourceBooks", { sort: true });
 
 /* -------------------------------------------- */
+/*  Themes                                      */
+/* -------------------------------------------- */
+
+/**
+ * Themes that can be set for the system or on sheets.
+ * @enum {string}
+ */
+SW5E.themes = {
+  light: "SHEETS.SW5E.THEME.Light",
+  dark: "SHEETS.SW5E.THEME.Dark"
+};
+preLocalize("themes");
+
+/* -------------------------------------------- */
 /*  Enrichment                                  */
 /* -------------------------------------------- */
 
 let _enrichmentLookup;
 Object.defineProperty(SW5E, "enrichmentLookup", {
   get() {
+    const slugify = value => value?.slugify().replaceAll("-", "");
     if ( !_enrichmentLookup ) {
       _enrichmentLookup = {
         abilities: foundry.utils.deepClone(SW5E.abilities),
         skills: foundry.utils.deepClone(SW5E.skills),
+        powerSchools: foundry.utils.deepClone(SW5E.powerSchools),
         tools: foundry.utils.deepClone(SW5E.toolIds)
       };
-      Object.entries(SW5E.abilities).forEach(([k, a]) => _enrichmentLookup.abilities[a.fullKey] = { ...a, key: k });
-      Object.entries(SW5E.skills).forEach(([k, s]) => _enrichmentLookup.skills[s.fullKey] = { ...s, key: k });
+      const addFullKeys = key => Object.entries(SW5E[key]).forEach(([k, v]) =>
+        _enrichmentLookup[key][slugify(v.fullKey)] = { ...v, key: k }
+      );
+      addFullKeys("abilities");
+      addFullKeys("skills");
+      addFullKeys("powerSchools");
     }
     return _enrichmentLookup;
   },
@@ -2108,7 +3467,7 @@ function patchConfig(key, fallbackKey, options) {
 
   Object.values(SW5E[key]).forEach(o => {
     if ( foundry.utils.getType(o) !== "Object" ) return;
-    o.toString = toString;
+    Object.defineProperty(o, "toString", {value: toString});
   });
 }
 

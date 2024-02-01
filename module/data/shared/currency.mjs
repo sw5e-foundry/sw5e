@@ -16,4 +16,21 @@ export default class CurrencyTemplate extends SystemDataModel {
       }), {initialKeys: CONFIG.SW5E.currencies, initialKeysOnly: true, label: "SW5E.Currency"})
     };
   }
+
+  /* -------------------------------------------- */
+  /*  Getters                                     */
+  /* -------------------------------------------- */
+
+  /**
+   * Get the weight of all of the currency. Always returns 0 if currency weight is disabled in settings.
+   * @returns {number}
+   */
+  get currencyWeight() {
+    if ( !game.settings.get("sw5e", "currencyWeight") ) return 0;
+    const count = Object.values(this.currency).reduce((count, value) => count + value, 0);
+    const currencyPerWeight = game.settings.get("sw5e", "metricWeightUnits")
+      ? CONFIG.SW5E.encumbrance.currencyPerWeight.metric
+      : CONFIG.SW5E.encumbrance.currencyPerWeight.imperial;
+    return count / currencyPerWeight;
+  }
 }

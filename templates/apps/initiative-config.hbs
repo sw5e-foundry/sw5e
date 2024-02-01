@@ -13,18 +13,18 @@
     <div class="form-group">
         <label>{{localize "SW5E.InitiativeBonus"}}</label>
         <div class="form-fields">
-            <input name="system.attributes.init.bonus" type="text" value="{{bonus}}"/>
+            <input name="system.attributes.init.bonus" type="text" value="{{bonus}}">
         </div>
     </div>
 
     <div class="form-group">
         <label>{{localize "SW5E.FlagsAlert"}}</label>
-        <input type="checkbox" name="flags.sw5e.initiativeAlert" {{checked initiativeAlert}}/>
+        <input type="checkbox" name="flags.sw5e.initiativeAlert" {{checked initiativeAlert}}>
     </div>
 
     <div class="form-group">
         <label>{{localize "SW5E.FlagsInitiativeAdv"}}</label>
-        <input type="checkbox" name="flags.sw5e.initiativeAdv" {{checked initiativeAdv}}/>
+        <input type="checkbox" name="flags.sw5e.initiativeAdv" {{checked initiativeAdv}}>
     </div>
 
     <button type="submit"><i class="far fa-save"></i> {{ localize "Submit"}}</button>

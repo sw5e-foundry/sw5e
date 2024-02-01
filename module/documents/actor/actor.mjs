@@ -1,11 +1,14 @@
 import Proficiency from "./proficiency.mjs";
 import * as Trait from "./trait.mjs";
-import ScaleValueAdvancement from "../advancement/scale-value.mjs";
-import { SystemDocumentMixin } from "../mixin.mjs";
+import SystemDocumentMixin from "../mixins/document.mjs";
 import { d20Roll } from "../../dice/dice.mjs";
 import { simplifyBonus } from "../../utils.mjs";
 import ShortRestDialog from "../../applications/actor/short-rest.mjs";
 import LongRestDialog from "../../applications/actor/long-rest.mjs";
+import ActiveEffect5e from "../active-effect.mjs";
+import PropertyAttribution from "../../applications/property-attribution.mjs";
+import Item5e from "../item.mjs";
+import { createRollLabel } from "../../enrichers.mjs";
 
 /**
  * Extend the base Actor class to implement additional system-specific logic.
@@ -67,6 +70,35 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   }
 
   /* -------------------------------------------- */
+
+  /**
+   * The items this actor is concentrating on, and the relevant effects.
+   * @type {{items: Set<Item5e>, effects: Set<ActiveEffect5e>}}
+   */
+  get concentration() {
+    const concentration = {
+      items: new Set(),
+      effects: new Set()
+    };
+
+    const limit = this.system.attributes?.concentration?.limit ?? 0;
+    if ( !limit ) return concentration;
+
+    for ( const effect of this.effects ) {
+      if ( !effect.statuses.has(CONFIG.specialStatusEffects.CONCENTRATING) ) continue;
+      const data = effect.getFlag("sw5e", "itemData");
+      concentration.effects.add(effect);
+      if ( data ) {
+        const item = typeof data === "string"
+          ? this.items.get(data)
+          : new Item.implementation(data, { keepId: true, parent: this });
+        if ( item ) concentration.items.add(item);
+      }
+    }
+    return concentration;
+  }
+
+  /* -------------------------------------------- */
   /*  Methods                                     */
   /* -------------------------------------------- */
 
@@ -93,30 +125,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
   /** @inheritDoc */
   prepareData() {
-    if ( !game.template.Actor.types.includes(this.type) ) return super.prepareData();
+    if ( this.system.modelProvider !== sw5e ) return super.prepareData();
     this._classes = undefined;
     this._preparationWarnings = [];
     super.prepareData();
     this.items.forEach(item => item.prepareFinalAttributes());
-  }
-
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  prepareBaseData() {
-    if ( !game.template.Actor.types.includes(this.type) ) return;
-    if ( this.type !== "group" ) this._prepareBaseArmorClass();
-    else if ( game.release.generation < 11 ) this.system.prepareBaseData();
-
-    // Type-specific preparation
-    switch ( this.type ) {
-      case "character":
-        return this._prepareCharacterData();
-      case "npc":
-        return this._prepareNPCData();
-      case "vehicle":
-        return this._prepareVehicleData();
-    }
   }
 
   /* --------------------------------------------- */
@@ -127,7 +140,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( this.system?.prepareEmbeddedData instanceof Function ) this.system.prepareEmbeddedData();
     // The Active Effects do not have access to their parent at preparation time, so we wait until this stage to
     // determine whether they are suppressed or not.
-    this.effects.forEach(e => e.determineSuppression());
+    for ( const effect of this.allApplicableEffects() ) {
+      effect.determineSuppression();
+    }
     return super.applyActiveEffects();
   }
 
@@ -135,35 +150,34 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
   /** @inheritDoc */
   prepareDerivedData() {
-    if ( !game.template.Actor.types.includes(this.type) || (this.type === "group") ) return;
+    if ( (this.system.modelProvider !== sw5e) || (this.type === "group") ) return;
 
-    const flags = this.flags.sw5e || {};
     this.labels = {};
 
     // Retrieve data for polymorphed actors
-    let originalSaves = null;
-    let originalSkills = null;
-    if ( this.isPolymorphed ) {
-      const transformOptions = flags.transformOptions;
-      const original = game.actors?.get(flags.originalActor);
-      if ( original ) {
-        if ( transformOptions.mergeSaves ) originalSaves = original.system.abilities;
-        if ( transformOptions.mergeSkills ) originalSkills = original.system.skills;
-      }
-    }
+    const { originalSkills } = this.getOriginalStats();
 
     // Prepare abilities, skills, & everything else
     const globalBonuses = this.system.bonuses?.abilities ?? {};
     const rollData = this.getRollData();
     const checkBonus = simplifyBonus(globalBonuses?.check, rollData);
-    this._prepareAbilities(rollData, globalBonuses, checkBonus, originalSaves);
     this._prepareSkills(rollData, globalBonuses, checkBonus, originalSkills);
     this._prepareTools(rollData, globalBonuses, checkBonus);
     this._prepareArmorClass();
     this._prepareEncumbrance();
-    this._prepareHitPoints(rollData);
     this._prepareInitiative(rollData, checkBonus);
     this._preparePowercasting();
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Calculate the DC of a concentration save required for a given amount of damage.
+   * @param {number} damage  Amount of damage taken.
+   * @returns {number}       DC of the required concentration save.
+   */
+  getConcentrationDC(damage) {
+    return Math.max(10, Math.floor(damage * .5));
   }
 
   /* -------------------------------------------- */
@@ -196,39 +210,38 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @inheritdoc
    * @param {object} [options]
    * @param {boolean} [options.deterministic] Whether to force deterministic values for data properties that could be
-   *                                            either a die term or a flat term.
+   *                                          either a die term or a flat term.
    */
   getRollData({ deterministic=false }={}) {
-    const data = {...super.getRollData()};
-    if ( this.type === "group" ) return data;
-    data.prof = new Proficiency(this.system.attributes.prof, 1);
-    if ( deterministic ) data.prof = data.prof.flat;
-    data.attributes = foundry.utils.deepClone(data.attributes);
-    data.attributes.powermod = data.abilities[data.attributes.powercasting || "int"]?.mod ?? 0;
-    data.classes = {};
-    for ( const [identifier, cls] of Object.entries(this.classes) ) {
-      data.classes[identifier] = {...cls.system};
-      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
-    }
+    let data;
+    if ( this.system.getRollData ) data = this.system.getRollData({ deterministic });
+    else data = {...super.getRollData()};
+    data.flags = {...this.flags};
+    data.name = this.name;
     return data;
   }
 
   /* -------------------------------------------- */
-  /*  Base Data Preparation Helpers               */
-  /* -------------------------------------------- */
 
   /**
-   * Initialize derived AC fields for Active Effects to target.
-   * Mutates the system.attributes.ac object.
-   * @protected
+   * Is this actor under the effect of this property from some status or due to its level of exhaustion?
+   * @param {string} key      A key in `SW5E.conditionEffects`.
+   * @returns {boolean}       Whether the actor is affected.
    */
-  _prepareBaseArmorClass() {
-    const ac = this.system.attributes.ac;
-    ac.armor = 10;
-    ac.shield = ac.cover = 0;
-    ac.bonus = "";
+  hasConditionEffect(key) {
+    const props = CONFIG.SW5E.conditionEffects[key] ?? new Set();
+    const level = this.system.attributes?.exhaustion ?? null;
+    const imms = this.system.traits?.ci?.value ?? new Set();
+    const statuses = this.statuses;
+    return props.some(k => {
+      const l = Number(k.split("-").pop());
+      return (statuses.has(k) && !imms.has(k))
+        || (!imms.has("exhaustion") && (level !== null) && Number.isInteger(l) && (level >= l));
+    });
   }
 
+  /* -------------------------------------------- */
+  /*  Base Data Preparation Helpers               */
   /* -------------------------------------------- */
 
   /**
@@ -238,86 +251,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _prepareScaleValues() {
     this.system.scale = this.items.reduce((scale, item) => {
-      if ( ScaleValueAdvancement.metadata.validItemTypes.has(item.type) ) scale[item.identifier] = item.scaleValues;
+      if ( CONFIG.SW5E.advancementTypes.ScaleValue.validItemTypes.has(item.type) ) {
+        scale[item.identifier] = item.scaleValues;
+      }
       return scale;
     }, {});
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Perform any Character specific preparation.
-   * Mutates several aspects of the system data object.
-   * @protected
-   */
-  _prepareCharacterData() {
-    this.system.details.level = 0;
-    this.system.attributes.hd = 0;
-    this.system.attributes.attunement.value = 0;
-
-    for ( const item of this.items ) {
-      // Class levels & hit dice
-      if ( item.type === "class" ) {
-        const classLevels = parseInt(item.system.levels) || 1;
-        this.system.details.level += classLevels;
-        this.system.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
-      }
-
-      // Attuned items
-      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
-        this.system.attributes.attunement.value += 1;
-      }
-    }
-
-    // Character proficiency bonus
-    this.system.attributes.prof = Proficiency.calculateMod(this.system.details.level);
-
-    // Experience required for next level
-    const xp = this.system.details.xp;
-    xp.max = this.getLevelExp(this.system.details.level || 1);
-    const prior = this.getLevelExp(this.system.details.level - 1 || 0);
-    const required = xp.max - prior;
-    const pct = Math.round((xp.value - prior) * 100 / required);
-    xp.pct = Math.clamped(pct, 0, 100);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Perform any NPC specific preparation.
-   * Mutates several aspects of the system data object.
-   * @protected
-   */
-  _prepareNPCData() {
-    const cr = this.system.details.cr;
-
-    // Attuned items
-    this.system.attributes.attunement.value = this.items.filter(i => {
-      return i.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED;
-    }).length;
-
-    // Kill Experience
-    this.system.details.xp ??= {};
-    this.system.details.xp.value = this.getCRExp(cr);
-
-    // Proficiency
-    this.system.attributes.prof = Proficiency.calculateMod(Math.max(cr, 1));
-
-    // Powercaster Level
-    if ( this.system.attributes.powercasting && !Number.isNumeric(this.system.details.powerLevel) ) {
-      this.system.details.powerLevel = Math.max(cr, 1);
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Perform any Vehicle specific preparation.
-   * Mutates several aspects of the system data object.
-   * @protected
-   */
-  _prepareVehicleData() {
-    this.system.attributes.prof = 0;
   }
 
   /* -------------------------------------------- */
@@ -325,93 +263,98 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Prepare abilities.
-   * @param {object} bonusData      Data produced by `getRollData` to be applied to bonus formulas.
-   * @param {object} globalBonuses  Global bonus data.
-   * @param {number} checkBonus     Global ability check bonus.
-   * @param {object} originalSaves  A transformed actor's original actor's abilities.
+   * Prepare skill checks. Mutates the values of system.skills.
+   * @param {object} rollData         Data produced by `getRollData` to be applied to bonus formulas.
+   * @param {object} globalBonuses     Global bonus data.
+   * @param {number} globalCheckBonus  Global ability check bonus.
+   * @param {object} originalSkills    A transformed actor's original actor's skills.
    * @protected
    */
-  _prepareAbilities(bonusData, globalBonuses, checkBonus, originalSaves) {
-    const flags = this.flags.sw5e ?? {};
-    const dcBonus = simplifyBonus(this.system.bonuses?.power?.dc, bonusData);
-    const saveBonus = simplifyBonus(globalBonuses.save, bonusData);
-    for ( const [id, abl] of Object.entries(this.system.abilities) ) {
-      if ( flags.diamondSoul ) abl.proficient = 1;  // Diamond Soul is proficient in all saves
-      abl.mod = Math.floor((abl.value - 10) / 2);
+  _prepareSkills(rollData, globalBonuses, globalCheckBonus, originalSkills) {
+    if ( this.type === "vehicle" ) return;
 
-      const isRA = this._isRemarkableAthlete(id);
-      abl.checkProf = new Proficiency(this.system.attributes.prof, (isRA || flags.jackOfAllTrades) ? 0.5 : 0, !isRA);
-      const saveBonusAbl = simplifyBonus(abl.bonuses?.save, bonusData);
-      abl.saveBonus = saveBonusAbl + saveBonus;
-
-      abl.saveProf = new Proficiency(this.system.attributes.prof, abl.proficient);
-      const checkBonusAbl = simplifyBonus(abl.bonuses?.check, bonusData);
-      abl.checkBonus = checkBonusAbl + checkBonus;
-
-      abl.save = abl.mod + abl.saveBonus;
-      if ( Number.isNumeric(abl.saveProf.term) ) abl.save += abl.saveProf.flat;
-      abl.dc = 8 + abl.mod + this.system.attributes.prof + dcBonus;
-
-      if ( !Number.isFinite(abl.max) ) abl.max = CONFIG.SW5E.maxAbilityScore;
-
-      // If we merged saves when transforming, take the highest bonus here.
-      if ( originalSaves && abl.proficient ) abl.save = Math.max(abl.save, originalSaves[id].save);
+    // Skill modifiers
+    for ( const [id, skillData] of Object.entries(this.system.skills) ) {
+      this._prepareSkill(id, { skillData, rollData, originalSkills, globalCheckBonus, globalBonuses });
     }
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Prepare skill checks. Mutates the values of system.skills.
-   * @param {object} bonusData       Data produced by `getRollData` to be applied to bonus formulas.
-   * @param {object} globalBonuses   Global bonus data.
-   * @param {number} checkBonus      Global ability check bonus.
-   * @param {object} originalSkills  A transformed actor's original actor's skills.
-   * @protected
+   * Prepares data for a specific skill.
+   * @param {string} skillId                     The id of the skill to prepare data for.
+   * @param {object} [options]                   Additional options.
+   * @param {SkillData} [options.skillData]      The base skill data for this skill.
+   *                                             If undefined, `this.system.skill[skillId]` is used.
+   * @param {object} [options.rollData]          RollData for this actor, used to evaluate dice terms in bonuses.
+   *                                             If undefined, `this.getRollData()` is used.
+   * @param {object} [options.originalSkills]    Original skills if actor is polymorphed.
+   *                                             If undefined, the skills of the actor identified by
+   *                                             `this.flags.sw5e.originalActor` are used.
+   * @param {object} [options.globalBonuses]     Global ability bonuses for this actor.
+   *                                             If undefined, `this.system.bonuses.abilities` is used.
+   * @param {number} [options.globalCheckBonus]  Global check bonus for this actor.
+   *                                             If undefined, `globalBonuses.check` will be evaluated using `rollData`.
+   * @param {number} [options.globalSkillBonus]  Global skill bonus for this actor.
+   *                                             If undefined, `globalBonuses.skill` will be evaluated using `rollData`.
+   * @param {string} [options.ability]           The ability to compute bonuses based on.
+   *                                             If undefined, skillData.ability is used.
+   * @returns {SkillData}
+   * @internal
    */
-  _prepareSkills(bonusData, globalBonuses, checkBonus, originalSkills) {
-    if ( this.type === "vehicle" ) return;
+  _prepareSkill(skillId, {
+    skillData, rollData, originalSkills, globalBonuses,
+    globalCheckBonus, globalSkillBonus, ability
+  }={}) {
     const flags = this.flags.sw5e ?? {};
 
-    // Skill modifiers
+    skillData ??= foundry.utils.deepClone(this.system.skills[skillId]);
+    rollData ??= this.getRollData();
+    originalSkills ??= flags.originalActor ? game.actors?.get(flags.originalActor)?.system?.skills : null;
+    globalBonuses ??= this.system.bonuses?.abilities ?? {};
+    globalCheckBonus ??= simplifyBonus(globalBonuses.check, rollData);
+    globalSkillBonus ??= simplifyBonus(globalBonuses.skill, rollData);
+    ability ??= skillData.ability;
+    const abilityData = this.system.abilities[ability];
+    skillData.ability = ability;
+
     const feats = CONFIG.SW5E.characterFlags;
-    const skillBonus = simplifyBonus(globalBonuses.skill, bonusData);
-    for ( const [id, skl] of Object.entries(this.system.skills) ) {
-      const ability = this.system.abilities[skl.ability];
-      const baseBonus = simplifyBonus(skl.bonuses?.check, bonusData);
-      let roundDown = true;
 
-      // Remarkable Athlete
-      if ( this._isRemarkableAthlete(skl.ability) && (skl.value < 0.5) ) {
-        skl.value = 0.5;
-        roundDown = false;
-      }
+    const baseBonus = simplifyBonus(skillData.bonuses?.check, rollData);
+    let roundDown = true;
 
-      // Jack of All Trades
-      else if ( flags.jackOfAllTrades && (skl.value < 0.5) ) {
-        skl.value = 0.5;
-      }
-
-      // Polymorph Skill Proficiencies
-      if ( originalSkills ) {
-        skl.value = Math.max(skl.value, originalSkills[id].value);
-      }
-
-      // Compute modifier
-      const checkBonusAbl = simplifyBonus(ability?.bonuses?.check, bonusData);
-      skl.bonus = baseBonus + checkBonus + checkBonusAbl + skillBonus;
-      skl.mod = ability?.mod ?? 0;
-      skl.prof = new Proficiency(this.system.attributes.prof, skl.value, roundDown);
-      skl.proficient = skl.value;
-      skl.total = skl.mod + skl.bonus;
-      if ( Number.isNumeric(skl.prof.term) ) skl.total += skl.prof.flat;
-
-      // Compute passive bonus
-      const passive = flags.observantFeat && (feats.observantFeat.skills.includes(id)) ? 5 : 0;
-      const passiveBonus = simplifyBonus(skl.bonuses?.passive, bonusData);
-      skl.passive = 10 + skl.mod + skl.bonus + skl.prof.flat + passive + passiveBonus;
+    // Remarkable Athlete
+    if ( this._isRemarkableAthlete(skillData.ability) && (skillData.value < 0.5) ) {
+      skillData.value = 0.5;
+      roundDown = false;
     }
+
+    // Jack of All Trades
+    else if ( flags.jackOfAllTrades && (skillData.value < 0.5) ) {
+      skillData.value = 0.5;
+    }
+
+    // Polymorph Skill Proficiencies
+    if ( originalSkills ) {
+      skillData.value = Math.max(skillData.value, originalSkills[skillId].value);
+    }
+
+    // Compute modifier
+    const checkBonusAbl = simplifyBonus(abilityData?.bonuses?.check, rollData);
+    skillData.bonus = baseBonus + globalCheckBonus + checkBonusAbl + globalSkillBonus;
+    skillData.mod = abilityData?.mod ?? 0;
+    skillData.prof = new Proficiency(this.system.attributes.prof, skillData.value, roundDown);
+    skillData.proficient = skillData.value;
+    skillData.total = skillData.mod + skillData.bonus;
+    if ( Number.isNumeric(skillData.prof.term) ) skillData.total += skillData.prof.flat;
+
+    // Compute passive bonus
+    const passive = flags.observantFeat && feats.observantFeat.skills.includes(skillId) ? 5 : 0;
+    const passiveBonus = simplifyBonus(skillData.bonuses?.passive, rollData);
+    skillData.passive = 10 + skillData.mod + skillData.bonus + skillData.prof.flat + passive + passiveBonus;
+
+    return skillData;
   }
 
   /* -------------------------------------------- */
@@ -469,9 +412,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Identify Equipped Items
     const armorTypes = new Set(Object.keys(CONFIG.SW5E.armorTypes));
     const {armors, shields} = this.itemTypes.equipment.reduce((obj, equip) => {
-      const armor = equip.system.armor;
-      if ( !equip.system.equipped || !armorTypes.has(armor?.type) ) return obj;
-      if ( armor.type === "shield" ) obj.shields.push(equip);
+      if ( !equip.system.equipped || !armorTypes.has(equip.system.type.value) ) return obj;
+      if ( equip.system.type.value === "shield" ) obj.shields.push(equip);
       else obj.armors.push(equip);
       return obj;
     }, {armors: [], shields: []});
@@ -497,7 +439,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
             message: game.i18n.localize("SW5E.WarnMultipleArmor"), type: "warning"
           });
           const armorData = armors[0].system.armor;
-          const isHeavy = armorData.type === "heavy";
+          const isHeavy = armors[0].system.type.value === "heavy";
           ac.armor = armorData.value ?? ac.armor;
           ac.dex = isHeavy ? 0 : Math.min(armorData.dex ?? Infinity, this.system.abilities.dex?.mod ?? 0);
           ac.equippedArmor = armors[0];
@@ -541,63 +483,50 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _prepareEncumbrance() {
+    const config = CONFIG.SW5E.encumbrance;
     const encumbrance = this.system.attributes.encumbrance ??= {};
+    const units = game.settings.get("sw5e", "metricWeightUnits") ? "metric" : "imperial";
 
     // Get the total weight from items
-    const physicalItems = ["weapon", "equipment", "consumable", "tool", "backpack", "loot"];
-    let weight = this.items.reduce((weight, i) => {
-      if ( !physicalItems.includes(i.type) ) return weight;
-      const q = i.system.quantity || 0;
-      const w = i.system.weight || 0;
-      return weight + (q * w);
-    }, 0);
+    let weight = this.items
+      .filter(item => !item.container)
+      .reduce((weight, item) => weight + (item.system.totalWeight ?? 0), 0);
 
     // [Optional] add Currency Weight (for non-transformed actors)
     const currency = this.system.currency;
     if ( game.settings.get("sw5e", "currencyWeight") && currency ) {
       const numCoins = Object.values(currency).reduce((val, denom) => val + Math.max(denom, 0), 0);
-      const currencyPerWeight = game.settings.get("sw5e", "metricWeightUnits")
-        ? CONFIG.SW5E.encumbrance.currencyPerWeight.metric
-        : CONFIG.SW5E.encumbrance.currencyPerWeight.imperial;
+      const currencyPerWeight = config.currencyPerWeight[units];
       weight += numCoins / currencyPerWeight;
     }
 
     // Determine the Encumbrance size class
-    let mod = {tiny: 0.5, sm: 1, med: 1, lg: 2, huge: 4, grg: 8}[this.system.traits.size] || 1;
-    if ( this.flags.sw5e?.powerfulBuild ) mod = Math.min(mod * 2, 8);
+    const keys = Object.keys(CONFIG.SW5E.actorSizes);
+    const index = keys.findIndex(k => k === this.system.traits.size);
+    const sizeConfig = CONFIG.SW5E.actorSizes[
+      keys[this.flags.sw5e?.powerfulBuild ? Math.min(index + 1, keys.length - 1) : index]
+    ];
+    const mod = sizeConfig?.capacityMultiplier ?? sizeConfig?.token ?? 1;
 
-    const strengthMultiplier = game.settings.get("sw5e", "metricWeightUnits")
-      ? CONFIG.SW5E.encumbrance.strMultiplier.metric
-      : CONFIG.SW5E.encumbrance.strMultiplier.imperial;
+    const calculateThreshold = multiplier => this.type === "vehicle"
+      ? this.system.attributes.capacity.cargo * config.vehicleWeightMultiplier[units]
+      : ((this.system.abilities.str?.value ?? 10) * multiplier * mod).toNearest(0.1);
 
     // Populate final Encumbrance values
+    encumbrance.mod = mod;
     encumbrance.value = weight.toNearest(0.1);
-    encumbrance.max = ((this.system.abilities.str?.value ?? 10) * strengthMultiplier * mod).toNearest(0.1);
+    encumbrance.thresholds = {
+      encumbered: calculateThreshold(config.threshold.encumbered[units]),
+      heavilyEncumbered: calculateThreshold(config.threshold.heavilyEncumbered[units]),
+      maximum: calculateThreshold(config.threshold.maximum[units])
+    };
+    encumbrance.max = encumbrance.thresholds.maximum;
+    encumbrance.stops = {
+      encumbered: Math.clamped((encumbrance.thresholds.encumbered * 100) / encumbrance.max, 0, 100),
+      heavilyEncumbered: Math.clamped((encumbrance.thresholds.heavilyEncumbered * 100) / encumbrance.max, 0, 100)
+    };
     encumbrance.pct = Math.clamped((encumbrance.value * 100) / encumbrance.max, 0, 100);
-    encumbrance.encumbered = encumbrance.pct > (200 / 3);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare hit points for characters.
-   * @param {object} rollData  Data produced by `getRollData` to be applied to bonus formulas.
-   * @protected
-   */
-  _prepareHitPoints(rollData) {
-    if ( this.type !== "character" || (this.system.attributes.hp.max !== null) ) return;
-    const hp = this.system.attributes.hp;
-
-    const abilityId = CONFIG.SW5E.hitPointsAbility || "con";
-    const abilityMod = (this.system.abilities[abilityId]?.mod ?? 0);
-    const base = Object.values(this.classes).reduce((total, item) => {
-      const advancement = item.advancement.byType.HitPoints?.[0];
-      return total + (advancement?.getAdjustedTotal(abilityMod) ?? 0);
-    }, 0);
-    const levelBonus = simplifyBonus(hp.bonuses.level, rollData) * this.system.details.level;
-    const overallBonus = simplifyBonus(hp.bonuses.overall, rollData);
-
-    hp.max = base + levelBonus + overallBonus;
+    encumbrance.encumbered = encumbrance.value > encumbrance.heavilyEncumbered;
   }
 
   /* -------------------------------------------- */
@@ -614,7 +543,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const flags = this.flags.sw5e || {};
 
     // Compute initiative modifier
-    const abilityId = init.ability || CONFIG.SW5E.initiativeAbility;
+    const abilityId = init.ability || CONFIG.SW5E.defaultAbilities.initiative;
     const ability = this.system.abilities?.[abilityId] || {};
     init.mod = ability.mod ?? 0;
 
@@ -643,9 +572,10 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   _preparePowercasting() {
     if ( !this.system.powers ) return;
 
-    // Powercasting DC
+    // Powercasting DC and modifier
     const powercastingAbility = this.system.abilities[this.system.attributes.powercasting];
     this.system.attributes.powerdc = powercastingAbility ? powercastingAbility.dc : 8 + this.system.attributes.prof;
+    this.system.attributes.powermod = powercastingAbility ? powercastingAbility.mod : 0;
 
     // Translate the list of classes into powercasting progression
     const progression = { slot: 0, pact: 0 };
@@ -791,6 +721,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     const slots = CONFIG.SW5E.SPELL_SLOT_TABLE[Math.min(levels, CONFIG.SW5E.SPELL_SLOT_TABLE.length) - 1] ?? [];
     for ( const level of Array.fromRange(Object.keys(CONFIG.SW5E.powerLevels).length - 1, 1) ) {
       const slot = powers[`power${level}`] ??= { value: 0 };
+      slot.level = level;
       slot.max = Number.isNumeric(slot.override) ? Math.max(parseInt(slot.override), 0) : slots[level - 1] ?? 0;
     }
   }
@@ -848,7 +779,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Configure prototype token settings
     const prototypeToken = {};
     if ( "size" in (this.system.traits || {}) ) {
-      const size = CONFIG.SW5E.tokenSizes[this.system.traits.size || "med"];
+      const size = CONFIG.SW5E.actorSizes[this.system.traits.size || "med"].token ?? 1;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.width") ) prototypeToken.width = size;
       if ( !foundry.utils.hasProperty(data, "prototypeToken.height") ) prototypeToken.height = size;
     }
@@ -868,7 +799,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( "size" in (this.system.traits || {}) ) {
       const newSize = foundry.utils.getProperty(changed, "system.traits.size");
       if ( newSize && (newSize !== this.system.traits?.size) ) {
-        let size = CONFIG.SW5E.tokenSizes[newSize];
+        let size = CONFIG.SW5E.actorSizes[newSize].token ?? 1;
         if ( !foundry.utils.hasProperty(changed, "prototypeToken.width") ) {
           changed.prototypeToken ||= {};
           changed.prototypeToken.height = size;
@@ -877,13 +808,19 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       }
     }
 
-    // Reset death save counters
+    // Reset death save counters and store hp
     if ( "hp" in (this.system.attributes || {}) ) {
       const isDead = this.system.attributes.hp.value <= 0;
       if ( isDead && (foundry.utils.getProperty(changed, "system.attributes.hp.value") > 0) ) {
         foundry.utils.setProperty(changed, "system.attributes.death.success", 0);
         foundry.utils.setProperty(changed, "system.attributes.death.failure", 0);
       }
+      foundry.utils.setProperty(options, "sw5e.hp", { ...this.system.attributes.hp });
+    }
+
+    // Record previous exhaustion level.
+    if ( Number.isFinite(foundry.utils.getProperty(changed, "system.attributes.exhaustion")) ) {
+      foundry.utils.setProperty(options, "sw5e.originalExhaustion", this.system.attributes.exhaustion);
     }
   }
 
@@ -910,6 +847,12 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       const hp = this.system.attributes.hp;
       const delta = isDelta ? (-1 * value) : (hp.value + hp.temp) - value;
       return this.applyDamage(delta);
+    } else if ( attribute.startsWith(".") ) {
+      const item = fromUuidSync(attribute, { relative: this });
+      let newValue = item?.system.uses?.value ?? 0;
+      if ( isDelta ) newValue += value;
+      else newValue = value;
+      return item?.update({ "system.uses.value": newValue });
     }
     return super.modifyTokenAttribute(attribute, value, isDelta, isBar);
   }
@@ -917,39 +860,215 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
-   * Apply a certain amount of damage or healing to the health pool for Actor
-   * @param {number} amount       An amount of damage (positive) or healing (negative) to sustain
-   * @param {number} multiplier   A multiplier which allows for resistance, vulnerability, or healing
-   * @returns {Promise<Actor5e>}  A Promise which resolves once the damage has been applied
+   * Description of a source of damage.
+   *
+   * @typedef {object} DamageDescription
+   * @property {number} value            Amount of damage.
+   * @property {string} type             Type of damage.
+   * @property {Set<string>} properties  Physical properties that affect damage application.
+   * @property {object} [active]
+   * @property {number} [active.multiplier]      Final calculated multiplier.
+   * @property {boolean} [active.modifications]  Did modification affect this description?
+   * @property {boolean} [active.resistance]     Did resistance affect this description?
+   * @property {boolean} [active.vulnerability]  Did vulnerability affect this description?
+   * @property {boolean} [active.immunity]       Did immunity affect this description?
    */
-  async applyDamage(amount=0, multiplier=1) {
-    amount = Math.floor(parseInt(amount) * multiplier);
+
+  /**
+   * Options for damage application.
+   *
+   * @typedef {object} DamageApplicationOptions
+   * @property {boolean|Set<string>} [downgrade]  Should this actor's resistances and immunities be downgraded by one
+   *                                              step? A set of damage types to be downgraded or `true` to downgrade
+   *                                              all damage types.
+   * @property {number} [multiplier=1]         Amount by which to multiply all damage.
+   * @property {object|boolean} [ignore]       Set to `true` to ignore all damage modifiers. If set to an object, then
+   *                                           values can either be `true` to indicate that the all modifications of
+   *                                           that type should be ignored, or a set of specific damage types for which
+   *                                           it should be ignored.
+   * @property {boolean|Set<string>} [ignore.immunity]       Should this actor's damage immunity be ignored?
+   * @property {boolean|Set<string>} [ignore.resistance]     Should this actor's damage resistance be ignored?
+   * @property {boolean|Set<string>} [ignore.vulnerability]  Should this actor's damage vulnerability be ignored?
+   * @property {boolean|Set<string>} [ignore.modification]   Should this actor's damage modification be ignored?
+   * @property {boolean} [invertHealing=true]  Automatically invert healing types to it heals, rather than damages.
+   * @property {"damage"|"healing"} [only]     Apply only damage or healing parts. Untyped rolls will always be applied.
+   */
+
+  /**
+   * Apply a certain amount of damage or healing to the health pool for Actor
+   * @param {DamageDescription[]|number} damages     Damages to apply.
+   * @param {DamageApplicationOptions} [options={}]  Damage application options.
+   * @returns {Promise<Actor5e>}                     A Promise which resolves once the damage has been applied.
+   */
+  async applyDamage(damages, options={}) {
     const hp = this.system.attributes.hp;
     if ( !hp ) return this; // Group actors don't have HP at the moment
 
-    // Deduct damage from temp HP first
-    const tmp = parseInt(hp.temp) || 0;
-    const dt = amount > 0 ? Math.min(tmp, amount) : 0;
+    if ( foundry.utils.getType(options) !== "Object" ) {
+      foundry.utils.logCompatibilityWarning(
+        "Actor5e.applyDamage now takes an options object as its second parameter with `multiplier` as an parameter.",
+        { since: "SW5e 3.0", until: "SW5e 3.2" }
+      );
+      options = { multiplier: options };
+    }
 
-    // Remaining goes to health
-    const tmpMax = parseInt(hp.tempmax) || 0;
-    const dh = Math.clamped(hp.value - (amount - dt), 0, Math.max(0, hp.max + tmpMax));
+    if ( Number.isNumeric(damages) ) {
+      damages = [{ value: damages }];
+      options.ignore ??= true;
+    }
 
-    // Update the Actor
+    damages = this.calculateDamage(damages, options);
+    if ( !damages ) return this;
+
+    // Round damage towards zero
+    let amount = damages.reduce((acc, d) => acc + d.value, 0);
+    amount = amount > 0 ? Math.floor(amount) : Math.ceil(amount);
+
+    const deltaTemp = amount > 0 ? Math.min(hp.temp, amount) : 0;
+    const deltaHP = Math.clamped(amount - deltaTemp, -hp.damage, hp.value);
     const updates = {
-      "system.attributes.hp.temp": tmp - dt,
-      "system.attributes.hp.value": dh
+      "system.attributes.hp.temp": hp.temp - deltaTemp,
+      "system.attributes.hp.value": hp.value - deltaHP
     };
 
+    /**
+     * A hook event that fires before damage is applied to an actor.
+     * @param {Actor5e} actor                     Actor the damage will be applied to.
+     * @param {number} amount                     Amount of damage that will be applied.
+     * @param {object} updates                    Distinct updates to be performed on the actor.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+     * @function sw5e.preApplyDamage
+     * @memberof hookEvents
+     */
+    if ( Hooks.call("sw5e.preApplyDamage", this, amount, updates, options) === false ) return this;
+
     // Delegate damage application to a hook
-    // TODO replace this in the future with a better modifyTokenAttribute function in the core
-    const allowed = Hooks.call("modifyTokenAttribute", {
+    // TODO: Replace this in the future with a better modifyTokenAttribute function in the core
+    if ( Hooks.call("modifyTokenAttribute", {
       attribute: "attributes.hp",
       value: amount,
       isDelta: false,
       isBar: true
-    }, updates);
-    return allowed !== false ? this.update(updates, {dhp: -amount}) : this;
+    }, updates) === false ) return this;
+
+    await this.update(updates);
+
+    /**
+     * A hook event that fires after damage has been applied to an actor.
+     * @param {Actor5e} actor                     Actor that has been damaged.
+     * @param {number} amount                     Amount of damage that has been applied.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @function sw5e.applyDamage
+     * @memberof hookEvents
+     */
+    Hooks.callAll("sw5e.applyDamage", this, amount, options);
+
+    return this;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Calculate the damage that will be applied to this actor.
+   * @param {DamageDescription[]} damages            Damages to calculate.
+   * @param {DamageApplicationOptions} [options={}]  Damage calculation options.
+   * @returns {DamageDescription[]|false}            New damage descriptions with changes applied, or `false` if the
+   *                                                 calculation was canceled.
+   */
+  calculateDamage(damages, options={}) {
+    damages = foundry.utils.deepClone(damages);
+
+    /**
+     * A hook event that fires before damage amount is calculated for an actor.
+     * @param {Actor5e} actor                     The actor being damaged.
+     * @param {DamageDescription[]} damages       Damage descriptions.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+     * @function sw5e.preCalculateDamage
+     * @memberof hookEvents
+     */
+    if ( Hooks.call("sw5e.preCalculateDamage", this, damages, options) === false ) return false;
+
+    const multiplier = options.multiplier ?? 1;
+
+    const downgrade = type => options.downgrade === true || options.downgrade?.has?.(type);
+    const ignore = (category, type, skipDowngrade) => {
+      return options.ignore === true
+        || options.ignore?.[category] === true
+        || options.ignore?.[category]?.has?.(type)
+        || ((category === "immunity") && downgrade(type) && !skipDowngrade)
+        || ((category === "resistance") && downgrade(type) && !hasEffect("di", type));
+    };
+
+    const traits = this.system.traits ?? {};
+    const hasEffect = (category, type, properties) => {
+      if ( (category === "dr") && downgrade(type) && hasEffect("di", type, properties)
+        && !ignore("immunity", type, true) ) return true;
+      const config = traits[category];
+      if ( !config?.value.has(type) ) return false;
+      if ( !CONFIG.SW5E.damageTypes[type]?.isPhysical || !properties?.size ) return true;
+      return !config.bypasses?.intersection(properties)?.size;
+    };
+
+    const skipped = type => {
+      if ( options.only === "damage" ) return type in CONFIG.SW5E.healingTypes;
+      if ( options.only === "healing" ) return type in CONFIG.SW5E.damageTypes;
+      return false;
+    };
+
+    const rollData = this.getRollData({deterministic: true});
+
+    damages.forEach(d => {
+      // Skip damage types with immunity
+      if ( skipped(d.type) || (!ignore("immunity", d.type) && hasEffect("di", d.type, d.properties)) ) {
+        d.value = 0;
+        d.active = { multiplier: 0, immunity: true };
+        return;
+      }
+      d.active = {};
+
+      // Apply type-specific damage reduction
+      if ( !ignore("modification", d.type) && traits.dm?.amount[d.type] ) {
+        const modification = simplifyBonus(traits.dm.amount[d.type], rollData);
+        if ( Math.sign(d.value) !== Math.sign(d.value + modification) ) d.value = 0;
+        else d.value += modification;
+        d.active.modification = true;
+      }
+
+      let damageMultiplier = multiplier;
+
+      // Apply type-specific damage resistance
+      if ( !ignore("resistance", d.type) && hasEffect("dr", d.type, d.properties) ) {
+        damageMultiplier /= 2;
+        d.active.resistance = true;
+      }
+
+      // Apply type-specific damage vulnerability
+      if ( !ignore("vulnerability", d.type) && hasEffect("dv", d.type, d.properties) ) {
+        damageMultiplier *= 2;
+        d.active.vulnerability = true;
+      }
+
+      // Negate healing types
+      if ( (options.invertHealing !== false) && (d.type === "healing") ) damageMultiplier *= -1;
+
+      d.value = d.value * damageMultiplier;
+      d.active.multiplier = damageMultiplier;
+    });
+
+    /**
+     * A hook event that fires after damage values are calculated for an actor.
+     * @param {Actor5e} actor                     The actor being damaged.
+     * @param {DamageDescription[]} damages       Damage descriptions.
+     * @param {DamageApplicationOptions} options  Additional damage application options.
+     * @returns {boolean}                         Explicitly return `false` to prevent damage application.
+     * @function sw5e.calculateDamage
+     * @memberof hookEvents
+     */
+    if ( Hooks.call("sw5e.calculateDamage", this, damages, options) === false ) return false;
+
+    return damages;
   }
 
   /* -------------------------------------------- */
@@ -979,6 +1098,132 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   static getHPColor(current, max) {
     const pct = Math.clamped(current, 0, max) / max;
     return Color.fromRGB([(1-(pct/2)), pct, 0]);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Initiate concentration on an item.
+   * @param {Item5e} item                        The item on which to being concentration.
+   * @param {object} [effectData]                Effect data to merge into the created effect.
+   * @returns {Promise<ActiveEffect5e|void>}     A promise that resolves to the created effect.
+   */
+  async beginConcentrating(item, effectData={}) {
+    effectData = ActiveEffect5e.createConcentrationEffectData(item, effectData);
+
+    /**
+     * A hook that is called before a concentration effect is created.
+     * @function sw5e.preBeginConcentrating
+     * @memberof hookEvents
+     * @param {Actor5e} actor         The actor initiating concentration.
+     * @param {Item5e} item           The item that will be concentrated on.
+     * @param {object} effectData     Data used to create the ActiveEffect.
+     * @returns {boolean}             Explicitly return false to prevent the effect from being created.
+     */
+    if ( Hooks.call("sw5e.preBeginConcentrating", this, item, effectData) === false ) return;
+
+    const effect = await ActiveEffect5e.create(effectData, { parent: this });
+
+    /**
+     * A hook that is called after a concentration effect is created.
+     * @function sw5e.createConcentrating
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor initiating concentration.
+     * @param {Item5e} item               The item that is being concentrated on.
+     * @param {ActiveEffect5e} effect     The created ActiveEffect instance.
+     */
+    Hooks.callAll("sw5e.beginConcentrating", this, item, effect);
+
+    return effect;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * End concentration on an item.
+   * @param {Item5e|ActiveEffect5e|string} [target]    An item or effect to end concentration on, or id of an effect.
+   *                                                   If not provided, all maintained effects are removed.
+   * @returns {Promise<ActiveEffect5e[]>}              A promise that resolves to the deleted effects.
+   */
+  async endConcentration(target) {
+    let effect;
+    const { effects } = this.concentration;
+
+    if ( !target ) {
+      return effects.reduce(async (acc, effect) => {
+        acc = await acc;
+        return acc.concat(await this.endConcentration(effect));
+      }, []);
+    }
+
+    if ( foundry.utils.getType(target) === "string" ) effect = effects.find(e => e.id === target);
+    else if ( target instanceof ActiveEffect5e ) effect = effects.has(target) ? target : null;
+    else if ( target instanceof Item5e ) {
+      effect = effects.find(e => {
+        const data = e.getFlag("sw5e", "itemData") ?? {};
+        return (data === target._id) || (data._id === target._id);
+      });
+    }
+    if ( !effect ) return [];
+
+    /**
+     * A hook that is called before a concentration effect is deleted.
+     * @function sw5e.preEndConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor ending concentration.
+     * @param {ActiveEffect5e} effect     The ActiveEffect that will be deleted.
+     * @returns {boolean}                 Explicitly return false to prevent the effect from being deleted.
+     */
+    if ( Hooks.call("sw5e.preEndConcentration", this, effect) === false) return [];
+
+    await effect.delete();
+
+    /**
+     * A hook that is called after a concentration effect is deleted.
+     * @function sw5e.endConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor ending concentration.
+     * @param {ActiveEffect5e} effect     The ActiveEffect that was deleted.
+     */
+    Hooks.callAll("sw5e.endConcentration", this, effect);
+
+    return [effect];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Create a chat message for this actor with a prompt to challenge concentration.
+   * @param {object} [options]
+   * @param {number} [options.dc]         The target value of the saving throw.
+   * @param {string} [options.ability]    An ability to use instead of the default.
+   * @returns {Promise<ChatMessage5e>}    A promise that resolves to the created chat message.
+   */
+  async challengeConcentration({ dc=10, ability=null }={}) {
+    const isConcentrating = this.concentration.effects.size > 0;
+    if ( !isConcentrating ) return null;
+
+    const dataset = {
+      action: "concentration",
+      dc: dc
+    };
+    if ( ability in CONFIG.SW5E.abilities ) dataset.ability = ability;
+
+    const config = {
+      type: "concentration",
+      format: "short",
+      icon: true
+    };
+
+    return ChatMessage.implementation.create({
+      content: await renderTemplate("systems/sw5e/templates/chat/request-card.hbs", {
+        dataset: { ...dataset, type: "concentration" },
+        buttonLabel: createRollLabel({ ...dataset, ...config }),
+        hiddenLabel: createRollLabel({ ...dataset, ...config, hideDC: true })
+      }),
+      whisper: game.users.filter(user => this.testUserPermission(user, "OWNER")),
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this })
+    });
   }
 
   /* -------------------------------------------- */
@@ -1138,7 +1383,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Reliable Talent applies to any tool check we have full or better proficiency in
-    const reliableTalent = (prof.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
+    const reliableTalent = (prof?.multiplier >= 1 && this.getFlag("sw5e", "reliableTalent"));
 
     const flavor = game.i18n.format("SW5E.ToolPromptTitle", {tool: Trait.keyLabel(toolId, {trait: "tool"}) ?? ""});
     const rollData = foundry.utils.mergeObject({
@@ -1290,9 +1535,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Roll an Ability Saving Throw
    * Prompt the user for input regarding Advantage/Disadvantage and any Situational Bonus
-   * @param {string} abilityId    The ability ID (e.g. "str")
-   * @param {object} options      Options which configure how ability tests are rolled
-   * @returns {Promise<D20Roll>}  A Promise which resolves to the created Roll instance
+   * @param {string} abilityId          The ability ID (e.g. "str")
+   * @param {object} [options]          Options which configure how ability saves are rolled
+   * @returns {Promise<D20Roll|null>}   A Promise which resolves to the created Roll instance
    */
   async rollAbilitySave(abilityId, options={}) {
     const label = CONFIG.SW5E.abilities[abilityId]?.label ?? "";
@@ -1373,6 +1618,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async rollDeathSave(options={}) {
     const death = this.system.attributes.death;
+    if ( !death ) throw new Error(`Actors of the type '${this.type}' don't support death saves.`);
 
     // Display a warning if we are not at zero HP or if we already have reached 3
     if ( (this.system.attributes.hp.value > 0) || (death.failure >= 3) || (death.success >= 3) ) {
@@ -1496,6 +1742,61 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /**
+   * Perform a saving throw to maintain concentration.
+   * @param {object} [options]          Options to configure how the saving throw is rolled
+   * @returns {Promise<D20Roll|null>}   A Promise which resolves to the created Roll instance
+   */
+  async rollConcentration(options={}) {
+    if ( !this.isOwner ) return null;
+    const conc = this.system.attributes?.concentration;
+    if ( !conc ) throw new Error("You may not make a Concentration Saving Throw with this Actor.");
+
+    const config = CONFIG.SW5E;
+    const modes = CONFIG.Dice.D20Roll.ADV_MODE;
+    const parts = [];
+
+    // Concentration bonus
+    if ( conc.bonuses.save ) parts.push(conc.bonuses.save);
+
+    const ability = (conc.ability in config.abilities) ? conc.ability : config.defaultAbilities.concentration;
+
+    options = foundry.utils.mergeObject({
+      ability: ability,
+      isConcentration: true,
+      targetValue: 10,
+      advantage: options.advantage || (conc.roll.mode === modes.ADVANTAGE),
+      disadvantage: options.disadvantage || (conc.roll.mode === modes.DISADVANTAGE)
+    }, options);
+    options.parts = parts.concat(options.parts ?? []);
+
+    /**
+     * A hook event that fires before a saving throw to maintain concentration is rolled for an Actor.
+     * @function sw5e.preRollConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor                   Actor for which the saving throw is being rolled.
+     * @param {D20RollConfiguration} options    Configuration data for the pending roll.
+     * @returns {boolean}                       Explicitly return `false` to prevent the save from being performed.
+     */
+    if ( Hooks.call("sw5e.preRollConcentration", this, options) === false ) return;
+
+    // Perform a standard ability save.
+    const roll = await this.rollAbilitySave(options.ability, options);
+
+    /**
+     * A hook event that fires after a saving throw to maintain concentration is rolled for an Actor.
+     * @function sw5e.rollConcentration
+     * @memberof hookEvents
+     * @param {Actor5e} actor     Actor for which the saving throw has been rolled.
+     * @param {D20Roll} roll      The resulting roll.
+     */
+    if ( roll ) Hooks.callAll("sw5e.rollConcentration", this, roll);
+
+    return roll;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
    * Get an un-evaluated D20Roll instance used to roll initiative for this Actor.
    * @param {object} [options]                        Options which modify the roll
    * @param {D20Roll.ADV_MODE} [options.advantageMode]    A specific advantage mode to apply
@@ -1509,7 +1810,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
     // Obtain required data
     const init = this.system.attributes?.init;
-    const abilityId = init?.ability || CONFIG.SW5E.initiativeAbility;
+    const abilityId = init?.ability || CONFIG.SW5E.defaultAbilities.initiative;
     const data = this.getRollData();
     const flags = this.flags.sw5e || {};
     if ( flags.initiativeAdv ) options.advantageMode ??= sw5e.dice.D20Roll.ADV_MODE.ADVANTAGE;
@@ -1696,7 +1997,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( rollConfig.chatMessage ) roll.toMessage(rollConfig.messageData);
 
     const hp = this.system.attributes.hp;
-    const dhp = Math.min(Math.max(0, hp.max + (hp.tempmax ?? 0)) - hp.value, roll.total);
+    const dhp = Math.min(Math.max(0, hp.effectiveMax) - hp.value, roll.total);
     const updates = {
       actor: {"system.attributes.hp.value": hp.value + dhp},
       class: {"system.hitDiceUsed": cls.system.hitDiceUsed + 1}
@@ -1715,11 +2016,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
      */
     if ( Hooks.call("sw5e.rollHitDie", this, roll, updates) === false ) return roll;
 
-    // Re-evaluate dhp in the event that it was changed in the previous hook
-    const updateOptions = { dhp: (updates.actor?.["system.attributes.hp.value"] ?? hp.value) - hp.value };
-
     // Perform updates
-    if ( !foundry.utils.isEmpty(updates.actor) ) await this.update(updates.actor, updateOptions);
+    if ( !foundry.utils.isEmpty(updates.actor) ) await this.update(updates.actor);
     if ( !foundry.utils.isEmpty(updates.class) ) await cls.update(updates.class);
 
     return roll;
@@ -1839,10 +2137,13 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * Configuration options for a rest.
    *
    * @typedef {object} RestConfiguration
+   * @property {string} type               Type of rest to perform.
    * @property {boolean} dialog            Present a dialog window which allows for rolling hit dice as part of the
    *                                       Short Rest and selecting whether a new day has occurred.
    * @property {boolean} chat              Should a chat message be created to summarize the results of the rest?
+   * @property {number} duration           Amount of time passed during the rest in minutes.
    * @property {boolean} newDay            Does this rest carry over to a new day?
+   * @property {boolean} [advanceTime]     Should the game clock be advanced by the rest duration?
    * @property {boolean} [autoHD]          Should hit dice be spent automatically during a short rest?
    * @property {number} [autoHDThreshold]  How many hit points should be missing before hit dice are
    *                                       automatically spent during a short rest.
@@ -1869,8 +2170,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RestResult>}       A Promise which resolves once the short rest workflow has completed.
    */
   async shortRest(config={}) {
+    if ( this.type === "vehicle" ) return;
+
     config = foundry.utils.mergeObject({
-      dialog: true, chat: true, newDay: false, autoHD: false, autoHDThreshold: 3
+      type: "short", dialog: true, chat: true, newDay: false, advanceTime: false, autoHD: false, autoHDThreshold: 3,
+      duration: CONFIG.SW5E.restTypes.short.duration[game.settings.get("sw5e", "restVariant")]
     }, config);
 
     /**
@@ -1884,22 +2188,33 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( Hooks.call("sw5e.preShortRest", this, config) === false ) return;
 
     // Take note of the initial hit points and number of hit dice the Actor has
-    const hd0 = this.system.attributes.hd;
-    const hp0 = this.system.attributes.hp.value;
+    const hd0 = foundry.utils.getProperty(this, "system.attributes.hd");
+    const hp0 = foundry.utils.getProperty(this, "system.attributes.hp.value");
 
     // Display a Dialog for rolling hit dice
     if ( config.dialog ) {
-      try { config.newDay = await ShortRestDialog.shortRestDialog({actor: this, canRoll: hd0 > 0});
+      try {
+        foundry.utils.mergeObject(config, await ShortRestDialog.shortRestDialog({actor: this, canRoll: hd0 > 0}));
       } catch(err) { return; }
     }
 
+    /**
+     * A hook event that fires after a short rest has started, after the configuration is complete.
+     * @function sw5e.shortRest
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestConfiguration} config  Configuration options for the rest.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest from being continued.
+     */
+    if ( Hooks.call("sw5e.shortRest", this, config) === false ) return;
+
     // Automatically spend hit dice
-    else if ( config.autoHD ) await this.autoSpendHitDice({ threshold: config.autoHDThreshold });
+    if ( !config.dialog && config.autoHD ) await this.autoSpendHitDice({ threshold: config.autoHDThreshold });
 
     // Return the rest result
-    const dhd = this.system.attributes.hd - hd0;
-    const dhp = this.system.attributes.hp.value - hp0;
-    return this._rest(config.chat, config.newDay, false, dhd, dhp);
+    const dhd = foundry.utils.getProperty(this, "system.attributes.hd") - hd0;
+    const dhp = foundry.utils.getProperty(this, "system.attributes.hp.value") - hp0;
+    return this._rest(config, { dhd, dhp });
   }
 
   /* -------------------------------------------- */
@@ -1910,8 +2225,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @returns {Promise<RestResult>}       A Promise which resolves once the long rest workflow has completed.
    */
   async longRest(config={}) {
+    if ( this.type === "vehicle" ) return;
+
     config = foundry.utils.mergeObject({
-      dialog: true, chat: true, newDay: true
+      type: "long", dialog: true, chat: true, newDay: true, advanceTime: false,
+      duration: CONFIG.SW5E.restTypes.long.duration[game.settings.get("sw5e", "restVariant")]
     }, config);
 
     /**
@@ -1925,11 +2243,22 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( Hooks.call("sw5e.preLongRest", this, config) === false ) return;
 
     if ( config.dialog ) {
-      try { config.newDay = await LongRestDialog.longRestDialog({actor: this}); }
-      catch(err) { return; }
+      try {
+        foundry.utils.mergeObject(config, await LongRestDialog.longRestDialog({actor: this}));
+      } catch(err) { return; }
     }
 
-    return this._rest(config.chat, config.newDay, true);
+    /**
+     * A hook event that fires after a long rest has started, after the configuration is complete.
+     * @function sw5e.longRest
+     * @memberof hookEvents
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestConfiguration} config  Configuration options for the rest.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest from being continued.
+     */
+    if ( Hooks.call("sw5e.longRest", this, config) === false ) return;
+
+    return this._rest(config);
   }
 
   /* -------------------------------------------- */
@@ -1937,20 +2266,34 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /**
    * Perform all of the changes needed for a short or long rest.
    *
-   * @param {boolean} chat           Summarize the results of the rest workflow as a chat message.
-   * @param {boolean} newDay         Has a new day occurred during this rest?
-   * @param {boolean} longRest       Is this a long rest?
-   * @param {number} [dhd=0]         Number of hit dice spent during so far during the rest.
-   * @param {number} [dhp=0]         Number of hit points recovered so far during the rest.
+   * @param {RestConfiguration} config  Configuration data for the rest occurring.
+   * @param {RestResult} [result={}]    Results of the rest operation being built.
+   * @param {*[]} [args]
    * @returns {Promise<RestResult>}  Consolidated results of the rest workflow.
    * @private
    */
-  async _rest(chat, newDay, longRest, dhd=0, dhp=0) {
+  async _rest(config, result={}, ...args) {
+    if ( args.length ) {
+      foundry.utils.logCompatibilityWarning(
+        "Actor5e._rest now takes a config object and a results object as parameters.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      const [longRest, dhd, dhp] = args;
+      config = { chat: config, newDay: result };
+      config.type = longRest ? "long" : "short";
+      result = { dhd, dhp };
+    }
+
+    if ( (foundry.utils.getType(this.system.rest) === "function")
+      && (await this.system.rest(config, result) === false) ) return;
+
     let hitPointsRecovered = 0;
     let hitPointUpdates = {};
     let hitDiceRecovered = 0;
     let hitDiceUpdates = [];
     const rolls = [];
+    const longRest = config.type === "long";
+    const newDay = config.newDay === true;
 
     // Recover hit points & hit dice on long rest
     if ( longRest ) {
@@ -1959,9 +2302,9 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     }
 
     // Figure out the rest of the changes
-    const result = {
-      dhd: dhd + hitDiceRecovered,
-      dhp: dhp + hitPointsRecovered,
+    foundry.utils.mergeObject(result, {
+      dhd: (result.dhd ?? 0) + hitDiceRecovered,
+      dhp: (result.dhp ?? 0) + hitPointsRecovered,
       updateData: {
         ...hitPointUpdates,
         ...this._getRestResourceRecovery({ recoverShortRestResources: !longRest, recoverLongRestResources: longRest }),
@@ -1973,34 +2316,39 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       ],
       longRest,
       newDay
-    };
+    });
     result.rolls = rolls;
 
     /**
      * A hook event that fires after rest result is calculated, but before any updates are performed.
      * @function sw5e.preRestCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor      The actor that is being rested.
-     * @param {RestResult} result  Details on the rest to be completed.
-     * @returns {boolean}          Explicitly return `false` to prevent the rest updates from being performed.
+     * @param {Actor5e} actor             The actor that is being rested.
+     * @param {RestResult} result         Details on the rest to be completed.
+     * @param {RestConfiguration} config  Configuration data for the rest occurring.
+     * @returns {boolean}                 Explicitly return `false` to prevent the rest updates from being performed.
      */
-    if ( Hooks.call("sw5e.preRestCompleted", this, result) === false ) return result;
+    if ( Hooks.call("sw5e.preRestCompleted", this, result, config) === false ) return result;
 
     // Perform updates
     await this.update(result.updateData, { isRest: true });
     await this.updateEmbeddedDocuments("Item", result.updateItems, { isRest: true });
 
+    // Advance the game clock
+    if ( config.advanceTime && (config.duration > 0) && game.user.isGM ) await game.time.advance(60 * config.duration);
+
     // Display a Chat Message summarizing the rest effects
-    if ( chat ) await this._displayRestResultMessage(result, longRest);
+    if ( config.chat ) await this._displayRestResultMessage(result, longRest);
 
     /**
      * A hook event that fires when the rest process is completed for an actor.
      * @function sw5e.restCompleted
      * @memberof hookEvents
-     * @param {Actor5e} actor      The actor that just completed resting.
-     * @param {RestResult} result  Details on the rest completed.
+     * @param {Actor5e} actor             The actor that just completed resting.
+     * @param {RestResult} result         Details on the rest completed.
+     * @param {RestConfiguration} config  Configuration data for that occurred.
      */
-    Hooks.callAll("sw5e.restCompleted", this, result);
+    Hooks.callAll("sw5e.restCompleted", this, result, config);
 
     // Return data summarizing the rest effects
     return result;
@@ -2069,7 +2417,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   async autoSpendHitDice({ threshold=3 }={}) {
     const hp = this.system.attributes.hp;
-    const max = Math.max(0, hp.max + hp.tempmax);
+    const max = Math.max(0, hp.effectiveMax);
     let diceRolled = 0;
     while ( (this.system.attributes.hp.value + threshold) <= max ) {
       const r = await this.rollHitDie();
@@ -2094,7 +2442,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let max = hp.max;
     let updates = {};
     if ( recoverTempMax ) updates["system.attributes.hp.tempmax"] = 0;
-    else max = Math.max(0, max + (hp.tempmax || 0));
+    else max = Math.max(0, hp.effectiveMax);
     updates["system.attributes.hp.value"] = max;
     if ( recoverTemp ) updates["system.attributes.hp.temp"] = 0;
     return { updates, hitPointsRecovered: max - hp.value };
@@ -2112,7 +2460,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    */
   _getRestResourceRecovery({recoverShortRestResources=true, recoverLongRestResources=true}={}) {
     let updates = {};
-    for ( let [k, r] of Object.entries(this.system.resources) ) {
+    for ( let [k, r] of Object.entries(this.system.resources ?? {}) ) {
       if ( Number.isNumeric(r.max) && ((recoverShortRestResources && r.sr) || (recoverLongRestResources && r.lr)) ) {
         updates[`system.resources.${k}.value`] = Number(r.max);
       }
@@ -2131,7 +2479,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * @protected
    */
   _getRestPowerRecovery({recoverPact=true, recoverPowers=true}={}) {
-    const powers = this.system.powers;
+    const powers = this.system.powers ?? {};
     let updates = {};
     if ( recoverPact ) {
       const pact = powers.pact;
@@ -2198,16 +2546,16 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( recoverDailyUses ) recovery.push("day");
     let updates = [];
     for ( let item of this.items ) {
-      const uses = item.system.uses;
-      if ( recovery.includes(uses?.per) ) {
+      const uses = item.system.uses ?? {};
+      if ( recovery.includes(uses.per) ) {
         updates.push({_id: item.id, "system.uses.value": uses.max});
       }
       if ( recoverLongRestUses && item.system.recharge?.value ) {
         updates.push({_id: item.id, "system.recharge.charged": true});
       }
 
-      // Items that roll to gain charges on a new day
-      if ( recoverDailyUses && uses?.recovery && (uses?.per in CONFIG.SW5E.limitedUseFormulaPeriods) ) {
+      // Items that roll to gain charges via a formula
+      if ( recoverDailyUses && uses.recovery && CONFIG.SW5E.limitedUsePeriods[uses.per]?.formula ) {
         const roll = new Roll(uses.recovery, item.getRollData());
         if ( recoverLongRestUses && (game.settings.get("sw5e", "restVariant") === "gritty") ) {
           roll.alter(7, 0, {multiplyNumeric: true});
@@ -2215,7 +2563,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
 
         let total = 0;
         try {
-          total = (await roll.evaluate({async: true})).total;
+          total = (await roll.evaluate()).total;
         } catch(err) {
           ui.notifications.warn(game.i18n.format("SW5E.ItemRecoveryFormulaWarning", {
             name: item.name,
@@ -2242,6 +2590,158 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   }
 
   /* -------------------------------------------- */
+  /*  Property Attribution                        */
+  /* -------------------------------------------- */
+
+  /**
+   * Format an HTML breakdown for a given property.
+   * @param {string} attribution      The property.
+   * @param {object} [options]
+   * @param {string} [options.title]  A title for the breakdown.
+   * @returns {Promise<string>}
+   */
+  async getAttributionData(attribution, { title }={}) {
+    switch ( attribution ) {
+      case "attributes.ac": return this._prepareArmorClassAttribution({ title });
+      case "attributes.movement": return this._prepareMovementAttribution();
+      default: return "";
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare a movement breakdown.
+   * @returns {string}
+   * @protected
+   */
+  _prepareMovementAttribution() {
+    const { movement } = this.system.attributes;
+    const units = movement.units || Object.keys(CONFIG.SW5E.movementUnits)[0];
+    return Object.entries(CONFIG.SW5E.movementTypes).reduce((html, [k, label]) => {
+      const value = movement[k];
+      if ( value || (k === "walk") ) html += `
+        <div class="row">
+          <i class="fas ${k}"></i>
+          <span class="value">${value ?? 0} <span class="units">${units}</span></span>
+          <span class="label">${label}</span>
+        </div>
+      `;
+      return html;
+    }, "");
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare an AC breakdown.
+   * @param {object} [options]
+   * @param {string} [options.title]  A title for the breakdown.
+   * @returns {Promise<string>}
+   * @protected
+   */
+  async _prepareArmorClassAttribution({ title }={}) {
+    const rollData = this.getRollData({ deterministic: true });
+    const ac = rollData.attributes.ac;
+    const cfg = CONFIG.SW5E.armorClasses[ac.calc];
+    const attribution = [];
+
+    if ( ac.calc === "flat" ) {
+      attribution.push({
+        label: game.i18n.localize("SW5E.ArmorClassFlat"),
+        mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+        value: ac.flat
+      });
+      return new PropertyAttribution(this, attribution, "attributes.ac", { title }).renderTooltip();
+    }
+
+    // Base AC Attribution
+    switch ( ac.calc ) {
+
+      // Natural armor
+      case "natural":
+        attribution.push({
+          label: game.i18n.localize("SW5E.ArmorClassNatural"),
+          mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+          value: ac.flat
+        });
+        break;
+
+      default:
+        const formula = ac.calc === "custom" ? ac.formula : cfg.formula;
+        let base = ac.base;
+        const dataRgx = new RegExp(/@([a-z.0-9_-]+)/gi);
+        for ( const [match, term] of formula.matchAll(dataRgx) ) {
+          const value = String(foundry.utils.getProperty(rollData, term));
+          if ( (term === "attributes.ac.armor") || (value === "0") ) continue;
+          if ( Number.isNumeric(value) ) base -= Number(value);
+          attribution.push({
+            label: match,
+            mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+            value
+          });
+        }
+        const armorInFormula = formula.includes("@attributes.ac.armor");
+        let label = game.i18n.localize("SW5E.PropertyBase");
+        if ( armorInFormula ) label = this.armor?.name ?? game.i18n.localize("SW5E.ArmorClassUnarmored");
+        attribution.unshift({
+          label,
+          mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+          value: base
+        });
+        break;
+    }
+
+    // Shield
+    if ( ac.shield !== 0 ) attribution.push({
+      label: this.shield?.name ?? game.i18n.localize("SW5E.EquipmentShield"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.shield
+    });
+
+    // Bonus
+    if ( ac.bonus !== 0 ) attribution.push(...this._prepareActiveEffectAttributions("system.attributes.ac.bonus"));
+
+    // Cover
+    if ( ac.cover !== 0 ) attribution.push({
+      label: game.i18n.localize("SW5E.Cover"),
+      mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+      value: ac.cover
+    });
+
+    if ( attribution.length ) {
+      return new PropertyAttribution(this, attribution, "attributes.ac", { title }).renderTooltip();
+    }
+
+    return "";
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Break down all of the Active Effects affecting a given target property.
+   * @param {string} target               The data property being targeted.
+   * @returns {AttributionDescription[]}  Any active effects that modify that property.
+   * @protected
+   */
+  _prepareActiveEffectAttributions(target) {
+    const rollData = this.getRollData({ deterministic: true });
+    const attributions = [];
+    for ( const e of this.allApplicableEffects() ) {
+      let source = e.sourceName;
+      if ( !e.origin || (e.origin === this.uuid) ) source = e.name;
+      if ( !source || e.disabled || e.isSuppressed ) continue;
+      const value = e.changes.reduce((n, change) => {
+        if ( change.key !== target ) return n;
+        if ( change.mode !== CONST.ACTIVE_EFFECT_MODES.ADD ) return n;
+        return n + simplifyBonus(change.value, rollData);
+      }, 0);
+      if ( value ) attributions.push({ value, label: source, mode: CONST.ACTIVE_EFFECT_MODES.ADD });
+    }
+    return attributions;
+  }
+
+  /* -------------------------------------------- */
   /*  Conversion & Transformation                 */
   /* -------------------------------------------- */
 
@@ -2249,28 +2749,35 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
    * Convert all carried currency to the highest possible denomination using configured conversion rates.
    * See CONFIG.SW5E.currencies for configuration.
    * @returns {Promise<Actor5e>}
+   * @deprecated since SW5e 3.0, targeted for removal in SW5e 3.2.
    */
   convertCurrency() {
-    const currency = foundry.utils.deepClone(this.system.currency);
-    const currencies = Object.entries(CONFIG.SW5E.currencies);
-    currencies.sort((a, b) => a[1].conversion - b[1].conversion);
+    foundry.utils.logCompatibilityWarning(
+      "Actor5e.convertCurrency has been moved to CurrencyManager.convertCurrency.",
+      { since: "SW5e 3.0", until: "SW5e 3.2" }
+    );
+    return CurrencyManager.convertCurrency(this);
+  }
 
-    // Count total converted units of the base currency
-    let basis = currencies.reduce((change, [denomination, config]) => {
-      if ( !config.conversion ) return change;
-      return change + (currency[denomination] / config.conversion);
-    }, 0);
+  /* -------------------------------------------- */
 
-    // Convert base units into the highest denomination possible
-    for ( const [denomination, config] of currencies) {
-      if ( !config.conversion ) continue;
-      const amount = Math.floor(basis * config.conversion);
-      currency[denomination] = amount;
-      basis -= (amount / config.conversion);
+  /**
+   * Fetch stats from the original actor for data preparation.
+   * @returns {{ originalSaves: object|null, originalSkills: object|null }}
+   */
+  getOriginalStats() {
+    // Retrieve data for polymorphed actors
+    let originalSaves = null;
+    let originalSkills = null;
+    if ( this.isPolymorphed ) {
+      const transformOptions = this.flags.sw5e?.transformOptions;
+      const original = game.actors?.get(this.flags.sw5e?.originalActor);
+      if ( original ) {
+        if ( transformOptions.mergeSaves ) originalSaves = original.system.abilities;
+        if ( transformOptions.mergeSkills ) originalSkills = original.system.skills;
+      }
     }
-
-    // Save the updated currency object
-    return this.update({"system.currency": currency});
+    return { originalSaves, originalSkills };
   }
 
   /* -------------------------------------------- */
@@ -2370,6 +2877,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     for ( const k of ["offsetX", "offsetY", "scaleX", "scaleY", "src", "tint"] ) {
       d.prototypeToken.texture[k] = source.prototypeToken.texture[k];
     }
+    foundry.utils.setProperty(d.prototypeToken, "flags.sw5e.tokenRing", foundry.utils.mergeObject(
+      foundry.utils.getProperty(d.prototypeToken, "flags.sw5e.tokenRing") ?? {},
+      foundry.utils.getProperty(source.prototypeToken, "flags.sw5e.tokenRing") ?? {},
+      { inplace: false }
+    ));
     for ( const k of ["bar1", "bar2", "displayBars", "displayName", "disposition", "rotation", "elevation"] ) {
       d.prototypeToken[k] = o.prototypeToken[k];
     }
@@ -2444,7 +2956,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         if ( origin.type === "feat" ) return keepFeatAE;
         if ( origin.type === "background" ) return keepBackgroundAE;
         if ( ["archetype", "class"].includes(origin.type) ) return keepClassAE;
-        if ( ["equipment", "weapon", "tool", "loot", "backpack"].includes(origin.type) ) return keepEquipmentAE;
+        if ( ["equipment", "weapon", "tool", "loot", "container"].includes(origin.type) ) return keepEquipmentAE;
         return true;
       });
     }
@@ -2468,14 +2980,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     if ( this.isToken ) {
       const tokenData = d.prototypeToken;
       delete d.prototypeToken;
-      let previousActorData;
-      if ( game.sw5e.isV10 ) {
-        tokenData.actorData = d;
-        previousActorData = this.token.toObject().actorData;
-      } else {
-        tokenData.delta = d;
-        previousActorData = this.token.delta.toObject();
-      }
+      tokenData.delta = d;
+      const previousActorData = this.token.delta.toObject();
       foundry.utils.setProperty(tokenData, "flags.sw5e.previousActorData", previousActorData);
       await this.sheet?.close();
       const update = await this.token.update(tokenData);
@@ -2566,11 +3072,8 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       const prototypeTokenData = await baseActor.getTokenDocument();
       const actorData = this.token.getFlag("sw5e", "previousActorData");
       const tokenUpdate = this.token.toObject();
-      if ( game.sw5e.isV10 ) tokenUpdate.actorData = actorData ?? {};
-      else {
-        actorData._id = tokenUpdate.delta._id;
-        tokenUpdate.delta = actorData;
-      }
+      actorData._id = tokenUpdate.delta._id;
+      tokenUpdate.delta = actorData;
 
       for ( const k of ["width", "height", "alpha", "lockRotation", "name"] ) {
         tokenUpdate[k] = prototypeTokenData[k];
@@ -2578,6 +3081,11 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
       for ( const k of ["offsetX", "offsetY", "scaleX", "scaleY", "src", "tint"] ) {
         tokenUpdate.texture[k] = prototypeTokenData.texture[k];
       }
+      foundry.utils.setProperty(tokenUpdate, "flags.sw5e.tokenRing", foundry.utils.mergeObject(
+        foundry.utils.getProperty(tokenUpdate, "flags.sw5e.tokenRing") ?? {},
+        foundry.utils.getProperty(prototypeTokenData, "flags.sw5e.tokenRing") ?? {},
+        { inplace: false }
+      ));
       tokenUpdate.sight = prototypeTokenData.sight;
       tokenUpdate.detectionModes = prototypeTokenData.detectionModes;
 
@@ -2605,15 +3113,18 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     // Get the Tokens which represent this actor
     if ( canvas.ready ) {
       const tokens = this.getActiveTokens(true);
-      const tokenData = await original.getTokenDocument();
+      const tokenData = (await original.getTokenDocument()).toObject();
       const tokenUpdates = tokens.map(t => {
-        const update = duplicate(tokenData);
+        const update = foundry.utils.deepClone(tokenData);
         update._id = t.id;
         delete update.x;
         delete update.y;
+        if ( !foundry.utils.getProperty(tokenData, "flags.sw5e.tokenRing") ) {
+          foundry.utils.setProperty(update, "flags.sw5e.tokenRing", {});
+        }
         return update;
       });
-      await canvas.scene.updateEmbeddedDocuments("Token", tokenUpdates);
+      await canvas.scene.updateEmbeddedDocuments("Token", tokenUpdates, { diff: false, recursive: false });
     }
     if ( isOriginalActor ) {
       await this.unsetFlag("sw5e", "isPolymorphed");
@@ -2645,7 +3156,7 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   static addDirectoryContextOptions(html, entryOptions) {
     entryOptions.push({
       name: "SW5E.PolymorphRestoreTransformation",
-      icon: '<i class="fas fa-backward"></i>',
+      icon: '<i class="fa-solid fa-backward"></i>',
       callback: li => {
         const actor = game.actors.get(li.data("documentId"));
         return actor.revertOriginalForm();
@@ -2655,8 +3166,48 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
         if ( !allowed && !game.user.isGM ) return false;
         const actor = game.actors.get(li.data("documentId"));
         return actor && actor.isPolymorphed;
-      }
+      },
+      group: "system"
+    }, {
+      name: "SW5E.Group.Primary.Set",
+      icon: '<i class="fa-solid fa-star"></i>',
+      callback: li => {
+        game.settings.set("sw5e", "primaryParty", { actor: game.actors.get(li[0].dataset.documentId) });
+      },
+      condition: li => {
+        const actor = game.actors.get(li[0].dataset.documentId);
+        const primary = game.settings.get("sw5e", "primaryParty")?.actor;
+        return game.user.isGM && (actor.type === "group")
+          && (actor.system.type.value === "party") && (actor !== primary);
+      },
+      group: "system"
+    }, {
+      name: "SW5E.Group.Primary.Remove",
+      icon: '<i class="fa-regular fa-star"></i>',
+      callback: li => {
+        game.settings.set("sw5e", "primaryParty", { actor: null });
+      },
+      condition: li => {
+        const actor = game.actors.get(li[0].dataset.documentId);
+        const primary = game.settings.get("sw5e", "primaryParty")?.actor;
+        return game.user.isGM && (actor === primary);
+      },
+      group: "system"
     });
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add class to actor entry representing the primary group.
+   * @param {jQuery} jQuery
+   */
+  static onRenderActorDirectory(jQuery) {
+    const primaryParty = game.settings.get("sw5e", "primaryParty")?.actor;
+    if ( primaryParty ) {
+      const element = jQuery[0]?.querySelector(`[data-entry-id="${primaryParty.id}"]`);
+      element?.classList.add("primary-party");
+    }
   }
 
   /* -------------------------------------------- */
@@ -2671,14 +3222,14 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
     let localizedType;
     if ( typeData.value === "custom" ) {
       localizedType = typeData.custom;
-    } else {
-      let code = CONFIG.SW5E.creatureTypes[typeData.value];
-      localizedType = game.i18n.localize(typeData.swarm ? `${code}Pl` : code);
+    } else if ( typeData.value in CONFIG.SW5E.creatureTypes ) {
+      const code = CONFIG.SW5E.creatureTypes[typeData.value];
+      localizedType = game.i18n.localize(typeData.swarm ? code.plural : code.label);
     }
     let type = localizedType;
     if ( typeData.swarm ) {
       type = game.i18n.format("SW5E.CreatureSwarmPhrase", {
-        size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm]),
+        size: game.i18n.localize(CONFIG.SW5E.actorSizes[typeData.swarm].label),
         type: localizedType
       });
     }
@@ -2691,34 +3242,185 @@ export default class Actor5e extends SystemDocumentMixin(Actor) {
   /* -------------------------------------------- */
 
   /** @inheritdoc */
-  _onUpdate(data, options, userId) {
+  async _onUpdate(data, options, userId) {
     super._onUpdate(data, options, userId);
-    this._displayScrollingDamage(options.dhp);
+    if ( userId === game.userId ) {
+      await this.updateEncumbrance(options);
+      this._onUpdateExhaustion(data, options);
+    }
+
+    const hp = options.sw5e?.hp;
+    if ( hp && !options.isRest && !options.isAdvancement ) {
+      const curr = this.system.attributes.hp;
+      const changes = {
+        hp: curr.value - hp.value,
+        temp: curr.temp - hp.temp
+      };
+      changes.total = changes.hp + changes.temp;
+
+      if ( Number.isInteger(changes.total) && (changes.total !== 0) ) {
+        this._displayTokenEffect(changes);
+        if ( !game.settings.get("sw5e", "disableConcentration") && (userId === game.userId) && (changes.total < 0) ) {
+          this.challengeConcentration({ dc: this.getConcentrationDC(-changes.total) });
+        }
+
+        /**
+         * A hook event that fires when an actor is damaged or healed by any means. The actual name
+         * of the hook will depend on the change in hit points.
+         * @function sw5e.damageActor
+         * @memberof hookEvents
+         * @param {Actor5e} actor                                       The actor that had their hit points reduced.
+         * @param {{hp: number, temp: number, total: number}} changes   The changes to hit points.
+         * @param {object} update                                       The original update delta.
+         * @param {string} userId                                       Id of the user that performed the update.
+         */
+        Hooks.callAll(`sw5e.${changes.total > 0 ? "heal" : "damage"}Actor`, this, changes, data, userId);
+      }
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onCreateDescendantDocuments(parent, collection, documents, data, options, userId) {
+    if ( (userId === game.userId) && (collection === "items") ) await this.updateEncumbrance(options);
+    super._onCreateDescendantDocuments(parent, collection, documents, data, options, userId);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId) {
+    if ( (userId === game.userId) && (collection === "items") ) await this.updateEncumbrance(options);
+    super._onUpdateDescendantDocuments(parent, collection, documents, changes, options, userId);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId) {
+    if ( (userId === game.userId) ) {
+      if ( collection === "items" ) await this.updateEncumbrance(options);
+      await this._clearFavorites(documents);
+    }
+    super._onDeleteDescendantDocuments(parent, collection, documents, ids, options, userId);
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Display changes to health as scrolling combat text.
-   * Adapt the font size relative to the Actor's HP total to emphasize more significant blows.
-   * @param {number} dhp      The change in hit points that was applied
-   * @private
+   * Flash ring & display changes to health as scrolling combat text.
+   * @param {object} changes          Object of changes to hit points.
+   * @param {number} changes.hp       Changes to `hp.value`.
+   * @param {number} changes.temp     The change to `hp.temp`.
+   * @param {number} changes.total    The total change to hit points.
+   * @protected
    */
-  _displayScrollingDamage(dhp) {
-    if ( !dhp ) return;
-    dhp = Number(dhp);
-    const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
-    for ( const t of tokens ) {
-      if ( !t.visible || !t.renderable ) continue;
-      const pct = Math.clamped(Math.abs(dhp) / this.system.attributes.hp.max, 0, 1);
-      canvas.interface.createScrollingText(t.center, dhp.signedString(), {
+  _displayTokenEffect(changes) {
+    let key;
+    let value;
+    if ( changes.hp < 0 ) {
+      key = "damage";
+      value = changes.total;
+    } else if ( changes.hp > 0 ) {
+      key = "healing";
+      value = changes.total;
+    } else if ( changes.temp ) {
+      key = "temp";
+      value = changes.temp;
+    }
+    if ( !key || !value ) return;
+
+    const tokens = this.isToken ? [this.token] : this.getActiveTokens(true, true);
+    if ( !tokens.length ) return;
+
+    const pct = Math.clamped(Math.abs(value) / this.system.attributes.hp.max, 0, 1);
+    const fill = CONFIG.SW5E.tokenHPColors[key];
+
+    for ( const token of tokens ) {
+      if ( !token.object?.visible || !token.object?.renderable ) continue;
+      token.flashRing(key);
+      const t = token.object;
+      canvas.interface.createScrollingText(t.center, value.signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
+        // Adapt the font size relative to the Actor's HP total to emphasize more significant blows
         fontSize: 16 + (32 * pct), // Range between [16, 48]
-        fill: CONFIG.SW5E.tokenHPColors[dhp < 0 ? "damage" : "healing"],
+        fill: fill,
         stroke: 0x000000,
         strokeThickness: 4,
         jitter: 0.25
       });
     }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * TODO: Perform this as part of Actor._preUpdateOperation instead when it becomes available in v12.
+   * Handle syncing the Actor's exhaustion level with the ActiveEffect.
+   * @param {object} data                          The Actor's update delta.
+   * @param {DocumentModificationContext} options  Additional options supplied with the update.
+   * @returns {Promise<ActiveEffect|void>}
+   * @protected
+   */
+  async _onUpdateExhaustion(data, options) {
+    const level = foundry.utils.getProperty(data, "system.attributes.exhaustion");
+    if ( !Number.isFinite(level) ) return;
+    let effect = this.effects.get(ActiveEffect5e.ID.EXHAUSTION);
+    if ( level < 1 ) return effect?.delete();
+    else if ( effect ) {
+      const originalExhaustion = foundry.utils.getProperty(options, "sw5e.originalExhaustion");
+      return effect.update({ "flags.sw5e.exhaustionLevel": level }, { sw5e: { originalExhaustion } });
+    } else {
+      effect = await ActiveEffect.implementation.fromStatusEffect("exhaustion", { parent: this });
+      effect.updateSource({ "flags.sw5e.exhaustionLevel": level });
+      return ActiveEffect.implementation.create(effect, { parent: this, keepId: true });
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle applying/removing encumbrance statuses.
+   * @param {DocumentModificationContext} options  Additional options supplied with the update.
+   * @returns {Promise<ActiveEffect>|void}
+   */
+  updateEncumbrance(options) {
+    const encumbrance = this.system.attributes?.encumbrance;
+    if ( !encumbrance || (game.settings.get("sw5e", "encumbrance") === "none") ) return;
+    const statuses = [];
+    const variant = game.settings.get("sw5e", "encumbrance") === "variant";
+    if ( encumbrance.value > encumbrance.thresholds.maximum ) statuses.push("exceedingCarryingCapacity");
+    if ( (encumbrance.value > encumbrance.thresholds.heavilyEncumbered) && variant ) statuses.push("heavilyEncumbered");
+    if ( (encumbrance.value > encumbrance.thresholds.encumbered) && variant ) statuses.push("encumbered");
+
+    const effect = this.effects.get(ActiveEffect5e.ID.ENCUMBERED);
+    if ( !statuses.length ) return effect?.delete();
+
+    const effectData = { ...CONFIG.SW5E.encumbrance.effects[statuses[0]], statuses };
+    if ( effect ) {
+      const originalEncumbrance = effect.statuses.first();
+      return effect.update(effectData, { sw5e: { originalEncumbrance } });
+    }
+
+    return ActiveEffect.implementation.create(
+      { _id: ActiveEffect5e.ID.ENCUMBERED, ...effectData },
+      { parent: this, keepId: true }
+    );
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle clearing favorited entries that were deleted.
+   * @param {Document[]} documents  The deleted Documents.
+   * @returns {Promise<Actor5e>|void}
+   * @protected
+   */
+  _clearFavorites(documents) {
+    if ( !("favorites" in this.system) ) return;
+    const ids = new Set(documents.map(d => d.getRelativeUUID(this)));
+    const favorites = this.system.favorites.filter(f => !ids.has(f.id));
+    return this.update({ "system.favorites": favorites });
   }
 }

@@ -52,19 +52,47 @@ export default class EquippableItemTemplate extends SystemDataModel {
   }
 
   /* -------------------------------------------- */
-  /*  Getters                                     */
+  /*  Properties                                  */
   /* -------------------------------------------- */
 
   /**
    * Chat properties for equippable items.
    * @type {string[]}
    */
-  get equippableItemChatProperties() {
+  get equippableItemCardProperties() {
     const req = CONFIG.SW5E.attunementTypes.REQUIRED;
     return [
       this.attunement === req ? CONFIG.SW5E.attunements[req] : null,
       game.i18n.localize(this.equipped ? "SW5E.Equipped" : "SW5E.Unequipped"),
       ("proficient" in this) ? CONFIG.SW5E.proficiencyLevels[this.prof?.multiplier || 0] : null
     ];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Are the magical properties of this item, such as magical bonuses to armor & damage, available?
+   * @type {boolean}
+   */
+  get magicAvailable() {
+    const attunement = this.attunement !== CONFIG.SW5E.attunementTypes.REQUIRED;
+    return attunement && this.properties.has("mgc") && this.validProperties.has("mgc");
+  }
+
+  /* -------------------------------------------- */
+  /*  Deprecations                                */
+  /* -------------------------------------------- */
+
+  /**
+   * @deprecated since SW5e 3.0, available until SW5e 3.2
+   * @ignore
+   */
+  get equippableItemChatProperties() {
+    foundry.utils.logCompatibilityWarning(
+      "EquippableItemTemplate#equippableItemChatProperties is deprecated. "
+      + "Please use EquippableItemTemplate#equippableItemCardProperties.",
+      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
+    );
+    return this.equippableItemCardProperties;
   }
 }

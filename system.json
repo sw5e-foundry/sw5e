@@ -1,15 +1,15 @@
 {
   "id": "sw5e",
-  "title": "SW5e - Fifth Edition System",
-  "description": "A system for playing the fifth edition of the worlds most popular role-playing game in the Foundry Virtual Tabletop environment.",
-  "version": "2.4.1",
+  "title": "SW5e",
+  "description": "A system for playing the fifth edition of the world's most popular role-playing game in the Foundry Virtual Tabletop environment.",
+  "version": "3.1.2",
   "compatibility": {
-    "minimum": "10.303",
-    "verified": "11"
+    "minimum": "11.315",
+    "verified": "12"
   },
   "url": "https://github.com/foundryvtt/sw5e/",
   "manifest": "https://raw.githubusercontent.com/foundryvtt/sw5e/master/system.json",
-  "download": "https://github.com/foundryvtt/sw5e/releases/download/release-2.4.1/sw5e-release-2.4.1.zip",
+  "download": "https://github.com/foundryvtt/sw5e/releases/download/release-3.1.2/sw5e-release-3.1.2.zip",
   "authors": [
     {
       "name": "Atropos",
@@ -28,7 +28,7 @@
       "name": "heroes",
       "label": "Starter Heroes",
       "system": "sw5e",
-      "path": "packs/heroes.db",
+      "path": "packs/heroes",
       "type": "Actor",
       "private": false,
       "flags": {}
@@ -37,7 +37,7 @@
       "name": "monsters",
       "label": "Monsters (SRD)",
       "system": "sw5e",
-      "path": "packs/monsters.db",
+      "path": "packs/monsters",
       "type": "Actor",
       "private": false,
       "flags": {}
@@ -46,7 +46,7 @@
       "name": "items",
       "label": "Items (SRD)",
       "system": "sw5e",
-      "path": "packs/items.db",
+      "path": "packs/items",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -55,7 +55,7 @@
       "name": "tradegoods",
       "label": "Trade Goods (SRD)",
       "system": "sw5e",
-      "path": "packs/tradegoods.db",
+      "path": "packs/tradegoods",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -64,7 +64,7 @@
       "name": "powers",
       "label": "Powers (SRD)",
       "system": "sw5e",
-      "path": "packs/powers.db",
+      "path": "packs/powers",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -73,7 +73,7 @@
       "name": "backgrounds",
       "label": "Backgrounds (SRD)",
       "system": "sw5e",
-      "path": "packs/backgrounds.db",
+      "path": "packs/backgrounds",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -82,7 +82,7 @@
       "name": "classes",
       "label": "Classes (SRD)",
       "system": "sw5e",
-      "path": "packs/classes.db",
+      "path": "packs/classes",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -91,16 +91,16 @@
       "name": "archetypes",
       "label": "Archetypes (SRD)",
       "system": "sw5e",
-      "path": "packs/archetypes.db",
+      "path": "packs/archetypes",
       "type": "Item",
       "private": false,
       "flags": {}
     },
     {
       "name": "classfeatures",
-      "label": "Class Features (SRD)",
+      "label": "Class & Archetype Features (SRD)",
       "system": "sw5e",
-      "path": "packs/classfeatures.db",
+      "path": "packs/classfeatures",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -109,7 +109,7 @@
       "name": "species",
       "label": "Species (SRD)",
       "system": "sw5e",
-      "path": "packs/species.db",
+      "path": "packs/species",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -118,7 +118,7 @@
       "name": "monsterfeatures",
       "label": "Monster Features (SRD)",
       "system": "sw5e",
-      "path": "packs/monsterfeatures.db",
+      "path": "packs/monsterfeatures",
       "type": "Item",
       "private": false,
       "flags": {}
@@ -127,16 +127,18 @@
       "name": "rules",
       "label": "Rules (SRD)",
       "system": "sw5e",
-      "path": "packs/rules.db",
+      "path": "packs/rules",
       "type": "JournalEntry",
       "private": false,
-      "flags": {}
+      "flags": {
+        "display": "table-of-contents"
+      }
     },
     {
       "name": "tables",
       "label": "Tables (SRD)",
       "system": "sw5e",
-      "path": "packs/tables.db",
+      "path": "packs/tables",
       "type": "RollTable",
       "private": false,
       "flags": {}
@@ -144,7 +146,7 @@
   ],
   "packFolders": [
     {
-      "name": "SW5e SRD Content",
+      "name": "D&D SRD Content",
       "sorting": "m",
       "color": "#cd2c1e",
       "packs": [
@@ -200,14 +202,20 @@
       "type": "cover",
       "loop": false,
       "flags": {}
+    },
+    {
+      "type": "setup",
+      "url": "systems/sw5e/ui/official/sw5e-repo.jpg",
+      "thumbnail": "systems/sw5e/ui/official/sw5e-thumbnail.jpg"
     }
   ],
   "socket": true,
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "attributes.hp",
+  "background": "systems/sw5e/ui/official/sw5e-background.webp",
   "flags": {
-    "needsMigrationVersion": "2.4.0",
+    "needsMigrationVersion": "3.1.0",
     "compatibleMigrationVersion": "0.8",
     "hotReload": {
       "extensions": ["css", "hbs", "json"],

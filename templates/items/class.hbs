@@ -78,6 +78,24 @@
             <h3 class="form-header">{{localize "SW5E.Powercasting"}}</h3>
             {{> "sw5e.item-powercasting"}}
 
+            {{!-- Starting Equipment --}}
+            <h3 class="form-header">
+                {{ localize "SW5E.StartingEquipment.Title" }}
+                <a class="config-button" data-action="starting-equipment"
+                   data-tooltip="SW5E.StartingEquipment.Action.Configure"
+                   aria-label="{{ localize 'SW5E.StartingEquipment.Action.Configure' }}">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                </a>
+            </h3>
+            {{#with system.startingEquipmentDescription}}{{{ this }}}{{else}}{{ localize "None" }}{{/with}}
+            <div class="form-group">
+                <label>{{ localize "SW5E.StartingEquipment.Wealth.Label" }}</label>
+                <div class="form-fields">
+                    <input type="text" name="system.wealth" value="{{ system.wealth }}">
+                </div>
+                <p class="hint">{{ localize "SW5E.StartingEquipment.Wealth.Hint" }}</p>
+            </div>
+
         </div>
 
         {{!-- Advancement Tab --}}

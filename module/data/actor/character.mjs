@@ -1,9 +1,22 @@
+import Proficiency from "../../documents/actor/proficiency.mjs";
+import { simplifyBonus } from "../../utils.mjs";
 import { FormulaField, LocalDocumentField } from "../fields.mjs";
 import CreatureTypeField from "../shared/creature-type-field.mjs";
+import RollConfigField from "../shared/roll-config-field.mjs";
 import AttributesFields from "./templates/attributes.mjs";
 import CreatureTemplate from "./templates/creature.mjs";
 import DetailsFields from "./templates/details.mjs";
 import TraitsFields from "./templates/traits.mjs";
+
+const { SchemaField, NumberField, StringField, BooleanField, ArrayField, IntegerSortField } = foundry.data.fields;
+
+/**
+ * @typedef {object} ActorFavorites5e
+ * @property {"effect"|"item"|"skill"|"slots"|"tool"} type  The favorite type.
+ * @property {string} id                                    The Document UUID, skill or tool identifier, or power slot
+ *                                                          level identifier.
+ * @property {number} sort                                  The sort value.
+ */
 
 /**
  * System data definition for Characters.
@@ -43,8 +56,16 @@ import TraitsFields from "./templates/traits.mjs";
  * @property {CharacterResourceData} resources.primary    Resource number one.
  * @property {CharacterResourceData} resources.secondary  Resource number two.
  * @property {CharacterResourceData} resources.tertiary   Resource number three.
+ * @property {ActorFavorites5e[]} favorites               The character's favorites.
  */
 export default class CharacterData extends CreatureTemplate {
+
+  /** @inheritdoc */
+  static metadata = Object.freeze(foundry.utils.mergeObject(super.metadata, {
+    supportsAdvancement: true
+  }, {inplace: false}));
+
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static _systemType = "character";
@@ -57,67 +78,77 @@ export default class CharacterData extends CreatureTemplate {
       attributes: new foundry.data.fields.SchemaField({
         ...AttributesFields.common,
         ...AttributesFields.creature,
-        ac: new foundry.data.fields.SchemaField({
-          flat: new foundry.data.fields.NumberField({integer: true, min: 0, label: "SW5E.ArmorClassFlat"}),
-          calc: new foundry.data.fields.StringField({initial: "default", label: "SW5E.ArmorClassCalculation"}),
+        ac: new SchemaField({
+          flat: new NumberField({integer: true, min: 0, label: "SW5E.ArmorClassFlat"}),
+          calc: new StringField({initial: "default", label: "SW5E.ArmorClassCalculation"}),
           formula: new FormulaField({deterministic: true, label: "SW5E.ArmorClassFormula"})
         }, {label: "SW5E.ArmorClass"}),
-        hp: new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+        hp: new SchemaField({
+          value: new NumberField({
             nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.HitPointsCurrent"
           }),
-          max: new foundry.data.fields.NumberField({
+          max: new NumberField({
             nullable: true, integer: true, min: 0, initial: null, label: "SW5E.HitPointsOverride"
           }),
-          temp: new foundry.data.fields.NumberField({integer: true, initial: 0, min: 0, label: "SW5E.HitPointsTemp"}),
-          tempmax: new foundry.data.fields.NumberField({integer: true, initial: 0, label: "SW5E.HitPointsTempMax"}),
-          bonuses: new foundry.data.fields.SchemaField({
+          temp: new NumberField({integer: true, initial: 0, min: 0, label: "SW5E.HitPointsTemp"}),
+          tempmax: new NumberField({integer: true, initial: 0, label: "SW5E.HitPointsTempMax"}),
+          bonuses: new SchemaField({
             level: new FormulaField({deterministic: true, label: "SW5E.HitPointsBonusLevel"}),
             overall: new FormulaField({deterministic: true, label: "SW5E.HitPointsBonusOverall"})
           })
         }, {label: "SW5E.HitPoints"}),
-        death: new foundry.data.fields.SchemaField({
-          success: new foundry.data.fields.NumberField({
+        death: new RollConfigField({
+          success: new NumberField({
             required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveSuccesses"
           }),
-          failure: new foundry.data.fields.NumberField({
+          failure: new NumberField({
             required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.DeathSaveFailures"
           })
         }, {label: "SW5E.DeathSave"}),
-        exhaustion: new foundry.data.fields.NumberField({
-          required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.Exhaustion"
-        }),
-        inspiration: new foundry.data.fields.BooleanField({required: true, label: "SW5E.Inspiration"})
+        inspiration: new BooleanField({required: true, label: "SW5E.Inspiration"})
       }, {label: "SW5E.Attributes"}),
-      details: new foundry.data.fields.SchemaField({
+      details: new SchemaField({
         ...DetailsFields.common,
         ...DetailsFields.creature,
         background: new LocalDocumentField(foundry.documents.BaseItem, {
           required: true, fallback: true, label: "SW5E.Background"
         }),
-        originalClass: new foundry.data.fields.StringField({required: true, label: "SW5E.ClassOriginal"}),
-        xp: new foundry.data.fields.SchemaField({
-          value: new foundry.data.fields.NumberField({
+        originalClass: new StringField({required: true, label: "SW5E.ClassOriginal"}),
+        xp: new SchemaField({
+          value: new NumberField({
             required: true, nullable: false, integer: true, min: 0, initial: 0, label: "SW5E.ExperiencePointsCurrent"
           })
         }, {label: "SW5E.ExperiencePoints"}),
-        appearance: new foundry.data.fields.StringField({required: true, label: "SW5E.Appearance"}),
-        trait: new foundry.data.fields.StringField({required: true, label: "SW5E.PersonalityTraits"}),
-        ideal: new foundry.data.fields.StringField({required: true, label: "SW5E.Ideals"}),
-        bond: new foundry.data.fields.StringField({required: true, label: "SW5E.Bonds"}),
-        flaw: new foundry.data.fields.StringField({required: true, label: "SW5E.Flaws"})
+        appearance: new StringField({required: true, label: "SW5E.Appearance"}),
+        trait: new StringField({required: true, label: "SW5E.PersonalityTraits"}),
+        ideal: new StringField({required: true, label: "SW5E.Ideals"}),
+        bond: new StringField({required: true, label: "SW5E.Bonds"}),
+        flaw: new StringField({required: true, label: "SW5E.Flaws"}),
+        gender: new StringField({ label: "SW5E.Gender" }),
+        eyes: new StringField({ label: "SW5E.Eyes" }),
+        height: new StringField({ label: "SW5E.Height" }),
+        faith: new StringField({ label: "SW5E.Faith" }),
+        hair: new StringField({ label: "SW5E.Hair" }),
+        skin: new StringField({ label: "SW5E.Skin" }),
+        age: new StringField({ label: "SW5E.Age" }),
+        weight: new StringField({ label: "SW5E.Weight" })
       }, {label: "SW5E.Details"}),
-      traits: new foundry.data.fields.SchemaField({
+      traits: new SchemaField({
         ...TraitsFields.common,
         ...TraitsFields.creature,
         weaponProf: TraitsFields.makeSimpleTrait({label: "SW5E.TraitWeaponProf"}),
         armorProf: TraitsFields.makeSimpleTrait({label: "SW5E.TraitArmorProf"})
       }, {label: "SW5E.Traits"}),
-      resources: new foundry.data.fields.SchemaField({
+      resources: new SchemaField({
         primary: makeResourceField({label: "SW5E.ResourcePrimary"}),
         secondary: makeResourceField({label: "SW5E.ResourceSecondary"}),
         tertiary: makeResourceField({label: "SW5E.ResourceTertiary"})
-      }, {label: "SW5E.Resources"})
+      }, {label: "SW5E.Resources"}),
+      favorites: new ArrayField(new SchemaField({
+        type: new StringField({ required: true, blank: false }),
+        id: new StringField({ required: true, blank: false }),
+        sort: new IntegerSortField()
+      }), { label: "SW5E.Favorites" })
     });
   }
 
@@ -135,29 +166,149 @@ export default class CharacterData extends CreatureTemplate {
   /*  Data Preparation                            */
   /* -------------------------------------------- */
 
+  /** @inheritdoc */
+  prepareBaseData() {
+    this.details.level = 0;
+    this.attributes.hd = 0;
+    this.attributes.attunement.value = 0;
+
+    for ( const item of this.parent.items ) {
+      // Class levels & hit dice
+      if ( item.type === "class" ) {
+        const classLevels = parseInt(item.system.levels) || 1;
+        this.details.level += classLevels;
+        this.attributes.hd += classLevels - (parseInt(item.system.hitDiceUsed) || 0);
+      }
+
+      // Attuned items
+      else if ( item.system.attunement === CONFIG.SW5E.attunementTypes.ATTUNED ) {
+        this.attributes.attunement.value += 1;
+      }
+    }
+
+    // Character proficiency bonus
+    this.attributes.prof = Proficiency.calculateMod(this.details.level);
+
+    // Experience required for next level
+    const { xp, level } = this.details;
+    xp.max = this.parent.getLevelExp(level || 1);
+    xp.min = level ? this.parent.getLevelExp(level - 1) : 0;
+    if ( level >= CONFIG.SW5E.CHARACTER_EXP_LEVELS.length ) xp.pct = 100;
+    else {
+      const required = xp.max - xp.min;
+      const pct = Math.round((xp.value - xp.min) * 100 / required);
+      xp.pct = Math.clamped(pct, 0, 100);
+    }
+
+    AttributesFields.prepareBaseArmorClass.call(this);
+  }
+
+  /* -------------------------------------------- */
+
   /**
    * Prepare movement & senses values derived from species item.
    */
   prepareEmbeddedData() {
-    const speciesData = this.details.species?.system;
-    if ( !speciesData ) {
+    if ( this.details.species instanceof Item ) {
+      AttributesFields.prepareSpecies.call(this, this.details.species);
+      this.details.type = this.details.species.system.type;
+    } else {
+      this.attributes.movement.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
+      this.attributes.senses.units ??= Object.keys(CONFIG.SW5E.movementUnits)[0];
       this.details.type = new CreatureTypeField({ swarm: false }).initialize({ value: "humanoid" }, this);
-      return;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Prepare remaining character data.
+   */
+  prepareDerivedData() {
+    const rollData = this.getRollData({ deterministic: true });
+    const { originalSaves } = this.parent.getOriginalStats();
+
+    this.prepareAbilities({ rollData, originalSaves });
+    AttributesFields.prepareExhaustionLevel.call(this);
+    AttributesFields.prepareMovement.call(this);
+    AttributesFields.prepareConcentration.call(this, rollData);
+    TraitsFields.prepareResistImmune.call(this);
+
+    // Hit Points
+    const hpOptions = {};
+    if ( this.attributes.hp.max === null ) {
+      hpOptions.advancement = Object.values(this.parent.classes)
+        .map(c => c.advancement.byType.HitPoints?.[0]).filter(a => a);
+      hpOptions.bonus = (simplifyBonus(this.attributes.hp.bonuses.level, rollData) * this.details.level)
+        + simplifyBonus(this.attributes.hp.bonuses.overall, rollData);
+      hpOptions.mod = this.abilities[CONFIG.SW5E.defaultAbilities.hitPoints ?? "con"]?.mod ?? 0;
+    }
+    AttributesFields.prepareHitPoints.call(this, this.attributes.hp, hpOptions);
+  }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  getRollData({ deterministic=false }={}) {
+    const data = super.getRollData({ deterministic });
+    data.classes = {};
+    for ( const [identifier, cls] of Object.entries(this.parent.classes) ) {
+      data.classes[identifier] = {...cls.system};
+      if ( cls.archetype ) data.classes[identifier].archetype = cls.archetype.system;
+    }
+    return data;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Checks whether the item with the given relative UUID has been favorited
+   * @param {string} favoriteId  The relative UUID of the item to check.
+   * @returns {boolean}
+   */
+  hasFavorite(favoriteId) {
+    return !!this.favorites.find(f => f.id === favoriteId);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Add a favorite item to this actor.
+   * If the given item is already favorite, this method has no effect.
+   * @param {ActorFavorites5e} favorite  The favorite to add.
+   * @returns {Promise<Actor5e>}
+   * @throws If the item intended to be favorited does not belong to this actor.
+   */
+  addFavorite(favorite) {
+    if ( this.hasFavorite(favorite.id) ) return Promise.resolve(this.parent);
+
+    if ( favorite.id.startsWith(".") && fromUuidSync(favorite.id, { relative: this.parent }) === null ) {
+      // Assume that an ID starting with a "." is a relative ID.
+      throw new Error(`The item with id ${favorite.id} is not owned by actor ${this.parent.id}`);
     }
 
-    for ( const key of Object.keys(CONFIG.SW5E.movementTypes) ) {
-      if ( speciesData.movement[key] ) this.attributes.movement[key] ??= speciesData.movement[key];
-    }
-    if ( speciesData.movement.hover ) this.attributes.movement.hover = true;
-    this.attributes.movement.units ??= speciesData.movement.units;
+    let maxSort = 0;
+    const favorites = this.favorites.map(f => {
+      if ( f.sort > maxSort ) maxSort = f.sort;
+      return { ...f };
+    });
+    favorites.push({ ...favorite, sort: maxSort + CONST.SORT_INTEGER_DENSITY });
+    return this.parent.update({ "system.favorites": favorites });
+  }
 
-    for ( const key of Object.keys(CONFIG.SW5E.senses) ) {
-      if ( speciesData.senses[key] ) this.attributes.senses[key] ??= speciesData.senses[key];
-    }
-    this.attributes.senses.special = [this.attributes.senses.special, speciesData.senses.special].filterJoin(";");
-    this.attributes.senses.units ??= speciesData.senses.units;
+  /* -------------------------------------------- */
 
-    this.details.type = speciesData.type;
+  /**
+   * Removes the favorite with the given relative UUID or resource ID
+   * @param {string} favoriteId  The relative UUID or resource ID of the favorite to remove.
+   * @returns {Promise<Actor5e>}
+   */
+  removeFavorite(favoriteId) {
+    if ( favoriteId.startsWith("resources.") ) return this.parent.update({ [`system.${favoriteId}.max`]: 0 });
+    const favorites = this.favorites.filter(f => f.id !== favoriteId);
+    return this.parent.update({ "system.favorites": favorites });
   }
 }
 
@@ -180,15 +331,11 @@ export default class CharacterData extends CreatureTemplate {
  * @returns {ResourceData}
  */
 function makeResourceField(schemaOptions={}) {
-  return new foundry.data.fields.SchemaField({
-    value: new foundry.data.fields.NumberField({
-      required: true, integer: true, initial: 0, labels: "SW5E.ResourceValue"
-    }),
-    max: new foundry.data.fields.NumberField({
-      required: true, integer: true, initial: 0, labels: "SW5E.ResourceMax"
-    }),
-    sr: new foundry.data.fields.BooleanField({required: true, labels: "SW5E.ShortRestRecovery"}),
-    lr: new foundry.data.fields.BooleanField({required: true, labels: "SW5E.LongRestRecovery"}),
-    label: new foundry.data.fields.StringField({required: true, labels: "SW5E.ResourceLabel"})
+  return new SchemaField({
+    value: new NumberField({required: true, integer: true, initial: 0, labels: "SW5E.ResourceValue"}),
+    max: new NumberField({required: true, integer: true, initial: 0, labels: "SW5E.ResourceMax"}),
+    sr: new BooleanField({required: true, labels: "SW5E.ShortRestRecovery"}),
+    lr: new BooleanField({required: true, labels: "SW5E.LongRestRecovery"}),
+    label: new StringField({required: true, labels: "SW5E.ResourceLabel"})
   }, schemaOptions);
 }

@@ -1,8 +1,6 @@
-@import "./variables.less";
-
-@actorNameHeight: 60px;
-
 .sw5e.sheet.actor {
+
+  --sw5e-actor-name-height: 60px;
 
   /* ----------------------------------------- */
   /*  Shared Styles                            */
@@ -10,8 +8,8 @@
 
   // Attribute Configuration
   .config-button {
-    color: @colorOlive;
-    font-size: 10px;
+    color: var(--sw5e-color-olive);
+    font-size: var(--font-size-10);
     font-weight: normal;
   }
 
@@ -30,10 +28,10 @@
     // Character Name
     h1.charname {
       flex: 1;
-      height: @actorNameHeight;
+      height: var(--sw5e-actor-name-height);
       padding: 0;
       input {
-        height: @actorNameHeight - 20px;
+        height: calc(var(--sw5e-actor-name-height) - 20px);
         margin: 10px 0;
       }
     }
@@ -43,7 +41,7 @@
       flex: 0 0 150px;
       max-width: 18em;
       margin-right: 3px;
-      height: @actorNameHeight;
+      height: var(--sw5e-actor-name-height);
       justify-content: flex-end;
       text-align: right;
     }
@@ -51,8 +49,8 @@
     // Character Summary
     .summary {
       height: 30px;
-      border-bottom: @borderGroove;
-      font-size: 18px;
+      border-bottom: var(--sw5e-border-groove);
+      font-size: var(--font-size-18);
       input, span {
         display: block;
         height: 24px;
@@ -79,7 +77,7 @@
         height: 70px;
         margin: 0;
         border: none;
-        border-right: @borderGroove;
+        border-right: var(--sw5e-border-groove);
         border-radius: 0;
 
         &:last-child {
@@ -124,10 +122,11 @@
     height: 18px;
     line-height: 16px;
     margin: 4px 8px 2px;
-    .modesto();
-    font-size: 18px;
-    color: @colorOlive;
-    border-bottom: 1px solid @colorFaint;
+    font-family: var(--sw5e-font-modesto);
+    font-size: var(--font-size-18);
+    font-weight: 700;
+    color: var(--sw5e-color-olive);
+    border-bottom: 1px solid var(--sw5e-color-faint);
     white-space: nowrap;
   }
 
@@ -149,7 +148,7 @@
     li.attribute {
       height: 60px;
       margin: 0 5px 0 0;
-      border: @borderGroove;
+      border: var(--sw5e-border-groove);
       border-radius: 4px;
       text-align: center;
 
@@ -163,11 +162,13 @@
         align-items: center;
         height: 28px;
         line-height: 28px;
-        .modesto();
+        font-family: var(--sw5e-font-modesto);
+        font-size: var(--font-size-20);
+        font-weight: 700;
 
         > * {
           font-weight: 400;
-          font-size: 24px;
+          font-size: var(--font-size-24);
         }
 
         &.multiple input, &.multiple span:not(.sep) {
@@ -180,7 +181,7 @@
         margin-top: -1px;
         line-height: 18px;
         font-family: "Signika", sans-serif;
-        font-size: 12px;
+        font-size: var(--font-size-12);
         font-weight: 400;
         white-space: nowrap
       }
@@ -197,14 +198,17 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    .modesto();
-    border: @borderGroove;
+    font-family: var(--sw5e-font-modesto);
+    font-size: var(--font-size-20);
+    font-weight: 700;
+    border: var(--sw5e-border-groove);
     border-radius: 3px;
 
     .ability {
+      min-width: 100%;
       height: 70px;
       text-align: center;
-      border-bottom: @borderGroove;
+      border-bottom: var(--sw5e-border-groove);
       position: relative;
 
       &:last-child {
@@ -217,7 +221,7 @@
         width: 36px;
         margin: 0 auto;
         line-height: 32px;
-        font-size: 24px;
+        font-size: var(--font-size-24);
       }
 
       .config-button {
@@ -240,12 +244,12 @@
           flex: 0 0 24px;
           height: 22px;
           line-height: 22px;
-          font-size: 16px;
-          border-top: @borderGroove;
+          font-size: var(--font-size-16);
+          border-top: var(--sw5e-border-groove);
         }
 
         span.ability-mod {
-          border-right: @borderGroove;
+          border-right: var(--sw5e-border-groove);
         }
 
         .ability-proficiency {
@@ -253,7 +257,7 @@
         }
 
         span.ability-save {
-          border-left: @borderGroove;
+          border-left: var(--sw5e-border-groove);
         }
       }
     }
@@ -261,8 +265,8 @@
 
   // Proficiency Toggle Buttons
   .proficiency-toggle {
-    color: @colorBeige;
-    font-size: 12px;
+    color: var(--sw5e-color-beige);
+    font-size: var(--font-size-12);
 
     &.disabled {
       cursor: default;
@@ -270,11 +274,11 @@
     }
   }
   .proficient .proficiency-toggle {
-    color: @colorOlive;
+    color: var(--sw5e-color-olive);
   }
 
   .locked .proficiency-toggle {
-    color: @colorBeige;
+    color: var(--sw5e-color-beige);
     text-shadow: none;
     cursor: default;
   }
@@ -288,7 +292,7 @@
     list-style: none;
     margin: 0 5px 0;
     padding: 0;
-    border: @borderGroove;
+    border: var(--sw5e-border-groove);
     border-radius: 3px;
 
     li.skill {
@@ -302,7 +306,7 @@
       h4 {
         flex: 1px;
         margin: 0;
-        font-size: 11px;
+        font-size: var(--font-size-11);
         line-height: 18px;
       }
 
@@ -338,7 +342,7 @@
       .skill-passive {
         flex: 0 0 26px;
         text-align: center;
-        color: @colorTan;
+        color: var(--sw5e-color-tan);
       }
     }
   }
@@ -374,7 +378,7 @@
     flex: none;
     padding: 5px 0;
     margin: 0;
-    border-bottom: @borderGroove;
+    border-bottom: var(--sw5e-border-groove);
 
     .counter {
       height: 20px;
@@ -392,9 +396,9 @@
       h4 {
         flex: auto;
         margin: 0;
-        font-size: 13px;
+        font-size: var(--font-size-13);
         font-weight: bold;
-        color: @colorOlive;
+        color: var(--sw5e-color-olive);
       }
 
       .counter-value {
@@ -421,7 +425,7 @@
         top: 4px;
       }
       span.sep {
-        font-size: 12px;
+        font-size: var(--font-size-12);
       }
     }
   }
@@ -474,7 +478,7 @@
     }
 
     .inactive {
-      color: @colorTan;
+      color: var(--sw5e-color-tan);
     }
   }
 
@@ -486,191 +490,6 @@
   .tab.inventory,
   .tab.powerbook {
     overflow-y: hidden;
-  }
-
-  /* Inventory List Filters */
-  .inventory-filters {
-    margin: 0 8px;
-    flex: 0 0 20px;
-    justify-content: flex-end;
-
-    .attunement {
-      color: #7a7971;
-      font-size: 12px;
-
-      [name="system.attributes.attunement.max"] {
-        display: inline;
-        max-width: 23px;
-        text-align: center;
-      }
-    }
-
-    .currency {
-      flex: 0 0 100%;
-      list-style: none;
-      margin: 4px 0 8px;
-      padding: 0;
-      font-size: 12px;
-
-      label {
-        flex: 0;
-        margin-left: 8px;
-        text-align: right;
-        line-height: 20px;
-        color: @colorTan;
-      }
-      input[type="text"], input[type="number"] {
-        flex: 0 0 48px;
-        text-align: center;
-        margin-left: 8px;
-        border-bottom: @borderGroove;
-      }
-    }
-  }
-
-  // Inventory item lists
-  .inventory-list {
-    padding: 0 5px;
-    .item {
-      .item-name {
-        cursor: pointer;
-        flex: auto;
-        &.rollable:hover .item-image {
-          background-image: url("../../icons/svg/d20-grey.svg") !important;
-        }
-        &.rollable .item-image:hover {
-          background-image: url("../../icons/svg/d20-black.svg") !important;
-        }
-        i.attuned { color: @colorCrimson; }
-        i.not-attuned { color: @colorTan; }
-        h4 { line-height: 30px; }
-      }
-
-      // Item uses
-      .item-uses input {
-        width: 24px;
-        text-align: center;
-      }
-
-      // Item Dropdown Properties
-      .item-properties {
-        margin-top: 3px;
-      }
-
-      // Charged
-      .item-recharge {
-        flex: 0 0 80px;
-        text-align: right;
-        font-size: 11px;
-        white-space: nowrap;
-      }
-    }
-
-    // Inventory Header
-    .inventory-header {
-      .item-controls a.item-create {
-        flex: 0 0 100%;
-      }
-    }
-
-    // Item Detail Sections
-    .item-detail {
-      flex: 0 0 70px;
-      font-size: 12px;
-      text-align: center;
-      border-right: 1px solid @colorFaint;
-      word-break: break-word;
-      white-space: nowrap;
-      overflow: hidden;
-      &:last-child { border-right: none; }
-      &.item-action {flex: 0 0 100px}
-      &.item-quantity {flex: 0 0 40px}
-      &.attunement {flex: 0 0 24px}
-    }
-
-    .item-weight {
-      flex: 0 0 60px;
-      border-left: 1px solid @colorFaint;
-      border-right: 1px solid @colorFaint;
-    }
-
-    // Item Control Buttons
-    .item-controls {
-      flex: 0 0 44px;
-    }
-
-    // Item Dropdown Summary
-    .item-summary {
-      flex: 0 0 100%;
-      font-size: 12px;
-      line-height: 16px;
-      padding: 0.25em 0.5em;
-      color: @colorDark;
-      border-top: 1px solid @colorFaint;
-    }
-  }
-
-  /* Encumbrance Bar */
-  .encumbrance {
-    flex: 0 0 12px;
-    background: @colorTan;
-    margin: 1px 15px 0 1px;
-    border: 1px solid @colorDark;
-    border-radius: 3px;
-    position: relative;
-
-    .encumbrance-bar {
-      position: absolute;
-      top: 1px;
-      left: 1px;
-      background: #6c8aa5;
-      height: 8px;
-      border: 1px solid #cde4ff;
-      border-radius: 2px;
-    }
-
-    .encumbrance-label {
-      height: 10px;
-      padding: 0 5px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 13px;
-      line-height: 12px;
-      text-align: right;
-      color: #EEE;
-      text-shadow: 0 0 5px #000;
-    }
-
-    .encumbrance-breakpoint {
-      display: block;
-      position: absolute;
-      &.encumbrance-33 { left: 33% }
-      &.encumbrance-66 { left: 66% }
-    }
-
-    .arrow-up {
-      bottom: 0;
-      width: 0;
-      height: 0;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-bottom: 4px solid #666;
-    }
-
-    .arrow-down {
-      top: 0;
-      width: 0;
-      height: 0;
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 4px solid #666;
-    }
-
-    &.encumbered {
-      .arrow-up { border-bottom: 4px solid #000; }
-      .arrow-down { border-top: 4px solid #000; }
-    }
   }
 
   /* ----------------------------------------- */
@@ -697,9 +516,9 @@
   .power-comps {
     flex: none;
     padding: 0 5px;
-    font-size: 12px;
-    color: @colorTan;
-    border-right: 1px solid @colorFaint;
+    font-size: var(--font-size-12);
+    color: var(--sw5e-color-tan);
+    border-right: 1px solid var(--sw5e-color-faint);
   }
 
   .power-slots {
@@ -708,7 +527,7 @@
       max-width: 20px;
     }
     .sep {
-      font-size: 13px;
+      font-size: var(--font-size-13);
       font-weight: normal;
     }
   }
@@ -716,15 +535,15 @@
   .powerbook .power-uses {
     padding-right: 5px;
     text-align: right;
-    color: @colorTan;
+    color: var(--sw5e-color-tan);
   }
 
   .power-school, .power-action, .power-target {
     flex: 0 0 100px;
-    font-size: 12px;
-    color: @colorTan;
+    font-size: var(--font-size-12);
+    color: var(--sw5e-color-tan);
     text-align: center;
-    border-right: 1px solid @colorFaint;
+    border-right: 1px solid var(--sw5e-color-faint);
   }
 
   .power-component {
@@ -734,7 +553,7 @@
       text-align: center;
       padding-top: 1px;
       width: 16px;
-      color: @colorFaint;
+      color: var(--sw5e-color-faint);
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid transparent;
       border-radius: 8px;
@@ -779,4 +598,13 @@
     overflow-y: auto;
     scrollbar-width: thin;
   }
+}
+
+/* ----------------------------------------- */
+/*  Sidebar                                  */
+/* ----------------------------------------- */
+
+.actors-sidebar .primary-party .entry-name::after {
+  content: " ✦";
+  color: var(--sw5e-color-blue);
 }

@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
@@ -13,7 +13,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} powercasting.progression  Power progression granted by class as from `SW5E.powerProgression`.
  * @property {string} powercasting.ability      Ability score to use for powercasting.
  */
-export default class ArchetypeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ArchetypeData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {

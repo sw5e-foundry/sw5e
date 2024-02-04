@@ -121,7 +121,7 @@ export const ActorSheetMixin = Base => class extends Base {
     // Reload Weapon
     if ( ("ammo" in item.system) && ![0, item.system.ammo.value].includes(item.system.ammo.max) ) options.unshift({
       name: item.system?.properties?.rel ? "SW5E.ContextMenuActionReload" : "SW5E.ContextMenuActionCoolDown",
-      icon: "<i class='fas fa-raygun fa-fw'></i>",
+      icon: `<i class='fas ${item.system?.properties?.rel ? 'fa-raygun' : 'fa-thermometer-three-quarters'} fa-fw'></i>`,
       condition: () => item.isOwner,
       callback: () => item.sheet._onWeaponReload()
     });

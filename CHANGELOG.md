@@ -6,9 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changes
+
+- `Cool Down` button for starship weapons now has a different icon from the `Reload` button.
+
 ### Fixed
 
 - Starship Modifications from the compendium should now have their base price autocalculated instead of set to 0.
+- Attribute override for techcasting will no longer be ignored.
 
 ## [2.4.1.2.8.0] - 2024-01-03
 

@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changes
 
 - `Cool Down` button for starship weapons now has a different icon from the `Reload` button.
+- Compendium Updates.
 
 ### Fixed
 

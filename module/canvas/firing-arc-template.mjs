@@ -38,8 +38,8 @@ export default class FiringArcTemplate extends MeasuredTemplate {
     const arc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc];
     if (!arc?.shape) return;
 
-    const canvasUnit = canvas.dimensions.distance;
-    const halfShipSize = Math.floor((token.width * canvasUnit) / 2);
+    const canvasUnit = canvas.dimensions.size;
+    const halfShipSize = (token.width * canvasUnit) / 2;
     const range = options.longRange ? item.system.range.long : item.system.range.value;
     const distance = range + halfShipSize;
     const direction = (token.rotation + arc.direction) % 360;
@@ -51,8 +51,8 @@ export default class FiringArcTemplate extends MeasuredTemplate {
       user: game.user.id,
       distance,
       direction,
-      x: token.x + halfShipSize,
-      y: token.y + halfShipSize,
+      x: Math.floor(token.x + halfShipSize),
+      y: Math.floor(token.y + halfShipSize),
       fillColor: game.user.color,
       flags: { sw5e: { origin: item.uuid } }
     }, options);

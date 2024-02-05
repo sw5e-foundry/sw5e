@@ -13,9 +13,9 @@ export const needsMigration = function() {
     game.settings.set("sw5e", "systemMigrationVersion", game.system.version);
     return false;
   }
-  if (cv && !isNewerVersion(game.system.flags.needsMigrationVersion, cv)) return false;
+  if (cv && !foundry.utils.isNewerVersion(game.system.flags.needsMigrationVersion, cv)) return false;
 
-  if (cv && isNewerVersion(game.system.flags.compatibleMigrationVersion, cv)) {
+  if (cv && foundry.utils.isNewerVersion(game.system.flags.compatibleMigrationVersion, cv)) {
     ui.notifications.error("MIGRATION.5eVersionTooOldWarning", { localize: true, permanent: true });
   }
 
@@ -58,6 +58,10 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
           updateData = foundry.utils.mergeObject(source, updateData, {inplace: false});
         }
         await actor.update(updateData, {enforceTypes: false, diff: valid && !flags.persistSourceMigration});
+      }
+      if ( actor.effects && actor.items && foundry.utils.isNewerVersion("3.0.0", actor._stats.systemVersion) ) {
+        const deleteIds = _duplicatedEffects(actor);
+        if ( deleteIds.size ) await actor.deleteEmbeddedDocuments("ActiveEffect", Array.from(deleteIds));
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Actor ${actor.name}: ${err.message}`;
@@ -116,19 +120,44 @@ export const migrateWorld = async function(migrateSystemCompendiums = false) {
   }
 
   // Migrate Actor Override Tokens
-  for (let s of game.scenes) {
+  for (const s of game.scenes) {
     try {
       const updateData = await migrateSceneData(s, migrationData);
       if (!foundry.utils.isEmpty(updateData)) {
         console.log(`Migrating Scene document ${s.name}`);
         await s.update(updateData, { enforceTypes: false });
-        // If we do not do this, then synthetic token actors remain in cache
-        // with the un-updated actorData.
-        s.tokens.forEach(t => (t._actor = null));
       }
     } catch(err) {
       err.message = `Failed sw5e system migration for Scene ${s.name}: ${err.message}`;
       console.error(err);
+    }
+
+    // Migrate ActorDeltas individually in order to avoid issues with ActorDelta bulk updates.
+    for ( const token of s.tokens ) {
+      if ( token.actorLink || !token.actor ) continue;
+      try {
+        const flags = { persistSourceMigration: false };
+        const source = token.actor.toObject();
+        let updateData = migrateActorData(source, migrationData, flags);
+        if ( !foundry.utils.isEmpty(updateData) ) {
+          console.log(`Migrating ActorDelta document ${token.actor.name} [${token.delta.id}] in Scene ${s.name}`);
+          if ( flags.persistSourceMigration ) {
+            updateData = foundry.utils.mergeObject(source, updateData, { inplace: false });
+          } else {
+            // Workaround for core issue of bulk updating ActorDelta collections.
+            ["items", "effects"].forEach(col => {
+              for ( const [i, update] of (updateData[col] ?? []).entries() ) {
+                const original = token.actor[col].get(update._id);
+                updateData[col][i] = foundry.utils.mergeObject(original.toObject(), update, { inplace: false });
+              }
+            });
+          }
+          await token.actor.update(updateData, { enforceTypes: false, diff: !flags.persistSourceMigration });
+        }
+      } catch(err) {
+        err.message = `Failed sw5e system migration for ActorDelta [${token.id}]: ${err.message}`;
+        console.error(err);
+      }
     }
   }
 
@@ -161,6 +190,7 @@ export const migrateCompendium = async function(pack) {
   // Unlock the pack for editing
   const wasLocked = pack.locked;
   await pack.configure({ locked: false });
+  sw5e.moduleArt.suppressArt = true;
 
   // Begin by requesting server-side data model migration and get the migrated content
   await pack.migrate();
@@ -175,6 +205,11 @@ export const migrateCompendium = async function(pack) {
       switch (documentName) {
         case "Actor":
           updateData = await migrateActorData(source, migrationData, flags);
+          if ( (documentName === "Actor") && source.effects && source.items
+            && foundry.utils.isNewerVersion("3.0.0", source._stats.systemVersion) ) {
+            const deleteIds = _duplicatedEffects(source);
+            if ( deleteIds.size ) await doc.deleteEmbeddedDocuments("ActiveEffect", Array.from(deleteIds));
+          }
           break;
         case "Item":
           updateData = await migrateItemData(source, migrationData, flags);
@@ -198,8 +233,46 @@ export const migrateCompendium = async function(pack) {
 
   // Apply the original locked status for the pack
   await pack.configure({ locked: wasLocked });
+  sw5e.moduleArt.suppressArt = false;
   console.log(`Migrated all ${documentName} documents from Compendium ${pack.collection}`);
 };
+
+/* -------------------------------------------- */
+
+/**
+ * Re-parents compendia from one top-level folder to another.
+ * @param {string} from  The name of the source folder.
+ * @param {string} to    The name of the destination folder.
+ */
+export function reparentCompendiums(from, to) {
+  const compendiumFolders = new Map();
+  for ( const folder of game.folders ) {
+    if ( folder.type !== "Compendium" ) continue;
+    if ( folder.folder ) {
+      let folders = compendiumFolders.get(folder.folder);
+      if ( !folders ) {
+        folders = [];
+        compendiumFolders.set(folder.folder, folders);
+      }
+      folders.push(folder);
+    }
+    if ( folder.name === from ) from = folder;
+    else if ( folder.name === to ) to = folder;
+  }
+  if ( !(from instanceof Folder) || !(to instanceof Folder) ) return;
+  const config = game.settings.get("core", "compendiumConfiguration");
+
+  // Re-parent packs directly under the source folder.
+  Object.values(config).forEach(conf => {
+    if ( conf.folder === from.id ) conf.folder = to.id;
+  });
+
+  game.settings.set("core", "compendiumConfiguration", config);
+
+  // Re-parent folders directly under the source folder.
+  const updates = (compendiumFolders.get(from) ?? []).map(f => ({ _id: f.id, folder: to.id }));
+  return Folder.implementation.updateDocuments(updates).then(() => from.delete());
+}
 
 /* -------------------------------------------- */
 
@@ -359,9 +432,9 @@ export const migrateActorData = async function(actor, migrationData, flags={}) {
 
     // Update tool expertise.
     if (actor.system.tools) {
-      const hasToolProf = itemData.system.baseItem in actor.system.tools;
+      const hasToolProf = itemData.system.type?.baseItem in actor.system.tools;
       if (itemData.type === "tool" && itemData.system.proficient > 1 && hasToolProf) {
-        updateData[`system.tools.${itemData.system.baseItem}.value`] = itemData.system.proficient;
+        updateData[`system.tools.${itemData.system.type.baseItem}.value`] = itemData.system.proficient;
       }
     }
 
@@ -400,6 +473,16 @@ export async function migrateItemData(item, migrationData, flags={}) {
   if (item.effects) {
     const effects = migrateEffects(item, migrationData);
     if (effects.length > 0) updateData.effects = effects;
+  }
+
+  // Migrate properties
+  const migratedProperties = foundry.utils.getProperty(item, "flags.sw5e.migratedProperties");
+  if ( migratedProperties?.length ) {
+    flags.persistSourceMigration = true;
+    const properties = new Set(foundry.utils.getProperty(item, "system.properties") ?? [])
+      .union(new Set(migratedProperties));
+    updateData["system.properties"] = Array.from(properties);
+    updateData["flags.sw5e.-=migratedProperties"] = null;
   }
 
   if ( foundry.utils.getProperty(item, "flags.sw5e.persistSourceMigration") ) {
@@ -486,7 +569,7 @@ export function migrateRollTableData(table, migrationData) {
 /* -------------------------------------------- */
 
 /**
- * Migrate a single Scene document to incorporate changes to the data model of it's actor data overrides
+ * Migrate a single Scene document to incorporate changes to the data model of its actor data overrides
  * Return an Object of updateData to be applied
  * @param {object} scene            The Scene data to Update
  * @param {object} [migrationData]  Additional data to perform the migration
@@ -494,35 +577,18 @@ export function migrateRollTableData(table, migrationData) {
  */
 export const migrateSceneData = async function(scene, migrationData) {
   const tokens = await Promise.all(
-    scene.tokens.map(async token => {
+    scene.tokens.reduce(async (arr, token) => {
       const t = token instanceof foundry.abstract.DataModel ? token.toObject() : token;
       const update = {};
       await _migrateTokenImage(t, update, migrationData);
 
-      if (Object.keys(update).length) foundry.utils.mergeObject(t, update);
-      if (!game.actors.has(t.actorId)) t.actorId = null;
-      if (!t.actorId || t.actorLink) t.actorData = {};
-      else if (!t.actorLink) {
-        const actorData = token.delta?.toObject() ?? foundry.utils.deepClone(t.actorData);
-        actorData.type = token.actor?.type;
-        const update = await migrateActorData(actorData, migrationData);
-        if (game.sw5e.isV10) {
-          ["items", "effects"].forEach(embeddedName => {
-            if (!update[embeddedName]?.length) return;
-            const updates = new Map(update[embeddedName].map(u => [u._id, u]));
-            t.actorData[embeddedName].forEach(original => {
-              const update = updates.get(original._id);
-              if (update) foundry.utils.mergeObject(original, update);
-            });
-            delete update[embeddedName];
-          });
-          foundry.utils.mergeObject(t.actorData, update);
-        } else t.delta = update;
-      }
-      return t;
-    })
+      if ( !game.actors.has(t.actorId) ) update.actorId = null;
+      if ( !foundry.utils.isEmpty(update) ) arr.push({ ...update, _id: t._id });
+      return arr;
+    }, [])
   );
-  return { tokens };
+  if ( tokens.length ) return { tokens };
+  return {};
 };
 
 /* -------------------------------------------- */
@@ -629,6 +695,29 @@ function _updateNPCData(actor) {
   mergeObject(actorSysData, updateData);
   // Return the scrubbed data
   return actor;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Identify effects that might have been duplicated when legacyTransferral was disabled.
+ * @param {object} parent   Data of the actor being migrated.
+ * @returns {Set<string>}   IDs of effects to delete from the actor.
+ * @private
+ */
+function _duplicatedEffects(parent) {
+  const deleteIds = new Set();
+  for ( const item of parent.items ) {
+    for ( const effect of item.effects ?? [] ) {
+      if ( !effect.transfer ) continue;
+      const match = parent.effects.find(t => {
+        const diff = foundry.utils.diffObject(t, effect);
+        return t.origin.endsWith(`Item.${item._id}`) && !("changes" in diff) && !deleteIds.has(t._id);
+      });
+      if ( match ) deleteIds.add(match._id);
+    }
+  }
+  return deleteIds;
 }
 
 /* -------------------------------------------- */

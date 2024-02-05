@@ -64,7 +64,7 @@ export default class ActorTypeConfig extends DocumentSheet {
     const types = {};
     for (let [k, v] of Object.entries(CONFIG.SW5E.creatureTypes)) {
       types[k] = {
-        label: game.i18n.localize(v),
+        label: game.i18n.localize(v.label),
         chosen: attr.value === k
       };
     }
@@ -81,8 +81,8 @@ export default class ActorTypeConfig extends DocumentSheet {
       swarm: attr.swarm,
       sizes: Array.from(Object.entries(CONFIG.SW5E.actorSizes))
         .reverse()
-        .reduce((obj, e) => {
-          obj[e[0]] = e[1];
+        .reduce((obj, [key, { label }]) => {
+          obj[key] = label;
           return obj;
         }, {}),
       preview: Actor5e.formatCreatureType(attr) || "–"

@@ -1,6 +1,10 @@
 # Build Artifacts
-sw5e-compiled*
-sw5e.lock
+## This isn't necessary while we use the dist folder
+# sw5e.css
+# sw5e-compiled*
+# sw5e.lock
+# packs/*
+# !packs/_source/
 dist/**/*
 !dist/.gitkeep
 
@@ -41,13 +45,3 @@ node_modules/
 
 # Mac-OS file
 .DS_Store
-
-# Don't commit LevelDB files for now for v10 back-compat
-packs/**/*.log
-packs/**/*.old
-packs/**/*.ldb
-packs/**/LOCK
-packs/**/MANIFEST
-packs/**/CURRENT
-packs/**/LOG
-packs/**/MANIFEST-*

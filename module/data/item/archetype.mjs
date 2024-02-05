@@ -1,4 +1,4 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 
@@ -17,7 +17,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {object} superiority                  Details on class's superiority ability.
  * @property {string} superiority.progression      Superiority progression as defined in `SW5E.superiorityProgression`.
  */
-export default class ArchetypeData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class ArchetypeData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {

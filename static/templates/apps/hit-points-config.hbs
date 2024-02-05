@@ -1,37 +1,44 @@
 <form>
-  {{#if isNpc}}
+    {{log isCharacter}}
+    {{log isNpc}}
+    {{#unless isNpc}}
+        <div class="hp-field form-group">
+            <input type="number" class="number-lg" name="hp.max" value="{{source.max}}"
+                   placeholder="{{hp.max}}" data-tooltip="SW5E.HitPointsOverride">
+        </div>
 
-    <div class="hp-field form-group">
-      <input type="number" name="hp.max" value="{{hp.max}}" data-tooltip="{{label.max}}">
-    </div>
+        <div class="form-group">
+            <label>{{localize "SW5E.HitPointsBonusLevel"}}</label>
+            <input type="text" name="hp.bonuses.level" value="{{hp.bonuses.level}}">
+        </div>
+        <div class="form-group">
+            <label>{{localize "SW5E.HitPointsBonusOverall"}}</label>
+            <input type="text" name="hp.bonuses.overall" value="{{hp.bonuses.overall}}">
+        </div>
+    {{else}}
+        <div class="hp-field form-group">
+            <input type="number" class="number-lg" name="hp.max" value="{{hp.max}}" data-tooltip="SW5E.HitPointsMax">
+        </div>
+
+        <div class="form-group">
+            <label>{{localize "SW5E.HPFormula"}}</label>
+            <div class="form-fields">
+                <input type="text" name="hp.formula" value="{{hp.formula}}">
+                <button class="roll-hit-points"><i class="fas fa-dice"></i> {{localize "SW5E.Roll"}}</button>
+            </div>
+        </div>
+    {{/unless}}
+
+    <hr>
 
     <div class="form-group">
-      <label>{{localize "SW5E.HPFormula"}}</label>
-      <div class="form-fields">
-        <input type="text" name="hp.formula" value="{{hp.formula}}">
-        <button class="roll-hit-points"><i class="fas fa-dice"></i> {{localize "SW5E.Roll"}}</button>
-      </div>
+        <label>{{localize "SW5E.HitPointsTempMaxShort"}}</label>
+        <div class="form-fields">
+            <input type="number" name="hp.tempmax" value="{{source.tempmax}}">
+        </div>
     </div>
 
-  {{else}}
-
-    <div class="hp-field form-group">
-      <input type="number" name="{{path.max}}" value="{{value.sourceMax}}"
-        placeholder="{{value.max}}" data-tooltip="{{label.override}}">
-    </div>
-
-    <div class="form-group">
-      <label>{{localize label.bonusLevel}}</label>
-      <input type="text" name="{{path.level}}" value="{{value.level}}">
-    </div>
-    <div class="form-group">
-      <label>{{localize label.bonusOverall}}</label>
-      <input type="text" name="{{path.overall}}" value="{{value.overall}}">
-    </div>
-
-  {{/if}}
-
-  <button type="submit">
-    <i class="far fa-save"></i> {{localize "Save"}}
-  </button>
+    <button type="submit">
+        <i class="far fa-save"></i> {{localize "Save"}}
+    </button>
 </form>

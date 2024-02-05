@@ -130,6 +130,18 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
   };
 
   /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /**
+   * Retrieve information on available uses for display.
+   * @returns {{value: number, max: number, name: string}}
+   */
+  getUsesData() {
+    return { value: this.uses.value, max: this.parent.system.uses.max, name: "system.uses.value" };
+  }
+
+  /* -------------------------------------------- */
   /*  Migrations                                  */
   /* -------------------------------------------- */
 
@@ -258,23 +270,13 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * Chat properties for activated effects.
    * @type {string[]}
    */
-  get activatedEffectChatProperties() {
+  get activatedEffectCardProperties() {
     return [
-      this.parent.labels.activation + (this.activation.condition ? ` (${this.activation.condition})` : ""),
+      this.parent.labels.activation,
       this.parent.labels.target,
       this.parent.labels.range,
       this.parent.labels.duration
     ];
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Is this Item an activatable item?
-   * @type {boolean}
-   */
-  get isActive() {
-    return !!this.activation.type;
   }
 
   /* -------------------------------------------- */
@@ -409,5 +411,36 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    */
   get hasTarget() {
     return this.isActive && !["", null].includes(this.target.type);
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Is this Item an activatable item?
+   * @type {boolean}
+   */
+  get isActive() {
+    return !!this.activation.type;
+  }
+
+  /* -------------------------------------------- */
+  /*  Deprecations                                */
+  /* -------------------------------------------- */
+
+  /**
+   * @deprecated since SW5e 3.0, available until SW5e 3.2
+   * @ignore
+   */
+  get activatedEffectChatProperties() {
+    foundry.utils.logCompatibilityWarning("ActivatedEffectTemplate#activatedEffectChatProperties is deprecated. "
+      + "Please use ActivatedEffectTemplate#activatedEffectCardProperties.",
+      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
+    );
+    return [
+      this.parent.labels.activation + (this.activation.condition ? ` (${this.activation.condition})` : ""),
+      this.parent.labels.target,
+      this.parent.labels.range,
+      this.parent.labels.duration
+    ];
   }
 }

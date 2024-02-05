@@ -69,7 +69,7 @@
             <ul class="attributes flexrow">
                 <li class="attribute health">
                     <h4 class="attribute-name box-title">{{localize "SW5E.HitPoints"}}</h4>
-                    <a class="config-button" data-action="hit-points" data-tooltip="SW5E.HitPointsConfig">
+                    <a class="config-button" data-action="hitPoints" data-tooltip="SW5E.HitPointsConfig">
                         <i class="fas fa-cog"></i>
                     </a>
                     <div class="attribute-value multiple">
@@ -90,7 +90,7 @@
                     </footer>
                 </li>
 
-                <li class="attribute hit-dice">
+                <li class="attribute hitDice">
                     <h4 class="attribute-name box-title">{{ localize "SW5E.HitDice" }}</h4>
                     <a class="config-button" data-action="hit-dice" data-tooltip="SW5E.HitDiceConfig">
                         <i class="fas fa-cog"></i>
@@ -181,7 +181,8 @@
                             {{numberFormat ability.save decimals=0 sign=true}}
                         </span>
                     </div>
-                    <a class="config-button" data-action="ability" data-tooltip="SW5E.AbilityConfigure">
+                    <a class="config-button" data-action="ability"
+                       data-tooltip="{{ localize 'SW5E.AbilityConfigure' ability=ability.label }}">
                         <i class="fas fa-cog"></i>
                     </a>
                 </li>
@@ -279,7 +280,7 @@
 
         {{!-- Inventory Tab --}}
         <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
-            {{> "sw5e.actor-inventory" sections=inventory}}
+            {{> "sw5e.inventory" sections=inventory}}
         </div>
 
         {{!-- Features Tab --}}

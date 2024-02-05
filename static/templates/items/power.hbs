@@ -1,11 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.PowerName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.PowerName' }}">
             </h1>
 
             <div class="item-subtitle">
@@ -45,7 +45,7 @@
                 <label>{{ localize "SW5E.PowerLevel" }}</label>
                 <select name="system.level" data-dtype="Number">
                     {{#select system.level}} {{#each config.powerLevels as |name lvl|}}
-                    <option value="{{lvl}}">{{name}}</option>
+                        <option value="{{lvl}}">{{name}}</option>
                     {{/each}} {{/select}}
                 </select>
             </div>
@@ -54,34 +54,38 @@
             <div class="form-group">
                 <label>{{ localize "SW5E.PowerSchool" }}</label>
                 <select name="system.school">
-                    {{selectOptions config.powerSchools selected=system.school blank=""}}
+                    {{selectOptions config.powerSchools selected=system.school labelAttr="label" blank=""}}
                 </select>
             </div>
 
             {{!-- Power Components --}}
             <div class="power-components form-group stacked">
                 <label>{{ localize "SW5E.PowerComponents" }}</label>
-                {{#each powerComponents as |component key|}}
-                <label class="checkbox">
-                    <input type="checkbox" name="system.components.{{key}}" {{checked (lookup ../system.components key)}}>
-                    {{component.label}}
-                </label>
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    </label>
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                    </label>
                 {{/each}}
             </div>
 
             {{!-- Material Components --}}
             <div class="form-group stacked">
                 <label>{{ localize "SW5E.PowerMaterials" }}</label>
-                <input class="materials" type="text" name="system.materials.value" value="{{system.materials.value}}" />
+                <input class="materials" type="text" name="system.materials.value" value="{{system.materials.value}}">
                 {{#if system.materials.value}}
-                <div class="power-materials flexrow">
-                    <label>{{ localize "SW5E.Supply" }}</label>
-                    {{numberInput system.materials.supply name="system.materials.supply" placeholder="0"}}
-                    <label>{{ localize "SW5E.CostGP" }}</label>
-                    {{numberInput system.materials.cost name="system.materials.cost" placeholder="&mdash;"}}
-                    <label>{{ localize "SW5E.Consumed" }}</label>
-                    <input type="checkbox" name="system.materials.consumed" {{checked system.materials.consumed}} />
-                </div>
+                    <div class="power-materials flexrow">
+                        <label>{{ localize "SW5E.Supply" }}</label>
+                        {{numberInput system.materials.supply name="system.materials.supply" placeholder="0"}}
+                        <label>{{ localize "SW5E.CostGP" }}</label>
+                        {{numberInput system.materials.cost name="system.materials.cost" placeholder="&mdash;"}}
+                        <label>{{ localize "SW5E.Consumed" }}</label>
+                        <input type="checkbox" name="system.materials.consumed" {{checked system.materials.consumed}}>
+                    </div>
                 {{/if}}
             </div>
 
@@ -91,7 +95,7 @@
                 <div class="form-fields">
                     <label class="checkbox prepared">
                         {{ localize "SW5E.PowerPrepared" }}
-                        <input type="checkbox" name="system.preparation.prepared" {{checked system.preparation.prepared}} />
+                        <input type="checkbox" name="system.preparation.prepared" {{checked system.preparation.prepared}}>
                     </label>
                     <select name="system.preparation.mode">
                         {{ selectOptions config.powerPreparationModes selected=system.preparation.mode }}
@@ -115,7 +119,7 @@
                 <div class="form-fields">
                     <select name="system.scaling.mode">
                         {{#select system.scaling.mode}} {{#each config.powerScalingModes as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
+                            <option value="{{key}}">{{name}}</option>
                         {{/each}} {{/select}}
                     </select>
                     <input
@@ -124,7 +128,7 @@
                         value="{{system.scaling.formula}}"
                         placeholder="{{ localize 'SW5E.ScalingFormula' }}"
                         data-formula-editor
-                    />
+                    >
                 </div>
             </div>
         </div>

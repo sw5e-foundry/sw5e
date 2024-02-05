@@ -1,36 +1,36 @@
 <div class="form-group">
-  <label>{{localize "SW5E.ForceCasting"}}</label>
-  <div class="form-fields">
-    <select name="system.powercasting.force">
-      {{selectOptions config.powerProgression selected=system.powercasting.force}}
-    </select>
-  </div>
+    <label>{{localize "SW5E.ForceCasting"}}</label>
+    <div class="form-fields">
+        <select name="system.powercasting.force">
+            {{selectOptions config.powerProgression selected=system.powercasting.force}}
+        </select>
+    </div>
 </div>
 {{#if forcecaster}}
-  <div class="form-group">
-    <label>{{localize "SW5E.ForceCastingOverride"}}</label>
-    <div class="form-fields">
-      <select name="system.powercasting.forceOverride">
-        {{selectOptions config.abilities selected=system.powercasting.forceOverride labelAttr="label" blank=""}}
-      </select>
+    <div class="form-group">
+        <label>{{localize "SW5E.ForceCastingOverride"}}</label>
+        <div class="form-fields">
+            <select name="system.powercasting.forceOverride">
+                {{selectOptions config.abilities selected=system.powercasting.forceOverride labelAttr="label" blank=""}}
+            </select>
+        </div>
     </div>
-  </div>
 {{/if}}
 <div class="form-group">
-  <label>{{localize "SW5E.TechCasting"}}</label>
-  <div class="form-fields">
-    <select name="system.powercasting.tech">
-      {{selectOptions config.powerProgression selected=system.powercasting.tech}}
-    </select>
-  </div>
+    <label>{{localize "SW5E.TechCasting"}}</label>
+    <div class="form-fields">
+        <select name="system.powercasting.tech">
+            {{selectOptions config.powerProgression selected=system.powercasting.tech}}
+        </select>
+    </div>
 </div>
 {{#if techcaster}}
-  <div class="form-group">
-    <label>{{localize "SW5E.TechCastingOverride"}}</label>
-    <div class="form-fields">
-      <select name="system.powercasting.techOverride">
-        {{selectOptions config.abilities selected=system.powercasting.techOverride labelAttr="label" blank=""}}
-      </select>
+    <div class="form-group">
+        <label>{{localize "SW5E.TechCastingOverride"}}</label>
+        <div class="form-fields">
+            <select name="system.powercasting.techOverride">
+                {{selectOptions config.abilities selected=system.powercasting.techOverride labelAttr="label" blank=""}}
+            </select>
+        </div>
     </div>
-  </div>
 {{/if}}

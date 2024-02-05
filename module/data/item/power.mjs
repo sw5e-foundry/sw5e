@@ -1,5 +1,6 @@
-import SystemDataModel from "../abstract.mjs";
-import { FormulaField, MappingField } from "../fields.mjs";
+import { filteredKeys } from "../../utils.mjs";
+import { ItemDataModel } from "../abstract.mjs";
+import { FormulaField } from "../fields.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -12,12 +13,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  *
  * @property {number} level                      Base level of the power.
  * @property {string} school                     Magical school to which this power belongs.
- * @property {object} components                 General components and tags for this power.
- * @property {boolean} components.vocal          Does this power require vocal components?
- * @property {boolean} components.somatic        Does this power require somatic components?
- * @property {boolean} components.material       Does this power require material components?
- * @property {boolean} components.ritual         Can this power be cast as a ritual?
- * @property {boolean} components.concentration  Does this power require concentration?
+ * @property {Set<string>} properties            General components and tags for this power.
  * @property {object} materials                  Details on material components required for this power.
  * @property {string} materials.value            Description of the material components required for casting.
  * @property {boolean} materials.consumed        Are these material components consumed during casting?
@@ -30,7 +26,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} scaling.mode               Power scaling mode as defined in `SW5E.powerScalingModes`.
  * @property {string} scaling.formula            Dice formula used for scaling.
  */
-export default class PowerData extends SystemDataModel.mixin(
+export default class PowerData extends ItemDataModel.mixin(
   ItemDescriptionTemplate,
   ActivatedEffectTemplate,
   ActionTemplate
@@ -46,10 +42,8 @@ export default class PowerData extends SystemDataModel.mixin(
         label: "SW5E.PowerLevel"
       }),
       school: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerSchool" }),
-      components: new MappingField(new foundry.data.fields.BooleanField(), {
-        required: true,
-        label: "SW5E.PowerComponents",
-        initialKeys: [...Object.keys(CONFIG.SW5E.powerComponents), ...Object.keys(CONFIG.SW5E.powerTags)]
+      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
+        label: "SW5E.PowerComponents"
       }),
       materials: new foundry.data.fields.SchemaField(
         {
@@ -92,26 +86,49 @@ export default class PowerData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
-  /*  Migrations                                  */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getCardData(enrichmentOptions={}) {
+    const context = await super.getCardData(enrichmentOptions);
+    context.isPower = true;
+    context.subtitle = [this.parent.labels.level, CONFIG.SW5E.powerSchools[this.school]?.label].filterJoin(" &bull; ");
+    return context;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+      subtitle: [this.parent.labels.components.vsm, this.parent.labels.activation],
+      modifier: this.parent.labels.modifier,
+      range: this.range,
+      save: this.save
+    });
+  }
+
+  /* -------------------------------------------- */
+  /*  Data Migrations                             */
   /* -------------------------------------------- */
 
   /** @inheritdoc */
   static _migrateData(source) {
     super._migrateData(source);
-    PowerData.#migrateComponentData(source);
     PowerData.#migrateScaling(source);
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Migrate the power's component object to remove any old, non-boolean values.
+   * Migrate the component object to be 'properties' instead.
    * @param {object} source  The candidate source data from which the model will be constructed.
    */
-  static #migrateComponentData(source) {
-    if (!source.components) return;
-    for (const [key, value] of Object.entries(source.components)) {
-      if (typeof value !== "boolean") delete source.components[key];
+  static _migrateComponentData(source) {
+    const components = filteredKeys(source.system?.components ?? {});
+    if ( components.length ) {
+      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", components);
     }
   }
 
@@ -174,5 +191,23 @@ export default class PowerData extends SystemDataModel.mixin(
    */
   get proficiencyMultiplier() {
     return 1;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Provide a backwards compatible getter for accessing `components`.
+   * @deprecated since v3.0.
+   * @type {object}
+   */
+  get components() {
+    foundry.utils.logCompatibilityWarning(
+      "The `system.components` property has been deprecated in favor of a standardized `system.properties` property.",
+      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
+    );
+    return this.properties.reduce((acc, p) => {
+      acc[p] = true;
+      return acc;
+    }, {});
   }
 }

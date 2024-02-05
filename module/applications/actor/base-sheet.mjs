@@ -22,7 +22,7 @@ import TraitSelector from "./trait-selector.mjs";
 import ProficiencyConfig from "./proficiency-config.mjs";
 import ToolSelector from "./tool-selector.mjs";
 import { simplifyBonus } from "../../utils.mjs";
-import { ActorSheetMixin } from "./sheet-mixin.mjs";
+import ActorSheetMixin from "./sheet-mixin.mjs";
 
 /**
  * Extend the basic ActorSheet class to suppose SW5e-specific logic and functionality.
@@ -593,7 +593,6 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
   _prepareItemsCategorized(context, categories) {
     const config = categories.config;
     for (const item of context.items) {
-      const { quantity, uses, recharge, equipped } = item.system;
 
       // Item context
       const ctx = context.itemContext[item.id] ??= {};
@@ -701,7 +700,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const owner = this.actor.isOwner;
     const levels = context.actor.system.powers;
     const powerbook = {};
-    const powerType = (school in CONFIG.SW5E.powerSchoolsForce) ? "force" : "tech";
+    const schoolCfg = CONFIG.SW5E.powerSchools[school];
+    const powerType = schoolCfg.isForce ? "force" : "tech";
 
     const abbr = powerType[0];
     const aMax = `${abbr}max`;
@@ -1344,13 +1344,12 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       header = list?.previousElementSibling;
     }
     const mode = header?.dataset ?? {};
-    const isForcePower = itemData.system.school in CONFIG.SW5E.powerSchoolsForce;
-    const isTechPower = itemData.system.school in CONFIG.SW5E.powerSchoolsTech;
+    const schoolCfg = CONFIG.SW5E.powerSchools[item.system.school] ?? {};
 
     // Determine the actor's power slot progressions, if any.
     const progs = Object.values(this.document.classes).reduce((acc, cls) => {
-      if ( isForcePower && cls.powercasting?.force !== "none" ) acc.leveled = true;
-      if ( isTechPower && cls.powercasting?.tech !== "none" ) acc.leveled = true;
+      if ( schoolCfg.isForce && cls.powercasting?.force !== "none" ) acc.leveled = true;
+      if ( schoolCfg.isTech && cls.powercasting?.tech !== "none" ) acc.leveled = true;
       return acc;
     }, { leveled: false } );
 
@@ -1369,7 +1368,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     // Case 2: Drop a leveled power in a section without a mode.
     else if ( (mode.level === 0) || !mode["preparation.mode"] ) {
       if ( this.document.type === "npc" ) {
-        const powerCaster = this.document.system.attributes[isForcePower ? "force" : isTechPower ? "tech" : "nope"]?.level;
+        const powerCaster = this.document.system.attributes[schoolCfg.isForce ? "force" : schoolCfg.isTech ? "tech" : "nope"]?.level;
         itemData.system.preparation.mode = powerCaster ? "prepared" : "innate";
       } else {
         itemData.system.preparation.mode = progs.leveled ? "prepared" : "innate";

@@ -9,6 +9,12 @@
         <li>
           <span>{{summary}}</span>
         </li>
+        <li class="type">
+          <select name="system.type.value">
+            {{selectOptions config.groupTypes selected=system.type.value
+                            blank=(localize "SW5E.Group.TypeGeneric")}}
+          </select>
+        </li>
       </ul>
 
       <ul class="attributes flexrow">
@@ -32,12 +38,26 @@
             <span>{{movement.secondary}}</span>
           </footer>
         </li>
+        {{#if xp}}
+          <li class="attribute xp">
+            <h4 class="attribute-name box-title">{{localize "SW5E.ExperiencePoints"}}</h4>
+            <div class="attribute-value">
+              {{ numberInput xp.value name="system.details.xp.value" min=0 step=1
+                 placeholder=(sw5e-numberFormat xp.derived) }}
+            </div>
+            <footer class="attribute-footer">
+              <a class="action-button" data-action="award">
+                <i class="fa-solid fa-trophy"></i> {{localize "SW5E.Award.Action"}}
+              </a>
+            </footer>
+          </li>
+        {{/if}}
       </ul>
     </section>
   </header>
 
   <nav class="sheet-navigation tabs" data-group="primary">
-    <a class="item active" data-tab="members">{{localize 'SW5E.GroupMembers'}}</a>
+    <a class="item active" data-tab="members">{{localize 'SW5E.Group.Member.other'}}</a>
     <a class="item" data-tab="inventory">{{localize 'SW5E.GroupInventory'}}</a>
     <a class="item" data-tab="description">{{localize 'SW5E.Description'}}</a>
   </nav>
@@ -45,44 +65,82 @@
   <section class="sheet-body">
     <div class="tab members" data-group="primary" data-tab="members">
       {{#each sections as |section id|}}
-      <section class="directory" data-section="{{id}}">
-        <header class="directory-header flexrow">
-          <h3 class="name">{{localize section.label}}</h3>
-          <span class="hp">{{localize "SW5E.HitPoints"}}</span>
-          <span class="controls">{{localize "SW5E.GroupControls"}}</span>
-        </header>
-        <ol class="members-list directory-list">
-          {{#each section.members as |member|}}
-          <li class="group-member directory-item flexrow" data-actor-id="{{member.id}}">
-            <div class="name flexrow">
-              <img class="thumbnail" src="{{member.img}}" />
-              <h4 class="document-name"><a class="member-link">{{member.name}}</a></h4>
-            </div>
-            <div class="hp flexrow">
-              <div class="bar-container">
-                <div
-                  class="bar"
-                  style="width:{{member.hp.pct}}%; background:{{member.hp.color}}; border-color:{{member.hp.border}}"
-                ></div>
-              </div>
-              {{#if displayHPValues}}
-              <span class="current">{{member.hp.current}}</span>
-              <span class="sep">/</span>
-              <span class="max">{{member.hp.max}}</span>
-              {{/if}}
-            </div>
-            <div class="controls">
-              <a class="action-button" data-action="removeMember"><i class="fa-solid fa-close"></i></a>
-            </div>
-          </li>
-          {{/each}}
-        </ol>
-      </section>
+        <section class="directory" data-section="{{id}}">
+          <header class="directory-header flexrow">
+            <h3 class="name">{{localize section.label}}</h3>
+            {{#if section.displayHPColumn}}
+              <span class="hp">{{localize "SW5E.HitPoints"}}</span>
+            {{/if}}
+            {{#if section.displayQuantityColumn}}
+              <span class="quantity">
+                {{localize "SW5E.Quantity"}}
+                {{#if @root.editable}}
+                  <a class="action-button" data-action="rollQuantities" data-tooltip="SW5E.QuantityRoll"
+                     aria-label="{{localize 'SW5E.QuantityRoll'}}">
+                    <i class="fa-solid fa-dice"></i>
+                  </a>
+                {{/if}}
+              </span>
+            {{/if}}
+            {{#if section.displayChallengeColumn}}
+              <span class="challenge">{{localize "SW5E.Group.Challenge"}}</span>
+            {{/if}}
+            <span class="controls">{{localize "SW5E.GroupControls"}}</span>
+          </header>
+          <ol class="members-list directory-list">
+            {{#each section.members as |member|}}
+              <li class="group-member directory-item flexrow" data-actor-id="{{member.id}}">
+                <input type="hidden" name="system.members.{{index}}.actor" value="{{member.id}}">
+                <div class="name flexrow">
+                  <img class="thumbnail" src="{{member.img}}" />
+                  <h4 class="document-name"><a class="member-link">{{member.name}}</a></h4>
+                </div>
+                {{#if section.displayHPColumn}}
+                  <div class="hp flexrow">
+                    <div class="bar-container">
+                      <div
+                        class="bar"
+                        style="width:{{member.hp.pct}}%; background:{{member.hp.color}}; border-color:{{member.hp.border}}"
+                      ></div>
+                    </div>
+                    {{#if displayHPValues}}
+                      <span class="current">{{member.hp.current}}</span>
+                      <span class="sep">/</span>
+                      <span class="max">{{member.hp.max}}</span>
+                    {{/if}}
+                  </div>
+                {{/if}}
+                {{#if section.displayQuantityColumn}}
+                  <div class="quantity flexrow">
+                    <input type="number" name="system.members.{{index}}.quantity.value" min="0" step="1"
+                           value="{{member.quantity.value}}">
+                    <input type="text" name="system.members.{{index}}.quantity.formula"
+                           value="{{member.quantity.formula}}" placeholder="{{localize 'SW5E.Formula'}}">
+                  </div>
+                {{else}}
+                  <input type="hidden" name="system.members.{{index}}.quantity.value"
+                         value="{{member.quantity.value}}">
+                  <input type="hidden" name="system.members.{{index}}.quantity.formula"
+                         value="{{member.quantity.formula}}">
+                {{/if}}
+                {{#if section.displayChallengeColumn}}
+                  <div class="challenge">
+                    <abbr>{{localize "SW5E.AbbreviationCR"}}</abbr> {{member.cr}}{{#if member.xp}} —
+                    {{member.xp}} <abbr>{{localize "SW5E.ExperiencePointsAbbr"}}</abbr>{{/if}}
+                  </div>
+                {{/if}}
+                <div class="controls">
+                  <a class="action-button" data-action="removeMember"><i class="fa-solid fa-close"></i></a>
+                </div>
+              </li>
+            {{/each}}
+          </ol>
+        </section>
       {{/each}}
     </div>
 
     <div class="tab inventory flexcol" data-group="primary" data-tab="inventory">
-      {{> "sw5e.actor-inventory" sections=inventory}}
+      {{> "sw5e.inventory" sections=inventory}}
     </div>
 
     <div class="tab description" data-group="primary" data-tab="description">

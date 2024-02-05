@@ -1,11 +1,11 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     {{!-- Item Sheet Header --}}
     <header class="sheet-header flexrow">
-        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+        <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
             </h1>
 
             <div class="item-subtitle">
@@ -21,7 +21,7 @@
                         name="system.requirements"
                         value="{{system.requirements}}"
                         placeholder="{{ localize 'SW5E.Requirements' }}"
-                    />
+                    >
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -55,13 +55,13 @@
                 </select>
             </div>
 
-            {{#if featureSubtypes}}
+            {{#if itemSubtypes}}
                 <div class="form-group">
                     <label>
                         {{localize "SW5E.ItemFeatureSubtype" category=(lookup (lookup config.featureTypes system.type.value) "label")}}
                     </label>
                     <select name="system.type.subtype">
-                        {{selectOptions featureSubtypes selected=system.type.subtype blank=""}}
+                        {{selectOptions itemSubtypes selected=system.type.subtype blank=""}}
                     </select>
                 </div>
             {{/if}}
@@ -75,6 +75,21 @@
                 </div>
             {{/each}}
 
+            {{!-- Feature Properties --}}
+            <div class="feature-properties form-group stacked">
+                <label>{{ localize "SW5E.ItemFeatureProperties" }}</label>
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    </label>
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                    </label>
+                {{/each}}
+            </div>
+
             <h3 class="form-header">{{ localize "SW5E.FeatureUsage" }}</h3>
 
             {{!-- Item Activation Template --}}
@@ -82,18 +97,18 @@
 
             {{!-- Recharge Requirement --}}
             {{#if system.activation.type}}
-            <div class="form-group recharge">
-                <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
-                <div class="form-fields">
-                    <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
-                    {{numberInput system.recharge.value name="system.recharge.value"
-                        placeholder=(localize "SW5E.FeatureRechargeResult")}}
-                    <label class="checkbox">
-                        {{ localize "SW5E.Charged" }}
-                        <input type="checkbox" name="system.recharge.charged" {{checked system.recharge.charged}} />
-                    </label>
+                <div class="form-group recharge">
+                    <label>{{ localize "SW5E.FeatureActionRecharge" }}</label>
+                    <div class="form-fields">
+                        <span>{{ localize "SW5E.FeatureRechargeOn" }}</span>
+                        {{numberInput system.recharge.value name="system.recharge.value"
+                            placeholder=(localize "SW5E.FeatureRechargeResult")}}
+                        <label class="checkbox">
+                            {{ localize "SW5E.Charged" }}
+                            <input type="checkbox" name="system.recharge.charged" {{checked system.recharge.charged}}>
+                        </label>
+                    </div>
                 </div>
-            </div>
             {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.FeatureAttack" }}</h3>

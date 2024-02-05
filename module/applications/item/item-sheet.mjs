@@ -4,11 +4,12 @@ import ActorTypeConfig from "../actor/type-config.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 import AdvancementMigrationDialog from "../advancement/advancement-migration-dialog.mjs";
 import Accordion from "../accordion.mjs";
+import EffectsElement from "../components/effects.mjs";
 import SourceConfig from "../source-config.mjs";
 import CheckboxSelect from "../actor/checkbox-select.mjs";
-import ActiveEffect5e from "../../documents/active-effect.mjs";
 import * as Trait from "../../documents/actor/trait.mjs";
 import Item5e from "../../documents/item.mjs";
+import { filteredKeys, filteredObject, sortObjectEntries } from "../../utils.mjs";
 
 /**
  * Override and extend the core ItemSheet implementation to handle specific item types.
@@ -51,7 +52,10 @@ export default class ItemSheet5e extends ItemSheet {
       ],
       accordions: [{
         headingSelector: ".description-header", contentSelector: ".editor"
-      }]
+      }],
+      elements: {
+        effects: "sw5e-effects"
+      }
     });
   }
 
@@ -105,10 +109,7 @@ export default class ItemSheet5e extends ItemSheet {
     const item = context.item;
     const source = item.toObject();
 
-    let armorType;
-    let wpnType;
-    let isAmmo;
-    let isRanged;
+    let itemType;
 
     // Game system configuration
     context.config = CONFIG.SW5E;
@@ -121,6 +122,7 @@ export default class ItemSheet5e extends ItemSheet {
       isEmbedded: item.isEmbedded,
       advancementEditable: (this.advancementConfigurationMode || !item.isEmbedded) && context.editable,
       rollData: this.item.getRollData(),
+      user: game.user,
 
       // Item Type, Status, and Details
       itemType: game.i18n.localize(CONFIG.Item.typeLabels[this.item.type]),
@@ -137,27 +139,32 @@ export default class ItemSheet5e extends ItemSheet {
       isCostlessAction: item.system.activation?.type in CONFIG.SW5E.staticAbilityActivationTypes,
       critical: item.system.critical,
 
+      // Identified state
+      isIdentifiable: "identified" in item.system,
+      isIdentified: item.system.identified !== false,
+
       // Vehicles
       isCrewed: item.system.activation?.type === "crew",
 
       // Armor Class
-      hasDexModifier: item.isArmor && item.system.armor?.type !== "shield",
+      hasDexModifier: item.isArmor && (item.system.type.value !== "shield"),
 
       // Item Type
-      armorType: (armorType = item.system?.armor?.type ?? ""),
-      wpnType: (wpnType = item.system?.weaponType ?? ""),
-      isAmmo: (isAmmo = item.system?.consumableType === "ammo"),
-      ammoType: isAmmo ? item.system?.ammoType ?? "" : "",
-      isRanged: (isRanged = ["simpleB", "martialB", "exoticB"].includes(wpnType)),
-      isMelee: (!isRanged && !isAmmo && (wpnType in CONFIG.SW5E.weaponStandardTypes)),
+      itemType: (itemType = item.system?.type?.value ?? ""),
+      itemSubtype: item.system?.type?.subtype ?? "",
+      itemBaseItem: item.system?.type?.baseItem ?? "",
+
+      isAmmo: item.type === "consumable" && itemType === "ammo",
+      isRanged: item.type === "weapon" && itemType.endsWith("B"),
+      isMelee: item.type === "weapon" && (itemType.endsWith("VW") || itemType.endsWith("LW")),
 
       // Starship Items
       isStarshipItem: item.isStarshipItem,
-      isStarshipArmor: armorType === "starship",
-      isStarshipShield: armorType === "ssshield",
-      isStarshipHyperdrive: armorType === "hyper",
-      isStarshipPowerCoupling: armorType === "powerc",
-      isStarshipReactor: armorType === "reactor",
+      isStarshipArmor: itemType === "starship",
+      isStarshipShield: itemType === "ssshield",
+      isStarshipHyperdrive: itemType === "hyper",
+      isStarshipPowerCoupling: itemType === "powerc",
+      isStarshipReactor: itemType === "reactor",
 
       // Advancement
       advancement: this._getItemAdvancement(item),
@@ -167,22 +174,42 @@ export default class ItemSheet5e extends ItemSheet {
       techcaster: item.system?.powercasting?.tech !== "none",
 
       // Prepare Active Effects
-      effects: ActiveEffect5e.prepareActiveEffectCategories(item.effects),
+      effects: EffectsElement.prepareCategories(item.effects),
+      elements: this.options.elements,
+
+      concealDetails: !game.user.isGM && (this.document.system.identified === false),
 
       // Item Properties
       propertiesList: item.propertiesList
     });
     context.abilityConsumptionTargets = this._getItemConsumptionTargets(item);
 
+    if ( ("properties" in item.system) && (item.type in CONFIG.SW5E.validProperties) ) {
+      const properties = item.system.validProperties.reduce((obj, k) => {
+        const v = CONFIG.SW5E.itemProperties[k];
+        if (v.numeric) obj.numeric[k] = { label: v.label, value: item.system.properties.get(k) };
+        else obj.bool[k] = { label: v.label, selected: item.system.properties.has(k) };
+        return obj;
+      }, { bool: {}, numeric: {} });
+      context.properties = properties.bool;
+      context.propertiesNumeric = properties.numeric;
+      if ( item.type !== "power" ) context.properties = sortObjectEntries(context.properties, "label");
+    }
+
+    // Handle item subtypes.
+    if ( ["feat", "loot", "consumable"].includes(item.type) ) {
+      const name = item.type === "feat" ? "feature" : item.type;
+      const itemTypes = CONFIG.SW5E[`${name}Types`][item.system.type.value];
+      if ( itemTypes ) {
+        context.itemType = itemTypes.label;
+        context.itemSubtypes = itemTypes.subtypes;
+      }
+    }
+
     // Special handling for specific item types
     switch (item.type) {
       case "feat":
         const featType = item.system.type;
-        const featureType = CONFIG.SW5E.featureTypes[featType?.value];
-        if (featureType) {
-          context.itemType = featureType.label;
-          context.featureSubtypes = featureType.subtypes;
-        }
         if (featType?.value === "starship" && featType.subtype === "role") context.starshipSpeed = {
           space: {
             label: "SW5E.BaseSpaceSpeed",
@@ -204,21 +231,11 @@ export default class ItemSheet5e extends ItemSheet {
         context.isAugment = item.system.modificationType === "augment";
         context.usesSlot = !(context.isCreatureMod || context.isAugment);
         break;
-      case "power":
-        context.powerComponents = { ...CONFIG.SW5E.powerComponents, ...CONFIG.SW5E.powerTags };
-        break;
-      case "loot":
-        const lootType = CONFIG.SW5E.lootTypes[item.system.type?.value];
-        if ( lootType ) {
-          context.itemType = lootType.label;
-          context.lootSubtypes = lootType.subtypes;
-        }
-        break;
       case "weapon":
-        const wpnType = item.system.weaponType;
-        const weaponType = CONFIG.SW5E.weaponTypes[wpnType];
-        if (weaponType) {
-          context.itemType = weaponType;
+        const weaponType = item.system.type.value;
+        const weaponTypeLabel = CONFIG.SW5E.weaponTypes[weaponType];
+        if (weaponTypeLabel) {
+          context.itemType = weaponTypeLabel;
         }
         context = this._getWeaponReloadProperties(context);
         break;
@@ -243,7 +260,7 @@ export default class ItemSheet5e extends ItemSheet {
     };
     context.enriched = {
       description: await TextEditor.enrichHTML(item.system.description.value, enrichmentOptions),
-      unidentified: await TextEditor.enrichHTML(item.system.description.unidentified, enrichmentOptions),
+      unidentified: await TextEditor.enrichHTML(item.system.unidentified?.description, enrichmentOptions),
       chat: await TextEditor.enrichHTML(item.system.description.chat, enrichmentOptions),
       invocations: await TextEditor.enrichHTML(item.system.invocations?.value, enrichmentOptions),
       atFlavorText: await TextEditor.enrichHTML(item.system.atFlavorText?.value, enrichmentOptions),
@@ -317,25 +334,23 @@ export default class ItemSheet5e extends ItemSheet {
    * @protected
    */
   async _getItemBaseTypes() {
-    const type = this.item.type === "equipment" ? "armor" : this.item.type;
-
-    const typeProperty = type === "armor" ? "armor.type" : `${type}Type`;
-    const baseType = foundry.utils.getProperty(this.item.system, typeProperty);
-
-    const baseIds = CONFIG.SW5E[`${baseType === "shield" ? "shield" : type}Ids`];
+    const baseIds = this.item.type === "equipment" ? {
+      ...CONFIG.SW5E.armorIds,
+      ...CONFIG.SW5E.shieldIds
+    } : CONFIG.SW5E[`${this.item.type}Ids`];
     if (baseIds === undefined) return {};
+
+    const baseType = this.item.system.type.value;
 
     const items = {};
     for (const [name, id] of Object.entries(baseIds)) {
       let baseItem = await Trait.getBaseItem(id);
-      // TODO: Fix this??
+      // TODO SW5E: Fix this??
       // For some reason, loading a compendium item after the cache is generated
       // deletes that item's data from the cache
       if (!baseItem) baseItem = await Trait.getBaseItem(id, { fullItem: true });
 
-      if (!baseItem) continue;
-
-      if (baseType !== foundry.utils.getProperty(baseItem.system, typeProperty)) continue;
+      if (baseType !== baseItem?.system?.type?.value) continue;
       items[name] = baseItem.name.replace(/\s*\([^)]*\)/g, ""); // Remove '(Rapid)' and '(Burst)' tags from item names
     }
     return Object.fromEntries(Object.entries(items).sort((lhs, rhs) => lhs[1].localeCompare(rhs[1])));
@@ -370,14 +385,14 @@ export default class ItemSheet5e extends ItemSheet {
     // Ammunition
     if (consume.type === "ammo") {
       return actor.itemTypes.consumable.reduce((ammo, i) => {
-        if (i.system.consumableType === "ammo") ammo[i.id] = `${i.name} (${i.system.quantity})`;
+        if (i.system.type.value === "ammo") ammo[i.id] = `${i.name} (${i.system.quantity})`;
         return ammo;
       }, {});
     }
 
     // Attributes
     else if (consume.type === "attribute") {
-      const attrData = game.sw5e.isV10 ? actor.system : actor.type;
+      const attrData = actor.type;
       return TokenDocument.implementation.getConsumedAttributes(attrData).reduce((obj, attr) => {
         obj[attr] = attr;
         return obj;
@@ -445,9 +460,8 @@ export default class ItemSheet5e extends ItemSheet {
       case "weapon":
         return game.i18n.localize(this.item.system.equipped ? "SW5E.Equipped" : "SW5E.Unequipped");
       case "feat":
-        const typeConfig = CONFIG.SW5E.featureTypes[this.item.system.type.value];
-        if (typeConfig?.subtypes) return typeConfig.subtypes[this.item.system.type.subtype] ?? null;
-        break;
+      case "consumable":
+        return this.item.system.type.label;
       case "power":
         return CONFIG.SW5E.powerPreparationModes[this.item.system.preparation];
       case "tool":
@@ -467,32 +481,22 @@ export default class ItemSheet5e extends ItemSheet {
     const props = [];
     const labels = this.item.labels;
     switch (this.item.type) {
-      case "consumable":
-        for ( const [k, v] of Object.entries(this.item.system.properties ?? {}) ) {
-          if ( v === true ) props.push(CONFIG.SW5E.physicalWeaponProperties[k]?.full);
-        }
-        break;
       case "equipment":
-        props.push(CONFIG.SW5E.equipmentTypes[this.item.system.armor.type]);
-        if (this.item.isArmor || this.item.isMountable) props.push(labels.armor);
-        if (this.item.system.properties) props.push(
-          ...Object.entries(this.item.system.properties)
-            .filter(e => ![false, undefined, null, 0].includes(e[1]))
-            .map(e => game.i18n.format(CONFIG.SW5E.equipmentProperties[e[0]]?.full, { value: e[1] }))
-        );
+        props.push(CONFIG.SW5E.equipmentTypes[this.item.system.type.value]);
+      case "consumable":
+      case "weapon":
+        if ( this.item.isArmor || this.item.isMountable ) props.push(labels.armor);
+        const ip = CONFIG.SW5E.itemProperties;
+        const vp = this.item.system.validProperties;
+        this.item.system.properties.forEach(k => {
+          if ( vp.has(k) ) props.push(ip[k].full);
+        });
         break;
       case "feat":
         props.push(labels.featType);
         break;
       case "power":
         props.push(labels.materials, ...labels.components.tags);
-        break;
-      case "weapon":
-        if (this.item.system.properties) props.push(
-          ...Object.entries(this.item.system.properties)
-            .filter(e => ![false, undefined, null, 0].includes(e[1]))
-            .map(e => game.i18n.format(CONFIG.SW5E.weaponProperties[e[0]]?.full ?? "?", { value: e[1] }))
-        );
         break;
 
       // TODO SW5E: Work out these
@@ -544,7 +548,7 @@ export default class ItemSheet5e extends ItemSheet {
       ctx.reloadUsesAmmo = itemSysdata.ammo?.types?.length;
       if (actor && ctx.reloadUsesAmmo) {
         ctx.reloadAmmo = actor.itemTypes.consumable.reduce((ammo, i) => {
-          if (i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes(i.system.ammoType)) {
+          if (i.system.consumableType === "ammo" && itemSysdata.ammo?.types.includes(i.system.type.subtype)) {
             ammo[i.id] = `${i.name} (${i.system.quantity})`;
           }
           return ammo;
@@ -555,7 +559,7 @@ export default class ItemSheet5e extends ItemSheet {
         ctx.reloadDisabled = ctx.reloadUsesAmmo && !itemSysdata.ammo.target;
       }
       ctx.reloadFull = itemSysdata.ammo?.value === itemSysdata.ammo?.max || ctx.reloadDisabled;
-      if (itemSysdata.properties?.ovr) {
+      if (itemSysdata.properties?.has("ovr")) {
         ctx.reloadActLabel = "SW5E.WeaponCoolDown";
         ctx.reloadLabel = "SW5E.WeaponOverheat";
       } else {
@@ -605,6 +609,26 @@ export default class ItemSheet5e extends ItemSheet {
     // Handle Damage array
     const damage = formData.system?.damage;
     if (damage) damage.parts = Object.values(damage?.parts || {}).map(d => [d[0] || "", d[1] || ""]);
+
+    // Handle properties
+    if ( foundry.utils.hasProperty(formData, "system.properties") ) {
+      const keys = new Set(Object.keys(formData.system.properties));
+      switch (foundry.utils.getType(this.object.system.properties)) {
+        case "Set":
+          const preserveSet = this.object.system.properties.difference(keys);
+          formData.system.properties = [...filteredKeys(formData.system.properties), ...preserveSet];
+          break;
+        case "Map":
+          const preserveObj = filteredObject(this.object.system.properties, (([k,v]) => !keys.has(k)));
+          const deleted = Object.fromEntries(
+            Object.entries(formData.system.properties)
+              .filter(([k,v]) => [false, null, undefined].includes(v) && this.object.system.properties.has(k))
+              .map(([k,v]) => [`-=${k}`, null])
+          );
+          formData.system.properties = {...filteredObject(formData.system.properties), ...preserveObj, ...deleted};
+          break;
+      }
+    }
 
     // Check max uses formula
     const uses = formData.system?.uses;
@@ -681,16 +705,6 @@ export default class ItemSheet5e extends ItemSheet {
     if (this.isEditable) {
       html.find(".config-button").click(this._onConfigMenu.bind(this));
       html.find(".damage-control").click(this._onDamageControl.bind(this));
-      html.find(".effect-control").click(ev => {
-        const unsupported = game.sw5e.isV10 && this.item.isOwned;
-        if (unsupported) {
-          ui.notifications.warn(
-            "Managing Active Effects within an Owned Item is not currently supported and will be added in a subsequent update."
-          );
-          return null;
-        }
-        ActiveEffect5e.onManageActiveEffect(ev, this.item);
-      });
       html.find(".advancement .item-control").click(event => {
         const t = event.currentTarget;
         if (t.dataset.action) this._onAdvancementAction(t, t.dataset.action);
@@ -842,16 +856,15 @@ export default class ItemSheet5e extends ItemSheet {
 
   /** @inheritdoc */
   _canDragStart(selector) {
-    if ( selector === ".advancement-item" ) return true;
-    return super._canDragStart(selector);
+    if ( [".advancement-item", "[data-effect-id]"].includes(selector) ) return true;
+    return this.isEditable;
   }
 
   /* -------------------------------------------- */
 
   /** @inheritDoc */
   _canDragDrop(selector) {
-    if ( selector === ".advancement" ) return this.item.testUserPermission(game.user, "OWNER");
-    return super._canDragDrop(selector);
+    return this.isEditable;
   }
 
   /* -------------------------------------------- */
@@ -1088,7 +1101,7 @@ export default class ItemSheet5e extends ItemSheet {
 
     if (oldAmmo && oldLoad !== 0) {
       const ammoUpdates = {};
-      switch (oldAmmoSysdata?.ammoType) {
+      switch (oldAmmoSysdata?.type.subtype) {
         case "cartridge":
         case "dart":
         case "missile":
@@ -1132,7 +1145,7 @@ export default class ItemSheet5e extends ItemSheet {
     const target = this.item.system?.ammo?.target;
     if (target) {
       const ammo = this.item.actor?.items?.get(target);
-      if (ammo) disabled.push(ammo.system.ammoType);
+      if (ammo) disabled.push(ammo.system.type.subtype);
     }
     const result = await CheckboxSelect.checkboxSelect({
       title: game.i18n.localize("SW5E.WeaponAmmoConfigureTitle"),

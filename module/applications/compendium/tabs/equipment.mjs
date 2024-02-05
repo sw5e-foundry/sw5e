@@ -51,19 +51,15 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
         equipment: "system.properties"
       };
       const category = {
-        consumable: "system.consumableType",
-        equipment: "system.armor.type",
-        modification: "system.modificationType",
-        starshipmod: "system.system.value",
-        tool: "system.toolType",
-        weapon: "system.weaponType"
+        default: "system.type.value",
       };
       const subcategory = {
-        consumable: "system.ammoType",
+        default: "system.type.subtype",
         starshipmod: "system.grade.value",
         weapon: "system.weaponClass",
       };
       const optional = {
+        default: ["system.type.value", "system.type.subtype"],
         starshipmod: ["system.baseCost.value", "system.grade.value"],
         weapon: ["system.weaponClass"]
       };
@@ -90,9 +86,9 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               rarity[itemData.type] ?? rarity.default,
               price[itemData.type] ?? price.default,
               properties[itemData.type],
-              category[itemData.type],
-              subcategory[itemData.type]
-            ].filter(f => !!f && !(optional[itemData.type]??[]).includes(f));
+              category[itemData.type] ?? category.default,
+              subcategory[itemData.type] ?? subcategory.default,
+            ].filter(f => !!f && !([...(optional[itemData.type]??[]), ...(optional.default??[])]).includes(f));
             if (!this.hasAllIndexFields(itemData, _fields)) {
               console.warn(
                 `Item '${itemData.name}' does not have all required data fields.`
@@ -110,10 +106,10 @@ export class CompendiumBrowserEquipmentTab extends CompendiumBrowserTab {
               value: itemData.system.source.label ?? itemData.system.source.custom ?? itemData.system.source
             };
             if (itemData?.system?.category?.value === undefined) itemData.system.category = {
-              value: (itemData.type in category) ? foundry.utils.getProperty(itemData, category[itemData.type]) : null
+              value: foundry.utils.getProperty(itemData, category[itemData.type] ?? category.default)
             };
             if (itemData?.system?.subcategory?.value === undefined) itemData.system.subcategory = {
-              value: (itemData.type in subcategory) ? foundry.utils.getProperty(itemData, subcategory[itemData.type]) : null
+              value: foundry.utils.getProperty(itemData, subcategory[itemData.type] ?? subcategory.default)
             };
             if (itemData.type === "starshipmod" && [null,undefined].includes(itemData.system.baseCost?.value)) {
               const baseCost = CONFIG.SW5E.ssModSystemsBaseCost[itemData.system.system.value.toLowerCase()];

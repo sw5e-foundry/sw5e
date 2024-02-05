@@ -1,96 +1,96 @@
 {{#if data.title.show}}
-<header>
-  <h{{title.level1}}>{{data.name}}</h{{title.level1}}>
-</header>
+    <header>
+        <h{{title.level1}}>{{data.name}}</h{{title.level1}}>
+    </header>
 {{/if}}
 
 {{#if linked.document}}
 
-  <section>
-    {{{enriched.value}}}
+    <section class="journal-page-content">
+        {{{enriched.value}}}
 
-    <h{{title.level2}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.FeaturesHeader"}}</h{{title.level2}}>
-    <p>
-      {{localize "JOURNALENTRYPAGE.SW5E.Class.FeaturesDescription" name=linked.name lowercaseName=linked.lowercaseName}}
-    </p>
-
-    {{#if (or advancement.hp enriched.additionalHitPoints)}}
-      <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsHeader"}}</h{{title.level3}}>
-      <p>
-        {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitDice" dice=advancement.hp.hitDice class=linked.lowercaseName}}}<br>
-        {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsLevel1" max=advancement.hp.max}}}<br>
-        {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsLevelX" dice=advancement.hp.hitDice
-          average=advancement.hp.average class=linked.lowercaseName}}}
-      </p>
-      {{{enriched.additionalHitPoints}}}
-    {{/if}}
-
-    {{#if (or advancement.traits enriched.additionalTraits)}}
-      <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.TraitsHeader"}}</h{{title.level3}}>
-      {{#if advancement.traits}}
+        <h{{title.level2}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.FeaturesHeader"}}</h{{title.level2}}>
         <p>
-          <strong>{{localize "SW5E.Armor"}}:</strong> {{advancement.traits.armor}}<br> 
-          <strong>{{localize "TYPES.Item.weaponPl"}}:</strong> {{advancement.traits.weapons}}<br>
-          <strong>{{localize "TYPES.Item.toolPl"}}:</strong> {{advancement.traits.tools}}<br>
-          <strong>{{localize "SW5E.ClassSaves"}}:</strong> {{advancement.traits.saves}}<br>
-          <strong>{{localize "SW5E.Skills"}}:</strong> {{advancement.traits.skills}}
+            {{localize "JOURNALENTRYPAGE.SW5E.Class.FeaturesDescription" name=linked.name lowercaseName=linked.lowercaseName}}
         </p>
-      {{/if}}
-      {{{enriched.additionalTraits}}}
-    {{/if}}
 
-    {{#if (or advancement.equipment enriched.additionalEquipment)}}
-      <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.EquipmentHeader"}}</h{{title.level3}}>
-      {{{enriched.additionalEquipment}}}
-    {{/if}}
-
-    {{> "sw5e.journal-table" table=table level=title.level3
-      caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableCaption" class=linked.name)}}
-
-    {{#each features}}
-      <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
-      {{{this.description}}}
-    {{/each}}
-
-    {{#if optionalTable}}
-      <h{{title.level2}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.OptionalFeaturesCaption"}}</h{{title.level2}}>
-      <p>{{localize "JOURNALENTRYPAGE.SW5E.Class.OptionalFeaturesDescription" class=linked.lowercaseName}}</p>
-
-      {{> "sw5e.journal-table" table=optionalTable level=title.level3
-        caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableOptionalCaption" class=linked.name)}}
-
-      {{#each optionalFeatures}}
-        <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
-        {{{this.description}}}
-      {{/each}}
-    {{/if}}
-
-    {{#if (or enriched.archetype archetypes)}}
-      <h{{title.level2}}>
-        {{#if system.archetypeHeader}}{{system.archetypeHeader}}
-        {{else}}{{localize "JOURNALENTRYPAGE.SW5E.Class.ArchetypeItems"}}{{/if}}
-      </h{{title.level2}}>
-      {{{enriched.archetype}}}
-
-      {{#each archetypes}}
-        <h{{@root.title.level3}}>{{this.name}}</h{{@root.title.level3}}>
-        {{{this.description}}}
-
-        {{#if this.table}}
-          {{> "sw5e.journal-table" table=this.table level=title.level4
-            caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableCaption" class=this.name)}}
+        {{#if (or advancement.hp enriched.additionalHitPoints)}}
+            <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsHeader"}}</h{{title.level3}}>
+            <p>
+                {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitDice" dice=advancement.hp.hitDice class=linked.lowercaseName}}}<br>
+                {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsLevel1" max=advancement.hp.max}}}<br>
+                {{{localize "JOURNALENTRYPAGE.SW5E.Class.HitPointsLevelX" dice=advancement.hp.hitDice
+                    average=advancement.hp.average class=linked.lowercaseName}}}
+            </p>
+            {{{enriched.additionalHitPoints}}}
         {{/if}}
 
-        {{#each this.features}}
-          <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
-          {{{this.description}}}
+        {{#if (or advancement.traits enriched.additionalTraits)}}
+            <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.TraitsHeader"}}</h{{title.level3}}>
+            {{#if advancement.traits}}
+                <p>
+                    <strong>{{localize "SW5E.Armor"}}:</strong> {{advancement.traits.armor}}<br> 
+                    <strong>{{localize "TYPES.Item.weaponPl"}}:</strong> {{advancement.traits.weapons}}<br>
+                    <strong>{{localize "TYPES.Item.toolPl"}}:</strong> {{advancement.traits.tools}}<br>
+                    <strong>{{localize "SW5E.ClassSaves"}}:</strong> {{advancement.traits.saves}}<br>
+                    <strong>{{localize "SW5E.Skills"}}:</strong> {{advancement.traits.skills}}
+                </p>
+            {{/if}}
+            {{{enriched.additionalTraits}}}
+        {{/if}}
+
+        {{#if (or advancement.equipment enriched.additionalEquipment)}}
+            <h{{title.level3}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.EquipmentHeader"}}</h{{title.level3}}>
+            {{{enriched.additionalEquipment}}}
+        {{/if}}
+
+        {{> "sw5e.journal-table" table=table level=title.level3
+            caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableCaption" class=linked.name)}}
+
+        {{#each features}}
+            <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
+            {{{this.description}}}
         {{/each}}
-      {{/each}}
-    {{/if}}
-  </section>
+
+        {{#if optionalTable}}
+            <h{{title.level2}}>{{localize "JOURNALENTRYPAGE.SW5E.Class.OptionalFeaturesCaption"}}</h{{title.level2}}>
+            <p>{{localize "JOURNALENTRYPAGE.SW5E.Class.OptionalFeaturesDescription" class=linked.lowercaseName}}</p>
+
+            {{> "sw5e.journal-table" table=optionalTable level=title.level3
+                caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableOptionalCaption" class=linked.name)}}
+
+            {{#each optionalFeatures}}
+                <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
+                {{{this.description}}}
+            {{/each}}
+        {{/if}}
+
+        {{#if (or enriched.archetype archetypes)}}
+            <h{{title.level2}}>
+                {{#if system.archetypeHeader}}{{system.archetypeHeader}}
+                {{else}}{{localize "JOURNALENTRYPAGE.SW5E.Class.ArchetypeItems"}}{{/if}}
+            </h{{title.level2}}>
+            {{{enriched.archetype}}}
+
+            {{#each archetypes}}
+                <h{{@root.title.level3}}>{{this.name}}</h{{@root.title.level3}}>
+                {{{this.description}}}
+
+                {{#if this.table}}
+                    {{> "sw5e.journal-table" table=this.table level=title.level4
+                        caption=(localize "JOURNALENTRYPAGE.SW5E.Class.TableCaption" class=this.name)}}
+                {{/if}}
+
+                {{#each this.features}}
+                    <h{{@root.title.level4}}>{{this.name}}</h{{@root.title.level4}}>
+                    {{{this.description}}}
+                {{/each}}
+            {{/each}}
+        {{/if}}
+    </section>
 
 {{else}}
-  <section>
-    {{localize "JOURNALENTRYPAGE.SW5E.Class.NoValidClass"}}
-  </section>
+    <section>
+        {{localize "JOURNALENTRYPAGE.SW5E.Class.NoValidClass"}}
+    </section>
 {{/if}}

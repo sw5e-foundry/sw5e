@@ -373,7 +373,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
       if (val !== foundry.utils.getProperty(item, "system.equipped")) return;
       if (!val && item.type === "equipment") {
         for (const i of this.actor.items) {
-          if (i.type === "equipment" && i.system.armor.type === item.system.armor.type && i.system.equipped) {
+          if (i.type === "equipment" && i.system.type.value === item.system.type.value && i.system.equipped) {
             updates.push({ _id: i.id, "system.equipped": false });
           }
         }
@@ -582,7 +582,7 @@ export default class ActorSheet5eStarship extends ActorSheet5e {
     if (a.dataset.action === "clear") {
       const key = a.dataset.key;
       const deploy = this.actor.system.attributes.deployment[key];
-      if (deploy) for (const uuid of deploy.items ?? [ deploy.value ]) {
+      if (deploy) for (const uuid of deploy.items ?? [deploy.value]) {
         const actor = fromUuidSynchronous(uuid);
         this.actor.ssUndeployCrew(actor);
       }

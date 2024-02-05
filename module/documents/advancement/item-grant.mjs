@@ -32,8 +32,8 @@ export default class ItemGrantAdvancement extends Advancement {
    * @type {Set<string>}
    */
   static VALID_TYPES = new Set([
-    "backpack",
     "consumable",
+    "container",
     "equipment",
     "feat",
     "loot",

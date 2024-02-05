@@ -3,25 +3,44 @@
     <header class="sheet-header loot-header flexrow">
         <div class="composed-icon profile">
             {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
             {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}" />
+                {{#if system.identified}}
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                    <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                           placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
                 <span class="item-status">{{itemStatus}}</span>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                        {{ localize "SW5E.Identified" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unidentified.Title" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
             </div>
 
             <ul class="summary flexrow">
                 <li>
-                    <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
-                    </select>
+                    {{#if concealDetails}}
+                        <span>{{ localize "SW5E.Unidentified.Title" }}</span>
+                    {{else}}
+                        <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
+                            {{selectOptions config.itemRarity selected=system.rarity blank=""}}
+                        </select>
+                    {{/if}}
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -47,6 +66,8 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
+
             <h3 class="form-header">{{ localize "SW5E.ItemLootDetails" }}</h3>
 
             {{!-- Loot Type --}}
@@ -57,17 +78,34 @@
                 </select>
             </div>
 
-            {{#if lootSubtypes}}
+            {{#if itemSubtypes}}
                 <div class="form-group">
                     <label>
                         {{localize "SW5E.ItemLootSubtype"
                             category=(lookup (lookup config.lootTypes system.type.value) "label")}}
                     </label>
                     <select name="system.type.subtype">
-                        {{selectOptions lootSubtypes selected=system.type.subtype blank=""}}
+                        {{selectOptions itemSubtypes selected=system.type.subtype blank=""}}
                     </select>
                 </div>
             {{/if}}
+
+            {{!-- Loot Properties --}}
+            <div class="form-group stacked loot-properties">
+                <label>{{ localize "SW5E.ItemLootProperties" }}</label>
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    </label>
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                    </label>
+                {{/each}}
+            </div>
+
+            {{/sw5e-concealSection}}
         </div>
 
         {{!-- Effects Tab --}}

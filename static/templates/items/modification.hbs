@@ -62,33 +62,30 @@
             {{!-- Modification Slot --}}
             <div class="form-group">
                 {{#if usesSlot}}
-                <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
-                <select name="system.modificationSlot">
-                    {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
-                    {{selectOptions modSlots selected=../system.modificationSlot}}
-                    {{/with}}
-                </select>
+                    <label>{{ localize "SW5E.ItemModificationSlot" }}</label>
+                    <select name="system.modificationSlot">
+                        {{#with (lookup config.modificationSlots system.modificationType) as |modSlots| }}
+                            {{selectOptions modSlots selected=../system.modificationSlot}}
+                        {{/with}}
+                    </select>
                 {{/if}}
             </div>
 
             {{!-- Weapon/Equipment Properties --}}
-            {{#if propertiesList}}
+            {{#if (or properties propertiesNumeric)}}
                 <h3 class="form-header">{{ localize "SW5E.ItemModificationPropertyPl" }}</h3>
                 <div class="form-group stacked item-properties">
                     <label>{{ localize "SW5E.ItemProperties" }}</label>
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
-                        <label class="checkbox" data-tooltip="{{property.desc}}">
-                            <input class="tristate-checkbox" type="checkbox" name="system.properties.{{key}}"
-                                   {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
+                    {{#each properties}}
+                        <label class="checkbox">
+                            <input class="tristate-checkbox" type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
                         </label>
-                    {{/if}} {{/each}}
-
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
-                        <label class="number" data-tooltip="{{property.desc}}">
-                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}"
-                               value="{{lookup ../system.properties key}}" data-dtype="Number">
+                    {{/each}}
+                    {{#each propertiesNumeric}}
+                        <label class="number">
+                            {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
                         </label>
-                    {{/if}} {{/each}}
+                    {{/each}}
                 </div>
             {{/if}}
 
@@ -108,21 +105,21 @@
                 </h4>
                 <ol class="damage-parts form-group">
                     {{#each system.damage.parts as |part i| }}
-                    <li class="damage-part flexrow" data-damage-part="{{i}}">
-                        <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this "0"}}"/>
-                        <select name="system.damage.parts.{{i}}.1">
-                            {{#select (lookup this "1") }}
-                            <option value="">{{ localize "SW5E.None" }}</option>
-                            {{#each ../config.damageTypes as |name type|}}
-                            <option value="{{type}}">{{name}}</option>
-                            {{/each}}
-                            {{#each ../config.healingTypes as |name type|}}
-                            <option value="{{type}}">{{name}}</option>
-                            {{/each}}
-                            {{/select}}
-                        </select>
-                        <a class="damage-control delete-damage"><i class="fas fa-minus"></i></a>
-                    </li>
+                        <li class="damage-part flexrow" data-damage-part="{{i}}">
+                            <input type="text" name="system.damage.parts.{{i}}.0" value="{{lookup this '0'}}" data-formula-editor/>
+                            <select name="system.damage.parts.{{i}}.1">
+                                {{#select (lookup this "1")}}
+                                    <option value="">{{ localize "SW5E.None" }}</option>
+                                    <optgroup label="{{localize 'SW5E.Damage'}}">
+                                        {{selectOptions @root.config.damageTypes labelAttr="label"}}
+                                    </optgroup>
+                                    <optgroup label="{{localize 'SW5E.Healing'}}">
+                                        {{selectOptions @root.config.healingTypes labelAttr="label"}}
+                                    </optgroup>
+                                {{/select}}
+                            </select>
+                            <a class="damage-control delete-damage"><i class="fas fa-minus"></i></a>
+                        </li>
                     {{/each}}
                 </ol>
             {{/if}}
@@ -150,12 +147,6 @@
                     <div class="form-fields">
                         <input type="text" name="system.strength" value="{{system.strength}}" data-dtype="Number" placeholder="{{ localize 'SW5E.Unchanged' }}"/>
                     </div>
-                </div>
-
-                {{!-- Stealth Disadvantage --}}
-                <div class="form-group">
-                    <label>{{ localize "SW5E.ItemEquipmentStealthDisav" }}</label>
-                    <input class="tristate-checkbox" type="checkbox" name="system.stealth" value="1" {{checked system.stealth}}/>
                 </div>
             {{/if}}
         </div>

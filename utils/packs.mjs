@@ -34,17 +34,18 @@ const PACK_SRC = "./packs/";
 const DB_CACHE = {};
 
 /* ----------------------------------------- */
-/*  Clean Packs
+/*  Clean Packs                              */
 /* ----------------------------------------- */
 
 /**
  * Removes unwanted flags, permissions, and other data from entries before extracting or compiling.
  * @param {object} data  Data for a single entry to clean.
- * @param {object} [options]
- * @param {boolean} [options.clearSourceId]  Should the core sourceId flag be deleted.
+ * @param {object} [options={}]
+ * @param {boolean} [options.clearSourceId=true]  Should the core sourceId flag be deleted.
+ * @param {number} [options.ownership=0]          Value to reset default ownership to.
  */
-function cleanPackEntry(data, { clearSourceId = true } = {}) {
-  if (data.ownership) data.ownership = { default: 0 };
+function cleanPackEntry(data, { clearSourceId=true, ownership=0 } = {}) {
+  if (data.ownership) data.ownership = { default: ownership };
   if (clearSourceId) delete data.flags?.core?.sourceId;
   if (typeof data.folder === "string") data.folder = null;
   delete data.system?.consume?.ammount;
@@ -89,6 +90,7 @@ function cleanPackEntry(data, { clearSourceId = true } = {}) {
 
   if (data.effects) data.effects.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
   if (data.items) data.items.forEach(i => cleanPackEntry(i, { clearSourceId: false }));
+  if (data.pages) data.pages.forEach(i => cleanPackEntry(i, { ownership: -1 }));
   if (data.system?.description?.value) data.system.description.value = cleanString(data.system.description.value);
   if (data.label) data.label = cleanString(data.label);
   if (data.name) data.name = cleanString(data.name);
@@ -168,7 +170,7 @@ function cleanPacks() {
 export const clean = cleanPacks;
 
 /* ----------------------------------------- */
-/*  Compile Packs
+/*  Compile Packs                            */
 /* ----------------------------------------- */
 
 /**
@@ -196,7 +198,7 @@ async function compilePacks() {
 export const compile = compilePacks;
 
 /* ----------------------------------------- */
-/*  Extract Packs
+/*  Extract Packs                            */
 /* ----------------------------------------- */
 
 function sortObject(object) {
@@ -307,6 +309,15 @@ function deslugify(string) {
 }
 
 /**
+ * Standardize name format.
+ * @param {string} name
+ * @returns {string}
+ */
+function slugify(name) {
+  return name.toLowerCase().replace("'", "").replace(/[^a-z0-9]+/gi, " ").trim().replace(/\s+|-{2,}/g, "-");
+}
+
+/**
  * Determine a subfolder name based on which pack is being extracted.
  * @param {object} data  Data for the entry being extracted.
  * @param {string} pack  Name of the pack.
@@ -335,14 +346,9 @@ function _getSubfolderName(data, pack) {
       // foundry type
       if (["adventuringgear", "enhanceditems"].includes(pack)) parts.add(data.type);
       // item type
-      parts.add(data.system?.armor?.type);
-      parts.add(data.system?.consumableType);
-      parts.add(data.system?.weaponType);
-      parts.add(data.system?.modificationType);
       parts.add(data.system?.type?.value);
       parts.add(data.system?.system?.value.toLowerCase());
       // item subtype
-      parts.add(data.system?.ammoType);
       parts.add(data.system?.type?.subtype);
 
       parts.delete(undefined);
@@ -386,7 +392,7 @@ function _getSubfolderName(data, pack) {
       return data.system.details.type.value;
     // other
     case "monstertraits":
-      return data.system?.weaponType ?? data.system?.type?.value ?? data.type;
+      return data.system?.type?.value ?? data.type;
 
     default:
       return "";

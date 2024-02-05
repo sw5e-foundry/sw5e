@@ -1,0 +1,124 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <div class="composed-icon profile">
+            {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
+        </div>
+
+        <div class="header-details flexrow">
+            <h1 class="charname">
+                {{#if system.identified}}
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                    <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                           placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
+            </h1>
+
+            <div class="item-subtitle">
+                <h4 class="item-type">{{itemType}}</h4>
+                <label class="equipped">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}>
+                    {{#if system.equipped}}
+                        {{ localize "SW5E.Equipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unequipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                        {{ localize "SW5E.Identified" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unidentified.Title" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
+            </div>
+
+            <ul class="summary flexrow">
+                <li>
+                    {{#if concealDetails}}
+                        <span>{{ localize "SW5E.Unidentified.Title" }}</span>
+                    {{else}}
+                        <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
+                            {{selectOptions config.itemRarity selected=system.rarity blank=""}}
+                        </select>
+                    {{/if}}
+                </li>
+                <li>
+                    {{> "sw5e.item-source"}}
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    {{!-- Item Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+        <a class="item" data-tab="contents">{{localize "SW5E.Contents"}}</a>
+        <a class="item" data-tab="description">{{localize "SW5E.Description"}}</a>
+        <a class="item" data-tab="details">{{localize "SW5E.Details"}}</a>
+    </nav>
+
+    {{!-- Item Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Contents Tab --}}
+        <div class="tab inventory flexcol" data-group="primary" data-tab="contents">
+            {{> "sw5e.inventory" sections=inventory}}
+        </div>
+
+        {{!-- Description Tab --}}
+        {{> "sw5e.item-description"}}
+
+        {{!-- Details Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
+
+            <h3 class="form-header">{{localize "SW5E.ItemContainerDetails"}}</h3>
+
+            {{!-- Container Properties --}}
+            <div class="form-group stacked container-properties">
+                <label>{{ localize "SW5E.ItemContainerProperties" }}</label>
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    </label>
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                    </label>
+                {{/each}}
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.ItemContainerCapacity"}}</label>
+                <div class="form-fields">
+                    {{numberInput system.capacity.value name="system.capacity.value" placeholder="&mdash;"}}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.ItemContainerCapacityType"}}</label>
+                <select name="system.capacity.type">
+                    {{selectOptions config.itemCapacityTypes selected=system.capacity.type}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>{{localize "SW5E.Attunement"}}</label>
+                <select name="system.attunement" data-dtype="Number">
+                    {{selectOptions config.attunements selected=system.attunement}}
+                </select>
+            </div>
+
+            {{/sw5e-concealSection}}
+        </div>
+    </section>
+</form>

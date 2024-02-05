@@ -1,0 +1,91 @@
+<section class="content">
+    <section class="header">
+        {{#if school}}
+            <div class="school">
+                {{#with (lookup @root.config.powerSchools school) as |schoolConfig|}}
+                    <sw5e-icon src="{{ schoolConfig.icon }}"></sw5e-icon>
+                {{/with}}
+            </div>
+        {{/if}}
+        <div class="top">
+            <img src="{{ img }}" alt="{{ name }}">
+            <div class="name name-stacked">
+                <span class="title">{{ name }}</span>
+                <span class="subtitle">{{{ subtitle }}}</span>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="price">
+                {{#if price}}
+                    <i class="currency {{ price.denomination }}"></i>
+                    <span>{{ sw5e-numberFormat price.value }}</span>
+                {{/if}}
+            </div>
+
+            <div class="charges">
+                {{#if uses.max}}
+                    <span class="value">{{ uses.value }}</span>
+                    <span class="separator">&sol;</span>
+                    <span class="max">{{ uses.max }}</span>
+                    <span>{{ localize "SW5E.Charges" }}</span>
+                {{/if}}
+            </div>
+            <div class="weight">
+                {{#if weight}}
+                    <i class="fas fa-weight-hanging"></i>
+                    <span>{{ weight }}</span>
+                {{/if}}
+            </div>
+        </div>
+    </section>
+    {{#if (eq type "power")}}
+        <ul class="info unlist">
+            <li>
+                <strong>{{ localize "SW5E.PowerCastTime" }}:</strong>
+                <span class="value">
+                    {{ labels.activation }}
+                    {{#if activation.condition}}
+                        <span class="condition">({{ activation.condition }})</span>
+                    {{/if}}
+                </span>
+            </li>
+            <li>
+                <strong>{{ localize "SW5E.Range" }}:</strong>
+                <span class="value">{{ labels.range }}</span>
+            </li>
+            <li>
+                <strong>{{ localize "SW5E.Target" }}:</strong>
+                <span class="value">{{ labels.target }}</span>
+            </li>
+            <li>
+                <strong>{{ localize "SW5E.Components" }}:</strong>
+                <span class="value">
+                    {{ labels.components.vsm }}
+                    {{#if materials.value}}
+                        <span class="materials">({{ materials.value }})</span>
+                    {{/if}}
+                </span>
+            </li>
+            <li>
+                <strong>{{ localize "SW5E.Duration" }}:</strong>
+                <span class="value">{{ labels.concentrationDuration }}</span>
+            </li>
+        </ul>
+    {{/if}}
+    <section class="description">{{{ description.value }}}</section>
+    <ul class="pills">
+        {{#if isPower}}
+            {{#each tags}}
+                <li class="pill pill-sm">
+                    <span class="label">{{ this }}</span>
+                </li>
+            {{/each}}
+        {{else}}
+            {{#each properties}}
+                <li class="pill pill-sm">
+                    <span class="label">{{ this }}</span>
+                </li>
+            {{/each}}
+        {{/if}}
+    </ul>
+</section>

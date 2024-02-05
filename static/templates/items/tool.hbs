@@ -4,32 +4,54 @@
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
             {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
             {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                {{#if system.identified}}
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                    <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                           placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
-                <span class="item-status">{{itemStatus}}</span>
+                <label class="equipped">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}>
+                    {{#if system.equipped}}
+                        {{ localize "SW5E.Equipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unequipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                        {{ localize "SW5E.Identified" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unidentified.Title" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
             </div>
 
             <ul class="summary flexrow">
+                <li>{{ system.type.label }}</li>
                 <li>
-                    {{#if system.toolType}}
-                      {{lookup config.toolTypes system.toolType}}
+                    {{#if concealDetails}}
+                        <span>{{ localize "SW5E.Unidentified.Title" }}</span>
                     {{else}}
-                      {{localize "ITEM.TypeTool"}}
+                        <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
+                            {{selectOptions config.itemRarity selected=system.rarity blank=""}}
+                        </select>
                     {{/if}}
-                </li>
-                <li>
-                    <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
-                    </select>
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -53,67 +75,74 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
 
-            {{!-- Tool Status --}}
-            <div class="form-group stacked">
-                <label>{{ localize "SW5E.ItemToolStatus" }}</label>
-                <div class="form-fields">
-                    <label class="checkbox">
-                        <input type="checkbox" name="system.equipped" {{ checked system.equipped }}>
-                        {{ localize "SW5E.Equipped" }}
-                    </label>
+                {{!-- Tool Type --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemToolType" }}</label>
+                    <select name="system.type.value">
+                        {{selectOptions config.toolTypes selected=system.type.value blank=""}}
+                    </select>
                 </div>
-            </div>
 
-            {{!-- Tool Type --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemToolType" }}</label>
-                <select name="system.toolType">
-                    {{selectOptions config.toolTypes selected=system.toolType blank=""}}
-                </select>
-            </div>
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemToolBase" }}</label>
+                    <select name="system.type.baseItem">
+                        {{selectOptions baseItems selected=system.type.baseItem blank=""}}
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemToolBase" }}</label>
-                <select name="system.baseItem">
-                    {{selectOptions baseItems selected=system.baseItem blank=""}}
-                </select>
-            </div>
+                {{!-- Tool Properties --}}
+                <div class="form-group stacked tool-properties">
+                    <label>{{ localize "SW5E.ItemToolProperties" }}</label>
+                    {{#each properties}}
+                        <label class="checkbox">
+                            <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                        </label>
+                    {{/each}}
+                    {{#each propertiesNumeric}}
+                        <label class="number">
+                            {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                        </label>
+                    {{/each}}
+                </div>
 
-            <div class="form-group">
-                <label>{{localize "SW5E.Attunement"}}</label>
-                <select name="system.attunement" data-dtype="Number">
-                    {{selectOptions config.attunements selected=system.attunement}}
-                </select>
-            </div>
+                <div class="form-group">
+                    <label>{{localize "SW5E.Attunement"}}</label>
+                    <select name="system.attunement" data-dtype="Number">
+                        {{selectOptions config.attunements selected=system.attunement}}
+                    </select>
+                </div>
 
-            {{!-- Tool Proficiency --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemToolProficiency" }}</label>
-                <select name="system.proficient" data-dtype="Number">
-                    {{selectOptions config.proficiencyLevelsLabels selected=system.proficient blank=(localize "SW5E.Automatic")}}
-                </select>
-            </div>
+                {{!-- Tool Proficiency --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemToolProficiency" }}</label>
+                    <select name="system.proficient" data-dtype="Number">
+                        {{selectOptions config.proficiencyLevelsLabels selected=system.proficient blank=(localize "SW5E.Automatic")}}
+                    </select>
+                </div>
 
-            {{!-- Ability Check --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.DefaultAbilityCheck" }}</label>
-                <select name="system.ability">
-                    {{selectOptions config.abilities selected=system.ability labelAttr="label" blank=(localize "SW5E.Default")}}
-                </select>
-            </div>
+                {{!-- Ability Check --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.DefaultAbilityCheck" }}</label>
+                    <select name="system.ability">
+                        {{selectOptions config.abilities selected=system.ability labelAttr="label" blank=(localize "SW5E.Default")}}
+                    </select>
+                </div>
 
-            {{!-- Tool Bonus --}}
-            <div class="form-group">
-                <label>{{ localize "SW5E.ItemToolBonus" }}</label>
-                <input type="text" name="system.bonus" value="{{system.bonus}}" data-formula-editor/>
-            </div>
+                {{!-- Tool Bonus --}}
+                <div class="form-group">
+                    <label>{{ localize "SW5E.ItemToolBonus" }}</label>
+                    <input type="text" name="system.bonus" value="{{system.bonus}}" data-formula-editor/>
+                </div>
 
-            {{!-- Chat Message Flavor --}}
-            <div class="form-group stacked">
-                <label>{{ localize "SW5E.ChatFlavor" }}</label>
-                <input type="text" name="system.chatFlavor" value="{{system.chatFlavor}}"/>
-            </div>
+                {{!-- Chat Message Flavor --}}
+                <div class="form-group stacked">
+                    <label>{{ localize "SW5E.ChatFlavor" }}</label>
+                    <input type="text" name="system.chatFlavor" value="{{system.chatFlavor}}"/>
+                </div>
+
+            {{/sw5e-concealSection}}
         </div>
 
         {{!-- Effects Tab --}}

@@ -1,24 +1,26 @@
 <form>
-  <div class="form-group">
-    <label>{{localize "SW5E.Formula"}}</label>
-    <input type="text" name="formula" value="{{formula}}" disabled />
-  </div>
-  {{#if chooseModifier}}
+    {{#each formulas}}
+        <div class="form-group">
+            <label>{{ localize "SW5E.Formula" }} {{#if type}}({{type}}){{/if}}</label>
+            <input type="text" name="formula" value="{{formula}}" disabled>
+        </div>
+    {{/each}}
+    {{#if chooseModifier}}
+        <div class="form-group">
+            <label>{{localize "SW5E.AbilityModifier"}}</label>
+            <select name="ability">
+                {{selectOptions abilities selected=defaultAbility labelAttr="label"}}
+            </select>
+        </div>
+    {{/if}}
     <div class="form-group">
-      <label>{{localize "SW5E.AbilityModifier"}}</label>
-      <select name="ability">
-        {{selectOptions abilities selected=defaultAbility labelAttr="label"}}
-      </select>
+        <label>{{localize "SW5E.RollSituationalBonus"}}</label>
+        <input type="text" name="bonus" value="" placeholder="{{localize 'SW5E.RollExample'}}" />
     </div>
-  {{/if}}
-  <div class="form-group">
-    <label>{{localize "SW5E.RollSituationalBonus"}}</label>
-    <input type="text" name="bonus" value="" placeholder="{{localize 'SW5E.RollExample'}}" />
-  </div>
-  <div class="form-group">
-    <label>{{localize "SW5E.RollMode"}}</label>
-    <select name="rollMode">
-      {{selectOptions rollModes selected=defaultRollMode localize=true}}
-    </select>
-  </div>
+    <div class="form-group">
+        <label>{{localize "SW5E.RollMode"}}</label>
+        <select name="rollMode">
+            {{selectOptions rollModes selected=defaultRollMode localize=true}}
+        </select>
+    </div>
 </form>

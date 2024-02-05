@@ -1,153 +1,157 @@
-{{#unless isVehicle}}
-<div class="inventory-filters flexrow">
-    <ul class="filter-list flexrow" data-filter="features">
-        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
-        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
-        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
-    </ul>
-</div>
-{{/unless}}
+<{{elements.inventory}}>
+    {{#unless isVehicle}}
+        <div class="inventory-filters inventory-header flexrow">
+            <ul class="filter-list flexrow" data-filter="features">
+                <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+                <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+                <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+            </ul>
+        </div>
+    {{/unless}}
 
-<ol class="items-list inventory-list">
-{{#each sections as |section sid|}}
-    <li class="items-header flexrow">
-        <h3 class="item-name flexrow">{{localize section.label}}</h3>
+    <ol class="items-list inventory-list">
+        {{#each sections as |section sid|}}
+            <li class="items-header flexrow">
+                <h3 class="item-name flexrow">{{localize section.label}}</h3>
 
-        {{#if section.hasActions}}
-            <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
-            <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
-        {{/if}}
+                {{#if section.hasActions}}
+                    <div class="item-detail item-uses">{{localize "SW5E.Uses"}}</div>
+                    <div class="item-detail item-action">{{localize "SW5E.Usage"}}</div>
+                {{/if}}
 
-        {{#if section.columns}}
-            {{#each section.columns}}
-                <div class="item-detail {{css}}">{{label}}</div>
-            {{/each}}
-        {{/if}}
+                {{#if section.columns}}
+                    {{#each section.columns}}
+                        <div class="item-detail {{css}}">{{label}}</div>
+                    {{/each}}
+                {{/if}}
 
-        {{#if ../owner}}
-            <div class="item-controls flexrow">
-                <a class="item-control item-create" data-tooltip="SW5E.FeatureAdd"
-                    {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
-                    <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
-                </a>
-            </div>
-        {{/if}}
-    </li>
-
-    <ol class="item-list">
-    {{#each section.items as |item iid|}}
-    {{#sw5e-itemContext item as |ctx|}}
-        <li class="item flexrow {{#if ctx.isDepleted}}depleted{{/if}} {{#if ctx.isExpanded}}expanded{{/if}}"
-            data-item-id="{{item.id}}">
-            <div class="item-name flexrow rollable">
-                <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
-                <h4>
-                    {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
-                    {{item.name}}
-                    {{#if item.system.isOriginalClass}}
-                        <i class="original-class fas fa-sun" data-tooltip="SW5E.ClassOriginal"></i>
-                    {{/if}}
-                    {{~#if ctx.isStack}} ({{item.system.quantity}}){{/if}}
-                </h4>
-            </div>
-
-            {{#if section.hasActions}}
-                <div class="item-detail item-uses">
-                    {{#if ctx.isOnCooldown}}
-                        <a class="item-recharge rollable">{{item.labels.recharge}}</a>
-                    {{else if item.system.recharge.value}}
-                        {{localize "SW5E.Charged"}}
-                    {{else if ctx.hasUses}}
-                        <input type="text" value="{{item.system.uses.value}}" placeholder="0" data-dtype="Number" data-name="system.uses.value"/>/ {{item.system.uses.max}}
-                    {{/if}}
-                </div>
-                <div class="item-detail item-action">
-                    {{#if item.system.activation.type }}
-                        {{item.labels.activation}}
-                    {{/if}}
-                </div>
-            {{else if section.isSpecies}}
-                <div class="item-detail player-species">
-                </div>
-            {{else if section.isArchetype}}
-                <div class="item-detail player-archetype">
-                    {{item.name}}
-                </div>
-            {{else if section.isBackground}}
-                <div class="item-detail player-background">
-                    {{item.name}}
-                </div>
-            {{else if section.isClassfeature}}
-                <div class="item-detail player-classfeatures">
-                    {{item.name}}
-                </div>
-            {{else if section.isFightingstyle}}
-                <div class="item-detail player-fightingstyles">
-                    {{item.name}}
-                </div>          
-            {{else if section.isFightingmastery}}
-                <div class="item-detail player-fightingmasteries">
-                    {{item.name}}
-                </div>
-            {{else if section.isLightsaberform}}
-                <div class="item-detail player-lightsaberforms">
-                    {{item.name}}
-                </div>
-            {{else if (eq item.type "class")}}
-                <div class="item-detail item-action">
-                    <select class="level-selector">
-                        {{#select 0}}
-                            {{#each ctx.availableLevels}}
-                                <option value="{{this.delta}}" {{disabled this.disabled}}>
-                                    {{localize "SW5E.LevelNumber" level=this.level}}
-                                    {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
-                                </option>
-                            {{/each}}
-                        {{/select}}
-                    </select>
-                </div>
-            {{/if}}
-
-            {{#if section.columns}}
-                {{#each section.columns}}
-                    <div class="item-detail {{css}}">
-                        {{#if editable}}
-                            <input type="text" data-dtype="{{editable}}" data-property="{{property}}"
-                                   value="{{#if (getProperty item property)}}{{getProperty item property}}
-                                   {{~else}}{{getProperty ctx property}}{{/if}}" placeholder="&mdash;">
-                        {{else}}
-                            {{#if (getProperty item property)}}
-                                {{getProperty item property}}
-                            {{else}}
-                                {{getProperty ctx property}}
-                            {{/if}}
-                        {{/if}}
-                    </div>
-                {{/each}}
-            {{/if}}
-
-            {{#if @root.owner}}
-                <div class="item-controls flexrow">
-                    {{#if section.crewable}}
-                        <a class="item-control item-toggle {{ctx.toggleClass}}" data-tooltip="{{ctx.toggleTitle}}">
-                            <i class="fas fa-sun"></i>
+                {{#if ../owner}}
+                    <div class="item-controls flexrow">
+                        <a class="item-control item-action" data-action="create" data-tooltip="SW5E.FeatureAdd"
+                            {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
+                            <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
                         </a>
-                    {{/if}}
-                    <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </div>
-            {{/if}}
+                    </div>
+                {{/if}}
+            </li>
 
-            {{#if ctx.isExpanded}}
-                {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
-            {{/if}}
-        </li>
-    {{/sw5e-itemContext}}
-    {{/each}}
+            <ol class="item-list">
+                {{#each section.items as |item iid|}}
+                {{#sw5e-itemContext item as |ctx|}}
+                    <li class="item flexrow {{#if ctx.isDepleted}}depleted{{/if}} {{#if ctx.isExpanded}}expanded{{/if}}"
+                        data-item-id="{{item.id}}">
+                        <div class="item-name flexrow rollable">
+                            <div class="item-image item-action" data-action="use" tabindex="0" role="button" aria-label="{{item.name}}"
+                                 style="background-image: url('{{item.img}}')"></div>
+                            <h4 class="item-action" data-action="expand">
+                                {{#if (eq item.type "archetype")}}&rdsh;{{/if}}
+                                {{item.name}}
+                                {{#if item.system.isOriginalClass}}
+                                    <i class="original-class fas fa-sun" data-tooltip="SW5E.ClassOriginal"></i>
+                                {{/if}}
+                                {{~#if ctx.isStack}} ({{item.system.quantity}}){{/if}}
+                            </h4>
+                        </div>
+
+                        {{#if section.hasActions}}
+                            <div class="item-detail item-uses">
+                                {{#if ctx.isOnCooldown}}
+                                    <a class="item-action" data-action="recharge">{{item.labels.recharge}}</a>
+                                {{else if item.system.recharge.value}}
+                                    {{localize "SW5E.Charged"}}
+                                {{else if ctx.hasUses}}
+                                    <input type="text" value="{{item.system.uses.value}}" placeholder="0" data-dtype="Number" data-name="system.uses.value"/>/ {{item.system.uses.max}}
+                                {{/if}}
+                            </div>
+                            <div class="item-detail item-action">
+                                {{#if item.system.activation.type }}
+                                    {{item.labels.activation}}
+                                {{/if}}
+                            </div>
+                        {{else if section.isSpecies}}
+                            <div class="item-detail player-species">
+                            </div>
+                        {{else if section.isArchetype}}
+                            <div class="item-detail player-archetype">
+                                {{item.name}}
+                            </div>
+                        {{else if section.isBackground}}
+                            <div class="item-detail player-background">
+                                {{item.name}}
+                            </div>
+                        {{else if section.isClassfeature}}
+                            <div class="item-detail player-classfeatures">
+                                {{item.name}}
+                            </div>
+                        {{else if section.isFightingstyle}}
+                            <div class="item-detail player-fightingstyles">
+                                {{item.name}}
+                            </div>          
+                        {{else if section.isFightingmastery}}
+                            <div class="item-detail player-fightingmasteries">
+                                {{item.name}}
+                            </div>
+                        {{else if section.isLightsaberform}}
+                            <div class="item-detail player-lightsaberforms">
+                                {{item.name}}
+                            </div>
+                        {{else if (eq item.type "class")}}
+                            <div class="item-detail item-action">
+                                <select class="level-selector">
+                                    {{#select 0}}
+                                        {{#each ctx.availableLevels}}
+                                            <option value="{{this.delta}}" {{disabled this.disabled}}>
+                                                {{localize "SW5E.LevelNumber" level=this.level}}
+                                                {{#if this.delta}}({{numberFormat this.delta sign=true}}){{/if}}
+                                            </option>
+                                        {{/each}}
+                                    {{/select}}
+                                </select>
+                            </div>
+                        {{/if}}
+
+                        {{#if section.columns}}
+                            {{#each section.columns}}
+                                <div class="item-detail {{css}}">
+                                    {{#if editable}}
+                                        <input type="number" min="0" data-name="{{property}}"
+                                            {{#with (getProperty item maxProperty) as |max|}}max="{{max}}"{{/with}}
+                                            value="{{#with (getProperty item property) as |value|}}{{value}}
+                                            {{~else}}{{getProperty ctx property}}{{/with}}" placeholder="&mdash;">
+                                    {{else}}
+                                        {{#if (getProperty item property)}}
+                                            {{getProperty item property}}
+                                        {{else}}
+                                            {{getProperty ctx property}}
+                                        {{/if}}
+                                    {{/if}}
+                                </div>
+                            {{/each}}
+                        {{/if}}
+
+                        {{#if @root.owner}}
+                            <div class="item-controls flexrow">
+                                {{#if section.crewable}}
+                                    <a class="item-control item-action {{ctx.toggleClass}}" data-action="crew" data-tooltip="{{ctx.toggleTitle}}">
+                                        <i class="fas fa-sun"></i>
+                                    </a>
+                                {{/if}}
+                                <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        {{/if}}
+
+                        {{#if ctx.isExpanded}}
+                            {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
+                        {{/if}}
+                    </li>
+                {{/sw5e-itemContext}}
+                {{/each}}
+            </ol>
+        {{/each}}
     </ol>
-{{/each}}
-</ol>
+</{{elements.inventory}}>

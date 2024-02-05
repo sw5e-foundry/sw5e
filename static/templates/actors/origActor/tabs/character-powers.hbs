@@ -1,0 +1,222 @@
+{{!-- Powercasting --}}
+<section class="top">
+    {{#each powercasting}}
+        <div class="powercasting card {{#if primary}}primary{{/if}}" data-ability="{{ ability.ability }}">
+            <div class="header">
+                <h3>{{ label }}</h3>
+                <button type="button" class="radio-button" data-action="powercasting"
+                        data-tooltip="SW5E.PowerAbilitySet" aria-pressed="{{#if primary}}true{{else}}false{{/if}}"
+                        aria-label="{{ localize 'SW5E.PowerAbilitySet' }}"></button>
+            </div>
+            <div class="info">
+                <div class="ability">
+                    <span class="label">{{ localize "SW5E.Ability" }}</span>
+                    <span class="value">
+                        <span class="sign">{{ ability.sign }}</span>
+                        {{ ability.value }}
+                    </span>
+                </div>
+                <div class="attack">
+                    <span class="label">{{ localize "SW5E.Attack" }}</span>
+                    <span class="value">
+                        <span class="sign">{{ attack.sign }}</span>
+                        {{ attack.value }}
+                    </span>
+                </div>
+                <div class="save">
+                    <span class="label">{{ localize "SW5E.PowerDC" }}</span>
+                    <span class="value">{{ save }}</span>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</section>
+
+{{!-- Powers --}}
+<{{ elements.inventory }} v2>
+
+    {{!-- Searching & Filtering --}}
+    <item-list-controls for="powerbook" label="{{ localize 'SW5E.PowersSearch' }}" sort="toggle" collection="items"
+                        keep-empty>
+        <datalist>
+            <option value="action">{{ localize "SW5E.Action" }}</option>
+            <option value="bonus">{{ localize "SW5E.BonusAction" }}</option>
+            <option value="reaction">{{ localize "SW5E.Reaction" }}</option>
+            <option value="concentration">{{ localize "SW5E.Concentration" }}</option>
+            <option value="ritual">{{ localize "SW5E.Ritual" }}</option>
+            <option value="prepared">{{ localize "SW5E.Prepared" }}</option>
+            {{#each config.powerSchools}}
+                <option value="{{ @key }}">{{ label }}</option>
+            {{/each}}
+        </datalist>
+    </item-list-controls>
+
+    {{!-- Powers List --}}
+    <section class="items-list powers-list" data-item-list="powerbook">
+        {{!-- Sections --}}
+        {{#each powerbook}}
+            <div class="items-section card" {{ sw5e-dataset dataset }}>
+
+                {{!-- Section Header --}}
+                <div class="items-header header">
+                    <h3 class="item-name power-header">{{ localize label }}</h3>
+                    <div class="item-header item-school">{{ localize "SW5E.PowerHeader.School" }}</div>
+                    <div class="item-header item-usage">{{ localize "SW5E.PowerHeader.Time" }}</div>
+                    <div class="item-header item-range">{{ localize "SW5E.PowerHeader.Range" }}</div>
+                    <div class="item-header item-target">{{ localize "SW5E.PowerHeader.Target" }}</div>
+                    <div class="item-header item-roll">{{ localize "SW5E.PowerHeader.Roll" }}</div>
+                    <div class="item-header item-formula">{{ localize "SW5E.PowerHeader.Formula" }}</div>
+                    <div class="item-header item-controls"></div>
+                    {{#if (and usesSlots editable)}}
+                        <a class="config-button" data-action="powerSlots" data-tooltip="SW5E.PowerSlotsConfig"
+                           aria-label="{{ localize 'SW5E.PowerSlotsConfig' }}">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                    {{/if}}
+                </div>
+
+                {{!-- Power Slots --}}
+                {{#if usesSlots}}
+                    <div class="pips" data-prop="system.powers.{{ prop }}.value">
+                        {{#each pips}}
+                            <button type="button" class="{{ classes }}" data-n="{{ n }}" data-tooltip="{{ tooltip }}"
+                                    aria-label="{{ label }}" aria-pressed="{{ filled }}">
+                                <sw5e-icon src="systems/sw5e/icons/svg/power-slot.svg"></sw5e-icon>
+                            </button>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                {{!-- Section Contents --}}
+                <ol class="item-list unlist">
+                    {{#each powers as |item|}}
+                    {{#sw5e-itemContext item as |ctx|}}
+
+                        {{!-- Powers --}}
+                        <li class="item" data-item-id="{{ item.id }}" data-entry-id="{{ item.id }}"
+                            data-item-name="{{ item.name }}" data-item-sort="{{ item.sort }}">
+
+                            {{!-- Power Name --}}
+                            <div class="item-name item-action item-tooltip {{ @root.rollableClass }}" role="button"
+                                 data-action="use" aria-label="{{ item.name }}">
+                                <img class="item-image gold-icon" src="{{ item.img }}" alt="{{ item.name }}">
+                                <div class="name name-stacked">
+                                    <span class="title">{{ item.name }}</span>
+                                    <span class="subtitle">{{ item.labels.components.vsm }}</span>
+                                </div>
+                                <div class="tags">
+                                    {{#each item.labels.components.all}}
+                                    {{#if tag}}
+                                        <span aria-label="{{ label }}">
+                                            <sw5e-icon src="{{ icon }}"></sw5e-icon>
+                                        </span>
+                                    {{/if}}
+                                    {{/each}}
+                                </div>
+                            </div>
+
+                            {{!-- Power School --}}
+                            <div class="item-detail item-school" data-tooltip="{{ item.labels.school }}"
+                                 aria-label="{{ item.labels.school }}">
+                                {{#with (lookup @root.config.powerSchools item.system.school) as |schoolConfig|}}
+                                    <sw5e-icon src="{{ schoolConfig.icon }}"></sw5e-icon>
+                                {{/with}}
+                            </div>
+
+                            {{!-- Cast Time --}}
+                            <div class="item-detail item-usage">
+                                <span class="condensed">{{ ctx.activation }}</span>
+                            </div>
+
+                            {{!-- Power Range --}}
+                            <div class="item-detail item-range {{#unless ctx.range}}empty{{/unless}}">
+                                {{#if ctx.range}}
+                                    {{#if ctx.range.distance}}
+                                        <span class="value">{{ ctx.range.value }}</span>
+                                        <span class="unit">{{ ctx.range.unit }}</span>
+                                    {{else}}
+                                        <span class="condensed">{{ item.labels.range }}</span>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+
+                            {{!-- Power Target --}}
+                            <div class="item-detail item-target {{#unless item.system.target.type}}empty{{/unless}}">
+                                {{#if item.system.target.type}}
+                                    <span class="condensed">{{ item.labels.target }}</span>
+                                {{/if}}
+                            </div>
+
+                            {{!-- Power Attack / DC --}}
+                            <div class="item-detail item-roll {{#if (and (not item.system.save.ability) (not ctx.toHit))}}empty{{/if}}">
+                                {{#if ctx.toHit}}
+                                    <span class="sign">{{ ctx.toHit.sign }}</span>
+                                    <span class="value">{{ ctx.toHit.abs }}</span>
+                                {{else if item.system.save.ability}}
+                                    <div class="stacked">
+                                        <span class="ability">
+                                            {{ lookup (lookup @root.config.abilities item.system.save.ability) "abbreviation" }}
+                                        </span>
+                                        <span class="value">{{ item.system.save.dc }}</span>
+                                    </div>
+                                {{/if}}
+                            </div>
+
+                            {{!-- Power Formula --}}
+                            <div class="item-detail item-formula {{#unless item.labels.derivedDamage}}empty{{/unless}}">
+                                {{#each item.labels.derivedDamage}}
+                                    <div class="row">
+                                        <span class="formula">{{ formula }}</span>
+                                        {{#with (lookup @root.labels.damageAndHealing damageType)}}
+                                            <span data-tooltip="{{ label }}" aria-label="{{ label }}">
+                                                <sw5e-icon src="{{ icon }}"></sw5e-icon>
+                                            </span>
+                                        {{/with}}
+                                    </div>
+                                {{/each}}
+                            </div>
+
+                            {{!-- Power Status --}}
+                            <div class="item-detail item-controls">
+
+                                {{#if @root.editable}}
+                                    {{!-- Editing --}}
+                                    <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"
+                                       aria-label="{{ localize 'SW5E.ItemEdit' }}">
+                                        <i class="fas fa-pen-to-square"></i>
+                                    </a>
+
+                                    {{!-- Deleting --}}
+                                    <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"
+                                       aria-label="{{ localize 'SW5E.ItemDelete' }}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                {{else if @root.owner}}
+                                    {{!-- Preparing --}}
+                                    {{#with ctx.preparation}}
+                                    {{#if applicable}}
+                                        <a class="item-control item-action {{ cls }}" data-action="prepare" data-tooltip="{{ title }}"
+                                           aria-label="{{ title }}" aria-disabled="{{ this.disabled }}">
+                                            <i class="fas fa-sun"></i>
+                                        </a>
+                                    {{/if}}
+                                    {{/with}}
+                                {{/if}}
+
+                                {{!-- Context Menu --}}
+                                <a class="item-control interface-only" data-context-menu
+                                   aria-label="{{ localize 'SW5E.AdditionalControls' }}">
+                                    <i class="fas fa-ellipsis-vertical"></i>
+                                </a>
+                            </div>
+
+                        </li>
+
+                    {{/sw5e-itemContext}}
+                    {{/each}}
+                </ol>
+            </div>
+        {{/each}}
+    </section>
+
+</{{ elements.inventory }}>

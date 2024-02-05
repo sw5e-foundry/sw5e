@@ -1,11 +1,9 @@
-import { MappingField } from "../fields.mjs";
 import SystemDataModel from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
-import { makeItemProperties, migrateItemProperties } from "./helpers.mjs";
 
 /**
  * Data definition for Starship Modification items.
@@ -46,7 +44,7 @@ export default class StarshipModData extends SystemDataModel.mixin(
             integer: true,
             initial: 0,
             label: "SW5E.ModGrade"
-          }),
+          })
         },
         { label: "SW5E.ModGrade" }
       ),

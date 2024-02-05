@@ -25,6 +25,7 @@ import * as enrichers from "./module/enrichers.mjs";
 import * as migrations from "./module/migration.mjs";
 import * as utils from "./module/utils.mjs";
 import { ModuleArt } from "./module/module-art.mjs";
+import Tooltips5e from "./module/tooltips.mjs";
 
 /* -------------------------------------------- */
 /*  Define Module Structure                     */
@@ -55,21 +56,31 @@ Hooks.once("init", function() {
   globalThis.sw5e = game.sw5e = Object.assign(game.system, globalThis.sw5e);
   console.log(`SW5e | Initializing the SW5e Game System - Version ${sw5e.version}\n${SW5E.ASCII}`);
 
+  // TODO: Remove when v11 support is dropped.
+  CONFIG.compatibility.excludePatterns.push(/Math\.clamped/);
+
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
   CONFIG.ActiveEffect.documentClass = documents.ActiveEffect5e;
+  CONFIG.ActiveEffect.legacyTransferral = false;
   CONFIG.Actor.documentClass = documents.Actor5e;
+  CONFIG.ChatMessage.documentClass = documents.ChatMessage5e;
+  CONFIG.Item.collection = dataModels.collection.Items5e;
+  CONFIG.Item.compendiumIndexFields.push("system.container");
   CONFIG.Item.documentClass = documents.Item5e;
   CONFIG.Token.documentClass = documents.TokenDocument5e;
   CONFIG.Token.objectClass = canvas.Token5e;
+  CONFIG.Token.ringClass = canvas.TokenRing;
+  CONFIG.User.documentClass = documents.User5e;
   CONFIG.time.roundTime = 6;
-  // TODO SW5E: Figure out if this is still necessary / how to make this work
-  // CONFIG.fontFamilies = ["Engli-Besh", "Open Sans", "Russo One"];
+  Roll.TOOLTIP_TEMPLATE = "systems/sw5e/templates/chat/roll-breakdown.hbs";
   CONFIG.Dice.DamageRoll = dice.DamageRoll;
   CONFIG.Dice.D20Roll = dice.D20Roll;
   CONFIG.Dice.AttribDieRoll = dice.AttribDieRoll;
   CONFIG.MeasuredTemplate.defaults.angle = 53.13; // 5e cone RAW should be 53.13 degrees
+  CONFIG.Note.objectClass = canvas.Note5e;
   CONFIG.ui.combat = applications.sidebar.CombatTracker5e;
+  CONFIG.ui.items = sw5e.applications.item.ItemDirectory5e;
   CONFIG.ui.compendium = applications.sidebar.CompendiumDirectory5e;
 
   // Add DND5e namespace for module compatibility
@@ -84,16 +95,17 @@ Hooks.once("init", function() {
     else CONFIG.SW5E[spell] = val;
   }
 
-  game.sw5e.isV10 = game.release.generation < 11;
-
   // Register System Settings
   registerSystemSettings();
 
-  // Validation strictness.
-  if (game.sw5e.isV10) _determineValidationStrictness();
-
   // Configure module art.
   game.sw5e.moduleArt = new ModuleArt();
+
+  // Configure tooltips
+  game.sw5e.tooltips = new Tooltips5e();
+
+  // Set up status effects
+  _configureStatusEffects();
 
   // Remove honor & sanity from configuration if they aren't enabled
   if (!game.settings.get("sw5e", "honorScore")) delete SW5E.abilities.hon;
@@ -112,31 +124,35 @@ Hooks.once("init", function() {
   CONFIG.Dice.rolls.push(dice.AttribDieRoll);
 
   // Hook up system data types
-  const modelType = game.sw5e.isV10 ? "systemDataModels" : "dataModels";
-  CONFIG.Actor[modelType] = dataModels.actor.config;
-  CONFIG.Item[modelType] = dataModels.item.config;
-  CONFIG.JournalEntryPage[modelType] = dataModels.journal.config;
+  CONFIG.Actor.dataModels = dataModels.actor.config;
+  CONFIG.Item.dataModels = dataModels.item.config;
+  CONFIG.JournalEntryPage.dataModels = dataModels.journal.config;
+
+  // Add fonts
+  _configureFonts();
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("sw5e", applications.actor.ActorSheet5eCharacter, {
     types: ["character"],
-    makeDefault: true,
     label: "SW5E.SheetClassCharacter"
   });
   Actors.registerSheet("sw5e", applications.actor.ActorSheetOrig5eCharacter, {
     types: ["character"],
-    makeDefault: false,
+    label: "SW5E.SheetClassCharacterLegacy"
+  });
+  DocumentSheetConfig.registerSheet(Actor, "sw5e", applications.actor.ActorSheet5eCharacter2, {
+    types: ["character"],
+    makeDefault: true,
     label: "SW5E.SheetClassCharacterOld"
   });
   Actors.registerSheet("sw5e", applications.actor.ActorSheet5eNPC, {
     types: ["npc"],
-    makeDefault: true,
     label: "SW5E.SheetClassNPC"
   });
   Actors.registerSheet("sw5e", applications.actor.ActorSheetOrig5eNPC, {
     types: ["npc"],
-    makeDefault: false,
+    makeDefault: true,
     label: "SW5E.SheetClassNPCOld"
   });
   Actors.registerSheet("sw5e", applications.actor.ActorSheet5eStarship, {
@@ -155,49 +171,50 @@ Hooks.once("init", function() {
     label: "SW5E.SheetClassGroup"
   });
 
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("sw5e", applications.item.ItemSheet5e, {
-    types: [
-      "weapon",
-      "equipment",
-      "consumable",
-      "tool",
-      "loot",
-      "class",
-      "power",
-      "feat",
-      "species",
-      "backpack",
-      "archetype",
-      "classfeature",
-      "background",
-      "fightingmastery",
-      "fightingstyle",
-      "lightsaberform",
-      "deployment",
-      "deploymentfeature",
-      "starship",
-      "starshipsize",
-      "starshipaction",
-      "starshipfeature",
-      "starshipmod",
-      "venture",
-      "modification",
-      "maneuver"
-    ],
+  DocumentSheetConfig.unregisterSheet(Item, "core", ItemSheet);
+  DocumentSheetConfig.registerSheet(Item, "sw5e", applications.item.ItemSheet5e, {
     makeDefault: true,
     label: "SW5E.SheetClassItem"
+  });
+  DocumentSheetConfig.unregisterSheet(Item, "sw5e", applications.item.ItemSheet5e, { types: ["container"] });
+  DocumentSheetConfig.registerSheet(Item, "sw5e", applications.item.ContainerSheet, {
+    makeDefault: true,
+    types: ["container"],
+    label: "SW5E.SheetClassContainer"
+  });
+
+  DocumentSheetConfig.registerSheet(JournalEntry, "sw5e", applications.journal.JournalSheet5e, {
+    makeDefault: true,
+    label: "SW5E.SheetClassJournalEntry"
   });
   DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalClassPageSheet, {
     label: "SW5E.SheetClassClassSummary",
     types: ["class"]
+  });
+  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalMapLocationPageSheet, {
+    label: "SW5E.SheetClassMapLocation",
+    types: ["map"]
+  });
+  DocumentSheetConfig.registerSheet(JournalEntryPage, "sw5e", applications.journal.JournalRulePageSheet, {
+    label: "SW5E.SheetClassRule",
+    types: ["rule"]
+  });
+
+  CONFIG.Token.prototypeSheetClass = applications.TokenConfig5e;
+  DocumentSheetConfig.unregisterSheet(TokenDocument, "core", TokenConfig);
+  DocumentSheetConfig.registerSheet(TokenDocument, "sw5e", applications.TokenConfig5e, {
+    label: "SW5E.SheetClassToken"
   });
 
   // Preload Handlebars helpers & partials
   utils.registerHandlebarsHelpers();
   utils.preloadHandlebarsTemplates();
 
+  // Enrichers
   enrichers.registerCustomEnrichers();
+
+  // Exhaustion handling
+  documents.ActiveEffect5e.registerHUDListeners();
 
   // Register Babele stuff
   if (typeof Babele !== "undefined") {
@@ -205,29 +222,7 @@ Hooks.once("init", function() {
   }
 });
 
-/**
- * Determine if this is a 'legacy' world with permissive validation, or one where strict validation is enabled.
- * @internal
- */
-function _determineValidationStrictness() {
-  dataModels.SystemDataModel._enableV10Validation = game.settings.get("sw5e", "strictValidation");
-}
-
-/**
- * Update the world's validation strictness setting based on whether validation errors were encountered.
- * @internal
- */
-async function _configureValidationStrictness() {
-  if (!game.user.isGM) return;
-  const invalidDocuments =
-    game.actors.invalidDocumentIds.size + game.items.invalidDocumentIds.size + game.scenes.invalidDocumentIds.size;
-  const strictValidation = game.settings.get("sw5e", "strictValidation");
-  if (invalidDocuments && strictValidation) {
-    await game.settings.set("sw5e", "strictValidation", false);
-    game.socket.emit("reload");
-    foundry.utils.debouncedReload();
-  }
-}
+/* -------------------------------------------- */
 
 /**
  * Configure explicit lists of attributes that are trackable on the token HUD and in the combat tracker.
@@ -245,7 +240,11 @@ function _configureTrackableAttributes() {
   };
 
   const creature = {
-    bar: [...common.bar, "attributes.hp"],
+    bar: [
+      ...common.bar,
+      "attributes.hp",
+      ...Array.fromRange(Object.keys(SW5E.powerLevels).length - 1, 1).map(l => `powers.power${l}`)
+    ],
     value: [
       ...common.value,
       ...Object.keys(SW5E.skills).map(skill => `skills.${skill}.passive`),
@@ -283,6 +282,8 @@ function _configureTrackableAttributes() {
   };
 }
 
+/* -------------------------------------------- */
+
 /**
  * Configure which attributes are available for item consumption.
  * @internal
@@ -309,6 +310,64 @@ function _configureConsumableAttributes() {
 }
 
 /* -------------------------------------------- */
+
+/**
+ * Configure additional system fonts.
+ */
+function _configureFonts() {
+  Object.assign(CONFIG.fontDefinitions, {
+    Roboto: {
+      editor: true,
+      fonts: [
+        { urls: ["systems/sw5e/fonts/roboto/Roboto-Regular.woff2"] },
+        { urls: ["systems/sw5e/fonts/roboto/Roboto-Bold.woff2"], weight: "bold" },
+        { urls: ["systems/sw5e/fonts/roboto/Roboto-Italic.woff2"], style: "italic" },
+        { urls: ["systems/sw5e/fonts/roboto/Roboto-BoldItalic.woff2"], weight: "bold", style: "italic" }
+      ]
+    },
+    "Roboto Condensed": {
+      editor: true,
+      fonts: [
+        { urls: ["systems/sw5e/fonts/roboto-condensed/RobotoCondensed-Regular.woff2"] },
+        { urls: ["systems/sw5e/fonts/roboto-condensed/RobotoCondensed-Bold.woff2"], weight: "bold" },
+        { urls: ["systems/sw5e/fonts/roboto-condensed/RobotoCondensed-Italic.woff2"], style: "italic" },
+        {
+          urls: ["systems/sw5e/fonts/roboto-condensed/RobotoCondensed-BoldItalic.woff2"], weight: "bold",
+          style: "italic"
+        }
+      ]
+    },
+    "Roboto Slab": {
+      editor: true,
+      fonts: [
+        { urls: ["systems/sw5e/fonts/roboto-slab/RobotoSlab-Regular.ttf"] },
+        { urls: ["systems/sw5e/fonts/roboto-slab/RobotoSlab-Bold.ttf"], weight: "bold" }
+      ]
+    }
+  });
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Configure system status effects.
+ */
+function _configureStatusEffects() {
+  const addEffect = (effects, data) => {
+    effects.push(data);
+    if ( "special" in data ) CONFIG.specialStatusEffects[data.special] = data.id;
+  };
+  CONFIG.statusEffects = Object.entries(CONFIG.SW5E.statusEffects).reduce((arr, [id, data]) => {
+    const original = CONFIG.statusEffects.find(s => s.id === id);
+    addEffect(arr, foundry.utils.mergeObject(original ?? {}, { id, ...data }, { inplace: false }));
+    return arr;
+  }, []);
+  for ( const [id, {label: name, ...data}] of Object.entries(CONFIG.SW5E.conditionTypes) ) {
+    addEffect(CONFIG.statusEffects, { id, name, ...data });
+  }
+}
+
+/* -------------------------------------------- */
 /*  Foundry VTT Setup                           */
 /* -------------------------------------------- */
 
@@ -319,12 +378,23 @@ Hooks.once("setup", function() {
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   game.sw5e.moduleArt.registerModuleArt();
 
-  // TODO SW5E: Uncomment this once/if we ever add a rules compendium like dnd5e
-  // Apply custom compendium styles to the SRD rules compendium.
-  //  if ( !game.sw5e.isV10 ) {
-  //    const rules = game.packs.get("sw5e.rules");
-  //    rules.applicationClass = applications.journal.SRDCompendium;
-  //  }
+  Tooltips5e.activateListeners();
+  game.sw5e.tooltips.observe();
+
+  // Apply table of contents compendium style if specified in flags
+  game.packs
+    .filter(p => p.metadata.flags?.display === "table-of-contents")
+    .forEach(p => p.applicationClass = applications.journal.TableOfContentsCompendium);
+
+  // Apply custom item compendium
+  game.packs.filter(p => p.metadata.type === "Item")
+    .forEach(p => p.applicationClass = applications.item.ItemCompendium5e);
+
+  // Configure token rings
+  CONFIG.SW5E.tokenRings.shaderClass ??= game.release.generation < 12
+    ? canvas.TokenRingSamplerShaderV11 : canvas.TokenRingSamplerShader;
+  CONFIG.Token.ringClass.initialize();
+
   // Console.log(game.settings.get("sw5e", "colorTheme"));
   let theme = `${game.settings.get("sw5e", "colorTheme")}-theme`;
   document.body.classList.add(theme);
@@ -359,16 +429,6 @@ Hooks.once("i18nInit", () => utils.performPreLocalization(CONFIG.SW5E));
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
 Hooks.once("ready", async function() {
-  if (game.sw5e.isV10) {
-    // Configure validation strictness.
-    _configureValidationStrictness();
-
-    // TODO SW5E: Uncomment this once/if we ever add a rules compendium like dnd5e
-    // // Apply custom compendium styles to the SRD rules compendium.
-    // const rules = game.packs.get("sw5e.rules");
-    // rules.apps = [new applications.journal.SRDCompendium(rules)];
-  }
-
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (["Item", "ActiveEffect"].includes(data.type)) {
@@ -377,7 +437,14 @@ Hooks.once("ready", async function() {
     }
   });
 
+  // World migration.
   if (migrations.needsMigration()) await migrations.migrateWorld();
+
+  // Compendium pack folder migration.
+  const cv = game.settings.get("sw5e", "systemMigrationVersion") || game.world.flags.sw5e?.version;
+  if ( foundry.utils.isNewerVersion("3.0.0", cv) ) {
+    migrations.reparentCompendiums("SW5e SRD Content", "D&D SRD Content");
+  }
 
   // Configure compendium browser.
   game.sw5e.compendiumBrowser = new applications.compendium.CompendiumBrowser();
@@ -393,18 +460,86 @@ Hooks.once("ready", async function() {
 Hooks.on("canvasInit", gameCanvas => {
   gameCanvas.grid.diagonalRule = game.settings.get("sw5e", "diagonalMovement");
   SquareGrid.prototype.measureDistances = canvas.measureDistances;
+  CONFIG.Token.ringClass.pushToLoad(gameCanvas.loadTexturesOptions.additionalSources);
 });
+
+/* -------------------------------------------- */
+/*  Canvas Draw                                 */
+/* -------------------------------------------- */
+
+Hooks.on("canvasDraw", gameCanvas => {
+  // The sprite sheet has been loaded now, we can create the uvs for each texture
+  CONFIG.Token.ringClass.createAssetsUVs();
+});
+
+/* -------------------------------------------- */
+/*  System Styling                              */
+/* -------------------------------------------- */
+
+// Hooks.on("renderPause", (app, [html]) => {
+//   html.classList.add("sw5e2");
+//   const img = html.querySelector("img");
+//   img.src = "systems/sw5e/ui/official/ampersand.svg";
+//   img.className = "";
+// });
+
+// Hooks.on("renderSettings", () => {
+//   const details = document.getElementById("game-details");
+//   details.querySelector(".system").remove();
+//   const heading = document.createElement("div");
+//   heading.classList.add("sw5e2", "sidebar-heading");
+//   heading.innerHTML = `
+//     <h2>${game.i18n.localize("WORLD.GameSystem")}</h2>
+//     <ul class="links">
+//       <li>
+//         <a href="https://github.com/foundryvtt/sw5e/releases/latest" target="_blank">
+//           ${game.i18n.localize("SW5E.Notes")}
+//         </a>
+//       </li>
+//       <li>
+//         <a href="https://github.com/foundryvtt/sw5e/issues" target="_blank">${game.i18n.localize("SW5E.Issues")}</a>
+//       </li>
+//       <li>
+//         <a href="https://github.com/foundryvtt/sw5e/wiki" target="_blank">${game.i18n.localize("SW5E.Wiki")}</a>
+//       </li>
+//       <li>
+//         <a href="https://discord.com/channels/170995199584108546/670336046164213761" target="_blank">
+//           ${game.i18n.localize("SW5E.Discord")}
+//         </a>
+//       </li>
+//     </ul>
+//   `;
+//   details.insertAdjacentElement("afterend", heading);
+//   const badge = document.createElement("div");
+//   badge.classList.add("sw5e2", "system-badge");
+//   badge.innerHTML = `
+//     <img src="systems/sw5e/ui/official/dnd-badge-32.webp" data-tooltip="${sw5e.title}" alt="${sw5e.title}">
+//     <span class="system-info">${sw5e.version}</span>
+//   `;
+//   heading.insertAdjacentElement("afterend", badge);
+// });
 
 /* -------------------------------------------- */
 /*  Other Hooks                                 */
 /* -------------------------------------------- */
 
-Hooks.on("renderChatMessage", documents.chat.onRenderChatMessage);
-Hooks.on("getChatLogEntryContext", documents.chat.addChatMessageContextOptions);
+Hooks.on("renderChatPopout", documents.ChatMessage5e.onRenderChatPopout);
+Hooks.on("getChatLogEntryContext", documents.ChatMessage5e.addChatMessageContextOptions);
 
-Hooks.on("renderChatLog", (app, html, data) => documents.Item5e.chatListeners(html));
+Hooks.on("renderChatLog", (app, html, data) => {
+  documents.Item5e.chatListeners(html);
+  documents.ChatMessage5e.onRenderChatLog(html);
+});
 Hooks.on("renderChatPopout", (app, html, data) => documents.Item5e.chatListeners(html));
+
+Hooks.on("chatMessage", (app, message, data) => sw5e.applications.Award.chatMessage(message));
+
+Hooks.on("renderActorDirectory", (app, html, data) => documents.Actor5e.onRenderActorDirectory(html));
 Hooks.on("getActorDirectoryEntryContext", documents.Actor5e.addDirectoryContextOptions);
+
+Hooks.on("applyTokenStatusEffect", canvas.Token5e.onApplyTokenStatusEffect);
+Hooks.on("targetToken", canvas.Token5e.onTargetToken);
+
 Hooks.on("renderSceneDirectory", (app, html, data) => {
   // Console.log(html.find("header.folder-header"));
   setFolderBackground(html);

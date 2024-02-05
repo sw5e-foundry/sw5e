@@ -27,16 +27,17 @@ export default class FiringArcTemplate extends MeasuredTemplate {
   /* -------------------------------------------- */
 
   /**
-   * A factory method to create an FiringArcTemplate instance using provided data from an Item5e instance and a Token5e Instance
+   * A factory method to create an FiringArcTemplate instance using
+   * provided data from an Item5e instance and a Token5e Instance.
    * @param {Item5e} item               The Item object for which to construct the template
    * @param {object} [options={}] Options to modify the created template.
    * @returns {FiringArcTemplate|null}    The template object, or null if the item does not produce a template
    */
   static fromItem(item, options={}) {
     const token = options.token ?? item.actor?.sheet?.token;
-    if (!token) return;
+    if (!token) return null;
     const arc = CONFIG.SW5E.weaponFiringArcs[item.system.firingArc];
-    if (!arc?.shape) return;
+    if (!arc?.shape) return null;
 
     const canvasUnit = canvas.dimensions.size;
     const halfShipSize = (token.width * canvasUnit) / 2;
@@ -78,7 +79,6 @@ export default class FiringArcTemplate extends MeasuredTemplate {
 
     // Draw the template and switch to the template layer
     this.draw();
-    // this.layer.activate();
     this.layer.preview.addChild(this);
 
     // Activate interactivity
@@ -98,7 +98,7 @@ export default class FiringArcTemplate extends MeasuredTemplate {
       this.#events = {
         cancel: this._onCancelPlacement.bind(this),
         resolve,
-        reject,
+        reject
       };
     });
   }

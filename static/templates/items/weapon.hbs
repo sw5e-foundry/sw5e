@@ -4,28 +4,54 @@
     <header class="sheet-header flexrow">
         <div class="composed-icon profile">
             {{#if item.iconBackground}}<img class="profile background" src="{{item.iconBackground}}"/>{{/if}}
-            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img" />
+            <img class="profile" src="{{item.img}}" data-tooltip="{{item.name}}" data-edit="img">
             {{#if item.iconForeground}}<img class="profile foreground" src="{{item.iconForeground}}"/>{{/if}}
         </div>
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}"/>
+                {{#if system.identified}}
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                    <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                           placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
-                <span class="item-status">{{itemStatus}}</span>
+                <label class="equipped">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}>
+                    {{#if system.equipped}}
+                        {{ localize "SW5E.Equipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unequipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                        {{ localize "SW5E.Identified" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unidentified.Title" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
             </div>
 
             <ul class="summary flexrow">
+                <li>{{ system.type.label }}</li>
                 <li>
-                    {{lookup config.weaponClasses system.weaponClass }}
-                </li>
-                <li>
-                    <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
-                    </select>
+                    {{#if concealDetails}}
+                        <span>{{ localize "SW5E.Unidentified.Title" }}</span>
+                    {{else}}
+                        <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
+                            {{selectOptions config.itemRarity selected=system.rarity blank=""}}
+                        </select>
+                    {{/if}}
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -50,13 +76,15 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
+
             <h3 class="form-header">{{ localize "SW5E.ItemWeaponDetails" }}</h3>
 
             {{!-- Weapon Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponType" }}</label>
-                <select name="system.weaponType">
-                    {{selectOptions config.weaponTypes selected=system.weaponType}}
+                <select name="system.type.value">
+                    {{selectOptions config.weaponTypes selected=system.type.value}}
                 </select>
             </div>
 
@@ -87,8 +115,8 @@
             {{!-- Base Weapon --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemWeaponBase" }}</label>
-                <select name="system.baseItem">
-                    {{selectOptions baseItems selected=system.baseItem blank=""}}
+                <select name="system.type.baseItem">
+                    {{selectOptions baseItems selected=system.type.baseItem blank=""}}
                 </select>
             </div>
 
@@ -121,35 +149,21 @@
                         </select>
                     </div>
                 {{/unless}}
-
-                {{!-- Weapon Status --}}
-                <div class="form-group stacked">
-                    <label>{{ localize "SW5E.ItemWeaponStatus" }}</label>
-                    <div class="form-fields">
-                        <label class="checkbox">
-                            <input type="checkbox" name="system.equipped" {{checked system.equipped}}/> {{ localize "SW5E.Equipped" }}
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" name="system.identified" {{checked system.identified}}/> {{ localize "SW5E.Identified" }}
-                        </label>
-                    </div>
-                </div>
             {{/unless}}
 
             {{!-- Weapon Properties --}}
-            <div class="form-group stacked item-properties">
+            <div class="form-group stacked weapon-properties">
                 <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
-                {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
-                    <label class="checkbox" data-tooltip="{{property.desc}}">
-                        <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}/>{{ localize property.name }}
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
                     </label>
-                {{/if}} {{/each}}
-
-                {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
-                    <label class="number" data-tooltip="{{property.desc}}">
-                        {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
                     </label>
-                {{/if}} {{/each}}
+                {{/each}}
             </div>
 
             {{#if system.isMountable}}
@@ -195,6 +209,8 @@
 
             {{!-- Item Action Template --}}
             {{> "sw5e.item-action"}}
+
+            {{/sw5e-concealSection}}
         </div>
 
         {{!-- Modifications Tab --}}

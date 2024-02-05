@@ -1,6 +1,7 @@
 import { FormulaField, UUIDField } from "../../fields.mjs";
 import MovementField from "../../shared/movement-field.mjs";
 import SensesField from "../../shared/senses-field.mjs";
+import ActiveEffect5e from "../../../documents/active-effect.mjs";
 
 /**
  * Shared contents of the attributes schema between various actor types.
@@ -123,10 +124,22 @@ export default class AttributesFields {
           })
         },
         { label: "SW5E.Deployed" }
+      ),
+      exhaustion: new foundry.data.fields.NumberField(
+        {
+          required: true,
+          nullable: false,
+          integer: true,
+          min: 0,
+          initial: 0,
+          label: "SW5E.Exhaustion"
+        }
       )
     };
   }
 
+  /* -------------------------------------------- */
+  /*  Data Migration                              */
   /* -------------------------------------------- */
 
   /**
@@ -139,6 +152,44 @@ export default class AttributesFields {
     if (!init?.value || typeof init?.bonus === "string") return;
     if (init.bonus) init.bonus += init.value < 0 ? ` - ${init.value * -1}` : ` + ${init.value}`;
     else init.bonus = `${init.value}`;
+  }
+
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /**
+   * Adjust exhaustion level based on Active Effects.
+   * @this {CharacterData|NPCData}
+   */
+  static prepareExhaustionLevel() {
+    const exhaustion = this.parent.effects.get(ActiveEffect5e.ID.EXHAUSTION);
+    const level = exhaustion?.getFlag("sw5e", "exhaustionLevel");
+    this.attributes.exhaustion = Number.isFinite(level) ? level : 0;
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Modify movement speeds taking exhaustion and any other conditions into account.
+   * @this {CharacterData|NPCData}
+   */
+  static prepareMovement() {
+    const statuses = this.parent.statuses;
+    const noMovement = new Set(["grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"])
+      .intersection(statuses).size || (this.attributes.exhaustion >= 5);
+    const halfMovement = statuses.has("prone") || (this.attributes.exhaustion >= 2);
+    const reduction = statuses.has("heavilyEncumbered")
+      ? CONFIG.SW5E.encumbrance.speedReduction.heavilyEncumbered
+      : statuses.has("encumbered") ? CONFIG.SW5E.encumbrance.speedReduction.encumbered : 0;
+    const crawl = statuses.has("prone") || statuses.has("exceedingCarryingCapacity");
+    Object.keys(CONFIG.SW5E.movementTypes).forEach(k => {
+      if ( reduction ) this.attributes.movement[k] = Math.max(0, this.attributes.movement[k] - reduction);
+      if ( (crawl && (k !== "walk")) || noMovement ) this.attributes.movement[k] = 0;
+      else if ( statuses.has("exceedingCarryingCapacity") ) this.attributes.movement[k] = 5;
+      else if ( halfMovement ) this.attributes.movement[k] = Math.floor(this.attributes.movement[k] * 0.5);
+    });
   }
 }
 

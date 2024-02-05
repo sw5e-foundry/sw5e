@@ -17,7 +17,7 @@ export default class ActorHitPointsConfig extends BaseConfigSheet {
      * Which hit point type is this, hit-points, hull-points or shield-points.
      * @type {string}
      */
-    this.hitPointType = hitPointType.split("-")[0];
+    this.hitPointType = hitPointType.split(/(?=[A-Z])/)[0];
   }
 
   /* -------------------------------------------- */

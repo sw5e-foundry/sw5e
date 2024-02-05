@@ -1,5 +1,5 @@
 import Actor5e from "../../documents/actor/actor.mjs";
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { AdvancementField, IdentifierField } from "../fields.mjs";
 import { CreatureTypeField, MovementField, SensesField } from "../shared/_module.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -30,7 +30,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
  * @property {string} manufacturer
  * @property {string} droidLanguage
  */
-export default class SpeciesData extends SystemDataModel.mixin(ItemDescriptionTemplate) {
+export default class SpeciesData extends ItemDataModel.mixin(ItemDescriptionTemplate) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {

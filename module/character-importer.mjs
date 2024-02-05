@@ -116,7 +116,8 @@ export default class CharacterImporter {
         value: sourceCharacter.attribs.find(e => e.name === "technology_type").current
       }
     };
-    for (const id of Object.keys(skills)) skills[id] = globalThis.sw5e.dataModels.actor.CharacterData._initialSkillValue(id, skills[id]);
+    for (const id of Object.keys(skills)) skills[id] =
+      globalThis.sw5e.dataModels.actor.CharacterData._initialSkillValue(id, skills[id]);
 
     const targetCharacter = {
       name: sourceCharacter.name,

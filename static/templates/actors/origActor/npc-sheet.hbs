@@ -26,7 +26,7 @@
             {{!-- Character Summary --}}
             <ul class="summary flexrow">
                 <li class="size">
-                    <span>{{lookup config.actorSizes system.traits.size}}</span>
+                    <span>{{lookup (lookup config.actorSizes system.traits.size) "label"}}</span>
                 </li>
                 <li class="alignment">
                     <input
@@ -65,7 +65,7 @@
             <ul class="attributes flexrow">
                 <li class="attribute health">
                     <h4 class="attribute-name box-title">{{ localize "SW5E.Health" }}</h4>
-                    <a class="config-button" data-action="hit-points" data-tooltip="SW5E.HitPointsConfig">
+                    <a class="config-button" data-action="hitPoints" data-tooltip="SW5E.HitPointsConfig">
                         <i class="fas fa-cog"></i>
                     </a>
                     <div class="attribute-value multiple">
@@ -147,7 +147,7 @@
                             {{numberFormat ability.save decimals=0 sign=true}}
                         </span>
                     </div>
-                    <a class="config-button" data-action="ability" data-tooltip="SW5E.AbilityConfigure">
+                    <a class="config-button" data-action="ability" data-tooltip="{{ localize 'SW5E.AbilityConfigure' ability=ability.label }}">
                         <i class="fas fa-cog"></i>
                     </a>
                 </li>

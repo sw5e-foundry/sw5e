@@ -1,6 +1,8 @@
-import ActorMovementConfig from "./movement-config.mjs";
 import Item5e from "../../documents/item.mjs";
-import { ActorSheetMixin } from "./sheet-mixin.mjs";
+import { formatCR, formatNumber } from "../../utils.mjs";
+import Award from "../award.mjs";
+import ActorMovementConfig from "./movement-config.mjs";
+import ActorSheetMixin from "./sheet-mixin.mjs";
 
 /**
  * A character sheet for group-type Actors.
@@ -23,9 +25,12 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       classes: ["sw5e", "sheet", "actor", "group"],
       template: "systems/sw5e/templates/actors/origActor/group-sheet.hbs",
       tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "members" }],
-      scrollY: [".inventory .inventory-list"],
+      scrollY: ["sw5e-inventory .inventory-list"],
       width: 620,
-      height: 620
+      height: 620,
+      elements: {
+        inventory: "sw5e-inventory"
+      }
     });
   }
 
@@ -52,8 +57,9 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
   /** @inheritDoc */
   async getData(options = {}) {
     const context = super.getData(options);
-    context.system = context.data.system;
+    context.system = this.actor.system;
     context.items = Array.from(this.actor.items);
+    context.config = CONFIG.SW5E;
 
     // Membership
     const { sections, stats } = this.#prepareMembers();
@@ -63,9 +69,13 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
     // Movement
     context.movement = this.#prepareMovementSpeed();
 
+    // XP
+    if ( !game.settings.get("sw5e", "disableExperienceTracking") ) context.xp = context.system.details.xp;
+
     // Inventory
     context.itemContext = {};
     context.inventory = this.#prepareInventory(context);
+    context.elements = this.options.elements;
     context.expandedData = {};
     for (const id of this._expanded) {
       const item = this.actor.items.get(id);
@@ -103,8 +113,15 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
    * @returns {string}                                        The formatted summary string
    */
   #getSummary(stats) {
-    const formatter = new Intl.ListFormat(game.i18n.lang, { style: "long", type: "conjunction" });
+    const formatter = game.i18n.getListFormatter({ style: "long", type: "conjunction" });
+    const rule = new Intl.PluralRules(game.i18n.lang);
     const members = [];
+    if ( stats.nMembers ) {
+      members.push(`${stats.nMembers} ${game.i18n.localize(`SW5E.Group.Member.${rule.select(stats.nMembers)}`)}`);
+    }
+    if ( stats.nVehicles ) {
+      members.push(`${stats.nVehicles} ${game.i18n.localize(`SW5E.Group.Vehicle.${rule.select(stats.nVehicles)}`)}`);
+    }
     if (stats.nMembers) members.push(`${stats.nMembers} ${game.i18n.localize("SW5E.GroupMembers")}`);
     if (stats.nVehicles) members.push(`${stats.nVehicles} ${game.i18n.localize("SW5E.GroupVehicles")}`);
     if ( !members.length ) return game.i18n.localize("SW5E.GroupSummaryEmpty");
@@ -129,8 +146,14 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       npc: { label: `${CONFIG.Actor.typeLabels.npc}Pl`, members: [] },
       vehicle: { label: `${CONFIG.Actor.typeLabels.vehicle}Pl`, members: [] }
     };
-    for (const member of this.object.system.members) {
+    const type = this.actor.system.type.value;
+    const displayXP = !game.settings.get("sw5e", "disableExperienceTracking");
+    for ( const [index, memberData] of this.object.system.members.entries() ) {
+      const member = memberData.actor;
+
       const m = {
+        index,
+        ...memberData,
         actor: member,
         id: member.id,
         name: member.name,
@@ -145,15 +168,25 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       m.hp.max = Math.max(0, hp.max + (hp.tempmax || 0));
       m.hp.pct = Math.clamped((m.hp.current / m.hp.max) * 100, 0, 100).toFixed(2);
       m.hp.color = sw5e.documents.Actor5e.getHPColor(m.hp.current, m.hp.max).css;
-      stats.currentHP += m.hp.current;
-      stats.maxHP += m.hp.max;
+      stats.currentHP += (m.hp.current * m.quantity.value);
+      stats.maxHP += (m.hp.max * m.quantity.value);
 
+      // Challenge
+      if ( member.type === "npc" ) {
+        m.cr = formatCR(member.system.details.cr);
+        if ( displayXP ) m.xp = formatNumber(member.system.details.xp.value * m.quantity.value);
+      }
       if (member.type === "vehicle") stats.nVehicles++;
       else stats.nMembers++;
       sections[member.type].members.push(m);
     }
     for (const [k, section] of Object.entries(sections)) {
       if (!section.members.length) delete sections[k];
+      else {
+        section.displayHPColumn = type !== "encounter";
+        section.displayQuantityColumn = type === "encounter";
+        section.displayChallengeColumn = (type === "encounter") && (k === "npc");
+      }
     }
     return { sections, stats };
   }
@@ -189,9 +222,14 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
   #prepareInventory(context) {
     // Categorize as weapons, equipment, containers, and loot
     const sections = {};
-    for (const type of ["weapon", "equipment", "consumable", "backpack", "loot"]) {
+    for (const type of ["weapon", "equipment", "consumable", "container", "loot"]) {
       sections[type] = { label: `${CONFIG.Item.typeLabels[type]}Pl`, items: [], hasActions: false, dataset: { type } };
     }
+
+    // Remove items in containers & sort remaining
+    context.items = context.items
+      .filter(i => !this.actor.items.has(i.system.container))
+      .sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
     // Classify items
     for (const item of context.items) {
@@ -204,6 +242,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       if (item.type in sections && item.type !== "loot") sections[item.type].items.push(item);
       else sections.loot.items.push(item);
     }
+
     return sections;
   }
 
@@ -214,7 +253,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
   /** @inheritDoc */
   async _render(force, options = {}) {
     for (const member of this.object.system.members) {
-      member.apps[this.id] = this;
+      member.actor.apps[this.id] = this;
     }
     return super._render(force, options);
   }
@@ -224,7 +263,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
   /** @inheritDoc */
   async close(options = {}) {
     for (const member of this.object.system.members) {
-      delete member.apps[this.id];
+      delete member.actor.apps[this.id];
     }
     return super.close(options);
   }
@@ -243,11 +282,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       inputs.focus(ev => ev.currentTarget.select());
       inputs.addBack().find('[type="text"][data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
       html.find(".action-button").click(this._onClickActionButton.bind(this));
-      html.find(".item-control").click(this._onClickItemControl.bind(this));
       html.find(".item .rollable h4").click(event => this._onItemSummary(event));
-      html.find(".item-uses input").change(this._onUsesChange.bind(this));
-      html.find(".item-quantity input").change(this._onQuantityChange.bind(this));
-      new ContextMenu(html, ".item-list .item", [], { onOpen: this._onItemContext.bind(this) });
     }
   }
 
@@ -262,82 +297,22 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
     event.preventDefault();
     const button = event.currentTarget;
     switch (button.dataset.action) {
-      case "convertCurrency":
-        Dialog.confirm({
-          title: `${game.i18n.localize("SW5E.CurrencyConvert")}`,
-          content: `<p>${game.i18n.localize("SW5E.CurrencyConvertHint")}</p>`,
-          yes: () => this.actor.convertCurrency()
-        });
+      case "award":
+        const award = new Award(this.object, { savedDestinations: this.actor.getFlag("sw5e", "awardDestinations") });
+        award.render(true);
         break;
       case "removeMember":
         const removeMemberId = button.closest("li.group-member").dataset.actorId;
         this.object.system.removeMember(removeMemberId);
+        break;
+      case "rollQuantities":
+        this.object.system.rollQuantities();
         break;
       case "movementConfig":
         const movementConfig = new ActorMovementConfig(this.object);
         movementConfig.render(true);
         break;
     }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle clicks to item control buttons on the group sheet.
-   * @param {PointerEvent} event      The initiating click event
-   * @protected
-   */
-  _onClickItemControl(event) {
-    event.preventDefault();
-    const button = event.currentTarget;
-    switch (button.dataset.action) {
-      case "itemCreate":
-        this._createItem(button);
-        break;
-      case "itemDelete":
-        const deleteLi = event.currentTarget.closest(".item");
-        const deleteItem = this.actor.items.get(deleteLi.dataset.itemId);
-        deleteItem.deleteDialog();
-        break;
-      case "itemEdit":
-        const editLi = event.currentTarget.closest(".item");
-        const editItem = this.actor.items.get(editLi.dataset.itemId);
-        editItem.sheet.render(true);
-        break;
-    }
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle workflows to create a new Item directly within the Group Actor sheet.
-   * @param {HTMLElement} button      The clicked create button
-   * @returns {Item5e}                The created embedded Item
-   * @protected
-   */
-  _createItem(button) {
-    const type = button.dataset.type;
-    const system = { ...button.dataset };
-    delete system.type;
-    const name = game.i18n.format("SW5E.ItemNew", { type: game.i18n.localize(CONFIG.Item.typeLabels[type]) });
-    const itemData = { name, type, system };
-    return this.actor.createEmbeddedDocuments("Item", [itemData]);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Handle activation of a context menu for an embedded Item document.
-   * Dynamically populate the array of context menu options.
-   * Reuse the item context options provided by the base ActorSheet5e class.
-   * @param {HTMLElement} element       The HTML element for which the context menu is activated
-   * @protected
-   */
-  _onItemContext(element) {
-    const item = this.actor.items.get(element.dataset.itemId);
-    if (!item) return;
-    ui.context.menuItems = this._getItemContextOptions(item);
-    Hooks.call("sw5e.getItemContextOptions", item, ui.context.menuItems);
   }
 
   /* -------------------------------------------- */
@@ -368,17 +343,48 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
   /* -------------------------------------------- */
 
   /** @override */
-  async _onDropItemCreate(itemData) {
-    const items = itemData instanceof Array ? itemData : [itemData];
+  async _onDropItem(event, data) {
+    if ( !this.actor.isOwner ) return false;
+    const item = await Item.implementation.fromDropData(data);
 
-    const toCreate = [];
-    for (const item of items) {
-      const result = await this._onDropSingleItem(item);
-      if (result) toCreate.push(result);
+    // Handle moving out of container & item sorting
+    if ( this.actor.uuid === item.parent?.uuid ) {
+      if ( item.system.container !== null ) await item.update({"system.container": null});
+      return this._onSortItem(event, item.toObject());
     }
 
-    // Create the owned items as normal
-    return this.actor.createEmbeddedDocuments("Item", toCreate);
+    return this._onDropItemCreate(item);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onDropFolder(event, data) {
+    if ( !this.actor.isOwner ) return [];
+    const folder = await Folder.implementation.fromDropData(data);
+    if ( folder.type !== "Item" ) return [];
+    const droppedItemData = await Promise.all(folder.contents.map(async item => {
+      if ( !(item instanceof Item) ) item = await fromUuid(item.uuid);
+      return item;
+    }));
+    return this._onDropItemCreate(droppedItemData);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async _onDropItemCreate(itemData) {
+    let items = itemData instanceof Array ? itemData : [itemData];
+
+    // Filter out items already in containers to avoid creating duplicates
+    const containers = new Set(items.filter(i => i.type === "container").map(i => i._id));
+    items = items.filter(i => !containers.has(i.system.container));
+
+    // Create the owned items & contents as normal
+    const toCreate = await Item5e.createWithContents(items, {
+      transformFirst: item => this._onDropSingleItem(item.toObject())
+    });
+    return Item5e.createDocuments(toCreate, {pack: this.actor.pack, parent: this.actor, keepId: true});
   }
 
   /* -------------------------------------------- */

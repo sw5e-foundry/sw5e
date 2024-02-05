@@ -1,34 +1,37 @@
 <form autocomplete="off">
-  {{> "sw5e.advancement-controls"}}
-  <div class="form-group">
-    <label>{{localize "SW5E.AdvancementItemGrantOptional"}}</label>
-    <div class="form-fields">
-      <input type="checkbox" name="configuration.optional" {{checked configuration.optional}}>
+    {{> "sw5e.advancement-controls"}}
+    <div class="form-group">
+        <label>{{localize "SW5E.AdvancementItemGrantOptional"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" name="configuration.optional" {{checked configuration.optional}}>
+        </div>
+        <p class="hint">{{localize "SW5E.AdvancementItemGrantOptionalHint"}}</p>
     </div>
-    <p class="hint">{{localize "SW5E.AdvancementItemGrantOptionalHint"}}</p>
-  </div>
 
-  {{#if showPowerConfig}}
-    {{> "sw5e.advancement-power-config"}}
-  {{/if}}
-   
-  <div class="drop-target">
-    <ol class="items-list">
-      <li class="items-header flexrow"><h3 class="item-name">{{localize "DOCUMENT.Items"}}</h3></li>
-      <ol class="item-list">
-      {{#each configuration.items}}
-        <li class="item flexrow" data-item-uuid="{{this}}">
-          <div class="item-name">{{{sw5e-linkForUuid this}}}</div>
-          <div class="item-controls flexrow">
-            <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete">
-              <i class="fas fa-trash"></i>
-            </a>
-          </div>
-        </li>
-      {{/each}}
-      </ol>
-    </ol>
+    {{#if showPowerConfig}}
+      {{> "sw5e.advancement-power-config"}}
+    {{/if}}
 
-    <p class="hint centered">{{localize "SW5E.AdvancementItemGrantDropHint"}}</p>
-  </div>
+    <div class="drop-target">
+        <ol class="items-list">
+            <li class="items-header flexrow"><h3 class="item-name">{{localize "DOCUMENT.Items"}}</h3></li>
+            <ol class="item-list">
+            {{#each configuration.items}}
+              <li class="item flexrow" data-item-uuid="{{this}}">
+                  <div class="item-name">{{{sw5e-linkForUuid this}}}</div>
+                  <div class="item-controls flexrow">
+                      <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete">
+                          <i class="fas fa-trash"></i>
+                      </a>
+                  </div>
+              </li>
+            {{/each}}
+            </ol>
+        </ol>
+
+        {{#if showContainerWarning}}
+          <p class="hint centered warning">{{localize "SW5E.AdvancementItemGrantContainerWarning"}}</p>
+        {{/if}}
+        <p class="hint centered">{{localize "SW5E.AdvancementItemGrantDropHint"}}</p>
+    </div>
 </form>

@@ -97,7 +97,7 @@ npm run build:db
 gulp compilePacks
 ```
 
-- `gulp compilePacks` - Compile all JSON files into their NEDB files.
+- `gulp compilePacks` - Compile all JSON files into their LevelDB files.
 - `gulp compilePacks --pack classes` - Only compile the specified pack.
 
 #### Extracting Packs
@@ -111,7 +111,7 @@ npm run build:json
 gulp extractPacks
 ```
 
-- `gulp extractPacks` - Extract all compendium NEDB files into JSON files.
+- `gulp extractPacks` - Extract all compendium LevelDB files into JSON files.
 - `gulp extractPacks --pack classes` - Only extract the contents of the specified compendium.
 - `gulp extractPacks --pack classes --name Barbarian` - Only extract a single item from the specified compendium.
 

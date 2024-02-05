@@ -1,126 +1,131 @@
-<div class="inventory-filters powerbook-filters flexrow">
-    <div class="form-group powercasting-ability">
-        {{#unless isNPC}}
-            <label>{{localize "SW5E.Powercasting"}}</label>
-        {{else}}
-            <label>{{localize "SW5E.Level"}}</label>
-            {{numberInput system.details.powerLevel name="system.details.powerLevel" class="powercasting-level"
-                placeholder="0" min=0 step=1}}
-        {{/unless}}
-        <select name="system.attributes.powercasting" data-type="String">
-            {{#select system.attributes.powercasting}}
-                <option value="">{{localize "SW5E.None"}}</option>
-                {{#each abilities as |abl a|}}
-                    <option value="{{a}}">{{abl.label}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-        <span>{{localize "SW5E.AbbreviationDC"}} {{system.attributes.powerdc}}</span>
+<{{elements.inventory}}>
+    <div class="inventory-filters powerbook-filters flexrow">
+        <div class="form-group powercasting-ability">
+            {{#unless isNPC}}
+                <label>{{localize "SW5E.Powercasting"}}</label>
+            {{else}}
+                <label>{{localize "SW5E.Level"}}</label>
+                {{numberInput system.details.powerLevel name="system.details.powerLevel" class="powercasting-level"
+                    placeholder="0" min=0 step=1}}
+            {{/unless}}
+            <select name="system.attributes.powercasting" data-type="String">
+                {{#select system.attributes.powercasting}}
+                    <option value="">{{localize "SW5E.None"}}</option>
+                    {{#each abilities as |abl a|}}
+                        <option value="{{a}}">{{abl.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+            <span>{{localize "SW5E.AbbreviationDC"}} {{system.attributes.powerdc}}</span>
+        </div>
+
+        <ul class="filter-list flexrow" data-filter="powerbook">
+            <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
+            <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
+            <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
+            <li class="filter-item" data-filter="concentration">{{localize "SW5E.AbbreviationConc"}}</li>
+            <li class="filter-item" data-filter="ritual">{{localize "SW5E.Ritual"}}</li>
+            <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}} ({{preparedPowers}}){{/if}}</li>
+        </ul>
     </div>
 
-    <ul class="filter-list flexrow" data-filter="powerbook">
-        <li class="filter-item" data-filter="action">{{localize "SW5E.Action"}}</li>
-        <li class="filter-item" data-filter="bonus">{{localize "SW5E.BonusAction"}}</li>
-        <li class="filter-item" data-filter="reaction">{{localize "SW5E.Reaction"}}</li>
-        <li class="filter-item" data-filter="concentration">{{localize "SW5E.AbbreviationConc"}}</li>
-        <li class="filter-item" data-filter="ritual">{{localize "SW5E.Ritual"}}</li>
-        <li class="filter-item" data-filter="prepared">{{localize "SW5E.Prepared"}}{{#if preparedPowers}} ({{preparedPowers}}){{/if}}</li>
-    </ul>
-</div>
-
-<ol class="items-list inventory-list">
-{{#each powerbook as |section|}}
-    <li class="items-header powerbook-header flexrow" {{#each section.dataset as |v k|}}data-{{k}}="{{v}}"{{/each}}>
-        <div class="item-name flexrow">
-            <h3>{{section.label}}</h3>
-            <div class="power-slots">
-                {{#if section.usesSlots}}
-                    <input type="text" name="system.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
-                           data-dtype="Number">
-                    <span class="sep"> / </span>
-                    <span class="power-max" data-level="{{section.prop}}" data-slots="{{section.slots}}">
-                        {{{section.slots}}}
-                        {{#if section.editable}}
-                            <a class="slot-max-override" data-tooltip="SW5E.PowerProgOverride">
-                                <i class="fas fa-edit"></i>
-                            </a>
+    <ol class="items-list inventory-list">
+        {{#each powerbook as |section|}}
+            <li class="items-header powerbook-header flexrow" {{ sw5e-dataset section.dataset }}>
+                <div class="item-name flexrow">
+                    <h3>{{section.label}}</h3>
+                    <div class="power-slots">
+                        {{#if section.usesSlots}}
+                            <input type="text" name="system.powers.{{section.prop}}.value" value="{{section.uses}}" placeholder="0"
+                                   data-dtype="Number">
+                            <span class="sep"> / </span>
+                            <span class="power-max" data-level="{{section.prop}}" data-slots="{{section.slots}}">
+                                {{{section.slots}}}
+                                {{#if section.editable}}
+                                    <a class="slot-max-override" data-tooltip="SW5E.PowerProgOverride">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                {{/if}}
+                            </span>
+                        {{else}}
+                            <span>{{{section.uses}}}</span>
+                            <span class="sep"> / </span>
+                            <span class="power-max">{{{section.slots}}}</span>
                         {{/if}}
-                    </span>
-                {{else}}
-                    <span>{{{section.uses}}}</span>
-                    <span class="sep"> / </span>
-                    <span class="power-max">{{{section.slots}}}</span>
-                {{/if}}
-            </div>
-        </div>
-        <div class="power-school">{{localize "SW5E.PowerSchool"}}</div>
-        <div class="power-action">{{localize "SW5E.PowerUsage"}}</div>
-        <div class="power-target">{{localize "SW5E.PowerTarget"}}</div>
-
-        <div class="item-controls flexrow">
-            {{#if section.canCreate}}
-            <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
-                <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
-            </a>
-            {{/if}}
-        </div>
-    </li>
-
-    <ol class="item-list">
-    {{#each section.powers as |item i|}}
-    {{#sw5e-itemContext item as |ctx|}}
-        <li class="item flexrow {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
-            <div class="item-name flexrow rollable">
-                <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
-                <h4>{{item.name}}</h4>
-                {{#if item.hasLimitedUses}}
-                    <div class="item-detail power-uses">
-                        {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
                     </div>
-                {{/if}}
-                <div class="power-comps">
-                    {{#each item.labels.components.all}}
-                        <span class="power-component{{#if tag}} tag{{/if}}">{{abbr}}</span>
-                    {{/each}}
                 </div>
-            </div>
-            <div class="power-school">{{item.labels.school}}</div>
-            <div class="power-action">{{item.labels.activation}}</div>
-            <div class="power-target" data-tooltip="{{localize 'SW5E.Range'}}: {{item.labels.range}}">
-                {{#if item.labels.target}}{{item.labels.target}}{{else}}{{localize 'SW5E.None'}}{{/if}}
-            </div>
+                <div class="power-school">{{localize "SW5E.PowerSchool"}}</div>
+                <div class="power-action">{{localize "SW5E.PowerUsage"}}</div>
+                <div class="power-target">{{localize "SW5E.PowerTarget"}}</div>
 
-            {{#if @root.owner}}
-            <div class="item-controls flexrow">
-                {{#if section.canPrepare}}
-                    <a class="item-control item-toggle {{ctx.toggleClass}}" title="{{ctx.toggleTitle}}"><i class="fas fa-sun"></i></a>
-                {{/if}}
-                <a class="item-control item-edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
-            </div>
-            {{/if}}
-
-            {{#if ctx.isExpanded}}
-                {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
-            {{/if}}
-        </li>
-    {{/sw5e-itemContext}}
-    {{/each}}
-    </ol>
-{{else}}
-    {{#if owner}}
-        {{#if filters.powerbook.size}}
-            <li class="item flexrow"><p class="notes">{{localize "SW5E.FilterNoPowers"}}</p></li>
-        {{else}}
-            <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="{{lvl}}">
                 <div class="item-controls flexrow">
-                    <a class="item-control item-create" data-tooltip="SW5E.PowerCreate">
-                       <i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}
-                   </a>
+                    {{#if section.canCreate}}
+                    <a class="item-control item-action" data-action="create" data-tooltip="SW5E.PowerCreate">
+                        <i class="fas fa-plus"></i> {{localize "SW5E.Add"}}
+                    </a>
+                    {{/if}}
                 </div>
             </li>
-            <li class="item flexrow"><p class="notes">{{localize "SW5E.NoPowerLevels"}}</p></li>
-        {{/if}}
-    {{/if}}
-{{/each}}
-</ol>
+
+            <ol class="item-list">
+            {{#each section.powers as |item i|}}
+            {{#sw5e-itemContext item as |ctx|}}
+                <li class="item flexrow {{#if ctx.isExpanded}}expanded{{/if}}" data-item-id="{{item.id}}">
+                    <div class="item-name flexrow rollable">
+                        <div class="item-image item-action" data-action="use" tabindex="0" role="button"
+                             aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
+                        <h4 class="item-action" data-action="expand">{{item.name}}</h4>
+                        {{#if item.hasLimitedUses}}
+                            <div class="item-detail power-uses">
+                                {{localize "SW5E.Uses"}} {{#if item.system.uses.value}}{{item.system.uses.value}}{{else}}0{{/if}} / {{item.system.uses.max}}
+                            </div>
+                        {{/if}}
+                        <div class="power-comps">
+                            {{#each item.labels.components.all}}
+                                <span class="power-component{{#if tag}} tag{{/if}}">{{abbr}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="power-school">{{item.labels.school}}</div>
+                    <div class="power-action">{{item.labels.activation}}</div>
+                    <div class="power-target" data-tooltip="{{localize 'SW5E.Range'}}: {{item.labels.range}}">
+                        {{#if item.labels.target}}{{item.labels.target}}{{else}}{{localize 'SW5E.None'}}{{/if}}
+                    </div>
+
+                    {{#if @root.owner}}
+                    <div class="item-controls flexrow">
+                        {{#if section.canPrepare}}
+                            <a class="item-control item-action {{ctx.toggleClass}}" data-action="prepare" data-tooltip="{{ctx.toggleTitle}}">
+                                <i class="fas fa-sun"></i>
+                            </a>
+                        {{/if}}
+                        <a class="item-control item-action" data-action="edit" data-tooltip="SW5E.ItemEdit"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-action" data-action="delete" data-tooltip="SW5E.ItemDelete"><i class="fas fa-trash"></i></a>
+                    </div>
+                    {{/if}}
+
+                    {{#if ctx.isExpanded}}
+                        {{> "sw5e.item-summary" (lookup @root.expandedData item.id)}}
+                    {{/if}}
+                </li>
+            {{/sw5e-itemContext}}
+            {{/each}}
+            </ol>
+        {{else}}
+            {{#if owner}}
+                {{#if filters.powerbook.size}}
+                    <li class="item flexrow"><p class="notes">{{localize "SW5E.FilterNoPowers"}}</p></li>
+                {{else}}
+                    <li class="item flexrow inventory-header powerbook-header powerbook-empty" data-type="power" data-level="{{lvl}}">
+                        <div class="item-controls flexrow">
+                            <a class="item-control item-action" data-action="create" data-tooltip="SW5E.PowerCreate">
+                               <i class="fas fa-plus"></i> {{localize "SW5E.PowerAdd"}}
+                           </a>
+                        </div>
+                    </li>
+                    <li class="item flexrow"><p class="notes">{{localize "SW5E.NoPowerLevels"}}</p></li>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </ol>
+</{{elements.inventory}}>

@@ -9,20 +9,48 @@
 
         <div class="header-details flexrow">
             <h1 class="charname">
-                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{#if system.identified}}
+                    <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'SW5E.ItemName' }}">
+                {{else}}
+                    <input name="system.unidentified.name" type="text" value="{{system.unidentified.name}}"
+                           placeholder="{{ localize 'SW5E.NameUnidentified' }}">
+                {{/if}}
             </h1>
 
             <div class="item-subtitle">
                 <h4 class="item-type">{{itemType}}</h4>
-                <span class="item-status">{{itemStatus}}</span>
+                <label class="equipped">
+                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}>
+                    {{#if system.equipped}}
+                        {{ localize "SW5E.Equipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unequipped" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
+                <label class="identified">
+                    <input type="checkbox" name="system.identified" {{checked system.identified}}>
+                    {{#if system.identified}}
+                        {{ localize "SW5E.Identified" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-on"></i>{{/if}}
+                    {{else}}
+                        {{ localize "SW5E.Unidentified.Title" }}
+                        {{#if editable}}<i class="fa-solid fa-toggle-off"></i>{{/if}}
+                    {{/if}}
+                </label>
             </div>
 
             <ul class="summary flexrow">
-                <li>{{lookup config.consumableTypes system.consumableType }}</li>
+                <li>{{ itemType }}</li>
                 <li>
-                    <select name="system.rarity">
-                        {{selectOptions config.itemRarity selected=system.rarity blank=""}}
-                    </select>
+                    {{#if concealDetails}}
+                        <span>{{ localize "SW5E.Unidentified.Title" }}</span>
+                    {{else}}
+                        <select name="system.rarity" {{~#if concealDetails}} inert{{/if}}>
+                            {{selectOptions config.itemRarity selected=system.rarity blank=""}}
+                        </select>
+                    {{/if}}
                 </li>
                 <li>
                     {{> "sw5e.item-source"}}
@@ -46,27 +74,36 @@
 
         {{!-- Details Tab --}}
         <div class="tab details" data-group="primary" data-tab="details">
+            {{#sw5e-concealSection concealDetails}}
+
             <h3 class="form-header">{{ localize "SW5E.ItemConsumableDetails" }}</h3>
 
             {{!-- Consumable Type --}}
             <div class="form-group">
                 <label>{{ localize "SW5E.ItemConsumableType" }}</label>
-                <select name="system.consumableType">
-                    {{selectOptions config.consumableTypes selected=system.consumableType}}
+                <select name="system.type.value">
+                    {{selectOptions config.consumableTypes selected=system.type.value labelAttr="label"}}
                 </select>
             </div>
 
-            {{!-- Ammunition Type --}}
-            {{#if isAmmo }}
+            {{!-- Consumable Subtype --}}
+            {{#if itemSubtypes}}
                 <div class="form-group">
-                    <label>{{ localize "SW5E.ItemAmmoType" }}</label>
-                    <select name="system.ammoType">
-                        <optgroup label="{{ localize 'SW5E.StandardAmmo' }}">
-                            {{selectOptions config.ammoStandardTypes selected=system.ammoType}}
-                        </optgroup>
-                        <optgroup label="{{ localize 'SW5E.StarshipAmmo' }}">
-                            {{selectOptions config.ammoStarshipTypes selected=system.ammoType}}
-                        </optgroup>
+                    <label>
+                        {{localize "SW5E.ItemConsumableSubtype"
+                            category=(lookup (lookup config.consumableTypes system.type.value) "label")}}
+                    </label>
+                    <select name="system.type.subtype">
+                        {{#if isAmmo }}
+                            <optgroup label="{{ localize 'SW5E.StandardAmmo' }}">
+                                {{selectOptions config.ammoStandardTypes selected=system.type.subtype}}
+                            </optgroup>
+                            <optgroup label="{{ localize 'SW5E.StarshipAmmo' }}">
+                                {{selectOptions config.ammoStarshipTypes selected=system.type.subtype}}
+                            </optgroup>
+                        {{else}}
+                            {{selectOptions itemSubtypes selected=system.type.subtype blank=""}}
+                        {{/if}}
                     </select>
                 </div>
             {{/if}}
@@ -78,34 +115,23 @@
                 </select>
             </div>
 
-            {{!-- Consumable Status --}}
-            <div class="form-group stacked">
-                <label>{{ localize "SW5E.ItemConsumableStatus" }}</label>
-                <label class="checkbox">
-                    <input type="checkbox" name="system.equipped" {{checked system.equipped}}> {{ localize "SW5E.Equipped" }}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="system.identified" {{checked system.identified}}> {{ localize "SW5E.Identified" }}
-                </label>
+            <div class="form-group stacked weapon-properties">
+                {{#if (eq system.type.value "ammo")}}
+                    <label>{{ localize "SW5E.ItemAmmoProperties" }}</label>
+                {{else}}
+                    <label>{{ localize "SW5E.ItemConsumableProperties" }}</label>
+                {{/if}}
+                {{#each properties}}
+                    <label class="checkbox">
+                        <input type="checkbox" name="system.properties.{{@key}}" {{checked selected}}> {{ label }}
+                    </label>
+                {{/each}}
+                {{#each propertiesNumeric}}
+                    <label class="number">
+                        {{ localize label }}<input type="text" name="system.properties.{{@key}}" value="{{value}}" data-dtype="Number">
+                    </label>
+                {{/each}}
             </div>
-
-            {{#if (eq system.consumableType "ammo")}}
-                {{!-- Weapon Properties --}}
-                <div class="form-group stacked item-properties">
-                    <label>{{ localize "SW5E.ItemWeaponProperties" }}</label>
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Boolean")}}
-                        <label class="checkbox" data-tooltip="{{property.desc}}">
-                            <input type="checkbox" name="system.properties.{{key}}" {{checked (lookup ../system.properties key)}}>{{ localize property.name }}
-                        </label>
-                    {{/if}} {{/each}}
-
-                    {{#each propertiesList as |property key|}} {{#if (eq property.type "Number")}}
-                        <label class="number" data-tooltip="{{property.desc}}">
-                            {{ localize property.name }}<input type="text" name="system.properties.{{key}}" value="{{lookup ../system.properties key}}" data-dtype="Number">
-                        </label>
-                    {{/if}} {{/each}}
-                </div>
-            {{/if}}
 
             <h3 class="form-header">{{ localize "SW5E.ItemConsumableUsage" }}</h3>
 
@@ -116,6 +142,8 @@
 
             {{!-- Item Action Template --}}
             {{> "sw5e.item-action"}}
+
+            {{/sw5e-concealSection}}
         </div>
 
         {{!-- Effects Tab --}}

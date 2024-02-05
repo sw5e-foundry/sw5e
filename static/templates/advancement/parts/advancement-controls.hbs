@@ -1,40 +1,40 @@
 <div class="form-group">
-  <label>{{localize "SW5E.AdvancementCustomTitle"}}</label>
-  <div class="form-fields">
-    <input type="text" name="title" value="{{src.title}}" placeholder="{{default.title}}" />
-  </div>
+    <label>{{localize "SW5E.AdvancementCustomTitle"}}</label>
+    <div class="form-fields">
+        <input type="text" name="title" value="{{src.title}}" placeholder="{{default.title}}">
+    </div>
 </div>
 
 <div class="form-group">
-  <label>{{localize "SW5E.AdvancementCustomIcon"}}</label>
-  <div class="form-fields">
-    {{filePicker type="image" target="icon"}}
-    <input type="text" name="icon" value="{{src.icon}}" placeholder="{{default.icon}}" />
-  </div>
+    <label>{{localize "SW5E.AdvancementCustomIcon"}}</label>
+    <div class="form-fields">
+        {{filePicker type="image" target="icon"}}
+        <input type="text" name="icon" value="{{src.icon}}" placeholder="{{default.icon}}">
+    </div>
 </div>
 
 {{#if showClassRestrictions}}
   <div class="form-group">
-    <label>{{localize "SW5E.AdvancementClassRestriction"}}</label>
-    <div class="form-fields">
-      <select name="classRestriction">
-        {{#select classRestriction}}
-          <option value="">{{localize "SW5E.AdvancementClassRestrictionNone"}}</option>
-          <option value="primary">{{localize "SW5E.AdvancementClassRestrictionPrimary"}}</option>
-          <option value="secondary">{{localize "SW5E.AdvancementClassRestrictionSecondary"}}</option>
-        {{/select}}
-      </select>
-    </div>
+      <label>{{localize "SW5E.AdvancementClassRestriction"}}</label>
+      <div class="form-fields">
+          <select name="classRestriction">
+              {{#select classRestriction}}
+                <option value="">{{localize "SW5E.AdvancementClassRestrictionNone"}}</option>
+                <option value="primary">{{localize "SW5E.AdvancementClassRestrictionPrimary"}}</option>
+                <option value="secondary">{{localize "SW5E.AdvancementClassRestrictionSecondary"}}</option>
+              {{/select}}
+          </select>
+      </div>
   </div>
 {{/if}}
 
 {{#if showLevelSelector}}
   <div class="form-group">
-    <label>{{localize "SW5E.Level"}}</label>
-    <div class="form-fields">
-      <select name="level" data-dtype="Number">
-        {{selectOptions levels selected=level}}
-      </select>
-    </div>
+      <label>{{localize "SW5E.Level"}}</label>
+      <div class="form-fields">
+          <select name="level" data-dtype="Number">
+              {{selectOptions levels selected=level}}
+          </select>
+      </div>
   </div>
 {{/if}}

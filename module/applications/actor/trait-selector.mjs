@@ -70,8 +70,8 @@ export default class TraitSelector extends BaseConfigSheet {
       customPath: "custom" in data ? `${path}.custom` : null,
       bypasses:
         "bypasses" in data
-          ? Object.entries(CONFIG.SW5E.physicalWeaponProperties).reduce((obj, [k, v]) => {
-            obj[k] = { label: v.name, chosen: data.bypasses.has(k) };
+          ? Object.entries(CONFIG.SW5E.itemProperties).reduce((obj, [k, v]) => {
+            if (v.isPhysical) obj[k] = { label: v.name, chosen: data.bypasses.has(k) };
             return obj;
           }, {})
           : null,

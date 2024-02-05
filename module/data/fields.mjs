@@ -381,3 +381,22 @@ export class MappingField extends foundry.data.fields.ObjectField {
     return this.model._getField(path);
   }
 }
+
+/* -------------------------------------------- */
+
+/**
+ * A subclass of [ObjectField]{@link ObjectField} which supports a map of contained elements.
+ * Elements in this map are treated as fungible and may be represented in any order or discarded if invalid.
+ */
+export class MapField extends foundry.data.fields.ObjectField {
+  /** @override */
+  initialize(value, model, options={}) {
+    if ( !value ) return value;
+    return new Map(Object.entries(value));
+  }
+
+  /** @override */
+  toObject(value) {
+    return Object.fromEntries(value);
+  }
+}

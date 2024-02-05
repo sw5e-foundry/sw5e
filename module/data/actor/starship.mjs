@@ -300,6 +300,8 @@ export default class StarshipData extends CommonTemplate {
   }
 
   /* -------------------------------------------- */
+  /*  Data Migration                              */
+  /* -------------------------------------------- */
 
   /** @inheritdoc */
   static migrateData(source) {
@@ -307,6 +309,61 @@ export default class StarshipData extends CommonTemplate {
     AttributesFields._migrateInitiative(source.attributes);
     this.#migratePowerRouting(source);
   }
+
+  /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  // TODO SW5E: 3.0.0 update here
+  // /**
+  //  * Prepare movement & senses values derived from species item.
+  //  */
+  // prepareEmbeddedData() {
+  //   const speciesData = this.details.species?.system;
+  //   if ( !speciesData ) {
+  //     this.details.type = new CreatureTypeField({ swarm: false }).initialize({ value: "humanoid" }, this);
+  //     return;
+  //   }
+
+  //   for ( const key of Object.keys(CONFIG.SW5E.movementTypes) ) {
+  //     if ( speciesData.movement[key] ) this.attributes.movement[key] ??= speciesData.movement[key];
+  //   }
+  //   if ( speciesData.movement.hover ) this.attributes.movement.hover = true;
+  //   this.attributes.movement.units ??= speciesData.movement.units;
+
+  //   for ( const key of Object.keys(CONFIG.SW5E.senses) ) {
+  //     if ( speciesData.senses[key] ) this.attributes.senses[key] ??= speciesData.senses[key];
+  //   }
+  //   this.attributes.senses.special = [this.attributes.senses.special, speciesData.senses.special].filterJoin(";");
+  //   this.attributes.senses.units ??= speciesData.senses.units;
+
+  //   this.details.type = speciesData.type;
+  // }
+
+  /* -------------------------------------------- */
+
+  // /**
+  //  * Prepare remaining character data.
+  //  */
+  // prepareDerivedData() {
+  // }
+
+  /* -------------------------------------------- */
+  /*  Helpers                                     */
+  /* -------------------------------------------- */
+
+  /** @inheritdoc */
+  getRollData({ deterministic=false }={}) {
+    const data = super.getRollData({ deterministic });
+
+    data.starships = {};
+    for (const [identifier, ss] of Object.entries(this.parent.starships)) {
+      data.starships[identifier] = { ...ss.system };
+    }
+
+    return data;
+  }
+
 
   /**
    * Migrate the starship's power routing data to integers.

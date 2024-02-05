@@ -1,12 +1,18 @@
-import SystemDataModel from "../abstract.mjs";
+import { ItemDataModel } from "../abstract.mjs";
 import { FormulaField } from "../fields.mjs";
 import EquippableItemTemplate from "./templates/equippable-item.mjs";
+import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
+import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
+import ItemTypeField from "./fields/item-type-field.mjs";
+import { MapField } from "../fields.mjs";
 
 /**
  * Data definition for Tool items.
+ * @mixes IdentifiableTemplate
  * @mixes ItemDescriptionTemplate
+ * @mixes ItemTypeTemplate
  * @mixes PhysicalItemTemplate
  * @mixes EquippableItemTemplate
  *
@@ -17,16 +23,17 @@ import PhysicalItemTemplate from "./templates/physical-item.mjs";
  * @property {number} proficient  Level of proficiency in this tool as defined in `SW5E.proficiencyLevels`.
  * @property {string} bonus       Bonus formula added to tool rolls.
  */
-export default class ToolData extends SystemDataModel.mixin(
+export default class ToolData extends ItemDataModel.mixin(
+  IdentifiableTemplate,
   ItemDescriptionTemplate,
+  ItemTypeTemplate,
   PhysicalItemTemplate,
   EquippableItemTemplate
 ) {
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      toolType: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemToolType" }),
-      baseItem: new foundry.data.fields.StringField({ required: true, label: "SW5E.ItemToolBase" }),
+      type: new ItemTypeField({subtype: false}, {label: "SW5E.ItemToolType"}),
       ability: new foundry.data.fields.StringField({
         required: true,
         blank: true,
@@ -41,6 +48,7 @@ export default class ToolData extends SystemDataModel.mixin(
         step: 0.5,
         label: "SW5E.ItemToolProficiency"
       }),
+      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemToolProperties" }),
       bonus: new FormulaField({ required: true, label: "SW5E.ItemToolBonus" })
     });
   }
@@ -66,6 +74,26 @@ export default class ToolData extends SystemDataModel.mixin(
   }
 
   /* -------------------------------------------- */
+  /*  Data Preparation                            */
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.type.label = CONFIG.SW5E.toolTypes[this.type.value] ?? game.i18n.localize(CONFIG.Item.typeLabels.tool);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async getFavoriteData() {
+    return foundry.utils.mergeObject(await super.getFavoriteData(), {
+      subtitle: this.type.label,
+      modifier: this.parent.parent?.system.tools?.[this.type.baseItem]?.total
+    });
+  }
+
+  /* -------------------------------------------- */
   /*  Getters                                     */
   /* -------------------------------------------- */
 
@@ -74,6 +102,16 @@ export default class ToolData extends SystemDataModel.mixin(
    * @type {string[]}
    */
   get chatProperties() {
+    return [CONFIG.SW5E.abilities[this.ability]?.label];
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Properties displayed on the item card.
+   * @type {string[]}
+   */
+  get cardProperties() {
     return [CONFIG.SW5E.abilities[this.ability]?.label];
   }
 
@@ -98,8 +136,8 @@ export default class ToolData extends SystemDataModel.mixin(
     const actor = this.parent.actor;
     if ( !actor ) return 0;
     if ( actor.type === "npc" ) return 1;
-    const baseItemProf = actor.system.tools?.[this.baseItem];
-    const categoryProf = actor.system.tools?.[this.toolType];
+    const baseItemProf = actor.system.tools?.[this.type.baseItem];
+    const categoryProf = actor.system.tools?.[this.type.value];
     return Math.min(Math.max(baseItemProf?.value ?? 0, categoryProf?.value ?? 0), 2);
   }
 }

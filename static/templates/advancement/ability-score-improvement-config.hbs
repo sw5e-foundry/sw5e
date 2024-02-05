@@ -1,22 +1,22 @@
 <form autocomplete="off" data-id="{{_id}}" data-type="{{type}}">
-  {{> "sw5e.advancement-controls"}}
+    {{> "sw5e.advancement-controls"}}
 
-  <div class="form-group">
-    <label>{{localize "SW5E.AdvancementAbilityScoreImprovementCap"}}</label>
-    <div class="form-fields">
-      <input type="number" name="configuration.cap" value="{{configuration.cap}}" min="1" step="1"
-             placeholder="{{localize 'None'}}">
+    <div class="form-group">
+        <label>{{localize "SW5E.AdvancementAbilityScoreImprovementCap"}}</label>
+        <div class="form-fields">
+            <input type="number" name="configuration.cap" value="{{configuration.cap}}" min="1" step="1"
+                         placeholder="{{localize 'None'}}">
+        </div>
+        <p class="hint">{{localize "SW5E.AdvancementAbilityScoreImprovementCapHint"}}</p>
     </div>
-    <p class="hint">{{localize "SW5E.AdvancementAbilityScoreImprovementCapHint"}}</p>
-  </div>
 
-  <ul class="ability-scores">
-    {{> "sw5e.advancement-ability-score-control" points canAdjust=true}}
-    <li class="hint">
-      {{localize "SW5E.AdvancementAbilityScoreImprovementPointsHint"}}
-    </li>
-    {{#each abilities}}
-      {{> "sw5e.advancement-ability-score-control" this canAdjust=true}}
-    {{/each}}
-  </ul>
+    <ul class="ability-scores">
+        {{> "sw5e.advancement-ability-score-control" points canAdjust=true}}
+        <li class="hint">
+            {{localize "SW5E.AdvancementAbilityScoreImprovementPointsHint"}}
+        </li>
+        {{#each abilities}}
+            {{> "sw5e.advancement-ability-score-control" this canAdjust=true}}
+        {{/each}}
+    </ul>
 </form>

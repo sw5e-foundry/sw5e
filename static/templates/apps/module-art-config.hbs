@@ -1,19 +1,33 @@
 <form>
-    {{#each config}}
-    <div class="form-group-stacked" data-id="{{id}}">
-        <label>{{label}}</label>
-        <div class="form-fields">
-            <label>
-                {{localize "SW5E.ModuleArtConfigPortraits"}}
-                <input type="checkbox" name="{{id}}.portraits" {{checked portraits}}>
-            </label>
-            <label>
-                {{localize "SW5E.ModuleArtConfigTokens"}}
-                <input type="checkbox" name="{{id}}.tokens" {{checked tokens}}>
-            </label>
-        </div>
-    </div>
-    {{/each}}
+    <ol>
+        {{#each config}}
+            <li data-id="{{id}}">
+                <input type="hidden" name="{{ id }}.priority" value="{{ priority }}" data-dtype="Number">
+                <label>{{label}}</label>
+                <div class="form-fields">
+                    <label>
+                        {{localize "SW5E.ModuleArtConfigPortraits"}}
+                        <input type="checkbox" name="{{id}}.portraits" {{checked portraits}}>
+                    </label>
+                    <label>
+                        {{localize "SW5E.ModuleArtConfigTokens"}}
+                        <input type="checkbox" name="{{id}}.tokens" {{checked tokens}}>
+                    </label>
+                </div>
+                <div class="priority-adjust">
+                    <button type="button" data-action="increase"
+                            aria-label="{{ localize 'SW5E.ModuleArtPriorityIncrease' }}">
+                        <i class="fas fa-angle-up"></i>
+                    </button>
+                    <button type="button" data-action="decrease"
+                            aria-label="{{ localize 'SW5E.ModuleArtPriorityDecrease' }}">
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                </div>
+            </li>
+        {{/each}}
+    </ol>
+    <p class="hint">{{ localize "SW5E.ModuleArtPriorityHint" }}</p>
     <footer class="sheet-footer flexrow">
         <button type="submit">
             <i class="far fa-save"></i> {{localize "Save Changes"}}

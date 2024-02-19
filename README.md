@@ -1,6 +1,6 @@
 ![](https://github.com/foundryvtt/sw5e/blob/master/ui/official/sw5e-repo.jpg?raw=true)
 
-# Foundry Virtual Tabletop - Dungeons & Dragons Fifth Edition Game System
+# Foundry Virtual Tabletop - SW5e Game System
 
 This game system for [Foundry Virtual Tabletop](http://foundryvtt.com) provides character sheet and game system 
 support for the Fifth Edition of the world's most popular roleplaying game.
@@ -17,7 +17,7 @@ The software component of this system is distributed under the MIT license.
 
 ## Installation Instructions
 
-To install and use the Dungeons & Dragons Fifth Edition system for Foundry Virtual Tabletop, simply paste the following URL into the 
+To install and use the SW5e system for Foundry Virtual Tabletop, simply paste the following URL into the 
 **Install System** dialog on the Setup menu of the application.
 
 https://raw.githubusercontent.com/foundryvtt/sw5e/master/system.json

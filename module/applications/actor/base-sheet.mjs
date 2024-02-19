@@ -4,6 +4,7 @@ import EffectsElement from "../components/effects.mjs";
 
 import ActorAbilityConfig from "./ability-config.mjs";
 import ActorArmorConfig from "./armor-config.mjs";
+import ActorConcentrationConfig from "./concentration-config.mjs";
 import ActorHitDiceConfig from "./hit-dice-config.mjs";
 import ActorHitPointsConfig from "./hit-points-config.mjs";
 import ActorInitiativeConfig from "./initiative-config.mjs";
@@ -11,8 +12,10 @@ import ActorMovementConfig from "./movement-config.mjs";
 import ActorSensesConfig from "./senses-config.mjs";
 import ActorSheetFlags from "./sheet-flags.mjs";
 import ActorTypeConfig from "./type-config.mjs";
+import DamageModificationConfig from "./damage-modification-config.mjs";
 import SourceConfig from "../source-config.mjs";
 
+import AdvancementConfirmationDialog from "../advancement/advancement-confirmation-dialog.mjs";
 import AdvancementManager from "../advancement/advancement-manager.mjs";
 
 import TraitSelector from "./trait-selector.mjs";
@@ -311,7 +314,6 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       const key = traitConfig.actorKeyPath?.replace("system.", "") ?? `traits.${trait}`;
       const data = foundry.utils.deepClone(foundry.utils.getProperty(systemData, key));
       if ( !data ) continue;
-
       foundry.utils.setProperty(traits, key, data);
       let values = data.value;
       if ( !values ) values = [];
@@ -350,6 +352,12 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       // Add custom entries
       if ( data.custom ) data.custom.split(";").forEach((c, i) => data.selected[`custom${i+1}`] = c.trim());
       data.cssClass = !foundry.utils.isEmpty(data.selected) ? "" : "inactive";
+
+      // If petrified, display "All Damage" instead of all damage types separately
+      if ( (trait === "dr") && this.document.hasConditionEffect("petrification") ) {
+        data.selected = { custom1: game.i18n.localize("SW5E.DamageAll") };
+        data.cssClass = "";
+      }
     }
     return traits;
   }
@@ -378,7 +386,10 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const powerbook = {};
 
     // Define section and label mappings
-    const sections = {atwill: -20, innate: -10, pact: 0.5 };
+    const sections = Object.entries(CONFIG.SW5E.powerPreparationModes).reduce((acc, [k, {order}]) => {
+      if ( Number.isNumeric(order) ) acc[k] = Number(order);
+      return acc;
+    }, {});
     const useLabels = {"-20": "-", "-10": "-", 0: "&infin;"};
 
     // Format a powerbook entry for a certain indexed level
@@ -394,7 +405,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
         uses: useLabels[i] || value || 0,
         slots: useLabels[i] || max || 0,
         override: override || 0,
-        dataset: {type: "power", level: prepMode in sections ? 1 : i, "preparationMode": prepMode},
+        dataset: {type: "power", level: prepMode in sections ? 1 : i, preparationMode: prepMode},
         prop: sl,
         editable: context.editable && !aeOverride
       };
@@ -417,14 +428,16 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     }
 
     // Pact magic users have at-wills and a pact magic section
-    if ( levels.pact && levels.pact.max ) {
-      if ( !powerbook["0"] ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
-      const l = levels.pact;
-      const config = CONFIG.SW5E.powerPreparationModes.pact;
-      const level = game.i18n.localize(`SW5E.PowerLevel${levels.pact.level}`);
-      const label = `${config} — ${level}`;
-      registerSection("pact", sections.pact, label, {
-        prepMode: "pact",
+    for ( const [k, v] of Object.entries(CONFIG.SW5E.powerPreparationModes) ) {
+      if ( !(k in levels) || !v.upcast || !levels[k].max ) continue;
+
+      if ( !powerbook["0"] && v.at-wills ) registerSection("power0", 0, CONFIG.SW5E.powerLevels[0]);
+      const l = levels[k];
+      const config = CONFIG.SW5E.powerPreparationModes[k];
+      const level = game.i18n.localize(`SW5E.PowerLevel${l.level}`);
+      const label = `${config.label} — ${level}`;
+      registerSection(k, sections[k], label, {
+        prepMode: k,
         value: l.value,
         max: l.max,
         override: l.override
@@ -443,7 +456,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
         if ( !powerbook[s] ) {
           const l = levels[mode] || {};
           const config = CONFIG.SW5E.powerPreparationModes[mode];
-          registerSection(mode, s, config, {
+          registerSection(mode, s, config.label, {
             prepMode: mode,
             value: l.value,
             max: l.max,
@@ -604,6 +617,9 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
       // Configure Special Flags
       html.find(".config-button").click(this._onConfigMenu.bind(this));
 
+      // Changing Level
+      html.find(".level-selector").change(this._onLevelChange.bind(this));
+
       // Owned Item management
       html.find(".slot-max-override").click(this._onPowerSlotOverride.bind(this));
       html.find(".attunement-max-override").click(this._onAttunementOverride.bind(this));
@@ -664,7 +680,35 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
   }
 
   /* -------------------------------------------- */
-  /*  Event Listeners and Handlers                */
+
+  /**
+   * Respond to a new level being selected from the level selector.
+   * @param {Event} event                           The originating change.
+   * @returns {Promise<AdvancementManager|Item5e>}  Manager if advancements needed, otherwise updated class item.
+   * @private
+   */
+  async _onLevelChange(event) {
+    event.preventDefault();
+    const delta = Number(event.target.value);
+    const classId = event.target.closest("[data-item-id]")?.dataset.itemId;
+    if ( !delta || !classId ) return;
+    const classItem = this.actor.items.get(classId);
+    if ( !game.settings.get("sw5e", "disableAdvancements") ) {
+      const manager = AdvancementManager.forLevelChange(this.actor, classId, delta);
+      if ( manager.steps.length ) {
+        if ( delta > 0 ) return manager.render(true);
+        try {
+          const shouldRemoveAdvancements = await AdvancementConfirmationDialog.forLevelDown(classItem);
+          if ( shouldRemoveAdvancements ) return manager.render(true);
+        }
+        catch(err) {
+          return;
+        }
+      }
+    }
+    return classItem.update({"system.levels": classItem.system.levels + delta});
+  }
+
   /* -------------------------------------------- */
 
   /**
@@ -707,7 +751,8 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
         break;
       case "ability":
         const ability = event.currentTarget.closest("[data-ability]").dataset.ability;
-        app = new ActorAbilityConfig(this.actor, null, ability);
+        if ( ability === "concentration" ) app = new ActorConcentrationConfig(this.actor);
+        else app = new ActorAbilityConfig(this.actor, null, ability);
         break;
       case "skill":
         const skill = event.currentTarget.closest("[data-key]").dataset.key;
@@ -949,20 +994,20 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     const stacked = this._onDropStackConsumables(itemData);
     if ( stacked ) return false;
 
-    // Ensure that this item isn't violating the singleton rule
-    // TODO: When v10 support is dropped, this will only need to be handled for items with advancement
-    const dataModel = CONFIG.Item[sw5e.isV10 ? "systemDataModels" : "dataModels"][itemData.type];
-    const singleton = dataModel?.metadata.singleton ?? false;
-    if ( singleton && this.actor.itemTypes[itemData.type].length ) {
-      ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
-        itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
-        actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
-      }));
-      return false;
-    }
-
     // Bypass normal creation flow for any items with advancement
-    if ( itemData.system.advancement?.length && !game.settings.get("sw5e", "disableAdvancements") ) {
+    if ( this.actor.system.metadata?.supportsAdvancement && itemData.system.advancement?.length
+        && !game.settings.get("sw5e", "disableAdvancements") ) {
+      // Ensure that this item isn't violating the singleton rule
+      const dataModel = CONFIG.Item.dataModels[itemData.type];
+      const singleton = dataModel?.metadata.singleton ?? false;
+      if ( singleton && this.actor.itemTypes[itemData.type].length ) {
+        ui.notifications.error(game.i18n.format("SW5E.ActorWarningSingleton", {
+          itemType: game.i18n.localize(CONFIG.Item.typeLabels[itemData.type]),
+          actorType: game.i18n.localize(CONFIG.Actor.typeLabels[this.actor.type])
+        }));
+        return false;
+      }
+
       const manager = AdvancementManager.forNewItem(this.actor, itemData);
       if ( manager.steps.length ) {
         manager.render(true);
@@ -1165,6 +1210,7 @@ export default class ActorSheet5e extends ActorSheetMixin(ActorSheet) {
     event.preventDefault();
     const trait = event.currentTarget.dataset.trait;
     if ( trait === "tool" ) return new ToolSelector(this.actor, trait).render(true);
+    else if ( trait === "dm" ) return new DamageModificationConfig(this.actor).render(true);
     return new TraitSelector(this.actor, trait).render(true);
   }
 

@@ -53,6 +53,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
     context.system = this.actor.system;
     context.items = Array.from(this.actor.items);
     context.config = CONFIG.SW5E;
+    context.isGM = game.user.isGM;
 
     // Membership
     const {sections, stats} = this.#prepareMembers();
@@ -141,6 +142,7 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
     const displayXP = !game.settings.get("sw5e", "disableExperienceTracking");
     for ( const [index, memberData] of this.object.system.members.entries() ) {
       const member = memberData.actor;
+      const multiplier = type === "encounter" ? memberData.quantity.value : 1;
 
       const m = {
         index,
@@ -156,16 +158,16 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       // HP bar
       const hp = member.system.attributes.hp;
       m.hp.current = hp.value + (hp.temp || 0);
-      m.hp.max = Math.max(0, hp.max + (hp.tempmax || 0));
+      m.hp.max = Math.max(0, hp.effectiveMax);
       m.hp.pct = Math.clamped((m.hp.current / m.hp.max) * 100, 0, 100).toFixed(2);
       m.hp.color = sw5e.documents.Actor5e.getHPColor(m.hp.current, m.hp.max).css;
-      stats.currentHP += (m.hp.current * m.quantity.value);
-      stats.maxHP += (m.hp.max * m.quantity.value);
+      stats.currentHP += (m.hp.current * multiplier);
+      stats.maxHP += (m.hp.max * multiplier);
 
       // Challenge
       if ( member.type === "npc" ) {
         m.cr = formatCR(member.system.details.cr);
-        if ( displayXP ) m.xp = formatNumber(member.system.details.xp.value * m.quantity.value);
+        if ( displayXP ) m.xp = formatNumber(member.system.details.xp.value * multiplier);
       }
 
       if ( member.type === "vehicle" ) stats.nVehicles++;
@@ -275,7 +277,6 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
       inputs.focus(ev => ev.currentTarget.select());
       inputs.addBack().find('[type="text"][data-dtype="Number"]').change(this._onChangeInputDelta.bind(this));
       html.find(".action-button").click(this._onClickActionButton.bind(this));
-      html.find(".item .rollable h4").click(event => this._onItemSummary(event));
     }
   }
 
@@ -298,12 +299,18 @@ export default class GroupActorSheet extends ActorSheetMixin(ActorSheet) {
         const removeMemberId = button.closest("li.group-member").dataset.actorId;
         this.object.system.removeMember(removeMemberId);
         break;
-      case "rollQuantities":
-        this.object.system.rollQuantities();
+      case "longRest":
+        this.object.longRest({ advanceTime: true });
         break;
       case "movementConfig":
         const movementConfig = new ActorMovementConfig(this.object);
         movementConfig.render(true);
+        break;
+      case "rollQuantities":
+        this.object.system.rollQuantities();
+        break;
+      case "shortRest":
+        this.object.shortRest({ advanceTime: true });
         break;
     }
   }

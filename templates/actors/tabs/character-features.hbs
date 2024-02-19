@@ -61,7 +61,7 @@
 </section>
 
 {{!-- Features --}}
-<{{elements.inventory}} v2>
+<{{elements.inventory}} class="inventory-element" v2>
 
     {{!-- Searching, Filtering, & Sorting --}}
     <item-list-controls for="features" label="{{ localize "SW5E.FeatureSearch" }}" sort="toggle" group
@@ -111,6 +111,15 @@
                             {{#if ctx.subtitle}}
                             <span class="subtitle">{{{ ctx.subtitle }}}</span>
                             {{/if}}
+                        </div>
+                        <div class="tags">
+                            {{#each item.labels.properties}}
+                            {{#if icon}}
+                            <span aria-label="{{ label }}">
+                                <sw5e-icon src="{{ icon }}"></sw5e-icon>
+                            </span>
+                            {{/if}}
+                            {{/each}}
                         </div>
                     </div>
 

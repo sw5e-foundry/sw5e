@@ -19,7 +19,6 @@ export default class SizeAdvancement extends Advancement {
       icon: "systems/sw5e/icons/svg/size.svg",
       title: game.i18n.localize("SW5E.AdvancementSizeTitle"),
       hint: game.i18n.localize("SW5E.AdvancementSizeHint"),
-      validItemTypes: new Set(["species"]),
       apps: {
         config: SizeConfig,
         flow: SizeFlow

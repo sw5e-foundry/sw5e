@@ -17,6 +17,7 @@ import { FormulaField } from "../../fields.mjs";
  * @property {number} target.width          Width of line when line type is selected.
  * @property {string} target.units          Units used for value and width as defined in `SW5E.distanceUnits`.
  * @property {string} target.type           Targeting mode as defined in `SW5E.targetTypes`.
+ * @property {boolean} target.prompt        Should the player be prompted to place the template?
  * @property {object} range                 Effect's range.
  * @property {number} range.value           Regular targeting distance for item's effect.
  * @property {number} range.long            Maximum targeting distance for features that have a separate long range.
@@ -334,9 +335,11 @@ export default class ActivatedEffectTemplate extends SystemDataModel {
    * @ignore
    */
   get activatedEffectChatProperties() {
-    foundry.utils.logCompatibilityWarning("ActivatedEffectTemplate#activatedEffectChatProperties is deprecated. "
+    foundry.utils.logCompatibilityWarning(
+      "ActivatedEffectTemplate#activatedEffectChatProperties is deprecated. "
       + "Please use ActivatedEffectTemplate#activatedEffectCardProperties.",
-      { since: "SW5e 3.0", until: "SW5e 3.2", once: true });
+      { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
+    );
     return [
       this.parent.labels.activation + (this.activation.condition ? ` (${this.activation.condition})` : ""),
       this.parent.labels.target,

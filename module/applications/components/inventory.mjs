@@ -201,6 +201,13 @@ export default class InventoryElement extends HTMLElement {
         icon: "<i class='fas fa-trash fa-fw'></i>",
         condition: () => item.isOwner,
         callback: li => this._onAction(li[0], "delete")
+      },
+      {
+        name: "SW5E.ConcentrationBreak",
+        icon: '<sw5e-icon src="systems/sw5e/icons/svg/break-concentration.svg"></sw5e-icon>',
+        condition: () => this.actor.concentration?.items.has(item),
+        callback: () => this.actor.endConcentration(item),
+        group: "state"
       }
     ];
 
@@ -244,6 +251,19 @@ export default class InventoryElement extends HTMLElement {
       callback: () => item.update({ "system.identified": true }),
       group: "state"
     });
+
+    // Toggle Favorite State
+    if ( ("favorites" in this.actor.system) ) {
+      const uuid = item.getRelativeUUID(this.actor);
+      const isFavorited = this.actor.system.hasFavorite(uuid);
+      options.push({
+        name: isFavorited ? "SW5E.FavoriteRemove" : "SW5E.Favorite",
+        icon: "<i class='fas fa-star fa-fw'></i>",
+        condition: () => item.isOwner,
+        callback: li => this._onAction(li[0], isFavorited ? "unfavorite" : "favorite"),
+        group: "state"
+      });
+    }
 
     return options;
   }
@@ -352,10 +372,14 @@ export default class InventoryElement extends HTMLElement {
         return item.update({"system.equipped": !item.system.equipped});
       case "expand":
         return this._onExpand(target, item);
+      case "favorite":
+        return this.actor.system.addFavorite({type: "item", id: item.getRelativeUUID(this.actor)});
       case "prepare":
         return item.update({"system.preparation.prepared": !item.system.preparation?.prepared});
       case "recharge":
         return item.rollRecharge();
+      case "unfavorite":
+        return this.actor.system.removeFavorite(item.getRelativeUUID(this.actor));
       case "use":
         return item.use({}, { event });
     }
@@ -369,8 +393,9 @@ export default class InventoryElement extends HTMLElement {
    * @returns {Promise<Item5e>}
    */
   async _onCreate(target) {
-    const dataset = (target.closest(".powerbook-header") ?? target).dataset;
-    const type = dataset.type;
+    const { type, ...dataset } = (target.closest(".powerbook-header") ?? target).dataset;
+    delete dataset.action;
+    delete dataset.tooltip;
 
     // Check to make sure the newly created class doesn't take player over level cap
     if ( type === "class" && (this.actor.system.details.level + 1 > CONFIG.SW5E.maxLevel) ) {
@@ -402,8 +427,9 @@ export default class InventoryElement extends HTMLElement {
       summary.slideUp(200, () => summary.remove());
       this._app._expanded.delete(item.id);
     } else {
-      const chatData = await item.getChatData({secrets: this.document.isOwner});
-      const summary = $(await renderTemplate("systems/sw5e/templates/items/parts/item-summary.hbs", chatData));
+      const enrichment = {secrets: this.document.isOwner};
+      const chatData = item.system.getCardData ? item.system.getCardData(enrichment) : item.getChatData(enrichment);
+      const summary = $(await renderTemplate("systems/sw5e/templates/items/parts/item-summary.hbs", await chatData));
       $(li).append(summary.hide());
       summary.slideDown(200);
       this._app._expanded.add(item.id);

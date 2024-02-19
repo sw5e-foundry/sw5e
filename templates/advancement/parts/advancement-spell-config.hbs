@@ -11,7 +11,7 @@
     <label>{{localize "SW5E.PowerPreparationMode"}}</label>
     <div class="form-fields">
         <select name="configuration.power.preparation">
-            {{selectOptions CONFIG.powerPreparationModes selected=configuration.power.preparation blank="—"}}
+            {{selectOptions CONFIG.powerPreparationModes selected=configuration.power.preparation labelAttr="label" blank="—"}}
         </select>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="form-fields">
         <input type="text" name="configuration.power.uses.max" value="{{configuration.power.uses.max}}" data-formula-editor>
         <select name="configuration.power.uses.per">
-            {{selectOptions CONFIG.limitedUsePeriods selected=configuration.power.uses.per blank="—"}}
+            {{selectOptions CONFIG.limitedUsePeriods selected=configuration.power.uses.per labelAttr="label" blank="—"}}
         </select>
     </div>
 </div>

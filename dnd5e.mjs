@@ -1,5 +1,5 @@
 /**
- * The D&D fifth edition game system for Foundry Virtual Tabletop
+ * The SW5e game system for Foundry Virtual Tabletop
  * A system for playing the fifth edition of the world's most popular role-playing game.
  * Author: Atropos
  * Software License: MIT
@@ -10,7 +10,7 @@
 
 // Import Configuration
 import SW5E from "./module/config.mjs";
-import registerSystemSettings from "./module/settings.mjs";
+import { registerSystemSettings, registerDeferredSettings } from "./module/settings.mjs";
 
 // Import Submodules
 import * as applications from "./module/applications/_module.mjs";
@@ -50,6 +50,8 @@ Hooks.once("init", function() {
 
   // TODO: Remove when v11 support is dropped.
   CONFIG.compatibility.excludePatterns.push(/Math\.clamped/);
+  CONFIG.compatibility.excludePatterns.push(/\{\{filePicker}}/);
+  CONFIG.compatibility.excludePatterns.push(/foundry\.dice\.terms/);
 
   // Record Configuration Values
   CONFIG.SW5E = SW5E;
@@ -57,6 +59,8 @@ Hooks.once("init", function() {
   CONFIG.ActiveEffect.legacyTransferral = false;
   CONFIG.Actor.documentClass = documents.Actor5e;
   CONFIG.ChatMessage.documentClass = documents.ChatMessage5e;
+  CONFIG.Combat.documentClass = documents.Combat5e;
+  CONFIG.Combatant.documentClass = documents.Combatant5e;
   CONFIG.Item.collection = dataModels.collection.Items5e;
   CONFIG.Item.compendiumIndexFields.push("system.container");
   CONFIG.Item.documentClass = documents.Item5e;
@@ -88,13 +92,6 @@ Hooks.once("init", function() {
   // Remove honor & sanity from configuration if they aren't enabled
   if ( !game.settings.get("sw5e", "honorScore") ) delete SW5E.abilities.hon;
   if ( !game.settings.get("sw5e", "sanityScore") ) delete SW5E.abilities.san;
-
-  // Configure trackable & consumable attributes.
-  _configureTrackableAttributes();
-  _configureConsumableAttributes();
-
-  // Patch Core Functions
-  Combatant.prototype.getInitiativeRoll = documents.combat.getInitiativeRoll;
 
   // Register Roll Extensions
   CONFIG.Dice.rolls.push(dice.D20Roll);
@@ -298,9 +295,15 @@ function _configureFonts() {
  * Configure system status effects.
  */
 function _configureStatusEffects() {
-  const addEffect = (effects, data) => {
+  const addEffect = (effects, {special, ...data}) => {
+    data = foundry.utils.deepClone(data);
+    data._id = utils.staticID(`sw5e${data.id}`);
+    if ( foundry.utils.isNewerVersion(game.version, 12) ) {
+      data.img = data.icon ?? data.img;
+      delete data.icon;
+    }
     effects.push(data);
-    if ( "special" in data ) CONFIG.specialStatusEffects[data.special] = data.id;
+    if ( special ) CONFIG.specialStatusEffects[special] = data.id;
   };
   CONFIG.statusEffects = Object.entries(CONFIG.SW5E.statusEffects).reduce((arr, [id, data]) => {
     const original = CONFIG.statusEffects.find(s => s.id === id);
@@ -320,10 +323,17 @@ function _configureStatusEffects() {
  * Prepare attribute lists.
  */
 Hooks.once("setup", function() {
+  // Configure trackable & consumable attributes.
+  _configureTrackableAttributes();
+  _configureConsumableAttributes();
+
   CONFIG.SW5E.trackableAttributes = expandAttributeList(CONFIG.SW5E.trackableAttributes);
   game.sw5e.moduleArt.registerModuleArt();
   Tooltips5e.activateListeners();
   game.sw5e.tooltips.observe();
+
+  // Register settings after modules have had a chance to initialize
+  registerDeferredSettings();
 
   // Apply table of contents compendium style if specified in flags
   game.packs
@@ -426,9 +436,11 @@ Hooks.on("renderPause", (app, [html]) => {
   img.className = "";
 });
 
-Hooks.on("renderSettings", () => {
-  const details = document.getElementById("game-details");
+Hooks.on("renderSettings", (app, [html]) => {
+  const details = html.querySelector("#game-details");
+  const pip = details.querySelector(".system-info .update");
   details.querySelector(".system").remove();
+
   const heading = document.createElement("div");
   heading.classList.add("sw5e2", "sidebar-heading");
   heading.innerHTML = `
@@ -453,12 +465,14 @@ Hooks.on("renderSettings", () => {
     </ul>
   `;
   details.insertAdjacentElement("afterend", heading);
+
   const badge = document.createElement("div");
   badge.classList.add("sw5e2", "system-badge");
   badge.innerHTML = `
     <img src="systems/sw5e/ui/official/dnd-badge-32.webp" data-tooltip="${sw5e.title}" alt="${sw5e.title}">
     <span class="system-info">${sw5e.version}</span>
   `;
+  if ( pip ) badge.querySelector(".system-info").insertAdjacentElement("beforeend", pip);
   heading.insertAdjacentElement("afterend", badge);
 });
 

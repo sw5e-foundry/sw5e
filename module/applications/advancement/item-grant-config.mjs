@@ -20,7 +20,7 @@ export default class ItemGrantConfig extends AdvancementConfig {
   /** @inheritdoc */
   getData(options={}) {
     const context = super.getData(options);
-    const indexes = context.configuration.items.map(uuid => fromUuidSync(uuid));
+    const indexes = context.configuration.items.map(i => fromUuidSync(i.uuid));
     context.showContainerWarning = indexes.some(i => i?.type === "container");
     context.showPowerConfig = indexes.some(i => i?.type === "power");
     return context;

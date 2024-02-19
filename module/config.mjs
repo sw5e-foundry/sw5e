@@ -98,16 +98,51 @@ SW5E.abilities = {
 preLocalize("abilities", { keys: ["label", "abbreviation"] });
 
 /**
- * Configure which ability score is used as the default modifier for initiative rolls.
- * @type {string}
+ * Configure which ability score is used as the default modifier for initiative rolls,
+ * when calculating hit points per level and hit dice, and as the default modifier for
+ * saving throws to maintain concentration.
+ * @enum {string}
  */
-SW5E.initiativeAbility = "dex";
+SW5E.defaultAbilities = {
+  initiative: "dex",
+  hitPoints: "con",
+  concentration: "con"
+};
 
-/**
- * Configure which ability score is used when calculating hit points per level.
- * @type {string}
- */
-SW5E.hitPointsAbility = "con";
+Object.defineProperties(SW5E, {
+  hitPointsAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.hitPoints;
+    },
+    set: function(value) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.hitPointsAbility has been deprecated and is now accessible through SW5E.defaultAbilities.hitPoints.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.hitPoints = value;
+    }
+  },
+  initiativeAbility: {
+    get: function() {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      return SW5E.defaultAbilities.initiative;
+    },
+    set: function(value) {
+      foundry.utils.logCompatibilityWarning(
+        "SW5E.initiativeAbility has been deprecated and is now accessible through SW5E.defaultAbilities.initiative.",
+        { since: "SW5e 3.1", until: "SW5e 3.3" }
+      );
+      SW5E.defaultAbilities.initiative = value;
+    }
+  }
+});
 
 /* -------------------------------------------- */
 
@@ -788,6 +823,7 @@ SW5E.itemActionTypes = {
   mpak: "SW5E.ActionMPAK",
   rpak: "SW5E.ActionRPAK",
   save: "SW5E.ActionSave",
+  summ: "SW5E.ActionSumm",
   heal: "SW5E.ActionHeal",
   abil: "SW5E.ActionAbil",
   util: "SW5E.ActionUtil",
@@ -827,6 +863,7 @@ preLocalize("itemRarity");
 
 /**
  * The limited use periods that support a recovery formula.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
  * @enum {string}
  */
 SW5E.limitedUseFormulaPeriods = {
@@ -838,16 +875,49 @@ SW5E.limitedUseFormulaPeriods = {
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for limited use periods.
+ *
+ * @typedef {object} LimitedUsePeriodConfiguration
+ * @property {string} label           Localized label.
+ * @property {string} abbreviation    Shorthand form of the label.
+ * @property {boolean} [formula]      Whether this limited use period restores chargs via formula.
+ */
+
+/**
  * Enumerate the lengths of time over which an item can have limited use ability.
- * @enum {string}
+ * @enum {LimitedUsePeriodConfiguration}
  */
 SW5E.limitedUsePeriods = {
-  sr: "SW5E.ShortRest",
-  lr: "SW5E.LongRest",
-  day: "SW5E.Day",
-  ...SW5E.limitedUseFormulaPeriods
+  sr: {
+    label: "SW5E.UsesPeriods.Sr",
+    abbreviation: "SW5E.UsesPeriods.SrAbbreviation"
+  },
+  lr: {
+    label: "SW5E.UsesPeriods.Lr",
+    abbreviation: "SW5E.UsesPeriods.LrAbbreviation"
+  },
+  day: {
+    label: "SW5E.UsesPeriods.Day",
+    abbreviation: "SW5E.UsesPeriods.DayAbbreviation"
+  },
+  charges: {
+    label: "SW5E.UsesPeriods.Charges",
+    abbreviation: "SW5E.UsesPeriods.ChargesAbbreviation",
+    formula: true
+  },
+  dawn: {
+    label: "SW5E.UsesPeriods.Dawn",
+    abbreviation: "SW5E.UsesPeriods.DawnAbbreviation",
+    formula: true
+  },
+  dusk: {
+    label: "SW5E.UsesPeriods.Dusk",
+    abbreviation: "SW5E.UsesPeriods.DuskAbbreviation",
+    formula: true
+  }
 };
-preLocalize("limitedUsePeriods");
+preLocalize("limitedUsePeriods", { keys: ["label", "abbreviation"] });
+patchConfig("limitedUsePeriods", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
 
 /* -------------------------------------------- */
 
@@ -1001,8 +1071,16 @@ preLocalize("armorClasses", { key: "label" });
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for an items that have sub-types.
+ *
+ * @typedef {object} SubtypeTypeConfiguration
+ * @property {string} label                       Localized label for this type.
+ * @property {Record<string, string>} [subtypes]  Enum containing localized labels for subtypes.
+ */
+
+/**
  * Enumerate the valid consumable types which are recognized by the system.
- * @enum {string}
+ * @enum {SubtypeTypeConfiguration}
  */
 SW5E.consumableTypes = {
   ammo: {
@@ -1117,20 +1195,13 @@ SW5E.focusTypes = {
     }
   }
 };
+preLocalize("focusTypes", { key: "label" });
 
 /* -------------------------------------------- */
 
 /**
- * Configuration data for an item with the "feature" type.
- *
- * @typedef {object} FeatureTypeConfiguration
- * @property {string} label                       Localized label for this type.
- * @property {Object<string, string>} [subtypes]  Enum containing localized labels for subtypes.
- */
-
-/**
  * Types of "features" items.
- * @enum {FeatureTypeConfiguration}
+ * @enum {SubtypeTypeConfiguration}
  */
 SW5E.featureTypes = {
   background: {
@@ -1237,6 +1308,7 @@ SW5E.itemProperties = {
   },
   mgc: {
     label: "SW5E.Item.Property.Magical",
+    icon: "systems/sw5e/icons/svg/properties/magical.svg",
     isPhysical: true
   },
   rch: {
@@ -1626,7 +1698,7 @@ preLocalize("distanceUnits");
  * @property {Record<string, number>} threshold.encumbered
  * @property {Record<string, number>} threshold.heavilyEncumbered
  * @property {Record<string, number>} threshold.maximum
- * @property {Record<string, number>} speedReduction     Speed reduction caused by encumbered status effects.
+ * @property {Record<string, {ft: number, m: number}>} speedReduction  Speed reduction caused by encumbered status.
  * @property {Record<string, number>} vehicleWeightMultiplier  Multiplier used to determine vehicle carrying capacity.
  */
 
@@ -1668,8 +1740,18 @@ SW5E.encumbrance = {
     }
   },
   speedReduction: {
-    encumbered: 10,
-    heavilyEncumbered: 20
+    encumbered: {
+      ft: 10,
+      m: 3
+    },
+    heavilyEncumbered: {
+      ft: 20,
+      m: 6
+    },
+    exceedingCarryingCapacity: {
+      ft: 5,
+      m: 1.5
+    }
   },
   vehicleWeightMultiplier: {
     imperial: 2000, // 2000 lbs in an imperial ton
@@ -1787,6 +1869,36 @@ SW5E.hitDieTypes = ["d4", "d6", "d8", "d10", "d12"];
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for rest types.
+ *
+ * @typedef {object} RestConfiguration
+ * @property {Record<string, number>} duration  Duration of different rest variants in minutes.
+ */
+
+/**
+ * Types of rests.
+ * @enum {RestConfiguration}
+ */
+SW5E.restTypes = {
+  short: {
+    duration: {
+      normal: 60,
+      gritty: 480,
+      epic: 1
+    }
+  },
+  long: {
+    duration: {
+      normal: 480,
+      gritty: 10080,
+      epic: 60
+    }
+  }
+};
+
+/* -------------------------------------------- */
+
+/**
  * The set of possible sensory perception types which an Actor may have.
  * @enum {string}
  */
@@ -1858,21 +1970,51 @@ SW5E.pactCastingProgression = {
 /* -------------------------------------------- */
 
 /**
+ * Configuration data for power preparation modes.
+ *
+ * @typedef {object} PowerPreparationModeConfiguration
+ * @property {string} label           Localized name of this power preparation type.
+ * @property {boolean} [upcast]       Whether this preparation mode allows for upcasting.
+ * @property {boolean} [at-wills]     Whether this mode allows for at-wills in a powerbook.
+ * @property {number} [order]         The sort order of this mode in a powerbook.
+ */
+
+/**
  * Various different ways a power can be prepared.
+ * @enum {PowerPreparationModeConfiguration}
  */
 SW5E.powerPreparationModes = {
-  prepared: "SW5E.PowerPrepPrepared",
-  pact: "SW5E.PactMagic",
-  always: "SW5E.PowerPrepAlways",
-  atwill: "SW5E.PowerPrepAtWill",
-  innate: "SW5E.PowerPrepInnate"
+  prepared: {
+    label: "SW5E.PowerPrepPrepared",
+    upcast: true
+  },
+  pact: {
+    label: "SW5E.PactMagic",
+    upcast: true,
+    at-wills: true,
+    order: 0.5
+  },
+  always: {
+    label: "SW5E.PowerPrepAlways",
+    upcast: true
+  },
+  atwill: {
+    label: "SW5E.PowerPrepAtWill",
+    order: -20
+  },
+  innate: {
+    label: "SW5E.PowerPrepInnate",
+    order: -10
+  }
 };
-preLocalize("powerPreparationModes");
+preLocalize("powerPreparationModes", { key: "label" });
+patchConfig("powerPreparationModes", "label", { since: "SW5e 3.1", until: "SW5e 3.3" });
 
 /* -------------------------------------------- */
 
 /**
  * Subset of `SW5E.powerPreparationModes` that consume power slots.
+ * @deprecated since SW5e 3.1, available until SW5e 3.3
  * @type {string[]}
  */
 SW5E.powerUpcastModes = ["always", "pact", "prepared"];
@@ -1992,6 +2134,7 @@ preLocalize("powerScalingModes", { sort: true });
 
 /**
  * Types of components that can be required when casting a power.
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
  * @enum {PowerComponentConfiguration}
  */
 SW5E.powerComponents = {
@@ -2027,6 +2170,7 @@ preLocalize("powerComponents", { keys: ["label", "abbr"] });
 
 /**
  * Supplementary rules keywords that inform a power's use.
+ * @deprecated since SW5e 3.0, available until SW5e 3.3
  * @enum {PowerTagConfiguration}
  */
 SW5E.powerTags = {
@@ -2347,13 +2491,28 @@ SW5E.consumableResources = [
 /* -------------------------------------------- */
 
 /**
- * Configuration data for system conditions.
- *
- * @typedef {object} ConditionConfiguration
- * @property {string} label        Localized label for the condition.
- * @property {string} [icon]       Icon used to represent the condition on the token.
+ * @typedef {object} _StatusEffectConfig5e
+ * @property {string} icon         Icon used to represent the condition on the token.
  * @property {string} [reference]  UUID of a journal entry with details on this condition.
  * @property {string} [special]    Set this condition as a special status effect under this name.
+ */
+
+/**
+ * Configuration data for system status effects.
+ * @typedef {Omit<StatusEffectConfig, "img"> & _StatusEffectConfig5e} StatusEffectConfig5e
+ */
+
+/**
+ * @typedef {object} _ConditionConfiguration
+ * @property {string} label        Localized label for the condition.
+ * @property {boolean} [pseudo]    Is this a pseudo-condition, i.e. one that does not appear in the conditions appendix
+ *                                 but acts as a status effect?
+ * @property {number} [levels]     The number of levels of exhaustion an actor can obtain.
+ */
+
+/**
+ * Configuration data for system conditions.
+ * @typedef {Omit<StatusEffectConfig5e, "name"> & _ConditionConfiguration} ConditionConfiguration
  */
 
 /**
@@ -2361,6 +2520,11 @@ SW5E.consumableResources = [
  * @enum {ConditionConfiguration}
  */
 SW5E.conditionTypes = {
+  bleeding: {
+    label: "EFFECT.SW5E.StatusBleeding",
+    icon: "systems/sw5e/icons/svg/statuses/bleeding.svg",
+    pseudo: true
+  },
   blinded: {
     label: "SW5E.ConBlinded",
     icon: "systems/sw5e/icons/svg/statuses/blinded.svg",
@@ -2372,6 +2536,11 @@ SW5E.conditionTypes = {
     icon: "systems/sw5e/icons/svg/statuses/charmed.svg",
     reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.zZaEBrKkr66OWJvD"
   },
+  cursed: {
+    label: "EFFECT.SW5E.StatusCursed",
+    icon: "systems/sw5e/icons/svg/statuses/cursed.svg",
+    pseudo: true
+  },
   deafened: {
     label: "SW5E.ConDeafened",
     icon: "systems/sw5e/icons/svg/statuses/deafened.svg",
@@ -2379,12 +2548,14 @@ SW5E.conditionTypes = {
   },
   diseased: {
     label: "SW5E.ConDiseased",
-    icon: "icons/svg/biohazard.svg"
+    icon: "systems/sw5e/icons/svg/statuses/diseased.svg",
+    pseudo: true
   },
   exhaustion: {
     label: "SW5E.ConExhaustion",
     icon: "systems/sw5e/icons/svg/statuses/exhaustion.svg",
-    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cspWveykstnu3Zcv"
+    reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cspWveykstnu3Zcv",
+    levels: 6
   },
   frightened: {
     label: "SW5E.ConFrightened",
@@ -2433,11 +2604,26 @@ SW5E.conditionTypes = {
     icon: "systems/sw5e/icons/svg/statuses/restrained.svg",
     reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.cSVcyZyNe2iG1fIc"
   },
+  silenced: {
+    label: "EFFECT.SW5E.StatusSilenced",
+    icon: "systems/sw5e/icons/svg/statuses/silenced.svg",
+    pseudo: true
+  },
   stunned: {
     label: "SW5E.ConStunned",
     icon: "systems/sw5e/icons/svg/statuses/stunned.svg",
     reference: "Compendium.sw5e.rules.JournalEntry.w7eitkpD7QQTB6j0.JournalEntryPage.ZyZMUwA2rboh4ObS",
     statuses: ["incapacitated"]
+  },
+  surprised: {
+    label: "EFFECT.SW5E.StatusSurprised",
+    icon: "systems/sw5e/icons/svg/statuses/surprised.svg",
+    pseudo: true
+  },
+  transformed: {
+    label: "EFFECT.SW5E.StatusTransformed",
+    icon: "systems/sw5e/icons/svg/statuses/transformed.svg",
+    pseudo: true
   },
   unconscious: {
     label: "SW5E.ConUnconscious",
@@ -2452,52 +2638,75 @@ patchConfig("conditionTypes", "label", { since: "SW5e 3.0", until: "SW5e 3.2" })
 /* -------------------------------------------- */
 
 /**
- * Extra status effects not specified in `conditionTypes`. If the ID matches a core-provided effect, then this
- * data will be merged into the core data.
+ * Various effects of conditions and which conditions apply it. Either keys for the conditions,
+ * and with a number appended for a level of exhaustion.
  * @enum {object}
  */
+SW5E.conditionEffects = {
+  noMovement: new Set(["exhaustion-5", "grappled", "paralyzed", "petrified", "restrained", "stunned", "unconscious"]),
+  halfMovement: new Set(["exhaustion-2"]),
+  crawl: new Set(["prone", "exceedingCarryingCapacity"]),
+  petrification: new Set(["petrified"]),
+  halfHealth: new Set(["exhaustion-4"])
+};
+
+/* -------------------------------------------- */
+
+/**
+ * Extra status effects not specified in `conditionTypes`. If the ID matches a core-provided effect, then this
+ * data will be merged into the core data.
+ * @enum {Omit<StatusEffectConfig5e, "img"> & {icon: string}}
+ */
 SW5E.statusEffects = {
-  bleeding: {
-    icon: "systems/sw5e/icons/svg/statuses/bleeding.svg"
-  },
   burrowing: {
     name: "EFFECT.SW5E.StatusBurrowing",
-    icon: "icons/svg/cave.svg"
+    icon: "systems/sw5e/icons/svg/statuses/burrowing.svg",
+    special: "BURROW"
   },
   concentrating: {
     name: "EFFECT.SW5E.StatusConcentrating",
-    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg"
+    icon: "systems/sw5e/icons/svg/statuses/concentrating.svg",
+    special: "CONCENTRATING"
   },
-  curse: {},
   dead: {
-    icon: "systems/sw5e/icons/svg/statuses/dead.svg"
+    name: "EFFECT.SW5E.StatusDead",
+    icon: "systems/sw5e/icons/svg/statuses/dead.svg",
+    special: "DEFEATED"
   },
   dodging: {
     name: "EFFECT.SW5E.StatusDodging",
     icon: "systems/sw5e/icons/svg/statuses/dodging.svg"
   },
-  fly: {},
-  hidden: {
-    name: "EFFECT.SW5E.StatusHidden",
-    icon: "icons/svg/cowled.svg"
+  ethereal: {
+    name: "EFFECT.SW5E.StatusEthereal",
+    icon: "systems/sw5e/icons/svg/statuses/ethereal.svg"
+  },
+  flying: {
+    name: "EFFECT.SW5E.StatusFlying",
+    icon: "systems/sw5e/icons/svg/statuses/flying.svg",
+    special: "FLY"
+  },
+  hiding: {
+    name: "EFFECT.SW5E.StatusHiding",
+    icon: "systems/sw5e/icons/svg/statuses/hiding.svg"
+  },
+  hovering: {
+    name: "EFFECT.SW5E.StatusHovering",
+    icon: "systems/sw5e/icons/svg/statuses/hovering.svg",
+    special: "HOVER"
   },
   marked: {
     name: "EFFECT.SW5E.StatusMarked",
     icon: "systems/sw5e/icons/svg/statuses/marked.svg"
   },
-  silence: {
-    icon: "systems/sw5e/icons/svg/statuses/silenced.svg"
+  sleeping: {
+    name: "EFFECT.SW5E.StatusSleeping",
+    icon: "systems/sw5e/icons/svg/statuses/sleeping.svg",
+    statuses: ["incapacitated", "prone", "unconscious"]
   },
-  sleep: {
-    name: "EFFECT.SW5E.StatusSleeping"
-  },
-  surprised: {
-    name: "EFFECT.SW5E.StatusSurprised",
-    icon: "systems/sw5e/icons/svg/statuses/surprised.svg"
-  },
-  transformed: {
-    name: "EFFECT.SW5E.StatusTransformed",
-    icon: "icons/svg/pawprint.svg"
+  stable: {
+    name: "EFFECT.SW5E.StatusStable",
+    icon: "systems/sw5e/icons/svg/statuses/stable.svg"
   }
 };
 
@@ -2872,17 +3081,48 @@ preLocalize("groupTypes");
 /* -------------------------------------------- */
 
 /**
+ * Configuration information for advancement types.
+ *
+ * @typedef {object} AdvancementTypeConfiguration
+ * @property {typeof Advancement} documentClass  The advancement's document class.
+ * @property {Set<string>} validItemTypes        What item types this advancement can be used with.
+ */
+
+const _ALL_ITEM_TYPES = ["background", "class", "species", "archetype"];
+
+/**
  * Advancement types that can be added to items.
- * @enum {*}
+ * @enum {AdvancementTypeConfiguration}
  */
 SW5E.advancementTypes = {
-  AbilityScoreImprovement: advancement.AbilityScoreImprovementAdvancement,
-  HitPoints: advancement.HitPointsAdvancement,
-  ItemChoice: advancement.ItemChoiceAdvancement,
-  ItemGrant: advancement.ItemGrantAdvancement,
-  ScaleValue: advancement.ScaleValueAdvancement,
-  Size: advancement.SizeAdvancement,
-  Trait: advancement.TraitAdvancement
+  AbilityScoreImprovement: {
+    documentClass: advancement.AbilityScoreImprovementAdvancement,
+    validItemTypes: new Set(["background", "class", "species"])
+  },
+  HitPoints: {
+    documentClass: advancement.HitPointsAdvancement,
+    validItemTypes: new Set(["class"])
+  },
+  ItemChoice: {
+    documentClass: advancement.ItemChoiceAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  ItemGrant: {
+    documentClass: advancement.ItemGrantAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  ScaleValue: {
+    documentClass: advancement.ScaleValueAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  },
+  Size: {
+    documentClass: advancement.SizeAdvancement,
+    validItemTypes: new Set(["species"])
+  },
+  Trait: {
+    documentClass: advancement.TraitAdvancement,
+    validItemTypes: new Set(_ALL_ITEM_TYPES)
+  }
 };
 
 /* -------------------------------------------- */
@@ -3163,6 +3403,20 @@ SW5E.sourceBooks = {
 preLocalize("sourceBooks", { sort: true });
 
 /* -------------------------------------------- */
+/*  Themes                                      */
+/* -------------------------------------------- */
+
+/**
+ * Themes that can be set for the system or on sheets.
+ * @enum {string}
+ */
+SW5E.themes = {
+  light: "SHEETS.SW5E.THEME.Light",
+  dark: "SHEETS.SW5E.THEME.Dark"
+};
+preLocalize("themes");
+
+/* -------------------------------------------- */
 /*  Enrichment                                  */
 /* -------------------------------------------- */
 
@@ -3209,7 +3463,7 @@ function patchConfig(key, fallbackKey, options) {
 
   Object.values(SW5E[key]).forEach(o => {
     if ( foundry.utils.getType(o) !== "Object" ) return;
-    o.toString = toString;
+    Object.defineProperty(o, "toString", {value: toString});
   });
 }
 

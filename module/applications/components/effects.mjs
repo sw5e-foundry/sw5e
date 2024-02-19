@@ -1,3 +1,4 @@
+import Actor5e from "../../documents/actor/actor.mjs";
 import {staticID} from "../../utils.mjs";
 import ContextMenu5e from "../context-menu.mjs";
 
@@ -103,6 +104,7 @@ export default class EffectsElement extends HTMLElement {
 
     // Iterate over active effects, classifying them into categories
     for ( const e of effects ) {
+      if ( (e.parent.system?.identified === false) && !game.user.isGM ) continue;
       if ( e.isSuppressed ) categories.suppressed.effects.push(e);
       else if ( e.disabled ) categories.inactive.effects.push(e);
       else if ( e.isTemporary ) categories.temporary.effects.push(e);
@@ -123,7 +125,8 @@ export default class EffectsElement extends HTMLElement {
    * @protected
    */
   _getContextOptions(effect) {
-    return [
+    const isConcentrationEffect = (this.document instanceof Actor5e) && this._app._concentration?.effects.has(effect);
+    const options = [
       {
         name: "SW5E.ContextMenuActionEdit",
         icon: "<i class='fas fa-edit fa-fw'></i>",
@@ -139,17 +142,39 @@ export default class EffectsElement extends HTMLElement {
       {
         name: "SW5E.ContextMenuActionDelete",
         icon: "<i class='fas fa-trash fa-fw'></i>",
-        condition: () => effect.isOwner,
+        condition: () => effect.isOwner && !isConcentrationEffect,
         callback: li => this._onAction(li[0], "delete")
       },
       {
         name: effect.disabled ? "SW5E.ContextMenuActionEnable" : "SW5E.ContextMenuActionDisable",
         icon: effect.disabled ? "<i class='fas fa-check fa-fw'></i>" : "<i class='fas fa-times fa-fw'></i>",
         group: "state",
-        condition: () => effect.isOwner,
+        condition: () => effect.isOwner && !isConcentrationEffect,
         callback: li => this._onAction(li[0], "toggle")
+      },
+      {
+        name: "SW5E.ConcentrationBreak",
+        icon: '<sw5e-icon src="systems/sw5e/icons/svg/break-concentration.svg"></sw5e-icon>',
+        condition: () => isConcentrationEffect,
+        callback: () => this.document.endConcentration(effect),
+        group: "state"
       }
     ];
+
+    // Toggle Favorite State
+    if ( (this.document instanceof Actor5e) && ("favorites" in this.document.system) ) {
+      const uuid = effect.getRelativeUUID(this.document);
+      const isFavorited = this.document.system.hasFavorite(uuid);
+      options.push({
+        name: isFavorited ? "SW5E.FavoriteRemove" : "SW5E.Favorite",
+        icon: "<i class='fas fa-star fa-fw'></i>",
+        condition: () => effect.isOwner,
+        callback: li => this._onAction(li[0], isFavorited ? "unfavorite" : "favorite"),
+        group: "state"
+      });
+    }
+
+    return options;
   }
 
   /* -------------------------------------------- */
@@ -180,14 +205,18 @@ export default class EffectsElement extends HTMLElement {
     switch ( action ) {
       case "create":
         return this._onCreate(target);
+      case "delete":
+        return effect.deleteDialog();
       case "duplicate":
         return effect.clone({name: game.i18n.format("DOCUMENT.CopyOf", {name: effect.name})}, {save: true});
       case "edit":
         return effect.sheet.render(true);
-      case "delete":
-        return effect.deleteDialog();
+      case "favorite":
+        return this.document.system.addFavorite({type: "effect", id: effect.getRelativeUUID(this.document)});
       case "toggle":
         return effect.update({disabled: !effect.disabled});
+      case "unfavorite":
+        return this.document.system.removeFavorite(effect.getRelativeUUID(this.document));
     }
   }
 

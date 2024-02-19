@@ -135,6 +135,7 @@
 "SW5E.ActionRPAK": "Ranged Power Attack",
 "SW5E.ActionRWAK": "Ranged Weapon Attack",
 "SW5E.ActionSave": "Saving Throw",
+"SW5E.ActionSumm": "Summon",
 "SW5E.ActionUtil": "Utility",
 "SW5E.ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}",
 "SW5E.ActionWarningNoToken": "You must have one or more controlled Tokens in order to use this option.",
@@ -283,6 +284,7 @@
 "SW5E.AdvancementTraitModeUpgradeHint": "Gain proficiency in a trait unless you already have it, otherwise gain expertise.",
 "SW5E.AdvancementTraitType": "Trait Type",
 "SW5E.Advantage": "Advantage",
+"SW5E.AdvantageMode": "Advantage Mode",
 "SW5E.Age": "Age",
 "SW5E.Alignment": "Alignment",
 "SW5E.AlignmentCE": "Chaotic Evil",
@@ -328,6 +330,9 @@
 "SW5E.AttackPl": "Attacks",
 "SW5E.AttackRoll": "Attack Roll",
 "SW5E.Attributes": "Attributes",
+"SW5E.AttrConcentration": {
+  "Limit": "Limit"
+},
 "SW5E.Automatic": "Automatic",
 "SW5E.AutomaticValue": "Automatic ({value})",
 "SW5E.Award": {
@@ -353,6 +358,7 @@
 "SW5E.BonusAbility": "Global Ability Bonuses",
 "SW5E.BonusAbilityCheck": "Global Ability Check Bonus",
 "SW5E.BonusAbilitySave": "Global Saving Throw Bonus",
+"SW5E.BonusAbilitySaveTitle": "Global Saving Throws",
 "SW5E.BonusAbilitySkill": "Global Skill Check Bonus",
 "SW5E.BonusAction": "Bonus Action",
 "SW5E.BonusActionAbbr": "BA",
@@ -382,6 +388,8 @@
 "SW5E.ChatContextTempHP": "Apply Temporary HP",
 "SW5E.ChatContextDoubleDamage": "Apply Double Damage",
 "SW5E.ChatContextHalfDamage": "Apply Half Damage",
+"SW5E.ChatContextSelectHit": "Select Hit Targets",
+"SW5E.ChatContextSelectMiss": "Select Missed Targets",
 "SW5E.ChatFlavor": "Chat Message Flavor",
 "SW5E.CheckBonus": "Check Bonus",
 "SW5E.ClassAdd": "Add Class",
@@ -393,6 +401,7 @@
 "SW5E.ClassName": "Class Name",
 "SW5E.ClassOriginal": "Original Class",
 "SW5E.ClassSaves": "Saving Throws",
+"SW5E.Confirm": "Confirm",
 "SW5E.ComponentMaterial": "Material",
 "SW5E.ComponentMaterialAbbr": "M",
 "SW5E.ComponentSomatic": "Somatic",
@@ -436,7 +445,21 @@
 "SW5E.ConUnconscious": "Unconscious",
 "SW5E.Concentration": "Concentration",
 "SW5E.ConcentrationAbbr": "C",
+"SW5E.ConcentrationBreak": "Break Concentration",
+"SW5E.ConcentrationBreakWarning": "Breaking concentration on an effect that is active on other creatures requires an active GM to be present.",
+"SW5E.ConcentrationBonus": "Concentration Bonus",
 "SW5E.ConcentrationDuration": "Concentration, up to {duration}",
+"SW5E.ConcentratingOn": "You are maintaining concentration on the effects of the '{name}' {type}.",
+"SW5E.ConcentratingEndChoice": "You are concentrating on effects from more than one source. Pick which effect to end.",
+"SW5E.ConcentratingMissingItem": "The effect that is concentrated on and to be replaced does not exist.",
+"SW5E.ConcentratingLimited": "You are not able to begin concentrating on an additional effect.",
+"SW5E.ConcentrationLimit": "Concentration Limit",
+"SW5E.ConcentratingEnd": "End Concentration",
+"SW5E.ConcentratingItemless": "Concentration With No Source",
+"SW5E.ConcentratingWarnLimit": "You cannot maintain concentration on more effects!",
+"SW5E.ConcentratingWarnLimitOptional": "You may end concentration on one of your maintained effects to use this item.",
+"SW5E.ConcentratingWarnLimitZero": "You are not able to maintain concentration on any effects!",
+"SW5E.ConcentrationConfigurationHint": "Configure concentration modifiers and bonuses which apply to this creature.",
 "SW5E.ConsumeTitle": "Resource Consumption",
 "SW5E.ConsumeAmount": "Consumption Amount",
 "SW5E.ConsumeTarget": "Consumption Target",
@@ -558,11 +581,26 @@
 "SW5E.Damage": "Damage",
 "SW5E.DamageAcid": "Acid",
 "SW5E.DamageAll": "All Damage",
+"SW5E.DamageApplication": {
+  "Change": {
+    "Modification": "{type} Modification",
+    "Immunity": "{type} Immunity",
+    "Resistance": "{type} Resistance",
+    "Vulnerability": "{type} Vulnerability"
+  },
+  "Downgrading": "Downgrading {source} to Resistance",
+  "Ignoring": "Ignoring {source}"
+},
 "SW5E.DamageBludgeoning": "Bludgeoning",
 "SW5E.DamageCold": "Cold",
 "SW5E.DamageFire": "Fire",
 "SW5E.DamageForce": "Force",
 "SW5E.DamageLightning": "Lightning",
+"SW5E.DamageModification": {
+  "Label": "Damage Modification",
+  "Hint": "Formulas for amounts that will be added to typed damage applied to this actor. Negative values will reduce the damage taken.",
+  "BypassHint": "These weapon properties will bypass damage modification for physical damage."
+},
 "SW5E.DamageNecrotic": "Necrotic",
 "SW5E.DamagePiercing": "Piercing",
 "SW5E.DamagePhysical": "Non-Magical Physical",
@@ -633,7 +671,8 @@
 "SW5E.Effect": "Effect",
 "SW5E.Effects": "Effects",
 "SW5E.EffectsApplyTokens": "Apply to selected tokens",
-"SW5E.EffectApplyWarning": "Effects cannot be applied to tokens you are not the owner of.",
+"SW5E.EffectApplyWarningConcentration": "Applying an effect that is being concentrated on by another character requires GM permissions.",
+"SW5E.EffectApplyWarningOwnership": "Effects cannot be applied to tokens you are not the owner of.",
 "SW5E.EffectsSearch": "Search effects",
 "SW5E.Environment": "Environment",
 "SW5E.EquipmentBonus": "Magical Bonus",
@@ -657,6 +696,7 @@
 "SW5E.ExperiencePointsMin": "Minimum XP for This Level",
 "SW5E.ExperiencePointsValue": "XP Value",
 "SW5E.Expertise": "Expertise",
+"SW5E.Favorite": "Favorite",
 "SW5E.FavoriteDrop": "Drop Favorite",
 "SW5E.FavoriteRemove": "Remove Favorite",
 "SW5E.Favorites": "Favorites",
@@ -692,9 +732,12 @@
     "EpicBoon": "Epic Boon"
   }
 },
-"SW5E.Focus.Arcane": "Arcane Focus",
-"SW5E.Focus.Druidic": "Druidic Focus",
-"SW5E.Focus.Holy": "Holy Focus",
+"SW5E.Focus": {
+  "Label": "Powercasting Focus",
+  "Arcane": "Arcane Focus",
+  "Druidic": "Druidic Focus",
+  "Holy": "Holy Focus"
+},
 "SW5E.Loot.Art": "Art Object",
 "SW5E.Loot.Gear": "Adventuring Gear",
 "SW5E.Loot.Gem": "Gemstone",
@@ -833,6 +876,10 @@
 "SW5E.HPFormulaRollMessage": "Roll Hit Point Formula",
 "SW5E.HitDie": "Hit Die",
 "SW5E.HitDice": "Hit Dice",
+"SW5E.HitDiceAutoSpend": {
+  "Label": "Auto Spend HD",
+  "Hint": "Automatically spend hit dice until they run out or health is full."
+},
 "SW5E.HitDiceConfig": "Adjust Hit Dice",
 "SW5E.HitDiceConfigHint": "Adjust remaining hit dice levels for each class.",
 "SW5E.HitDiceMax": "Maximum Hit Dice",
@@ -862,6 +909,8 @@
 "SW5E.ItemActivationType": "Activation Type",
 "SW5E.ItemAmmoProperties": "Ammunition Properties",
 "SW5E.ItemAttackBonus": "Attack Roll Bonus",
+"SW5E.ItemAttackFlat": "Flat Bonus",
+"SW5E.ItemAttackFlatHint": "If checked, don't add proficiency, ability modifier, or any other bonuses to attack roll except what is included here.",
 "SW5E.ItemConsumableActivation": "Consumable Activation",
 "SW5E.ItemConsumableUsage": "Consumable Usage",
 "SW5E.ItemConsumableDetails": "Consumable Details",
@@ -1012,16 +1061,20 @@
 "SW5E.LongRestEpic": "Long Rest (1 hour)",
 "SW5E.LongRestOvernight": "Long Rest (New Day)",
 "SW5E.LongRestHint": "Take a long rest? On a long rest you will recover hit points, half your maximum hit dice, class resources, limited use item charges, and power slots.",
+"SW5E.LongRestHintGroup": "Take a long rest? On a long rest group members will recover hit points, half of their maximum hit dice, class resources, limited use item charges, and power slots.",
 "SW5E.LongRestRecovery": "Recovers after Long Rest",
 "SW5E.LongRestResult": "{name} takes a long rest and recovers {health} Hit Points and {dice} Hit Dice.",
 "SW5E.LongRestResultHitDice": "{name} takes a long rest and recovers {dice} Hit Dice.",
 "SW5E.LongRestResultHitPoints": "{name} takes a long rest and recovers {health} Hit Points.",
 "SW5E.LongRestResultShort": "{name} takes a long rest.",
+"SW5E.MagicalBonus": "Magical Bonus",
 "SW5E.Materials": "Materials",
 "SW5E.Max": "Max",
 "SW5E.MaxCharacterLevelExceededWarn": "Character cannot be advanced past level {max}.",
 "SW5E.MaxClassLevelExceededWarn": "Class cannot be advanced past level {max}.",
 "SW5E.MaxClassLevelMinimumWarn": "Class must have at least one level.",
+"SW5E.Maximum": "Maximum",
+"SW5E.Minimum": "Minimum",
 "SW5E.Modifier": "Modifier",
 "SW5E.ModuleArtConfigH": "Configure which module-provided art should be used.",
 "SW5E.ModuleArtConfigL": "Configure Art",
@@ -1203,7 +1256,8 @@
 "SW5E.ShortRestGritty": "Short Rest (8 hours)",
 "SW5E.ShortRestEpic": "Short Rest (5 minutes)",
 "SW5E.ShortRestOvernight": "Short Rest (New Day)",
-"SW5E.ShortRestHint": "Take a short rest? On a short rest you may spend remaining Hit Dice and recover primary or secondary resources.",
+"SW5E.ShortRestHint": "Take a short rest? On a short rest you may spend remaining Hit Dice and recover item uses.",
+"SW5E.ShortRestHintGroup": "Take a short rest? On a short rest group members can spend Hit Dice and will recover item uses.",
 "SW5E.ShortRestNoHD": "No Hit Dice remaining",
 "SW5E.ShortRestRecovery": "Recovers after Short Rest",
 "SW5E.ShortRestResult": "{name} takes a short rest spending {dice} Hit Dice to recover {health} Hit Points.",
@@ -1252,6 +1306,7 @@
 "SW5E.SkillGlobalBonusCheckHint": "This bonus applies to all skill checks made by this actor.",
 "SW5E.SkillModifierHint": "{skill} Modifier",
 "SW5E.SkillPassiveHint": "Passive {skill}",
+"SW5E.SkillPassiveSpecificHint": "Passive {ability} ({skill})",
 "SW5E.SkillPassiveScore": "Passive {skill} Score",
 "SW5E.SkillPassives": "Skill Passives",
 "SW5E.Skin": "Skin",
@@ -1353,12 +1408,115 @@
 "SW5E.PowerUnprepared": "Unprepared",
 "SW5E.PowerUsage": "Power Usage",
 "SW5E.Powerbook": "Powerbook",
+"SW5E.StartingEquipment": {
+  "Title": "Starting Equipment",
+  "Action": {
+    "AddEntry": "Add Entry",
+    "Configure": "Configure Starting Equipment",
+    "RemoveEntry": "Remove Entry"
+  },
+  "Choice": {
+    "Armor": "Choose Armor",
+    "Focus": "Choose Powercasting Focus",
+    "Tool": "Choose Tool",
+    "Weapon": "Choose Weapon"
+  },
+  "DropHint": "Drop item here to link",
+  "IfProficient": "If Proficient",
+  "Operator": {
+    "AND": "All of…",
+    "OR": "One of…"
+  },
+  "RequireProficiency": "Require Proficiency",
+  "SpecificItem": "Specific Item",
+  "Warning": {
+    "Depth": "Only three levels of depth allowed in starting equipment.",
+    "ItemTypeInvalid": "{type} items cannot be added to starting equipment."
+  },
+  "Wealth": {
+    "Label": "Starting Wealth",
+    "Hint": "Formula in GP that can be used in place of starting equipment."
+  }
+},
 "SW5E.ArchetypeIdentifierHint": "This identifier should match the identifier on the parent class to ensure they are properly linked.",
 "SW5E.ArchetypeAssignmentError": "{class} already has a archetype. Remove the existing '{archetype}' archetype before adding a new one.",
 "SW5E.ArchetypeDuplicateError": "A archetype with the identifier {identifier} already exists on this actor.",
 "SW5E.ArchetypeMismatchWarn": "{name} archetype has no matching class with identifier '{class}'.",
 "SW5E.ArchetypeName": "Archetype Name",
 "SW5E.Subtype": "Subtype",
+"SW5E.Summoning": {
+  "Label": "Summoning",
+  "Action": {
+    "Add": "Add Profile",
+    "Configure": "Configure Summons",
+    "Place": "Place Summons",
+    "Remove": "Remove Profile",
+    "Summon": "Summon"
+  },
+  "Bonuses": {
+    "ArmorClass": {
+      "Label": "Bonus Armor Class",
+      "Hint": "Bonus to the Armor Class set on the summoned creature added to what is specified in their statblock."
+    },
+    "Attack": {
+      "Label": "Bonus Attack Damage",
+      "Hint": "Additional damage done by the creature's attacks."
+    },
+    "Healing": {
+      "Label": "Bonus Healing",
+      "Hint": "Additional healing provided by healing abilities."
+    },
+    "HitPoints": {
+      "Label": "Bonus Hit Points",
+      "Hint": "Additional hit points added to the creature on top of what is specified in their statblock."
+    },
+    "Saves": {
+      "Label": "Bonus Save Damage",
+      "Hint": "Additional damage done by the creature's abilities that require saving throws."
+    }
+  },
+  "Configuration": "Summoning Configuration",
+  "CreatureChanges": {
+    "Label": "Creature Changes",
+    "Hint": "Changes that will be made to the creature being summoned. Any @ references used in the following formulas will be based on the summoner's stats."
+  },
+  "DisplayName": "Display Name",
+  "DropHint": "Drop creature here",
+  "ItemChanges": {
+    "Label": "Item Changes",
+    "Hint": "Changes made to items on the summoned creature."
+  },
+  "Match": {
+    "Attacks": {
+      "Label": "Match Attacks",
+      "Hint": "Modify to hit values on the summoned creature's attacks to match that of the summoner."
+    },
+    "Proficiency": {
+      "Label": "Match Proficiency",
+      "Hint": "Modify the summoned creature's proficiency to match that of the summoner."
+    },
+    "Saves": {
+      "Label": "Match Saves",
+      "Hint": "Modify to saving throw DCs on the summoned creature's abilities to match that of the summoner."
+    }
+  },
+  "Profile": {
+    "Label": "Summons Profile",
+    "LabelPl": "Summons Profiles",
+    "Empty": "Click above to add a profile or drop an creature to summon here."
+  },
+  "Prompt": {
+    "Label": "Summon Prompt",
+    "Hint": "Disable the summoning prompt when item is used. Players will still be able to summon from the chat card."
+  },
+  "Warning": {
+    "CreateActor": "You must have 'Create New Actors' permission in order to summon directly from a compendium.",
+    "NoActor": "Actor cannot be found with UUID '{uuid}' to summon.",
+    "NoOwnership": "You must have ownership of '{actor}' in order to summon it.",
+    "NoProfile": "Cannot find summoning profile {profileId} on '{item}'.",
+    "Wildcard": "You must have 'Use File Browser' permissions to summon creatures with wildcard artwork."
+  }
+},
 "SW5E.Supply": "Supply",
 "SW5E.Suppressed": "Suppressed",
 "SW5E.Target": "Target",
@@ -1405,6 +1563,12 @@
 "SW5E.TimeYear": "Years",
 "SW5E.TMP": "TMP",
 "SW5E.ToHit": "To Hit",
+"SW5E.Tokens": {
+  "NoneSelected": "No Tokens Selected",
+  "NoneTargeted": "No Tokens Targeted",
+  "Selected": "Selected",
+  "Targeted": "Targeted"
+},
 "SW5E.TokenRings": {
   "BackgroundColor": "Background Color",
   "Effects": {
@@ -1487,6 +1651,20 @@
 "SW5E.UsesAvailable": "Available Uses",
 "SW5E.UsesMax": "Maximum Uses",
 "SW5E.UsesPeriod": "Recovery Period",
+"SW5E.UsesPeriods": {
+  "Charges": "Charges",
+  "ChargesAbbreviation": "Charges",
+  "Dawn": "Dawn",
+  "DawnAbbreviation": "Dawn",
+  "Day": "Day",
+  "DayAbbreviation": "Day",
+  "Dusk": "Dusk",
+  "DuskAbbreviation": "Dusk",
+  "Lr": "Long Rest",
+  "LrAbbreviation": "LR",
+  "Sr": "Short Rest",
+  "SrAbbreviation": "SR"
+},
 "SW5E.Vehicle": "Vehicle",
 "SW5E.VehicleActions": "Actions",
 "SW5E.VehicleActionsHint": "Actions taken with full crew complement",
@@ -1524,6 +1702,7 @@
 "SW5E.WarnCantAddMultipleAdvancements": "It is not currently possible to add multiple items with advancements to an actor at the same time. Please add them individually.",
 "SW5E.WarnMultipleArmor": "More than one suit of armor equipped, AC calculation may be incorrect.",
 "SW5E.WarnMultipleShields": "More than one shield equipped, AC calculation may be incorrect.",
+"SW5E.WeaponCategory": "{category} Weapon",
 "SW5E.WeaponImprov": "Improvised",
 "SW5E.WeaponMartialM": "Martial Melee",
 "SW5E.WeaponMartialProficiency": "Martial",
@@ -1543,6 +1722,7 @@
 "SW5E.power": "power",
 
 "EDITOR.SW5E.Inline": {
+  "ApplyStatus": "Apply Status to Selected Tokens",
   "AwardEach": "{award} each",
   "CheckShort": "{check}",
   "CheckLong": "{check} check",
@@ -1560,15 +1740,23 @@
 },
 
 "EFFECT.SW5E": {
+  "StatusBleeding": "Bleeding",
   "StatusBurrowing": "Burrowing",
   "StatusConcentrating": "Concentrating",
+  "StatusCursed": "Cursed",
+  "StatusDead": "Dead",
   "StatusDodging": "Dodging",
   "StatusEncumbered": "Encumbered",
+  "StatusEthereal": "Ethereal",
   "StatusExceedingCarryingCapacity": "Exceeding Carrying Capacity",
+  "StatusFlying": "Flying",
   "StatusHeavilyEncumbered": "Heavily Encumbered",
-  "StatusHidden": "Hidden",
+  "StatusHiding": "Hiding",
+  "StatusHovering": "Hovering",
   "StatusMarked": "Marked",
+  "StatusSilenced": "Silenced",
   "StatusSleeping": "Sleeping",
+  "StatusStable": "Stable",
   "StatusSurprised": "Surprised",
   "StatusTransformed": "Transformed"
 },
@@ -1660,6 +1848,8 @@
 "SETTINGS.5eMetricL": "Replaces all reference to lbs with kgs and updates the encumbrance calculations to use metric weight units.",
 "SETTINGS.5eNoAdvancementsN": "Disable level-up automation",
 "SETTINGS.5eNoAdvancementsL": "Do not prompt for level-up or character creation choices.",
+"SETTINGS.5eNoConcentrationN": "Disable concentration tracking",
+"SETTINGS.5eNoConcentrationL": "Disable the system's automated tracking of concentration.",
 "SETTINGS.5eNoExpL": "Remove experience bars from character sheets.",
 "SETTINGS.5eNoExpN": "Disable Experience Tracking",
 "SETTINGS.5eProfBonus": "PHB: Bonus (+2, +3, +4, +5, +6)",
@@ -1680,6 +1870,25 @@
 "SETTINGS.5eTokenRings": {
   "Name": "Disable Dynamic Token Rings",
   "Hint": "Disabling the token ring animations can improve performance."
+},
+"SETTINGS.SW5E": {
+  "ALLOWSUMMONING": {
+    "Name": "Allow Summoning",
+    "Hint": "Allow players to use summoning abilities to summon actors. Players must also have the Create Token core permission for this to work."
+  },
+  "THEME": {
+    "Name": "Theme",
+    "Hint": "Theme that will apply to the UI and all sheets by default. Automatic will be determined by your browser or operating system settings."
+  }
+},
+
+"SHEETS.SW5E": {
+  "THEME": {
+    "Label": "Theme",
+    "Automatic": "Automatic",
+    "Dark": "Dark Mode",
+    "Light": "Light Mode"
+  }
 },
 
 "SOURCE.BOOK.SRD": "System Reference Document 5.1"

@@ -1,0 +1,51 @@
+.sw5e-flag-high-contrast .sw5e2,
+.sw5e2.sw5e-flag-high-contrast {
+  .inventory-element {
+    .encumbrance .meter { border-block-end: var(--sw5e-border-dark); }
+    .middle .attunement { border: var(--sw5e-border-dark); }
+  }
+  section.currency, .currency-style {
+    input, button { border: var(--sw5e-border-dark); }
+  }
+}
+
+/* ---------------------------------- */
+/*  Light Mode                        */
+/* ---------------------------------- */
+
+.sw5e-flag-high-contrast.sw5e-theme-light .sw5e2,
+.sw5e2.sw5e-flag-high-contrast.sw5e-theme-light {
+  .inventory-element {
+    .encumbrance .meter { border-color: var(--sw5e-color-dark); }
+    .middle .attunement {
+      border-color: var(--sw5e-color-dark);
+      .fa-sun, .separator { color: var(--sw5e-color-dark); }
+    }
+  }
+  .items-section {
+    :is(.items-header, .item) .item-name .tags { opacity: .5; }
+    .item-school { --icon-fill: var(--sw5e-color-black); }
+    .item-roll .ability { color: var(--color-text-dark-4); }
+  }
+}
+
+/* ---------------------------------- */
+/*  Dark Mode                         */
+/* ---------------------------------- */
+
+.sw5e-flag-high-contrast.sw5e-theme-dark .sw5e2,
+.sw5e2.sw5e-flag-high-contrast.sw5e-theme-dark {
+  .inventory-element {
+    .middle .attunement {
+      .fa-sun, .separator { color: var(--sw5e-color-light); }
+    }
+  }
+  .items-section {
+    :is(.items-header, .item) .item-name .tags { opacity: 1; }
+    .item-school { --icon-fill: var(--sw5e-color-blue-white); }
+    .item-roll .ability { color: var(--color-text-light-4); }
+    .item .item-controls .item-control:not(.active) {
+      color: var(--color-text-light-6);
+    }
+  }
+}

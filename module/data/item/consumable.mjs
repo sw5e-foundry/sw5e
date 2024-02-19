@@ -9,7 +9,7 @@ import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
 
-const { BooleanField, SetField, StringField } = foundry.data.fields;
+const { BooleanField, NumberField, SetField, StringField } = foundry.data.fields;
 
 /**
  * Data definition for Consumable items.
@@ -21,6 +21,7 @@ const { BooleanField, SetField, StringField } = foundry.data.fields;
  * @mixes ActivatedEffectTemplate
  * @mixes ActionTemplate
  *
+ * @property {number} magicalBonus       Magical bonus added to attack & damage rolls by ammunition.
  * @property {Set<string>} properties    Ammunition properties.
  * @property {object} uses
  * @property {boolean} uses.autoDestroy  Should this item be destroyed when it runs out of uses.
@@ -33,6 +34,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       type: new ItemTypeField({value: "potion", baseItem: false}, {label: "SW5E.ItemConsumableType"}),
+      magicalBonus: new NumberField({min: 0, integer: true, label: "SW5E.MagicalBonus"}),
       properties: new SetField(new StringField(), { label: "SW5E.ItemAmmoProperties" }),
       uses: new ActivatedEffectTemplate.ItemUsesField({
         autoDestroy: new BooleanField({required: true, label: "SW5E.ItemDestroyEmpty"})
@@ -70,7 +72,11 @@ export default class ConsumableData extends ItemDataModel.mixin(
     super.prepareDerivedData();
     if ( !this.type.value ) return;
     const config = CONFIG.SW5E.consumableTypes[this.type.value];
-    this.type.label = this.type.subtype ? config.subtypes[this.type.subtype] : config.label;
+    if ( config ) {
+      this.type.label = config.subtypes?.[this.type.subtype] ?? config.label;
+    } else {
+      this.type.label = game.i18n.localize(CONFIG.Item.typeLabels.consumable);
+    }
   }
 
   /* -------------------------------------------- */

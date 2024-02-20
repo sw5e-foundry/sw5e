@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - `Cool Down` button for starship weapons now has a different icon from the `Reload` button.
 - Compendium Updates.
+- Updated core to match [dnd5e 3.0.0](https://github.com/foundryvtt/dnd5e/releases/tag/release-3.0.0).
+- Updated core to match [dnd5e 3.0.1](https://github.com/foundryvtt/dnd5e/releases/tag/release-3.0.1).
 
 ### Fixed
 

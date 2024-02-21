@@ -1,4 +1,4 @@
-import { FormulaField } from "../fields.mjs";
+import { FormulaField, MapField } from "../fields.mjs";
 import { ItemDataModel } from "../abstract.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
@@ -77,9 +77,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
           dex: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
         }
       ),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemEquipmentProperties"
-      }),
+      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemEquipmentProperties" }),
       speed: new foundry.data.fields.SchemaField(
         {
           value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.Speed" }),
@@ -258,7 +256,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
    */
   static _migrateStealth(source) {
     if ( foundry.utils.getProperty(source, "system.stealth") === true ) {
-      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["stealthDisadvantage"]);
+      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", {"stealthDisadvantage": true});
     }
   }
 

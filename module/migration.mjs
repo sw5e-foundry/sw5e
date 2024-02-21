@@ -479,9 +479,10 @@ export async function migrateItemData(item, migrationData, flags={}) {
   const migratedProperties = foundry.utils.getProperty(item, "flags.sw5e.migratedProperties");
   if ( migratedProperties?.length ) {
     flags.persistSourceMigration = true;
-    const properties = new Set(foundry.utils.getProperty(item, "system.properties") ?? [])
-      .union(new Set(migratedProperties));
-    updateData["system.properties"] = Array.from(properties);
+    const properties = new Map(
+      ...(new Map(foundry.utils.getProperty(item, "system.properties") ?? [])),
+      ...(new Map(Object.entries(migratedProperties))));
+    updateData["system.properties"] = Object.fromEntries(properties);
     updateData["flags.sw5e.-=migratedProperties"] = null;
   }
 

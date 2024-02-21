@@ -4,6 +4,7 @@ import IdentifiableTemplate from "./templates/identifiable.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import CurrencyTemplate from "../shared/currency.mjs";
+import { MapField } from "../fields.mjs";
 
 /**
  * Data definition for Container items.
@@ -29,9 +30,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       quantity: new foundry.data.fields.NumberField({min: 1, max: 1}),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemContainerProperties"
-      }),
+      properties: MapField({ label: "SW5E.ItemContainerProperties" }),
       capacity: new foundry.data.fields.SchemaField(
         {
           type: new foundry.data.fields.StringField({
@@ -69,7 +68,7 @@ export default class ContainerData extends ItemDataModel.mixin(
    */
   static _migrateWeightlessData(source) {
     if ( foundry.utils.getProperty(source, "system.capacity.weightless") === true ) {
-      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", ["weightlessContents"]);
+      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", {"weightlessContents": true});
     }
   }
 

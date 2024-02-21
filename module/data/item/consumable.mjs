@@ -8,6 +8,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
+import { MapField } from "../fields.mjs";
 
 const { BooleanField, SetField, StringField } = foundry.data.fields;
 
@@ -38,7 +39,7 @@ export default class ConsumableData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       type: new ItemTypeField({value: "potion", baseItem: false}, {label: "SW5E.ItemConsumableType"}),
-      properties: new SetField(new StringField(), { label: "SW5E.ItemAmmoProperties" }),
+      properties: new MapField({ label: "SW5E.ItemAmmoProperties" }),
       uses: new ActivatedEffectTemplate.ItemUsesField(
         {
           autoDestroy: new BooleanField({ required: true, label: "SW5E.ItemDestroyEmpty" })
@@ -55,18 +56,6 @@ export default class ConsumableData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static _migrateData(source) {
     super._migrateData(source);
-    ConsumableData.#migratePropertiesData(source);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Migrate the properties object into a set.
-   * @param {object} source  The candidate source data from which the model will be constructed.
-   */
-  static #migratePropertiesData(source) {
-    if ( foundry.utils.getType(source.properties) !== "Object" ) return;
-    source.properties = filteredKeys(source.properties);
   }
 
   /* -------------------------------------------- */

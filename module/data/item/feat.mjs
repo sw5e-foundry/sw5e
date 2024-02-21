@@ -4,6 +4,7 @@ import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
+import { MapField } from "../fields.mjs";
 
 /**
  * Data definition for Feature items.
@@ -32,9 +33,7 @@ export default class FeatData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       type: new ItemTypeField({baseItem: false}, {label: "SW5E.ItemFeatureType"}),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemFeatureProperties"
-      }),
+      properties: new MapField({ label: "SW5E.ItemFeatureProperties" }),
       requirements: new foundry.data.fields.StringField({ required: true, nullable: true, label: "SW5E.Requirements" }),
       recharge: new foundry.data.fields.SchemaField(
         {

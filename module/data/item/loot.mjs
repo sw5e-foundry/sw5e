@@ -4,6 +4,7 @@ import ItemDescriptionTemplate from "./templates/item-description.mjs";
 import ItemTypeTemplate from "./templates/item-type.mjs";
 import PhysicalItemTemplate from "./templates/physical-item.mjs";
 import ItemTypeField from "./fields/item-type-field.mjs";
+import { MapField } from "../fields.mjs";
 
 /**
  * Data definition for Loot items.
@@ -21,9 +22,7 @@ export default class LootData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        label: "SW5E.ItemLootProperties"
-      }),
+      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemLootProperties"}),
       type: new ItemTypeField({baseItem: false}, {label: "SW5E.ItemLootType"})
     });
   }

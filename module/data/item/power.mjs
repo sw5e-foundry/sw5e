@@ -1,6 +1,6 @@
 import { filteredKeys } from "../../utils.mjs";
 import { ItemDataModel } from "../abstract.mjs";
-import { FormulaField } from "../fields.mjs";
+import { FormulaField, MapField } from "../fields.mjs";
 import ActionTemplate from "./templates/action.mjs";
 import ActivatedEffectTemplate from "./templates/activated-effect.mjs";
 import ItemDescriptionTemplate from "./templates/item-description.mjs";
@@ -42,9 +42,7 @@ export default class PowerData extends ItemDataModel.mixin(
         label: "SW5E.PowerLevel"
       }),
       school: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerSchool" }),
-      properties: new foundry.data.fields.SetField(new foundry.data.fields.StringField(), {
-        label: "SW5E.PowerComponents"
-      }),
+      properties: new foundry.data.fields.MapField({ label: "SW5E.PowerComponents" }),
       materials: new foundry.data.fields.SchemaField(
         {
           value: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerMaterialsDescription" }),
@@ -128,7 +126,7 @@ export default class PowerData extends ItemDataModel.mixin(
   static _migrateComponentData(source) {
     const components = filteredKeys(source.system?.components ?? {});
     if ( components.length ) {
-      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", components);
+      foundry.utils.setProperty(source, "flags.sw5e.migratedProperties", Object.fromEntries(components.map(c => [c, true]));
     }
   }
 

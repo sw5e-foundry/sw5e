@@ -46,7 +46,7 @@ export default class ModificationData extends SystemDataModel.mixin(
         },
         {}
       ),
-      properties: MapField({ label: "SW5E.ItemToolProperties" })
+      properties: new MapField({ label: "SW5E.ItemToolProperties" })
     });
   }
 

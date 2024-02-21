@@ -30,7 +30,7 @@ export default class ContainerData extends ItemDataModel.mixin(
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
       quantity: new foundry.data.fields.NumberField({min: 1, max: 1}),
-      properties: MapField({ label: "SW5E.ItemContainerProperties" }),
+      properties: new MapField({ label: "SW5E.ItemContainerProperties" }),
       capacity: new foundry.data.fields.SchemaField(
         {
           type: new foundry.data.fields.StringField({

@@ -48,7 +48,7 @@ export default class ToolData extends ItemDataModel.mixin(
         step: 0.5,
         label: "SW5E.ItemToolProficiency"
       }),
-      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemToolProperties" }),
+      properties: MapField({ label: "SW5E.ItemToolProperties" }),
       bonus: new FormulaField({ required: true, label: "SW5E.ItemToolBonus" })
     });
   }

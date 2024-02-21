@@ -77,7 +77,7 @@ export default class EquipmentData extends ItemDataModel.mixin(
           dex: new foundry.data.fields.NumberField({ required: true, integer: true, label: "SW5E.ItemEquipmentDexMod" })
         }
       ),
-      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemEquipmentProperties" }),
+      properties: MapField({ label: "SW5E.ItemEquipmentProperties" }),
       speed: new foundry.data.fields.SchemaField(
         {
           value: new foundry.data.fields.NumberField({ required: true, min: 0, label: "SW5E.Speed" }),

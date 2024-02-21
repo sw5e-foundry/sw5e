@@ -22,7 +22,7 @@ export default class LootData extends ItemDataModel.mixin(
   /** @inheritdoc */
   static defineSchema() {
     return this.mergeSchema(super.defineSchema(), {
-      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemLootProperties"}),
+      properties: MapField({ label: "SW5E.ItemLootProperties"}),
       type: new ItemTypeField({baseItem: false}, {label: "SW5E.ItemLootType"})
     });
   }

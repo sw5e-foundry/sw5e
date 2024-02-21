@@ -46,7 +46,7 @@ export default class ModificationData extends SystemDataModel.mixin(
         },
         {}
       ),
-      properties: new foundry.data.fields.MapField({ label: "SW5E.ItemToolProperties" })
+      properties: MapField({ label: "SW5E.ItemToolProperties" })
     });
   }
 

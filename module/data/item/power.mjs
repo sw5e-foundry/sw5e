@@ -42,7 +42,7 @@ export default class PowerData extends ItemDataModel.mixin(
         label: "SW5E.PowerLevel"
       }),
       school: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerSchool" }),
-      properties: new foundry.data.fields.MapField({ label: "SW5E.PowerComponents" }),
+      properties: MapField({ label: "SW5E.PowerComponents" }),
       materials: new foundry.data.fields.SchemaField(
         {
           value: new foundry.data.fields.StringField({ required: true, label: "SW5E.PowerMaterialsDescription" }),

@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Starship Modifications from the compendium should now have their base price autocalculated instead of set to 0.
 - Attribute override for techcasting will no longer be ignored.
 - Starship firing arc templates will now be correctly positioned on the ship's center.
+- Power items on the items directory can once again be opened.
 
 ## [2.4.1.2.8.0] - 2024-01-03
 

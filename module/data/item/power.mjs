@@ -170,7 +170,7 @@ export default class PowerData extends ItemDataModel.mixin(
     return {
       lgt: attributes?.force?.override || "wis",
       drk: attributes?.force?.override || "cha",
-      univ: attributes?.force?.override || (abilities.wis?.mod ?? 0) >= (abilities.cha?.mod ?? 0) ? "wis" : "cha",
+      univ: attributes?.force?.override || (abilities?.wis?.mod ?? 0) >= (abilities?.cha?.mod ?? 0) ? "wis" : "cha",
       tec: attributes?.tech?.override || "int"
     }[school]
     || attributes?.powercasting || "int";

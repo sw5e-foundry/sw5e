@@ -203,9 +203,6 @@ export default class PowerData extends ItemDataModel.mixin(
       "The `system.components` property has been deprecated in favor of a standardized `system.properties` property.",
       { since: "SW5e 3.0", until: "SW5e 3.2", once: true }
     );
-    return this.properties.reduce((acc, p) => {
-      acc[p] = true;
-      return acc;
-    }, {});
+    return Object.fromEntries(this.properties);
   }
 }
